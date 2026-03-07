@@ -6287,7 +6287,6 @@ You're not viewing the latest version.
 <ul>
 <li><code>#include &lt;Frame.hpp&gt;</code></li>
 </ul>
-<p>Inherited by the following classes: <a href="../structastrea_1_1astro_1_1InertialFrame/">astrea::astro::InertialFrame</a></p>
 <h2 id="public-static-functions">Public Static Functions<a class="headerlink" href="#public-static-functions" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -6298,11 +6297,11 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>constexpr</strong></a> <a href="../namespaceastrea_1_1astro/#enum-frameaxis"><strong>FrameAxis</strong></a></td>
+<td style="text-align: right;">constexpr <a href="../namespaceastrea_1_1astro/#enum-frameaxis"><strong>FrameAxis</strong></a></td>
 <td style="text-align: left;"><a href="#function-get_axis"><strong>get_axis</strong></a> () <br><em>Get the origin of the frame.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>constexpr</strong></a> <a href="../namespaceastrea_1_1astro/#enum-celestialbodyid"><strong>CelestialBodyId</strong></a></td>
+<td style="text-align: right;">constexpr <a href="../namespaceastrea_1_1astro/#enum-celestialbodyid"><strong>CelestialBodyId</strong></a></td>
 <td style="text-align: left;"><a href="#function-get_origin"><strong>get_origin</strong></a> () <br><em>Get the origin of the frame.</em></td>
 </tr>
 </tbody>
@@ -6317,12 +6316,12 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>constexpr</strong></a> <a href="../namespaceastrea_1_1astro/#enum-frameaxis"><strong>FrameAxis</strong></a></td>
-<td style="text-align: left;"><a href="#variable-_axis"><strong>_axis</strong></a>   = <code>[**axis**](classastrea_1_1astro_1_1CartesianVector.md)</code><br><em>The axis type of the inertial frame.</em></td>
+<td style="text-align: right;">constexpr <a href="../namespaceastrea_1_1astro/#enum-frameaxis"><strong>FrameAxis</strong></a></td>
+<td style="text-align: left;"><a href="#variable-_axis"><strong>_axis</strong></a>   = <code>axis</code><br><em>The axis type of the inertial frame.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>constexpr</strong></a> <a href="../namespaceastrea_1_1astro/#enum-celestialbodyid"><strong>CelestialBodyId</strong></a></td>
-<td style="text-align: left;"><a href="#variable-_origin"><strong>_origin</strong></a>   = <code>[**origin**](classastrea_1_1astro_1_1CartesianVector.md)</code><br><em>The central body associated with the inertial frame.</em></td>
+<td style="text-align: right;">constexpr <a href="../namespaceastrea_1_1astro/#enum-celestialbodyid"><strong>CelestialBodyId</strong></a></td>
+<td style="text-align: left;"><a href="#variable-_origin"><strong>_origin</strong></a>   = <code>origin</code><br><em>The central body associated with the inertial frame.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6344,7 +6343,7 @@ You're not viewing the latest version.
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-get_axis">function get_axis<a class="headerlink" href="#function-get_axis" title="Permanent link">&para;</a></h3>
 <p><em>Get the origin of the frame.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">FrameAxis</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Frame</span><span class="o">::</span><span class="n">get_axis</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">FrameAxis</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Frame</span><span class="o">::</span><span class="n">get_axis</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>The origin of the frame. </p>
@@ -6352,7 +6351,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_origin">function get_origin<a class="headerlink" href="#function-get_origin" title="Permanent link">&para;</a></h3>
 <p><em>Get the origin of the frame.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">CelestialBodyId</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Frame</span><span class="o">::</span><span class="n">get_origin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">CelestialBodyId</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Frame</span><span class="o">::</span><span class="n">get_origin</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>The origin of the frame. </p>

@@ -6297,19 +6297,19 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-statepartial-22"><strong>StatePartial</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1OrbitalElementPartials/"><strong>OrbitalElementPartials</strong></a> &amp; elementPartials, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; epoch, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1AstrodynamicsSystem/"><strong>AstrodynamicsSystem</strong></a> &amp; sys) <br><em>Constructs a</em> <a href="./"><em><strong>StatePartial</strong></em></a> <em>with given orbital element partials and astrodynamics system.</em></td>
+<td style="text-align: left;"><a href="#function-statepartial-22"><strong>StatePartial</strong></a> (const <a href="../classastrea_1_1astro_1_1OrbitalElementPartials/"><strong>OrbitalElementPartials</strong></a> &amp; elementPartials, const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; epoch, const <a href="../classastrea_1_1astro_1_1AstrodynamicsSystem/"><strong>AstrodynamicsSystem</strong></a> &amp; sys) <br><em>Constructs a</em> <a href="./"><em><strong>StatePartial</strong></em></a> <em>with given orbital element partials and astrodynamics system.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp;</td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-get_epoch"><strong>get_epoch</strong></a> () const<br><em>Gets the epoch of the state partial.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1AstrodynamicsSystem/"><strong>AstrodynamicsSystem</strong></a> &amp;</td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1AstrodynamicsSystem/"><strong>AstrodynamicsSystem</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-get_system"><strong>get_system</strong></a> () const<br><em>Gets the astrodynamics system associated with the state.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator*</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Time</strong></a> &amp; time) const<br><em>Multiplies the</em> <a href="./"><em><strong>StatePartial</strong></em></a> <em>by a time to get a</em><a href="../classastrea_1_1astro_1_1State/"><em><strong>State</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator*</strong></a> (const Time &amp; time) const<br><em>Multiplies the</em> <a href="./"><em><strong>StatePartial</strong></em></a> <em>by a time to get a</em><a href="../classastrea_1_1astro_1_1State/"><em><strong>State</strong></em></a> <em>.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6323,9 +6323,9 @@ You're not viewing the latest version.
 <h3 id="function-statepartial-22">function StatePartial [2/2]<a class="headerlink" href="#function-statepartial-22" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>StatePartial</strong></em></a> <em>with given orbital element partials and astrodynamics system.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StatePartial</span><span class="o">::</span><span class="n">StatePartial</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">OrbitalElementPartials</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elementPartials</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">AstrodynamicsSystem</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">sys</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">OrbitalElementPartials</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">elementPartials</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">AstrodynamicsSystem</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">sys</span>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6338,7 +6338,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_epoch">function get_epoch<a class="headerlink" href="#function-get_epoch" title="Permanent link">&para;</a></h3>
 <p><em>Gets the epoch of the state partial.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StatePartial</span><span class="o">::</span><span class="n">get_epoch</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StatePartial</span><span class="o">::</span><span class="n">get_epoch</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a>&amp; Reference to the epoch of the state partial. </p>
@@ -6346,7 +6346,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_system">function get_system<a class="headerlink" href="#function-get_system" title="Permanent link">&para;</a></h3>
 <p><em>Gets the astrodynamics system associated with the state.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">const</span><span class="w">  </span><span class="n">AstrodynamicsSystem</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StatePartial</span><span class="o">::</span><span class="n">get_system</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">const</span><span class="w"> </span><span class="n">AstrodynamicsSystem</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StatePartial</span><span class="o">::</span><span class="n">get_system</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const <a href="../classastrea_1_1astro_1_1AstrodynamicsSystem/"><strong>AstrodynamicsSystem</strong></a>&amp; Reference to the astrodynamics system. </p>
@@ -6355,7 +6355,7 @@ You're not viewing the latest version.
 <h3 id="function-operator">function operator*<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Multiplies the</em> <a href="./"><em><strong>StatePartial</strong></em></a> <em>by a time to get a</em><a href="../classastrea_1_1astro_1_1State/"><em><strong>State</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">State</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StatePartial</span><span class="o">::</span><span class="k">operator</span><span class="o">*</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>

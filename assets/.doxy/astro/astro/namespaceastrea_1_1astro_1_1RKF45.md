@@ -37,11 +37,11 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) | [**a**](#variable-a)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) | [**b**](#variable-b)   = `{ 25.0 / 216.0, 0.0, 1408.0 / 2565.0, 2197.0 / 4104.0, -0.2, 0.0 }`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) | [**bhat**](#variable-bhat)   = `{ 16.0 / 135.0, 0.0, 6656.0 / 12825.0, 28561.0 / 56430.0, -9.0 / 50.0, 2.0 / 55.0 }`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) | [**c**](#variable-c)   = `{ 0.0, 0.25, 3.0 / 8.0, 12.0 / 13.0, 1.0, 0.5 }`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t | [**nStages**](#variable-nstages)   = `6`<br> |
+|  const double | [**a**](#variable-a)   = `/* multi line expression */`<br> |
+|  const double | [**b**](#variable-b)   = `{ 25.0 / 216.0, 0.0, 1408.0 / 2565.0, 2197.0 / 4104.0, -0.2, 0.0 }`<br> |
+|  const double | [**bhat**](#variable-bhat)   = `{ 16.0 / 135.0, 0.0, 6656.0 / 12825.0, 28561.0 / 56430.0, -9.0 / 50.0, 2.0 / 55.0 }`<br> |
+|  const double | [**c**](#variable-c)   = `{ 0.0, 0.25, 3.0 / 8.0, 12.0 / 13.0, 1.0, 0.5 }`<br> |
+|  const std::size\_t | [**nStages**](#variable-nstages)   = `6`<br> |
 
 
 

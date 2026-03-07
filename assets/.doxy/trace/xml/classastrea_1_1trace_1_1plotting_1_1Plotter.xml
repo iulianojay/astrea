@@ -1,14 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1trace_1_1plotting_1_1Plotter" kind="class" language="C++" prot="public">
     <compoundname>astrea::trace::plotting::Plotter</compoundname>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1trace_1_1plotting_1_1Plotter_1a8997faec015e1c29c5729f9bef388111" prot="private" static="no" mutable="no">
         <type>std::string</type>
         <definition>std::string astrea::trace::plotting::Plotter::_font</definition>
         <argsstring></argsstring>
         <name>_font</name>
-        <qualifiedname>astrea::trace::plotting::Plotter::_font</qualifiedname>
         <initializer>= &quot;Arial&quot;</initializer>
         <briefdescription>
         </briefdescription>
@@ -23,7 +22,6 @@
         <definition>float astrea::trace::plotting::Plotter::_fontSize</definition>
         <argsstring></argsstring>
         <name>_fontSize</name>
-        <qualifiedname>astrea::trace::plotting::Plotter::_fontSize</qualifiedname>
         <initializer>= 25.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -38,7 +36,6 @@
         <definition>std::string astrea::trace::plotting::Plotter::_fontWeight</definition>
         <argsstring></argsstring>
         <name>_fontWeight</name>
-        <qualifiedname>astrea::trace::plotting::Plotter::_fontWeight</qualifiedname>
         <initializer>= &quot;bold&quot;</initializer>
         <briefdescription>
         </briefdescription>
@@ -53,7 +50,6 @@
         <definition>int astrea::trace::plotting::Plotter::_figureWidth</definition>
         <argsstring></argsstring>
         <name>_figureWidth</name>
-        <qualifiedname>astrea::trace::plotting::Plotter::_figureWidth</qualifiedname>
         <initializer>= 4000</initializer>
         <briefdescription>
         </briefdescription>
@@ -68,7 +64,6 @@
         <definition>int astrea::trace::plotting::Plotter::_figureHeight</definition>
         <argsstring></argsstring>
         <name>_figureHeight</name>
-        <qualifiedname>astrea::trace::plotting::Plotter::_figureHeight</qualifiedname>
         <initializer>= 3000</initializer>
         <briefdescription>
         </briefdescription>
@@ -83,7 +78,6 @@
         <definition>std::filesystem::path astrea::trace::plotting::Plotter::_outputDir</definition>
         <argsstring></argsstring>
         <name>_outputDir</name>
-        <qualifiedname>astrea::trace::plotting::Plotter::_outputDir</qualifiedname>
         <initializer>= &quot;./plots&quot;</initializer>
         <briefdescription>
         </briefdescription>
@@ -93,14 +87,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/plots/Plotter.hpp" line="67" column="27" bodyfile="astrea/trace/trace/analysis/plots/Plotter.hpp" bodystart="67" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1trace_1_1plotting_1_1Plotter_1a8ad6c8810788b47639376cec2bd6dd9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::plotting::Plotter::Plotter</definition>
         <argsstring>()=default</argsstring>
         <name>Plotter</name>
-        <qualifiedname>astrea::trace::plotting::Plotter::Plotter</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -114,7 +107,6 @@
         <definition>void astrea::trace::plotting::Plotter::plot_access_metrics</definition>
         <argsstring>(const AccessArray &amp;accesses, const std::filesystem::path &amp;outfile)</argsstring>
         <name>plot_access_metrics</name>
-        <qualifiedname>astrea::trace::plotting::Plotter::plot_access_metrics</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
           <declname>accesses</declname>
@@ -136,7 +128,6 @@
         <definition>void astrea::trace::plotting::Plotter::plot_number_of_folds</definition>
         <argsstring>(const ViewerConstellation &amp;satellites, const Grid &amp;grounds, const AccessArray &amp;accesses, const Time &amp;resolution, const Time &amp;start, const Time &amp;end)</argsstring>
         <name>plot_number_of_folds</name>
-        <qualifiedname>astrea::trace::plotting::Plotter::plot_number_of_folds</qualifiedname>
         <param>
           <type>const <ref refid="AccessAnalyzer_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" kindref="member">ViewerConstellation</ref> &amp;</type>
           <declname>satellites</declname>
@@ -174,7 +165,6 @@
         <definition>void astrea::trace::plotting::Plotter::set_output_directory</definition>
         <argsstring>(const std::filesystem::path &amp;outputDir)</argsstring>
         <name>set_output_directory</name>
-        <qualifiedname>astrea::trace::plotting::Plotter::set_output_directory</qualifiedname>
         <param>
           <type>const std::filesystem::path &amp;</type>
           <declname>outputDir</declname>
@@ -187,14 +177,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/plots/Plotter.hpp" line="55" column="10" bodyfile="astrea/trace/trace/analysis/plots/Plotter.hpp" bodystart="55" bodyend="59"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-func">
+      </sectiondef>
+      <sectiondef kind="private-func">
       <memberdef kind="function" id="classastrea_1_1trace_1_1plotting_1_1Plotter_1a72cb6ff5eac85c95c64525b6675db7a2" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
         <definition>auto astrea::trace::plotting::Plotter::build_figure</definition>
         <argsstring>(const std::string &amp;title) const</argsstring>
         <name>build_figure</name>
-        <qualifiedname>astrea::trace::plotting::Plotter::build_figure</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>title</declname>
@@ -207,7 +196,7 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/plots/Plotter.hpp" line="69" column="10" bodyfile="astrea/trace/trace/analysis/plots/Plotter.hpp" bodystart="69" bodyend="79"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

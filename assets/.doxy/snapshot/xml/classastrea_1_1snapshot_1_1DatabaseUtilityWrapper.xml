@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper" kind="class" language="C++" prot="public">
     <compoundname>astrea::snapshot::DatabaseUtilityWrapper</compoundname>
     <includes refid="Database_8hpp" local="no">Database.hpp</includes>
@@ -8,13 +8,12 @@
         <type>class T</type>
       </param>
     </templateparamlist>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ac0986f667088af6520c69455c6065a40" prot="private" static="no" mutable="no">
         <type>T</type>
         <definition>T astrea::snapshot::DatabaseUtilityWrapper&lt; T &gt;::_database</definition>
         <argsstring></argsstring>
         <name>_database</name>
-        <qualifiedname>astrea::snapshot::DatabaseUtilityWrapper::_database</qualifiedname>
         <briefdescription>
 <para>The wrapped database instance. </para>
         </briefdescription>
@@ -24,14 +23,13 @@
         </inbodydescription>
         <location file="astrea/snapshot/snapshot/database/Database.hpp" line="113" column="7" bodyfile="astrea/snapshot/snapshot/database/Database.hpp" bodystart="113" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ace420c8f9c4ca101cfd6f121025d08cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::snapshot::DatabaseUtilityWrapper&lt; T &gt;::DatabaseUtilityWrapper</definition>
         <argsstring>(T &amp;&amp;db)</argsstring>
         <name>DatabaseUtilityWrapper</name>
-        <qualifiedname>astrea::snapshot::DatabaseUtilityWrapper::DatabaseUtilityWrapper</qualifiedname>
         <param>
           <type>T &amp;&amp;</type>
           <declname>db</declname>
@@ -61,7 +59,6 @@
         <definition>astrea::snapshot::DatabaseUtilityWrapper&lt; T &gt;::~DatabaseUtilityWrapper</definition>
         <argsstring>()=default</argsstring>
         <name>~DatabaseUtilityWrapper</name>
-        <qualifiedname>astrea::snapshot::DatabaseUtilityWrapper::~DatabaseUtilityWrapper</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper" kindref="compound">DatabaseUtilityWrapper</ref>. </para>
         </briefdescription>
@@ -71,12 +68,11 @@
         </inbodydescription>
         <location file="astrea/snapshot/snapshot/database/Database.hpp" line="68" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a95a63422f211ef38a14970a315c68294" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a08228f8dcbb2a540cafbb26822ff512c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const T &amp;</type>
-        <definition>const T &amp; astrea::snapshot::DatabaseUtilityWrapper&lt; T &gt;::get_database</definition>
+        <definition>const T&amp; astrea::snapshot::DatabaseUtilityWrapper&lt; T &gt;::get_database</definition>
         <argsstring>() const</argsstring>
         <name>get_database</name>
-        <qualifiedname>astrea::snapshot::DatabaseUtilityWrapper::get_database</qualifiedname>
         <briefdescription>
 <para>Gets the underlying database instance. </para>
         </briefdescription>
@@ -89,7 +85,7 @@
         </inbodydescription>
         <location file="astrea/snapshot/snapshot/database/Database.hpp" line="75" column="13"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aa34d2fffb5fc8e1720d40807ac67acfa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a6494442e0eecbe54775957e5e0bb7482" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename...</type>
@@ -98,10 +94,9 @@
           </param>
         </templateparamlist>
         <type>std::vector&lt; astro::GeneralPerturbations &gt;</type>
-        <definition>std::vector&lt; astro::GeneralPerturbations &gt; astrea::snapshot::DatabaseUtilityWrapper&lt; T &gt;::get_all</definition>
+        <definition>std::vector&lt;astro::GeneralPerturbations&gt; astrea::snapshot::DatabaseUtilityWrapper&lt; T &gt;::get_all</definition>
         <argsstring>(Args &amp;&amp;... args) const</argsstring>
         <name>get_all</name>
-        <qualifiedname>astrea::snapshot::DatabaseUtilityWrapper::get_all</qualifiedname>
         <param>
           <type>Args &amp;&amp;...</type>
           <declname>args</declname>
@@ -141,7 +136,6 @@
         <definition>astro::GeneralPerturbations astrea::snapshot::DatabaseUtilityWrapper&lt; T &gt;::get_sat_from_norad_id</definition>
         <argsstring>(const unsigned &amp;id) const</argsstring>
         <name>get_sat_from_norad_id</name>
-        <qualifiedname>astrea::snapshot::DatabaseUtilityWrapper::get_sat_from_norad_id</qualifiedname>
         <param>
           <type>const unsigned &amp;</type>
           <declname>id</declname>
@@ -167,12 +161,11 @@
         </inbodydescription>
         <location file="astrea/snapshot/snapshot/database/Database.hpp" line="93" column="33"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ab806e6f862f7c0f4995eb3df9a1ab105" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a557b53a02c08308eeb34cd09b524ec4a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; astro::GeneralPerturbations &gt;</type>
-        <definition>std::vector&lt; astro::GeneralPerturbations &gt; astrea::snapshot::DatabaseUtilityWrapper&lt; T &gt;::get_sats_by_name</definition>
+        <definition>std::vector&lt;astro::GeneralPerturbations&gt; astrea::snapshot::DatabaseUtilityWrapper&lt; T &gt;::get_sats_by_name</definition>
         <argsstring>(const std::string &amp;name) const</argsstring>
         <name>get_sats_by_name</name>
-        <qualifiedname>astrea::snapshot::DatabaseUtilityWrapper::get_sats_by_name</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>name</declname>
@@ -198,12 +191,11 @@
         </inbodydescription>
         <location file="astrea/snapshot/snapshot/database/Database.hpp" line="101" column="17"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aba2efd4c1114240c4f771ee7e67af999" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a792fc6936eaf84f86ac63d5773f5bf27" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; astro::GeneralPerturbations &gt;</type>
-        <definition>std::vector&lt; astro::GeneralPerturbations &gt; astrea::snapshot::DatabaseUtilityWrapper&lt; T &gt;::get_sats_in_range</definition>
+        <definition>std::vector&lt;astro::GeneralPerturbations&gt; astrea::snapshot::DatabaseUtilityWrapper&lt; T &gt;::get_sats_in_range</definition>
         <argsstring>(const Distance &amp;minPeriapsis, const Distance &amp;maxApoapsis) const</argsstring>
         <name>get_sats_in_range</name>
-        <qualifiedname>astrea::snapshot::DatabaseUtilityWrapper::get_sats_in_range</qualifiedname>
         <param>
           <type>const Distance &amp;</type>
           <declname>minPeriapsis</declname>
@@ -241,7 +233,7 @@
         </inbodydescription>
         <location file="astrea/snapshot/snapshot/database/Database.hpp" line="110" column="17"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Database utility wrapper for the snapshot module. </para>
     </briefdescription>
@@ -262,11 +254,11 @@
     <listofallmembers>
       <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ac0986f667088af6520c69455c6065a40" prot="private" virt="non-virtual"><scope>astrea::snapshot::DatabaseUtilityWrapper</scope><name>_database</name></member>
       <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ace420c8f9c4ca101cfd6f121025d08cb" prot="public" virt="non-virtual"><scope>astrea::snapshot::DatabaseUtilityWrapper</scope><name>DatabaseUtilityWrapper</name></member>
-      <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aa34d2fffb5fc8e1720d40807ac67acfa" prot="public" virt="non-virtual"><scope>astrea::snapshot::DatabaseUtilityWrapper</scope><name>get_all</name></member>
-      <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a95a63422f211ef38a14970a315c68294" prot="public" virt="non-virtual"><scope>astrea::snapshot::DatabaseUtilityWrapper</scope><name>get_database</name></member>
+      <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a6494442e0eecbe54775957e5e0bb7482" prot="public" virt="non-virtual"><scope>astrea::snapshot::DatabaseUtilityWrapper</scope><name>get_all</name></member>
+      <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a08228f8dcbb2a540cafbb26822ff512c" prot="public" virt="non-virtual"><scope>astrea::snapshot::DatabaseUtilityWrapper</scope><name>get_database</name></member>
       <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a8651a3c52201406b31f636b6f8939bdc" prot="public" virt="non-virtual"><scope>astrea::snapshot::DatabaseUtilityWrapper</scope><name>get_sat_from_norad_id</name></member>
-      <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ab806e6f862f7c0f4995eb3df9a1ab105" prot="public" virt="non-virtual"><scope>astrea::snapshot::DatabaseUtilityWrapper</scope><name>get_sats_by_name</name></member>
-      <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aba2efd4c1114240c4f771ee7e67af999" prot="public" virt="non-virtual"><scope>astrea::snapshot::DatabaseUtilityWrapper</scope><name>get_sats_in_range</name></member>
+      <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a557b53a02c08308eeb34cd09b524ec4a" prot="public" virt="non-virtual"><scope>astrea::snapshot::DatabaseUtilityWrapper</scope><name>get_sats_by_name</name></member>
+      <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a792fc6936eaf84f86ac63d5773f5bf27" prot="public" virt="non-virtual"><scope>astrea::snapshot::DatabaseUtilityWrapper</scope><name>get_sats_in_range</name></member>
       <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a14ee0ab279a6aff86c23d620d70ddc3d" prot="public" virt="non-virtual"><scope>astrea::snapshot::DatabaseUtilityWrapper</scope><name>~DatabaseUtilityWrapper</name></member>
     </listofallmembers>
   </compounddef>

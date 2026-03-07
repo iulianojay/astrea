@@ -6320,11 +6320,11 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-statehistory-22"><strong>StateHistory</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> std::size_t &amp; objectId) <br><em>Constructor that initializes</em> <a href="./"><em><strong>StateHistory</strong></em></a> <em>with a specific object ID.</em></td>
+<td style="text-align: left;"><a href="#function-statehistory-22"><strong>StateHistory</strong></a> (const std::size_t &amp; objectId) <br><em>Constructor that initializes</em> <a href="./"><em><strong>StateHistory</strong></em></a> <em>with a specific object ID.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-at"><strong>at</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Retrieves the state at a specific date.</em></td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="#function-at"><strong>at</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Retrieves the state at a specific date.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./#typedef-iterator"><strong>iterator</strong></a></td>
@@ -6343,7 +6343,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-cend"><strong>cend</strong></a> () const<br><em>Returns a constant iterator to the end of the state history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-clear"><strong>clear</strong></a> () <br><em>Clears the state history, removing all stored states.</em></td>
 </tr>
 <tr>
@@ -6355,19 +6355,19 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-end-22"><strong>end</strong></a> () const<br><em>Returns a constant iterator to the end of the state history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp;</td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-epoch"><strong>epoch</strong></a> () const<br><em>Retrieves the epoch (first date) of the state history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-first"><strong>first</strong></a> () const<br><em>Retrieves the first and last states in the history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-get_closest_state"><strong>get_closest_state</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Retrieves the closest state to a given date.</em></td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="#function-get_closest_state"><strong>get_closest_state</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Retrieves the closest state to a given date.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> EventTimesMap &amp;</td>
+<td style="text-align: right;">const EventTimesMap &amp;</td>
 <td style="text-align: left;"><a href="#function-get_event_times-12"><strong>get_event_times</strong></a> () const<br><em>Retrieves the event times recorded during propagation.</em></td>
 </tr>
 <tr>
@@ -6380,27 +6380,27 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a></td>
-<td style="text-align: left;"><a href="#function-get_state_at"><strong>get_state_at</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Retrieves the state at a specific date.</em></td>
+<td style="text-align: left;"><a href="#function-get_state_at"><strong>get_state_at</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Retrieves the state at a specific date.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-insert"><strong>insert</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) <br><em>Inserts a state at a specific date into the history.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-insert"><strong>insert</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state) <br><em>Inserts a state at a specific date into the history.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-last"><strong>last</strong></a> () const<br><em>Retrieves the last state in the history.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator[]</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) <br><em>Accesses the state at a specific date.</em></td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator[]</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) <br><em>Accesses the state at a specific date.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_event_times"><strong>set_event_times</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> EventTimesMap &amp; eventTimes) <br><em>Sets the event times recorded during propagation.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_event_times"><strong>set_event_times</strong></a> (const EventTimesMap &amp; eventTimes) <br><em>Sets the event times recorded during propagation.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_object_id"><strong>set_object_id</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> std::size_t &amp; objectId) <br><em>Sets the object ID for this state history.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_object_id"><strong>set_object_id</strong></a> (const std::size_t &amp; objectId) <br><em>Sets the object ID for this state history.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::size_t</td>
@@ -6447,8 +6447,8 @@ You're not viewing the latest version.
 
 <h3 id="function-at">function at<a class="headerlink" href="#function-at" title="Permanent link">&para;</a></h3>
 <p><em>Retrieves the state at a specific date.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">at</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">at</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6515,7 +6515,7 @@ You're not viewing the latest version.
 
 <h3 id="function-epoch">function epoch<a class="headerlink" href="#function-epoch" title="Permanent link">&para;</a></h3>
 <p><em>Retrieves the epoch (first date) of the state history.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">epoch</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">epoch</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a>&amp; Reference to the epoch of the state history. </p>
@@ -6523,7 +6523,7 @@ You're not viewing the latest version.
 
 <h3 id="function-first">function first<a class="headerlink" href="#function-first" title="Permanent link">&para;</a></h3>
 <p><em>Retrieves the first and last states in the history.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">first</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">first</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a>&amp; Reference to the first state. </p>
@@ -6531,8 +6531,8 @@ You're not viewing the latest version.
 
 <h3 id="function-get_closest_state">function get_closest_state<a class="headerlink" href="#function-get_closest_state" title="Permanent link">&para;</a></h3>
 <p><em>Retrieves the closest state to a given date.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">get_closest_state</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">get_closest_state</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p>This function finds the state that is closest to the specified date, either before or after it, and returns it.</p>
@@ -6571,7 +6571,7 @@ You're not viewing the latest version.
 <h3 id="function-get_state_at">function get_state_at<a class="headerlink" href="#function-get_state_at" title="Permanent link">&para;</a></h3>
 <p><em>Retrieves the state at a specific date.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">State</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">get_state_at</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p>This function returns the state at the specified date, or the closest state if no exact match is found.</p>
@@ -6586,7 +6586,7 @@ You're not viewing the latest version.
 <h3 id="function-insert">function insert<a class="headerlink" href="#function-insert" title="Permanent link">&para;</a></h3>
 <p><em>Inserts a state at a specific date into the history.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">insert</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span>
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6598,7 +6598,7 @@ You're not viewing the latest version.
 
 <h3 id="function-last">function last<a class="headerlink" href="#function-last" title="Permanent link">&para;</a></h3>
 <p><em>Retrieves the last state in the history.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">last</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="n">last</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a>&amp; Reference to the last state. </p>
@@ -6607,7 +6607,7 @@ You're not viewing the latest version.
 <h3 id="function-operator">function operator[]<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Accesses the state at a specific date.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">StateHistory</span><span class="o">::</span><span class="k">operator</span><span class="p">[]</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
 </span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>

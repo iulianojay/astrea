@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.1" xml:lang="en-US">
   <compound refid="classastrea_1_1trace_1_1AccessAnalyzer" kind="class"><name>astrea::trace::AccessAnalyzer</name>
     <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1adbaf5780cdd95189c2d2b2b48a815e2a" kind="variable"><name>_resolution</name></member>
     <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a723c1372f27256aea420a3cfe6489711" kind="variable"><name>_startDate</name></member>
@@ -15,8 +15,8 @@
     <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a18f8555480c3eed048bf52ddfe083dec" kind="function"><name>find_accesses</name></member>
     <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1aeb047942c3b6de75d54ea3f1e5e927f0" kind="function"><name>create_date_vector</name></member>
     <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a61c2291d5ab0311b54080134f08c7891" kind="function"><name>is_central_body_occulting</name></member>
-    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1ae3858c5242f8375440101b224384e0ac" kind="function"><name>find_platform_to_platform_accesses</name></member>
-    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a21338f1f7f69e51a1d90f4b39dda0fd7" kind="function"><name>find_platform_to_ground_point_accesses</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a19b3bfae3acd687c32356feffa7be3bf" kind="function"><name>find_platform_to_platform_accesses</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a737f2caffe9137bc71f7bcce77e8b16b" kind="function"><name>find_platform_to_ground_point_accesses</name></member>
     <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a65afb6da60cf87ce860b77b3398afdb8" kind="function"><name>find_sensor_accesses</name></member>
     <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a28f00379eb505451a6cb6a0c1f9d7da0" kind="function"><name>can_objects_ever_access_each_other</name></member>
     <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1affcfa946c62f719f120d94fa23b0ff2a" kind="function"><name>cache_viewers</name></member>
@@ -24,13 +24,15 @@
     <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a9bdfe6f51d85ba63f4b6c135a4195c0e" kind="function"><name>cache_ground_points</name></member>
     <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a35fed5ffc965812dc852a7e70689748e" kind="function"><name>build_access_info</name></member>
     <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1acd09c1ae2d1b89a5975e59d5f44b12dd" kind="function"><name>filter_impossible_pairs</name></member>
-    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1ad196044565191136fb7d324613c6c8c3" kind="function"><name>filter_impossible_pairs</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a1f52436f26070d56bcf4da5ccab3413d" kind="function"><name>requires</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a7bd36aeb5e7af6e08bf9afcca283b317" kind="function"><name>requires</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessAnalyzer_1a75f9dc51c0e1270c9c8de804113a6dd8" kind="function"><name>filter_impossible_pairs</name></member>
   </compound>
   <compound refid="classastrea_1_1trace_1_1AccessArray" kind="class"><name>astrea::trace::AccessArray</name>
     <member refid="classastrea_1_1trace_1_1AccessArray_1af1ec64463016254635e75660edf28eb5" kind="typedef"><name>iterator</name></member>
     <member refid="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" kind="typedef"><name>const_iterator</name></member>
     <member refid="classastrea_1_1trace_1_1AccessArray_1af2049a79d70b70a4e5c6a8390a4f4521" kind="variable"><name>_accesses</name></member>
-    <member refid="classastrea_1_1trace_1_1AccessArray_1a653318121cd098e12081935f4f22da49" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessArray_1a0f09e1c6b7f9427c403fc8daf8cfda67" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1trace_1_1AccessArray_1af10266a6eea092b3b619f694908d20ff" kind="function"><name>AccessArray</name></member>
     <member refid="classastrea_1_1trace_1_1AccessArray_1a0b0210e730026f9371b7bcc674866b34" kind="function"><name>~AccessArray</name></member>
     <member refid="classastrea_1_1trace_1_1AccessArray_1a33fe39e20bb86f80deeb30920eb72073" kind="function"><name>operator[]</name></member>
@@ -63,8 +65,8 @@
     <member refid="classastrea_1_1trace_1_1AccessObject_1aa7afccafee2c3bcb2b766cf9bf395799" kind="function"><name>~AccessObject</name></member>
     <member refid="classastrea_1_1trace_1_1AccessObject_1a10b3e4b10853ab07e397987d7a4bcf77" kind="function"><name>add_access</name></member>
     <member refid="classastrea_1_1trace_1_1AccessObject_1a2a38e7745542fa7d681c8dbfff7a2332" kind="function"><name>drop_access</name></member>
-    <member refid="classastrea_1_1trace_1_1AccessObject_1a74001e50f522dfb7452c96433698e670" kind="function"><name>get_accesses</name></member>
-    <member refid="classastrea_1_1trace_1_1AccessObject_1a315695c2948714a7af494d92c4a9f598" kind="function"><name>get_accesses</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessObject_1a97dd222834452263fa7b7f2ea1da1986" kind="function"><name>get_accesses</name></member>
+    <member refid="classastrea_1_1trace_1_1AccessObject_1a542d32353766a59ad5f63dc0fa7c09ae" kind="function"><name>get_accesses</name></member>
     <member refid="classastrea_1_1trace_1_1AccessObject_1a067983557aa2ab8506d0d863729fde3f" kind="function"><name>get_id</name></member>
   </compound>
   <compound refid="structastrea_1_1trace_1_1AccessStats" kind="struct"><name>astrea::trace::AccessStats</name>
@@ -76,13 +78,13 @@
     <member refid="structastrea_1_1trace_1_1AccessStats_1aa8179f373b8b6160c894c2b0dab7a079" kind="function"><name>AccessStats</name></member>
     <member refid="structastrea_1_1trace_1_1AccessStats_1a3262e1e44e8c4065e6a200e3403c1499" kind="function"><name>AccessStats</name></member>
     <member refid="structastrea_1_1trace_1_1AccessStats_1a09662481e3678460f6d5f44444576c49" kind="function"><name>to_string_vector</name></member>
-    <member refid="structastrea_1_1trace_1_1AccessStats_1aa3a7ba34fe52975554c626c425affdb5" kind="function"><name>get_riseset_statistics</name></member>
-    <member refid="structastrea_1_1trace_1_1AccessStats_1add4fb58316fb73a4e1296b759ce0c9aa" kind="function"><name>get_riseset_statistics</name></member>
-    <member refid="structastrea_1_1trace_1_1AccessStats_1a3ba0cc76be00dc5dc874214dab108957" kind="function"><name>get_access_metric</name></member>
-    <member refid="structastrea_1_1trace_1_1AccessStats_1ac2f0642920a088c61296ecbcb85a2681" kind="function"><name>get_access_metrics</name></member>
-    <member refid="structastrea_1_1trace_1_1AccessStats_1a3dfccb58d342172d71ba5398e42c7fd3" kind="function"><name>get_access_statistics</name></member>
-    <member refid="structastrea_1_1trace_1_1AccessStats_1ae8d1ab178a4e91a29d8a8be14645f784" kind="function"><name>get_hyper_statistics</name></member>
-    <member refid="structastrea_1_1trace_1_1AccessStats_1a948f90216cef5614c78eaf3ce9e579c6" kind="function"><name>get_hyper_statistics</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1a9a14775372704192fe6e8b43d8f67376" kind="function"><name>get_riseset_statistics</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1a54871088d3baf9f90ff27898a3b2d4c2" kind="function"><name>get_riseset_statistics</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1a8920b9579b2c4b92921c75197d6e9bfa" kind="function"><name>get_access_metric</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1a4e615855c9605d88db23f4c099919591" kind="function"><name>get_access_metrics</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1a0111ae8352901b7ffb4c4a80640ee0ae" kind="function"><name>get_access_statistics</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1a3c6a71babcb54c4ae1d6a4466eaf2c93" kind="function"><name>get_hyper_statistics</name></member>
+    <member refid="structastrea_1_1trace_1_1AccessStats_1a77057532eeac862d3987afe44c0e1a78" kind="function"><name>get_hyper_statistics</name></member>
   </compound>
   <compound refid="classastrea_1_1trace_1_1Antenna" kind="class"><name>astrea::trace::Antenna</name>
     <member refid="classastrea_1_1trace_1_1Antenna_1adcf98fecc8a061a81663b440c4936b8d" kind="variable"><name>_parameters</name></member>
@@ -164,7 +166,7 @@
     <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1ad0c633f447d3b1e837d8bb5c7b480752" kind="function"><name>end</name></member>
     <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a500d8a62e18108f15c0d80d19511238d" kind="function"><name>cbegin</name></member>
     <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1af8cafa272ad6aa077931016ea6df8380" kind="function"><name>cend</name></member>
-    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1aff1de2012c2874928d114050b0b8d818" kind="function"><name>get_stats</name></member>
+    <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1af7498fd17f6df7537145f404b6ac0998" kind="function"><name>get_stats</name></member>
   </compound>
   <compound refid="structastrea_1_1trace_1_1GeographicBin" kind="struct"><name>astrea::trace::GeographicBin</name>
     <member refid="structastrea_1_1trace_1_1GeographicBin_1a3295bcaac610e7573674831b20b803d0" kind="variable"><name>latMin</name></member>
@@ -185,7 +187,7 @@
     <member refid="classastrea_1_1trace_1_1Grid_1a1d47c57e94e51b2bfe5d98262e6b79e3" kind="function"><name>Grid</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1a607e9db4e271a772185ecd0af4f30a02" kind="function"><name>~Grid</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1abd6294ca4561df2ec9f9b67d8b32fb45" kind="function"><name>get_grid_type</name></member>
-    <member refid="classastrea_1_1trace_1_1Grid_1a1bfec649c51083ef4d824f171d4006bb" kind="function"><name>get_parent</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1a32a3efa860b693da51ba77047f7abe13" kind="function"><name>get_parent</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1a5087dcff06bc305fa1c69e1295328c0a" kind="function"><name>size</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1a1f9614c07d5fdc5d9482b77e2c9ab0de" kind="function"><name>begin</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1aa85692315d28370b2ae289475f6bbb87" kind="function"><name>end</name></member>
@@ -193,8 +195,8 @@
     <member refid="classastrea_1_1trace_1_1Grid_1ae2dc4de990408031a6ae4053531a9649" kind="function"><name>end</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1ac1637b84459b4c1b748bd0a3eca6c129" kind="function"><name>cbegin</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1a717d791e7fba1ddf3d1fab2b944c79ee" kind="function"><name>cend</name></member>
-    <member refid="classastrea_1_1trace_1_1Grid_1ac237025e2ba0a390e997976963e7e4c4" kind="function"><name>operator[]</name></member>
-    <member refid="classastrea_1_1trace_1_1Grid_1a5083f548ea24eb3842e3dcc6fc5e1054" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1af3554e289f4713105ad11bfc30fcf97b" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1trace_1_1Grid_1ab9fb5da5b2186359213ea054947fe54e" kind="function"><name>operator[]</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1a575835af14f1e71895e571fcda337e8e" kind="function"><name>build_grid</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1af5e9d97ab7f231f2e9a4cb3987696ec5" kind="function"><name>build_uniform_grid</name></member>
     <member refid="classastrea_1_1trace_1_1Grid_1ae7762041f13cdb30630eb35f9c1c0a2e" kind="function"><name>build_equal_area_grid</name></member>
@@ -207,8 +209,8 @@
     <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a51e60dacdd2f73483b7e7026edbdc8f2" kind="variable"><name>_groundStations</name></member>
     <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a7a14b01db48fd2f1c16947c9d5d2fd0d" kind="function"><name>GroundArchitecture</name></member>
     <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a3af42b79710b09175249d2b79264b732" kind="function"><name>~GroundArchitecture</name></member>
-    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a23010ac739dc64c8fa74e27808d2db8f" kind="function"><name>operator[]</name></member>
-    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a9395dd8ebf5cebb99742115a4a65c3af" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a55bfdab4743252789026c62dad1df383" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1trace_1_1GroundArchitecture_1afcc09f7e6225ebcef23f3b3c690f610a" kind="function"><name>operator[]</name></member>
     <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a52b93ca6fbef199a4a8875d4484d879b" kind="function"><name>size</name></member>
     <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a77e578794b39dd2be9112a3c6a31483e" kind="function"><name>begin</name></member>
     <member refid="classastrea_1_1trace_1_1GroundArchitecture_1a04636042b4fc7811865feefbe1b2718b" kind="function"><name>end</name></member>
@@ -254,8 +256,8 @@
     <member refid="structastrea_1_1trace_1_1HyperStats_1ac6ff34fef00c0eb7d85ac16767475ba4" kind="variable"><name>avg</name></member>
     <member refid="structastrea_1_1trace_1_1HyperStats_1af7a4b53f507220b5c782c3ccb1c0e307" kind="variable"><name>percentiles</name></member>
     <member refid="structastrea_1_1trace_1_1HyperStats_1ac1968225bcde96ea4487e6c951c82ce0" kind="function"><name>HyperStats</name></member>
-    <member refid="structastrea_1_1trace_1_1HyperStats_1acd97b41ce7dc20872935c533a6f9a164" kind="function"><name>HyperStats</name></member>
-    <member refid="structastrea_1_1trace_1_1HyperStats_1ad293e07355c0981f557cd4a625b05c89" kind="function"><name>to_string_vector</name></member>
+    <member refid="structastrea_1_1trace_1_1HyperStats_1ad20ba8eac35c7358e319c6f2316e2b1f" kind="function"><name>HyperStats</name></member>
+    <member refid="structastrea_1_1trace_1_1HyperStats_1a894a63f8fb5508ba0aa56879419dabb5" kind="function"><name>to_string_vector</name></member>
     <member refid="structastrea_1_1trace_1_1HyperStats_1ad8c6a68e40dae07a284f92b25ba8b5e4" kind="function"><name>size</name></member>
   </compound>
   <compound refid="structastrea_1_1trace_1_1IdPair" kind="struct"><name>astrea::trace::IdPair</name>
@@ -316,7 +318,7 @@
     <member refid="classastrea_1_1trace_1_1RiseSetArray_1ab256024b973b212c6311954db59e61e8" kind="typedef"><name>iterator</name></member>
     <member refid="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" kind="typedef"><name>const_iterator</name></member>
     <member refid="classastrea_1_1trace_1_1RiseSetArray_1a0edea064febec77fe1badd23ace63838" kind="variable"><name>_risesets</name></member>
-    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a0e4e768d5278475c3b225960b19eaef0" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1trace_1_1RiseSetArray_1a59122c364d596bc7e3156ed12d9a856a" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1trace_1_1RiseSetArray_1ad4e1f0103c5c6b188eca310fca6b4b72" kind="function"><name>RiseSetArray</name></member>
     <member refid="classastrea_1_1trace_1_1RiseSetArray_1a302d8aa92358259c19ebf6e12a14cf15" kind="function"><name>~RiseSetArray</name></member>
     <member refid="classastrea_1_1trace_1_1RiseSetArray_1a01f93ad1fd7db742d6e4b19ad28c39ef" kind="function"><name>RiseSetArray</name></member>
@@ -360,12 +362,14 @@
     <member refid="structastrea_1_1trace_1_1RiseSetStats_1ac8de29325379190c1f4bc729aee41f60" kind="function"><name>RiseSetStats</name></member>
     <member refid="structastrea_1_1trace_1_1RiseSetStats_1a43edbefa71467c5ea14fddb4a7f2a53e" kind="function"><name>RiseSetStats</name></member>
     <member refid="structastrea_1_1trace_1_1RiseSetStats_1ad2fe0fa95fb0f84caca8cc9e223cdfac" kind="function"><name>to_string_vector</name></member>
-    <member refid="structastrea_1_1trace_1_1RiseSetStats_1a04f64a3e79b0245295d5268915ddfdae" kind="function"><name>at</name></member>
-    <member refid="structastrea_1_1trace_1_1RiseSetStats_1a6356f882db2fb3eefc256b9c64141572" kind="function"><name>operator[]</name></member>
+    <member refid="structastrea_1_1trace_1_1RiseSetStats_1accdcd198ed7547e18e95b75c4a30d0ab" kind="function"><name>at</name></member>
+    <member refid="structastrea_1_1trace_1_1RiseSetStats_1a89d26d42527a63b881460b35f203f082" kind="function"><name>operator[]</name></member>
   </compound>
   <compound refid="classastrea_1_1trace_1_1Sensor" kind="class"><name>astrea::trace::Sensor</name>
     <member refid="classastrea_1_1trace_1_1Sensor_1ae0a78010b9065fafc444c847a6b056ca" kind="variable"><name>Payload&lt; Sensor, SensorParameters &gt;</name></member>
-    <member refid="classastrea_1_1trace_1_1Sensor_1ae138cd879222cc1b8a9d0ae527150cf1" kind="function"><name>Sensor</name></member>
+    <member refid="classastrea_1_1trace_1_1Sensor_1ae5aa414df75b49f871c35e7e1c65dd59" kind="variable"><name>parameters</name></member>
+    <member refid="classastrea_1_1trace_1_1Sensor_1a15560200c497837b5abf60b8cf4006de" kind="function"><name>requires</name></member>
+    <member refid="classastrea_1_1trace_1_1Sensor_1a17ebfc05b1a94ae9d7f62c360609de0a" kind="function"><name>Payload</name></member>
     <member refid="classastrea_1_1trace_1_1Sensor_1af03c36681b7cce79e9a85f70bd421856" kind="function"><name>~Sensor</name></member>
     <member refid="classastrea_1_1trace_1_1Sensor_1a8216026c485083cf9c0522ad436b8f48" kind="function"><name>get_id</name></member>
     <member refid="classastrea_1_1trace_1_1Sensor_1a9b2673a05cb5a4e753401d393c0787ef" kind="function"><name>contains</name></member>
@@ -375,7 +379,7 @@
     <member refid="classastrea_1_1trace_1_1SensorParameters_1ae4e7346755188e1ae4f87ee268ba9336" kind="variable"><name>_fov</name></member>
     <member refid="classastrea_1_1trace_1_1SensorParameters_1ae21b87a4b797b515a4b53e8675653a42" kind="function"><name>SensorParameters</name></member>
     <member refid="classastrea_1_1trace_1_1SensorParameters_1a6bd8263928f9db04964759d26498d1cd" kind="function"><name>~SensorParameters</name></member>
-    <member refid="classastrea_1_1trace_1_1SensorParameters_1a83c96f21e33ce56aebc0705d7237613f" kind="function"><name>get_fov</name></member>
+    <member refid="classastrea_1_1trace_1_1SensorParameters_1ab37b0bc46d9cf72113f30bd81b407fe0" kind="function"><name>get_fov</name></member>
     <member refid="classastrea_1_1trace_1_1SensorParameters_1a5c7a6dc96910faed8201d4e65e4bd07a" kind="function"><name>set_fov</name></member>
   </compound>
   <compound refid="classastrea_1_1trace_1_1SpatialIndex" kind="class"><name>astrea::trace::SpatialIndex</name>
@@ -400,7 +404,7 @@
     <member refid="structastrea_1_1trace_1_1Stats_1adb482c10bd09c231a623b3be71d6d20c" kind="function"><name>Stats</name></member>
     <member refid="structastrea_1_1trace_1_1Stats_1ac7e0a8e2f2b5fbeb6ce6c70aaa67578e" kind="function"><name>Stats</name></member>
     <member refid="structastrea_1_1trace_1_1Stats_1a1b108c7fe12455095ac08ff6d1dc7616" kind="function"><name>Stats</name></member>
-    <member refid="structastrea_1_1trace_1_1Stats_1af8428cd430f592acfa1aa65b6262b92e" kind="function"><name>to_string_vector</name></member>
+    <member refid="structastrea_1_1trace_1_1Stats_1a1fe59a3c2242cae4aa87511a9653cbee" kind="function"><name>to_string_vector</name></member>
     <member refid="structastrea_1_1trace_1_1Stats_1aaa8a7573c96844e92c56d406cd0c1f45" kind="function"><name>Stats</name></member>
     <member refid="structastrea_1_1trace_1_1Stats_1a4642d8f303b592714a60fd787d14f428" kind="function"><name>to_string_vector</name></member>
     <member refid="structastrea_1_1trace_1_1Stats_1ab29cd3fb1920d42f43d94a0b8e91d367" kind="function"><name>size</name></member>
@@ -412,14 +416,8 @@
     <member refid="classastrea_1_1trace_1_1Viewer_1a8808274d1fa9589e17d57475a8e20eae" kind="function"><name>get_id</name></member>
     <member refid="classastrea_1_1trace_1_1Viewer_1a513a18cb9ce42ff994d98a34adea411b" kind="function"><name>get_name</name></member>
     <member refid="classastrea_1_1trace_1_1Viewer_1a0f8bd21a4ea7f902309dcb782b059378" kind="function"><name>get_mass</name></member>
-    <member refid="classastrea_1_1trace_1_1Viewer_1a041c80bb81db1006f5846a686159057b" kind="function"><name>get_inertial_position</name></member>
-    <member refid="classastrea_1_1trace_1_1Viewer_1a78e1b9a34d995ece5f0fa0a6a05f9863" kind="function"><name>get_inertial_velocity</name></member>
-  </compound>
-  <compound refid="conceptastrea_1_1trace_1_1HasSize" kind="concept"><name>astrea::trace::HasSize</name>
-  </compound>
-  <compound refid="conceptastrea_1_1trace_1_1HasSubscriptOperator" kind="concept"><name>astrea::trace::HasSubscriptOperator</name>
-  </compound>
-  <compound refid="conceptastrea_1_1trace_1_1IsPlatformContainer" kind="concept"><name>astrea::trace::IsPlatformContainer</name>
+    <member refid="classastrea_1_1trace_1_1Viewer_1a0003ff9b6da2b9586ccb451d06ac3f1c" kind="function"><name>get_inertial_position</name></member>
+    <member refid="classastrea_1_1trace_1_1Viewer_1aa5f8bf73e2077976d5f31930b8fe2b79" kind="function"><name>get_inertial_velocity</name></member>
   </compound>
   <compound refid="namespaceastrea" kind="namespace"><name>astrea</name>
   </compound>
@@ -455,6 +453,9 @@
     <member refid="Sensor_8hpp_1a28fece046a4c051e91df7fe3f68f9e11" kind="typedef"><name>SensorPlatform</name></member>
     <member refid="typedefs_8hpp_1a433642ed3c2878bcde24598bdf615893" kind="typedef"><name>EnumType</name></member>
     <member refid="typedefs_8hpp_1a1f5b508729d8e61c11b9fadb9f101bb4" kind="typedef"><name>LatLon</name></member>
+    <member refid="AccessAnalyzer_8hpp_1a50aa3f85859b9282c1c7401f9cb22074" kind="variable"><name>HasSize</name></member>
+    <member refid="AccessAnalyzer_8hpp_1a393e2d01e3b77daa9f7495d5553c01ab" kind="variable"><name>HasSubscriptOperator</name></member>
+    <member refid="AccessAnalyzer_8hpp_1a5e83485b1dc09b2fa2420fdb1cd28560" kind="variable"><name>IsPlatformContainer</name></member>
     <member refid="Stats_8hpp_1aa805cd28f9825ba3b62958800fb83217" kind="variable"><name>DEFAULT_PERCENTILES</name></member>
     <member refid="enums_8hpp_1a744e83b01257ef3f1e19038d58f195cf" kind="variable"><name>ALL_STAT_TYPES</name></member>
     <member refid="enums_8hpp_1ab0393099d2e10e6257c44209ac246e3f" kind="variable"><name>STAT_TYPE_STRINGS</name></member>
@@ -472,13 +473,13 @@
     <member refid="output_8hpp_1a3a69a2cb713f80079ea869911232ffc8" kind="function"><name>save_number_of_folds_to_file</name></member>
     <member refid="FieldOfView_8cpp_1affa19a9aa828894a4617995076cfcb38" kind="function"><name>calculate_angle_between_vectors</name></member>
     <member refid="FieldOfView_8hpp_1aab6ab444018491785782f8d25a3fbc07" kind="function"><name>calculate_angle_between_vectors</name></member>
-    <member refid="PolygonalFieldOfView_8cpp_1a9d47cf5db0d02438604f6d4df5736f61" kind="function"><name>point_in_polygon</name></member>
-    <member refid="AccessArray_8cpp_1a15c3b7d207a35f0197b778079a2d1872" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="PolygonalFieldOfView_8cpp_1afbd18fd0237d2c2da84917fce5a44c3c" kind="function"><name>point_in_polygon</name></member>
+    <member refid="AccessArray_8cpp_1a83f04c6c07f2615d90bf9820055f9942" kind="function"><name>operator&lt;&lt;</name></member>
     <member refid="riseset__utils_8cpp_1a139c897cf0a8242c7db911a25cc3ed91" kind="function"><name>to_formatted_string</name></member>
     <member refid="riseset__utils_8cpp_1a1434cfe236402da7bba2002a5f23120b" kind="function"><name>riseset_union</name></member>
     <member refid="riseset__utils_8cpp_1a4d9256918fa8ca855a0038272e1a5820" kind="function"><name>riseset_intersection</name></member>
     <member refid="riseset__utils_8cpp_1a7cd188aabd3d2dd2bd78b147085e0a87" kind="function"><name>riseset_difference</name></member>
-    <member refid="RiseSetArray_8cpp_1aa789a66bcde8642549ad9900cb43fe6a" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="RiseSetArray_8cpp_1a0ec64da4179793c4484984fb33fbf803" kind="function"><name>operator&lt;&lt;</name></member>
   </compound>
   <compound refid="namespaceastrea_1_1trace_1_1plotting" kind="namespace"><name>astrea::trace::plotting</name>
   </compound>

@@ -6304,7 +6304,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#typedef-period"><strong>period</strong></a>  <br><em>The period type for the Julian</em> <a href="../classastrea_1_1astro_1_1Date/"><em><strong>Date</strong></em></a> <em>, typically days.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>double</strong></a></td>
+<td style="text-align: right;">typedef double</td>
 <td style="text-align: left;"><a href="#typedef-rep"><strong>rep</strong></a>  <br><em>The representation type for the Julian</em> <a href="../classastrea_1_1astro_1_1Date/"><em><strong>Date</strong></em></a> <em>, typically a double for fractional days.</em></td>
 </tr>
 <tr>
@@ -6323,7 +6323,7 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>constexpr</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>bool</strong></a></td>
+<td style="text-align: right;">constexpr bool</td>
 <td style="text-align: left;"><a href="#variable-is_steady"><strong>is_steady</strong></a>   = <code>/* multi line expression */</code><br><em>Indicates that the clock is not steady, meaning it can be adjusted or may have leap seconds.</em></td>
 </tr>
 </tbody>
@@ -6338,16 +6338,16 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>auto</strong></a></td>
-<td style="text-align: left;"><a href="#function-from_sys"><strong>from_sys</strong></a> (std::chrono::sys_time&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Duration</strong></a> &gt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> &amp; timePoint) noexcept<br><em>Converts a system time point to a Julian</em> <a href="../classastrea_1_1astro_1_1Date/"><em><strong>Date</strong></em></a> <em>time point.</em></td>
+<td style="text-align: right;">auto</td>
+<td style="text-align: left;"><a href="#function-from_sys"><strong>from_sys</strong></a> (std::chrono::sys_time&lt; Duration &gt; const &amp; timePoint) noexcept<br><em>Converts a system time point to a Julian</em> <a href="../classastrea_1_1astro_1_1Date/"><em><strong>Date</strong></em></a> <em>time point.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./#typedef-time_point"><strong>time_point</strong></a></td>
 <td style="text-align: left;"><a href="#function-now"><strong>now</strong></a> () noexcept<br><em>Gets the current time point in Julian</em> <a href="../classastrea_1_1astro_1_1Date/"><em><strong>Date</strong></em></a> <em>format.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>auto</strong></a></td>
-<td style="text-align: left;"><a href="#function-to_sys"><strong>to_sys</strong></a> (<a href="../namespaceastrea_1_1astro/#typedef-juliandatetime"><strong>JulianDateTime</strong></a>&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Duration</strong></a> &gt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> &amp; timePoint) noexcept<br><em>Converts a Julian</em> <a href="../classastrea_1_1astro_1_1Date/"><em><strong>Date</strong></em></a> <em>time point to a system time point.</em></td>
+<td style="text-align: right;">auto</td>
+<td style="text-align: left;"><a href="#function-to_sys"><strong>to_sys</strong></a> (<a href="../namespaceastrea_1_1astro/#typedef-juliandatetime"><strong>JulianDateTime</strong></a>&lt; Duration &gt; const &amp; timePoint) noexcept<br><em>Converts a Julian</em> <a href="../classastrea_1_1astro_1_1Date/"><em><strong>Date</strong></em></a> <em>time point to a system time point.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6386,7 +6386,7 @@ You're not viewing the latest version.
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-from_sys">function from_sys<a class="headerlink" href="#function-from_sys" title="Permanent link">&para;</a></h3>
 <p><em>Converts a system time point to a Julian</em> <a href="../classastrea_1_1astro_1_1Date/"><em><strong>Date</strong></em></a> <em>time point.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w">  </span><span class="nc">Duration</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">Duration</span><span class="o">&gt;</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">JulianDateClock</span><span class="o">::</span><span class="n">from_sys</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">sys_time</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">timePoint</span>
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
@@ -6413,7 +6413,7 @@ You're not viewing the latest version.
 
 <h3 id="function-to_sys">function to_sys<a class="headerlink" href="#function-to_sys" title="Permanent link">&para;</a></h3>
 <p><em>Converts a Julian</em> <a href="../classastrea_1_1astro_1_1Date/"><em><strong>Date</strong></em></a> <em>time point to a system time point.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w">  </span><span class="nc">Duration</span><span class="o">&gt;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">Duration</span><span class="o">&gt;</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">JulianDateClock</span><span class="o">::</span><span class="n">to_sys</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">JulianDateTime</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">timePoint</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>

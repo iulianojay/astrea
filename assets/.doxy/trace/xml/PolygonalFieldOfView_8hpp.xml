@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="PolygonalFieldOfView_8hpp" kind="file" language="C++">
     <compoundname>PolygonalFieldOfView.hpp</compoundname>
     <includes local="no">numbers</includes>
@@ -12,19 +12,8 @@
     <includedby refid="PolygonalFieldOfView_8cpp" local="no">astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.cpp</includedby>
     <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
     <incdepgraph>
-      <node id="8">
-        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
-        <link refid="FieldOfView_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
+      <node id="5">
+        <label>astro/astro.fwd.hpp</label>
       </node>
       <node id="1">
         <label>astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp</label>
@@ -44,26 +33,37 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>astro/astro.fwd.hpp</label>
+      <node id="2">
+        <label>numbers</label>
       </node>
       <node id="6">
         <label>astro/frames/dynamic_frames.hpp</label>
       </node>
-      <node id="4">
-        <label>gtl/btree.hpp</label>
+      <node id="8">
+        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
+        <link refid="FieldOfView_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
-      <node id="2">
-        <label>numbers</label>
-      </node>
-      <node id="7">
-        <label>units/units.hpp</label>
+      <node id="3">
+        <label>vector</label>
       </node>
       <node id="9">
         <label>unordered_map</label>
       </node>
-      <node id="3">
-        <label>vector</label>
+      <node id="4">
+        <label>gtl/btree.hpp</label>
+      </node>
+      <node id="7">
+        <label>units/units.hpp</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -105,9 +105,9 @@
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40" refid="classastrea_1_1trace_1_1PolygonalFieldOfView" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView" kindref="compound">PolygonalFieldOfView</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1FieldOfView" kindref="compound">FieldOfView</ref><sp/>{</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView" kindref="compound">PolygonalFieldOfView</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>halfConeAngle<sp/>=<sp/>std::numbers::pi<sp/>/<sp/>4.0<sp/>*<sp/>mp_units::angular::unit_symbols::rad,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>nPoints<sp/>=<sp/>72);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a57bc47f99079c7e580f1ae66b1b63308" kindref="member">PolygonalFieldOfView</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>halfConeAngle<sp/>=<sp/>std::numbers::pi<sp/>/<sp/>4.0<sp/>*<sp/>mp_units::angular::unit_symbols::rad,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>nPoints<sp/>=<sp/>72);</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView" kindref="compound">PolygonalFieldOfView</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>halfConeWidth,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>halfConeHeight,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>nPoints<sp/>=<sp/>72);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1a57bc47f99079c7e580f1ae66b1b63308" kindref="member">PolygonalFieldOfView</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>halfConeWidth,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>halfConeHeight,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>nPoints<sp/>=<sp/>72);</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"></highlight></codeline>
 <codeline lineno="64" refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ae280348db8b693f106bd0c7a91cbde77" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView_1ae280348db8b693f106bd0c7a91cbde77" kindref="member">PolygonalFieldOfView</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>gtl::btree_map&lt;Angle,<sp/>Angle&gt;&amp;<sp/>points)<sp/>:</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_points(points)</highlight></codeline>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="main_8cpp" kind="file" language="C++">
     <compoundname>main.cpp</compoundname>
     <includes local="no">algorithm</includes>
@@ -15,6 +15,9 @@
     <includes refid="Database_8hpp" local="no">snapshot/database/Database.hpp</includes>
     <includes refid="SpaceTrackClient_8hpp" local="no">snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</includes>
     <incdepgraph>
+      <node id="9">
+        <label>sqlite_orm/sqlite_orm.h</label>
+      </node>
       <node id="12">
         <label>snapshot/database/Database.hpp</label>
         <link refid="Database_8hpp"/>
@@ -42,6 +45,64 @@
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
+      </node>
+      <node id="23">
+        <label>filesystem</label>
+      </node>
+      <node id="17">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="27">
+        <label>stdint.h</label>
+      </node>
+      <node id="24">
+        <label>variant</label>
+      </node>
+      <node id="15">
+        <label>mp-units/systems/iau.h</label>
+      </node>
+      <node id="6">
+        <label>stdexcept</label>
+      </node>
+      <node id="10">
+        <label>astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
+      </node>
+      <node id="7">
+        <label>string</label>
+      </node>
+      <node id="26">
+        <label>snapshot/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>sqlite3.h</label>
+      </node>
+      <node id="3">
+        <label>fstream</label>
+      </node>
+      <node id="25">
+        <label>cpr/cpr.h</label>
+      </node>
+      <node id="21">
+        <label>snapshot/database/Database.ipp</label>
+      </node>
+      <node id="14">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="20">
+        <label>snapshot/snapshot.macros.hpp</label>
+        <link refid="snapshot_8macros_8hpp"/>
+      </node>
+      <node id="13">
+        <label>vector</label>
+      </node>
+      <node id="19">
+        <label>astro/astro.macros.hpp</label>
+      </node>
+      <node id="4">
+        <label>iostream</label>
       </node>
       <node id="1">
         <label>astrea/snapshot/snapshot/drivers/main.cpp</label>
@@ -71,6 +132,12 @@
         <childnode refid="22" relation="include">
         </childnode>
       </node>
+      <node id="16">
+        <label>mp-units/systems/isq_angle.h</label>
+      </node>
+      <node id="18">
+        <label>units/typedefs.hpp</label>
+      </node>
       <node id="22">
         <label>snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</label>
         <link refid="SpaceTrackClient_8hpp"/>
@@ -87,84 +154,17 @@
         <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="20">
-        <label>snapshot/snapshot.macros.hpp</label>
-        <link refid="snapshot_8macros_8hpp"/>
-      </node>
-      <node id="26">
-        <label>snapshot/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="27" relation="include">
-        </childnode>
+      <node id="8">
+        <label>nlohmann/json.hpp</label>
       </node>
       <node id="2">
         <label>algorithm</label>
       </node>
-      <node id="19">
-        <label>astro/astro.macros.hpp</label>
-      </node>
-      <node id="10">
-        <label>astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
-      </node>
       <node id="11">
         <label>astro/time/Date.hpp</label>
       </node>
-      <node id="25">
-        <label>cpr/cpr.h</label>
-      </node>
-      <node id="23">
-        <label>filesystem</label>
-      </node>
-      <node id="3">
-        <label>fstream</label>
-      </node>
-      <node id="4">
-        <label>iostream</label>
-      </node>
-      <node id="14">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="15">
-        <label>mp-units/systems/iau.h</label>
-      </node>
-      <node id="16">
-        <label>mp-units/systems/isq_angle.h</label>
-      </node>
-      <node id="17">
-        <label>mp-units/systems/si.h</label>
-      </node>
-      <node id="8">
-        <label>nlohmann/json.hpp</label>
-      </node>
-      <node id="21">
-        <label>snapshot/database/Database.ipp</label>
-      </node>
-      <node id="5">
-        <label>sqlite3.h</label>
-      </node>
-      <node id="9">
-        <label>sqlite_orm/sqlite_orm.h</label>
-      </node>
-      <node id="6">
-        <label>stdexcept</label>
-      </node>
-      <node id="27">
-        <label>stdint.h</label>
-      </node>
-      <node id="7">
-        <label>string</label>
-      </node>
-      <node id="18">
-        <label>units/typedefs.hpp</label>
-      </node>
-      <node id="24">
-        <label>variant</label>
-      </node>
-      <node id="13">
-        <label>vector</label>
-      </node>
     </incdepgraph>
-    <sectiondef kind="func">
+      <sectiondef kind="func">
       <memberdef kind="function" id="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
         <definition>int main</definition>
@@ -207,7 +207,7 @@
         </inbodydescription>
         <location file="astrea/snapshot/snapshot/drivers/main.cpp" line="38" column="5" bodyfile="astrea/snapshot/snapshot/drivers/main.cpp" bodystart="38" bodyend="91"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

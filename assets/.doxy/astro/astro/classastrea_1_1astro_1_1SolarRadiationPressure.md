@@ -74,7 +74,7 @@ Inherits the following classes: [astrea::astro::Force](classastrea_1_1astro_1_1F
 | Type | Name |
 | ---: | :--- |
 |   | [**SolarRadiationPressure**](#function-solarradiationpressure) () = default<br>_Default constructor for_ [_**SolarRadiationPressure**_](classastrea_1_1astro_1_1SolarRadiationPressure.md) _._ |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Acceleration**](classastrea_1_1astro_1_1CartesianVector.md), [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**compute\_force**](#function-compute_force) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) override const<br>_Computes the solar radiation pressure force on a spacecraft._  |
+| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frames::earth::icrf &gt; | [**compute\_force**](#function-compute_force) (const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) override const<br>_Computes the solar radiation pressure force on a spacecraft._  |
 |   | [**~SolarRadiationPressure**](#function-solarradiationpressure) () = default<br>_Default destructor for_ [_**SolarRadiationPressure**_](classastrea_1_1astro_1_1SolarRadiationPressure.md) _._ |
 
 
@@ -85,7 +85,7 @@ See [astrea::astro::Force](classastrea_1_1astro_1_1Force.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**Force**](classastrea_1_1astro_1_1Force.md#function-force) () = default<br>_Default constructor for_ [_**Force**_](classastrea_1_1astro_1_1Force.md) _._ |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Acceleration**](classastrea_1_1astro_1_1CartesianVector.md), [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**compute\_force**](classastrea_1_1astro_1_1Force.md#function-compute_force) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Computes the force acting on a vehicle at a given date and state._  |
+| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frames::earth::icrf &gt; | [**compute\_force**](classastrea_1_1astro_1_1Force.md#function-compute_force) (const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Computes the force acting on a vehicle at a given date and state._  |
 | virtual  | [**~Force**](classastrea_1_1astro_1_1Force.md#function-force) () = default<br>_Default destructor for_ [_**Force**_](classastrea_1_1astro_1_1Force.md) _._ |
 
 
@@ -164,9 +164,9 @@ astrea::astro::SolarRadiationPressure::SolarRadiationPressure () = default
 
 _Computes the solar radiation pressure force on a spacecraft._ 
 ```C++
-virtual CartesianVector < Acceleration , frames::earth::icrf > astrea::astro::SolarRadiationPressure::compute_force (
-    const  State & state,
-    const  Vehicle & vehicle
+virtual CartesianVector < Acceleration, frames::earth::icrf > astrea::astro::SolarRadiationPressure::compute_force (
+    const State & state,
+    const Vehicle & vehicle
 ) override const
 ```
 
@@ -184,7 +184,7 @@ virtual CartesianVector < Acceleration , frames::earth::icrf > astrea::astro::So
 
 **Returns:**
 
-[**AccelerationVector&lt;frames::earth::icrf&gt;**](namespaceastrea_1_1astro.md#typedef-accelerationvector) The computed acceleration vector due to solar radiation pressure. 
+AccelerationVector&lt;frames::earth::icrf&gt; The computed acceleration vector due to solar radiation pressure. 
 
 
 

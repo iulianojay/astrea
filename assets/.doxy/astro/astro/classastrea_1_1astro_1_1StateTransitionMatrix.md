@@ -52,9 +52,9 @@
 | Type | Name |
 | ---: | :--- |
 |   | [**StateTransitionMatrix**](#function-statetransitionmatrix-12) () = default<br>_Default constructor for_ [_**StateTransitionMatrix**_](classastrea_1_1astro_1_1StateTransitionMatrix.md) _._ |
-|   | [**StateTransitionMatrix**](#function-statetransitionmatrix-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md) & eom, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) <br>_Constructor for_ [_**StateTransitionMatrix**_](classastrea_1_1astro_1_1StateTransitionMatrix.md) _. Uses the provided equations of motion and state to initialize the STM numerically._ |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Convert the STM to a vector of unitless quantities._  |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**set**](#function-set) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Value\_T**](classastrea_1_1astro_1_1CartesianVector.md) & value) <br>_Set the STM element at (ii, jj) to the provided value._  |
+|   | [**StateTransitionMatrix**](#function-statetransitionmatrix-22) (const [**EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md) & eom, const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) <br>_Constructor for_ [_**StateTransitionMatrix**_](classastrea_1_1astro_1_1StateTransitionMatrix.md) _. Uses the provided equations of motion and state to initialize the STM numerically._ |
+|  std::vector&lt; Unitless &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Convert the STM to a vector of unitless quantities._  |
+|  void | [**set**](#function-set) (const Value\_T & value) <br>_Set the STM element at (ii, jj) to the provided value._  |
 |   | [**~StateTransitionMatrix**](#function-statetransitionmatrix) () = default<br>_Default destructor for_ [_**StateTransitionMatrix**_](classastrea_1_1astro_1_1StateTransitionMatrix.md) _._ |
 
 
@@ -108,9 +108,9 @@ astrea::astro::StateTransitionMatrix::StateTransitionMatrix () = default
 _Constructor for_ [_**StateTransitionMatrix**_](classastrea_1_1astro_1_1StateTransitionMatrix.md) _. Uses the provided equations of motion and state to initialize the STM numerically._
 ```C++
 astrea::astro::StateTransitionMatrix::StateTransitionMatrix (
-    const  EquationsOfMotion & eom,
-    const  State & state,
-    const  Vehicle & vehicle
+    const EquationsOfMotion & eom,
+    const State & state,
+    const Vehicle & vehicle
 ) 
 ```
 
@@ -166,7 +166,7 @@ _Set the STM element at (ii, jj) to the provided value._
 ```C++
 template<std::size_t ii, std::size_t jj, mp_units::Quantity Value_T>
 inline void astrea::astro::StateTransitionMatrix::set (
-    const  Value_T & value
+    const Value_T & value
 ) 
 ```
 

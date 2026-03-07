@@ -42,7 +42,7 @@ _Payload class definition for astrea access platform._ [More...](#detailed-descr
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Payload**](classastrea_1_1astro_1_1Payload.md) &lt;[**class**](classastrea_1_1astro_1_1CartesianVector.md) [**Payload\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**class**](classastrea_1_1astro_1_1CartesianVector.md) PayloadParameters\_T&gt;<br>[_**Payload**_](classastrea_1_1astro_1_1Payload.md) _class representing a payload on a platform._ |
+| class | [**Payload**](classastrea_1_1astro_1_1Payload.md) &lt;class Payload\_T, class PayloadParameters\_T&gt;<br>[_**Payload**_](classastrea_1_1astro_1_1Payload.md) _class representing a payload on a platform._ |
 | class | [**PayloadParameters**](classastrea_1_1astro_1_1PayloadParameters.md) <br>_Class for storing and managing payload parameters._  |
 
 

@@ -1,15 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="chebyshev__util_8cpp" kind="file" language="C++">
     <compoundname>chebyshev_util.cpp</compoundname>
     <includes refid="chebyshev__util_8hpp" local="no">math/chebyshev_util.hpp</includes>
     <incdepgraph>
-      <node id="1">
-        <label>astrea/math/math/chebyshev_util.cpp</label>
-        <link refid="chebyshev__util_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
       <node id="2">
         <label>math/chebyshev_util.hpp</label>
         <link refid="chebyshev__util_8hpp_source"/>
@@ -18,11 +12,17 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
+      <node id="4">
+        <label>stdexcept</label>
+      </node>
       <node id="3">
         <label>array</label>
       </node>
-      <node id="4">
-        <label>stdexcept</label>
+      <node id="1">
+        <label>astrea/math/math/chebyshev_util.cpp</label>
+        <link refid="chebyshev__util_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
       </node>
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>

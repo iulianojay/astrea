@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1TwoLineElements" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::TwoLineElements</compoundname>
     <includes refid="TwoLineElements_8hpp" local="no">TwoLineElements.hpp</includes>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1TwoLineElements_1af45669b4268a1d77ba1d66df33d570a5" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">friend</ref></type>
+        <type>friend</type>
         <definition>friend astrea::astro::TwoLineElements::TwoLineElementsPartial</definition>
         <argsstring></argsstring>
         <name>TwoLineElementsPartial</name>
-        <qualifiedname>astrea::astro::TwoLineElements::TwoLineElementsPartial</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -23,7 +22,6 @@
         <definition>std::array&lt;std::string, 2&gt; astrea::astro::TwoLineElements::_rawTLE</definition>
         <argsstring></argsstring>
         <name>_rawTLE</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_rawTLE</qualifiedname>
         <briefdescription>
 <para>The raw TLE data. </para>
         </briefdescription>
@@ -38,7 +36,6 @@
         <definition>std::string astrea::astro::TwoLineElements::_name</definition>
         <argsstring></argsstring>
         <name>_name</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_name</qualifiedname>
         <briefdescription>
 <para>The name of the satellite. </para>
         </briefdescription>
@@ -49,11 +46,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="300" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="300" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1TwoLineElements_1a990d6871c94f3c8696a220420ccb444d" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">unsigned</ref></type>
+        <type>unsigned</type>
         <definition>unsigned astrea::astro::TwoLineElements::_catalogueNumber</definition>
         <argsstring></argsstring>
         <name>_catalogueNumber</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_catalogueNumber</qualifiedname>
         <briefdescription>
 <para>The catalogue number of the satellite. </para>
         </briefdescription>
@@ -68,7 +64,6 @@
         <definition>std::string astrea::astro::TwoLineElements::_classification</definition>
         <argsstring></argsstring>
         <name>_classification</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_classification</qualifiedname>
         <briefdescription>
 <para>The classification of the satellite. </para>
         </briefdescription>
@@ -83,7 +78,6 @@
         <definition>std::string astrea::astro::TwoLineElements::_launchYear</definition>
         <argsstring></argsstring>
         <name>_launchYear</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_launchYear</qualifiedname>
         <briefdescription>
 <para>The launch year of the satellite. </para>
         </briefdescription>
@@ -98,7 +92,6 @@
         <definition>std::string astrea::astro::TwoLineElements::_launchNumber</definition>
         <argsstring></argsstring>
         <name>_launchNumber</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_launchNumber</qualifiedname>
         <briefdescription>
 <para>The launch number of the satellite. </para>
         </briefdescription>
@@ -113,7 +106,6 @@
         <definition>std::string astrea::astro::TwoLineElements::_launchPiece</definition>
         <argsstring></argsstring>
         <name>_launchPiece</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_launchPiece</qualifiedname>
         <briefdescription>
 <para>The launch piece of the satellite. </para>
         </briefdescription>
@@ -128,7 +120,6 @@
         <definition>Date astrea::astro::TwoLineElements::_epoch</definition>
         <argsstring></argsstring>
         <name>_epoch</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_epoch</qualifiedname>
         <briefdescription>
 <para>The epoch of the satellite. </para>
         </briefdescription>
@@ -139,11 +130,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="307" column="10" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="307" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1TwoLineElements_1a621c6cc4b8c76e1229858f55f68fca24" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">MeanMotion</ref></type>
+        <type>MeanMotion</type>
         <definition>MeanMotion astrea::astro::TwoLineElements::_meanMotion</definition>
         <argsstring></argsstring>
         <name>_meanMotion</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_meanMotion</qualifiedname>
         <briefdescription>
 <para>The mean motion of the satellite. </para>
         </briefdescription>
@@ -154,11 +144,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="309" column="16" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="309" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1TwoLineElements_1ab1213ed311d097398efeb53481c9b784" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">MeanMotion1stDer</ref></type>
+        <type>MeanMotion1stDer</type>
         <definition>MeanMotion1stDer astrea::astro::TwoLineElements::_meanMotion1st</definition>
         <argsstring></argsstring>
         <name>_meanMotion1st</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_meanMotion1st</qualifiedname>
         <briefdescription>
 <para>The 1st derivative of the mean motion of the satellite. </para>
         </briefdescription>
@@ -169,11 +158,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="310" column="22" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="310" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1TwoLineElements_1af0753a1eb256649d23531361c8d9d428" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">MeanMotion2ndDer</ref></type>
+        <type>MeanMotion2ndDer</type>
         <definition>MeanMotion2ndDer astrea::astro::TwoLineElements::_meanMotion2nd</definition>
         <argsstring></argsstring>
         <name>_meanMotion2nd</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_meanMotion2nd</qualifiedname>
         <briefdescription>
 <para>The 2nd derivative of the mean motion of the satellite. </para>
         </briefdescription>
@@ -184,11 +172,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="311" column="22" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="311" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1TwoLineElements_1a2d7c4d5e91f1f110c02507d2ff5cd88e" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">BallisticCoefficient</ref></type>
+        <type>BallisticCoefficient</type>
         <definition>BallisticCoefficient astrea::astro::TwoLineElements::_ballisticCoefficient</definition>
         <argsstring></argsstring>
         <name>_ballisticCoefficient</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_ballisticCoefficient</qualifiedname>
         <briefdescription>
 <para>The ballistic coefficient of the satellite. </para>
         </briefdescription>
@@ -199,11 +186,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="313" column="26" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="313" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1TwoLineElements_1a21e97db05a5a8e10ad147aa7cb9e8483" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">size_t</ref></type>
+        <type>size_t</type>
         <definition>size_t astrea::astro::TwoLineElements::_ephemerisType</definition>
         <argsstring></argsstring>
         <name>_ephemerisType</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_ephemerisType</qualifiedname>
         <briefdescription>
 <para>The ephemeris type of the satellite. </para>
         </briefdescription>
@@ -214,11 +200,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="315" column="12" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="315" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1TwoLineElements_1af3a539920d92117dc60da3d9237483fc" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">size_t</ref></type>
+        <type>size_t</type>
         <definition>size_t astrea::astro::TwoLineElements::_elementSetNo</definition>
         <argsstring></argsstring>
         <name>_elementSetNo</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_elementSetNo</qualifiedname>
         <briefdescription>
 <para>The element set number of the satellite. </para>
         </briefdescription>
@@ -229,11 +214,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="316" column="12" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="316" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1TwoLineElements_1aada6e30a471db51c86c9f680c2e51ab5" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">size_t</ref></type>
+        <type>size_t</type>
         <definition>size_t astrea::astro::TwoLineElements::_checkSum1</definition>
         <argsstring></argsstring>
         <name>_checkSum1</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_checkSum1</qualifiedname>
         <briefdescription>
 <para>The 1st checksum of the satellite. </para>
         </briefdescription>
@@ -244,11 +228,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="317" column="12" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="317" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1TwoLineElements_1ad9bd1c7bc44939dc20a249f8a44f6657" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">unsigned</ref></type>
+        <type>unsigned</type>
         <definition>unsigned astrea::astro::TwoLineElements::_revNumber</definition>
         <argsstring></argsstring>
         <name>_revNumber</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_revNumber</qualifiedname>
         <briefdescription>
 <para>The revolution number of the satellite. </para>
         </briefdescription>
@@ -259,11 +242,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="318" column="14" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="318" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1TwoLineElements_1a5e636a48ddc3cb8a2a2dedd355de80e7" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">size_t</ref></type>
+        <type>size_t</type>
         <definition>size_t astrea::astro::TwoLineElements::_checkSum2</definition>
         <argsstring></argsstring>
         <name>_checkSum2</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_checkSum2</qualifiedname>
         <briefdescription>
 <para>The 2nd checksum of the satellite. </para>
         </briefdescription>
@@ -278,7 +260,6 @@
         <definition>Keplerian astrea::astro::TwoLineElements::_elements</definition>
         <argsstring></argsstring>
         <name>_elements</name>
-        <qualifiedname>astrea::astro::TwoLineElements::_elements</qualifiedname>
         <briefdescription>
 <para>The <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> elements of the satellite. </para>
         </briefdescription>
@@ -288,20 +269,19 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="322" column="15" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="322" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="friend">
-      <memberdef kind="friend" id="classastrea_1_1astro_1_1TwoLineElements_1a5d0d0fe8a9fece389981bff8e1f56ee1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1TwoLineElements_1abf7f5f38eb9b611dd53566a19efae77a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;, TwoLineElements const &amp;)</argsstring>
         <name>operator&lt;&lt;</name>
-        <qualifiedname>astrea::astro::TwoLineElements::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <defname>os</defname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref> const &amp;</type>
           <defname>elements</defname>
         </param>
         <briefdescription>
@@ -313,14 +293,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="41" column="12" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.cpp" bodystart="208" bodyend="215"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1aebf2413f34ef708d955a2440f9b46f78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::TwoLineElements::TwoLineElements</definition>
         <argsstring>()=default</argsstring>
         <name>TwoLineElements</name>
-        <qualifiedname>astrea::astro::TwoLineElements::TwoLineElements</qualifiedname>
         <briefdescription>
 <para>Default constructor. </para>
         </briefdescription>
@@ -335,13 +314,12 @@
         <definition>astrea::astro::TwoLineElements::TwoLineElements</definition>
         <argsstring>(const std::array&lt; std::string, 3 &gt; rawTle, const AstrodynamicsSystem &amp;sys)</argsstring>
         <name>TwoLineElements</name>
-        <qualifiedname>astrea::astro::TwoLineElements::TwoLineElements</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::array&lt; std::string, 3 &gt;</type>
+          <type>const std::array&lt; std::string, 3 &gt;</type>
           <declname>rawTle</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
           <declname>sys</declname>
         </param>
         <briefdescription>
@@ -376,13 +354,12 @@
         <definition>astrea::astro::TwoLineElements::TwoLineElements</definition>
         <argsstring>(const std::array&lt; std::string, 2 &gt; rawTle, const AstrodynamicsSystem &amp;sys)</argsstring>
         <name>TwoLineElements</name>
-        <qualifiedname>astrea::astro::TwoLineElements::TwoLineElements</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::array&lt; std::string, 2 &gt;</type>
+          <type>const std::array&lt; std::string, 2 &gt;</type>
           <declname>rawTle</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
           <declname>sys</declname>
         </param>
         <briefdescription>
@@ -417,9 +394,8 @@
         <definition>astrea::astro::TwoLineElements::TwoLineElements</definition>
         <argsstring>(const TwoLineElements &amp;)</argsstring>
         <name>TwoLineElements</name>
-        <qualifiedname>astrea::astro::TwoLineElements::TwoLineElements</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref> &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -446,7 +422,6 @@
         <definition>astrea::astro::TwoLineElements::TwoLineElements</definition>
         <argsstring>(TwoLineElements &amp;&amp;) noexcept</argsstring>
         <name>TwoLineElements</name>
-        <qualifiedname>astrea::astro::TwoLineElements::TwoLineElements</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref> &amp;&amp;</type>
           <defname>other</defname>
@@ -475,7 +450,6 @@
         <definition>TwoLineElements &amp; astrea::astro::TwoLineElements::operator=</definition>
         <argsstring>(TwoLineElements &amp;&amp;) noexcept</argsstring>
         <name>operator=</name>
-        <qualifiedname>astrea::astro::TwoLineElements::operator=</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref> &amp;&amp;</type>
           <defname>other</defname>
@@ -506,9 +480,8 @@
         <definition>TwoLineElements &amp; astrea::astro::TwoLineElements::operator=</definition>
         <argsstring>(const TwoLineElements &amp;)</argsstring>
         <name>operator=</name>
-        <qualifiedname>astrea::astro::TwoLineElements::operator=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref> &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -537,7 +510,6 @@
         <definition>astrea::astro::TwoLineElements::~TwoLineElements</definition>
         <argsstring>()=default</argsstring>
         <name>~TwoLineElements</name>
-        <qualifiedname>astrea::astro::TwoLineElements::~TwoLineElements</qualifiedname>
         <briefdescription>
 <para>Default destructor. </para>
         </briefdescription>
@@ -548,13 +520,12 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="102" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1a12236f5c15357476a5fd5be551a962d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::TwoLineElements::operator==</definition>
         <argsstring>(const TwoLineElements &amp;other) const</argsstring>
         <name>operator==</name>
-        <qualifiedname>astrea::astro::TwoLineElements::operator==</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -579,13 +550,12 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="110" column="10" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.cpp" bodystart="195" bodyend="203"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1ae20a91e8d6cb0a52fab2146cc1b19c76" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::TwoLineElements::operator!=</definition>
         <argsstring>(const TwoLineElements &amp;other) const</argsstring>
         <name>operator!=</name>
-        <qualifiedname>astrea::astro::TwoLineElements::operator!=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -609,12 +579,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="118" column="10" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.cpp" bodystart="205" bodyend="205"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1aff7c8364218b18a4de361dc4af55dc27" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1abcf70a421c1b5b5cae8010931f7ceea2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::array&lt; std::string, 2 &gt;</type>
-        <definition>std::array&lt; std::string, 2 &gt; astrea::astro::TwoLineElements::get_raw_tle</definition>
+        <definition>std::array&lt;std::string, 2&gt; astrea::astro::TwoLineElements::get_raw_tle</definition>
         <argsstring>() const</argsstring>
         <name>get_raw_tle</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_raw_tle</qualifiedname>
         <briefdescription>
 <para>Get the raw TLE data. </para>
         </briefdescription>
@@ -632,7 +601,6 @@
         <definition>std::string astrea::astro::TwoLineElements::get_1st_line</definition>
         <argsstring>() const</argsstring>
         <name>get_1st_line</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_1st_line</qualifiedname>
         <briefdescription>
 <para>Get the 1st line of the TLE. </para>
         </briefdescription>
@@ -650,7 +618,6 @@
         <definition>std::string astrea::astro::TwoLineElements::get_2nd_line</definition>
         <argsstring>() const</argsstring>
         <name>get_2nd_line</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_2nd_line</qualifiedname>
         <briefdescription>
 <para>Get the 2nd line of the TLE. </para>
         </briefdescription>
@@ -668,7 +635,6 @@
         <definition>std::string astrea::astro::TwoLineElements::get_name</definition>
         <argsstring>() const</argsstring>
         <name>get_name</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_name</qualifiedname>
         <briefdescription>
 <para>Get the name of the satellite. </para>
         </briefdescription>
@@ -682,11 +648,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="146" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="146" bodyend="146"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1a5bbb839dd764996886ad28b74f9f3fa7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">unsigned</ref></type>
+        <type>unsigned</type>
         <definition>unsigned astrea::astro::TwoLineElements::get_catalogue_number</definition>
         <argsstring>() const</argsstring>
         <name>get_catalogue_number</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_catalogue_number</qualifiedname>
         <briefdescription>
 <para>Get the catalogue number of the satellite. </para>
         </briefdescription>
@@ -704,7 +669,6 @@
         <definition>std::string astrea::astro::TwoLineElements::get_classification</definition>
         <argsstring>() const</argsstring>
         <name>get_classification</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_classification</qualifiedname>
         <briefdescription>
 <para>Get the classification of the satellite. </para>
         </briefdescription>
@@ -722,7 +686,6 @@
         <definition>std::string astrea::astro::TwoLineElements::get_launch_year</definition>
         <argsstring>() const</argsstring>
         <name>get_launch_year</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_launch_year</qualifiedname>
         <briefdescription>
 <para>Get the launch year of the satellite. </para>
         </briefdescription>
@@ -740,7 +703,6 @@
         <definition>std::string astrea::astro::TwoLineElements::get_launch_number</definition>
         <argsstring>() const</argsstring>
         <name>get_launch_number</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_launch_number</qualifiedname>
         <briefdescription>
 <para>Get the launch number of the satellite. </para>
         </briefdescription>
@@ -758,7 +720,6 @@
         <definition>std::string astrea::astro::TwoLineElements::get_launch_piece</definition>
         <argsstring>() const</argsstring>
         <name>get_launch_piece</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_launch_piece</qualifiedname>
         <briefdescription>
 <para>Get the launch piece of the satellite. </para>
         </briefdescription>
@@ -776,7 +737,6 @@
         <definition>Date astrea::astro::TwoLineElements::get_epoch</definition>
         <argsstring>() const</argsstring>
         <name>get_epoch</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_epoch</qualifiedname>
         <briefdescription>
 <para>Get the epoch of the satellite. </para>
         </briefdescription>
@@ -790,11 +750,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="188" column="10" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="188" bodyend="188"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1ad2d1ca21c3d70e9555749e7a9cd61c02" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">MeanMotion1stDer</ref></type>
+        <type>MeanMotion1stDer</type>
         <definition>MeanMotion1stDer astrea::astro::TwoLineElements::get_mean_motion_1st_derivative</definition>
         <argsstring>() const</argsstring>
         <name>get_mean_motion_1st_derivative</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_mean_motion_1st_derivative</qualifiedname>
         <briefdescription>
 <para>Get the 1st derivative of the mean motion. </para>
         </briefdescription>
@@ -808,11 +767,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="195" column="22" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="195" bodyend="195"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1ae4e4fe79400d66dace59406f9c254767" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">MeanMotion2ndDer</ref></type>
+        <type>MeanMotion2ndDer</type>
         <definition>MeanMotion2ndDer astrea::astro::TwoLineElements::get_mean_motion_2nd_derivative</definition>
         <argsstring>() const</argsstring>
         <name>get_mean_motion_2nd_derivative</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_mean_motion_2nd_derivative</qualifiedname>
         <briefdescription>
 <para>Get the 2nd derivative of the mean motion. </para>
         </briefdescription>
@@ -826,11 +784,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="202" column="22" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="202" bodyend="202"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1a5968aa62f2d8dea97f40555d609b721e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">BallisticCoefficient</ref></type>
+        <type>BallisticCoefficient</type>
         <definition>BallisticCoefficient astrea::astro::TwoLineElements::get_ballistic_coefficient</definition>
         <argsstring>() const</argsstring>
         <name>get_ballistic_coefficient</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_ballistic_coefficient</qualifiedname>
         <briefdescription>
 <para>Get the ballistic coefficient of the satellite. </para>
         </briefdescription>
@@ -848,7 +805,6 @@
         <definition>std::size_t astrea::astro::TwoLineElements::get_ephemeris_type</definition>
         <argsstring>() const</argsstring>
         <name>get_ephemeris_type</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_ephemeris_type</qualifiedname>
         <briefdescription>
 <para>Get the ephemeris type of the satellite. </para>
         </briefdescription>
@@ -866,7 +822,6 @@
         <definition>std::size_t astrea::astro::TwoLineElements::get_element_set_number</definition>
         <argsstring>() const</argsstring>
         <name>get_element_set_number</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_element_set_number</qualifiedname>
         <briefdescription>
 <para>Get the element set number of the satellite. </para>
         </briefdescription>
@@ -884,7 +839,6 @@
         <definition>std::size_t astrea::astro::TwoLineElements::get_check_sum1</definition>
         <argsstring>() const</argsstring>
         <name>get_check_sum1</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_check_sum1</qualifiedname>
         <briefdescription>
 <para>Get the 1st checksum of the satellite. </para>
         </briefdescription>
@@ -898,11 +852,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="230" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="230" bodyend="230"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1aa2927d8bcb4a3afbfb94f310d28c9730" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::TwoLineElements::get_semimajor</definition>
         <argsstring>() const</argsstring>
         <name>get_semimajor</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_semimajor</qualifiedname>
         <briefdescription>
 <para>Get the semimajor axis of the satellite. </para>
         </briefdescription>
@@ -916,11 +869,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="237" column="14" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="237" bodyend="237"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1a38923860596c80c51c5fc69b3e013c19" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::TwoLineElements::get_eccentricity</definition>
         <argsstring>() const</argsstring>
         <name>get_eccentricity</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_eccentricity</qualifiedname>
         <briefdescription>
 <para>Get the eccentricity of the satellite. </para>
         </briefdescription>
@@ -934,11 +886,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="244" column="14" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="244" bodyend="244"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1a397e411cce370e8337c5f80d4a67ff94" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::TwoLineElements::get_inclination</definition>
         <argsstring>() const</argsstring>
         <name>get_inclination</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_inclination</qualifiedname>
         <briefdescription>
 <para>Get the inclination of the satellite. </para>
         </briefdescription>
@@ -952,11 +903,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="251" column="11" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="251" bodyend="251"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1a5e4b61ee934a31cf4337e6b0c41835ef" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::TwoLineElements::get_right_ascension</definition>
         <argsstring>() const</argsstring>
         <name>get_right_ascension</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_right_ascension</qualifiedname>
         <briefdescription>
 <para>Get the right ascension of the satellite. </para>
         </briefdescription>
@@ -970,11 +920,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="258" column="11" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="258" bodyend="258"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1a415ff583b99479dfa2c9507574a7dfa9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::TwoLineElements::get_argument_of_perigee</definition>
         <argsstring>() const</argsstring>
         <name>get_argument_of_perigee</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_argument_of_perigee</qualifiedname>
         <briefdescription>
 <para>Get the argument of perigee of the satellite. </para>
         </briefdescription>
@@ -988,11 +937,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="265" column="11" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="265" bodyend="265"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1acff00262aac40bd8dc2377f2b5006d50" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::TwoLineElements::get_true_anomaly</definition>
         <argsstring>() const</argsstring>
         <name>get_true_anomaly</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_true_anomaly</qualifiedname>
         <briefdescription>
 <para>Get the true anomaly of the satellite. </para>
         </briefdescription>
@@ -1006,11 +954,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="272" column="11" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="272" bodyend="272"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1a6aef47126edaae281ccbde13e9772ae2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">MeanMotion</ref></type>
+        <type>MeanMotion</type>
         <definition>MeanMotion astrea::astro::TwoLineElements::get_mean_motion</definition>
         <argsstring>() const</argsstring>
         <name>get_mean_motion</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_mean_motion</qualifiedname>
         <briefdescription>
 <para>Get the mean motion of the satellite. </para>
         </briefdescription>
@@ -1024,11 +971,10 @@
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="279" column="16" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="279" bodyend="279"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1a599d9fa5e2c69fc2d20c7b35b29ec0ef" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">unsigned</ref></type>
+        <type>unsigned</type>
         <definition>unsigned astrea::astro::TwoLineElements::get_rev_number</definition>
         <argsstring>() const</argsstring>
         <name>get_rev_number</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_rev_number</qualifiedname>
         <briefdescription>
 <para>Get the revolution number of the satellite. </para>
         </briefdescription>
@@ -1046,7 +992,6 @@
         <definition>std::size_t astrea::astro::TwoLineElements::get_check_sum2</definition>
         <argsstring>() const</argsstring>
         <name>get_check_sum2</name>
-        <qualifiedname>astrea::astro::TwoLineElements::get_check_sum2</qualifiedname>
         <briefdescription>
 <para>Get the 2nd checksum of the satellite. </para>
         </briefdescription>
@@ -1059,20 +1004,19 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="293" column="17" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" bodystart="293" bodyend="293"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-func">
+      </sectiondef>
+      <sectiondef kind="private-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1TwoLineElements_1a22d1344db128eb295dc0da2c837ecdf1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::TwoLineElements::ctor_impl</definition>
         <argsstring>(const std::array&lt; std::string, 2 &gt; rawTle, const AstrodynamicsSystem &amp;sys)</argsstring>
         <name>ctor_impl</name>
-        <qualifiedname>astrea::astro::TwoLineElements::ctor_impl</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::array&lt; std::string, 2 &gt;</type>
+          <type>const std::array&lt; std::string, 2 &gt;</type>
           <declname>rawTle</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
           <declname>sys</declname>
         </param>
         <briefdescription>
@@ -1102,7 +1046,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp" line="330" column="10" bodyfile="astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.cpp" bodystart="61" bodyend="123"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Class representing the two-line element (TLE) format for orbital data. </para>
     </briefdescription>
@@ -1149,13 +1093,13 @@
       <member refid="classastrea_1_1astro_1_1TwoLineElements_1ad2d1ca21c3d70e9555749e7a9cd61c02" prot="public" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>get_mean_motion_1st_derivative</name></member>
       <member refid="classastrea_1_1astro_1_1TwoLineElements_1ae4e4fe79400d66dace59406f9c254767" prot="public" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>get_mean_motion_2nd_derivative</name></member>
       <member refid="classastrea_1_1astro_1_1TwoLineElements_1ac5e13fdfbc135e4657eee5c678a88121" prot="public" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>get_name</name></member>
-      <member refid="classastrea_1_1astro_1_1TwoLineElements_1aff7c8364218b18a4de361dc4af55dc27" prot="public" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>get_raw_tle</name></member>
+      <member refid="classastrea_1_1astro_1_1TwoLineElements_1abcf70a421c1b5b5cae8010931f7ceea2" prot="public" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>get_raw_tle</name></member>
       <member refid="classastrea_1_1astro_1_1TwoLineElements_1a599d9fa5e2c69fc2d20c7b35b29ec0ef" prot="public" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>get_rev_number</name></member>
       <member refid="classastrea_1_1astro_1_1TwoLineElements_1a5e4b61ee934a31cf4337e6b0c41835ef" prot="public" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>get_right_ascension</name></member>
       <member refid="classastrea_1_1astro_1_1TwoLineElements_1aa2927d8bcb4a3afbfb94f310d28c9730" prot="public" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>get_semimajor</name></member>
       <member refid="classastrea_1_1astro_1_1TwoLineElements_1acff00262aac40bd8dc2377f2b5006d50" prot="public" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>get_true_anomaly</name></member>
       <member refid="classastrea_1_1astro_1_1TwoLineElements_1ae20a91e8d6cb0a52fab2146cc1b19c76" prot="public" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>operator!=</name></member>
-      <member refid="classastrea_1_1astro_1_1TwoLineElements_1a5d0d0fe8a9fece389981bff8e1f56ee1" prot="private" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1astro_1_1TwoLineElements_1abf7f5f38eb9b611dd53566a19efae77a" prot="private" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>operator&lt;&lt;</name></member>
       <member refid="classastrea_1_1astro_1_1TwoLineElements_1a81fef0876e150a34a57cf48a81659843" prot="public" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>operator=</name></member>
       <member refid="classastrea_1_1astro_1_1TwoLineElements_1aa6843825e3ce1f1ca3b4cd302cd857ca" prot="public" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>operator=</name></member>
       <member refid="classastrea_1_1astro_1_1TwoLineElements_1a12236f5c15357476a5fd5be551a962d9" prot="public" virt="non-virtual"><scope>astrea::astro::TwoLineElements</scope><name>operator==</name></member>

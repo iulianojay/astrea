@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="dir_8f2f7499654791f4fc4240f01fb9baf6" kind="dir">
     <compoundname>astrea/astro/astro/state/angular_elements</compoundname>
     <innerdir refid="dir_1a50007be9f0149ab221abcea88ff37f">astrea/astro/astro/state/angular_elements/instances</innerdir>

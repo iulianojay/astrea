@@ -42,7 +42,7 @@ _Header file for the DirectionCosineMatrix class in the astro namespace._ [More.
 
 | Type | Name |
 | ---: | :--- |
-| class | [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &lt;[**typename**](classastrea_1_1astro_1_1CartesianVector.md) [**In\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**typename**](classastrea_1_1astro_1_1CartesianVector.md) [**Out\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md)&gt;<br>_Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames._  |
+| class | [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &lt;typename In\_Frame\_T, typename Out\_Frame\_T&gt;<br>_Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames._  |
 
 
 

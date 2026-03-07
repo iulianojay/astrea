@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="riseset__utils_8cpp" kind="file" language="C++">
     <compoundname>riseset_utils.cpp</compoundname>
     <includes refid="riseset__utils_8hpp" local="no">trace/risesets/riseset_utils.hpp</includes>
@@ -12,6 +12,37 @@
     <includes local="no">units/units.hpp</includes>
     <includes refid="RiseSetArray_8hpp" local="no">trace/risesets/RiseSetArray.hpp</includes>
     <incdepgraph>
+      <node id="5">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="7">
+        <label>limits</label>
+      </node>
+      <node id="10">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="17">
+        <label>cstdint</label>
+      </node>
+      <node id="13">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>fstream</label>
+      </node>
       <node id="12">
         <label>trace/risesets/RiseSetArray.hpp</label>
         <link refid="RiseSetArray_8hpp"/>
@@ -48,6 +79,24 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
+      <node id="9">
+        <label>vector</label>
+      </node>
+      <node id="14">
+        <label>array</label>
+      </node>
+      <node id="8">
+        <label>sstream</label>
+      </node>
+      <node id="16">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>mp-units/systems/si/chrono.h</label>
+      </node>
       <node id="2">
         <label>trace/risesets/riseset_utils.hpp</label>
         <link refid="riseset__utils_8hpp"/>
@@ -58,60 +107,11 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>trace/trace.fwd.hpp</label>
-        <link refid="trace_8fwd_8hpp"/>
-      </node>
-      <node id="13">
-        <label>trace/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>trace/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>array</label>
-      </node>
-      <node id="17">
-        <label>cstdint</label>
-      </node>
-      <node id="6">
-        <label>fstream</label>
-      </node>
       <node id="15">
         <label>gtl/btree.hpp</label>
       </node>
-      <node id="7">
-        <label>limits</label>
-      </node>
-      <node id="10">
-        <label>mp-units/systems/si.h</label>
-      </node>
-      <node id="11">
-        <label>mp-units/systems/si/chrono.h</label>
-      </node>
-      <node id="8">
-        <label>sstream</label>
-      </node>
-      <node id="3">
-        <label>string</label>
-      </node>
       <node id="4">
         <label>units/units.hpp</label>
-      </node>
-      <node id="9">
-        <label>vector</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>

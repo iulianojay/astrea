@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1EquationsOfMotion" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>astrea::astro::EquationsOfMotion</compoundname>
     <derivedcompoundref refid="classastrea_1_1astro_1_1CowellsMethod" prot="public" virt="non-virtual">astrea::astro::CowellsMethod</derivedcompoundref>
@@ -8,13 +8,12 @@
     <derivedcompoundref refid="classastrea_1_1astro_1_1KeplerianVop" prot="public" virt="non-virtual">astrea::astro::KeplerianVop</derivedcompoundref>
     <derivedcompoundref refid="classastrea_1_1astro_1_1TwoBody" prot="public" virt="non-virtual">astrea::astro::TwoBody</derivedcompoundref>
     <includes refid="EquationsOfMotion_8hpp" local="no">EquationsOfMotion.hpp</includes>
-    <sectiondef kind="public-func">
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1EquationsOfMotion_1a9314c62e49ba5c7e0cf8a632afca3fd4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::EquationsOfMotion::EquationsOfMotion</definition>
         <argsstring>()=default</argsstring>
         <name>EquationsOfMotion</name>
-        <qualifiedname>astrea::astro::EquationsOfMotion::EquationsOfMotion</qualifiedname>
         <briefdescription>
 <para>Default constructor for the Equations of Motion class. </para>
         </briefdescription>
@@ -29,7 +28,6 @@
         <definition>virtual astrea::astro::EquationsOfMotion::~EquationsOfMotion</definition>
         <argsstring>()=default</argsstring>
         <name>~EquationsOfMotion</name>
-        <qualifiedname>astrea::astro::EquationsOfMotion::~EquationsOfMotion</qualifiedname>
         <briefdescription>
 <para>Destructor for the Equations of Motion class. </para>
         </briefdescription>
@@ -44,18 +42,17 @@
         <definition>virtual OrbitalElementPartials astrea::astro::EquationsOfMotion::operator()</definition>
         <argsstring>(const State &amp;state, const Vehicle &amp;vehicle) const =0</argsstring>
         <name>operator()</name>
-        <qualifiedname>astrea::astro::EquationsOfMotion::operator()</qualifiedname>
         <reimplementedby refid="classastrea_1_1astro_1_1CowellsMethod_1a388382552dc4f9355ad474e0f54b87e1">operator()</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1EquinoctialVop_1a6654b1fc66fc7e99aad46c021ad4fc1a">operator()</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1J2MeanVop_1ab7213fcd0ce952677841857d106ba00f">operator()</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1KeplerianVop_1aba13a9ce2252a6728322a477dd248c63">operator()</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1TwoBody_1a7f8fc3d3f59c45e61766d6f347832041">operator()</reimplementedby>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -100,18 +97,17 @@
         <definition>virtual StateTransitionMatrix astrea::astro::EquationsOfMotion::compute_stm</definition>
         <argsstring>(const State &amp;state, const Vehicle &amp;vehicle) const =0</argsstring>
         <name>compute_stm</name>
-        <qualifiedname>astrea::astro::EquationsOfMotion::compute_stm</qualifiedname>
         <reimplementedby refid="classastrea_1_1astro_1_1CowellsMethod_1a095f73c5d8e627479475c083bae367f1">compute_stm</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1EquinoctialVop_1a402e5fdb1d2991c6fbfc491fe2cf998e">compute_stm</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1J2MeanVop_1aefad65bc52fab2948e2f51cc264be5df">compute_stm</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1KeplerianVop_1a4b90dcbb3a22973c354ef4f17f354f0e">compute_stm</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1TwoBody_1adcd62d0f924b24b8b110fd603480600a">compute_stm</reimplementedby>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -152,11 +148,10 @@
         <location file="astrea/astro/astro/propagation/equations_of_motion/EquationsOfMotion.hpp" line="61" column="35"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1EquationsOfMotion_1a4ee1d978dd765bbc2cccbcc3e015a22f" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="no" virt="pure-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> std::size_t</type>
+        <type>constexpr std::size_t</type>
         <definition>virtual constexpr std::size_t astrea::astro::EquationsOfMotion::get_expected_set_id</definition>
         <argsstring>() const =0</argsstring>
         <name>get_expected_set_id</name>
-        <qualifiedname>astrea::astro::EquationsOfMotion::get_expected_set_id</qualifiedname>
         <reimplementedby refid="classastrea_1_1astro_1_1CowellsMethod_1a26fa70c22aac99bc9227c715a71676aa">get_expected_set_id</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1EquinoctialVop_1a83b671e8cbcc944ede70026e9788c152">get_expected_set_id</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1J2MeanVop_1af825a1594252210705167c2c0490817c">get_expected_set_id</reimplementedby>
@@ -174,22 +169,30 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/equations_of_motion/EquationsOfMotion.hpp" line="68" column="35"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Base class for equations of motion in astrodynamics. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
+      <node id="6">
+        <label>astrea::astro::TwoBody</label>
+        <link refid="classastrea_1_1astro_1_1TwoBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea::astro::KeplerianVop</label>
+        <link refid="classastrea_1_1astro_1_1KeplerianVop"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="2">
         <label>astrea::astro::CowellsMethod</label>
         <link refid="classastrea_1_1astro_1_1CowellsMethod"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="1">
-        <label>astrea::astro::EquationsOfMotion</label>
-        <link refid="classastrea_1_1astro_1_1EquationsOfMotion"/>
       </node>
       <node id="3">
         <label>astrea::astro::EquinoctialVop</label>
@@ -203,17 +206,9 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="5">
-        <label>astrea::astro::KeplerianVop</label>
-        <link refid="classastrea_1_1astro_1_1KeplerianVop"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>astrea::astro::TwoBody</label>
-        <link refid="classastrea_1_1astro_1_1TwoBody"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
+      <node id="1">
+        <label>astrea::astro::EquationsOfMotion</label>
+        <link refid="classastrea_1_1astro_1_1EquationsOfMotion"/>
       </node>
     </inheritancegraph>
     <location file="astrea/astro/astro/propagation/equations_of_motion/EquationsOfMotion.hpp" line="31" column="1" bodyfile="astrea/astro/astro/propagation/equations_of_motion/EquationsOfMotion.hpp" bodystart="31" bodyend="69"/>

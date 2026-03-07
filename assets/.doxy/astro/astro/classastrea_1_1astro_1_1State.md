@@ -53,24 +53,24 @@ _Class representing the state of an astronomical object._ [More...](#detailed-de
 | Type | Name |
 | ---: | :--- |
 |   | [**State**](#function-state-14) () = default<br>_Default constructor for_ [_**State**_](classastrea_1_1astro_1_1State.md) _._ |
-|   | [**State**](#function-state-24) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elements, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & sys) <br>_Constructs a_ [_**State**_](classastrea_1_1astro_1_1State.md) _with given orbital elements, epoch, and astrodynamics system._ |
-|   | [**State**](#function-state-34) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) & history) <br>_Constructs a_ [_**State**_](classastrea_1_1astro_1_1State.md) _from a_[_**StateHistory**_](classastrea_1_1astro_1_1StateHistory.md) _object._ |
-|   | [**State**](#function-state-44) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) &, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) &, [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) &&) = delete<br>_Deleted constructor for_ [_**State**_](classastrea_1_1astro_1_1State.md) _to prevent constructing a reference to an_[_**AstrodynamicsSystem**_](classastrea_1_1astro_1_1AstrodynamicsSystem.md) _rvalue._ |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**convert\_to\_set**](#function-convert_to_set-14) () <br>_Converts the orbital elements to a different type._  |
-|  [**State**](classastrea_1_1astro_1_1State.md) & | [**convert\_to\_set**](#function-convert_to_set-24) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t idx) <br>_Converts the orbital elements to a different type based on index._  |
-|  [**State**](classastrea_1_1astro_1_1State.md) | [**convert\_to\_set**](#function-convert_to_set-34) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t idx) const<br>_Converts the state to a different type of orbital elements based on index._  |
+|   | [**State**](#function-state-24) (const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elements, const [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, const [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & sys) <br>_Constructs a_ [_**State**_](classastrea_1_1astro_1_1State.md) _with given orbital elements, epoch, and astrodynamics system._ |
+|   | [**State**](#function-state-34) (const [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) & history) <br>_Constructs a_ [_**State**_](classastrea_1_1astro_1_1State.md) _from a_[_**StateHistory**_](classastrea_1_1astro_1_1StateHistory.md) _object._ |
+|   | [**State**](#function-state-44) (const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) &, const [**Date**](classastrea_1_1astro_1_1Date.md) &, [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) &&) = delete<br>_Deleted constructor for_ [_**State**_](classastrea_1_1astro_1_1State.md) _to prevent constructing a reference to an_[_**AstrodynamicsSystem**_](classastrea_1_1astro_1_1AstrodynamicsSystem.md) _rvalue._ |
+|  void | [**convert\_to\_set**](#function-convert_to_set-14) () <br>_Converts the orbital elements to a different type._  |
+|  [**State**](classastrea_1_1astro_1_1State.md) & | [**convert\_to\_set**](#function-convert_to_set-24) (const std::size\_t idx) <br>_Converts the orbital elements to a different type based on index._  |
+|  [**State**](classastrea_1_1astro_1_1State.md) | [**convert\_to\_set**](#function-convert_to_set-34) (const std::size\_t idx) const<br>_Converts the state to a different type of orbital elements based on index._  |
 |  [**State**](classastrea_1_1astro_1_1State.md) | [**convert\_to\_set**](#function-convert_to_set-44) () const<br>_Converts the state to a different type of orbital elements._  |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & | [**get\_elements**](#function-get_elements) () const<br>_Gets the orbital elements of the state._  |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & | [**get\_epoch**](#function-get_epoch) () const<br>_Gets the epoch of the state._  |
-|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**get\_position**](#function-get_position) () const<br>_Gets the position vector from the state._  |
-|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**get\_position\_in\_frame**](#function-get_position_in_frame) () const<br>_Gets the position vector in a specified frame._  |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & | [**get\_system**](#function-get_system) () const<br>_Gets the astrodynamics system associated with the state._  |
-|  [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**get\_velocity**](#function-get_velocity) () const<br>_Gets the velocity vector from the state._  |
-|  [**T**](classastrea_1_1astro_1_1CartesianVector.md) | [**in\_element\_set**](#function-in_element_set) () const<br>_Converts the current orbital elements to a specified type._  |
-|  [**bool**](classastrea_1_1astro_1_1CartesianVector.md) | [**operator==**](#function-operator) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**State**](classastrea_1_1astro_1_1State.md) & other) const<br>_Checks if two_ [_**State**_](classastrea_1_1astro_1_1State.md) _objects are equal._ |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**set\_elements**](#function-set_elements) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**T**](classastrea_1_1astro_1_1CartesianVector.md) & elements, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**bool**](classastrea_1_1astro_1_1CartesianVector.md) convertToOriginal=[**false**](classastrea_1_1astro_1_1CartesianVector.md)) <br>_Sets the orbital elements of the state._  |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**set\_epoch**](#function-set_epoch) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & epoch) <br>_Sets the epoch of the state._  |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**set\_system**](#function-set_system) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & sys) <br>_Sets the astrodynamics system associated with the state._  |
+|  const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & | [**get\_elements**](#function-get_elements) () const<br>_Gets the orbital elements of the state._  |
+|  const [**Date**](classastrea_1_1astro_1_1Date.md) & | [**get\_epoch**](#function-get_epoch) () const<br>_Gets the epoch of the state._  |
+|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::icrf &gt; | [**get\_position**](#function-get_position) () const<br>_Gets the position vector from the state._  |
+|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; Frame\_T &gt; | [**get\_position\_in\_frame**](#function-get_position_in_frame) () const<br>_Gets the position vector in a specified frame._  |
+|  const [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & | [**get\_system**](#function-get_system) () const<br>_Gets the astrodynamics system associated with the state._  |
+|  [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::earth::icrf &gt; | [**get\_velocity**](#function-get_velocity) () const<br>_Gets the velocity vector from the state._  |
+|  T | [**in\_element\_set**](#function-in_element_set) () const<br>_Converts the current orbital elements to a specified type._  |
+|  bool | [**operator==**](#function-operator) (const [**State**](classastrea_1_1astro_1_1State.md) & other) const<br>_Checks if two_ [_**State**_](classastrea_1_1astro_1_1State.md) _objects are equal._ |
+|  void | [**set\_elements**](#function-set_elements) (const T & elements, const bool convertToOriginal=false) <br>_Sets the orbital elements of the state._  |
+|  void | [**set\_epoch**](#function-set_epoch) (const [**Date**](classastrea_1_1astro_1_1Date.md) & epoch) <br>_Sets the epoch of the state._  |
+|  void | [**set\_system**](#function-set_system) (const [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & sys) <br>_Sets the astrodynamics system associated with the state._  |
 
 
 
@@ -134,9 +134,9 @@ astrea::astro::State::State () = default
 _Constructs a_ [_**State**_](classastrea_1_1astro_1_1State.md) _with given orbital elements, epoch, and astrodynamics system._
 ```C++
 inline astrea::astro::State::State (
-    const  OrbitalElements & elements,
-    const  Date & epoch,
-    const  AstrodynamicsSystem & sys
+    const OrbitalElements & elements,
+    const Date & epoch,
+    const AstrodynamicsSystem & sys
 ) 
 ```
 
@@ -165,7 +165,7 @@ inline astrea::astro::State::State (
 _Constructs a_ [_**State**_](classastrea_1_1astro_1_1State.md) _from a_[_**StateHistory**_](classastrea_1_1astro_1_1StateHistory.md) _object._
 ```C++
 astrea::astro::State::State (
-    const  StateHistory & history
+    const StateHistory & history
 ) 
 ```
 
@@ -199,8 +199,8 @@ This only works if the [**StateHistory**](classastrea_1_1astro_1_1StateHistory.m
 _Deleted constructor for_ [_**State**_](classastrea_1_1astro_1_1State.md) _to prevent constructing a reference to an_[_**AstrodynamicsSystem**_](classastrea_1_1astro_1_1AstrodynamicsSystem.md) _rvalue._
 ```C++
 astrea::astro::State::State (
-    const  OrbitalElements &,
-    const  Date &,
+    const OrbitalElements &,
+    const Date &,
     AstrodynamicsSystem &&
 ) = delete
 ```
@@ -336,7 +336,7 @@ inline State astrea::astro::State::convert_to_set () const
 
 _Gets the orbital elements of the state._ 
 ```C++
-inline const  OrbitalElements & astrea::astro::State::get_elements () const
+inline const OrbitalElements & astrea::astro::State::get_elements () const
 ```
 
 
@@ -361,7 +361,7 @@ const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md)& Referen
 
 _Gets the epoch of the state._ 
 ```C++
-inline const  Date & astrea::astro::State::get_epoch () const
+inline const Date & astrea::astro::State::get_epoch () const
 ```
 
 
@@ -395,7 +395,7 @@ inline RadiusVector < frames::earth::icrf > astrea::astro::State::get_position (
 
 **Returns:**
 
-[**RadiusVector&lt;frames::earth::icrf&gt;**](namespaceastrea_1_1astro.md#typedef-radiusvector) The position vector of the state. 
+RadiusVector&lt;frames::earth::icrf&gt; The position vector of the state. 
 
 
 
@@ -411,7 +411,7 @@ inline RadiusVector < frames::earth::icrf > astrea::astro::State::get_position (
 
 _Gets the position vector in a specified frame._ 
 ```C++
-template<typename  Frame_T>
+template<typename Frame_T>
 inline RadiusVector < Frame_T > astrea::astro::State::get_position_in_frame () const
 ```
 
@@ -444,7 +444,7 @@ RadiusVector&lt;Frame\_T&gt; The position vector in the specified frame.
 
 _Gets the astrodynamics system associated with the state._ 
 ```C++
-inline const  AstrodynamicsSystem & astrea::astro::State::get_system () const
+inline const AstrodynamicsSystem & astrea::astro::State::get_system () const
 ```
 
 
@@ -478,7 +478,7 @@ inline VelocityVector < frames::earth::icrf > astrea::astro::State::get_velocity
 
 **Returns:**
 
-[**VelocityVector&lt;frames::earth::icrf&gt;**](namespaceastrea_1_1astro.md#typedef-velocityvector) The velocity vector of the state. 
+VelocityVector&lt;frames::earth::icrf&gt; The velocity vector of the state. 
 
 
 
@@ -528,7 +528,7 @@ The converted orbital elements.
 _Checks if two_ [_**State**_](classastrea_1_1astro_1_1State.md) _objects are equal._
 ```C++
 bool astrea::astro::State::operator== (
-    const  State & other
+    const State & other
 ) const
 ```
 
@@ -570,8 +570,8 @@ _Sets the orbital elements of the state._
 ```C++
 template<IsOrbitalElements T>
 inline void astrea::astro::State::set_elements (
-    const  T & elements,
-    const  bool convertToOriginal=false
+    const T & elements,
+    const bool convertToOriginal=false
 ) 
 ```
 
@@ -598,7 +598,7 @@ inline void astrea::astro::State::set_elements (
 _Sets the epoch of the state._ 
 ```C++
 inline void astrea::astro::State::set_epoch (
-    const  Date & epoch
+    const Date & epoch
 ) 
 ```
 
@@ -625,7 +625,7 @@ inline void astrea::astro::State::set_epoch (
 _Sets the astrodynamics system associated with the state._ 
 ```C++
 inline void astrea::astro::State::set_system (
-    const  AstrodynamicsSystem & sys
+    const AstrodynamicsSystem & sys
 ) 
 ```
 

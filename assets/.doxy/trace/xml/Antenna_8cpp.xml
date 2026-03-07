@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="Antenna_8cpp" kind="file" language="C++">
     <compoundname>Antenna.cpp</compoundname>
     <includes refid="Antenna_8hpp" local="no">trace/platforms/sensors/Antenna.hpp</includes>
@@ -11,15 +11,33 @@
     <includes local="no">astro/frames/CartesianVector.hpp</includes>
     <includes local="no">astro/frames/frames.hpp</includes>
     <incdepgraph>
-      <node id="12">
-        <label>trace/platforms/AccessObject.hpp</label>
-        <link refid="AccessObject_8hpp"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
+      <node id="18">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="24">
+        <label>functional</label>
+      </node>
+      <node id="4">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="26">
+        <label>numbers</label>
+      </node>
+      <node id="32">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="22">
+        <label>cstdint</label>
+      </node>
+      <node id="6">
+        <label>astro/types/typedefs.hpp</label>
+      </node>
+      <node id="29">
+        <label>mp-units/math.h</label>
+      </node>
+      <node id="28">
+        <label>stdexcept</label>
       </node>
       <node id="1">
         <label>astrea/trace/trace/platforms/sensors/Antenna.cpp</label>
@@ -41,25 +59,20 @@
         <childnode refid="34" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>trace/platforms/sensors/Antenna.hpp</label>
-        <link refid="Antenna_8hpp"/>
-        <childnode refid="3" relation="include">
+      <node id="19">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
+      </node>
+      <node id="17">
+        <label>string</label>
       </node>
       <node id="9">
         <label>trace/platforms/sensors/Sensor.hpp</label>
@@ -81,30 +94,6 @@
         <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="25">
-        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
-        <link refid="FieldOfView_8hpp"/>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>trace/risesets/AccessArray.hpp</label>
-        <link refid="AccessArray_8hpp"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-      </node>
       <node id="15">
         <label>trace/risesets/RiseSetArray.hpp</label>
         <link refid="RiseSetArray_8hpp"/>
@@ -119,6 +108,65 @@
         <childnode refid="21" relation="include">
         </childnode>
       </node>
+      <node id="30">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="5">
+        <label>astro/frames/dynamic_frames.hpp</label>
+      </node>
+      <node id="23">
+        <label>trace/types/IdPair.hpp</label>
+        <link refid="IdPair_8hpp_source"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
+        <link refid="FieldOfView_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+      <node id="13">
+        <label>trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>array</label>
+      </node>
+      <node id="21">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>unordered_map</label>
+      </node>
+      <node id="31">
+        <label>mp-units/systems/isq_angle.h</label>
+      </node>
+      <node id="11">
+        <label>astro/platforms/Payload.hpp</label>
+      </node>
       <node id="16">
         <label>trace/risesets/riseset_utils.hpp</label>
         <link refid="riseset__utils_8hpp"/>
@@ -129,65 +177,27 @@
         <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="18">
-        <label>trace/trace.fwd.hpp</label>
-        <link refid="trace_8fwd_8hpp"/>
+      <node id="34">
+        <label>astro/frames/frames.hpp</label>
       </node>
-      <node id="23">
-        <label>trace/types/IdPair.hpp</label>
-        <link refid="IdPair_8hpp_source"/>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>trace/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>trace/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="22" relation="include">
-        </childnode>
-      </node>
-      <node id="20">
-        <label>array</label>
-      </node>
-      <node id="4">
-        <label>astro/astro.fwd.hpp</label>
+      <node id="14">
+        <label>gtl/btree.hpp</label>
       </node>
       <node id="33">
         <label>astro/frames/CartesianVector.hpp</label>
       </node>
-      <node id="5">
-        <label>astro/frames/dynamic_frames.hpp</label>
+      <node id="12">
+        <label>trace/platforms/AccessObject.hpp</label>
+        <link refid="AccessObject_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
       </node>
-      <node id="34">
-        <label>astro/frames/frames.hpp</label>
-      </node>
-      <node id="11">
-        <label>astro/platforms/Payload.hpp</label>
-      </node>
-      <node id="6">
-        <label>astro/types/typedefs.hpp</label>
-      </node>
-      <node id="22">
-        <label>cstdint</label>
-      </node>
-      <node id="24">
-        <label>functional</label>
-      </node>
-      <node id="14">
-        <label>gtl/btree.hpp</label>
+      <node id="8">
+        <label>units/units.hpp</label>
       </node>
       <node id="7">
         <label>math/trig.hpp</label>
@@ -195,35 +205,25 @@
       <node id="10">
         <label>memory</label>
       </node>
-      <node id="29">
-        <label>mp-units/math.h</label>
-      </node>
-      <node id="30">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="31">
-        <label>mp-units/systems/isq_angle.h</label>
-      </node>
-      <node id="32">
-        <label>mp-units/systems/si.h</label>
-      </node>
-      <node id="26">
-        <label>numbers</label>
-      </node>
-      <node id="28">
-        <label>stdexcept</label>
-      </node>
-      <node id="17">
-        <label>string</label>
-      </node>
-      <node id="8">
-        <label>units/units.hpp</label>
-      </node>
-      <node id="27">
-        <label>unordered_map</label>
-      </node>
-      <node id="3">
-        <label>vector</label>
+      <node id="2">
+        <label>trace/platforms/sensors/Antenna.hpp</label>
+        <link refid="Antenna_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
       </node>
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
@@ -261,10 +261,10 @@
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::one;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::pow;</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::sin;</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::isq_angle::cotes_angle;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::one;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::pow;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::angular::sin;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::isq_angle::cotes_angle;</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal">CNR<sp/><ref refid="classastrea_1_1trace_1_1Antenna_1a7b8bb43f70b27f8e15035eea85ba23fb" kindref="member">Antenna::carrier_to_noise_ratio</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Antenna&amp;<sp/>receiver,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>range,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>offsetAngle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="35"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>

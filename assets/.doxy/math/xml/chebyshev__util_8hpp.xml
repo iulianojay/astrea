@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="chebyshev__util_8hpp" kind="file" language="C++">
     <compoundname>chebyshev_util.hpp</compoundname>
     <includes local="no">array</includes>
@@ -15,11 +15,11 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>array</label>
-      </node>
       <node id="3">
         <label>stdexcept</label>
+      </node>
+      <node id="2">
+        <label>array</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -65,7 +65,7 @@
 <codeline lineno="82"><highlight class="normal">)</highlight></codeline>
 <codeline lineno="83"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Error<sp/>checking</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(N<sp/>&gt;<sp/>2,<sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_polynomial()<sp/>-<sp/>Size<sp/>of<sp/>coeff<sp/>vector<sp/>must<sp/>be<sp/>greater<sp/>than<sp/>zero.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>static_assert(N<sp/>&gt;<sp/>2,<sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_polynomial()<sp/>-<sp/>Size<sp/>of<sp/>coeff<sp/>vector<sp/>must<sp/>be<sp/>greater<sp/>than<sp/>zero.&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(x<sp/>&lt;<sp/>lb<sp/>&amp;&amp;<sp/>std::abs(x<sp/>-<sp/>lb)<sp/>&gt;<sp/>extrapolationTol)<sp/>{</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_polynomial()<sp/>-<sp/>Value<sp/>provided<sp/>for<sp/>x<sp/>is<sp/>outside<sp/>of<sp/>the<sp/>lower<sp/>bound<sp/>for<sp/>the<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
@@ -102,7 +102,7 @@
 <codeline lineno="140"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>evaluate_chebyshev_polynomial(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;double,<sp/>N&gt;&amp;<sp/>boundsCoeff,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>coeffZeroFactor<sp/>=<sp/>0.5,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>extrapolationTol<sp/>=<sp/>1.0e-6)</highlight></codeline>
 <codeline lineno="141"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Error<sp/>Checking</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(N<sp/>&gt;<sp/>2,<sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_polynomial()<sp/>-<sp/>Size<sp/>of<sp/>boundsCoeff<sp/>array<sp/>must<sp/>be<sp/>greater<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>three.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>static_assert(N<sp/>&gt;<sp/>2,<sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_polynomial()<sp/>-<sp/>Size<sp/>of<sp/>boundsCoeff<sp/>array<sp/>must<sp/>be<sp/>greater<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>three.&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="144"><highlight class="normal"></highlight></codeline>
 <codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Extract<sp/>lb,<sp/>ub,<sp/>and<sp/>coefficients</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;double,<sp/>N<sp/>-<sp/>2&gt;<sp/>coeff;</highlight></codeline>
@@ -118,7 +118,7 @@
 <codeline lineno="174"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>evaluate_chebyshev_derivative(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lb,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ub,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;double,<sp/>N&gt;&amp;<sp/>coeff,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>extrapolationTol<sp/>=<sp/>1.0e-6)</highlight></codeline>
 <codeline lineno="175"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Error<sp/>checking</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(N<sp/>&gt;<sp/>0,<sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_derivative()<sp/>-<sp/>Size<sp/>of<sp/>coeff<sp/>array<sp/>must<sp/>be<sp/>greater<sp/>than<sp/>zero.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>static_assert(N<sp/>&gt;<sp/>0,<sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_derivative()<sp/>-<sp/>Size<sp/>of<sp/>coeff<sp/>array<sp/>must<sp/>be<sp/>greater<sp/>than<sp/>zero.&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(x<sp/>&lt;<sp/>lb<sp/>&amp;&amp;<sp/>std::abs(x<sp/>-<sp/>lb)<sp/>&gt;<sp/>extrapolationTol)<sp/>{</highlight></codeline>
 <codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight></codeline>
 <codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_derivative()<sp/>-<sp/>Value<sp/>provided<sp/>for<sp/>x<sp/>is<sp/>outside<sp/>of<sp/>the<sp/>lower<sp/>bound<sp/>for<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
@@ -160,7 +160,7 @@
 <codeline lineno="235"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>evaluate_chebyshev_derivative(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;double,<sp/>N&gt;&amp;<sp/>boundsCoeff,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>extrapolationTol<sp/>=<sp/>1.0e-6)</highlight></codeline>
 <codeline lineno="236"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Error<sp/>Checking</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(N<sp/>&gt;<sp/>2,<sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_derivative()<sp/>-<sp/>Size<sp/>of<sp/>boundsCoeff<sp/>array<sp/>must<sp/>be<sp/>greater<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>three.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>static_assert(N<sp/>&gt;<sp/>2,<sp/></highlight><highlight class="stringliteral">&quot;evaluate_chebyshev_derivative()<sp/>-<sp/>Size<sp/>of<sp/>boundsCoeff<sp/>array<sp/>must<sp/>be<sp/>greater<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>three.&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="239"><highlight class="normal"></highlight></codeline>
 <codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Extract<sp/>lb,<sp/>ub,<sp/>and<sp/>coefficients</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;double,<sp/>N<sp/>-<sp/>2&gt;<sp/>coeff;</highlight></codeline>

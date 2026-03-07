@@ -25,11 +25,11 @@
 * **COMMENT** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **COUNTRY\_CODE** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **CREATION\_DATE** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
+* **const** ([**astrea::astro::detail::EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md))
 
 
 ## d
 
-* **dot** ([**astrea::astro::CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md))
 * **DB\_ID** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **DECAY\_DATE** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **defaultInterval** ([**astrea::astro::Integrator**](classastrea_1_1astro_1_1Integrator.md))
@@ -135,6 +135,7 @@
 * **previousAnomaly** ([**astrea::astro::ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md))
 * **propTime** ([**astrea::astro::Interval**](classastrea_1_1astro_1_1Interval.md))
 * **PayloadPlatform&lt; Payload\_T &gt;** ([**astrea::astro::Payload**](classastrea_1_1astro_1_1Payload.md))
+* **parameters** ([**astrea::astro::Payload**](classastrea_1_1astro_1_1Payload.md), [**astrea::astro::Thruster**](classastrea_1_1astro_1_1Thruster.md))
 * **planes** ([**astrea::astro::Shell**](classastrea_1_1astro_1_1Shell.md))
 * **Payload&lt; Thruster, ThrusterParameters &gt;** ([**astrea::astro::Thruster**](classastrea_1_1astro_1_1Thruster.md))
 * **previousTime** ([**astrea::astro::EventDetector::EventTracker**](structastrea_1_1astro_1_1EventDetector_1_1EventTracker.md))
@@ -169,6 +170,7 @@
 * **STOP\_DATE** ([**astrea::astro::JplEphemerisTable**](structastrea_1_1astro_1_1JplEphemerisTable.md))
 * **satellites** ([**astrea::astro::Plane**](classastrea_1_1astro_1_1Plane.md))
 * **strict** ([**astrea::astro::Plane**](classastrea_1_1astro_1_1Plane.md))
+* **state** ([**astrea::astro::detail::EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md))
 
 
 ## t
@@ -180,6 +182,7 @@
 * **TLE\_LINE2** ([**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md))
 * **TOL** ([**astrea::astro::LambertSolver**](classastrea_1_1astro_1_1LambertSolver.md))
 * **TwoLineElementsPartial** ([**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md))
+* **time** ([**astrea::astro::detail::EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md))
 
 
 ## _
@@ -192,7 +195,6 @@
 * **\_r** ([**astrea::astro::Cartesian**](classastrea_1_1astro_1_1Cartesian.md))
 * **\_v** ([**astrea::astro::Cartesian**](classastrea_1_1astro_1_1Cartesian.md), [**astrea::astro::CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md))
 * **\_a** ([**astrea::astro::CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md), [**astrea::astro::Integrator**](classastrea_1_1astro_1_1Integrator.md))
-* **\_vector** ([**astrea::astro::CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md))
 * **\_COEFF\_ZERO\_FACTOR** ([**astrea::astro::CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md))
 * **\_axialTilt** ([**astrea::astro::CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md))
 * **\_crashRadius** ([**astrea::astro::CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md))
@@ -211,7 +213,7 @@
 * **\_meanLongitudeRate** ([**astrea::astro::CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md))
 * **\_mu** ([**astrea::astro::CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md))
 * **\_name** ([**astrea::astro::CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md), [**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md), [**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md))
-* **\_parent** ([**astrea::astro::CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md), [**astrea::astro::DynamicFrame**](classastrea_1_1astro_1_1DynamicFrame.md), [**astrea::astro::Payload**](classastrea_1_1astro_1_1Payload.md))
+* **\_parent** ([**astrea::astro::CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md), [**astrea::astro::Payload**](classastrea_1_1astro_1_1Payload.md))
 * **\_parentMu** ([**astrea::astro::CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md))
 * **\_polarRadius** ([**astrea::astro::CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md))
 * **\_referenceDate** ([**astrea::astro::CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md))
@@ -229,9 +231,6 @@
 * **\_range** ([**astrea::astro::Cylindrical**](classastrea_1_1astro_1_1Cylindrical.md), [**astrea::astro::Spherical**](classastrea_1_1astro_1_1Spherical.md))
 * **\_julianDate** ([**astrea::astro::Date**](classastrea_1_1astro_1_1Date.md))
 * **\_matrix** ([**astrea::astro::DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md))
-* **\_isInstantaneous** ([**astrea::astro::DynamicFrame**](classastrea_1_1astro_1_1DynamicFrame.md))
-* **\_position** ([**astrea::astro::DynamicFrame**](classastrea_1_1astro_1_1DynamicFrame.md))
-* **\_velocity** ([**astrea::astro::DynamicFrame**](classastrea_1_1astro_1_1DynamicFrame.md))
 * **\_f** ([**astrea::astro::Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md))
 * **\_g** ([**astrea::astro::Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md))
 * **\_h** ([**astrea::astro::Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md))
@@ -335,7 +334,7 @@
 * **\_rawTLE** ([**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md))
 * **\_revNumber** ([**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md))
 * **\_solarArea** ([**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md))
-* **\_value** ([**astrea::astro::detail::EventInner**](structastrea_1_1astro_1_1detail_1_1EventInner.md), [**astrea::astro::detail::VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md))
+* **\_value** ([**astrea::astro::detail::VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md))
 
 
 

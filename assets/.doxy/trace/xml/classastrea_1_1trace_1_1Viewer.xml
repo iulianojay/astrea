@@ -1,18 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1trace_1_1Viewer" kind="class" language="C++" prot="public">
     <compoundname>astrea::trace::Viewer</compoundname>
     <basecompoundref prot="public" virt="non-virtual">astro::Spacecraft</basecompoundref>
     <basecompoundref refid="classastrea_1_1trace_1_1AccessObject" prot="public" virt="non-virtual">astrea::trace::AccessObject</basecompoundref>
     <basecompoundref prot="public" virt="non-virtual">SensorPlatform</basecompoundref>
     <includes refid="Viewer_8hpp" local="no">Viewer.hpp</includes>
-    <sectiondef kind="public-func">
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1trace_1_1Viewer_1a3820234d00fc9bb42c33f9d84339f63e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::Viewer::Viewer</definition>
         <argsstring>()=default</argsstring>
         <name>Viewer</name>
-        <qualifiedname>astrea::trace::Viewer::Viewer</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="classastrea_1_1trace_1_1Viewer" kindref="compound">Viewer</ref>. </para>
         </briefdescription>
@@ -27,7 +26,6 @@
         <definition>astrea::trace::Viewer::Viewer</definition>
         <argsstring>(const astro::GeneralPerturbations &amp;gp, const astro::AstrodynamicsSystem &amp;system)</argsstring>
         <name>Viewer</name>
-        <qualifiedname>astrea::trace::Viewer::Viewer</qualifiedname>
         <param>
           <type>const astro::GeneralPerturbations &amp;</type>
           <declname>gp</declname>
@@ -68,7 +66,6 @@
         <definition>astrea::trace::Viewer::~Viewer</definition>
         <argsstring>()=default</argsstring>
         <name>~Viewer</name>
-        <qualifiedname>astrea::trace::Viewer::~Viewer</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1trace_1_1Viewer" kindref="compound">Viewer</ref>. </para>
         </briefdescription>
@@ -83,7 +80,6 @@
         <definition>std::size_t astrea::trace::Viewer::get_id</definition>
         <argsstring>() const</argsstring>
         <name>get_id</name>
-        <qualifiedname>astrea::trace::Viewer::get_id</qualifiedname>
         <reimplements refid="classastrea_1_1trace_1_1AccessObject_1a067983557aa2ab8506d0d863729fde3f">get_id</reimplements>
         <briefdescription>
 <para>Get the viewer ID. </para>
@@ -102,7 +98,6 @@
         <definition>std::string astrea::trace::Viewer::get_name</definition>
         <argsstring>() const</argsstring>
         <name>get_name</name>
-        <qualifiedname>astrea::trace::Viewer::get_name</qualifiedname>
         <briefdescription>
 <para>Get the name of the viewer. </para>
         </briefdescription>
@@ -120,7 +115,6 @@
         <definition>Mass astrea::trace::Viewer::get_mass</definition>
         <argsstring>() const override</argsstring>
         <name>get_mass</name>
-        <qualifiedname>astrea::trace::Viewer::get_mass</qualifiedname>
         <briefdescription>
 <para>Get the mass of the viewer. </para>
         </briefdescription>
@@ -133,12 +127,11 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/vehicles/Viewer.hpp" line="84" column="10" bodyfile="astrea/trace/trace/platforms/vehicles/Viewer.hpp" bodystart="84" bodyend="84"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1trace_1_1Viewer_1a041c80bb81db1006f5846a686159057b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Viewer_1a0003ff9b6da2b9586ccb451d06ac3f1c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>astro::RadiusVector&lt; astro::frames::earth::icrf &gt;</type>
-        <definition>astro::RadiusVector&lt; astro::frames::earth::icrf &gt; astrea::trace::Viewer::get_inertial_position</definition>
+        <definition>astro::RadiusVector&lt;astro::frames::earth::icrf&gt; astrea::trace::Viewer::get_inertial_position</definition>
         <argsstring>(const astro::Date &amp;date) const</argsstring>
         <name>get_inertial_position</name>
-        <qualifiedname>astrea::trace::Viewer::get_inertial_position</qualifiedname>
         <param>
           <type>const astro::Date &amp;</type>
           <declname>date</declname>
@@ -164,12 +157,11 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/vehicles/Viewer.hpp" line="92" column="25" bodyfile="astrea/trace/trace/platforms/vehicles/Viewer.hpp" bodystart="92" bodyend="95"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1trace_1_1Viewer_1a78e1b9a34d995ece5f0fa0a6a05f9863" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1Viewer_1aa5f8bf73e2077976d5f31930b8fe2b79" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>astro::VelocityVector&lt; astro::frames::earth::icrf &gt;</type>
-        <definition>astro::VelocityVector&lt; astro::frames::earth::icrf &gt; astrea::trace::Viewer::get_inertial_velocity</definition>
+        <definition>astro::VelocityVector&lt;astro::frames::earth::icrf&gt; astrea::trace::Viewer::get_inertial_velocity</definition>
         <argsstring>(const astro::Date &amp;date) const</argsstring>
         <name>get_inertial_velocity</name>
-        <qualifiedname>astrea::trace::Viewer::get_inertial_velocity</qualifiedname>
         <param>
           <type>const astro::Date &amp;</type>
           <declname>date</declname>
@@ -195,20 +187,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/vehicles/Viewer.hpp" line="103" column="27" bodyfile="astrea/trace/trace/platforms/vehicles/Viewer.hpp" bodystart="103" bodyend="106"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para><ref refid="classastrea_1_1trace_1_1Viewer" kindref="compound">Viewer</ref> class for managing access and sensors on a spacecraft. This class inherits from Spacecraft, <ref refid="classastrea_1_1trace_1_1AccessObject" kindref="compound">AccessObject</ref>, and SensorPlatform. It provides functionality to manage sensors and access rights for the spacecraft. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="4">
-        <label>SensorPlatform</label>
-      </node>
-      <node id="3">
-        <label>astrea::trace::AccessObject</label>
-        <link refid="classastrea_1_1trace_1_1AccessObject"/>
-      </node>
       <node id="1">
         <label>astrea::trace::Viewer</label>
         <link refid="classastrea_1_1trace_1_1Viewer"/>
@@ -221,16 +206,16 @@
       </node>
       <node id="2">
         <label>astro::Spacecraft</label>
+      </node>
+      <node id="4">
+        <label>SensorPlatform</label>
+      </node>
+      <node id="3">
+        <label>astrea::trace::AccessObject</label>
+        <link refid="classastrea_1_1trace_1_1AccessObject"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="4">
-        <label>SensorPlatform</label>
-      </node>
-      <node id="3">
-        <label>astrea::trace::AccessObject</label>
-        <link refid="classastrea_1_1trace_1_1AccessObject"/>
-      </node>
       <node id="1">
         <label>astrea::trace::Viewer</label>
         <link refid="classastrea_1_1trace_1_1Viewer"/>
@@ -243,6 +228,13 @@
       </node>
       <node id="2">
         <label>astro::Spacecraft</label>
+      </node>
+      <node id="4">
+        <label>SensorPlatform</label>
+      </node>
+      <node id="3">
+        <label>astrea::trace::AccessObject</label>
+        <link refid="classastrea_1_1trace_1_1AccessObject"/>
       </node>
     </collaborationgraph>
     <location file="astrea/trace/trace/platforms/vehicles/Viewer.hpp" line="41" column="1" bodyfile="astrea/trace/trace/platforms/vehicles/Viewer.hpp" bodystart="41" bodyend="113"/>
@@ -250,11 +242,11 @@
       <member refid="classastrea_1_1trace_1_1AccessObject_1aee7325297c99363f7a85e84aee0c752a" prot="protected" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>AccessObject</name></member>
       <member refid="classastrea_1_1trace_1_1AccessObject_1a10b3e4b10853ab07e397987d7a4bcf77" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>add_access</name></member>
       <member refid="classastrea_1_1trace_1_1AccessObject_1a2a38e7745542fa7d681c8dbfff7a2332" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>drop_access</name></member>
-      <member refid="classastrea_1_1trace_1_1AccessObject_1a74001e50f522dfb7452c96433698e670" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_accesses</name></member>
-      <member refid="classastrea_1_1trace_1_1AccessObject_1a315695c2948714a7af494d92c4a9f598" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessObject_1a97dd222834452263fa7b7f2ea1da1986" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessObject_1a542d32353766a59ad5f63dc0fa7c09ae" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_accesses</name></member>
       <member refid="classastrea_1_1trace_1_1Viewer_1a8808274d1fa9589e17d57475a8e20eae" prot="public" virt="virtual"><scope>astrea::trace::Viewer</scope><name>get_id</name></member>
-      <member refid="classastrea_1_1trace_1_1Viewer_1a041c80bb81db1006f5846a686159057b" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_inertial_position</name></member>
-      <member refid="classastrea_1_1trace_1_1Viewer_1a78e1b9a34d995ece5f0fa0a6a05f9863" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_inertial_velocity</name></member>
+      <member refid="classastrea_1_1trace_1_1Viewer_1a0003ff9b6da2b9586ccb451d06ac3f1c" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_inertial_position</name></member>
+      <member refid="classastrea_1_1trace_1_1Viewer_1aa5f8bf73e2077976d5f31930b8fe2b79" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_inertial_velocity</name></member>
       <member refid="classastrea_1_1trace_1_1Viewer_1a0f8bd21a4ea7f902309dcb782b059378" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_mass</name></member>
       <member refid="classastrea_1_1trace_1_1Viewer_1a513a18cb9ce42ff994d98a34adea411b" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>get_name</name></member>
       <member refid="classastrea_1_1trace_1_1Viewer_1a3820234d00fc9bb42c33f9d84339f63e" prot="public" virt="non-virtual"><scope>astrea::trace::Viewer</scope><name>Viewer</name></member>

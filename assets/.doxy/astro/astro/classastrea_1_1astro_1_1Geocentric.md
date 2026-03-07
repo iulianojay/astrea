@@ -52,32 +52,32 @@ _Class representing a_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Geocentric**](#function-geocentric-17) ([**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) scale=0.0 \*astrea::detail::unitless) <br>_Default constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _._ |
-|   | [**Geocentric**](#function-geocentric-27) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & latitude, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & longitude, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) & altitude) <br>_Constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _with latitude, longitude, and altitude._ |
-|   | [**Geocentric**](#function-geocentric-37) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & r, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) \* parent) <br>_Constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _with position and velocity vectors._ |
-|   | [**Geocentric**](#function-geocentric-47) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**frames::earth::earth\_fixed**](structastrea_1_1astro_1_1BodyFixedFrame.md) &gt; & r, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) \* parent) <br>_Constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _with position and velocity vectors._ |
-|   | [**Geocentric**](#function-geocentric-57) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**T**](classastrea_1_1astro_1_1CartesianVector.md) & elements, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & sys, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _from orbital elements._ |
-|   | [**Geocentric**](#function-geocentric-67) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) <br>_Copy constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _._ |
+|   | [**Geocentric**](#function-geocentric-17) (Unitless scale=0.0 \*astrea::detail::unitless) <br>_Default constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _._ |
+|   | [**Geocentric**](#function-geocentric-27) (const Angle & latitude, const Angle & longitude, const Distance & altitude) <br>_Constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _with latitude, longitude, and altitude._ |
+|   | [**Geocentric**](#function-geocentric-37) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::icrf &gt; & r, const [**Date**](classastrea_1_1astro_1_1Date.md) & date, const [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) \* parent) <br>_Constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _with position and velocity vectors._ |
+|   | [**Geocentric**](#function-geocentric-47) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::earth\_fixed &gt; & r, const [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) \* parent) <br>_Constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _with position and velocity vectors._ |
+|   | [**Geocentric**](#function-geocentric-57) (const T & elements, const [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & sys, const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _from orbital elements._ |
+|   | [**Geocentric**](#function-geocentric-67) (const [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) <br>_Copy constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _._ |
 |   | [**Geocentric**](#function-geocentric-77) ([**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) && other) noexcept<br>_Move constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_altitude**](#function-get_altitude) () const<br>_Get the altitude of the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_latitude**](#function-get_latitude) () const<br>_Get the latitude of the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_longitude**](#function-get_longitude) () const<br>_Get the longitude of the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector._ |
-|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**frames::earth::earth\_fixed**](structastrea_1_1astro_1_1BodyFixedFrame.md) &gt; | [**get\_position**](#function-get_position-12) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) \* parent) const<br>_Converts the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector to a_[_**RadiusVector&lt;frames::earth::earth\_fixed&gt;**_](namespaceastrea_1_1astro.md#typedef-radiusvector) _._ |
-|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**get\_position**](#function-get_position-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) \* parent) const<br>_Converts the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector to a_[_**RadiusVector&lt;frames::earth::icrf&gt;**_](namespaceastrea_1_1astro.md#typedef-radiusvector) _._ |
-|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) | [**interpolate**](#function-interpolate) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & thisTime, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & otherTime, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & targetTime) const<br>_Interpolates between two_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _states at a given time._ |
-|  [**bool**](classastrea_1_1astro_1_1CartesianVector.md) | [**operator!=**](#function-operator) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) const<br>_Compares two_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _objects for inequality._ |
-|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) | [**operator\***](#function-operator_1) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & multiplier) const<br>_Multiplies the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by a scalar._ |
-|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & | [**operator\*=**](#function-operator_2) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & multiplier) <br>_Multiplies the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by a scalar._ |
-|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) | [**operator+**](#function-operator_3) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) const<br>_Adds two_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _objects._ |
-|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & | [**operator+=**](#function-operator_4) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) <br>_Adds another_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _object to the current one._ |
-|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) | [**operator-**](#function-operator-) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) const<br>_Subtracts another_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _object from the current one._ |
-|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & | [**operator-=**](#function-operator-_1) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) <br>_Subtracts another_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _object from the current one._ |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**operator/**](#function-operator_5) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) const<br>_Divides the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by another_[_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _object._ |
-|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) | [**operator/**](#function-operator_6) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & divisor) const<br>_Divides the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by a scalar._ |
-|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & | [**operator/=**](#function-operator_7) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & divisor) <br>_Divides the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by a scalar._ |
+|  const Distance & | [**get\_altitude**](#function-get_altitude) () const<br>_Get the altitude of the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector._ |
+|  const Angle & | [**get\_latitude**](#function-get_latitude) () const<br>_Get the latitude of the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector._ |
+|  const Angle & | [**get\_longitude**](#function-get_longitude) () const<br>_Get the longitude of the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector._ |
+|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::earth\_fixed &gt; | [**get\_position**](#function-get_position-12) (const [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) \* parent) const<br>_Converts the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector to a RadiusVector&lt;frames::earth::earth\_fixed&gt;._ |
+|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::icrf &gt; | [**get\_position**](#function-get_position-22) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date, const [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) \* parent) const<br>_Converts the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector to a RadiusVector&lt;frames::earth::icrf&gt;._ |
+|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) | [**interpolate**](#function-interpolate) (const Time & thisTime, const Time & otherTime, const [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other, const Time & targetTime) const<br>_Interpolates between two_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _states at a given time._ |
+|  bool | [**operator!=**](#function-operator) (const [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) const<br>_Compares two_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _objects for inequality._ |
+|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) | [**operator\***](#function-operator_1) (const Unitless & multiplier) const<br>_Multiplies the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by a scalar._ |
+|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & | [**operator\*=**](#function-operator_2) (const Unitless & multiplier) <br>_Multiplies the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by a scalar._ |
+|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) | [**operator+**](#function-operator_3) (const [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) const<br>_Adds two_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _objects._ |
+|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & | [**operator+=**](#function-operator_4) (const [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) <br>_Adds another_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _object to the current one._ |
+|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) | [**operator-**](#function-operator-) (const [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) const<br>_Subtracts another_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _object from the current one._ |
+|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & | [**operator-=**](#function-operator-_1) (const [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) <br>_Subtracts another_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _object from the current one._ |
+|  std::vector&lt; Unitless &gt; | [**operator/**](#function-operator_5) (const [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) const<br>_Divides the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by another_[_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _object._ |
+|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) | [**operator/**](#function-operator_6) (const Unitless & divisor) const<br>_Divides the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by a scalar._ |
+|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & | [**operator/=**](#function-operator_7) (const Unitless & divisor) <br>_Divides the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by a scalar._ |
 |  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & | [**operator=**](#function-operator_8) ([**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) && other) noexcept<br>_Move assignment operator for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _._ |
-|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & | [**operator=**](#function-operator_9) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) <br>_Copy assignment operator for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _._ |
-|  [**bool**](classastrea_1_1astro_1_1CartesianVector.md) | [**operator==**](#function-operator_10) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) const<br>_Compares two_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _objects for equality._ |
+|  [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & | [**operator=**](#function-operator_9) (const [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) <br>_Copy assignment operator for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _._ |
+|  bool | [**operator==**](#function-operator_10) (const [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) & other) const<br>_Compares two_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _objects for equality._ |
 |   | [**~Geocentric**](#function-geocentric) () = default<br>_Default destructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _._ |
 
 
@@ -144,9 +144,9 @@ Initializes the [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) state ve
 _Constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _with latitude, longitude, and altitude._
 ```C++
 inline astrea::astro::Geocentric::Geocentric (
-    const  Angle & latitude,
-    const  Angle & longitude,
-    const  Distance & altitude
+    const Angle & latitude,
+    const Angle & longitude,
+    const Distance & altitude
 ) 
 ```
 
@@ -175,9 +175,9 @@ inline astrea::astro::Geocentric::Geocentric (
 _Constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _with position and velocity vectors._
 ```C++
 astrea::astro::Geocentric::Geocentric (
-    const  RadiusVector < frames::earth::icrf > & r,
-    const  Date & date,
-    const  CelestialBody * parent
+    const RadiusVector < frames::earth::icrf > & r,
+    const Date & date,
+    const CelestialBody * parent
 ) 
 ```
 
@@ -204,8 +204,8 @@ astrea::astro::Geocentric::Geocentric (
 _Constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _with position and velocity vectors._
 ```C++
 astrea::astro::Geocentric::Geocentric (
-    const  RadiusVector < frames::earth::earth_fixed > & r,
-    const  CelestialBody * parent
+    const RadiusVector < frames::earth::earth_fixed > & r,
+    const CelestialBody * parent
 ) 
 ```
 
@@ -233,9 +233,9 @@ _Constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _fro
 ```C++
 template<IsOrbitalElements T>
 inline astrea::astro::Geocentric::Geocentric (
-    const  T & elements,
-    const  AstrodynamicsSystem & sys,
-    const  Date & date
+    const T & elements,
+    const AstrodynamicsSystem & sys,
+    const Date & date
 ) 
 ```
 
@@ -263,7 +263,7 @@ inline astrea::astro::Geocentric::Geocentric (
 _Copy constructor for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _._
 ```C++
 astrea::astro::Geocentric::Geocentric (
-    const  Geocentric & other
+    const Geocentric & other
 ) 
 ```
 
@@ -316,7 +316,7 @@ astrea::astro::Geocentric::Geocentric (
 
 _Get the altitude of the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector._
 ```C++
-inline const  Distance & astrea::astro::Geocentric::get_altitude () const
+inline const Distance & astrea::astro::Geocentric::get_altitude () const
 ```
 
 
@@ -341,7 +341,7 @@ const Distance& Reference to the altitude component of the [**Geocentric**](clas
 
 _Get the latitude of the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector._
 ```C++
-inline const  Angle & astrea::astro::Geocentric::get_latitude () const
+inline const Angle & astrea::astro::Geocentric::get_latitude () const
 ```
 
 
@@ -366,7 +366,7 @@ const Angle& Reference to the latitude component of the [**Geocentric**](classas
 
 _Get the longitude of the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector._
 ```C++
-inline const  Angle & astrea::astro::Geocentric::get_longitude () const
+inline const Angle & astrea::astro::Geocentric::get_longitude () const
 ```
 
 
@@ -389,10 +389,10 @@ const Angle& Reference to the longitude component of the [**Geocentric**](classa
 
 ### function get\_position [1/2]
 
-_Converts the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector to a_[_**RadiusVector&lt;frames::earth::earth\_fixed&gt;**_](namespaceastrea_1_1astro.md#typedef-radiusvector) _._
+_Converts the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector to a RadiusVector&lt;frames::earth::earth\_fixed&gt;._
 ```C++
 RadiusVector < frames::earth::earth_fixed > astrea::astro::Geocentric::get_position (
-    const  CelestialBody * parent
+    const CelestialBody * parent
 ) const
 ```
 
@@ -402,7 +402,7 @@ RadiusVector < frames::earth::earth_fixed > astrea::astro::Geocentric::get_posit
 
 **Returns:**
 
-[**RadiusVector&lt;frames::earth::earth\_fixed&gt;**](namespaceastrea_1_1astro.md#typedef-radiusvector) The position vector in [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) coordinates. 
+RadiusVector&lt;frames::earth::earth\_fixed&gt; The position vector in [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) coordinates. 
 
 
 
@@ -416,11 +416,11 @@ RadiusVector < frames::earth::earth_fixed > astrea::astro::Geocentric::get_posit
 
 ### function get\_position [2/2]
 
-_Converts the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector to a_[_**RadiusVector&lt;frames::earth::icrf&gt;**_](namespaceastrea_1_1astro.md#typedef-radiusvector) _._
+_Converts the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector to a RadiusVector&lt;frames::earth::icrf&gt;._
 ```C++
 RadiusVector < frames::earth::icrf > astrea::astro::Geocentric::get_position (
-    const  Date & date,
-    const  CelestialBody * parent
+    const Date & date,
+    const CelestialBody * parent
 ) const
 ```
 
@@ -430,7 +430,7 @@ RadiusVector < frames::earth::icrf > astrea::astro::Geocentric::get_position (
 
 **Returns:**
 
-[**RadiusVector&lt;frames::earth::icrf&gt;**](namespaceastrea_1_1astro.md#typedef-radiusvector) The position vector in [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) coordinates. 
+RadiusVector&lt;frames::earth::icrf&gt; The position vector in [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) coordinates. 
 
 
 
@@ -447,10 +447,10 @@ RadiusVector < frames::earth::icrf > astrea::astro::Geocentric::get_position (
 _Interpolates between two_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _states at a given time._
 ```C++
 Geocentric astrea::astro::Geocentric::interpolate (
-    const  Time & thisTime,
-    const  Time & otherTime,
-    const  Geocentric & other,
-    const  Time & targetTime
+    const Time & thisTime,
+    const Time & otherTime,
+    const Geocentric & other,
+    const Time & targetTime
 ) const
 ```
 
@@ -488,7 +488,7 @@ Geocentric astrea::astro::Geocentric::interpolate (
 _Compares two_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _objects for inequality._
 ```C++
 bool astrea::astro::Geocentric::operator!= (
-    const  Geocentric & other
+    const Geocentric & other
 ) const
 ```
 
@@ -529,7 +529,7 @@ false if the two [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) objects
 _Multiplies the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by a scalar._
 ```C++
 Geocentric astrea::astro::Geocentric::operator* (
-    const  Unitless & multiplier
+    const Unitless & multiplier
 ) const
 ```
 
@@ -563,7 +563,7 @@ Resultant [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) after multipli
 _Multiplies the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by a scalar._
 ```C++
 Geocentric & astrea::astro::Geocentric::operator*= (
-    const  Unitless & multiplier
+    const Unitless & multiplier
 ) 
 ```
 
@@ -597,7 +597,7 @@ Reference to the current [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md)
 _Adds two_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _objects._
 ```C++
 Geocentric astrea::astro::Geocentric::operator+ (
-    const  Geocentric & other
+    const Geocentric & other
 ) const
 ```
 
@@ -631,7 +631,7 @@ Resultant [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) sum.
 _Adds another_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _object to the current one._
 ```C++
 Geocentric & astrea::astro::Geocentric::operator+= (
-    const  Geocentric & other
+    const Geocentric & other
 ) 
 ```
 
@@ -665,7 +665,7 @@ Reference to the current [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md)
 _Subtracts another_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _object from the current one._
 ```C++
 Geocentric astrea::astro::Geocentric::operator- (
-    const  Geocentric & other
+    const Geocentric & other
 ) const
 ```
 
@@ -699,7 +699,7 @@ Resultant [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) difference.
 _Subtracts another_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _object from the current one._
 ```C++
 Geocentric & astrea::astro::Geocentric::operator-= (
-    const  Geocentric & other
+    const Geocentric & other
 ) 
 ```
 
@@ -733,7 +733,7 @@ Reference to the current [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md)
 _Divides the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by another_[_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _object._
 ```C++
 std::vector< Unitless > astrea::astro::Geocentric::operator/ (
-    const  Geocentric & other
+    const Geocentric & other
 ) const
 ```
 
@@ -767,7 +767,7 @@ Resultant vector of unitless values after division.
 _Divides the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by a scalar._
 ```C++
 Geocentric astrea::astro::Geocentric::operator/ (
-    const  Unitless & divisor
+    const Unitless & divisor
 ) const
 ```
 
@@ -801,7 +801,7 @@ Resultant [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) after division
 _Divides the_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector by a scalar._
 ```C++
 Geocentric & astrea::astro::Geocentric::operator/= (
-    const  Unitless & divisor
+    const Unitless & divisor
 ) 
 ```
 
@@ -869,7 +869,7 @@ Geocentric & astrea::astro::Geocentric::operator= (
 _Copy assignment operator for_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _._
 ```C++
 Geocentric & astrea::astro::Geocentric::operator= (
-    const  Geocentric & other
+    const Geocentric & other
 ) 
 ```
 
@@ -903,7 +903,7 @@ Geocentric & astrea::astro::Geocentric::operator= (
 _Compares two_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _objects for equality._
 ```C++
 bool astrea::astro::Geocentric::operator== (
-    const  Geocentric & other
+    const Geocentric & other
 ) const
 ```
 

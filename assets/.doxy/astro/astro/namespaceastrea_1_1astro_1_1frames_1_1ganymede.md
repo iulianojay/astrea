@@ -31,8 +31,8 @@
 
 | Type | Name |
 | ---: | :--- |
-| typedef [**InertialFrame**](structastrea_1_1astro_1_1InertialFrame.md)&lt; CelestialBodyId::GANYMEDE, FrameAxis::ICRF &gt; | [**icrf**](#typedef-icrf)  <br> |
-| typedef [**InertialFrame**](structastrea_1_1astro_1_1InertialFrame.md)&lt; CelestialBodyId::GANYMEDE, FrameAxis::J2000 &gt; | [**j2000**](#typedef-j2000)  <br> |
+| typedef InertialFrame&lt; CelestialBodyId::GANYMEDE, FrameAxis::ICRF &gt; | [**icrf**](#typedef-icrf)  <br> |
+| typedef InertialFrame&lt; CelestialBodyId::GANYMEDE, FrameAxis::J2000 &gt; | [**j2000**](#typedef-j2000)  <br> |
 
 
 

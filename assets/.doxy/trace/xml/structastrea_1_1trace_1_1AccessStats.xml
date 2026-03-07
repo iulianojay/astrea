@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="structastrea_1_1trace_1_1AccessStats" kind="struct" language="C++" prot="public">
     <compoundname>astrea::trace::AccessStats</compoundname>
     <includes refid="AccessStats_8hpp" local="no">AccessStats.hpp</includes>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="structastrea_1_1trace_1_1AccessStats_1ad677c2b213a49bcfd9f8970255f7bb3a" prot="private" static="no" mutable="no">
         <type>gtl::btree_map&lt; std::size_t, <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &gt;</type>
         <definition>gtl::btree_map&lt;std::size_t, RiseSetArray&gt; astrea::trace::AccessStats::_risesets</definition>
         <argsstring></argsstring>
         <name>_risesets</name>
-        <qualifiedname>astrea::trace::AccessStats::_risesets</qualifiedname>
         <briefdescription>
 <para>Union of all risesets to any single receiver. </para>
         </briefdescription>
@@ -24,7 +23,6 @@
         <definition>gtl::btree_map&lt;std::size_t, RiseSetStats&gt; astrea::trace::AccessStats::_stats</definition>
         <argsstring></argsstring>
         <name>_stats</name>
-        <qualifiedname>astrea::trace::AccessStats::_stats</qualifiedname>
         <briefdescription>
 <para><ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats</ref> on risesets. </para>
         </briefdescription>
@@ -39,7 +37,6 @@
         <definition>gtl::btree_map&lt;RiseSetMetric, HyperStats&lt;Time&gt; &gt; astrea::trace::AccessStats::_hyperStats</definition>
         <argsstring></argsstring>
         <name>_hyperStats</name>
-        <qualifiedname>astrea::trace::AccessStats::_hyperStats</qualifiedname>
         <briefdescription>
 <para>Statistics on riseset stats. </para>
         </briefdescription>
@@ -54,7 +51,6 @@
         <definition>gtl::btree_map&lt;std::size_t, gtl::btree_map&lt;AccessMetric, Time&gt; &gt; astrea::trace::AccessStats::_accessMetrics</definition>
         <argsstring></argsstring>
         <name>_accessMetrics</name>
-        <qualifiedname>astrea::trace::AccessStats::_accessMetrics</qualifiedname>
         <briefdescription>
 <para>Access metric values. </para>
         </briefdescription>
@@ -69,7 +65,6 @@
         <definition>gtl::btree_map&lt;AccessMetric, Stats&lt;Time&gt; &gt; astrea::trace::AccessStats::_accessStats</definition>
         <argsstring></argsstring>
         <name>_accessStats</name>
-        <qualifiedname>astrea::trace::AccessStats::_accessStats</qualifiedname>
         <briefdescription>
 <para>Access stats. </para>
         </briefdescription>
@@ -79,14 +74,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/AccessStats.hpp" line="130" column="20" bodyfile="astrea/trace/trace/analysis/stats/AccessStats.hpp" bodystart="130" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1aa8179f373b8b6160c894c2b0dab7a079" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::AccessStats::AccessStats</definition>
         <argsstring>()=default</argsstring>
         <name>AccessStats</name>
-        <qualifiedname>astrea::trace::AccessStats::AccessStats</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="structastrea_1_1trace_1_1AccessStats" kindref="compound">AccessStats</ref>. </para>
         </briefdescription>
@@ -101,7 +95,6 @@
         <definition>astrea::trace::AccessStats::AccessStats</definition>
         <argsstring>(const AccessArray &amp;accesses)</argsstring>
         <name>AccessStats</name>
-        <qualifiedname>astrea::trace::AccessStats::AccessStats</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
           <declname>accesses</declname>
@@ -130,7 +123,6 @@
         <definition>std::vector&lt; std::string &gt; astrea::trace::AccessStats::to_string_vector</definition>
         <argsstring>() const</argsstring>
         <name>to_string_vector</name>
-        <qualifiedname>astrea::trace::AccessStats::to_string_vector</qualifiedname>
         <briefdescription>
 <para>Converts the statistics to a vector of strings for output. </para>
         </briefdescription>
@@ -143,12 +135,11 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/AccessStats.hpp" line="63" column="17" bodyfile="astrea/trace/trace/analysis/stats/AccessStats.cpp" bodystart="55" bodyend="91"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1aa3a7ba34fe52975554c626c425affdb5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1a9a14775372704192fe6e8b43d8f67376" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const auto &amp;</type>
-        <definition>const auto &amp; astrea::trace::AccessStats::get_riseset_statistics</definition>
+        <definition>const auto&amp; astrea::trace::AccessStats::get_riseset_statistics</definition>
         <argsstring>() const</argsstring>
         <name>get_riseset_statistics</name>
-        <qualifiedname>astrea::trace::AccessStats::get_riseset_statistics</qualifiedname>
         <briefdescription>
 <para>Accesses the rise/set statistics for all receivers. </para>
         </briefdescription>
@@ -161,12 +152,11 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/AccessStats.hpp" line="70" column="16" bodyfile="astrea/trace/trace/analysis/stats/AccessStats.hpp" bodystart="70" bodyend="70"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1add4fb58316fb73a4e1296b759ce0c9aa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1a54871088d3baf9f90ff27898a3b2d4c2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const auto &amp;</type>
-        <definition>const auto &amp; astrea::trace::AccessStats::get_riseset_statistics</definition>
+        <definition>const auto&amp; astrea::trace::AccessStats::get_riseset_statistics</definition>
         <argsstring>(std::size_t receiverId) const</argsstring>
         <name>get_riseset_statistics</name>
-        <qualifiedname>astrea::trace::AccessStats::get_riseset_statistics</qualifiedname>
         <param>
           <type>std::size_t</type>
           <declname>receiverId</declname>
@@ -192,12 +182,11 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/AccessStats.hpp" line="78" column="16" bodyfile="astrea/trace/trace/analysis/stats/AccessStats.hpp" bodystart="78" bodyend="78"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1a3ba0cc76be00dc5dc874214dab108957" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1a8920b9579b2c4b92921c75197d6e9bfa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const auto &amp;</type>
-        <definition>const auto &amp; astrea::trace::AccessStats::get_access_metric</definition>
+        <definition>const auto&amp; astrea::trace::AccessStats::get_access_metric</definition>
         <argsstring>(std::size_t receiverId, const AccessMetric &amp;metric) const</argsstring>
         <name>get_access_metric</name>
-        <qualifiedname>astrea::trace::AccessStats::get_access_metric</qualifiedname>
         <param>
           <type>std::size_t</type>
           <declname>receiverId</declname>
@@ -235,12 +224,11 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/AccessStats.hpp" line="87" column="16" bodyfile="astrea/trace/trace/analysis/stats/AccessStats.hpp" bodystart="87" bodyend="90"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1ac2f0642920a088c61296ecbcb85a2681" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1a4e615855c9605d88db23f4c099919591" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const auto &amp;</type>
-        <definition>const auto &amp; astrea::trace::AccessStats::get_access_metrics</definition>
+        <definition>const auto&amp; astrea::trace::AccessStats::get_access_metrics</definition>
         <argsstring>() const</argsstring>
         <name>get_access_metrics</name>
-        <qualifiedname>astrea::trace::AccessStats::get_access_metrics</qualifiedname>
         <briefdescription>
 <para>Accesses the access statistics for all receiver IDs and AccessMetrics. </para>
         </briefdescription>
@@ -253,12 +241,11 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/AccessStats.hpp" line="98" column="16" bodyfile="astrea/trace/trace/analysis/stats/AccessStats.hpp" bodystart="98" bodyend="98"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1a3dfccb58d342172d71ba5398e42c7fd3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1a0111ae8352901b7ffb4c4a80640ee0ae" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const auto &amp;</type>
-        <definition>const auto &amp; astrea::trace::AccessStats::get_access_statistics</definition>
+        <definition>const auto&amp; astrea::trace::AccessStats::get_access_statistics</definition>
         <argsstring>(const AccessMetric &amp;metric) const</argsstring>
         <name>get_access_statistics</name>
-        <qualifiedname>astrea::trace::AccessStats::get_access_statistics</qualifiedname>
         <param>
           <type>const <ref refid="enums_8hpp_1a0564dd7316e854932db767c251b5aee1" kindref="member">AccessMetric</ref> &amp;</type>
           <declname>metric</declname>
@@ -284,12 +271,11 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/AccessStats.hpp" line="106" column="16" bodyfile="astrea/trace/trace/analysis/stats/AccessStats.hpp" bodystart="106" bodyend="106"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1ae8d1ab178a4e91a29d8a8be14645f784" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1a3c6a71babcb54c4ae1d6a4466eaf2c93" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const auto &amp;</type>
-        <definition>const auto &amp; astrea::trace::AccessStats::get_hyper_statistics</definition>
+        <definition>const auto&amp; astrea::trace::AccessStats::get_hyper_statistics</definition>
         <argsstring>(const RiseSetMetric &amp;metric) const</argsstring>
         <name>get_hyper_statistics</name>
-        <qualifiedname>astrea::trace::AccessStats::get_hyper_statistics</qualifiedname>
         <param>
           <type>const <ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" kindref="member">RiseSetMetric</ref> &amp;</type>
           <declname>metric</declname>
@@ -315,12 +301,11 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/AccessStats.hpp" line="114" column="16" bodyfile="astrea/trace/trace/analysis/stats/AccessStats.hpp" bodystart="114" bodyend="114"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1a948f90216cef5614c78eaf3ce9e579c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1AccessStats_1a77057532eeac862d3987afe44c0e1a78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>auto &amp;</type>
-        <definition>auto &amp; astrea::trace::AccessStats::get_hyper_statistics</definition>
+        <definition>auto&amp; astrea::trace::AccessStats::get_hyper_statistics</definition>
         <argsstring>(const RiseSetMetric &amp;metric)</argsstring>
         <name>get_hyper_statistics</name>
-        <qualifiedname>astrea::trace::AccessStats::get_hyper_statistics</qualifiedname>
         <param>
           <type>const <ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" kindref="member">RiseSetMetric</ref> &amp;</type>
           <declname>metric</declname>
@@ -346,7 +331,7 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/AccessStats.hpp" line="122" column="10" bodyfile="astrea/trace/trace/analysis/stats/AccessStats.hpp" bodystart="122" bodyend="122"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>The <ref refid="structastrea_1_1trace_1_1AccessStats" kindref="compound">AccessStats</ref> struct represents statistics for access times based on an <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
     </briefdescription>
@@ -362,13 +347,13 @@
       <member refid="structastrea_1_1trace_1_1AccessStats_1ab313ab57a170589a264c2056a5e404dc" prot="private" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>_stats</name></member>
       <member refid="structastrea_1_1trace_1_1AccessStats_1aa8179f373b8b6160c894c2b0dab7a079" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>AccessStats</name></member>
       <member refid="structastrea_1_1trace_1_1AccessStats_1a3262e1e44e8c4065e6a200e3403c1499" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>AccessStats</name></member>
-      <member refid="structastrea_1_1trace_1_1AccessStats_1a3ba0cc76be00dc5dc874214dab108957" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>get_access_metric</name></member>
-      <member refid="structastrea_1_1trace_1_1AccessStats_1ac2f0642920a088c61296ecbcb85a2681" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>get_access_metrics</name></member>
-      <member refid="structastrea_1_1trace_1_1AccessStats_1a3dfccb58d342172d71ba5398e42c7fd3" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>get_access_statistics</name></member>
-      <member refid="structastrea_1_1trace_1_1AccessStats_1ae8d1ab178a4e91a29d8a8be14645f784" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>get_hyper_statistics</name></member>
-      <member refid="structastrea_1_1trace_1_1AccessStats_1a948f90216cef5614c78eaf3ce9e579c6" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>get_hyper_statistics</name></member>
-      <member refid="structastrea_1_1trace_1_1AccessStats_1aa3a7ba34fe52975554c626c425affdb5" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>get_riseset_statistics</name></member>
-      <member refid="structastrea_1_1trace_1_1AccessStats_1add4fb58316fb73a4e1296b759ce0c9aa" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>get_riseset_statistics</name></member>
+      <member refid="structastrea_1_1trace_1_1AccessStats_1a8920b9579b2c4b92921c75197d6e9bfa" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>get_access_metric</name></member>
+      <member refid="structastrea_1_1trace_1_1AccessStats_1a4e615855c9605d88db23f4c099919591" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>get_access_metrics</name></member>
+      <member refid="structastrea_1_1trace_1_1AccessStats_1a0111ae8352901b7ffb4c4a80640ee0ae" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>get_access_statistics</name></member>
+      <member refid="structastrea_1_1trace_1_1AccessStats_1a3c6a71babcb54c4ae1d6a4466eaf2c93" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>get_hyper_statistics</name></member>
+      <member refid="structastrea_1_1trace_1_1AccessStats_1a77057532eeac862d3987afe44c0e1a78" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>get_hyper_statistics</name></member>
+      <member refid="structastrea_1_1trace_1_1AccessStats_1a9a14775372704192fe6e8b43d8f67376" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>get_riseset_statistics</name></member>
+      <member refid="structastrea_1_1trace_1_1AccessStats_1a54871088d3baf9f90ff27898a3b2d4c2" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>get_riseset_statistics</name></member>
       <member refid="structastrea_1_1trace_1_1AccessStats_1a09662481e3678460f6d5f44444576c49" prot="public" virt="non-virtual"><scope>astrea::trace::AccessStats</scope><name>to_string_vector</name></member>
     </listofallmembers>
   </compounddef>

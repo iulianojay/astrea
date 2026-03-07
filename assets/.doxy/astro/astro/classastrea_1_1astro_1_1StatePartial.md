@@ -52,10 +52,10 @@
 | Type | Name |
 | ---: | :--- |
 |   | [**StatePartial**](#function-statepartial-12) () = default<br>_Default constructor for_ [_**StatePartial**_](classastrea_1_1astro_1_1StatePartial.md) _._ |
-|   | [**StatePartial**](#function-statepartial-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md) & elementPartials, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & sys) <br>_Constructs a_ [_**StatePartial**_](classastrea_1_1astro_1_1StatePartial.md) _with given orbital element partials and astrodynamics system._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & | [**get\_epoch**](#function-get_epoch) () const<br>_Gets the epoch of the state partial._  |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & | [**get\_system**](#function-get_system) () const<br>_Gets the astrodynamics system associated with the state._  |
-|  [**State**](classastrea_1_1astro_1_1State.md) | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & time) const<br>_Multiplies the_ [_**StatePartial**_](classastrea_1_1astro_1_1StatePartial.md) _by a time to get a_[_**State**_](classastrea_1_1astro_1_1State.md) _._ |
+|   | [**StatePartial**](#function-statepartial-22) (const [**OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md) & elementPartials, const [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, const [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & sys) <br>_Constructs a_ [_**StatePartial**_](classastrea_1_1astro_1_1StatePartial.md) _with given orbital element partials and astrodynamics system._ |
+|  const [**Date**](classastrea_1_1astro_1_1Date.md) & | [**get\_epoch**](#function-get_epoch) () const<br>_Gets the epoch of the state partial._  |
+|  const [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & | [**get\_system**](#function-get_system) () const<br>_Gets the astrodynamics system associated with the state._  |
+|  [**State**](classastrea_1_1astro_1_1State.md) | [**operator\***](#function-operator) (const Time & time) const<br>_Multiplies the_ [_**StatePartial**_](classastrea_1_1astro_1_1StatePartial.md) _by a time to get a_[_**State**_](classastrea_1_1astro_1_1State.md) _._ |
 
 
 
@@ -108,9 +108,9 @@ astrea::astro::StatePartial::StatePartial () = default
 _Constructs a_ [_**StatePartial**_](classastrea_1_1astro_1_1StatePartial.md) _with given orbital element partials and astrodynamics system._
 ```C++
 inline astrea::astro::StatePartial::StatePartial (
-    const  OrbitalElementPartials & elementPartials,
-    const  Date & epoch,
-    const  AstrodynamicsSystem & sys
+    const OrbitalElementPartials & elementPartials,
+    const Date & epoch,
+    const AstrodynamicsSystem & sys
 ) 
 ```
 
@@ -138,7 +138,7 @@ inline astrea::astro::StatePartial::StatePartial (
 
 _Gets the epoch of the state partial._ 
 ```C++
-const  Date & astrea::astro::StatePartial::get_epoch () const
+const Date & astrea::astro::StatePartial::get_epoch () const
 ```
 
 
@@ -163,7 +163,7 @@ const [**Date**](classastrea_1_1astro_1_1Date.md)& Reference to the epoch of the
 
 _Gets the astrodynamics system associated with the state._ 
 ```C++
-const  AstrodynamicsSystem & astrea::astro::StatePartial::get_system () const
+const AstrodynamicsSystem & astrea::astro::StatePartial::get_system () const
 ```
 
 
@@ -189,7 +189,7 @@ const [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md)&
 _Multiplies the_ [_**StatePartial**_](classastrea_1_1astro_1_1StatePartial.md) _by a time to get a_[_**State**_](classastrea_1_1astro_1_1State.md) _._
 ```C++
 State astrea::astro::StatePartial::operator* (
-    const  Time & time
+    const Time & time
 ) const
 ```
 

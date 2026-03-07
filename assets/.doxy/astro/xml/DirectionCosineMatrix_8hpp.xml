@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="DirectionCosineMatrix_8hpp" kind="file" language="C++">
     <compoundname>DirectionCosineMatrix.hpp</compoundname>
     <includes local="no">array</includes>
@@ -10,18 +10,30 @@
     <includes refid="astro_8fwd_8hpp" local="no">astro/astro.fwd.hpp</includes>
     <includes refid="frame__concepts_8hpp" local="no">astro/frames/frame_concepts.hpp</includes>
     <includedby refid="astro_8hpp" local="no">astrea/astro/astro/astro.hpp</includedby>
+    <includedby refid="defined__rotations_8hpp" local="no">astrea/astro/astro/frames/instances/defined_rotations.hpp</includedby>
     <includedby refid="EastNorthUp_8hpp" local="no">astrea/astro/astro/frames/instances/EastNorthUp.hpp</includedby>
     <includedby refid="LocalHorizontalLocalVertical_8hpp" local="no">astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp</includedby>
     <includedby refid="RadialInTrackCrossTrack_8hpp" local="no">astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp</includedby>
     <includedby refid="VelocityNormalBinormal_8hpp" local="no">astrea/astro/astro/frames/instances/VelocityNormalBinormal.hpp</includedby>
-    <includedby refid="defined__rotations_8hpp" local="no">astrea/astro/astro/frames/instances/defined_rotations.hpp</includedby>
     <includedby refid="transformations_8hpp" local="no">astrea/astro/astro/frames/transformations.hpp</includedby>
     <incdepgraph>
-      <node id="7">
-        <label>astro/astro.fwd.hpp</label>
-        <link refid="astro_8fwd_8hpp"/>
-        <childnode refid="8" relation="include">
+      <node id="6">
+        <label>utilities/string_util.hpp</label>
+      </node>
+      <node id="9">
+        <label>stdint.h</label>
+      </node>
+      <node id="8">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="9" relation="include">
         </childnode>
+      </node>
+      <node id="4">
+        <label>mp-units/math.h</label>
+      </node>
+      <node id="5">
+        <label>mp-units/systems/angular/math.h</label>
       </node>
       <node id="10">
         <label>astro/frames/frame_concepts.hpp</label>
@@ -29,6 +41,21 @@
         <childnode refid="11" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>array</label>
+      </node>
+      <node id="3">
+        <label>iostream</label>
+      </node>
+      <node id="11">
+        <label>concepts</label>
+      </node>
+      <node id="7">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -49,55 +76,148 @@
         <childnode refid="10" relation="include">
         </childnode>
       </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="14">
+        <label>astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp</label>
+        <link refid="LocalHorizontalLocalVertical_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>astrea/astro/astro/state/State.hpp</label>
+        <link refid="State_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
+        <link refid="Plane_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
       <node id="8">
-        <label>astro/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
+        <label>astrea/astro/astro/platforms/Payload.hpp</label>
+        <link refid="Payload_8hpp"/>
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>array</label>
+      <node id="12">
+        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
+        <link refid="Shell_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
       </node>
-      <node id="11">
-        <label>concepts</label>
+      <node id="32">
+        <label>astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp</label>
+        <link refid="EquinoctialVop_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
       </node>
-      <node id="3">
-        <label>iostream</label>
+      <node id="37">
+        <label>astrea/astro/astro/state/StateHistory.hpp</label>
+        <link refid="StateHistory_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
       </node>
-      <node id="4">
-        <label>mp-units/math.h</label>
-      </node>
-      <node id="5">
-        <label>mp-units/systems/angular/math.h</label>
-      </node>
-      <node id="9">
-        <label>stdint.h</label>
-      </node>
-      <node id="6">
-        <label>utilities/string_util.hpp</label>
-      </node>
-    </incdepgraph>
-    <invincdepgraph>
       <node id="2">
         <label>astrea/astro/astro/astro.hpp</label>
         <link refid="astro_8hpp"/>
       </node>
-      <node id="16">
+      <node id="7">
+        <label>astrea/astro/astro/frames/dynamic_frames.hpp</label>
+        <link refid="dynamic__frames_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>astrea/astro/astro/state/orbital_elements/orbital_elements.hpp</label>
+        <link refid="orbital__elements_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp</label>
+        <link refid="Geodetic_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp</label>
+        <link refid="RadialInTrackCrossTrack_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp</label>
+        <link refid="Cylindrical_8hpp"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>astrea/astro/astro/propagation/analytic/LambertSolver.hpp</label>
+        <link refid="LambertSolver_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp</label>
+        <link refid="KeplerianVop_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea/astro/astro/platforms/vehicles/Spacecraft.hpp</label>
+        <link refid="Spacecraft_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea/astro/astro/frames/instances/EastNorthUp.hpp</label>
+        <link refid="EastNorthUp_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
         <label>astrea/astro/astro/frames/CartesianVector.hpp</label>
         <link refid="CartesianVector_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="12" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="13" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
@@ -114,194 +234,18 @@
         <childnode refid="28" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>astrea/astro/astro/frames/dynamic_frames.hpp</label>
-        <link refid="dynamic__frames_8hpp"/>
-        <childnode refid="2" relation="include">
+      <node id="28">
+        <label>astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp</label>
+        <link refid="Cartesian_8hpp"/>
+        <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>astrea/astro/astro/frames/instances/EastNorthUp.hpp</label>
-        <link refid="EastNorthUp_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp</label>
-        <link refid="LocalHorizontalLocalVertical_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp</label>
-        <link refid="RadialInTrackCrossTrack_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>astrea/astro/astro/frames/instances/VelocityNormalBinormal.hpp</label>
-        <link refid="VelocityNormalBinormal_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>astrea/astro/astro/frames/instances/defined_rotations.hpp</label>
-        <link refid="defined__rotations_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>astrea/astro/astro/frames/transformations.hpp</label>
-        <link refid="transformations_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp</label>
-        <link refid="DirectionCosineMatrix_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>astrea/astro/astro/frames/types/DynamicFrame.hpp</label>
-        <link refid="DynamicFrame_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>astrea/astro/astro/platforms/Payload.hpp</label>
-        <link refid="Payload_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>astrea/astro/astro/platforms/Vehicle.hpp</label>
-        <link refid="Vehicle_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
-        <link refid="Constellation_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
-        <link refid="Plane_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
-        <link refid="Shell_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>astrea/astro/astro/platforms/thrusters/Thruster.hpp</label>
-        <link refid="Thruster_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>astrea/astro/astro/platforms/vehicles/Spacecraft.hpp</label>
-        <link refid="Spacecraft_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="22">
-        <label>astrea/astro/astro/propagation/analytic/LambertSolver.hpp</label>
-        <link refid="LambertSolver_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="30">
-        <label>astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp</label>
-        <link refid="CowellsMethod_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="31">
-        <label>astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp</label>
-        <link refid="EquinoctialVop_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="32">
-        <label>astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp</label>
-        <link refid="J2MeanVop_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="30" relation="include">
         </childnode>
       </node>
       <node id="33">
-        <label>astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp</label>
-        <link refid="KeplerianVop_8hpp"/>
+        <label>astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp</label>
+        <link refid="J2MeanVop_8hpp"/>
         <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="34">
-        <label>astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp</label>
-        <link refid="TwoBody_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>astrea/astro/astro/propagation/event_detection/Event.hpp</label>
-        <link refid="Event_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
         </childnode>
       </node>
       <node id="20">
@@ -312,75 +256,33 @@
         <childnode refid="21" relation="include">
         </childnode>
       </node>
-      <node id="21">
-        <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
-        <link refid="Integrator_8hpp"/>
+      <node id="9">
+        <label>astrea/astro/astro/platforms/thrusters/Thruster.hpp</label>
+        <link refid="Thruster_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
       </node>
-      <node id="35">
-        <label>astrea/astro/astro/state/State.hpp</label>
-        <link refid="State_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
-      </node>
-      <node id="36">
-        <label>astrea/astro/astro/state/StateHistory.hpp</label>
-        <link refid="StateHistory_8hpp"/>
+      <node id="17">
+        <label>astrea/astro/astro/frames/types/DynamicFrame.hpp</label>
+        <link refid="DynamicFrame_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-      </node>
-      <node id="24">
-        <label>astrea/astro/astro/state/angular_elements/angular_elements.hpp</label>
-        <link refid="angular__elements_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="23">
-        <label>astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp</label>
-        <link refid="Cylindrical_8hpp"/>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="25">
-        <label>astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp</label>
-        <link refid="Geocentric_8hpp"/>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="26">
-        <label>astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp</label>
-        <link refid="Geodetic_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="27">
-        <label>astrea/astro/astro/state/angular_elements/instances/Spherical.hpp</label>
-        <link refid="Spherical_8hpp"/>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="29">
+      <node id="30">
         <label>astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp</label>
         <link refid="OrbitalElements_8hpp"/>
-        <childnode refid="30" relation="include">
-        </childnode>
         <childnode refid="31" relation="include">
         </childnode>
         <childnode refid="32" relation="include">
@@ -399,20 +301,118 @@
         </childnode>
         <childnode refid="27" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
-      </node>
-      <node id="28">
-        <label>astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp</label>
-        <link refid="Cartesian_8hpp"/>
         <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
       </node>
-      <node id="37">
-        <label>astrea/astro/astro/state/orbital_elements/orbital_elements.hpp</label>
-        <link refid="orbital__elements_8hpp"/>
+      <node id="25">
+        <label>astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp</label>
+        <link refid="Geocentric_8hpp"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astrea/astro/astro/propagation/event_detection/Event.hpp</label>
+        <link refid="Event_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
+        <link refid="Integrator_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astrea/astro/astro/platforms/Vehicle.hpp</label>
+        <link refid="Vehicle_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea/astro/astro/frames/transformations.hpp</label>
+        <link refid="transformations_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/astro/astro/frames/instances/defined_rotations.hpp</label>
+        <link refid="defined__rotations_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp</label>
+        <link refid="TwoBody_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp</label>
+        <link refid="CowellsMethod_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>astrea/astro/astro/frames/instances/VelocityNormalBinormal.hpp</label>
+        <link refid="VelocityNormalBinormal_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>astrea/astro/astro/state/angular_elements/instances/Spherical.hpp</label>
+        <link refid="Spherical_8hpp"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp</label>
+        <link refid="DirectionCosineMatrix_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
+        <link refid="Constellation_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>astrea/astro/astro/state/angular_elements/angular_elements.hpp</label>
+        <link refid="angular__elements_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
@@ -453,74 +453,74 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TODO:<sp/>Probably<sp/>should<sp/>use<sp/>eigen<sp/>instead<sp/>of<sp/>arrays,<sp/>might<sp/>not<sp/>matter<sp/>for<sp/>these<sp/>small<sp/>matrices<sp/>used<sp/>in</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>rotation<sp/>but<sp/>worth<sp/>looking<sp/>into</highlight></codeline>
-<codeline lineno="44"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>In_Frame_T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Out_Frame_T&gt;</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>In_Frame_T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Out_Frame_T&gt;</highlight></codeline>
 <codeline lineno="45" refid="classastrea_1_1astro_1_1DirectionCosineMatrix" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref><sp/>{</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="52" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a52153211094406453385918b06693156" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a52153211094406453385918b06693156" kindref="member">DirectionCosineMatrix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;std::array&lt;Unitless,<sp/>3&gt;,<sp/>3&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">matrix</ref>)<sp/>:</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_matrix{<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">matrix</ref><sp/>}</highlight></codeline>
+<codeline lineno="52" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a52153211094406453385918b06693156" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a52153211094406453385918b06693156" kindref="member">DirectionCosineMatrix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;std::array&lt;Unitless,<sp/>3&gt;,<sp/>3&gt;&amp;<sp/>matrix)<sp/>:</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_matrix{<sp/>matrix<sp/>}</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1af1f9c9948f2aa2e4debe06593989312f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1af1f9c9948f2aa2e4debe06593989312f" kindref="member">X</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>)</highlight></codeline>
+<codeline lineno="63" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1acbfb03337239c55f99ec4c6163da7372" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1acbfb03337239c55f99ec4c6163da7372" kindref="member">X</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>theta)</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::one;</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::cos;</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::sin;</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref>{<sp/>{<sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>1.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>one<sp/>},</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>0.0<sp/>*<sp/>one,<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>),<sp/>-sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>)<sp/>},</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>0.0<sp/>*<sp/>one,<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>),<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>)<sp/>}<sp/>}<sp/>};</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::one;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::angular::cos;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::angular::sin;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref>{<sp/>{<sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>1.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>one<sp/>},</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>0.0<sp/>*<sp/>one,<sp/>cos(theta),<sp/>-sin(theta)<sp/>},</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>0.0<sp/>*<sp/>one,<sp/>sin(theta),<sp/>cos(theta)<sp/>}<sp/>}<sp/>};</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0fe52991105662564ee5b67a90a540bf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0fe52991105662564ee5b67a90a540bf" kindref="member">Y</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>)</highlight></codeline>
+<codeline lineno="79" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abfe93573b3c42bbe28bd7b214f77047c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abfe93573b3c42bbe28bd7b214f77047c" kindref="member">Y</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>theta)</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::one;</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::cos;</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::sin;</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref>{<sp/>{<sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>),<sp/>0.0<sp/>*<sp/>one,<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>)<sp/>},</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::one;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::angular::cos;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::angular::sin;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref>{<sp/>{<sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>cos(theta),<sp/>0.0<sp/>*<sp/>one,<sp/>sin(theta)<sp/>},</highlight></codeline>
 <codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>0.0<sp/>*<sp/>one,<sp/>1.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>one<sp/>},</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>-sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>),<sp/>0.0<sp/>*<sp/>one,<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>)<sp/>}<sp/>}<sp/>};</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>-sin(theta),<sp/>0.0<sp/>*<sp/>one,<sp/>cos(theta)<sp/>}<sp/>}<sp/>};</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="95" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a7e3f1280bfa9256add2c6e806eaf54a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a7e3f1280bfa9256add2c6e806eaf54a1" kindref="member">Z</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>)</highlight></codeline>
+<codeline lineno="95" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0676358a03b41ee3e2aac55e80eae853" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0676358a03b41ee3e2aac55e80eae853" kindref="member">Z</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>theta)</highlight></codeline>
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::one;</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::cos;</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::sin;</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref>{<sp/>{<sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>),<sp/>-sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>),<sp/>0.0<sp/>*<sp/>one<sp/>},</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>),<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">theta</ref>),<sp/>0.0<sp/>*<sp/>one<sp/>},</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::one;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::angular::cos;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::angular::sin;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref>{<sp/>{<sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>cos(theta),<sp/>-sin(theta),<sp/>0.0<sp/>*<sp/>one<sp/>},</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>sin(theta),<sp/>cos(theta),<sp/>0.0<sp/>*<sp/>one<sp/>},</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>one,<sp/>1.0<sp/>*<sp/>one<sp/>}<sp/>}<sp/>};</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abc3b84b17862135320527583857f5bbc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abc3b84b17862135320527583857f5bbc" kindref="member">XZX</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">alpha</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">beta</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">gamma</ref>)</highlight></codeline>
+<codeline lineno="113" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a419517a2bb2c763f8cc4a5addd99306b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a419517a2bb2c763f8cc4a5addd99306b" kindref="member">XZX</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>alpha,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>beta,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>gamma)</highlight></codeline>
 <codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::cos;</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::sin;</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref>{</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">beta</ref>),<sp/>-<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">gamma</ref>)<sp/>*<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">beta</ref>),<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">beta</ref>)<sp/>*<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">gamma</ref>)<sp/>},</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">alpha</ref>)<sp/>*<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">beta</ref>),</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">alpha</ref>)<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">beta</ref>)<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">gamma</ref>)<sp/>-<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">alpha</ref>)<sp/>*<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">gamma</ref>),</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">gamma</ref>)<sp/>*<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">alpha</ref>)<sp/>-<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">alpha</ref>)<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">beta</ref>)<sp/>*<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">gamma</ref>)<sp/>},</highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">alpha</ref>)<sp/>*<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">beta</ref>),</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">alpha</ref>)<sp/>*<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">beta</ref>)<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">beta</ref>)<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">gamma</ref>)<sp/>*<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">alpha</ref>),</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">alpha</ref>)<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">gamma</ref>)<sp/>-<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">beta</ref>)<sp/>*<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">gamma</ref>)<sp/>*<sp/>sin(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">alpha</ref>)<sp/>}<sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::angular::cos;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::angular::sin;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>cos(beta),<sp/>-cos(gamma)<sp/>*<sp/>sin(beta),<sp/>sin(beta)<sp/>*<sp/>sin(gamma)<sp/>},</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>cos(alpha)<sp/>*<sp/>sin(beta),</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cos(alpha)<sp/>*<sp/>cos(beta)<sp/>*<sp/>cos(gamma)<sp/>-<sp/>sin(alpha)<sp/>*<sp/>sin(gamma),</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-cos(gamma)<sp/>*<sp/>sin(alpha)<sp/>-<sp/>cos(alpha)<sp/>*<sp/>cos(beta)<sp/>*<sp/>sin(gamma)<sp/>},</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>sin(alpha)<sp/>*<sp/>sin(beta),</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cos(alpha)<sp/>*<sp/>sin(beta)<sp/>+<sp/>cos(beta)<sp/>*<sp/>cos(gamma)<sp/>*<sp/>sin(alpha),</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cos(alpha)<sp/>*<sp/>cos(gamma)<sp/>-<sp/>cos(beta)<sp/>*<sp/>sin(gamma)<sp/>*<sp/>sin(alpha)<sp/>}<sp/>}</highlight></codeline>
 <codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"></highlight></codeline>
-<codeline lineno="136" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1ab6f464d2872e568aacb4863bd897a54c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1ab6f464d2872e568aacb4863bd897a54c" kindref="member">from_vectors</ref>(</highlight></codeline>
-<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Unitless, In_Frame_T&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">x</ref>,</highlight></codeline>
-<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Unitless, In_Frame_T&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">y</ref>,</highlight></codeline>
-<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Unitless, In_Frame_T&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">z</ref></highlight></codeline>
+<codeline lineno="136" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a891bbce278394487086c5299f84761f6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a891bbce278394487086c5299f84761f6" kindref="member">from_vectors</ref>(</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Unitless, In_Frame_T&gt;</ref>&amp;<sp/>x,</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Unitless, In_Frame_T&gt;</ref>&amp;<sp/>y,</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Unitless, In_Frame_T&gt;</ref>&amp;<sp/>z</highlight></codeline>
 <codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
 <codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref>{<sp/>{<sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">x</ref>[0],<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">x</ref>[1],<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">x</ref>[2]<sp/>},</highlight></codeline>
-<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">y</ref>[0],<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">y</ref>[1],<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">y</ref>[2]<sp/>},</highlight></codeline>
-<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">z</ref>[0],<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">z</ref>[1],<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">z</ref>[2]<sp/>}<sp/>}<sp/>};</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref>{<sp/>{<sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>x[0],<sp/>x[1],<sp/>x[2]<sp/>},</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>y[0],<sp/>y[1],<sp/>y[2]<sp/>},</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>z[0],<sp/>z[1],<sp/>z[2]<sp/>}<sp/>}<sp/>};</highlight></codeline>
 <codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="146"><highlight class="normal"></highlight></codeline>
-<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref><sp/>identity()</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref><sp/>identity()</highlight></codeline>
 <codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::one;</highlight></codeline>
-<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref>{<sp/>{<sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>1.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>one<sp/>},</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::one;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref>{<sp/>{<sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>1.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>one<sp/>},</highlight></codeline>
 <codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>0.0<sp/>*<sp/>one,<sp/>1.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>one<sp/>},</highlight></codeline>
 <codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>one,<sp/>1.0<sp/>*<sp/>one<sp/>}<sp/>}<sp/>};</highlight></codeline>
 <codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -535,13 +535,13 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="163"><highlight class="normal"></highlight></codeline>
 <codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_T&gt;</highlight></codeline>
-<codeline lineno="173" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0a3eec2ebedea78270cd4df1295ddb63" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Value_T, Out_Frame_T&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0a3eec2ebedea78270cd4df1295ddb63" kindref="member">operator*</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Value_T, In_Frame_T&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vec</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="173" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a32041d81eb3181232108d9067ab44b0f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Value_T, Out_Frame_T&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a32041d81eb3181232108d9067ab44b0f" kindref="member">operator*</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Value_T, In_Frame_T&gt;</ref>&amp;<sp/>vec)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="174"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Value_T, Out_Frame_T&gt;</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a6cda7c71d0ece58d8b87f6dc3804fb86" kindref="member">row</ref>(0).dot(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vec</ref>),<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a6cda7c71d0ece58d8b87f6dc3804fb86" kindref="member">row</ref>(1).dot(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vec</ref>),<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a6cda7c71d0ece58d8b87f6dc3804fb86" kindref="member">row</ref>(2).dot(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vec</ref>));</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Value_T, Out_Frame_T&gt;</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abc7d11bad24dada1501366bc18c8afeb" kindref="member">row</ref>(0).dot(vec),<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abc7d11bad24dada1501366bc18c8afeb" kindref="member">row</ref>(1).dot(vec),<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abc7d11bad24dada1501366bc18c8afeb" kindref="member">row</ref>(2).dot(vec));</highlight></codeline>
 <codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="183" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a6cda7c71d0ece58d8b87f6dc3804fb86" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Unitless, In_Frame_T&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a6cda7c71d0ece58d8b87f6dc3804fb86" kindref="member">row</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">idx</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="183" refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abc7d11bad24dada1501366bc18c8afeb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Unitless, In_Frame_T&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abc7d11bad24dada1501366bc18c8afeb" kindref="member">row</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>idx)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="184"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_matrix[<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">idx</ref>][0],<sp/>_matrix[<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">idx</ref>][1],<sp/>_matrix[<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">idx</ref>][2]<sp/>};</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_matrix[idx][0],<sp/>_matrix[idx][1],<sp/>_matrix[idx][2]<sp/>};</highlight></codeline>
 <codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="187"><highlight class="normal"></highlight></codeline>
 <codeline lineno="188"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
@@ -549,11 +549,11 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="190"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="191"><highlight class="normal"></highlight></codeline>
 <codeline lineno="199"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>In_Frame_T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Out_Frame_T&gt;</highlight></codeline>
-<codeline lineno="200" refid="DirectionCosineMatrix_8hpp_1a9f96fae9e12ee72d5f8ab49a6bc60f60" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DCM</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref>;</highlight></codeline>
+<codeline lineno="200" refid="DirectionCosineMatrix_8hpp_1a9f96fae9e12ee72d5f8ab49a6bc60f60" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DCM</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt;</ref>;</highlight></codeline>
 <codeline lineno="201"><highlight class="normal"></highlight></codeline>
 <codeline lineno="202"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Defined<sp/>template<sp/>function<sp/>and<sp/>then<sp/>delete<sp/>it<sp/>so<sp/>we<sp/>can<sp/>enforce<sp/>lookup<sp/>restrictions</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="203"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Frame_U&gt;</highlight></codeline>
-<codeline lineno="204"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">DCM&lt;Frame_T, Frame_U&gt;</ref><sp/><ref refid="defined__rotations_8hpp_1adf6d85b8f4e10fd757511a437fc1e7d6" kindref="member">get_dcm</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">date</ref>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DCM&lt;Frame_T, Frame_U&gt;</ref><sp/>get_dcm(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/>date)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="205"><highlight class="normal"></highlight></codeline>
 <codeline lineno="206"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="207"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>

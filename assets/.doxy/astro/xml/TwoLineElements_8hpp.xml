@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="TwoLineElements_8hpp" kind="file" language="C++">
     <compoundname>TwoLineElements.hpp</compoundname>
     <includes local="no">array</includes>
@@ -11,11 +11,51 @@
     <includedby refid="TwoLineElements_8cpp" local="no">astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.cpp</includedby>
     <includedby refid="orbital__data__formats_8hpp" local="no">astrea/astro/astro/state/orbital_data_formats/orbital_data_formats.hpp</includedby>
     <incdepgraph>
-      <node id="5">
-        <label>astro/astro.fwd.hpp</label>
-        <link refid="astro_8fwd_8hpp"/>
-        <childnode refid="6" relation="include">
+      <node id="7">
+        <label>stdint.h</label>
+      </node>
+      <node id="8">
+        <label>astro/state/orbital_elements/instances/Keplerian.hpp</label>
+        <link refid="Keplerian_8hpp"/>
+        <childnode refid="9" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="13">
+        <label>astro/time/JulianDateClock.hpp</label>
+        <link refid="JulianDateClock_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astro/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>array</label>
+      </node>
+      <node id="9">
+        <label>iosfwd</label>
       </node>
       <node id="1">
         <label>astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp</label>
@@ -33,17 +73,20 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>astro/state/orbital_elements/instances/Keplerian.hpp</label>
-        <link refid="Keplerian_8hpp"/>
-        <childnode refid="9" relation="include">
+      <node id="14">
+        <label>chrono</label>
+      </node>
+      <node id="12">
+        <label>mp-units/systems/si/chrono.h</label>
+      </node>
+      <node id="5">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
+      </node>
+      <node id="4">
+        <label>units/units.hpp</label>
       </node>
       <node id="11">
         <label>astro/time/Date.hpp</label>
@@ -59,65 +102,22 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="13">
-        <label>astro/time/JulianDateClock.hpp</label>
-        <link refid="JulianDateClock_8hpp"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>astro/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>astro/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>array</label>
-      </node>
-      <node id="14">
-        <label>chrono</label>
-      </node>
-      <node id="9">
-        <label>iosfwd</label>
-      </node>
-      <node id="12">
-        <label>mp-units/systems/si/chrono.h</label>
-      </node>
-      <node id="7">
-        <label>stdint.h</label>
-      </node>
-      <node id="3">
-        <label>string</label>
-      </node>
-      <node id="4">
-        <label>units/units.hpp</label>
-      </node>
     </incdepgraph>
     <invincdepgraph>
       <node id="3">
         <label>astrea/astro/astro/astro.hpp</label>
         <link refid="astro_8hpp"/>
       </node>
-      <node id="1">
-        <label>astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp</label>
-        <link refid="TwoLineElements_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
       <node id="2">
         <label>astrea/astro/astro/state/orbital_data_formats/orbital_data_formats.hpp</label>
         <link refid="orbital__data__formats_8hpp"/>
         <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp</label>
+        <link refid="TwoLineElements_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -155,32 +155,32 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="36" refid="classastrea_1_1astro_1_1TwoLineElements" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref><sp/>{</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a5d0d0fe8a9fece389981bff8e1f56ee1" kindref="member">operator&lt;&lt;</ref>(std::ostream&amp;,<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1abf7f5f38eb9b611dd53566a19efae77a" kindref="member">operator&lt;&lt;</ref>(std::ostream&amp;,<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;);</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>TwoLineElementsPartial;</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
 <codeline lineno="45"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="49" refid="classastrea_1_1astro_1_1TwoLineElements_1aebf2413f34ef708d955a2440f9b46f78" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1aebf2413f34ef708d955a2440f9b46f78" kindref="member">TwoLineElements</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1aebf2413f34ef708d955a2440f9b46f78" kindref="member">TwoLineElements</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;std::string,<sp/>3&gt;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">rawTle</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;<sp/>sys);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1aebf2413f34ef708d955a2440f9b46f78" kindref="member">TwoLineElements</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;std::string,<sp/>3&gt;<sp/>rawTle,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;<sp/>sys);</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1aebf2413f34ef708d955a2440f9b46f78" kindref="member">TwoLineElements</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;std::string,<sp/>2&gt;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">rawTle</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;<sp/>sys);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1aebf2413f34ef708d955a2440f9b46f78" kindref="member">TwoLineElements</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;std::string,<sp/>2&gt;<sp/>rawTle,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;<sp/>sys);</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"></highlight></codeline>
 <codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1aebf2413f34ef708d955a2440f9b46f78" kindref="member">TwoLineElements</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;);</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1aebf2413f34ef708d955a2440f9b46f78" kindref="member">TwoLineElements</ref>(<ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;&amp;)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">noexcept</ref>;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1aebf2413f34ef708d955a2440f9b46f78" kindref="member">TwoLineElements</ref>(<ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;&amp;)<sp/>noexcept;</highlight></codeline>
 <codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>=(<ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;&amp;)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">noexcept</ref>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;<sp/>operator=(<ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;&amp;)<sp/>noexcept;</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>=(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;<sp/>operator=(const<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;);</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"></highlight></codeline>
-<codeline lineno="102" refid="classastrea_1_1astro_1_1TwoLineElements_1a92aaa7d0ea129d21de8b148bcc4cf3d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>~<ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>()<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">default</ref>;</highlight></codeline>
+<codeline lineno="102" refid="classastrea_1_1astro_1_1TwoLineElements_1a92aaa7d0ea129d21de8b148bcc4cf3d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>~<ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>()<sp/>=<sp/>default;</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>==(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator==(const<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;<sp/>other)<sp/>const;</highlight></codeline>
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>!=(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref>;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator!=(const<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements" kindref="compound">TwoLineElements</ref>&amp;<sp/>other)<sp/>const;</highlight></codeline>
 <codeline lineno="119"><highlight class="normal"></highlight></codeline>
-<codeline lineno="125" refid="classastrea_1_1astro_1_1TwoLineElements_1aff7c8364218b18a4de361dc4af55dc27" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">array</ref>&lt;std::</highlight><highlight class="keywordtype">string</highlight><highlight class="normal">,<sp/>2&gt;<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1aff7c8364218b18a4de361dc4af55dc27" kindref="member">get_raw_tle</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_rawTLE;<sp/>}</highlight></codeline>
+<codeline lineno="125" refid="classastrea_1_1astro_1_1TwoLineElements_1abcf70a421c1b5b5cae8010931f7ceea2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::array&lt;std::</highlight><highlight class="keywordtype">string</highlight><highlight class="normal">,<sp/>2&gt;<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1abcf70a421c1b5b5cae8010931f7ceea2" kindref="member">get_raw_tle</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_rawTLE;<sp/>}</highlight></codeline>
 <codeline lineno="126"><highlight class="normal"></highlight></codeline>
 <codeline lineno="132" refid="classastrea_1_1astro_1_1TwoLineElements_1aa89ba6c88dc42de33bf4270579d139c3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1aa89ba6c88dc42de33bf4270579d139c3" kindref="member">get_1st_line</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_rawTLE[0];<sp/>}</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"></highlight></codeline>
@@ -200,11 +200,11 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="182"><highlight class="normal"></highlight></codeline>
 <codeline lineno="188" refid="classastrea_1_1astro_1_1TwoLineElements_1a3a9abcb9285fee61ddac3316ab6126a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a3a9abcb9285fee61ddac3316ab6126a2" kindref="member">get_epoch</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_epoch;<sp/>}</highlight></codeline>
 <codeline lineno="189"><highlight class="normal"></highlight></codeline>
-<codeline lineno="195" refid="classastrea_1_1astro_1_1TwoLineElements_1ad2d1ca21c3d70e9555749e7a9cd61c02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">MeanMotion1stDer</ref><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1ad2d1ca21c3d70e9555749e7a9cd61c02" kindref="member">get_mean_motion_1st_derivative</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_meanMotion1st;<sp/>}</highlight></codeline>
+<codeline lineno="195" refid="classastrea_1_1astro_1_1TwoLineElements_1ad2d1ca21c3d70e9555749e7a9cd61c02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>MeanMotion1stDer<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1ad2d1ca21c3d70e9555749e7a9cd61c02" kindref="member">get_mean_motion_1st_derivative</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_meanMotion1st;<sp/>}</highlight></codeline>
 <codeline lineno="196"><highlight class="normal"></highlight></codeline>
-<codeline lineno="202" refid="classastrea_1_1astro_1_1TwoLineElements_1ae4e4fe79400d66dace59406f9c254767" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">MeanMotion2ndDer</ref><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1ae4e4fe79400d66dace59406f9c254767" kindref="member">get_mean_motion_2nd_derivative</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_meanMotion2nd;<sp/>}</highlight></codeline>
+<codeline lineno="202" refid="classastrea_1_1astro_1_1TwoLineElements_1ae4e4fe79400d66dace59406f9c254767" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>MeanMotion2ndDer<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1ae4e4fe79400d66dace59406f9c254767" kindref="member">get_mean_motion_2nd_derivative</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_meanMotion2nd;<sp/>}</highlight></codeline>
 <codeline lineno="203"><highlight class="normal"></highlight></codeline>
-<codeline lineno="209" refid="classastrea_1_1astro_1_1TwoLineElements_1a5968aa62f2d8dea97f40555d609b721e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">BallisticCoefficient</ref><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a5968aa62f2d8dea97f40555d609b721e" kindref="member">get_ballistic_coefficient</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_ballisticCoefficient;<sp/>}</highlight></codeline>
+<codeline lineno="209" refid="classastrea_1_1astro_1_1TwoLineElements_1a5968aa62f2d8dea97f40555d609b721e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BallisticCoefficient<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a5968aa62f2d8dea97f40555d609b721e" kindref="member">get_ballistic_coefficient</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_ballisticCoefficient;<sp/>}</highlight></codeline>
 <codeline lineno="210"><highlight class="normal"></highlight></codeline>
 <codeline lineno="216" refid="classastrea_1_1astro_1_1TwoLineElements_1a2ae4ea20bccb03c42ab15864596323cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a2ae4ea20bccb03c42ab15864596323cc" kindref="member">get_ephemeris_type</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_ephemerisType;<sp/>}</highlight></codeline>
 <codeline lineno="217"><highlight class="normal"></highlight></codeline>
@@ -212,19 +212,19 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="224"><highlight class="normal"></highlight></codeline>
 <codeline lineno="230" refid="classastrea_1_1astro_1_1TwoLineElements_1ad86e189af2fa8bba02da3d9b3b96702f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1ad86e189af2fa8bba02da3d9b3b96702f" kindref="member">get_check_sum1</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_checkSum1;<sp/>}</highlight></codeline>
 <codeline lineno="231"><highlight class="normal"></highlight></codeline>
-<codeline lineno="237" refid="classastrea_1_1astro_1_1TwoLineElements_1aa2927d8bcb4a3afbfb94f310d28c9730" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1aa2927d8bcb4a3afbfb94f310d28c9730" kindref="member">get_semimajor</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_elements.<ref refid="classastrea_1_1astro_1_1Keplerian_1a35af283f933f989ec71087897c58c592" kindref="member">get_semimajor</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="237" refid="classastrea_1_1astro_1_1TwoLineElements_1aa2927d8bcb4a3afbfb94f310d28c9730" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Distance<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1aa2927d8bcb4a3afbfb94f310d28c9730" kindref="member">get_semimajor</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_elements.<ref refid="classastrea_1_1astro_1_1Keplerian_1a206a7deb079078ae3259e5f3ecba5fc3" kindref="member">get_semimajor</ref>();<sp/>}</highlight></codeline>
 <codeline lineno="238"><highlight class="normal"></highlight></codeline>
-<codeline lineno="244" refid="classastrea_1_1astro_1_1TwoLineElements_1a38923860596c80c51c5fc69b3e013c19" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a38923860596c80c51c5fc69b3e013c19" kindref="member">get_eccentricity</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_elements.<ref refid="classastrea_1_1astro_1_1Keplerian_1a4ccf866a5a484189ff9560f44d8c4798" kindref="member">get_eccentricity</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="244" refid="classastrea_1_1astro_1_1TwoLineElements_1a38923860596c80c51c5fc69b3e013c19" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Unitless<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a38923860596c80c51c5fc69b3e013c19" kindref="member">get_eccentricity</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_elements.<ref refid="classastrea_1_1astro_1_1Keplerian_1ad404e1620ee5048bf72408039645cdcb" kindref="member">get_eccentricity</ref>();<sp/>}</highlight></codeline>
 <codeline lineno="245"><highlight class="normal"></highlight></codeline>
-<codeline lineno="251" refid="classastrea_1_1astro_1_1TwoLineElements_1a397e411cce370e8337c5f80d4a67ff94" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a397e411cce370e8337c5f80d4a67ff94" kindref="member">get_inclination</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_elements.<ref refid="classastrea_1_1astro_1_1Keplerian_1a492a03901a888826633bafa86088fd73" kindref="member">get_inclination</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="251" refid="classastrea_1_1astro_1_1TwoLineElements_1a397e411cce370e8337c5f80d4a67ff94" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Angle<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a397e411cce370e8337c5f80d4a67ff94" kindref="member">get_inclination</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_elements.<ref refid="classastrea_1_1astro_1_1Keplerian_1a2e4e61c909bcd67f07c5a9b87725aed8" kindref="member">get_inclination</ref>();<sp/>}</highlight></codeline>
 <codeline lineno="252"><highlight class="normal"></highlight></codeline>
-<codeline lineno="258" refid="classastrea_1_1astro_1_1TwoLineElements_1a5e4b61ee934a31cf4337e6b0c41835ef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a5e4b61ee934a31cf4337e6b0c41835ef" kindref="member">get_right_ascension</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_elements.<ref refid="classastrea_1_1astro_1_1Keplerian_1a885e1ccd5790ec3389a8b8bf08ce755f" kindref="member">get_right_ascension</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="258" refid="classastrea_1_1astro_1_1TwoLineElements_1a5e4b61ee934a31cf4337e6b0c41835ef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Angle<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a5e4b61ee934a31cf4337e6b0c41835ef" kindref="member">get_right_ascension</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_elements.<ref refid="classastrea_1_1astro_1_1Keplerian_1a82de9407b7ebefd1cb2ead80bda916db" kindref="member">get_right_ascension</ref>();<sp/>}</highlight></codeline>
 <codeline lineno="259"><highlight class="normal"></highlight></codeline>
-<codeline lineno="265" refid="classastrea_1_1astro_1_1TwoLineElements_1a415ff583b99479dfa2c9507574a7dfa9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a415ff583b99479dfa2c9507574a7dfa9" kindref="member">get_argument_of_perigee</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_elements.<ref refid="classastrea_1_1astro_1_1Keplerian_1a31c736c27ecbd3b1f71d5414846803cd" kindref="member">get_argument_of_perigee</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="265" refid="classastrea_1_1astro_1_1TwoLineElements_1a415ff583b99479dfa2c9507574a7dfa9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Angle<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a415ff583b99479dfa2c9507574a7dfa9" kindref="member">get_argument_of_perigee</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_elements.<ref refid="classastrea_1_1astro_1_1Keplerian_1a2f381c0f0a7c7023cd7d8d24bfc69879" kindref="member">get_argument_of_perigee</ref>();<sp/>}</highlight></codeline>
 <codeline lineno="266"><highlight class="normal"></highlight></codeline>
-<codeline lineno="272" refid="classastrea_1_1astro_1_1TwoLineElements_1acff00262aac40bd8dc2377f2b5006d50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1acff00262aac40bd8dc2377f2b5006d50" kindref="member">get_true_anomaly</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_elements.<ref refid="classastrea_1_1astro_1_1Keplerian_1a91e3411edf151a01ae717ec062fd087c" kindref="member">get_true_anomaly</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="272" refid="classastrea_1_1astro_1_1TwoLineElements_1acff00262aac40bd8dc2377f2b5006d50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Angle<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1acff00262aac40bd8dc2377f2b5006d50" kindref="member">get_true_anomaly</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_elements.<ref refid="classastrea_1_1astro_1_1Keplerian_1a8950e8112db4a76c2d27541f78ee762d" kindref="member">get_true_anomaly</ref>();<sp/>}</highlight></codeline>
 <codeline lineno="273"><highlight class="normal"></highlight></codeline>
-<codeline lineno="279" refid="classastrea_1_1astro_1_1TwoLineElements_1a6aef47126edaae281ccbde13e9772ae2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">MeanMotion</ref><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a6aef47126edaae281ccbde13e9772ae2" kindref="member">get_mean_motion</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_meanMotion;<sp/>}</highlight></codeline>
+<codeline lineno="279" refid="classastrea_1_1astro_1_1TwoLineElements_1a6aef47126edaae281ccbde13e9772ae2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>MeanMotion<sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a6aef47126edaae281ccbde13e9772ae2" kindref="member">get_mean_motion</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_meanMotion;<sp/>}</highlight></codeline>
 <codeline lineno="280"><highlight class="normal"></highlight></codeline>
 <codeline lineno="286" refid="classastrea_1_1astro_1_1TwoLineElements_1a599d9fa5e2c69fc2d20c7b35b29ec0ef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1TwoLineElements_1a599d9fa5e2c69fc2d20c7b35b29ec0ef" kindref="member">get_rev_number</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_revNumber;<sp/>}</highlight></codeline>
 <codeline lineno="287"><highlight class="normal"></highlight></codeline>
@@ -244,11 +244,11 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="306"><highlight class="normal"></highlight></codeline>
 <codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref><sp/>_epoch;<sp/></highlight></codeline>
 <codeline lineno="308"><highlight class="normal"></highlight></codeline>
-<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">MeanMotion</ref><sp/>_meanMotion;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">MeanMotion1stDer</ref><sp/>_meanMotion1st;<sp/></highlight></codeline>
-<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">MeanMotion2ndDer</ref><sp/>_meanMotion2nd;<sp/></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/>MeanMotion<sp/>_meanMotion;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/>MeanMotion1stDer<sp/>_meanMotion1st;<sp/></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/>MeanMotion2ndDer<sp/>_meanMotion2nd;<sp/></highlight></codeline>
 <codeline lineno="312"><highlight class="normal"></highlight></codeline>
-<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">BallisticCoefficient</ref><sp/>_ballisticCoefficient;<sp/></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/>BallisticCoefficient<sp/>_ballisticCoefficient;<sp/></highlight></codeline>
 <codeline lineno="314"><highlight class="normal"></highlight></codeline>
 <codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>_ephemerisType;<sp/></highlight></codeline>
 <codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>_elementSetNo;<sp/><sp/></highlight></codeline>
@@ -259,7 +259,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Bundle<sp/>elements<sp/>into<sp/>Keplerian<sp/>set</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref><sp/>_elements;<sp/></highlight></codeline>
 <codeline lineno="323"><highlight class="normal"></highlight></codeline>
-<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ctor_impl(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;std::string,<sp/>2&gt;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">rawTle</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;<sp/>sys);</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ctor_impl(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::array&lt;std::string,<sp/>2&gt;<sp/>rawTle,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;<sp/>sys);</highlight></codeline>
 <codeline lineno="331"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="332"><highlight class="normal"></highlight></codeline>
 <codeline lineno="333"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>

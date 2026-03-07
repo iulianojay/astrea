@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="Grid_8hpp" kind="file" language="C++">
     <compoundname>Grid.hpp</compoundname>
     <includes local="no">vector</includes>
@@ -13,15 +13,21 @@
     <includedby refid="Grid_8cpp" local="no">astrea/trace/trace/platforms/ground/Grid.cpp</includedby>
     <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
     <incdepgraph>
-      <node id="10">
-        <label>trace/platforms/AccessObject.hpp</label>
-        <link refid="AccessObject_8hpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
+      <node id="16">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="22">
+        <label>functional</label>
+      </node>
+      <node id="7">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="20">
+        <label>cstdint</label>
+      </node>
+      <node id="4">
+        <label>astro/systems/CelestialBody.hpp</label>
       </node>
       <node id="1">
         <label>astrea/trace/trace/platforms/ground/Grid.hpp</label>
@@ -37,6 +43,81 @@
         <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>string</label>
+      </node>
+      <node id="14">
+        <label>trace/risesets/RiseSetArray.hpp</label>
+        <link refid="RiseSetArray_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astro/state/angular_elements/angular_elements.hpp</label>
+      </node>
+      <node id="21">
+        <label>trace/types/IdPair.hpp</label>
+        <link refid="IdPair_8hpp_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>vector</label>
+      </node>
+      <node id="12">
+        <label>trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>array</label>
+      </node>
+      <node id="19">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astro/frames/FrameReference.hpp</label>
+      </node>
+      <node id="15">
+        <label>trace/risesets/riseset_utils.hpp</label>
+        <link refid="riseset__utils_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -57,105 +138,24 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="12">
-        <label>trace/risesets/AccessArray.hpp</label>
-        <link refid="AccessArray_8hpp"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>trace/risesets/RiseSetArray.hpp</label>
-        <link refid="RiseSetArray_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>trace/risesets/riseset_utils.hpp</label>
-        <link refid="riseset__utils_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>trace/trace.fwd.hpp</label>
-        <link refid="trace_8fwd_8hpp"/>
-      </node>
-      <node id="21">
-        <label>trace/types/IdPair.hpp</label>
-        <link refid="IdPair_8hpp_source"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>trace/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>trace/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>array</label>
-      </node>
-      <node id="7">
-        <label>astro/astro.fwd.hpp</label>
-      </node>
-      <node id="8">
-        <label>astro/frames/FrameReference.hpp</label>
-      </node>
-      <node id="9">
-        <label>astro/state/angular_elements/angular_elements.hpp</label>
-      </node>
-      <node id="4">
-        <label>astro/systems/CelestialBody.hpp</label>
-      </node>
-      <node id="20">
-        <label>cstdint</label>
-      </node>
-      <node id="22">
-        <label>functional</label>
-      </node>
       <node id="13">
         <label>gtl/btree.hpp</label>
       </node>
-      <node id="11">
-        <label>memory</label>
-      </node>
-      <node id="6">
-        <label>string</label>
+      <node id="10">
+        <label>trace/platforms/AccessObject.hpp</label>
+        <link refid="AccessObject_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
       </node>
       <node id="3">
         <label>units/units.hpp</label>
       </node>
-      <node id="2">
-        <label>vector</label>
+      <node id="11">
+        <label>memory</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -231,13 +231,13 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
 <codeline lineno="94" refid="classastrea_1_1trace_1_1Grid_1abd6294ca4561df2ec9f9b67d8b32fb45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1abd6294ca4561df2ec9f9b67d8b32fb45" kindref="member">get_grid_type</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_gridType;<sp/>}</highlight></codeline>
 <codeline lineno="95"><highlight class="normal"></highlight></codeline>
-<codeline lineno="101" refid="classastrea_1_1trace_1_1Grid_1a1bfec649c51083ef4d824f171d4006bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::CelestialBody*<sp/><ref refid="classastrea_1_1trace_1_1Grid_1a1bfec649c51083ef4d824f171d4006bb" kindref="member">get_parent</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parent;<sp/>}</highlight></codeline>
+<codeline lineno="101" refid="classastrea_1_1trace_1_1Grid_1a32a3efa860b693da51ba77047f7abe13" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::CelestialBody*<sp/><ref refid="classastrea_1_1trace_1_1Grid_1a32a3efa860b693da51ba77047f7abe13" kindref="member">get_parent</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parent;<sp/>}</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"></highlight></codeline>
 <codeline lineno="108" refid="classastrea_1_1trace_1_1Grid_1a5087dcff06bc305fa1c69e1295328c0a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classastrea_1_1trace_1_1Grid_1a5087dcff06bc305fa1c69e1295328c0a" kindref="member">size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.size();<sp/>}</highlight></codeline>
 <codeline lineno="109"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113" refid="classastrea_1_1trace_1_1Grid_1a4ca9db67efb20977668d207d4761ead1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1Grid_1a4ca9db67efb20977668d207d4761ead1" kindref="member">iterator</ref><sp/>=<sp/>std::vector&lt;GroundPoint&gt;::iterator;</highlight></codeline>
+<codeline lineno="113" refid="classastrea_1_1trace_1_1Grid_1a4ca9db67efb20977668d207d4761ead1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a4ca9db67efb20977668d207d4761ead1" kindref="member">iterator</ref><sp/>=<sp/>std::vector&lt;GroundPoint&gt;::iterator;</highlight></codeline>
 <codeline lineno="114"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118" refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" kindref="member">const_iterator</ref><sp/>=<sp/>std::vector&lt;GroundPoint&gt;::const_iterator;</highlight></codeline>
+<codeline lineno="118" refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" kindref="member">const_iterator</ref><sp/>=<sp/>std::vector&lt;GroundPoint&gt;::const_iterator;</highlight></codeline>
 <codeline lineno="119"><highlight class="normal"></highlight></codeline>
 <codeline lineno="125" refid="classastrea_1_1trace_1_1Grid_1a1f9614c07d5fdc5d9482b77e2c9ab0de" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a4ca9db67efb20977668d207d4761ead1" kindref="member">iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a1f9614c07d5fdc5d9482b77e2c9ab0de" kindref="member">begin</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.begin();<sp/>}</highlight></codeline>
 <codeline lineno="126"><highlight class="normal"></highlight></codeline>
@@ -251,9 +251,9 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="154"><highlight class="normal"></highlight></codeline>
 <codeline lineno="160" refid="classastrea_1_1trace_1_1Grid_1a717d791e7fba1ddf3d1fab2b944c79ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a0fe7fd9746de6f2e0ba9853c805ff6c4" kindref="member">const_iterator</ref><sp/><ref refid="classastrea_1_1trace_1_1Grid_1a717d791e7fba1ddf3d1fab2b944c79ee" kindref="member">cend</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints.end();<sp/>}</highlight></codeline>
 <codeline lineno="161"><highlight class="normal"></highlight></codeline>
-<codeline lineno="168" refid="classastrea_1_1trace_1_1Grid_1ac237025e2ba0a390e997976963e7e4c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref>&amp;<sp/><ref refid="classastrea_1_1trace_1_1Grid_1ac237025e2ba0a390e997976963e7e4c4" kindref="member">operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>index)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints[index];<sp/>}</highlight></codeline>
+<codeline lineno="168" refid="classastrea_1_1trace_1_1Grid_1af3554e289f4713105ad11bfc30fcf97b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref>&amp;<sp/><ref refid="classastrea_1_1trace_1_1Grid_1af3554e289f4713105ad11bfc30fcf97b" kindref="member">operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>index)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints[index];<sp/>}</highlight></codeline>
 <codeline lineno="169"><highlight class="normal"></highlight></codeline>
-<codeline lineno="176" refid="classastrea_1_1trace_1_1Grid_1a5083f548ea24eb3842e3dcc6fc5e1054" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref>&amp;<sp/><ref refid="classastrea_1_1trace_1_1Grid_1a5083f548ea24eb3842e3dcc6fc5e1054" kindref="member">operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints[index];<sp/>}</highlight></codeline>
+<codeline lineno="176" refid="classastrea_1_1trace_1_1Grid_1ab9fb5da5b2186359213ea054947fe54e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref>&amp;<sp/><ref refid="classastrea_1_1trace_1_1Grid_1ab9fb5da5b2186359213ea054947fe54e" kindref="member">operator[]</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_groundPoints[index];<sp/>}</highlight></codeline>
 <codeline lineno="177"><highlight class="normal"></highlight></codeline>
 <codeline lineno="178"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::CelestialBody*<sp/>_parent;<sp/><sp/><sp/><sp/></highlight></codeline>

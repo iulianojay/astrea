@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="Plotter_8hpp" kind="file" language="C++">
     <compoundname>Plotter.hpp</compoundname>
     <includes local="no">filesystem</includes>
@@ -12,6 +12,19 @@
     <includedby refid="Plotter_8cpp" local="no">astrea/trace/trace/analysis/plots/Plotter.cpp</includedby>
     <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
     <incdepgraph>
+      <node id="8">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="2">
+        <label>filesystem</label>
+      </node>
+      <node id="6">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
       <node id="1">
         <label>astrea/trace/trace/analysis/plots/Plotter.hpp</label>
         <link refid="Plotter_8hpp"/>
@@ -30,39 +43,26 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>trace/trace.fwd.hpp</label>
-        <link refid="trace_8fwd_8hpp"/>
-      </node>
-      <node id="6">
-        <label>astro/astro.fwd.hpp</label>
-      </node>
-      <node id="2">
-        <label>filesystem</label>
-      </node>
       <node id="5">
         <label>matplot/matplot.h</label>
-      </node>
-      <node id="3">
-        <label>string</label>
-      </node>
-      <node id="7">
-        <label>units/units.hpp</label>
       </node>
       <node id="4">
         <label>vector</label>
       </node>
+      <node id="7">
+        <label>units/units.hpp</label>
+      </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="2">
+        <label>astrea/trace/trace/trace.hpp</label>
+        <link refid="trace_8hpp"/>
+      </node>
       <node id="1">
         <label>astrea/trace/trace/analysis/plots/Plotter.hpp</label>
         <link refid="Plotter_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-      </node>
-      <node id="2">
-        <label>astrea/trace/trace/trace.hpp</label>
-        <link refid="trace_8hpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classastrea_1_1trace_1_1plotting_1_1Plotter" prot="public">astrea::trace::plotting::Plotter</innerclass>
@@ -101,7 +101,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="AccessAnalyzer_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" kindref="member">ViewerConstellation</ref><sp/>=<sp/>astro::Constellation&lt;Viewer&gt;;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="AccessAnalyzer_8hpp_1a6577a4b6ee15f2bc01192d4e545278e5" kindref="member">ViewerConstellation</ref><sp/>=<sp/>astro::Constellation&lt;Viewer&gt;;</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">plotting<sp/>{</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>

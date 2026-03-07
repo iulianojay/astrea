@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="dir_1d4dcf10fc541574a93624f5c09a3d6f" kind="dir">
     <compoundname>astrea/astro</compoundname>
     <innerdir refid="dir_84db6e3c60e44147f5214c05dc45afc2">astrea/astro/astro</innerdir>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1frames" kind="namespace" language="C++">
     <compoundname>astrea::astro::frames</compoundname>
     <innerclass refid="classastrea_1_1astro_1_1frames_1_1EastNorthUp" prot="public">astrea::astro::frames::EastNorthUp</innerclass>
@@ -38,8 +38,8 @@
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1uranus__barycenter">astrea::astro::frames::uranus_barycenter</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1venus">astrea::astro::frames::venus</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1venus__barycenter">astrea::astro::frames::venus_barycenter</innernamespace>
-    <sectiondef kind="func">
-      <memberdef kind="function" id="transformations_8hpp_1a48769613a781128560f65f0284032098" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <sectiondef kind="func">
+      <memberdef kind="function" id="transformations_8hpp_1aad18931dd48fc08334d80c1af3d4bca2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Frame_T</type>
@@ -48,16 +48,13 @@
             <type>typename Frame_U</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt;</type>
-        <definition>CartesianVector&lt; Distance, Frame_T &gt; astrea::astro::frames::get_center_offset</definition>
-        <argsstring>(const Date &amp;date)</argsstring>
-        <name>get_center_offset</name>
-        <qualifiedname>astrea::astro::frames::get_center_offset</qualifiedname>
+        <type></type>
+        <definition>astrea::astro::frames::requires</definition>
+        <argsstring>(HasSameOrigin&lt; Frame_T, Frame_U &gt;) CartesianVector&lt; Distance</argsstring>
+        <name>requires</name>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
-          <declname>date</declname>
+          <type>HasSameOrigin&lt; Frame_T, Frame_U &gt;</type>
         </param>
-    <requiresclause>(HasSameOrigin&lt;Frame_T, Frame_U&gt;)    </requiresclause>
         <briefdescription>
 <para>Get the center offset between two frames at a given date. </para>
         </briefdescription>
@@ -95,9 +92,26 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/transformations.hpp" line="51" column="17" bodyfile="astrea/astro/astro/frames/transformations.hpp" bodystart="51" bodyend="56"/>
+        <location file="astrea/astro/astro/frames/transformations.hpp" line="50" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="transformations_8hpp_1a6c524b6d8ad518c7fc37cde2538e1f63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="transformations_8hpp_1a4110aafa02ffeab59fce0e4413a5bc46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Frame_T</type>
+        <definition>Frame_T astrea::astro::frames::get_center_offset</definition>
+        <argsstring>(const Date &amp;date)</argsstring>
+        <name>get_center_offset</name>
+        <param>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/transformations.hpp" line="51" column="10" bodyfile="astrea/astro/astro/frames/transformations.hpp" bodystart="51" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="transformations_8hpp_1a535b6cf51696d563e86fc2d0232cc677" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Frame_T</type>
@@ -106,16 +120,13 @@
             <type>typename Frame_U</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt;</type>
-        <definition>CartesianVector&lt; Distance, Frame_T &gt; astrea::astro::frames::get_center_offset</definition>
-        <argsstring>(const Date &amp;date)</argsstring>
-        <name>get_center_offset</name>
-        <qualifiedname>astrea::astro::frames::get_center_offset</qualifiedname>
+        <type></type>
+        <definition>astrea::astro::frames::requires</definition>
+        <argsstring>(!HasSameOrigin&lt; Frame_T, Frame_U &gt; &amp;&amp;HasSameAxis&lt; Frame_T, Frame_U &gt;) CartesianVector&lt; Distance</argsstring>
+        <name>requires</name>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
-          <declname>date</declname>
+          <type>!HasSameOrigin&lt; Frame_T, Frame_U &gt; &amp;&amp;HasSameAxis&lt; Frame_T, Frame_U &gt;</type>
         </param>
-    <requiresclause>(!HasSameOrigin&lt;Frame_T, Frame_U&gt; &amp;&amp; HasSameAxis&lt;Frame_T, Frame_U&gt;)    </requiresclause>
         <briefdescription>
 <para>Get the center offset between two frames at a given date. </para>
         </briefdescription>
@@ -153,9 +164,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/transformations.hpp" line="72" column="17" bodyfile="astrea/astro/astro/frames/transformations.hpp" bodystart="72" bodyend="80"/>
+        <location file="astrea/astro/astro/frames/transformations.hpp" line="71" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="transformations_8hpp_1a06fe0ff8302f60eab90bdb264cd81875" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="transformations_8hpp_1ae9abbd63db731ecd9c7648f1c2d0c73e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Value_T</type>
@@ -167,17 +178,16 @@
             <type>typename Frame_U</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_U</ref> &gt;</type>
-        <definition>CartesianVector&lt; Value_T, Frame_U &gt; astrea::astro::frames::rotate_vector_into_frame</definition>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Value_T, Frame_U &gt;</type>
+        <definition>CartesianVector&lt;Value_T, Frame_U&gt; astrea::astro::frames::rotate_vector_into_frame</definition>
         <argsstring>(const CartesianVector&lt; Value_T, Frame_T &gt; &amp;vec, const Date &amp;date)</argsstring>
         <name>rotate_vector_into_frame</name>
-        <qualifiedname>astrea::astro::frames::rotate_vector_into_frame</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Value_T, Frame_T &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -245,7 +255,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/transformations.hpp" line="131" column="17" bodyfile="astrea/astro/astro/frames/transformations.hpp" bodystart="131" bodyend="135"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

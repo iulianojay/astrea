@@ -6287,6 +6287,21 @@ You're not viewing the latest version.
 <li><code>#include &lt;Thruster.hpp&gt;</code></li>
 </ul>
 <p>Inherits the following classes: <a href="../classastrea_1_1astro_1_1Payload/">astrea::astro::Payload</a></p>
+<h2 id="public-attributes">Public Attributes<a class="headerlink" href="#public-attributes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1ThrusterParameters/"><strong>ThrusterParameters</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="#variable-parameters"><strong>parameters</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -6297,16 +6312,20 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-thruster"><strong>Thruster</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Parent_T</strong></a> &amp; parent, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1ThrusterParameters/"><strong>ThrusterParameters</strong></a> &amp; parameters) <br><em>Constructor for</em> <a href="./"><em><strong>Thruster</strong></em></a> <em>.</em></td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1ThrusterParameters/"><strong>ThrusterParameters</strong></a></td>
+<td style="text-align: left;"><a href="#function-thrusterparameters"><strong>ThrusterParameters</strong></a> (parent, parameters) <br></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual std::size_t</td>
 <td style="text-align: left;"><a href="#function-get_id"><strong>get_id</strong></a> () const<br><em>Get the ID of the sensor.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Velocity</strong></a></td>
+<td style="text-align: right;">Velocity</td>
 <td style="text-align: left;"><a href="#function-get_impulsive_delta_v"><strong>get_impulsive_delta_v</strong></a> () const<br><em>Get the impulsive delta-v provided by the thruster.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-requires"><strong>requires</strong></a> (std::is_base_of_v&lt; <a href="../classastrea_1_1astro_1_1FrameReference/"><strong>FrameReference</strong></a>, Parent_T &gt;) const<br><em>Constructor for</em> <a href="./"><em><strong>Thruster</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual</td>
@@ -6337,7 +6356,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="../classastrea_1_1astro_1_1Payload/#function-get_parameters"><strong>get_parameters</strong></a> () const<br><em>Get the payload parameters of the payload.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Payload_T</strong></a> &gt; *<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a></td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; Payload_T &gt; *const</td>
 <td style="text-align: left;"><a href="../classastrea_1_1astro_1_1Payload/#function-get_parent"><strong>get_parent</strong></a> () const<br><em>Get the parent platform of the payload.</em></td>
 </tr>
 </tbody>
@@ -6354,15 +6373,19 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;">std::size_t</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1Payload/#variable-_id"><strong>_id</strong></a>  <br><em>Unique identifier for the payload.</em></td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1Payload/#variable-_id-12"><strong>_id</strong></a>  <br><em>Unique identifier for the payload.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">PayloadParameters_T</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1Payload/#variable-_parameters"><strong>_parameters</strong></a>  <br><a href="../classastrea_1_1astro_1_1Payload/"><em><strong>Payload</strong></em></a> <em>parameters.</em></td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1Payload/#variable-_parameters-12"><strong>_parameters</strong></a>  <br><a href="../classastrea_1_1astro_1_1Payload/"><em><strong>Payload</strong></em></a> <em>parameters.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Payload_T</strong></a> &gt; *</td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; Payload_T &gt; *</td>
 <td style="text-align: left;"><a href="../classastrea_1_1astro_1_1Payload/#variable-_parent"><strong>_parent</strong></a>  <br><em>Parent platform.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">const PayloadParameters_T &amp;</td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1Payload/#variable-parameters"><strong>parameters</strong></a>  <br></td>
 </tr>
 </tbody>
 </table>
@@ -6377,12 +6400,20 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1Payload/#function-payload"><strong>Payload</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Parent_T</strong></a> &amp; parent, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> PayloadParameters_T &amp; parameters) <br><em>Constructs a</em> <a href="../classastrea_1_1astro_1_1Payload/"><em><strong>Payload</strong></em></a> <em>from a FieldOfView object.</em></td>
+<td style="text-align: right;">const PayloadParameters_T</td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1Payload/#function-_id-22"><strong>_id</strong></a> (<a href="../classastrea_1_1astro_1_1Payload/#function-generate_id"><strong>generate_id</strong></a>()) <br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1Payload/#function-set_parent"><strong>set_parent</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Parent_T</strong></a> &amp; parent) <br><em>Set the parent platform of the payload.</em></td>
+<td style="text-align: right;">const PayloadParameters_T</td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1Payload/#function-_parameters-22"><strong>_parameters</strong></a> (parameters) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1Payload/#function-requires-12"><strong>requires</strong></a> (std::is_base_of_v&lt; <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; Payload_T &gt;, Parent_T &gt;) const<br><em>Constructs a</em> <a href="../classastrea_1_1astro_1_1Payload/"><em><strong>Payload</strong></em></a> <em>from a FieldOfView object.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1Payload/#function-requires-22"><strong>requires</strong></a> (std::is_base_of_v&lt; <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; Payload_T &gt;, Parent_T &gt;) const<br><em>Set the parent platform of the payload.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual</td>
@@ -6392,25 +6423,23 @@ You're not viewing the latest version.
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>This class inherits from AccessObject and provides functionality for thrusters, including field of view and access management. </p>
+<h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-parameters">variable parameters<a class="headerlink" href="#variable-parameters" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">const</span><span class="w"> </span><span class="n">ThrusterParameters</span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Thruster</span><span class="o">::</span><span class="n">parameters</span><span class="p">;</span>
+</span></code></pre></div>
+<hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-thruster">function Thruster<a class="headerlink" href="#function-thruster" title="Permanent link">&para;</a></h3>
-<p><em>Constructor for</em> <a href="./"><em><strong>Thruster</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">Parent_T</span><span class="o">&gt;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Thruster</span><span class="o">::</span><span class="n">Thruster</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Parent_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parent</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">ThrusterParameters</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parameters</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span><span class="w"> </span>
-</span></code></pre></div></p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>parent</code> Parent frame reference. </li>
-<li><code>parameters</code> <a href="./"><strong>Thruster</strong></a> parameters. </li>
-</ul>
+<h3 id="function-thrusterparameters">function ThrusterParameters<a class="headerlink" href="#function-thrusterparameters" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ThrusterParameters</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Thruster</span><span class="o">::</span><span class="n">ThrusterParameters</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">parent</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">parameters</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div>
 <hr>
 
 <h3 id="function-get_id">function get_id<a class="headerlink" href="#function-get_id" title="Permanent link">&para;</a></h3>
 <p><em>Get the ID of the sensor.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Thruster</span><span class="o">::</span><span class="n">get_id</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Thruster</span><span class="o">::</span><span class="n">get_id</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>std::size_t ID of the sensor. </p>
@@ -6419,15 +6448,29 @@ You're not viewing the latest version.
 
 <h3 id="function-get_impulsive_delta_v">function get_impulsive_delta_v<a class="headerlink" href="#function-get_impulsive_delta_v" title="Permanent link">&para;</a></h3>
 <p><em>Get the impulsive delta-v provided by the thruster.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Velocity</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Thruster</span><span class="o">::</span><span class="n">get_impulsive_delta_v</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Velocity</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Thruster</span><span class="o">::</span><span class="n">get_impulsive_delta_v</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>Velocity The impulsive delta-v. </p>
 <hr>
 
-<h3 id="function-thruster_1">function ~Thruster<a class="headerlink" href="#function-thruster_1" title="Permanent link">&para;</a></h3>
+<h3 id="function-requires">function requires<a class="headerlink" href="#function-requires" title="Permanent link">&para;</a></h3>
+<p><em>Constructor for</em> <a href="./"><em><strong>Thruster</strong></em></a> <em>.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Parent_T</span><span class="o">&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Thruster</span><span class="o">::</span><span class="k">requires</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">is_base_of_v</span><span class="o">&lt;</span><span class="w"> </span><span class="n">FrameReference</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">Parent_T</span><span class="w"> </span><span class="o">&gt;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>parent</code> Parent frame reference. </li>
+<li><code>parameters</code> <a href="./"><strong>Thruster</strong></a> parameters. </li>
+</ul>
+<hr>
+
+<h3 id="function-thruster">function ~Thruster<a class="headerlink" href="#function-thruster" title="Permanent link">&para;</a></h3>
 <p><em>Default destructor for</em> <a href="./"><em><strong>Thruster</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Thruster</span><span class="o">::~</span><span class="n">Thruster</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Thruster</span><span class="o">::~</span><span class="n">Thruster</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
 </span></code></pre></div></p>
 <hr>
 

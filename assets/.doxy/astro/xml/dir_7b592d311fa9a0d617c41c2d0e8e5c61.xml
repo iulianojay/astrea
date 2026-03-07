@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="dir_7b592d311fa9a0d617c41c2d0e8e5c61" kind="dir">
     <compoundname>astrea/astro/astro/systems/planetary_bodies/Uranus</compoundname>
     <innerfile refid="Oberon_8hpp">Oberon.hpp</innerfile>

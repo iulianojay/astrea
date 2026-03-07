@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="dir_4c34a36d272c54a3547c6d2c18e9dea2" kind="dir">
     <compoundname>astrea/trace/trace/platforms/sensors</compoundname>
     <innerdir refid="dir_303a66b90134ad3dff734d202c421315">astrea/trace/trace/platforms/sensors/fov</innerdir>

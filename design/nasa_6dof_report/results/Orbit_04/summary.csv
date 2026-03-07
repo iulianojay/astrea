@@ -1,0 +1,13 @@
+Checkcase, Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min Velocity Error
+Checkcase 2, Cowells_Method, 0.0481298 m, 0.0354889 m, 0.137391 m, 2.514e-09 m, 0.00541631 cm/s, 0.00402624 cm/s, 0.0162371 cm/s, 1.94453e-10 cm/s
+Checkcase 2, Keplerian_VOP, 0.0481263 m, 0.0354884 m, 0.137386 m, 2.514e-09 m, 0.0054159 cm/s, 0.00402619 cm/s, 0.0162365 cm/s, 1.94453e-10 cm/s
+Checkcase 2, Equinoctial_VOP, 0.0481017 m, 0.0355054 m, 0.135265 m, 2.72848e-09 m, 0.00540742 cm/s, 0.00403285 cm/s, 0.0162401 cm/s, 4.0817e-10 cm/s
+Checkcase 3, Cowells_Method, 0.048403 m, 0.0355277 m, 0.137726 m, 1.36897e-09 m, 0.00545023 cm/s, 0.00403027 cm/s, 0.0162825 cm/s, 1.22699e-10 cm/s
+Checkcase 3, Keplerian_VOP, 0.0483993 m, 0.0355271 m, 0.137721 m, 1.36897e-09 m, 0.0054498 cm/s, 0.00403021 cm/s, 0.0162819 cm/s, 1.22699e-10 cm/s
+Checkcase 3, Equinoctial_VOP, 0.0483668 m, 0.0355276 m, 0.135393 m, 2.44889e-09 m, 0.00544077 cm/s, 0.00403609 cm/s, 0.016282 cm/s, 2.71753e-10 cm/s
+Checkcase 1, Cowells_Method, 0.048302 m, 0.0355199 m, 0.137628 m, 1.42072e-08 m, 0.00543689 cm/s, 0.00402898 cm/s, 0.0162646 cm/s, 1.06594e-09 cm/s
+Checkcase 1, Keplerian_VOP, 0.0482984 m, 0.0355193 m, 0.137623 m, 1.42072e-08 m, 0.00543646 cm/s, 0.00402892 cm/s, 0.016264 cm/s, 1.06594e-09 cm/s
+Checkcase 1, Equinoctial_VOP, 0.0482684 m, 0.0355266 m, 0.13538 m, 1.46104e-08 m, 0.00542761 cm/s, 0.00403514 cm/s, 0.0162656 cm/s, 1.1128e-09 cm/s
+Checkcase 4, Cowells_Method, 0.0465731 m, 0.0356209 m, 0.135783 m, 1.36897e-09 m, 0.00522873 cm/s, 0.00404743 cm/s, 0.0160368 cm/s, 1.22699e-10 cm/s
+Checkcase 4, Keplerian_VOP, 0.0465722 m, 0.0356212 m, 0.135782 m, 1.36897e-09 m, 0.00522861 cm/s, 0.00404748 cm/s, 0.0160368 cm/s, 1.22699e-10 cm/s
+Checkcase 4, Equinoctial_VOP, 0.0466945 m, 0.0358514 m, 0.13659 m, 2.44889e-09 m, 0.00524185 cm/s, 0.00404941 cm/s, 0.016088 cm/s, 2.71753e-10 cm/s

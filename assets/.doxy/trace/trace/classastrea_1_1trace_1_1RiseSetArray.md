@@ -32,8 +32,8 @@ _Represents an array of rise and set times._ [More...](#detailed-description)
 
 | Type | Name |
 | ---: | :--- |
-| typedef std::vector&lt; Time &gt;::const\_iterator | [**const\_iterator**](#typedef-const_iterator)  <br>_Constant iterator type for the_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _._ |
-| typedef std::vector&lt; Time &gt;::iterator | [**iterator**](#typedef-iterator)  <br>_Iterator type for the_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _._ |
+| typedef std::vector&lt; Time &gt;::[**const\_iterator**](classastrea_1_1trace_1_1RiseSetArray.md#typedef-const_iterator) | [**const\_iterator**](#typedef-const_iterator)  <br>_Constant iterator type for the_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _._ |
+| typedef std::vector&lt; Time &gt;::[**iterator**](classastrea_1_1trace_1_1RiseSetArray.md#typedef-iterator) | [**iterator**](#typedef-iterator)  <br>_Iterator type for the_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _._ |
 
 
 

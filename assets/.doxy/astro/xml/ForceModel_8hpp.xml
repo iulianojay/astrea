@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="ForceModel_8hpp" kind="file" language="C++">
     <compoundname>ForceModel.hpp</compoundname>
     <includes local="no">functional</includes>
@@ -19,10 +19,14 @@
     <includedby refid="TwoBody_8hpp" local="no">astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp</includedby>
     <includedby refid="ForceModel_8cpp" local="no">astrea/astro/astro/propagation/force_models/ForceModel.cpp</includedby>
     <incdepgraph>
-      <node id="7">
-        <label>astro/astro.fwd.hpp</label>
-        <link refid="astro_8fwd_8hpp"/>
-        <childnode refid="8" relation="include">
+      <node id="10">
+        <label>astro/propagation/force_models/Force.hpp</label>
+        <link refid="Force_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
       <node id="11">
@@ -33,27 +37,11 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="12">
-        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
-        <link refid="body__centered__inertial__frames_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
+      <node id="2">
+        <label>functional</label>
       </node>
-      <node id="13">
-        <label>astro/frames/instances/body_fixed_frames.hpp</label>
-        <link refid="body__fixed__frames_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>astro/propagation/force_models/Force.hpp</label>
-        <link refid="Force_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
+      <node id="9">
+        <label>stdint.h</label>
       </node>
       <node id="1">
         <label>astrea/astro/astro/propagation/force_models/ForceModel.hpp</label>
@@ -79,57 +67,41 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>functional</label>
-      </node>
-      <node id="3">
-        <label>memory</label>
-      </node>
-      <node id="9">
-        <label>stdint.h</label>
-      </node>
       <node id="4">
         <label>string</label>
       </node>
-      <node id="6">
-        <label>units/units.hpp</label>
+      <node id="13">
+        <label>astro/frames/instances/body_fixed_frames.hpp</label>
+        <link refid="body__fixed__frames_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
       </node>
       <node id="5">
         <label>unordered_map</label>
       </node>
-    </incdepgraph>
-    <invincdepgraph>
-      <node id="2">
-        <label>astrea/astro/astro/astro.hpp</label>
-        <link refid="astro_8hpp"/>
-      </node>
-      <node id="3">
-        <label>astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp</label>
-        <link refid="CowellsMethod_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp</label>
-        <link refid="EquinoctialVop_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp</label>
-        <link refid="J2MeanVop_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp</label>
-        <link refid="KeplerianVop_8hpp"/>
-        <childnode refid="2" relation="include">
+      <node id="12">
+        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
+        <link refid="body__centered__inertial__frames_8hpp"/>
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
       <node id="7">
-        <label>astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp</label>
-        <link refid="TwoBody_8hpp"/>
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>units/units.hpp</label>
+      </node>
+      <node id="3">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp</label>
+        <link refid="EquinoctialVop_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
@@ -147,6 +119,34 @@
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
+      </node>
+      <node id="6">
+        <label>astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp</label>
+        <link refid="KeplerianVop_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp</label>
+        <link refid="J2MeanVop_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp</label>
+        <link refid="TwoBody_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp</label>
+        <link refid="CowellsMethod_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -191,22 +191,22 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="57" refid="classastrea_1_1astro_1_1ForceModel_1abb3f4a2ff96c762a8435624dea0c88e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classastrea_1_1astro_1_1ForceModel_1abb3f4a2ff96c762a8435624dea0c88e1" kindref="member">size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>forces.size();<sp/>}</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">T</ref>,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal">...<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Args</ref>&gt;</highlight></codeline>
-<codeline lineno="68" refid="classastrea_1_1astro_1_1ForceModel_1ab50906c010cf935cf3b91e8576b45e2c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::unique_ptr&lt;Force&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1ForceModel_1ab50906c010cf935cf3b91e8576b45e2c" kindref="member">add</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Args</ref>&amp;&amp;...<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">args</ref>)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal">...<sp/>Args&gt;</highlight></codeline>
+<codeline lineno="68" refid="classastrea_1_1astro_1_1ForceModel_1a79b4f77bb710bd19cee2814c383ad785" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::unique_ptr&lt;Force&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1ForceModel_1a79b4f77bb710bd19cee2814c383ad785" kindref="member">add</ref>(Args&amp;&amp;...<sp/>args)</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>name<sp/>=<sp/></highlight><highlight class="keyword">typeid</highlight><highlight class="normal">(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">T</ref>).name();</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(forces.count(name)<sp/>==<sp/>0)<sp/>{<sp/>forces.emplace(name,<sp/>std::make_unique&lt;T&gt;(std::forward&lt;Args&gt;(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">args</ref>)...));<sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>name<sp/>=<sp/></highlight><highlight class="keyword">typeid</highlight><highlight class="normal">(T).name();</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(forces.count(name)<sp/>==<sp/>0)<sp/>{<sp/>forces.emplace(name,<sp/>std::make_unique&lt;T&gt;(std::forward&lt;Args&gt;(args)...));<sp/>}</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>forces.at(name);</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Acceleration, frames::earth::icrf&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1ForceModel_1a8a05a25b8a2bdb32e878f3bd6b939b26" kindref="member">compute_forces</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">state</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vehicle</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Acceleration, frames::earth::icrf&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1ForceModel_1a8a05a25b8a2bdb32e878f3bd6b939b26" kindref="member">compute_forces</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/>vehicle)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"></highlight></codeline>
 <codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::unique_ptr&lt;Force&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1ForceModel_1a1c5a5c5ffa70cce6f6f0cb426085084c" kindref="member">at</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>name)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="91"><highlight class="normal"></highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="99" refid="classastrea_1_1astro_1_1ForceModel_1a10686ea1957a62218636ef3b377e94b8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::unique_ptr&lt;Force&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1ForceModel_1a10686ea1957a62218636ef3b377e94b8" kindref="member">get</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="99" refid="classastrea_1_1astro_1_1ForceModel_1afa1603448a906ec8b506b3ee13495e19" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::unique_ptr&lt;Force&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1ForceModel_1afa1603448a906ec8b506b3ee13495e19" kindref="member">get</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="100"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>name<sp/>=<sp/></highlight><highlight class="keyword">typeid</highlight><highlight class="normal">(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">T</ref>).name();</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>name<sp/>=<sp/></highlight><highlight class="keyword">typeid</highlight><highlight class="normal">(T).name();</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>forces.at(name);</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="104"><highlight class="normal"></highlight></codeline>

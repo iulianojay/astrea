@@ -1,27 +1,21 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="typedefs_8hpp" kind="file" language="C++">
     <compoundname>typedefs.hpp</compoundname>
     <includes local="no">stdint.h</includes>
     <includedby refid="SpaceTrackClient_8hpp" local="no">astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</includedby>
     <incdepgraph>
+      <node id="2">
+        <label>stdint.h</label>
+      </node>
       <node id="1">
         <label>astrea/snapshot/snapshot/types/typedefs.hpp</label>
         <link refid="typedefs_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>stdint.h</label>
-      </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2">
-        <label>astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</label>
-        <link refid="SpaceTrackClient_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
       <node id="3">
         <label>astrea/snapshot/snapshot/snapshot.hpp</label>
         <link refid="snapshot_8hpp"/>
@@ -30,6 +24,12 @@
         <label>astrea/snapshot/snapshot/types/typedefs.hpp</label>
         <link refid="typedefs_8hpp"/>
         <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</label>
+        <link refid="SpaceTrackClient_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -57,7 +57,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">snapshot<sp/>{</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29" refid="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" kindref="member">EnumType</ref><sp/>=<sp/>uint32_t;</highlight></codeline>
+<codeline lineno="29" refid="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" kindref="member">EnumType</ref><sp/>=<sp/>uint32_t;</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>snapshot</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>

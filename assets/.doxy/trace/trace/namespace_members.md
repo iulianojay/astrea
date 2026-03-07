@@ -40,6 +40,17 @@
 * **get\_object\_name\_from\_id** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 
 
+## h
+
+* **HasSize** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+* **HasSubscriptOperator** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+
+
+## i
+
+* **IsPlatformContainer** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+
+
 ## l
 
 * **LatLon** ([**astrea::trace**](namespaceastrea_1_1trace.md))

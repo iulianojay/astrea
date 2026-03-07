@@ -47,6 +47,11 @@
 * **pow** ([**astrea::math**](namespaceastrea_1_1math.md))
 
 
+## r
+
+* **requires** ([**astrea::math**](namespaceastrea_1_1math.md))
+
+
 ## s
 
 * **sinc** ([**astrea::math**](namespaceastrea_1_1math.md))

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="NullVehicle_8hpp" kind="file" language="C++">
     <compoundname>NullVehicle.hpp</compoundname>
     <includes local="no">units/units.hpp</includes>
@@ -9,12 +9,6 @@
     <includedby refid="Vehicle_8cpp" local="no">astrea/astro/astro/platforms/Vehicle.cpp</includedby>
     <includedby refid="NullVehicle_8cpp" local="no">astrea/astro/astro/platforms/vehicles/NullVehicle.cpp</includedby>
     <incdepgraph>
-      <node id="3">
-        <label>astro/astro.fwd.hpp</label>
-        <link refid="astro_8fwd_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
       <node id="6">
         <label>astro/frames/FrameReference.hpp</label>
         <link refid="FrameReference_8hpp"/>
@@ -27,6 +21,26 @@
         <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>stdint.h</label>
+      </node>
+      <node id="4">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>string</label>
+      </node>
+      <node id="9">
+        <label>astro/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
       <node id="8">
@@ -45,25 +59,11 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>astro/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="5" relation="include">
+      <node id="3">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="4" relation="include">
         </childnode>
-      </node>
-      <node id="9">
-        <label>astro/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>stdint.h</label>
-      </node>
-      <node id="7">
-        <label>string</label>
       </node>
       <node id="2">
         <label>units/units.hpp</label>
@@ -112,22 +112,22 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="33" refid="classastrea_1_1astro_1_1NullVehicle" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1NullVehicle" kindref="compound">NullVehicle</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1FrameReference" kindref="compound">FrameReference</ref><sp/>{</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1NullVehicle" kindref="compound">NullVehicle</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Mass</ref>&amp;<sp/>mass<sp/>=<sp/>0.0<sp/>*<sp/>mp_units::si::unit_symbols::kg);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1NullVehicle_1af1f0cbbce56824ad3b91edd52fcad415" kindref="member">NullVehicle</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mass&amp;<sp/>mass<sp/>=<sp/>0.0<sp/>*<sp/>mp_units::si::unit_symbols::kg);</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1NullVehicle" kindref="compound">NullVehicle</ref>*<sp/><ref refid="classastrea_1_1astro_1_1NullVehicle_1a7f50be42920e8bd34d5db18bb3215557" kindref="member">clone</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Mass</ref><sp/><ref refid="classastrea_1_1astro_1_1NullVehicle_1a31642268a6735ab90d5e5a96e7b9a21e" kindref="member">get_mass</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>Mass<sp/><ref refid="classastrea_1_1astro_1_1NullVehicle_1a31642268a6735ab90d5e5a96e7b9a21e" kindref="member">get_mass</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classastrea_1_1astro_1_1NullVehicle_1a8fe0d55d17a12c1b352256e54763eab0" kindref="member">get_name</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Distance, frames::earth::icrf&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1NullVehicle_1abc3f59525b2b6ea4574b82b00347ba0f" kindref="member">get_inertial_position</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">date</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Distance, frames::earth::icrf&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1NullVehicle_1abc3f59525b2b6ea4574b82b00347ba0f" kindref="member">get_inertial_position</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/>date)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Velocity, frames::earth::icrf&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1NullVehicle_1a1a757dca70338a576f8455df31348ae8" kindref="member">get_inertial_velocity</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">date</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Velocity, frames::earth::icrf&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1NullVehicle_1a1a757dca70338a576f8455df31348ae8" kindref="member">get_inertial_velocity</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/>date)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="79"><highlight class="normal"></highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Acceleration, frames::earth::icrf&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1NullVehicle_1a50f30bedf9885c4be65ff9f85aaa2aee" kindref="member">get_inertial_acceleration</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">date</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Acceleration, frames::earth::icrf&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1NullVehicle_1a50f30bedf9885c4be65ff9f85aaa2aee" kindref="member">get_inertial_acceleration</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/>date)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"></highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Mass</ref><sp/>_mass;<sp/></highlight><highlight class="comment">//<sp/>Mass<sp/>of<sp/>the<sp/>vehicle</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>Mass<sp/>_mass;<sp/></highlight><highlight class="comment">//<sp/>Mass<sp/>of<sp/>the<sp/>vehicle</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="90"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="91"><highlight class="normal"></highlight></codeline>
 <codeline lineno="92"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>

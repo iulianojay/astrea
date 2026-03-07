@@ -53,9 +53,9 @@ _Class representing a partial derivative of a_ [_**Keplerian**_](classastrea_1_1
 | Type | Name |
 | ---: | :--- |
 |   | [**KeplerianPartial**](#function-keplerianpartial-12) () = default<br>_Default constructor for_ [_**KeplerianPartial**_](classastrea_1_1astro_1_1KeplerianPartial.md) _._ |
-|   | [**KeplerianPartial**](#function-keplerianpartial-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md) & semimajorPartial, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**UnitlessPerTime**](classastrea_1_1astro_1_1CartesianVector.md) & eccentricityPartial, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**AngularRate**](classastrea_1_1astro_1_1CartesianVector.md) & inclinationPartial, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**AngularRate**](classastrea_1_1astro_1_1CartesianVector.md) & rightAscensionPartial, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**AngularRate**](classastrea_1_1astro_1_1CartesianVector.md) & argPerigeePartial, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**AngularRate**](classastrea_1_1astro_1_1CartesianVector.md) & trueAnomalyPartial) <br>_Constructor for_ [_**KeplerianPartial**_](classastrea_1_1astro_1_1KeplerianPartial.md) _with velocity and acceleration components._ |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**KeplerianPartial**_](classastrea_1_1astro_1_1KeplerianPartial.md) _state vector to a vector of unitless values._ |
-|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & time) const<br>_Multiplication operator for_ [_**KeplerianPartial**_](classastrea_1_1astro_1_1KeplerianPartial.md) _._ |
+|   | [**KeplerianPartial**](#function-keplerianpartial-22) (const Velocity & semimajorPartial, const UnitlessPerTime & eccentricityPartial, const AngularRate & inclinationPartial, const AngularRate & rightAscensionPartial, const AngularRate & argPerigeePartial, const AngularRate & trueAnomalyPartial) <br>_Constructor for_ [_**KeplerianPartial**_](classastrea_1_1astro_1_1KeplerianPartial.md) _with velocity and acceleration components._ |
+|  std::vector&lt; Unitless &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**KeplerianPartial**_](classastrea_1_1astro_1_1KeplerianPartial.md) _state vector to a vector of unitless values._ |
+|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) | [**operator\***](#function-operator) (const Time & time) const<br>_Multiplication operator for_ [_**KeplerianPartial**_](classastrea_1_1astro_1_1KeplerianPartial.md) _._ |
 
 
 
@@ -129,12 +129,12 @@ Initializes the [**KeplerianPartial**](classastrea_1_1astro_1_1KeplerianPartial.
 _Constructor for_ [_**KeplerianPartial**_](classastrea_1_1astro_1_1KeplerianPartial.md) _with velocity and acceleration components._
 ```C++
 inline astrea::astro::KeplerianPartial::KeplerianPartial (
-    const  Velocity & semimajorPartial,
-    const  UnitlessPerTime & eccentricityPartial,
-    const  AngularRate & inclinationPartial,
-    const  AngularRate & rightAscensionPartial,
-    const  AngularRate & argPerigeePartial,
-    const  AngularRate & trueAnomalyPartial
+    const Velocity & semimajorPartial,
+    const UnitlessPerTime & eccentricityPartial,
+    const AngularRate & inclinationPartial,
+    const AngularRate & rightAscensionPartial,
+    const AngularRate & argPerigeePartial,
+    const AngularRate & trueAnomalyPartial
 ) 
 ```
 
@@ -191,7 +191,7 @@ std::vector&lt;Unitless&gt; Vector containing the components of the [**Keplerian
 _Multiplication operator for_ [_**KeplerianPartial**_](classastrea_1_1astro_1_1KeplerianPartial.md) _._
 ```C++
 Keplerian astrea::astro::KeplerianPartial::operator* (
-    const  Time & time
+    const Time & time
 ) const
 ```
 

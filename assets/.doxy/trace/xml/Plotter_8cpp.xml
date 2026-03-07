@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="Plotter_8cpp" kind="file" language="C++">
     <compoundname>Plotter.cpp</compoundname>
     <includes refid="Plotter_8hpp" local="no">trace/analysis/plots/Plotter.hpp</includes>
@@ -10,6 +10,25 @@
     <includes refid="Grid_8hpp" local="no">trace/platforms/ground/Grid.hpp</includes>
     <includes refid="AccessArray_8hpp" local="no">trace/risesets/AccessArray.hpp</includes>
     <incdepgraph>
+      <node id="9">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="32">
+        <label>functional</label>
+      </node>
+      <node id="3">
+        <label>filesystem</label>
+      </node>
+      <node id="7">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="11">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="22">
+        <label>cstdint</label>
+      </node>
       <node id="1">
         <label>astrea/trace/trace/analysis/plots/Plotter.cpp</label>
         <link refid="Plotter_8cpp"/>
@@ -26,6 +45,57 @@
         <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>mp-units/math.h</label>
+      </node>
+      <node id="24">
+        <label>astro/systems/CelestialBody.hpp</label>
+      </node>
+      <node id="23">
+        <label>trace/platforms/ground/Grid.hpp</label>
+        <link refid="Grid_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="17">
+        <label>trace/risesets/RiseSetArray.hpp</label>
+        <link refid="RiseSetArray_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -46,19 +116,47 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="12">
-        <label>trace/analysis/stats/FoldsOfCoverage.hpp</label>
-        <link refid="FoldsOfCoverage_8hpp"/>
-        <childnode refid="5" relation="include">
+      <node id="27">
+        <label>astro/state/angular_elements/angular_elements.hpp</label>
+      </node>
+      <node id="31">
+        <label>trace/types/IdPair.hpp</label>
+        <link refid="IdPair_8hpp_source"/>
+        <childnode refid="22" relation="include">
         </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>matplot/matplot.h</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+      <node id="30">
+        <label>trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="9" relation="include">
+      </node>
+      <node id="20">
+        <label>array</label>
+      </node>
+      <node id="21">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="22" relation="include">
         </childnode>
+      </node>
+      <node id="16">
+        <label>mp-units/concepts.h</label>
+      </node>
+      <node id="26">
+        <label>astro/frames/FrameReference.hpp</label>
       </node>
       <node id="14">
         <label>trace/analysis/stats/Stats.hpp</label>
@@ -82,30 +180,31 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="28">
-        <label>trace/platforms/AccessObject.hpp</label>
-        <link refid="AccessObject_8hpp"/>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
+      <node id="15">
+        <label>concepts</label>
       </node>
-      <node id="23">
-        <label>trace/platforms/ground/Grid.hpp</label>
-        <link refid="Grid_8hpp"/>
-        <childnode refid="5" relation="include">
+      <node id="18">
+        <label>trace/risesets/riseset_utils.hpp</label>
+        <link refid="riseset__utils_8hpp"/>
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="24" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
+      </node>
+      <node id="12">
+        <label>trace/analysis/stats/FoldsOfCoverage.hpp</label>
+        <link refid="FoldsOfCoverage_8hpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="25">
@@ -126,123 +225,24 @@
         <childnode refid="21" relation="include">
         </childnode>
       </node>
-      <node id="30">
-        <label>trace/risesets/AccessArray.hpp</label>
-        <link refid="AccessArray_8hpp"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>trace/risesets/RiseSetArray.hpp</label>
-        <link refid="RiseSetArray_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>trace/risesets/riseset_utils.hpp</label>
-        <link refid="riseset__utils_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>trace/trace.fwd.hpp</label>
-        <link refid="trace_8fwd_8hpp"/>
-      </node>
-      <node id="31">
-        <label>trace/types/IdPair.hpp</label>
-        <link refid="IdPair_8hpp_source"/>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>trace/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>trace/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="22" relation="include">
-        </childnode>
-      </node>
-      <node id="20">
-        <label>array</label>
-      </node>
-      <node id="7">
-        <label>astro/astro.fwd.hpp</label>
-      </node>
-      <node id="26">
-        <label>astro/frames/FrameReference.hpp</label>
-      </node>
-      <node id="27">
-        <label>astro/state/angular_elements/angular_elements.hpp</label>
-      </node>
-      <node id="24">
-        <label>astro/systems/CelestialBody.hpp</label>
-      </node>
-      <node id="15">
-        <label>concepts</label>
-      </node>
-      <node id="22">
-        <label>cstdint</label>
-      </node>
-      <node id="3">
-        <label>filesystem</label>
-      </node>
-      <node id="32">
-        <label>functional</label>
-      </node>
       <node id="13">
         <label>gtl/btree.hpp</label>
       </node>
-      <node id="6">
-        <label>matplot/matplot.h</label>
-      </node>
-      <node id="29">
-        <label>memory</label>
-      </node>
-      <node id="16">
-        <label>mp-units/concepts.h</label>
-      </node>
-      <node id="10">
-        <label>mp-units/math.h</label>
-      </node>
-      <node id="11">
-        <label>mp-units/systems/si.h</label>
-      </node>
-      <node id="4">
-        <label>string</label>
+      <node id="28">
+        <label>trace/platforms/AccessObject.hpp</label>
+        <link refid="AccessObject_8hpp"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
       </node>
       <node id="8">
         <label>units/units.hpp</label>
       </node>
-      <node id="5">
-        <label>vector</label>
+      <node id="29">
+        <label>memory</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
@@ -281,11 +281,11 @@
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">matplot;</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::unit_symbols::deg;</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::non_si::day;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::km;</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::m;</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::s;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::angular::unit_symbols::deg;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::non_si::day;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::si::unit_symbols::km;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::si::unit_symbols::m;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::si::unit_symbols::s;</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>

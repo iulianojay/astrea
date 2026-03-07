@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="EthzClient_8cpp" kind="file" language="C++">
     <compoundname>EthzClient.cpp</compoundname>
     <includes refid="EthzClient_8hpp" local="no">snapshot/http-queries/ethz/EthzClient.hpp</includes>
@@ -7,6 +7,9 @@
     <includes local="no">stdexcept</includes>
     <includes local="no">utilities/string_util.hpp</includes>
     <incdepgraph>
+      <node id="9">
+        <label>utilities/string_util.hpp</label>
+      </node>
       <node id="1">
         <label>astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp</label>
         <link refid="EthzClient_8cpp"/>
@@ -18,6 +21,15 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
+      </node>
+      <node id="8">
+        <label>stdexcept</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>cpr/cpr.h</label>
       </node>
       <node id="2">
         <label>snapshot/http-queries/ethz/EthzClient.hpp</label>
@@ -31,26 +43,14 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="6">
-        <label>astro/time/Date.hpp</label>
-      </node>
-      <node id="4">
-        <label>cpr/cpr.h</label>
-      </node>
       <node id="7">
         <label>iostream</label>
       </node>
       <node id="5">
         <label>nlohmann/json.hpp</label>
       </node>
-      <node id="8">
-        <label>stdexcept</label>
-      </node>
-      <node id="3">
-        <label>string</label>
-      </node>
-      <node id="9">
-        <label>utilities/string_util.hpp</label>
+      <node id="6">
+        <label>astro/time/Date.hpp</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>

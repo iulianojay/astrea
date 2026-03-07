@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="riseset__utils_8hpp" kind="file" language="C++">
     <compoundname>riseset_utils.hpp</compoundname>
     <includes local="no">string</includes>
@@ -7,10 +7,17 @@
     <includes refid="trace_8fwd_8hpp" local="no">trace/trace.fwd.hpp</includes>
     <includedby refid="RiseSetStats_8cpp" local="no">astrea/trace/trace/analysis/stats/RiseSetStats.cpp</includedby>
     <includedby refid="output_8hpp" local="no">astrea/trace/trace/io/output.hpp</includedby>
-    <includedby refid="RiseSetArray_8hpp" local="no">astrea/trace/trace/risesets/RiseSetArray.hpp</includedby>
     <includedby refid="riseset__utils_8cpp" local="no">astrea/trace/trace/risesets/riseset_utils.cpp</includedby>
+    <includedby refid="RiseSetArray_8hpp" local="no">astrea/trace/trace/risesets/RiseSetArray.hpp</includedby>
     <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
     <incdepgraph>
+      <node id="4">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
       <node id="1">
         <label>astrea/trace/trace/risesets/riseset_utils.hpp</label>
         <link refid="riseset__utils_8hpp"/>
@@ -21,93 +28,16 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>trace/trace.fwd.hpp</label>
-        <link refid="trace_8fwd_8hpp"/>
-      </node>
-      <node id="2">
-        <label>string</label>
-      </node>
       <node id="3">
         <label>units/units.hpp</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="5">
-        <label>astrea/trace/trace/analysis/AccessAnalyzer.hpp</label>
-        <link refid="AccessAnalyzer_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>astrea/trace/trace/analysis/stats/AccessStats.hpp</label>
-        <link refid="AccessStats_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp</label>
-        <link refid="FoldsOfCoverage_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
       <node id="7">
         <label>astrea/trace/trace/analysis/stats/HyperStats.hpp</label>
         <link refid="HyperStats_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>astrea/trace/trace/analysis/stats/RiseSetStats.hpp</label>
-        <link refid="RiseSetStats_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>astrea/trace/trace/analysis/stats/Stats.hpp</label>
-        <link refid="Stats_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>astrea/trace/trace/io/output.hpp</label>
-        <link refid="output_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>astrea/trace/trace/platforms/AccessObject.hpp</label>
-        <link refid="AccessObject_8hpp"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>astrea/trace/trace/platforms/ground/Grid.hpp</label>
-        <link refid="Grid_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
@@ -119,27 +49,9 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="13">
-        <label>astrea/trace/trace/platforms/ground/GroundPoint.hpp</label>
-        <link refid="GroundPoint_8hpp"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>astrea/trace/trace/platforms/ground/GroundStation.hpp</label>
-        <link refid="GroundStation_8hpp"/>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>astrea/trace/trace/platforms/sensors/Antenna.hpp</label>
-        <link refid="Antenna_8hpp"/>
+      <node id="14">
+        <label>astrea/trace/trace/platforms/ground/Grid.hpp</label>
+        <link refid="Grid_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
@@ -163,19 +75,17 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="11">
-        <label>astrea/trace/trace/risesets/AccessArray.hpp</label>
-        <link refid="AccessArray_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
+      <node id="6">
+        <label>astrea/trace/trace/analysis/stats/AccessStats.hpp</label>
+        <link refid="AccessStats_8hpp"/>
         <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/trace/trace/trace.hpp</label>
+        <link refid="trace_8hpp"/>
       </node>
       <node id="4">
         <label>astrea/trace/trace/risesets/RiseSetArray.hpp</label>
@@ -195,6 +105,60 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
+      <node id="10">
+        <label>astrea/trace/trace/analysis/stats/RiseSetStats.hpp</label>
+        <link refid="RiseSetStats_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea/trace/trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astrea/trace/trace/platforms/ground/GroundStation.hpp</label>
+        <link refid="GroundStation_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/trace/trace/io/output.hpp</label>
+        <link refid="output_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea/trace/trace/analysis/stats/Stats.hpp</label>
+        <link refid="Stats_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
       <node id="1">
         <label>astrea/trace/trace/risesets/riseset_utils.hpp</label>
         <link refid="riseset__utils_8hpp"/>
@@ -205,9 +169,45 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="3">
-        <label>astrea/trace/trace/trace.hpp</label>
-        <link refid="trace_8hpp"/>
+      <node id="9">
+        <label>astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp</label>
+        <link refid="FoldsOfCoverage_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>astrea/trace/trace/platforms/ground/GroundPoint.hpp</label>
+        <link refid="GroundPoint_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea/trace/trace/platforms/AccessObject.hpp</label>
+        <link refid="AccessObject_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea/trace/trace/analysis/AccessAnalyzer.hpp</label>
+        <link refid="AccessAnalyzer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astrea/trace/trace/platforms/sensors/Antenna.hpp</label>
+        <link refid="Antenna_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
       </node>
     </invincdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>

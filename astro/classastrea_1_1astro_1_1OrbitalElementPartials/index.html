@@ -6312,7 +6312,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-orbitalelementpartials-44"><strong>OrbitalElementPartials</strong></a> (<a href="../classastrea_1_1astro_1_1EquinoctialPartial/"><strong>EquinoctialPartial</strong></a> elements) <br><em>Constructor initializing with</em> <a href="../classastrea_1_1astro_1_1EquinoctialPartial/"><em><strong>EquinoctialPartial</strong></em></a> <em>elements.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> PartialVariant &amp;</td>
+<td style="text-align: right;">const PartialVariant &amp;</td>
 <td style="text-align: left;"><a href="#function-extract-12"><strong>extract</strong></a> () const<br><em>Extracts the underlying orbital element partials as a variant.</em></td>
 </tr>
 <tr>
@@ -6320,16 +6320,16 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-extract-22"><strong>extract</strong></a> () <br><em>Extracts the underlying orbital element partials as a variant.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::vector&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Unitless</strong></a> &gt;</td>
+<td style="text-align: right;">std::vector&lt; Unitless &gt;</td>
 <td style="text-align: left;"><a href="#function-force_to_vector"><strong>force_to_vector</strong></a> () const<br><em>Converts the</em> <a href="./"><em><strong>OrbitalElementPartials</strong></em></a> <em>to a vector of Unitless values.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>constexpr</strong></a> std::size_t</td>
+<td style="text-align: right;">constexpr std::size_t</td>
 <td style="text-align: left;"><a href="#function-index"><strong>index</strong></a> () const<br><em>Returns the index of the current orbital element partials in the variant.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1OrbitalElements/"><strong>OrbitalElements</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator*</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Time</strong></a> &amp; time) const<br><em>Converts the current orbital element partials to a specific type.</em></td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator*</strong></a> (const Time &amp; time) const<br><em>Converts the current orbital element partials to a specific type.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6413,7 +6413,7 @@ You're not viewing the latest version.
 <h3 id="function-operator">function operator*<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Converts the current orbital element partials to a specific type.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">OrbitalElements</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">OrbitalElementPartials</span><span class="o">::</span><span class="k">operator</span><span class="o">*</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>

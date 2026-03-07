@@ -6281,7 +6281,7 @@ You're not viewing the latest version.
 
 
 <h1 id="class-astreaastroplane">Class astrea::astro::Plane<a class="headerlink" href="#class-astreaastroplane" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>class</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Spacecraft_T</strong></a>&gt;</strong></p>
+<p><strong>template &lt;class Spacecraft_T&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="./"><strong>Plane</strong></a></p>
 <p><em>A</em> <a href="./"><em><strong>Plane</strong></em></a> <em>is a collection of</em><a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>that share the same orbital elements.</em><a href="#detailed-description">More...</a></p>
 <ul>
@@ -6297,11 +6297,11 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">typedef std::vector&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Spacecraft_T</strong></a> &gt;::const_iterator</td>
+<td style="text-align: right;">typedef std::vector&lt; Spacecraft_T &gt;::<a href="./#typedef-const_iterator"><strong>const_iterator</strong></a></td>
 <td style="text-align: left;"><a href="#typedef-const_iterator"><strong>const_iterator</strong></a>  <br><em>Const iterator for iterating over all</em> <a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>in the</em><a href="./"><em><strong>Plane</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">typedef std::vector&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Spacecraft_T</strong></a> &gt;::iterator</td>
+<td style="text-align: right;">typedef std::vector&lt; Spacecraft_T &gt;::<a href="./#typedef-iterator"><strong>iterator</strong></a></td>
 <td style="text-align: left;"><a href="#typedef-iterator"><strong>iterator</strong></a>  <br><em>Iterator for iterating over all</em> <a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>in the</em><a href="./"><em><strong>Plane</strong></em></a> <em>.</em></td>
 </tr>
 </tbody>
@@ -6321,11 +6321,11 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-plane-22"><strong>Plane</strong></a> (std::vector&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Spacecraft_T</strong></a> &gt; satellites) <br><em>Construct a</em> <a href="./"><em><strong>Plane</strong></em></a> <em>from a vector of</em><a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-plane-22"><strong>Plane</strong></a> (std::vector&lt; Spacecraft_T &gt; satellites) <br><em>Construct a</em> <a href="./"><em><strong>Plane</strong></em></a> <em>from a vector of</em><a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-add_spacecraft"><strong>add_spacecraft</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Spacecraft_T</strong></a> &amp; spacecraft) <br><em>Add a</em> <a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>to the</em><a href="./"><em><strong>Plane</strong></em></a> <em>.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-add_spacecraft"><strong>add_spacecraft</strong></a> (const Spacecraft_T &amp; spacecraft) <br><em>Add a</em> <a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>to the</em><a href="./"><em><strong>Plane</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./#typedef-iterator"><strong>iterator</strong></a></td>
@@ -6352,31 +6352,31 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-end-22"><strong>end</strong></a> () const<br><em>Get a const iterator to the end of the</em> <a href="./"><em><strong>Plane</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::vector&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Spacecraft_T</strong></a> &gt; &amp;</td>
+<td style="text-align: right;">std::vector&lt; Spacecraft_T &gt; &amp;</td>
 <td style="text-align: left;"><a href="#function-get_all_spacecraft-12"><strong>get_all_spacecraft</strong></a> () <br><em>Get all</em> <a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>in the</em><a href="./"><em><strong>Plane</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> std::vector&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Spacecraft_T</strong></a> &gt; &amp;</td>
+<td style="text-align: right;">const std::vector&lt; Spacecraft_T &gt; &amp;</td>
 <td style="text-align: left;"><a href="#function-get_all_spacecraft-22"><strong>get_all_spacecraft</strong></a> () const<br><em>Get all</em> <a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>in the</em><a href="./"><em><strong>Plane</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> std::size_t</td>
+<td style="text-align: right;">const std::size_t</td>
 <td style="text-align: left;"><a href="#function-get_id"><strong>get_id</strong></a> () const<br><em>Get the ID of the</em> <a href="./"><em><strong>Plane</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Spacecraft_T</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-get_spacecraft"><strong>get_spacecraft</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> std::size_t &amp; spacecraftId) const<br><em>Get a</em> <a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>by its ID.</em></td>
+<td style="text-align: right;">const Spacecraft_T &amp;</td>
+<td style="text-align: left;"><a href="#function-get_spacecraft"><strong>get_spacecraft</strong></a> (const std::size_t &amp; spacecraftId) const<br><em>Get a</em> <a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>by its ID.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-propagate-12"><strong>propagate</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Time</strong></a> &amp; propTime, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1EquationsOfMotion/"><strong>EquationsOfMotion</strong></a> &amp; eom, <a href="../classastrea_1_1astro_1_1Integrator/"><strong>Integrator</strong></a> &amp; integrator) <br><em>Propagate the</em> <a href="./"><em><strong>Plane</strong></em></a> <em>using the provided epoch and Equations of Motion.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-propagate-12"><strong>propagate</strong></a> (const Time &amp; propTime, const <a href="../classastrea_1_1astro_1_1EquationsOfMotion/"><strong>EquationsOfMotion</strong></a> &amp; eom, <a href="../classastrea_1_1astro_1_1Integrator/"><strong>Integrator</strong></a> &amp; integrator) <br><em>Propagate the</em> <a href="./"><em><strong>Plane</strong></em></a> <em>using the provided epoch and Equations of Motion.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-propagate-22"><strong>propagate</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; endEpoch, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1EquationsOfMotion/"><strong>EquationsOfMotion</strong></a> &amp; eom, <a href="../classastrea_1_1astro_1_1Integrator/"><strong>Integrator</strong></a> &amp; integrator) <br><em>Propagate the</em> <a href="./"><em><strong>Plane</strong></em></a> <em>using the provided epoch and Equations of Motion.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-propagate-22"><strong>propagate</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; endEpoch, const <a href="../classastrea_1_1astro_1_1EquationsOfMotion/"><strong>EquationsOfMotion</strong></a> &amp; eom, <a href="../classastrea_1_1astro_1_1Integrator/"><strong>Integrator</strong></a> &amp; integrator) <br><em>Propagate the</em> <a href="./"><em><strong>Plane</strong></em></a> <em>using the provided epoch and Equations of Motion.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> std::size_t</td>
+<td style="text-align: right;">const std::size_t</td>
 <td style="text-align: left;"><a href="#function-size"><strong>size</strong></a> () const<br><em>Get the number of</em> <a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>in the</em><a href="./"><em><strong>Plane</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
@@ -6427,7 +6427,7 @@ You're not viewing the latest version.
 <h3 id="function-add_spacecraft">function add_spacecraft<a class="headerlink" href="#function-add_spacecraft" title="Permanent link">&para;</a></h3>
 <p><em>Add a</em> <a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>to the</em><a href="./"><em><strong>Plane</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Plane</span><span class="o">::</span><span class="n">add_spacecraft</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Spacecraft_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">spacecraft</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Spacecraft_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">spacecraft</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6510,7 +6510,7 @@ You're not viewing the latest version.
 
 <h3 id="function-get_spacecraft">function get_spacecraft<a class="headerlink" href="#function-get_spacecraft" title="Permanent link">&para;</a></h3>
 <p><em>Get a</em> <a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>by its ID.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">const</span><span class="w">  </span><span class="n">Spacecraft_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Plane</span><span class="o">::</span><span class="n">get_spacecraft</span><span class="w"> </span><span class="p">(</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Spacecraft_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Plane</span><span class="o">::</span><span class="n">get_spacecraft</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">spacecraftId</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
@@ -6525,8 +6525,8 @@ You're not viewing the latest version.
 <h3 id="function-propagate-12">function propagate [1/2]<a class="headerlink" href="#function-propagate-12" title="Permanent link">&para;</a></h3>
 <p><em>Propagate the</em> <a href="./"><em><strong>Plane</strong></em></a> <em>using the provided epoch and Equations of Motion.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Plane</span><span class="o">::</span><span class="n">propagate</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">propTime</span><span class="p">,</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">EquationsOfMotion</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">eom</span><span class="p">,</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">propTime</span><span class="p">,</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">EquationsOfMotion</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">eom</span><span class="p">,</span>
 </span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="n">Integrator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">integrator</span>
 </span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
@@ -6541,8 +6541,8 @@ You're not viewing the latest version.
 <h3 id="function-propagate-22">function propagate [2/2]<a class="headerlink" href="#function-propagate-22" title="Permanent link">&para;</a></h3>
 <p><em>Propagate the</em> <a href="./"><em><strong>Plane</strong></em></a> <em>using the provided epoch and Equations of Motion.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Plane</span><span class="o">::</span><span class="n">propagate</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endEpoch</span><span class="p">,</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">EquationsOfMotion</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">eom</span><span class="p">,</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endEpoch</span><span class="p">,</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">EquationsOfMotion</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">eom</span><span class="p">,</span>
 </span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="n">Integrator</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">integrator</span>
 </span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>

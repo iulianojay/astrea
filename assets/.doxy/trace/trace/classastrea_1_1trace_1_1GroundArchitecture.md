@@ -32,8 +32,8 @@
 
 | Type | Name |
 | ---: | :--- |
-| typedef std::vector&lt; [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) &gt;::const\_iterator | [**const\_iterator**](#typedef-const_iterator)  <br>_Constant iterator type for the_ [_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _class._ |
-| typedef std::vector&lt; [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) &gt;::iterator | [**iterator**](#typedef-iterator)  <br>_Iterator type for the_ [_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _class._ |
+| typedef std::vector&lt; [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) &gt;::[**const\_iterator**](classastrea_1_1trace_1_1GroundArchitecture.md#typedef-const_iterator) | [**const\_iterator**](#typedef-const_iterator)  <br>_Constant iterator type for the_ [_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _class._ |
+| typedef std::vector&lt; [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) &gt;::[**iterator**](classastrea_1_1trace_1_1GroundArchitecture.md#typedef-iterator) | [**iterator**](#typedef-iterator)  <br>_Iterator type for the_ [_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _class._ |
 
 
 

@@ -6297,43 +6297,19 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-event-14"><strong>Event</strong></a> () <br><em>Default constructor for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-event-13"><strong>Event</strong></a> () <br><em>Default constructor for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-event-24"><strong>Event</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>T</strong></a> &amp;&amp; x) <br><em>Constructs a</em> <a href="./"><em><strong>Event</strong></em></a> <em>with a user-defined type.</em></td>
+<td style="text-align: left;"><a href="#function-event-23"><strong>Event</strong></a> (const <a href="./"><strong>Event</strong></a> &amp; other) <br><em>Copy constructor for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-event-34"><strong>Event</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="./"><strong>Event</strong></a> &amp; other) <br><em>Copy constructor for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-event-33"><strong>Event</strong></a> (<a href="./"><strong>Event</strong></a> &amp;&amp; other) noexcept<br><em>Move constructor for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-event-44"><strong>Event</strong></a> (<a href="./"><strong>Event</strong></a> &amp;&amp; other) noexcept<br><em>Move constructor for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>T</strong></a> *</td>
-<td style="text-align: left;"><a href="#function-extract"><strong>extract</strong></a> () noexcept const<br><em>Extracts the user-defined</em> <a href="./"><em><strong>Event</strong></em></a> <em>from the</em><a href="./"><em><strong>Event</strong></em></a> <em>instance.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">std::string</td>
-<td style="text-align: left;"><a href="#function-get_name"><strong>get_name</strong></a> () const<br><em>Gets the name of the</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a> *</td>
-<td style="text-align: left;"><a href="#function-get_ptr-12"><strong>get_ptr</strong></a> () const<br><em>Gets a pointer to the internal</em> <a href="./"><em><strong>Event</strong></em></a> <em>instance.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a> *</td>
-<td style="text-align: left;"><a href="#function-get_ptr-22"><strong>get_ptr</strong></a> () <br><em>Gets a pointer to the internal</em> <a href="./"><em><strong>Event</strong></em></a> <em>instance.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="#function-is_terminal"><strong>is_terminal</strong></a> () const<br><em>Checks if the</em> <a href="./"><em><strong>Event</strong></em></a> <em>is a terminal</em><a href="./"><em><strong>Event</strong></em></a> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Unitless</strong></a></td>
-<td style="text-align: left;"><a href="#function-measure_event"><strong>measure_event</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Time</strong></a> &amp; time, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const<br><em>Detects if the</em> <a href="./"><em><strong>Event</strong></em></a> <em>is triggered by a</em><a href="../classastrea_1_1astro_1_1Vehicle/"><em><strong>Vehicle</strong></em></a> <em>.</em></td>
+<td style="text-align: right;">void *</td>
+<td style="text-align: left;"><a href="#function-get_ptr"><strong>get_ptr</strong></a> () <br><em>Gets a pointer to the internal</em> <a href="./"><em><strong>Event</strong></em></a> <em>instance.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Event</strong></a> &amp;</td>
@@ -6341,31 +6317,87 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>Event</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_1"><strong>operator=</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="./"><strong>Event</strong></a> &amp; other) <br><em>Move assignment operator for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-operator_1"><strong>operator=</strong></a> (const <a href="./"><strong>Event</strong></a> &amp; other) <br><em>Move assignment operator for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>Event</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator_2"><strong>operator=</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>T</strong></a> &amp;&amp; x) <br><em>Generic assignment operator for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-requires-12"><strong>requires</strong></a> (IsGenericallyConstructableEvent&lt; T &gt;) <br><em>Constructs a</em> <a href="./"><em><strong>Event</strong></em></a> <em>with a user-defined type.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-trigger_action"><strong>trigger_action</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Time</strong></a> &amp; time, <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const<br><em>Triggers the</em> <a href="./"><em><strong>Event</strong></em></a> <em>for a</em><a href="../classastrea_1_1astro_1_1Vehicle/"><em><strong>Vehicle</strong></em></a> <em>.</em></td>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-requires-22"><strong>requires</strong></a> (IsGenericallyConstructableEvent&lt; T &gt;) <br><em>Generic assignment operator for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em></td>
 </tr>
 </tbody>
 </table>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-event-14">function Event [1/4]<a class="headerlink" href="#function-event-14" title="Permanent link">&para;</a></h3>
+<h3 id="function-event-13">function Event [1/3]<a class="headerlink" href="#function-event-13" title="Permanent link">&para;</a></h3>
 <p><em>Default constructor for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="n">Event</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </span></code></pre></div></p>
 <hr>
 
-<h3 id="function-event-24">function Event [2/4]<a class="headerlink" href="#function-event-24" title="Permanent link">&para;</a></h3>
+<h3 id="function-event-23">function Event [2/3]<a class="headerlink" href="#function-event-23" title="Permanent link">&para;</a></h3>
+<p><em>Copy constructor for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="n">Event</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Event</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>other</code> The <a href="./"><strong>Event</strong></a> instance to copy from. </li>
+</ul>
+<hr>
+
+<h3 id="function-event-33">function Event [3/3]<a class="headerlink" href="#function-event-33" title="Permanent link">&para;</a></h3>
+<p><em>Move constructor for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="n">Event</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">Event</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>other</code> The <a href="./"><strong>Event</strong></a> instance to move from. </li>
+</ul>
+<hr>
+
+<h3 id="function-get_ptr">function get_ptr<a class="headerlink" href="#function-get_ptr" title="Permanent link">&para;</a></h3>
+<p><em>Gets a pointer to the internal</em> <a href="./"><em><strong>Event</strong></em></a> <em>instance.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="n">get_ptr</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Returns:</strong></p>
+<p>void* A pointer to the internal <a href="./"><strong>Event</strong></a> instance. </p>
+<hr>
+
+<h3 id="function-operator">function operator=<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
+<p><em>Copy assignment operator for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Event</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">Event</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+</span></code></pre></div></p>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>Event</strong></a>&amp; A reference to the current <a href="./"><strong>Event</strong></a> instance. </p>
+<hr>
+
+<h3 id="function-operator_1">function operator=<a class="headerlink" href="#function-operator_1" title="Permanent link">&para;</a></h3>
+<p><em>Move assignment operator for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Event</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Event</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>other</code> The <a href="./"><strong>Event</strong></a> instance to move from. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>Event</strong></a>&amp; A reference to the current <a href="./"><strong>Event</strong></a> instance. </p>
+<hr>
+
+<h3 id="function-requires-12">function requires [1/2]<a class="headerlink" href="#function-requires-12" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>Event</strong></em></a> <em>with a user-defined type.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">T</span><span class="o">&gt;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kr">inline</span><span class="w"> </span><span class="k">explicit</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="n">Event</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">x</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="k">requires</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">IsGenericallyConstructableEvent</span><span class="o">&lt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&gt;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
 <ul>
@@ -6377,125 +6409,12 @@ You're not viewing the latest version.
 </ul>
 <hr>
 
-<h3 id="function-event-34">function Event [3/4]<a class="headerlink" href="#function-event-34" title="Permanent link">&para;</a></h3>
-<p><em>Copy constructor for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="n">Event</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Event</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">)</span><span class="w"> </span>
-</span></code></pre></div></p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>other</code> The <a href="./"><strong>Event</strong></a> instance to copy from. </li>
-</ul>
-<hr>
-
-<h3 id="function-event-44">function Event [4/4]<a class="headerlink" href="#function-event-44" title="Permanent link">&para;</a></h3>
-<p><em>Move constructor for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="n">Event</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">Event</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">other</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
-</span></code></pre></div></p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>other</code> The <a href="./"><strong>Event</strong></a> instance to move from. </li>
-</ul>
-<hr>
-
-<h3 id="function-extract">function extract<a class="headerlink" href="#function-extract" title="Permanent link">&para;</a></h3>
-<p><em>Extracts the user-defined</em> <a href="./"><em><strong>Event</strong></em></a> <em>from the</em><a href="./"><em><strong>Event</strong></em></a> <em>instance.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">T</span><span class="o">&gt;</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">T</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="n">extract</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div></p>
-<p><strong>Template parameters:</strong></p>
-<ul>
-<li><code>T</code> The type of the user-defined <a href="./"><strong>Event</strong></a> to extract. </li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p>const T* A pointer to the user-defined <a href="./"><strong>Event</strong></a> if it matches the type, otherwise nullptr. </p>
-<hr>
-
-<h3 id="function-get_name">function get_name<a class="headerlink" href="#function-get_name" title="Permanent link">&para;</a></h3>
-<p><em>Gets the name of the</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="n">get_name</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div></p>
-<p><strong>Returns:</strong></p>
-<p>std::string The name of the <a href="./"><strong>Event</strong></a>. </p>
-<hr>
-
-<h3 id="function-get_ptr-12">function get_ptr [1/2]<a class="headerlink" href="#function-get_ptr-12" title="Permanent link">&para;</a></h3>
-<p><em>Gets a pointer to the internal</em> <a href="./"><em><strong>Event</strong></em></a> <em>instance.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">const</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="n">get_ptr</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div></p>
-<p><strong>Returns:</strong></p>
-<p>const void* A pointer to the internal <a href="./"><strong>Event</strong></a> instance. </p>
-<hr>
-
-<h3 id="function-get_ptr-22">function get_ptr [2/2]<a class="headerlink" href="#function-get_ptr-22" title="Permanent link">&para;</a></h3>
-<p><em>Gets a pointer to the internal</em> <a href="./"><em><strong>Event</strong></em></a> <em>instance.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="n">get_ptr</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
-</span></code></pre></div></p>
-<p><strong>Returns:</strong></p>
-<p>void* A pointer to the internal <a href="./"><strong>Event</strong></a> instance. </p>
-<hr>
-
-<h3 id="function-is_terminal">function is_terminal<a class="headerlink" href="#function-is_terminal" title="Permanent link">&para;</a></h3>
-<p><em>Checks if the</em> <a href="./"><em><strong>Event</strong></em></a> <em>is a terminal</em><a href="./"><em><strong>Event</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="n">is_terminal</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div></p>
-<p><strong>Returns:</strong></p>
-<p>true If the <a href="./"><strong>Event</strong></a> is a terminal <a href="./"><strong>Event</strong></a>. </p>
-<p><strong>Returns:</strong></p>
-<p>false If the <a href="./"><strong>Event</strong></a> is not a terminal <a href="./"><strong>Event</strong></a>. </p>
-<hr>
-
-<h3 id="function-measure_event">function measure_event<a class="headerlink" href="#function-measure_event" title="Permanent link">&para;</a></h3>
-<p><em>Detects if the</em> <a href="./"><em><strong>Event</strong></em></a> <em>is triggered by a</em><a href="../classastrea_1_1astro_1_1Vehicle/"><em><strong>Vehicle</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="n">measure_event</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span><span class="p">,</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Vehicle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div></p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>vehicle</code> The <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> to check. </li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p>true If the <a href="./"><strong>Event</strong></a> is triggered by the <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a>. </p>
-<p><strong>Returns:</strong></p>
-<p>false If the <a href="./"><strong>Event</strong></a> is not triggered by the <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a>. </p>
-<hr>
-
-<h3 id="function-operator">function operator=<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
-<p><em>Copy assignment operator for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">Event</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">Event</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">other</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
-</span></code></pre></div></p>
-<p><strong>Returns:</strong></p>
-<p><a href="./"><strong>Event</strong></a>&amp; A reference to the current <a href="./"><strong>Event</strong></a> instance. </p>
-<hr>
-
-<h3 id="function-operator_1">function operator=<a class="headerlink" href="#function-operator_1" title="Permanent link">&para;</a></h3>
-<p><em>Move assignment operator for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">Event</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Event</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span>
-</span></code></pre></div></p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>other</code> The <a href="./"><strong>Event</strong></a> instance to move from. </li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p><a href="./"><strong>Event</strong></a>&amp; A reference to the current <a href="./"><strong>Event</strong></a> instance. </p>
-<hr>
-
-<h3 id="function-operator_2">function operator=<a class="headerlink" href="#function-operator_2" title="Permanent link">&para;</a></h3>
+<h3 id="function-requires-22">function requires [2/2]<a class="headerlink" href="#function-requires-22" title="Permanent link">&para;</a></h3>
 <p><em>Generic assignment operator for</em> <a href="./"><em><strong>Event</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">T</span><span class="o">&gt;</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">Event</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">x</span>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="k">requires</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">IsGenericallyConstructableEvent</span><span class="o">&lt;</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&gt;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
 <ul>
@@ -6507,24 +6426,6 @@ You're not viewing the latest version.
 </ul>
 <p><strong>Returns:</strong></p>
 <p><a href="./"><strong>Event</strong></a>&amp; A reference to the current <a href="./"><strong>Event</strong></a> instance. </p>
-<hr>
-
-<h3 id="function-trigger_action">function trigger_action<a class="headerlink" href="#function-trigger_action" title="Permanent link">&para;</a></h3>
-<p><em>Triggers the</em> <a href="./"><em><strong>Event</strong></em></a> <em>for a</em><a href="../classastrea_1_1astro_1_1Vehicle/"><em><strong>Vehicle</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Event</span><span class="o">::</span><span class="n">trigger_action</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">time</span><span class="p">,</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span>
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div></p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>time</code> The current time in the integration. </li>
-<li><code>state</code> The current state of the vehicle. </li>
-<li><code>vehicle</code> The <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> to trigger the <a href="./"><strong>Event</strong></a> for. </li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p><a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> The <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> after the <a href="./"><strong>Event</strong></a> has been triggered. </p>
 <hr>
 
 <hr />

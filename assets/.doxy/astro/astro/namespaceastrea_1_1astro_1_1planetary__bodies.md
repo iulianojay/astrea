@@ -68,32 +68,32 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_CALLISTO\_PARAMS**](#variable-default_callisto_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_DEIMOS\_PARAMS**](#variable-default_deimos_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_EARTH\_PARAMS**](#variable-default_earth_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_EUROPA\_PARAMS**](#variable-default_europa_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_GANYMEDE\_PARAMS**](#variable-default_ganymede_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_IAPETUS\_PARAMS**](#variable-default_iapetus_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_IO\_PARAMS**](#variable-default_io_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_JUPITER\_PARAMS**](#variable-default_jupiter_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_MARS\_PARAMS**](#variable-default_mars_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_MERCURY\_PARAMS**](#variable-default_mercury_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_MOON\_PARAMS**](#variable-default_moon_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_NEPTUNE\_PARAMS**](#variable-default_neptune_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_OBERON\_PARAMS**](#variable-default_oberon_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_PHOBOS\_PARAMS**](#variable-default_phobos_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_RHEA\_PARAMS**](#variable-default_rhea_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_SATURN\_PARAMS**](#variable-default_saturn_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_SUN\_PARAMS**](#variable-default_sun_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_TITANIA\_PARAMS**](#variable-default_titania_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_TITAN\_PARAMS**](#variable-default_titan_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_TRITON\_PARAMS**](#variable-default_triton_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_URANUS\_PARAMS**](#variable-default_uranus_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_VENUS\_PARAMS**](#variable-default_venus_params)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::map&lt; [**Altitude**](classastrea_1_1astro_1_1CartesianVector.md), std::tuple&lt; [**Altitude**](classastrea_1_1astro_1_1CartesianVector.md), [**Density**](classastrea_1_1astro_1_1CartesianVector.md), [**Altitude**](classastrea_1_1astro_1_1CartesianVector.md) &gt; &gt; | [**earthAtmosphere**](#variable-earthatmosphere)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::map&lt; [**Altitude**](classastrea_1_1astro_1_1CartesianVector.md), [**Density**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**martianAtmosphere**](#variable-martianatmosphere)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::map&lt; [**Altitude**](classastrea_1_1astro_1_1CartesianVector.md), TitanDensity &gt; | [**titanicAtmosphere**](#variable-titanicatmosphere)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::map&lt; [**Altitude**](classastrea_1_1astro_1_1CartesianVector.md), [**Density**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**venutianAtmosphere**](#variable-venutianatmosphere)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_CALLISTO\_PARAMS**](#variable-default_callisto_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_DEIMOS\_PARAMS**](#variable-default_deimos_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_EARTH\_PARAMS**](#variable-default_earth_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_EUROPA\_PARAMS**](#variable-default_europa_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_GANYMEDE\_PARAMS**](#variable-default_ganymede_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_IAPETUS\_PARAMS**](#variable-default_iapetus_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_IO\_PARAMS**](#variable-default_io_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_JUPITER\_PARAMS**](#variable-default_jupiter_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_MARS\_PARAMS**](#variable-default_mars_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_MERCURY\_PARAMS**](#variable-default_mercury_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_MOON\_PARAMS**](#variable-default_moon_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_NEPTUNE\_PARAMS**](#variable-default_neptune_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_OBERON\_PARAMS**](#variable-default_oberon_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_PHOBOS\_PARAMS**](#variable-default_phobos_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_RHEA\_PARAMS**](#variable-default_rhea_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_SATURN\_PARAMS**](#variable-default_saturn_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_SUN\_PARAMS**](#variable-default_sun_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_TITANIA\_PARAMS**](#variable-default_titania_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_TITAN\_PARAMS**](#variable-default_titan_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_TRITON\_PARAMS**](#variable-default_triton_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_URANUS\_PARAMS**](#variable-default_uranus_params)   = `/* multi line expression */`<br> |
+|  const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) | [**DEFAULT\_VENUS\_PARAMS**](#variable-default_venus_params)   = `/* multi line expression */`<br> |
+|  const std::map&lt; Altitude, std::tuple&lt; Altitude, Density, Altitude &gt; &gt; | [**earthAtmosphere**](#variable-earthatmosphere)   = `/* multi line expression */`<br> |
+|  const std::map&lt; Altitude, Density &gt; | [**martianAtmosphere**](#variable-martianatmosphere)   = `/* multi line expression */`<br> |
+|  const std::map&lt; Altitude, TitanDensity &gt; | [**titanicAtmosphere**](#variable-titanicatmosphere)   = `/* multi line expression */`<br> |
+|  const std::map&lt; Altitude, Density &gt; | [**venutianAtmosphere**](#variable-venutianatmosphere)   = `/* multi line expression */`<br> |
 
 
 

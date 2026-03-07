@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="plotting_8hpp" kind="file" language="C++">
     <compoundname>plotting.hpp</compoundname>
     <includes local="no">filesystem</includes>
@@ -10,17 +10,8 @@
     <includedby refid="astro_8hpp" local="no">astrea/astro/astro/astro.hpp</includedby>
     <includedby refid="plotting_8cpp" local="no">astrea/astro/astro/utilities/plotting.cpp</includedby>
     <incdepgraph>
-      <node id="6">
-        <label>astro/astro.fwd.hpp</label>
-        <link refid="astro_8fwd_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>astro/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
+      <node id="2">
+        <label>filesystem</label>
       </node>
       <node id="1">
         <label>astrea/astro/astro/utilities/plotting.hpp</label>
@@ -36,32 +27,41 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>filesystem</label>
-      </node>
-      <node id="5">
-        <label>matplot/matplot.h</label>
-      </node>
       <node id="8">
         <label>stdint.h</label>
+      </node>
+      <node id="7">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
       </node>
       <node id="3">
         <label>string</label>
       </node>
+      <node id="5">
+        <label>matplot/matplot.h</label>
+      </node>
       <node id="4">
         <label>vector</label>
       </node>
+      <node id="6">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2">
-        <label>astrea/astro/astro/astro.hpp</label>
-        <link refid="astro_8hpp"/>
-      </node>
       <node id="1">
         <label>astrea/astro/astro/utilities/plotting.hpp</label>
         <link refid="plotting_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
       </node>
     </invincdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>

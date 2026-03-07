@@ -65,8 +65,8 @@ _Class for solving Lambert's problem._ [More...](#detailed-description)
 
 | Type | Name |
 | ---: | :--- |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**solve**](#function-solve-12) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & state0, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & dt, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) <br>_Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution._  |
-|  std::pair&lt; [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt;, [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; &gt; | [**solve**](#function-solve-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & r0, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & rf, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & dt, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**OrbitDirection**](classastrea_1_1astro_1_1LambertSolver.md#enum-orbitdirection) & direction) <br>_Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution._  |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**solve**](#function-solve-12) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & state0, const Time & dt, const GravParam & mu) <br>_Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution._  |
+|  std::pair&lt; [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::earth::icrf &gt;, [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::earth::icrf &gt; &gt; | [**solve**](#function-solve-22) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::icrf &gt; & r0, const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::icrf &gt; & rf, const Time & dt, const GravParam & mu, const [**OrbitDirection**](classastrea_1_1astro_1_1LambertSolver.md#enum-orbitdirection) & direction) <br>_Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution._  |
 
 
 
@@ -167,9 +167,9 @@ This destructor is deleted to prevent destruction of the [**LambertSolver**](cla
 _Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution._ 
 ```C++
 static Cartesian astrea::astro::LambertSolver::solve (
-    const  Cartesian & state0,
-    const  Time & dt,
-    const  GravParam & mu
+    const Cartesian & state0,
+    const Time & dt,
+    const GravParam & mu
 ) 
 ```
 
@@ -205,11 +205,11 @@ The final state (position and velocity) of the spacecraft.
 _Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution._ 
 ```C++
 static std::pair< VelocityVector < frames::earth::icrf >, VelocityVector < frames::earth::icrf > > astrea::astro::LambertSolver::solve (
-    const  RadiusVector < frames::earth::icrf > & r0,
-    const  RadiusVector < frames::earth::icrf > & rf,
-    const  Time & dt,
-    const  GravParam & mu,
-    const  OrbitDirection & direction
+    const RadiusVector < frames::earth::icrf > & r0,
+    const RadiusVector < frames::earth::icrf > & rf,
+    const Time & dt,
+    const GravParam & mu,
+    const OrbitDirection & direction
 ) 
 ```
 

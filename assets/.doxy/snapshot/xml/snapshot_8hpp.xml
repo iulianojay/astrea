@@ -1,11 +1,24 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="snapshot_8hpp" kind="file" language="C++">
     <compoundname>snapshot.hpp</compoundname>
     <includes refid="Database_8hpp" local="no">snapshot/database/Database.hpp</includes>
     <includes refid="EthzClient_8hpp" local="no">snapshot/http-queries/ethz/EthzClient.hpp</includes>
     <includes refid="SpaceTrackClient_8hpp" local="no">snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</includes>
     <incdepgraph>
+      <node id="1">
+        <label>astrea/snapshot/snapshot/snapshot.hpp</label>
+        <link refid="snapshot_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>sqlite_orm/sqlite_orm.h</label>
+      </node>
       <node id="2">
         <label>snapshot/database/Database.hpp</label>
         <link refid="Database_8hpp"/>
@@ -34,6 +47,45 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
+      <node id="21">
+        <label>filesystem</label>
+      </node>
+      <node id="9">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="24">
+        <label>stdint.h</label>
+      </node>
+      <node id="22">
+        <label>variant</label>
+      </node>
+      <node id="7">
+        <label>mp-units/systems/iau.h</label>
+      </node>
+      <node id="12">
+        <label>astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
+      </node>
+      <node id="16">
+        <label>string</label>
+      </node>
+      <node id="23">
+        <label>snapshot/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>sqlite3.h</label>
+      </node>
+      <node id="17">
+        <label>cpr/cpr.h</label>
+      </node>
+      <node id="14">
+        <label>snapshot/database/Database.ipp</label>
+      </node>
+      <node id="6">
+        <label>mp-units/systems/angular.h</label>
+      </node>
       <node id="15">
         <label>snapshot/http-queries/ethz/EthzClient.hpp</label>
         <link refid="EthzClient_8hpp"/>
@@ -45,6 +97,22 @@
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
+      </node>
+      <node id="13">
+        <label>snapshot/snapshot.macros.hpp</label>
+        <link refid="snapshot_8macros_8hpp"/>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+      <node id="11">
+        <label>astro/astro.macros.hpp</label>
+      </node>
+      <node id="8">
+        <label>mp-units/systems/isq_angle.h</label>
+      </node>
+      <node id="10">
+        <label>units/typedefs.hpp</label>
       </node>
       <node id="20">
         <label>snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</label>
@@ -62,79 +130,11 @@
         <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="1">
-        <label>astrea/snapshot/snapshot/snapshot.hpp</label>
-        <link refid="snapshot_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>snapshot/snapshot.macros.hpp</label>
-        <link refid="snapshot_8macros_8hpp"/>
-      </node>
-      <node id="23">
-        <label>snapshot/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>astro/astro.macros.hpp</label>
-      </node>
-      <node id="12">
-        <label>astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
-      </node>
-      <node id="19">
-        <label>astro/time/Date.hpp</label>
-      </node>
-      <node id="17">
-        <label>cpr/cpr.h</label>
-      </node>
-      <node id="21">
-        <label>filesystem</label>
-      </node>
-      <node id="6">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="7">
-        <label>mp-units/systems/iau.h</label>
-      </node>
-      <node id="8">
-        <label>mp-units/systems/isq_angle.h</label>
-      </node>
-      <node id="9">
-        <label>mp-units/systems/si.h</label>
-      </node>
       <node id="18">
         <label>nlohmann/json.hpp</label>
       </node>
-      <node id="14">
-        <label>snapshot/database/Database.ipp</label>
-      </node>
-      <node id="3">
-        <label>sqlite3.h</label>
-      </node>
-      <node id="5">
-        <label>sqlite_orm/sqlite_orm.h</label>
-      </node>
-      <node id="24">
-        <label>stdint.h</label>
-      </node>
-      <node id="16">
-        <label>string</label>
-      </node>
-      <node id="10">
-        <label>units/typedefs.hpp</label>
-      </node>
-      <node id="22">
-        <label>variant</label>
-      </node>
-      <node id="4">
-        <label>vector</label>
+      <node id="19">
+        <label>astro/time/Date.hpp</label>
       </node>
     </incdepgraph>
     <briefdescription>

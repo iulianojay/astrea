@@ -34,7 +34,7 @@ _A clock implementation for Julian Dates._ [More...](#detailed-description)
 | ---: | :--- |
 | typedef std::chrono::duration&lt; [**rep**](structastrea_1_1astro_1_1JulianDateClock.md#typedef-rep), [**period**](structastrea_1_1astro_1_1JulianDateClock.md#typedef-period) &gt; | [**duration**](#typedef-duration)  <br>_The duration type for the Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _, representing the time in days._ |
 | typedef std::chrono::days::period | [**period**](#typedef-period)  <br>_The period type for the Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _, typically days._ |
-| typedef [**double**](classastrea_1_1astro_1_1CartesianVector.md) | [**rep**](#typedef-rep)  <br>_The representation type for the Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _, typically a double for fractional days._ |
+| typedef double | [**rep**](#typedef-rep)  <br>_The representation type for the Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _, typically a double for fractional days._ |
 | typedef std::chrono::time\_point&lt; [**JulianDateClock**](structastrea_1_1astro_1_1JulianDateClock.md) &gt; | [**time\_point**](#typedef-time_point)  <br>_The time point type for the Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _, using the_[_**JulianDateClock**_](structastrea_1_1astro_1_1JulianDateClock.md) _._ |
 
 
@@ -46,7 +46,7 @@ _A clock implementation for Julian Dates._ [More...](#detailed-description)
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**bool**](classastrea_1_1astro_1_1CartesianVector.md) | [**is\_steady**](#variable-is_steady)   = `/* multi line expression */`<br>_Indicates that the clock is not steady, meaning it can be adjusted or may have leap seconds._  |
+|  constexpr bool | [**is\_steady**](#variable-is_steady)   = `/* multi line expression */`<br>_Indicates that the clock is not steady, meaning it can be adjusted or may have leap seconds._  |
 
 
 
@@ -67,9 +67,9 @@ _A clock implementation for Julian Dates._ [More...](#detailed-description)
 
 | Type | Name |
 | ---: | :--- |
-|  [**auto**](classastrea_1_1astro_1_1CartesianVector.md) | [**from\_sys**](#function-from_sys) (std::chrono::sys\_time&lt; [**Duration**](classastrea_1_1astro_1_1CartesianVector.md) &gt; [**const**](classastrea_1_1astro_1_1CartesianVector.md) & timePoint) noexcept<br>_Converts a system time point to a Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _time point._ |
+|  auto | [**from\_sys**](#function-from_sys) (std::chrono::sys\_time&lt; Duration &gt; const & timePoint) noexcept<br>_Converts a system time point to a Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _time point._ |
 |  [**time\_point**](structastrea_1_1astro_1_1JulianDateClock.md#typedef-time_point) | [**now**](#function-now) () noexcept<br>_Gets the current time point in Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _format._ |
-|  [**auto**](classastrea_1_1astro_1_1CartesianVector.md) | [**to\_sys**](#function-to_sys) ([**JulianDateTime**](namespaceastrea_1_1astro.md#typedef-juliandatetime)&lt; [**Duration**](classastrea_1_1astro_1_1CartesianVector.md) &gt; [**const**](classastrea_1_1astro_1_1CartesianVector.md) & timePoint) noexcept<br>_Converts a Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _time point to a system time point._ |
+|  auto | [**to\_sys**](#function-to_sys) ([**JulianDateTime**](namespaceastrea_1_1astro.md#typedef-juliandatetime)&lt; Duration &gt; const & timePoint) noexcept<br>_Converts a Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _time point to a system time point._ |
 
 
 
@@ -186,7 +186,7 @@ constexpr bool astrea::astro::JulianDateClock::is_steady;
 
 _Converts a system time point to a Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _time point._
 ```C++
-template<class  Duration>
+template<class Duration>
 static inline auto astrea::astro::JulianDateClock::from_sys (
     std::chrono::sys_time< Duration > const & timePoint
 ) noexcept
@@ -253,7 +253,7 @@ static inline time_point astrea::astro::JulianDateClock::now () noexcept
 
 _Converts a Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _time point to a system time point._
 ```C++
-template<class  Duration>
+template<class Duration>
 static inline auto astrea::astro::JulianDateClock::to_sys (
     JulianDateTime < Duration > const & timePoint
 ) noexcept

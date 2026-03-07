@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="GeneralPerturbations_8hpp" kind="file" language="C++">
     <compoundname>GeneralPerturbations.hpp</compoundname>
     <includes local="no">iosfwd</includes>
@@ -10,6 +10,15 @@
     <includedby refid="GeneralPerturbations_8cpp" local="no">astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.cpp</includedby>
     <includedby refid="orbital__data__formats_8hpp" local="no">astrea/astro/astro/state/orbital_data_formats/orbital_data_formats.hpp</includedby>
     <incdepgraph>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="3">
+        <label>optional</label>
+      </node>
+      <node id="2">
+        <label>iosfwd</label>
+      </node>
       <node id="1">
         <label>astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
         <link refid="GeneralPerturbations_8hpp"/>
@@ -22,17 +31,8 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>iosfwd</label>
-      </node>
       <node id="5">
         <label>nlohmann/json.hpp</label>
-      </node>
-      <node id="3">
-        <label>optional</label>
-      </node>
-      <node id="4">
-        <label>string</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -40,16 +40,16 @@
         <label>astrea/astro/astro/astro.hpp</label>
         <link refid="astro_8hpp"/>
       </node>
-      <node id="1">
-        <label>astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
-        <link refid="GeneralPerturbations_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
       <node id="2">
         <label>astrea/astro/astro/state/orbital_data_formats/orbital_data_formats.hpp</label>
         <link refid="orbital__data__formats_8hpp"/>
         <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
+        <link refid="GeneralPerturbations_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -86,7 +86,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="43" refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab55b9047a596f36ff2f9f27b19bbbc6b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab55b9047a596f36ff2f9f27b19bbbc6b" kindref="member">GeneralPerturbations</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab55b9047a596f36ff2f9f27b19bbbc6b" kindref="member">GeneralPerturbations</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>nlohmann::json&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">data</ref>);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab55b9047a596f36ff2f9f27b19bbbc6b" kindref="member">GeneralPerturbations</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>nlohmann::json&amp;<sp/>data);</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="55" refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab8f7e21d36e1074989def70df5b826fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1ab8f7e21d36e1074989def70df5b826fa" kindref="member">~GeneralPerturbations</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
@@ -133,7 +133,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="97" refid="structastrea_1_1astro_1_1GeneralPerturbations_1ae526fcd1c3eb2eb8ba642f24ec034bb4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;std::string&gt;<sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations_1ae526fcd1c3eb2eb8ba642f24ec034bb4" kindref="member">TLE_LINE2</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="98"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal">std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator&lt;&lt;</ref>(std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">os</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations" kindref="compound">GeneralPerturbations</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">gp</ref>);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1GeneralPerturbations" kindref="compound">GeneralPerturbations</ref>&amp;<sp/>gp);</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"></highlight></codeline>
 <codeline lineno="111"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="112"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>

@@ -10,12 +10,6 @@
 ([**astrea::astro**](namespaceastrea_1_1astro.md))
 
 
-## b
-
-* [**BodyFixedFrame**](structastrea_1_1astro_1_1BodyFixedFrame.md)
-([**astrea::astro**](namespaceastrea_1_1astro.md))
-
-
 ## c
 
 * [**Callisto**](classastrea_1_1astro_1_1planetary__bodies_1_1Callisto.md)
@@ -45,8 +39,6 @@
 * [**Deimos**](classastrea_1_1astro_1_1planetary__bodies_1_1Deimos.md)
 ([**astrea::astro::planetary\_bodies**](namespaceastrea_1_1astro_1_1planetary__bodies.md))
 * [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)
-([**astrea::astro**](namespaceastrea_1_1astro.md))
-* [**DynamicFrame**](classastrea_1_1astro_1_1DynamicFrame.md)
 ([**astrea::astro**](namespaceastrea_1_1astro.md))
 
 
@@ -114,8 +106,6 @@
 * [**Iapetus**](classastrea_1_1astro_1_1planetary__bodies_1_1Iapetus.md)
 ([**astrea::astro::planetary\_bodies**](namespaceastrea_1_1astro_1_1planetary__bodies.md))
 * [**ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md)
-([**astrea::astro**](namespaceastrea_1_1astro.md))
-* [**InertialFrame**](structastrea_1_1astro_1_1InertialFrame.md)
 ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * [**Integrator**](classastrea_1_1astro_1_1Integrator.md)
 ([**astrea::astro**](namespaceastrea_1_1astro.md))

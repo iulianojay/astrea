@@ -1,14 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1detail" kind="namespace" language="C++">
     <compoundname>astrea::detail</compoundname>
-    <sectiondef kind="var">
+      <sectiondef kind="var">
       <memberdef kind="variable" id="detail_8hpp_1a2ce65f5df709391fd0f27f5dac5a2a0c" prot="public" static="no" constexpr="yes" mutable="no">
         <type>constexpr auto</type>
         <definition>constexpr auto astrea::detail::time_unit</definition>
         <argsstring></argsstring>
         <name>time_unit</name>
-        <qualifiedname>astrea::detail::time_unit</qualifiedname>
         <initializer>= mp_units::si::unit_symbols::s</initializer>
         <briefdescription>
         </briefdescription>
@@ -23,7 +22,6 @@
         <definition>constexpr auto astrea::detail::distance_unit</definition>
         <argsstring></argsstring>
         <name>distance_unit</name>
-        <qualifiedname>astrea::detail::distance_unit</qualifiedname>
         <initializer>= mp_units::si::unit_symbols::km</initializer>
         <briefdescription>
         </briefdescription>
@@ -38,7 +36,6 @@
         <definition>constexpr auto astrea::detail::minor_distance_unit</definition>
         <argsstring></argsstring>
         <name>minor_distance_unit</name>
-        <qualifiedname>astrea::detail::minor_distance_unit</qualifiedname>
         <initializer>= mp_units::si::unit_symbols::m</initializer>
         <briefdescription>
         </briefdescription>
@@ -53,7 +50,6 @@
         <definition>constexpr auto astrea::detail::angle_unit</definition>
         <argsstring></argsstring>
         <name>angle_unit</name>
-        <qualifiedname>astrea::detail::angle_unit</qualifiedname>
         <initializer>= mp_units::angular::unit_symbols::rad</initializer>
         <briefdescription>
         </briefdescription>
@@ -68,7 +64,6 @@
         <definition>constexpr auto astrea::detail::mass_unit</definition>
         <argsstring></argsstring>
         <name>mass_unit</name>
-        <qualifiedname>astrea::detail::mass_unit</qualifiedname>
         <initializer>= mp_units::si::unit_symbols::kg</initializer>
         <briefdescription>
         </briefdescription>
@@ -83,7 +78,6 @@
         <definition>constexpr auto astrea::detail::unitless</definition>
         <argsstring></argsstring>
         <name>unitless</name>
-        <qualifiedname>astrea::detail::unitless</qualifiedname>
         <initializer>= mp_units::one</initializer>
         <briefdescription>
         </briefdescription>
@@ -98,7 +92,6 @@
         <definition>constexpr auto astrea::detail::power_unit</definition>
         <argsstring></argsstring>
         <name>power_unit</name>
-        <qualifiedname>astrea::detail::power_unit</qualifiedname>
         <initializer>= mp_units::si::unit_symbols::W</initializer>
         <briefdescription>
         </briefdescription>
@@ -113,7 +106,6 @@
         <definition>constexpr auto astrea::detail::frequency_unit</definition>
         <argsstring></argsstring>
         <name>frequency_unit</name>
-        <qualifiedname>astrea::detail::frequency_unit</qualifiedname>
         <initializer>= mp_units::si::unit_symbols::Hz</initializer>
         <briefdescription>
         </briefdescription>
@@ -128,7 +120,6 @@
         <definition>constexpr auto astrea::detail::temperature_unit</definition>
         <argsstring></argsstring>
         <name>temperature_unit</name>
-        <qualifiedname>astrea::detail::temperature_unit</qualifiedname>
         <initializer>= mp_units::si::unit_symbols::K</initializer>
         <briefdescription>
         </briefdescription>
@@ -143,7 +134,6 @@
         <definition>constexpr auto astrea::detail::pressure_unit</definition>
         <argsstring></argsstring>
         <name>pressure_unit</name>
-        <qualifiedname>astrea::detail::pressure_unit</qualifiedname>
         <initializer>= mp_units::si::unit_symbols::Pa</initializer>
         <briefdescription>
         </briefdescription>
@@ -158,7 +148,6 @@
         <definition>constexpr auto astrea::detail::force_unit</definition>
         <argsstring></argsstring>
         <name>force_unit</name>
-        <qualifiedname>astrea::detail::force_unit</qualifiedname>
         <initializer>= mp_units::si::unit_symbols::N</initializer>
         <briefdescription>
         </briefdescription>
@@ -168,7 +157,7 @@
         </inbodydescription>
         <location file="astrea/units/units/detail.hpp" line="42" column="23" bodyfile="astrea/units/units/detail.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

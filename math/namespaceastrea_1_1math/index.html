@@ -6293,7 +6293,7 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;">constexpr mp_units::quantity&lt; mp_units::one, Rep &gt;</td>
-<td style="text-align: left;"><a href="#function-assoc_legendre"><strong>assoc_legendre</strong></a> (const unsigned int &amp; n, const unsigned int &amp; m, const mp_units::quantity&lt; R, Rep &gt; &amp; q) noexcept<br><em>Computes the associated Legendre function of the first kind.</em></td>
+<td style="text-align: left;"><a href="#function-assoc_legendre"><strong>assoc_legendre</strong></a> (const unsigned int &amp; n, const unsigned int &amp; m, const mp_units::quantity&lt; R, Rep &gt; &amp; q) noexcept<br></td>
 </tr>
 <tr>
 <td style="text-align: right;">T</td>
@@ -6301,11 +6301,11 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;">mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto</td>
-<td style="text-align: left;"><a href="#function-cosh"><strong>cosh</strong></a> (const mp_units::quantity&lt; R, Rep &gt; &amp; q) noexcept<br><em>Computes the hyperbolic cosine of a given angle in radians.</em></td>
+<td style="text-align: left;"><a href="#function-cosh"><strong>cosh</strong></a> (const mp_units::quantity&lt; R, Rep &gt; &amp; q) noexcept<br></td>
 </tr>
 <tr>
 <td style="text-align: right;">constexpr mp_units::quantity&lt; mp_units::one, Rep &gt;</td>
-<td style="text-align: left;"><a href="#function-cyl_bessel_j"><strong>cyl_bessel_j</strong></a> (const Rep &amp; nu, const mp_units::quantity&lt; R, Rep &gt; &amp; q) noexcept<br><em>Computes the Bessel function of the first kind of order zero.</em></td>
+<td style="text-align: left;"><a href="#function-cyl_bessel_j"><strong>cyl_bessel_j</strong></a> (const Rep &amp; nu, const mp_units::quantity&lt; R, Rep &gt; &amp; q) noexcept<br></td>
 </tr>
 <tr>
 <td style="text-align: right;">double</td>
@@ -6348,12 +6348,16 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-pow"><strong>pow</strong></a> (const mp_units::quantity&lt; R, Rep &gt; &amp; q, const mp_units::quantity&lt; R, Rep &gt; &amp; n) noexcept<br></td>
 </tr>
 <tr>
-<td style="text-align: right;">mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto</td>
-<td style="text-align: left;"><a href="#function-sinc"><strong>sinc</strong></a> (const mp_units::quantity&lt; R, Rep &gt; &amp; q) noexcept<br><em>Computes the sinc function for a given angle in radians.</em></td>
+<td style="text-align: right;">requires</td>
+<td style="text-align: left;"><a href="#function-requires"><strong>requires</strong></a> (Rep v) <br><em>Computes the sinc function for a given angle in radians.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto</td>
-<td style="text-align: left;"><a href="#function-sinh"><strong>sinh</strong></a> (const mp_units::quantity&lt; R, Rep &gt; &amp; q) noexcept<br><em>Computes the hyperbolic sine of a given angle in radians.</em></td>
+<td style="text-align: left;"><a href="#function-sinc"><strong>sinc</strong></a> (const mp_units::quantity&lt; R, Rep &gt; &amp; q) noexcept<br></td>
+</tr>
+<tr>
+<td style="text-align: right;">mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto</td>
+<td style="text-align: left;"><a href="#function-sinh"><strong>sinh</strong></a> (const mp_units::quantity&lt; R, Rep &gt; &amp; q) noexcept<br></td>
 </tr>
 <tr>
 <td style="text-align: right;">double</td>
@@ -6367,28 +6371,12 @@ You're not viewing the latest version.
 </table>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-assoc_legendre">function assoc_legendre<a class="headerlink" href="#function-assoc_legendre" title="Permanent link">&para;</a></h3>
-<p><em>Computes the associated Legendre function of the first kind.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">ReferenceOf</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">dimensionless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Rep</span><span class="o">&gt;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">assoc_legendre</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">m</span><span class="p">,</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
-</span></code></pre></div></p>
-<p>This function computes the associated Legendre function P_n^m(x) for given n, m, and x. It is defined as P_n^m(x) = (1/2^n n!) (d/dx)^n ((1 - x^2)^n) P_m^n(x).</p>
-<p><strong>Template parameters:</strong></p>
-<ul>
-<li><code>R</code> The reference type for the input value (e.g., dimensionless). </li>
-<li><code>Rep</code> The representation type (e.g., double, float). </li>
-</ul>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>n</code> The degree of the polynomial. </li>
-<li><code>m</code> The order of the polynomial. </li>
-<li><code>q</code> The input value. </li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p>The value of the associated Legendre function at the given input. </p>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">assoc_legendre</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">m</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+</span></code></pre></div>
 <hr>
 
 <h3 id="function-atan3">function atan3<a class="headerlink" href="#function-atan3" title="Permanent link">&para;</a></h3>
@@ -6401,45 +6389,18 @@ You're not viewing the latest version.
 <hr>
 
 <h3 id="function-cosh">function cosh<a class="headerlink" href="#function-cosh" title="Permanent link">&para;</a></h3>
-<p><em>Computes the hyperbolic cosine of a given angle in radians.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">ReferenceOf</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">angular</span><span class="o">::</span><span class="n">angle</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Rep</span><span class="o">&gt;</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">QuantityOf</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">dimensionless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">cosh</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
-</span></code></pre></div></p>
-<p><strong>Template parameters:</strong></p>
-<ul>
-<li><code>R</code> The reference type for the angle (e.g., radian). </li>
-<li><code>Rep</code> The representation type (e.g., double, float). </li>
-</ul>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>q</code> The angle in radians. </li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p>The value of the hyperbolic cosine at the given angle. </p>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">QuantityOf</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">dimensionless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">cosh</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+</span></code></pre></div>
 <hr>
 
 <h3 id="function-cyl_bessel_j">function cyl_bessel_j<a class="headerlink" href="#function-cyl_bessel_j" title="Permanent link">&para;</a></h3>
-<p><em>Computes the Bessel function of the first kind of order zero.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">ReferenceOf</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">dimensionless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Rep</span><span class="o">&gt;</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">cyl_bessel_j</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">nu</span><span class="p">,</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
-</span></code></pre></div></p>
-<p>This function computes the Bessel function of the first kind of order zero for a given value. It is defined as J_0(x) = (1/π) ∫_0^π cos(x sin(θ)) dθ.</p>
-<p><strong>Template parameters:</strong></p>
-<ul>
-<li><code>R</code> The reference type for the input value (e.g., dimensionless). </li>
-<li><code>Rep</code> The representation type (e.g., double, float). </li>
-</ul>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>q</code> The input value. </li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p>The value of the Bessel function of the first kind of order zero at the given input. </p>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">cyl_bessel_j</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">nu</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+</span></code></pre></div>
 <hr>
 
 <h3 id="function-evaluate_chebyshev_derivative">function evaluate_chebyshev_derivative<a class="headerlink" href="#function-evaluate_chebyshev_derivative" title="Permanent link">&para;</a></h3>
@@ -6627,20 +6588,18 @@ You're not viewing the latest version.
 <hr>
 
 <h3 id="function-max">function max<a class="headerlink" href="#function-max" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">auto</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Rep</span><span class="o">&gt;</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">max</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q1</span><span class="p">,</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q2</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">max</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q1</span><span class="p">,</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q2</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
 </span></code></pre></div>
 <hr>
 
 <h3 id="function-min">function min<a class="headerlink" href="#function-min" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">auto</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Rep</span><span class="o">&gt;</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">min</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q1</span><span class="p">,</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q2</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">min</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q1</span><span class="p">,</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q2</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
 </span></code></pre></div>
 <hr>
 
@@ -6672,21 +6631,24 @@ You're not viewing the latest version.
 <hr>
 
 <h3 id="function-pow">function pow<a class="headerlink" href="#function-pow" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">ReferenceOf</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">dimensionless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Rep</span><span class="o">&gt;</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">pow</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q</span><span class="p">,</span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span>
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">pow</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q</span><span class="p">,</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
 </span></code></pre></div>
 <hr>
 
-<h3 id="function-sinc">function sinc<a class="headerlink" href="#function-sinc" title="Permanent link">&para;</a></h3>
+<h3 id="function-requires">function requires<a class="headerlink" href="#function-requires" title="Permanent link">&para;</a></h3>
 <p><em>Computes the sinc function for a given angle in radians.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">ReferenceOf</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">angular</span><span class="o">::</span><span class="n">angle</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Rep</span><span class="o">&gt;</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">QuantityOf</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">dimensionless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">sinc</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">auto</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Rep</span><span class="o">&gt;</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">requires</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="k">requires</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="n">Rep</span><span class="w"> </span><span class="n">v</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
+<p>Computes the associated Legendre function of the first kind.</p>
+<p>Computes the Bessel function of the first kind of order zero.</p>
+<p>Computes the hyperbolic sine of a given angle in radians.</p>
+<p>Computes the hyperbolic cosine of a given angle in radians.</p>
 <p>The sinc function is defined as sin(x)/x, where x is in radians. This function handles both integral and floating-point types.</p>
 <p><strong>Template parameters:</strong></p>
 <ul>
@@ -6698,16 +6660,7 @@ You're not viewing the latest version.
 <li><code>q</code> The angle in radians. </li>
 </ul>
 <p><strong>Returns:</strong></p>
-<p>The value of the sinc function at the given angle. </p>
-<hr>
-
-<h3 id="function-sinh">function sinh<a class="headerlink" href="#function-sinh" title="Permanent link">&para;</a></h3>
-<p><em>Computes the hyperbolic sine of a given angle in radians.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">ReferenceOf</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">angular</span><span class="o">::</span><span class="n">angle</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Rep</span><span class="o">&gt;</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">QuantityOf</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">dimensionless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">sinh</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
-</span></code></pre></div></p>
+<p>The value of the sinc function at the given angle.</p>
 <p><strong>Template parameters:</strong></p>
 <ul>
 <li><code>R</code> The reference type for the angle (e.g., radian). </li>
@@ -6718,16 +6671,67 @@ You're not viewing the latest version.
 <li><code>q</code> The angle in radians. </li>
 </ul>
 <p><strong>Returns:</strong></p>
-<p>The value of the hyperbolic sine at the given angle. </p>
+<p>The value of the hyperbolic cosine at the given angle.</p>
+<p><strong>Template parameters:</strong></p>
+<ul>
+<li><code>R</code> The reference type for the angle (e.g., radian). </li>
+<li><code>Rep</code> The representation type (e.g., double, float). </li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>q</code> The angle in radians. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>The value of the hyperbolic sine at the given angle.</p>
+<p>This function computes the Bessel function of the first kind of order zero for a given value. It is defined as J_0(x) = (1/π) ∫_0^π cos(x sin(θ)) dθ.</p>
+<p><strong>Template parameters:</strong></p>
+<ul>
+<li><code>R</code> The reference type for the input value (e.g., dimensionless). </li>
+<li><code>Rep</code> The representation type (e.g., double, float). </li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>q</code> The input value. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>The value of the Bessel function of the first kind of order zero at the given input.</p>
+<p>This function computes the associated Legendre function P_n^m(x) for given n, m, and x. It is defined as P_n^m(x) = (1/2^n n!) (d/dx)^n ((1 - x^2)^n) P_m^n(x).</p>
+<p><strong>Template parameters:</strong></p>
+<ul>
+<li><code>R</code> The reference type for the input value (e.g., dimensionless). </li>
+<li><code>Rep</code> The representation type (e.g., double, float). </li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>n</code> The degree of the polynomial. </li>
+<li><code>m</code> The order of the polynomial. </li>
+<li><code>q</code> The input value. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>The value of the associated Legendre function at the given input. </p>
+<hr>
+
+<h3 id="function-sinc">function sinc<a class="headerlink" href="#function-sinc" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">QuantityOf</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">dimensionless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">sinc</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+</span></code></pre></div>
+<hr>
+
+<h3 id="function-sinh">function sinh<a class="headerlink" href="#function-sinh" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">QuantityOf</span><span class="o">&lt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">dimensionless</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">sinh</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">Rep</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">q</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+</span></code></pre></div>
 <hr>
 
 <h3 id="function-transform_from_chebyshev_range">function transform_from_chebyshev_range<a class="headerlink" href="#function-transform_from_chebyshev_range" title="Permanent link">&para;</a></h3>
 <p><em>Transform variable from the Chebyshev range of [-1, 1] to the range [lb, ub].</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">transform_from_chebyshev_range</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lb</span><span class="p">,</span>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ub</span>
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">transform_from_chebyshev_range</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lb</span><span class="p">,</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ub</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p>Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 186, Eq. 5.8.10</p>
 <p><strong>Parameters:</strong></p>
@@ -6742,11 +6746,11 @@ You're not viewing the latest version.
 
 <h3 id="function-transform_to_chebyshev_range">function transform_to_chebyshev_range<a class="headerlink" href="#function-transform_to_chebyshev_range" title="Permanent link">&para;</a></h3>
 <p><em>Transform variable from the range [lb, ub] to the Chebyshev range of [-1, 1].</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">transform_to_chebyshev_range</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lb</span><span class="p">,</span>
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ub</span>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">transform_to_chebyshev_range</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lb</span><span class="p">,</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">ub</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p>Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 186, Eq. 5.8.10</p>
 <p><strong>Parameters:</strong></p>

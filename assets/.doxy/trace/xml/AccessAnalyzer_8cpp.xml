@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="AccessAnalyzer_8cpp" kind="file" language="C++">
     <compoundname>AccessAnalyzer.cpp</compoundname>
     <includes refid="AccessAnalyzer_8hpp" local="no">trace/analysis/AccessAnalyzer.hpp</includes>
@@ -23,6 +23,48 @@
     <includes refid="Viewer_8hpp" local="no">trace/platforms/vehicles/Viewer.hpp</includes>
     <includes refid="typedefs_8hpp" local="no">trace/types/typedefs.hpp</includes>
     <incdepgraph>
+      <node id="42">
+        <label>astro/state/orbital_elements/instances/Cartesian.hpp</label>
+      </node>
+      <node id="26">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="52">
+        <label>astro/platforms/vehicles/Spacecraft.hpp</label>
+      </node>
+      <node id="30">
+        <label>functional</label>
+      </node>
+      <node id="6">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="32">
+        <label>numbers</label>
+      </node>
+      <node id="15">
+        <label>cstdint</label>
+      </node>
+      <node id="11">
+        <label>utilities/ProgressBar.hpp</label>
+      </node>
+      <node id="40">
+        <label>astro/state/State.hpp</label>
+      </node>
+      <node id="20">
+        <label>astro/types/typedefs.hpp</label>
+      </node>
+      <node id="37">
+        <label>mp-units/math.h</label>
+      </node>
+      <node id="49">
+        <label>trace/platforms/ground/GroundArchitecture.hpp</label>
+        <link refid="GroundArchitecture_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
       <node id="1">
         <label>astrea/trace/trace/analysis/AccessAnalyzer.cpp</label>
         <link refid="AccessAnalyzer_8cpp"/>
@@ -63,6 +105,259 @@
         <childnode refid="50" relation="include">
         </childnode>
         <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>astro/systems/CelestialBody.hpp</label>
+      </node>
+      <node id="45">
+        <label>trace/platforms/ground/Grid.hpp</label>
+        <link refid="Grid_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
+      </node>
+      <node id="25">
+        <label>string</label>
+      </node>
+      <node id="38">
+        <label>mp-units/systems/angular/math.h</label>
+      </node>
+      <node id="18">
+        <label>trace/platforms/sensors/Sensor.hpp</label>
+        <link refid="Sensor_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>trace/platforms/vehicles/Viewer.hpp</label>
+        <link refid="Viewer_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>unordered_set</label>
+      </node>
+      <node id="44">
+        <label>astro/utilities/conversions.hpp</label>
+      </node>
+      <node id="43">
+        <label>astro/systems/AstrodynamicsSystem.hpp</label>
+      </node>
+      <node id="23">
+        <label>trace/risesets/RiseSetArray.hpp</label>
+        <link refid="RiseSetArray_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>astro/state/StateHistory.hpp</label>
+      </node>
+      <node id="13">
+        <label>astro/state/angular_elements/angular_elements.hpp</label>
+      </node>
+      <node id="16">
+        <label>trace/analysis/SpatialIndex.hpp</label>
+        <link refid="SpatialIndex_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>astro/frames/dynamic_frames.hpp</label>
+      </node>
+      <node id="29">
+        <label>trace/types/IdPair.hpp</label>
+        <link refid="IdPair_8hpp_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
+        <link refid="FieldOfView_8hpp"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>astro/platforms/space/Constellation.hpp</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+      <node id="22">
+        <label>trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>array</label>
+      </node>
+      <node id="14">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>trace/platforms/ground/GroundStation.hpp</label>
+        <link refid="GroundStation_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>astro/frames/FrameReference.hpp</label>
+      </node>
+      <node id="33">
+        <label>unordered_map</label>
+      </node>
+      <node id="36">
+        <label>execution</label>
+      </node>
+      <node id="19">
+        <label>astro/platforms/Payload.hpp</label>
+      </node>
+      <node id="24">
+        <label>trace/risesets/riseset_utils.hpp</label>
+        <link refid="riseset__utils_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astro/frames/frames.hpp</label>
+      </node>
+      <node id="35">
+        <label>algorithm</label>
+      </node>
+      <node id="47">
+        <label>trace/platforms/ground/GroundPoint.hpp</label>
+        <link refid="GroundPoint_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>gtl/btree.hpp</label>
+      </node>
+      <node id="7">
+        <label>astro/frames/CartesianVector.hpp</label>
+      </node>
+      <node id="21">
+        <label>trace/platforms/AccessObject.hpp</label>
+        <link refid="AccessObject_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
         </childnode>
@@ -119,309 +414,14 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="16">
-        <label>trace/analysis/SpatialIndex.hpp</label>
-        <link refid="SpatialIndex_8hpp"/>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>trace/platforms/AccessObject.hpp</label>
-        <link refid="AccessObject_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="45">
-        <label>trace/platforms/ground/Grid.hpp</label>
-        <link refid="Grid_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="46" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="49">
-        <label>trace/platforms/ground/GroundArchitecture.hpp</label>
-        <link refid="GroundArchitecture_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-      </node>
-      <node id="47">
-        <label>trace/platforms/ground/GroundPoint.hpp</label>
-        <link refid="GroundPoint_8hpp"/>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="50">
-        <label>trace/platforms/ground/GroundStation.hpp</label>
-        <link refid="GroundStation_8hpp"/>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="46" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>trace/platforms/sensors/Sensor.hpp</label>
-        <link refid="Sensor_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-      </node>
-      <node id="31">
-        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
-        <link refid="FieldOfView_8hpp"/>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="33" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-      </node>
-      <node id="51">
-        <label>trace/platforms/vehicles/Viewer.hpp</label>
-        <link refid="Viewer_8hpp"/>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-        <childnode refid="40" relation="include">
-        </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="22">
-        <label>trace/risesets/AccessArray.hpp</label>
-        <link refid="AccessArray_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-      </node>
-      <node id="23">
-        <label>trace/risesets/RiseSetArray.hpp</label>
-        <link refid="RiseSetArray_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="24">
-        <label>trace/risesets/riseset_utils.hpp</label>
-        <link refid="riseset__utils_8hpp"/>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-      </node>
-      <node id="26">
-        <label>trace/trace.fwd.hpp</label>
-        <link refid="trace_8fwd_8hpp"/>
-      </node>
-      <node id="29">
-        <label>trace/types/IdPair.hpp</label>
-        <link refid="IdPair_8hpp_source"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-      </node>
-      <node id="27">
-        <label>trace/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>trace/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="35">
-        <label>algorithm</label>
-      </node>
-      <node id="28">
-        <label>array</label>
-      </node>
-      <node id="6">
-        <label>astro/astro.fwd.hpp</label>
-      </node>
-      <node id="7">
-        <label>astro/frames/CartesianVector.hpp</label>
-      </node>
-      <node id="48">
-        <label>astro/frames/FrameReference.hpp</label>
-      </node>
-      <node id="34">
-        <label>astro/frames/dynamic_frames.hpp</label>
-      </node>
-      <node id="8">
-        <label>astro/frames/frames.hpp</label>
-      </node>
-      <node id="19">
-        <label>astro/platforms/Payload.hpp</label>
-      </node>
-      <node id="39">
-        <label>astro/platforms/space/Constellation.hpp</label>
-      </node>
-      <node id="52">
-        <label>astro/platforms/vehicles/Spacecraft.hpp</label>
-      </node>
-      <node id="40">
-        <label>astro/state/State.hpp</label>
-      </node>
-      <node id="41">
-        <label>astro/state/StateHistory.hpp</label>
-      </node>
-      <node id="13">
-        <label>astro/state/angular_elements/angular_elements.hpp</label>
-      </node>
-      <node id="53">
-        <label>astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
-      </node>
-      <node id="42">
-        <label>astro/state/orbital_elements/instances/Cartesian.hpp</label>
-      </node>
-      <node id="43">
-        <label>astro/systems/AstrodynamicsSystem.hpp</label>
-      </node>
-      <node id="46">
-        <label>astro/systems/CelestialBody.hpp</label>
-      </node>
-      <node id="9">
-        <label>astro/time/Date.hpp</label>
-      </node>
-      <node id="20">
-        <label>astro/types/typedefs.hpp</label>
-      </node>
-      <node id="44">
-        <label>astro/utilities/conversions.hpp</label>
-      </node>
-      <node id="15">
-        <label>cstdint</label>
-      </node>
-      <node id="36">
-        <label>execution</label>
-      </node>
-      <node id="30">
-        <label>functional</label>
-      </node>
-      <node id="5">
-        <label>gtl/btree.hpp</label>
+      <node id="10">
+        <label>units/units.hpp</label>
       </node>
       <node id="3">
         <label>memory</label>
       </node>
-      <node id="37">
-        <label>mp-units/math.h</label>
-      </node>
-      <node id="38">
-        <label>mp-units/systems/angular/math.h</label>
-      </node>
-      <node id="32">
-        <label>numbers</label>
-      </node>
-      <node id="25">
-        <label>string</label>
-      </node>
-      <node id="10">
-        <label>units/units.hpp</label>
-      </node>
-      <node id="33">
-        <label>unordered_map</label>
-      </node>
-      <node id="17">
-        <label>unordered_set</label>
-      </node>
-      <node id="11">
-        <label>utilities/ProgressBar.hpp</label>
-      </node>
-      <node id="4">
-        <label>vector</label>
+      <node id="9">
+        <label>astro/time/Date.hpp</label>
       </node>
     </incdepgraph>
     <innerclass refid="structastrea_1_1trace_1_1AccessInfo" prot="public">astrea::trace::AccessInfo</innerclass>
@@ -476,24 +476,24 @@
 <codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">astro::frames;</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">astro::AstrodynamicsSystem;</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">astro::Cartesian;</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">astro::CelestialBodyId;</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">astro::Date;</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">astro::Keplerian;</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">astro::RadiusVector;</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">astro::State;</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">astro::StateHistory;</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">astro::VelocityVector;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>astro::AstrodynamicsSystem;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>astro::Cartesian;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>astro::CelestialBodyId;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>astro::Date;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>astro::Keplerian;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>astro::RadiusVector;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>astro::State;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>astro::StateHistory;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>astro::VelocityVector;</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units::angular;</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::unit_symbols::deg;</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::km;</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::s;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::angular::unit_symbols::deg;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::si::unit_symbols::km;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::si::unit_symbols::s;</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>
 <codeline lineno="61"><highlight class="normal"></highlight></codeline>
 <codeline lineno="62" refid="structastrea_1_1trace_1_1AccessInfo" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1trace_1_1AccessInfo" kindref="compound">AccessInfo</ref><sp/>{</highlight></codeline>
@@ -527,11 +527,11 @@
 <codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>plane<sp/>:<sp/>shell.get_planes())<sp/>{</highlight></codeline>
 <codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(Viewer&amp;<sp/>viewer<sp/>:<sp/>plane.get_all_spacecraft())<sp/>{</highlight></codeline>
 <codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>viewers.push_back(std::make_shared&lt;Viewer&gt;(viewer));</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>platformIdx<sp/>=<sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1abe1d8b646df4f366f6b4edd225a05ba7" kindref="member">add_platform</ref>(viewer.get_id(),<sp/>nTimesteps);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>platformIdx<sp/>=<sp/>_positionCache.add_platform(viewer.get_id(),<sp/>nTimesteps);</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/>iTime<sp/>=<sp/>0;<sp/>iTime<sp/>&lt;<sp/>nTimesteps;<sp/>++iTime)<sp/>{</highlight></codeline>
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>rEcef<sp/>=<sp/>viewer.get_inertial_position(_dates[iTime]).in_frame&lt;earth::earth_fixed&gt;(_dates[iTime]);</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1aa1972b5acbd2ec86d1c1e9ee45fc7b47" kindref="member">set_position</ref>(platformIdx,<sp/>iTime,<sp/>rEcef);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_positionCache.set_position(platformIdx,<sp/>iTime,<sp/>rEcef);</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
@@ -545,8 +545,8 @@
 <codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>groundStations.reserve(grounds.size());</highlight></codeline>
 <codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>ground<sp/>:<sp/>grounds)<sp/>{</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>groundStations.push_back(std::make_shared&lt;GroundStation&gt;(ground));</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>platformIdx<sp/>=<sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1abe1d8b646df4f366f6b4edd225a05ba7" kindref="member">add_platform</ref>(ground.get_id(),<sp/>1);</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1aa1972b5acbd2ec86d1c1e9ee45fc7b47" kindref="member">set_position</ref>(platformIdx,<sp/>0,<sp/>ground.get_position());</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>platformIdx<sp/>=<sp/>_positionCache.add_platform(ground.get_id(),<sp/>1);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_positionCache.set_position(platformIdx,<sp/>0,<sp/>ground.get_position());</highlight></codeline>
 <codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>groundStations;</highlight></codeline>
 <codeline lineno="115"><highlight class="normal">}</highlight></codeline>
@@ -558,8 +558,8 @@
 <codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/>gpIdx<sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>groundPoint<sp/>:<sp/>grid)<sp/>{</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>groundPoints.push_back(std::make_shared&lt;GroundPoint&gt;(groundPoint));</highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>platformIdx<sp/>=<sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1abe1d8b646df4f366f6b4edd225a05ba7" kindref="member">add_platform</ref>(groundPoint.get_id(),<sp/>1);</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1aa1972b5acbd2ec86d1c1e9ee45fc7b47" kindref="member">set_position</ref>(platformIdx,<sp/>0,<sp/>groundPoint.get_position());</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>platformIdx<sp/>=<sp/>_positionCache.add_platform(groundPoint.get_id(),<sp/>1);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_positionCache.set_position(platformIdx,<sp/>0,<sp/>groundPoint.get_position());</highlight></codeline>
 <codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gpIdx++;</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>groundPoints;</highlight></codeline>
@@ -590,14 +590,14 @@
 <codeline lineno="153"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="154"><highlight class="normal"></highlight></codeline>
 <codeline lineno="155"><highlight class="normal"></highlight></codeline>
-<codeline lineno="156"><highlight class="normal">AccessArray<sp/><ref refid="classastrea_1_1trace_1_1AccessAnalyzer_1a1d82f21723ea141888b98a47ac2fc8ad" kindref="member">AccessAnalyzer::find_internal_accesses</ref>(ViewerConstellation&amp;<sp/>constel,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>clearPositionCache)</highlight></codeline>
+<codeline lineno="156"><highlight class="normal">AccessArray<sp/>AccessAnalyzer::find_internal_accesses(ViewerConstellation&amp;<sp/>constel,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>clearPositionCache)</highlight></codeline>
 <codeline lineno="157"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nViewers<sp/>=<sp/>constel.<ref refid="classastrea_1_1trace_1_1AccessArray_1a5144597232ad2ac6b7a4231ad1b51638" kindref="member">size</ref>();</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nViewers<sp/>=<sp/>constel.size();</highlight></codeline>
 <codeline lineno="159"><highlight class="normal"></highlight></codeline>
 <codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Build<sp/>position<sp/>cache</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(clearPositionCache)<sp/>{</highlight></codeline>
-<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1a1c486f25e2bd5826ed718d5291eff3ee" kindref="member">clear</ref>();</highlight></codeline>
-<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1aac84acc695f9b76faa648c498a4fb438" kindref="member">reserve</ref>(nViewers);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_positionCache.clear();</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_positionCache.reserve(nViewers);</highlight></codeline>
 <codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>ViewerRefVec<sp/>viewers<sp/>=<sp/>cache_viewers(constel);</highlight></codeline>
 <codeline lineno="166"><highlight class="normal"></highlight></codeline>
@@ -632,14 +632,14 @@
 <codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>allAccesses;</highlight></codeline>
 <codeline lineno="196"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="197"><highlight class="normal"></highlight></codeline>
-<codeline lineno="198"><highlight class="normal">AccessArray<sp/><ref refid="classastrea_1_1trace_1_1AccessAnalyzer_1a90f1f517287816fc208fd0e755c517a4" kindref="member">AccessAnalyzer::find_accesses</ref>(ViewerConstellation&amp;<sp/>constel,<sp/>GroundArchitecture&amp;<sp/>grounds,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>includeInternalAccesses)</highlight></codeline>
+<codeline lineno="198"><highlight class="normal">AccessArray<sp/>AccessAnalyzer::find_accesses(ViewerConstellation&amp;<sp/>constel,<sp/>GroundArchitecture&amp;<sp/>grounds,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>includeInternalAccesses)</highlight></codeline>
 <codeline lineno="199"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nViewers<sp/>=<sp/>constel.<ref refid="classastrea_1_1trace_1_1AccessArray_1a5144597232ad2ac6b7a4231ad1b51638" kindref="member">size</ref>();</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nViewers<sp/>=<sp/>constel.size();</highlight></codeline>
 <codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nGrounds<sp/>=<sp/>grounds.size();</highlight></codeline>
 <codeline lineno="202"><highlight class="normal"></highlight></codeline>
 <codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Build<sp/>position<sp/>cache</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1a1c486f25e2bd5826ed718d5291eff3ee" kindref="member">clear</ref>();</highlight></codeline>
-<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1aac84acc695f9b76faa648c498a4fb438" kindref="member">reserve</ref>(nViewers<sp/>+<sp/>nGrounds);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>_positionCache.clear();</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>_positionCache.reserve(nViewers<sp/>+<sp/>nGrounds);</highlight></codeline>
 <codeline lineno="206"><highlight class="normal"></highlight></codeline>
 <codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>ViewerRefVec<sp/>viewers<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>cache_viewers(constel);</highlight></codeline>
 <codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>GroundStationRefVec<sp/>groundStations<sp/>=<sp/>cache_ground_points(grounds);</highlight></codeline>
@@ -648,7 +648,7 @@
 <codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>validPairs<sp/>=<sp/>filter_impossible_pairs(viewers,<sp/>groundStations);</highlight></codeline>
 <codeline lineno="212"><highlight class="normal"></highlight></codeline>
 <codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Internal<sp/>accesses<sp/>if<sp/>requested</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>AccessArray<sp/>allAccesses<sp/>=<sp/>includeInternalAccesses<sp/>?<sp/><ref refid="classastrea_1_1trace_1_1AccessAnalyzer_1a1d82f21723ea141888b98a47ac2fc8ad" kindref="member">find_internal_accesses</ref>(constel,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>:<sp/>AccessArray();</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>AccessArray<sp/>allAccesses<sp/>=<sp/>includeInternalAccesses<sp/>?<sp/>find_internal_accesses(constel,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>:<sp/>AccessArray();</highlight></codeline>
 <codeline lineno="215"><highlight class="normal"></highlight></codeline>
 <codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_printProgress)<sp/>{<sp/>std::cout<sp/>&lt;&lt;<sp/>std::endl;<sp/>}</highlight></codeline>
 <codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>utilities::ProgressBar<sp/>progressBar(validPairs.size(),<sp/></highlight><highlight class="stringliteral">&quot;\tSat-&gt;Ground<sp/>Arch<sp/>Access&quot;</highlight><highlight class="normal">);</highlight></codeline>
@@ -678,14 +678,14 @@
 <codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>allAccesses;</highlight></codeline>
 <codeline lineno="242"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="243"><highlight class="normal"></highlight></codeline>
-<codeline lineno="244"><highlight class="normal">AccessArray<sp/><ref refid="classastrea_1_1trace_1_1AccessAnalyzer_1a90f1f517287816fc208fd0e755c517a4" kindref="member">AccessAnalyzer::find_accesses</ref>(ViewerConstellation&amp;<sp/>constel,<sp/>Grid&amp;<sp/>grid,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>includeInternalAccesses)</highlight></codeline>
+<codeline lineno="244"><highlight class="normal">AccessArray<sp/>AccessAnalyzer::find_accesses(ViewerConstellation&amp;<sp/>constel,<sp/>Grid&amp;<sp/>grid,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>includeInternalAccesses)</highlight></codeline>
 <codeline lineno="245"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nViewers<sp/>=<sp/>constel.<ref refid="classastrea_1_1trace_1_1AccessArray_1a5144597232ad2ac6b7a4231ad1b51638" kindref="member">size</ref>();</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nViewers<sp/>=<sp/>constel.size();</highlight></codeline>
 <codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nGrounds<sp/>=<sp/>grid.size();</highlight></codeline>
 <codeline lineno="248"><highlight class="normal"></highlight></codeline>
 <codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Build<sp/>spatial<sp/>index<sp/>and<sp/>position<sp/>cache</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1a1c486f25e2bd5826ed718d5291eff3ee" kindref="member">clear</ref>();</highlight></codeline>
-<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1aac84acc695f9b76faa648c498a4fb438" kindref="member">reserve</ref>(nViewers<sp/>+<sp/>nGrounds);</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>_positionCache.clear();</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>_positionCache.reserve(nViewers<sp/>+<sp/>nGrounds);</highlight></codeline>
 <codeline lineno="252"><highlight class="normal"></highlight></codeline>
 <codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>ViewerRefVec<sp/>viewers<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>cache_viewers(constel);</highlight></codeline>
 <codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>GroundPointRefVec<sp/>groundPoints<sp/>=<sp/>cache_ground_points(grid);</highlight></codeline>
@@ -694,7 +694,7 @@
 <codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>validPairs<sp/>=<sp/>filter_impossible_pairs(viewers,<sp/>groundPoints);</highlight></codeline>
 <codeline lineno="258"><highlight class="normal"></highlight></codeline>
 <codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Internal<sp/>accesses<sp/>if<sp/>requested</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>AccessArray<sp/>allAccesses<sp/>=<sp/>includeInternalAccesses<sp/>?<sp/><ref refid="classastrea_1_1trace_1_1AccessAnalyzer_1a1d82f21723ea141888b98a47ac2fc8ad" kindref="member">find_internal_accesses</ref>(constel,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>:<sp/>AccessArray();</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>AccessArray<sp/>allAccesses<sp/>=<sp/>includeInternalAccesses<sp/>?<sp/>find_internal_accesses(constel,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)<sp/>:<sp/>AccessArray();</highlight></codeline>
 <codeline lineno="261"><highlight class="normal"></highlight></codeline>
 <codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_printProgress)<sp/>{<sp/>std::cout<sp/>&lt;&lt;<sp/>std::endl;<sp/>}</highlight></codeline>
 <codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>utilities::ProgressBar<sp/>progressBar(validPairs.size(),<sp/></highlight><highlight class="stringliteral">&quot;\tSat-&gt;Grid<sp/>Access&quot;</highlight><highlight class="normal">);</highlight></codeline>
@@ -724,8 +724,8 @@
 <codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;AccessInfo&gt;<sp/>accessInfo;</highlight></codeline>
 <codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>accessInfo.reserve(_dates.size());</highlight></codeline>
 <codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/>ii<sp/>=<sp/>0;<sp/>ii<sp/>&lt;<sp/>_dates.size();<sp/>++ii)<sp/>{</highlight></codeline>
-<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>pos1<sp/>=<sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1ae2694ea5f8b92cd7fb625cc20b26317e" kindref="member">get_position_by_id</ref>(id1,<sp/>ii);</highlight></codeline>
-<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>pos2<sp/>=<sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1ae2694ea5f8b92cd7fb625cc20b26317e" kindref="member">get_position_by_id</ref>(id2,<sp/>ii);</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>pos1<sp/>=<sp/>_positionCache.get_position_by_id(id1,<sp/>ii);</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>pos2<sp/>=<sp/>_positionCache.get_position_by_id(id2,<sp/>ii);</highlight></codeline>
 <codeline lineno="292"><highlight class="normal"></highlight></codeline>
 <codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AccessInfo<sp/>info;</highlight></codeline>
 <codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>info.time<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>_dates[ii]<sp/>-<sp/>_startDate;</highlight></codeline>
@@ -859,7 +859,7 @@
 <codeline lineno="422"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>in<sp/>case<sp/>a<sp/>ground<sp/>point<sp/>with<sp/>only<sp/>one<sp/>position<sp/>is<sp/>compared<sp/>to<sp/>a<sp/>viewer<sp/>with<sp/>many<sp/>positions</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="424"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/>ii<sp/>=<sp/>0;<sp/>ii<sp/>&lt;<sp/>_dates.size();<sp/>++ii)<sp/>{</highlight></codeline>
-<codeline lineno="425"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!is_central_body_occulting(_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1ae2694ea5f8b92cd7fb625cc20b26317e" kindref="member">get_position_by_id</ref>(id1,<sp/>ii),<sp/>_positionCache.<ref refid="classastrea_1_1trace_1_1PositionCache_1ae2694ea5f8b92cd7fb625cc20b26317e" kindref="member">get_position_by_id</ref>(id2,<sp/>ii),<sp/>atmosphereBlocks))<sp/>{</highlight></codeline>
+<codeline lineno="425"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!is_central_body_occulting(_positionCache.get_position_by_id(id1,<sp/>ii),<sp/>_positionCache.get_position_by_id(id2,<sp/>ii),<sp/>atmosphereBlocks))<sp/>{</highlight></codeline>
 <codeline lineno="426"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="427"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="428"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>

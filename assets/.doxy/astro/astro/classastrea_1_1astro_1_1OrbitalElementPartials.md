@@ -56,11 +56,11 @@ _Class representing partial derivatives of orbital elements._ [More...](#detaile
 |   | [**OrbitalElementPartials**](#function-orbitalelementpartials-24) ([**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md) elements) <br>_Constructor initializing with_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _elements._ |
 |   | [**OrbitalElementPartials**](#function-orbitalelementpartials-34) ([**KeplerianPartial**](classastrea_1_1astro_1_1KeplerianPartial.md) elements) <br>_Constructor initializing with_ [_**KeplerianPartial**_](classastrea_1_1astro_1_1KeplerianPartial.md) _elements._ |
 |   | [**OrbitalElementPartials**](#function-orbitalelementpartials-44) ([**EquinoctialPartial**](classastrea_1_1astro_1_1EquinoctialPartial.md) elements) <br>_Constructor initializing with_ [_**EquinoctialPartial**_](classastrea_1_1astro_1_1EquinoctialPartial.md) _elements._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) PartialVariant & | [**extract**](#function-extract-12) () const<br>_Extracts the underlying orbital element partials as a variant._  |
+|  const PartialVariant & | [**extract**](#function-extract-12) () const<br>_Extracts the underlying orbital element partials as a variant._  |
 |  PartialVariant & | [**extract**](#function-extract-22) () <br>_Extracts the underlying orbital element partials as a variant._  |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**OrbitalElementPartials**_](classastrea_1_1astro_1_1OrbitalElementPartials.md) _to a vector of Unitless values._ |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t | [**index**](#function-index) () const<br>_Returns the index of the current orbital element partials in the variant._  |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & time) const<br>_Converts the current orbital element partials to a specific type._  |
+|  std::vector&lt; Unitless &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**OrbitalElementPartials**_](classastrea_1_1astro_1_1OrbitalElementPartials.md) _to a vector of Unitless values._ |
+|  constexpr std::size\_t | [**index**](#function-index) () const<br>_Returns the index of the current orbital element partials in the variant._  |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**operator\***](#function-operator) (const Time & time) const<br>_Converts the current orbital element partials to a specific type._  |
 
 
 
@@ -301,7 +301,7 @@ std::size\_t The index of the current orbital element partials in the variant.
 _Converts the current orbital element partials to a specific type._ 
 ```C++
 OrbitalElements astrea::astro::OrbitalElementPartials::operator* (
-    const  Time & time
+    const Time & time
 ) const
 ```
 

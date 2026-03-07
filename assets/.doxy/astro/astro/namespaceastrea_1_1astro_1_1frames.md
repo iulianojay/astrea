@@ -95,9 +95,10 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1CartesianVector.md), [**Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**get\_center\_offset**](#function-get_center_offset) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the center offset between two frames at a given date._  |
-|  [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1CartesianVector.md), [**Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**get\_center\_offset**](#function-get_center_offset) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Get the center offset between two frames at a given date._  |
-|  [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**Frame\_U**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**rotate\_vector\_into\_frame**](#function-rotate_vector_into_frame) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; & vec, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Rotate a vector from one frame to another at a given date using the Direction Cosine Matrix (DCM)._  |
+|  Frame\_T | [**get\_center\_offset**](#function-get_center_offset) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br> |
+|   | [**requires**](#function-requires) (HasSameOrigin&lt; Frame\_T, Frame\_U &gt;) <br>_Get the center offset between two frames at a given date._  |
+|   | [**requires**](#function-requires) (!HasSameOrigin&lt; Frame\_T, Frame\_U &gt; &&HasSameAxis&lt; Frame\_T, Frame\_U &gt;) <br>_Get the center offset between two frames at a given date._  |
+|  [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, Frame\_U &gt; | [**rotate\_vector\_into\_frame**](#function-rotate_vector_into_frame) (const [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, Frame\_T &gt; & vec, const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Rotate a vector from one frame to another at a given date using the Direction Cosine Matrix (DCM)._  |
 
 
 
@@ -133,11 +134,26 @@
 
 ### function get\_center\_offset 
 
+```C++
+Frame_T astrea::astro::frames::get_center_offset (
+    const Date & date
+) 
+```
+
+
+
+
+<hr>
+
+
+
+### function requires 
+
 _Get the center offset between two frames at a given date._ 
 ```C++
 template<typename Frame_T, typename Frame_U>
-CartesianVector < Distance , Frame_T > astrea::astro::frames::get_center_offset (
-    const  Date & date
+astrea::astro::frames::requires (
+    HasSameOrigin< Frame_T, Frame_U >
 ) 
 ```
 
@@ -177,13 +193,13 @@ CartesianVector&lt;Distance, Frame\_T&gt; The offset vector from Frame\_T to Fra
 
 
 
-### function get\_center\_offset 
+### function requires 
 
 _Get the center offset between two frames at a given date._ 
 ```C++
 template<typename Frame_T, typename Frame_U>
-CartesianVector < Distance , Frame_T > astrea::astro::frames::get_center_offset (
-    const  Date & date
+astrea::astro::frames::requires (
+    !HasSameOrigin< Frame_T, Frame_U > &&HasSameAxis< Frame_T, Frame_U >
 ) 
 ```
 
@@ -228,9 +244,9 @@ CartesianVector&lt;Distance, Frame\_T&gt; The offset vector from Frame\_T to Fra
 _Rotate a vector from one frame to another at a given date using the Direction Cosine Matrix (DCM)._ 
 ```C++
 template<typename Value_T, typename Frame_T, typename Frame_U>
-CartesianVector < Value_T , Frame_U > astrea::astro::frames::rotate_vector_into_frame (
-    const  CartesianVector < Value_T , Frame_T > & vec,
-    const  Date & date
+CartesianVector < Value_T, Frame_U > astrea::astro::frames::rotate_vector_into_frame (
+    const CartesianVector < Value_T, Frame_T > & vec,
+    const Date & date
 ) 
 ```
 

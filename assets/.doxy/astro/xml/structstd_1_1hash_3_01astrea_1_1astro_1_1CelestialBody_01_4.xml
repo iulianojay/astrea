@@ -1,17 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="structstd_1_1hash_3_01astrea_1_1astro_1_1CelestialBody_01_4" kind="struct" language="C++" prot="public">
     <compoundname>std::hash&lt; astrea::astro::CelestialBody &gt;</compoundname>
     <includes refid="CelestialBody_8hpp" local="no">CelestialBody.hpp</includes>
     <templateparamlist>
     </templateparamlist>
-    <sectiondef kind="public-func">
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="structstd_1_1hash_3_01astrea_1_1astro_1_1CelestialBody_01_4_1aa72641bef5ff2446d290e4add803fb9f" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>std::size_t</type>
         <definition>std::size_t std::hash&lt; astrea::astro::CelestialBody &gt;::operator()</definition>
         <argsstring>(astrea::astro::CelestialBody const &amp;body) const noexcept</argsstring>
         <name>operator()</name>
-        <qualifiedname>std::hash&lt; astrea::astro::CelestialBody &gt;::operator()</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">astrea::astro::CelestialBody</ref> const &amp;</type>
           <declname>body</declname>
@@ -37,7 +36,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="495" column="17" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="495" bodyend="521"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Hash function for CelestialBody. </para>
     </briefdescription>

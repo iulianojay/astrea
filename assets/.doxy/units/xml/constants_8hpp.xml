@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="constants_8hpp" kind="file" language="C++">
     <compoundname>constants.hpp</compoundname>
     <includes local="no">mp-units/systems/angular.h</includes>
@@ -8,6 +8,29 @@
     <includes refid="typedefs_8hpp" local="no">units/typedefs.hpp</includes>
     <includedby refid="units_8hpp" local="no">astrea/units/units/units.hpp</includedby>
     <incdepgraph>
+      <node id="3">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="9">
+        <label>stdint.h</label>
+      </node>
+      <node id="6">
+        <label>mp-units/systems/iau.h</label>
+      </node>
+      <node id="8">
+        <label>units/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
       <node id="1">
         <label>astrea/units/units/constants.hpp</label>
         <link refid="constants_8hpp"/>
@@ -19,6 +42,15 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
+      </node>
+      <node id="2">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="10">
+        <label>mp-units/ext/format.h</label>
+      </node>
+      <node id="5">
+        <label>array</label>
       </node>
       <node id="11">
         <label>units/custom.hpp</label>
@@ -46,52 +78,20 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>units/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>array</label>
-      </node>
-      <node id="10">
-        <label>mp-units/ext/format.h</label>
-      </node>
-      <node id="2">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="6">
-        <label>mp-units/systems/iau.h</label>
-      </node>
       <node id="7">
         <label>mp-units/systems/isq_angle.h</label>
       </node>
-      <node id="3">
-        <label>mp-units/systems/si.h</label>
-      </node>
-      <node id="9">
-        <label>stdint.h</label>
-      </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="2">
+        <label>astrea/units/units/units.hpp</label>
+        <link refid="units_8hpp"/>
+      </node>
       <node id="1">
         <label>astrea/units/units/constants.hpp</label>
         <link refid="constants_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-      </node>
-      <node id="2">
-        <label>astrea/units/units/units.hpp</label>
-        <link refid="units_8hpp"/>
       </node>
     </invincdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
@@ -120,18 +120,18 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a2ea1a91b86e77b6b1e422452f9d77e3f" kindref="member">Velocity</ref><sp/>speed_of_light_in_vacuum<sp/>=<sp/>1.0<sp/>*<sp/>mp_units::si::si2019::speed_of_light_in_vacuum;</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>boltzmann_constant<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1.0<sp/>*<sp/>mp_units::si::si2019::boltzmann_constant;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">constexpr<sp/><ref refid="typedefs_8hpp_1a2ea1a91b86e77b6b1e422452f9d77e3f" kindref="member">Velocity</ref><sp/>speed_of_light_in_vacuum<sp/>=<sp/>1.0<sp/>*<sp/>mp_units::si::si2019::speed_of_light_in_vacuum;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">constexpr<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>boltzmann_constant<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1.0<sp/>*<sp/>mp_units::si::si2019::boltzmann_constant;</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" kindref="member">Angle</ref><sp/>PI<sp/><sp/><sp/><sp/><sp/>=<sp/>1.0<sp/>*<sp/>(mp_units::mag&lt;mp_units::pi&gt;<sp/>*<sp/>detail::angle_unit);</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" kindref="member">Angle</ref><sp/>TWO_PI<sp/>=<sp/>2.0<sp/>*<sp/>(mp_units::mag&lt;mp_units::pi&gt;<sp/>*<sp/>detail::angle_unit);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">constexpr<sp/><ref refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" kindref="member">Angle</ref><sp/>PI<sp/><sp/><sp/><sp/><sp/>=<sp/>1.0<sp/>*<sp/>(mp_units::mag&lt;mp_units::pi&gt;<sp/>*<sp/>detail::angle_unit);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">constexpr<sp/><ref refid="typedefs_8hpp_1a0dec00c0cf893869d7348b3072f8f740" kindref="member">Angle</ref><sp/>TWO_PI<sp/>=<sp/>2.0<sp/>*<sp/>(mp_units::mag&lt;mp_units::pi&gt;<sp/>*<sp/>detail::angle_unit);</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;mp_units::mag&lt;mp_units::pi&gt;<sp/>*<sp/>detail::angle_unit&gt;<sp/>n_pi(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>mag)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">constexpr<sp/>mp_units::quantity&lt;mp_units::mag&lt;mp_units::pi&gt;<sp/>*<sp/>detail::angle_unit&gt;<sp/>n_pi(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>mag)</highlight></codeline>
 <codeline lineno="36"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mag<sp/>*<sp/>(mp_units::mag&lt;mp_units::pi&gt;<sp/>*<sp/>detail::angle_unit);</highlight></codeline>
 <codeline lineno="38"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>mp_units::quantity&lt;detail::unitless&gt;<sp/>n_pi_mag(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>mag)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">constexpr<sp/>mp_units::quantity&lt;detail::unitless&gt;<sp/>n_pi_mag(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>mag)</highlight></codeline>
 <codeline lineno="41"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mag<sp/>*<sp/>(mp_units::mag&lt;mp_units::pi&gt;<sp/>*<sp/>detail::unitless);</highlight></codeline>
 <codeline lineno="43"><highlight class="normal">}</highlight></codeline>

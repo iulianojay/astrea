@@ -6281,13 +6281,14 @@ You're not viewing the latest version.
 
 
 <h1 id="class-astreaastropayloadplatform">Class astrea::astro::PayloadPlatform<a class="headerlink" href="#class-astreaastropayloadplatform" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>class</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Payload_T</strong></a>&gt;</strong></p>
+<p><strong>template &lt;class Payload_T&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="./"><strong>PayloadPlatform</strong></a></p>
 <p><em>The</em> <a href="./"><em><strong>PayloadPlatform</strong></em></a> <em>class represents a platform that can have payloads attached to it. It provides methods to attach payloads and retrieve the list of attached payloads.</em></p>
 <ul>
 <li><code>#include &lt;PayloadPlatform.hpp&gt;</code></li>
 </ul>
 <p>Inherits the following classes: <a href="../classastrea_1_1astro_1_1FrameReference/">astrea::astro::FrameReference</a></p>
+<p>Inherited by the following classes: <a href="../classastrea_1_1astro_1_1Spacecraft/">astrea::astro::Spacecraft</a></p>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -6298,27 +6299,27 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-attach_payload"><strong>attach_payload</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> PayloadParameters_T &amp; parameters) <br><em>Attaches a single payload to the platform.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-attach_payload"><strong>attach_payload</strong></a> (const PayloadParameters_T &amp; parameters) <br><em>Attaches a single payload to the platform.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-attach_payloads"><strong>attach_payloads</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> std::vector&lt; PayloadParameters_T &gt; &amp; parameterPack) <br><em>Attaches multiple payloads to the platform.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-attach_payloads"><strong>attach_payloads</strong></a> (const std::vector&lt; PayloadParameters_T &gt; &amp; parameterPack) <br><em>Attaches multiple payloads to the platform.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual std::size_t</td>
 <td style="text-align: left;"><a href="#function-get_id"><strong>get_id</strong></a> () const = 0<br><em>Get the ID of the payload.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Mass</strong></a></td>
+<td style="text-align: right;">virtual Mass</td>
 <td style="text-align: left;"><a href="#function-get_mass"><strong>get_mass</strong></a> () const<br><em>Get the mass of the platform.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::vector&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Payload_T</strong></a> &gt; &amp;</td>
+<td style="text-align: right;">std::vector&lt; Payload_T &gt; &amp;</td>
 <td style="text-align: left;"><a href="#function-get_payloads-12"><strong>get_payloads</strong></a> () <br><em>Retrieves the list of payloads attached to the platform.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> std::vector&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Payload_T</strong></a> &gt; &amp;</td>
+<td style="text-align: right;">const std::vector&lt; Payload_T &gt; &amp;</td>
 <td style="text-align: left;"><a href="#function-get_payloads-22"><strong>get_payloads</strong></a> () const<br><em>Retrieves the list of payloads attached to the platform (const version).</em></td>
 </tr>
 </tbody>
@@ -6338,16 +6339,16 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="../classastrea_1_1astro_1_1FrameReference/#function-framereference"><strong>FrameReference</strong></a> () = default<br><em>Default constructor for</em> <a href="../classastrea_1_1astro_1_1FrameReference/"><em><strong>FrameReference</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Acceleration</strong></a>, <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1FrameReference/#function-get_inertial_acceleration"><strong>get_inertial_acceleration</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Get the acceleration of the frame in Earth-Centered Inertial coordinates.</em></td>
+<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; Acceleration, frames::earth::icrf &gt;</td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1FrameReference/#function-get_inertial_acceleration"><strong>get_inertial_acceleration</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Get the acceleration of the frame in Earth-Centered Inertial coordinates.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Distance</strong></a>, <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1FrameReference/#function-get_inertial_position"><strong>get_inertial_position</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const = 0<br><em>Get the position of the frame in Earth-Centered Inertial coordinates.</em></td>
+<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; Distance, frames::earth::icrf &gt;</td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1FrameReference/#function-get_inertial_position"><strong>get_inertial_position</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const = 0<br><em>Get the position of the frame in Earth-Centered Inertial coordinates.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Velocity</strong></a>, <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1FrameReference/#function-get_inertial_velocity"><strong>get_inertial_velocity</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const = 0<br><em>Get the velocity of the frame in Earth-Centered Inertial coordinates.</em></td>
+<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; Velocity, frames::earth::icrf &gt;</td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1FrameReference/#function-get_inertial_velocity"><strong>get_inertial_velocity</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const = 0<br><em>Get the velocity of the frame in Earth-Centered Inertial coordinates.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual std::string</td>
@@ -6369,7 +6370,7 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">std::vector&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Payload_T</strong></a> &gt;</td>
+<td style="text-align: right;">std::vector&lt; Payload_T &gt;</td>
 <td style="text-align: left;"><a href="#variable-_payloads"><strong>_payloads</strong></a>  <br></td>
 </tr>
 </tbody>
@@ -6389,7 +6390,7 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-payloadplatform-23"><strong>PayloadPlatform</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="./"><strong>PayloadPlatform</strong></a> &amp; other) <br><em>Copy constructor for</em> <a href="./"><em><strong>PayloadPlatform</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-payloadplatform-23"><strong>PayloadPlatform</strong></a> (const <a href="./"><strong>PayloadPlatform</strong></a> &amp; other) <br><em>Copy constructor for</em> <a href="./"><em><strong>PayloadPlatform</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -6397,14 +6398,14 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>PayloadPlatform</strong></a> &amp;</td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator=</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="./"><strong>PayloadPlatform</strong></a> &amp; other) <br><em>Copy assignment operator for</em> <a href="./"><em><strong>PayloadPlatform</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator=</strong></a> (const <a href="./"><strong>PayloadPlatform</strong></a> &amp; other) <br><em>Copy assignment operator for</em> <a href="./"><em><strong>PayloadPlatform</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="./"><strong>PayloadPlatform</strong></a> &amp;</td>
 <td style="text-align: left;"><a href="#function-operator_1"><strong>operator=</strong></a> (<a href="./"><strong>PayloadPlatform</strong></a> &amp;&amp; other) noexcept<br><em>Move assignment operator for</em> <a href="./"><em><strong>PayloadPlatform</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
+<td style="text-align: right;">void</td>
 <td style="text-align: left;"><a href="#function-reset_payload_parentage"><strong>reset_payload_parentage</strong></a> () <br><em>Resets the parentage of all payloads attached to the platform to this.</em></td>
 </tr>
 <tr>
@@ -6484,7 +6485,7 @@ You're not viewing the latest version.
 <h3 id="function-payloadplatform-23">function PayloadPlatform [2/3]<a class="headerlink" href="#function-payloadplatform-23" title="Permanent link">&para;</a></h3>
 <p><em>Copy constructor for</em> <a href="./"><em><strong>PayloadPlatform</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">PayloadPlatform</span><span class="o">::</span><span class="n">PayloadPlatform</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">PayloadPlatform</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">PayloadPlatform</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6508,7 +6509,7 @@ You're not viewing the latest version.
 <h3 id="function-operator">function operator=<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Copy assignment operator for</em> <a href="./"><em><strong>PayloadPlatform</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">PayloadPlatform</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">PayloadPlatform</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">PayloadPlatform</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">PayloadPlatform</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>

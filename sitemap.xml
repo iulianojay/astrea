@@ -2,3614 +2,3602 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://iulianojay.github.io/astrea/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/release_notes/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/design/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/design/architecture/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/design/extensibility/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/design/performance/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/design/testing/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/design/type_system/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/design/nasa_6dof_report/nasa_6dof_report/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/advanced/platforms_and_payloads/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/fundamentals/astrodynamic_systems/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/fundamentals/state_representations/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/fundamentals/strongly_typed_frames/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/fundamentals/strongly_typed_units/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/fundamentals/time_systems/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/fundamentals/frames/cartesian_vectors/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/fundamentals/frames/frame_transformations/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/fundamentals/frames/strongly_typed_frames/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/fundamentals/propagation/equations_of_motion/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/fundamentals/propagation/events/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/fundamentals/propagation/force_models/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/fundamentals/propagation/lambert_solutions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/fundamentals/propagation/numerical_integration/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/examples/fundamentals/propagation/vehicles/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/getting_started/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/getting_started/about/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/getting_started/contributing/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/getting_started/installation_and_usage/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/getting_started/introduction/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/getting_started/project_structure/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/annotated/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/files/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1AstrodynamicsSystem/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1AtmosphericForce/</loc>
-         <lastmod>2026-03-06</lastmod>
-    </url>
-    <url>
-         <loc>https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1BodyFixedFrame/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Cartesian/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1CartesianPartial/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1CartesianVector/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1CelestialBody/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1CelestialBodyParameters/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Constellation/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Constellation_1_1sat__iterator/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1CowellsMethod/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Cylindrical/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1DOP45/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1DOP78/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Date/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1DirectionCosineMatrix/</loc>
-         <lastmod>2026-03-06</lastmod>
-    </url>
-    <url>
-         <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1DynamicFrame/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1EquationsOfMotion/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Equinoctial/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1EquinoctialPartial/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1EquinoctialVop/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Event/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1EventDetector/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Force/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1ForceModel/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1Frame/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1FrameReference/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1GeneralPerturbations/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Geocentric/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Geodetic/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1ImpulsiveBurn/</loc>
-         <lastmod>2026-03-06</lastmod>
-    </url>
-    <url>
-         <loc>https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1InertialFrame/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Integrator/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Interval/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1J2MeanVop/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1JplEphemerisTable/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1JulianDateClock/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Keplerian/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1KeplerianPartial/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1KeplerianVop/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1LambertSolver/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1LegendreCache/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1NBodyForce/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1NullEvent/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1NullVehicle/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1OblatenessForce/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1OrbitalElementPartials/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1OrbitalElements/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Payload/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1PayloadParameters/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1PayloadPlatform/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Plane/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1RK45/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1RKF45/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1RKF78/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Shell/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Shell_1_1sat__iterator/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1SolarRadiationPressure/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Spacecraft/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Spherical/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1State/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1StateHistory/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1StatePartial/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1StateTransitionMatrix/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Thruster/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1ThrusterParameters/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1TwoBody/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1TwoLineElements/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1Vehicle/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1detail/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1detail_1_1EventInner/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1detail_1_1EventInnerBase/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1detail_1_1VehicleInner/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1frames_1_1EastNorthUp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1callisto/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1deimos/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1dynamic/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1earth/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1earth__barycenter/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1europa/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1ganymede/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1iapetus/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1io/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1jupiter/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1jupiter__barycenter/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1mars/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1mars__barycenter/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1mercury/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1mercury__barycenter/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1moon/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1neptune/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1neptune__barycenter/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1oberon/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1phobos/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1rhea/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1saturn/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1saturn__barycenter/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1solar__system__barycenter/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1sun/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1titan/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1titania/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1triton/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1uranus/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1uranus__barycenter/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1venus/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1venus__barycenter/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1is__specialization/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1is__specialization_3_01Template_3_01Args_8_8_8_01_4_00_01Template_01_4/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1planetary__bodies/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Callisto/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Deimos/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Earth/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Europa/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Ganymede/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Iapetus/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Io/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Jupiter/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Mars/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Mercury/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Moon/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Neptune/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Oberon/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Phobos/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Rhea/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Saturn/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Sun/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Titan/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Titania/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Triton/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Uranus/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classastrea_1_1astro_1_1planetary__bodies_1_1Venus/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1plotting/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structastrea_1_1astro_1_1EventDetector_1_1EventTracker/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1frames_1_1_0d17/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaceastrea_1_1astro_1_1plotting_1_1_0d151/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespacematplot/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespacemp__units/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespacemp__units_1_1angular/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespacemp__units_1_1non__si/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespacemp__units_1_1si/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespacemp__units_1_1si_1_1unit__symbols/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespacestd/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structstd_1_1hash_3_01astrea_1_1astro_1_1CelestialBody_01_4/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespacestd_1_1_0d145/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_b5324400686b7cece921533bb760c87a/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_1d4dcf10fc541574a93624f5c09a3d6f/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_84db6e3c60e44147f5214c05dc45afc2/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_45ba6462728f0c3fdeb841915d341ea3/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/CartesianVector_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/CartesianVector_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Frame_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Frame_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/FrameReference_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/FrameReference_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/FrameReference_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/FrameReference_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_a85615e9ad779999123e94bfb15c8545/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/EastNorthUp_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/EastNorthUp_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/LocalHorizontalLocalVertical_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/LocalHorizontalLocalVertical_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/RadialInTrackCrossTrack_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/RadialInTrackCrossTrack_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/VelocityNormalBinormal_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/VelocityNormalBinormal_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/body__centered__inertial__frames_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/body__centered__inertial__frames_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/body__fixed__frames_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/body__fixed__frames_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/defined__rotations_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/defined__rotations_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_6f58486cdc039e35eca8cf5d1aadadc3/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/BodyFixedFrame_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/BodyFixedFrame_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/DirectionCosineMatrix_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/DirectionCosineMatrix_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/DynamicFrame_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/DynamicFrame_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/InertialFrame_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/InertialFrame_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dynamic__frames_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dynamic__frames_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/frame__concepts_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/frame__concepts_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/frames_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/frames_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/transformations_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/transformations_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_2552b27872b33d254ad75ac21654b66a/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Payload_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Payload_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/PayloadPlatform_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/PayloadPlatform_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Vehicle_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Vehicle_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Vehicle_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Vehicle_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_4e8e97ad8c5ab106f4208fffe0057899/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Constellation_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Constellation_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Plane_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Plane_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Shell_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Shell_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_c4651317ac77989e0950f932d02daf86/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Thruster_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Thruster_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Thruster_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Thruster_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_6209fec1d31cfd277683fcd634983a45/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/NullVehicle_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/NullVehicle_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/NullVehicle_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/NullVehicle_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Spacecraft_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Spacecraft_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Spacecraft_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Spacecraft_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_55ae0edd352c6621ebfa1115f28a0fff/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_0032edd3690e3836975e7dd677ed5fa8/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/LambertSolver_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/LambertSolver_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/LambertSolver_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/LambertSolver_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_0a1395a4617b025941a2198784f446c5/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/CowellsMethod_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/CowellsMethod_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/CowellsMethod_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/CowellsMethod_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/EquationsOfMotion_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/EquationsOfMotion_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/EquinoctialVop_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/EquinoctialVop_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/EquinoctialVop_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/EquinoctialVop_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/J2MeanVop_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/J2MeanVop_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/J2MeanVop_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/J2MeanVop_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/KeplerianVop_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/KeplerianVop_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/KeplerianVop_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/KeplerianVop_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/TwoBody_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/TwoBody_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/TwoBody_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/TwoBody_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_7a22b679029b3e67ce8dbba97ffb681f/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/StateTransitionMatrix_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/StateTransitionMatrix_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/StateTransitionMatrix_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/StateTransitionMatrix_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_283e5a6c8e70b5075f630fb83b6454d7/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Event_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Event_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Event_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Event_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/EventDetector_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/EventDetector_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/EventDetector_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/EventDetector_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_ffe0d0558a41319d577ebe8d35f3c9da/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/ImpulsiveBurn_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/ImpulsiveBurn_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/ImpulsiveBurn_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/ImpulsiveBurn_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/NullEvent_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/NullEvent_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_0ce51a85166db93c377c5b7f000b236c/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/AtmosphericForce_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/AtmosphericForce_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/AtmosphericForce_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/AtmosphericForce_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Force_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Force_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/ForceModel_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/ForceModel_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/ForceModel_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/ForceModel_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/NBodyForce_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/NBodyForce_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/NBodyForce_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/NBodyForce_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/OblatenessForce_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/OblatenessForce_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/OblatenessForce_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/OblatenessForce_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/SolarRadiationPressure_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/SolarRadiationPressure_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/SolarRadiationPressure_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/SolarRadiationPressure_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_89452d20321c19f5539a283cd906a79c/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Integrator_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Integrator_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Integrator_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Integrator_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/butcher__tableau_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/butcher__tableau_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_cf1a4d8122645f8636e977da512a043c/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/State_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/State_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/State_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/State_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/StateHistory_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/StateHistory_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/StateHistory_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/StateHistory_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_8f2f7499654791f4fc4240f01fb9baf6/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/AngularElements_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/AngularElements_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/angular__elements_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/angular__elements_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_1a50007be9f0149ab221abcea88ff37f/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Cylindrical_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Cylindrical_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Cylindrical_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Cylindrical_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Geocentric_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Geocentric_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Geocentric_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Geocentric_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Geodetic_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Geodetic_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Geodetic_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Geodetic_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Spherical_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Spherical_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Spherical_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Spherical_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_dce17fbadb9e43f0864b0608daddb5e0/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_8b2b76eceb189c78e8c8535df8f613d6/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/GeneralPerturbations_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/GeneralPerturbations_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/GeneralPerturbations_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/GeneralPerturbations_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/TwoLineElements_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/TwoLineElements_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/TwoLineElements_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/TwoLineElements_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/orbital__data__formats_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/orbital__data__formats_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_6eb62f1e639545772a8b9a71f7b1d0b7/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/OrbitalElements_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/OrbitalElements_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/OrbitalElements_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/OrbitalElements_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_2296e922a578ce2ef4a64c83384e553c/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Cartesian_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Cartesian_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Cartesian_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Cartesian_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Equinoctial_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Equinoctial_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Equinoctial_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Equinoctial_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Keplerian_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Keplerian_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Keplerian_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Keplerian_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/orbital__elements_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/orbital__elements_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_a5d35e082abd602943cf6d70fa2a6872/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/AstrodynamicsSystem_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/AstrodynamicsSystem_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/AstrodynamicsSystem_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/AstrodynamicsSystem_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/CelestialBody_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/CelestialBody_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/CelestialBody_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/CelestialBody_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/CelestialBodyParameters_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/CelestialBodyParameters_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_18001f99c0231f827e3b1298618599da/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/JplEphemerisTable_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/JplEphemerisTable_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/JplEphemerisTable_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/JplEphemerisTable_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_75c6709890bdaeca67b81158f928802c/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Earth_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Earth_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Earth_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Earth_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Moon_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Moon_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Moon_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Moon_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_c4fa1b5971c1990efd87a43a39eac238/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Callisto_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Callisto_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Europa_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Europa_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Ganymede_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Ganymede_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Io_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Io_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Jupiter_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Jupiter_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Jupiter_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Jupiter_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_262a2d2e73be89b2c0c48090ebaaa7f9/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Deimos_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Deimos_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Mars_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Mars_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Mars_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Mars_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Phobos_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Phobos_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_b1a5af1521642f4d9f72715b19091401/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Mercury_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Mercury_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Mercury_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Mercury_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_218149e19931632c0aa773ce91bba6d7/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Neptune_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Neptune_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Neptune_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Neptune_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Triton_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Triton_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_a10a33e87be611798e598d7dfa84b38d/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Iapetus_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Iapetus_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Rhea_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Rhea_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Saturn_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Saturn_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Saturn_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Saturn_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Titan_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Titan_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Titan_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Titan_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_2bae9223f0a869dce705c7092e11bc6c/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Sun_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Sun_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Sun_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Sun_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_7b592d311fa9a0d617c41c2d0e8e5c61/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Oberon_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Oberon_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Titania_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Titania_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Uranus_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Uranus_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Uranus_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Uranus_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_c031715b0a158a554841f23d3696455e/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Venus_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Venus_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Venus_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Venus_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/planetary__bodies_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/planetary__bodies_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_0abd23a91674297917c73da93ecec0fe/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Date_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Date_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Date_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Date_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Interval_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/Interval_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/JulianDateClock_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/JulianDateClock_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_81b398d2ba04cf47420d9ac22d356bcf/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/enums_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/enums_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/tuple__hash_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/tuple__hash_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/type__traits_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/type__traits_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/typedefs_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/typedefs_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/variant__util_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/variant__util_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/dir_68b93ce2887c47fc193a24ece16ebbe5/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/conversions_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/conversions_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/conversions_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/conversions_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/plotting_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/plotting_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/plotting_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/plotting_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/astro_8fwd_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/astro_8fwd_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/astro_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/astro_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/astro_8macros_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/astro_8macros_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespaces/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/classes/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/hierarchy/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/modules/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/pages/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/class_members/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/class_member_functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/class_member_variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/class_member_typedefs/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/class_member_enums/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespace_members/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespace_member_functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespace_member_variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespace_member_typedefs/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/namespace_member_enums/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/macros/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/astro/links/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/annotated/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/files/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/namespaceastrea/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/namespaceastrea_1_1math/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/dir_b5324400686b7cece921533bb760c87a/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/dir_450de47f4bf9646ba641743528a4ea64/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/dir_b2ecf34ed687fe8e79818a2ecae6cd69/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/chebyshev__util_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/chebyshev__util_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/chebyshev__util_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/chebyshev__util_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/interpolation_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/interpolation_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/interpolation_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/interpolation_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/math_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/math_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/operations_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/operations_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/trig_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/trig_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/namespaces/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/classes/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/hierarchy/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/modules/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/pages/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/class_members/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/class_member_functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/class_member_variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/class_member_typedefs/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/class_member_enums/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/namespace_members/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/namespace_member_functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/namespace_member_variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/namespace_member_typedefs/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/namespace_member_enums/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/macros/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/math/links/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/annotated/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/files/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/namespaceastrea/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/namespaceastrea_1_1snapshot/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/classastrea_1_1snapshot_1_1DatabaseUtilityWrapper/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/classastrea_1_1snapshot_1_1EthzClient/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/classastrea_1_1snapshot_1_1SpaceTrackClient/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/dir_b5324400686b7cece921533bb760c87a/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/dir_ad01b7a66bf2103e1e551598d7ba094a/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/dir_d7d302d432d8a6ab561803ec6eec1eed/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/dir_51ef3faf157d043087a4594bebbd2397/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/Database_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/Database_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/dir_aa0888f3e9fa4d362dbefaddf806e79b/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/main_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/main_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/dir_e3fe50636e6aa25df3bf26a0e7917672/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/dir_31d12700b25e15af9e5493b70ce27e08/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/EthzClient_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/EthzClient_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/EthzClient_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/EthzClient_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/dir_ebf022e0144e875932c7cae0921ab822/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/SpaceTrackClient_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/SpaceTrackClient_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/SpaceTrackClient_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/SpaceTrackClient_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/dir_13e0f381fe8815c377e6396c5412a0a3/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/typedefs_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/typedefs_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/snapshot_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/snapshot_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/snapshot_8macros_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/snapshot_8macros_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/namespaces/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/classes/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/hierarchy/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/modules/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/pages/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/class_members/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/class_member_functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/class_member_variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/class_member_typedefs/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/class_member_enums/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/namespace_members/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/namespace_member_functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/namespace_member_variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/namespace_member_typedefs/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/namespace_member_enums/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/macros/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/snapshot/links/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/annotated/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/files/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespaceastrea/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespaceastrea_1_1trace/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1AccessAnalyzer/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1AccessArray/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/structastrea_1_1trace_1_1AccessInfo/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1AccessObject/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/structastrea_1_1trace_1_1AccessStats/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1Antenna/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1AntennaParameters/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1CircularFieldOfView/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1FieldOfView/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1FoldsOfCoverage/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/structastrea_1_1trace_1_1GeographicBin/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1Grid/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1GroundArchitecture/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1GroundPoint/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1GroundStation/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/structastrea_1_1trace_1_1HyperStats/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/structastrea_1_1trace_1_1IdPair/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1PolygonalFieldOfView/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1PositionCache/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1RiseSetArray/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/structastrea_1_1trace_1_1RiseSetStats/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1Sensor/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1SensorParameters/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1SpatialIndex/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/structastrea_1_1trace_1_1Stats/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1Viewer/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespaceastrea_1_1trace_1_1plotting/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classastrea_1_1trace_1_1plotting_1_1Plotter/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespaceastrea_1_1trace_1_1plotting_1_1_0d2/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespaceastro/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespaceastro_1_1frames/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespacematplot/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespacemp__units/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespacemp__units_1_1angular/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespacesnapshot/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespacesqlite__orm/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespacestd/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/structstd_1_1hash_3_01astrea_1_1trace_1_1IdPair_01_4/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/structstd_1_1less_3_01astrea_1_1trace_1_1IdPair_01_4/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_b5324400686b7cece921533bb760c87a/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_e30098dbada9bbfb44888190c04e2af0/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_f04035ba8afac2675c737f654641e7b5/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_46c4498db40ce3dbd9ced60b5dc27dd1/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/AccessAnalyzer_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/AccessAnalyzer_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/AccessAnalyzer_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/AccessAnalyzer_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/PositionCache_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/PositionCache_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/PositionCache_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/PositionCache_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/SpatialIndex_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/SpatialIndex_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/SpatialIndex_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/SpatialIndex_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_6faad7806a2c60f21e03829ae6b33a05/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Plotter_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Plotter_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Plotter_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Plotter_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_d68b2e53ed12ccd9980273f79a385518/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/AccessStats_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/AccessStats_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/AccessStats_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/AccessStats_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/FoldsOfCoverage_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/FoldsOfCoverage_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/FoldsOfCoverage_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/FoldsOfCoverage_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/HyperStats_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/HyperStats_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/RiseSetStats_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/RiseSetStats_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/RiseSetStats_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/RiseSetStats_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Stats_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Stats_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_ede4f445fc3b272c23592e211659caf8/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/main_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/main_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_31644feff08ff9a8c24064987b494ea5/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/output_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/output_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_4dbda61db413396ce1d3b920f98dbf93/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/AccessObject_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/AccessObject_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_f1cb7431ef00eaab1d7c5caeb9788760/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Grid_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Grid_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Grid_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Grid_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/GroundArchitecture_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/GroundArchitecture_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/GroundPoint_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/GroundPoint_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/GroundPoint_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/GroundPoint_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/GroundStation_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/GroundStation_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/GroundStation_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/GroundStation_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_4c34a36d272c54a3547c6d2c18e9dea2/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Antenna_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Antenna_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Antenna_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Antenna_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Sensor_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Sensor_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Sensor_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Sensor_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_303a66b90134ad3dff734d202c421315/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/FieldOfView_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/FieldOfView_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/FieldOfView_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/FieldOfView_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_16a2422c641898ec244ea09da3a664c2/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/CircularFieldOfView_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/CircularFieldOfView_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/CircularFieldOfView_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/CircularFieldOfView_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/PolygonalFieldOfView_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/PolygonalFieldOfView_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/PolygonalFieldOfView_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/PolygonalFieldOfView_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_9708b761f2d3397b5afefec8b7ac12b4/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Viewer_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/Viewer_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_3852194babc4edab798292ba09c53d6d/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/AccessArray_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/AccessArray_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/AccessArray_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/AccessArray_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/RiseSetArray_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/RiseSetArray_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/RiseSetArray_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/RiseSetArray_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/riseset__utils_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/riseset__utils_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/riseset__utils_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/riseset__utils_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/dir_99d9bc6205d35ba61d9e386839c646c4/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/IdPair_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/IdPair_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/enums_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/enums_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/typedefs_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/typedefs_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/trace_8fwd_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/trace_8fwd_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/trace_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/trace_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/trace_8macros_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/trace_8macros_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespaces/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/classes/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/hierarchy/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/modules/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/pages/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/class_members/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/class_member_functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/class_member_variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/class_member_typedefs/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/class_member_enums/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespace_members/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespace_member_functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespace_member_variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespace_member_typedefs/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/namespace_member_enums/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/macros/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/trace/links/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/annotated/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/files/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/namespaceastrea/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/structastrea_1_1EarthRadii/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/structastrea_1_1JulianCentury/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/namespaceastrea_1_1detail/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/namespacemp__units/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/namespacestd/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/structstd_1_1hash_3_01mp__units_1_1quantity_3_01R_00_01Rep_01_4_01_4/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/dir_b5324400686b7cece921533bb760c87a/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/dir_69ee7df8d286dff8402d348058eb58eb/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/dir_8ace873b55bc88b2d1a73a241bbdd96b/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/constants_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/constants_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/custom_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/custom_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/detail_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/detail_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/hash_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/hash_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/time_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/time_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/typedefs_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/typedefs_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/units_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/units_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/namespaces/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/classes/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/hierarchy/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/modules/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/pages/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/class_members/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/class_member_functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/class_member_variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/class_member_typedefs/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/class_member_enums/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/namespace_members/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/namespace_member_functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/namespace_member_variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/namespace_member_typedefs/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/namespace_member_enums/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/macros/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/units/links/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/annotated/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/files/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/namespaceastrea/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/namespaceastrea_1_1utilities/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/classastrea_1_1utilities_1_1ProgressBar/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/dir_b5324400686b7cece921533bb760c87a/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/dir_bc3eec91113c7b4aa38cf4b314cc4587/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/dir_e80a6df966dae334846d11eed150d587/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/ProgressBar_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/ProgressBar_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/json__util_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/json__util_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/json__util_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/json__util_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/string__util_8cpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/string__util_8cpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/string__util_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/string__util_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/utilities_8hpp/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/utilities_8hpp_source/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/namespaces/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/classes/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/hierarchy/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/modules/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/pages/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/class_members/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/class_member_functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/class_member_variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/class_member_typedefs/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/class_member_enums/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/namespace_members/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/namespace_member_functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/namespace_member_variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/namespace_member_typedefs/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/namespace_member_enums/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/functions/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/macros/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/variables/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
     <url>
          <loc>https://iulianojay.github.io/astrea/utilities/links/</loc>
-         <lastmod>2026-03-06</lastmod>
+         <lastmod>2026-03-07</lastmod>
     </url>
 </urlset>

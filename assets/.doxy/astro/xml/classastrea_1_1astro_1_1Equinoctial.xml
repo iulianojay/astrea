@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1Equinoctial" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::Equinoctial</compoundname>
     <includes refid="Equinoctial_8hpp" local="no">Equinoctial.hpp</includes>
-    <sectiondef kind="friend">
+      <sectiondef kind="friend">
       <memberdef kind="friend" id="classastrea_1_1astro_1_1Equinoctial_1ac71ddc6f2d42864c6ea75240b1086ffc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">class</ref></type>
+        <type>class</type>
         <definition>friend class OrbitalElements</definition>
         <argsstring></argsstring>
         <name>OrbitalElements</name>
-        <qualifiedname>astrea::astro::Equinoctial::OrbitalElements</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref></type>
         </param>
@@ -19,20 +18,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="41" column="18" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="41" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="41" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="friend" id="classastrea_1_1astro_1_1Equinoctial_1a72b7d3bd15c5a7e84f855e513cbeeda3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1Equinoctial_1a8a708378e2982c47ddcd584e92ae30d8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;, Equinoctial const &amp;)</argsstring>
         <name>operator&lt;&lt;</name>
-        <qualifiedname>astrea::astro::Equinoctial::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <defname>os</defname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> const &amp;</type>
           <defname>elements</defname>
         </param>
         <briefdescription>
@@ -43,14 +41,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="40" column="12" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.cpp" bodystart="258" bodyend="269"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-attrib">
+      </sectiondef>
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Equinoctial_1a3d8a97bcf35fc998282e7c174ad24240" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::Equinoctial::_semilatus</definition>
         <argsstring></argsstring>
         <name>_semilatus</name>
-        <qualifiedname>astrea::astro::Equinoctial::_semilatus</qualifiedname>
         <briefdescription>
 <para>Semilatus rectum of the orbit. </para>
         </briefdescription>
@@ -61,11 +58,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="348" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="348" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Equinoctial_1acbc2a3b6bf8bf8ef92eb2622cc39a1a2" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Equinoctial::_f</definition>
         <argsstring></argsstring>
         <name>_f</name>
-        <qualifiedname>astrea::astro::Equinoctial::_f</qualifiedname>
         <briefdescription>
 <para>First component of the eccentricity vector. </para>
         </briefdescription>
@@ -76,11 +72,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="349" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="349" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Equinoctial_1ad120f17a3ca8650cbf6c191df5bf0cf6" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Equinoctial::_g</definition>
         <argsstring></argsstring>
         <name>_g</name>
-        <qualifiedname>astrea::astro::Equinoctial::_g</qualifiedname>
         <briefdescription>
 <para>Second component of the eccentricity vector. </para>
         </briefdescription>
@@ -91,11 +86,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="350" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="350" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Equinoctial_1abb410bcbb6839c0aa464ce073c0ce5cb" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Equinoctial::_h</definition>
         <argsstring></argsstring>
         <name>_h</name>
-        <qualifiedname>astrea::astro::Equinoctial::_h</qualifiedname>
         <briefdescription>
 <para>The first component of the planar vector. </para>
         </briefdescription>
@@ -106,11 +100,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="351" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="351" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Equinoctial_1acd16ddef70892cb7b6bf8afde8987090" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Equinoctial::_k</definition>
         <argsstring></argsstring>
         <name>_k</name>
-        <qualifiedname>astrea::astro::Equinoctial::_k</qualifiedname>
         <briefdescription>
 <para>The second component of the planar vector. </para>
         </briefdescription>
@@ -121,11 +114,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="352" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="352" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Equinoctial_1a1bf90dc006d8efeb1cf2fdf98d958d15" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::Equinoctial::_trueLongitude</definition>
         <argsstring></argsstring>
         <name>_trueLongitude</name>
-        <qualifiedname>astrea::astro::Equinoctial::_trueLongitude</qualifiedname>
         <briefdescription>
 <para>True longitude of the orbit. </para>
         </briefdescription>
@@ -135,16 +127,15 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="353" column="11" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="353" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1ad885f3dee07ad6773f2beb9b5de3b1ef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::Equinoctial::Equinoctial</definition>
         <argsstring>(Unitless scale=0.0 *astrea::detail::unitless)</argsstring>
         <name>Equinoctial</name>
-        <qualifiedname>astrea::astro::Equinoctial::Equinoctial</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+          <type>Unitless</type>
           <declname>scale</declname>
           <defval>0.0 *astrea::detail::unitless</defval>
         </param>
@@ -172,29 +163,28 @@
         <definition>astrea::astro::Equinoctial::Equinoctial</definition>
         <argsstring>(const Distance &amp;semilatus, const Unitless &amp;f, const Unitless &amp;g, const Unitless &amp;h, const Unitless &amp;k, const Angle &amp;trueLongitude)</argsstring>
         <name>Equinoctial</name>
-        <qualifiedname>astrea::astro::Equinoctial::Equinoctial</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <type>const Distance &amp;</type>
           <declname>semilatus</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>f</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>g</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>h</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>k</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>trueLongitude</declname>
         </param>
         <briefdescription>
@@ -261,13 +251,12 @@
         <definition>astrea::astro::Equinoctial::Equinoctial</definition>
         <argsstring>(const Equinoctial &amp;elements, const GravParam &amp;mu)</argsstring>
         <name>Equinoctial</name>
-        <qualifiedname>astrea::astro::Equinoctial::Equinoctial</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -302,13 +291,12 @@
         <definition>astrea::astro::Equinoctial::Equinoctial</definition>
         <argsstring>(const Keplerian &amp;elements, const GravParam &amp;mu)</argsstring>
         <name>Equinoctial</name>
-        <qualifiedname>astrea::astro::Equinoctial::Equinoctial</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -343,13 +331,12 @@
         <definition>astrea::astro::Equinoctial::Equinoctial</definition>
         <argsstring>(const Cartesian &amp;elements, const GravParam &amp;mu)</argsstring>
         <name>Equinoctial</name>
-        <qualifiedname>astrea::astro::Equinoctial::Equinoctial</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -384,13 +371,12 @@
         <definition>astrea::astro::Equinoctial::Equinoctial</definition>
         <argsstring>(const OrbitalElements &amp;elements, const GravParam &amp;mu)</argsstring>
         <name>Equinoctial</name>
-        <qualifiedname>astrea::astro::Equinoctial::Equinoctial</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -425,9 +411,8 @@
         <definition>astrea::astro::Equinoctial::Equinoctial</definition>
         <argsstring>(const Equinoctial &amp;)</argsstring>
         <name>Equinoctial</name>
-        <qualifiedname>astrea::astro::Equinoctial::Equinoctial</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -444,7 +429,6 @@
         <definition>astrea::astro::Equinoctial::Equinoctial</definition>
         <argsstring>(Equinoctial &amp;&amp;other) noexcept</argsstring>
         <name>Equinoctial</name>
-        <qualifiedname>astrea::astro::Equinoctial::Equinoctial</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;&amp;</type>
           <declname>other</declname>
@@ -473,7 +457,6 @@
         <definition>Equinoctial &amp; astrea::astro::Equinoctial::operator=</definition>
         <argsstring>(Equinoctial &amp;&amp;other) noexcept</argsstring>
         <name>operator=</name>
-        <qualifiedname>astrea::astro::Equinoctial::operator=</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;&amp;</type>
           <declname>other</declname>
@@ -504,9 +487,8 @@
         <definition>Equinoctial &amp; astrea::astro::Equinoctial::operator=</definition>
         <argsstring>(const Equinoctial &amp;other)</argsstring>
         <name>operator=</name>
-        <qualifiedname>astrea::astro::Equinoctial::operator=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -535,7 +517,6 @@
         <definition>astrea::astro::Equinoctial::~Equinoctial</definition>
         <argsstring>()=default</argsstring>
         <name>~Equinoctial</name>
-        <qualifiedname>astrea::astro::Equinoctial::~Equinoctial</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref>. </para>
         </briefdescription>
@@ -546,13 +527,12 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="196" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1ac4b7f440d7d40be0947436752698ce13" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Equinoctial::operator==</definition>
         <argsstring>(const Equinoctial &amp;other) const</argsstring>
         <name>operator==</name>
-        <qualifiedname>astrea::astro::Equinoctial::operator==</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -577,13 +557,12 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="204" column="10" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.cpp" bodystart="122" bodyend="128"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a6b1fb03b7e1cdfa2127a75240f57ff12" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Equinoctial::operator!=</definition>
         <argsstring>(const Equinoctial &amp;other) const</argsstring>
         <name>operator!=</name>
-        <qualifiedname>astrea::astro::Equinoctial::operator!=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -612,9 +591,8 @@
         <definition>Equinoctial astrea::astro::Equinoctial::operator+</definition>
         <argsstring>(const Equinoctial &amp;other) const</argsstring>
         <name>operator+</name>
-        <qualifiedname>astrea::astro::Equinoctial::operator+</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -643,9 +621,8 @@
         <definition>Equinoctial &amp; astrea::astro::Equinoctial::operator+=</definition>
         <argsstring>(const Equinoctial &amp;other)</argsstring>
         <name>operator+=</name>
-        <qualifiedname>astrea::astro::Equinoctial::operator+=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -674,9 +651,8 @@
         <definition>Equinoctial astrea::astro::Equinoctial::operator-</definition>
         <argsstring>(const Equinoctial &amp;other) const</argsstring>
         <name>operator-</name>
-        <qualifiedname>astrea::astro::Equinoctial::operator-</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -705,9 +681,8 @@
         <definition>Equinoctial &amp; astrea::astro::Equinoctial::operator-=</definition>
         <argsstring>(const Equinoctial &amp;other)</argsstring>
         <name>operator-=</name>
-        <qualifiedname>astrea::astro::Equinoctial::operator-=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -736,9 +711,8 @@
         <definition>Equinoctial astrea::astro::Equinoctial::operator*</definition>
         <argsstring>(const Unitless &amp;multiplier) const</argsstring>
         <name>operator*</name>
-        <qualifiedname>astrea::astro::Equinoctial::operator*</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -767,9 +741,8 @@
         <definition>Equinoctial &amp; astrea::astro::Equinoctial::operator*=</definition>
         <argsstring>(const Unitless &amp;multiplier)</argsstring>
         <name>operator*=</name>
-        <qualifiedname>astrea::astro::Equinoctial::operator*=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -798,9 +771,8 @@
         <definition>EquinoctialPartial astrea::astro::Equinoctial::operator/</definition>
         <argsstring>(const Time &amp;time) const</argsstring>
         <name>operator/</name>
-        <qualifiedname>astrea::astro::Equinoctial::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <briefdescription>
@@ -829,9 +801,8 @@
         <definition>Equinoctial astrea::astro::Equinoctial::operator/</definition>
         <argsstring>(const Unitless &amp;divisor) const</argsstring>
         <name>operator/</name>
-        <qualifiedname>astrea::astro::Equinoctial::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -860,9 +831,8 @@
         <definition>Equinoctial &amp; astrea::astro::Equinoctial::operator/=</definition>
         <argsstring>(const Unitless &amp;divisor)</argsstring>
         <name>operator/=</name>
-        <qualifiedname>astrea::astro::Equinoctial::operator/=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -886,12 +856,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="284" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.cpp" bodystart="203" bodyend="212"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a86052e7b312068b7c37b43294a5df26a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
-        <definition>const Distance &amp; astrea::astro::Equinoctial::get_semilatus</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a29e7107de6ccb162c218e6cfe9d0bf0a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Distance &amp;</type>
+        <definition>const Distance&amp; astrea::astro::Equinoctial::get_semilatus</definition>
         <argsstring>() const</argsstring>
         <name>get_semilatus</name>
-        <qualifiedname>astrea::astro::Equinoctial::get_semilatus</qualifiedname>
         <briefdescription>
 <para>Get the semilatus value of the <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> state vector. </para>
         </briefdescription>
@@ -904,12 +873,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="291" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="291" bodyend="291"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1ad5002f732b066a72ef1b8c3ab4857d6e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
-        <definition>const Unitless &amp; astrea::astro::Equinoctial::get_f</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a1df83938dad50d2008e685b5cb6b18b8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Unitless &amp;</type>
+        <definition>const Unitless&amp; astrea::astro::Equinoctial::get_f</definition>
         <argsstring>() const</argsstring>
         <name>get_f</name>
-        <qualifiedname>astrea::astro::Equinoctial::get_f</qualifiedname>
         <briefdescription>
 <para>Get the f value of the <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> state vector. </para>
         </briefdescription>
@@ -922,12 +890,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="298" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="298" bodyend="298"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a4509136842a76a82fbe842d9c8ff5b63" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
-        <definition>const Unitless &amp; astrea::astro::Equinoctial::get_g</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a3f3ce1c92274f12b68b65fba72e58c7b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Unitless &amp;</type>
+        <definition>const Unitless&amp; astrea::astro::Equinoctial::get_g</definition>
         <argsstring>() const</argsstring>
         <name>get_g</name>
-        <qualifiedname>astrea::astro::Equinoctial::get_g</qualifiedname>
         <briefdescription>
 <para>Get the g value of the <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> state vector. </para>
         </briefdescription>
@@ -940,12 +907,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="305" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="305" bodyend="305"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1ad1086097911c67c20dc4042f77c9f78f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
-        <definition>const Unitless &amp; astrea::astro::Equinoctial::get_h</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a2ee09f0598b9196abf34dab2aff84ef4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Unitless &amp;</type>
+        <definition>const Unitless&amp; astrea::astro::Equinoctial::get_h</definition>
         <argsstring>() const</argsstring>
         <name>get_h</name>
-        <qualifiedname>astrea::astro::Equinoctial::get_h</qualifiedname>
         <briefdescription>
 <para>Get the h value of the <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> state vector. </para>
         </briefdescription>
@@ -958,12 +924,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="312" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="312" bodyend="312"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a5a2f13714b27800d64b788a7ab09297d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
-        <definition>const Unitless &amp; astrea::astro::Equinoctial::get_k</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a100a61f6238e5f0a0863c0d3fc7927f3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Unitless &amp;</type>
+        <definition>const Unitless&amp; astrea::astro::Equinoctial::get_k</definition>
         <argsstring>() const</argsstring>
         <name>get_k</name>
-        <qualifiedname>astrea::astro::Equinoctial::get_k</qualifiedname>
         <briefdescription>
 <para>Get the k value of the <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> state vector. </para>
         </briefdescription>
@@ -976,12 +941,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="319" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="319" bodyend="319"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a3acb6387b6a5ccd3e054cb99a5abd821" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>const Angle &amp; astrea::astro::Equinoctial::get_true_longitude</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a2a994e453c1092cc46e518d7d617e947" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Angle &amp;</type>
+        <definition>const Angle&amp; astrea::astro::Equinoctial::get_true_longitude</definition>
         <argsstring>() const</argsstring>
         <name>get_true_longitude</name>
-        <qualifiedname>astrea::astro::Equinoctial::get_true_longitude</qualifiedname>
         <briefdescription>
 <para>Get the true longitude value of the <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> state vector. </para>
         </briefdescription>
@@ -995,11 +959,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="326" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="326" bodyend="326"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1a5ccbd99f517b360725b084ab9b19f8e4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt;</type>
+        <type>std::vector&lt; Unitless &gt;</type>
         <definition>std::vector&lt; Unitless &gt; astrea::astro::Equinoctial::force_to_vector</definition>
         <argsstring>() const</argsstring>
         <name>force_to_vector</name>
-        <qualifiedname>astrea::astro::Equinoctial::force_to_vector</qualifiedname>
         <briefdescription>
 <para>Converts the <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> state vector to a vector of unitless values. </para>
         </briefdescription>
@@ -1017,25 +980,24 @@
         <definition>Equinoctial astrea::astro::Equinoctial::interpolate</definition>
         <argsstring>(const Time &amp;thisTime, const Time &amp;otherTime, const Equinoctial &amp;other, const GravParam &amp;mu, const Time &amp;targetTime) const</argsstring>
         <name>interpolate</name>
-        <qualifiedname>astrea::astro::Equinoctial::interpolate</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>thisTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>otherTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>targetTime</declname>
         </param>
         <briefdescription>
@@ -1091,16 +1053,15 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="345" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.cpp" bodystart="216" bodyend="228"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-static-func">
+      </sectiondef>
+      <sectiondef kind="public-static-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1aa9e7c25cb3001acc273ba0bca3b1d1d0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref></type>
         <definition>Equinoctial astrea::astro::Equinoctial::LEO</definition>
         <argsstring>(const GravParam &amp;mu)</argsstring>
         <name>LEO</name>
-        <qualifiedname>astrea::astro::Equinoctial::LEO</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -1130,9 +1091,8 @@
         <definition>Equinoctial astrea::astro::Equinoctial::LMEO</definition>
         <argsstring>(const GravParam &amp;mu)</argsstring>
         <name>LMEO</name>
-        <qualifiedname>astrea::astro::Equinoctial::LMEO</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -1162,9 +1122,8 @@
         <definition>Equinoctial astrea::astro::Equinoctial::GPS</definition>
         <argsstring>(const GravParam &amp;mu)</argsstring>
         <name>GPS</name>
-        <qualifiedname>astrea::astro::Equinoctial::GPS</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -1194,9 +1153,8 @@
         <definition>Equinoctial astrea::astro::Equinoctial::HMEO</definition>
         <argsstring>(const GravParam &amp;mu)</argsstring>
         <name>HMEO</name>
-        <qualifiedname>astrea::astro::Equinoctial::HMEO</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -1226,9 +1184,8 @@
         <definition>Equinoctial astrea::astro::Equinoctial::GEO</definition>
         <argsstring>(const GravParam &amp;mu)</argsstring>
         <name>GEO</name>
-        <qualifiedname>astrea::astro::Equinoctial::GEO</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -1253,16 +1210,15 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="162" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.cpp" bodystart="47" bodyend="47"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-static-func">
+      </sectiondef>
+      <sectiondef kind="private-static-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Equinoctial_1ab102acf9642930cd157cdb23e3a5e641" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref></type>
         <definition>Equinoctial astrea::astro::Equinoctial::from_vector</definition>
         <argsstring>(const std::vector&lt; Unitless &gt; &amp;vec)</argsstring>
         <name>from_vector</name>
-        <qualifiedname>astrea::astro::Equinoctial::from_vector</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt; &amp;</type>
+          <type>const std::vector&lt; Unitless &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <briefdescription>
@@ -1286,7 +1242,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="361" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.cpp" bodystart="235" bodyend="241"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>The <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> class represents the equinoctial orbital elements. </para>
     </briefdescription>
@@ -1312,12 +1268,12 @@
       <member refid="classastrea_1_1astro_1_1Equinoctial_1a5ccbd99f517b360725b084ab9b19f8e4" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>force_to_vector</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1ab102acf9642930cd157cdb23e3a5e641" prot="private" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>from_vector</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1aee89a6ceebdaba454ea59212c2cf74ea" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>GEO</name></member>
-      <member refid="classastrea_1_1astro_1_1Equinoctial_1ad5002f732b066a72ef1b8c3ab4857d6e" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>get_f</name></member>
-      <member refid="classastrea_1_1astro_1_1Equinoctial_1a4509136842a76a82fbe842d9c8ff5b63" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>get_g</name></member>
-      <member refid="classastrea_1_1astro_1_1Equinoctial_1ad1086097911c67c20dc4042f77c9f78f" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>get_h</name></member>
-      <member refid="classastrea_1_1astro_1_1Equinoctial_1a5a2f13714b27800d64b788a7ab09297d" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>get_k</name></member>
-      <member refid="classastrea_1_1astro_1_1Equinoctial_1a86052e7b312068b7c37b43294a5df26a" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>get_semilatus</name></member>
-      <member refid="classastrea_1_1astro_1_1Equinoctial_1a3acb6387b6a5ccd3e054cb99a5abd821" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>get_true_longitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Equinoctial_1a1df83938dad50d2008e685b5cb6b18b8" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>get_f</name></member>
+      <member refid="classastrea_1_1astro_1_1Equinoctial_1a3f3ce1c92274f12b68b65fba72e58c7b" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>get_g</name></member>
+      <member refid="classastrea_1_1astro_1_1Equinoctial_1a2ee09f0598b9196abf34dab2aff84ef4" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>get_h</name></member>
+      <member refid="classastrea_1_1astro_1_1Equinoctial_1a100a61f6238e5f0a0863c0d3fc7927f3" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>get_k</name></member>
+      <member refid="classastrea_1_1astro_1_1Equinoctial_1a29e7107de6ccb162c218e6cfe9d0bf0a" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>get_semilatus</name></member>
+      <member refid="classastrea_1_1astro_1_1Equinoctial_1a2a994e453c1092cc46e518d7d617e947" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>get_true_longitude</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1ac9cd57af94bb680dc1065e90bc7220a1" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>GPS</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1ab6273123322a0123b9b8471077651cf0" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>HMEO</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1a0ea17de39959e5b301fbf57d57b34765" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>interpolate</name></member>
@@ -1333,7 +1289,7 @@
       <member refid="classastrea_1_1astro_1_1Equinoctial_1a7282318a8436c7e16bf79f9a6ed503d9" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>operator/</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1a2205b9c01787286f3c0b9b712081dc5a" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>operator/</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1a4ed5a47aaacd15b1f306e3ba32db52f3" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>operator/=</name></member>
-      <member refid="classastrea_1_1astro_1_1Equinoctial_1a72b7d3bd15c5a7e84f855e513cbeeda3" prot="private" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1astro_1_1Equinoctial_1a8a708378e2982c47ddcd584e92ae30d8" prot="private" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>operator&lt;&lt;</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1aca03734fa787c668a32d482ff518d79a" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>operator=</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1a10199092eb7ef95e5c08f295e1db8ef1" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>operator=</name></member>
       <member refid="classastrea_1_1astro_1_1Equinoctial_1ac4b7f440d7d40be0947436752698ce13" prot="public" virt="non-virtual"><scope>astrea::astro::Equinoctial</scope><name>operator==</name></member>

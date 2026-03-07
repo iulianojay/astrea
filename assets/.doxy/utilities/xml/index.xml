@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.1" xml:lang="en-US">
   <compound refid="classastrea_1_1utilities_1_1ProgressBar" kind="class"><name>astrea::utilities::ProgressBar</name>
     <member refid="classastrea_1_1utilities_1_1ProgressBar_1a950532f4cec2f62308940828451b481f" kind="variable"><name>_iRecord</name></member>
     <member refid="classastrea_1_1utilities_1_1ProgressBar_1a556bdc84970272ca4ef9a2d8e4a6a8a7" kind="variable"><name>_maxRecords</name></member>
@@ -19,7 +19,7 @@
     <member refid="json__util_8cpp_1a47b5ce4b93047917ed631bdb8fdc0d58" kind="function"><name>extract_string_from_json</name></member>
     <member refid="json__util_8cpp_1a6fcb83cb6fecbeddaeb69ac43a4cd844" kind="function"><name>extract_optional_string_from_json</name></member>
     <member refid="json__util_8hpp_1a4f73a8c26db65fa6db072a0d31d17006" kind="function"><name>extract_from_json</name></member>
-    <member refid="json__util_8hpp_1a82d9f58dce61694efbdeedaec890eddf" kind="function"><name>extract_optional_from_json</name></member>
+    <member refid="json__util_8hpp_1ac16644501553c40a942cf6898d521c49" kind="function"><name>extract_optional_from_json</name></member>
     <member refid="string__util_8cpp_1a455229793d7b30219c70666cdb047d1d" kind="function"><name>trim</name></member>
     <member refid="string__util_8cpp_1af336411da30b885e2d9c0bb75e020108" kind="function"><name>replace_all</name></member>
     <member refid="string__util_8cpp_1a3011ed6748a7ac802536103c65071708" kind="function"><name>split</name></member>

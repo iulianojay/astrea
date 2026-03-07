@@ -1,39 +1,38 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1trace" kind="namespace" language="C++">
     <compoundname>astrea::trace</compoundname>
-    <innerclass refid="classastrea_1_1trace_1_1AccessAnalyzer" prot="public">astrea::trace::AccessAnalyzer</innerclass>
-    <innerclass refid="classastrea_1_1trace_1_1AccessArray" prot="public">astrea::trace::AccessArray</innerclass>
     <innerclass refid="structastrea_1_1trace_1_1AccessInfo" prot="public">astrea::trace::AccessInfo</innerclass>
-    <innerclass refid="classastrea_1_1trace_1_1AccessObject" prot="public">astrea::trace::AccessObject</innerclass>
-    <innerclass refid="structastrea_1_1trace_1_1AccessStats" prot="public">astrea::trace::AccessStats</innerclass>
-    <innerclass refid="classastrea_1_1trace_1_1Antenna" prot="public">astrea::trace::Antenna</innerclass>
-    <innerclass refid="classastrea_1_1trace_1_1AntennaParameters" prot="public">astrea::trace::AntennaParameters</innerclass>
-    <innerclass refid="classastrea_1_1trace_1_1CircularFieldOfView" prot="public">astrea::trace::CircularFieldOfView</innerclass>
-    <innerclass refid="classastrea_1_1trace_1_1FieldOfView" prot="public">astrea::trace::FieldOfView</innerclass>
-    <innerclass refid="classastrea_1_1trace_1_1FoldsOfCoverage" prot="public">astrea::trace::FoldsOfCoverage</innerclass>
+    <innerclass refid="classastrea_1_1trace_1_1AccessAnalyzer" prot="public">astrea::trace::AccessAnalyzer</innerclass>
+    <innerclass refid="classastrea_1_1trace_1_1PositionCache" prot="public">astrea::trace::PositionCache</innerclass>
     <innerclass refid="structastrea_1_1trace_1_1GeographicBin" prot="public">astrea::trace::GeographicBin</innerclass>
+    <innerclass refid="classastrea_1_1trace_1_1SpatialIndex" prot="public">astrea::trace::SpatialIndex</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1AccessStats" prot="public">astrea::trace::AccessStats</innerclass>
+    <innerclass refid="classastrea_1_1trace_1_1FoldsOfCoverage" prot="public">astrea::trace::FoldsOfCoverage</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1HyperStats" prot="public">astrea::trace::HyperStats</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1RiseSetStats" prot="public">astrea::trace::RiseSetStats</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1Stats" prot="public">astrea::trace::Stats</innerclass>
+    <innerclass refid="classastrea_1_1trace_1_1AccessObject" prot="public">astrea::trace::AccessObject</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1Grid" prot="public">astrea::trace::Grid</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1GroundArchitecture" prot="public">astrea::trace::GroundArchitecture</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1GroundPoint" prot="public">astrea::trace::GroundPoint</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1GroundStation" prot="public">astrea::trace::GroundStation</innerclass>
-    <innerclass refid="structastrea_1_1trace_1_1HyperStats" prot="public">astrea::trace::HyperStats</innerclass>
-    <innerclass refid="structastrea_1_1trace_1_1IdPair" prot="public">astrea::trace::IdPair</innerclass>
+    <innerclass refid="classastrea_1_1trace_1_1AntennaParameters" prot="public">astrea::trace::AntennaParameters</innerclass>
+    <innerclass refid="classastrea_1_1trace_1_1Antenna" prot="public">astrea::trace::Antenna</innerclass>
+    <innerclass refid="classastrea_1_1trace_1_1FieldOfView" prot="public">astrea::trace::FieldOfView</innerclass>
+    <innerclass refid="classastrea_1_1trace_1_1CircularFieldOfView" prot="public">astrea::trace::CircularFieldOfView</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1PolygonalFieldOfView" prot="public">astrea::trace::PolygonalFieldOfView</innerclass>
-    <innerclass refid="classastrea_1_1trace_1_1PositionCache" prot="public">astrea::trace::PositionCache</innerclass>
-    <innerclass refid="classastrea_1_1trace_1_1RiseSetArray" prot="public">astrea::trace::RiseSetArray</innerclass>
-    <innerclass refid="structastrea_1_1trace_1_1RiseSetStats" prot="public">astrea::trace::RiseSetStats</innerclass>
-    <innerclass refid="classastrea_1_1trace_1_1Sensor" prot="public">astrea::trace::Sensor</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1SensorParameters" prot="public">astrea::trace::SensorParameters</innerclass>
-    <innerclass refid="classastrea_1_1trace_1_1SpatialIndex" prot="public">astrea::trace::SpatialIndex</innerclass>
-    <innerclass refid="structastrea_1_1trace_1_1Stats" prot="public">astrea::trace::Stats</innerclass>
+    <innerclass refid="classastrea_1_1trace_1_1Sensor" prot="public">astrea::trace::Sensor</innerclass>
     <innerclass refid="classastrea_1_1trace_1_1Viewer" prot="public">astrea::trace::Viewer</innerclass>
+    <innerclass refid="classastrea_1_1trace_1_1AccessArray" prot="public">astrea::trace::AccessArray</innerclass>
+    <innerclass refid="classastrea_1_1trace_1_1RiseSetArray" prot="public">astrea::trace::RiseSetArray</innerclass>
+    <innerclass refid="structastrea_1_1trace_1_1IdPair" prot="public">astrea::trace::IdPair</innerclass>
     <innernamespace refid="namespaceastrea_1_1trace_1_1plotting">astrea::trace::plotting</innernamespace>
-    <sectiondef kind="enum">
+      <sectiondef kind="enum">
       <memberdef kind="enum" id="Antenna_8hpp_1a3f173333c669af7a588ec9d6f32545a7" prot="public" static="no" strong="yes">
         <type></type>
         <name>PatternApproximation</name>
-        <qualifiedname>astrea::trace::PatternApproximation</qualifiedname>
         <enumvalue id="Antenna_8hpp_1a3f173333c669af7a588ec9d6f32545a7a3464761f66a3495e0a87fb89969be605" prot="public">
           <name>BESSEL</name>
           <briefdescription>
@@ -62,7 +61,6 @@
       <memberdef kind="enum" id="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7" prot="public" static="no" strong="yes">
         <type><ref refid="typedefs_8hpp_1a433642ed3c2878bcde24598bdf615893" kindref="member">EnumType</ref></type>
         <name>StatType</name>
-        <qualifiedname>astrea::trace::StatType</qualifiedname>
         <enumvalue id="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7ace31e2a082d17e038fcc6e3006166653" prot="public">
           <name>MIN</name>
           <briefdescription>
@@ -107,7 +105,6 @@
       <memberdef kind="enum" id="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" prot="public" static="no" strong="yes">
         <type><ref refid="typedefs_8hpp_1a433642ed3c2878bcde24598bdf615893" kindref="member">EnumType</ref></type>
         <name>RiseSetMetric</name>
-        <qualifiedname>astrea::trace::RiseSetMetric</qualifiedname>
         <enumvalue id="enums_8hpp_1a98bbd296fd60144bd48c33814924bcefae80ae93ca3e3a2f0af277594318d456a" prot="public">
           <name>GAP</name>
           <briefdescription>
@@ -136,7 +133,6 @@
       <memberdef kind="enum" id="enums_8hpp_1a0564dd7316e854932db767c251b5aee1" prot="public" static="no" strong="yes">
         <type><ref refid="typedefs_8hpp_1a433642ed3c2878bcde24598bdf615893" kindref="member">EnumType</ref></type>
         <name>AccessMetric</name>
-        <qualifiedname>astrea::trace::AccessMetric</qualifiedname>
         <enumvalue id="enums_8hpp_1a0564dd7316e854932db767c251b5aee1a7aaede8985c2eb40ea974cfa68dac0dd" prot="public">
           <name>MTTA</name>
           <briefdescription>
@@ -165,7 +161,6 @@
       <memberdef kind="enum" id="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" prot="public" static="no" strong="yes">
         <type><ref refid="typedefs_8hpp_1a433642ed3c2878bcde24598bdf615893" kindref="member">EnumType</ref></type>
         <name>GridType</name>
-        <qualifiedname>astrea::trace::GridType</qualifiedname>
         <enumvalue id="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aa891f35a29c3d51d02ffd42dd6dcc69b2" prot="public">
           <name>UNIFORM</name>
           <briefdescription>
@@ -215,14 +210,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/types/enums.hpp" line="73" column="1" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="73" bodyend="79"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="typedef">
+      </sectiondef>
+      <sectiondef kind="typedef">
       <memberdef kind="typedef" id="AccessAnalyzer_8hpp_1a493336b6b50db8040b47a0a21834fe84" prot="public" static="no">
         <type>astro::RadiusVector&lt; astro::frames::earth::icrf &gt;</type>
         <definition>typedef astro::RadiusVector&lt; astro::frames::earth::icrf &gt; astrea::trace::EciRadiusVec</definition>
         <argsstring></argsstring>
         <name>EciRadiusVec</name>
-        <qualifiedname>astrea::trace::EciRadiusVec</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -236,7 +230,6 @@
         <definition>typedef astro::RadiusVector&lt; astro::frames::earth::earth_fixed &gt; astrea::trace::EcefRadiusVec</definition>
         <argsstring></argsstring>
         <name>EcefRadiusVec</name>
-        <qualifiedname>astrea::trace::EcefRadiusVec</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -250,7 +243,6 @@
         <definition>using astrea::trace::DateVector = typedef std::vector&lt;astro::Date&gt;</definition>
         <argsstring></argsstring>
         <name>DateVector</name>
-        <qualifiedname>astrea::trace::DateVector</qualifiedname>
         <briefdescription>
 <para>Type alias for a vector of time values. </para>
         </briefdescription>
@@ -265,7 +257,6 @@
         <definition>typedef astro::Constellation&lt; Viewer &gt; astrea::trace::ViewerConstellation</definition>
         <argsstring></argsstring>
         <name>ViewerConstellation</name>
-        <qualifiedname>astrea::trace::ViewerConstellation</qualifiedname>
         <briefdescription>
 <para>Type alias for a constellation of <ref refid="classastrea_1_1trace_1_1Viewer" kindref="compound">Viewer</ref> objects. </para>
         </briefdescription>
@@ -280,7 +271,6 @@
         <definition>using astrea::trace::ViewerRefVec = typedef std::vector&lt;std::shared_ptr&lt;Viewer&gt; &gt;</definition>
         <argsstring></argsstring>
         <name>ViewerRefVec</name>
-        <qualifiedname>astrea::trace::ViewerRefVec</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -294,7 +284,6 @@
         <definition>using astrea::trace::GroundStationRefVec = typedef std::vector&lt;std::shared_ptr&lt;GroundStation&gt; &gt;</definition>
         <argsstring></argsstring>
         <name>GroundStationRefVec</name>
-        <qualifiedname>astrea::trace::GroundStationRefVec</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -308,7 +297,6 @@
         <definition>using astrea::trace::GroundPointRefVec = typedef std::vector&lt;std::shared_ptr&lt;GroundPoint&gt; &gt;</definition>
         <argsstring></argsstring>
         <name>GroundPointRefVec</name>
-        <qualifiedname>astrea::trace::GroundPointRefVec</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -322,7 +310,6 @@
         <definition>using astrea::trace::PairVec = typedef std::vector&lt;std::pair&lt;std::size_t, std::size_t&gt; &gt;</definition>
         <argsstring></argsstring>
         <name>PairVec</name>
-        <qualifiedname>astrea::trace::PairVec</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -336,7 +323,6 @@
         <definition>using astrea::trace::SensorPlatform = typedef astro::PayloadPlatform&lt;Sensor&gt;</definition>
         <argsstring></argsstring>
         <name>SensorPlatform</name>
-        <qualifiedname>astrea::trace::SensorPlatform</qualifiedname>
         <briefdescription>
 <para>Type definition for sensor platforms. </para>
         </briefdescription>
@@ -351,7 +337,6 @@
         <definition>using astrea::trace::EnumType = typedef uint32_t</definition>
         <argsstring></argsstring>
         <name>EnumType</name>
-        <qualifiedname>astrea::trace::EnumType</qualifiedname>
         <briefdescription>
 <para>Type definition for enumeration types. </para>
         </briefdescription>
@@ -366,7 +351,6 @@
         <definition>using astrea::trace::LatLon = typedef std::pair&lt;Angle, Angle&gt;</definition>
         <argsstring></argsstring>
         <name>LatLon</name>
-        <qualifiedname>astrea::trace::LatLon</qualifiedname>
         <briefdescription>
 <para>Latitude/Longitude coordinate pair. </para>
         </briefdescription>
@@ -377,14 +361,74 @@
         </inbodydescription>
         <location file="astrea/trace/trace/types/typedefs.hpp" line="36" column="1" bodyfile="astrea/trace/trace/types/typedefs.hpp" bodystart="36" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="var">
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="AccessAnalyzer_8hpp_1a50aa3f85859b9282c1c7401f9cb22074" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept astrea::trace::HasSize</definition>
+        <argsstring></argsstring>
+        <name>HasSize</name>
+        <initializer>= requires(T t) {
+    { t.size() } -&gt; std::convertible_to&lt;std::size_t&gt;;
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="46" column="9" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="AccessAnalyzer_8hpp_1a393e2d01e3b77daa9f7495d5553c01ab" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept astrea::trace::HasSubscriptOperator</definition>
+        <argsstring></argsstring>
+        <name>HasSubscriptOperator</name>
+        <initializer>= requires(T t) {
+    { &amp;t[0] } -&gt; std::convertible_to&lt;std::shared_ptr&lt;astro::PayloadPlatform&lt;<ref refid="classastrea_1_1trace_1_1Sensor" kindref="compound">Sensor</ref>&gt;&gt;&gt;;
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="51" column="9" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="AccessAnalyzer_8hpp_1a5e83485b1dc09b2fa2420fdb1cd28560" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept astrea::trace::IsPlatformContainer</definition>
+        <argsstring></argsstring>
+        <name>IsPlatformContainer</name>
+        <initializer>= HasSize&lt;T&gt; &amp;&amp; HasSubscriptOperator&lt;T&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="57" column="9" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="Stats_8hpp_1aa805cd28f9825ba3b62958800fb83217" prot="public" static="yes" mutable="no">
         <type>const std::vector&lt; Unitless &gt;</type>
         <definition>const std::vector&lt;Unitless&gt; astrea::trace::DEFAULT_PERCENTILES</definition>
         <argsstring></argsstring>
         <name>DEFAULT_PERCENTILES</name>
-        <qualifiedname>astrea::trace::DEFAULT_PERCENTILES</qualifiedname>
         <initializer>{ 1, 5, 10, 25, 50, 75, 90, 95, 99 }</initializer>
         <briefdescription>
         </briefdescription>
@@ -392,14 +436,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="38" column="26" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="38" bodyend="38"/>
+        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="38" column="26" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="enums_8hpp_1a744e83b01257ef3f1e19038d58f195cf" prot="public" static="yes" mutable="no">
         <type>const std::array&lt; <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7" kindref="member">StatType</ref>, 4 &gt;</type>
         <definition>const std::array&lt;StatType, 4&gt; astrea::trace::ALL_STAT_TYPES</definition>
         <argsstring></argsstring>
         <name>ALL_STAT_TYPES</name>
-        <qualifiedname>astrea::trace::ALL_STAT_TYPES</qualifiedname>
         <initializer>= { <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7ace31e2a082d17e038fcc6e3006166653" kindref="member">StatType::MIN</ref>, <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7afcefd647d6a866603c627b11347c707a" kindref="member">StatType::AVG</ref>, <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7a26a4b44a837bf97b972628509912b4a5" kindref="member">StatType::MAX</ref>, <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7ac1b9a5bfdcf1b4b586c4953afeff622b" kindref="member">StatType::PCT</ref> }</initializer>
         <briefdescription>
         </briefdescription>
@@ -407,32 +450,30 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/types/enums.hpp" line="41" column="25" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="41" bodyend="41"/>
+        <location file="astrea/trace/trace/types/enums.hpp" line="41" column="25" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="enums_8hpp_1ab0393099d2e10e6257c44209ac246e3f" prot="public" static="yes" mutable="no">
         <type>const gtl::btree_map&lt; <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7" kindref="member">StatType</ref>, std::string &gt;</type>
         <definition>const gtl::btree_map&lt;StatType, std::string&gt; astrea::trace::STAT_TYPE_STRINGS</definition>
         <argsstring></argsstring>
         <name>STAT_TYPE_STRINGS</name>
-        <qualifiedname>astrea::trace::STAT_TYPE_STRINGS</qualifiedname>
         <initializer>= { { <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7ace31e2a082d17e038fcc6e3006166653" kindref="member">StatType::MIN</ref>, &quot;MIN&quot; },
-                                                                         { <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7afcefd647d6a866603c627b11347c707a" kindref="member">StatType::AVG</ref>, &quot;AVG&quot; },
-                                                                         { <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7a26a4b44a837bf97b972628509912b4a5" kindref="member">StatType::MAX</ref>, &quot;MAX&quot; },
-                                                                         { <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7ac1b9a5bfdcf1b4b586c4953afeff622b" kindref="member">StatType::PCT</ref>, &quot;PCT&quot; } }</initializer>
+                                                                         { StatType::AVG, &quot;AVG&quot; },
+                                                                         { StatType::MAX, &quot;MAX&quot; },
+                                                                         { StatType::PCT, &quot;PCT&quot; } }</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/types/enums.hpp" line="42" column="29" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="42" bodyend="45"/>
+        <location file="astrea/trace/trace/types/enums.hpp" line="42" column="29" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="enums_8hpp_1ae9c6cc7d631673b7c7324cbd65c6e014" prot="public" static="yes" mutable="no">
         <type>const std::array&lt; <ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" kindref="member">RiseSetMetric</ref>, 2 &gt;</type>
         <definition>const std::array&lt;RiseSetMetric, 2&gt; astrea::trace::ALL_RISE_SET_METRICS</definition>
         <argsstring></argsstring>
         <name>ALL_RISE_SET_METRICS</name>
-        <qualifiedname>astrea::trace::ALL_RISE_SET_METRICS</qualifiedname>
         <initializer>= { <ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcefae80ae93ca3e3a2f0af277594318d456a" kindref="member">RiseSetMetric::GAP</ref>, <ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcefae489ac1dd74f53fb5eccf275114d2555" kindref="member">RiseSetMetric::ACCESS_TIME</ref> }</initializer>
         <briefdescription>
         </briefdescription>
@@ -440,30 +481,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/types/enums.hpp" line="55" column="25" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="55" bodyend="55"/>
+        <location file="astrea/trace/trace/types/enums.hpp" line="55" column="25" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="55" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="enums_8hpp_1aafd8d71cf2bbce597278f1819ddd0259" prot="public" static="yes" mutable="no">
         <type>const gtl::btree_map&lt; <ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" kindref="member">RiseSetMetric</ref>, std::string &gt;</type>
         <definition>const gtl::btree_map&lt;RiseSetMetric, std::string&gt; astrea::trace::RISE_SET_METRIC_STRINGS</definition>
         <argsstring></argsstring>
         <name>RISE_SET_METRIC_STRINGS</name>
-        <qualifiedname>astrea::trace::RISE_SET_METRIC_STRINGS</qualifiedname>
         <initializer>= { { <ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcefae80ae93ca3e3a2f0af277594318d456a" kindref="member">RiseSetMetric::GAP</ref>, &quot;GAP&quot; },
-                                                                                    { <ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcefae489ac1dd74f53fb5eccf275114d2555" kindref="member">RiseSetMetric::ACCESS_TIME</ref>, &quot;ACCESS_TIME&quot; } }</initializer>
+                                                                                    { RiseSetMetric::ACCESS_TIME, &quot;ACCESS_TIME&quot; } }</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/types/enums.hpp" line="56" column="29" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="56" bodyend="57"/>
+        <location file="astrea/trace/trace/types/enums.hpp" line="56" column="29" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="56" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="enums_8hpp_1a3a9b134da5390f399f212ebbbc479261" prot="public" static="yes" mutable="no">
         <type>const std::array&lt; <ref refid="enums_8hpp_1a0564dd7316e854932db767c251b5aee1" kindref="member">AccessMetric</ref>, 2 &gt;</type>
         <definition>const std::array&lt;AccessMetric, 2&gt; astrea::trace::ALL_ACCESS_METRICS</definition>
         <argsstring></argsstring>
         <name>ALL_ACCESS_METRICS</name>
-        <qualifiedname>astrea::trace::ALL_ACCESS_METRICS</qualifiedname>
         <initializer>= { <ref refid="enums_8hpp_1a0564dd7316e854932db767c251b5aee1a7aaede8985c2eb40ea974cfa68dac0dd" kindref="member">AccessMetric::MTTA</ref>, <ref refid="enums_8hpp_1a0564dd7316e854932db767c251b5aee1a91cacf54a677b02c34cc232e32b6695a" kindref="member">AccessMetric::AVG_DAILY_VIS</ref> }</initializer>
         <briefdescription>
         </briefdescription>
@@ -471,30 +510,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/types/enums.hpp" line="66" column="25" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="66" bodyend="66"/>
+        <location file="astrea/trace/trace/types/enums.hpp" line="66" column="25" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="66" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="enums_8hpp_1a3b30f82684650156b160cf21d1fd3170" prot="public" static="yes" mutable="no">
         <type>const gtl::btree_map&lt; <ref refid="enums_8hpp_1a0564dd7316e854932db767c251b5aee1" kindref="member">AccessMetric</ref>, std::string &gt;</type>
         <definition>const gtl::btree_map&lt;AccessMetric, std::string&gt; astrea::trace::ACCESS_METRIC_STRINGS</definition>
         <argsstring></argsstring>
         <name>ACCESS_METRIC_STRINGS</name>
-        <qualifiedname>astrea::trace::ACCESS_METRIC_STRINGS</qualifiedname>
         <initializer>= { { <ref refid="enums_8hpp_1a0564dd7316e854932db767c251b5aee1a7aaede8985c2eb40ea974cfa68dac0dd" kindref="member">AccessMetric::MTTA</ref>, &quot;MTTA&quot; },
-                                                                                 { <ref refid="enums_8hpp_1a0564dd7316e854932db767c251b5aee1a91cacf54a677b02c34cc232e32b6695a" kindref="member">AccessMetric::AVG_DAILY_VIS</ref>, &quot;AVG_DAILY_VIS&quot; } }</initializer>
+                                                                                 { AccessMetric::AVG_DAILY_VIS, &quot;AVG_DAILY_VIS&quot; } }</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/types/enums.hpp" line="67" column="29" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="67" bodyend="68"/>
+        <location file="astrea/trace/trace/types/enums.hpp" line="67" column="29" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="67" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="enums_8hpp_1ab3e624800826bc5d851135ea3f3285de" prot="public" static="yes" mutable="no">
         <type>const std::array&lt; <ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref>, 5 &gt;</type>
         <definition>const std::array&lt;GridType, 5&gt; astrea::trace::ALL_GRID_TYPES</definition>
         <argsstring></argsstring>
         <name>ALL_GRID_TYPES</name>
-        <qualifiedname>astrea::trace::ALL_GRID_TYPES</qualifiedname>
         <initializer>= { <ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aa891f35a29c3d51d02ffd42dd6dcc69b2" kindref="member">GridType::UNIFORM</ref>,
                                                                          <ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aa0859bda1f94ba7c3c98654093c3a9072" kindref="member">GridType::EQUAL_AREA</ref>,
                                                                          <ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aa9cc6ba9c88824eab6a1726f408bc517e" kindref="member">GridType::WEIGHTED_NS</ref>,
@@ -506,29 +543,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/types/enums.hpp" line="81" column="25" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="81" bodyend="85"/>
+        <location file="astrea/trace/trace/types/enums.hpp" line="81" column="25" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="81" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="enums_8hpp_1a800996ece0c2acc3aa1cf5c919b2c552" prot="public" static="yes" mutable="no">
         <type>const gtl::btree_map&lt; <ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4a" kindref="member">GridType</ref>, std::string &gt;</type>
         <definition>const gtl::btree_map&lt;GridType, std::string&gt; astrea::trace::GRID_TYPE_STRINGS</definition>
         <argsstring></argsstring>
         <name>GRID_TYPE_STRINGS</name>
-        <qualifiedname>astrea::trace::GRID_TYPE_STRINGS</qualifiedname>
         <initializer>= { { <ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aa891f35a29c3d51d02ffd42dd6dcc69b2" kindref="member">GridType::UNIFORM</ref>, &quot;UNIFORM&quot; },
-                                                                         { <ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aa0859bda1f94ba7c3c98654093c3a9072" kindref="member">GridType::EQUAL_AREA</ref>, &quot;EQUAL_AREA&quot; },
-                                                                         { <ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aa9cc6ba9c88824eab6a1726f408bc517e" kindref="member">GridType::WEIGHTED_NS</ref>, &quot;WEIGHTED_NS&quot; },
-                                                                         { <ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aa6da717095ae1c345cef22912acb622a7" kindref="member">GridType::WEIGHTED_EW</ref>, &quot;WEIGHTED_EW&quot; },
-                                                                         { <ref refid="enums_8hpp_1a1e1be345d5d6782a8568d0550e205a4aaa60a6a471c0681e5a49c4f5d00f6bc5a" kindref="member">GridType::MANUAL</ref>, &quot;MANUAL&quot; } }</initializer>
+                                                                         { GridType::EQUAL_AREA, &quot;EQUAL_AREA&quot; },
+                                                                         { GridType::WEIGHTED_NS, &quot;WEIGHTED_NS&quot; },
+                                                                         { GridType::WEIGHTED_EW, &quot;WEIGHTED_EW&quot; },
+                                                                         { GridType::MANUAL, &quot;MANUAL&quot; } }</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/types/enums.hpp" line="86" column="29" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="86" bodyend="90"/>
+        <location file="astrea/trace/trace/types/enums.hpp" line="86" column="29" bodyfile="astrea/trace/trace/types/enums.hpp" bodystart="86" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="func">
+      </sectiondef>
+      <sectiondef kind="func">
       <memberdef kind="function" id="output_8hpp_1ab8f1484c3c3060a93c3bb00c1efb73a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
@@ -542,7 +578,6 @@
         <definition>std::string astrea::trace::get_object_name_from_id</definition>
         <argsstring>(std::size_t id, const astro::Constellation&lt; T &gt; &amp;satellites, const U &amp;grounds=U())</argsstring>
         <name>get_object_name_from_id</name>
-        <qualifiedname>astrea::trace::get_object_name_from_id</qualifiedname>
         <param>
           <type>std::size_t</type>
           <declname>id</declname>
@@ -577,7 +612,6 @@
         <definition>void astrea::trace::save_risesets_to_file</definition>
         <argsstring>(const AccessArray &amp;accesses, const std::filesystem::path &amp;outdir, const astro::Constellation&lt; T &gt; &amp;satellites, const U &amp;grounds=U())</argsstring>
         <name>save_risesets_to_file</name>
-        <qualifiedname>astrea::trace::save_risesets_to_file</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
           <declname>accesses</declname>
@@ -660,7 +694,6 @@
         <definition>void astrea::trace::save_riseset_metrics_to_file</definition>
         <argsstring>(const AccessArray &amp;accesses, const std::filesystem::path &amp;outdir, const astro::Constellation&lt; T &gt; &amp;satellites, const U &amp;grounds=U())</argsstring>
         <name>save_riseset_metrics_to_file</name>
-        <qualifiedname>astrea::trace::save_riseset_metrics_to_file</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
           <declname>accesses</declname>
@@ -743,7 +776,6 @@
         <definition>void astrea::trace::save_receiver_riseset_metrics_to_file</definition>
         <argsstring>(const AccessStats &amp;stats, const std::filesystem::path &amp;outdir, const astro::Constellation&lt; T &gt; &amp;satellites, const U &amp;grounds=U())</argsstring>
         <name>save_receiver_riseset_metrics_to_file</name>
-        <qualifiedname>astrea::trace::save_receiver_riseset_metrics_to_file</qualifiedname>
         <param>
           <type>const <ref refid="structastrea_1_1trace_1_1AccessStats" kindref="compound">AccessStats</ref> &amp;</type>
           <declname>stats</declname>
@@ -826,7 +858,6 @@
         <definition>void astrea::trace::save_access_metrics_to_file</definition>
         <argsstring>(const AccessStats &amp;stats, const std::filesystem::path &amp;outdir, const astro::Constellation&lt; T &gt; &amp;satellites, const U &amp;grounds=U())</argsstring>
         <name>save_access_metrics_to_file</name>
-        <qualifiedname>astrea::trace::save_access_metrics_to_file</qualifiedname>
         <param>
           <type>const <ref refid="structastrea_1_1trace_1_1AccessStats" kindref="compound">AccessStats</ref> &amp;</type>
           <declname>stats</declname>
@@ -909,7 +940,6 @@
         <definition>void astrea::trace::save_number_of_folds_to_file</definition>
         <argsstring>(const AccessArray &amp;accesses, const std::filesystem::path &amp;outdir, const astro::Constellation&lt; T &gt; &amp;satellites, const U &amp;grounds, const Time &amp;resolution, const Time &amp;end)</argsstring>
         <name>save_number_of_folds_to_file</name>
-        <qualifiedname>astrea::trace::save_number_of_folds_to_file</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
           <declname>accesses</declname>
@@ -991,7 +1021,6 @@
         <definition>Angle astrea::trace::calculate_angle_between_vectors</definition>
         <argsstring>(const EciRadiusVec &amp;vector1, const EciRadiusVec &amp;vector2)</argsstring>
         <name>calculate_angle_between_vectors</name>
-        <qualifiedname>astrea::trace::calculate_angle_between_vectors</qualifiedname>
         <param>
           <type>const EciRadiusVec &amp;</type>
           <declname>vector1</declname>
@@ -1013,7 +1042,6 @@
         <definition>Angle astrea::trace::calculate_angle_between_vectors</definition>
         <argsstring>(const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp;vector1, const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp;vector2)</argsstring>
         <name>calculate_angle_between_vectors</name>
-        <qualifiedname>astrea::trace::calculate_angle_between_vectors</qualifiedname>
         <param>
           <type>const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp;</type>
           <declname>vector1</declname>
@@ -1051,18 +1079,17 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp" line="39" column="7" declfile="astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp" declline="39" declcolumn="7"/>
       </memberdef>
-      <memberdef kind="function" id="PolygonalFieldOfView_8cpp_1a9d47cf5db0d02438604f6d4df5736f61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="PolygonalFieldOfView_8cpp_1afbd18fd0237d2c2da84917fce5a44c3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool astrea::trace::point_in_polygon</definition>
-        <argsstring>(const std::pair&lt; Unitless, Unitless &gt; &amp;point, const std::vector&lt; std::pair&lt; Unitless, Unitless &gt; &gt; &amp;polygon)</argsstring>
+        <argsstring>(const std::pair&lt; Unitless, Unitless &gt; &amp;point, const std::vector&lt; std::pair&lt; Unitless, Unitless &gt;&gt; &amp;polygon)</argsstring>
         <name>point_in_polygon</name>
-        <qualifiedname>astrea::trace::point_in_polygon</qualifiedname>
         <param>
           <type>const std::pair&lt; Unitless, Unitless &gt; &amp;</type>
           <declname>point</declname>
         </param>
         <param>
-          <type>const std::vector&lt; std::pair&lt; Unitless, Unitless &gt; &gt; &amp;</type>
+          <type>const std::vector&lt; std::pair&lt; Unitless, Unitless &gt;&gt; &amp;</type>
           <declname>polygon</declname>
         </param>
         <briefdescription>
@@ -1073,12 +1100,11 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.cpp" line="107" column="6" bodyfile="astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.cpp" bodystart="107" bodyend="124" declfile="astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp" declline="111" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="AccessArray_8cpp_1a15c3b7d207a35f0197b778079a2d1872" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="AccessArray_8cpp_1a83f04c6c07f2615d90bf9820055f9942" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream &amp; astrea::trace::operator&lt;&lt;</definition>
+        <definition>std::ostream&amp; astrea::trace::operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;os, const AccessArray &amp;accessarray)</argsstring>
         <name>operator&lt;&lt;</name>
-        <qualifiedname>astrea::trace::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <declname>os</declname>
@@ -1121,7 +1147,6 @@
         <definition>std::string astrea::trace::to_formatted_string</definition>
         <argsstring>(Time t)</argsstring>
         <name>to_formatted_string</name>
-        <qualifiedname>astrea::trace::to_formatted_string</qualifiedname>
         <param>
           <type>Time</type>
           <declname>t</declname>
@@ -1152,7 +1177,6 @@
         <definition>RiseSetArray astrea::trace::riseset_union</definition>
         <argsstring>(const RiseSetArray &amp;a, const RiseSetArray &amp;b)</argsstring>
         <name>riseset_union</name>
-        <qualifiedname>astrea::trace::riseset_union</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>a</declname>
@@ -1195,7 +1219,6 @@
         <definition>RiseSetArray astrea::trace::riseset_intersection</definition>
         <argsstring>(const RiseSetArray &amp;a, const RiseSetArray &amp;b)</argsstring>
         <name>riseset_intersection</name>
-        <qualifiedname>astrea::trace::riseset_intersection</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>a</declname>
@@ -1238,7 +1261,6 @@
         <definition>RiseSetArray astrea::trace::riseset_difference</definition>
         <argsstring>(const RiseSetArray &amp;a, const RiseSetArray &amp;b)</argsstring>
         <name>riseset_difference</name>
-        <qualifiedname>astrea::trace::riseset_difference</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>a</declname>
@@ -1276,12 +1298,11 @@
         </inbodydescription>
         <location file="astrea/trace/trace/risesets/riseset_utils.cpp" line="155" column="14" bodyfile="astrea/trace/trace/risesets/riseset_utils.cpp" bodystart="155" bodyend="276" declfile="astrea/trace/trace/risesets/riseset_utils.hpp" declline="63" declcolumn="14"/>
       </memberdef>
-      <memberdef kind="function" id="RiseSetArray_8cpp_1aa789a66bcde8642549ad9900cb43fe6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="RiseSetArray_8cpp_1a0ec64da4179793c4484984fb33fbf803" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream &amp; astrea::trace::operator&lt;&lt;</definition>
+        <definition>std::ostream&amp; astrea::trace::operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;os, const RiseSetArray &amp;risesets)</argsstring>
         <name>operator&lt;&lt;</name>
-        <qualifiedname>astrea::trace::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <declname>os</declname>
@@ -1298,7 +1319,7 @@
         </inbodydescription>
         <location file="astrea/trace/trace/risesets/RiseSetArray.cpp" line="301" column="1" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="301" bodyend="310"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

@@ -6330,56 +6330,56 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-integrator"><strong>Integrator</strong></a> () = default<br><em>Default constructor for the</em> <a href="./"><em><strong>Integrator</strong></em></a> <em>class.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>int</strong></a></td>
+<td style="text-align: right;">int</td>
 <td style="text-align: left;"><a href="#function-n_func_evals"><strong>n_func_evals</strong></a> () <br><em>Get the current timestep used by the integrator.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1StateHistory/"><strong>StateHistory</strong></a></td>
-<td style="text-align: left;"><a href="#function-propagate-12"><strong>propagate</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state0, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Time</strong></a> &amp; propTime, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1EquationsOfMotion/"><strong>EquationsOfMotion</strong></a> &amp; eom, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> vehicle, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>bool</strong></a> store=<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>false</strong></a>, std::vector&lt; <a href="../classastrea_1_1astro_1_1Event/"><strong>Event</strong></a> &gt; events={}) <br><em>Propagate the state of a vehicle over a specified time interval using the given equations of motion.</em></td>
+<td style="text-align: left;"><a href="#function-propagate-12"><strong>propagate</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state0, const Time &amp; propTime, const <a href="../classastrea_1_1astro_1_1EquationsOfMotion/"><strong>EquationsOfMotion</strong></a> &amp; eom, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> vehicle, bool store=false, std::vector&lt; <a href="../classastrea_1_1astro_1_1Event/"><strong>Event</strong></a> &gt; events={}) <br><em>Propagate the state of a vehicle over a specified time interval using the given equations of motion.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"><a href="../classastrea_1_1astro_1_1StateHistory/"><strong>StateHistory</strong></a></td>
-<td style="text-align: left;"><a href="#function-propagate-22"><strong>propagate</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state0, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; endEpoch, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1EquationsOfMotion/"><strong>EquationsOfMotion</strong></a> &amp; eom, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> vehicle, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>bool</strong></a> store=<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>false</strong></a>, std::vector&lt; <a href="../classastrea_1_1astro_1_1Event/"><strong>Event</strong></a> &gt; events={}) <br><em>Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion.</em></td>
+<td style="text-align: left;"><a href="#function-propagate-22"><strong>propagate</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state0, const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; endEpoch, const <a href="../classastrea_1_1astro_1_1EquationsOfMotion/"><strong>EquationsOfMotion</strong></a> &amp; eom, <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> vehicle, bool store=false, std::vector&lt; <a href="../classastrea_1_1astro_1_1Event/"><strong>Event</strong></a> &gt; events={}) <br><em>Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_abs_tol"><strong>set_abs_tol</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Unitless</strong></a> &amp; absTol) <br><em>Set the absolute tolerance for the integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_abs_tol"><strong>set_abs_tol</strong></a> (const Unitless &amp; absTol) <br><em>Set the absolute tolerance for the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_initial_timestep"><strong>set_initial_timestep</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Time</strong></a> &amp; dt0) <br><em>Set the initial timestep for the integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_initial_timestep"><strong>set_initial_timestep</strong></a> (const Time &amp; dt0) <br><em>Set the initial timestep for the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_max_iter"><strong>set_max_iter</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>int</strong></a> &amp; itMax) <br><em>Set the maximum number of iterations for the integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_max_iter"><strong>set_max_iter</strong></a> (const int &amp; itMax) <br><em>Set the maximum number of iterations for the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_rel_tol"><strong>set_rel_tol</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Unitless</strong></a> &amp; relTol) <br><em>Set the relative tolerance for the integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_rel_tol"><strong>set_rel_tol</strong></a> (const Unitless &amp; relTol) <br><em>Set the relative tolerance for the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_step_method"><strong>set_step_method</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="./#enum-stepmethod"><strong>StepMethod</strong></a> &amp; stepMethod) <br><em>Set the step method for the integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_step_method"><strong>set_step_method</strong></a> (const <a href="./#enum-stepmethod"><strong>StepMethod</strong></a> &amp; stepMethod) <br><em>Set the step method for the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_timestep"><strong>set_timestep</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Time</strong></a> &amp; fixedTimeStep) <br><em>Set the fixed timestep for the integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-set_timestep"><strong>set_timestep</strong></a> (const Time &amp; fixedTimeStep) <br><em>Set the fixed timestep for the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-switch_fixed_timestep-12"><strong>switch_fixed_timestep</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>bool</strong></a> &amp; onOff) <br><em>Switch the fixed timestep mode on or off.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-switch_fixed_timestep-12"><strong>switch_fixed_timestep</strong></a> (const bool &amp; onOff) <br><em>Switch the fixed timestep mode on or off.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-switch_fixed_timestep-22"><strong>switch_fixed_timestep</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>bool</strong></a> &amp; onOff, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Time</strong></a> &amp; fixedTimeStep) <br><em>Set the fixed timestep for the integrator.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-switch_fixed_timestep-22"><strong>switch_fixed_timestep</strong></a> (const bool &amp; onOff, const Time &amp; fixedTimeStep) <br><em>Set the fixed timestep for the integrator.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-switch_print"><strong>switch_print</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>bool</strong></a> &amp; onOff) <br><em>Switch the printing of integration details on or off.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-switch_print"><strong>switch_print</strong></a> (const bool &amp; onOff) <br><em>Switch the printing of integration details on or off.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-switch_timer"><strong>switch_timer</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>bool</strong></a> &amp; onOff) <br><em>Switch the timer for measuring integration performance on or off.</em></td>
+<td style="text-align: right;">void</td>
+<td style="text-align: left;"><a href="#function-switch_timer"><strong>switch_timer</strong></a> (const bool &amp; onOff) <br><em>Switch the timer for measuring integration performance on or off.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -6425,9 +6425,9 @@ You're not viewing the latest version.
 <h3 id="function-propagate-12">function propagate [1/2]<a class="headerlink" href="#function-propagate-12" title="Permanent link">&para;</a></h3>
 <p><em>Propagate the state of a vehicle over a specified time interval using the given equations of motion.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">StateHistory</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">propagate</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state0</span><span class="p">,</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">propTime</span><span class="p">,</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">EquationsOfMotion</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">eom</span><span class="p">,</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state0</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">propTime</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">EquationsOfMotion</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">eom</span><span class="p">,</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="n">vehicle</span><span class="p">,</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">store</span><span class="o">=</span><span class="nb">false</span><span class="p">,</span>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Event</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">events</span><span class="o">=</span><span class="p">{}</span>
@@ -6448,9 +6448,9 @@ You're not viewing the latest version.
 <h3 id="function-propagate-22">function propagate [2/2]<a class="headerlink" href="#function-propagate-22" title="Permanent link">&para;</a></h3>
 <p><em>Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">StateHistory</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">propagate</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state0</span><span class="p">,</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endEpoch</span><span class="p">,</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">EquationsOfMotion</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">eom</span><span class="p">,</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state0</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">endEpoch</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">EquationsOfMotion</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">eom</span><span class="p">,</span>
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="n">Vehicle</span><span class="w"> </span><span class="n">vehicle</span><span class="p">,</span>
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">store</span><span class="o">=</span><span class="nb">false</span><span class="p">,</span>
 </span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Event</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">events</span><span class="o">=</span><span class="p">{}</span>
@@ -6471,7 +6471,7 @@ You're not viewing the latest version.
 <h3 id="function-set_abs_tol">function set_abs_tol<a class="headerlink" href="#function-set_abs_tol" title="Permanent link">&para;</a></h3>
 <p><em>Set the absolute tolerance for the integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">set_abs_tol</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">absTol</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">absTol</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6483,7 +6483,7 @@ You're not viewing the latest version.
 <h3 id="function-set_initial_timestep">function set_initial_timestep<a class="headerlink" href="#function-set_initial_timestep" title="Permanent link">&para;</a></h3>
 <p><em>Set the initial timestep for the integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">set_initial_timestep</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">dt0</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">dt0</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6495,7 +6495,7 @@ You're not viewing the latest version.
 <h3 id="function-set_max_iter">function set_max_iter<a class="headerlink" href="#function-set_max_iter" title="Permanent link">&para;</a></h3>
 <p><em>Set the maximum number of iterations for the integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">set_max_iter</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">itMax</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">itMax</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6507,7 +6507,7 @@ You're not viewing the latest version.
 <h3 id="function-set_rel_tol">function set_rel_tol<a class="headerlink" href="#function-set_rel_tol" title="Permanent link">&para;</a></h3>
 <p><em>Set the relative tolerance for the integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">set_rel_tol</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">relTol</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">relTol</span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6519,7 +6519,7 @@ You're not viewing the latest version.
 <h3 id="function-set_step_method">function set_step_method<a class="headerlink" href="#function-set_step_method" title="Permanent link">&para;</a></h3>
 <p><em>Set the step method for the integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">set_step_method</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">StepMethod</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">stepMethod</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">StepMethod</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">stepMethod</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6531,7 +6531,7 @@ You're not viewing the latest version.
 <h3 id="function-set_timestep">function set_timestep<a class="headerlink" href="#function-set_timestep" title="Permanent link">&para;</a></h3>
 <p><em>Set the fixed timestep for the integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">set_timestep</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fixedTimeStep</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fixedTimeStep</span>
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6543,7 +6543,7 @@ You're not viewing the latest version.
 <h3 id="function-switch_fixed_timestep-12">function switch_fixed_timestep [1/2]<a class="headerlink" href="#function-switch_fixed_timestep-12" title="Permanent link">&para;</a></h3>
 <p><em>Switch the fixed timestep mode on or off.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">switch_fixed_timestep</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">onOff</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">onOff</span>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6555,8 +6555,8 @@ You're not viewing the latest version.
 <h3 id="function-switch_fixed_timestep-22">function switch_fixed_timestep [2/2]<a class="headerlink" href="#function-switch_fixed_timestep-22" title="Permanent link">&para;</a></h3>
 <p><em>Set the fixed timestep for the integrator.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">switch_fixed_timestep</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">onOff</span><span class="p">,</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fixedTimeStep</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">onOff</span><span class="p">,</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">fixedTimeStep</span>
 </span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6568,7 +6568,7 @@ You're not viewing the latest version.
 <h3 id="function-switch_print">function switch_print<a class="headerlink" href="#function-switch_print" title="Permanent link">&para;</a></h3>
 <p><em>Switch the printing of integration details on or off.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">switch_print</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">onOff</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">onOff</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6580,7 +6580,7 @@ You're not viewing the latest version.
 <h3 id="function-switch_timer">function switch_timer<a class="headerlink" href="#function-switch_timer" title="Permanent link">&para;</a></h3>
 <p><em>Switch the timer for measuring integration performance on or off.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Integrator</span><span class="o">::</span><span class="n">switch_timer</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">onOff</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">onOff</span>
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>

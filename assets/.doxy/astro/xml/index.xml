@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.1" xml:lang="en-US">
   <compound refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kind="class"><name>astrea::astro::AstrodynamicsSystem</name>
     <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9b970c65733894f0f83b8d3c2d1de532" kind="typedef"><name>iterator</name></member>
     <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a4f811b3ff6df15c49fe2ca0d7ea9b50e" kind="typedef"><name>const_iterator</name></member>
@@ -13,19 +13,19 @@
     <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a57038b9913cfbb8486517325bce48727" kind="function"><name>AstrodynamicsSystem</name></member>
     <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a55cdaf36a8e1cd734a4c8b2a4c781ee5" kind="function"><name>~AstrodynamicsSystem</name></member>
     <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1adc1becc2cb5c9f9ad84707f6715d6ae5" kind="function"><name>AstrodynamicsSystem</name></member>
-    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a40fa40ed84e93f6f77c8c65531bcb224" kind="function"><name>operator=</name></member>
+    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a2785dfa611e250837f0199c23fe2d716" kind="function"><name>operator=</name></member>
     <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a10b7d814db91fff02a8643440195db76" kind="function"><name>AstrodynamicsSystem</name></member>
-    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aad2901dc21347ed3264fcdce06a6cf29" kind="function"><name>operator=</name></member>
-    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9ce4fcea44e46e2942622467ec68abb4" kind="function"><name>get_center_type</name></member>
-    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1ac16ac3ae92e94ea55a641cc4187fe611" kind="function"><name>get_central_body_id</name></member>
-    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9981811b4350f10a4264247f95f42753" kind="function"><name>get_central_body</name></member>
-    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa8bfc9c14219c0bc4ccadedc3f933cb2" kind="function"><name>get_body</name></member>
-    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a8c35ed317628b3b7f19e37d75fe8c992" kind="function"><name>add_body</name></member>
-    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a519af07fcf38260d6abe1081eb5196bb" kind="function"><name>add_body</name></member>
-    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1ae33b967985c46f19f25654c8cae5c0eb" kind="function"><name>add_body</name></member>
+    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a5427b97aa315ad207344594563f0d831" kind="function"><name>operator=</name></member>
+    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a774b0cc983df371b0602ca404c1510fa" kind="function"><name>get_center_type</name></member>
+    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a07b981cbb5cb6bed0b9f14a59d2204ff" kind="function"><name>get_central_body_id</name></member>
+    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a726a6f7d5bc5507c88bd34430d43dd26" kind="function"><name>get_central_body</name></member>
+    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a4b47d2f8ed3592386d410604121b2c77" kind="function"><name>get_body</name></member>
+    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a2d59408815058568b653c4688b9930c0" kind="function"><name>requires</name></member>
+    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a5f86d8003ba75b86319b2a7f71e659be" kind="function"><name>add_body</name></member>
+    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa0bd3e390ba9f2ded6a7760cae9560c3" kind="function"><name>add_body</name></member>
     <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a56e76cd7b3ee4855c828eeb88daa5bab" kind="function"><name>add_body</name></member>
-    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a89d7fae56574503ba714e66c4fc0f231" kind="function"><name>get_all_bodies</name></member>
-    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a9ddfea046b0f23c10057c277c26ae22d" kind="function"><name>get_system_root</name></member>
+    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a015449bd31ffdaf1fb73e972174a8ae8" kind="function"><name>get_all_bodies</name></member>
+    <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a01cb0a8db16479c81cf178ea50a8b6c3" kind="function"><name>get_system_root</name></member>
     <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1ae4b7f68ae5043fd936513f0a0843359c" kind="function"><name>get_mu</name></member>
     <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1a7a7a59b59a0f3f337a8dd5bad28ac9b9" kind="function"><name>size</name></member>
     <member refid="classastrea_1_1astro_1_1AstrodynamicsSystem_1aa6f398d68f0c39404c0fbc54da5392c9" kind="function"><name>clear</name></member>
@@ -42,11 +42,6 @@
     <member refid="classastrea_1_1astro_1_1AtmosphericForce_1a18dcc8a9bf4d6b1341fc867b0cb3b782" kind="function"><name>compute_force</name></member>
     <member refid="classastrea_1_1astro_1_1AtmosphericForce_1a7d5fbe0a29bc8e34306ac8bb9be6a4b7" kind="function"><name>find_atmospheric_density</name></member>
   </compound>
-  <compound refid="structastrea_1_1astro_1_1BodyFixedFrame" kind="struct"><name>astrea::astro::BodyFixedFrame</name>
-    <member refid="structastrea_1_1astro_1_1BodyFixedFrame_1adc090455ab1c215e5dbd4f79e9e56b43" kind="function"><name>~BodyFixedFrame</name></member>
-    <member refid="structastrea_1_1astro_1_1BodyFixedFrame_1a01b1f14ce2a4c0943e9dabe6c90297e9" kind="function"><name>get_origin</name></member>
-    <member refid="structastrea_1_1astro_1_1BodyFixedFrame_1a7025480d1af0bf74490df272daa70919" kind="function"><name>get_axis</name></member>
-  </compound>
   <compound refid="classastrea_1_1astro_1_1planetary__bodies_1_1Callisto" kind="class"><name>astrea::astro::planetary_bodies::Callisto</name>
     <member refid="classastrea_1_1astro_1_1planetary__bodies_1_1Callisto_1a13f147a64bbcfeb20fee51cc5fd0baa0" kind="function"><name>Callisto</name></member>
     <member refid="classastrea_1_1astro_1_1planetary__bodies_1_1Callisto_1ade3b39bdb246a8c26e4d977551c77936" kind="function"><name>~Callisto</name></member>
@@ -54,7 +49,7 @@
   </compound>
   <compound refid="classastrea_1_1astro_1_1Cartesian" kind="class"><name>astrea::astro::Cartesian</name>
     <member refid="classastrea_1_1astro_1_1Cartesian_1ac71ddc6f2d42864c6ea75240b1086ffc" kind="friend"><name>OrbitalElements</name></member>
-    <member refid="classastrea_1_1astro_1_1Cartesian_1a71a5a2de9928bc83469c62ac128d105f" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1Cartesian_1a341417c56d73c6a77b9b7031837f7965" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1Cartesian_1adb0d7dc67368339eb530441755835e4c" kind="variable"><name>_r</name></member>
     <member refid="classastrea_1_1astro_1_1Cartesian_1a40b33721c575065e87c5671625f61e1b" kind="variable"><name>_v</name></member>
     <member refid="classastrea_1_1astro_1_1Cartesian_1a1bc57f67ae1349d4008e374a2b0198ee" kind="function"><name>Cartesian</name></member>
@@ -86,17 +81,17 @@
     <member refid="classastrea_1_1astro_1_1Cartesian_1a28c81cb9c8d8c7b8179963301b94c335" kind="function"><name>operator*</name></member>
     <member refid="classastrea_1_1astro_1_1Cartesian_1a77a0451dd1827a2ba349f471e75c0f44" kind="function"><name>operator*=</name></member>
     <member refid="classastrea_1_1astro_1_1Cartesian_1a1290bc982f6078f9bd1ae553fcba5a57" kind="function"><name>operator/</name></member>
-    <member refid="classastrea_1_1astro_1_1Cartesian_1ad6f004e862ae43b69d799ffcc7e3a1b9" kind="function"><name>operator/</name></member>
+    <member refid="classastrea_1_1astro_1_1Cartesian_1a1ae37284c5c8ff05a4c65846d2a2c8a8" kind="function"><name>operator/</name></member>
     <member refid="classastrea_1_1astro_1_1Cartesian_1a7befea96e839cc51164dea0ce1e00d16" kind="function"><name>operator/</name></member>
     <member refid="classastrea_1_1astro_1_1Cartesian_1a2c677c78618b9619934d4d763524c8a2" kind="function"><name>operator/=</name></member>
-    <member refid="classastrea_1_1astro_1_1Cartesian_1a645e8eb521a934b630ade316fcad0608" kind="function"><name>get_position</name></member>
-    <member refid="classastrea_1_1astro_1_1Cartesian_1ab7b03fac402f63eec0c051e3e85e6b86" kind="function"><name>get_velocity</name></member>
-    <member refid="classastrea_1_1astro_1_1Cartesian_1a5b06f0275a5f031a152135a6f468375f" kind="function"><name>get_x</name></member>
-    <member refid="classastrea_1_1astro_1_1Cartesian_1a0075f65403840282c8541b1a5a2a0634" kind="function"><name>get_y</name></member>
-    <member refid="classastrea_1_1astro_1_1Cartesian_1a685bb6581796737ac45ee104a88b7ae0" kind="function"><name>get_z</name></member>
-    <member refid="classastrea_1_1astro_1_1Cartesian_1aa4c3bc712b99b52b5a702e5cfa902d6e" kind="function"><name>get_vx</name></member>
-    <member refid="classastrea_1_1astro_1_1Cartesian_1a8fc6f3df2191274fd4fe23ef09d25da6" kind="function"><name>get_vy</name></member>
-    <member refid="classastrea_1_1astro_1_1Cartesian_1ab3c04b04410c55f987221ab74b0d5d2d" kind="function"><name>get_vz</name></member>
+    <member refid="classastrea_1_1astro_1_1Cartesian_1a114900dba41fa871e5aae11a577232ff" kind="function"><name>get_position</name></member>
+    <member refid="classastrea_1_1astro_1_1Cartesian_1a1da102cb81511bf31f0d9f8b8a4050c0" kind="function"><name>get_velocity</name></member>
+    <member refid="classastrea_1_1astro_1_1Cartesian_1a3b2785f5e8cc1e6da42a494cd4daf4ad" kind="function"><name>get_x</name></member>
+    <member refid="classastrea_1_1astro_1_1Cartesian_1a38d150a0727f7e793d8a38cc3bdb3135" kind="function"><name>get_y</name></member>
+    <member refid="classastrea_1_1astro_1_1Cartesian_1a86ab2495d650ba3ba2e42fba393aefb0" kind="function"><name>get_z</name></member>
+    <member refid="classastrea_1_1astro_1_1Cartesian_1a8a4660ab677748568567a735ab560a99" kind="function"><name>get_vx</name></member>
+    <member refid="classastrea_1_1astro_1_1Cartesian_1ab805a08d9762698a30d93540fbc5f6fd" kind="function"><name>get_vy</name></member>
+    <member refid="classastrea_1_1astro_1_1Cartesian_1a083d5f4fe97c5539318a9969e1fcc586" kind="function"><name>get_vz</name></member>
     <member refid="classastrea_1_1astro_1_1Cartesian_1aab72b9dd2ee58b3cb62f35c30d1600b5" kind="function"><name>force_to_vector</name></member>
     <member refid="classastrea_1_1astro_1_1Cartesian_1a5a95d8ef9bd1a0993946224559198212" kind="function"><name>interpolate</name></member>
     <member refid="classastrea_1_1astro_1_1Cartesian_1a8e5c222691582fcb68ce6d2a6fa16d22" kind="function"><name>LEO</name></member>
@@ -109,7 +104,7 @@
   <compound refid="classastrea_1_1astro_1_1CartesianPartial" kind="class"><name>astrea::astro::CartesianPartial</name>
     <member refid="classastrea_1_1astro_1_1CartesianPartial_1a087753b83351503d79246c317d6d4269" kind="variable"><name>_v</name></member>
     <member refid="classastrea_1_1astro_1_1CartesianPartial_1a9cd0cce7e127c3b0c47636bcdc0c3d81" kind="variable"><name>_a</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianPartial_1a333de30651b6fe2b0e0b006ab4975349" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1CartesianPartial_1aec5c99360fbe551cd23c8bbc0acd8c4b" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1CartesianPartial_1aaa69ffab32519ac601acf63aeaa13700" kind="function"><name>CartesianPartial</name></member>
     <member refid="classastrea_1_1astro_1_1CartesianPartial_1a1d3583d75349d834c67af8537a3ac0bd" kind="function"><name>CartesianPartial</name></member>
     <member refid="classastrea_1_1astro_1_1CartesianPartial_1aea38527650b9f68cf833b266234c0682" kind="function"><name>CartesianPartial</name></member>
@@ -117,40 +112,16 @@
     <member refid="classastrea_1_1astro_1_1CartesianPartial_1ac24b5c0901975b1ec211b03e9f8f6960" kind="function"><name>force_to_vector</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1CartesianVector" kind="class"><name>astrea::astro::CartesianVector</name>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a52f24e7c8d11e0d6b789e5c3c0c0f427" kind="variable"><name>dot</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1aa00bc9c7bbbde870c7a7e28b65df8c48" kind="variable"><name>_vector</name></member>
     <member refid="classastrea_1_1astro_1_1CartesianVector_1a8d996c5da799da455128f6f5f3645fc4" kind="function"><name>CartesianVector</name></member>
     <member refid="classastrea_1_1astro_1_1CartesianVector_1a8c0f03956170ac1442ad74b63f654b85" kind="function"><name>CartesianVector</name></member>
     <member refid="classastrea_1_1astro_1_1CartesianVector_1a32caf4a93209a53751ed462a6e8958ba" kind="function"><name>CartesianVector</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a102591c99912d62b0c93c5dedba073e3" kind="function"><name>operator=</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1afa42c8bc2a9690c7efc861f62e5deaf7" kind="function"><name>operator=</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a478d8e1323547270018a190d02521421" kind="function"><name>force_frame_conversion</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a35071f82edbabe8394651871bb8091c7" kind="function"><name>operator[]</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1ac7308e62ed80e1f5f2ea4eb3663200f8" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1astro_1_1CartesianVector_1a5118bc4e39ddff61d39ec02cf823b585" kind="function"><name>operator=</name></member>
+    <member refid="classastrea_1_1astro_1_1CartesianVector_1a31ae823c19bc4b95ace3e2f54d7e80b1" kind="function"><name>operator=</name></member>
+    <member refid="classastrea_1_1astro_1_1CartesianVector_1a360ad44d99b44386c3fcea00c8bfe705" kind="function"><name>force_frame_conversion</name></member>
+    <member refid="classastrea_1_1astro_1_1CartesianVector_1a44546cc9a46a41d9b6cf505139aa0367" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1astro_1_1CartesianVector_1af25b7ce55bd4f159c587c8f643b9f90e" kind="function"><name>operator[]</name></member>
     <member refid="classastrea_1_1astro_1_1CartesianVector_1a733ff1c599003c13d337b6304f7d7f7c" kind="function"><name>operator==</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1ad556ef9ff6c76542324d77e86b520b88" kind="function"><name>operator==</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a529515b8b8a65c2ce8652dd75d868f47" kind="function"><name>operator+</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1af10a7ca0465819a08bb8eeff2b2ea2ee" kind="function"><name>operator+=</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1ad88c99ec262bd812c06f10a1f177b152" kind="function"><name>operator-</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1afb2688ecc7acb1edd84e41178487ccf6" kind="function"><name>operator-</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a847d21fdc79b4adfab0c39305afd33ff" kind="function"><name>operator-=</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a3666a87ae82509617464cdc146582431" kind="function"><name>operator*</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a03b2fdbb3b5ea2d6c11448d882e58818" kind="function"><name>operator*=</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a2b37a846956d167e7729cd3a953040de" kind="function"><name>operator/</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a21de60c9cb24dc0b2c2c49b2a7a84a0b" kind="function"><name>operator/=</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a2e17b57e3a3f10b3f4214b00c73eb606" kind="function"><name>get_x</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a3c87d84a2b36c5882284fa9a8bc6f1e9" kind="function"><name>get_x</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1ac4457fb41d1535f85876cc44033613f1" kind="function"><name>get_y</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1aae5eddec649bab9ba67b63fae80575b9" kind="function"><name>get_y</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1ae59319ea24434e4f9b37c961b1a0d0f8" kind="function"><name>get_z</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a3593fc154608eff849d1963e81a2610c" kind="function"><name>get_z</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1ad51cd05789c6dd937afcaba44158d5ed" kind="function"><name>cross</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a4866c1a3706edf63efa6b678ca234307" kind="function"><name>norm</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a000d8bebde4b1c1bf9d0a7227dc4611b" kind="function"><name>unit</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a1f6d1dc45aa1bbf95fedbe9dda51b371" kind="function"><name>offset_angle</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1aeeed40e229a5f874256eb438e01b9baa" kind="function"><name>in_frame</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1ac6185765cd623bff06c8d827537c948b" kind="function"><name>translate</name></member>
-    <member refid="classastrea_1_1astro_1_1CartesianVector_1a4eab4b647796b9e5b8ba423719ccb423" kind="function"><name>offset</name></member>
+    <member refid="classastrea_1_1astro_1_1CartesianVector_1a262c50fac0c35c4cefd76cf91d41dd83" kind="function"><name>requires</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1CelestialBody" kind="class"><name>astrea::astro::CelestialBody</name>
     <member refid="classastrea_1_1astro_1_1CelestialBody_1afe5a75b8b6642b858b07118807b7c22e" kind="typedef"><name>CoefficientPack</name></member>
@@ -190,40 +161,40 @@
     <member refid="classastrea_1_1astro_1_1CelestialBody_1a4b6942bd0ec0ce55d3d58bf29d51ba5a" kind="function"><name>CelestialBody</name></member>
     <member refid="classastrea_1_1astro_1_1CelestialBody_1a4a87589b8ead4d8f6d08dba4e76a48c5" kind="function"><name>CelestialBody</name></member>
     <member refid="classastrea_1_1astro_1_1CelestialBody_1a27d3b8546ffe435ebc5f9ca3ab21e8aa" kind="function"><name>operator==</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a27e7ae51508983539052b15e562b5e78" kind="function"><name>get_name</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a81b4dd27bcc6ba15c52ae24c2da73f0b" kind="function"><name>get_parent</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a9a22ea1abb7cdd2e5e1be6f713238710" kind="function"><name>get_type</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a107a07661840122a1d4e4d64f7d5b5ac" kind="function"><name>get_mu</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a106b73023aee9d171ac9f73d4c64cf47" kind="function"><name>get_mass</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1aa9ff0662a7cfed2c04b79f2a45e73395" kind="function"><name>get_equitorial_radius</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1ad8bccd99ad4ecbbfa41b4c78cc85ac7b" kind="function"><name>get_polar_radius</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a98a96ef56b6025558ee4148826509598" kind="function"><name>get_crash_radius</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1ace9667d4b05a7088ae03348743785e79" kind="function"><name>get_sphere_of_influence</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1aaa2c56c6dd43f248d48c24345810b42a" kind="function"><name>get_j2</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a2c1289302f2809fac6d034d142af325f" kind="function"><name>get_j3</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a9266110f7cb52d3e051de504fb997821" kind="function"><name>get_axial_tilt</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1abf194dbdddb56552586d93f4a7fa57c8" kind="function"><name>get_rotation_rate</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1abbe61575b7f1ff02bd53cc5aaf238d09" kind="function"><name>get_sidereal_period</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a4b75d6af460a338a4f56e5b348fb96e5" kind="function"><name>get_semimajor</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a744f4f4aa36431b86b1bec565d7bf645" kind="function"><name>get_eccentricity</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1ac1dd5a988080c70622118dee4f3fbc78" kind="function"><name>get_inclination</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a6b3f7914b15dc3a2b82fed6bf7f4882d" kind="function"><name>get_right_ascension</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a4793cb0a8d3624feab96309ff2d3665d" kind="function"><name>get_longitude_of_perigee</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a68ef5a02068ae70622a0aa3e10af426f" kind="function"><name>get_mean_longitude</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a00f59e7e74210cd6effa37db02ed9124" kind="function"><name>get_name</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a67e2dcbf4c8f586d3ceb49d4fd6a07a0" kind="function"><name>get_parent</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a183f3029bb8fc3f3a388b52430d0f1eb" kind="function"><name>get_type</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1af1f94821aba57a0fe8822da1f8b06acf" kind="function"><name>get_mu</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1abf253f2a7600b296ede156d2309100a7" kind="function"><name>get_mass</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1ab2c2f4817033d28565b704ecd8c01a0e" kind="function"><name>get_equitorial_radius</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a8e04990f156c39e39e1fba8e0b465d14" kind="function"><name>get_polar_radius</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a7607937b805b242c65cabb96807d01bf" kind="function"><name>get_crash_radius</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a4a453c47963b34e2062bd6aa503673dc" kind="function"><name>get_sphere_of_influence</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a0a7a2cbe2a331369419dec1e4aaa82e6" kind="function"><name>get_j2</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a10f5d2208653a1239519af426eeac8cc" kind="function"><name>get_j3</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a0e252edd509663945be766d584abdf1b" kind="function"><name>get_axial_tilt</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1afe1c2ca74cf0d11d43cc976d7e49875d" kind="function"><name>get_rotation_rate</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1af10d2721abf1133860d9224c03d1b26f" kind="function"><name>get_sidereal_period</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1ab020de6f9f9dcaecc1667de149fb1122" kind="function"><name>get_semimajor</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1adfe5331b3dbcc5ff70fa0610e67e00b9" kind="function"><name>get_eccentricity</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1adeff30aeaeacd71becc431471486abbb" kind="function"><name>get_inclination</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a4ca6f53e0cff6d35aafb70f81b15f0a3" kind="function"><name>get_right_ascension</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a2ed2870116fe274aa784eb2ad0e8d71c" kind="function"><name>get_longitude_of_perigee</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a528608c07b6dbdb74b762ab83d5c5c16" kind="function"><name>get_mean_longitude</name></member>
     <member refid="classastrea_1_1astro_1_1CelestialBody_1a75bce13ee9fcc0a8b529d770764e687f" kind="function"><name>get_true_anomaly</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a0f4787d77b77701820161aa40abe66a8" kind="function"><name>get_mean_anomaly</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a333568b35e59c54b0a0e958d41d20da7" kind="function"><name>get_semimajor_rate</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1abf1b632c73b028c571486ddf1c70d4a8" kind="function"><name>get_eccentricity_rate</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a01321cb9cd10ac47cc41e4ef7d25b003" kind="function"><name>get_inclination_rate</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1aaafb1e997f7cd8645bfa5e0c6206a920" kind="function"><name>get_right_ascension_rate</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1ab2a06b78c0c6f044cc63c59ef4466c20" kind="function"><name>get_longitude_of_perigee_rate</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a17b0a9b8913ff254d6d3156fd3ff2fcf" kind="function"><name>get_mean_longitude_rate</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a9a8b8ece2b0bbd50d25f9efd7330f213" kind="function"><name>get_mean_anomaly</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a7faacb1d854f2ccbb7799d3a08021100" kind="function"><name>get_semimajor_rate</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a473ce53854faf2d4fc0f828ea796903d" kind="function"><name>get_eccentricity_rate</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a0ca48675fc919f91863ebd71f4fa20c0" kind="function"><name>get_inclination_rate</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1ac3258865ef0615cfb6be1fce587c9d50" kind="function"><name>get_right_ascension_rate</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a2c0b8d4b342ba74afbc8c5e1584268a7" kind="function"><name>get_longitude_of_perigee_rate</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a40fb29f6cdb20e58054b9a25153b8895" kind="function"><name>get_mean_longitude_rate</name></member>
     <member refid="classastrea_1_1astro_1_1CelestialBody_1acfc2683c55c0c80d08cc4334b9cceff2" kind="function"><name>find_atmospheric_density</name></member>
     <member refid="classastrea_1_1astro_1_1CelestialBody_1a51cb25b1f9d226380e609a9c82ae7b9b" kind="function"><name>get_keplerian_elements_at</name></member>
     <member refid="classastrea_1_1astro_1_1CelestialBody_1a92fa09c2b487be443063080b94e3a4a0" kind="function"><name>get_position_at</name></member>
     <member refid="classastrea_1_1astro_1_1CelestialBody_1acbbffddf6e781f2192299257ecc85e20" kind="function"><name>get_id</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a8bd6d908cf8e6c9e34d1c5c27aabad5b" kind="function"><name>get_position_at_impl</name></member>
-    <member refid="classastrea_1_1astro_1_1CelestialBody_1a2721467967ab58178154c21aabd1f92b" kind="function"><name>get_velocity_at_impl</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1af200c9405a6d27b52844809d5c327746" kind="function"><name>get_position_at_impl</name></member>
+    <member refid="classastrea_1_1astro_1_1CelestialBody_1a52d48058045b846850c3673b262eaf78" kind="function"><name>get_velocity_at_impl</name></member>
     <member refid="classastrea_1_1astro_1_1CelestialBody_1a894d59687465c8a3be71e1f770a204cf" kind="function"><name>get_chebyshev_table_coefficients</name></member>
     <member refid="classastrea_1_1astro_1_1CelestialBody_1a81894fd1731a0e827dccb807847f96ed" kind="function"><name>get_linear_expansion_coefficients</name></member>
   </compound>
@@ -263,8 +234,8 @@
     <member refid="classastrea_1_1astro_1_1Constellation_1a6cef3a44d96955b97946750711d2d173" kind="variable"><name>name</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1a43849142d84912f3977ff9c4dd45f87e" kind="variable"><name>shells</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1a0db35ce5e963f54b83234bba5db1d50e" kind="function"><name>Constellation</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1a2e2a4a136ef5493f56cff668fb5f307f" kind="function"><name>Constellation</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1aa957ad6545451048157a98890f67cc0b" kind="function"><name>Constellation</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1a6194f675aaebec53211093f25dc95015" kind="function"><name>Constellation</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1a68eb80f91398c4121e914319de5ad92e" kind="function"><name>Constellation</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1af285072940971595dda30630b06743c5" kind="function"><name>Constellation</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1aeec70c84972a2cf989d63f0b7c75d87e" kind="function"><name>Constellation</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1a49dfb8ff4d36795a7c80e6fee53229c0" kind="function"><name>Constellation</name></member>
@@ -277,17 +248,17 @@
     <member refid="classastrea_1_1astro_1_1Constellation_1a649416aa93fd202757152f2bc3999aea" kind="function"><name>add_plane</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1a3990447b4aeff54a943f81ad891db079" kind="function"><name>add_spacecraft</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1af605df2a0c8614d8369e97b6cacafbde" kind="function"><name>add_spacecraft</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1aa6ad5d8976f90bb5d2eb8bca2e4a1049" kind="function"><name>get_shells</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1af20332190fc52319779757836a7141c1" kind="function"><name>get_shells</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1ac4f5427a5d1d18a7dd95f3b22e9907c7" kind="function"><name>get_planes</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1a4e04c0c1fceae35316d4d49c7bff45df" kind="function"><name>get_all_spacecraft</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1a83493585a8fb2a2950056e61a3c792f2" kind="function"><name>get_shell</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1a0f4912ac013b7021e86e5043d17f643f" kind="function"><name>get_plane</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1a033bd6730ae9beb0ec1d76c041c33dff" kind="function"><name>get_spacecraft</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1a38a29c1d82078aa30f74ee6e41f7c782" kind="function"><name>get_shells</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1a1dd1bbfd73876490c9ddae844aefa8f3" kind="function"><name>get_shells</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1af35b7ac9a7ad8f1db70cd95a1a14137f" kind="function"><name>get_planes</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1a086a236347806621b82d03f935d4e864" kind="function"><name>get_all_spacecraft</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1a729a02151adf0d43ced71247b49cf6a9" kind="function"><name>get_shell</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1a0b8894e79663d98fd6bbf5fb4c0bcf02" kind="function"><name>get_plane</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1a8a6ac17cbe7cfe124b0231604e862d54" kind="function"><name>get_spacecraft</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1a7715dd2774ab9bc74788d486071089a9" kind="function"><name>propagate</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1aba2fbe62f4d5f17cddab9c641e754bbc" kind="function"><name>propagate</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1a73a479276ca91edd31180c22502866d7" kind="function"><name>operator[]</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1a1763b4ae284410b51cd90e94c2a313c1" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1a4b26eefce5b4a9df45f4f3d6b4c4930a" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1a5f6b98d05908d8f74c807a92a15850d5" kind="function"><name>operator[]</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1ae264cdfffee667a0ee74c1f9fb9f786c" kind="function"><name>begin</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1ae7385d225ffa6906a17113fc594b99c8" kind="function"><name>end</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1a71e36463ab5dfe03a7ba9e6893f2078f" kind="function"><name>begin</name></member>
@@ -308,7 +279,7 @@
     <member refid="classastrea_1_1astro_1_1Cylindrical_1a76d109295b4eae199957d1a15a9c9b3f" kind="variable"><name>_range</name></member>
     <member refid="classastrea_1_1astro_1_1Cylindrical_1a3019e3dafbb1459843c72735d8e431f5" kind="variable"><name>_azimuth</name></member>
     <member refid="classastrea_1_1astro_1_1Cylindrical_1a85a37d98dd6568a84bc6c1c388ff6823" kind="variable"><name>_elevation</name></member>
-    <member refid="classastrea_1_1astro_1_1Cylindrical_1a0c0f4e6341bad7815a1e63e92eeb9d82" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1Cylindrical_1a5ad63fab29bd41b624b538419b9de6de" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1Cylindrical_1a0cd2ac389a6ddfbac30816fd17a67a35" kind="function"><name>Cylindrical</name></member>
     <member refid="classastrea_1_1astro_1_1Cylindrical_1ab7dc6f1f9b4a522cd4d3dfc6b9d0fdaf" kind="function"><name>Cylindrical</name></member>
     <member refid="classastrea_1_1astro_1_1Cylindrical_1ab5375ed716cd5c214cee04a4d13f4fc2" kind="function"><name>Cylindrical</name></member>
@@ -332,14 +303,14 @@
     <member refid="classastrea_1_1astro_1_1Cylindrical_1a12bc184d0de90b9e5f52b75fa72806c2" kind="function"><name>operator/=</name></member>
     <member refid="classastrea_1_1astro_1_1Cylindrical_1ad08210f37c25c88172bf8286e1542c69" kind="function"><name>get_position</name></member>
     <member refid="classastrea_1_1astro_1_1Cylindrical_1ae58b83cdb96ab28507b56e3378d79e07" kind="function"><name>get_position</name></member>
-    <member refid="classastrea_1_1astro_1_1Cylindrical_1a371c12aca077ad3552f647e47248d674" kind="function"><name>get_azimuth</name></member>
-    <member refid="classastrea_1_1astro_1_1Cylindrical_1a0ce5e05328c57174a06bef6d9f129b6c" kind="function"><name>get_elevation</name></member>
-    <member refid="classastrea_1_1astro_1_1Cylindrical_1a30e47c74d74a5e068e6c1645cabf90ca" kind="function"><name>get_range</name></member>
+    <member refid="classastrea_1_1astro_1_1Cylindrical_1a080fd140a89fc8a224edfcf5481717ba" kind="function"><name>get_azimuth</name></member>
+    <member refid="classastrea_1_1astro_1_1Cylindrical_1a67d16f9ed212d3b537a971408269f3e9" kind="function"><name>get_elevation</name></member>
+    <member refid="classastrea_1_1astro_1_1Cylindrical_1a080f68b8cf82ed07217d2ae323587684" kind="function"><name>get_range</name></member>
     <member refid="classastrea_1_1astro_1_1Cylindrical_1a9c4d06c8a86a38a144d60cffe653bc7a" kind="function"><name>interpolate</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1Date" kind="class"><name>astrea::astro::Date</name>
     <member refid="classastrea_1_1astro_1_1Date_1a71354c81079f8c9bda3cd2e07eb605b6" kind="variable"><name>_julianDate</name></member>
-    <member refid="classastrea_1_1astro_1_1Date_1a4c1f027bd347ffe5e447054efb1c3309" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1Date_1a5b1351a8185acbf705748e99bdec03f7" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1Date_1a8401426b654e330259e35a71bf149a17" kind="function"><name>Date</name></member>
     <member refid="classastrea_1_1astro_1_1Date_1a73b16cef86ae412c83b7f01929b2630b" kind="function"><name>Date</name></member>
     <member refid="classastrea_1_1astro_1_1Date_1a0ba2c7ce5807e41ce777a6d50ffcb1e4" kind="function"><name>~Date</name></member>
@@ -352,13 +323,13 @@
     <member refid="classastrea_1_1astro_1_1Date_1aa72475e1cb6f308b11ef807fbb8d40d0" kind="function"><name>operator==</name></member>
     <member refid="classastrea_1_1astro_1_1Date_1afe51751712057407887112432198cf83" kind="function"><name>jd</name></member>
     <member refid="classastrea_1_1astro_1_1Date_1a659ccad2be4223ab4f0a377b6de1802a" kind="function"><name>jdn</name></member>
-    <member refid="classastrea_1_1astro_1_1Date_1a5a88f25be7c7c8d40c388eb01b69f01d" kind="function"><name>mjd</name></member>
-    <member refid="classastrea_1_1astro_1_1Date_1aa1e1d360bc9b7c3d99f33920b3388649" kind="function"><name>utc</name></member>
-    <member refid="classastrea_1_1astro_1_1Date_1a299165f296cf08d1178cf28652e01504" kind="function"><name>gps</name></member>
-    <member refid="classastrea_1_1astro_1_1Date_1aa14ad4d259de730162ba941011f936f9" kind="function"><name>tai</name></member>
-    <member refid="classastrea_1_1astro_1_1Date_1a59e036f0fe494c12494a5dd34305890a" kind="function"><name>sys</name></member>
+    <member refid="classastrea_1_1astro_1_1Date_1a4410aa79c80f1f28a9adebe79dda0bb8" kind="function"><name>mjd</name></member>
+    <member refid="classastrea_1_1astro_1_1Date_1a537fad31c34f0633c4b4013c0e51a3a1" kind="function"><name>utc</name></member>
+    <member refid="classastrea_1_1astro_1_1Date_1a80ff93b86dfbf0b94c8f555aebf9f37b" kind="function"><name>gps</name></member>
+    <member refid="classastrea_1_1astro_1_1Date_1abaacf0863c19401ca51ab66edd094cb4" kind="function"><name>tai</name></member>
+    <member refid="classastrea_1_1astro_1_1Date_1a38e71e11d64d8ae22a030c10ef3043b1" kind="function"><name>sys</name></member>
     <member refid="classastrea_1_1astro_1_1Date_1a651d9af4b33b5452716621bb414593eb" kind="function"><name>epoch</name></member>
-    <member refid="classastrea_1_1astro_1_1Date_1aa8e006ac904f501c041c57b4ebc77e7e" kind="function"><name>in_clock</name></member>
+    <member refid="classastrea_1_1astro_1_1Date_1a6b28341b7dd06e8912aa5e18d4bf5299" kind="function"><name>in_clock</name></member>
     <member refid="classastrea_1_1astro_1_1Date_1ac452455e9e5913ee9448fd7458161fd8" kind="function"><name>gmst</name></member>
     <member refid="classastrea_1_1astro_1_1Date_1a765df1b0db6751bd51efb2f00d0feced" kind="function"><name>now</name></member>
   </compound>
@@ -370,34 +341,15 @@
   <compound refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kind="class"><name>astrea::astro::DirectionCosineMatrix</name>
     <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a6c3a02be0375afc9891e5a533fa1714b" kind="variable"><name>_matrix</name></member>
     <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a52153211094406453385918b06693156" kind="function"><name>DirectionCosineMatrix</name></member>
-    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a8ed5729c49d7db997b2bd577c28b0e83" kind="function"><name>transpose</name></member>
-    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0a3eec2ebedea78270cd4df1295ddb63" kind="function"><name>operator*</name></member>
-    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a6cda7c71d0ece58d8b87f6dc3804fb86" kind="function"><name>row</name></member>
-    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1af1f9c9948f2aa2e4debe06593989312f" kind="function"><name>X</name></member>
-    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0fe52991105662564ee5b67a90a540bf" kind="function"><name>Y</name></member>
-    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a7e3f1280bfa9256add2c6e806eaf54a1" kind="function"><name>Z</name></member>
-    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abc3b84b17862135320527583857f5bbc" kind="function"><name>XZX</name></member>
-    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1ab6f464d2872e568aacb4863bd897a54c" kind="function"><name>from_vectors</name></member>
-    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a5016a11958b87d3fc911986da14873f3" kind="function"><name>identity</name></member>
-  </compound>
-  <compound refid="classastrea_1_1astro_1_1DynamicFrame" kind="struct"><name>astrea::astro::DynamicFrame</name>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1a8afe2f84f404b8f7d8a419844b62c6ce" kind="variable"><name>_parent</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1a97d3da0ca251644582a7fb9931e3c233" kind="variable"><name>_position</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1ae53c1a26f3f7d6eb6a54cec4bd924cdf" kind="variable"><name>_velocity</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1a1c8eacbadcd25586efc61c34757d1e5f" kind="variable"><name>_isInstantaneous</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1ad9e4316f0d9a4eaab030d401bafd5d73" kind="function"><name>DynamicFrame</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1a9fc2d092458f32a2522b66b88e2b0562" kind="function"><name>DynamicFrame</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1a023f5a77912b617e603310885aa7afd0" kind="function"><name>get_inertial_position</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1ab14a87ab5c9503f9bf902886e4f3f12d" kind="function"><name>get_inertial_velocity</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1a0dcd8fb9b7adf3bffc04bb9c912ff5a1" kind="function"><name>get_origin</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1a1940a20d6f007d09c71d9770ca308801" kind="function"><name>get_axis</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1a7e7ecc2379c5b4d537f226a3c17fdfe3" kind="function"><name>instantaneous</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1abb924642481230e32684bb98b039ff6c" kind="function"><name>rotate_into_this_frame</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1a6cd9953d79b967960dbdd785877cd736" kind="function"><name>rotate_out_of_this_frame</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1a9594c4c717376a458812bd91e387bd52" kind="function"><name>convert_to_this_frame</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1a2b620f405561623064b90d0c35cba7e0" kind="function"><name>convert_from_this_frame</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1a0a75fce010097aa6d6e5bb32052055b7" kind="function"><name>get_dcm_impl</name></member>
-    <member refid="classastrea_1_1astro_1_1DynamicFrame_1a1c2ba145ab7be77b7411c28e7b17d40e" kind="function"><name>get_center_offset</name></member>
+    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a8b8b7fc9f71dab73d8a837ccd1dd7185" kind="function"><name>transpose</name></member>
+    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a32041d81eb3181232108d9067ab44b0f" kind="function"><name>operator*</name></member>
+    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abc7d11bad24dada1501366bc18c8afeb" kind="function"><name>row</name></member>
+    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1acbfb03337239c55f99ec4c6163da7372" kind="function"><name>X</name></member>
+    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abfe93573b3c42bbe28bd7b214f77047c" kind="function"><name>Y</name></member>
+    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0676358a03b41ee3e2aac55e80eae853" kind="function"><name>Z</name></member>
+    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a419517a2bb2c763f8cc4a5addd99306b" kind="function"><name>XZX</name></member>
+    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a891bbce278394487086c5299f84761f6" kind="function"><name>from_vectors</name></member>
+    <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0fff51ef9018bcc4888969540db53daa" kind="function"><name>identity</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1planetary__bodies_1_1Earth" kind="class"><name>astrea::astro::planetary_bodies::Earth</name>
     <member refid="classastrea_1_1astro_1_1planetary__bodies_1_1Earth_1a2d1e4782ede3db0adb8b3271cc0b8bdd" kind="function"><name>Earth</name></member>
@@ -408,7 +360,7 @@
   <compound refid="classastrea_1_1astro_1_1frames_1_1EastNorthUp" kind="class"><name>astrea::astro::frames::EastNorthUp</name>
     <member refid="classastrea_1_1astro_1_1frames_1_1EastNorthUp_1a6b2032bc701589b8416d72402bfc9673" kind="function"><name>EastNorthUp</name></member>
     <member refid="classastrea_1_1astro_1_1frames_1_1EastNorthUp_1aa96a5c2be72c9da73ab2434d30a3ab6f" kind="function"><name>~EastNorthUp</name></member>
-    <member refid="classastrea_1_1astro_1_1frames_1_1EastNorthUp_1ac14d7e67fc8db30f0b4f2efb3abbd363" kind="function"><name>get_dcm</name></member>
+    <member refid="classastrea_1_1astro_1_1frames_1_1EastNorthUp_1ada1d29c8fd9f985ebdb16387eb5b0deb" kind="function"><name>get_dcm</name></member>
     <member refid="classastrea_1_1astro_1_1frames_1_1EastNorthUp_1a34eaf3bd59c71af2fb90b1deaa8911e5" kind="function"><name>EastNorthUp</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1EquationsOfMotion" kind="class"><name>astrea::astro::EquationsOfMotion</name>
@@ -420,7 +372,7 @@
   </compound>
   <compound refid="classastrea_1_1astro_1_1Equinoctial" kind="class"><name>astrea::astro::Equinoctial</name>
     <member refid="classastrea_1_1astro_1_1Equinoctial_1ac71ddc6f2d42864c6ea75240b1086ffc" kind="friend"><name>OrbitalElements</name></member>
-    <member refid="classastrea_1_1astro_1_1Equinoctial_1a72b7d3bd15c5a7e84f855e513cbeeda3" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1Equinoctial_1a8a708378e2982c47ddcd584e92ae30d8" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1Equinoctial_1a3d8a97bcf35fc998282e7c174ad24240" kind="variable"><name>_semilatus</name></member>
     <member refid="classastrea_1_1astro_1_1Equinoctial_1acbc2a3b6bf8bf8ef92eb2622cc39a1a2" kind="variable"><name>_f</name></member>
     <member refid="classastrea_1_1astro_1_1Equinoctial_1ad120f17a3ca8650cbf6c191df5bf0cf6" kind="variable"><name>_g</name></member>
@@ -449,12 +401,12 @@
     <member refid="classastrea_1_1astro_1_1Equinoctial_1a7282318a8436c7e16bf79f9a6ed503d9" kind="function"><name>operator/</name></member>
     <member refid="classastrea_1_1astro_1_1Equinoctial_1a2205b9c01787286f3c0b9b712081dc5a" kind="function"><name>operator/</name></member>
     <member refid="classastrea_1_1astro_1_1Equinoctial_1a4ed5a47aaacd15b1f306e3ba32db52f3" kind="function"><name>operator/=</name></member>
-    <member refid="classastrea_1_1astro_1_1Equinoctial_1a86052e7b312068b7c37b43294a5df26a" kind="function"><name>get_semilatus</name></member>
-    <member refid="classastrea_1_1astro_1_1Equinoctial_1ad5002f732b066a72ef1b8c3ab4857d6e" kind="function"><name>get_f</name></member>
-    <member refid="classastrea_1_1astro_1_1Equinoctial_1a4509136842a76a82fbe842d9c8ff5b63" kind="function"><name>get_g</name></member>
-    <member refid="classastrea_1_1astro_1_1Equinoctial_1ad1086097911c67c20dc4042f77c9f78f" kind="function"><name>get_h</name></member>
-    <member refid="classastrea_1_1astro_1_1Equinoctial_1a5a2f13714b27800d64b788a7ab09297d" kind="function"><name>get_k</name></member>
-    <member refid="classastrea_1_1astro_1_1Equinoctial_1a3acb6387b6a5ccd3e054cb99a5abd821" kind="function"><name>get_true_longitude</name></member>
+    <member refid="classastrea_1_1astro_1_1Equinoctial_1a29e7107de6ccb162c218e6cfe9d0bf0a" kind="function"><name>get_semilatus</name></member>
+    <member refid="classastrea_1_1astro_1_1Equinoctial_1a1df83938dad50d2008e685b5cb6b18b8" kind="function"><name>get_f</name></member>
+    <member refid="classastrea_1_1astro_1_1Equinoctial_1a3f3ce1c92274f12b68b65fba72e58c7b" kind="function"><name>get_g</name></member>
+    <member refid="classastrea_1_1astro_1_1Equinoctial_1a2ee09f0598b9196abf34dab2aff84ef4" kind="function"><name>get_h</name></member>
+    <member refid="classastrea_1_1astro_1_1Equinoctial_1a100a61f6238e5f0a0863c0d3fc7927f3" kind="function"><name>get_k</name></member>
+    <member refid="classastrea_1_1astro_1_1Equinoctial_1a2a994e453c1092cc46e518d7d617e947" kind="function"><name>get_true_longitude</name></member>
     <member refid="classastrea_1_1astro_1_1Equinoctial_1a5ccbd99f517b360725b084ab9b19f8e4" kind="function"><name>force_to_vector</name></member>
     <member refid="classastrea_1_1astro_1_1Equinoctial_1a0ea17de39959e5b301fbf57d57b34765" kind="function"><name>interpolate</name></member>
     <member refid="classastrea_1_1astro_1_1Equinoctial_1aa9e7c25cb3001acc273ba0bca3b1d1d0" kind="function"><name>LEO</name></member>
@@ -471,7 +423,7 @@
     <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a5e7fa8f715e2e7390d9023b0d3fba633" kind="variable"><name>_hPartial</name></member>
     <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a8017d83d258daf9cfb4cb8e7c0014e26" kind="variable"><name>_kPartial</name></member>
     <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a9ff5f2b839be6d761df895c48054aa6d" kind="variable"><name>_trueLongitudePartial</name></member>
-    <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1ad3ce60455b865983ada641de61e1cd38" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1ace087d4541625c333bc76127ba4fa692" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1aa3ab89ad90b61551dbaaa51a0852b8ec" kind="function"><name>EquinoctialPartial</name></member>
     <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a1bf4ab4a4d709d6efb9c73dccc078eb4" kind="function"><name>EquinoctialPartial</name></member>
     <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a36c7d9ac7c67baa73064ab7a597588fc" kind="function"><name>operator*</name></member>
@@ -494,22 +446,16 @@
   <compound refid="classastrea_1_1astro_1_1Event" kind="class"><name>astrea::astro::Event</name>
     <member refid="classastrea_1_1astro_1_1Event_1a25ad00e849747be1d94e05ba262bf13e" kind="variable"><name>_ptr</name></member>
     <member refid="classastrea_1_1astro_1_1Event_1a1e686382cbd219d7173069438e71c0ed" kind="function"><name>Event</name></member>
-    <member refid="classastrea_1_1astro_1_1Event_1a2b7d3878a8fad1516ffb182c705ec1dd" kind="function"><name>Event</name></member>
+    <member refid="classastrea_1_1astro_1_1Event_1ad6c31a6b2c22599229d2e0538018c8cb" kind="function"><name>requires</name></member>
     <member refid="classastrea_1_1astro_1_1Event_1a5eff4ec7ddb4d08096d47cc15d89edb6" kind="function"><name>Event</name></member>
     <member refid="classastrea_1_1astro_1_1Event_1ac41e6d09e044c7c5b025415f5f674904" kind="function"><name>Event</name></member>
     <member refid="classastrea_1_1astro_1_1Event_1ad854756e70c60c5cc4f3982d3c674649" kind="function"><name>operator=</name></member>
     <member refid="classastrea_1_1astro_1_1Event_1a65065b5215b62551b0b50d581c1fe6f6" kind="function"><name>operator=</name></member>
-    <member refid="classastrea_1_1astro_1_1Event_1a205c6de32c379aa52f2d61f9c354e8ad" kind="function"><name>operator=</name></member>
-    <member refid="classastrea_1_1astro_1_1Event_1a1b456b72d8b3cd6a92a488a65bc01d91" kind="function"><name>extract</name></member>
-    <member refid="classastrea_1_1astro_1_1Event_1ad1844833e3af4de65fcebc0c3a4f22d2" kind="function"><name>measure_event</name></member>
-    <member refid="classastrea_1_1astro_1_1Event_1a4356cd7cbb0881be9ba9910ac5ba8105" kind="function"><name>is_terminal</name></member>
-    <member refid="classastrea_1_1astro_1_1Event_1ac070b0f94043fd637667c4a2cc309efd" kind="function"><name>trigger_action</name></member>
-    <member refid="classastrea_1_1astro_1_1Event_1a00489b772016b9db469dfe7ccbcbc9f1" kind="function"><name>get_name</name></member>
-    <member refid="classastrea_1_1astro_1_1Event_1ab072517225b2e252ec41c2231fd4d385" kind="function"><name>get_ptr</name></member>
+    <member refid="classastrea_1_1astro_1_1Event_1a32139f1fae76a4a30df381b325e5a4ef" kind="function"><name>requires</name></member>
     <member refid="classastrea_1_1astro_1_1Event_1a029358bd4239858e88161cf773391984" kind="function"><name>get_ptr</name></member>
     <member refid="classastrea_1_1astro_1_1Event_1a939324322a657b3a57d5965840ece306" kind="function"><name>generic_ctor_impl</name></member>
-    <member refid="classastrea_1_1astro_1_1Event_1abdd6cb582502f950d91f6d042e545807" kind="function"><name>ptr</name></member>
-    <member refid="classastrea_1_1astro_1_1Event_1a43922d4ab0cd23271839fff151cbb826" kind="function"><name>ptr</name></member>
+    <member refid="classastrea_1_1astro_1_1Event_1a12d1bf9ee315355db48230463ba482bb" kind="function"><name>ptr</name></member>
+    <member refid="classastrea_1_1astro_1_1Event_1a67f4971f9697f4b7a6042473921ccb2c" kind="function"><name>ptr</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1EventDetector" kind="class"><name>astrea::astro::EventDetector</name>
     <member refid="classastrea_1_1astro_1_1EventDetector_1a9fb55c6500ec175932862c1298281c43" kind="variable"><name>_eventTrackers</name></member>
@@ -523,23 +469,22 @@
     <member refid="classastrea_1_1astro_1_1EventDetector_1a293a6de3952095e955f4efdfcff73def" kind="function"><name>detect_event</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1detail_1_1EventInner" kind="struct"><name>astrea::astro::detail::EventInner</name>
-    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5fbdd85ef0de6bd7fbef33a5da593b35" kind="variable"><name>_value</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1aa3b5895cf93470ac6251b123236c28cb" kind="variable"><name>time</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a10bcbc5d8ab5b724c152a5781eb6017e" kind="variable"><name>state</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1adb37a48683439376ff756a3b16e0f0a7" kind="variable"><name>const</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a6fc7bf8d83539ac928665d6d9efe9f38" kind="function"><name>EventInner</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a10973b05ec86aed4b834f800217df82a" kind="function"><name>EventInner</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1aa1dd88ddc6a15af0fca52353e95209c3" kind="function"><name>EventInner</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1aed725b3f2fb19564b4a841cccc202ea0" kind="function"><name>operator=</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a5f181a7010f0c2268a4b8ae93721da1f" kind="function"><name>operator=</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a4a31525f6cab66edb7ad20650430feb6" kind="function"><name>operator=</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a9d785dc188a20c133d1ed93f54feffa5" kind="function"><name>operator=</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a56c655327628fb5940c6fee6af5e7d49" kind="function"><name>EventInner</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a4fb6bb5e8d5ed2ea3384f55565fb779f" kind="function"><name>EventInner</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a23bfddb61e622920d25073e769735d30" kind="function"><name>get_name</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a11987a9bd7d4c6c6723835eeb7ff0673" kind="function"><name>measure_event</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a79c29d1eeec32a5a732e54716a4f7b39" kind="function"><name>is_terminal</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a592d6735aaeeaa55a155db47f3a9f247" kind="function"><name>trigger_action</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a48c711254848f4634e831d151cc51e3a" kind="function"><name>trigger_action_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a78525e984e0429506ca3a168566c5c21" kind="function"><name>trigger_action_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a0afb2a857463c308b86de2d55c224a4a" kind="function"><name>clone</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1aa245609543a92cfc90241e5eddb4208b" kind="function"><name>get_ptr</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1ae8d23e667ccb64379cea6ed62656b5d9" kind="function"><name>get_ptr</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1aea03ad599178e83909aef50ce34c872a" kind="function"><name>requires</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1EventInner_1a28bbc3590e8c2ea46c1702f1703a2c3a" kind="function"><name>requires</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase" kind="struct"><name>astrea::astro::detail::EventInnerBase</name>
     <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a2074297d6a199d408d9626b9354c2781" kind="function"><name>~EventInnerBase</name></member>
@@ -547,9 +492,9 @@
     <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1ae917d85ee77be2d41702075e7aa24eda" kind="function"><name>measure_event</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a55faf23ad11862a521690ed0d5b6be23" kind="function"><name>is_terminal</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a067c4b36b7b8b89298ba49514c163a21" kind="function"><name>trigger_action</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a5c254c74f4d2e78faef761e71e51b301" kind="function"><name>clone</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1af7a151a79bfdbaf5537fb9fbfce698c9" kind="function"><name>get_ptr</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a80949139a9947bdb9cc1a61d412398b2" kind="function"><name>get_ptr</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a371f125f8f3dbc61a630cf6c437dc485" kind="function"><name>clone</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a659220aa527cc3e3c16ac29b1da63f15" kind="function"><name>get_ptr</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase_1a6699a868b3e6e3adf327e5c1893efa43" kind="function"><name>get_ptr</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1EventDetector_1_1EventTracker" kind="struct"><name>astrea::astro::EventDetector::EventTracker</name>
     <member refid="structastrea_1_1astro_1_1EventDetector_1_1EventTracker_1a65400142cd05d7ae43c27c7e08e2ca51" kind="variable"><name>event</name></member>
@@ -561,17 +506,17 @@
   <compound refid="classastrea_1_1astro_1_1Force" kind="class"><name>astrea::astro::Force</name>
     <member refid="classastrea_1_1astro_1_1Force_1a35ce93a85f35484f4bb999917bd56b21" kind="function"><name>Force</name></member>
     <member refid="classastrea_1_1astro_1_1Force_1a44eb34fbd2be08409120a1fccd35da30" kind="function"><name>~Force</name></member>
-    <member refid="classastrea_1_1astro_1_1Force_1abb04e6a7469b5e7e208b997b85a90155" kind="function"><name>compute_force</name></member>
+    <member refid="classastrea_1_1astro_1_1Force_1a883c75bea3cb77b3999f966c63b0dd61" kind="function"><name>compute_force</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1ForceModel" kind="class"><name>astrea::astro::ForceModel</name>
     <member refid="classastrea_1_1astro_1_1ForceModel_1a527ebe7d86a8c6bd86ce41e8ed5e8ccb" kind="variable"><name>forces</name></member>
     <member refid="classastrea_1_1astro_1_1ForceModel_1ac83f35837e2a7b561b58854c8015d0cb" kind="function"><name>ForceModel</name></member>
     <member refid="classastrea_1_1astro_1_1ForceModel_1a1a2922d834945312251c0d0e70b67514" kind="function"><name>~ForceModel</name></member>
     <member refid="classastrea_1_1astro_1_1ForceModel_1abb3f4a2ff96c762a8435624dea0c88e1" kind="function"><name>size</name></member>
-    <member refid="classastrea_1_1astro_1_1ForceModel_1ab50906c010cf935cf3b91e8576b45e2c" kind="function"><name>add</name></member>
+    <member refid="classastrea_1_1astro_1_1ForceModel_1a79b4f77bb710bd19cee2814c383ad785" kind="function"><name>add</name></member>
     <member refid="classastrea_1_1astro_1_1ForceModel_1a8a05a25b8a2bdb32e878f3bd6b939b26" kind="function"><name>compute_forces</name></member>
     <member refid="classastrea_1_1astro_1_1ForceModel_1a1c5a5c5ffa70cce6f6f0cb426085084c" kind="function"><name>at</name></member>
-    <member refid="classastrea_1_1astro_1_1ForceModel_1a10686ea1957a62218636ef3b377e94b8" kind="function"><name>get</name></member>
+    <member refid="classastrea_1_1astro_1_1ForceModel_1afa1603448a906ec8b506b3ee13495e19" kind="function"><name>get</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1Frame" kind="struct"><name>astrea::astro::Frame</name>
     <member refid="structastrea_1_1astro_1_1Frame_1a3d2312fa3ad178d9418fb59dd1887841" kind="variable"><name>_origin</name></member>
@@ -584,8 +529,8 @@
     <member refid="classastrea_1_1astro_1_1FrameReference_1a6c17dafd74885f79b74a65526cabec87" kind="function"><name>FrameReference</name></member>
     <member refid="classastrea_1_1astro_1_1FrameReference_1a1aa91d3b8c441d1c972969b176c1cd34" kind="function"><name>~FrameReference</name></member>
     <member refid="classastrea_1_1astro_1_1FrameReference_1aa182a016a8c50f478509353d386ee5bf" kind="function"><name>get_name</name></member>
-    <member refid="classastrea_1_1astro_1_1FrameReference_1a108168d4fd0554f39b6acc3ac50581fa" kind="function"><name>get_inertial_position</name></member>
-    <member refid="classastrea_1_1astro_1_1FrameReference_1acfacab425b09631d6afecbb7b7103830" kind="function"><name>get_inertial_velocity</name></member>
+    <member refid="classastrea_1_1astro_1_1FrameReference_1a6b9f096a7640d6e0ff5c7c4be9b415bf" kind="function"><name>get_inertial_position</name></member>
+    <member refid="classastrea_1_1astro_1_1FrameReference_1a568e7b60eeef6ade08cb3a6ce0061e66" kind="function"><name>get_inertial_velocity</name></member>
     <member refid="classastrea_1_1astro_1_1FrameReference_1a8560cf47e7341aecc6d86a892f50ec8d" kind="function"><name>get_inertial_acceleration</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1planetary__bodies_1_1Ganymede" kind="class"><name>astrea::astro::planetary_bodies::Ganymede</name>
@@ -643,7 +588,7 @@
     <member refid="classastrea_1_1astro_1_1Geocentric_1a284d848c974f6df229ace3cfc156a246" kind="variable"><name>_latitude</name></member>
     <member refid="classastrea_1_1astro_1_1Geocentric_1aacf989caaa9c2fb1861cee6c50af142d" kind="variable"><name>_longitude</name></member>
     <member refid="classastrea_1_1astro_1_1Geocentric_1a8f4086f49aef3b2dcdc08dca3ed07308" kind="variable"><name>_altitude</name></member>
-    <member refid="classastrea_1_1astro_1_1Geocentric_1a185d07c3b3ad5a174c0e89c7afddca6e" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1Geocentric_1a7cfc13d6272b55595fab290c35c6940f" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1Geocentric_1a25d89cd7953f568d4acfda714a0acc15" kind="function"><name>Geocentric</name></member>
     <member refid="classastrea_1_1astro_1_1Geocentric_1a7bd0a8d729ee6df0f9aea107a680b74a" kind="function"><name>Geocentric</name></member>
     <member refid="classastrea_1_1astro_1_1Geocentric_1a5e1a08a9fca6a3a8f68130b2151f2640" kind="function"><name>Geocentric</name></member>
@@ -667,16 +612,16 @@
     <member refid="classastrea_1_1astro_1_1Geocentric_1aabaec784b53d76c899a0b6f24c27f072" kind="function"><name>operator/=</name></member>
     <member refid="classastrea_1_1astro_1_1Geocentric_1a06684134512ace1313362cd1b261d404" kind="function"><name>get_position</name></member>
     <member refid="classastrea_1_1astro_1_1Geocentric_1ac174281aab4d4bc42a7693047587631b" kind="function"><name>get_position</name></member>
-    <member refid="classastrea_1_1astro_1_1Geocentric_1ae40a8d806366162f979e92a4a4cb8ff8" kind="function"><name>get_latitude</name></member>
-    <member refid="classastrea_1_1astro_1_1Geocentric_1acde02703905e41176591eee94cfa12fe" kind="function"><name>get_longitude</name></member>
-    <member refid="classastrea_1_1astro_1_1Geocentric_1a6261feaf918962504701e47f110a3c22" kind="function"><name>get_altitude</name></member>
+    <member refid="classastrea_1_1astro_1_1Geocentric_1a4000726a18b808faa318955b28083777" kind="function"><name>get_latitude</name></member>
+    <member refid="classastrea_1_1astro_1_1Geocentric_1aa7b99acbcec7527d9dba2dabbf10ec93" kind="function"><name>get_longitude</name></member>
+    <member refid="classastrea_1_1astro_1_1Geocentric_1ae2c81c3066c747938df1b9d3c92281f9" kind="function"><name>get_altitude</name></member>
     <member refid="classastrea_1_1astro_1_1Geocentric_1adf94ab8362c0d36d562ea23355c69776" kind="function"><name>interpolate</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1Geodetic" kind="class"><name>astrea::astro::Geodetic</name>
     <member refid="classastrea_1_1astro_1_1Geodetic_1a983cfb083b92d3df08a1a25d0e33496e" kind="variable"><name>_latitude</name></member>
     <member refid="classastrea_1_1astro_1_1Geodetic_1abc2ebfc8af4150471894fd1d16deeff1" kind="variable"><name>_longitude</name></member>
     <member refid="classastrea_1_1astro_1_1Geodetic_1a30508600a035fde12df4e7dda3a708c8" kind="variable"><name>_altitude</name></member>
-    <member refid="classastrea_1_1astro_1_1Geodetic_1a714220f34966c0d11b8ea5c0f1e0611f" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1Geodetic_1a557265b3d11751038f05a6713c420035" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1Geodetic_1adb48a0e040c17b1426d65926e0393555" kind="function"><name>Geodetic</name></member>
     <member refid="classastrea_1_1astro_1_1Geodetic_1a5050efe2407143a4530322f3f26c7e9b" kind="function"><name>Geodetic</name></member>
     <member refid="classastrea_1_1astro_1_1Geodetic_1aa7ed1c75dd89c66555176d1c10c5c24b" kind="function"><name>Geodetic</name></member>
@@ -700,9 +645,9 @@
     <member refid="classastrea_1_1astro_1_1Geodetic_1a7b4214f48cd2bf1f868813de69438627" kind="function"><name>operator/=</name></member>
     <member refid="classastrea_1_1astro_1_1Geodetic_1a69c472f2a8537aa0b74d57d6cd453ad4" kind="function"><name>get_position</name></member>
     <member refid="classastrea_1_1astro_1_1Geodetic_1a32cd960ecc6f7a20f7e9a4b4bb308bbe" kind="function"><name>get_position</name></member>
-    <member refid="classastrea_1_1astro_1_1Geodetic_1ace0e95c58bdb75cff63d9af7969f4e72" kind="function"><name>get_latitude</name></member>
-    <member refid="classastrea_1_1astro_1_1Geodetic_1ae9052d7a195dc87255ff7f915d19ea78" kind="function"><name>get_longitude</name></member>
-    <member refid="classastrea_1_1astro_1_1Geodetic_1a3298185618874f15e2f7ddea61b6a5d2" kind="function"><name>get_altitude</name></member>
+    <member refid="classastrea_1_1astro_1_1Geodetic_1abac34a27f08e5d5ae6a56cdc6bff47f2" kind="function"><name>get_latitude</name></member>
+    <member refid="classastrea_1_1astro_1_1Geodetic_1af91e34c038d6e3a01f8fed758b405dd9" kind="function"><name>get_longitude</name></member>
+    <member refid="classastrea_1_1astro_1_1Geodetic_1a81583596155bc3c084e6ee777d8429b6" kind="function"><name>get_altitude</name></member>
     <member refid="classastrea_1_1astro_1_1Geodetic_1aa0619b81fae5767ec06db7e69e898488" kind="function"><name>interpolate</name></member>
   </compound>
   <compound refid="structstd_1_1hash_3_01astrea_1_1astro_1_1CelestialBody_01_4" kind="struct"><name>std::hash&lt; astrea::astro::CelestialBody &gt;</name>
@@ -722,11 +667,6 @@
     <member refid="classastrea_1_1astro_1_1ImpulsiveBurn_1a6a56835141d67c671f0aaab79a178dfb" kind="function"><name>measure_event</name></member>
     <member refid="classastrea_1_1astro_1_1ImpulsiveBurn_1abde7c172225a3fb6457fae9377baaf50" kind="function"><name>trigger_action</name></member>
     <member refid="classastrea_1_1astro_1_1ImpulsiveBurn_1a3ca63a88814bcf6b2cd495946c20c229" kind="function"><name>is_terminal</name></member>
-  </compound>
-  <compound refid="structastrea_1_1astro_1_1InertialFrame" kind="struct"><name>astrea::astro::InertialFrame</name>
-    <member refid="structastrea_1_1astro_1_1InertialFrame_1a7af3fabd177fc53565594444ab66e62c" kind="function"><name>~InertialFrame</name></member>
-    <member refid="structastrea_1_1astro_1_1InertialFrame_1a3201f266a5cd483854b89108d811c04b" kind="function"><name>get_origin</name></member>
-    <member refid="structastrea_1_1astro_1_1InertialFrame_1a50bc7359fbe2746533d0cc020e829c65" kind="function"><name>get_axis</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1Integrator" kind="class"><name>astrea::astro::Integrator</name>
     <member refid="classastrea_1_1astro_1_1Integrator_1a4a414020ae194a0831394fcea56ae79c" kind="enum"><name>StepMethod</name></member>
@@ -851,7 +791,7 @@
   </compound>
   <compound refid="classastrea_1_1astro_1_1Keplerian" kind="class"><name>astrea::astro::Keplerian</name>
     <member refid="classastrea_1_1astro_1_1Keplerian_1ac71ddc6f2d42864c6ea75240b1086ffc" kind="friend"><name>OrbitalElements</name></member>
-    <member refid="classastrea_1_1astro_1_1Keplerian_1aedf47aca8e3e1791dac6df1f2c07bcf2" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1Keplerian_1ad2dd7a4e86fe9cc72afbb9b0ed7fa2de" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1Keplerian_1a279d1b81b14b2b5798e4f4e0e39ba85f" kind="variable"><name>_semimajor</name></member>
     <member refid="classastrea_1_1astro_1_1Keplerian_1a3b69970bb9d5abed007483045d05b3fc" kind="variable"><name>_eccentricity</name></member>
     <member refid="classastrea_1_1astro_1_1Keplerian_1a2b4a096dcc61c1c66cf99812cb5f69b8" kind="variable"><name>_inclination</name></member>
@@ -886,12 +826,12 @@
     <member refid="classastrea_1_1astro_1_1Keplerian_1a84fbbba85decd7694a219a484de9ec94" kind="function"><name>set_right_ascension</name></member>
     <member refid="classastrea_1_1astro_1_1Keplerian_1abc407a8dd4d880aa018ef2d318d10cd6" kind="function"><name>set_argument_of_perigee</name></member>
     <member refid="classastrea_1_1astro_1_1Keplerian_1a44d192ff5f510a4b575df09c31db00a0" kind="function"><name>set_true_anomaly</name></member>
-    <member refid="classastrea_1_1astro_1_1Keplerian_1a35af283f933f989ec71087897c58c592" kind="function"><name>get_semimajor</name></member>
-    <member refid="classastrea_1_1astro_1_1Keplerian_1a4ccf866a5a484189ff9560f44d8c4798" kind="function"><name>get_eccentricity</name></member>
-    <member refid="classastrea_1_1astro_1_1Keplerian_1a492a03901a888826633bafa86088fd73" kind="function"><name>get_inclination</name></member>
-    <member refid="classastrea_1_1astro_1_1Keplerian_1a885e1ccd5790ec3389a8b8bf08ce755f" kind="function"><name>get_right_ascension</name></member>
-    <member refid="classastrea_1_1astro_1_1Keplerian_1a31c736c27ecbd3b1f71d5414846803cd" kind="function"><name>get_argument_of_perigee</name></member>
-    <member refid="classastrea_1_1astro_1_1Keplerian_1a91e3411edf151a01ae717ec062fd087c" kind="function"><name>get_true_anomaly</name></member>
+    <member refid="classastrea_1_1astro_1_1Keplerian_1a206a7deb079078ae3259e5f3ecba5fc3" kind="function"><name>get_semimajor</name></member>
+    <member refid="classastrea_1_1astro_1_1Keplerian_1ad404e1620ee5048bf72408039645cdcb" kind="function"><name>get_eccentricity</name></member>
+    <member refid="classastrea_1_1astro_1_1Keplerian_1a2e4e61c909bcd67f07c5a9b87725aed8" kind="function"><name>get_inclination</name></member>
+    <member refid="classastrea_1_1astro_1_1Keplerian_1a82de9407b7ebefd1cb2ead80bda916db" kind="function"><name>get_right_ascension</name></member>
+    <member refid="classastrea_1_1astro_1_1Keplerian_1a2f381c0f0a7c7023cd7d8d24bfc69879" kind="function"><name>get_argument_of_perigee</name></member>
+    <member refid="classastrea_1_1astro_1_1Keplerian_1a8950e8112db4a76c2d27541f78ee762d" kind="function"><name>get_true_anomaly</name></member>
     <member refid="classastrea_1_1astro_1_1Keplerian_1aef8f8327bda2f7e5b232aa564496b9d1" kind="function"><name>get_mean_anomaly</name></member>
     <member refid="classastrea_1_1astro_1_1Keplerian_1acda19ccf442156f5a191f420f6689551" kind="function"><name>get_mean_motion</name></member>
     <member refid="classastrea_1_1astro_1_1Keplerian_1a45c3610c8342d0abd7400cabe29337e4" kind="function"><name>interpolate</name></member>
@@ -912,7 +852,7 @@
     <member refid="classastrea_1_1astro_1_1KeplerianPartial_1a7cf9415f4ecb9f8a90f3621c4ccb0412" kind="variable"><name>_rightAscensionPartial</name></member>
     <member refid="classastrea_1_1astro_1_1KeplerianPartial_1a83b775615cb85c491f9dfeb115714cde" kind="variable"><name>_argPerigeePartial</name></member>
     <member refid="classastrea_1_1astro_1_1KeplerianPartial_1a63a59a69166e2ed79cdc9e969871b615" kind="variable"><name>_trueAnomalyPartial</name></member>
-    <member refid="classastrea_1_1astro_1_1KeplerianPartial_1ad94cd5490adca938388702fd1f4972e2" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1KeplerianPartial_1a1b9011ee8ad4075c7f095484f3927d89" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1KeplerianPartial_1aec42b35e376ba51ee05e183779faf6f5" kind="function"><name>KeplerianPartial</name></member>
     <member refid="classastrea_1_1astro_1_1KeplerianPartial_1a821ce1340c6b91e9e30abd89aa91919e" kind="function"><name>KeplerianPartial</name></member>
     <member refid="classastrea_1_1astro_1_1KeplerianPartial_1a4da8636ccb039a07045bbe35c2bd5779" kind="function"><name>operator*</name></member>
@@ -959,7 +899,7 @@
     <member refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1a9b9215b21ea6e397e231cef8a6fb203e" kind="function"><name>LocalHorizontalLocalVertical</name></member>
     <member refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1ad28a6db6556337154f0ad4e3b2a09ef4" kind="function"><name>LocalHorizontalLocalVertical</name></member>
     <member refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1a79a4873a7cce87626133282183ed8c2b" kind="function"><name>~LocalHorizontalLocalVertical</name></member>
-    <member refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1aaa1860cf1a8f3ee0d93d379cf2c160b0" kind="function"><name>get_dcm</name></member>
+    <member refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1acfc347ee034e0518e4a61a273af5a707" kind="function"><name>get_dcm</name></member>
     <member refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical_1ac70f9fb1061400f21101710ea52ef4e6" kind="function"><name>LocalHorizontalLocalVertical</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1planetary__bodies_1_1Mars" kind="class"><name>astrea::astro::planetary_bodies::Mars</name>
@@ -1021,7 +961,7 @@
   <compound refid="classastrea_1_1astro_1_1OrbitalElementPartials" kind="class"><name>astrea::astro::OrbitalElementPartials</name>
     <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1aa59e7e2b4e8866c521b67fd641d89ffc" kind="typedef"><name>PartialVariant</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1a1bda43991b805c9360a5ed43211b084d" kind="variable"><name>_elements</name></member>
-    <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1ab0869a2c904a2a25a8fa18cc9a7f5b0f" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1a78c8e1808b29adfc4d9503f707707053" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1ac7690f7cd6c7103c9967505286cf7099" kind="function"><name>OrbitalElementPartials</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1adec213af7bb4538674195898dd574346" kind="function"><name>OrbitalElementPartials</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElementPartials_1a7da6f2547f4af3cb6ec67f929eff4529" kind="function"><name>OrbitalElementPartials</name></member>
@@ -1037,7 +977,7 @@
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a286002529f9335fe7881150ade6dbd57" kind="typedef"><name>ElementVariant</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1acb390a49b18fb67071d138253f801962" kind="friend"><name>StateTransitionMatrix</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a7edbf9e31116a21e4e18cd2dd004ae63" kind="friend"><name>State</name></member>
-    <member refid="classastrea_1_1astro_1_1OrbitalElements_1a46dfe81c9c6a1f6f2612515cd0b40501" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1OrbitalElements_1a3e1e1cfc828ab9c24032ba7cc316bc5e" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1ad21b1bade65545900e4f1e5ac06b67b4" kind="variable"><name>_elements</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1ad6e216f13bbe018cc3ae68e3a0716641" kind="function"><name>OrbitalElements</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a8b0949c8190ccb304beb4793317295b0" kind="function"><name>OrbitalElements</name></member>
@@ -1045,7 +985,7 @@
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1aabf711c32602f0b40b22d510e4b78857" kind="function"><name>OrbitalElements</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a86ec13e55281b231ffbe514a683aa446" kind="function"><name>convert_to_set</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a777db043893255dd540677f9eee4ee12" kind="function"><name>convert_to_set</name></member>
-    <member refid="classastrea_1_1astro_1_1OrbitalElements_1a8a8626c0023955abdc7492e60a557a76" kind="function"><name>convert_to_set</name></member>
+    <member refid="classastrea_1_1astro_1_1OrbitalElements_1a007d4edf2dd99dc3fbfe5977eef09c7f" kind="function"><name>convert_to_set</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a1f87ad86accc0ca641802a2d2de68b43" kind="function"><name>convert_to_set</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1afd5fabef62ad4862b2ff7c76c0166ae9" kind="function"><name>in_element_set</name></member>
     <member refid="classastrea_1_1astro_1_1OrbitalElements_1a59d9745c85da7f6520af68fddefb2167" kind="function"><name>operator==</name></member>
@@ -1069,15 +1009,18 @@
   </compound>
   <compound refid="classastrea_1_1astro_1_1Payload" kind="class"><name>astrea::astro::Payload</name>
     <member refid="classastrea_1_1astro_1_1Payload_1a27fc7a87c5d98d6bed7c16c5b60a2eb4" kind="variable"><name>PayloadPlatform&lt; Payload_T &gt;</name></member>
+    <member refid="classastrea_1_1astro_1_1Payload_1a0ee4fd552bd290bd5d3852149d4e3f6a" kind="variable"><name>parameters</name></member>
     <member refid="classastrea_1_1astro_1_1Payload_1a68a557dbe7f23431b6511054e26de492" kind="variable"><name>_parent</name></member>
     <member refid="classastrea_1_1astro_1_1Payload_1ae1c1233caf3f2303302f1ee63f00ae2c" kind="variable"><name>_parameters</name></member>
     <member refid="classastrea_1_1astro_1_1Payload_1a16771f4bc621b1d51f6927a6fb1da9d0" kind="variable"><name>_id</name></member>
-    <member refid="classastrea_1_1astro_1_1Payload_1a4edc11aa97e4b5209ae4fa95fcc40261" kind="function"><name>Payload</name></member>
+    <member refid="classastrea_1_1astro_1_1Payload_1a297977ad58017d7ea7b855bacb727180" kind="function"><name>requires</name></member>
+    <member refid="classastrea_1_1astro_1_1Payload_1a71abe28a92740c90111c1cf551f8ffce" kind="function"><name>_parameters</name></member>
+    <member refid="classastrea_1_1astro_1_1Payload_1a99612aec9b7d417cfa09f37bb6f7b77e" kind="function"><name>_id</name></member>
     <member refid="classastrea_1_1astro_1_1Payload_1aaded20b587ec908180719cd4b7b08e24" kind="function"><name>~Payload</name></member>
-    <member refid="classastrea_1_1astro_1_1Payload_1a14204ed9712842fc105aab8677215ef0" kind="function"><name>set_parent</name></member>
+    <member refid="classastrea_1_1astro_1_1Payload_1a1c610cb9ac289a2fa85c81168c5dc2d0" kind="function"><name>requires</name></member>
     <member refid="classastrea_1_1astro_1_1Payload_1ac23c337846a82203c5ef1b8ccb522875" kind="function"><name>get_id</name></member>
     <member refid="classastrea_1_1astro_1_1Payload_1a98eeb7982384979a647afde74877981c" kind="function"><name>generate_id</name></member>
-    <member refid="classastrea_1_1astro_1_1Payload_1a87585ddc75db2373262ed16eecba591e" kind="function"><name>get_parent</name></member>
+    <member refid="classastrea_1_1astro_1_1Payload_1ac4c5184c9899bd7c95a5bb077417f956" kind="function"><name>get_parent</name></member>
     <member refid="classastrea_1_1astro_1_1Payload_1a6a41fff0ae2be69a4a85ee04681436b0" kind="function"><name>get_parameters</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1PayloadParameters" kind="class"><name>astrea::astro::PayloadParameters</name>
@@ -1085,8 +1028,8 @@
     <member refid="classastrea_1_1astro_1_1PayloadParameters_1ac00a6b09f894ff2bc23a3e5c09178201" kind="variable"><name>_attachmentPoint</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadParameters_1a6cdfdaee0415ade95ae4f9bbb7cceeb0" kind="function"><name>PayloadParameters</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadParameters_1a3123c3e9d7db97d339e3331f1946b4fc" kind="function"><name>~PayloadParameters</name></member>
-    <member refid="classastrea_1_1astro_1_1PayloadParameters_1adb2efe447028f38405929aba635a7637" kind="function"><name>get_boresight</name></member>
-    <member refid="classastrea_1_1astro_1_1PayloadParameters_1a8bc6a03189cc9f57c91df26393ec278b" kind="function"><name>get_attachment_point</name></member>
+    <member refid="classastrea_1_1astro_1_1PayloadParameters_1a4785cf97067d0219de0d21f5863a9896" kind="function"><name>get_boresight</name></member>
+    <member refid="classastrea_1_1astro_1_1PayloadParameters_1adc77175e75bf9c52138e316ebbd4ef4e" kind="function"><name>get_attachment_point</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadParameters_1af7dbb7cf61c73e53934794bfd880dbc5" kind="function"><name>set_boresight</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadParameters_1af3d2af7af17eef0cb4e036bd7f0609cf" kind="function"><name>set_attachment_point</name></member>
   </compound>
@@ -1097,15 +1040,15 @@
     <member refid="classastrea_1_1astro_1_1PayloadPlatform_1ab65c6cfe2d13db85ba002c7098ea63d4" kind="function"><name>~PayloadPlatform</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a75b47d34dfa8b14241224689531711fc" kind="function"><name>PayloadPlatform</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadPlatform_1ac605a5b5aa3d6076a938c7f12566bbfa" kind="function"><name>PayloadPlatform</name></member>
-    <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a5b86342be601a015b7350e019f751991" kind="function"><name>operator=</name></member>
-    <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a9fd042c81cc39bab05b7168c6270c6c5" kind="function"><name>operator=</name></member>
+    <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a7d2f05346ddca7ea800d50f65590429e" kind="function"><name>operator=</name></member>
+    <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a6563be9de229f07d640070bcf9b98253" kind="function"><name>operator=</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" kind="function"><name>reset_payload_parentage</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a9dbb3a6fcb1b3c5482728ca7cbb37627" kind="function"><name>get_id</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a1f39a69fc17a82b49a7aa6b15b61f65c" kind="function"><name>get_mass</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a3fd1ddd8c83de855378361500772110d" kind="function"><name>attach_payload</name></member>
     <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a543013093f0f72b8d8992d49a1d5e666" kind="function"><name>attach_payloads</name></member>
-    <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a54d9bf8b1049816166b25c0d4e24d045" kind="function"><name>get_payloads</name></member>
-    <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a4f32c230e8835289ef1c9aaa129c8da1" kind="function"><name>get_payloads</name></member>
+    <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a028e7c196fd2eeaca56adaf5a10063f8" kind="function"><name>get_payloads</name></member>
+    <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a6e07d8807ec4163410938ff53a502d30" kind="function"><name>get_payloads</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1planetary__bodies_1_1Phobos" kind="class"><name>astrea::astro::planetary_bodies::Phobos</name>
     <member refid="classastrea_1_1astro_1_1planetary__bodies_1_1Phobos_1ab5abc190c70fb3a84709671b736fe3a1" kind="function"><name>Phobos</name></member>
@@ -1125,9 +1068,9 @@
     <member refid="classastrea_1_1astro_1_1Plane_1a6865a09a4a1f25fc9f764a69330c1284" kind="function"><name>Plane</name></member>
     <member refid="classastrea_1_1astro_1_1Plane_1a66de55488007609b33c703b387d61774" kind="function"><name>~Plane</name></member>
     <member refid="classastrea_1_1astro_1_1Plane_1a9f49dd07082e4fa168157d41afec1dff" kind="function"><name>add_spacecraft</name></member>
-    <member refid="classastrea_1_1astro_1_1Plane_1acbea31f6ed6908173209f73d78f93bad" kind="function"><name>get_all_spacecraft</name></member>
-    <member refid="classastrea_1_1astro_1_1Plane_1adbbf7d2e158dcf6c5f26f1a9db853db4" kind="function"><name>get_all_spacecraft</name></member>
-    <member refid="classastrea_1_1astro_1_1Plane_1ab441d490db7d655fc617f772748dfb27" kind="function"><name>get_spacecraft</name></member>
+    <member refid="classastrea_1_1astro_1_1Plane_1a48fe5e7602a11adc5e0d75c4924a3fc4" kind="function"><name>get_all_spacecraft</name></member>
+    <member refid="classastrea_1_1astro_1_1Plane_1a6948131d237c691a458ca681c217214f" kind="function"><name>get_all_spacecraft</name></member>
+    <member refid="classastrea_1_1astro_1_1Plane_1aeb4ad41f5822632256b43921acb12cbc" kind="function"><name>get_spacecraft</name></member>
     <member refid="classastrea_1_1astro_1_1Plane_1abf41a40784ed95dd9ca352137b187cea" kind="function"><name>size</name></member>
     <member refid="classastrea_1_1astro_1_1Plane_1a6d97ca346752c75c8aa9930cd43a3290" kind="function"><name>propagate</name></member>
     <member refid="classastrea_1_1astro_1_1Plane_1ab49b2739527a5b33487d8c1cc612be2e" kind="function"><name>propagate</name></member>
@@ -1153,7 +1096,7 @@
     <member refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1a4e19177fe63e29a5960a4c606a88e092" kind="function"><name>RadialInTrackCrossTrack</name></member>
     <member refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1abb913963964648ef5b1fb133b2be9980" kind="function"><name>RadialInTrackCrossTrack</name></member>
     <member refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1a2d58e74797a1f1c2021016e47416a095" kind="function"><name>~RadialInTrackCrossTrack</name></member>
-    <member refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1a952dcd79bbcc36d30214b7015291e7e0" kind="function"><name>get_dcm</name></member>
+    <member refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1ad68be8a3b26e06d070b601600631a449" kind="function"><name>get_dcm</name></member>
     <member refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1a708e1aedb1fd702998546f75721c8d60" kind="function"><name>RadialInTrackCrossTrack</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1planetary__bodies_1_1Rhea" kind="class"><name>astrea::astro::planetary_bodies::Rhea</name>
@@ -1167,12 +1110,12 @@
     <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a5dec4d47d98025da6ef61665efa67842" kind="typedef"><name>pointer</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a1c02fbfe9b115dce7f3221ff3148deb1" kind="typedef"><name>reference</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1af719d1429473be0f1ea6d1bfd30c50b3" kind="typedef"><name>iterator_category</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a406278c45446d00b8394e8740059bdde" kind="variable"><name>iterShell</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a7baa8f0b06059ca77cabe6459fe8e731" kind="variable"><name>iterShell</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a91d57c79a43c67aaa067d5e289c472dd" kind="variable"><name>iterSat</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a1fae483275f85495ab7e5ad65da54918" kind="function"><name>sat_iterator</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1ab75fc4452eaf76323fffa387536c3d58" kind="function"><name>operator++</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1abfb5640d7f4e26079f7463e32fad4975" kind="function"><name>sat_iterator</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a1455abe21e9c9d71477eeb839458e45b" kind="function"><name>operator++</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a693062df2fa44255333c7df767af03b2" kind="function"><name>operator++</name></member>
-    <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a60cecdd0cc0e6634f63cd60149371d44" kind="function"><name>operator--</name></member>
+    <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1acfc76933063583d7f90770363e04cef5" kind="function"><name>operator--</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1aba2110a34f9dd6430de55826dda57b5b" kind="function"><name>operator--</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1aa36abeb4db4aa4f5019f2e92a8b0e438" kind="function"><name>operator==</name></member>
     <member refid="classastrea_1_1astro_1_1Constellation_1_1sat__iterator_1a66e9f5f9d3ad75cc1f92203b9ccbe568" kind="function"><name>operator!=</name></member>
@@ -1188,12 +1131,12 @@
     <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aaf9c145ffea4d32f07c0eb853de13f98" kind="typedef"><name>pointer</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a02a138eed38225d482cda4b4ea3954c1" kind="typedef"><name>reference</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aa4eab2ef6592289719c56467b31f0043" kind="typedef"><name>iterator_category</name></member>
-    <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a94c39c610797c6e9d3b640f6f600a79b" kind="variable"><name>iterPlane</name></member>
+    <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1ab68d3384db1783c2db3e2dadeb6e1907" kind="variable"><name>iterPlane</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1abd78d1db586e9d5af5d7f3e96a9d3b49" kind="variable"><name>iterSat</name></member>
-    <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a3553a9bed5e08e554dfba6c5a2805209" kind="function"><name>sat_iterator</name></member>
-    <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a38fefe60538342caeb03430b07c43bea" kind="function"><name>operator++</name></member>
+    <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aa6b5b5c95d3285639730a29026314ba7" kind="function"><name>sat_iterator</name></member>
+    <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1ab84a0f8a4851a5c37295721db6c37521" kind="function"><name>operator++</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aacb226ca65577335f31c6ce3185cc805" kind="function"><name>operator++</name></member>
-    <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aed65e3ce377f33ed1a68fd17c9e78c44" kind="function"><name>operator--</name></member>
+    <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1ac8b065ff2b6a32606b6438efc8195e71" kind="function"><name>operator--</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a76c5653c55dcc85c78090391457eb282" kind="function"><name>operator--</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aa554722a479dd6f1051b8ca5e5f07a75" kind="function"><name>operator==</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a714c6594690d48ff997479ed184f1f8e" kind="function"><name>operator!=</name></member>
@@ -1217,7 +1160,7 @@
     <member refid="classastrea_1_1astro_1_1Shell_1a37a71b7c21d05fcf38331b06ad10ea6f" kind="variable"><name>name</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1ae6a8674fcec35029f4966958fb7fc2e7" kind="variable"><name>planes</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1ae253aabd4b187f41ed36899c2ac573b9" kind="function"><name>Shell</name></member>
-    <member refid="classastrea_1_1astro_1_1Shell_1acb0261ed7ca4e66f9d3dd2300f91bdee" kind="function"><name>Shell</name></member>
+    <member refid="classastrea_1_1astro_1_1Shell_1a3fd9fee9e435217c9f64cfc366a830a4" kind="function"><name>Shell</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1aac3f987027a5f9f8e40da1eab5bed945" kind="function"><name>Shell</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1ac0967fa7d4d7183e21c1b0a37721f2cf" kind="function"><name>Shell</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1aabb9a60e32dd20f96a6c7ac60ad1b22a" kind="function"><name>~Shell</name></member>
@@ -1226,11 +1169,11 @@
     <member refid="classastrea_1_1astro_1_1Shell_1a0f5ee5058faa4af2d14070eeffd0aab2" kind="function"><name>add_plane</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1a9c278f282fe389dffc03e1b76075a05f" kind="function"><name>add_spacecraft</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1abb565c5894374e99b5f06a6c38132c6d" kind="function"><name>add_spacecraft</name></member>
-    <member refid="classastrea_1_1astro_1_1Shell_1a4f4fe24b44643e497b0d4144c02cbd55" kind="function"><name>get_planes</name></member>
-    <member refid="classastrea_1_1astro_1_1Shell_1a129a39fd2e5838f9c22de4d63dc0b457" kind="function"><name>get_planes</name></member>
-    <member refid="classastrea_1_1astro_1_1Shell_1a04300f500e57c7e3efce1c80bfdaf82f" kind="function"><name>get_all_spacecraft</name></member>
-    <member refid="classastrea_1_1astro_1_1Shell_1a50c2584b2ac4830a423a433fba4b3aeb" kind="function"><name>get_plane</name></member>
-    <member refid="classastrea_1_1astro_1_1Shell_1ac6551915ea1dff7f683d5a898c063401" kind="function"><name>get_spacecraft</name></member>
+    <member refid="classastrea_1_1astro_1_1Shell_1abb707337fba73933020bd6334ebb2141" kind="function"><name>get_planes</name></member>
+    <member refid="classastrea_1_1astro_1_1Shell_1a4154b25eb7157dc345db7e096fbed593" kind="function"><name>get_planes</name></member>
+    <member refid="classastrea_1_1astro_1_1Shell_1a29687d4f2bb18a00c6745e69b145a207" kind="function"><name>get_all_spacecraft</name></member>
+    <member refid="classastrea_1_1astro_1_1Shell_1a2df6686fdd574071087e1ecb899b296a" kind="function"><name>get_plane</name></member>
+    <member refid="classastrea_1_1astro_1_1Shell_1a0383c0cefd8f802b2974e002f409cfbd" kind="function"><name>get_spacecraft</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1a93ad9f560282d926df9ac5ec051d9897" kind="function"><name>propagate</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1ae9e9032967ecb564892c04aa5ac0fede" kind="function"><name>propagate</name></member>
     <member refid="classastrea_1_1astro_1_1Shell_1ae4dae64792b9ea1bf53241d922fe1e32" kind="function"><name>begin</name></member>
@@ -1273,8 +1216,8 @@
     <member refid="classastrea_1_1astro_1_1Spacecraft_1ac22116501cfcfb86ef9e2338e6ea4220" kind="function"><name>get_inertial_velocity</name></member>
     <member refid="classastrea_1_1astro_1_1Spacecraft_1a046703dab7464bcc88c3fbb1a7c52e58" kind="function"><name>set_state_history</name></member>
     <member refid="classastrea_1_1astro_1_1Spacecraft_1a2a8cf0eb98d9c8d02491af0c988fd471" kind="function"><name>store_state</name></member>
-    <member refid="classastrea_1_1astro_1_1Spacecraft_1a8c34057c783bf6af8a0d1035acd32bab" kind="function"><name>get_initial_state</name></member>
-    <member refid="classastrea_1_1astro_1_1Spacecraft_1ae7e5d81c9636703192735725a352cc7e" kind="function"><name>get_initial_state</name></member>
+    <member refid="classastrea_1_1astro_1_1Spacecraft_1af4c777ce30bb3f6ab484a18f21d06a29" kind="function"><name>get_initial_state</name></member>
+    <member refid="classastrea_1_1astro_1_1Spacecraft_1aed21c4a7713be080d39a1c811e1802fb" kind="function"><name>get_initial_state</name></member>
     <member refid="classastrea_1_1astro_1_1Spacecraft_1a9ef9ea61d51187344edcf62143c74624" kind="function"><name>get_state_history</name></member>
     <member refid="classastrea_1_1astro_1_1Spacecraft_1a6bface99bb92bc236fa516ff0af42a17" kind="function"><name>get_state_history</name></member>
     <member refid="classastrea_1_1astro_1_1Spacecraft_1a8006e003e3545dcd32cabc3789dc4a3e" kind="function"><name>get_mass</name></member>
@@ -1300,7 +1243,7 @@
     <member refid="classastrea_1_1astro_1_1Spherical_1ae6e081df986e304b61eaf44499ae6827" kind="variable"><name>_range</name></member>
     <member refid="classastrea_1_1astro_1_1Spherical_1a512651e37b4021adc00ca3e379b2bfbd" kind="variable"><name>_inclination</name></member>
     <member refid="classastrea_1_1astro_1_1Spherical_1ab3471f595070fc2127f3cc11bc9a30f2" kind="variable"><name>_azimuth</name></member>
-    <member refid="classastrea_1_1astro_1_1Spherical_1a5844717d4f9bd0310cbfeb60526faf65" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1Spherical_1a5222024a6956c3da6464343bd255cbe2" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1Spherical_1ab8a8176dd7f775c8ff4fbca642ab449c" kind="function"><name>Spherical</name></member>
     <member refid="classastrea_1_1astro_1_1Spherical_1acd370662301249b91ff003439d22a5ec" kind="function"><name>Spherical</name></member>
     <member refid="classastrea_1_1astro_1_1Spherical_1a289f00503e289a0b2eac2f80375d00d5" kind="function"><name>Spherical</name></member>
@@ -1324,15 +1267,15 @@
     <member refid="classastrea_1_1astro_1_1Spherical_1ac4e2517466ed73f203f53493a01e0cec" kind="function"><name>operator/=</name></member>
     <member refid="classastrea_1_1astro_1_1Spherical_1ab6813a1a9a72977668717d0762d7057f" kind="function"><name>get_position</name></member>
     <member refid="classastrea_1_1astro_1_1Spherical_1ae0828a11b9a28d2fc19823882137a7f1" kind="function"><name>get_position</name></member>
-    <member refid="classastrea_1_1astro_1_1Spherical_1a31f4e7417d312eb717d2fb4c726e7112" kind="function"><name>get_azimuth</name></member>
-    <member refid="classastrea_1_1astro_1_1Spherical_1a2b3a73cf42fa3c1bd31590476ff27a6f" kind="function"><name>get_inclination</name></member>
-    <member refid="classastrea_1_1astro_1_1Spherical_1ac97080c13bd9a2a9004434f741ac7234" kind="function"><name>get_range</name></member>
+    <member refid="classastrea_1_1astro_1_1Spherical_1addb7cb893320aed8b3edf3faa5dcfbfd" kind="function"><name>get_azimuth</name></member>
+    <member refid="classastrea_1_1astro_1_1Spherical_1a1feb562626d99adca72b47613a8f5611" kind="function"><name>get_inclination</name></member>
+    <member refid="classastrea_1_1astro_1_1Spherical_1a15375295479326a9d5e93949b823e90a" kind="function"><name>get_range</name></member>
     <member refid="classastrea_1_1astro_1_1Spherical_1a06f10aaf8cd096ba8e035eefd00c3aee" kind="function"><name>interpolate</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1State" kind="class"><name>astrea::astro::State</name>
     <member refid="classastrea_1_1astro_1_1State_1ace5bb0fe4232b9b0ced67ff743994e71" kind="friend"><name>Integrator</name></member>
     <member refid="classastrea_1_1astro_1_1State_1acb390a49b18fb67071d138253f801962" kind="friend"><name>StateTransitionMatrix</name></member>
-    <member refid="classastrea_1_1astro_1_1State_1a6c293f08ac54988431d4f11454aa7bbd" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1State_1a54de8fb138c00ba980f5be1e83da6349" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a6235376e0002ab35cd2804f405699d71" kind="variable"><name>_elements</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a91e66b19923411d581487013dacb03e1" kind="variable"><name>_epoch</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a6344aa121b0219bafb68cf91d07d0764" kind="variable"><name>_system</name></member>
@@ -1341,22 +1284,22 @@
     <member refid="classastrea_1_1astro_1_1State_1a9ae8bc208ca84cc8edf69fe2f1c542ad" kind="function"><name>State</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a91fcd7ce0b9acf24ebafb45373d480f3" kind="function"><name>State</name></member>
     <member refid="classastrea_1_1astro_1_1State_1affd704af3b1b24a108d6426614cfd360" kind="function"><name>operator==</name></member>
-    <member refid="classastrea_1_1astro_1_1State_1ab7d75676227e17edcd23a3a2401f0a94" kind="function"><name>get_elements</name></member>
-    <member refid="classastrea_1_1astro_1_1State_1aebad759932d9e8c0ff8281e28735364d" kind="function"><name>get_epoch</name></member>
-    <member refid="classastrea_1_1astro_1_1State_1a81de5202daf44ff3fcca55eadcb86659" kind="function"><name>get_system</name></member>
+    <member refid="classastrea_1_1astro_1_1State_1a11958162180a0170fcc61f3f51524aff" kind="function"><name>get_elements</name></member>
+    <member refid="classastrea_1_1astro_1_1State_1a2653de61a38fac76e896b9402eb16ffd" kind="function"><name>get_epoch</name></member>
+    <member refid="classastrea_1_1astro_1_1State_1a569984652f1f9a8f1ab37c8ec758ab3b" kind="function"><name>get_system</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a0389abaa78ad4f91df63486d4f910f15" kind="function"><name>convert_to_set</name></member>
-    <member refid="classastrea_1_1astro_1_1State_1aa59e5052442597334b2ce64f7c3215fc" kind="function"><name>convert_to_set</name></member>
+    <member refid="classastrea_1_1astro_1_1State_1a1448d3456e5bf632feb5d61507970e6c" kind="function"><name>convert_to_set</name></member>
     <member refid="classastrea_1_1astro_1_1State_1ae0d2c1bb6a85230d2da170b4450155b4" kind="function"><name>convert_to_set</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a9f0bb5b0bf79a09e39528ff6cf99d93a" kind="function"><name>convert_to_set</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a1ece2e44cee20c4247d0b62cc5e810e7" kind="function"><name>in_element_set</name></member>
-    <member refid="classastrea_1_1astro_1_1State_1ac1b9bdf179adbce657dfcb4692077bf3" kind="function"><name>get_position</name></member>
-    <member refid="classastrea_1_1astro_1_1State_1af55631a5d77101f36ff3920040529d0c" kind="function"><name>get_velocity</name></member>
-    <member refid="classastrea_1_1astro_1_1State_1a1af2d8239809373c6b63925d3cb2880c" kind="function"><name>get_position_in_frame</name></member>
+    <member refid="classastrea_1_1astro_1_1State_1a601bd217f07a98056e49c50abf8d003d" kind="function"><name>get_position</name></member>
+    <member refid="classastrea_1_1astro_1_1State_1a36f7d73ea098aa0202a046ff73055bd8" kind="function"><name>get_velocity</name></member>
+    <member refid="classastrea_1_1astro_1_1State_1a23d8b1c165ad4d0c258a7c30ac602067" kind="function"><name>get_position_in_frame</name></member>
     <member refid="classastrea_1_1astro_1_1State_1aa94a28a92be9a9caa78b0ca149186cda" kind="function"><name>set_elements</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a9075e3896b1ab8d3deb98b09aa4d3620" kind="function"><name>set_epoch</name></member>
     <member refid="classastrea_1_1astro_1_1State_1ab37c584cd657af9a8792076f1d2bc336" kind="function"><name>set_system</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a98da72612989b5de99d1d8c26545a6b8" kind="function"><name>get_mu</name></member>
-    <member refid="classastrea_1_1astro_1_1State_1a46acbdce1ea44538eec9ef4be4644442" kind="function"><name>force_to_vector</name></member>
+    <member refid="classastrea_1_1astro_1_1State_1a43a233d9a04bc065e7e835621442d6d1" kind="function"><name>force_to_vector</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a85f701bdb420efbf7e26dba4d45c3c56" kind="function"><name>operator+</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a62bbb68c5c7ed5c761d803e8f2607d14" kind="function"><name>operator+=</name></member>
     <member refid="classastrea_1_1astro_1_1State_1a44d6121aa152b0d11e28e5a9b6cd5386" kind="function"><name>operator-</name></member>
@@ -1385,16 +1328,16 @@
     <member refid="classastrea_1_1astro_1_1StateHistory_1a27786dfec3a8dd9f61ee686617825607" kind="function"><name>insert</name></member>
     <member refid="classastrea_1_1astro_1_1StateHistory_1a574956e672df69c440396947bbd6cd17" kind="function"><name>size</name></member>
     <member refid="classastrea_1_1astro_1_1StateHistory_1a098268c45fa4c22afba375da65521635" kind="function"><name>clear</name></member>
-    <member refid="classastrea_1_1astro_1_1StateHistory_1adb6f8d071b513d4b58b9fae5d310220d" kind="function"><name>epoch</name></member>
-    <member refid="classastrea_1_1astro_1_1StateHistory_1aa2b6081a8750c26ecdd95d7a59a1cbc9" kind="function"><name>first</name></member>
-    <member refid="classastrea_1_1astro_1_1StateHistory_1ad4c4be3d3281dc3cbb44ba26feba933a" kind="function"><name>last</name></member>
+    <member refid="classastrea_1_1astro_1_1StateHistory_1a8da925e1ce25d123fc5c51663544e9ce" kind="function"><name>epoch</name></member>
+    <member refid="classastrea_1_1astro_1_1StateHistory_1a1218761a614b70cd8d906dd4b67f8cf2" kind="function"><name>first</name></member>
+    <member refid="classastrea_1_1astro_1_1StateHistory_1a3d66ba4c5aa255ff6f588641b94fd304" kind="function"><name>last</name></member>
     <member refid="classastrea_1_1astro_1_1StateHistory_1a3b2baeec166baf2ece3f3c351565c773" kind="function"><name>set_object_id</name></member>
     <member refid="classastrea_1_1astro_1_1StateHistory_1a025214307c6a9f460251a17103e3b8e7" kind="function"><name>get_object_id</name></member>
     <member refid="classastrea_1_1astro_1_1StateHistory_1a3eb207ecc4b7c94a68da783520a5b5bd" kind="function"><name>get_closest_state</name></member>
     <member refid="classastrea_1_1astro_1_1StateHistory_1a334dd30198584f584abe9d0740e3024e" kind="function"><name>get_state_at</name></member>
     <member refid="classastrea_1_1astro_1_1StateHistory_1a002192e98398c08264df0aceb4374603" kind="function"><name>set_event_times</name></member>
-    <member refid="classastrea_1_1astro_1_1StateHistory_1aa473c462385246e149c67c2523edb764" kind="function"><name>get_event_times</name></member>
-    <member refid="classastrea_1_1astro_1_1StateHistory_1aa6514cf35f46cbf3d9662abb3927d818" kind="function"><name>get_event_times</name></member>
+    <member refid="classastrea_1_1astro_1_1StateHistory_1afc86729d7fad2d0c56cd7f6e53612122" kind="function"><name>get_event_times</name></member>
+    <member refid="classastrea_1_1astro_1_1StateHistory_1a97d8ded6022194f0377170b53902b1fb" kind="function"><name>get_event_times</name></member>
     <member refid="classastrea_1_1astro_1_1StateHistory_1a8977b808b5887af38f70e90a3ba83f13" kind="function"><name>begin</name></member>
     <member refid="classastrea_1_1astro_1_1StateHistory_1a25c5c5dd54cc9056e4c7159add4900ce" kind="function"><name>end</name></member>
     <member refid="classastrea_1_1astro_1_1StateHistory_1aa73ef390d269e1e9f396ce32ee6d1f10" kind="function"><name>begin</name></member>
@@ -1427,7 +1370,9 @@
   </compound>
   <compound refid="classastrea_1_1astro_1_1Thruster" kind="class"><name>astrea::astro::Thruster</name>
     <member refid="classastrea_1_1astro_1_1Thruster_1afb2ace5dc9d3039075142d2b070e81d9" kind="variable"><name>Payload&lt; Thruster, ThrusterParameters &gt;</name></member>
-    <member refid="classastrea_1_1astro_1_1Thruster_1a64e743f8d9abadfc277db9eff9f7a08a" kind="function"><name>Thruster</name></member>
+    <member refid="classastrea_1_1astro_1_1Thruster_1a13e87f90c953c5408d4587635ccbeccd" kind="variable"><name>parameters</name></member>
+    <member refid="classastrea_1_1astro_1_1Thruster_1a872464d92d85b7f44098da65d18dc05f" kind="function"><name>requires</name></member>
+    <member refid="classastrea_1_1astro_1_1Thruster_1a74a31ac6c171454db9e35275713a9838" kind="function"><name>ThrusterParameters</name></member>
     <member refid="classastrea_1_1astro_1_1Thruster_1af4317c5e5a7f4c091cfb64892396df53" kind="function"><name>~Thruster</name></member>
     <member refid="classastrea_1_1astro_1_1Thruster_1a9b2dccc30f961d61eb9a67de2024b833" kind="function"><name>get_id</name></member>
     <member refid="classastrea_1_1astro_1_1Thruster_1a91310d9dc97049cae2d10ee55400ef81" kind="function"><name>get_impulsive_delta_v</name></member>
@@ -1482,7 +1427,7 @@
     <member refid="classastrea_1_1astro_1_1TwoLineElements_1ad9bd1c7bc44939dc20a249f8a44f6657" kind="variable"><name>_revNumber</name></member>
     <member refid="classastrea_1_1astro_1_1TwoLineElements_1a5e636a48ddc3cb8a2a2dedd355de80e7" kind="variable"><name>_checkSum2</name></member>
     <member refid="classastrea_1_1astro_1_1TwoLineElements_1af55b652817fd133dc825d7c97d0c6c62" kind="variable"><name>_elements</name></member>
-    <member refid="classastrea_1_1astro_1_1TwoLineElements_1a5d0d0fe8a9fece389981bff8e1f56ee1" kind="friend"><name>operator&lt;&lt;</name></member>
+    <member refid="classastrea_1_1astro_1_1TwoLineElements_1abf7f5f38eb9b611dd53566a19efae77a" kind="friend"><name>operator&lt;&lt;</name></member>
     <member refid="classastrea_1_1astro_1_1TwoLineElements_1aebf2413f34ef708d955a2440f9b46f78" kind="function"><name>TwoLineElements</name></member>
     <member refid="classastrea_1_1astro_1_1TwoLineElements_1afa80c40f95beb1b833ed71d0943acb45" kind="function"><name>TwoLineElements</name></member>
     <member refid="classastrea_1_1astro_1_1TwoLineElements_1a01a927ae64ad7c817d0ad610debe3050" kind="function"><name>TwoLineElements</name></member>
@@ -1493,7 +1438,7 @@
     <member refid="classastrea_1_1astro_1_1TwoLineElements_1a92aaa7d0ea129d21de8b148bcc4cf3d4" kind="function"><name>~TwoLineElements</name></member>
     <member refid="classastrea_1_1astro_1_1TwoLineElements_1a12236f5c15357476a5fd5be551a962d9" kind="function"><name>operator==</name></member>
     <member refid="classastrea_1_1astro_1_1TwoLineElements_1ae20a91e8d6cb0a52fab2146cc1b19c76" kind="function"><name>operator!=</name></member>
-    <member refid="classastrea_1_1astro_1_1TwoLineElements_1aff7c8364218b18a4de361dc4af55dc27" kind="function"><name>get_raw_tle</name></member>
+    <member refid="classastrea_1_1astro_1_1TwoLineElements_1abcf70a421c1b5b5cae8010931f7ceea2" kind="function"><name>get_raw_tle</name></member>
     <member refid="classastrea_1_1astro_1_1TwoLineElements_1aa89ba6c88dc42de33bf4270579d139c3" kind="function"><name>get_1st_line</name></member>
     <member refid="classastrea_1_1astro_1_1TwoLineElements_1a49683910ecdbda77dead11aab269a7de" kind="function"><name>get_2nd_line</name></member>
     <member refid="classastrea_1_1astro_1_1TwoLineElements_1ac5e13fdfbc135e4657eee5c678a88121" kind="function"><name>get_name</name></member>
@@ -1541,8 +1486,8 @@
     <member refid="classastrea_1_1astro_1_1Vehicle_1a7bacad65da7c21f00be153b2b73cb10a" kind="function"><name>Vehicle</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1ad84baa620d49c19dfd1f7fdc8c332e60" kind="function"><name>operator=</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1a80597f6866d2c52511df0da860a15184" kind="function"><name>operator=</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1a8c66aec6b5e7dc84d83fe45c0dfc3489" kind="function"><name>operator=</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1ab94de25eb6d0cd4c1f40bafd994ca04b" kind="function"><name>extract</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1a67b764d49174f08205046ace6732dbb3" kind="function"><name>operator=</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1aa5e1c3df9f84484a201c41c0a991d264" kind="function"><name>extract</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1a16c66589957a50f003a9c8a19643e8e7" kind="function"><name>get_mass</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1a06c609fdabc553f73a32d16d4b86074b" kind="function"><name>get_ram_area</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1aac239325de0d02d70d99a16b4cb45838" kind="function"><name>get_lift_area</name></member>
@@ -1550,23 +1495,23 @@
     <member refid="classastrea_1_1astro_1_1Vehicle_1ab1befc5b53489849f43ffd59dfcbc421" kind="function"><name>get_coefficient_of_drag</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1a0eb8f3f76df98212fa7d5f80378c5503" kind="function"><name>get_coefficient_of_lift</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1af0f3012e96737f341aae3d56c2c58509" kind="function"><name>get_coefficient_of_reflectivity</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1a694bbb3675c0cecebf3e8d91e44c0bf0" kind="function"><name>get_inertial_position</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1aea61b66d533e614bd5cee818f39f2e10" kind="function"><name>get_inertial_velocity</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1aa1bea9a4e36e17c854231ed190c9d549" kind="function"><name>get_inertial_acceleration</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1a3e612086276fb6f79e254551d4e1d683" kind="function"><name>get_inertial_position</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1a9558d4a5e59e5e9e0b63681208990406" kind="function"><name>get_inertial_velocity</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1a105ef4b6223aa09097df9fd610aaa137" kind="function"><name>get_inertial_acceleration</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1a41d42c2c45065353148a92616adfccbb" kind="function"><name>get_name</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1aba08d0db9f46a7127aad1b7ddb644aef" kind="function"><name>get_ptr</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1a669f2d451eaec3bfd23dffc3322b29bd" kind="function"><name>get_ptr</name></member>
     <member refid="classastrea_1_1astro_1_1Vehicle_1a7bfe1ef63d70232ad0e8098d8ba35969" kind="function"><name>generic_ctor_impl</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1a5a1fa9f5ccd7e5ebd66ec0b342c1e62d" kind="function"><name>ptr</name></member>
-    <member refid="classastrea_1_1astro_1_1Vehicle_1a70eef0cbe8f2768ffe4755a6c33f8beb" kind="function"><name>ptr</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1a7358c0af6967802ef59edbde1bccc4b1" kind="function"><name>ptr</name></member>
+    <member refid="classastrea_1_1astro_1_1Vehicle_1a7655b2d97c74a96f132e4e044e0cf91a" kind="function"><name>ptr</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1detail_1_1VehicleInner" kind="struct"><name>astrea::astro::detail::VehicleInner</name>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aa976454970ea0247b49a6a3e5e4c3583" kind="variable"><name>_value</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ac9cae797e402a4facbecf46e9cac5e45" kind="function"><name>VehicleInner</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a38c0dd572be51ff91f935676ba7e31f5" kind="function"><name>VehicleInner</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a83c08acb6d92e0e44541b62c44e09e69" kind="function"><name>VehicleInner</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1abbf75fb5646959d20d498243f77d4cc2" kind="function"><name>operator=</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ac904e8aef94ea696f103cfd7aafaf2b4" kind="function"><name>operator=</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a97dd7c7c96e2cec0733ae9fb1fd7ab11" kind="function"><name>operator=</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aac8c784b4c89af0db832e28fde6e4134" kind="function"><name>operator=</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab92064b0fe1afc106797d1200871cfc0" kind="function"><name>VehicleInner</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ac405d1b95f97e49ac2eb7f8c4653daca" kind="function"><name>VehicleInner</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a7c857b46a366bf7f262bf433962bb87a" kind="function"><name>get_mass</name></member>
@@ -1576,25 +1521,25 @@
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab5273b512dabd29c83845b88ab7a006f" kind="function"><name>get_coefficient_of_drag</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aa314461ba9e2410497867ebe1d41a647" kind="function"><name>get_coefficient_of_lift</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a9fe081f53197d0046e7c3d13a2fbfdb9" kind="function"><name>get_coefficient_of_reflectivity</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ad3c6e39377c986b94b9780bcee1adced" kind="function"><name>get_inertial_position</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ae26040a2fdce1125d5aa2ac516db2d73" kind="function"><name>get_inertial_velocity</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aed6d088902399bd49a75ccdf4c14b26a" kind="function"><name>get_inertial_acceleration</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1acbe5f679f529ab5343fe668d4cfd0a70" kind="function"><name>get_inertial_position</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a7f6cf0e268ff1c23b095a9d6537db350" kind="function"><name>get_inertial_velocity</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a739d04bbe90b8408788507812e17aacb" kind="function"><name>get_inertial_acceleration</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1acc2dafd26faba5d8e9cbe8274d88d82e" kind="function"><name>get_name</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a5866b37c7f40f48ef3f30d15c38e0d79" kind="function"><name>clone</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1af3fd8955c35abd1cfa5195b3f25d6fc1" kind="function"><name>get_ptr</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a1044bb2f64013555e65f4873d215e4c2" kind="function"><name>get_ptr</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a59620dcc0d1123ec67c88f8696e6b44a" kind="function"><name>get_ram_area_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1afe8406c010f18c5886d62e4f0358c56d" kind="function"><name>get_ram_area_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a38b7e2024a0c95cba51c1fe7a9a08132" kind="function"><name>get_lift_area_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a719aff1560f66bc0ca51c1a23ab6371b" kind="function"><name>get_lift_area_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a1c65491b21f62d462598c5bad4327271" kind="function"><name>get_solar_area_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab51383b56263989e434dd771b9633703" kind="function"><name>get_solar_area_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aa3b1b74c64edb463959054a541e58095" kind="function"><name>get_coefficient_of_drag_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a6be493f607d964ab58bf967586bcf98f" kind="function"><name>get_coefficient_of_drag_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1afbc9cf2ab07d5f18ff22af08e1ffafa5" kind="function"><name>get_coefficient_of_lift_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aaa977c88413e35b71218075084e2d398" kind="function"><name>get_coefficient_of_lift_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a4243951f09704d52c0cec78e04d7abdd" kind="function"><name>get_coefficient_of_reflectivity_impl</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab2e72c7f88f5e30415c1c62d6be3e692" kind="function"><name>get_coefficient_of_reflectivity_impl</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a21c96588cae0e298e1f3ca6ccf61fb06" kind="function"><name>requires</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a12f6895cb61f40c5ab20cb4e7dbdb631" kind="function"><name>requires</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a996c99651c2836531b854e430dd54037" kind="function"><name>requires</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a70abe7ed33e2a492153d731d7ff9cf79" kind="function"><name>requires</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ac9525d52a9110d1a1e9b65c474fccbb9" kind="function"><name>requires</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a858343394a92d9a76d45daeee67a5958" kind="function"><name>requires</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a4fd3bcddb021e86c17dff3a626ef1ebf" kind="function"><name>requires</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a0e5311e572de97b544426232589a2c93" kind="function"><name>requires</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a522630f43ea2a73414bcbd1ca3cf5966" kind="function"><name>requires</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1aa4327476e35855c9eff84e5484004e7a" kind="function"><name>requires</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ac70829e459ded9352d1ab7a728b4f863" kind="function"><name>requires</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ad4af8d69d3bb4f961ced13ae4a20c255" kind="function"><name>requires</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ae3518898077e5379a0456de4add481b6" kind="function"><name>clone</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1ab952772aa44917b48ac8d56912167f39" kind="function"><name>get_ptr</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInner_1a38438e03a1374d3a537558720c27ae43" kind="function"><name>get_ptr</name></member>
   </compound>
   <compound refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase" kind="struct"><name>astrea::astro::detail::VehicleInnerBase</name>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a5e418615cc4ecb2047b59b655f2ff628" kind="function"><name>~VehicleInnerBase</name></member>
@@ -1605,14 +1550,14 @@
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a3e590df12eb9c11995e3cf6c044914af" kind="function"><name>get_coefficient_of_drag</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a3cca83802a1f29482438f7d6b512d034" kind="function"><name>get_coefficient_of_lift</name></member>
     <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1aa2996dc07882f2cb359eb6c1c71d7bcf" kind="function"><name>get_coefficient_of_reflectivity</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a2f53c6686dcd6211155bf36c428faeab" kind="function"><name>clone</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a529c016c01fd7c6f16b9cf1e52082026" kind="function"><name>get_ptr</name></member>
-    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a7c5452261903276e6bfa06acc681d508" kind="function"><name>get_ptr</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1ac35f49947e90f1414f4ecf79a2ab562c" kind="function"><name>clone</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a4b8ffb4b896a5503e74b13b5de9bbe33" kind="function"><name>get_ptr</name></member>
+    <member refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase_1a385536519f3c1fcff98e83e5679387d8" kind="function"><name>get_ptr</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal" kind="class"><name>astrea::astro::frames::VelocityNormalBinormal</name>
     <member refid="classastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1ad46575bc8912780733a48d08c9580cce" kind="function"><name>VelocityNormalBinormal</name></member>
     <member refid="classastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1a3788d9ff733f9b5242e70b2f87ef4052" kind="function"><name>~VelocityNormalBinormal</name></member>
-    <member refid="classastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1a03c0a24c0f90ecd98ba9308bf52814dd" kind="function"><name>get_dcm</name></member>
+    <member refid="classastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1ad9b97f1e407b89efd30a33740d61fa28" kind="function"><name>get_dcm</name></member>
     <member refid="classastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal_1a39432939e450822709678ca96025ec37" kind="function"><name>VelocityNormalBinormal</name></member>
   </compound>
   <compound refid="classastrea_1_1astro_1_1planetary__bodies_1_1Venus" kind="class"><name>astrea::astro::planetary_bodies::Venus</name>
@@ -1620,72 +1565,6 @@
     <member refid="classastrea_1_1astro_1_1planetary__bodies_1_1Venus_1add89c8f330815db79881a7e1d1344985" kind="function"><name>~Venus</name></member>
     <member refid="classastrea_1_1astro_1_1planetary__bodies_1_1Venus_1a3ea6e522119c0bb046fc011c3767370b" kind="function"><name>find_atmospheric_density</name></member>
     <member refid="classastrea_1_1astro_1_1planetary__bodies_1_1Venus_1acfefe6d2cbb32a58dfbed772ca1ab60f" kind="function"><name>get_id</name></member>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasDcm" kind="concept"><name>astrea::astro::HasDcm</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasDcmMethod" kind="concept"><name>astrea::astro::HasDcmMethod</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasDirectCartesianConversion" kind="concept"><name>astrea::astro::HasDirectCartesianConversion</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasDirectEquinoctialConversion" kind="concept"><name>astrea::astro::HasDirectEquinoctialConversion</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasDirectKeplerianConversion" kind="concept"><name>astrea::astro::HasDirectKeplerianConversion</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasGetCoefficientOfDrag" kind="concept"><name>astrea::astro::HasGetCoefficientOfDrag</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasGetCoefficientOfLift" kind="concept"><name>astrea::astro::HasGetCoefficientOfLift</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasGetCoefficientOfReflectivity" kind="concept"><name>astrea::astro::HasGetCoefficientOfReflectivity</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasGetLiftArea" kind="concept"><name>astrea::astro::HasGetLiftArea</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasGetMass" kind="concept"><name>astrea::astro::HasGetMass</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasGetName" kind="concept"><name>astrea::astro::HasGetName</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasGetRamArea" kind="concept"><name>astrea::astro::HasGetRamArea</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasGetSolarArea" kind="concept"><name>astrea::astro::HasGetSolarArea</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasInPlaceMathOperators" kind="concept"><name>astrea::astro::HasInPlaceMathOperators</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasIsTerminal" kind="concept"><name>astrea::astro::HasIsTerminal</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasIterpolate" kind="concept"><name>astrea::astro::HasIterpolate</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasMathOperators" kind="concept"><name>astrea::astro::HasMathOperators</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasMeasureEvent" kind="concept"><name>astrea::astro::HasMeasureEvent</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasSameAxis" kind="concept"><name>astrea::astro::HasSameAxis</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasSameOrigin" kind="concept"><name>astrea::astro::HasSameOrigin</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasToVector" kind="concept"><name>astrea::astro::HasToVector</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1HasTriggerEvent" kind="concept"><name>astrea::astro::HasTriggerEvent</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1IsBodyFixedFrame" kind="concept"><name>astrea::astro::IsBodyFixedFrame</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1IsConstructableTo" kind="concept"><name>astrea::astro::IsConstructableTo</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1IsDynamicFrame" kind="concept"><name>astrea::astro::IsDynamicFrame</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1IsGenericallyConstructableEvent" kind="concept"><name>astrea::astro::IsGenericallyConstructableEvent</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1IsGenericallyConstructableVehicle" kind="concept"><name>astrea::astro::IsGenericallyConstructableVehicle</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1IsInertialFrame" kind="concept"><name>astrea::astro::IsInertialFrame</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1IsOrbitalElements" kind="concept"><name>astrea::astro::IsOrbitalElements</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1IsSameFrame" kind="concept"><name>astrea::astro::IsSameFrame</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1IsStaticFrame" kind="concept"><name>astrea::astro::IsStaticFrame</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1IsUserDefinedEvent" kind="concept"><name>astrea::astro::IsUserDefinedEvent</name>
-  </compound>
-  <compound refid="conceptastrea_1_1astro_1_1IsUserDefinedVehicle" kind="concept"><name>astrea::astro::IsUserDefinedVehicle</name>
   </compound>
   <compound refid="namespaceastrea" kind="namespace"><name>astrea</name>
   </compound>
@@ -1751,47 +1630,82 @@
     <member refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kind="typedef"><name>VelocityVector</name></member>
     <member refid="typedefs_8hpp_1a4f20af7d8563fe9e30bbb8d55c3871b1" kind="typedef"><name>AccelerationVector</name></member>
     <member refid="typedefs_8hpp_1a41a0f1cb76a59a81b626ec2be640c910" kind="typedef"><name>UnitVector</name></member>
+    <member refid="frame__concepts_8hpp_1a24e74ccd89f16974799180cc9b126754" kind="variable"><name>IsInertialFrame</name></member>
+    <member refid="frame__concepts_8hpp_1ad37b018641f225dbc91c109625a55be4" kind="variable"><name>IsBodyFixedFrame</name></member>
+    <member refid="frame__concepts_8hpp_1a751706b5e6a74b5ba98c2f1e3d0d1502" kind="variable"><name>IsStaticFrame</name></member>
+    <member refid="frame__concepts_8hpp_1a95718113a6a8b097a1f45e9db823c868" kind="variable"><name>IsDynamicFrame</name></member>
+    <member refid="frame__concepts_8hpp_1a9923ae9c58cf0d69750b8a91366d537b" kind="variable"><name>HasSameOrigin</name></member>
+    <member refid="frame__concepts_8hpp_1ad9ec5ee8321b32f976576fb4aa874fe3" kind="variable"><name>HasSameAxis</name></member>
+    <member refid="frame__concepts_8hpp_1ac466855b22d916737297b5723e0300a7" kind="variable"><name>IsSameFrame</name></member>
+    <member refid="frame__concepts_8hpp_1a58934db4b3e8b1f8eb46aa8a62def35f" kind="variable"><name>HasDcm</name></member>
+    <member refid="frame__concepts_8hpp_1a868d74452cc58f6cbd1d87468e924825" kind="variable"><name>HasDcmMethod</name></member>
     <member refid="Payload_8hpp_1a67d3e88926ab9aa11bde4d8a69cfab31" kind="variable"><name>NADIR_RIC</name></member>
     <member refid="Payload_8hpp_1aaf89d96c281d5b0c828b4ed23b7f72f4" kind="variable"><name>RADIAL_RIC</name></member>
     <member refid="Payload_8hpp_1aa7f4f52f9bb2fa383a7507e4ca4097ab" kind="variable"><name>CENTER</name></member>
+    <member refid="Vehicle_8hpp_1abd37a3bd1373a4990685ea3633b49822" kind="variable"><name>HasGetMass</name></member>
+    <member refid="Vehicle_8hpp_1a7e81193cff55b15c14aa5fc91aace1a6" kind="variable"><name>HasGetRamArea</name></member>
+    <member refid="Vehicle_8hpp_1a8b61dc6bf35d9984c6c3046e144183d1" kind="variable"><name>HasGetCoefficientOfDrag</name></member>
+    <member refid="Vehicle_8hpp_1a8e94b6530780541241d3aa833da7d9af" kind="variable"><name>HasGetLiftArea</name></member>
+    <member refid="Vehicle_8hpp_1ad9ba95184649f8e1628fd49334038301" kind="variable"><name>HasGetCoefficientOfLift</name></member>
+    <member refid="Vehicle_8hpp_1af0d717ad69cf44be9086af2f23445145" kind="variable"><name>HasGetSolarArea</name></member>
+    <member refid="Vehicle_8hpp_1afcdcf10fd93df8760357adf5d5d44640" kind="variable"><name>HasGetCoefficientOfReflectivity</name></member>
+    <member refid="Vehicle_8hpp_1a78a23d7a75cd0e4447e2e9cbd1d1f569" kind="variable"><name>IsUserDefinedVehicle</name></member>
+    <member refid="Vehicle_8hpp_1a47217783f4e1ed1db9bceb65dbff6ee0" kind="variable"><name>IsGenericallyConstructableVehicle</name></member>
+    <member refid="Event_8hpp_1ae1131f1c8ab68c5a414b129f857bd51a" kind="variable"><name>HasGetName</name></member>
+    <member refid="Event_8hpp_1adf1ed94af8ecbc1c8f54df1570761b93" kind="variable"><name>HasMeasureEvent</name></member>
+    <member refid="Event_8hpp_1afccfe1e19596289bd6c03fee417c5221" kind="variable"><name>HasIsTerminal</name></member>
+    <member refid="Event_8hpp_1abc7b6c37e9869b9cf9260eb6c71530fa" kind="variable"><name>HasTriggerEvent</name></member>
+    <member refid="Event_8hpp_1a081b97abe11d96f4d8188dc30f147eda" kind="variable"><name>IsUserDefinedEvent</name></member>
+    <member refid="Event_8hpp_1accf3d754c3c72cf7530c5701efe17eb5" kind="variable"><name>IsGenericallyConstructableEvent</name></member>
+    <member refid="OrbitalElements_8hpp_1aa0048811a7260d70ceb8e46e4018e562" kind="variable"><name>IsConstructableTo</name></member>
+    <member refid="OrbitalElements_8hpp_1af0dfe644990e26368be0a788bff73f54" kind="variable"><name>HasDirectCartesianConversion</name></member>
+    <member refid="OrbitalElements_8hpp_1ae0a098e11d563d145261283cfcf80884" kind="variable"><name>HasDirectKeplerianConversion</name></member>
+    <member refid="OrbitalElements_8hpp_1a3e03bc302cd465f9ee290cbd732049f7" kind="variable"><name>HasDirectEquinoctialConversion</name></member>
+    <member refid="OrbitalElements_8hpp_1a13bc1665d619958c4e9f282f6998a36b" kind="variable"><name>HasIterpolate</name></member>
+    <member refid="OrbitalElements_8hpp_1a25a9e2fc31f43a7e6ba5264dea8ae4ae" kind="variable"><name>HasToVector</name></member>
+    <member refid="OrbitalElements_8hpp_1a17e15ba7c02509abe647f39eb4ca7bab" kind="variable"><name>HasMathOperators</name></member>
+    <member refid="OrbitalElements_8hpp_1a2a17e3d9f89cce1deb4373574ac085e1" kind="variable"><name>HasInPlaceMathOperators</name></member>
+    <member refid="OrbitalElements_8hpp_1a96474eb06c0b0c523c6926330aa5ae55" kind="variable"><name>IsOrbitalElements</name></member>
     <member refid="JulianDateClock_8hpp_1a7c9a0c3832d6418dea196fe9dea63276" kind="variable"><name>J2K</name></member>
     <member refid="JulianDateClock_8hpp_1a8469f8bc6bd99d38771cb677ad9f90f5" kind="variable"><name>MJDStart</name></member>
-    <member refid="CartesianVector_8hpp_1a6ec910a4eb8c157cdea500565819f3d0" kind="function"><name>operator&lt;&lt;</name></member>
-    <member refid="CartesianVector_8hpp_1a5c256756c16cdfbabf064991a3aa0e85" kind="function"><name>operator&lt;&lt;</name></member>
-    <member refid="CartesianVector_8hpp_1adfb052a6511ec4abe6c0a17c3a098cff" kind="function"><name>operator*</name></member>
-    <member refid="CartesianVector_8hpp_1aa1735905c02a235892eca5b94e8c396e" kind="function"><name>operator/</name></member>
-    <member refid="defined__rotations_8hpp_1adf6d85b8f4e10fd757511a437fc1e7d6" kind="function"><name>get_dcm</name></member>
-    <member refid="defined__rotations_8hpp_1a71e05c7f4e6a4924681e3bac129c6a56" kind="function"><name>get_dcm&lt; frames::earth::icrf, frames::earth::earth_fixed &gt;</name></member>
-    <member refid="DirectionCosineMatrix_8hpp_1adcee8d7b79b552689ba218860650f2e2" kind="function"><name>get_dcm</name></member>
-    <member refid="Cylindrical_8cpp_1a7bb1bdbc9aeab176e9abef9477794660" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="astro_8fwd_8hpp_1a57a808ddb4f268c1034cb19f420aff40" kind="function"><name>requires</name></member>
+    <member refid="astro_8fwd_8hpp_1af3c48f703d565a9ee63d4b7ff1f85ce6" kind="function"><name>requires</name></member>
+    <member refid="astro_8fwd_8hpp_1aa0c35c48ce1133cd37485b1993dcbfe6" kind="function"><name>requires</name></member>
+    <member refid="CartesianVector_8hpp_1a33b9e8ce87e596ba74dbc6810e400ec5" kind="function"><name>requires</name></member>
+    <member refid="CartesianVector_8hpp_1aa090935f61925b4d713b957aa077a181" kind="function"><name>requires</name></member>
+    <member refid="CartesianVector_8hpp_1a08473233db300b1ccaadb62b560606e1" kind="function"><name>requires</name></member>
+    <member refid="defined__rotations_8hpp_1a987c1b14fcaa658ae48371ce242c1f4f" kind="function"><name>requires</name></member>
+    <member refid="defined__rotations_8hpp_1a699ba33b2b5d0b2bd4b22b0df12ebd3c" kind="function"><name>get_dcm</name></member>
+    <member refid="defined__rotations_8hpp_1a0cdb5c34df442a1cdbc524cbfe866a55" kind="function"><name>get_dcm&lt; frames::earth::icrf, frames::earth::earth_fixed &gt;</name></member>
+    <member refid="Cylindrical_8cpp_1aa0b818707b7dbc046cb23ecd010904e4" kind="function"><name>operator&lt;&lt;</name></member>
     <member refid="Cylindrical_8cpp_1a342bcddb6e30be1223ded32829a83a81" kind="function"><name>convert_earth_fixed_to_cylindrical</name></member>
     <member refid="Cylindrical_8cpp_1a2cbda059351ba0b9d4985236f981bf78" kind="function"><name>convert_cylindrical_to_earth_fixed</name></member>
-    <member refid="Geocentric_8cpp_1a081b362bf8354aafd7116c2fb0a9fc89" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="Geocentric_8cpp_1acab07b9a63ad5fdced6cab4ea3ff7126" kind="function"><name>operator&lt;&lt;</name></member>
     <member refid="Geocentric_8cpp_1a9a0484d664a211bbc1b34db418eabb95" kind="function"><name>calculate_geocentric_radius</name></member>
     <member refid="Geocentric_8cpp_1a85da99a0c6255e5ad3efde804f3b8fe5" kind="function"><name>convert_earth_fixed_to_geocentric</name></member>
     <member refid="Geocentric_8cpp_1afeea603ae1ec315756b4bbeb1132b350" kind="function"><name>convert_geocentric_to_earth_fixed</name></member>
-    <member refid="Geodetic_8cpp_1aca7165379aad6cad5145a069ea939a70" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="Geodetic_8cpp_1a17bd77c317743dd83597a87a988b37c0" kind="function"><name>operator&lt;&lt;</name></member>
     <member refid="Geodetic_8cpp_1af3dfdead8febca65ef7e4e9825747a37" kind="function"><name>convert_earth_fixed_to_geodetic</name></member>
     <member refid="Geodetic_8cpp_1aac41db5b3a35d3c42edc500fe0b8a21b" kind="function"><name>convert_geodetic_to_earth_fixed</name></member>
-    <member refid="Spherical_8cpp_1adb619072cd4e58fc387c5e79759543db" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="Spherical_8cpp_1a860f847f02a824af82f98ca612ad1d7c" kind="function"><name>operator&lt;&lt;</name></member>
     <member refid="Spherical_8cpp_1a6f082e1950a39da64f8e5af73114552e" kind="function"><name>convert_earth_fixed_to_spherical</name></member>
     <member refid="Spherical_8cpp_1a014d0f1578377ccf6bf5a8d1f8bdb890" kind="function"><name>convert_spherical_to_earth_fixed</name></member>
-    <member refid="GeneralPerturbations_8cpp_1a34eb7ef792918b19b041d937a97cc359" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="GeneralPerturbations_8cpp_1a59979410edc650a99a01d397e6c1ff91" kind="function"><name>operator&lt;&lt;</name></member>
     <member refid="GeneralPerturbations_8cpp_1afea1a131a15e5b8e16df34cfc801ac3a" kind="function"><name>operator&lt;&lt;</name></member>
-    <member refid="TwoLineElements_8cpp_1a6ba6e133babad2f6070720bce372b3dc" kind="function"><name>operator&lt;&lt;</name></member>
-    <member refid="Cartesian_8cpp_1ae6897a698d61757913d0d99c4910d430" kind="function"><name>operator&lt;&lt;</name></member>
-    <member refid="Cartesian_8cpp_1ae9b3db85eb4638b787dc85acd3ef71b6" kind="function"><name>operator&lt;&lt;</name></member>
-    <member refid="Equinoctial_8cpp_1ab0bb790832c72b5d0965acb864cf711a" kind="function"><name>operator&lt;&lt;</name></member>
-    <member refid="Equinoctial_8cpp_1a68be1581f0fb298064f30f6e6e47bfd5" kind="function"><name>operator&lt;&lt;</name></member>
-    <member refid="Keplerian_8cpp_1afb114bcb7bd88b0d4741f4bd65f8d428" kind="function"><name>operator&lt;&lt;</name></member>
-    <member refid="Keplerian_8cpp_1aecda095911c22b1e94277f5af37ce4f2" kind="function"><name>operator&lt;&lt;</name></member>
-    <member refid="OrbitalElements_8cpp_1a9193d2edd2ee163b7d939e9bfec9dfae" kind="function"><name>operator&lt;&lt;</name></member>
-    <member refid="OrbitalElements_8cpp_1abafb887785006751955c44098d9bd487" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="TwoLineElements_8cpp_1af242694cc5925b6daea3201f93614132" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="Cartesian_8cpp_1a7156f61d7860e35689159dd3f5c1af8e" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="Cartesian_8cpp_1af5a0813f92efce0d5308e4d149970575" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="Equinoctial_8cpp_1a1290e060e2ea2b1d35a46838888f5482" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="Equinoctial_8cpp_1a8c2a071aa380c4665f028f7e253724e8" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="Keplerian_8cpp_1ad6e049347f7f3a54c457547c1fe3cad6" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="Keplerian_8cpp_1ac008ee1bc97bb0a8930803e5f8a236d2" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="OrbitalElements_8cpp_1ad2628365fed61581fca4424290d6cf4e" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="OrbitalElements_8cpp_1a81e84145f357d4dc34308d7451a45469" kind="function"><name>operator&lt;&lt;</name></member>
     <member refid="OrbitalElements_8cpp_1acc7df027f9a87c1883ed238640219f74" kind="function"><name>throw_mismatched_types</name></member>
     <member refid="OrbitalElements_8cpp_1a908c910aefb5f75c1d4a1ceefd492789" kind="function"><name>nearly_equal</name></member>
     <member refid="OrbitalElements_8cpp_1ad0b2a7e642202f29c7d4da4d68c4b4f4" kind="function"><name>nearly_equal</name></member>
-    <member refid="State_8cpp_1a6264365e7fca8e49a15cc62e3ae378e4" kind="function"><name>operator&lt;&lt;</name></member>
-    <member refid="Date_8cpp_1a63056b5050868b2f8dcdbe89bd4ed872" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="State_8cpp_1a735c4411c77329b5d226350b2f8f6384" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="Date_8cpp_1a33a8ce3b831ed89692f588f1ac8440dd" kind="function"><name>operator&lt;&lt;</name></member>
     <member refid="Date_8cpp_1a5244bfb04dac3f4898fed19b9b15ef41" kind="function"><name>epoch_to_julian_date</name></member>
     <member refid="Date_8cpp_1a340203ee85c903564b934f035fd71104" kind="function"><name>julian_date_to_sidereal_time</name></member>
     <member refid="JulianDateClock_8hpp_1a7689091e6acbf4fcbdd2c69022c822fd" kind="function"><name>J2000</name></member>
@@ -1820,9 +1734,10 @@
     <member refid="butcher__tableau_8hpp_1a457356af89817f58c40a0b21d3da5a3d" kind="variable"><name>a</name></member>
   </compound>
   <compound refid="namespaceastrea_1_1astro_1_1frames" kind="namespace"><name>astrea::astro::frames</name>
-    <member refid="transformations_8hpp_1a48769613a781128560f65f0284032098" kind="function"><name>get_center_offset</name></member>
-    <member refid="transformations_8hpp_1a6c524b6d8ad518c7fc37cde2538e1f63" kind="function"><name>get_center_offset</name></member>
-    <member refid="transformations_8hpp_1a06fe0ff8302f60eab90bdb264cd81875" kind="function"><name>rotate_vector_into_frame</name></member>
+    <member refid="transformations_8hpp_1aad18931dd48fc08334d80c1af3d4bca2" kind="function"><name>requires</name></member>
+    <member refid="transformations_8hpp_1a4110aafa02ffeab59fce0e4413a5bc46" kind="function"><name>get_center_offset</name></member>
+    <member refid="transformations_8hpp_1a535b6cf51696d563e86fc2d0232cc677" kind="function"><name>requires</name></member>
+    <member refid="transformations_8hpp_1ae9abbd63db731ecd9c7648f1c2d0c73e" kind="function"><name>rotate_vector_into_frame</name></member>
   </compound>
   <compound refid="namespaceastrea_1_1astro_1_1frames_1_1_0d17" kind="namespace"><name>astrea::astro::frames::@17</name>
   </compound>
@@ -2364,11 +2279,11 @@
   </compound>
   <compound refid="dir_a85615e9ad779999123e94bfb15c8545" kind="dir"><name>astrea/astro/astro/frames/instances</name>
   </compound>
-  <compound refid="dir_1a50007be9f0149ab221abcea88ff37f" kind="dir"><name>astrea/astro/astro/state/angular_elements/instances</name>
+  <compound refid="dir_2296e922a578ce2ef4a64c83384e553c" kind="dir"><name>astrea/astro/astro/state/orbital_elements/instances</name>
   </compound>
   <compound refid="dir_8b2b76eceb189c78e8c8535df8f613d6" kind="dir"><name>astrea/astro/astro/state/orbital_data_formats/instances</name>
   </compound>
-  <compound refid="dir_2296e922a578ce2ef4a64c83384e553c" kind="dir"><name>astrea/astro/astro/state/orbital_elements/instances</name>
+  <compound refid="dir_1a50007be9f0149ab221abcea88ff37f" kind="dir"><name>astrea/astro/astro/state/angular_elements/instances</name>
   </compound>
   <compound refid="dir_c4fa1b5971c1990efd87a43a39eac238" kind="dir"><name>astrea/astro/astro/systems/planetary_bodies/Jupiter</name>
   </compound>

@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1detail" kind="namespace" language="C++">
     <compoundname>astrea::astro::detail</compoundname>
-    <innerclass refid="structastrea_1_1astro_1_1detail_1_1EventInner" prot="public">astrea::astro::detail::EventInner</innerclass>
-    <innerclass refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase" prot="public">astrea::astro::detail::EventInnerBase</innerclass>
-    <innerclass refid="structastrea_1_1astro_1_1detail_1_1VehicleInner" prot="public">astrea::astro::detail::VehicleInner</innerclass>
     <innerclass refid="structastrea_1_1astro_1_1detail_1_1VehicleInnerBase" prot="public">astrea::astro::detail::VehicleInnerBase</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1detail_1_1VehicleInner" prot="public">astrea::astro::detail::VehicleInner</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1detail_1_1EventInnerBase" prot="public">astrea::astro::detail::EventInnerBase</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1detail_1_1EventInner" prot="public">astrea::astro::detail::EventInner</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

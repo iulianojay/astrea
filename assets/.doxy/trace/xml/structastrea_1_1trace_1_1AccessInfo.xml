@@ -1,14 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="structastrea_1_1trace_1_1AccessInfo" kind="struct" language="C++" prot="public">
     <compoundname>astrea::trace::AccessInfo</compoundname>
-    <sectiondef kind="public-attrib">
+      <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structastrea_1_1trace_1_1AccessInfo_1a5b5f93be17a781dee393b042199a558c" prot="public" static="no" mutable="no">
         <type>Time</type>
         <definition>Time astrea::trace::AccessInfo::time</definition>
         <argsstring></argsstring>
         <name>time</name>
-        <qualifiedname>astrea::trace::AccessInfo::time</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,7 +21,6 @@
         <definition>EcefRadiusVec astrea::trace::AccessInfo::radius1to2</definition>
         <argsstring></argsstring>
         <name>radius1to2</name>
-        <qualifiedname>astrea::trace::AccessInfo::radius1to2</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -36,7 +34,6 @@
         <definition>bool astrea::trace::AccessInfo::isOcculted</definition>
         <argsstring></argsstring>
         <name>isOcculted</name>
-        <qualifiedname>astrea::trace::AccessInfo::isOcculted</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -45,7 +42,7 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="65" column="10" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="65" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

@@ -6281,7 +6281,7 @@ You're not viewing the latest version.
 
 
 <h1 id="class-astreaastropayload">Class astrea::astro::Payload<a class="headerlink" href="#class-astreaastropayload" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>class</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Payload_T</strong></a>, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>class</strong></a> PayloadParameters_T&gt;</strong></p>
+<p><strong>template &lt;class Payload_T, class PayloadParameters_T&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="./"><strong>Payload</strong></a></p>
 <p><a href="./"><em><strong>Payload</strong></em></a> <em>class representing a payload on a platform.</em><a href="#detailed-description">More...</a></p>
 <ul>
@@ -6309,7 +6309,7 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#function-get_parameters"><strong>get_parameters</strong></a> () const<br><em>Get the payload parameters of the payload.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Payload_T</strong></a> &gt; *<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a></td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; Payload_T &gt; *const</td>
 <td style="text-align: left;"><a href="#function-get_parent"><strong>get_parent</strong></a> () const<br><em>Get the parent platform of the payload.</em></td>
 </tr>
 </tbody>
@@ -6325,15 +6325,19 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;">std::size_t</td>
-<td style="text-align: left;"><a href="#variable-_id"><strong>_id</strong></a>  <br><em>Unique identifier for the payload.</em></td>
+<td style="text-align: left;"><a href="#variable-_id-12"><strong>_id</strong></a>  <br><em>Unique identifier for the payload.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">PayloadParameters_T</td>
-<td style="text-align: left;"><a href="#variable-_parameters"><strong>_parameters</strong></a>  <br><a href="./"><em><strong>Payload</strong></em></a> <em>parameters.</em></td>
+<td style="text-align: left;"><a href="#variable-_parameters-12"><strong>_parameters</strong></a>  <br><a href="./"><em><strong>Payload</strong></em></a> <em>parameters.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Payload_T</strong></a> &gt; *</td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; Payload_T &gt; *</td>
 <td style="text-align: left;"><a href="#variable-_parent"><strong>_parent</strong></a>  <br><em>Parent platform.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">const PayloadParameters_T &amp;</td>
+<td style="text-align: left;"><a href="#variable-parameters"><strong>parameters</strong></a>  <br></td>
 </tr>
 </tbody>
 </table>
@@ -6347,12 +6351,20 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-payload"><strong>Payload</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Parent_T</strong></a> &amp; parent, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> PayloadParameters_T &amp; parameters) <br><em>Constructs a</em> <a href="./"><em><strong>Payload</strong></em></a> <em>from a FieldOfView object.</em></td>
+<td style="text-align: right;">const PayloadParameters_T</td>
+<td style="text-align: left;"><a href="#function-_id-22"><strong>_id</strong></a> (<a href="./#function-generate_id"><strong>generate_id</strong></a>()) <br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>void</strong></a></td>
-<td style="text-align: left;"><a href="#function-set_parent"><strong>set_parent</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Parent_T</strong></a> &amp; parent) <br><em>Set the parent platform of the payload.</em></td>
+<td style="text-align: right;">const PayloadParameters_T</td>
+<td style="text-align: left;"><a href="#function-_parameters-22"><strong>_parameters</strong></a> (parameters) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-requires-12"><strong>requires</strong></a> (std::is_base_of_v&lt; <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; Payload_T &gt;, Parent_T &gt;) const<br><em>Constructs a</em> <a href="./"><em><strong>Payload</strong></em></a> <em>from a FieldOfView object.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-requires-22"><strong>requires</strong></a> (std::is_base_of_v&lt; <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>&lt; Payload_T &gt;, Parent_T &gt;) const<br><em>Set the parent platform of the payload.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual</td>
@@ -6387,19 +6399,19 @@ You're not viewing the latest version.
 
 <h3 id="function-get_parent">function get_parent<a class="headerlink" href="#function-get_parent" title="Permanent link">&para;</a></h3>
 <p><em>Get the parent platform of the payload.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w">  </span><span class="n">PayloadPlatform</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Payload_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="n">get_parent</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PayloadPlatform</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Payload_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="n">get_parent</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>const PayloadPlatform&lt;Payload_T, PayloadParameters_T&gt;* Pointer to the parent platform. </p>
 <hr>
 <h2 id="protected-attributes-documentation">Protected Attributes Documentation<a class="headerlink" href="#protected-attributes-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="variable-_id">variable _id<a class="headerlink" href="#variable-_id" title="Permanent link">&para;</a></h3>
+<h3 id="variable-_id-12">variable _id [1/2]<a class="headerlink" href="#variable-_id-12" title="Permanent link">&para;</a></h3>
 <p><em>Unique identifier for the payload.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Payload_T</span><span class="p">,</span><span class="w"> </span><span class="n">PayloadParameters_T</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">_id</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
-<h3 id="variable-_parameters">variable _parameters<a class="headerlink" href="#variable-_parameters" title="Permanent link">&para;</a></h3>
+<h3 id="variable-_parameters-12">variable _parameters [1/2]<a class="headerlink" href="#variable-_parameters-12" title="Permanent link">&para;</a></h3>
 <p><a href="./"><em><strong>Payload</strong></em></a> <em>parameters.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">PayloadParameters_T</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Payload_T</span><span class="p">,</span><span class="w"> </span><span class="n">PayloadParameters_T</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">_parameters</span><span class="p">;</span>
 </span></code></pre></div></p>
@@ -6410,14 +6422,32 @@ You're not viewing the latest version.
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">const</span><span class="w"> </span><span class="n">PayloadPlatform</span><span class="o">&lt;</span><span class="n">Payload_T</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Payload_T</span><span class="p">,</span><span class="w"> </span><span class="n">PayloadParameters_T</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">_parent</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
+
+<h3 id="variable-parameters">variable parameters<a class="headerlink" href="#variable-parameters" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">const</span><span class="w"> </span><span class="n">PayloadParameters_T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Payload_T</span><span class="p">,</span><span class="w"> </span><span class="n">PayloadParameters_T</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">parameters</span><span class="p">;</span>
+</span></code></pre></div>
+<hr>
 <h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-payload">function Payload<a class="headerlink" href="#function-payload" title="Permanent link">&para;</a></h3>
+<h3 id="function-_id-22">function _id [2/2]<a class="headerlink" href="#function-_id-22" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PayloadParameters_T</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="n">_id</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="n">generate_id</span><span class="w"> </span><span class="p">()</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div>
+<hr>
+
+<h3 id="function-_parameters-22">function _parameters [2/2]<a class="headerlink" href="#function-_parameters-22" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">const</span><span class="w"> </span><span class="n">PayloadParameters_T</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="n">_parameters</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">parameters</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div>
+<hr>
+
+<h3 id="function-requires-12">function requires [1/2]<a class="headerlink" href="#function-requires-12" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>Payload</strong></em></a> <em>from a FieldOfView object.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">Parent_T</span><span class="o">&gt;</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="n">Payload</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Parent_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parent</span><span class="p">,</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">PayloadParameters_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parameters</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Parent_T</span><span class="o">&gt;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="k">requires</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">is_base_of_v</span><span class="o">&lt;</span><span class="w"> </span><span class="n">PayloadPlatform</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Payload_T</span><span class="w"> </span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Parent_T</span><span class="w"> </span><span class="o">&gt;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6426,12 +6456,12 @@ You're not viewing the latest version.
 </ul>
 <hr>
 
-<h3 id="function-set_parent">function set_parent<a class="headerlink" href="#function-set_parent" title="Permanent link">&para;</a></h3>
+<h3 id="function-requires-22">function requires [2/2]<a class="headerlink" href="#function-requires-22" title="Permanent link">&para;</a></h3>
 <p><em>Set the parent platform of the payload.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w">  </span><span class="nc">Parent_T</span><span class="o">&gt;</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="n">set_parent</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Parent_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parent</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Parent_T</span><span class="o">&gt;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::</span><span class="k">requires</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">is_base_of_v</span><span class="o">&lt;</span><span class="w"> </span><span class="n">PayloadPlatform</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Payload_T</span><span class="w"> </span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Parent_T</span><span class="w"> </span><span class="o">&gt;</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Template parameters:</strong></p>
 <ul>
@@ -6443,9 +6473,9 @@ You're not viewing the latest version.
 </ul>
 <hr>
 
-<h3 id="function-payload_1">function ~Payload<a class="headerlink" href="#function-payload_1" title="Permanent link">&para;</a></h3>
+<h3 id="function-payload">function ~Payload<a class="headerlink" href="#function-payload" title="Permanent link">&para;</a></h3>
 <p><em>Default destructor for</em> <a href="./"><em><strong>Payload</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::~</span><span class="n">Payload</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">Payload</span><span class="o">::~</span><span class="n">Payload</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
 </span></code></pre></div></p>
 <hr>
 

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="OblatenessForce_8hpp" kind="file" language="C++">
     <compoundname>OblatenessForce.hpp</compoundname>
     <includes local="no">array</includes>
@@ -11,10 +11,14 @@
     <includedby refid="astro_8hpp" local="no">astrea/astro/astro/astro.hpp</includedby>
     <includedby refid="OblatenessForce_8cpp" local="no">astrea/astro/astro/propagation/force_models/OblatenessForce.cpp</includedby>
     <incdepgraph>
-      <node id="6">
-        <label>astro/astro.fwd.hpp</label>
-        <link refid="astro_8fwd_8hpp"/>
-        <childnode refid="7" relation="include">
+      <node id="9">
+        <label>astro/propagation/force_models/Force.hpp</label>
+        <link refid="Force_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
       <node id="10">
@@ -25,26 +29,19 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="11">
-        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
-        <link refid="body__centered__inertial__frames_8hpp"/>
-        <childnode refid="6" relation="include">
+      <node id="8">
+        <label>stdint.h</label>
+      </node>
+      <node id="7">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
       <node id="12">
         <label>astro/frames/instances/body_fixed_frames.hpp</label>
         <link refid="body__fixed__frames_8hpp"/>
         <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>astro/propagation/force_models/Force.hpp</label>
-        <link refid="Force_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -63,26 +60,29 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="7">
-        <label>astro/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
+      <node id="4">
+        <label>vector</label>
       </node>
       <node id="2">
         <label>array</label>
       </node>
-      <node id="3">
-        <label>memory</label>
+      <node id="11">
+        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
+        <link refid="body__centered__inertial__frames_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
       </node>
-      <node id="8">
-        <label>stdint.h</label>
+      <node id="6">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
       </node>
       <node id="5">
         <label>units/units.hpp</label>
       </node>
-      <node id="4">
-        <label>vector</label>
+      <node id="3">
+        <label>memory</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -138,11 +138,11 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="43" refid="classastrea_1_1astro_1_1LegendreCache_1abe940cd7077c0541a5866f6c8e61e7d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1LegendreCache_1abe940cd7077c0541a5866f6c8e61e7d7" kindref="member">~LegendreCache</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1LegendreCache_1a8d1daaeda753a0ef76b935e045eeb5b2" kindref="member">LegendreCache</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;<sp/>sys,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">degree</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">order</ref>);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1LegendreCache_1a8d1daaeda753a0ef76b935e045eeb5b2" kindref="member">LegendreCache</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;<sp/>sys,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>degree,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>order);</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1LegendreCache_1a99bd73988a4a82b71545284afc5303de" kindref="member">get_cosine_coefficient</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">n</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>m)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>Unitless<sp/><ref refid="classastrea_1_1astro_1_1LegendreCache_1a99bd73988a4a82b71545284afc5303de" kindref="member">get_cosine_coefficient</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>n,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>m)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1LegendreCache_1adca71a24f1c75fde21e29bd9de9ddfa3" kindref="member">get_sine_coefficient</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">n</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>m)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>Unitless<sp/><ref refid="classastrea_1_1astro_1_1LegendreCache_1adca71a24f1c75fde21e29bd9de9ddfa3" kindref="member">get_sine_coefficient</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>n,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>m)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
 <codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>/**</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>*<sp/>@brief<sp/>Computes<sp/>the<sp/>Legendre<sp/>polynomial<sp/>coefficients<sp/>for<sp/>the<sp/>oblateness<sp/>force.</highlight><highlight class="normal"></highlight></codeline>
@@ -154,7 +154,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>std::vector&lt;std::vector&lt;Unitless&gt;&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>get_legendre_coefficients(const<sp/>std::size_t&amp;<sp/>degree,<sp/>const<sp/>std::size_t&amp;<sp/>order,<sp/>const<sp/>Unitless&amp;<sp/>x)<sp/>const;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="81"><highlight class="normal"></highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1LegendreCache_1a06eb4e5a22d2d8615d40f0d1170e797d" kindref="member">get_normalizing_coefficient</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">n</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>m)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>Unitless<sp/><ref refid="classastrea_1_1astro_1_1LegendreCache_1a06eb4e5a22d2d8615d40f0d1170e797d" kindref="member">get_normalizing_coefficient</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>n,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>m)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
 <codeline lineno="90"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;Unitless&gt;&gt;<sp/>_normalizingCoefficients{};<sp/></highlight></codeline>
@@ -170,9 +170,9 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="118"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="122" refid="classastrea_1_1astro_1_1OblatenessForce_1aef725cdc931b0647dfc2276bb0d4a557" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1OblatenessForce_1aef725cdc931b0647dfc2276bb0d4a557" kindref="member">~OblatenessForce</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1OblatenessForce" kindref="compound">OblatenessForce</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;<sp/>sys,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>N<sp/>=<sp/>2,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">M</ref><sp/>=<sp/>0);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1OblatenessForce_1aece1f3a74995fe6f5f70bdcac6b2ab15" kindref="member">OblatenessForce</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp;<sp/>sys,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>N<sp/>=<sp/>2,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t&amp;<sp/>M<sp/>=<sp/>0);</highlight></codeline>
 <codeline lineno="133"><highlight class="normal"></highlight></codeline>
-<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Acceleration, frames::earth::icrf&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1OblatenessForce_1aa70c2d0edc9340336e5b5bd3ecd22abb" kindref="member">compute_force</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">state</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vehicle</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Acceleration, frames::earth::icrf&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1OblatenessForce_1aa70c2d0edc9340336e5b5bd3ecd22abb" kindref="member">compute_force</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/>vehicle)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="146"><highlight class="normal"></highlight></codeline>
 <codeline lineno="147"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>_degree;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>

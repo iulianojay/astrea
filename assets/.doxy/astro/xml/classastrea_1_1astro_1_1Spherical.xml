@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1Spherical" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::Spherical</compoundname>
     <includes refid="Spherical_8hpp" local="no">Spherical.hpp</includes>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Spherical_1ae6e081df986e304b61eaf44499ae6827" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::Spherical::_range</definition>
         <argsstring></argsstring>
         <name>_range</name>
-        <qualifiedname>astrea::astro::Spherical::_range</qualifiedname>
         <briefdescription>
 <para>Range. </para>
         </briefdescription>
@@ -20,11 +19,10 @@
         <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" line="275" column="14" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" bodystart="275" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Spherical_1a512651e37b4021adc00ca3e379b2bfbd" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::Spherical::_inclination</definition>
         <argsstring></argsstring>
         <name>_inclination</name>
-        <qualifiedname>astrea::astro::Spherical::_inclination</qualifiedname>
         <briefdescription>
 <para>Inclination. </para>
         </briefdescription>
@@ -35,11 +33,10 @@
         <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" line="276" column="11" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" bodystart="276" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Spherical_1ab3471f595070fc2127f3cc11bc9a30f2" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::Spherical::_azimuth</definition>
         <argsstring></argsstring>
         <name>_azimuth</name>
-        <qualifiedname>astrea::astro::Spherical::_azimuth</qualifiedname>
         <briefdescription>
 <para>Azimuth. </para>
         </briefdescription>
@@ -49,20 +46,19 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" line="277" column="11" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" bodystart="277" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="friend">
-      <memberdef kind="friend" id="classastrea_1_1astro_1_1Spherical_1a5844717d4f9bd0310cbfeb60526faf65" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1Spherical_1a5222024a6956c3da6464343bd255cbe2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;, Spherical const &amp;)</argsstring>
         <name>operator&lt;&lt;</name>
-        <qualifiedname>astrea::astro::Spherical::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <defname>os</defname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> const &amp;</type>
           <defname>elements</defname>
         </param>
         <briefdescription>
@@ -73,16 +69,15 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" line="44" column="12" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.cpp" bodystart="169" bodyend="177"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Spherical_1ab8a8176dd7f775c8ff4fbca642ab449c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::Spherical::Spherical</definition>
         <argsstring>(Unitless scale=0.0 *astrea::detail::unitless)</argsstring>
         <name>Spherical</name>
-        <qualifiedname>astrea::astro::Spherical::Spherical</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+          <type>Unitless</type>
           <declname>scale</declname>
           <defval>0.0 *astrea::detail::unitless</defval>
         </param>
@@ -101,17 +96,16 @@
         <definition>astrea::astro::Spherical::Spherical</definition>
         <argsstring>(const Distance &amp;range, const Angle &amp;inclination, const Angle &amp;azimuth)</argsstring>
         <name>Spherical</name>
-        <qualifiedname>astrea::astro::Spherical::Spherical</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <type>const Distance &amp;</type>
           <declname>range</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>inclination</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>azimuth</declname>
         </param>
         <briefdescription>
@@ -154,17 +148,16 @@
         <definition>astrea::astro::Spherical::Spherical</definition>
         <argsstring>(const RadiusVector&lt; frames::earth::icrf &gt; &amp;r, const Date &amp;date, const CelestialBody *parent)</argsstring>
         <name>Spherical</name>
-        <qualifiedname>astrea::astro::Spherical::Spherical</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
           <declname>r</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
           <declname>parent</declname>
         </param>
         <briefdescription>
@@ -191,13 +184,12 @@
         <definition>astrea::astro::Spherical::Spherical</definition>
         <argsstring>(const RadiusVector&lt; frames::earth::earth_fixed &gt; &amp;r, const CelestialBody *parent)</argsstring>
         <name>Spherical</name>
-        <qualifiedname>astrea::astro::Spherical::Spherical</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::earth_fixed &gt; &amp;</type>
           <declname>r</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
           <declname>parent</declname>
         </param>
         <briefdescription>
@@ -231,17 +223,16 @@
         <definition>astrea::astro::Spherical::Spherical</definition>
         <argsstring>(const T &amp;elements, const AstrodynamicsSystem &amp;sys, const Date &amp;date)</argsstring>
         <name>Spherical</name>
-        <qualifiedname>astrea::astro::Spherical::Spherical</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">T</ref> &amp;</type>
+          <type>const T &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
           <declname>sys</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -276,9 +267,8 @@
         <definition>astrea::astro::Spherical::Spherical</definition>
         <argsstring>(const Spherical &amp;)</argsstring>
         <name>Spherical</name>
-        <qualifiedname>astrea::astro::Spherical::Spherical</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -305,7 +295,6 @@
         <definition>astrea::astro::Spherical::Spherical</definition>
         <argsstring>(Spherical &amp;&amp;) noexcept</argsstring>
         <name>Spherical</name>
-        <qualifiedname>astrea::astro::Spherical::Spherical</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;&amp;</type>
           <defname>other</defname>
@@ -334,7 +323,6 @@
         <definition>Spherical &amp; astrea::astro::Spherical::operator=</definition>
         <argsstring>(Spherical &amp;&amp;) noexcept</argsstring>
         <name>operator=</name>
-        <qualifiedname>astrea::astro::Spherical::operator=</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;&amp;</type>
           <defname>other</defname>
@@ -365,9 +353,8 @@
         <definition>Spherical &amp; astrea::astro::Spherical::operator=</definition>
         <argsstring>(const Spherical &amp;)</argsstring>
         <name>operator=</name>
-        <qualifiedname>astrea::astro::Spherical::operator=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -396,7 +383,6 @@
         <definition>astrea::astro::Spherical::~Spherical</definition>
         <argsstring>()=default</argsstring>
         <name>~Spherical</name>
-        <qualifiedname>astrea::astro::Spherical::~Spherical</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref>. </para>
         </briefdescription>
@@ -407,13 +393,12 @@
         <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" line="135" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Spherical_1a91b84929c88d93d4c84ff87a57e807db" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Spherical::operator==</definition>
         <argsstring>(const Spherical &amp;other) const</argsstring>
         <name>operator==</name>
-        <qualifiedname>astrea::astro::Spherical::operator==</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -440,13 +425,12 @@
         <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" line="144" column="10" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.cpp" bodystart="85" bodyend="88"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Spherical_1a53f28c2d3afa05ac7616d0c7e87de909" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Spherical::operator!=</definition>
         <argsstring>(const Spherical &amp;other) const</argsstring>
         <name>operator!=</name>
-        <qualifiedname>astrea::astro::Spherical::operator!=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -477,9 +461,8 @@
         <definition>Spherical astrea::astro::Spherical::operator+</definition>
         <argsstring>(const Spherical &amp;other) const</argsstring>
         <name>operator+</name>
-        <qualifiedname>astrea::astro::Spherical::operator+</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -508,9 +491,8 @@
         <definition>Spherical &amp; astrea::astro::Spherical::operator+=</definition>
         <argsstring>(const Spherical &amp;other)</argsstring>
         <name>operator+=</name>
-        <qualifiedname>astrea::astro::Spherical::operator+=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -539,9 +521,8 @@
         <definition>Spherical astrea::astro::Spherical::operator-</definition>
         <argsstring>(const Spherical &amp;other) const</argsstring>
         <name>operator-</name>
-        <qualifiedname>astrea::astro::Spherical::operator-</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -570,9 +551,8 @@
         <definition>Spherical &amp; astrea::astro::Spherical::operator-=</definition>
         <argsstring>(const Spherical &amp;other)</argsstring>
         <name>operator-=</name>
-        <qualifiedname>astrea::astro::Spherical::operator-=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -601,9 +581,8 @@
         <definition>Spherical astrea::astro::Spherical::operator*</definition>
         <argsstring>(const Unitless &amp;multiplier) const</argsstring>
         <name>operator*</name>
-        <qualifiedname>astrea::astro::Spherical::operator*</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -632,9 +611,8 @@
         <definition>Spherical &amp; astrea::astro::Spherical::operator*=</definition>
         <argsstring>(const Unitless &amp;multiplier)</argsstring>
         <name>operator*=</name>
-        <qualifiedname>astrea::astro::Spherical::operator*=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -659,13 +637,12 @@
         <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" line="201" column="15" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.cpp" bodystart="122" bodyend="128"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Spherical_1a272ada7903d0acc5341170a18fc24ccb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt;</type>
+        <type>std::vector&lt; Unitless &gt;</type>
         <definition>std::vector&lt; Unitless &gt; astrea::astro::Spherical::operator/</definition>
         <argsstring>(const Spherical &amp;other) const</argsstring>
         <name>operator/</name>
-        <qualifiedname>astrea::astro::Spherical::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -694,9 +671,8 @@
         <definition>Spherical astrea::astro::Spherical::operator/</definition>
         <argsstring>(const Unitless &amp;divisor) const</argsstring>
         <name>operator/</name>
-        <qualifiedname>astrea::astro::Spherical::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -725,9 +701,8 @@
         <definition>Spherical &amp; astrea::astro::Spherical::operator/=</definition>
         <argsstring>(const Unitless &amp;divisor)</argsstring>
         <name>operator/=</name>
-        <qualifiedname>astrea::astro::Spherical::operator/=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -752,20 +727,19 @@
         <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" line="225" column="15" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.cpp" bodystart="139" bodyend="145"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Spherical_1ab6813a1a9a72977668717d0762d7057f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt;</type>
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::earth_fixed &gt;</type>
         <definition>RadiusVector&lt; frames::earth::earth_fixed &gt; astrea::astro::Spherical::get_position</definition>
         <argsstring>(const CelestialBody *parent) const</argsstring>
         <name>get_position</name>
-        <qualifiedname>astrea::astro::Spherical::get_position</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
           <declname>parent</declname>
         </param>
         <briefdescription>
-<para>Converts the <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> state vector to a <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector&lt;frames::earth::earth_fixed&gt;</ref>. </para>
+<para>Converts the <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> state vector to a RadiusVector&lt;frames::earth::earth_fixed&gt;. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector&lt;frames::earth::earth_fixed&gt;</ref> The position vector in <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> coordinates. </para>
+<para><simplesect kind="return"><para>RadiusVector&lt;frames::earth::earth_fixed&gt; The position vector in <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> coordinates. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -774,24 +748,23 @@
         <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" line="232" column="18" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.cpp" bodystart="159" bodyend="162"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Spherical_1ae0828a11b9a28d2fc19823882137a7f1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt;</type>
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt;</type>
         <definition>RadiusVector&lt; frames::earth::icrf &gt; astrea::astro::Spherical::get_position</definition>
         <argsstring>(const Date &amp;date, const CelestialBody *parent) const</argsstring>
         <name>get_position</name>
-        <qualifiedname>astrea::astro::Spherical::get_position</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
           <declname>parent</declname>
         </param>
         <briefdescription>
-<para>Converts the <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> state vector to a <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector&lt;frames::earth::icrf&gt;</ref>. </para>
+<para>Converts the <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> state vector to a RadiusVector&lt;frames::earth::icrf&gt;. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector&lt;frames::earth::icrf&gt;</ref> The position vector in <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> coordinates. </para>
+<para><simplesect kind="return"><para>RadiusVector&lt;frames::earth::icrf&gt; The position vector in <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> coordinates. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -799,12 +772,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" line="239" column="18" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.cpp" bodystart="164" bodyend="167"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Spherical_1a31f4e7417d312eb717d2fb4c726e7112" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>const Angle &amp; astrea::astro::Spherical::get_azimuth</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Spherical_1addb7cb893320aed8b3edf3faa5dcfbfd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Angle &amp;</type>
+        <definition>const Angle&amp; astrea::astro::Spherical::get_azimuth</definition>
         <argsstring>() const</argsstring>
         <name>get_azimuth</name>
-        <qualifiedname>astrea::astro::Spherical::get_azimuth</qualifiedname>
         <briefdescription>
 <para>Get the azimuth of the <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> state vector. </para>
         </briefdescription>
@@ -817,12 +789,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" line="246" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" bodystart="246" bodyend="246"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Spherical_1a2b3a73cf42fa3c1bd31590476ff27a6f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>const Angle &amp; astrea::astro::Spherical::get_inclination</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Spherical_1a1feb562626d99adca72b47613a8f5611" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Angle &amp;</type>
+        <definition>const Angle&amp; astrea::astro::Spherical::get_inclination</definition>
         <argsstring>() const</argsstring>
         <name>get_inclination</name>
-        <qualifiedname>astrea::astro::Spherical::get_inclination</qualifiedname>
         <briefdescription>
 <para>Get the inclination of the <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> state vector. </para>
         </briefdescription>
@@ -835,12 +806,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" line="253" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" bodystart="253" bodyend="253"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Spherical_1ac97080c13bd9a2a9004434f741ac7234" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
-        <definition>const Distance &amp; astrea::astro::Spherical::get_range</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Spherical_1a15375295479326a9d5e93949b823e90a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Distance &amp;</type>
+        <definition>const Distance&amp; astrea::astro::Spherical::get_range</definition>
         <argsstring>() const</argsstring>
         <name>get_range</name>
-        <qualifiedname>astrea::astro::Spherical::get_range</qualifiedname>
         <briefdescription>
 <para>Get the range of the <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> state vector. </para>
         </briefdescription>
@@ -858,21 +828,20 @@
         <definition>Spherical astrea::astro::Spherical::interpolate</definition>
         <argsstring>(const Time &amp;thisTime, const Time &amp;otherTime, const Spherical &amp;other, const Time &amp;targetTime) const</argsstring>
         <name>interpolate</name>
-        <qualifiedname>astrea::astro::Spherical::interpolate</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>thisTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>otherTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>targetTime</declname>
         </param>
         <briefdescription>
@@ -928,7 +897,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/angular_elements/instances/Spherical.hpp" line="272" column="15" bodyfile="astrea/astro/astro/state/angular_elements/instances/Spherical.cpp" bodystart="147" bodyend="157"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Class representing a <ref refid="classastrea_1_1astro_1_1Spherical" kindref="compound">Spherical</ref> state vector in astrodynamics. </para>
     </briefdescription>
@@ -940,11 +909,11 @@
       <member refid="classastrea_1_1astro_1_1Spherical_1ab3471f595070fc2127f3cc11bc9a30f2" prot="private" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>_azimuth</name></member>
       <member refid="classastrea_1_1astro_1_1Spherical_1a512651e37b4021adc00ca3e379b2bfbd" prot="private" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>_inclination</name></member>
       <member refid="classastrea_1_1astro_1_1Spherical_1ae6e081df986e304b61eaf44499ae6827" prot="private" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>_range</name></member>
-      <member refid="classastrea_1_1astro_1_1Spherical_1a31f4e7417d312eb717d2fb4c726e7112" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>get_azimuth</name></member>
-      <member refid="classastrea_1_1astro_1_1Spherical_1a2b3a73cf42fa3c1bd31590476ff27a6f" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>get_inclination</name></member>
+      <member refid="classastrea_1_1astro_1_1Spherical_1addb7cb893320aed8b3edf3faa5dcfbfd" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>get_azimuth</name></member>
+      <member refid="classastrea_1_1astro_1_1Spherical_1a1feb562626d99adca72b47613a8f5611" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>get_inclination</name></member>
       <member refid="classastrea_1_1astro_1_1Spherical_1ab6813a1a9a72977668717d0762d7057f" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>get_position</name></member>
       <member refid="classastrea_1_1astro_1_1Spherical_1ae0828a11b9a28d2fc19823882137a7f1" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>get_position</name></member>
-      <member refid="classastrea_1_1astro_1_1Spherical_1ac97080c13bd9a2a9004434f741ac7234" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>get_range</name></member>
+      <member refid="classastrea_1_1astro_1_1Spherical_1a15375295479326a9d5e93949b823e90a" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>get_range</name></member>
       <member refid="classastrea_1_1astro_1_1Spherical_1a06f10aaf8cd096ba8e035eefd00c3aee" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>interpolate</name></member>
       <member refid="classastrea_1_1astro_1_1Spherical_1a53f28c2d3afa05ac7616d0c7e87de909" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>operator!=</name></member>
       <member refid="classastrea_1_1astro_1_1Spherical_1a8d3307cc25b0f37001151a812edc0e14" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>operator*</name></member>
@@ -956,7 +925,7 @@
       <member refid="classastrea_1_1astro_1_1Spherical_1a272ada7903d0acc5341170a18fc24ccb" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>operator/</name></member>
       <member refid="classastrea_1_1astro_1_1Spherical_1a1ee0e5f6d9b0fcc00aef94bc85019b50" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>operator/</name></member>
       <member refid="classastrea_1_1astro_1_1Spherical_1ac4e2517466ed73f203f53493a01e0cec" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>operator/=</name></member>
-      <member refid="classastrea_1_1astro_1_1Spherical_1a5844717d4f9bd0310cbfeb60526faf65" prot="private" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1astro_1_1Spherical_1a5222024a6956c3da6464343bd255cbe2" prot="private" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>operator&lt;&lt;</name></member>
       <member refid="classastrea_1_1astro_1_1Spherical_1ad621ec74c85fe8feff9e43fd3713de5b" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>operator=</name></member>
       <member refid="classastrea_1_1astro_1_1Spherical_1a5035a52f69f76a5293fc54543418378c" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>operator=</name></member>
       <member refid="classastrea_1_1astro_1_1Spherical_1a91b84929c88d93d4c84ff87a57e807db" prot="public" virt="non-virtual"><scope>astrea::astro::Spherical</scope><name>operator==</name></member>

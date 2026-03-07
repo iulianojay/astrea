@@ -56,33 +56,33 @@ _Class representing a set of orbital elements._ [More...](#detailed-description)
 |   | [**OrbitalElements**](#function-orbitalelements-24) ([**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) elements) <br>_Constructor initializing with_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _elements._ |
 |   | [**OrbitalElements**](#function-orbitalelements-34) ([**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) elements) <br>_Constructor initializing with_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _elements._ |
 |   | [**OrbitalElements**](#function-orbitalelements-44) ([**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) elements) <br>_Constructor initializing with_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _elements._ |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & | [**convert\_to\_set**](#function-convert_to_set-14) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t idx, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) <br>_Converts the current orbital elements to a specific type._  |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**convert\_to\_set**](#function-convert_to_set-24) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t idx, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) const<br>_Converts the current orbital elements to a specific type._  |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & | [**convert\_to\_set**](#function-convert_to_set-34) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) <br>_Converts the current orbital elements to a specific type._  |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**convert\_to\_set**](#function-convert_to_set-44) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) const<br>_Converts the current orbital elements to a specific type._  |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) ElementVariant & | [**extract**](#function-extract-12) () const<br>_Extracts the underlying orbital elements as a variant._  |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & | [**convert\_to\_set**](#function-convert_to_set-14) (const std::size\_t idx, const GravParam & mu) <br>_Converts the current orbital elements to a specific type._  |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**convert\_to\_set**](#function-convert_to_set-24) (const std::size\_t idx, const GravParam & mu) const<br>_Converts the current orbital elements to a specific type._  |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & | [**convert\_to\_set**](#function-convert_to_set-34) (const GravParam & mu) <br>_Converts the current orbital elements to a specific type._  |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**convert\_to\_set**](#function-convert_to_set-44) (const GravParam & mu) const<br>_Converts the current orbital elements to a specific type._  |
+|  const ElementVariant & | [**extract**](#function-extract-12) () const<br>_Extracts the underlying orbital elements as a variant._  |
 |  ElementVariant & | [**extract**](#function-extract-22) () <br>_Extracts the underlying orbital elements as a variant._  |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _to a vector of Unitless values._ |
-|  [**T**](classastrea_1_1astro_1_1CartesianVector.md) | [**in\_element\_set**](#function-in_element_set) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) const<br>_Converts the current orbital elements to a specified type._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t | [**index**](#function-index) () const<br>_Returns the index of the current orbital elements in the variant._  |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**interpolate**](#function-interpolate) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & thisTime, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & otherTime, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & other, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & targetTime) const<br>_Interpolates between two_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _at a given time._ |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & multiplier) const<br>_Multiplies the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a scalar._ |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & | [**operator\*=**](#function-operator_1) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & multiplier) <br>_Multiplies the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a scalar._ |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**operator+**](#function-operator_2) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & other) const<br>_Adds two_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _objects._ |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & | [**operator+=**](#function-operator_3) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & other) <br>_Adds another_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _object to the current one._ |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**operator-**](#function-operator-) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & other) const<br>_Subtracts another_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _object from the current one._ |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & | [**operator-=**](#function-operator-_1) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & other) <br>_Subtracts another_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _object from the current one._ |
-|  [**OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md) | [**operator/**](#function-operator_4) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & divisor) const<br>_Divides the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a time._ |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**operator/**](#function-operator_5) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & divisor) const<br>_Divides the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a scalar._ |
-|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & | [**operator/=**](#function-operator_6) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & divisor) <br>_Divides the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a scalar._ |
-|  [**bool**](classastrea_1_1astro_1_1CartesianVector.md) | [**operator==**](#function-operator_7) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & other) const<br>_Compares two_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _objects for equality._ |
+|  std::vector&lt; Unitless &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _to a vector of Unitless values._ |
+|  T | [**in\_element\_set**](#function-in_element_set) (const GravParam & mu) const<br>_Converts the current orbital elements to a specified type._  |
+|  constexpr std::size\_t | [**index**](#function-index) () const<br>_Returns the index of the current orbital elements in the variant._  |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**interpolate**](#function-interpolate) (const Time & thisTime, const Time & otherTime, const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & other, const GravParam & mu, const Time & targetTime) const<br>_Interpolates between two_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _at a given time._ |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**operator\***](#function-operator) (const Unitless & multiplier) const<br>_Multiplies the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a scalar._ |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & | [**operator\*=**](#function-operator_1) (const Unitless & multiplier) <br>_Multiplies the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a scalar._ |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**operator+**](#function-operator_2) (const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & other) const<br>_Adds two_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _objects._ |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & | [**operator+=**](#function-operator_3) (const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & other) <br>_Adds another_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _object to the current one._ |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**operator-**](#function-operator-) (const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & other) const<br>_Subtracts another_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _object from the current one._ |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & | [**operator-=**](#function-operator-_1) (const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & other) <br>_Subtracts another_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _object from the current one._ |
+|  [**OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPartials.md) | [**operator/**](#function-operator_4) (const Time & divisor) const<br>_Divides the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a time._ |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) | [**operator/**](#function-operator_5) (const Unitless & divisor) const<br>_Divides the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a scalar._ |
+|  [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & | [**operator/=**](#function-operator_6) (const Unitless & divisor) <br>_Divides the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a scalar._ |
+|  bool | [**operator==**](#function-operator_7) (const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & other) const<br>_Compares two_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _objects for equality._ |
 
 
 ## Public Static Functions
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t | [**get\_set\_id**](#function-get_set_id) () <br>_Returns the set ID for a specific type of orbital elements._  |
+|  constexpr std::size\_t | [**get\_set\_id**](#function-get_set_id) () <br>_Returns the set ID for a specific type of orbital elements._  |
 
 
 
@@ -222,7 +222,7 @@ _Converts the current orbital elements to a specific type._
 ```C++
 OrbitalElements & astrea::astro::OrbitalElements::convert_to_set (
     const std::size_t idx,
-    const  GravParam & mu
+    const GravParam & mu
 ) 
 ```
 
@@ -264,7 +264,7 @@ _Converts the current orbital elements to a specific type._
 ```C++
 OrbitalElements astrea::astro::OrbitalElements::convert_to_set (
     const std::size_t idx,
-    const  GravParam & mu
+    const GravParam & mu
 ) const
 ```
 
@@ -306,7 +306,7 @@ _Converts the current orbital elements to a specific type._
 ```C++
 template<IsOrbitalElements T>
 inline OrbitalElements & astrea::astro::OrbitalElements::convert_to_set (
-    const  GravParam & mu
+    const GravParam & mu
 ) 
 ```
 
@@ -348,7 +348,7 @@ _Converts the current orbital elements to a specific type._
 ```C++
 template<IsOrbitalElements T>
 inline OrbitalElements astrea::astro::OrbitalElements::convert_to_set (
-    const  GravParam & mu
+    const GravParam & mu
 ) const
 ```
 
@@ -465,7 +465,7 @@ _Converts the current orbital elements to a specified type._
 ```C++
 template<IsOrbitalElements T>
 inline T astrea::astro::OrbitalElements::in_element_set (
-    const  GravParam & mu
+    const GravParam & mu
 ) const
 ```
 
@@ -524,11 +524,11 @@ std::size\_t The index of the current orbital elements in the variant.
 _Interpolates between two_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _at a given time._
 ```C++
 OrbitalElements astrea::astro::OrbitalElements::interpolate (
-    const  Time & thisTime,
-    const  Time & otherTime,
-    const  OrbitalElements & other,
-    const  GravParam & mu,
-    const  Time & targetTime
+    const Time & thisTime,
+    const Time & otherTime,
+    const OrbitalElements & other,
+    const GravParam & mu,
+    const Time & targetTime
 ) const
 ```
 
@@ -566,7 +566,7 @@ Interpolated [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) a
 _Multiplies the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a scalar._
 ```C++
 OrbitalElements astrea::astro::OrbitalElements::operator* (
-    const  Unitless & multiplier
+    const Unitless & multiplier
 ) const
 ```
 
@@ -600,7 +600,7 @@ Resultant [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) afte
 _Multiplies the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a scalar._
 ```C++
 OrbitalElements & astrea::astro::OrbitalElements::operator*= (
-    const  Unitless & multiplier
+    const Unitless & multiplier
 ) 
 ```
 
@@ -634,7 +634,7 @@ Reference to the current [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalEl
 _Adds two_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _objects._
 ```C++
 OrbitalElements astrea::astro::OrbitalElements::operator+ (
-    const  OrbitalElements & other
+    const OrbitalElements & other
 ) const
 ```
 
@@ -668,7 +668,7 @@ Resultant [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) sum.
 _Adds another_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _object to the current one._
 ```C++
 OrbitalElements & astrea::astro::OrbitalElements::operator+= (
-    const  OrbitalElements & other
+    const OrbitalElements & other
 ) 
 ```
 
@@ -702,7 +702,7 @@ Reference to the current [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalEl
 _Subtracts another_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _object from the current one._
 ```C++
 OrbitalElements astrea::astro::OrbitalElements::operator- (
-    const  OrbitalElements & other
+    const OrbitalElements & other
 ) const
 ```
 
@@ -736,7 +736,7 @@ Resultant [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) diff
 _Subtracts another_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _object from the current one._
 ```C++
 OrbitalElements & astrea::astro::OrbitalElements::operator-= (
-    const  OrbitalElements & other
+    const OrbitalElements & other
 ) 
 ```
 
@@ -770,7 +770,7 @@ Reference to the current [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalEl
 _Divides the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a time._
 ```C++
 OrbitalElementPartials astrea::astro::OrbitalElements::operator/ (
-    const  Time & divisor
+    const Time & divisor
 ) const
 ```
 
@@ -804,7 +804,7 @@ Resultant [**OrbitalElementPartials**](classastrea_1_1astro_1_1OrbitalElementPar
 _Divides the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a scalar._
 ```C++
 OrbitalElements astrea::astro::OrbitalElements::operator/ (
-    const  Unitless & divisor
+    const Unitless & divisor
 ) const
 ```
 
@@ -838,7 +838,7 @@ Resultant [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) afte
 _Divides the_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _by a scalar._
 ```C++
 OrbitalElements & astrea::astro::OrbitalElements::operator/= (
-    const  Unitless & divisor
+    const Unitless & divisor
 ) 
 ```
 
@@ -872,7 +872,7 @@ Reference to the current [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalEl
 _Compares two_ [_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _objects for equality._
 ```C++
 bool astrea::astro::OrbitalElements::operator== (
-    const  OrbitalElements & other
+    const OrbitalElements & other
 ) const
 ```
 
@@ -914,7 +914,7 @@ false if the two [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.m
 
 _Returns the set ID for a specific type of orbital elements._ 
 ```C++
-template<typename  T>
+template<typename T>
 static inline constexpr std::size_t astrea::astro::OrbitalElements::get_set_id () 
 ```
 

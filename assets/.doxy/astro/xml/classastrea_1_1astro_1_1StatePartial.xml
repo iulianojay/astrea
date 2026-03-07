@@ -1,14 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1StatePartial" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::StatePartial</compoundname>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1StatePartial_1a5b4b9f73b7252974c97f296f5e70c6e8" prot="private" static="no" mutable="no">
         <type><ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref></type>
         <definition>OrbitalElementPartials astrea::astro::StatePartial::_elementPartials</definition>
         <argsstring></argsstring>
         <name>_elementPartials</name>
-        <qualifiedname>astrea::astro::StatePartial::_elementPartials</qualifiedname>
         <briefdescription>
 <para>The orbital element partials of the state, defining the shape and orientation of the orbit. </para>
         </briefdescription>
@@ -23,7 +22,6 @@
         <definition>Date astrea::astro::StatePartial::_epoch</definition>
         <argsstring></argsstring>
         <name>_epoch</name>
-        <qualifiedname>astrea::astro::StatePartial::_epoch</qualifiedname>
         <briefdescription>
 <para>The epoch of the state partial, representing the time at which the orbital elements are defined. </para>
         </briefdescription>
@@ -34,11 +32,10 @@
         <location file="astrea/astro/astro/state/State.hpp" line="377" column="10" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="377" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1StatePartial_1ac44bf27817f23007ca88b19ab0135ba8" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> *</type>
+        <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> *</type>
         <definition>const AstrodynamicsSystem* astrea::astro::StatePartial::_system</definition>
         <argsstring></argsstring>
         <name>_system</name>
-        <qualifiedname>astrea::astro::StatePartial::_system</qualifiedname>
         <briefdescription>
 <para>Pointer to the astrodynamics system associated with the state, providing context for the orbital elements. </para>
         </briefdescription>
@@ -48,14 +45,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/State.hpp" line="378" column="31" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="378" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1StatePartial_1a155e289ff4b880e88910acdf6b0f7e2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::StatePartial::StatePartial</definition>
         <argsstring>()=default</argsstring>
         <name>StatePartial</name>
-        <qualifiedname>astrea::astro::StatePartial::StatePartial</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="classastrea_1_1astro_1_1StatePartial" kindref="compound">StatePartial</ref>. </para>
         </briefdescription>
@@ -70,17 +66,16 @@
         <definition>astrea::astro::StatePartial::StatePartial</definition>
         <argsstring>(const OrbitalElementPartials &amp;elementPartials, const Date &amp;epoch, const AstrodynamicsSystem &amp;sys)</argsstring>
         <name>StatePartial</name>
-        <qualifiedname>astrea::astro::StatePartial::StatePartial</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> &amp;</type>
           <declname>elementPartials</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>epoch</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
           <declname>sys</declname>
         </param>
         <briefdescription>
@@ -123,9 +118,8 @@
         <definition>State astrea::astro::StatePartial::operator*</definition>
         <argsstring>(const Time &amp;time) const</argsstring>
         <name>operator*</name>
-        <qualifiedname>astrea::astro::StatePartial::operator*</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <briefdescription>
@@ -150,11 +144,10 @@
         <location file="astrea/astro/astro/state/State.hpp" line="359" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="100" bodyend="103"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StatePartial_1ab95cf103b75125e7760ab1a83788d87d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+        <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
         <definition>const AstrodynamicsSystem &amp; astrea::astro::StatePartial::get_system</definition>
         <argsstring>() const</argsstring>
         <name>get_system</name>
-        <qualifiedname>astrea::astro::StatePartial::get_system</qualifiedname>
         <briefdescription>
 <para>Gets the astrodynamics system associated with the state. </para>
         </briefdescription>
@@ -168,11 +161,10 @@
         <location file="astrea/astro/astro/state/State.hpp" line="366" column="31" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="105" bodyend="105"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1StatePartial_1a53b6c6e7f49320b8d89ed7ec96631569" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+        <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
         <definition>const Date &amp; astrea::astro::StatePartial::get_epoch</definition>
         <argsstring>() const</argsstring>
         <name>get_epoch</name>
-        <qualifiedname>astrea::astro::StatePartial::get_epoch</qualifiedname>
         <briefdescription>
 <para>Gets the epoch of the state partial. </para>
         </briefdescription>
@@ -185,7 +177,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/State.hpp" line="373" column="16" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="107" bodyend="107"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

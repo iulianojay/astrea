@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1trace_1_1AccessArray" kind="class" language="C++" prot="public">
     <compoundname>astrea::trace::AccessArray</compoundname>
     <includes refid="AccessArray_8hpp" local="no">AccessArray.hpp</includes>
-    <sectiondef kind="public-type">
+      <sectiondef kind="public-type">
       <memberdef kind="typedef" id="classastrea_1_1trace_1_1AccessArray_1af1ec64463016254635e75660edf28eb5" prot="public" static="no">
-        <type>gtl::btree_map&lt; <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>, <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &gt;::iterator</type>
+        <type>gtl::btree_map&lt; <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>, <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &gt;::<ref refid="classastrea_1_1trace_1_1AccessArray_1af1ec64463016254635e75660edf28eb5" kindref="member">iterator</ref></type>
         <definition>using astrea::trace::AccessArray::iterator =  gtl::btree_map&lt;IdPair, RiseSetArray&gt;::iterator</definition>
         <argsstring></argsstring>
         <name>iterator</name>
-        <qualifiedname>astrea::trace::AccessArray::iterator</qualifiedname>
         <briefdescription>
 <para>Iterator type for <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
         </briefdescription>
@@ -20,11 +19,10 @@
         <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="148" column="5" bodyfile="astrea/trace/trace/risesets/AccessArray.hpp" bodystart="148" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" prot="public" static="no">
-        <type>gtl::btree_map&lt; <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>, <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &gt;::const_iterator</type>
+        <type>gtl::btree_map&lt; <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>, <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &gt;::<ref refid="classastrea_1_1trace_1_1AccessArray_1a1b22437d1538fd19b997d9deb729d0a2" kindref="member">const_iterator</ref></type>
         <definition>using astrea::trace::AccessArray::const_iterator =  gtl::btree_map&lt;IdPair, RiseSetArray&gt;::const_iterator</definition>
         <argsstring></argsstring>
         <name>const_iterator</name>
-        <qualifiedname>astrea::trace::AccessArray::const_iterator</qualifiedname>
         <briefdescription>
 <para>Const iterator type for <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
         </briefdescription>
@@ -34,14 +32,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="153" column="5" bodyfile="astrea/trace/trace/risesets/AccessArray.hpp" bodystart="153" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-attrib">
+      </sectiondef>
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1trace_1_1AccessArray_1af2049a79d70b70a4e5c6a8390a4f4521" prot="private" static="no" mutable="no">
         <type>gtl::btree_map&lt; <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>, <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &gt;</type>
         <definition>gtl::btree_map&lt;IdPair, RiseSetArray&gt; astrea::trace::AccessArray::_accesses</definition>
         <argsstring></argsstring>
         <name>_accesses</name>
-        <qualifiedname>astrea::trace::AccessArray::_accesses</qualifiedname>
         <briefdescription>
 <para>A map that associates IdPairs with their corresponding RiseSetArrays. </para>
         </briefdescription>
@@ -51,14 +48,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="198" column="20" bodyfile="astrea/trace/trace/risesets/AccessArray.hpp" bodystart="198" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="friend">
-      <memberdef kind="friend" id="classastrea_1_1trace_1_1AccessArray_1a653318121cd098e12081935f4f22da49" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1trace_1_1AccessArray_1a0f09e1c6b7f9427c403fc8daf8cfda67" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;os, const AccessArray &amp;accessarray)</argsstring>
         <name>operator&lt;&lt;</name>
-        <qualifiedname>astrea::trace::AccessArray::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <declname>os</declname>
@@ -96,14 +92,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="36" column="12" bodyfile="astrea/trace/trace/risesets/AccessArray.cpp" bodystart="98" bodyend="104"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1trace_1_1AccessArray_1af10266a6eea092b3b619f694908d20ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::AccessArray::AccessArray</definition>
         <argsstring>()=default</argsstring>
         <name>AccessArray</name>
-        <qualifiedname>astrea::trace::AccessArray::AccessArray</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. Initializes an empty <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
         </briefdescription>
@@ -118,7 +113,6 @@
         <definition>astrea::trace::AccessArray::~AccessArray</definition>
         <argsstring>()=default</argsstring>
         <name>~AccessArray</name>
-        <qualifiedname>astrea::trace::AccessArray::~AccessArray</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
         </briefdescription>
@@ -133,7 +127,6 @@
         <definition>RiseSetArray &amp; astrea::trace::AccessArray::operator[]</definition>
         <argsstring>(const std::size_t &amp;senderId, const std::size_t &amp;receiverId)</argsstring>
         <name>operator[]</name>
-        <qualifiedname>astrea::trace::AccessArray::operator[]</qualifiedname>
         <param>
           <type>const std::size_t &amp;</type>
           <declname>senderId</declname>
@@ -176,7 +169,6 @@
         <definition>const RiseSetArray &amp; astrea::trace::AccessArray::at</definition>
         <argsstring>(const std::size_t &amp;senderId, const std::size_t &amp;receiverId) const</argsstring>
         <name>at</name>
-        <qualifiedname>astrea::trace::AccessArray::at</qualifiedname>
         <param>
           <type>const std::size_t &amp;</type>
           <declname>senderId</declname>
@@ -219,7 +211,6 @@
         <definition>bool astrea::trace::AccessArray::contains</definition>
         <argsstring>(const IdPair &amp;idPair) const</argsstring>
         <name>contains</name>
-        <qualifiedname>astrea::trace::AccessArray::contains</qualifiedname>
         <param>
           <type>const <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref> &amp;</type>
           <declname>idPair</declname>
@@ -250,7 +241,6 @@
         <definition>void astrea::trace::AccessArray::erase</definition>
         <argsstring>(const std::size_t &amp;senderId, const std::size_t &amp;receiverId)</argsstring>
         <name>erase</name>
-        <qualifiedname>astrea::trace::AccessArray::erase</qualifiedname>
         <param>
           <type>const std::size_t &amp;</type>
           <declname>senderId</declname>
@@ -291,7 +281,6 @@
         <definition>std::size_t astrea::trace::AccessArray::size</definition>
         <argsstring>() const</argsstring>
         <name>size</name>
-        <qualifiedname>astrea::trace::AccessArray::size</qualifiedname>
         <briefdescription>
 <para>Returns the number of RiseSetArrays in the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
         </briefdescription>
@@ -309,7 +298,6 @@
         <definition>RiseSetArray astrea::trace::AccessArray::get_all_accesses_to_receiver</definition>
         <argsstring>(const std::size_t &amp;receiverId) const</argsstring>
         <name>get_all_accesses_to_receiver</name>
-        <qualifiedname>astrea::trace::AccessArray::get_all_accesses_to_receiver</qualifiedname>
         <param>
           <type>const std::size_t &amp;</type>
           <declname>receiverId</declname>
@@ -340,7 +328,6 @@
         <definition>RiseSetArray astrea::trace::AccessArray::get_all_accesses_from_sender</definition>
         <argsstring>(const std::size_t &amp;senderId) const</argsstring>
         <name>get_all_accesses_from_sender</name>
-        <qualifiedname>astrea::trace::AccessArray::get_all_accesses_from_sender</qualifiedname>
         <param>
           <type>const std::size_t &amp;</type>
           <declname>senderId</declname>
@@ -371,7 +358,6 @@
         <definition>bool astrea::trace::AccessArray::operator==</definition>
         <argsstring>(const AccessArray &amp;other) const</argsstring>
         <name>operator==</name>
-        <qualifiedname>astrea::trace::AccessArray::operator==</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
           <declname>other</declname>
@@ -402,7 +388,6 @@
         <definition>AccessArray &amp; astrea::trace::AccessArray::operator|=</definition>
         <argsstring>(const AccessArray &amp;other)</argsstring>
         <name>operator|=</name>
-        <qualifiedname>astrea::trace::AccessArray::operator|=</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
           <declname>other</declname>
@@ -431,7 +416,6 @@
         <definition>AccessArray astrea::trace::AccessArray::operator|</definition>
         <argsstring>(const AccessArray &amp;other) const</argsstring>
         <name>operator|</name>
-        <qualifiedname>astrea::trace::AccessArray::operator|</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
           <declname>other</declname>
@@ -462,7 +446,6 @@
         <definition>AccessArray &amp; astrea::trace::AccessArray::operator&amp;=</definition>
         <argsstring>(const AccessArray &amp;other)</argsstring>
         <name>operator&amp;=</name>
-        <qualifiedname>astrea::trace::AccessArray::operator&amp;=</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
           <declname>other</declname>
@@ -491,7 +474,6 @@
         <definition>AccessArray astrea::trace::AccessArray::operator&amp;</definition>
         <argsstring>(const AccessArray &amp;other) const</argsstring>
         <name>operator&amp;</name>
-        <qualifiedname>astrea::trace::AccessArray::operator&amp;</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
           <declname>other</declname>
@@ -522,7 +504,6 @@
         <definition>iterator astrea::trace::AccessArray::begin</definition>
         <argsstring>()</argsstring>
         <name>begin</name>
-        <qualifiedname>astrea::trace::AccessArray::begin</qualifiedname>
         <briefdescription>
 <para>Returns an iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
         </briefdescription>
@@ -540,7 +521,6 @@
         <definition>iterator astrea::trace::AccessArray::end</definition>
         <argsstring>()</argsstring>
         <name>end</name>
-        <qualifiedname>astrea::trace::AccessArray::end</qualifiedname>
         <briefdescription>
 <para>Returns an iterator to the end of the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
         </briefdescription>
@@ -558,7 +538,6 @@
         <definition>const_iterator astrea::trace::AccessArray::begin</definition>
         <argsstring>() const</argsstring>
         <name>begin</name>
-        <qualifiedname>astrea::trace::AccessArray::begin</qualifiedname>
         <briefdescription>
 <para>Returns a const iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
         </briefdescription>
@@ -576,7 +555,6 @@
         <definition>const_iterator astrea::trace::AccessArray::end</definition>
         <argsstring>() const</argsstring>
         <name>end</name>
-        <qualifiedname>astrea::trace::AccessArray::end</qualifiedname>
         <briefdescription>
 <para>Returns a const iterator to the end of the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
         </briefdescription>
@@ -594,7 +572,6 @@
         <definition>const_iterator astrea::trace::AccessArray::cbegin</definition>
         <argsstring>() const</argsstring>
         <name>cbegin</name>
-        <qualifiedname>astrea::trace::AccessArray::cbegin</qualifiedname>
         <briefdescription>
 <para>Returns a const iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
         </briefdescription>
@@ -612,7 +589,6 @@
         <definition>const_iterator astrea::trace::AccessArray::cend</definition>
         <argsstring>() const</argsstring>
         <name>cend</name>
-        <qualifiedname>astrea::trace::AccessArray::cend</qualifiedname>
         <briefdescription>
 <para>Returns a const iterator to the end of the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref>. </para>
         </briefdescription>
@@ -625,7 +601,7 @@
         </inbodydescription>
         <location file="astrea/trace/trace/risesets/AccessArray.hpp" line="195" column="20" bodyfile="astrea/trace/trace/risesets/AccessArray.hpp" bodystart="195" bodyend="195"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Represents a collection of access times indexed by sender and receiver IDs. This class provides methods to manipulate and query access times for different sender-receiver pairs. </para>
     </briefdescription>
@@ -650,7 +626,7 @@
       <member refid="classastrea_1_1trace_1_1AccessArray_1af1ec64463016254635e75660edf28eb5" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>iterator</name></member>
       <member refid="classastrea_1_1trace_1_1AccessArray_1aab67a321173f25d29c6f44217e421ac9" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>operator&amp;</name></member>
       <member refid="classastrea_1_1trace_1_1AccessArray_1a5af8cba08c471f4ae0e44515f54dae54" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>operator&amp;=</name></member>
-      <member refid="classastrea_1_1trace_1_1AccessArray_1a653318121cd098e12081935f4f22da49" prot="private" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessArray_1a0f09e1c6b7f9427c403fc8daf8cfda67" prot="private" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>operator&lt;&lt;</name></member>
       <member refid="classastrea_1_1trace_1_1AccessArray_1a739848f758f634ef106651ba4c8ee314" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>operator==</name></member>
       <member refid="classastrea_1_1trace_1_1AccessArray_1a33fe39e20bb86f80deeb30920eb72073" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>operator[]</name></member>
       <member refid="classastrea_1_1trace_1_1AccessArray_1a560826c1b2235c3b13b1a4cdcf9df77e" prot="public" virt="non-virtual"><scope>astrea::trace::AccessArray</scope><name>operator|</name></member>

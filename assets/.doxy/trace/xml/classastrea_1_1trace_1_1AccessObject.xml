@@ -1,18 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1trace_1_1AccessObject" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>astrea::trace::AccessObject</compoundname>
     <derivedcompoundref refid="classastrea_1_1trace_1_1GroundPoint" prot="public" virt="virtual">astrea::trace::GroundPoint</derivedcompoundref>
     <derivedcompoundref refid="classastrea_1_1trace_1_1Sensor" prot="public" virt="non-virtual">astrea::trace::Sensor</derivedcompoundref>
     <derivedcompoundref refid="classastrea_1_1trace_1_1Viewer" prot="public" virt="non-virtual">astrea::trace::Viewer</derivedcompoundref>
     <includes refid="AccessObject_8hpp" local="no">AccessObject.hpp</includes>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1trace_1_1AccessObject_1aa3f87ce5ff8c5492e00236e0af29fb0b" prot="private" static="no" mutable="no">
         <type><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref></type>
         <definition>AccessArray astrea::trace::AccessObject::_accesses</definition>
         <argsstring></argsstring>
         <name>_accesses</name>
-        <qualifiedname>astrea::trace::AccessObject::_accesses</qualifiedname>
         <briefdescription>
 <para>Access times for this object, indexed by sender and receiver IDs. </para>
         </briefdescription>
@@ -22,14 +21,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/AccessObject.hpp" line="95" column="17" bodyfile="astrea/trace/trace/platforms/AccessObject.hpp" bodystart="95" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="protected-func">
+      </sectiondef>
+      <sectiondef kind="protected-func">
       <memberdef kind="function" id="classastrea_1_1trace_1_1AccessObject_1aee7325297c99363f7a85e84aee0c752a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::AccessObject::AccessObject</definition>
         <argsstring>()=default</argsstring>
         <name>AccessObject</name>
-        <qualifiedname>astrea::trace::AccessObject::AccessObject</qualifiedname>
         <briefdescription>
 <para>Default constructor. </para>
         </briefdescription>
@@ -44,7 +42,6 @@
         <definition>virtual astrea::trace::AccessObject::~AccessObject</definition>
         <argsstring>()=default</argsstring>
         <name>~AccessObject</name>
-        <qualifiedname>astrea::trace::AccessObject::~AccessObject</qualifiedname>
         <briefdescription>
 <para>Default destructor. </para>
         </briefdescription>
@@ -54,14 +51,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/AccessObject.hpp" line="43" column="13"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1trace_1_1AccessObject_1a10b3e4b10853ab07e397987d7a4bcf77" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
         <definition>void astrea::trace::AccessObject::add_access</definition>
         <argsstring>(const std::size_t &amp;receiverId, const RiseSetArray &amp;access)</argsstring>
         <name>add_access</name>
-        <qualifiedname>astrea::trace::AccessObject::add_access</qualifiedname>
         <param>
           <type>const std::size_t &amp;</type>
           <declname>receiverId</declname>
@@ -102,7 +98,6 @@
         <definition>void astrea::trace::AccessObject::drop_access</definition>
         <argsstring>(const std::size_t &amp;receiverId, const RiseSetArray &amp;access)</argsstring>
         <name>drop_access</name>
-        <qualifiedname>astrea::trace::AccessObject::drop_access</qualifiedname>
         <param>
           <type>const std::size_t &amp;</type>
           <declname>receiverId</declname>
@@ -138,12 +133,11 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/AccessObject.hpp" line="68" column="10" bodyfile="astrea/trace/trace/platforms/AccessObject.hpp" bodystart="68" bodyend="71"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessObject_1a74001e50f522dfb7452c96433698e670" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessObject_1a97dd222834452263fa7b7f2ea1da1986" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
-        <definition>AccessArray &amp; astrea::trace::AccessObject::get_accesses</definition>
+        <definition>AccessArray&amp; astrea::trace::AccessObject::get_accesses</definition>
         <argsstring>()</argsstring>
         <name>get_accesses</name>
-        <qualifiedname>astrea::trace::AccessObject::get_accesses</qualifiedname>
         <briefdescription>
 <para>Gets the access times for this object. </para>
         </briefdescription>
@@ -156,12 +150,11 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/AccessObject.hpp" line="78" column="17" bodyfile="astrea/trace/trace/platforms/AccessObject.hpp" bodystart="78" bodyend="78"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessObject_1a315695c2948714a7af494d92c4a9f598" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1AccessObject_1a542d32353766a59ad5f63dc0fa7c09ae" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
-        <definition>const AccessArray &amp; astrea::trace::AccessObject::get_accesses</definition>
+        <definition>const AccessArray&amp; astrea::trace::AccessObject::get_accesses</definition>
         <argsstring>() const</argsstring>
         <name>get_accesses</name>
-        <qualifiedname>astrea::trace::AccessObject::get_accesses</qualifiedname>
         <briefdescription>
 <para>Gets the access times for this object (const version). </para>
         </briefdescription>
@@ -179,7 +172,6 @@
         <definition>virtual std::size_t astrea::trace::AccessObject::get_id</definition>
         <argsstring>() const =0</argsstring>
         <name>get_id</name>
-        <qualifiedname>astrea::trace::AccessObject::get_id</qualifiedname>
         <reimplementedby refid="classastrea_1_1trace_1_1GroundPoint_1a65ce89540265909ab6e2bc46f7b762b0">get_id</reimplementedby>
         <reimplementedby refid="classastrea_1_1trace_1_1GroundStation_1a281c8639f3184b6cfc345f04ff7390d3">get_id</reimplementedby>
         <reimplementedby refid="classastrea_1_1trace_1_1Sensor_1a8216026c485083cf9c0522ad436b8f48">get_id</reimplementedby>
@@ -196,38 +188,22 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/AccessObject.hpp" line="92" column="25"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Base class for objects that can visually access other objects. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1">
-        <label>astrea::trace::AccessObject</label>
-        <link refid="classastrea_1_1trace_1_1AccessObject"/>
-      </node>
-      <node id="5">
-        <label>astrea::trace::Antenna</label>
-        <link refid="classastrea_1_1trace_1_1Antenna"/>
-        <childnode refid="4" relation="public-inheritance">
+      <node id="4">
+        <label>astrea::trace::Sensor</label>
+        <link refid="classastrea_1_1trace_1_1Sensor"/>
+        <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
       <node id="2">
         <label>astrea::trace::GroundPoint</label>
         <link refid="classastrea_1_1trace_1_1GroundPoint"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>astrea::trace::GroundStation</label>
-        <link refid="classastrea_1_1trace_1_1GroundStation"/>
-        <childnode refid="2" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>astrea::trace::Sensor</label>
-        <link refid="classastrea_1_1trace_1_1Sensor"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
@@ -237,6 +213,22 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="3">
+        <label>astrea::trace::GroundStation</label>
+        <link refid="classastrea_1_1trace_1_1GroundStation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea::trace::Antenna</label>
+        <link refid="classastrea_1_1trace_1_1Antenna"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea::trace::AccessObject</label>
+        <link refid="classastrea_1_1trace_1_1AccessObject"/>
+      </node>
     </inheritancegraph>
     <location file="astrea/trace/trace/platforms/AccessObject.hpp" line="32" column="1" bodyfile="astrea/trace/trace/platforms/AccessObject.hpp" bodystart="32" bodyend="96"/>
     <listofallmembers>
@@ -244,8 +236,8 @@
       <member refid="classastrea_1_1trace_1_1AccessObject_1aee7325297c99363f7a85e84aee0c752a" prot="protected" virt="non-virtual"><scope>astrea::trace::AccessObject</scope><name>AccessObject</name></member>
       <member refid="classastrea_1_1trace_1_1AccessObject_1a10b3e4b10853ab07e397987d7a4bcf77" prot="public" virt="non-virtual"><scope>astrea::trace::AccessObject</scope><name>add_access</name></member>
       <member refid="classastrea_1_1trace_1_1AccessObject_1a2a38e7745542fa7d681c8dbfff7a2332" prot="public" virt="non-virtual"><scope>astrea::trace::AccessObject</scope><name>drop_access</name></member>
-      <member refid="classastrea_1_1trace_1_1AccessObject_1a74001e50f522dfb7452c96433698e670" prot="public" virt="non-virtual"><scope>astrea::trace::AccessObject</scope><name>get_accesses</name></member>
-      <member refid="classastrea_1_1trace_1_1AccessObject_1a315695c2948714a7af494d92c4a9f598" prot="public" virt="non-virtual"><scope>astrea::trace::AccessObject</scope><name>get_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessObject_1a97dd222834452263fa7b7f2ea1da1986" prot="public" virt="non-virtual"><scope>astrea::trace::AccessObject</scope><name>get_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessObject_1a542d32353766a59ad5f63dc0fa7c09ae" prot="public" virt="non-virtual"><scope>astrea::trace::AccessObject</scope><name>get_accesses</name></member>
       <member refid="classastrea_1_1trace_1_1AccessObject_1a067983557aa2ab8506d0d863729fde3f" prot="public" virt="pure-virtual"><scope>astrea::trace::AccessObject</scope><name>get_id</name></member>
       <member refid="classastrea_1_1trace_1_1AccessObject_1aa7afccafee2c3bcb2b766cf9bf395799" prot="protected" virt="virtual"><scope>astrea::trace::AccessObject</scope><name>~AccessObject</name></member>
     </listofallmembers>

@@ -47,8 +47,8 @@ Here is a list of all namespaces with brief descriptions:
             * **namespace** [**venus\_barycenter**](namespaceastrea_1_1astro_1_1frames_1_1venus__barycenter.md)     
         * **namespace** [**planetary\_bodies**](namespaceastrea_1_1astro_1_1planetary__bodies.md)     
         * **namespace** [**plotting**](namespaceastrea_1_1astro_1_1plotting.md)     
-* **namespace** [**frames**](namespaceastrea_1_1astro_1_1frames_1_1_0d17.md) 
-* **namespace** [**plotting**](namespaceastrea_1_1astro_1_1plotting_1_1_0d151.md) 
+* **namespace** [**@17**](namespaceastrea_1_1astro_1_1frames_1_1_0d17.md) 
+* **namespace** [**@151**](namespaceastrea_1_1astro_1_1plotting_1_1_0d151.md) 
 * **namespace** [**matplot**](namespacematplot.md) 
 * **namespace** [**mp\_units**](namespacemp__units.md)     
 * **namespace** [**angular**](namespacemp__units_1_1angular.md) 
@@ -56,5 +56,5 @@ Here is a list of all namespaces with brief descriptions:
 * **namespace** [**si**](namespacemp__units_1_1si.md) 
 * **namespace** [**unit\_symbols**](namespacemp__units_1_1si_1_1unit__symbols.md) 
 * **namespace** [**std**](namespacestd.md)     
-* **namespace** [**std**](namespacestd_1_1_0d145.md) 
+* **namespace** [**@145**](namespacestd_1_1_0d145.md) 
 

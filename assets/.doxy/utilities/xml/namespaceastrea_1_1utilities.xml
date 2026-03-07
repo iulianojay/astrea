@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1utilities" kind="namespace" language="C++">
     <compoundname>astrea::utilities</compoundname>
     <innerclass refid="classastrea_1_1utilities_1_1ProgressBar" prot="public">astrea::utilities::ProgressBar</innerclass>
-    <sectiondef kind="func">
+      <sectiondef kind="func">
       <memberdef kind="function" id="json__util_8cpp_1a06454dd252d0f1c19b78af3a093339e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
         <definition>std::string astrea::utilities::clean_entry</definition>
         <argsstring>(const nlohmann::json &amp;entry)</argsstring>
         <name>clean_entry</name>
-        <qualifiedname>astrea::utilities::clean_entry</qualifiedname>
         <param>
           <type>const nlohmann::json &amp;</type>
           <declname>entry</declname>
@@ -40,7 +39,6 @@
         <definition>std::string astrea::utilities::extract_string_from_json</definition>
         <argsstring>(const nlohmann::json &amp;json, const std::string &amp;key)</argsstring>
         <name>extract_string_from_json</name>
-        <qualifiedname>astrea::utilities::extract_string_from_json</qualifiedname>
         <param>
           <type>const nlohmann::json &amp;</type>
           <declname>json</declname>
@@ -92,7 +90,6 @@
         <definition>std::optional&lt; std::string &gt; astrea::utilities::extract_optional_string_from_json</definition>
         <argsstring>(const nlohmann::json &amp;json, const std::string &amp;key)</argsstring>
         <name>extract_optional_string_from_json</name>
-        <qualifiedname>astrea::utilities::extract_optional_string_from_json</qualifiedname>
         <param>
           <type>const nlohmann::json &amp;</type>
           <declname>json</declname>
@@ -149,7 +146,6 @@
         <definition>T astrea::utilities::extract_from_json</definition>
         <argsstring>(const nlohmann::json &amp;json, const std::string &amp;key)</argsstring>
         <name>extract_from_json</name>
-        <qualifiedname>astrea::utilities::extract_from_json</qualifiedname>
         <param>
           <type>const nlohmann::json &amp;</type>
           <declname>json</declname>
@@ -205,17 +201,16 @@
         </inbodydescription>
         <location file="astrea/utilities/utilities/json_util.hpp" line="49" column="3" bodyfile="astrea/utilities/utilities/json_util.hpp" bodystart="49" bodyend="63"/>
       </memberdef>
-      <memberdef kind="function" id="json__util_8hpp_1a82d9f58dce61694efbdeedaec890eddf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="json__util_8hpp_1ac16644501553c40a942cf6898d521c49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename T</type>
           </param>
         </templateparamlist>
         <type>std::optional&lt; T &gt;</type>
-        <definition>std::optional&lt; T &gt; astrea::utilities::extract_optional_from_json</definition>
+        <definition>std::optional&lt;T&gt; astrea::utilities::extract_optional_from_json</definition>
         <argsstring>(const nlohmann::json &amp;json, const std::string &amp;key)</argsstring>
         <name>extract_optional_from_json</name>
-        <qualifiedname>astrea::utilities::extract_optional_from_json</qualifiedname>
         <param>
           <type>const nlohmann::json &amp;</type>
           <declname>json</declname>
@@ -276,7 +271,6 @@
         <definition>std::string astrea::utilities::trim</definition>
         <argsstring>(const std::string &amp;str, const std::string &amp;whitespace=&quot; \t&quot;)</argsstring>
         <name>trim</name>
-        <qualifiedname>astrea::utilities::trim</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>str</declname>
@@ -320,7 +314,6 @@
         <definition>std::string astrea::utilities::replace_all</definition>
         <argsstring>(std::string const  &amp;original, std::string const  &amp;before, std::string const  &amp;after)</argsstring>
         <name>replace_all</name>
-        <qualifiedname>astrea::utilities::replace_all</qualifiedname>
         <param>
           <type>std::string const &amp;</type>
           <declname>original</declname>
@@ -375,7 +368,6 @@
         <definition>std::vector&lt; std::string &gt; astrea::utilities::split</definition>
         <argsstring>(std::string s, const std::string &amp;delimiter)</argsstring>
         <name>split</name>
-        <qualifiedname>astrea::utilities::split</qualifiedname>
         <param>
           <type>std::string</type>
           <declname>s</declname>
@@ -425,7 +417,6 @@
         <definition>std::string astrea::utilities::get_type_name</definition>
         <argsstring>()</argsstring>
         <name>get_type_name</name>
-        <qualifiedname>astrea::utilities::get_type_name</qualifiedname>
         <briefdescription>
 <para>Gets the demangled(ish) type name of a given type. </para>
         </briefdescription>
@@ -447,7 +438,7 @@
         </inbodydescription>
         <location file="astrea/utilities/utilities/string_util.hpp" line="61" column="13" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="61" bodyend="67"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

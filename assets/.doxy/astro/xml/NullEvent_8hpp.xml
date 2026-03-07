@@ -1,15 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="NullEvent_8hpp" kind="file" language="C++">
     <compoundname>NullEvent.hpp</compoundname>
     <includes local="no">units/units.hpp</includes>
     <includes refid="astro_8fwd_8hpp" local="no">astro/astro.fwd.hpp</includes>
     <includedby refid="Event_8cpp" local="no">astrea/astro/astro/propagation/event_detection/Event.cpp</includedby>
     <incdepgraph>
-      <node id="3">
-        <label>astro/astro.fwd.hpp</label>
-        <link refid="astro_8fwd_8hpp"/>
-        <childnode refid="4" relation="include">
+      <node id="5">
+        <label>stdint.h</label>
+      </node>
+      <node id="4">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -20,14 +23,11 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>astro/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="5" relation="include">
+      <node id="3">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="4" relation="include">
         </childnode>
-      </node>
-      <node id="5">
-        <label>stdint.h</label>
       </node>
       <node id="2">
         <label>units/units.hpp</label>
@@ -65,7 +65,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="40" refid="classastrea_1_1astro_1_1NullEvent_1a5354d6a27f5297469bcf91c474d8f64d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classastrea_1_1astro_1_1NullEvent_1a5354d6a27f5297469bcf91c474d8f64d" kindref="member">get_name</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;NullEvent&quot;</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49" refid="classastrea_1_1astro_1_1NullEvent_1ad2a5976750f919c12e02e967ef4cc1cb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1NullEvent_1ad2a5976750f919c12e02e967ef4cc1cb" kindref="member">measure_event</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">time</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">state</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vehicle</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="49" refid="classastrea_1_1astro_1_1NullEvent_1ad2a5976750f919c12e02e967ef4cc1cb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Unitless<sp/><ref refid="classastrea_1_1astro_1_1NullEvent_1ad2a5976750f919c12e02e967ef4cc1cb" kindref="member">measure_event</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/>vehicle)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="50"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1.0<sp/>*<sp/>mp_units::one;</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>

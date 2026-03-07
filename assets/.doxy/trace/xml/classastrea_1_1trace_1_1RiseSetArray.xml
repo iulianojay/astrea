@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1trace_1_1RiseSetArray" kind="class" language="C++" prot="public">
     <compoundname>astrea::trace::RiseSetArray</compoundname>
     <includes refid="RiseSetArray_8hpp" local="no">RiseSetArray.hpp</includes>
-    <sectiondef kind="public-type">
+      <sectiondef kind="public-type">
       <memberdef kind="typedef" id="classastrea_1_1trace_1_1RiseSetArray_1ab256024b973b212c6311954db59e61e8" prot="public" static="no">
-        <type>std::vector&lt; Time &gt;::iterator</type>
+        <type>std::vector&lt; Time &gt;::<ref refid="classastrea_1_1trace_1_1RiseSetArray_1ab256024b973b212c6311954db59e61e8" kindref="member">iterator</ref></type>
         <definition>using astrea::trace::RiseSetArray::iterator =  std::vector&lt;Time&gt;::iterator</definition>
         <argsstring></argsstring>
         <name>iterator</name>
-        <qualifiedname>astrea::trace::RiseSetArray::iterator</qualifiedname>
         <briefdescription>
 <para>Iterator type for the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
         </briefdescription>
@@ -20,11 +19,10 @@
         <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="279" column="5" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="279" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" prot="public" static="no">
-        <type>std::vector&lt; Time &gt;::const_iterator</type>
+        <type>std::vector&lt; Time &gt;::<ref refid="classastrea_1_1trace_1_1RiseSetArray_1a7ecd7a7a9185e1c62d85a2b0afcc497f" kindref="member">const_iterator</ref></type>
         <definition>using astrea::trace::RiseSetArray::const_iterator =  std::vector&lt;Time&gt;::const_iterator</definition>
         <argsstring></argsstring>
         <name>const_iterator</name>
-        <qualifiedname>astrea::trace::RiseSetArray::const_iterator</qualifiedname>
         <briefdescription>
 <para>Constant iterator type for the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
         </briefdescription>
@@ -34,14 +32,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="284" column="5" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="284" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-attrib">
+      </sectiondef>
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1trace_1_1RiseSetArray_1a0edea064febec77fe1badd23ace63838" prot="private" static="no" mutable="no">
         <type>std::vector&lt; Time &gt;</type>
         <definition>std::vector&lt;Time&gt; astrea::trace::RiseSetArray::_risesets</definition>
         <argsstring></argsstring>
         <name>_risesets</name>
-        <qualifiedname>astrea::trace::RiseSetArray::_risesets</qualifiedname>
         <briefdescription>
 <para>Vector to store rise and set times. </para>
         </briefdescription>
@@ -51,14 +48,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="336" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.hpp" bodystart="336" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="friend">
-      <memberdef kind="friend" id="classastrea_1_1trace_1_1RiseSetArray_1a0e4e768d5278475c3b225960b19eaef0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1trace_1_1RiseSetArray_1a59122c364d596bc7e3156ed12d9a856a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;os, const RiseSetArray &amp;risesets)</argsstring>
         <name>operator&lt;&lt;</name>
-        <qualifiedname>astrea::trace::RiseSetArray::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <declname>os</declname>
@@ -75,14 +71,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="40" column="12" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="301" bodyend="310"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1ad4e1f0103c5c6b188eca310fca6b4b72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::RiseSetArray::RiseSetArray</definition>
         <argsstring>()=default</argsstring>
         <name>RiseSetArray</name>
-        <qualifiedname>astrea::trace::RiseSetArray::RiseSetArray</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
         </briefdescription>
@@ -98,7 +93,6 @@
         <definition>astrea::trace::RiseSetArray::~RiseSetArray</definition>
         <argsstring>()=default</argsstring>
         <name>~RiseSetArray</name>
-        <qualifiedname>astrea::trace::RiseSetArray::~RiseSetArray</qualifiedname>
         <briefdescription>
 <para>Destructor for <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
         </briefdescription>
@@ -113,7 +107,6 @@
         <definition>astrea::trace::RiseSetArray::RiseSetArray</definition>
         <argsstring>(const std::vector&lt; Time &gt; &amp;risesets)</argsstring>
         <name>RiseSetArray</name>
-        <qualifiedname>astrea::trace::RiseSetArray::RiseSetArray</qualifiedname>
         <param>
           <type>const std::vector&lt; Time &gt; &amp;</type>
           <declname>risesets</declname>
@@ -142,7 +135,6 @@
         <definition>astrea::trace::RiseSetArray::RiseSetArray</definition>
         <argsstring>(const RiseSetArray &amp;other)</argsstring>
         <name>RiseSetArray</name>
-        <qualifiedname>astrea::trace::RiseSetArray::RiseSetArray</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>other</declname>
@@ -171,7 +163,6 @@
         <definition>astrea::trace::RiseSetArray::RiseSetArray</definition>
         <argsstring>(RiseSetArray &amp;&amp;other) noexcept</argsstring>
         <name>RiseSetArray</name>
-        <qualifiedname>astrea::trace::RiseSetArray::RiseSetArray</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;&amp;</type>
           <declname>other</declname>
@@ -200,7 +191,6 @@
         <definition>RiseSetArray &amp; astrea::trace::RiseSetArray::operator=</definition>
         <argsstring>(RiseSetArray &amp;&amp;other) noexcept</argsstring>
         <name>operator=</name>
-        <qualifiedname>astrea::trace::RiseSetArray::operator=</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;&amp;</type>
           <declname>other</declname>
@@ -231,7 +221,6 @@
         <definition>RiseSetArray &amp; astrea::trace::RiseSetArray::operator=</definition>
         <argsstring>(const RiseSetArray &amp;other)</argsstring>
         <name>operator=</name>
-        <qualifiedname>astrea::trace::RiseSetArray::operator=</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>other</declname>
@@ -262,7 +251,6 @@
         <definition>void astrea::trace::RiseSetArray::append</definition>
         <argsstring>(const Time &amp;rise, const Time &amp;set)</argsstring>
         <name>append</name>
-        <qualifiedname>astrea::trace::RiseSetArray::append</qualifiedname>
         <param>
           <type>const Time &amp;</type>
           <declname>rise</declname>
@@ -328,7 +316,6 @@
         <definition>void astrea::trace::RiseSetArray::prepend</definition>
         <argsstring>(const Time &amp;rise, const Time &amp;set)</argsstring>
         <name>prepend</name>
-        <qualifiedname>astrea::trace::RiseSetArray::prepend</qualifiedname>
         <param>
           <type>const Time &amp;</type>
           <declname>rise</declname>
@@ -394,7 +381,6 @@
         <definition>void astrea::trace::RiseSetArray::insert</definition>
         <argsstring>(const Time &amp;rise, const Time &amp;set)</argsstring>
         <name>insert</name>
-        <qualifiedname>astrea::trace::RiseSetArray::insert</qualifiedname>
         <param>
           <type>const Time &amp;</type>
           <declname>rise</declname>
@@ -460,7 +446,6 @@
         <definition>std::size_t astrea::trace::RiseSetArray::size</definition>
         <argsstring>() const</argsstring>
         <name>size</name>
-        <qualifiedname>astrea::trace::RiseSetArray::size</qualifiedname>
         <briefdescription>
 <para>Returns the number of rise/set pairs in the array. </para>
         </briefdescription>
@@ -478,7 +463,6 @@
         <definition>Time &amp; astrea::trace::RiseSetArray::operator[]</definition>
         <argsstring>(const std::size_t &amp;ind)</argsstring>
         <name>operator[]</name>
-        <qualifiedname>astrea::trace::RiseSetArray::operator[]</qualifiedname>
         <param>
           <type>const std::size_t &amp;</type>
           <declname>ind</declname>
@@ -509,7 +493,6 @@
         <definition>const Time &amp; astrea::trace::RiseSetArray::operator[]</definition>
         <argsstring>(const std::size_t &amp;ind) const</argsstring>
         <name>operator[]</name>
-        <qualifiedname>astrea::trace::RiseSetArray::operator[]</qualifiedname>
         <param>
           <type>const std::size_t &amp;</type>
           <declname>ind</declname>
@@ -540,7 +523,6 @@
         <definition>bool astrea::trace::RiseSetArray::operator==</definition>
         <argsstring>(const RiseSetArray &amp;other) const</argsstring>
         <name>operator==</name>
-        <qualifiedname>astrea::trace::RiseSetArray::operator==</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>other</declname>
@@ -573,7 +555,6 @@
         <definition>RiseSetArray astrea::trace::RiseSetArray::operator-</definition>
         <argsstring>(const RiseSetArray &amp;other) const</argsstring>
         <name>operator-</name>
-        <qualifiedname>astrea::trace::RiseSetArray::operator-</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>other</declname>
@@ -604,7 +585,6 @@
         <definition>RiseSetArray &amp; astrea::trace::RiseSetArray::operator-=</definition>
         <argsstring>(const RiseSetArray &amp;other)</argsstring>
         <name>operator-=</name>
-        <qualifiedname>astrea::trace::RiseSetArray::operator-=</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>other</declname>
@@ -635,7 +615,6 @@
         <definition>RiseSetArray astrea::trace::RiseSetArray::operator|</definition>
         <argsstring>(const RiseSetArray &amp;other) const</argsstring>
         <name>operator|</name>
-        <qualifiedname>astrea::trace::RiseSetArray::operator|</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>other</declname>
@@ -666,7 +645,6 @@
         <definition>RiseSetArray &amp; astrea::trace::RiseSetArray::operator|=</definition>
         <argsstring>(const RiseSetArray &amp;other)</argsstring>
         <name>operator|=</name>
-        <qualifiedname>astrea::trace::RiseSetArray::operator|=</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>other</declname>
@@ -697,7 +675,6 @@
         <definition>RiseSetArray astrea::trace::RiseSetArray::operator&amp;</definition>
         <argsstring>(const RiseSetArray &amp;other) const</argsstring>
         <name>operator&amp;</name>
-        <qualifiedname>astrea::trace::RiseSetArray::operator&amp;</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>other</declname>
@@ -728,7 +705,6 @@
         <definition>RiseSetArray &amp; astrea::trace::RiseSetArray::operator&amp;=</definition>
         <argsstring>(const RiseSetArray &amp;other)</argsstring>
         <name>operator&amp;=</name>
-        <qualifiedname>astrea::trace::RiseSetArray::operator&amp;=</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>other</declname>
@@ -759,7 +735,6 @@
         <definition>Time astrea::trace::RiseSetArray::gap</definition>
         <argsstring>(const StatType &amp;stat=StatType::AVG, const Unitless percentile=0.5) const</argsstring>
         <name>gap</name>
-        <qualifiedname>astrea::trace::RiseSetArray::gap</qualifiedname>
         <param>
           <type>const <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7" kindref="member">StatType</ref> &amp;</type>
           <declname>stat</declname>
@@ -804,7 +779,6 @@
         <definition>std::vector&lt; Time &gt; astrea::trace::RiseSetArray::get_gap_times</definition>
         <argsstring>() const</argsstring>
         <name>get_gap_times</name>
-        <qualifiedname>astrea::trace::RiseSetArray::get_gap_times</qualifiedname>
         <briefdescription>
 <para>Get a vector of gap durations for this rise-set array. </para>
         </briefdescription>
@@ -822,7 +796,6 @@
         <definition>Time astrea::trace::RiseSetArray::access_time</definition>
         <argsstring>(const StatType &amp;stat=StatType::AVG, const Unitless percentile=0.5) const</argsstring>
         <name>access_time</name>
-        <qualifiedname>astrea::trace::RiseSetArray::access_time</qualifiedname>
         <param>
           <type>const <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7" kindref="member">StatType</ref> &amp;</type>
           <declname>stat</declname>
@@ -867,7 +840,6 @@
         <definition>std::vector&lt; Time &gt; astrea::trace::RiseSetArray::get_access_times</definition>
         <argsstring>() const</argsstring>
         <name>get_access_times</name>
-        <qualifiedname>astrea::trace::RiseSetArray::get_access_times</qualifiedname>
         <briefdescription>
 <para>Get a vector of access durations for this rise-set array. </para>
         </briefdescription>
@@ -885,7 +857,6 @@
         <definition>bool astrea::trace::RiseSetArray::has_access</definition>
         <argsstring>(const Time &amp;time) const</argsstring>
         <name>has_access</name>
-        <qualifiedname>astrea::trace::RiseSetArray::has_access</qualifiedname>
         <param>
           <type>const Time &amp;</type>
           <declname>time</declname>
@@ -918,7 +889,6 @@
         <definition>Time astrea::trace::RiseSetArray::average_daily_vis_time</definition>
         <argsstring>() const</argsstring>
         <name>average_daily_vis_time</name>
-        <qualifiedname>astrea::trace::RiseSetArray::average_daily_vis_time</qualifiedname>
         <briefdescription>
 <para>Calculates the average daily visibility time based on the rise and set times. </para>
         </briefdescription>
@@ -936,7 +906,6 @@
         <definition>Time astrea::trace::RiseSetArray::mean_time_to_access</definition>
         <argsstring>() const</argsstring>
         <name>mean_time_to_access</name>
-        <qualifiedname>astrea::trace::RiseSetArray::mean_time_to_access</qualifiedname>
         <briefdescription>
 <para>Calculates the mean time to access (MTTA) for this <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
         </briefdescription>
@@ -956,7 +925,6 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         <definition>RiseSetArray::iterator astrea::trace::RiseSetArray::begin</definition>
         <argsstring>()</argsstring>
         <name>begin</name>
-        <qualifiedname>astrea::trace::RiseSetArray::begin</qualifiedname>
         <briefdescription>
 <para>Returns an iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
         </briefdescription>
@@ -974,7 +942,6 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         <definition>RiseSetArray::iterator astrea::trace::RiseSetArray::end</definition>
         <argsstring>()</argsstring>
         <name>end</name>
-        <qualifiedname>astrea::trace::RiseSetArray::end</qualifiedname>
         <briefdescription>
 <para>Returns an iterator to the end of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
         </briefdescription>
@@ -992,7 +959,6 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         <definition>RiseSetArray::const_iterator astrea::trace::RiseSetArray::begin</definition>
         <argsstring>() const</argsstring>
         <name>begin</name>
-        <qualifiedname>astrea::trace::RiseSetArray::begin</qualifiedname>
         <briefdescription>
 <para>Returns a constant iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
         </briefdescription>
@@ -1010,7 +976,6 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         <definition>RiseSetArray::const_iterator astrea::trace::RiseSetArray::end</definition>
         <argsstring>() const</argsstring>
         <name>end</name>
-        <qualifiedname>astrea::trace::RiseSetArray::end</qualifiedname>
         <briefdescription>
 <para>Returns a constant iterator to the end of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
         </briefdescription>
@@ -1028,7 +993,6 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         <definition>RiseSetArray::const_iterator astrea::trace::RiseSetArray::cbegin</definition>
         <argsstring>() const</argsstring>
         <name>cbegin</name>
-        <qualifiedname>astrea::trace::RiseSetArray::cbegin</qualifiedname>
         <briefdescription>
 <para>Returns a constant iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
         </briefdescription>
@@ -1046,7 +1010,6 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         <definition>RiseSetArray::const_iterator astrea::trace::RiseSetArray::cend</definition>
         <argsstring>() const</argsstring>
         <name>cend</name>
-        <qualifiedname>astrea::trace::RiseSetArray::cend</qualifiedname>
         <briefdescription>
 <para>Returns a constant iterator to the end of the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref>. </para>
         </briefdescription>
@@ -1064,7 +1027,6 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         <definition>std::vector&lt; std::string &gt; astrea::trace::RiseSetArray::to_string_vector</definition>
         <argsstring>() const</argsstring>
         <name>to_string_vector</name>
-        <qualifiedname>astrea::trace::RiseSetArray::to_string_vector</qualifiedname>
         <briefdescription>
 <para>Converts the <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> to a vector of formatted strings. </para>
         </briefdescription>
@@ -1077,14 +1039,13 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         </inbodydescription>
         <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="333" column="17" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="144" bodyend="152"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-func">
+      </sectiondef>
+      <sectiondef kind="private-func">
       <memberdef kind="function" id="classastrea_1_1trace_1_1RiseSetArray_1aab8137fc92aeec8c952432e76051cea4" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void astrea::trace::RiseSetArray::validate_riseset</definition>
         <argsstring>(const Time &amp;rise, const Time &amp;set) const</argsstring>
         <name>validate_riseset</name>
-        <qualifiedname>astrea::trace::RiseSetArray::validate_riseset</qualifiedname>
         <param>
           <type>const Time &amp;</type>
           <declname>rise</declname>
@@ -1150,7 +1111,6 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         <definition>void astrea::trace::RiseSetArray::validate_risesets</definition>
         <argsstring>(const std::vector&lt; Time &gt; &amp;risesets) const</argsstring>
         <name>validate_risesets</name>
-        <qualifiedname>astrea::trace::RiseSetArray::validate_risesets</qualifiedname>
         <param>
           <type>const std::vector&lt; Time &gt; &amp;</type>
           <declname>risesets</declname>
@@ -1196,7 +1156,6 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         <definition>Time astrea::trace::RiseSetArray::calculate_statistic</definition>
         <argsstring>(const StatType &amp;stat, const Unitless &amp;percentile, const RiseSetMetric metric) const</argsstring>
         <name>calculate_statistic</name>
-        <qualifiedname>astrea::trace::RiseSetArray::calculate_statistic</qualifiedname>
         <param>
           <type>const <ref refid="enums_8hpp_1a43d18a2897eda0c9b826af4fe4ac5dc7" kindref="member">StatType</ref> &amp;</type>
           <declname>stat</declname>
@@ -1246,7 +1205,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
         </inbodydescription>
         <location file="astrea/trace/trace/risesets/RiseSetArray.hpp" line="366" column="10" bodyfile="astrea/trace/trace/risesets/RiseSetArray.cpp" bodystart="229" bodyend="291"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Represents an array of rise and set times. </para>
     </briefdescription>
@@ -1278,7 +1237,7 @@ MMTA is the mean time to access, or the mean height of the shaded regions MMTA =
       <member refid="classastrea_1_1trace_1_1RiseSetArray_1a5c0925ba598ccad14ca8d421873f8797" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator&amp;=</name></member>
       <member refid="classastrea_1_1trace_1_1RiseSetArray_1a8dc0e7156869bfabacc5c3db742cdeb2" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator-</name></member>
       <member refid="classastrea_1_1trace_1_1RiseSetArray_1a1754732751f90b7afddaf778af359202" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator-=</name></member>
-      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a0e4e768d5278475c3b225960b19eaef0" prot="private" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1trace_1_1RiseSetArray_1a59122c364d596bc7e3156ed12d9a856a" prot="private" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator&lt;&lt;</name></member>
       <member refid="classastrea_1_1trace_1_1RiseSetArray_1aee722eec217d90c85d06fd5d7fcc877f" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator=</name></member>
       <member refid="classastrea_1_1trace_1_1RiseSetArray_1a918f98fc0869fcab144640b0e5a007c1" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator=</name></member>
       <member refid="classastrea_1_1trace_1_1RiseSetArray_1af3afc442dea26e5e93caaf8a8034a129" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetArray</scope><name>operator==</name></member>

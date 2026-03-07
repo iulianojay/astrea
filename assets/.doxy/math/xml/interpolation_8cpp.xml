@@ -1,11 +1,23 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="interpolation_8cpp" kind="file" language="C++">
     <compoundname>interpolation.cpp</compoundname>
     <includes refid="interpolation_8hpp" local="no">math/interpolation.hpp</includes>
     <includes local="no">cmath</includes>
     <includes local="no">stdexcept</includes>
     <incdepgraph>
+      <node id="6">
+        <label>cmath</label>
+      </node>
+      <node id="4">
+        <label>stdexcept</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+      <node id="3">
+        <label>array</label>
+      </node>
       <node id="1">
         <label>astrea/math/math/interpolation.cpp</label>
         <link refid="interpolation_8cpp"/>
@@ -25,18 +37,6 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-      </node>
-      <node id="3">
-        <label>array</label>
-      </node>
-      <node id="6">
-        <label>cmath</label>
-      </node>
-      <node id="4">
-        <label>stdexcept</label>
-      </node>
-      <node id="5">
-        <label>vector</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>

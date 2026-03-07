@@ -32,8 +32,8 @@ _Class representing a grid of ground points._ [More...](#detailed-description)
 
 | Type | Name |
 | ---: | :--- |
-| typedef std::vector&lt; [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) &gt;::const\_iterator | [**const\_iterator**](#typedef-const_iterator)  <br>_Constant iterator types for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._ |
-| typedef std::vector&lt; [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) &gt;::iterator | [**iterator**](#typedef-iterator)  <br>_Iterator types for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._ |
+| typedef std::vector&lt; [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) &gt;::[**const\_iterator**](classastrea_1_1trace_1_1Grid.md#typedef-const_iterator) | [**const\_iterator**](#typedef-const_iterator)  <br>_Constant iterator types for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._ |
+| typedef std::vector&lt; [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) &gt;::[**iterator**](classastrea_1_1trace_1_1Grid.md#typedef-iterator) | [**iterator**](#typedef-iterator)  <br>_Iterator types for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._ |
 
 
 

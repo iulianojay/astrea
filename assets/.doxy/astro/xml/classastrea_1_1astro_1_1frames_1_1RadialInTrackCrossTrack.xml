@@ -1,16 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::frames::RadialInTrackCrossTrack</compoundname>
-    <basecompoundref refid="classastrea_1_1astro_1_1DynamicFrame" prot="public" virt="non-virtual">astrea::astro::DynamicFrame&lt; RadialInTrackCrossTrack, FrameAxis::RIC &gt;</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">DynamicFrame&lt; RadialInTrackCrossTrack, FrameAxis::RIC &gt;</basecompoundref>
     <includes refid="RadialInTrackCrossTrack_8hpp" local="no">RadialInTrackCrossTrack.hpp</includes>
-    <sectiondef kind="public-func">
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1a4e19177fe63e29a5960a4c606a88e092" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::frames::RadialInTrackCrossTrack::RadialInTrackCrossTrack</definition>
         <argsstring>()=delete</argsstring>
         <name>RadialInTrackCrossTrack</name>
-        <qualifiedname>astrea::astro::frames::RadialInTrackCrossTrack::RadialInTrackCrossTrack</qualifiedname>
         <briefdescription>
 <para>Default constructor is deleted to prevent instantiation without a parent frame. </para>
         </briefdescription>
@@ -25,9 +24,8 @@
         <definition>astrea::astro::frames::RadialInTrackCrossTrack::RadialInTrackCrossTrack</definition>
         <argsstring>(const FrameReference *parent)</argsstring>
         <name>RadialInTrackCrossTrack</name>
-        <qualifiedname>astrea::astro::frames::RadialInTrackCrossTrack::RadialInTrackCrossTrack</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1FrameReference" kindref="compound">FrameReference</ref> *</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1FrameReference" kindref="compound">FrameReference</ref> *</type>
           <declname>parent</declname>
         </param>
         <briefdescription>
@@ -45,7 +43,6 @@
         <definition>astrea::astro::frames::RadialInTrackCrossTrack::~RadialInTrackCrossTrack</definition>
         <argsstring>()=default</argsstring>
         <name>~RadialInTrackCrossTrack</name>
-        <qualifiedname>astrea::astro::frames::RadialInTrackCrossTrack::~RadialInTrackCrossTrack</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">RadialInTrackCrossTrack</ref>. </para>
         </briefdescription>
@@ -55,14 +52,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp" line="55" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1a952dcd79bbcc36d30214b7015291e7e0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref>, <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">RadialInTrackCrossTrack</ref> &gt;</type>
-        <definition>DirectionCosineMatrix&lt; frames::earth::icrf, RadialInTrackCrossTrack &gt; astrea::astro::frames::RadialInTrackCrossTrack::get_dcm</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1ad68be8a3b26e06d070b601600631a449" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; frames::earth::icrf, <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">RadialInTrackCrossTrack</ref> &gt;</type>
+        <definition>DirectionCosineMatrix&lt;frames::earth::icrf, RadialInTrackCrossTrack&gt; astrea::astro::frames::RadialInTrackCrossTrack::get_dcm</definition>
         <argsstring>(const Date &amp;date) const</argsstring>
         <name>get_dcm</name>
-        <qualifiedname>astrea::astro::frames::RadialInTrackCrossTrack::get_dcm</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -86,20 +82,19 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp" line="63" column="27" bodyfile="astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp" bodystart="63" bodyend="70"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-func">
+      </sectiondef>
+      <sectiondef kind="private-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1a708e1aedb1fd702998546f75721c8d60" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::frames::RadialInTrackCrossTrack::RadialInTrackCrossTrack</definition>
         <argsstring>(const RadiusVector&lt; frames::earth::icrf &gt; &amp;position, const VelocityVector&lt; frames::earth::icrf &gt; &amp;velocity)</argsstring>
         <name>RadialInTrackCrossTrack</name>
-        <qualifiedname>astrea::astro::frames::RadialInTrackCrossTrack::RadialInTrackCrossTrack</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
           <declname>position</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
           <declname>velocity</declname>
         </param>
         <briefdescription>
@@ -129,7 +124,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp" line="79" column="5" bodyfile="astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp" bodystart="79" bodyend="82"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Class representing the Radial, In-Track, Cross-Track (RIC) frame. </para>
     </briefdescription>
@@ -137,14 +132,7 @@
     </detaileddescription>
     <inheritancegraph>
       <node id="2">
-        <label>astrea::astro::DynamicFrame&lt; RadialInTrackCrossTrack, FrameAxis::RIC &gt;</label>
-        <link refid="classastrea_1_1astro_1_1DynamicFrame"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>astrea::astro::Frame&lt; CelestialBodyId::CUSTOM, axis &gt;</label>
-        <link refid="structastrea_1_1astro_1_1Frame"/>
+        <label>DynamicFrame&lt; RadialInTrackCrossTrack, FrameAxis::RIC &gt;</label>
       </node>
       <node id="1">
         <label>astrea::astro::frames::RadialInTrackCrossTrack</label>
@@ -154,43 +142,8 @@
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="5">
-        <label>astrea::astro::CartesianVector&lt; astrea::astro::InertialFrame &gt;</label>
-        <link refid="classastrea_1_1astro_1_1CartesianVector"/>
-        <childnode refid="6" relation="usage">
-          <edgelabel>dot</edgelabel>
-        </childnode>
-      </node>
       <node id="2">
-        <label>astrea::astro::DynamicFrame&lt; RadialInTrackCrossTrack, FrameAxis::RIC &gt;</label>
-        <link refid="classastrea_1_1astro_1_1DynamicFrame"/>
-        <childnode refid="3" relation="public-inheritance">
-        </childnode>
-        <childnode refid="4" relation="usage">
-          <edgelabel>_parent</edgelabel>
-        </childnode>
-        <childnode refid="5" relation="usage">
-          <edgelabel>_position</edgelabel>
-          <edgelabel>_velocity</edgelabel>
-        </childnode>
-      </node>
-      <node id="3">
-        <label>astrea::astro::Frame&lt; CelestialBodyId::CUSTOM, axis &gt;</label>
-        <link refid="structastrea_1_1astro_1_1Frame"/>
-      </node>
-      <node id="7">
-        <label>astrea::astro::Frame&lt; origin, axis &gt;</label>
-        <link refid="structastrea_1_1astro_1_1Frame"/>
-      </node>
-      <node id="4">
-        <label>astrea::astro::FrameReference</label>
-        <link refid="classastrea_1_1astro_1_1FrameReference"/>
-      </node>
-      <node id="6">
-        <label>astrea::astro::InertialFrame&lt; origin, axis &gt;</label>
-        <link refid="structastrea_1_1astro_1_1InertialFrame"/>
-        <childnode refid="7" relation="public-inheritance">
-        </childnode>
+        <label>DynamicFrame&lt; RadialInTrackCrossTrack, FrameAxis::RIC &gt;</label>
       </node>
       <node id="1">
         <label>astrea::astro::frames::RadialInTrackCrossTrack</label>
@@ -201,28 +154,10 @@
     </collaborationgraph>
     <location file="astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp" line="35" column="1" bodyfile="astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp" bodystart="35" bodyend="83"/>
     <listofallmembers>
-      <member refid="structastrea_1_1astro_1_1Frame_1a99916d51814b90a76673f02412c5ddc0" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>_axis</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a1c8eacbadcd25586efc61c34757d1e5f" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>_isInstantaneous</name></member>
-      <member refid="structastrea_1_1astro_1_1Frame_1a3d2312fa3ad178d9418fb59dd1887841" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>_origin</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a8afe2f84f404b8f7d8a419844b62c6ce" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>_parent</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a97d3da0ca251644582a7fb9931e3c233" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>_position</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1ae53c1a26f3f7d6eb6a54cec4bd924cdf" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>_velocity</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a2b620f405561623064b90d0c35cba7e0" prot="public" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>convert_from_this_frame</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a9594c4c717376a458812bd91e387bd52" prot="public" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>convert_to_this_frame</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1ad9e4316f0d9a4eaab030d401bafd5d73" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>DynamicFrame</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a9fc2d092458f32a2522b66b88e2b0562" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>DynamicFrame</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a1940a20d6f007d09c71d9770ca308801" prot="public" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>get_axis</name></member>
-      <member refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1a952dcd79bbcc36d30214b7015291e7e0" prot="public" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>get_dcm</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a023f5a77912b617e603310885aa7afd0" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>get_inertial_position</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1ab14a87ab5c9503f9bf902886e4f3f12d" prot="protected" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>get_inertial_velocity</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a0dcd8fb9b7adf3bffc04bb9c912ff5a1" prot="public" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>get_origin</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a7e7ecc2379c5b4d537f226a3c17fdfe3" prot="public" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>instantaneous</name></member>
+      <member refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1ad68be8a3b26e06d070b601600631a449" prot="public" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>get_dcm</name></member>
       <member refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1a4e19177fe63e29a5960a4c606a88e092" prot="public" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>RadialInTrackCrossTrack</name></member>
       <member refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1abb913963964648ef5b1fb133b2be9980" prot="public" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>RadialInTrackCrossTrack</name></member>
       <member refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1a708e1aedb1fd702998546f75721c8d60" prot="private" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>RadialInTrackCrossTrack</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1abb924642481230e32684bb98b039ff6c" prot="public" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>rotate_into_this_frame</name></member>
-      <member refid="classastrea_1_1astro_1_1DynamicFrame_1a6cd9953d79b967960dbdd785877cd736" prot="public" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>rotate_out_of_this_frame</name></member>
-      <member refid="structastrea_1_1astro_1_1Frame_1a848c466e1381fee54639d5ef1cd2a11b" prot="protected" virt="virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>~Frame</name></member>
       <member refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack_1a2d58e74797a1f1c2021016e47416a095" prot="public" virt="non-virtual"><scope>astrea::astro::frames::RadialInTrackCrossTrack</scope><name>~RadialInTrackCrossTrack</name></member>
     </listofallmembers>
   </compounddef>

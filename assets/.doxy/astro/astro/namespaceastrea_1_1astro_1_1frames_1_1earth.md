@@ -31,9 +31,9 @@
 
 | Type | Name |
 | ---: | :--- |
-| typedef [**BodyFixedFrame**](structastrea_1_1astro_1_1BodyFixedFrame.md)&lt; CelestialBodyId::EARTH &gt; | [**earth\_fixed**](#typedef-earth_fixed)  <br> |
-| typedef [**InertialFrame**](structastrea_1_1astro_1_1InertialFrame.md)&lt; CelestialBodyId::EARTH, FrameAxis::ICRF &gt; | [**icrf**](#typedef-icrf)  <br> |
-| typedef [**InertialFrame**](structastrea_1_1astro_1_1InertialFrame.md)&lt; CelestialBodyId::EARTH, FrameAxis::J2000 &gt; | [**j2000**](#typedef-j2000)  <br> |
+| typedef BodyFixedFrame&lt; CelestialBodyId::EARTH &gt; | [**earth\_fixed**](#typedef-earth_fixed)  <br> |
+| typedef InertialFrame&lt; CelestialBodyId::EARTH, FrameAxis::ICRF &gt; | [**icrf**](#typedef-icrf)  <br> |
+| typedef InertialFrame&lt; CelestialBodyId::EARTH, FrameAxis::J2000 &gt; | [**j2000**](#typedef-j2000)  <br> |
 
 
 

@@ -1,16 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1OblatenessForce" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::OblatenessForce</compoundname>
     <basecompoundref refid="classastrea_1_1astro_1_1Force" prot="public" virt="non-virtual">astrea::astro::Force</basecompoundref>
     <includes refid="OblatenessForce_8hpp" local="no">OblatenessForce.hpp</includes>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1OblatenessForce_1afe7438276f486e2c947c47717964cc35" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t</type>
+        <type>const std::size_t</type>
         <definition>const std::size_t astrea::astro::OblatenessForce::_degree</definition>
         <argsstring></argsstring>
         <name>_degree</name>
-        <qualifiedname>astrea::astro::OblatenessForce::_degree</qualifiedname>
         <briefdescription>
 <para>Degree of the spherical harmonics. </para>
         </briefdescription>
@@ -21,11 +20,10 @@
         <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="148" column="23" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="148" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1OblatenessForce_1aaf94c86e8ab10c79f64b6501da20f77a" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t</type>
+        <type>const std::size_t</type>
         <definition>const std::size_t astrea::astro::OblatenessForce::_order</definition>
         <argsstring></argsstring>
         <name>_order</name>
-        <qualifiedname>astrea::astro::OblatenessForce::_order</qualifiedname>
         <briefdescription>
 <para>Order of the spherical harmonics. </para>
         </briefdescription>
@@ -36,11 +34,10 @@
         <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="149" column="23" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="149" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1OblatenessForce_1aaca5d2325480b9aee95c26fa55e71a01" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> *</type>
+        <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> *</type>
         <definition>const AstrodynamicsSystem* astrea::astro::OblatenessForce::_sys</definition>
         <argsstring></argsstring>
         <name>_sys</name>
-        <qualifiedname>astrea::astro::OblatenessForce::_sys</qualifiedname>
         <briefdescription>
 <para>Pointer to the astrodynamics system. </para>
         </briefdescription>
@@ -51,11 +48,10 @@
         <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="150" column="31" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="150" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1OblatenessForce_1a79bea5eef693a88660562b920d6faaf1" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1LegendreCache" kindref="compound">LegendreCache</ref></type>
+        <type>const <ref refid="classastrea_1_1astro_1_1LegendreCache" kindref="compound">LegendreCache</ref></type>
         <definition>const LegendreCache astrea::astro::OblatenessForce::_legendreCache</definition>
         <argsstring></argsstring>
         <name>_legendreCache</name>
-        <qualifiedname>astrea::astro::OblatenessForce::_legendreCache</qualifiedname>
         <briefdescription>
 <para>Cache for Legendre polynomials and coefficients. </para>
         </briefdescription>
@@ -65,14 +61,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="151" column="25" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="151" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1OblatenessForce_1aef725cdc931b0647dfc2276bb0d4a557" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::OblatenessForce::~OblatenessForce</definition>
         <argsstring>()=default</argsstring>
         <name>~OblatenessForce</name>
-        <qualifiedname>astrea::astro::OblatenessForce::~OblatenessForce</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1astro_1_1OblatenessForce" kindref="compound">OblatenessForce</ref>. </para>
         </briefdescription>
@@ -87,18 +82,17 @@
         <definition>astrea::astro::OblatenessForce::OblatenessForce</definition>
         <argsstring>(const AstrodynamicsSystem &amp;sys, const std::size_t &amp;N=2, const std::size_t &amp;M=0)</argsstring>
         <name>OblatenessForce</name>
-        <qualifiedname>astrea::astro::OblatenessForce::OblatenessForce</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
           <declname>sys</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <type>const std::size_t &amp;</type>
           <declname>N</declname>
           <defval>2</defval>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <type>const std::size_t &amp;</type>
           <declname>M</declname>
           <defval>0</defval>
         </param>
@@ -154,18 +148,17 @@
         <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="132" column="5" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.cpp" bodystart="230" bodyend="236"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1OblatenessForce_1aa70c2d0edc9340336e5b5bd3ecd22abb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Acceleration</ref>, <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt;</type>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Acceleration, frames::earth::icrf &gt;</type>
         <definition>AccelerationVector&lt; frames::earth::icrf &gt; astrea::astro::OblatenessForce::compute_force</definition>
         <argsstring>(const State &amp;state, const Vehicle &amp;vehicle) const</argsstring>
         <name>compute_force</name>
-        <qualifiedname>astrea::astro::OblatenessForce::compute_force</qualifiedname>
-        <reimplements refid="classastrea_1_1astro_1_1Force_1abb04e6a7469b5e7e208b997b85a90155">compute_force</reimplements>
+        <reimplements refid="classastrea_1_1astro_1_1Force_1a883c75bea3cb77b3999f966c63b0dd61">compute_force</reimplements>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -190,7 +183,7 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para><ref refid="typedefs_8hpp_1a4f20af7d8563fe9e30bbb8d55c3871b1" kindref="member">AccelerationVector&lt;frames::earth::icrf&gt;</ref> The computed acceleration vector due to oblateness. </para>
+<simplesect kind="return"><para>AccelerationVector&lt;frames::earth::icrf&gt; The computed acceleration vector due to oblateness. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -198,34 +191,34 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="145" column="21" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.cpp" bodystart="364" bodyend="481"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Class to compute the gravitational force due to the oblateness of a celestial body. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>astrea::astro::Force</label>
-        <link refid="classastrea_1_1astro_1_1Force"/>
-      </node>
       <node id="1">
         <label>astrea::astro::OblatenessForce</label>
         <link refid="classastrea_1_1astro_1_1OblatenessForce"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::Force</label>
+        <link refid="classastrea_1_1astro_1_1Force"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>astrea::astro::Force</label>
-        <link refid="classastrea_1_1astro_1_1Force"/>
-      </node>
       <node id="1">
         <label>astrea::astro::OblatenessForce</label>
         <link refid="classastrea_1_1astro_1_1OblatenessForce"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::Force</label>
+        <link refid="classastrea_1_1astro_1_1Force"/>
       </node>
     </collaborationgraph>
     <location file="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" line="117" column="1" bodyfile="astrea/astro/astro/propagation/force_models/OblatenessForce.hpp" bodystart="117" bodyend="152"/>

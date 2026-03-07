@@ -45,8 +45,8 @@ _This file defines the CartesianVector class, which represents a 3D vector in Ca
 
 | Type | Name |
 | ---: | :--- |
-| class | [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md) &lt;[**class**](classastrea_1_1astro_1_1CartesianVector.md) [**Value\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**class**](classastrea_1_1astro_1_1CartesianVector.md) [**Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md)&gt;<br>_Class representing a 3D vector in_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _coordinates._ |
-| struct | [**is\_specialization**](structastrea_1_1astro_1_1is__specialization.md) &lt;[**class**](classastrea_1_1astro_1_1CartesianVector.md) [**T**](classastrea_1_1astro_1_1CartesianVector.md), Template&gt;<br> |
+| class | [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md) &lt;class Value\_T, class Frame\_T&gt;<br>_Class representing a 3D vector in_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _coordinates._ |
+| struct | [**is\_specialization**](structastrea_1_1astro_1_1is__specialization.md) &lt;class T, Template&gt;<br> |
 | struct | [**is\_specialization&lt; Template&lt; Args... &gt;, Template &gt;**](structastrea_1_1astro_1_1is__specialization_3_01Template_3_01Args_8_8_8_01_4_00_01Template_01_4.md) &lt;Template, Args&gt;<br> |
 
 

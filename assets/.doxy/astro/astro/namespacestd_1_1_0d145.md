@@ -1,10 +1,10 @@
 
 
-# Namespace std
+# Namespace std::@145
 
 
 
-[**Namespace List**](namespaces.md) **>** [**std**](namespacestd_1_1_0d145.md)
+[**Namespace List**](namespaces.md) **>** [**@145**](namespacestd_1_1_0d145.md)
 
 
 

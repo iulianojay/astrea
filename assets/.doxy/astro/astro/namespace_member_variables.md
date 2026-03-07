@@ -51,6 +51,47 @@
 * **earthAtmosphere** ([**astrea::astro::planetary\_bodies**](namespaceastrea_1_1astro_1_1planetary__bodies.md))
 
 
+## h
+
+* **HasDcm** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasDcmMethod** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasDirectCartesianConversion** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasDirectEquinoctialConversion** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasDirectKeplerianConversion** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetCoefficientOfDrag** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetCoefficientOfLift** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetCoefficientOfReflectivity** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetLiftArea** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetMass** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetName** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetRamArea** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetSolarArea** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasInPlaceMathOperators** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasIsTerminal** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasIterpolate** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasMathOperators** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasMeasureEvent** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasSameAxis** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasSameOrigin** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasToVector** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasTriggerEvent** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+
+
+## i
+
+* **IsBodyFixedFrame** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsConstructableTo** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsDynamicFrame** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsGenericallyConstructableEvent** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsGenericallyConstructableVehicle** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsInertialFrame** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsOrbitalElements** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsSameFrame** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsStaticFrame** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsUserDefinedEvent** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsUserDefinedVehicle** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+
+
 ## j
 
 * **J2K** ([**astrea::astro**](namespaceastrea_1_1astro.md))

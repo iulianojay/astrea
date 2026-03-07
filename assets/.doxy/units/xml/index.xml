@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.1" xml:lang="en-US">
   <compound refid="structastrea_1_1EarthRadii" kind="struct"><name>astrea::EarthRadii</name>
   </compound>
   <compound refid="structstd_1_1hash_3_01mp__units_1_1quantity_3_01R_00_01Rep_01_4_01_4" kind="struct"><name>std::hash&lt; mp_units::quantity&lt; R, Rep &gt; &gt;</name>
@@ -57,8 +57,8 @@
     <member refid="constants_8hpp_1ada344bc6f289fe2f949dca23593ae1e5" kind="variable"><name>TWO_PI</name></member>
     <member refid="custom_8hpp_1a1db3e4744ff3357fcbf011bceea7edc3" kind="variable"><name>JulianCentury</name></member>
     <member refid="custom_8hpp_1a3765810844841cc68bb66ec2f0f9d61b" kind="variable"><name>EarthRadii</name></member>
-    <member refid="constants_8hpp_1a87133aee2993f568ef1657bc1ddfe0e4" kind="function"><name>n_pi</name></member>
-    <member refid="constants_8hpp_1a4a8f94136ac2b3408e6303af8171a232" kind="function"><name>n_pi_mag</name></member>
+    <member refid="constants_8hpp_1a092bb3954c6be7c712668e5552c60c2d" kind="function"><name>n_pi</name></member>
+    <member refid="constants_8hpp_1a5b212f1e9b1a4e47de5b1ffdadee576d" kind="function"><name>n_pi_mag</name></member>
   </compound>
   <compound refid="namespaceastrea_1_1detail" kind="namespace"><name>astrea::detail</name>
     <member refid="detail_8hpp_1a2ce65f5df709391fd0f27f5dac5a2a0c" kind="variable"><name>time_unit</name></member>

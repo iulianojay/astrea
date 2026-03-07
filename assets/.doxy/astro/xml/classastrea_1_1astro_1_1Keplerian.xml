@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1Keplerian" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::Keplerian</compoundname>
     <includes refid="Keplerian_8hpp" local="no">Keplerian.hpp</includes>
-    <sectiondef kind="friend">
+      <sectiondef kind="friend">
       <memberdef kind="friend" id="classastrea_1_1astro_1_1Keplerian_1ac71ddc6f2d42864c6ea75240b1086ffc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">class</ref></type>
+        <type>class</type>
         <definition>friend class OrbitalElements</definition>
         <argsstring></argsstring>
         <name>OrbitalElements</name>
-        <qualifiedname>astrea::astro::Keplerian::OrbitalElements</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref></type>
         </param>
@@ -19,20 +18,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="41" column="18" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="41" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="41" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="friend" id="classastrea_1_1astro_1_1Keplerian_1aedf47aca8e3e1791dac6df1f2c07bcf2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1Keplerian_1ad2dd7a4e86fe9cc72afbb9b0ed7fa2de" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;, Keplerian const &amp;)</argsstring>
         <name>operator&lt;&lt;</name>
-        <qualifiedname>astrea::astro::Keplerian::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <defname>os</defname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> const &amp;</type>
           <defname>elements</defname>
         </param>
         <briefdescription>
@@ -43,14 +41,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="40" column="12" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp" bodystart="446" bodyend="457"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-attrib">
+      </sectiondef>
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Keplerian_1a279d1b81b14b2b5798e4f4e0e39ba85f" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::Keplerian::_semimajor</definition>
         <argsstring></argsstring>
         <name>_semimajor</name>
-        <qualifiedname>astrea::astro::Keplerian::_semimajor</qualifiedname>
         <briefdescription>
 <para>Semimajor axis of the orbit. </para>
         </briefdescription>
@@ -61,11 +58,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="399" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="399" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Keplerian_1a3b69970bb9d5abed007483045d05b3fc" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Keplerian::_eccentricity</definition>
         <argsstring></argsstring>
         <name>_eccentricity</name>
-        <qualifiedname>astrea::astro::Keplerian::_eccentricity</qualifiedname>
         <briefdescription>
 <para>Eccentricity of the orbit. </para>
         </briefdescription>
@@ -76,11 +72,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="400" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="400" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Keplerian_1a2b4a096dcc61c1c66cf99812cb5f69b8" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::Keplerian::_inclination</definition>
         <argsstring></argsstring>
         <name>_inclination</name>
-        <qualifiedname>astrea::astro::Keplerian::_inclination</qualifiedname>
         <briefdescription>
 <para>Inclination of the orbit. </para>
         </briefdescription>
@@ -91,11 +86,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="401" column="11" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="401" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Keplerian_1a8981d3a633c1f1b5132c2dc1fb2024ba" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::Keplerian::_rightAscension</definition>
         <argsstring></argsstring>
         <name>_rightAscension</name>
-        <qualifiedname>astrea::astro::Keplerian::_rightAscension</qualifiedname>
         <briefdescription>
 <para>Right ascension of the ascending node. </para>
         </briefdescription>
@@ -106,11 +100,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="402" column="11" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="402" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Keplerian_1a511d67564c3910ad4314a582dd1bccd0" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::Keplerian::_argPerigee</definition>
         <argsstring></argsstring>
         <name>_argPerigee</name>
-        <qualifiedname>astrea::astro::Keplerian::_argPerigee</qualifiedname>
         <briefdescription>
 <para>Argument of perigee of the orbit. </para>
         </briefdescription>
@@ -121,11 +114,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="403" column="11" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="403" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Keplerian_1a336f743146b6cf1771d434a4636a16a7" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::Keplerian::_trueAnomaly</definition>
         <argsstring></argsstring>
         <name>_trueAnomaly</name>
-        <qualifiedname>astrea::astro::Keplerian::_trueAnomaly</qualifiedname>
         <briefdescription>
 <para>True anomaly of the orbit. </para>
         </briefdescription>
@@ -135,16 +127,15 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="404" column="11" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="404" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a3ed0985b506fbde91c0854f091eb09b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::Keplerian::Keplerian</definition>
         <argsstring>(Unitless scale=0.0 *astrea::detail::unitless)</argsstring>
         <name>Keplerian</name>
-        <qualifiedname>astrea::astro::Keplerian::Keplerian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+          <type>Unitless</type>
           <declname>scale</declname>
           <defval>0.0 *astrea::detail::unitless</defval>
         </param>
@@ -172,29 +163,28 @@
         <definition>astrea::astro::Keplerian::Keplerian</definition>
         <argsstring>(const Distance &amp;semimajor, const Unitless &amp;eccentricity, const Angle &amp;inclination, const Angle &amp;rightAscension, const Angle &amp;argPerigee, const Angle &amp;trueAnomaly)</argsstring>
         <name>Keplerian</name>
-        <qualifiedname>astrea::astro::Keplerian::Keplerian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <type>const Distance &amp;</type>
           <declname>semimajor</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>eccentricity</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>inclination</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>rightAscension</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>argPerigee</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>trueAnomaly</declname>
         </param>
         <briefdescription>
@@ -261,13 +251,12 @@
         <definition>astrea::astro::Keplerian::Keplerian</definition>
         <argsstring>(const Keplerian &amp;elements, const GravParam &amp;mu)</argsstring>
         <name>Keplerian</name>
-        <qualifiedname>astrea::astro::Keplerian::Keplerian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -302,13 +291,12 @@
         <definition>astrea::astro::Keplerian::Keplerian</definition>
         <argsstring>(const OrbitalElements &amp;elements, const GravParam &amp;mu)</argsstring>
         <name>Keplerian</name>
-        <qualifiedname>astrea::astro::Keplerian::Keplerian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -343,13 +331,12 @@
         <definition>astrea::astro::Keplerian::Keplerian</definition>
         <argsstring>(const Cartesian &amp;elements, const GravParam &amp;mu)</argsstring>
         <name>Keplerian</name>
-        <qualifiedname>astrea::astro::Keplerian::Keplerian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -384,13 +371,12 @@
         <definition>astrea::astro::Keplerian::Keplerian</definition>
         <argsstring>(const Equinoctial &amp;elements, const GravParam &amp;mu)</argsstring>
         <name>Keplerian</name>
-        <qualifiedname>astrea::astro::Keplerian::Keplerian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -425,9 +411,8 @@
         <definition>astrea::astro::Keplerian::Keplerian</definition>
         <argsstring>(const Keplerian &amp;)</argsstring>
         <name>Keplerian</name>
-        <qualifiedname>astrea::astro::Keplerian::Keplerian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -454,7 +439,6 @@
         <definition>astrea::astro::Keplerian::Keplerian</definition>
         <argsstring>(Keplerian &amp;&amp;) noexcept</argsstring>
         <name>Keplerian</name>
-        <qualifiedname>astrea::astro::Keplerian::Keplerian</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;&amp;</type>
           <defname>other</defname>
@@ -483,7 +467,6 @@
         <definition>Keplerian &amp; astrea::astro::Keplerian::operator=</definition>
         <argsstring>(Keplerian &amp;&amp;) noexcept</argsstring>
         <name>operator=</name>
-        <qualifiedname>astrea::astro::Keplerian::operator=</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;&amp;</type>
           <defname>other</defname>
@@ -514,9 +497,8 @@
         <definition>Keplerian &amp; astrea::astro::Keplerian::operator=</definition>
         <argsstring>(const Keplerian &amp;)</argsstring>
         <name>operator=</name>
-        <qualifiedname>astrea::astro::Keplerian::operator=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -545,7 +527,6 @@
         <definition>astrea::astro::Keplerian::~Keplerian</definition>
         <argsstring>()=default</argsstring>
         <name>~Keplerian</name>
-        <qualifiedname>astrea::astro::Keplerian::~Keplerian</qualifiedname>
         <briefdescription>
 <para>Destructor for <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref>. </para>
         </briefdescription>
@@ -557,13 +538,12 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="199" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a48966cb439ec916043c487f952817665" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Keplerian::operator==</definition>
         <argsstring>(const Keplerian &amp;other) const</argsstring>
         <name>operator==</name>
-        <qualifiedname>astrea::astro::Keplerian::operator==</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -588,13 +568,12 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="207" column="10" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp" bodystart="275" bodyend="281"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1ad3b048e43ec6f818de0f9271b98db844" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Keplerian::operator!=</definition>
         <argsstring>(const Keplerian &amp;other) const</argsstring>
         <name>operator!=</name>
-        <qualifiedname>astrea::astro::Keplerian::operator!=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -623,9 +602,8 @@
         <definition>Keplerian astrea::astro::Keplerian::operator+</definition>
         <argsstring>(const Keplerian &amp;other) const</argsstring>
         <name>operator+</name>
-        <qualifiedname>astrea::astro::Keplerian::operator+</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -654,9 +632,8 @@
         <definition>Keplerian &amp; astrea::astro::Keplerian::operator+=</definition>
         <argsstring>(const Keplerian &amp;other)</argsstring>
         <name>operator+=</name>
-        <qualifiedname>astrea::astro::Keplerian::operator+=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -685,9 +662,8 @@
         <definition>Keplerian astrea::astro::Keplerian::operator-</definition>
         <argsstring>(const Keplerian &amp;other) const</argsstring>
         <name>operator-</name>
-        <qualifiedname>astrea::astro::Keplerian::operator-</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -716,9 +692,8 @@
         <definition>Keplerian &amp; astrea::astro::Keplerian::operator-=</definition>
         <argsstring>(const Keplerian &amp;other)</argsstring>
         <name>operator-=</name>
-        <qualifiedname>astrea::astro::Keplerian::operator-=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -747,9 +722,8 @@
         <definition>Keplerian astrea::astro::Keplerian::operator*</definition>
         <argsstring>(const Unitless &amp;multiplier) const</argsstring>
         <name>operator*</name>
-        <qualifiedname>astrea::astro::Keplerian::operator*</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -778,9 +752,8 @@
         <definition>Keplerian &amp; astrea::astro::Keplerian::operator*=</definition>
         <argsstring>(const Unitless &amp;multiplier)</argsstring>
         <name>operator*=</name>
-        <qualifiedname>astrea::astro::Keplerian::operator*=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -809,9 +782,8 @@
         <definition>KeplerianPartial astrea::astro::Keplerian::operator/</definition>
         <argsstring>(const Time &amp;time) const</argsstring>
         <name>operator/</name>
-        <qualifiedname>astrea::astro::Keplerian::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <briefdescription>
@@ -840,9 +812,8 @@
         <definition>Keplerian astrea::astro::Keplerian::operator/</definition>
         <argsstring>(const Unitless &amp;divisor) const</argsstring>
         <name>operator/</name>
-        <qualifiedname>astrea::astro::Keplerian::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -871,9 +842,8 @@
         <definition>Keplerian &amp; astrea::astro::Keplerian::operator/=</definition>
         <argsstring>(const Unitless &amp;divisor)</argsstring>
         <name>operator/=</name>
-        <qualifiedname>astrea::astro::Keplerian::operator/=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -898,13 +868,12 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="287" column="15" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp" bodystart="357" bodyend="366"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1aec96f3e77516041b37bbdc1ff15e1001" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Keplerian::set_semimajor</definition>
         <argsstring>(const Distance &amp;semimajor)</argsstring>
         <name>set_semimajor</name>
-        <qualifiedname>astrea::astro::Keplerian::set_semimajor</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <type>const Distance &amp;</type>
           <declname>semimajor</declname>
         </param>
         <briefdescription>
@@ -917,13 +886,12 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="292" column="10" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="292" bodyend="292"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a69496a357e8435bd14931ace88d76ab1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Keplerian::set_eccentricity</definition>
         <argsstring>(const Unitless &amp;eccentricity)</argsstring>
         <name>set_eccentricity</name>
-        <qualifiedname>astrea::astro::Keplerian::set_eccentricity</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>eccentricity</declname>
         </param>
         <briefdescription>
@@ -936,13 +904,12 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="297" column="10" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="297" bodyend="297"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a1ac28964b198ccf74ab9129d1f44aa80" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Keplerian::set_inclination</definition>
         <argsstring>(const Angle &amp;inclination)</argsstring>
         <name>set_inclination</name>
-        <qualifiedname>astrea::astro::Keplerian::set_inclination</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>inclination</declname>
         </param>
         <briefdescription>
@@ -955,13 +922,12 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="302" column="10" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="302" bodyend="302"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a84fbbba85decd7694a219a484de9ec94" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Keplerian::set_right_ascension</definition>
         <argsstring>(const Angle &amp;rightAscension)</argsstring>
         <name>set_right_ascension</name>
-        <qualifiedname>astrea::astro::Keplerian::set_right_ascension</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>rightAscension</declname>
         </param>
         <briefdescription>
@@ -974,13 +940,12 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="307" column="10" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="307" bodyend="307"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1abc407a8dd4d880aa018ef2d318d10cd6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Keplerian::set_argument_of_perigee</definition>
         <argsstring>(const Angle &amp;argPerigee)</argsstring>
         <name>set_argument_of_perigee</name>
-        <qualifiedname>astrea::astro::Keplerian::set_argument_of_perigee</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>argPerigee</declname>
         </param>
         <briefdescription>
@@ -993,13 +958,12 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="312" column="10" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="312" bodyend="312"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a44d192ff5f510a4b575df09c31db00a0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Keplerian::set_true_anomaly</definition>
         <argsstring>(const Angle &amp;trueAnomaly)</argsstring>
         <name>set_true_anomaly</name>
-        <qualifiedname>astrea::astro::Keplerian::set_true_anomaly</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>trueAnomaly</declname>
         </param>
         <briefdescription>
@@ -1011,12 +975,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="317" column="10" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="317" bodyend="317"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a35af283f933f989ec71087897c58c592" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
-        <definition>const Distance &amp; astrea::astro::Keplerian::get_semimajor</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a206a7deb079078ae3259e5f3ecba5fc3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Distance &amp;</type>
+        <definition>const Distance&amp; astrea::astro::Keplerian::get_semimajor</definition>
         <argsstring>() const</argsstring>
         <name>get_semimajor</name>
-        <qualifiedname>astrea::astro::Keplerian::get_semimajor</qualifiedname>
         <briefdescription>
 <para>Get the semimajor axis of the <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> state vector. </para>
         </briefdescription>
@@ -1029,12 +992,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="324" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="324" bodyend="324"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a4ccf866a5a484189ff9560f44d8c4798" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
-        <definition>const Unitless &amp; astrea::astro::Keplerian::get_eccentricity</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1ad404e1620ee5048bf72408039645cdcb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Unitless &amp;</type>
+        <definition>const Unitless&amp; astrea::astro::Keplerian::get_eccentricity</definition>
         <argsstring>() const</argsstring>
         <name>get_eccentricity</name>
-        <qualifiedname>astrea::astro::Keplerian::get_eccentricity</qualifiedname>
         <briefdescription>
 <para>Get the eccentricity of the <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> state vector. </para>
         </briefdescription>
@@ -1047,12 +1009,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="331" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="331" bodyend="331"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a492a03901a888826633bafa86088fd73" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>const Angle &amp; astrea::astro::Keplerian::get_inclination</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a2e4e61c909bcd67f07c5a9b87725aed8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Angle &amp;</type>
+        <definition>const Angle&amp; astrea::astro::Keplerian::get_inclination</definition>
         <argsstring>() const</argsstring>
         <name>get_inclination</name>
-        <qualifiedname>astrea::astro::Keplerian::get_inclination</qualifiedname>
         <briefdescription>
 <para>Get the inclination of the <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> state vector. </para>
         </briefdescription>
@@ -1065,12 +1026,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="338" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="338" bodyend="338"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a885e1ccd5790ec3389a8b8bf08ce755f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>const Angle &amp; astrea::astro::Keplerian::get_right_ascension</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a82de9407b7ebefd1cb2ead80bda916db" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Angle &amp;</type>
+        <definition>const Angle&amp; astrea::astro::Keplerian::get_right_ascension</definition>
         <argsstring>() const</argsstring>
         <name>get_right_ascension</name>
-        <qualifiedname>astrea::astro::Keplerian::get_right_ascension</qualifiedname>
         <briefdescription>
 <para>Get the right ascension of the ascending node of the <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> state vector. </para>
         </briefdescription>
@@ -1083,12 +1043,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="345" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="345" bodyend="345"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a31c736c27ecbd3b1f71d5414846803cd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>const Angle &amp; astrea::astro::Keplerian::get_argument_of_perigee</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a2f381c0f0a7c7023cd7d8d24bfc69879" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Angle &amp;</type>
+        <definition>const Angle&amp; astrea::astro::Keplerian::get_argument_of_perigee</definition>
         <argsstring>() const</argsstring>
         <name>get_argument_of_perigee</name>
-        <qualifiedname>astrea::astro::Keplerian::get_argument_of_perigee</qualifiedname>
         <briefdescription>
 <para>Get the argument of perigee of the <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> state vector. </para>
         </briefdescription>
@@ -1101,12 +1060,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="352" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="352" bodyend="352"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a91e3411edf151a01ae717ec062fd087c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>const Angle &amp; astrea::astro::Keplerian::get_true_anomaly</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a8950e8112db4a76c2d27541f78ee762d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Angle &amp;</type>
+        <definition>const Angle&amp; astrea::astro::Keplerian::get_true_anomaly</definition>
         <argsstring>() const</argsstring>
         <name>get_true_anomaly</name>
-        <qualifiedname>astrea::astro::Keplerian::get_true_anomaly</qualifiedname>
         <briefdescription>
 <para>Get the true anomaly of the <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> state vector. </para>
         </briefdescription>
@@ -1120,11 +1078,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="359" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" bodystart="359" bodyend="359"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1aef8f8327bda2f7e5b232aa564496b9d1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::Keplerian::get_mean_anomaly</definition>
         <argsstring>() const</argsstring>
         <name>get_mean_anomaly</name>
-        <qualifiedname>astrea::astro::Keplerian::get_mean_anomaly</qualifiedname>
         <briefdescription>
 <para>Get the mean anomaly of the <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> state vector. </para>
         </briefdescription>
@@ -1138,13 +1095,12 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="366" column="11" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp" bodystart="264" bodyend="264"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1acda19ccf442156f5a191f420f6689551" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">MeanMotion</ref></type>
+        <type>MeanMotion</type>
         <definition>MeanMotion astrea::astro::Keplerian::get_mean_motion</definition>
         <argsstring>(const GravParam &amp;mu) const</argsstring>
         <name>get_mean_motion</name>
-        <qualifiedname>astrea::astro::Keplerian::get_mean_motion</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -1173,25 +1129,24 @@
         <definition>Keplerian astrea::astro::Keplerian::interpolate</definition>
         <argsstring>(const Time &amp;thisTime, const Time &amp;otherTime, const Keplerian &amp;other, const GravParam &amp;mu, const Time &amp;targetTime) const</argsstring>
         <name>interpolate</name>
-        <qualifiedname>astrea::astro::Keplerian::interpolate</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>thisTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>otherTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>targetTime</declname>
         </param>
         <briefdescription>
@@ -1249,11 +1204,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="388" column="15" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp" bodystart="368" bodyend="381"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1aa435ad572315703c7efbe7070b8d8996" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt;</type>
+        <type>std::vector&lt; Unitless &gt;</type>
         <definition>std::vector&lt; Unitless &gt; astrea::astro::Keplerian::force_to_vector</definition>
         <argsstring>() const</argsstring>
         <name>force_to_vector</name>
-        <qualifiedname>astrea::astro::Keplerian::force_to_vector</qualifiedname>
         <briefdescription>
 <para>Converts the <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> state vector to a vector of unitless values. </para>
         </briefdescription>
@@ -1266,14 +1220,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="396" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp" bodystart="396" bodyend="401"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-static-func">
+      </sectiondef>
+      <sectiondef kind="public-static-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a3b1ae5733210b32e8a4ffcde6c441210" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref></type>
         <definition>Keplerian astrea::astro::Keplerian::LEO</definition>
         <argsstring>()</argsstring>
         <name>LEO</name>
-        <qualifiedname>astrea::astro::Keplerian::LEO</qualifiedname>
         <briefdescription>
 <para>A static method to create <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> state vectors for a LEO orbit. </para>
         </briefdescription>
@@ -1301,7 +1254,6 @@
         <definition>Keplerian astrea::astro::Keplerian::LMEO</definition>
         <argsstring>()</argsstring>
         <name>LMEO</name>
-        <qualifiedname>astrea::astro::Keplerian::LMEO</qualifiedname>
         <briefdescription>
 <para>A static method to create <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> state vectors for a LMEO orbit. </para>
         </briefdescription>
@@ -1329,7 +1281,6 @@
         <definition>Keplerian astrea::astro::Keplerian::GPS</definition>
         <argsstring>()</argsstring>
         <name>GPS</name>
-        <qualifiedname>astrea::astro::Keplerian::GPS</qualifiedname>
         <briefdescription>
 <para>A static method to create <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> state vectors for a GPS orbit. </para>
         </briefdescription>
@@ -1357,7 +1308,6 @@
         <definition>Keplerian astrea::astro::Keplerian::HMEO</definition>
         <argsstring>()</argsstring>
         <name>HMEO</name>
-        <qualifiedname>astrea::astro::Keplerian::HMEO</qualifiedname>
         <briefdescription>
 <para>A static method to create <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> state vectors for a HMEO orbit. </para>
         </briefdescription>
@@ -1385,7 +1335,6 @@
         <definition>Keplerian astrea::astro::Keplerian::GEO</definition>
         <argsstring>()</argsstring>
         <name>GEO</name>
-        <qualifiedname>astrea::astro::Keplerian::GEO</qualifiedname>
         <briefdescription>
 <para>A static method to create <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> state vectors for a GEO orbit. </para>
         </briefdescription>
@@ -1408,14 +1357,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="162" column="22" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp" bodystart="47" bodyend="47"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-func">
+      </sectiondef>
+      <sectiondef kind="private-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a7a38a48f0e30c3d0661c0f2d383c6c86" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Keplerian::wrap_angles</definition>
         <argsstring>()</argsstring>
         <name>wrap_angles</name>
-        <qualifiedname>astrea::astro::Keplerian::wrap_angles</qualifiedname>
         <briefdescription>
 <para>Sanitize the angles of the <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> state vector. </para>
         </briefdescription>
@@ -1427,21 +1375,20 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="411" column="10" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp" bodystart="403" bodyend="409"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1aeadae689b2dbd557ee0b1b63a190d10f" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::Keplerian::interpolate_angle</definition>
         <argsstring>(const std::array&lt; Time, 2 &gt; &amp;times, const std::array&lt; Angle, 2 &gt; &amp;angles, const Time &amp;targetTime) const</argsstring>
         <name>interpolate_angle</name>
-        <qualifiedname>astrea::astro::Keplerian::interpolate_angle</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref>, 2 &gt; &amp;</type>
+          <type>const std::array&lt; Time, 2 &gt; &amp;</type>
           <declname>times</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref>, 2 &gt; &amp;</type>
+          <type>const std::array&lt; Angle, 2 &gt; &amp;</type>
           <declname>angles</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>targetTime</declname>
         </param>
         <briefdescription>
@@ -1481,16 +1428,15 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="421" column="11" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp" bodystart="383" bodyend="394"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-static-func">
+      </sectiondef>
+      <sectiondef kind="private-static-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Keplerian_1a8802c15e05a7c88db4c31035ea32e833" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref></type>
         <definition>Keplerian astrea::astro::Keplerian::from_vector</definition>
         <argsstring>(const std::vector&lt; Unitless &gt; &amp;vec)</argsstring>
         <name>from_vector</name>
-        <qualifiedname>astrea::astro::Keplerian::from_vector</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt; &amp;</type>
+          <type>const std::vector&lt; Unitless &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <briefdescription>
@@ -1514,7 +1460,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp" line="430" column="22" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp" bodystart="411" bodyend="424"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>The <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> class represents the <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> orbital elements. </para>
     </briefdescription>
@@ -1532,14 +1478,14 @@
       <member refid="classastrea_1_1astro_1_1Keplerian_1aa435ad572315703c7efbe7070b8d8996" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>force_to_vector</name></member>
       <member refid="classastrea_1_1astro_1_1Keplerian_1a8802c15e05a7c88db4c31035ea32e833" prot="private" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>from_vector</name></member>
       <member refid="classastrea_1_1astro_1_1Keplerian_1a06de66d6b9ff770355a55e505e4f7c83" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>GEO</name></member>
-      <member refid="classastrea_1_1astro_1_1Keplerian_1a31c736c27ecbd3b1f71d5414846803cd" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>get_argument_of_perigee</name></member>
-      <member refid="classastrea_1_1astro_1_1Keplerian_1a4ccf866a5a484189ff9560f44d8c4798" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>get_eccentricity</name></member>
-      <member refid="classastrea_1_1astro_1_1Keplerian_1a492a03901a888826633bafa86088fd73" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>get_inclination</name></member>
+      <member refid="classastrea_1_1astro_1_1Keplerian_1a2f381c0f0a7c7023cd7d8d24bfc69879" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>get_argument_of_perigee</name></member>
+      <member refid="classastrea_1_1astro_1_1Keplerian_1ad404e1620ee5048bf72408039645cdcb" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>get_eccentricity</name></member>
+      <member refid="classastrea_1_1astro_1_1Keplerian_1a2e4e61c909bcd67f07c5a9b87725aed8" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>get_inclination</name></member>
       <member refid="classastrea_1_1astro_1_1Keplerian_1aef8f8327bda2f7e5b232aa564496b9d1" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>get_mean_anomaly</name></member>
       <member refid="classastrea_1_1astro_1_1Keplerian_1acda19ccf442156f5a191f420f6689551" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>get_mean_motion</name></member>
-      <member refid="classastrea_1_1astro_1_1Keplerian_1a885e1ccd5790ec3389a8b8bf08ce755f" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>get_right_ascension</name></member>
-      <member refid="classastrea_1_1astro_1_1Keplerian_1a35af283f933f989ec71087897c58c592" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>get_semimajor</name></member>
-      <member refid="classastrea_1_1astro_1_1Keplerian_1a91e3411edf151a01ae717ec062fd087c" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>get_true_anomaly</name></member>
+      <member refid="classastrea_1_1astro_1_1Keplerian_1a82de9407b7ebefd1cb2ead80bda916db" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>get_right_ascension</name></member>
+      <member refid="classastrea_1_1astro_1_1Keplerian_1a206a7deb079078ae3259e5f3ecba5fc3" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>get_semimajor</name></member>
+      <member refid="classastrea_1_1astro_1_1Keplerian_1a8950e8112db4a76c2d27541f78ee762d" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>get_true_anomaly</name></member>
       <member refid="classastrea_1_1astro_1_1Keplerian_1a9b73fa75f724653a4ae1eabd8717da5a" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>GPS</name></member>
       <member refid="classastrea_1_1astro_1_1Keplerian_1abd6ebea8a1aa157cb6f39fb66f26940a" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>HMEO</name></member>
       <member refid="classastrea_1_1astro_1_1Keplerian_1a45c3610c8342d0abd7400cabe29337e4" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>interpolate</name></member>
@@ -1564,7 +1510,7 @@
       <member refid="classastrea_1_1astro_1_1Keplerian_1a1d3c5209971b3499a6c5cfe36267250e" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>operator/</name></member>
       <member refid="classastrea_1_1astro_1_1Keplerian_1af5a9b766e97ce141439a41f032a07e56" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>operator/</name></member>
       <member refid="classastrea_1_1astro_1_1Keplerian_1aded545e4e51aa1d8a8b601f80686447d" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>operator/=</name></member>
-      <member refid="classastrea_1_1astro_1_1Keplerian_1aedf47aca8e3e1791dac6df1f2c07bcf2" prot="private" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1astro_1_1Keplerian_1ad2dd7a4e86fe9cc72afbb9b0ed7fa2de" prot="private" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>operator&lt;&lt;</name></member>
       <member refid="classastrea_1_1astro_1_1Keplerian_1af93d0717e76af6320a02b840cd959c8c" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>operator=</name></member>
       <member refid="classastrea_1_1astro_1_1Keplerian_1a1443df29f0223db895b5ad84d0127531" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>operator=</name></member>
       <member refid="classastrea_1_1astro_1_1Keplerian_1a48966cb439ec916043c487f952817665" prot="public" virt="non-virtual"><scope>astrea::astro::Keplerian</scope><name>operator==</name></member>

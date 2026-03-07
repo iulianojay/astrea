@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="SpaceTrackClient_8hpp" kind="file" language="C++">
     <compoundname>SpaceTrackClient.hpp</compoundname>
     <includes local="no">filesystem</includes>
@@ -12,6 +12,24 @@
     <includedby refid="SpaceTrackClient_8cpp" local="no">astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp</includedby>
     <includedby refid="snapshot_8hpp" local="no">astrea/snapshot/snapshot/snapshot.hpp</includedby>
     <incdepgraph>
+      <node id="2">
+        <label>filesystem</label>
+      </node>
+      <node id="8">
+        <label>stdint.h</label>
+      </node>
+      <node id="3">
+        <label>variant</label>
+      </node>
+      <node id="7">
+        <label>snapshot/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>cpr/cpr.h</label>
+      </node>
       <node id="1">
         <label>astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</label>
         <link refid="SpaceTrackClient_8hpp"/>
@@ -28,41 +46,23 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="7">
-        <label>snapshot/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
+      <node id="5">
+        <label>nlohmann/json.hpp</label>
       </node>
       <node id="6">
         <label>astro/time/Date.hpp</label>
       </node>
-      <node id="4">
-        <label>cpr/cpr.h</label>
-      </node>
-      <node id="2">
-        <label>filesystem</label>
-      </node>
-      <node id="5">
-        <label>nlohmann/json.hpp</label>
-      </node>
-      <node id="8">
-        <label>stdint.h</label>
-      </node>
-      <node id="3">
-        <label>variant</label>
-      </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="2">
+        <label>astrea/snapshot/snapshot/snapshot.hpp</label>
+        <link refid="snapshot_8hpp"/>
+      </node>
       <node id="1">
         <label>astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</label>
         <link refid="SpaceTrackClient_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-      </node>
-      <node id="2">
-        <label>astrea/snapshot/snapshot/snapshot.hpp</label>
-        <link refid="snapshot_8hpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classastrea_1_1snapshot_1_1SpaceTrackClient" prot="public">astrea::snapshot::SpaceTrackClient</innerclass>
@@ -134,7 +134,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1adbf6d6e021c3e6849deef0f85897c020af770d5ea6dd4a6fe36dd95c7edfae589" kindref="member">LOAD_PUBLIC_DATA</ref><sp/></highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"></highlight></codeline>
-<codeline lineno="104" refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" kindref="member">RequestClass</ref><sp/>=<sp/>std::variant&lt;SpaceDataClass,<sp/>PublicFilesClass&gt;;</highlight></codeline>
+<codeline lineno="104" refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a133f81ff62c371348fa5eb77edd12cdb" kindref="member">RequestClass</ref><sp/>=<sp/>std::variant&lt;SpaceDataClass,<sp/>PublicFilesClass&gt;;</highlight></codeline>
 <codeline lineno="105"><highlight class="normal"></highlight></codeline>
 <codeline lineno="111" refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a49060dd14402d68be074635606deed1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a49060dd14402d68be074635606deed1c" kindref="member">SpaceTrackClient</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight></codeline>
@@ -142,7 +142,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="119"><highlight class="normal"></highlight></codeline>
 <codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a66e3df68cf1c0773d0202c0050e6d164" kindref="member">login</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>username,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>password);</highlight></codeline>
 <codeline lineno="130"><highlight class="normal"></highlight></codeline>
-<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>nlohmann::json<sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a4dd0362ef613fe20d9ac03586a758144" kindref="member">query</ref>(</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>nlohmann::json<sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a90417c8c40b42e49231958fb541e42d5" kindref="member">query</ref>(</highlight></codeline>
 <codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>username,</highlight></codeline>
 <codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>password,</highlight></codeline>
 <codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9" kindref="member">Controller</ref>&amp;<sp/>controller<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a1a5335d7518d32adaab49a83b89953b9a9c41b050e630b854e5b9b1fa01fd0736" kindref="member">Controller::BASIC_SPACE_DATA</ref>,</highlight></codeline>

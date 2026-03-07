@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="NBodyForce_8hpp" kind="file" language="C++">
     <compoundname>NBodyForce.hpp</compoundname>
     <includes local="no">units/units.hpp</includes>
@@ -8,10 +8,14 @@
     <includedby refid="astro_8hpp" local="no">astrea/astro/astro/astro.hpp</includedby>
     <includedby refid="NBodyForce_8cpp" local="no">astrea/astro/astro/propagation/force_models/NBodyForce.cpp</includedby>
     <incdepgraph>
-      <node id="3">
-        <label>astro/astro.fwd.hpp</label>
-        <link refid="astro_8fwd_8hpp"/>
-        <childnode refid="4" relation="include">
+      <node id="6">
+        <label>astro/propagation/force_models/Force.hpp</label>
+        <link refid="Force_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
       <node id="7">
@@ -22,26 +26,19 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
-        <link refid="body__centered__inertial__frames_8hpp"/>
-        <childnode refid="3" relation="include">
+      <node id="5">
+        <label>stdint.h</label>
+      </node>
+      <node id="4">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
       <node id="9">
         <label>astro/frames/instances/body_fixed_frames.hpp</label>
         <link refid="body__fixed__frames_8hpp"/>
         <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>astro/propagation/force_models/Force.hpp</label>
-        <link refid="Force_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -54,14 +51,17 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>astro/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="5" relation="include">
+      <node id="8">
+        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
+        <link refid="body__centered__inertial__frames_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>stdint.h</label>
+      <node id="3">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>units/units.hpp</label>
@@ -104,7 +104,7 @@
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="43" refid="classastrea_1_1astro_1_1NBodyForce_1a61b7b5e9afe664e73b1f12f74e2ae7da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1NBodyForce_1a61b7b5e9afe664e73b1f12f74e2ae7da" kindref="member">~NBodyForce</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Acceleration, frames::earth::icrf&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1NBodyForce_1ac4381941fd26fd0b76aa51ef73c73437" kindref="member">compute_force</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">state</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vehicle</ref>)<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;Acceleration, frames::earth::icrf&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1NBodyForce_1ac4381941fd26fd0b76aa51ef73c73437" kindref="member">compute_force</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>&amp;<sp/>state,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>&amp;<sp/>vehicle)<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="53"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="54"><highlight class="normal"></highlight></codeline>
 <codeline lineno="55"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>

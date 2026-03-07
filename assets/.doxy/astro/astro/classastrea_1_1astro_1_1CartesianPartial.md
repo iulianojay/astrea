@@ -53,10 +53,10 @@ _Class representing a partial derivative of a_ [_**Cartesian**_](classastrea_1_1
 | Type | Name |
 | ---: | :--- |
 |   | [**CartesianPartial**](#function-cartesianpartial-13) () = default<br>_Default constructor for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _._ |
-|   | [**CartesianPartial**](#function-cartesianpartial-23) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md) & vx, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md) & vy, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md) & vz, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Acceleration**](classastrea_1_1astro_1_1CartesianVector.md) & ax, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Acceleration**](classastrea_1_1astro_1_1CartesianVector.md) & ay, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Acceleration**](classastrea_1_1astro_1_1CartesianVector.md) & az) <br>_Constructor for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _with velocity and acceleration components._ |
-|   | [**CartesianPartial**](#function-cartesianpartial-33) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & v, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**AccelerationVector**](namespaceastrea_1_1astro.md#typedef-accelerationvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & a) <br>_Constructor for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _with velocity and acceleration vectors._ |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector to a vector of unitless values._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & time) const<br>_Multiplication operator for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _._ |
+|   | [**CartesianPartial**](#function-cartesianpartial-23) (const Velocity & vx, const Velocity & vy, const Velocity & vz, const Acceleration & ax, const Acceleration & ay, const Acceleration & az) <br>_Constructor for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _with velocity and acceleration components._ |
+|   | [**CartesianPartial**](#function-cartesianpartial-33) (const [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::earth::icrf &gt; & v, const [**AccelerationVector**](namespaceastrea_1_1astro.md#typedef-accelerationvector)&lt; frames::earth::icrf &gt; & a) <br>_Constructor for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _with velocity and acceleration vectors._ |
+|  std::vector&lt; Unitless &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _state vector to a vector of unitless values._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator\***](#function-operator) (const Time & time) const<br>_Multiplication operator for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _._ |
 
 
 
@@ -116,12 +116,12 @@ astrea::astro::CartesianPartial::CartesianPartial () = default
 _Constructor for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _with velocity and acceleration components._
 ```C++
 inline astrea::astro::CartesianPartial::CartesianPartial (
-    const  Velocity & vx,
-    const  Velocity & vy,
-    const  Velocity & vz,
-    const  Acceleration & ax,
-    const  Acceleration & ay,
-    const  Acceleration & az
+    const Velocity & vx,
+    const Velocity & vy,
+    const Velocity & vz,
+    const Acceleration & ax,
+    const Acceleration & ay,
+    const Acceleration & az
 ) 
 ```
 
@@ -153,8 +153,8 @@ inline astrea::astro::CartesianPartial::CartesianPartial (
 _Constructor for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _with velocity and acceleration vectors._
 ```C++
 inline astrea::astro::CartesianPartial::CartesianPartial (
-    const  VelocityVector < frames::earth::icrf > & v,
-    const  AccelerationVector < frames::earth::icrf > & a
+    const VelocityVector < frames::earth::icrf > & v,
+    const AccelerationVector < frames::earth::icrf > & a
 ) 
 ```
 
@@ -207,7 +207,7 @@ std::vector&lt;Unitless&gt; Vector containing the components of the [**Cartesian
 _Multiplication operator for_ [_**CartesianPartial**_](classastrea_1_1astro_1_1CartesianPartial.md) _._
 ```C++
 Cartesian astrea::astro::CartesianPartial::operator* (
-    const  Time & time
+    const Time & time
 ) const
 ```
 

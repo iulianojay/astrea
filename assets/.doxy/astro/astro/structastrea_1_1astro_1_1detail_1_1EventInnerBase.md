@@ -55,11 +55,11 @@ Inherited by the following classes: [astrea::astro::detail::EventInner](structas
 | ---: | :--- |
 | virtual std::unique\_ptr&lt; [**EventInnerBase**](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md) &gt; | [**clone**](#function-clone) () const = 0<br>_Clones the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _inner implementation._ |
 | virtual std::string | [**get\_name**](#function-get_name) () const = 0<br>_Gets the name of the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
-| virtual [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**void**](classastrea_1_1astro_1_1CartesianVector.md) \* | [**get\_ptr**](#function-get_ptr-12) () const = 0<br>_Gets a pointer to the internal_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _instance._ |
-| virtual [**void**](classastrea_1_1astro_1_1CartesianVector.md) \* | [**get\_ptr**](#function-get_ptr-22) () = 0<br>_Gets a pointer to the internal_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _instance._ |
-| virtual [**bool**](classastrea_1_1astro_1_1CartesianVector.md) | [**is\_terminal**](#function-is_terminal) () const = 0<br>_Checks if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is a terminal_[_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
-| virtual [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**measure\_event**](#function-measure_event) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & time, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Detects if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is triggered by a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._ |
-| virtual [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**trigger\_action**](#function-trigger_action) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Triggers the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _for a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._ |
+| virtual const void \* | [**get\_ptr**](#function-get_ptr-12) () const = 0<br>_Gets a pointer to the internal_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _instance._ |
+| virtual void \* | [**get\_ptr**](#function-get_ptr-22) () = 0<br>_Gets a pointer to the internal_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _instance._ |
+| virtual bool | [**is\_terminal**](#function-is_terminal) () const = 0<br>_Checks if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is a terminal_[_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
+| virtual Unitless | [**measure\_event**](#function-measure_event) (const Time & time, const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Detects if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is triggered by a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._ |
+| virtual void | [**trigger\_action**](#function-trigger_action) (const Time & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Triggers the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _for a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._ |
 | virtual  | [**~EventInnerBase**](#function-eventinnerbase) () <br>_Destructor for_ [_**EventInnerBase**_](structastrea_1_1astro_1_1detail_1_1EventInnerBase.md) _._ |
 
 
@@ -148,7 +148,7 @@ std::string The name of the [**Event**](classastrea_1_1astro_1_1Event.md).
 
 _Gets a pointer to the internal_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _instance._
 ```C++
-virtual const  void * astrea::astro::detail::EventInnerBase::get_ptr () const = 0
+virtual const void * astrea::astro::detail::EventInnerBase::get_ptr () const = 0
 ```
 
 
@@ -231,9 +231,9 @@ false If the [**Event**](classastrea_1_1astro_1_1Event.md) is not a terminal [**
 _Detects if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is triggered by a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._
 ```C++
 virtual Unitless astrea::astro::detail::EventInnerBase::measure_event (
-    const  Time & time,
-    const  State & state,
-    const  Vehicle & vehicle
+    const Time & time,
+    const State & state,
+    const Vehicle & vehicle
 ) const = 0
 ```
 
@@ -276,7 +276,7 @@ false If the [**Event**](classastrea_1_1astro_1_1Event.md) is not triggered by t
 _Triggers the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _for a_[_**Vehicle**_](classastrea_1_1astro_1_1Vehicle.md) _._
 ```C++
 virtual void astrea::astro::detail::EventInnerBase::trigger_action (
-    const  Time & time,
+    const Time & time,
     State & state,
     Vehicle & vehicle
 ) const = 0

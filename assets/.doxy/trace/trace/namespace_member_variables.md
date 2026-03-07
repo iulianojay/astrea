@@ -22,6 +22,17 @@
 * **GRID\_TYPE\_STRINGS** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 
 
+## h
+
+* **HasSize** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+* **HasSubscriptOperator** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+
+
+## i
+
+* **IsPlatformContainer** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+
+
 ## r
 
 * **RISE\_SET\_METRIC\_STRINGS** ([**astrea::trace**](namespaceastrea_1_1trace.md))

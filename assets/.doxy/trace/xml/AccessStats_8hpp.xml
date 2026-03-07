@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="AccessStats_8hpp" kind="file" language="C++">
     <compoundname>AccessStats.hpp</compoundname>
     <includes local="no">string</includes>
@@ -17,6 +17,58 @@
     <includedby refid="output_8hpp" local="no">astrea/trace/trace/io/output.hpp</includedby>
     <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
     <incdepgraph>
+      <node id="14">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="20">
+        <label>functional</label>
+      </node>
+      <node id="11">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="18">
+        <label>cstdint</label>
+      </node>
+      <node id="6">
+        <label>trace/analysis/stats/HyperStats.hpp</label>
+        <link refid="HyperStats_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
       <node id="1">
         <label>astrea/trace/trace/analysis/stats/AccessStats.hpp</label>
         <link refid="AccessStats_8hpp"/>
@@ -43,28 +95,18 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="6">
-        <label>trace/analysis/stats/HyperStats.hpp</label>
-        <link refid="HyperStats_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
+      <node id="12">
+        <label>trace/risesets/RiseSetArray.hpp</label>
+        <link refid="RiseSetArray_8hpp"/>
         <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
         </childnode>
       </node>
       <node id="7">
@@ -84,6 +126,29 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
+      </node>
+      <node id="19">
+        <label>trace/types/IdPair.hpp</label>
+        <link refid="IdPair_8hpp_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+      <node id="16">
+        <label>array</label>
+      </node>
+      <node id="17">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>mp-units/concepts.h</label>
       </node>
       <node id="8">
         <label>trace/analysis/stats/Stats.hpp</label>
@@ -107,19 +172,8 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="12">
-        <label>trace/risesets/RiseSetArray.hpp</label>
-        <link refid="RiseSetArray_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
+      <node id="9">
+        <label>concepts</label>
       </node>
       <node id="13">
         <label>trace/risesets/riseset_utils.hpp</label>
@@ -131,65 +185,11 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="14">
-        <label>trace/trace.fwd.hpp</label>
-        <link refid="trace_8fwd_8hpp"/>
-      </node>
-      <node id="19">
-        <label>trace/types/IdPair.hpp</label>
-        <link refid="IdPair_8hpp_source"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>trace/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>trace/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>array</label>
-      </node>
-      <node id="9">
-        <label>concepts</label>
-      </node>
-      <node id="18">
-        <label>cstdint</label>
-      </node>
-      <node id="20">
-        <label>functional</label>
-      </node>
       <node id="4">
         <label>gtl/btree.hpp</label>
       </node>
-      <node id="10">
-        <label>mp-units/concepts.h</label>
-      </node>
-      <node id="11">
-        <label>mp-units/systems/si.h</label>
-      </node>
-      <node id="2">
-        <label>string</label>
-      </node>
       <node id="5">
         <label>units/units.hpp</label>
-      </node>
-      <node id="3">
-        <label>vector</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
@@ -201,15 +201,15 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
+      <node id="3">
+        <label>astrea/trace/trace/trace.hpp</label>
+        <link refid="trace_8hpp"/>
+      </node>
       <node id="2">
         <label>astrea/trace/trace/io/output.hpp</label>
         <link refid="output_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-      </node>
-      <node id="3">
-        <label>astrea/trace/trace/trace.hpp</label>
-        <link refid="trace_8hpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="structastrea_1_1trace_1_1AccessStats" prot="public">astrea::trace::AccessStats</innerclass>
@@ -257,22 +257,22 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
 <codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1a09662481e3678460f6d5f44444576c49" kindref="member">to_string_vector</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70" refid="structastrea_1_1trace_1_1AccessStats_1aa3a7ba34fe52975554c626c425affdb5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1aa3a7ba34fe52975554c626c425affdb5" kindref="member">get_riseset_statistics</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_stats;<sp/>}</highlight></codeline>
+<codeline lineno="70" refid="structastrea_1_1trace_1_1AccessStats_1a9a14775372704192fe6e8b43d8f67376" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1a9a14775372704192fe6e8b43d8f67376" kindref="member">get_riseset_statistics</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_stats;<sp/>}</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
-<codeline lineno="78" refid="structastrea_1_1trace_1_1AccessStats_1add4fb58316fb73a4e1296b759ce0c9aa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1add4fb58316fb73a4e1296b759ce0c9aa" kindref="member">get_riseset_statistics</ref>(std::size_t<sp/>receiverId)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_stats.at(receiverId);<sp/>}</highlight></codeline>
+<codeline lineno="78" refid="structastrea_1_1trace_1_1AccessStats_1a54871088d3baf9f90ff27898a3b2d4c2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1a54871088d3baf9f90ff27898a3b2d4c2" kindref="member">get_riseset_statistics</ref>(std::size_t<sp/>receiverId)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_stats.at(receiverId);<sp/>}</highlight></codeline>
 <codeline lineno="79"><highlight class="normal"></highlight></codeline>
-<codeline lineno="87" refid="structastrea_1_1trace_1_1AccessStats_1a3ba0cc76be00dc5dc874214dab108957" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1a3ba0cc76be00dc5dc874214dab108957" kindref="member">get_access_metric</ref>(std::size_t<sp/>receiverId,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a0564dd7316e854932db767c251b5aee1" kindref="member">AccessMetric</ref>&amp;<sp/>metric)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="87" refid="structastrea_1_1trace_1_1AccessStats_1a8920b9579b2c4b92921c75197d6e9bfa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1a8920b9579b2c4b92921c75197d6e9bfa" kindref="member">get_access_metric</ref>(std::size_t<sp/>receiverId,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a0564dd7316e854932db767c251b5aee1" kindref="member">AccessMetric</ref>&amp;<sp/>metric)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="88"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accessMetrics.at(receiverId).at(metric);</highlight></codeline>
 <codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="91"><highlight class="normal"></highlight></codeline>
-<codeline lineno="98" refid="structastrea_1_1trace_1_1AccessStats_1ac2f0642920a088c61296ecbcb85a2681" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1ac2f0642920a088c61296ecbcb85a2681" kindref="member">get_access_metrics</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accessMetrics;<sp/>}</highlight></codeline>
+<codeline lineno="98" refid="structastrea_1_1trace_1_1AccessStats_1a4e615855c9605d88db23f4c099919591" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1a4e615855c9605d88db23f4c099919591" kindref="member">get_access_metrics</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accessMetrics;<sp/>}</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"></highlight></codeline>
-<codeline lineno="106" refid="structastrea_1_1trace_1_1AccessStats_1a3dfccb58d342172d71ba5398e42c7fd3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1a3dfccb58d342172d71ba5398e42c7fd3" kindref="member">get_access_statistics</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a0564dd7316e854932db767c251b5aee1" kindref="member">AccessMetric</ref>&amp;<sp/>metric)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accessStats.at(metric);<sp/>}</highlight></codeline>
+<codeline lineno="106" refid="structastrea_1_1trace_1_1AccessStats_1a0111ae8352901b7ffb4c4a80640ee0ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1a0111ae8352901b7ffb4c4a80640ee0ae" kindref="member">get_access_statistics</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a0564dd7316e854932db767c251b5aee1" kindref="member">AccessMetric</ref>&amp;<sp/>metric)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_accessStats.at(metric);<sp/>}</highlight></codeline>
 <codeline lineno="107"><highlight class="normal"></highlight></codeline>
-<codeline lineno="114" refid="structastrea_1_1trace_1_1AccessStats_1ae8d1ab178a4e91a29d8a8be14645f784" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1ae8d1ab178a4e91a29d8a8be14645f784" kindref="member">get_hyper_statistics</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" kindref="member">RiseSetMetric</ref>&amp;<sp/>metric)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_hyperStats.at(metric);<sp/>}</highlight></codeline>
+<codeline lineno="114" refid="structastrea_1_1trace_1_1AccessStats_1a3c6a71babcb54c4ae1d6a4466eaf2c93" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1a3c6a71babcb54c4ae1d6a4466eaf2c93" kindref="member">get_hyper_statistics</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" kindref="member">RiseSetMetric</ref>&amp;<sp/>metric)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_hyperStats.at(metric);<sp/>}</highlight></codeline>
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>
-<codeline lineno="122" refid="structastrea_1_1trace_1_1AccessStats_1a948f90216cef5614c78eaf3ce9e579c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1a948f90216cef5614c78eaf3ce9e579c6" kindref="member">get_hyper_statistics</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" kindref="member">RiseSetMetric</ref>&amp;<sp/>metric)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_hyperStats[metric];<sp/>}</highlight></codeline>
+<codeline lineno="122" refid="structastrea_1_1trace_1_1AccessStats_1a77057532eeac862d3987afe44c0e1a78" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="structastrea_1_1trace_1_1AccessStats_1a77057532eeac862d3987afe44c0e1a78" kindref="member">get_hyper_statistics</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" kindref="member">RiseSetMetric</ref>&amp;<sp/>metric)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_hyperStats[metric];<sp/>}</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"></highlight></codeline>
 <codeline lineno="124"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>gtl::btree_map&lt;std::size_t,<sp/>RiseSetArray&gt;<sp/>_risesets;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>

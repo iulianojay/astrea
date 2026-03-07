@@ -36,42 +36,42 @@
 
 | Type | Name |
 | ---: | :--- |
-|  std::optional&lt; [**double**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**APOAPSIS**](#variable-apoapsis)  <br>_Apoapsis altitude in kilometers._  |
-|  std::optional&lt; [**long**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**ARG\_OF\_PERICENTER**](#variable-arg_of_pericenter)  <br>_Argument of pericenter in degrees._  |
-|  std::optional&lt; [**long**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**BSTAR**](#variable-bstar)  <br>_B\* drag term (BSTAR) in inverse Earth radii._  |
+|  std::optional&lt; double &gt; | [**APOAPSIS**](#variable-apoapsis)  <br>_Apoapsis altitude in kilometers._  |
+|  std::optional&lt; long double &gt; | [**ARG\_OF\_PERICENTER**](#variable-arg_of_pericenter)  <br>_Argument of pericenter in degrees._  |
+|  std::optional&lt; long double &gt; | [**BSTAR**](#variable-bstar)  <br>_B\* drag term (BSTAR) in inverse Earth radii._  |
 |  std::string | [**CCSDS\_OMM\_VERS**](#variable-ccsds_omm_vers)  <br>_CCSDS OMM version._  |
 |  std::string | [**CENTER\_NAME**](#variable-center_name)  <br>_Name of the center._  |
-|  std::optional&lt; [**char**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**CLASSIFICATION\_TYPE**](#variable-classification_type)  <br>_Classification type._  |
+|  std::optional&lt; char &gt; | [**CLASSIFICATION\_TYPE**](#variable-classification_type)  <br>_Classification type._  |
 |  std::string | [**COMMENT**](#variable-comment)  <br>_Comment._  |
 |  std::optional&lt; std::string &gt; | [**COUNTRY\_CODE**](#variable-country_code)  <br>_Country code._  |
 |  std::optional&lt; std::string &gt; | [**CREATION\_DATE**](#variable-creation_date)  <br>_Creation date._  |
-|  [**int**](classastrea_1_1astro_1_1CartesianVector.md) | [**DB\_ID**](#variable-db_id)  <br>_Database ID for the GP object._  |
+|  int | [**DB\_ID**](#variable-db_id)  <br>_Database ID for the GP object._  |
 |  std::optional&lt; std::string &gt; | [**DECAY\_DATE**](#variable-decay_date)  <br>_Decay date._  |
-|  std::optional&lt; [**long**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**ECCENTRICITY**](#variable-eccentricity)  <br>_Eccentricity._  |
-|  std::optional&lt; [**short**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**ELEMENT\_SET\_NO**](#variable-element_set_no)  <br>_Element set number._  |
-|  std::optional&lt; [**short**](classastrea_1_1astro_1_1CartesianVector.md) [**unsigned**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**EPHEMERIS\_TYPE**](#variable-ephemeris_type)  <br>_Ephemeris type._  |
+|  std::optional&lt; long double &gt; | [**ECCENTRICITY**](#variable-eccentricity)  <br>_Eccentricity._  |
+|  std::optional&lt; short &gt; | [**ELEMENT\_SET\_NO**](#variable-element_set_no)  <br>_Element set number._  |
+|  std::optional&lt; short unsigned &gt; | [**EPHEMERIS\_TYPE**](#variable-ephemeris_type)  <br>_Ephemeris type._  |
 |  std::optional&lt; std::string &gt; | [**EPOCH**](#variable-epoch)  <br>_Epoch._  |
-|  std::optional&lt; [**long**](classastrea_1_1astro_1_1CartesianVector.md) [**unsigned**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**FILE**](#variable-file)  <br>_File number._  |
-|  [**unsigned**](classastrea_1_1astro_1_1CartesianVector.md) | [**GP\_ID**](#variable-gp_id)  <br>_General Perturbations ID._  |
-|  std::optional&lt; [**long**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**INCLINATION**](#variable-inclination)  <br>_Inclination in degrees._  |
+|  std::optional&lt; long unsigned &gt; | [**FILE**](#variable-file)  <br>_File number._  |
+|  unsigned | [**GP\_ID**](#variable-gp_id)  <br>_General Perturbations ID._  |
+|  std::optional&lt; long double &gt; | [**INCLINATION**](#variable-inclination)  <br>_Inclination in degrees._  |
 |  std::optional&lt; std::string &gt; | [**LAUNCH\_DATE**](#variable-launch_date)  <br>_Launch date._  |
-|  std::optional&lt; [**double**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**MEAN\_ANOMALY**](#variable-mean_anomaly)  <br>_Mean anomaly in degrees._  |
+|  std::optional&lt; double &gt; | [**MEAN\_ANOMALY**](#variable-mean_anomaly)  <br>_Mean anomaly in degrees._  |
 |  std::string | [**MEAN\_ELEMENT\_THEORY**](#variable-mean_element_theory)  <br>_Mean element theory._  |
-|  std::optional&lt; [**long**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**MEAN\_MOTION**](#variable-mean_motion)  <br>_Mean motion in revolutions per day._  |
-|  std::optional&lt; [**long**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**MEAN\_MOTION\_DDOT**](#variable-mean_motion_ddot)  <br>_Mean motion derivative in revolutions per day squared._  |
-|  std::optional&lt; [**long**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**MEAN\_MOTION\_DOT**](#variable-mean_motion_dot)  <br>_Mean motion second derivative in revolutions per day cubed._  |
-|  [**unsigned**](classastrea_1_1astro_1_1CartesianVector.md) | [**NORAD\_CAT\_ID**](#variable-norad_cat_id)  <br>_NORAD catalog ID._  |
+|  std::optional&lt; long double &gt; | [**MEAN\_MOTION**](#variable-mean_motion)  <br>_Mean motion in revolutions per day._  |
+|  std::optional&lt; long double &gt; | [**MEAN\_MOTION\_DDOT**](#variable-mean_motion_ddot)  <br>_Mean motion derivative in revolutions per day squared._  |
+|  std::optional&lt; long double &gt; | [**MEAN\_MOTION\_DOT**](#variable-mean_motion_dot)  <br>_Mean motion second derivative in revolutions per day cubed._  |
+|  unsigned | [**NORAD\_CAT\_ID**](#variable-norad_cat_id)  <br>_NORAD catalog ID._  |
 |  std::optional&lt; std::string &gt; | [**OBJECT\_ID**](#variable-object_id)  <br>_Object ID._  |
 |  std::optional&lt; std::string &gt; | [**OBJECT\_NAME**](#variable-object_name)  <br>_Object name._  |
 |  std::optional&lt; std::string &gt; | [**OBJECT\_TYPE**](#variable-object_type)  <br>_Object type._  |
 |  std::string | [**ORIGINATOR**](#variable-originator)  <br>_Originator of the data._  |
-|  std::optional&lt; [**double**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**PERIAPSIS**](#variable-periapsis)  <br>_Periapsis altitude in kilometers._  |
-|  std::optional&lt; [**double**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**PERIOD**](#variable-period)  <br>_Orbital period in minutes._  |
-|  std::optional&lt; [**long**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**RA\_OF\_ASC\_NODE**](#variable-ra_of_asc_node)  <br>_Right ascension of ascending node in degrees._  |
+|  std::optional&lt; double &gt; | [**PERIAPSIS**](#variable-periapsis)  <br>_Periapsis altitude in kilometers._  |
+|  std::optional&lt; double &gt; | [**PERIOD**](#variable-period)  <br>_Orbital period in minutes._  |
+|  std::optional&lt; long double &gt; | [**RA\_OF\_ASC\_NODE**](#variable-ra_of_asc_node)  <br>_Right ascension of ascending node in degrees._  |
 |  std::optional&lt; std::string &gt; | [**RCS\_SIZE**](#variable-rcs_size)  <br>_Radar cross-section size._  |
 |  std::string | [**REF\_FRAME**](#variable-ref_frame)  <br>_Reference frame._  |
-|  std::optional&lt; [**unsigned**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**REV\_AT\_EPOCH**](#variable-rev_at_epoch)  <br>_Revolution number at epoch._  |
-|  std::optional&lt; [**double**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**SEMIMAJOR\_AXIS**](#variable-semimajor_axis)  <br>_Semimajor axis in kilometers._  |
+|  std::optional&lt; unsigned &gt; | [**REV\_AT\_EPOCH**](#variable-rev_at_epoch)  <br>_Revolution number at epoch._  |
+|  std::optional&lt; double &gt; | [**SEMIMAJOR\_AXIS**](#variable-semimajor_axis)  <br>_Semimajor axis in kilometers._  |
 |  std::optional&lt; std::string &gt; | [**SITE**](#variable-site)  <br>_Site of the GP object._  |
 |  std::string | [**TIME\_SYSTEM**](#variable-time_system)  <br>_Time system used for the GP object._  |
 |  std::optional&lt; std::string &gt; | [**TLE\_LINE0**](#variable-tle_line0)  <br>_TLE line 0 (usually the satellite name)_  |
@@ -98,7 +98,7 @@
 | Type | Name |
 | ---: | :--- |
 |   | [**GeneralPerturbations**](#function-generalperturbations-12) () = default<br>_Default constructor for_ [_**GeneralPerturbations**_](structastrea_1_1astro_1_1GeneralPerturbations.md) _._ |
-|   | [**GeneralPerturbations**](#function-generalperturbations-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) nlohmann::json & data) <br>_Constructor that initializes_ [_**GeneralPerturbations**_](structastrea_1_1astro_1_1GeneralPerturbations.md) _from a JSON object._ |
+|   | [**GeneralPerturbations**](#function-generalperturbations-22) (const nlohmann::json & data) <br>_Constructor that initializes_ [_**GeneralPerturbations**_](structastrea_1_1astro_1_1GeneralPerturbations.md) _from a JSON object._ |
 |   | [**~GeneralPerturbations**](#function-generalperturbations) () = default<br>_Default destructor for_ [_**GeneralPerturbations**_](structastrea_1_1astro_1_1GeneralPerturbations.md) _._ |
 
 

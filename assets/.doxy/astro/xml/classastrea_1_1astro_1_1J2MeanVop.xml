@@ -1,17 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1J2MeanVop" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::J2MeanVop</compoundname>
     <basecompoundref refid="classastrea_1_1astro_1_1EquationsOfMotion" prot="public" virt="non-virtual">astrea::astro::EquationsOfMotion</basecompoundref>
     <includes refid="J2MeanVop_8hpp" local="no">J2MeanVop.hpp</includes>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1J2MeanVop_1a6452f9a436a0a6d220722461569419af" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>const Unitless</type>
         <definition>const Unitless astrea::astro::J2MeanVop::eccTol</definition>
         <argsstring></argsstring>
         <name>eccTol</name>
-        <qualifiedname>astrea::astro::J2MeanVop::eccTol</qualifiedname>
-        <initializer>= 1<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">e</ref>-10 * mp_units::one</initializer>
+        <initializer>= 1e-10 * mp_units::one</initializer>
         <briefdescription>
 <para>Tolerance for checking eccentricity. </para>
         </briefdescription>
@@ -22,12 +21,11 @@
         <location file="astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp" line="73" column="20" bodyfile="astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1J2MeanVop_1a8bb55ab1fe08ea95e0e95d12b3a50f3b" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>const Angle</type>
         <definition>const Angle astrea::astro::J2MeanVop::incTol</definition>
         <argsstring></argsstring>
         <name>incTol</name>
-        <qualifiedname>astrea::astro::J2MeanVop::incTol</qualifiedname>
-        <initializer>= 1<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">e</ref>-10 * mp_units::angular::unit_symbols::rad</initializer>
+        <initializer>= 1e-10 * mp_units::angular::unit_symbols::rad</initializer>
         <briefdescription>
 <para>Tolerance for checking inclination. </para>
         </briefdescription>
@@ -37,14 +35,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp" line="74" column="17" bodyfile="astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp" bodystart="74" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1J2MeanVop_1af5931a6500d72620a540ec922e8daef1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::J2MeanVop::J2MeanVop</definition>
         <argsstring>()=default</argsstring>
         <name>J2MeanVop</name>
-        <qualifiedname>astrea::astro::J2MeanVop::J2MeanVop</qualifiedname>
         <briefdescription>
 <para>Default constructor for the J2 Mean VOP class. </para>
         </briefdescription>
@@ -59,7 +56,6 @@
         <definition>astrea::astro::J2MeanVop::~J2MeanVop</definition>
         <argsstring>()=default</argsstring>
         <name>~J2MeanVop</name>
-        <qualifiedname>astrea::astro::J2MeanVop::~J2MeanVop</qualifiedname>
         <briefdescription>
 <para>Destructor for the J2 Mean VOP class. </para>
         </briefdescription>
@@ -74,14 +70,13 @@
         <definition>OrbitalElementPartials astrea::astro::J2MeanVop::operator()</definition>
         <argsstring>(const State &amp;state, const Vehicle &amp;vehicle) const override</argsstring>
         <name>operator()</name>
-        <qualifiedname>astrea::astro::J2MeanVop::operator()</qualifiedname>
         <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1a69b14a7cd2c2c8f90dea29e3b8b765ea">operator()</reimplements>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -118,14 +113,13 @@
         <definition>StateTransitionMatrix astrea::astro::J2MeanVop::compute_stm</definition>
         <argsstring>(const State &amp;state, const Vehicle &amp;vehicle) const override</argsstring>
         <name>compute_stm</name>
-        <qualifiedname>astrea::astro::J2MeanVop::compute_stm</qualifiedname>
         <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1a9148920410e5d4988cc065f44a4ed93b">compute_stm</reimplements>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -158,11 +152,10 @@
         <location file="astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp" line="63" column="27" bodyfile="astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.cpp" bodystart="104" bodyend="107"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1J2MeanVop_1af825a1594252210705167c2c0490817c" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> std::size_t</type>
+        <type>constexpr std::size_t</type>
         <definition>constexpr std::size_t astrea::astro::J2MeanVop::get_expected_set_id</definition>
         <argsstring>() const override</argsstring>
         <name>get_expected_set_id</name>
-        <qualifiedname>astrea::astro::J2MeanVop::get_expected_set_id</qualifiedname>
         <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1a4ee1d978dd765bbc2cccbcc3e015a22f">get_expected_set_id</reimplements>
         <briefdescription>
 <para>Returns the expected set of orbital elements for this equations of motion class. </para>
@@ -176,34 +169,34 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp" line="70" column="27" bodyfile="astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp" bodystart="70" bodyend="70"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Class implementing the J2 Mean VOP equations of motion. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>astrea::astro::EquationsOfMotion</label>
-        <link refid="classastrea_1_1astro_1_1EquationsOfMotion"/>
-      </node>
       <node id="1">
         <label>astrea::astro::J2MeanVop</label>
         <link refid="classastrea_1_1astro_1_1J2MeanVop"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::EquationsOfMotion</label>
+        <link refid="classastrea_1_1astro_1_1EquationsOfMotion"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>astrea::astro::EquationsOfMotion</label>
-        <link refid="classastrea_1_1astro_1_1EquationsOfMotion"/>
-      </node>
       <node id="1">
         <label>astrea::astro::J2MeanVop</label>
         <link refid="classastrea_1_1astro_1_1J2MeanVop"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::EquationsOfMotion</label>
+        <link refid="classastrea_1_1astro_1_1EquationsOfMotion"/>
       </node>
     </collaborationgraph>
     <location file="astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp" line="34" column="1" bodyfile="astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp" bodystart="34" bodyend="75"/>

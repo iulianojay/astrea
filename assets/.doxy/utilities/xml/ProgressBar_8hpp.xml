@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="ProgressBar_8hpp" kind="file" language="C++">
     <compoundname>ProgressBar.hpp</compoundname>
     <includes local="no">cmath</includes>
@@ -7,6 +7,15 @@
     <includes local="no">string</includes>
     <includedby refid="utilities_8hpp" local="no">astrea/utilities/utilities/utilities.hpp</includedby>
     <incdepgraph>
+      <node id="2">
+        <label>cmath</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="3">
+        <label>iostream</label>
+      </node>
       <node id="1">
         <label>astrea/utilities/utilities/ProgressBar.hpp</label>
         <link refid="ProgressBar_8hpp"/>
@@ -17,26 +26,17 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>cmath</label>
-      </node>
-      <node id="3">
-        <label>iostream</label>
-      </node>
-      <node id="4">
-        <label>string</label>
-      </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="2">
+        <label>astrea/utilities/utilities/utilities.hpp</label>
+        <link refid="utilities_8hpp"/>
+      </node>
       <node id="1">
         <label>astrea/utilities/utilities/ProgressBar.hpp</label>
         <link refid="ProgressBar_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-      </node>
-      <node id="2">
-        <label>astrea/utilities/utilities/utilities.hpp</label>
-        <link refid="utilities_8hpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classastrea_1_1utilities_1_1ProgressBar" prot="public">astrea::utilities::ProgressBar</innerclass>

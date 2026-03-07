@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="Keplerian_8cpp" kind="file" language="C++">
     <compoundname>Keplerian.cpp</compoundname>
     <includes refid="Keplerian_8hpp" local="no">astro/state/orbital_elements/instances/Keplerian.hpp</includes>
@@ -17,10 +17,356 @@
     <includes refid="conversions_8hpp" local="no">astro/utilities/conversions.hpp</includes>
     <includes local="no">math/interpolation.hpp</includes>
     <incdepgraph>
-      <node id="5">
-        <label>astro/astro.fwd.hpp</label>
-        <link refid="astro_8fwd_8hpp"/>
-        <childnode refid="6" relation="include">
+      <node id="29">
+        <label>astro/frames/frames.hpp</label>
+        <link refid="frames_8hpp_source"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>math/chebyshev_util.hpp</label>
+      </node>
+      <node id="9">
+        <label>iomanip</label>
+      </node>
+      <node id="23">
+        <label>utilities/string_util.hpp</label>
+      </node>
+      <node id="53">
+        <label>astro/systems/planetary_bodies/Jupiter/Europa.hpp</label>
+        <link refid="Europa_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="71">
+        <label>astro/systems/planetary_bodies/Venus/Venus.hpp</label>
+        <link refid="Venus_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>astro/systems/planetary_bodies/Saturn/Iapetus.hpp</label>
+        <link refid="Iapetus_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="80">
+        <label>math/interpolation.hpp</label>
+      </node>
+      <node id="7">
+        <label>stdint.h</label>
+      </node>
+      <node id="17">
+        <label>variant</label>
+      </node>
+      <node id="2">
+        <label>astro/state/orbital_elements/instances/Keplerian.hpp</label>
+        <link refid="Keplerian_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="72">
+        <label>astro/state/orbital_elements/instances/Equinoctial.hpp</label>
+        <link refid="Equinoctial_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>mp-units/math.h</label>
+      </node>
+      <node id="66">
+        <label>astro/systems/planetary_bodies/Saturn/Titan.hpp</label>
+        <link refid="Titan_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>mp-units/systems/iau.h</label>
+      </node>
+      <node id="15">
+        <label>mp-units/systems/si/math.h</label>
+      </node>
+      <node id="70">
+        <label>astro/systems/planetary_bodies/Uranus/Uranus.hpp</label>
+        <link refid="Uranus_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>string</label>
+      </node>
+      <node id="73">
+        <label>astro/types/type_traits.hpp</label>
+        <link refid="type__traits_8hpp"/>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>astro/frames/instances/body_fixed_frames.hpp</label>
+        <link refid="body__fixed__frames_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>mp-units/systems/angular/math.h</label>
+      </node>
+      <node id="42">
+        <label>unordered_set</label>
+      </node>
+      <node id="54">
+        <label>astro/systems/planetary_bodies/Jupiter/Ganymede.hpp</label>
+        <link refid="Ganymede_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>astro/systems/planetary_bodies/Earth/Moon.hpp</label>
+        <link refid="Moon_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>astro/systems/planetary_bodies/Mars/Deimos.hpp</label>
+        <link refid="Deimos_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="68">
+        <label>astro/systems/planetary_bodies/Uranus/Oberon.hpp</label>
+        <link refid="Oberon_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>astro/utilities/conversions.hpp</label>
+        <link refid="conversions_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>astro/time/JulianDateClock.hpp</label>
+        <link refid="JulianDateClock_8hpp"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>astro/systems/planetary_bodies/Jupiter/Jupiter.hpp</label>
+        <link refid="Jupiter_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="69">
+        <label>astro/systems/planetary_bodies/Uranus/Titania.hpp</label>
+        <link refid="Titania_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>astro/systems/CelestialBodyParameters.hpp</label>
+        <link refid="CelestialBodyParameters_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>astro/systems/planetary_bodies/Neptune/Triton.hpp</label>
+        <link refid="Triton_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astro/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
       <node id="19">
@@ -47,6 +393,111 @@
         <childnode refid="28" relation="include">
         </childnode>
       </node>
+      <node id="18">
+        <label>astro/state/orbital_elements/instances/Cartesian.hpp</label>
+        <link refid="Cartesian_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>typeinfo</label>
+      </node>
+      <node id="79">
+        <label>astro/types/variant_util.hpp</label>
+        <link refid="variant__util_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="76">
+        <label>tuple</label>
+      </node>
+      <node id="26">
+        <label>astro/frames/frame_concepts.hpp</label>
+        <link refid="frame__concepts_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>vector</label>
+      </node>
+      <node id="78">
+        <label>utility</label>
+      </node>
+      <node id="20">
+        <label>array</label>
+      </node>
+      <node id="61">
+        <label>astro/systems/planetary_bodies/Neptune/Neptune.hpp</label>
+        <link refid="Neptune_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>astro/state/orbital_elements/OrbitalElements.hpp</label>
+        <link refid="OrbitalElements_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>astro/systems/planetary_bodies/Jupiter/Io.hpp</label>
+        <link refid="Io_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
       <node id="24">
         <label>astro/frames/Frame.hpp</label>
         <link refid="Frame_8hpp"/>
@@ -59,45 +510,50 @@
         <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="26">
-        <label>astro/frames/frame_concepts.hpp</label>
-        <link refid="frame__concepts_8hpp"/>
-        <childnode refid="27" relation="include">
+      <node id="60">
+        <label>astro/systems/planetary_bodies/Mercury/Mercury.hpp</label>
+        <link refid="Mercury_8hpp"/>
+        <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
+        <childnode refid="50" relation="include">
         </childnode>
-      </node>
-      <node id="29">
-        <label>astro/frames/frames.hpp</label>
-        <link refid="frames_8hpp_source"/>
-        <childnode refid="30" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-      </node>
-      <node id="30">
-        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
-        <link refid="body__centered__inertial__frames_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="31">
-        <label>astro/frames/instances/body_fixed_frames.hpp</label>
-        <link refid="body__fixed__frames_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="32">
-        <label>astro/frames/instances/defined_rotations.hpp</label>
-        <link refid="defined__rotations_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="29" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="33" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
-        <childnode refid="34" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
+      </node>
+      <node id="3">
+        <label>iosfwd</label>
+      </node>
+      <node id="10">
+        <label>iostream</label>
+      </node>
+      <node id="64">
+        <label>astro/systems/planetary_bodies/Saturn/Rhea.hpp</label>
+        <link refid="Rhea_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="74">
+        <label>cstddef</label>
       </node>
       <node id="28">
         <label>astro/frames/transformations.hpp</label>
@@ -131,87 +587,92 @@
         <childnode refid="24" relation="include">
         </childnode>
       </node>
-      <node id="33">
-        <label>astro/frames/types/DirectionCosineMatrix.hpp</label>
-        <link refid="DirectionCosineMatrix_8hpp"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
+      <node id="37">
+        <label>chrono</label>
+      </node>
+      <node id="30">
+        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
+        <link refid="body__centered__inertial__frames_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
       </node>
-      <node id="39">
-        <label>astro/frames/types/InertialFrame.hpp</label>
-        <link refid="InertialFrame_8hpp"/>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
+      <node id="35">
+        <label>mp-units/systems/si/chrono.h</label>
       </node>
-      <node id="16">
-        <label>astro/state/orbital_elements/OrbitalElements.hpp</label>
-        <link refid="OrbitalElements_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
+      <node id="32">
+        <label>astro/frames/instances/defined_rotations.hpp</label>
+        <link refid="defined__rotations_8hpp"/>
         <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="72" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="73" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="79" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>astro/state/orbital_elements/instances/Cartesian.hpp</label>
-        <link refid="Cartesian_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
         </childnode>
       </node>
-      <node id="72">
-        <label>astro/state/orbital_elements/instances/Equinoctial.hpp</label>
-        <link refid="Equinoctial_8hpp"/>
-        <childnode refid="3" relation="include">
+      <node id="22">
+        <label>units/typedefs.hpp</label>
+      </node>
+      <node id="27">
+        <label>concepts</label>
+      </node>
+      <node id="58">
+        <label>astro/systems/planetary_bodies/Mars/Mars.hpp</label>
+        <link refid="Mars_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
         <childnode refid="8" relation="include">
         </childnode>
+      </node>
+      <node id="52">
+        <label>astro/systems/planetary_bodies/Jupiter/Callisto.hpp</label>
+        <link refid="Callisto_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>astro/systems/planetary_bodies/Sun/Sun.hpp</label>
+        <link refid="Sun_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="77">
+        <label>type_traits</label>
       </node>
       <node id="1">
         <label>astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp</label>
@@ -245,16 +706,28 @@
         <childnode refid="80" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>astro/state/orbital_elements/instances/Keplerian.hpp</label>
-        <link refid="Keplerian_8hpp"/>
-        <childnode refid="3" relation="include">
+      <node id="59">
+        <label>astro/systems/planetary_bodies/Mars/Phobos.hpp</label>
+        <link refid="Phobos_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
         <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
       <node id="40">
@@ -297,12 +770,52 @@
         <childnode refid="47" relation="include">
         </childnode>
       </node>
-      <node id="46">
-        <label>astro/systems/CelestialBodyParameters.hpp</label>
-        <link refid="CelestialBodyParameters_8hpp"/>
+      <node id="65">
+        <label>astro/systems/planetary_bodies/Saturn/Saturn.hpp</label>
+        <link refid="Saturn_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="34" relation="include">
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>astro/frames/types/InertialFrame.hpp</label>
+        <link refid="InertialFrame_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>astro/frames/types/DirectionCosineMatrix.hpp</label>
+        <link refid="DirectionCosineMatrix_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
         </childnode>
       </node>
       <node id="49">
@@ -323,382 +836,27 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="51">
-        <label>astro/systems/planetary_bodies/Earth/Moon.hpp</label>
-        <link refid="Moon_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
+      <node id="4">
+        <label>units/units.hpp</label>
       </node>
-      <node id="52">
-        <label>astro/systems/planetary_bodies/Jupiter/Callisto.hpp</label>
-        <link refid="Callisto_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
+      <node id="41">
+        <label>memory</label>
       </node>
-      <node id="53">
-        <label>astro/systems/planetary_bodies/Jupiter/Europa.hpp</label>
-        <link refid="Europa_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
+      <node id="75">
+        <label>initializer_list</label>
       </node>
-      <node id="54">
-        <label>astro/systems/planetary_bodies/Jupiter/Ganymede.hpp</label>
-        <link refid="Ganymede_8hpp"/>
-        <childnode refid="12" relation="include">
+      <node id="34">
+        <label>astro/time/Date.hpp</label>
+        <link refid="Date_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="55">
-        <label>astro/systems/planetary_bodies/Jupiter/Io.hpp</label>
-        <link refid="Io_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="35" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="56">
-        <label>astro/systems/planetary_bodies/Jupiter/Jupiter.hpp</label>
-        <link refid="Jupiter_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="57">
-        <label>astro/systems/planetary_bodies/Mars/Deimos.hpp</label>
-        <link refid="Deimos_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="58">
-        <label>astro/systems/planetary_bodies/Mars/Mars.hpp</label>
-        <link refid="Mars_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="59">
-        <label>astro/systems/planetary_bodies/Mars/Phobos.hpp</label>
-        <link refid="Phobos_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="60">
-        <label>astro/systems/planetary_bodies/Mercury/Mercury.hpp</label>
-        <link refid="Mercury_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="61">
-        <label>astro/systems/planetary_bodies/Neptune/Neptune.hpp</label>
-        <link refid="Neptune_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="62">
-        <label>astro/systems/planetary_bodies/Neptune/Triton.hpp</label>
-        <link refid="Triton_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="63">
-        <label>astro/systems/planetary_bodies/Saturn/Iapetus.hpp</label>
-        <link refid="Iapetus_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="64">
-        <label>astro/systems/planetary_bodies/Saturn/Rhea.hpp</label>
-        <link refid="Rhea_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="65">
-        <label>astro/systems/planetary_bodies/Saturn/Saturn.hpp</label>
-        <link refid="Saturn_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="66">
-        <label>astro/systems/planetary_bodies/Saturn/Titan.hpp</label>
-        <link refid="Titan_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="67">
-        <label>astro/systems/planetary_bodies/Sun/Sun.hpp</label>
-        <link refid="Sun_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="68">
-        <label>astro/systems/planetary_bodies/Uranus/Oberon.hpp</label>
-        <link refid="Oberon_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="69">
-        <label>astro/systems/planetary_bodies/Uranus/Titania.hpp</label>
-        <link refid="Titania_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="70">
-        <label>astro/systems/planetary_bodies/Uranus/Uranus.hpp</label>
-        <link refid="Uranus_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="71">
-        <label>astro/systems/planetary_bodies/Venus/Venus.hpp</label>
-        <link refid="Venus_8hpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
       </node>
       <node id="48">
@@ -749,164 +907,6 @@
         <childnode refid="71" relation="include">
         </childnode>
       </node>
-      <node id="34">
-        <label>astro/time/Date.hpp</label>
-        <link refid="Date_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
-      </node>
-      <node id="36">
-        <label>astro/time/JulianDateClock.hpp</label>
-        <link refid="JulianDateClock_8hpp"/>
-        <childnode refid="37" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>astro/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="73">
-        <label>astro/types/type_traits.hpp</label>
-        <link refid="type__traits_8hpp"/>
-        <childnode refid="74" relation="include">
-        </childnode>
-        <childnode refid="75" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="76" relation="include">
-        </childnode>
-        <childnode refid="77" relation="include">
-        </childnode>
-        <childnode refid="78" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>astro/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="79">
-        <label>astro/types/variant_util.hpp</label>
-        <link refid="variant__util_8hpp"/>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="47">
-        <label>astro/utilities/conversions.hpp</label>
-        <link refid="conversions_8hpp"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="20">
-        <label>array</label>
-      </node>
-      <node id="37">
-        <label>chrono</label>
-      </node>
-      <node id="27">
-        <label>concepts</label>
-      </node>
-      <node id="74">
-        <label>cstddef</label>
-      </node>
-      <node id="75">
-        <label>initializer_list</label>
-      </node>
-      <node id="9">
-        <label>iomanip</label>
-      </node>
-      <node id="3">
-        <label>iosfwd</label>
-      </node>
-      <node id="10">
-        <label>iostream</label>
-      </node>
-      <node id="45">
-        <label>math/chebyshev_util.hpp</label>
-      </node>
-      <node id="80">
-        <label>math/interpolation.hpp</label>
-      </node>
-      <node id="41">
-        <label>memory</label>
-      </node>
-      <node id="11">
-        <label>mp-units/math.h</label>
-      </node>
-      <node id="12">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="13">
-        <label>mp-units/systems/angular/math.h</label>
-      </node>
-      <node id="50">
-        <label>mp-units/systems/iau.h</label>
-      </node>
-      <node id="14">
-        <label>mp-units/systems/si.h</label>
-      </node>
-      <node id="35">
-        <label>mp-units/systems/si/chrono.h</label>
-      </node>
-      <node id="15">
-        <label>mp-units/systems/si/math.h</label>
-      </node>
-      <node id="7">
-        <label>stdint.h</label>
-      </node>
-      <node id="25">
-        <label>string</label>
-      </node>
-      <node id="76">
-        <label>tuple</label>
-      </node>
-      <node id="77">
-        <label>type_traits</label>
-      </node>
-      <node id="21">
-        <label>typeinfo</label>
-      </node>
-      <node id="22">
-        <label>units/typedefs.hpp</label>
-      </node>
-      <node id="4">
-        <label>units/units.hpp</label>
-      </node>
-      <node id="42">
-        <label>unordered_set</label>
-      </node>
-      <node id="23">
-        <label>utilities/string_util.hpp</label>
-      </node>
-      <node id="78">
-        <label>utility</label>
-      </node>
-      <node id="17">
-        <label>variant</label>
-      </node>
-      <node id="43">
-        <label>vector</label>
-      </node>
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
@@ -949,21 +949,21 @@
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units::angular;</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">angular::unit_symbols::deg;</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">angular::unit_symbols::rad;</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">si::unit_symbols::km;</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">si::unit_symbols::s;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>angular::unit_symbols::deg;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>angular::unit_symbols::rad;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>si::unit_symbols::km;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>si::unit_symbols::s;</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal">Keplerian<sp/><ref refid="classastrea_1_1astro_1_1Keplerian_1a3b1ae5733210b32e8a4ffcde6c441210" kindref="member">Keplerian::LEO</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Keplerian_1a3ed0985b506fbde91c0854f091eb09b2" kindref="member">Keplerian</ref>(7000.0<sp/>*<sp/>km,<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad);<sp/>}</highlight></codeline>
-<codeline lineno="44"><highlight class="normal">Keplerian<sp/><ref refid="classastrea_1_1astro_1_1Keplerian_1ace444d32ffe2d1450c92f0fe6c6cfdf4" kindref="member">Keplerian::LMEO</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Keplerian_1a3ed0985b506fbde91c0854f091eb09b2" kindref="member">Keplerian</ref>(10000.0<sp/>*<sp/>km,<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad);<sp/>}</highlight></codeline>
-<codeline lineno="45"><highlight class="normal">Keplerian<sp/><ref refid="classastrea_1_1astro_1_1Keplerian_1a9b73fa75f724653a4ae1eabd8717da5a" kindref="member">Keplerian::GPS</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Keplerian_1a3ed0985b506fbde91c0854f091eb09b2" kindref="member">Keplerian</ref>(22000.0<sp/>*<sp/>km,<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad);<sp/>}</highlight></codeline>
-<codeline lineno="46"><highlight class="normal">Keplerian<sp/><ref refid="classastrea_1_1astro_1_1Keplerian_1abd6ebea8a1aa157cb6f39fb66f26940a" kindref="member">Keplerian::HMEO</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Keplerian_1a3ed0985b506fbde91c0854f091eb09b2" kindref="member">Keplerian</ref>(30000.0<sp/>*<sp/>km,<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad);<sp/>}</highlight></codeline>
-<codeline lineno="47"><highlight class="normal">Keplerian<sp/><ref refid="classastrea_1_1astro_1_1Keplerian_1a06de66d6b9ff770355a55e505e4f7c83" kindref="member">Keplerian::GEO</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Keplerian_1a3ed0985b506fbde91c0854f091eb09b2" kindref="member">Keplerian</ref>(42164.0<sp/>*<sp/>km,<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad);<sp/>}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">Keplerian<sp/>Keplerian::LEO()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Keplerian(7000.0<sp/>*<sp/>km,<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad);<sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">Keplerian<sp/>Keplerian::LMEO()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Keplerian(10000.0<sp/>*<sp/>km,<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad);<sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">Keplerian<sp/>Keplerian::GPS()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Keplerian(22000.0<sp/>*<sp/>km,<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad);<sp/>}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">Keplerian<sp/>Keplerian::HMEO()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Keplerian(30000.0<sp/>*<sp/>km,<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad);<sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">Keplerian<sp/>Keplerian::GEO()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Keplerian(42164.0<sp/>*<sp/>km,<sp/>0.0<sp/>*<sp/>one,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad,<sp/>0.0<sp/>*<sp/>rad);<sp/>}</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><ref refid="classastrea_1_1astro_1_1Keplerian_1a3ed0985b506fbde91c0854f091eb09b2" kindref="member">Keplerian::Keplerian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Cartesian&amp;<sp/>elements,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">Keplerian::Keplerian(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Cartesian&amp;<sp/>elements,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu)</highlight></codeline>
 <codeline lineno="50"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="52"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Force<sp/>rounding<sp/>errors<sp/>to<sp/>assume<sp/>zero<sp/>values<sp/>for<sp/>angles.<sp/>Assume<sp/>complex</highlight></codeline>
@@ -1104,7 +1104,7 @@
 <codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>wrap_angles();</highlight></codeline>
 <codeline lineno="188"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="189"><highlight class="normal"></highlight></codeline>
-<codeline lineno="190"><highlight class="normal"><ref refid="classastrea_1_1astro_1_1Keplerian_1a3ed0985b506fbde91c0854f091eb09b2" kindref="member">Keplerian::Keplerian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Equinoctial&amp;<sp/>elements,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu)</highlight></codeline>
+<codeline lineno="190"><highlight class="normal">Keplerian::Keplerian(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Equinoctial&amp;<sp/>elements,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu)</highlight></codeline>
 <codeline lineno="191"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="192"><highlight class="normal"></highlight></codeline>
 <codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>semilatus<sp/><sp/><sp/><sp/><sp/>=<sp/>elements.get_semilatus();</highlight></codeline>
@@ -1137,13 +1137,13 @@
 <codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>wrap_angles();</highlight></codeline>
 <codeline lineno="221"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="222"><highlight class="normal"></highlight></codeline>
-<codeline lineno="223"><highlight class="normal"><ref refid="classastrea_1_1astro_1_1Keplerian_1a3ed0985b506fbde91c0854f091eb09b2" kindref="member">Keplerian::Keplerian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>OrbitalElements&amp;<sp/>elements,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu)</highlight></codeline>
+<codeline lineno="223"><highlight class="normal">Keplerian::Keplerian(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>OrbitalElements&amp;<sp/>elements,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu)</highlight></codeline>
 <codeline lineno="224"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>=<sp/>elements.in_element_set&lt;<ref refid="classastrea_1_1astro_1_1Keplerian_1a3ed0985b506fbde91c0854f091eb09b2" kindref="member">Keplerian</ref>&gt;(mu);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>=<sp/>elements.in_element_set&lt;Keplerian&gt;(mu);</highlight></codeline>
 <codeline lineno="226"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="227"><highlight class="normal"></highlight></codeline>
 <codeline lineno="228"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copy<sp/>constructor</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="229"><highlight class="normal"><ref refid="classastrea_1_1astro_1_1Keplerian_1a3ed0985b506fbde91c0854f091eb09b2" kindref="member">Keplerian::Keplerian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Keplerian&amp;<sp/>other)<sp/>:</highlight></codeline>
+<codeline lineno="229"><highlight class="normal">Keplerian::Keplerian(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Keplerian&amp;<sp/>other)<sp/>:</highlight></codeline>
 <codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>_semimajor(other._semimajor),</highlight></codeline>
 <codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/>_eccentricity(other._eccentricity),</highlight></codeline>
 <codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>_inclination(other._inclination),</highlight></codeline>
@@ -1165,7 +1165,7 @@
 <codeline lineno="248"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="249"><highlight class="normal"></highlight></codeline>
 <codeline lineno="250"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Move<sp/>assignment<sp/>operator</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="251"><highlight class="normal">Keplerian&amp;<sp/>Keplerian::operator=(Keplerian&amp;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal">Keplerian&amp;<sp/>Keplerian::operator=(Keplerian&amp;&amp;<sp/>other)<sp/>noexcept</highlight></codeline>
 <codeline lineno="252"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;other)<sp/>{</highlight></codeline>
 <codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_semimajor<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std::move(other._semimajor);</highlight></codeline>
@@ -1360,7 +1360,7 @@
 <codeline lineno="443"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_argPerigeePartial<sp/>/<sp/>_argPerigeePartial.unit,<sp/><sp/><sp/>_trueAnomalyPartial<sp/>/<sp/>_trueAnomalyPartial.unit<sp/>};</highlight></codeline>
 <codeline lineno="444"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="445"><highlight class="normal"></highlight></codeline>
-<codeline lineno="446"><highlight class="normal">std::ostream&amp;<sp/><ref refid="CartesianVector_8hpp_1a6ec910a4eb8c157cdea500565819f3d0" kindref="member">operator&lt;&lt;</ref>(std::ostream&amp;<sp/>os,<sp/>Keplerian<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>elements)</highlight></codeline>
+<codeline lineno="446"><highlight class="normal">std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;<sp/>os,<sp/>Keplerian<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>elements)</highlight></codeline>
 <codeline lineno="447"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="448"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="449"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/>elements.get_semimajor()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
@@ -1373,7 +1373,7 @@
 <codeline lineno="456"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os;</highlight></codeline>
 <codeline lineno="457"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="458"><highlight class="normal"></highlight></codeline>
-<codeline lineno="459"><highlight class="normal">std::ostream&amp;<sp/><ref refid="CartesianVector_8hpp_1a6ec910a4eb8c157cdea500565819f3d0" kindref="member">operator&lt;&lt;</ref>(std::ostream&amp;<sp/>os,<sp/>KeplerianPartial<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>elements)</highlight></codeline>
+<codeline lineno="459"><highlight class="normal">std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;<sp/>os,<sp/>KeplerianPartial<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>elements)</highlight></codeline>
 <codeline lineno="460"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="461"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="462"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/>elements._semimajorPartial<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>

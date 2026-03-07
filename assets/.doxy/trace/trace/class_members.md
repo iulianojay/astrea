@@ -194,7 +194,9 @@
 * **PolygonalFieldOfView** ([**astrea::trace::PolygonalFieldOfView**](classastrea_1_1trace_1_1PolygonalFieldOfView.md))
 * **PositionCache** ([**astrea::trace::PositionCache**](classastrea_1_1trace_1_1PositionCache.md))
 * **prepend** ([**astrea::trace::RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md))
+* **Payload** ([**astrea::trace::Sensor**](classastrea_1_1trace_1_1Sensor.md))
 * **Payload&lt; Sensor, SensorParameters &gt;** ([**astrea::trace::Sensor**](classastrea_1_1trace_1_1Sensor.md))
+* **parameters** ([**astrea::trace::Sensor**](classastrea_1_1trace_1_1Sensor.md))
 * **Plotter** ([**astrea::trace::plotting::Plotter**](classastrea_1_1trace_1_1plotting_1_1Plotter.md))
 * **plot\_access\_metrics** ([**astrea::trace::plotting::Plotter**](classastrea_1_1trace_1_1plotting_1_1Plotter.md))
 * **plot\_number\_of\_folds** ([**astrea::trace::plotting::Plotter**](classastrea_1_1trace_1_1plotting_1_1Plotter.md))
@@ -202,6 +204,7 @@
 
 ## r
 
+* **requires** ([**astrea::trace::AccessAnalyzer**](classastrea_1_1trace_1_1AccessAnalyzer.md), [**astrea::trace::Sensor**](classastrea_1_1trace_1_1Sensor.md))
 * **radius1to2** ([**astrea::trace::AccessInfo**](structastrea_1_1trace_1_1AccessInfo.md))
 * **receiver\_loss** ([**astrea::trace::Antenna**](classastrea_1_1trace_1_1Antenna.md))
 * **recieved\_power** ([**astrea::trace::Antenna**](classastrea_1_1trace_1_1Antenna.md))
@@ -228,7 +231,6 @@
 * **set\_transmit\_loss** ([**astrea::trace::AntennaParameters**](classastrea_1_1trace_1_1AntennaParameters.md))
 * **sender** ([**astrea::trace::IdPair**](structastrea_1_1trace_1_1IdPair.md))
 * **set\_position** ([**astrea::trace::PositionCache**](classastrea_1_1trace_1_1PositionCache.md))
-* **Sensor** ([**astrea::trace::Sensor**](classastrea_1_1trace_1_1Sensor.md))
 * **SensorParameters** ([**astrea::trace::SensorParameters**](classastrea_1_1trace_1_1SensorParameters.md))
 * **set\_fov** ([**astrea::trace::SensorParameters**](classastrea_1_1trace_1_1SensorParameters.md))
 * **SpatialIndex** ([**astrea::trace::SpatialIndex**](classastrea_1_1trace_1_1SpatialIndex.md))

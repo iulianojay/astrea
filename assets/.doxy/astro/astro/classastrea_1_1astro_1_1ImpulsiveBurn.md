@@ -53,9 +53,9 @@ _A class representing an impulsive burn_ [_**Event**_](classastrea_1_1astro_1_1E
 | Type | Name |
 | ---: | :--- |
 |  std::string | [**get\_name**](#function-get_name) () const<br>_Gets the name of the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
-|  [**bool**](classastrea_1_1astro_1_1CartesianVector.md) | [**is\_terminal**](#function-is_terminal) () const<br>_Checks if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is a terminal_[_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
-|  [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**measure\_event**](#function-measure_event) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & time, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Measures the anomaly as a trigger._  |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**trigger\_action**](#function-trigger_action) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Triggers an impulsive burn._  |
+|  bool | [**is\_terminal**](#function-is_terminal) () const<br>_Checks if the_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _is a terminal_[_**Event**_](classastrea_1_1astro_1_1Event.md) _._ |
+|  Unitless | [**measure\_event**](#function-measure_event) (const Time & time, const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Measures the anomaly as a trigger._  |
+|  void | [**trigger\_action**](#function-trigger_action) (const Time & time, [**State**](classastrea_1_1astro_1_1State.md) & state, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Triggers an impulsive burn._  |
 
 
 
@@ -151,9 +151,9 @@ false If the [**Event**](classastrea_1_1astro_1_1Event.md) is not a terminal [**
 _Measures the anomaly as a trigger._ 
 ```C++
 Unitless astrea::astro::ImpulsiveBurn::measure_event (
-    const  Time & time,
-    const  State & state,
-    const  Vehicle & vehicle
+    const Time & time,
+    const State & state,
+    const Vehicle & vehicle
 ) const
 ```
 
@@ -194,7 +194,7 @@ false If the [**Event**](classastrea_1_1astro_1_1Event.md) is not triggered by t
 _Triggers an impulsive burn._ 
 ```C++
 void astrea::astro::ImpulsiveBurn::trigger_action (
-    const  Time & time,
+    const Time & time,
     State & state,
     Vehicle & vehicle
 ) const

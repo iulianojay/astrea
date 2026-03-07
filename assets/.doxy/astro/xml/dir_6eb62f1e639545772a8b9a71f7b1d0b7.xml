@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="dir_6eb62f1e639545772a8b9a71f7b1d0b7" kind="dir">
     <compoundname>astrea/astro/astro/state/orbital_elements</compoundname>
     <innerdir refid="dir_2296e922a578ce2ef4a64c83384e553c">astrea/astro/astro/state/orbital_elements/instances</innerdir>

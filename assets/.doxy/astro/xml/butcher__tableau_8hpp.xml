@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="butcher__tableau_8hpp" kind="file" language="C++">
     <compoundname>butcher_tableau.hpp</compoundname>
     <includes local="no">cstddef</includes>
@@ -17,15 +17,15 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2">
-        <label>astrea/astro/astro/astro.hpp</label>
-        <link refid="astro_8hpp"/>
-      </node>
       <node id="1">
         <label>astrea/astro/astro/propagation/numerical/butcher_tableau.hpp</label>
         <link refid="butcher__tableau_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
       </node>
     </invincdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>

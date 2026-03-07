@@ -1,8 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="structastrea_1_1astro_1_1Frame" kind="struct" language="C++" prot="public">
     <compoundname>astrea::astro::Frame</compoundname>
-    <derivedcompoundref refid="structastrea_1_1astro_1_1InertialFrame" prot="public" virt="non-virtual">astrea::astro::InertialFrame&lt; origin, axis &gt;</derivedcompoundref>
     <includes refid="Frame_8hpp" local="no">Frame.hpp</includes>
     <templateparamlist>
       <param>
@@ -16,14 +15,13 @@
         <defname>axis</defname>
       </param>
     </templateparamlist>
-    <sectiondef kind="protected-static-attrib">
+      <sectiondef kind="protected-static-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1Frame_1a3d2312fa3ad178d9418fb59dd1887841" prot="protected" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
+        <type>constexpr <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
         <definition>constexpr CelestialBodyId astrea::astro::Frame&lt; origin, axis &gt;::_origin</definition>
         <argsstring></argsstring>
         <name>_origin</name>
-        <qualifiedname>astrea::astro::Frame::_origin</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">origin</ref></initializer>
+        <initializer>= origin</initializer>
         <briefdescription>
 <para>The central body associated with the inertial frame. </para>
         </briefdescription>
@@ -34,12 +32,11 @@
         <location file="astrea/astro/astro/frames/Frame.hpp" line="59" column="38" bodyfile="astrea/astro/astro/frames/Frame.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1Frame_1a99916d51814b90a76673f02412c5ddc0" prot="protected" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732ac" kindref="member">FrameAxis</ref></type>
+        <type>constexpr <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732ac" kindref="member">FrameAxis</ref></type>
         <definition>constexpr FrameAxis astrea::astro::Frame&lt; origin, axis &gt;::_axis</definition>
         <argsstring></argsstring>
         <name>_axis</name>
-        <qualifiedname>astrea::astro::Frame::_axis</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">axis</ref></initializer>
+        <initializer>= axis</initializer>
         <briefdescription>
 <para>The axis type of the inertial frame. </para>
         </briefdescription>
@@ -49,14 +46,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/Frame.hpp" line="60" column="32" bodyfile="astrea/astro/astro/frames/Frame.hpp" bodystart="60" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="protected-func">
+      </sectiondef>
+      <sectiondef kind="protected-func">
       <memberdef kind="function" id="structastrea_1_1astro_1_1Frame_1a848c466e1381fee54639d5ef1cd2a11b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type></type>
         <definition>virtual astrea::astro::Frame&lt; origin, axis &gt;::~Frame</definition>
         <argsstring>()=default</argsstring>
         <name>~Frame</name>
-        <qualifiedname>astrea::astro::Frame::~Frame</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="structastrea_1_1astro_1_1Frame" kindref="compound">Frame</ref>. </para>
         </briefdescription>
@@ -66,14 +62,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/Frame.hpp" line="41" column="13"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-static-func">
+      </sectiondef>
+      <sectiondef kind="public-static-func">
       <memberdef kind="function" id="structastrea_1_1astro_1_1Frame_1a89faa9d701c644c12e31dccfc503095a" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
+        <type>constexpr <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
         <definition>static constexpr CelestialBodyId astrea::astro::Frame&lt; origin, axis &gt;::get_origin</definition>
         <argsstring>()</argsstring>
         <name>get_origin</name>
-        <qualifiedname>astrea::astro::Frame::get_origin</qualifiedname>
         <briefdescription>
 <para>Get the origin of the frame. </para>
         </briefdescription>
@@ -87,11 +82,10 @@
         <location file="astrea/astro/astro/frames/Frame.hpp" line="49" column="38" bodyfile="astrea/astro/astro/frames/Frame.hpp" bodystart="49" bodyend="49"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1astro_1_1Frame_1a9e9ab81b9fa1e4fe19ac379c4475b27b" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732ac" kindref="member">FrameAxis</ref></type>
+        <type>constexpr <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732ac" kindref="member">FrameAxis</ref></type>
         <definition>static constexpr FrameAxis astrea::astro::Frame&lt; origin, axis &gt;::get_axis</definition>
         <argsstring>()</argsstring>
         <name>get_axis</name>
-        <qualifiedname>astrea::astro::Frame::get_axis</qualifiedname>
         <briefdescription>
 <para>Get the origin of the frame. </para>
         </briefdescription>
@@ -104,24 +98,12 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/Frame.hpp" line="56" column="32" bodyfile="astrea/astro/astro/frames/Frame.hpp" bodystart="56" bodyend="56"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Base class for all state/frames. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1">
-        <label>astrea::astro::Frame&lt; origin, axis &gt;</label>
-        <link refid="structastrea_1_1astro_1_1Frame"/>
-      </node>
-      <node id="2">
-        <label>astrea::astro::InertialFrame&lt; origin, axis &gt;</label>
-        <link refid="structastrea_1_1astro_1_1InertialFrame"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
     <location file="astrea/astro/astro/frames/Frame.hpp" line="35" column="1" bodyfile="astrea/astro/astro/frames/Frame.hpp" bodystart="35" bodyend="61"/>
     <listofallmembers>
       <member refid="structastrea_1_1astro_1_1Frame_1a99916d51814b90a76673f02412c5ddc0" prot="protected" virt="non-virtual"><scope>astrea::astro::Frame</scope><name>_axis</name></member>

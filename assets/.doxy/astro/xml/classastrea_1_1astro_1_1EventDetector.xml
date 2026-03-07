@@ -1,16 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1EventDetector" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::EventDetector</compoundname>
     <includes refid="EventDetector_8hpp" local="no">EventDetector.hpp</includes>
     <innerclass refid="structastrea_1_1astro_1_1EventDetector_1_1EventTracker" prot="private">astrea::astro::EventDetector::EventTracker</innerclass>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1EventDetector_1a9fb55c6500ec175932862c1298281c43" prot="private" static="no" mutable="no">
         <type>std::vector&lt; EventTracker &gt;</type>
         <definition>std::vector&lt;EventTracker&gt; astrea::astro::EventDetector::_eventTrackers</definition>
         <argsstring></argsstring>
         <name>_eventTrackers</name>
-        <qualifiedname>astrea::astro::EventDetector::_eventTrackers</qualifiedname>
         <briefdescription>
 <para>The list of <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> trackers. </para>
         </briefdescription>
@@ -20,14 +19,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" line="101" column="17" bodyfile="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" bodystart="101" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1EventDetector_1ae1e1a4f179418a061d9d13db0316c906" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::EventDetector::EventDetector</definition>
         <argsstring>()=default</argsstring>
         <name>EventDetector</name>
-        <qualifiedname>astrea::astro::EventDetector::EventDetector</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="classastrea_1_1astro_1_1EventDetector" kindref="compound">EventDetector</ref>. </para>
         </briefdescription>
@@ -42,9 +40,8 @@
         <definition>astrea::astro::EventDetector::EventDetector</definition>
         <argsstring>(const std::vector&lt; Event &gt; &amp;events)</argsstring>
         <name>EventDetector</name>
-        <qualifiedname>astrea::astro::EventDetector::EventDetector</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> &gt; &amp;</type>
+          <type>const std::vector&lt; <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> &gt; &amp;</type>
           <declname>events</declname>
         </param>
         <briefdescription>
@@ -71,7 +68,6 @@
         <definition>astrea::astro::EventDetector::~EventDetector</definition>
         <argsstring>()=default</argsstring>
         <name>~EventDetector</name>
-        <qualifiedname>astrea::astro::EventDetector::~EventDetector</qualifiedname>
         <briefdescription>
 <para>Destructor for <ref refid="classastrea_1_1astro_1_1EventDetector" kindref="compound">EventDetector</ref>. </para>
         </briefdescription>
@@ -82,13 +78,12 @@
         <location file="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" line="65" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1EventDetector_1a0491fed01abf1057b2c85fd470975869" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::EventDetector::set_events</definition>
         <argsstring>(const std::vector&lt; Event &gt; &amp;events)</argsstring>
         <name>set_events</name>
-        <qualifiedname>astrea::astro::EventDetector::set_events</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> &gt; &amp;</type>
+          <type>const std::vector&lt; <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> &gt; &amp;</type>
           <declname>events</declname>
         </param>
         <briefdescription>
@@ -115,7 +110,6 @@
         <definition>std::vector&lt; Event &gt; astrea::astro::EventDetector::get_events</definition>
         <argsstring>() const</argsstring>
         <name>get_events</name>
-        <qualifiedname>astrea::astro::EventDetector::get_events</qualifiedname>
         <briefdescription>
 <para>Get events being tracked. </para>
         </briefdescription>
@@ -129,13 +123,12 @@
         <location file="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" line="79" column="17" bodyfile="astrea/astro/astro/propagation/event_detection/EventDetector.cpp" bodystart="33" bodyend="40"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1EventDetector_1a59ce64b65e6b4cfd0c6c028263a6f153" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::EventDetector::detect_events</definition>
         <argsstring>(const Time &amp;time, State &amp;state, Vehicle &amp;vehicle)</argsstring>
         <name>detect_events</name>
-        <qualifiedname>astrea::astro::EventDetector::detect_events</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
@@ -190,9 +183,8 @@
         <definition>gtl::btree_map&lt; std::string, std::vector&lt; Date &gt; &gt; astrea::astro::EventDetector::get_event_times</definition>
         <argsstring>(const Date &amp;epoch) const</argsstring>
         <name>get_event_times</name>
-        <qualifiedname>astrea::astro::EventDetector::get_event_times</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>epoch</declname>
         </param>
         <briefdescription>
@@ -216,20 +208,19 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" line="98" column="20" bodyfile="astrea/astro/astro/propagation/event_detection/EventDetector.cpp" bodystart="99" bodyend="110"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-func">
+      </sectiondef>
+      <sectiondef kind="private-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1EventDetector_1a293a6de3952095e955f4efdfcff73def" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::EventDetector::detect_event</definition>
         <argsstring>(const Time &amp;time, const Unitless &amp;value, EventTracker &amp;tracker) const</argsstring>
         <name>detect_event</name>
-        <qualifiedname>astrea::astro::EventDetector::detect_event</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>value</declname>
         </param>
         <param>
@@ -275,7 +266,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" line="112" column="10" bodyfile="astrea/astro/astro/propagation/event_detection/EventDetector.cpp" bodystart="74" bodyend="97"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>A class for detecting events in the astrea astro platform. </para>
     </briefdescription>

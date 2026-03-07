@@ -1,23 +1,22 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1DirectionCosineMatrix" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::DirectionCosineMatrix</compoundname>
     <includes refid="DirectionCosineMatrix_8hpp" local="no">DirectionCosineMatrix.hpp</includes>
     <templateparamlist>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">In_Frame_T</ref></type>
+        <type>typename In_Frame_T</type>
       </param>
       <param>
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Out_Frame_T</ref></type>
+        <type>typename Out_Frame_T</type>
       </param>
     </templateparamlist>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1a6c3a02be0375afc9891e5a533fa1714b" prot="private" static="no" mutable="no">
-        <type>std::array&lt; std::array&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>, 3 &gt;, 3 &gt;</type>
+        <type>std::array&lt; std::array&lt; Unitless, 3 &gt;, 3 &gt;</type>
         <definition>std::array&lt;std::array&lt;Unitless, 3&gt;, 3&gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::_matrix</definition>
         <argsstring></argsstring>
         <name>_matrix</name>
-        <qualifiedname>astrea::astro::DirectionCosineMatrix::_matrix</qualifiedname>
         <briefdescription>
 <para>3x3 matrix to hold the direction cosines. </para>
         </briefdescription>
@@ -27,16 +26,15 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" line="189" column="16" bodyfile="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" bodystart="189" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1a52153211094406453385918b06693156" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::DirectionCosineMatrix</definition>
         <argsstring>(const std::array&lt; std::array&lt; Unitless, 3 &gt;, 3 &gt; &amp;matrix)</argsstring>
         <name>DirectionCosineMatrix</name>
-        <qualifiedname>astrea::astro::DirectionCosineMatrix::DirectionCosineMatrix</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::array&lt; std::array&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>, 3 &gt;, 3 &gt; &amp;</type>
+          <type>const std::array&lt; std::array&lt; Unitless, 3 &gt;, 3 &gt; &amp;</type>
           <declname>matrix</declname>
         </param>
         <briefdescription>
@@ -58,12 +56,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" line="52" column="5" bodyfile="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" bodystart="52" bodyend="55"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1a8ed5729c49d7db997b2bd577c28b0e83" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Out_Frame_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">In_Frame_T</ref> &gt;</type>
-        <definition>DirectionCosineMatrix&lt; Out_Frame_T, In_Frame_T &gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::transpose</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1a8b8b7fc9f71dab73d8a837ccd1dd7185" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; Out_Frame_T, In_Frame_T &gt;</type>
+        <definition>DirectionCosineMatrix&lt;Out_Frame_T, In_Frame_T&gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::transpose</definition>
         <argsstring>() const</argsstring>
         <name>transpose</name>
-        <qualifiedname>astrea::astro::DirectionCosineMatrix::transpose</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -72,19 +69,18 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" line="155" column="27" bodyfile="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" bodystart="155" bodyend="162"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0a3eec2ebedea78270cd4df1295ddb63" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1a32041d81eb3181232108d9067ab44b0f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_T</ref></type>
+            <type>typename Value_T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Out_Frame_T</ref> &gt;</type>
-        <definition>CartesianVector&lt; Value_T, Out_Frame_T &gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::operator*</definition>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Value_T, Out_Frame_T &gt;</type>
+        <definition>CartesianVector&lt;Value_T, Out_Frame_T&gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::operator*</definition>
         <argsstring>(const CartesianVector&lt; Value_T, In_Frame_T &gt; &amp;vec) const</argsstring>
         <name>operator*</name>
-        <qualifiedname>astrea::astro::DirectionCosineMatrix::operator*</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">In_Frame_T</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Value_T, In_Frame_T &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <briefdescription>
@@ -125,14 +121,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" line="173" column="21" bodyfile="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" bodystart="173" bodyend="176"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1a6cda7c71d0ece58d8b87f6dc3804fb86" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">In_Frame_T</ref> &gt;</type>
-        <definition>CartesianVector&lt; Unitless, In_Frame_T &gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::row</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1abc7d11bad24dada1501366bc18c8afeb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Unitless, In_Frame_T &gt;</type>
+        <definition>CartesianVector&lt;Unitless, In_Frame_T&gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::row</definition>
         <argsstring>(const std::size_t &amp;idx) const</argsstring>
         <name>row</name>
-        <qualifiedname>astrea::astro::DirectionCosineMatrix::row</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t &amp;</type>
+          <type>const std::size_t &amp;</type>
           <declname>idx</declname>
         </param>
         <briefdescription>
@@ -156,16 +151,15 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" line="183" column="21" bodyfile="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" bodystart="183" bodyend="186"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1af1f9c9948f2aa2e4debe06593989312f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">In_Frame_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Out_Frame_T</ref> &gt;</type>
-        <definition>static DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::X</definition>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1acbfb03337239c55f99ec4c6163da7372" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; In_Frame_T, Out_Frame_T &gt;</type>
+        <definition>static DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::X</definition>
         <argsstring>(const Angle &amp;theta)</argsstring>
         <name>X</name>
-        <qualifiedname>astrea::astro::DirectionCosineMatrix::X</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>theta</declname>
         </param>
         <briefdescription>
@@ -189,14 +183,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" line="63" column="34" bodyfile="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" bodystart="63" bodyend="71"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0fe52991105662564ee5b67a90a540bf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">In_Frame_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Out_Frame_T</ref> &gt;</type>
-        <definition>static DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::Y</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1abfe93573b3c42bbe28bd7b214f77047c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; In_Frame_T, Out_Frame_T &gt;</type>
+        <definition>static DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::Y</definition>
         <argsstring>(const Angle &amp;theta)</argsstring>
         <name>Y</name>
-        <qualifiedname>astrea::astro::DirectionCosineMatrix::Y</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>theta</declname>
         </param>
         <briefdescription>
@@ -220,14 +213,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" line="79" column="34" bodyfile="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" bodystart="79" bodyend="87"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1a7e3f1280bfa9256add2c6e806eaf54a1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">In_Frame_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Out_Frame_T</ref> &gt;</type>
-        <definition>static DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::Z</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0676358a03b41ee3e2aac55e80eae853" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; In_Frame_T, Out_Frame_T &gt;</type>
+        <definition>static DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::Z</definition>
         <argsstring>(const Angle &amp;theta)</argsstring>
         <name>Z</name>
-        <qualifiedname>astrea::astro::DirectionCosineMatrix::Z</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>theta</declname>
         </param>
         <briefdescription>
@@ -251,22 +243,21 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" line="95" column="34" bodyfile="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" bodystart="95" bodyend="103"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1abc3b84b17862135320527583857f5bbc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">In_Frame_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Out_Frame_T</ref> &gt;</type>
-        <definition>static DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::XZX</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1a419517a2bb2c763f8cc4a5addd99306b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; In_Frame_T, Out_Frame_T &gt;</type>
+        <definition>static DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::XZX</definition>
         <argsstring>(const Angle &amp;alpha, const Angle &amp;beta, const Angle &amp;gamma)</argsstring>
         <name>XZX</name>
-        <qualifiedname>astrea::astro::DirectionCosineMatrix::XZX</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>alpha</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>beta</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>gamma</declname>
         </param>
         <briefdescription>
@@ -306,22 +297,21 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" line="113" column="34" bodyfile="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" bodystart="113" bodyend="126"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1ab6f464d2872e568aacb4863bd897a54c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">In_Frame_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Out_Frame_T</ref> &gt;</type>
-        <definition>static DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::from_vectors</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1a891bbce278394487086c5299f84761f6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; In_Frame_T, Out_Frame_T &gt;</type>
+        <definition>static DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::from_vectors</definition>
         <argsstring>(const CartesianVector&lt; Unitless, In_Frame_T &gt; &amp;x, const CartesianVector&lt; Unitless, In_Frame_T &gt; &amp;y, const CartesianVector&lt; Unitless, In_Frame_T &gt; &amp;z)</argsstring>
         <name>from_vectors</name>
-        <qualifiedname>astrea::astro::DirectionCosineMatrix::from_vectors</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">In_Frame_T</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Unitless, In_Frame_T &gt; &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">In_Frame_T</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Unitless, In_Frame_T &gt; &amp;</type>
           <declname>y</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">In_Frame_T</ref> &gt; &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Unitless, In_Frame_T &gt; &amp;</type>
           <declname>z</declname>
         </param>
         <briefdescription>
@@ -361,12 +351,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" line="136" column="34" bodyfile="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" bodystart="136" bodyend="145"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1a5016a11958b87d3fc911986da14873f3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">In_Frame_T</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Out_Frame_T</ref> &gt;</type>
-        <definition>static DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::identity</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0fff51ef9018bcc4888969540db53daa" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; In_Frame_T, Out_Frame_T &gt;</type>
+        <definition>static DirectionCosineMatrix&lt;In_Frame_T, Out_Frame_T&gt; astrea::astro::DirectionCosineMatrix&lt; In_Frame_T, Out_Frame_T &gt;::identity</definition>
         <argsstring>()</argsstring>
         <name>identity</name>
-        <qualifiedname>astrea::astro::DirectionCosineMatrix::identity</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -375,7 +364,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" line="147" column="34" bodyfile="astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp" bodystart="147" bodyend="153"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames. </para>
     </briefdescription>
@@ -396,15 +385,15 @@
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a6c3a02be0375afc9891e5a533fa1714b" prot="private" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>_matrix</name></member>
       <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a52153211094406453385918b06693156" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>DirectionCosineMatrix</name></member>
-      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1ab6f464d2872e568aacb4863bd897a54c" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>from_vectors</name></member>
-      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a5016a11958b87d3fc911986da14873f3" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>identity</name></member>
-      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0a3eec2ebedea78270cd4df1295ddb63" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>operator*</name></member>
-      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a6cda7c71d0ece58d8b87f6dc3804fb86" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>row</name></member>
-      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a8ed5729c49d7db997b2bd577c28b0e83" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>transpose</name></member>
-      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1af1f9c9948f2aa2e4debe06593989312f" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>X</name></member>
-      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abc3b84b17862135320527583857f5bbc" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>XZX</name></member>
-      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0fe52991105662564ee5b67a90a540bf" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>Y</name></member>
-      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a7e3f1280bfa9256add2c6e806eaf54a1" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>Z</name></member>
+      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a891bbce278394487086c5299f84761f6" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>from_vectors</name></member>
+      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0fff51ef9018bcc4888969540db53daa" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>identity</name></member>
+      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a32041d81eb3181232108d9067ab44b0f" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>operator*</name></member>
+      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abc7d11bad24dada1501366bc18c8afeb" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>row</name></member>
+      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a8b8b7fc9f71dab73d8a837ccd1dd7185" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>transpose</name></member>
+      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1acbfb03337239c55f99ec4c6163da7372" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>X</name></member>
+      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a419517a2bb2c763f8cc4a5addd99306b" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>XZX</name></member>
+      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1abfe93573b3c42bbe28bd7b214f77047c" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>Y</name></member>
+      <member refid="classastrea_1_1astro_1_1DirectionCosineMatrix_1a0676358a03b41ee3e2aac55e80eae853" prot="public" virt="non-virtual"><scope>astrea::astro::DirectionCosineMatrix</scope><name>Z</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="interpolation_8hpp" kind="file" language="C++">
     <compoundname>interpolation.hpp</compoundname>
     <includes local="no">array</includes>
@@ -8,6 +8,15 @@
     <includedby refid="interpolation_8cpp" local="no">astrea/math/math/interpolation.cpp</includedby>
     <includedby refid="math_8hpp" local="no">astrea/math/math/math.hpp</includedby>
     <incdepgraph>
+      <node id="3">
+        <label>stdexcept</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+      <node id="2">
+        <label>array</label>
+      </node>
       <node id="1">
         <label>astrea/math/math/interpolation.hpp</label>
         <link refid="interpolation_8hpp"/>
@@ -18,26 +27,17 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>array</label>
-      </node>
-      <node id="3">
-        <label>stdexcept</label>
-      </node>
-      <node id="4">
-        <label>vector</label>
-      </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="2">
+        <label>astrea/math/math/math.hpp</label>
+        <link refid="math_8hpp"/>
+      </node>
       <node id="1">
         <label>astrea/math/math/interpolation.hpp</label>
         <link refid="interpolation_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-      </node>
-      <node id="2">
-        <label>astrea/math/math/math.hpp</label>
-        <link refid="math_8hpp"/>
       </node>
     </invincdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>

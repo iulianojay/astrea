@@ -34,7 +34,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **class** [**Viewer**](classastrea_1_1trace_1_1Viewer.md) [_**Viewer**_](classastrea_1_1trace_1_1Viewer.md) _class for managing access and sensors on a spacecraft. This class inherits from Spacecraft,_[_**AccessObject**_](classastrea_1_1trace_1_1AccessObject.md) _, and SensorPlatform. It provides functionality to manage sensors and access rights for the spacecraft._    
         * **namespace** [**plotting**](namespaceastrea_1_1trace_1_1plotting.md)     
             * **class** [**Plotter**](classastrea_1_1trace_1_1plotting_1_1Plotter.md)     
-* **namespace** [**plotting**](namespaceastrea_1_1trace_1_1plotting_1_1_0d2.md) 
+* **namespace** [**@2**](namespaceastrea_1_1trace_1_1plotting_1_1_0d2.md) 
 * **namespace** [**astro**](namespaceastro.md) 
 * **namespace** [**frames**](namespaceastro_1_1frames.md) 
 * **namespace** [**matplot**](namespacematplot.md) 

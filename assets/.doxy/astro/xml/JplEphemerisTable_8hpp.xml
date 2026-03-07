@@ -1,15 +1,38 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="JplEphemerisTable_8hpp" kind="file" language="C++">
     <compoundname>JplEphemerisTable.hpp</compoundname>
     <includes refid="Date_8hpp" local="no">astro/time/Date.hpp</includes>
     <includedby refid="JplEphemerisTable_8cpp" local="no">astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.cpp</includedby>
     <incdepgraph>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="7">
+        <label>astro/time/JulianDateClock.hpp</label>
+        <link refid="JulianDateClock_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>iosfwd</label>
+      </node>
       <node id="1">
         <label>astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.hpp</label>
         <link refid="JplEphemerisTable_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+      </node>
+      <node id="8">
+        <label>chrono</label>
+      </node>
+      <node id="5">
+        <label>mp-units/systems/si/chrono.h</label>
+      </node>
+      <node id="6">
+        <label>units/units.hpp</label>
       </node>
       <node id="2">
         <label>astro/time/Date.hpp</label>
@@ -24,29 +47,6 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-      </node>
-      <node id="7">
-        <label>astro/time/JulianDateClock.hpp</label>
-        <link refid="JulianDateClock_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>chrono</label>
-      </node>
-      <node id="3">
-        <label>iosfwd</label>
-      </node>
-      <node id="5">
-        <label>mp-units/systems/si/chrono.h</label>
-      </node>
-      <node id="4">
-        <label>string</label>
-      </node>
-      <node id="6">
-        <label>units/units.hpp</label>
       </node>
     </incdepgraph>
     <innerclass refid="structastrea_1_1astro_1_1JplEphemerisTable" prot="public">astrea::astro::JplEphemerisTable</innerclass>
@@ -69,9 +69,9 @@
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1JplEphemerisTable" kindref="compound">JplEphemerisTable</ref>()<sp/><sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//<sp/>Prevent<sp/>construction</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1astro_1_1JplEphemerisTable" kindref="compound">~JplEphemerisTable</ref>()<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>~<ref refid="structastrea_1_1astro_1_1JplEphemerisTable" kindref="compound">JplEphemerisTable</ref>()<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::size_t<sp/><ref refid="structastrea_1_1astro_1_1JplEphemerisTable_1a95c63c97a83af59342d9d034581aa3b4" kindref="member">get_index</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">date</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">timePerPoly</ref>);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::size_t<sp/><ref refid="structastrea_1_1astro_1_1JplEphemerisTable_1a95c63c97a83af59342d9d034581aa3b4" kindref="member">get_index</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>&amp;<sp/>date,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>timePerPoly);</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
 <codeline lineno="48" refid="structastrea_1_1astro_1_1JplEphemerisTable_1ac40512122cf9e8b07f7ed97407b12df3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref><sp/><ref refid="structastrea_1_1astro_1_1JplEphemerisTable_1ac40512122cf9e8b07f7ed97407b12df3" kindref="member">START_DATE</ref>;</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>

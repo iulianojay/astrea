@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="dir_a85615e9ad779999123e94bfb15c8545" kind="dir">
     <compoundname>astrea/astro/astro/frames/instances</compoundname>
     <innerfile refid="body__centered__inertial__frames_8hpp">body_centered_inertial_frames.hpp</innerfile>

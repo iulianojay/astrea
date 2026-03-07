@@ -1,14 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1mercury__barycenter" kind="namespace" language="C++">
     <compoundname>astrea::astro::frames::mercury_barycenter</compoundname>
-    <sectiondef kind="typedef">
+      <sectiondef kind="typedef">
       <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a3c0b0b10423c4b12617e9c203312b7b5" prot="public" static="no">
-        <type><ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">InertialFrame</ref>&lt; CelestialBodyId::MERCURY_BARYCENTER, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" kindref="member">FrameAxis::ICRF</ref> &gt;</type>
+        <type>InertialFrame&lt; CelestialBodyId::MERCURY_BARYCENTER, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" kindref="member">FrameAxis::ICRF</ref> &gt;</type>
         <definition>using astrea::astro::frames::mercury_barycenter::icrf = typedef InertialFrame&lt;CelestialBodyId::MERCURY_BARYCENTER, FrameAxis::ICRF&gt;</definition>
         <argsstring></argsstring>
         <name>icrf</name>
-        <qualifiedname>astrea::astro::frames::mercury_barycenter::icrf</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -18,11 +17,10 @@
         <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="143" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="143" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1abc58372e1cae893e3c27019c1d6bb5f2" prot="public" static="no">
-        <type><ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">InertialFrame</ref>&lt; CelestialBodyId::MERCURY_BARYCENTER, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" kindref="member">FrameAxis::J2000</ref> &gt;</type>
+        <type>InertialFrame&lt; CelestialBodyId::MERCURY_BARYCENTER, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" kindref="member">FrameAxis::J2000</ref> &gt;</type>
         <definition>using astrea::astro::frames::mercury_barycenter::j2000 = typedef InertialFrame&lt;CelestialBodyId::MERCURY_BARYCENTER, FrameAxis::J2000&gt;</definition>
         <argsstring></argsstring>
         <name>j2000</name>
-        <qualifiedname>astrea::astro::frames::mercury_barycenter::j2000</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -31,7 +29,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="144" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="144" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

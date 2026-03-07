@@ -1,17 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1trace_1_1GroundStation" kind="class" language="C++" prot="public">
     <compoundname>astrea::trace::GroundStation</compoundname>
     <basecompoundref refid="classastrea_1_1trace_1_1GroundPoint" prot="public" virt="non-virtual">astrea::trace::GroundPoint</basecompoundref>
     <basecompoundref prot="public" virt="non-virtual">SensorPlatform</basecompoundref>
     <includes refid="GroundStation_8hpp" local="no">GroundStation.hpp</includes>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1trace_1_1GroundStation_1afe3daa5a1c7ef7f8ba16a5cf7c273706" prot="private" static="no" mutable="no">
         <type>std::string</type>
         <definition>std::string astrea::trace::GroundStation::_name</definition>
         <argsstring></argsstring>
         <name>_name</name>
-        <qualifiedname>astrea::trace::GroundStation::_name</qualifiedname>
         <briefdescription>
 <para>Name of the ground station. </para>
         </briefdescription>
@@ -21,14 +20,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/ground/GroundStation.hpp" line="98" column="17" bodyfile="astrea/trace/trace/platforms/ground/GroundStation.hpp" bodystart="98" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1trace_1_1GroundStation_1a27c7bb62c1194d82001c02cd08f66dcb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::GroundStation::GroundStation</definition>
         <argsstring>(const astro::CelestialBody *parent, const Angle &amp;latitude, const Angle &amp;longitude, const Distance &amp;altitude=0.0 *mp_units::si::unit_symbols::km, const std::string name=&quot;Unnammed&quot;, const std::vector&lt; SensorParameters &gt; &amp;sensors={})</argsstring>
         <name>GroundStation</name>
-        <qualifiedname>astrea::trace::GroundStation::GroundStation</qualifiedname>
         <param>
           <type>const astro::CelestialBody *</type>
           <declname>parent</declname>
@@ -112,7 +110,6 @@
         <definition>astrea::trace::GroundStation::~GroundStation</definition>
         <argsstring>()=default</argsstring>
         <name>~GroundStation</name>
-        <qualifiedname>astrea::trace::GroundStation::~GroundStation</qualifiedname>
         <briefdescription>
 <para>Default destructor for the <ref refid="classastrea_1_1trace_1_1GroundStation" kindref="compound">GroundStation</ref> class. </para>
         </briefdescription>
@@ -127,7 +124,6 @@
         <definition>std::size_t astrea::trace::GroundStation::get_id</definition>
         <argsstring>() const</argsstring>
         <name>get_id</name>
-        <qualifiedname>astrea::trace::GroundStation::get_id</qualifiedname>
         <reimplements refid="classastrea_1_1trace_1_1GroundPoint_1a65ce89540265909ab6e2bc46f7b762b0">get_id</reimplements>
         <briefdescription>
 <para>Get the ID of the payload. </para>
@@ -146,7 +142,6 @@
         <definition>std::string astrea::trace::GroundStation::get_name</definition>
         <argsstring>() const</argsstring>
         <name>get_name</name>
-        <qualifiedname>astrea::trace::GroundStation::get_name</qualifiedname>
         <briefdescription>
 <para>Get the name of the ground station. </para>
         </briefdescription>
@@ -164,7 +159,6 @@
         <definition>astro::RadiusVector&lt; astro::frames::earth::icrf &gt; astrea::trace::GroundStation::get_inertial_position</definition>
         <argsstring>(const astro::Date &amp;date) const</argsstring>
         <name>get_inertial_position</name>
-        <qualifiedname>astrea::trace::GroundStation::get_inertial_position</qualifiedname>
         <param>
           <type>const astro::Date &amp;</type>
           <declname>date</declname>
@@ -195,7 +189,6 @@
         <definition>astro::VelocityVector&lt; astro::frames::earth::icrf &gt; astrea::trace::GroundStation::get_inertial_velocity</definition>
         <argsstring>(const astro::Date &amp;date) const</argsstring>
         <name>get_inertial_velocity</name>
-        <qualifiedname>astrea::trace::GroundStation::get_inertial_velocity</qualifiedname>
         <param>
           <type>const astro::Date &amp;</type>
           <declname>date</declname>
@@ -221,19 +214,15 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/ground/GroundStation.hpp" line="95" column="28" bodyfile="astrea/trace/trace/platforms/ground/GroundStation.cpp" bodystart="60" bodyend="63"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Ground station class for managing ground-based access. This class inherits from <ref refid="classastrea_1_1trace_1_1GroundPoint" kindref="compound">GroundPoint</ref>, <ref refid="classastrea_1_1trace_1_1AccessObject" kindref="compound">AccessObject</ref>, and SensorPlatform. It represents a ground station with a specific latitude, longitude, altitude, and a collection of sensors. It also provides methods to manage access and sensor functionalities. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="5">
-        <label>SensorPlatform</label>
-      </node>
-      <node id="3">
-        <label>astrea::trace::AccessObject</label>
-        <link refid="classastrea_1_1trace_1_1AccessObject"/>
+      <node id="4">
+        <label>astro::FrameReference</label>
       </node>
       <node id="2">
         <label>astrea::trace::GroundPoint</label>
@@ -251,17 +240,17 @@
         <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>astro::FrameReference</label>
+      <node id="5">
+        <label>SensorPlatform</label>
+      </node>
+      <node id="3">
+        <label>astrea::trace::AccessObject</label>
+        <link refid="classastrea_1_1trace_1_1AccessObject"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="5">
-        <label>SensorPlatform</label>
-      </node>
-      <node id="3">
-        <label>astrea::trace::AccessObject</label>
-        <link refid="classastrea_1_1trace_1_1AccessObject"/>
+      <node id="4">
+        <label>astro::FrameReference</label>
       </node>
       <node id="2">
         <label>astrea::trace::GroundPoint</label>
@@ -279,8 +268,12 @@
         <childnode refid="5" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>astro::FrameReference</label>
+      <node id="5">
+        <label>SensorPlatform</label>
+      </node>
+      <node id="3">
+        <label>astrea::trace::AccessObject</label>
+        <link refid="classastrea_1_1trace_1_1AccessObject"/>
       </node>
     </collaborationgraph>
     <location file="astrea/trace/trace/platforms/ground/GroundStation.hpp" line="42" column="1" bodyfile="astrea/trace/trace/platforms/ground/GroundStation.hpp" bodystart="42" bodyend="99"/>
@@ -293,8 +286,8 @@
       <member refid="classastrea_1_1trace_1_1AccessObject_1a10b3e4b10853ab07e397987d7a4bcf77" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>add_access</name></member>
       <member refid="classastrea_1_1trace_1_1AccessObject_1a2a38e7745542fa7d681c8dbfff7a2332" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>drop_access</name></member>
       <member refid="classastrea_1_1trace_1_1GroundPoint_1a77de8813bd60fe99ea8e63cbf87fec78" prot="protected" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>generate_id</name></member>
-      <member refid="classastrea_1_1trace_1_1AccessObject_1a74001e50f522dfb7452c96433698e670" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>get_accesses</name></member>
-      <member refid="classastrea_1_1trace_1_1AccessObject_1a315695c2948714a7af494d92c4a9f598" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>get_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessObject_1a97dd222834452263fa7b7f2ea1da1986" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>get_accesses</name></member>
+      <member refid="classastrea_1_1trace_1_1AccessObject_1a542d32353766a59ad5f63dc0fa7c09ae" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>get_accesses</name></member>
       <member refid="classastrea_1_1trace_1_1GroundPoint_1a2d75ae8b8013f3118c695ab3912b679e" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>get_altitude</name></member>
       <member refid="classastrea_1_1trace_1_1GroundStation_1a281c8639f3184b6cfc345f04ff7390d3" prot="public" virt="virtual"><scope>astrea::trace::GroundStation</scope><name>get_id</name></member>
       <member refid="classastrea_1_1trace_1_1GroundStation_1a87216626b835086c153a8dd4c0b620e8" prot="public" virt="non-virtual"><scope>astrea::trace::GroundStation</scope><name>get_inertial_position</name></member>

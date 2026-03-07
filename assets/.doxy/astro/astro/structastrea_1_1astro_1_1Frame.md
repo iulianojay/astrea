@@ -18,7 +18,6 @@ _Base class for all state/frames._
 
 
 
-Inherited by the following classes: [astrea::astro::InertialFrame](structastrea_1_1astro_1_1InertialFrame.md)
 
 
 
@@ -57,8 +56,8 @@ Inherited by the following classes: [astrea::astro::InertialFrame](structastrea_
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**FrameAxis**](namespaceastrea_1_1astro.md#enum-frameaxis) | [**get\_axis**](#function-get_axis) () <br>_Get the origin of the frame._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyId**](namespaceastrea_1_1astro.md#enum-celestialbodyid) | [**get\_origin**](#function-get_origin) () <br>_Get the origin of the frame._  |
+|  constexpr [**FrameAxis**](namespaceastrea_1_1astro.md#enum-frameaxis) | [**get\_axis**](#function-get_axis) () <br>_Get the origin of the frame._  |
+|  constexpr [**CelestialBodyId**](namespaceastrea_1_1astro.md#enum-celestialbodyid) | [**get\_origin**](#function-get_origin) () <br>_Get the origin of the frame._  |
 
 
 
@@ -71,8 +70,8 @@ Inherited by the following classes: [astrea::astro::InertialFrame](structastrea_
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**FrameAxis**](namespaceastrea_1_1astro.md#enum-frameaxis) | [**\_axis**](#variable-_axis)   = `[**axis**](classastrea_1_1astro_1_1CartesianVector.md)`<br>_The axis type of the inertial frame._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyId**](namespaceastrea_1_1astro.md#enum-celestialbodyid) | [**\_origin**](#variable-_origin)   = `[**origin**](classastrea_1_1astro_1_1CartesianVector.md)`<br>_The central body associated with the inertial frame._  |
+|  constexpr [**FrameAxis**](namespaceastrea_1_1astro.md#enum-frameaxis) | [**\_axis**](#variable-_axis)   = `axis`<br>_The axis type of the inertial frame._  |
+|  constexpr [**CelestialBodyId**](namespaceastrea_1_1astro.md#enum-celestialbodyid) | [**\_origin**](#variable-_origin)   = `origin`<br>_The central body associated with the inertial frame._  |
 
 
 
@@ -105,7 +104,7 @@ Inherited by the following classes: [astrea::astro::InertialFrame](structastrea_
 
 _Get the origin of the frame._ 
 ```C++
-static inline constexpr  FrameAxis astrea::astro::Frame::get_axis () 
+static inline constexpr FrameAxis astrea::astro::Frame::get_axis () 
 ```
 
 
@@ -130,7 +129,7 @@ The origin of the frame.
 
 _Get the origin of the frame._ 
 ```C++
-static inline constexpr  CelestialBodyId astrea::astro::Frame::get_origin () 
+static inline constexpr CelestialBodyId astrea::astro::Frame::get_origin () 
 ```
 
 

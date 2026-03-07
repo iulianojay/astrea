@@ -6287,6 +6287,22 @@ You're not viewing the latest version.
 <li><code>#include &lt;Antenna.hpp&gt;</code></li>
 </ul>
 <p>Inherits the following classes: <a href="../classastrea_1_1trace_1_1Sensor/">astrea::trace::Sensor</a></p>
+<h2 id="public-attributes-inherited-from-astreatracesensor">Public Attributes inherited from astrea::trace::Sensor<a class="headerlink" href="#public-attributes-inherited-from-astreatracesensor" title="Permanent link">&para;</a></h2>
+<p>See <a href="../classastrea_1_1trace_1_1Sensor/">astrea::trace::Sensor</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">const <a href="../classastrea_1_1trace_1_1SensorParameters/"><strong>SensorParameters</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="../classastrea_1_1trace_1_1Sensor/#variable-parameters"><strong>parameters</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -6365,8 +6381,8 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="../classastrea_1_1trace_1_1Sensor/#function-sensor"><strong>Sensor</strong></a> (const Parent_T &amp; parent, const <a href="../classastrea_1_1trace_1_1SensorParameters/"><strong>SensorParameters</strong></a> &amp; parameters) <br><em>Constructs a</em> <a href="../classastrea_1_1trace_1_1Sensor/"><em><strong>Sensor</strong></em></a> <em>from a</em><a href="../classastrea_1_1trace_1_1FieldOfView/"><em><strong>FieldOfView</strong></em></a> <em>object.</em></td>
+<td style="text-align: right;">const <a href="../classastrea_1_1trace_1_1SensorParameters/"><strong>SensorParameters</strong></a></td>
+<td style="text-align: left;"><a href="../classastrea_1_1trace_1_1Sensor/#function-payload"><strong>Payload</strong></a> (parent, parameters) <br></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -6375,6 +6391,10 @@ You're not viewing the latest version.
 <tr>
 <td style="text-align: right;">virtual std::size_t</td>
 <td style="text-align: left;"><a href="../classastrea_1_1trace_1_1Sensor/#function-get_id"><strong>get_id</strong></a> () const<br><em>Get the ID of the sensor.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="../classastrea_1_1trace_1_1Sensor/#function-requires"><strong>requires</strong></a> (std::is_base_of_v&lt; astro::FrameReference, Parent_T &gt;) const<br><em>Constructs a</em> <a href="../classastrea_1_1trace_1_1Sensor/"><em><strong>Sensor</strong></em></a> <em>from a</em><a href="../classastrea_1_1trace_1_1FieldOfView/"><em><strong>FieldOfView</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual</td>

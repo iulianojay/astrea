@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="SpaceTrackClient_8cpp" kind="file" language="C++">
     <compoundname>SpaceTrackClient.cpp</compoundname>
     <includes refid="SpaceTrackClient_8hpp" local="no">snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</includes>
@@ -11,6 +11,33 @@
     <includes local="no">nlohmann/json.hpp</includes>
     <includes local="no">utilities/string_util.hpp</includes>
     <incdepgraph>
+      <node id="15">
+        <label>utilities/string_util.hpp</label>
+      </node>
+      <node id="3">
+        <label>filesystem</label>
+      </node>
+      <node id="9">
+        <label>stdint.h</label>
+      </node>
+      <node id="4">
+        <label>variant</label>
+      </node>
+      <node id="13">
+        <label>stdexcept</label>
+      </node>
+      <node id="14">
+        <label>date/date.h</label>
+      </node>
+      <node id="8">
+        <label>snapshot/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>cpr/cpr.h</label>
+      </node>
       <node id="1">
         <label>astrea/snapshot/snapshot/http-queries/spacetrack/SpaceTrackClient.cpp</label>
         <link refid="SpaceTrackClient_8cpp"/>
@@ -31,6 +58,12 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
+      <node id="11">
+        <label>iostream</label>
+      </node>
+      <node id="10">
+        <label>chrono</label>
+      </node>
       <node id="2">
         <label>snapshot/http-queries/spacetrack/SpaceTrackClient.hpp</label>
         <link refid="SpaceTrackClient_8hpp"/>
@@ -47,47 +80,14 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>snapshot/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>astro/time/Date.hpp</label>
-      </node>
-      <node id="10">
-        <label>chrono</label>
-      </node>
-      <node id="5">
-        <label>cpr/cpr.h</label>
-      </node>
-      <node id="14">
-        <label>date/date.h</label>
-      </node>
-      <node id="3">
-        <label>filesystem</label>
-      </node>
-      <node id="11">
-        <label>iostream</label>
+      <node id="12">
+        <label>set</label>
       </node>
       <node id="6">
         <label>nlohmann/json.hpp</label>
       </node>
-      <node id="12">
-        <label>set</label>
-      </node>
-      <node id="13">
-        <label>stdexcept</label>
-      </node>
-      <node id="9">
-        <label>stdint.h</label>
-      </node>
-      <node id="15">
-        <label>utilities/string_util.hpp</label>
-      </node>
-      <node id="4">
-        <label>variant</label>
+      <node id="7">
+        <label>astro/time/Date.hpp</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
@@ -135,7 +135,7 @@
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>_loginCookies<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>loginResponse.cookies;</highlight></codeline>
 <codeline lineno="37"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal">nlohmann::json<sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a4dd0362ef613fe20d9ac03586a758144" kindref="member">SpaceTrackClient::query</ref>(</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">nlohmann::json<sp/><ref refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a90417c8c40b42e49231958fb541e42d5" kindref="member">SpaceTrackClient::query</ref>(</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>username,</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>password,</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Controller&amp;<sp/>controller,</highlight></codeline>
@@ -278,7 +278,7 @@
 <codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="180"><highlight class="normal"></highlight></codeline>
 <codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Now</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Time<sp/><sp/><sp/><sp/><sp/>=<sp/>std::chrono::sys_time&lt;std::chrono::milliseconds&gt;;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Time<sp/><sp/><sp/><sp/><sp/>=<sp/>std::chrono::sys_time&lt;std::chrono::milliseconds&gt;;</highlight></codeline>
 <codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time<sp/>now<sp/>=<sp/>std::chrono::time_point_cast&lt;std::chrono::milliseconds&gt;(std::chrono::system_clock::now());</highlight></codeline>
 <codeline lineno="184"><highlight class="normal"></highlight></codeline>
 <codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>query<sp/>frequency</highlight><highlight class="normal"></highlight></codeline>

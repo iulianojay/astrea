@@ -36,6 +36,7 @@
 
 * **percentiles** ([**astrea::trace::HyperStats**](structastrea_1_1trace_1_1HyperStats.md), [**astrea::trace::Stats**](structastrea_1_1trace_1_1Stats.md))
 * **Payload&lt; Sensor, SensorParameters &gt;** ([**astrea::trace::Sensor**](classastrea_1_1trace_1_1Sensor.md))
+* **parameters** ([**astrea::trace::Sensor**](classastrea_1_1trace_1_1Sensor.md))
 
 
 ## r

@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::is\_specialization&lt; Template&lt; Args... &gt;, Template &gt;
 
-**template &lt;[**template**](classastrea_1_1astro_1_1CartesianVector.md)&lt; class... &gt; [**class**](classastrea_1_1astro_1_1CartesianVector.md) Template, class... Args&gt;**
+**template &lt;template&lt; class... &gt; class Template, class... Args&gt;**
 
 
 

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1CelestialBody" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::CelestialBody</compoundname>
     <derivedcompoundref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Callisto" prot="public" virt="non-virtual">astrea::astro::planetary_bodies::Callisto</derivedcompoundref>
@@ -25,13 +25,12 @@
     <derivedcompoundref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Uranus" prot="public" virt="non-virtual">astrea::astro::planetary_bodies::Uranus</derivedcompoundref>
     <derivedcompoundref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Venus" prot="public" virt="non-virtual">astrea::astro::planetary_bodies::Venus</derivedcompoundref>
     <includes refid="CelestialBody_8hpp" local="no">CelestialBody.hpp</includes>
-    <sectiondef kind="protected-type">
+      <sectiondef kind="protected-type">
       <memberdef kind="typedef" id="classastrea_1_1astro_1_1CelestialBody_1afe5a75b8b6642b858b07118807b7c22e" prot="protected" static="no">
-        <type>std::tuple&lt; mp_units::quantity&lt; mp_units::angular::unit_symbols::rad/(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">JulianCentury</ref> *<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">JulianCentury</ref>)&gt;, mp_units::quantity&lt; mp_units::angular::unit_symbols::rad &gt;, mp_units::quantity&lt; mp_units::angular::unit_symbols::rad &gt;, mp_units::quantity&lt; mp_units::angular::unit_symbols::rad/<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">JulianCentury</ref> &gt; &gt;</type>
+        <type>std::tuple&lt; mp_units::quantity&lt; mp_units::angular::unit_symbols::rad/(JulianCentury *JulianCentury)&gt;, mp_units::quantity&lt; mp_units::angular::unit_symbols::rad &gt;, mp_units::quantity&lt; mp_units::angular::unit_symbols::rad &gt;, mp_units::quantity&lt; mp_units::angular::unit_symbols::rad/JulianCentury &gt; &gt;</type>
         <definition>using astrea::astro::CelestialBody::CoefficientPack =  std::tuple&lt; mp_units::quantity&lt;mp_units::angular::unit_symbols::rad / (JulianCentury * JulianCentury)&gt;, mp_units::quantity&lt;mp_units::angular::unit_symbols::rad&gt;, mp_units::quantity&lt;mp_units::angular::unit_symbols::rad&gt;, mp_units::quantity&lt;mp_units::angular::unit_symbols::rad / JulianCentury&gt; &gt;</definition>
         <argsstring></argsstring>
         <name>CoefficientPack</name>
-        <qualifiedname>astrea::astro::CelestialBody::CoefficientPack</qualifiedname>
         <briefdescription>
 <para>Type alias for a tuple of linear expansion coefficients. </para>
         </briefdescription>
@@ -41,14 +40,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="455" column="5" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="459" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="protected-attrib">
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a7bdf0ef895aa21d916e3ad14ccc66d60" prot="protected" static="no" mutable="no">
         <type>std::string</type>
         <definition>std::string astrea::astro::CelestialBody::_name</definition>
         <argsstring></argsstring>
         <name>_name</name>
-        <qualifiedname>astrea::astro::CelestialBody::_name</qualifiedname>
         <briefdescription>
 <para>Name of the celestial body. </para>
         </briefdescription>
@@ -63,7 +61,6 @@
         <definition>CelestialBodyId astrea::astro::CelestialBody::_parent</definition>
         <argsstring></argsstring>
         <name>_parent</name>
-        <qualifiedname>astrea::astro::CelestialBody::_parent</qualifiedname>
         <briefdescription>
 <para>Parent celestial body. </para>
         </briefdescription>
@@ -78,7 +75,6 @@
         <definition>CelestialBodyType astrea::astro::CelestialBody::_type</definition>
         <argsstring></argsstring>
         <name>_type</name>
-        <qualifiedname>astrea::astro::CelestialBody::_type</qualifiedname>
         <briefdescription>
 <para>Type of the celestial body. </para>
         </briefdescription>
@@ -93,7 +89,6 @@
         <definition>Date astrea::astro::CelestialBody::_referenceDate</definition>
         <argsstring></argsstring>
         <name>_referenceDate</name>
-        <qualifiedname>astrea::astro::CelestialBody::_referenceDate</qualifiedname>
         <briefdescription>
 <para>Reference date for the celestial body data. </para>
         </briefdescription>
@@ -104,11 +99,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="347" column="10" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="347" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a4a7b30a6b5560641c2c063c580b67d66" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref></type>
+        <type>GravParam</type>
         <definition>GravParam astrea::astro::CelestialBody::_mu</definition>
         <argsstring></argsstring>
         <name>_mu</name>
-        <qualifiedname>astrea::astro::CelestialBody::_mu</qualifiedname>
         <briefdescription>
 <para>Gravitational parameter (mu) of the celestial body. </para>
         </briefdescription>
@@ -119,11 +113,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="348" column="15" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="348" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1ab2326540b02f8fe398d02aa780788449" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref></type>
+        <type>GravParam</type>
         <definition>GravParam astrea::astro::CelestialBody::_parentMu</definition>
         <argsstring></argsstring>
         <name>_parentMu</name>
-        <qualifiedname>astrea::astro::CelestialBody::_parentMu</qualifiedname>
         <briefdescription>
 <para>Gravitational parameter of the parent celestial body, if any. </para>
         </briefdescription>
@@ -134,11 +127,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="349" column="15" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="349" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a9d63d625e5c5a65aa55f534c7bed8233" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Mass</ref></type>
+        <type>Mass</type>
         <definition>Mass astrea::astro::CelestialBody::_mass</definition>
         <argsstring></argsstring>
         <name>_mass</name>
-        <qualifiedname>astrea::astro::CelestialBody::_mass</qualifiedname>
         <briefdescription>
 <para>Mass of the celestial body. </para>
         </briefdescription>
@@ -149,11 +141,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="350" column="10" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="350" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1ad870d6954dbc3ac296a9ca2006fb090c" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::CelestialBody::_equitorialRadius</definition>
         <argsstring></argsstring>
         <name>_equitorialRadius</name>
-        <qualifiedname>astrea::astro::CelestialBody::_equitorialRadius</qualifiedname>
         <briefdescription>
 <para>Equatorial radius of the celestial body. </para>
         </briefdescription>
@@ -164,11 +155,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="351" column="14" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="351" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1abd1ecfceb416ae91d8174c28727000bc" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::CelestialBody::_polarRadius</definition>
         <argsstring></argsstring>
         <name>_polarRadius</name>
-        <qualifiedname>astrea::astro::CelestialBody::_polarRadius</qualifiedname>
         <briefdescription>
 <para>Polar radius of the celestial body. </para>
         </briefdescription>
@@ -179,11 +169,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="352" column="14" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="352" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a24c39f7fa32fd932bd32e13c5a87377c" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::CelestialBody::_crashRadius</definition>
         <argsstring></argsstring>
         <name>_crashRadius</name>
-        <qualifiedname>astrea::astro::CelestialBody::_crashRadius</qualifiedname>
         <briefdescription>
 <para>Crash radius of the celestial body. </para>
         </briefdescription>
@@ -194,11 +183,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="353" column="14" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="353" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1ad99ef627ce92656c8c96f65fcdf790a7" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::CelestialBody::_sphereOfInfluence</definition>
         <argsstring></argsstring>
         <name>_sphereOfInfluence</name>
-        <qualifiedname>astrea::astro::CelestialBody::_sphereOfInfluence</qualifiedname>
         <briefdescription>
 <para>Crash radius of the celestial body. </para>
         </briefdescription>
@@ -209,11 +197,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="354" column="14" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="354" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1af14e2255d65c62938dfe492ef58af6a3" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::CelestialBody::_j2</definition>
         <argsstring></argsstring>
         <name>_j2</name>
-        <qualifiedname>astrea::astro::CelestialBody::_j2</qualifiedname>
         <briefdescription>
 <para>J2 gravitational coefficient of the celestial body. </para>
         </briefdescription>
@@ -224,11 +211,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="356" column="14" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="356" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a39e402b167e30022456528df5bad92ac" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::CelestialBody::_j3</definition>
         <argsstring></argsstring>
         <name>_j3</name>
-        <qualifiedname>astrea::astro::CelestialBody::_j3</qualifiedname>
         <briefdescription>
 <para>J3 gravitational coefficient of the celestial body. </para>
         </briefdescription>
@@ -239,11 +225,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="357" column="14" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="357" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a710d98e8475bec5b9667ccea3146d544" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::CelestialBody::_axialTilt</definition>
         <argsstring></argsstring>
         <name>_axialTilt</name>
-        <qualifiedname>astrea::astro::CelestialBody::_axialTilt</qualifiedname>
         <briefdescription>
 <para>Axial tilt of the celestial body. </para>
         </briefdescription>
@@ -254,11 +239,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="358" column="11" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="358" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a42b1c1e19c87759154d59c6e87d2b28c" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">AngularRate</ref></type>
+        <type>AngularRate</type>
         <definition>AngularRate astrea::astro::CelestialBody::_rotationRate</definition>
         <argsstring></argsstring>
         <name>_rotationRate</name>
-        <qualifiedname>astrea::astro::CelestialBody::_rotationRate</qualifiedname>
         <briefdescription>
 <para>Rotation rate of the celestial body. </para>
         </briefdescription>
@@ -269,11 +253,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="359" column="17" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="359" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a7bc9f6834e3b8be2be0038b0e87998a8" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref></type>
+        <type>Time</type>
         <definition>Time astrea::astro::CelestialBody::_siderealPeriod</definition>
         <argsstring></argsstring>
         <name>_siderealPeriod</name>
-        <qualifiedname>astrea::astro::CelestialBody::_siderealPeriod</qualifiedname>
         <briefdescription>
 <para>Sidereal period of the celestial body. </para>
         </briefdescription>
@@ -284,11 +267,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="360" column="10" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="360" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a813b7984683fb17b9239a290d6577472" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::CelestialBody::_semimajorAxis</definition>
         <argsstring></argsstring>
         <name>_semimajorAxis</name>
-        <qualifiedname>astrea::astro::CelestialBody::_semimajorAxis</qualifiedname>
         <briefdescription>
 <para>Semimajor axis. </para>
         </briefdescription>
@@ -299,11 +281,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="362" column="14" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="362" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a956a726da1b323fe69ee636b095bce80" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::CelestialBody::_eccentricity</definition>
         <argsstring></argsstring>
         <name>_eccentricity</name>
-        <qualifiedname>astrea::astro::CelestialBody::_eccentricity</qualifiedname>
         <briefdescription>
 <para>Eccentricity. </para>
         </briefdescription>
@@ -314,11 +295,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="363" column="14" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="363" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a094119d024b46c5c2a089f2b2b998569" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::CelestialBody::_inclination</definition>
         <argsstring></argsstring>
         <name>_inclination</name>
-        <qualifiedname>astrea::astro::CelestialBody::_inclination</qualifiedname>
         <briefdescription>
 <para>Inclination. </para>
         </briefdescription>
@@ -329,11 +309,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="364" column="11" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="364" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1abe0f1bce92f8567ae8ffbc77af89517b" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::CelestialBody::_rightAscension</definition>
         <argsstring></argsstring>
         <name>_rightAscension</name>
-        <qualifiedname>astrea::astro::CelestialBody::_rightAscension</qualifiedname>
         <briefdescription>
 <para>Right ascension. </para>
         </briefdescription>
@@ -344,11 +323,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="365" column="11" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="365" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1ac991d3d38d3c827afbe76c49fdc3c66d" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::CelestialBody::_longitudeOfPerigee</definition>
         <argsstring></argsstring>
         <name>_longitudeOfPerigee</name>
-        <qualifiedname>astrea::astro::CelestialBody::_longitudeOfPerigee</qualifiedname>
         <briefdescription>
 <para>Argument of perigee. </para>
         </briefdescription>
@@ -359,11 +337,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="366" column="11" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="366" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a28c6357c33c5d0401b675d60cf26cfa4" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::CelestialBody::_meanLongitude</definition>
         <argsstring></argsstring>
         <name>_meanLongitude</name>
-        <qualifiedname>astrea::astro::CelestialBody::_meanLongitude</qualifiedname>
         <briefdescription>
 <para>Mean longitude. </para>
         </briefdescription>
@@ -374,11 +351,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="367" column="11" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="367" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a5c22eb37195d906eca47f50f20bd760e" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::CelestialBody::_trueAnomaly</definition>
         <argsstring></argsstring>
         <name>_trueAnomaly</name>
-        <qualifiedname>astrea::astro::CelestialBody::_trueAnomaly</qualifiedname>
         <briefdescription>
 <para>True anomaly. </para>
         </briefdescription>
@@ -389,11 +365,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="368" column="11" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="368" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1ae8fed352426d294c1b1ba9fbe5a2537a" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::CelestialBody::_meanAnomaly</definition>
         <argsstring></argsstring>
         <name>_meanAnomaly</name>
-        <qualifiedname>astrea::astro::CelestialBody::_meanAnomaly</qualifiedname>
         <briefdescription>
 <para>Mean anomaly. </para>
         </briefdescription>
@@ -404,11 +379,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="369" column="11" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="369" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a83f0b33ff28a4ab913ebd0e788136af6" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">InterplanetaryVelocity</ref></type>
+        <type>InterplanetaryVelocity</type>
         <definition>InterplanetaryVelocity astrea::astro::CelestialBody::_semimajorAxisRate</definition>
         <argsstring></argsstring>
         <name>_semimajorAxisRate</name>
-        <qualifiedname>astrea::astro::CelestialBody::_semimajorAxisRate</qualifiedname>
         <briefdescription>
 <para>Rate of change of the semimajor axis. </para>
         </briefdescription>
@@ -419,11 +393,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="372" column="28" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="372" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a5b9615beaa171ce19425876a43bbb914" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">BodyUnitlessPerTime</ref></type>
+        <type>BodyUnitlessPerTime</type>
         <definition>BodyUnitlessPerTime astrea::astro::CelestialBody::_eccentricityRate</definition>
         <argsstring></argsstring>
         <name>_eccentricityRate</name>
-        <qualifiedname>astrea::astro::CelestialBody::_eccentricityRate</qualifiedname>
         <briefdescription>
 <para>Rate of change of the eccentricity. </para>
         </briefdescription>
@@ -434,11 +407,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="373" column="25" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="373" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a369a8915ed4091fe19f52a695e241d0c" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">BodyAngularRate</ref></type>
+        <type>BodyAngularRate</type>
         <definition>BodyAngularRate astrea::astro::CelestialBody::_inclinationRate</definition>
         <argsstring></argsstring>
         <name>_inclinationRate</name>
-        <qualifiedname>astrea::astro::CelestialBody::_inclinationRate</qualifiedname>
         <briefdescription>
 <para>Rate of change of the inclination. </para>
         </briefdescription>
@@ -449,11 +421,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="374" column="21" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="374" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1a9569b8cbfed7c9b34267905af1d07444" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">BodyAngularRate</ref></type>
+        <type>BodyAngularRate</type>
         <definition>BodyAngularRate astrea::astro::CelestialBody::_rightAscensionRate</definition>
         <argsstring></argsstring>
         <name>_rightAscensionRate</name>
-        <qualifiedname>astrea::astro::CelestialBody::_rightAscensionRate</qualifiedname>
         <briefdescription>
 <para>Rate of change of the right ascension. </para>
         </briefdescription>
@@ -464,11 +435,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="375" column="21" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="375" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1aa3772dcff6cdd5890ba78b87f9c77d53" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">BodyAngularRate</ref></type>
+        <type>BodyAngularRate</type>
         <definition>BodyAngularRate astrea::astro::CelestialBody::_longitudeOfPerigeeRate</definition>
         <argsstring></argsstring>
         <name>_longitudeOfPerigeeRate</name>
-        <qualifiedname>astrea::astro::CelestialBody::_longitudeOfPerigeeRate</qualifiedname>
         <briefdescription>
 <para>Rate of change of the longitude of perigee. </para>
         </briefdescription>
@@ -479,11 +449,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="376" column="21" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="376" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1ab91793e3cffed4b98029d7459f9b9f4f" prot="protected" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">BodyAngularRate</ref></type>
+        <type>BodyAngularRate</type>
         <definition>BodyAngularRate astrea::astro::CelestialBody::_meanLongitudeRate</definition>
         <argsstring></argsstring>
         <name>_meanLongitudeRate</name>
-        <qualifiedname>astrea::astro::CelestialBody::_meanLongitudeRate</qualifiedname>
         <briefdescription>
 <para>Rate of change of the mean longitude. </para>
         </briefdescription>
@@ -493,14 +462,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="377" column="21" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="377" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="protected-static-attrib">
+      </sectiondef>
+      <sectiondef kind="protected-static-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1CelestialBody_1ad521026113209b17461963f1775ef240" prot="protected" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">double</ref></type>
+        <type>constexpr double</type>
         <definition>constexpr double astrea::astro::CelestialBody::_COEFF_ZERO_FACTOR</definition>
         <argsstring></argsstring>
         <name>_COEFF_ZERO_FACTOR</name>
-        <qualifiedname>astrea::astro::CelestialBody::_COEFF_ZERO_FACTOR</qualifiedname>
         <initializer>= 1.0</initializer>
         <briefdescription>
         </briefdescription>
@@ -510,14 +478,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="379" column="29" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="379" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1ae5d97a58dd29452c3fc99a7727312e6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::CelestialBody::CelestialBody</definition>
         <argsstring>()=default</argsstring>
         <name>CelestialBody</name>
-        <qualifiedname>astrea::astro::CelestialBody::CelestialBody</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref>. </para>
         </briefdescription>
@@ -532,7 +499,6 @@
         <definition>virtual astrea::astro::CelestialBody::~CelestialBody</definition>
         <argsstring>()=default</argsstring>
         <name>~CelestialBody</name>
-        <qualifiedname>astrea::astro::CelestialBody::~CelestialBody</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref>. </para>
         </briefdescription>
@@ -543,13 +509,12 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="50" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a4b6942bd0ec0ce55d3d58bf29d51ba5a" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref></type>
+        <type>constexpr</type>
         <definition>constexpr astrea::astro::CelestialBody::CelestialBody</definition>
         <argsstring>(const CelestialBodyParameters &amp;data)</argsstring>
         <name>CelestialBody</name>
-        <qualifiedname>astrea::astro::CelestialBody::CelestialBody</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CelestialBodyParameters" kindref="compound">CelestialBodyParameters</ref> &amp;</type>
+          <type>const <ref refid="structastrea_1_1astro_1_1CelestialBodyParameters" kindref="compound">CelestialBodyParameters</ref> &amp;</type>
           <declname>data</declname>
         </param>
         <briefdescription>
@@ -576,9 +541,8 @@
         <definition>astrea::astro::CelestialBody::CelestialBody</definition>
         <argsstring>(const CelestialBody &amp;other)=default</argsstring>
         <name>CelestialBody</name>
-        <qualifiedname>astrea::astro::CelestialBody::CelestialBody</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -601,13 +565,12 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="94" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a27d3b8546ffe435ebc5f9ca3ab21e8aa" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>constexpr bool</type>
         <definition>constexpr bool astrea::astro::CelestialBody::operator==</definition>
         <argsstring>(const CelestialBody &amp;other) const</argsstring>
         <name>operator==</name>
-        <qualifiedname>astrea::astro::CelestialBody::operator==</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -631,12 +594,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="102" column="20" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="102" bodyend="102"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a27e7ae51508983539052b15e562b5e78" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::string &amp;</type>
-        <definition>constexpr const std::string &amp; astrea::astro::CelestialBody::get_name</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a00f59e7e74210cd6effa37db02ed9124" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const std::string &amp;</type>
+        <definition>constexpr const std::string&amp; astrea::astro::CelestialBody::get_name</definition>
         <argsstring>() const</argsstring>
         <name>get_name</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_name</qualifiedname>
         <briefdescription>
 <para>Get the name of the celestial body. </para>
         </briefdescription>
@@ -649,12 +611,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="116" column="33" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="116" bodyend="116"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a81b4dd27bcc6ba15c52ae24c2da73f0b" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref> &amp;</type>
-        <definition>constexpr const CelestialBodyId &amp; astrea::astro::CelestialBody::get_parent</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a67e2dcbf4c8f586d3ceb49d4fd6a07a0" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref> &amp;</type>
+        <definition>constexpr const CelestialBodyId&amp; astrea::astro::CelestialBody::get_parent</definition>
         <argsstring>() const</argsstring>
         <name>get_parent</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_parent</qualifiedname>
         <briefdescription>
 <para>Get the parent celestial body. </para>
         </briefdescription>
@@ -667,12 +628,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="123" column="37" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="123" bodyend="123"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a9a22ea1abb7cdd2e5e1be6f713238710" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="enums_8hpp_1aa3ba1b26155401c3153326d100e84790" kindref="member">CelestialBodyType</ref> &amp;</type>
-        <definition>constexpr const CelestialBodyType &amp; astrea::astro::CelestialBody::get_type</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a183f3029bb8fc3f3a388b52430d0f1eb" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const <ref refid="enums_8hpp_1aa3ba1b26155401c3153326d100e84790" kindref="member">CelestialBodyType</ref> &amp;</type>
+        <definition>constexpr const CelestialBodyType&amp; astrea::astro::CelestialBody::get_type</definition>
         <argsstring>() const</argsstring>
         <name>get_type</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_type</qualifiedname>
         <briefdescription>
 <para>Get the type of the celestial body. </para>
         </briefdescription>
@@ -685,12 +645,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="130" column="39" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="130" bodyend="130"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a107a07661840122a1d4e4d64f7d5b5ac" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
-        <definition>constexpr const GravParam &amp; astrea::astro::CelestialBody::get_mu</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1af1f94821aba57a0fe8822da1f8b06acf" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const GravParam &amp;</type>
+        <definition>constexpr const GravParam&amp; astrea::astro::CelestialBody::get_mu</definition>
         <argsstring>() const</argsstring>
         <name>get_mu</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_mu</qualifiedname>
         <briefdescription>
 <para>Get the gravitational parameter (mu) of the celestial body. </para>
         </briefdescription>
@@ -703,12 +662,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="137" column="31" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="137" bodyend="137"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a106b73023aee9d171ac9f73d4c64cf47" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Mass</ref> &amp;</type>
-        <definition>constexpr const Mass &amp; astrea::astro::CelestialBody::get_mass</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1abf253f2a7600b296ede156d2309100a7" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Mass &amp;</type>
+        <definition>constexpr const Mass&amp; astrea::astro::CelestialBody::get_mass</definition>
         <argsstring>() const</argsstring>
         <name>get_mass</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_mass</qualifiedname>
         <briefdescription>
 <para>Get the mass of the celestial body. </para>
         </briefdescription>
@@ -721,12 +679,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="144" column="26" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="144" bodyend="144"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1aa9ff0662a7cfed2c04b79f2a45e73395" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
-        <definition>constexpr const Distance &amp; astrea::astro::CelestialBody::get_equitorial_radius</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1ab2c2f4817033d28565b704ecd8c01a0e" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Distance &amp;</type>
+        <definition>constexpr const Distance&amp; astrea::astro::CelestialBody::get_equitorial_radius</definition>
         <argsstring>() const</argsstring>
         <name>get_equitorial_radius</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_equitorial_radius</qualifiedname>
         <briefdescription>
 <para>Get the equatorial radius of the celestial body. </para>
         </briefdescription>
@@ -739,12 +696,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="151" column="30" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="151" bodyend="151"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1ad8bccd99ad4ecbbfa41b4c78cc85ac7b" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
-        <definition>constexpr const Distance &amp; astrea::astro::CelestialBody::get_polar_radius</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a8e04990f156c39e39e1fba8e0b465d14" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Distance &amp;</type>
+        <definition>constexpr const Distance&amp; astrea::astro::CelestialBody::get_polar_radius</definition>
         <argsstring>() const</argsstring>
         <name>get_polar_radius</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_polar_radius</qualifiedname>
         <briefdescription>
 <para>Get the polar radius of the celestial body. </para>
         </briefdescription>
@@ -757,12 +713,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="158" column="30" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="158" bodyend="158"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a98a96ef56b6025558ee4148826509598" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
-        <definition>constexpr const Distance &amp; astrea::astro::CelestialBody::get_crash_radius</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a7607937b805b242c65cabb96807d01bf" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Distance &amp;</type>
+        <definition>constexpr const Distance&amp; astrea::astro::CelestialBody::get_crash_radius</definition>
         <argsstring>() const</argsstring>
         <name>get_crash_radius</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_crash_radius</qualifiedname>
         <briefdescription>
 <para>Get the crash radius of the celestial body. </para>
         </briefdescription>
@@ -775,12 +730,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="165" column="30" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="165" bodyend="165"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1ace9667d4b05a7088ae03348743785e79" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
-        <definition>constexpr const Distance &amp; astrea::astro::CelestialBody::get_sphere_of_influence</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a4a453c47963b34e2062bd6aa503673dc" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Distance &amp;</type>
+        <definition>constexpr const Distance&amp; astrea::astro::CelestialBody::get_sphere_of_influence</definition>
         <argsstring>() const</argsstring>
         <name>get_sphere_of_influence</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_sphere_of_influence</qualifiedname>
         <briefdescription>
 <para>Get the sphere of influence of the celestial body. </para>
         </briefdescription>
@@ -793,12 +747,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="172" column="30" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="172" bodyend="172"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1aaa2c56c6dd43f248d48c24345810b42a" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
-        <definition>constexpr const Unitless &amp; astrea::astro::CelestialBody::get_j2</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a0a7a2cbe2a331369419dec1e4aaa82e6" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Unitless &amp;</type>
+        <definition>constexpr const Unitless&amp; astrea::astro::CelestialBody::get_j2</definition>
         <argsstring>() const</argsstring>
         <name>get_j2</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_j2</qualifiedname>
         <briefdescription>
 <para>Get the J2 gravitational coefficient of the celestial body. </para>
         </briefdescription>
@@ -811,12 +764,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="179" column="30" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="179" bodyend="179"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a2c1289302f2809fac6d034d142af325f" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
-        <definition>constexpr const Unitless &amp; astrea::astro::CelestialBody::get_j3</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a10f5d2208653a1239519af426eeac8cc" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Unitless &amp;</type>
+        <definition>constexpr const Unitless&amp; astrea::astro::CelestialBody::get_j3</definition>
         <argsstring>() const</argsstring>
         <name>get_j3</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_j3</qualifiedname>
         <briefdescription>
 <para>Get the J3 gravitational coefficient of the celestial body. </para>
         </briefdescription>
@@ -829,12 +781,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="186" column="30" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="186" bodyend="186"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a9266110f7cb52d3e051de504fb997821" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>constexpr const Angle &amp; astrea::astro::CelestialBody::get_axial_tilt</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a0e252edd509663945be766d584abdf1b" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Angle &amp;</type>
+        <definition>constexpr const Angle&amp; astrea::astro::CelestialBody::get_axial_tilt</definition>
         <argsstring>() const</argsstring>
         <name>get_axial_tilt</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_axial_tilt</qualifiedname>
         <briefdescription>
 <para>Get the axial tilt of the celestial body. </para>
         </briefdescription>
@@ -847,12 +798,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="193" column="27" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="193" bodyend="193"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1abf194dbdddb56552586d93f4a7fa57c8" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">AngularRate</ref> &amp;</type>
-        <definition>constexpr const AngularRate &amp; astrea::astro::CelestialBody::get_rotation_rate</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1afe1c2ca74cf0d11d43cc976d7e49875d" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const AngularRate &amp;</type>
+        <definition>constexpr const AngularRate&amp; astrea::astro::CelestialBody::get_rotation_rate</definition>
         <argsstring>() const</argsstring>
         <name>get_rotation_rate</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_rotation_rate</qualifiedname>
         <briefdescription>
 <para>Get the rotation rate of the celestial body. </para>
         </briefdescription>
@@ -865,12 +815,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="200" column="33" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="200" bodyend="200"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1abbe61575b7f1ff02bd53cc5aaf238d09" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
-        <definition>constexpr const Time &amp; astrea::astro::CelestialBody::get_sidereal_period</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1af10d2721abf1133860d9224c03d1b26f" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Time &amp;</type>
+        <definition>constexpr const Time&amp; astrea::astro::CelestialBody::get_sidereal_period</definition>
         <argsstring>() const</argsstring>
         <name>get_sidereal_period</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_sidereal_period</qualifiedname>
         <briefdescription>
 <para>Get the sidereal period of the celestial body. </para>
         </briefdescription>
@@ -883,12 +832,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="207" column="26" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="207" bodyend="207"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a4b75d6af460a338a4f56e5b348fb96e5" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
-        <definition>constexpr const Distance &amp; astrea::astro::CelestialBody::get_semimajor</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1ab020de6f9f9dcaecc1667de149fb1122" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Distance &amp;</type>
+        <definition>constexpr const Distance&amp; astrea::astro::CelestialBody::get_semimajor</definition>
         <argsstring>() const</argsstring>
         <name>get_semimajor</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_semimajor</qualifiedname>
         <briefdescription>
 <para>Get the semimajor axis of the celestial body. </para>
         </briefdescription>
@@ -901,12 +849,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="214" column="30" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="214" bodyend="214"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a744f4f4aa36431b86b1bec565d7bf645" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
-        <definition>constexpr const Unitless &amp; astrea::astro::CelestialBody::get_eccentricity</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1adfe5331b3dbcc5ff70fa0610e67e00b9" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Unitless &amp;</type>
+        <definition>constexpr const Unitless&amp; astrea::astro::CelestialBody::get_eccentricity</definition>
         <argsstring>() const</argsstring>
         <name>get_eccentricity</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_eccentricity</qualifiedname>
         <briefdescription>
 <para>Get the eccentricity of the celestial body. </para>
         </briefdescription>
@@ -919,12 +866,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="221" column="30" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="221" bodyend="221"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1ac1dd5a988080c70622118dee4f3fbc78" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>constexpr const Angle &amp; astrea::astro::CelestialBody::get_inclination</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1adeff30aeaeacd71becc431471486abbb" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Angle &amp;</type>
+        <definition>constexpr const Angle&amp; astrea::astro::CelestialBody::get_inclination</definition>
         <argsstring>() const</argsstring>
         <name>get_inclination</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_inclination</qualifiedname>
         <briefdescription>
 <para>Get the inclination of the celestial body. </para>
         </briefdescription>
@@ -937,12 +883,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="228" column="27" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="228" bodyend="228"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a6b3f7914b15dc3a2b82fed6bf7f4882d" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>constexpr const Angle &amp; astrea::astro::CelestialBody::get_right_ascension</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a4ca6f53e0cff6d35aafb70f81b15f0a3" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Angle &amp;</type>
+        <definition>constexpr const Angle&amp; astrea::astro::CelestialBody::get_right_ascension</definition>
         <argsstring>() const</argsstring>
         <name>get_right_ascension</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_right_ascension</qualifiedname>
         <briefdescription>
 <para>Get the right ascension of the celestial body. </para>
         </briefdescription>
@@ -955,12 +900,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="235" column="27" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="235" bodyend="235"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a4793cb0a8d3624feab96309ff2d3665d" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>constexpr const Angle &amp; astrea::astro::CelestialBody::get_longitude_of_perigee</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a2ed2870116fe274aa784eb2ad0e8d71c" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Angle &amp;</type>
+        <definition>constexpr const Angle&amp; astrea::astro::CelestialBody::get_longitude_of_perigee</definition>
         <argsstring>() const</argsstring>
         <name>get_longitude_of_perigee</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_longitude_of_perigee</qualifiedname>
         <briefdescription>
 <para>Get the longitude of perigee of the celestial body. </para>
         </briefdescription>
@@ -973,12 +917,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="242" column="27" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="242" bodyend="242"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a68ef5a02068ae70622a0aa3e10af426f" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>constexpr const Angle &amp; astrea::astro::CelestialBody::get_mean_longitude</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a528608c07b6dbdb74b762ab83d5c5c16" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Angle &amp;</type>
+        <definition>constexpr const Angle&amp; astrea::astro::CelestialBody::get_mean_longitude</definition>
         <argsstring>() const</argsstring>
         <name>get_mean_longitude</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_mean_longitude</qualifiedname>
         <briefdescription>
 <para>Get the mean longitude of the celestial body. </para>
         </briefdescription>
@@ -992,11 +935,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="249" column="27" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="249" bodyend="249"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a75bce13ee9fcc0a8b529d770764e687f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::CelestialBody::get_true_anomaly</definition>
         <argsstring>() const</argsstring>
         <name>get_true_anomaly</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_true_anomaly</qualifiedname>
         <briefdescription>
 <para>Get the true anomaly of the celestial body. </para>
         </briefdescription>
@@ -1009,12 +951,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="256" column="11" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="256" bodyend="259"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a0f4787d77b77701820161aa40abe66a8" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>constexpr const Angle &amp; astrea::astro::CelestialBody::get_mean_anomaly</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a9a8b8ece2b0bbd50d25f9efd7330f213" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const Angle &amp;</type>
+        <definition>constexpr const Angle&amp; astrea::astro::CelestialBody::get_mean_anomaly</definition>
         <argsstring>() const</argsstring>
         <name>get_mean_anomaly</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_mean_anomaly</qualifiedname>
         <briefdescription>
 <para>Get the mean anomaly of the celestial body. </para>
         </briefdescription>
@@ -1027,12 +968,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="266" column="27" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="266" bodyend="266"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a333568b35e59c54b0a0e958d41d20da7" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">InterplanetaryVelocity</ref> &amp;</type>
-        <definition>constexpr const InterplanetaryVelocity &amp; astrea::astro::CelestialBody::get_semimajor_rate</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a7faacb1d854f2ccbb7799d3a08021100" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const InterplanetaryVelocity &amp;</type>
+        <definition>constexpr const InterplanetaryVelocity&amp; astrea::astro::CelestialBody::get_semimajor_rate</definition>
         <argsstring>() const</argsstring>
         <name>get_semimajor_rate</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_semimajor_rate</qualifiedname>
         <briefdescription>
 <para>Get the semimajor axis rate of the celestial body. </para>
         </briefdescription>
@@ -1045,12 +985,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="273" column="44" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="273" bodyend="273"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1abf1b632c73b028c571486ddf1c70d4a8" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">BodyUnitlessPerTime</ref> &amp;</type>
-        <definition>constexpr const BodyUnitlessPerTime &amp; astrea::astro::CelestialBody::get_eccentricity_rate</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a473ce53854faf2d4fc0f828ea796903d" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const BodyUnitlessPerTime &amp;</type>
+        <definition>constexpr const BodyUnitlessPerTime&amp; astrea::astro::CelestialBody::get_eccentricity_rate</definition>
         <argsstring>() const</argsstring>
         <name>get_eccentricity_rate</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_eccentricity_rate</qualifiedname>
         <briefdescription>
 <para>Get the eccentricity rate of the celestial body. </para>
         </briefdescription>
@@ -1063,12 +1002,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="280" column="41" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="280" bodyend="280"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a01321cb9cd10ac47cc41e4ef7d25b003" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">BodyAngularRate</ref> &amp;</type>
-        <definition>constexpr const BodyAngularRate &amp; astrea::astro::CelestialBody::get_inclination_rate</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a0ca48675fc919f91863ebd71f4fa20c0" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const BodyAngularRate &amp;</type>
+        <definition>constexpr const BodyAngularRate&amp; astrea::astro::CelestialBody::get_inclination_rate</definition>
         <argsstring>() const</argsstring>
         <name>get_inclination_rate</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_inclination_rate</qualifiedname>
         <briefdescription>
 <para>Get the inclination rate of the celestial body. </para>
         </briefdescription>
@@ -1081,12 +1019,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="287" column="37" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="287" bodyend="287"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1aaafb1e997f7cd8645bfa5e0c6206a920" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">BodyAngularRate</ref> &amp;</type>
-        <definition>constexpr const BodyAngularRate &amp; astrea::astro::CelestialBody::get_right_ascension_rate</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1ac3258865ef0615cfb6be1fce587c9d50" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const BodyAngularRate &amp;</type>
+        <definition>constexpr const BodyAngularRate&amp; astrea::astro::CelestialBody::get_right_ascension_rate</definition>
         <argsstring>() const</argsstring>
         <name>get_right_ascension_rate</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_right_ascension_rate</qualifiedname>
         <briefdescription>
 <para>Get the right ascension rate of the celestial body. </para>
         </briefdescription>
@@ -1099,12 +1036,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="294" column="37" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="294" bodyend="294"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1ab2a06b78c0c6f044cc63c59ef4466c20" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">BodyAngularRate</ref> &amp;</type>
-        <definition>constexpr const BodyAngularRate &amp; astrea::astro::CelestialBody::get_longitude_of_perigee_rate</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a2c0b8d4b342ba74afbc8c5e1584268a7" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const BodyAngularRate &amp;</type>
+        <definition>constexpr const BodyAngularRate&amp; astrea::astro::CelestialBody::get_longitude_of_perigee_rate</definition>
         <argsstring>() const</argsstring>
         <name>get_longitude_of_perigee_rate</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_longitude_of_perigee_rate</qualifiedname>
         <briefdescription>
 <para>Get the longitude of perigee rate of the celestial body. </para>
         </briefdescription>
@@ -1117,12 +1053,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="301" column="37" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="301" bodyend="301"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a17b0a9b8913ff254d6d3156fd3ff2fcf" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">BodyAngularRate</ref> &amp;</type>
-        <definition>constexpr const BodyAngularRate &amp; astrea::astro::CelestialBody::get_mean_longitude_rate</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a40fb29f6cdb20e58054b9a25153b8895" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr const BodyAngularRate &amp;</type>
+        <definition>constexpr const BodyAngularRate&amp; astrea::astro::CelestialBody::get_mean_longitude_rate</definition>
         <argsstring>() const</argsstring>
         <name>get_mean_longitude_rate</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_mean_longitude_rate</qualifiedname>
         <briefdescription>
 <para>Get the mean longitude rate of the celestial body. </para>
         </briefdescription>
@@ -1136,21 +1071,20 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="308" column="37" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="308" bodyend="308"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1acfc2683c55c0c80d08cc4334b9cceff2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Density</ref></type>
+        <type>Density</type>
         <definition>Density astrea::astro::CelestialBody::find_atmospheric_density</definition>
         <argsstring>(const Date &amp;date, const Distance &amp;altitude) const</argsstring>
         <name>find_atmospheric_density</name>
-        <qualifiedname>astrea::astro::CelestialBody::find_atmospheric_density</qualifiedname>
         <reimplementedby refid="classastrea_1_1astro_1_1planetary__bodies_1_1Earth_1ada90962143c1300369bcbf69560f4768">find_atmospheric_density</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1planetary__bodies_1_1Mars_1a5ad6218a5f240ee4a684be89cf392a9e">find_atmospheric_density</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1planetary__bodies_1_1Titan_1afabfb40a14f84fcdb70a5a6c23bb3c38">find_atmospheric_density</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1planetary__bodies_1_1Venus_1a3ea6e522119c0bb046fc011c3767370b">find_atmospheric_density</reimplementedby>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <type>const Distance &amp;</type>
           <declname>altitude</declname>
         </param>
         <briefdescription>
@@ -1189,9 +1123,8 @@
         <definition>Keplerian astrea::astro::CelestialBody::get_keplerian_elements_at</definition>
         <argsstring>(const Date &amp;date) const</argsstring>
         <name>get_keplerian_elements_at</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_keplerian_elements_at</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -1216,13 +1149,12 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="330" column="15" bodyfile="astrea/astro/astro/systems/CelestialBody.cpp" bodystart="48" bodyend="69"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a92fa09c2b487be443063080b94e3a4a0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">frames::solar_system_barycenter::icrf</ref> &gt;</type>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Distance, frames::solar_system_barycenter::icrf &gt;</type>
         <definition>RadiusVector&lt; frames::solar_system_barycenter::icrf &gt; astrea::astro::CelestialBody::get_position_at</definition>
         <argsstring>(const Date &amp;date) const</argsstring>
         <name>get_position_at</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_position_at</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -1248,14 +1180,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="341" column="29" bodyfile="astrea/astro/astro/systems/CelestialBody.cpp" bodystart="71" bodyend="110"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-static-func">
+      </sectiondef>
+      <sectiondef kind="public-static-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1acbbffddf6e781f2192299257ecc85e20" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
+        <type>constexpr <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
         <definition>static constexpr CelestialBodyId astrea::astro::CelestialBody::get_id</definition>
         <argsstring>()</argsstring>
         <name>get_id</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_id</qualifiedname>
         <briefdescription>
 <para>Get the parent celestial body. </para>
         </briefdescription>
@@ -1268,24 +1199,23 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="109" column="38" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="109" bodyend="109"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="protected-func">
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a8bd6d908cf8e6c9e34d1c5c27aabad5b" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1af200c9405a6d27b52844809d5c327746" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Table_T</ref></type>
+            <type>typename Table_T</type>
           </param>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref></type>
+            <type>typename Frame_T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt;</type>
-        <definition>CartesianVector&lt; Distance, Frame_T &gt; astrea::astro::CelestialBody::get_position_at_impl</definition>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Distance, Frame_T &gt;</type>
+        <definition>CartesianVector&lt;Distance, Frame_T&gt; astrea::astro::CelestialBody::get_position_at_impl</definition>
         <argsstring>(const Date &amp;date) const</argsstring>
         <name>get_position_at_impl</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_position_at_impl</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -1326,22 +1256,21 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="390" column="21" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="390" bodyend="403"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a2721467967ab58178154c21aabd1f92b" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a52d48058045b846850c3673b262eaf78" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Table_T</ref></type>
+            <type>typename Table_T</type>
           </param>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref></type>
+            <type>typename Frame_T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref>, <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Frame_T</ref> &gt;</type>
-        <definition>CartesianVector&lt; Velocity, Frame_T &gt; astrea::astro::CelestialBody::get_velocity_at_impl</definition>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Velocity, Frame_T &gt;</type>
+        <definition>CartesianVector&lt;Velocity, Frame_T&gt; astrea::astro::CelestialBody::get_velocity_at_impl</definition>
         <argsstring>(const Date &amp;date) const</argsstring>
         <name>get_velocity_at_impl</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_velocity_at_impl</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -1385,16 +1314,15 @@
       <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a894d59687465c8a3be71e1f770a204cf" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Table_T</ref></type>
+            <type>typename Table_T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">auto</ref></type>
+        <type>const auto</type>
         <definition>const auto astrea::astro::CelestialBody::get_chebyshev_table_coefficients</definition>
         <argsstring>(const Date &amp;date) const</argsstring>
         <name>get_chebyshev_table_coefficients</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_chebyshev_table_coefficients</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -1429,11 +1357,10 @@
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="438" column="16" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="438" bodyend="450"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1CelestialBody_1a81894fd1731a0e827dccb807847f96ed" prot="protected" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody_1afe5a75b8b6642b858b07118807b7c22e" kindref="member">CoefficientPack</ref></type>
+        <type>constexpr <ref refid="classastrea_1_1astro_1_1CelestialBody_1afe5a75b8b6642b858b07118807b7c22e" kindref="member">CoefficientPack</ref></type>
         <definition>virtual constexpr CoefficientPack astrea::astro::CelestialBody::get_linear_expansion_coefficients</definition>
         <argsstring>() const</argsstring>
         <name>get_linear_expansion_coefficients</name>
-        <qualifiedname>astrea::astro::CelestialBody::get_linear_expansion_coefficients</qualifiedname>
         <reimplementedby refid="classastrea_1_1astro_1_1planetary__bodies_1_1Jupiter_1a70edc4c229eadbb7887aab4675b25d82">get_linear_expansion_coefficients</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune_1a5fd905c8ebf65d0f6e12337fc3874bf5">get_linear_expansion_coefficients</reimplementedby>
         <reimplementedby refid="classastrea_1_1astro_1_1planetary__bodies_1_1Saturn_1a5adc1b7e3d0f741eeca68bc3545238fc">get_linear_expansion_coefficients</reimplementedby>
@@ -1452,32 +1379,16 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="469" column="39" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="469" bodyend="473"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para><ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> class represents a celestial body in an astrodynamics system. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1">
-        <label>astrea::astro::CelestialBody</label>
-        <link refid="classastrea_1_1astro_1_1CelestialBody"/>
-      </node>
-      <node id="2">
-        <label>astrea::astro::planetary_bodies::Callisto</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Callisto"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>astrea::astro::planetary_bodies::Deimos</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Deimos"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>astrea::astro::planetary_bodies::Earth</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Earth"/>
+      <node id="16">
+        <label>astrea::astro::planetary_bodies::Rhea</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Rhea"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
@@ -1487,87 +1398,9 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="6">
-        <label>astrea::astro::planetary_bodies::Ganymede</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Ganymede"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>astrea::astro::planetary_bodies::Iapetus</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Iapetus"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>astrea::astro::planetary_bodies::Io</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Io"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>astrea::astro::planetary_bodies::Jupiter</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Jupiter"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>astrea::astro::planetary_bodies::Mars</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Mars"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>astrea::astro::planetary_bodies::Mercury</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Mercury"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>astrea::astro::planetary_bodies::Moon</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Moon"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>astrea::astro::planetary_bodies::Neptune</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>astrea::astro::planetary_bodies::Oberon</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>astrea::astro::planetary_bodies::Phobos</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Phobos"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>astrea::astro::planetary_bodies::Rhea</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Rhea"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>astrea::astro::planetary_bodies::Saturn</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Saturn"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>astrea::astro::planetary_bodies::Sun</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Sun"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>astrea::astro::planetary_bodies::Titan</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Titan"/>
+      <node id="4">
+        <label>astrea::astro::planetary_bodies::Earth</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Earth"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
@@ -1577,15 +1410,21 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="13">
+        <label>astrea::astro::planetary_bodies::Neptune</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Neptune"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
       <node id="21">
         <label>astrea::astro::planetary_bodies::Triton</label>
         <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Triton"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="22">
-        <label>astrea::astro::planetary_bodies::Uranus</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Uranus"/>
+      <node id="9">
+        <label>astrea::astro::planetary_bodies::Jupiter</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Jupiter"/>
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
@@ -1595,18 +1434,106 @@
         <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="7">
+        <label>astrea::astro::planetary_bodies::Iapetus</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Iapetus"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astrea::astro::planetary_bodies::Oberon</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea::astro::planetary_bodies::Moon</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Moon"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astrea::astro::planetary_bodies::Titan</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Titan"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>astrea::astro::planetary_bodies::Uranus</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Uranus"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea::astro::planetary_bodies::Deimos</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Deimos"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astrea::astro::planetary_bodies::Phobos</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Phobos"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea::astro::planetary_bodies::Ganymede</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Ganymede"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea::astro::CelestialBody</label>
+        <link refid="classastrea_1_1astro_1_1CelestialBody"/>
+      </node>
+      <node id="17">
+        <label>astrea::astro::planetary_bodies::Saturn</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Saturn"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea::astro::planetary_bodies::Mars</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Mars"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea::astro::planetary_bodies::Io</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Io"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea::astro::planetary_bodies::Mercury</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Mercury"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astrea::astro::planetary_bodies::Sun</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Sun"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::planetary_bodies::Callisto</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Callisto"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::Date</label>
+        <link refid="classastrea_1_1astro_1_1Date"/>
+      </node>
       <node id="1">
         <label>astrea::astro::CelestialBody</label>
         <link refid="classastrea_1_1astro_1_1CelestialBody"/>
         <childnode refid="2" relation="usage">
           <edgelabel>_referenceDate</edgelabel>
         </childnode>
-      </node>
-      <node id="2">
-        <label>astrea::astro::Date</label>
-        <link refid="classastrea_1_1astro_1_1Date"/>
       </node>
     </collaborationgraph>
     <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="39" column="1" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="39" bodyend="474"/>
@@ -1647,41 +1574,41 @@
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a4a87589b8ead4d8f6d08dba4e76a48c5" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>CelestialBody</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1afe5a75b8b6642b858b07118807b7c22e" prot="protected" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>CoefficientPack</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1acfc2683c55c0c80d08cc4334b9cceff2" prot="public" virt="virtual"><scope>astrea::astro::CelestialBody</scope><name>find_atmospheric_density</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a9266110f7cb52d3e051de504fb997821" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_axial_tilt</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a0e252edd509663945be766d584abdf1b" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_axial_tilt</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a894d59687465c8a3be71e1f770a204cf" prot="protected" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_chebyshev_table_coefficients</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a98a96ef56b6025558ee4148826509598" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_crash_radius</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a744f4f4aa36431b86b1bec565d7bf645" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_eccentricity</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1abf1b632c73b028c571486ddf1c70d4a8" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_eccentricity_rate</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1aa9ff0662a7cfed2c04b79f2a45e73395" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_equitorial_radius</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a7607937b805b242c65cabb96807d01bf" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_crash_radius</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1adfe5331b3dbcc5ff70fa0610e67e00b9" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_eccentricity</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a473ce53854faf2d4fc0f828ea796903d" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_eccentricity_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ab2c2f4817033d28565b704ecd8c01a0e" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_equitorial_radius</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1acbbffddf6e781f2192299257ecc85e20" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_id</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1ac1dd5a988080c70622118dee4f3fbc78" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_inclination</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a01321cb9cd10ac47cc41e4ef7d25b003" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_inclination_rate</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1aaa2c56c6dd43f248d48c24345810b42a" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_j2</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a2c1289302f2809fac6d034d142af325f" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_j3</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1adeff30aeaeacd71becc431471486abbb" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_inclination</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a0ca48675fc919f91863ebd71f4fa20c0" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_inclination_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a0a7a2cbe2a331369419dec1e4aaa82e6" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_j2</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a10f5d2208653a1239519af426eeac8cc" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_j3</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a51cb25b1f9d226380e609a9c82ae7b9b" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_keplerian_elements_at</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a81894fd1731a0e827dccb807847f96ed" prot="protected" virt="virtual"><scope>astrea::astro::CelestialBody</scope><name>get_linear_expansion_coefficients</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a4793cb0a8d3624feab96309ff2d3665d" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_longitude_of_perigee</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1ab2a06b78c0c6f044cc63c59ef4466c20" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_longitude_of_perigee_rate</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a106b73023aee9d171ac9f73d4c64cf47" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_mass</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a0f4787d77b77701820161aa40abe66a8" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_mean_anomaly</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a68ef5a02068ae70622a0aa3e10af426f" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_mean_longitude</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a17b0a9b8913ff254d6d3156fd3ff2fcf" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_mean_longitude_rate</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a107a07661840122a1d4e4d64f7d5b5ac" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_mu</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a27e7ae51508983539052b15e562b5e78" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_name</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a81b4dd27bcc6ba15c52ae24c2da73f0b" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_parent</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1ad8bccd99ad4ecbbfa41b4c78cc85ac7b" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_polar_radius</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a2ed2870116fe274aa784eb2ad0e8d71c" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_longitude_of_perigee</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a2c0b8d4b342ba74afbc8c5e1584268a7" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_longitude_of_perigee_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1abf253f2a7600b296ede156d2309100a7" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_mass</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a9a8b8ece2b0bbd50d25f9efd7330f213" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_mean_anomaly</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a528608c07b6dbdb74b762ab83d5c5c16" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_mean_longitude</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a40fb29f6cdb20e58054b9a25153b8895" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_mean_longitude_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1af1f94821aba57a0fe8822da1f8b06acf" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_mu</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a00f59e7e74210cd6effa37db02ed9124" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_name</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a67e2dcbf4c8f586d3ceb49d4fd6a07a0" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_parent</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a8e04990f156c39e39e1fba8e0b465d14" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_polar_radius</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a92fa09c2b487be443063080b94e3a4a0" prot="public" virt="virtual"><scope>astrea::astro::CelestialBody</scope><name>get_position_at</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a8bd6d908cf8e6c9e34d1c5c27aabad5b" prot="protected" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_position_at_impl</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a6b3f7914b15dc3a2b82fed6bf7f4882d" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_right_ascension</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1aaafb1e997f7cd8645bfa5e0c6206a920" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_right_ascension_rate</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1abf194dbdddb56552586d93f4a7fa57c8" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_rotation_rate</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a4b75d6af460a338a4f56e5b348fb96e5" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_semimajor</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a333568b35e59c54b0a0e958d41d20da7" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_semimajor_rate</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1abbe61575b7f1ff02bd53cc5aaf238d09" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_sidereal_period</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1ace9667d4b05a7088ae03348743785e79" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_sphere_of_influence</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1af200c9405a6d27b52844809d5c327746" prot="protected" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_position_at_impl</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a4ca6f53e0cff6d35aafb70f81b15f0a3" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_right_ascension</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ac3258865ef0615cfb6be1fce587c9d50" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_right_ascension_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1afe1c2ca74cf0d11d43cc976d7e49875d" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_rotation_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ab020de6f9f9dcaecc1667de149fb1122" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_semimajor</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a7faacb1d854f2ccbb7799d3a08021100" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_semimajor_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1af10d2721abf1133860d9224c03d1b26f" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_sidereal_period</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a4a453c47963b34e2062bd6aa503673dc" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_sphere_of_influence</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a75bce13ee9fcc0a8b529d770764e687f" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_true_anomaly</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a9a22ea1abb7cdd2e5e1be6f713238710" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_type</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a2721467967ab58178154c21aabd1f92b" prot="protected" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_velocity_at_impl</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a183f3029bb8fc3f3a388b52430d0f1eb" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_type</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a52d48058045b846850c3673b262eaf78" prot="protected" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>get_velocity_at_impl</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a27d3b8546ffe435ebc5f9ca3ab21e8aa" prot="public" virt="non-virtual"><scope>astrea::astro::CelestialBody</scope><name>operator==</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a1032b5b4bb7ea99243af5de630c06ba7" prot="public" virt="virtual"><scope>astrea::astro::CelestialBody</scope><name>~CelestialBody</name></member>
     </listofallmembers>

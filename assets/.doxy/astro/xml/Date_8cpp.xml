@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="Date_8cpp" kind="file" language="C++">
     <compoundname>Date.cpp</compoundname>
     <includes refid="Date_8hpp" local="no">astro/time/Date.hpp</includes>
@@ -13,12 +13,6 @@
     <includes refid="Earth_8hpp" local="no">astro/systems/planetary_bodies/Earth/Earth.hpp</includes>
     <includes refid="conversions_8hpp" local="no">astro/utilities/conversions.hpp</includes>
     <incdepgraph>
-      <node id="19">
-        <label>astro/astro.fwd.hpp</label>
-        <link refid="astro_8fwd_8hpp"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
       <node id="24">
         <label>astro/frames/frames.hpp</label>
         <link refid="frames_8hpp_source"/>
@@ -27,65 +21,29 @@
         <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="25">
-        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
-        <link refid="body__centered__inertial__frames_8hpp"/>
-        <childnode refid="19" relation="include">
+      <node id="23">
+        <label>math/chebyshev_util.hpp</label>
+      </node>
+      <node id="10">
+        <label>iomanip</label>
+      </node>
+      <node id="18">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="21">
+        <label>stdint.h</label>
+      </node>
+      <node id="20">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="21" relation="include">
         </childnode>
       </node>
-      <node id="26">
-        <label>astro/frames/instances/body_fixed_frames.hpp</label>
-        <link refid="body__fixed__frames_8hpp"/>
-        <childnode refid="19" relation="include">
-        </childnode>
+      <node id="14">
+        <label>mp-units/math.h</label>
       </node>
-      <node id="22">
-        <label>astro/systems/CelestialBody.hpp</label>
-        <link refid="CelestialBody_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-      </node>
-      <node id="27">
-        <label>astro/systems/CelestialBodyParameters.hpp</label>
-        <link refid="CelestialBodyParameters_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="2" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>astro/systems/planetary_bodies/Earth/Earth.hpp</label>
-        <link refid="Earth_8hpp"/>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
+      <node id="17">
+        <label>mp-units/systems/iau.h</label>
       </node>
       <node id="1">
         <label>astrea/astro/astro/time/Date.cpp</label>
@@ -111,6 +69,128 @@
         <childnode refid="28" relation="include">
         </childnode>
       </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="26">
+        <label>astro/frames/instances/body_fixed_frames.hpp</label>
+        <link refid="body__fixed__frames_8hpp"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>date/date.h</label>
+      </node>
+      <node id="28">
+        <label>astro/utilities/conversions.hpp</label>
+        <link refid="conversions_8hpp"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astro/time/JulianDateClock.hpp</label>
+        <link refid="JulianDateClock_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="27">
+        <label>astro/systems/CelestialBodyParameters.hpp</label>
+        <link refid="CelestialBodyParameters_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>format</label>
+      </node>
+      <node id="29">
+        <label>astro/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>sstream</label>
+      </node>
+      <node id="3">
+        <label>iosfwd</label>
+      </node>
+      <node id="11">
+        <label>iostream</label>
+      </node>
+      <node id="8">
+        <label>chrono</label>
+      </node>
+      <node id="25">
+        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
+        <link refid="body__centered__inertial__frames_8hpp"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>mp-units/systems/si/chrono.h</label>
+      </node>
+      <node id="19">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>astro/systems/CelestialBody.hpp</label>
+        <link refid="CelestialBody_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astro/systems/planetary_bodies/Earth/Earth.hpp</label>
+        <link refid="Earth_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>units/units.hpp</label>
+      </node>
       <node id="2">
         <label>astro/time/Date.hpp</label>
         <link refid="Date_8hpp"/>
@@ -124,86 +204,6 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-      </node>
-      <node id="7">
-        <label>astro/time/JulianDateClock.hpp</label>
-        <link refid="JulianDateClock_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="20">
-        <label>astro/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="29">
-        <label>astro/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="28">
-        <label>astro/utilities/conversions.hpp</label>
-        <link refid="conversions_8hpp"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>chrono</label>
-      </node>
-      <node id="13">
-        <label>date/date.h</label>
-      </node>
-      <node id="9">
-        <label>format</label>
-      </node>
-      <node id="10">
-        <label>iomanip</label>
-      </node>
-      <node id="3">
-        <label>iosfwd</label>
-      </node>
-      <node id="11">
-        <label>iostream</label>
-      </node>
-      <node id="23">
-        <label>math/chebyshev_util.hpp</label>
-      </node>
-      <node id="14">
-        <label>mp-units/math.h</label>
-      </node>
-      <node id="16">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="17">
-        <label>mp-units/systems/iau.h</label>
-      </node>
-      <node id="18">
-        <label>mp-units/systems/si.h</label>
-      </node>
-      <node id="5">
-        <label>mp-units/systems/si/chrono.h</label>
-      </node>
-      <node id="12">
-        <label>sstream</label>
-      </node>
-      <node id="21">
-        <label>stdint.h</label>
-      </node>
-      <node id="4">
-        <label>string</label>
-      </node>
-      <node id="6">
-        <label>units/units.hpp</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
@@ -246,40 +246,40 @@
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Stream</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal">std::ostream&amp;<sp/><ref refid="CartesianVector_8hpp_1a6ec910a4eb8c157cdea500565819f3d0" kindref="member">operator&lt;&lt;</ref>(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date&amp;<sp/>obj)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date&amp;<sp/>obj)</highlight></codeline>
 <codeline lineno="35"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/>obj.epoch();</highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>os;</highlight></codeline>
 <codeline lineno="38"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Utility<sp/>operators</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal">Date<sp/><ref refid="classastrea_1_1astro_1_1Date_1a29fb544e40783df4c2f1f6cac3c2ba29" kindref="member">Date::operator+</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">Date<sp/>Date::operator+(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="42"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>newTime<sp/>=<sp/>_julianDate.time_since_epoch()<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1JulianDateClock_1aa78273e9b2b9f756f34e6ebf46809877" kindref="member">JulianDateClock::duration</ref>(time);</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date_1a8401426b654e330259e35a71bf149a17" kindref="member">Date</ref>(<ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref>(newTime));</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>newTime<sp/>=<sp/>_julianDate.time_since_epoch()<sp/>+<sp/>JulianDateClock::duration(time);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Date(<ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref>(newTime));</highlight></codeline>
 <codeline lineno="45"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="46"><highlight class="normal">Date&amp;<sp/><ref refid="classastrea_1_1astro_1_1Date_1a9123982708f21470636d84631ea27f01" kindref="member">Date::operator+=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">Date&amp;<sp/>Date::operator+=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time)</highlight></codeline>
 <codeline lineno="47"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>newTime<sp/>=<sp/>_julianDate.time_since_epoch()<sp/>+<sp/><ref refid="structastrea_1_1astro_1_1JulianDateClock_1aa78273e9b2b9f756f34e6ebf46809877" kindref="member">JulianDateClock::duration</ref>(time);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>newTime<sp/>=<sp/>_julianDate.time_since_epoch()<sp/>+<sp/>JulianDateClock::duration(time);</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>_julianDate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref>(newTime);</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="51"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="52"><highlight class="normal">Date<sp/><ref refid="classastrea_1_1astro_1_1Date_1a9eb866f30e595978a5ff765fec9a8ad6" kindref="member">Date::operator-</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">Date<sp/>Date::operator-(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="53"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>newTime<sp/>=<sp/>_julianDate.time_since_epoch()<sp/>-<sp/><ref refid="structastrea_1_1astro_1_1JulianDateClock_1aa78273e9b2b9f756f34e6ebf46809877" kindref="member">JulianDateClock::duration</ref>(time);</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Date_1a8401426b654e330259e35a71bf149a17" kindref="member">Date</ref>(<ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref>(newTime));</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>newTime<sp/>=<sp/>_julianDate.time_since_epoch()<sp/>-<sp/>JulianDateClock::duration(time);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Date(<ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref>(newTime));</highlight></codeline>
 <codeline lineno="56"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="57"><highlight class="normal">Date&amp;<sp/><ref refid="classastrea_1_1astro_1_1Date_1a90bd53ed1eb420c0ed147d6173ec3240" kindref="member">Date::operator-=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">Date&amp;<sp/>Date::operator-=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time)</highlight></codeline>
 <codeline lineno="58"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>newTime<sp/>=<sp/>_julianDate.time_since_epoch()<sp/>-<sp/><ref refid="structastrea_1_1astro_1_1JulianDateClock_1aa78273e9b2b9f756f34e6ebf46809877" kindref="member">JulianDateClock::duration</ref>(time);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>newTime<sp/>=<sp/>_julianDate.time_since_epoch()<sp/>-<sp/>JulianDateClock::duration(time);</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>_julianDate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref>(newTime);</highlight></codeline>
 <codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="62"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64"><highlight class="normal">Time<sp/><ref refid="classastrea_1_1astro_1_1Date_1a9eb866f30e595978a5ff765fec9a8ad6" kindref="member">Date::operator-</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_julianDate<sp/>-<sp/>other._julianDate;<sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">Time<sp/>Date::operator-(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_julianDate<sp/>-<sp/>other._julianDate;<sp/>}</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
 <codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Conversions</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal">std::string<sp/><ref refid="classastrea_1_1astro_1_1Date_1a651d9af4b33b5452716621bb414593eb" kindref="member">Date::epoch</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">std::string<sp/>Date::epoch()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="68"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std::chrono;</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight></codeline>
@@ -289,7 +289,7 @@
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ss.str();</highlight></codeline>
 <codeline lineno="75"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal">Angle<sp/><ref refid="classastrea_1_1astro_1_1Date_1ac452455e9e5913ee9448fd7458161fd8" kindref="member">Date::gmst</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>julian_date_to_sidereal_time(_julianDate);<sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">Angle<sp/>Date::gmst()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>julian_date_to_sidereal_time(_julianDate);<sp/>}</highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>
 <codeline lineno="79"><highlight class="normal"></highlight><highlight class="comment">//<sp/>General<sp/>conversions</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref><sp/>epoch_to_julian_date(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>epoch,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>format)</highlight></codeline>
@@ -306,13 +306,13 @@
 <codeline lineno="91"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="92"><highlight class="normal"></highlight></codeline>
 <codeline lineno="93"><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date<sp/><ref refid="classastrea_1_1astro_1_1Date_1a765df1b0db6751bd51efb2f00d0feced" kindref="member">Date::now</ref>()<sp/>noexcept<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structastrea_1_1astro_1_1JulianDateClock_1ad629535a9ad2523f179f2037e89e51ed" kindref="member">JulianDateClock::now</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Date<sp/>Date::now()<sp/>noexcept<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>JulianDateClock::now();<sp/>}</highlight></codeline>
 <codeline lineno="95"><highlight class="normal"></highlight></codeline>
 <codeline lineno="96"><highlight class="normal"></highlight></codeline>
 <codeline lineno="97"><highlight class="normal">Angle<sp/>julian_date_to_sidereal_time(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>JulianDate&amp;<sp/>_julianDate)</highlight></codeline>
 <codeline lineno="98"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::unit_symbols::deg;</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::non_si::day;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::angular::unit_symbols::deg;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::non_si::day;</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"></highlight></codeline>
 <codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time<sp/>julianDay<sp/>=<sp/>_julianDate.time_since_epoch().count()<sp/>*<sp/>day;</highlight></codeline>
 <codeline lineno="103"><highlight class="normal"></highlight></codeline>

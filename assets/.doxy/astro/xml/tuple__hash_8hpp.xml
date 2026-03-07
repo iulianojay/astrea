@@ -1,18 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="tuple__hash_8hpp" kind="file" language="C++">
     <compoundname>tuple_hash.hpp</compoundname>
     <includes local="no">tuple</includes>
     <includedby refid="astro_8hpp" local="no">astrea/astro/astro/astro.hpp</includedby>
     <incdepgraph>
+      <node id="2">
+        <label>tuple</label>
+      </node>
       <node id="1">
         <label>astrea/astro/astro/types/tuple_hash.hpp</label>
         <link refid="tuple__hash_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-      </node>
-      <node id="2">
-        <label>tuple</label>
       </node>
     </incdepgraph>
     <invincdepgraph>

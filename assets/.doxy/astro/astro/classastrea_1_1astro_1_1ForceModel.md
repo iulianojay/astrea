@@ -53,10 +53,10 @@ _Class to manage multiple force models and compute the total force on a vehicle.
 | Type | Name |
 | ---: | :--- |
 |   | [**ForceModel**](#function-forcemodel) () = default<br>_Default constructor for_ [_**ForceModel**_](classastrea_1_1astro_1_1ForceModel.md) _._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::unique\_ptr&lt; [**Force**](classastrea_1_1astro_1_1Force.md) &gt; & | [**add**](#function-add) ([**Args**](classastrea_1_1astro_1_1CartesianVector.md) &&... args) <br>_Adds a force model of type T with the given arguments._  |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::unique\_ptr&lt; [**Force**](classastrea_1_1astro_1_1Force.md) &gt; & | [**at**](#function-at) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) std::string & name) const<br>_Retrieves a force model by name._  |
-|  [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Acceleration**](classastrea_1_1astro_1_1CartesianVector.md), [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**compute\_forces**](#function-compute_forces) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Computes the total force on a vehicle by summing the forces from all added force models._  |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::unique\_ptr&lt; [**Force**](classastrea_1_1astro_1_1Force.md) &gt; & | [**get**](#function-get) () const<br>_Retrieves a force model by type._  |
+|  const std::unique\_ptr&lt; [**Force**](classastrea_1_1astro_1_1Force.md) &gt; & | [**add**](#function-add) (Args &&... args) <br>_Adds a force model of type T with the given arguments._  |
+|  const std::unique\_ptr&lt; [**Force**](classastrea_1_1astro_1_1Force.md) &gt; & | [**at**](#function-at) (const std::string & name) const<br>_Retrieves a force model by name._  |
+|  [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frames::earth::icrf &gt; | [**compute\_forces**](#function-compute_forces) (const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const<br>_Computes the total force on a vehicle by summing the forces from all added force models._  |
+|  const std::unique\_ptr&lt; [**Force**](classastrea_1_1astro_1_1Force.md) &gt; & | [**get**](#function-get) () const<br>_Retrieves a force model by type._  |
 |  std::size\_t | [**size**](#function-size) () const<br>_Returns the number of forces added to the_ [_**ForceModel**_](classastrea_1_1astro_1_1ForceModel.md) _._ |
 |   | [**~ForceModel**](#function-forcemodel) () = default<br>_Default destructor for_ [_**ForceModel**_](classastrea_1_1astro_1_1ForceModel.md) _._ |
 
@@ -117,7 +117,7 @@ astrea::astro::ForceModel::ForceModel () = default
 
 _Adds a force model of type T with the given arguments._ 
 ```C++
-template<typename  T, typename... Args>
+template<typename T, typename... Args>
 inline const std::unique_ptr< Force > & astrea::astro::ForceModel::add (
     Args &&... args
 ) 
@@ -194,9 +194,9 @@ const std::unique\_ptr&lt;Force&gt;& Reference to the force model with the given
 
 _Computes the total force on a vehicle by summing the forces from all added force models._ 
 ```C++
-CartesianVector < Acceleration , frames::earth::icrf > astrea::astro::ForceModel::compute_forces (
-    const  State & state,
-    const  Vehicle & vehicle
+CartesianVector < Acceleration, frames::earth::icrf > astrea::astro::ForceModel::compute_forces (
+    const State & state,
+    const Vehicle & vehicle
 ) const
 ```
 
@@ -214,7 +214,7 @@ CartesianVector < Acceleration , frames::earth::icrf > astrea::astro::ForceModel
 
 **Returns:**
 
-[**AccelerationVector&lt;frames::earth::icrf&gt;**](namespaceastrea_1_1astro.md#typedef-accelerationvector) The total computed acceleration vector from all force models. 
+AccelerationVector&lt;frames::earth::icrf&gt; The total computed acceleration vector from all force models. 
 
 
 
@@ -230,7 +230,7 @@ CartesianVector < Acceleration , frames::earth::icrf > astrea::astro::ForceModel
 
 _Retrieves a force model by type._ 
 ```C++
-template<typename  T>
+template<typename T>
 inline const std::unique_ptr< Force > & astrea::astro::ForceModel::get () const
 ```
 

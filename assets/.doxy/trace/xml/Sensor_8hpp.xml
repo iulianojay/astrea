@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="Sensor_8hpp" kind="file" language="C++">
     <compoundname>Sensor.hpp</compoundname>
     <includes local="no">memory</includes>
@@ -17,15 +17,39 @@
     <includedby refid="Viewer_8hpp" local="no">astrea/trace/trace/platforms/vehicles/Viewer.hpp</includedby>
     <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
     <incdepgraph>
-      <node id="6">
-        <label>trace/platforms/AccessObject.hpp</label>
-        <link refid="AccessObject_8hpp"/>
-        <childnode refid="2" relation="include">
+      <node id="14">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="20">
+        <label>functional</label>
+      </node>
+      <node id="3">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="22">
+        <label>numbers</label>
+      </node>
+      <node id="18">
+        <label>cstdint</label>
+      </node>
+      <node id="5">
+        <label>astro/types/typedefs.hpp</label>
+      </node>
+      <node id="15">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
+      </node>
+      <node id="13">
+        <label>string</label>
       </node>
       <node id="1">
         <label>astrea/trace/trace/platforms/sensors/Sensor.hpp</label>
@@ -47,30 +71,6 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="21">
-        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
-        <link refid="FieldOfView_8hpp"/>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>trace/risesets/AccessArray.hpp</label>
-        <link refid="AccessArray_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
       <node id="9">
         <label>trace/risesets/RiseSetArray.hpp</label>
         <link refid="RiseSetArray_8hpp"/>
@@ -85,6 +85,59 @@
         <childnode refid="17" relation="include">
         </childnode>
       </node>
+      <node id="24">
+        <label>astro/frames/dynamic_frames.hpp</label>
+      </node>
+      <node id="19">
+        <label>trace/types/IdPair.hpp</label>
+        <link refid="IdPair_8hpp_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
+        <link refid="FieldOfView_8hpp"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>vector</label>
+      </node>
+      <node id="7">
+        <label>trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>array</label>
+      </node>
+      <node id="17">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>unordered_map</label>
+      </node>
+      <node id="4">
+        <label>astro/platforms/Payload.hpp</label>
+      </node>
       <node id="12">
         <label>trace/risesets/riseset_utils.hpp</label>
         <link refid="riseset__utils_8hpp"/>
@@ -95,111 +148,32 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="14">
-        <label>trace/trace.fwd.hpp</label>
-        <link refid="trace_8fwd_8hpp"/>
+      <node id="8">
+        <label>gtl/btree.hpp</label>
       </node>
-      <node id="19">
-        <label>trace/types/IdPair.hpp</label>
-        <link refid="IdPair_8hpp_source"/>
-        <childnode refid="18" relation="include">
+      <node id="6">
+        <label>trace/platforms/AccessObject.hpp</label>
+        <link refid="AccessObject_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>trace/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="17">
-        <label>trace/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>array</label>
-      </node>
-      <node id="3">
-        <label>astro/astro.fwd.hpp</label>
-      </node>
-      <node id="24">
-        <label>astro/frames/dynamic_frames.hpp</label>
-      </node>
-      <node id="4">
-        <label>astro/platforms/Payload.hpp</label>
-      </node>
-      <node id="5">
-        <label>astro/types/typedefs.hpp</label>
-      </node>
-      <node id="18">
-        <label>cstdint</label>
-      </node>
-      <node id="20">
-        <label>functional</label>
-      </node>
-      <node id="8">
-        <label>gtl/btree.hpp</label>
+      <node id="11">
+        <label>units/units.hpp</label>
       </node>
       <node id="2">
         <label>memory</label>
       </node>
-      <node id="22">
-        <label>numbers</label>
-      </node>
-      <node id="13">
-        <label>string</label>
-      </node>
-      <node id="11">
-        <label>units/units.hpp</label>
-      </node>
-      <node id="23">
-        <label>unordered_map</label>
-      </node>
-      <node id="10">
-        <label>vector</label>
-      </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2">
-        <label>astrea/trace/trace/analysis/AccessAnalyzer.hpp</label>
-        <link refid="AccessAnalyzer_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>astrea/trace/trace/io/output.hpp</label>
-        <link refid="output_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
       <node id="5">
         <label>astrea/trace/trace/platforms/ground/GroundArchitecture.hpp</label>
         <link refid="GroundArchitecture_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>astrea/trace/trace/platforms/ground/GroundStation.hpp</label>
-        <link refid="GroundStation_8hpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>astrea/trace/trace/platforms/sensors/Antenna.hpp</label>
-        <link refid="Antenna_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
@@ -226,6 +200,32 @@
       <node id="3">
         <label>astrea/trace/trace/trace.hpp</label>
         <link refid="trace_8hpp"/>
+      </node>
+      <node id="4">
+        <label>astrea/trace/trace/platforms/ground/GroundStation.hpp</label>
+        <link refid="GroundStation_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea/trace/trace/io/output.hpp</label>
+        <link refid="output_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/trace/trace/analysis/AccessAnalyzer.hpp</label>
+        <link refid="AccessAnalyzer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea/trace/trace/platforms/sensors/Antenna.hpp</label>
+        <link refid="Antenna_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
       </node>
     </invincdepgraph>
     <innerclass refid="classastrea_1_1trace_1_1SensorParameters" prot="public">astrea::trace::SensorParameters</innerclass>
@@ -277,7 +277,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
 <codeline lineno="60" refid="classastrea_1_1trace_1_1SensorParameters_1a6bd8263928f9db04964759d26498d1cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1SensorParameters_1a6bd8263928f9db04964759d26498d1cd" kindref="member">~SensorParameters</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="61"><highlight class="normal"></highlight></codeline>
-<codeline lineno="67" refid="classastrea_1_1trace_1_1SensorParameters_1a83c96f21e33ce56aebc0705d7237613f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1FieldOfView" kindref="compound">FieldOfView</ref>*<sp/><ref refid="classastrea_1_1trace_1_1SensorParameters_1a83c96f21e33ce56aebc0705d7237613f" kindref="member">get_fov</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1SensorParameters_1ae4e7346755188e1ae4f87ee268ba9336" kindref="member">_fov</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="67" refid="classastrea_1_1trace_1_1SensorParameters_1ab37b0bc46d9cf72113f30bd81b407fe0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1FieldOfView" kindref="compound">FieldOfView</ref>*<sp/><ref refid="classastrea_1_1trace_1_1SensorParameters_1ab37b0bc46d9cf72113f30bd81b407fe0" kindref="member">get_fov</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1SensorParameters_1ae4e7346755188e1ae4f87ee268ba9336" kindref="member">_fov</ref>;<sp/>}</highlight></codeline>
 <codeline lineno="68"><highlight class="normal"></highlight></codeline>
 <codeline lineno="74" refid="classastrea_1_1trace_1_1SensorParameters_1a5c7a6dc96910faed8201d4e65e4bd07a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1SensorParameters_1a5c7a6dc96910faed8201d4e65e4bd07a" kindref="member">set_fov</ref>(<ref refid="classastrea_1_1trace_1_1FieldOfView" kindref="compound">FieldOfView</ref>*<sp/>fov)<sp/>{<sp/><ref refid="classastrea_1_1trace_1_1SensorParameters_1ae4e7346755188e1ae4f87ee268ba9336" kindref="member">_fov</ref><sp/>=<sp/>fov;<sp/>}</highlight></codeline>
 <codeline lineno="75"><highlight class="normal"></highlight></codeline>
@@ -291,10 +291,10 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
 <codeline lineno="90"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Parent_T&gt;</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(std::is_base_of_v&lt;astro::FrameReference,<sp/>Parent_T&gt;)</highlight></codeline>
-<codeline lineno="101" refid="classastrea_1_1trace_1_1Sensor_1ae138cd879222cc1b8a9d0ae527150cf1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Sensor_1ae138cd879222cc1b8a9d0ae527150cf1" kindref="member">Sensor</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Parent_T&amp;<sp/>parent,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1SensorParameters" kindref="compound">SensorParameters</ref>&amp;<sp/>parameters)<sp/>:</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessObject_1aee7325297c99363f7a85e84aee0c752a" kindref="member">AccessObject</ref>(),</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Payload&lt;Sensor,<sp/>SensorParameters&gt;(parent,<sp/>parameters)</highlight></codeline>
+<codeline lineno="100" refid="classastrea_1_1trace_1_1Sensor_1a15560200c497837b5abf60b8cf4006de" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Sensor_1a15560200c497837b5abf60b8cf4006de" kindref="member">requires</ref>(std::is_base_of_v&lt;astro::FrameReference,<sp/>Parent_T&gt;)</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1Sensor" kindref="compound">Sensor</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Parent_T&amp;<sp/>parent,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1SensorParameters" kindref="compound">SensorParameters</ref>&amp;<sp/>parameters)<sp/>:</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1AccessObject" kindref="compound">AccessObject</ref>(),</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Payload&lt;<ref refid="classastrea_1_1trace_1_1Sensor" kindref="compound">Sensor</ref>,<sp/><ref refid="classastrea_1_1trace_1_1SensorParameters" kindref="compound">SensorParameters</ref>&gt;(parent,<sp/>parameters)</highlight></codeline>
 <codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="106"><highlight class="normal"></highlight></codeline>
@@ -312,7 +312,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="138"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="139"><highlight class="normal"></highlight></codeline>
-<codeline lineno="143" refid="Sensor_8hpp_1a28fece046a4c051e91df7fe3f68f9e11" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="Sensor_8hpp_1a28fece046a4c051e91df7fe3f68f9e11" kindref="member">SensorPlatform</ref><sp/>=<sp/>astro::PayloadPlatform&lt;Sensor&gt;;</highlight></codeline>
+<codeline lineno="143" refid="Sensor_8hpp_1a28fece046a4c051e91df7fe3f68f9e11" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="Sensor_8hpp_1a28fece046a4c051e91df7fe3f68f9e11" kindref="member">SensorPlatform</ref><sp/>=<sp/>astro::PayloadPlatform&lt;Sensor&gt;;</highlight></codeline>
 <codeline lineno="144"><highlight class="normal"></highlight></codeline>
 <codeline lineno="145"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="146"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>

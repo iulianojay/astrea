@@ -6286,7 +6286,7 @@ You're not viewing the latest version.
 <ul>
 <li><code>#include &lt;EastNorthUp.hpp&gt;</code></li>
 </ul>
-<p>Inherits the following classes: <a href="../classastrea_1_1astro_1_1DynamicFrame/">astrea::astro::DynamicFrame</a></p>
+<p>Inherits the following classes: DynamicFrame&lt; EastNorthUp, FrameAxis::ENU &gt;</p>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -6298,11 +6298,11 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-eastnorthup-12"><strong>EastNorthUp</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1FrameReference/"><strong>FrameReference</strong></a> * parent) <br><em>Default constructor for</em> <a href="./"><em><strong>EastNorthUp</strong></em></a> <em>.</em></td>
+<td style="text-align: left;"><a href="#function-eastnorthup-12"><strong>EastNorthUp</strong></a> (const <a href="../classastrea_1_1astro_1_1FrameReference/"><strong>FrameReference</strong></a> * parent) <br><em>Default constructor for</em> <a href="./"><em><strong>EastNorthUp</strong></em></a> <em>.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a>, <a href="./"><strong>EastNorthUp</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="#function-get_dcm"><strong>get_dcm</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Gets the Direction Cosine Matrix (DCM) for the ENU frame at a given date.</em></td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>DirectionCosineMatrix</strong></a>&lt; frames::earth::icrf, <a href="./"><strong>EastNorthUp</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-get_dcm"><strong>get_dcm</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Gets the Direction Cosine Matrix (DCM) for the ENU frame at a given date.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -6310,175 +6310,11 @@ You're not viewing the latest version.
 </tr>
 </tbody>
 </table>
-<h2 id="public-functions-inherited-from-astreaastrodynamicframe">Public Functions inherited from astrea::astro::DynamicFrame<a class="headerlink" href="#public-functions-inherited-from-astreaastrodynamicframe" title="Permanent link">&para;</a></h2>
-<p>See <a href="../classastrea_1_1astro_1_1DynamicFrame/">astrea::astro::DynamicFrame</a></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;"><a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#function-convert_from_this_frame"><strong>convert_from_this_frame</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Frame_T</strong></a> &gt; &amp; vec, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Converts a</em> <a href="../classastrea_1_1astro_1_1CartesianVector/"><em><strong>CartesianVector</strong></em></a> <em>from Frame_T coordinates to Earth-Centered Inertial (ECI) coordinates.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Frame_T</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#function-convert_to_this_frame"><strong>convert_to_this_frame</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt; &amp; vec, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Converts a</em> <a href="../classastrea_1_1astro_1_1CartesianVector/"><em><strong>CartesianVector</strong></em></a> <em>from Earth-Centered Inertial (ECI) to Frame_T coordinates.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Value_T</strong></a>, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Frame_T</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#function-rotate_into_this_frame"><strong>rotate_into_this_frame</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Value_T</strong></a>, <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt; &amp; vec, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Rotates a</em> <a href="../classastrea_1_1astro_1_1CartesianVector/"><em><strong>CartesianVector</strong></em></a> <em>from Earth-Centered Inertial (ECI) to Frame_T coordinates.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Value_T</strong></a>, <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#function-rotate_out_of_this_frame"><strong>rotate_out_of_this_frame</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Value_T</strong></a>, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Frame_T</strong></a> &gt; &amp; vec, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Rotates a</em> <a href="../classastrea_1_1astro_1_1CartesianVector/"><em><strong>CartesianVector</strong></em></a> <em>from Frame_T coordinates to Earth-Centered Inertial (ECI) coordinates.</em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="public-static-functions-inherited-from-astreaastrodynamicframe">Public Static Functions inherited from astrea::astro::DynamicFrame<a class="headerlink" href="#public-static-functions-inherited-from-astreaastrodynamicframe" title="Permanent link">&para;</a></h2>
-<p>See <a href="../classastrea_1_1astro_1_1DynamicFrame/">astrea::astro::DynamicFrame</a></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>constexpr</strong></a> <a href="../namespaceastrea_1_1astro/#enum-frameaxis"><strong>FrameAxis</strong></a></td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#function-get_axis"><strong>get_axis</strong></a> () <br><em>Get the origin of the frame.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>constexpr</strong></a> <a href="../namespaceastrea_1_1astro/#enum-celestialbodyid"><strong>CelestialBodyId</strong></a></td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#function-get_origin"><strong>get_origin</strong></a> () <br><em>Get the origin of the frame.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Frame_T</strong></a></td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#function-instantaneous"><strong>instantaneous</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt; &amp; position, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-velocityvector"><strong>VelocityVector</strong></a>&lt; <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt; &amp; velocity) <br><em>Creates an instantaneous Frame_T frame.</em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="public-static-functions-inherited-from-astreaastroframe">Public Static Functions inherited from astrea::astro::Frame<a class="headerlink" href="#public-static-functions-inherited-from-astreaastroframe" title="Permanent link">&para;</a></h2>
-<p>See <a href="../structastrea_1_1astro_1_1Frame/">astrea::astro::Frame</a></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>constexpr</strong></a> <a href="../namespaceastrea_1_1astro/#enum-frameaxis"><strong>FrameAxis</strong></a></td>
-<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1Frame/#function-get_axis"><strong>get_axis</strong></a> () <br><em>Get the origin of the frame.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>constexpr</strong></a> <a href="../namespaceastrea_1_1astro/#enum-celestialbodyid"><strong>CelestialBodyId</strong></a></td>
-<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1Frame/#function-get_origin"><strong>get_origin</strong></a> () <br><em>Get the origin of the frame.</em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="protected-attributes-inherited-from-astreaastrodynamicframe">Protected Attributes inherited from astrea::astro::DynamicFrame<a class="headerlink" href="#protected-attributes-inherited-from-astreaastrodynamicframe" title="Permanent link">&para;</a></h2>
-<p>See <a href="../classastrea_1_1astro_1_1DynamicFrame/">astrea::astro::DynamicFrame</a></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>bool</strong></a></td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#variable-_isinstantaneous"><strong>_isInstantaneous</strong></a>  <br><em>Flag indicating if the frame is instantaneous.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1FrameReference/"><strong>FrameReference</strong></a> *</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#variable-_parent"><strong>_parent</strong></a>  <br><em>The parent object this frame is attached to.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#variable-_position"><strong>_position</strong></a>  <br><em>The position vector in the ECI frame.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../namespaceastrea_1_1astro/#typedef-velocityvector"><strong>VelocityVector</strong></a>&lt; <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#variable-_velocity"><strong>_velocity</strong></a>  <br><em>The velocity vector in the ECI frame.</em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="protected-static-attributes-inherited-from-astreaastroframe">Protected Static Attributes inherited from astrea::astro::Frame<a class="headerlink" href="#protected-static-attributes-inherited-from-astreaastroframe" title="Permanent link">&para;</a></h2>
-<p>See <a href="../structastrea_1_1astro_1_1Frame/">astrea::astro::Frame</a></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>constexpr</strong></a> <a href="../namespaceastrea_1_1astro/#enum-frameaxis"><strong>FrameAxis</strong></a></td>
-<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1Frame/#variable-_axis"><strong>_axis</strong></a>   = <code>[**axis**](classastrea_1_1astro_1_1CartesianVector.md)</code><br><em>The axis type of the inertial frame.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>constexpr</strong></a> <a href="../namespaceastrea_1_1astro/#enum-celestialbodyid"><strong>CelestialBodyId</strong></a></td>
-<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1Frame/#variable-_origin"><strong>_origin</strong></a>   = <code>[**origin**](classastrea_1_1astro_1_1CartesianVector.md)</code><br><em>The central body associated with the inertial frame.</em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="protected-functions-inherited-from-astreaastrodynamicframe">Protected Functions inherited from astrea::astro::DynamicFrame<a class="headerlink" href="#protected-functions-inherited-from-astreaastrodynamicframe" title="Permanent link">&para;</a></h2>
-<p>See <a href="../classastrea_1_1astro_1_1DynamicFrame/">astrea::astro::DynamicFrame</a></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#function-dynamicframe-12"><strong>DynamicFrame</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1FrameReference/"><strong>FrameReference</strong></a> * parent) <br><em>Constructor for</em> <a href="../classastrea_1_1astro_1_1DynamicFrame/"><em><strong>DynamicFrame</strong></em></a> <em>.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#function-dynamicframe-22"><strong>DynamicFrame</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt; &amp; position, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../namespaceastrea_1_1astro/#typedef-velocityvector"><strong>VelocityVector</strong></a>&lt; <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt; &amp; velocity) <br><em>Constructor for instantaneous dynamic state/frames.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../namespaceastrea_1_1astro/#typedef-radiusvector"><strong>RadiusVector</strong></a>&lt; <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#function-get_inertial_position"><strong>get_inertial_position</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Gets the inertial position vector at a given date.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../namespaceastrea_1_1astro/#typedef-velocityvector"><strong>VelocityVector</strong></a>&lt; <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>frames::earth::icrf</strong></a> &gt;</td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1DynamicFrame/#function-get_inertial_velocity"><strong>get_inertial_velocity</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date) const<br><em>Gets the inertial velocity vector at a given date.</em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="protected-functions-inherited-from-astreaastroframe">Protected Functions inherited from astrea::astro::Frame<a class="headerlink" href="#protected-functions-inherited-from-astreaastroframe" title="Permanent link">&para;</a></h2>
-<p>See <a href="../structastrea_1_1astro_1_1Frame/">astrea::astro::Frame</a></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;">virtual</td>
-<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1Frame/#function-frame"><strong>~Frame</strong></a> () = default<br><em>Default destructor for</em> <a href="../structastrea_1_1astro_1_1Frame/"><em><strong>Frame</strong></em></a> <em>.</em></td>
-</tr>
-</tbody>
-</table>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-eastnorthup-12">function EastNorthUp [1/2]<a class="headerlink" href="#function-eastnorthup-12" title="Permanent link">&para;</a></h3>
 <p><em>Default constructor for</em> <a href="./"><em><strong>EastNorthUp</strong></em></a> <em>.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">frames</span><span class="o">::</span><span class="n">EastNorthUp</span><span class="o">::</span><span class="n">EastNorthUp</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">FrameReference</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">FrameReference</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p>Initializes the ENU frame with a name and origin. </p>
@@ -6486,8 +6322,8 @@ You're not viewing the latest version.
 
 <h3 id="function-get_dcm">function get_dcm<a class="headerlink" href="#function-get_dcm" title="Permanent link">&para;</a></h3>
 <p><em>Gets the Direction Cosine Matrix (DCM) for the ENU frame at a given date.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">earth</span><span class="o">::</span><span class="n">icrf</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">EastNorthUp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">frames</span><span class="o">::</span><span class="n">EastNorthUp</span><span class="o">::</span><span class="n">get_dcm</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">earth</span><span class="o">::</span><span class="n">icrf</span><span class="p">,</span><span class="w"> </span><span class="n">EastNorthUp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">frames</span><span class="o">::</span><span class="n">EastNorthUp</span><span class="o">::</span><span class="n">get_dcm</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>

@@ -6365,9 +6365,11 @@ You're not viewing the latest version.
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1EventDetector/"><strong>astrea::astro::EventDetector</strong></a> <em>A class for detecting events in the astrea astro platform.</em> </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1ForceModel/"><strong>astrea::astro::ForceModel</strong></a> <em>Class to manage multiple force models and compute the total force on a vehicle.</em> </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1FrameReference/"><strong>astrea::astro::FrameReference</strong></a> <em>Base class for all frame references.</em>     <ul>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>astrea::astro::PayloadPlatform</strong></a> <em>The</em> <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><em><strong>PayloadPlatform</strong></em></a> <em>class represents a platform that can have payloads attached to it. It provides methods to attach payloads and retrieve the list of attached payloads.</em></li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1NullVehicle/"><strong>astrea::astro::NullVehicle</strong></a> <em>A class representing a null vehicle in the astrea astro platform. This class is used as a placeholder for vehicles that do not have a defined state or mass.</em> </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>astrea::astro::PayloadPlatform</strong></a> <em>The</em> <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><em><strong>PayloadPlatform</strong></em></a> <em>class represents a platform that can have payloads attached to it. It provides methods to attach payloads and retrieve the list of attached payloads.</em></li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>astrea::astro::PayloadPlatform</strong></a> <em>The</em> <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><em><strong>PayloadPlatform</strong></em></a> <em>class represents a platform that can have payloads attached to it. It provides methods to attach payloads and retrieve the list of attached payloads.</em>    <ul>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Spacecraft/"><strong>astrea::astro::Spacecraft</strong></a> <em>A class representing a spacecraft in the astrea astro platform. This class encapsulates the properties of a spacecraft, including its mass, dynamic coefficients, and surface areas.</em> </li>
+</ul>
+</li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>astrea::astro::Vehicle</strong></a> <em>A class representing a vehicle in the astrea astro platform. This class serves as a base for user-defined vehicles and provides a common interface.</em> </li>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/"><strong>astrea::astro::detail::VehicleInnerBase</strong></a> <em>Pure virtual base class for vehicle inner implementations.</em>     <ul>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1VehicleInner/"><strong>astrea::astro::detail::VehicleInner</strong></a> <em>A template class for vehicle inner implementations.</em> </li>
@@ -6401,11 +6403,8 @@ You're not viewing the latest version.
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1StatePartial/"><strong>astrea::astro::StatePartial</strong></a> </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1StateTransitionMatrix/"><strong>astrea::astro::StateTransitionMatrix</strong></a> </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1TwoLineElements/"><strong>astrea::astro::TwoLineElements</strong></a> <em>Class representing the two-line element (TLE) format for orbital data.</em> </li>
-<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Frame/"><strong>astrea::astro::Frame</strong></a> <em>Base class for all state/frames.</em>     <ul>
-<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1InertialFrame/"><strong>astrea::astro::InertialFrame</strong></a> <em>Base class for all inertial state/frames.</em> </li>
-</ul>
-</li>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1CelestialBodyParameters/"><strong>astrea::astro::CelestialBodyParameters</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Frame/"><strong>astrea::astro::Frame</strong></a> <em>Base class for all state/frames.</em> </li>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1GeneralPerturbations/"><strong>astrea::astro::GeneralPerturbations</strong></a> <a href="../structastrea_1_1astro_1_1GeneralPerturbations/"><em><strong>GeneralPerturbations</strong></em></a> <em>structure representing a Ground Position (GP) object from SpaceTrack.</em></li>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1JplEphemerisTable/"><strong>astrea::astro::JplEphemerisTable</strong></a> <em>Base class for any JPL</em> <a href="../classastrea_1_1astro_1_1CelestialBody/"><em><strong>CelestialBody</strong></em></a> <em>table.</em></li>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1JulianDateClock/"><strong>astrea::astro::JulianDateClock</strong></a> <em>A clock implementation for Julian Dates.</em> </li>
@@ -6417,6 +6416,22 @@ You're not viewing the latest version.
 <li><strong>struct</strong> <a href="../structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4/"><strong>mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;</strong></a> <em>Specialization of mp_units::quantity_point_like_traits for the Date class.</em> </li>
 <li><strong>struct</strong> <a href="../structstd_1_1hash_3_01astrea_1_1astro_1_1CelestialBody_01_4/"><strong>std::hash&lt; astrea::astro::CelestialBody &gt;</strong></a> <em>Hash function for CelestialBody.</em> </li>
 <li><strong>struct</strong> <a href="../structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4/"><strong>std::hash&lt; std::tuple&lt; TT... &gt; &gt;</strong></a> </li>
+<li><strong>class</strong> <strong>DynamicFrame&lt; EastNorthUp, FrameAxis::ENU &gt;</strong>    <ul>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1frames_1_1EastNorthUp/"><strong>astrea::astro::frames::EastNorthUp</strong></a> <em>Class representing the East, North, Up (ENU) frame.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <strong>DynamicFrame&lt; LocalHorizontalLocalVertical, FrameAxis::LVLH &gt;</strong>    <ul>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical/"><strong>astrea::astro::frames::LocalHorizontalLocalVertical</strong></a> <em>Class representing the Local Horizontal, Local Vertical (LVLH) frame.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <strong>DynamicFrame&lt; RadialInTrackCrossTrack, FrameAxis::RIC &gt;</strong>    <ul>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack/"><strong>astrea::astro::frames::RadialInTrackCrossTrack</strong></a> <em>Class representing the Radial, In-Track, Cross-Track (RIC) frame.</em> </li>
+</ul>
+</li>
+<li><strong>class</strong> <strong>DynamicFrame&lt; VelocityNormalBinormal, FrameAxis::VNB &gt;</strong>    <ul>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal/"><strong>astrea::astro::frames::VelocityNormalBinormal</strong></a> <em>Class representing the Velocity, Normal, Binormal (VNB) frame.</em> </li>
+</ul>
+</li>
 <li><strong>class</strong> <strong>std::false_type</strong>    <ul>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1is__specialization/"><strong>astrea::astro::is_specialization</strong></a> </li>
 </ul>

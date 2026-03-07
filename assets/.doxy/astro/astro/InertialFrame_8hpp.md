@@ -35,11 +35,6 @@ _Header file for the InertialFrame class in the astro namespace._ [More...](#det
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
 
 
-## Classes
-
-| Type | Name |
-| ---: | :--- |
-| struct | [**InertialFrame**](structastrea_1_1astro_1_1InertialFrame.md) &lt;origin, axis&gt;<br>_Base class for all inertial state/frames._  |
 
 
 

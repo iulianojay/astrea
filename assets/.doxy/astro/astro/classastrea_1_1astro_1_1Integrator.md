@@ -63,19 +63,19 @@
 | Type | Name |
 | ---: | :--- |
 |   | [**Integrator**](#function-integrator) () = default<br>_Default constructor for the_ [_**Integrator**_](classastrea_1_1astro_1_1Integrator.md) _class._ |
-|  [**int**](classastrea_1_1astro_1_1CartesianVector.md) | [**n\_func\_evals**](#function-n_func_evals) () <br>_Get the current timestep used by the integrator._  |
-|  [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) | [**propagate**](#function-propagate-12) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**State**](classastrea_1_1astro_1_1State.md) & state0, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & propTime, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md) & eom, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) vehicle, [**bool**](classastrea_1_1astro_1_1CartesianVector.md) store=[**false**](classastrea_1_1astro_1_1CartesianVector.md), std::vector&lt; [**Event**](classastrea_1_1astro_1_1Event.md) &gt; events={}) <br>_Propagate the state of a vehicle over a specified time interval using the given equations of motion._  |
-|  [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) | [**propagate**](#function-propagate-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**State**](classastrea_1_1astro_1_1State.md) & state0, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & endEpoch, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md) & eom, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) vehicle, [**bool**](classastrea_1_1astro_1_1CartesianVector.md) store=[**false**](classastrea_1_1astro_1_1CartesianVector.md), std::vector&lt; [**Event**](classastrea_1_1astro_1_1Event.md) &gt; events={}) <br>_Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion._  |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**set\_abs\_tol**](#function-set_abs_tol) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & absTol) <br>_Set the absolute tolerance for the integrator._  |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**set\_initial\_timestep**](#function-set_initial_timestep) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & dt0) <br>_Set the initial timestep for the integrator._  |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**set\_max\_iter**](#function-set_max_iter) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**int**](classastrea_1_1astro_1_1CartesianVector.md) & itMax) <br>_Set the maximum number of iterations for the integrator._  |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**set\_rel\_tol**](#function-set_rel_tol) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & relTol) <br>_Set the relative tolerance for the integrator._  |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**set\_step\_method**](#function-set_step_method) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**StepMethod**](classastrea_1_1astro_1_1Integrator.md#enum-stepmethod) & stepMethod) <br>_Set the step method for the integrator._  |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**set\_timestep**](#function-set_timestep) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & fixedTimeStep) <br>_Set the fixed timestep for the integrator._  |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**switch\_fixed\_timestep**](#function-switch_fixed_timestep-12) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**bool**](classastrea_1_1astro_1_1CartesianVector.md) & onOff) <br>_Switch the fixed timestep mode on or off._  |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**switch\_fixed\_timestep**](#function-switch_fixed_timestep-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**bool**](classastrea_1_1astro_1_1CartesianVector.md) & onOff, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & fixedTimeStep) <br>_Set the fixed timestep for the integrator._  |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**switch\_print**](#function-switch_print) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**bool**](classastrea_1_1astro_1_1CartesianVector.md) & onOff) <br>_Switch the printing of integration details on or off._  |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**switch\_timer**](#function-switch_timer) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**bool**](classastrea_1_1astro_1_1CartesianVector.md) & onOff) <br>_Switch the timer for measuring integration performance on or off._  |
+|  int | [**n\_func\_evals**](#function-n_func_evals) () <br>_Get the current timestep used by the integrator._  |
+|  [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) | [**propagate**](#function-propagate-12) (const [**State**](classastrea_1_1astro_1_1State.md) & state0, const Time & propTime, const [**EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md) & eom, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) vehicle, bool store=false, std::vector&lt; [**Event**](classastrea_1_1astro_1_1Event.md) &gt; events={}) <br>_Propagate the state of a vehicle over a specified time interval using the given equations of motion._  |
+|  [**StateHistory**](classastrea_1_1astro_1_1StateHistory.md) | [**propagate**](#function-propagate-22) (const [**State**](classastrea_1_1astro_1_1State.md) & state0, const [**Date**](classastrea_1_1astro_1_1Date.md) & endEpoch, const [**EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md) & eom, [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) vehicle, bool store=false, std::vector&lt; [**Event**](classastrea_1_1astro_1_1Event.md) &gt; events={}) <br>_Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion._  |
+|  void | [**set\_abs\_tol**](#function-set_abs_tol) (const Unitless & absTol) <br>_Set the absolute tolerance for the integrator._  |
+|  void | [**set\_initial\_timestep**](#function-set_initial_timestep) (const Time & dt0) <br>_Set the initial timestep for the integrator._  |
+|  void | [**set\_max\_iter**](#function-set_max_iter) (const int & itMax) <br>_Set the maximum number of iterations for the integrator._  |
+|  void | [**set\_rel\_tol**](#function-set_rel_tol) (const Unitless & relTol) <br>_Set the relative tolerance for the integrator._  |
+|  void | [**set\_step\_method**](#function-set_step_method) (const [**StepMethod**](classastrea_1_1astro_1_1Integrator.md#enum-stepmethod) & stepMethod) <br>_Set the step method for the integrator._  |
+|  void | [**set\_timestep**](#function-set_timestep) (const Time & fixedTimeStep) <br>_Set the fixed timestep for the integrator._  |
+|  void | [**switch\_fixed\_timestep**](#function-switch_fixed_timestep-12) (const bool & onOff) <br>_Switch the fixed timestep mode on or off._  |
+|  void | [**switch\_fixed\_timestep**](#function-switch_fixed_timestep-22) (const bool & onOff, const Time & fixedTimeStep) <br>_Set the fixed timestep for the integrator._  |
+|  void | [**switch\_print**](#function-switch_print) (const bool & onOff) <br>_Switch the printing of integration details on or off._  |
+|  void | [**switch\_timer**](#function-switch_timer) (const bool & onOff) <br>_Switch the timer for measuring integration performance on or off._  |
 |   | [**~Integrator**](#function-integrator) () = default<br>_Default destructor for the_ [_**Integrator**_](classastrea_1_1astro_1_1Integrator.md) _class._ |
 
 
@@ -199,9 +199,9 @@ Time The current timestep.
 _Propagate the state of a vehicle over a specified time interval using the given equations of motion._ 
 ```C++
 StateHistory astrea::astro::Integrator::propagate (
-    const  State & state0,
-    const  Time & propTime,
-    const  EquationsOfMotion & eom,
+    const State & state0,
+    const Time & propTime,
+    const EquationsOfMotion & eom,
     Vehicle vehicle,
     bool store=false,
     std::vector< Event > events={}
@@ -242,9 +242,9 @@ StateHistory astrea::astro::Integrator::propagate (
 _Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion._ 
 ```C++
 StateHistory astrea::astro::Integrator::propagate (
-    const  State & state0,
-    const  Date & endEpoch,
-    const  EquationsOfMotion & eom,
+    const State & state0,
+    const Date & endEpoch,
+    const EquationsOfMotion & eom,
     Vehicle vehicle,
     bool store=false,
     std::vector< Event > events={}
@@ -285,7 +285,7 @@ StateHistory astrea::astro::Integrator::propagate (
 _Set the absolute tolerance for the integrator._ 
 ```C++
 void astrea::astro::Integrator::set_abs_tol (
-    const  Unitless & absTol
+    const Unitless & absTol
 ) 
 ```
 
@@ -312,7 +312,7 @@ void astrea::astro::Integrator::set_abs_tol (
 _Set the initial timestep for the integrator._ 
 ```C++
 void astrea::astro::Integrator::set_initial_timestep (
-    const  Time & dt0
+    const Time & dt0
 ) 
 ```
 
@@ -339,7 +339,7 @@ void astrea::astro::Integrator::set_initial_timestep (
 _Set the maximum number of iterations for the integrator._ 
 ```C++
 void astrea::astro::Integrator::set_max_iter (
-    const  int & itMax
+    const int & itMax
 ) 
 ```
 
@@ -366,7 +366,7 @@ void astrea::astro::Integrator::set_max_iter (
 _Set the relative tolerance for the integrator._ 
 ```C++
 void astrea::astro::Integrator::set_rel_tol (
-    const  Unitless & relTol
+    const Unitless & relTol
 ) 
 ```
 
@@ -393,7 +393,7 @@ void astrea::astro::Integrator::set_rel_tol (
 _Set the step method for the integrator._ 
 ```C++
 void astrea::astro::Integrator::set_step_method (
-    const  StepMethod & stepMethod
+    const StepMethod & stepMethod
 ) 
 ```
 
@@ -420,7 +420,7 @@ void astrea::astro::Integrator::set_step_method (
 _Set the fixed timestep for the integrator._ 
 ```C++
 void astrea::astro::Integrator::set_timestep (
-    const  Time & fixedTimeStep
+    const Time & fixedTimeStep
 ) 
 ```
 
@@ -447,7 +447,7 @@ void astrea::astro::Integrator::set_timestep (
 _Switch the fixed timestep mode on or off._ 
 ```C++
 void astrea::astro::Integrator::switch_fixed_timestep (
-    const  bool & onOff
+    const bool & onOff
 ) 
 ```
 
@@ -474,8 +474,8 @@ void astrea::astro::Integrator::switch_fixed_timestep (
 _Set the fixed timestep for the integrator._ 
 ```C++
 void astrea::astro::Integrator::switch_fixed_timestep (
-    const  bool & onOff,
-    const  Time & fixedTimeStep
+    const bool & onOff,
+    const Time & fixedTimeStep
 ) 
 ```
 
@@ -502,7 +502,7 @@ void astrea::astro::Integrator::switch_fixed_timestep (
 _Switch the printing of integration details on or off._ 
 ```C++
 void astrea::astro::Integrator::switch_print (
-    const  bool & onOff
+    const bool & onOff
 ) 
 ```
 
@@ -529,7 +529,7 @@ void astrea::astro::Integrator::switch_print (
 _Switch the timer for measuring integration performance on or off._ 
 ```C++
 void astrea::astro::Integrator::switch_timer (
-    const  bool & onOff
+    const bool & onOff
 ) 
 ```
 

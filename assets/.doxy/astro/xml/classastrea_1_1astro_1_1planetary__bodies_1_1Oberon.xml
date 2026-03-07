@@ -1,16 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::planetary_bodies::Oberon</compoundname>
     <basecompoundref refid="classastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody</basecompoundref>
     <includes refid="Oberon_8hpp" local="no">Oberon.hpp</includes>
-    <sectiondef kind="public-func">
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon_1a792792099877e871faee44e43d71aec4" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref></type>
+        <type>constexpr</type>
         <definition>constexpr astrea::astro::planetary_bodies::Oberon::Oberon</definition>
         <argsstring>()</argsstring>
         <name>Oberon</name>
-        <qualifiedname>astrea::astro::planetary_bodies::Oberon::Oberon</qualifiedname>
         <briefdescription>
 <para>Default constructor for the <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon" kindref="compound">Oberon</ref> class. </para>
         </briefdescription>
@@ -26,7 +25,6 @@
         <definition>astrea::astro::planetary_bodies::Oberon::~Oberon</definition>
         <argsstring>()=default</argsstring>
         <name>~Oberon</name>
-        <qualifiedname>astrea::astro::planetary_bodies::Oberon::~Oberon</qualifiedname>
         <briefdescription>
 <para>Default destructor for the <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon" kindref="compound">Oberon</ref> class. </para>
         </briefdescription>
@@ -36,14 +34,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/planetary_bodies/Uranus/Oberon.hpp" line="78" column="5"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-static-func">
+      </sectiondef>
+      <sectiondef kind="public-static-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon_1a38b3b225f2c0b97ea0bae0bd4218c44d" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">constexpr</ref> <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
+        <type>constexpr <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
         <definition>static constexpr CelestialBodyId astrea::astro::planetary_bodies::Oberon::get_id</definition>
         <argsstring>()</argsstring>
         <name>get_id</name>
-        <qualifiedname>astrea::astro::planetary_bodies::Oberon::get_id</qualifiedname>
         <briefdescription>
 <para>Get the unique identifier for the <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon" kindref="compound">Oberon</ref> celestial body. </para>
         </briefdescription>
@@ -56,7 +53,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/systems/planetary_bodies/Uranus/Oberon.hpp" line="85" column="38" bodyfile="astrea/astro/astro/systems/planetary_bodies/Uranus/Oberon.hpp" bodystart="85" bodyend="85"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Represents the <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon" kindref="compound">Oberon</ref> celestial body. </para>
     </briefdescription>
@@ -64,33 +61,33 @@
 <para>This class provides properties and methods specific to <ref refid="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon" kindref="compound">Oberon</ref>, including its physical and orbital parameters. </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>astrea::astro::CelestialBody</label>
-        <link refid="classastrea_1_1astro_1_1CelestialBody"/>
-      </node>
       <node id="1">
         <label>astrea::astro::planetary_bodies::Oberon</label>
         <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-    </inheritancegraph>
-    <collaborationgraph>
       <node id="2">
         <label>astrea::astro::CelestialBody</label>
         <link refid="classastrea_1_1astro_1_1CelestialBody"/>
-        <childnode refid="3" relation="usage">
-          <edgelabel>_referenceDate</edgelabel>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>astrea::astro::planetary_bodies::Oberon</label>
+        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon"/>
+        <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
       <node id="3">
         <label>astrea::astro::Date</label>
         <link refid="classastrea_1_1astro_1_1Date"/>
       </node>
-      <node id="1">
-        <label>astrea::astro::planetary_bodies::Oberon</label>
-        <link refid="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon"/>
-        <childnode refid="2" relation="public-inheritance">
+      <node id="2">
+        <label>astrea::astro::CelestialBody</label>
+        <link refid="classastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>_referenceDate</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
@@ -132,41 +129,41 @@
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a4a87589b8ead4d8f6d08dba4e76a48c5" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>CelestialBody</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1afe5a75b8b6642b858b07118807b7c22e" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>CoefficientPack</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1acfc2683c55c0c80d08cc4334b9cceff2" prot="public" virt="virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>find_atmospheric_density</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a9266110f7cb52d3e051de504fb997821" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_axial_tilt</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a0e252edd509663945be766d584abdf1b" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_axial_tilt</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a894d59687465c8a3be71e1f770a204cf" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_chebyshev_table_coefficients</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a98a96ef56b6025558ee4148826509598" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_crash_radius</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a744f4f4aa36431b86b1bec565d7bf645" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_eccentricity</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1abf1b632c73b028c571486ddf1c70d4a8" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_eccentricity_rate</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1aa9ff0662a7cfed2c04b79f2a45e73395" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_equitorial_radius</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a7607937b805b242c65cabb96807d01bf" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_crash_radius</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1adfe5331b3dbcc5ff70fa0610e67e00b9" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_eccentricity</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a473ce53854faf2d4fc0f828ea796903d" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_eccentricity_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ab2c2f4817033d28565b704ecd8c01a0e" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_equitorial_radius</name></member>
       <member refid="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon_1a38b3b225f2c0b97ea0bae0bd4218c44d" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_id</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1ac1dd5a988080c70622118dee4f3fbc78" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_inclination</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a01321cb9cd10ac47cc41e4ef7d25b003" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_inclination_rate</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1aaa2c56c6dd43f248d48c24345810b42a" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_j2</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a2c1289302f2809fac6d034d142af325f" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_j3</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1adeff30aeaeacd71becc431471486abbb" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_inclination</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a0ca48675fc919f91863ebd71f4fa20c0" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_inclination_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a0a7a2cbe2a331369419dec1e4aaa82e6" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_j2</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a10f5d2208653a1239519af426eeac8cc" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_j3</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a51cb25b1f9d226380e609a9c82ae7b9b" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_keplerian_elements_at</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a81894fd1731a0e827dccb807847f96ed" prot="protected" virt="virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_linear_expansion_coefficients</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a4793cb0a8d3624feab96309ff2d3665d" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_longitude_of_perigee</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1ab2a06b78c0c6f044cc63c59ef4466c20" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_longitude_of_perigee_rate</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a106b73023aee9d171ac9f73d4c64cf47" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_mass</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a0f4787d77b77701820161aa40abe66a8" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_mean_anomaly</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a68ef5a02068ae70622a0aa3e10af426f" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_mean_longitude</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a17b0a9b8913ff254d6d3156fd3ff2fcf" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_mean_longitude_rate</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a107a07661840122a1d4e4d64f7d5b5ac" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_mu</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a27e7ae51508983539052b15e562b5e78" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_name</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a81b4dd27bcc6ba15c52ae24c2da73f0b" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_parent</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1ad8bccd99ad4ecbbfa41b4c78cc85ac7b" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_polar_radius</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a2ed2870116fe274aa784eb2ad0e8d71c" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_longitude_of_perigee</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a2c0b8d4b342ba74afbc8c5e1584268a7" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_longitude_of_perigee_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1abf253f2a7600b296ede156d2309100a7" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_mass</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a9a8b8ece2b0bbd50d25f9efd7330f213" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_mean_anomaly</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a528608c07b6dbdb74b762ab83d5c5c16" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_mean_longitude</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a40fb29f6cdb20e58054b9a25153b8895" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_mean_longitude_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1af1f94821aba57a0fe8822da1f8b06acf" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_mu</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a00f59e7e74210cd6effa37db02ed9124" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_name</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a67e2dcbf4c8f586d3ceb49d4fd6a07a0" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_parent</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a8e04990f156c39e39e1fba8e0b465d14" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_polar_radius</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a92fa09c2b487be443063080b94e3a4a0" prot="public" virt="virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_position_at</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a8bd6d908cf8e6c9e34d1c5c27aabad5b" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_position_at_impl</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a6b3f7914b15dc3a2b82fed6bf7f4882d" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_right_ascension</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1aaafb1e997f7cd8645bfa5e0c6206a920" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_right_ascension_rate</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1abf194dbdddb56552586d93f4a7fa57c8" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_rotation_rate</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a4b75d6af460a338a4f56e5b348fb96e5" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_semimajor</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a333568b35e59c54b0a0e958d41d20da7" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_semimajor_rate</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1abbe61575b7f1ff02bd53cc5aaf238d09" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_sidereal_period</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1ace9667d4b05a7088ae03348743785e79" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_sphere_of_influence</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1af200c9405a6d27b52844809d5c327746" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_position_at_impl</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a4ca6f53e0cff6d35aafb70f81b15f0a3" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_right_ascension</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ac3258865ef0615cfb6be1fce587c9d50" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_right_ascension_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1afe1c2ca74cf0d11d43cc976d7e49875d" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_rotation_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1ab020de6f9f9dcaecc1667de149fb1122" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_semimajor</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a7faacb1d854f2ccbb7799d3a08021100" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_semimajor_rate</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1af10d2721abf1133860d9224c03d1b26f" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_sidereal_period</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a4a453c47963b34e2062bd6aa503673dc" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_sphere_of_influence</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a75bce13ee9fcc0a8b529d770764e687f" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_true_anomaly</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a9a22ea1abb7cdd2e5e1be6f713238710" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_type</name></member>
-      <member refid="classastrea_1_1astro_1_1CelestialBody_1a2721467967ab58178154c21aabd1f92b" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_velocity_at_impl</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a183f3029bb8fc3f3a388b52430d0f1eb" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_type</name></member>
+      <member refid="classastrea_1_1astro_1_1CelestialBody_1a52d48058045b846850c3673b262eaf78" prot="protected" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>get_velocity_at_impl</name></member>
       <member refid="classastrea_1_1astro_1_1planetary__bodies_1_1Oberon_1a792792099877e871faee44e43d71aec4" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>Oberon</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a27d3b8546ffe435ebc5f9ca3ab21e8aa" prot="public" virt="non-virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>operator==</name></member>
       <member refid="classastrea_1_1astro_1_1CelestialBody_1a1032b5b4bb7ea99243af5de630c06ba7" prot="public" virt="virtual"><scope>astrea::astro::planetary_bodies::Oberon</scope><name>~CelestialBody</name></member>

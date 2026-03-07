@@ -54,40 +54,40 @@ Inherited by the following classes: [astrea::astro::planetary\_bodies::Callisto]
 | Type | Name |
 | ---: | :--- |
 |   | [**CelestialBody**](#function-celestialbody-13) () = default<br>_Default constructor for_ [_**CelestialBody**_](classastrea_1_1astro_1_1CelestialBody.md) _._ |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) | [**CelestialBody**](#function-celestialbody-23) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) & data) <br>_Constructs a_ [_**CelestialBody**_](classastrea_1_1astro_1_1CelestialBody.md) _from individual parameters._ |
-|   | [**CelestialBody**](#function-celestialbody-33) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) & other) = default<br>_Copy constructor for_ [_**CelestialBody**_](classastrea_1_1astro_1_1CelestialBody.md) _._ |
-| virtual [**Density**](classastrea_1_1astro_1_1CartesianVector.md) | [**find\_atmospheric\_density**](#function-find_atmospheric_density) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) & altitude) const<br>_Finds the atmospheric density at a given date and state._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_axial\_tilt**](#function-get_axial_tilt) () const<br>_Get the axial tilt of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_crash\_radius**](#function-get_crash_radius) () const<br>_Get the crash radius of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_eccentricity**](#function-get_eccentricity) () const<br>_Get the eccentricity of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**BodyUnitlessPerTime**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_eccentricity\_rate**](#function-get_eccentricity_rate) () const<br>_Get the eccentricity rate of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_equitorial\_radius**](#function-get_equitorial_radius) () const<br>_Get the equatorial radius of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_inclination**](#function-get_inclination) () const<br>_Get the inclination of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**BodyAngularRate**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_inclination\_rate**](#function-get_inclination_rate) () const<br>_Get the inclination rate of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_j2**](#function-get_j2) () const<br>_Get the J2 gravitational coefficient of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_j3**](#function-get_j3) () const<br>_Get the J3 gravitational coefficient of the celestial body._  |
-|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) | [**get\_keplerian\_elements\_at**](#function-get_keplerian_elements_at) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the keplerian elements of the celestial body at a specific date using a linear approximation._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_longitude\_of\_perigee**](#function-get_longitude_of_perigee) () const<br>_Get the longitude of perigee of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**BodyAngularRate**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_longitude\_of\_perigee\_rate**](#function-get_longitude_of_perigee_rate) () const<br>_Get the longitude of perigee rate of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Mass**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_mass**](#function-get_mass) () const<br>_Get the mass of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_mean\_anomaly**](#function-get_mean_anomaly) () const<br>_Get the mean anomaly of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_mean\_longitude**](#function-get_mean_longitude) () const<br>_Get the mean longitude of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**BodyAngularRate**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_mean\_longitude\_rate**](#function-get_mean_longitude_rate) () const<br>_Get the mean longitude rate of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_mu**](#function-get_mu) () const<br>_Get the gravitational parameter (mu) of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::string & | [**get\_name**](#function-get_name) () const<br>_Get the name of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyId**](namespaceastrea_1_1astro.md#enum-celestialbodyid) & | [**get\_parent**](#function-get_parent) () const<br>_Get the parent celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_polar\_radius**](#function-get_polar_radius) () const<br>_Get the polar radius of the celestial body._  |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1CartesianVector.md), [**frames::solar\_system\_barycenter::icrf**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**get\_position\_at**](#function-get_position_at) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the position of the celestial body at a specific date in the ICRF frame._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_right\_ascension**](#function-get_right_ascension) () const<br>_Get the right ascension of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**BodyAngularRate**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_right\_ascension\_rate**](#function-get_right_ascension_rate) () const<br>_Get the right ascension rate of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**AngularRate**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_rotation\_rate**](#function-get_rotation_rate) () const<br>_Get the rotation rate of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_semimajor**](#function-get_semimajor) () const<br>_Get the semimajor axis of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**InterplanetaryVelocity**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_semimajor\_rate**](#function-get_semimajor_rate) () const<br>_Get the semimajor axis rate of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_sidereal\_period**](#function-get_sidereal_period) () const<br>_Get the sidereal period of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_sphere\_of\_influence**](#function-get_sphere_of_influence) () const<br>_Get the sphere of influence of the celestial body._  |
-|  [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_true\_anomaly**](#function-get_true_anomaly) () const<br>_Get the true anomaly of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyType**](namespaceastrea_1_1astro.md#enum-celestialbodytype) & | [**get\_type**](#function-get_type) () const<br>_Get the type of the celestial body._  |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**bool**](classastrea_1_1astro_1_1CartesianVector.md) | [**operator==**](#function-operator) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) & other) const<br>_Equality operator for_ [_**CelestialBody**_](classastrea_1_1astro_1_1CelestialBody.md) _._ |
+|  constexpr | [**CelestialBody**](#function-celestialbody-23) (const [**CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) & data) <br>_Constructs a_ [_**CelestialBody**_](classastrea_1_1astro_1_1CelestialBody.md) _from individual parameters._ |
+|   | [**CelestialBody**](#function-celestialbody-33) (const [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) & other) = default<br>_Copy constructor for_ [_**CelestialBody**_](classastrea_1_1astro_1_1CelestialBody.md) _._ |
+| virtual Density | [**find\_atmospheric\_density**](#function-find_atmospheric_density) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date, const Distance & altitude) const<br>_Finds the atmospheric density at a given date and state._  |
+|  constexpr const Angle & | [**get\_axial\_tilt**](#function-get_axial_tilt) () const<br>_Get the axial tilt of the celestial body._  |
+|  constexpr const Distance & | [**get\_crash\_radius**](#function-get_crash_radius) () const<br>_Get the crash radius of the celestial body._  |
+|  constexpr const Unitless & | [**get\_eccentricity**](#function-get_eccentricity) () const<br>_Get the eccentricity of the celestial body._  |
+|  constexpr const BodyUnitlessPerTime & | [**get\_eccentricity\_rate**](#function-get_eccentricity_rate) () const<br>_Get the eccentricity rate of the celestial body._  |
+|  constexpr const Distance & | [**get\_equitorial\_radius**](#function-get_equitorial_radius) () const<br>_Get the equatorial radius of the celestial body._  |
+|  constexpr const Angle & | [**get\_inclination**](#function-get_inclination) () const<br>_Get the inclination of the celestial body._  |
+|  constexpr const BodyAngularRate & | [**get\_inclination\_rate**](#function-get_inclination_rate) () const<br>_Get the inclination rate of the celestial body._  |
+|  constexpr const Unitless & | [**get\_j2**](#function-get_j2) () const<br>_Get the J2 gravitational coefficient of the celestial body._  |
+|  constexpr const Unitless & | [**get\_j3**](#function-get_j3) () const<br>_Get the J3 gravitational coefficient of the celestial body._  |
+|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) | [**get\_keplerian\_elements\_at**](#function-get_keplerian_elements_at) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the keplerian elements of the celestial body at a specific date using a linear approximation._  |
+|  constexpr const Angle & | [**get\_longitude\_of\_perigee**](#function-get_longitude_of_perigee) () const<br>_Get the longitude of perigee of the celestial body._  |
+|  constexpr const BodyAngularRate & | [**get\_longitude\_of\_perigee\_rate**](#function-get_longitude_of_perigee_rate) () const<br>_Get the longitude of perigee rate of the celestial body._  |
+|  constexpr const Mass & | [**get\_mass**](#function-get_mass) () const<br>_Get the mass of the celestial body._  |
+|  constexpr const Angle & | [**get\_mean\_anomaly**](#function-get_mean_anomaly) () const<br>_Get the mean anomaly of the celestial body._  |
+|  constexpr const Angle & | [**get\_mean\_longitude**](#function-get_mean_longitude) () const<br>_Get the mean longitude of the celestial body._  |
+|  constexpr const BodyAngularRate & | [**get\_mean\_longitude\_rate**](#function-get_mean_longitude_rate) () const<br>_Get the mean longitude rate of the celestial body._  |
+|  constexpr const GravParam & | [**get\_mu**](#function-get_mu) () const<br>_Get the gravitational parameter (mu) of the celestial body._  |
+|  constexpr const std::string & | [**get\_name**](#function-get_name) () const<br>_Get the name of the celestial body._  |
+|  constexpr const [**CelestialBodyId**](namespaceastrea_1_1astro.md#enum-celestialbodyid) & | [**get\_parent**](#function-get_parent) () const<br>_Get the parent celestial body._  |
+|  constexpr const Distance & | [**get\_polar\_radius**](#function-get_polar_radius) () const<br>_Get the polar radius of the celestial body._  |
+| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, frames::solar\_system\_barycenter::icrf &gt; | [**get\_position\_at**](#function-get_position_at) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the position of the celestial body at a specific date in the ICRF frame._  |
+|  constexpr const Angle & | [**get\_right\_ascension**](#function-get_right_ascension) () const<br>_Get the right ascension of the celestial body._  |
+|  constexpr const BodyAngularRate & | [**get\_right\_ascension\_rate**](#function-get_right_ascension_rate) () const<br>_Get the right ascension rate of the celestial body._  |
+|  constexpr const AngularRate & | [**get\_rotation\_rate**](#function-get_rotation_rate) () const<br>_Get the rotation rate of the celestial body._  |
+|  constexpr const Distance & | [**get\_semimajor**](#function-get_semimajor) () const<br>_Get the semimajor axis of the celestial body._  |
+|  constexpr const InterplanetaryVelocity & | [**get\_semimajor\_rate**](#function-get_semimajor_rate) () const<br>_Get the semimajor axis rate of the celestial body._  |
+|  constexpr const Time & | [**get\_sidereal\_period**](#function-get_sidereal_period) () const<br>_Get the sidereal period of the celestial body._  |
+|  constexpr const Distance & | [**get\_sphere\_of\_influence**](#function-get_sphere_of_influence) () const<br>_Get the sphere of influence of the celestial body._  |
+|  Angle | [**get\_true\_anomaly**](#function-get_true_anomaly) () const<br>_Get the true anomaly of the celestial body._  |
+|  constexpr const [**CelestialBodyType**](namespaceastrea_1_1astro.md#enum-celestialbodytype) & | [**get\_type**](#function-get_type) () const<br>_Get the type of the celestial body._  |
+|  constexpr bool | [**operator==**](#function-operator) (const [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) & other) const<br>_Equality operator for_ [_**CelestialBody**_](classastrea_1_1astro_1_1CelestialBody.md) _._ |
 | virtual  | [**~CelestialBody**](#function-celestialbody) () = default<br>_Default destructor for_ [_**CelestialBody**_](classastrea_1_1astro_1_1CelestialBody.md) _._ |
 
 
@@ -95,14 +95,14 @@ Inherited by the following classes: [astrea::astro::planetary\_bodies::Callisto]
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**CelestialBodyId**](namespaceastrea_1_1astro.md#enum-celestialbodyid) | [**get\_id**](#function-get_id) () <br>_Get the parent celestial body._  |
+|  constexpr [**CelestialBodyId**](namespaceastrea_1_1astro.md#enum-celestialbodyid) | [**get\_id**](#function-get_id) () <br>_Get the parent celestial body._  |
 
 
 ## Protected Types
 
 | Type | Name |
 | ---: | :--- |
-| typedef std::tuple&lt; mp\_units::quantity&lt; mp\_units::angular::unit\_symbols::rad/([**JulianCentury**](classastrea_1_1astro_1_1CartesianVector.md) \*[**JulianCentury**](classastrea_1_1astro_1_1CartesianVector.md))&gt;, mp\_units::quantity&lt; mp\_units::angular::unit\_symbols::rad &gt;, mp\_units::quantity&lt; mp\_units::angular::unit\_symbols::rad &gt;, mp\_units::quantity&lt; mp\_units::angular::unit\_symbols::rad/[**JulianCentury**](classastrea_1_1astro_1_1CartesianVector.md) &gt; &gt; | [**CoefficientPack**](#typedef-coefficientpack)  <br>_Type alias for a tuple of linear expansion coefficients._  |
+| typedef std::tuple&lt; mp\_units::quantity&lt; mp\_units::angular::unit\_symbols::rad/(JulianCentury \*JulianCentury)&gt;, mp\_units::quantity&lt; mp\_units::angular::unit\_symbols::rad &gt;, mp\_units::quantity&lt; mp\_units::angular::unit\_symbols::rad &gt;, mp\_units::quantity&lt; mp\_units::angular::unit\_symbols::rad/JulianCentury &gt; &gt; | [**CoefficientPack**](#typedef-coefficientpack)  <br>_Type alias for a tuple of linear expansion coefficients._  |
 
 
 
@@ -111,35 +111,35 @@ Inherited by the following classes: [astrea::astro::planetary\_bodies::Callisto]
 
 | Type | Name |
 | ---: | :--- |
-|  [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_axialTilt**](#variable-_axialtilt)  <br>_Axial tilt of the celestial body._  |
-|  [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_crashRadius**](#variable-_crashradius)  <br>_Crash radius of the celestial body._  |
-|  [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_eccentricity**](#variable-_eccentricity)  <br>_Eccentricity._  |
-|  [**BodyUnitlessPerTime**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_eccentricityRate**](#variable-_eccentricityrate)  <br>_Rate of change of the eccentricity._  |
-|  [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_equitorialRadius**](#variable-_equitorialradius)  <br>_Equatorial radius of the celestial body._  |
-|  [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_inclination**](#variable-_inclination)  <br>_Inclination._  |
-|  [**BodyAngularRate**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_inclinationRate**](#variable-_inclinationrate)  <br>_Rate of change of the inclination._  |
-|  [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_j2**](#variable-_j2)  <br>_J2 gravitational coefficient of the celestial body._  |
-|  [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_j3**](#variable-_j3)  <br>_J3 gravitational coefficient of the celestial body._  |
-|  [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_longitudeOfPerigee**](#variable-_longitudeofperigee)  <br>_Argument of perigee._  |
-|  [**BodyAngularRate**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_longitudeOfPerigeeRate**](#variable-_longitudeofperigeerate)  <br>_Rate of change of the longitude of perigee._  |
-|  [**Mass**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_mass**](#variable-_mass)  <br>_Mass of the celestial body._  |
-|  [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_meanAnomaly**](#variable-_meananomaly)  <br>_Mean anomaly._  |
-|  [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_meanLongitude**](#variable-_meanlongitude)  <br>_Mean longitude._  |
-|  [**BodyAngularRate**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_meanLongitudeRate**](#variable-_meanlongituderate)  <br>_Rate of change of the mean longitude._  |
-|  [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_mu**](#variable-_mu)  <br>_Gravitational parameter (mu) of the celestial body._  |
+|  Angle | [**\_axialTilt**](#variable-_axialtilt)  <br>_Axial tilt of the celestial body._  |
+|  Distance | [**\_crashRadius**](#variable-_crashradius)  <br>_Crash radius of the celestial body._  |
+|  Unitless | [**\_eccentricity**](#variable-_eccentricity)  <br>_Eccentricity._  |
+|  BodyUnitlessPerTime | [**\_eccentricityRate**](#variable-_eccentricityrate)  <br>_Rate of change of the eccentricity._  |
+|  Distance | [**\_equitorialRadius**](#variable-_equitorialradius)  <br>_Equatorial radius of the celestial body._  |
+|  Angle | [**\_inclination**](#variable-_inclination)  <br>_Inclination._  |
+|  BodyAngularRate | [**\_inclinationRate**](#variable-_inclinationrate)  <br>_Rate of change of the inclination._  |
+|  Unitless | [**\_j2**](#variable-_j2)  <br>_J2 gravitational coefficient of the celestial body._  |
+|  Unitless | [**\_j3**](#variable-_j3)  <br>_J3 gravitational coefficient of the celestial body._  |
+|  Angle | [**\_longitudeOfPerigee**](#variable-_longitudeofperigee)  <br>_Argument of perigee._  |
+|  BodyAngularRate | [**\_longitudeOfPerigeeRate**](#variable-_longitudeofperigeerate)  <br>_Rate of change of the longitude of perigee._  |
+|  Mass | [**\_mass**](#variable-_mass)  <br>_Mass of the celestial body._  |
+|  Angle | [**\_meanAnomaly**](#variable-_meananomaly)  <br>_Mean anomaly._  |
+|  Angle | [**\_meanLongitude**](#variable-_meanlongitude)  <br>_Mean longitude._  |
+|  BodyAngularRate | [**\_meanLongitudeRate**](#variable-_meanlongituderate)  <br>_Rate of change of the mean longitude._  |
+|  GravParam | [**\_mu**](#variable-_mu)  <br>_Gravitational parameter (mu) of the celestial body._  |
 |  std::string | [**\_name**](#variable-_name)  <br>_Name of the celestial body._  |
 |  [**CelestialBodyId**](namespaceastrea_1_1astro.md#enum-celestialbodyid) | [**\_parent**](#variable-_parent)  <br>_Parent celestial body._  |
-|  [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_parentMu**](#variable-_parentmu)  <br>_Gravitational parameter of the parent celestial body, if any._  |
-|  [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_polarRadius**](#variable-_polarradius)  <br>_Polar radius of the celestial body._  |
+|  GravParam | [**\_parentMu**](#variable-_parentmu)  <br>_Gravitational parameter of the parent celestial body, if any._  |
+|  Distance | [**\_polarRadius**](#variable-_polarradius)  <br>_Polar radius of the celestial body._  |
 |  [**Date**](classastrea_1_1astro_1_1Date.md) | [**\_referenceDate**](#variable-_referencedate)  <br>_Reference date for the celestial body data._  |
-|  [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_rightAscension**](#variable-_rightascension)  <br>_Right ascension._  |
-|  [**BodyAngularRate**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_rightAscensionRate**](#variable-_rightascensionrate)  <br>_Rate of change of the right ascension._  |
-|  [**AngularRate**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_rotationRate**](#variable-_rotationrate)  <br>_Rotation rate of the celestial body._  |
-|  [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_semimajorAxis**](#variable-_semimajoraxis)  <br>_Semimajor axis._  |
-|  [**InterplanetaryVelocity**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_semimajorAxisRate**](#variable-_semimajoraxisrate)  <br>_Rate of change of the semimajor axis._  |
-|  [**Time**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_siderealPeriod**](#variable-_siderealperiod)  <br>_Sidereal period of the celestial body._  |
-|  [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_sphereOfInfluence**](#variable-_sphereofinfluence)  <br>_Crash radius of the celestial body._  |
-|  [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_trueAnomaly**](#variable-_trueanomaly)  <br>_True anomaly._  |
+|  Angle | [**\_rightAscension**](#variable-_rightascension)  <br>_Right ascension._  |
+|  BodyAngularRate | [**\_rightAscensionRate**](#variable-_rightascensionrate)  <br>_Rate of change of the right ascension._  |
+|  AngularRate | [**\_rotationRate**](#variable-_rotationrate)  <br>_Rotation rate of the celestial body._  |
+|  Distance | [**\_semimajorAxis**](#variable-_semimajoraxis)  <br>_Semimajor axis._  |
+|  InterplanetaryVelocity | [**\_semimajorAxisRate**](#variable-_semimajoraxisrate)  <br>_Rate of change of the semimajor axis._  |
+|  Time | [**\_siderealPeriod**](#variable-_siderealperiod)  <br>_Sidereal period of the celestial body._  |
+|  Distance | [**\_sphereOfInfluence**](#variable-_sphereofinfluence)  <br>_Crash radius of the celestial body._  |
+|  Angle | [**\_trueAnomaly**](#variable-_trueanomaly)  <br>_True anomaly._  |
 |  [**CelestialBodyType**](namespaceastrea_1_1astro.md#enum-celestialbodytype) | [**\_type**](#variable-_type)  <br>_Type of the celestial body._  |
 
 
@@ -147,7 +147,7 @@ Inherited by the following classes: [astrea::astro::planetary\_bodies::Callisto]
 
 | Type | Name |
 | ---: | :--- |
-|  [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_COEFF\_ZERO\_FACTOR**](#variable-_coeff_zero_factor)   = `1.0`<br> |
+|  constexpr double | [**\_COEFF\_ZERO\_FACTOR**](#variable-_coeff_zero_factor)   = `1.0`<br> |
 
 
 
@@ -166,10 +166,10 @@ Inherited by the following classes: [astrea::astro::planetary\_bodies::Callisto]
 
 | Type | Name |
 | ---: | :--- |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**auto**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_chebyshev\_table\_coefficients**](#function-get_chebyshev_table_coefficients) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the Chebyshev polynomial coefficients for the celestial body at a specific date._  |
-| virtual [**constexpr**](classastrea_1_1astro_1_1CartesianVector.md) [**CoefficientPack**](classastrea_1_1astro_1_1CelestialBody.md#typedef-coefficientpack) | [**get\_linear\_expansion\_coefficients**](#function-get_linear_expansion_coefficients) () const<br>_Get the linear expansion coefficients for the celestial body's orbital elements._  |
-|  [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1CartesianVector.md), [**Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**get\_position\_at\_impl**](#function-get_position_at_impl) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the position of the celestial body at a specific date in a specified frame using Chebyshev polynomials._  |
-|  [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md), [**Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**get\_velocity\_at\_impl**](#function-get_velocity_at_impl) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the velocity of the celestial body at a specific date in a specified frame using Chebyshev polynomials._  |
+|  const auto | [**get\_chebyshev\_table\_coefficients**](#function-get_chebyshev_table_coefficients) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the Chebyshev polynomial coefficients for the celestial body at a specific date._  |
+| virtual constexpr [**CoefficientPack**](classastrea_1_1astro_1_1CelestialBody.md#typedef-coefficientpack) | [**get\_linear\_expansion\_coefficients**](#function-get_linear_expansion_coefficients) () const<br>_Get the linear expansion coefficients for the celestial body's orbital elements._  |
+|  [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, Frame\_T &gt; | [**get\_position\_at\_impl**](#function-get_position_at_impl) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the position of the celestial body at a specific date in a specified frame using Chebyshev polynomials._  |
+|  [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, Frame\_T &gt; | [**get\_velocity\_at\_impl**](#function-get_velocity_at_impl) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the velocity of the celestial body at a specific date in a specified frame using Chebyshev polynomials._  |
 
 
 
@@ -198,7 +198,7 @@ astrea::astro::CelestialBody::CelestialBody () = default
 _Constructs a_ [_**CelestialBody**_](classastrea_1_1astro_1_1CelestialBody.md) _from individual parameters._
 ```C++
 inline constexpr astrea::astro::CelestialBody::CelestialBody (
-    const  CelestialBodyParameters & data
+    const CelestialBodyParameters & data
 ) 
 ```
 
@@ -225,7 +225,7 @@ inline constexpr astrea::astro::CelestialBody::CelestialBody (
 _Copy constructor for_ [_**CelestialBody**_](classastrea_1_1astro_1_1CelestialBody.md) _._
 ```C++
 astrea::astro::CelestialBody::CelestialBody (
-    const  CelestialBody & other
+    const CelestialBody & other
 ) = default
 ```
 
@@ -252,8 +252,8 @@ astrea::astro::CelestialBody::CelestialBody (
 _Finds the atmospheric density at a given date and state._ 
 ```C++
 virtual Density astrea::astro::CelestialBody::find_atmospheric_density (
-    const  Date & date,
-    const  Distance & altitude
+    const Date & date,
+    const Distance & altitude
 ) const
 ```
 
@@ -294,7 +294,7 @@ Assume that most bodies have no significant atmosphere. Assume that the atmosphe
 
 _Get the axial tilt of the celestial body._ 
 ```C++
-inline constexpr  const  Angle & astrea::astro::CelestialBody::get_axial_tilt () const
+inline constexpr const Angle & astrea::astro::CelestialBody::get_axial_tilt () const
 ```
 
 
@@ -319,7 +319,7 @@ const Angle& Reference to the axial tilt of the celestial body.
 
 _Get the crash radius of the celestial body._ 
 ```C++
-inline constexpr  const  Distance & astrea::astro::CelestialBody::get_crash_radius () const
+inline constexpr const Distance & astrea::astro::CelestialBody::get_crash_radius () const
 ```
 
 
@@ -344,7 +344,7 @@ const Distance& Reference to the crash radius of the celestial body.
 
 _Get the eccentricity of the celestial body._ 
 ```C++
-inline constexpr  const  Unitless & astrea::astro::CelestialBody::get_eccentricity () const
+inline constexpr const Unitless & astrea::astro::CelestialBody::get_eccentricity () const
 ```
 
 
@@ -369,7 +369,7 @@ const Unitless& Reference to the eccentricity of the celestial body.
 
 _Get the eccentricity rate of the celestial body._ 
 ```C++
-inline constexpr  const  BodyUnitlessPerTime & astrea::astro::CelestialBody::get_eccentricity_rate () const
+inline constexpr const BodyUnitlessPerTime & astrea::astro::CelestialBody::get_eccentricity_rate () const
 ```
 
 
@@ -394,7 +394,7 @@ const BodyUnitlessPerTime& Reference to the eccentricity rate of the celestial b
 
 _Get the equatorial radius of the celestial body._ 
 ```C++
-inline constexpr  const  Distance & astrea::astro::CelestialBody::get_equitorial_radius () const
+inline constexpr const Distance & astrea::astro::CelestialBody::get_equitorial_radius () const
 ```
 
 
@@ -419,7 +419,7 @@ const Distance& Reference to the equatorial radius of the celestial body.
 
 _Get the inclination of the celestial body._ 
 ```C++
-inline constexpr  const  Angle & astrea::astro::CelestialBody::get_inclination () const
+inline constexpr const Angle & astrea::astro::CelestialBody::get_inclination () const
 ```
 
 
@@ -444,7 +444,7 @@ const Angle& Reference to the inclination of the celestial body.
 
 _Get the inclination rate of the celestial body._ 
 ```C++
-inline constexpr  const  BodyAngularRate & astrea::astro::CelestialBody::get_inclination_rate () const
+inline constexpr const BodyAngularRate & astrea::astro::CelestialBody::get_inclination_rate () const
 ```
 
 
@@ -469,7 +469,7 @@ const BodyAngularRate& Reference to the inclination rate of the celestial body.
 
 _Get the J2 gravitational coefficient of the celestial body._ 
 ```C++
-inline constexpr  const  Unitless & astrea::astro::CelestialBody::get_j2 () const
+inline constexpr const Unitless & astrea::astro::CelestialBody::get_j2 () const
 ```
 
 
@@ -494,7 +494,7 @@ const Unitless& Reference to the J2 coefficient of the celestial body.
 
 _Get the J3 gravitational coefficient of the celestial body._ 
 ```C++
-inline constexpr  const  Unitless & astrea::astro::CelestialBody::get_j3 () const
+inline constexpr const Unitless & astrea::astro::CelestialBody::get_j3 () const
 ```
 
 
@@ -520,7 +520,7 @@ const Unitless& Reference to the J3 coefficient of the celestial body.
 _Get the keplerian elements of the celestial body at a specific date using a linear approximation._ 
 ```C++
 Keplerian astrea::astro::CelestialBody::get_keplerian_elements_at (
-    const  Date & date
+    const Date & date
 ) const
 ```
 
@@ -553,7 +553,7 @@ Keplerian astrea::astro::CelestialBody::get_keplerian_elements_at (
 
 _Get the longitude of perigee of the celestial body._ 
 ```C++
-inline constexpr  const  Angle & astrea::astro::CelestialBody::get_longitude_of_perigee () const
+inline constexpr const Angle & astrea::astro::CelestialBody::get_longitude_of_perigee () const
 ```
 
 
@@ -578,7 +578,7 @@ const Angle& Reference to the longitude of perigee of the celestial body.
 
 _Get the longitude of perigee rate of the celestial body._ 
 ```C++
-inline constexpr  const  BodyAngularRate & astrea::astro::CelestialBody::get_longitude_of_perigee_rate () const
+inline constexpr const BodyAngularRate & astrea::astro::CelestialBody::get_longitude_of_perigee_rate () const
 ```
 
 
@@ -603,7 +603,7 @@ const BodyAngularRate& Reference to the longitude of perigee rate of the celesti
 
 _Get the mass of the celestial body._ 
 ```C++
-inline constexpr  const  Mass & astrea::astro::CelestialBody::get_mass () const
+inline constexpr const Mass & astrea::astro::CelestialBody::get_mass () const
 ```
 
 
@@ -628,7 +628,7 @@ const Mass& Reference to the mass of the celestial body.
 
 _Get the mean anomaly of the celestial body._ 
 ```C++
-inline constexpr  const  Angle & astrea::astro::CelestialBody::get_mean_anomaly () const
+inline constexpr const Angle & astrea::astro::CelestialBody::get_mean_anomaly () const
 ```
 
 
@@ -653,7 +653,7 @@ const Angle& Reference to the mean anomaly of the celestial body.
 
 _Get the mean longitude of the celestial body._ 
 ```C++
-inline constexpr  const  Angle & astrea::astro::CelestialBody::get_mean_longitude () const
+inline constexpr const Angle & astrea::astro::CelestialBody::get_mean_longitude () const
 ```
 
 
@@ -678,7 +678,7 @@ const Angle& Reference to the mean longitude of the celestial body.
 
 _Get the mean longitude rate of the celestial body._ 
 ```C++
-inline constexpr  const  BodyAngularRate & astrea::astro::CelestialBody::get_mean_longitude_rate () const
+inline constexpr const BodyAngularRate & astrea::astro::CelestialBody::get_mean_longitude_rate () const
 ```
 
 
@@ -703,7 +703,7 @@ const BodyAngularRate& Reference to the mean longitude rate of the celestial bod
 
 _Get the gravitational parameter (mu) of the celestial body._ 
 ```C++
-inline constexpr  const  GravParam & astrea::astro::CelestialBody::get_mu () const
+inline constexpr const GravParam & astrea::astro::CelestialBody::get_mu () const
 ```
 
 
@@ -728,7 +728,7 @@ const GravParam& Reference to the gravitational parameter of the celestial body.
 
 _Get the name of the celestial body._ 
 ```C++
-inline constexpr  const std::string & astrea::astro::CelestialBody::get_name () const
+inline constexpr const std::string & astrea::astro::CelestialBody::get_name () const
 ```
 
 
@@ -753,7 +753,7 @@ const std::string& Reference to the name of the celestial body.
 
 _Get the parent celestial body._ 
 ```C++
-inline constexpr  const  CelestialBodyId & astrea::astro::CelestialBody::get_parent () const
+inline constexpr const CelestialBodyId & astrea::astro::CelestialBody::get_parent () const
 ```
 
 
@@ -778,7 +778,7 @@ const std::string& Reference to the name of the parent celestial body.
 
 _Get the polar radius of the celestial body._ 
 ```C++
-inline constexpr  const  Distance & astrea::astro::CelestialBody::get_polar_radius () const
+inline constexpr const Distance & astrea::astro::CelestialBody::get_polar_radius () const
 ```
 
 
@@ -803,8 +803,8 @@ const Distance& Reference to the polar radius of the celestial body.
 
 _Get the position of the celestial body at a specific date in the ICRF frame._ 
 ```C++
-virtual CartesianVector < Distance , frames::solar_system_barycenter::icrf > astrea::astro::CelestialBody::get_position_at (
-    const  Date & date
+virtual CartesianVector < Distance, frames::solar_system_barycenter::icrf > astrea::astro::CelestialBody::get_position_at (
+    const Date & date
 ) const
 ```
 
@@ -844,7 +844,7 @@ This function is wrong. It actually returns the position in the ICRF frame, cent
 
 _Get the right ascension of the celestial body._ 
 ```C++
-inline constexpr  const  Angle & astrea::astro::CelestialBody::get_right_ascension () const
+inline constexpr const Angle & astrea::astro::CelestialBody::get_right_ascension () const
 ```
 
 
@@ -869,7 +869,7 @@ const Angle& Reference to the right ascension of the celestial body.
 
 _Get the right ascension rate of the celestial body._ 
 ```C++
-inline constexpr  const  BodyAngularRate & astrea::astro::CelestialBody::get_right_ascension_rate () const
+inline constexpr const BodyAngularRate & astrea::astro::CelestialBody::get_right_ascension_rate () const
 ```
 
 
@@ -894,7 +894,7 @@ const BodyAngularRate& Reference to the right ascension rate of the celestial bo
 
 _Get the rotation rate of the celestial body._ 
 ```C++
-inline constexpr  const  AngularRate & astrea::astro::CelestialBody::get_rotation_rate () const
+inline constexpr const AngularRate & astrea::astro::CelestialBody::get_rotation_rate () const
 ```
 
 
@@ -919,7 +919,7 @@ const AngularRate& Reference to the rotation rate of the celestial body.
 
 _Get the semimajor axis of the celestial body._ 
 ```C++
-inline constexpr  const  Distance & astrea::astro::CelestialBody::get_semimajor () const
+inline constexpr const Distance & astrea::astro::CelestialBody::get_semimajor () const
 ```
 
 
@@ -944,7 +944,7 @@ const Distance& Reference to the semimajor axis of the celestial body.
 
 _Get the semimajor axis rate of the celestial body._ 
 ```C++
-inline constexpr  const  InterplanetaryVelocity & astrea::astro::CelestialBody::get_semimajor_rate () const
+inline constexpr const InterplanetaryVelocity & astrea::astro::CelestialBody::get_semimajor_rate () const
 ```
 
 
@@ -969,7 +969,7 @@ const InterplanetaryVelocity& Reference to the semimajor axis rate of the celest
 
 _Get the sidereal period of the celestial body._ 
 ```C++
-inline constexpr  const  Time & astrea::astro::CelestialBody::get_sidereal_period () const
+inline constexpr const Time & astrea::astro::CelestialBody::get_sidereal_period () const
 ```
 
 
@@ -994,7 +994,7 @@ const Time& Reference to the sidereal period of the celestial body.
 
 _Get the sphere of influence of the celestial body._ 
 ```C++
-inline constexpr  const  Distance & astrea::astro::CelestialBody::get_sphere_of_influence () const
+inline constexpr const Distance & astrea::astro::CelestialBody::get_sphere_of_influence () const
 ```
 
 
@@ -1044,7 +1044,7 @@ const Angle& Reference to the true anomaly of the celestial body.
 
 _Get the type of the celestial body._ 
 ```C++
-inline constexpr  const  CelestialBodyType & astrea::astro::CelestialBody::get_type () const
+inline constexpr const CelestialBodyType & astrea::astro::CelestialBody::get_type () const
 ```
 
 
@@ -1069,8 +1069,8 @@ const CelestialBodyType& Reference to the type of the celestial body.
 
 _Equality operator for_ [_**CelestialBody**_](classastrea_1_1astro_1_1CelestialBody.md) _._
 ```C++
-inline constexpr  bool astrea::astro::CelestialBody::operator== (
-    const  CelestialBody & other
+inline constexpr bool astrea::astro::CelestialBody::operator== (
+    const CelestialBody & other
 ) const
 ```
 
@@ -1119,7 +1119,7 @@ virtual astrea::astro::CelestialBody::~CelestialBody () = default
 
 _Get the parent celestial body._ 
 ```C++
-static inline constexpr  CelestialBodyId astrea::astro::CelestialBody::get_id () 
+static inline constexpr CelestialBodyId astrea::astro::CelestialBody::get_id () 
 ```
 
 
@@ -1599,9 +1599,9 @@ constexpr double astrea::astro::CelestialBody::_COEFF_ZERO_FACTOR;
 
 _Get the Chebyshev polynomial coefficients for the celestial body at a specific date._ 
 ```C++
-template<typename  Table_T>
-inline const  auto astrea::astro::CelestialBody::get_chebyshev_table_coefficients (
-    const  Date & date
+template<typename Table_T>
+inline const auto astrea::astro::CelestialBody::get_chebyshev_table_coefficients (
+    const Date & date
 ) const
 ```
 
@@ -1641,7 +1641,7 @@ A tuple containing references to the x, y, and z Chebyshev coefficient vectors.
 
 _Get the linear expansion coefficients for the celestial body's orbital elements._ 
 ```C++
-inline virtual constexpr  CoefficientPack astrea::astro::CelestialBody::get_linear_expansion_coefficients () const
+inline virtual constexpr CoefficientPack astrea::astro::CelestialBody::get_linear_expansion_coefficients () const
 ```
 
 
@@ -1673,9 +1673,9 @@ The default implementation returns zero coefficients, indicating no perturbation
 
 _Get the position of the celestial body at a specific date in a specified frame using Chebyshev polynomials._ 
 ```C++
-template<typename  Table_T, typename  Frame_T>
-inline CartesianVector < Distance , Frame_T > astrea::astro::CelestialBody::get_position_at_impl (
-    const  Date & date
+template<typename Table_T, typename Frame_T>
+inline CartesianVector < Distance, Frame_T > astrea::astro::CelestialBody::get_position_at_impl (
+    const Date & date
 ) const
 ```
 
@@ -1716,9 +1716,9 @@ CartesianVector&lt;Distance, Frame\_T&gt; The position of the celestial body at 
 
 _Get the velocity of the celestial body at a specific date in a specified frame using Chebyshev polynomials._ 
 ```C++
-template<typename  Table_T, typename  Frame_T>
-inline CartesianVector < Velocity , Frame_T > astrea::astro::CelestialBody::get_velocity_at_impl (
-    const  Date & date
+template<typename Table_T, typename Frame_T>
+inline CartesianVector < Velocity, Frame_T > astrea::astro::CelestialBody::get_velocity_at_impl (
+    const Date & date
 ) const
 ```
 

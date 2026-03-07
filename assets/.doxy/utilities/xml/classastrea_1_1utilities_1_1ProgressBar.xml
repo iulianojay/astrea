@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1utilities_1_1ProgressBar" kind="class" language="C++" prot="public">
     <compoundname>astrea::utilities::ProgressBar</compoundname>
     <includes refid="ProgressBar_8hpp" local="no">ProgressBar.hpp</includes>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1utilities_1_1ProgressBar_1a950532f4cec2f62308940828451b481f" prot="private" static="no" mutable="no">
         <type>std::size_t</type>
         <definition>std::size_t astrea::utilities::ProgressBar::_iRecord</definition>
         <argsstring></argsstring>
         <name>_iRecord</name>
-        <qualifiedname>astrea::utilities::ProgressBar::_iRecord</qualifiedname>
         <briefdescription>
 <para>Current record index. </para>
         </briefdescription>
@@ -24,7 +23,6 @@
         <definition>const std::size_t astrea::utilities::ProgressBar::_maxRecords</definition>
         <argsstring></argsstring>
         <name>_maxRecords</name>
-        <qualifiedname>astrea::utilities::ProgressBar::_maxRecords</qualifiedname>
         <briefdescription>
 <para>Maximum number of records to process. </para>
         </briefdescription>
@@ -39,7 +37,6 @@
         <definition>const std::string astrea::utilities::ProgressBar::_title</definition>
         <argsstring></argsstring>
         <name>_title</name>
-        <qualifiedname>astrea::utilities::ProgressBar::_title</qualifiedname>
         <briefdescription>
 <para>Title of the progress bar. </para>
         </briefdescription>
@@ -54,7 +51,6 @@
         <definition>const std::size_t astrea::utilities::ProgressBar::_frequency</definition>
         <argsstring></argsstring>
         <name>_frequency</name>
-        <qualifiedname>astrea::utilities::ProgressBar::_frequency</qualifiedname>
         <briefdescription>
 <para>Frequency of updates (in terms of records processed) </para>
         </briefdescription>
@@ -69,7 +65,6 @@
         <definition>const std::size_t astrea::utilities::ProgressBar::_barWidth</definition>
         <argsstring></argsstring>
         <name>_barWidth</name>
-        <qualifiedname>astrea::utilities::ProgressBar::_barWidth</qualifiedname>
         <briefdescription>
 <para>Width of the progress bar in characters. </para>
         </briefdescription>
@@ -79,14 +74,13 @@
         </inbodydescription>
         <location file="astrea/utilities/utilities/ProgressBar.hpp" line="96" column="23" bodyfile="astrea/utilities/utilities/ProgressBar.hpp" bodystart="96" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1utilities_1_1ProgressBar_1ac10c4461855e6cb74e9ba3f0b2d2ca2a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::utilities::ProgressBar::ProgressBar</definition>
         <argsstring>(const std::size_t &amp;maxRecords, const std::string &amp;title=&quot;Progress&quot;, const std::size_t &amp;frequency=0, const std::size_t &amp;barWidth=50)</argsstring>
         <name>ProgressBar</name>
-        <qualifiedname>astrea::utilities::ProgressBar::ProgressBar</qualifiedname>
         <param>
           <type>const std::size_t &amp;</type>
           <declname>maxRecords</declname>
@@ -154,7 +148,6 @@
         <definition>astrea::utilities::ProgressBar::~ProgressBar</definition>
         <argsstring>()=default</argsstring>
         <name>~ProgressBar</name>
-        <qualifiedname>astrea::utilities::ProgressBar::~ProgressBar</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1utilities_1_1ProgressBar" kindref="compound">ProgressBar</ref>. </para>
         </briefdescription>
@@ -169,7 +162,6 @@
         <definition>void astrea::utilities::ProgressBar::reset</definition>
         <argsstring>()</argsstring>
         <name>reset</name>
-        <qualifiedname>astrea::utilities::ProgressBar::reset</qualifiedname>
         <briefdescription>
 <para>Resets the progress bar to the initial state. </para>
         </briefdescription>
@@ -184,7 +176,6 @@
         <definition>std::size_t astrea::utilities::ProgressBar::get_progress</definition>
         <argsstring>() const</argsstring>
         <name>get_progress</name>
-        <qualifiedname>astrea::utilities::ProgressBar::get_progress</qualifiedname>
         <briefdescription>
 <para>Increments the progress by one record. </para>
         </briefdescription>
@@ -199,7 +190,6 @@
         <definition>void astrea::utilities::ProgressBar::operator()</definition>
         <argsstring>()</argsstring>
         <name>operator()</name>
-        <qualifiedname>astrea::utilities::ProgressBar::operator()</qualifiedname>
         <briefdescription>
 <para>Updates the progress bar and prints it to the console. </para>
         </briefdescription>
@@ -210,7 +200,7 @@
         </inbodydescription>
         <location file="astrea/utilities/utilities/ProgressBar.hpp" line="70" column="17" bodyfile="astrea/utilities/utilities/ProgressBar.hpp" bodystart="70" bodyend="89"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>A simple console progress bar utility. </para>
     </briefdescription>

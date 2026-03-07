@@ -1,17 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1snapshot" kind="namespace" language="C++">
     <compoundname>astrea::snapshot</compoundname>
     <innerclass refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper" prot="public">astrea::snapshot::DatabaseUtilityWrapper</innerclass>
     <innerclass refid="classastrea_1_1snapshot_1_1EthzClient" prot="public">astrea::snapshot::EthzClient</innerclass>
     <innerclass refid="classastrea_1_1snapshot_1_1SpaceTrackClient" prot="public">astrea::snapshot::SpaceTrackClient</innerclass>
-    <sectiondef kind="typedef">
+      <sectiondef kind="typedef">
       <memberdef kind="typedef" id="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" prot="public" static="no">
         <type>uint32_t</type>
         <definition>using astrea::snapshot::EnumType = typedef uint32_t</definition>
         <argsstring></argsstring>
         <name>EnumType</name>
-        <qualifiedname>astrea::snapshot::EnumType</qualifiedname>
         <briefdescription>
 <para>Enumeration type for the snapshot module. </para>
         </briefdescription>
@@ -21,19 +20,18 @@
         </inbodydescription>
         <location file="astrea/snapshot/snapshot/types/typedefs.hpp" line="29" column="1" bodyfile="astrea/snapshot/snapshot/types/typedefs.hpp" bodystart="29" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="func">
-      <memberdef kind="function" id="Database_8hpp_1ab92cb51524a78de36681420facc2e14a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="Database_8hpp_1ad6fcc711f7478741794cbb1534921002" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename T</type>
           </param>
         </templateparamlist>
         <type><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper" kindref="compound">DatabaseUtilityWrapper</ref>&lt; typename std::decay&lt; T &gt;::type &gt;</type>
-        <definition>DatabaseUtilityWrapper&lt; typename std::decay&lt; T &gt;::type &gt; astrea::snapshot::make_database</definition>
+        <definition>DatabaseUtilityWrapper&lt;typename std::decay&lt;T&gt;::type&gt; astrea::snapshot::make_database</definition>
         <argsstring>(T &amp;&amp;database)</argsstring>
         <name>make_database</name>
-        <qualifiedname>astrea::snapshot::make_database</qualifiedname>
         <param>
           <type>T &amp;&amp;</type>
           <declname>database</declname>
@@ -74,7 +72,6 @@
         <definition>auto astrea::snapshot::get_snapshot</definition>
         <argsstring>()</argsstring>
         <name>get_snapshot</name>
-        <qualifiedname>astrea::snapshot::get_snapshot</qualifiedname>
         <briefdescription>
 <para>Gets the snapshot database instance. </para>
         </briefdescription>
@@ -93,7 +90,6 @@
         <definition>auto astrea::snapshot::make_snapshot_wrapper</definition>
         <argsstring>()</argsstring>
         <name>make_snapshot_wrapper</name>
-        <qualifiedname>astrea::snapshot::make_snapshot_wrapper</qualifiedname>
         <briefdescription>
 <para>Creates a <ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper" kindref="compound">DatabaseUtilityWrapper</ref> for the snapshot database. </para>
         </briefdescription>
@@ -107,7 +103,7 @@
         </inbodydescription>
         <location file="astrea/snapshot/snapshot/database/Database.hpp" line="198" column="13" bodyfile="astrea/snapshot/snapshot/database/Database.hpp" bodystart="198" bodyend="198"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

@@ -1,16 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1trace_1_1CircularFieldOfView" kind="class" language="C++" prot="public">
     <compoundname>astrea::trace::CircularFieldOfView</compoundname>
     <basecompoundref refid="classastrea_1_1trace_1_1FieldOfView" prot="public" virt="non-virtual">astrea::trace::FieldOfView</basecompoundref>
     <includes refid="CircularFieldOfView_8hpp" local="no">CircularFieldOfView.hpp</includes>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1trace_1_1CircularFieldOfView_1ae4ba3fd97987e5963a9c1c45537559e3" prot="private" static="no" mutable="no">
         <type>Angle</type>
         <definition>Angle astrea::trace::CircularFieldOfView::_halfConeAngle</definition>
         <argsstring></argsstring>
         <name>_halfConeAngle</name>
-        <qualifiedname>astrea::trace::CircularFieldOfView::_halfConeAngle</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -19,14 +18,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/sensors/fov/instances/CircularFieldOfView.hpp" line="69" column="11" bodyfile="astrea/trace/trace/platforms/sensors/fov/instances/CircularFieldOfView.hpp" bodystart="69" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1trace_1_1CircularFieldOfView_1a8c942bd929e950fe2d7cfcba6d01fb14" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::CircularFieldOfView::CircularFieldOfView</definition>
         <argsstring>(const Angle &amp;halfConeAngle=std::numbers::pi/4.0 *mp_units::angular::unit_symbols::rad)</argsstring>
         <name>CircularFieldOfView</name>
-        <qualifiedname>astrea::trace::CircularFieldOfView::CircularFieldOfView</qualifiedname>
         <param>
           <type>const Angle &amp;</type>
           <declname>halfConeAngle</declname>
@@ -56,7 +54,6 @@
         <definition>astrea::trace::CircularFieldOfView::~CircularFieldOfView</definition>
         <argsstring>()=default</argsstring>
         <name>~CircularFieldOfView</name>
-        <qualifiedname>astrea::trace::CircularFieldOfView::~CircularFieldOfView</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1trace_1_1CircularFieldOfView" kindref="compound">CircularFieldOfView</ref>. </para>
         </briefdescription>
@@ -71,7 +68,6 @@
         <definition>bool astrea::trace::CircularFieldOfView::contains</definition>
         <argsstring>(const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp;boresight, const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp;target) const</argsstring>
         <name>contains</name>
-        <qualifiedname>astrea::trace::CircularFieldOfView::contains</qualifiedname>
         <reimplements refid="classastrea_1_1trace_1_1FieldOfView_1a0137e9279399302d4288927fcb874a76">contains</reimplements>
         <param>
           <type>const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp;</type>
@@ -112,7 +108,7 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/sensors/fov/instances/CircularFieldOfView.hpp" line="63" column="10" bodyfile="astrea/trace/trace/platforms/sensors/fov/instances/CircularFieldOfView.cpp" bodystart="29" bodyend="32"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Circular field of view implementation. </para>
     </briefdescription>
@@ -120,27 +116,27 @@
 <para>This class represents a circular field of view defined by a half-cone angle. </para>
     </detaileddescription>
     <inheritancegraph>
+      <node id="2">
+        <label>astrea::trace::FieldOfView</label>
+        <link refid="classastrea_1_1trace_1_1FieldOfView"/>
+      </node>
       <node id="1">
         <label>astrea::trace::CircularFieldOfView</label>
         <link refid="classastrea_1_1trace_1_1CircularFieldOfView"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>astrea::trace::FieldOfView</label>
-        <link refid="classastrea_1_1trace_1_1FieldOfView"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
+      <node id="2">
+        <label>astrea::trace::FieldOfView</label>
+        <link refid="classastrea_1_1trace_1_1FieldOfView"/>
+      </node>
       <node id="1">
         <label>astrea::trace::CircularFieldOfView</label>
         <link refid="classastrea_1_1trace_1_1CircularFieldOfView"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
-      </node>
-      <node id="2">
-        <label>astrea::trace::FieldOfView</label>
-        <link refid="classastrea_1_1trace_1_1FieldOfView"/>
       </node>
     </collaborationgraph>
     <location file="astrea/trace/trace/platforms/sensors/fov/instances/CircularFieldOfView.hpp" line="38" column="1" bodyfile="astrea/trace/trace/platforms/sensors/fov/instances/CircularFieldOfView.hpp" bodystart="38" bodyend="70"/>

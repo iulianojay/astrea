@@ -53,9 +53,9 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**astrea::astro::EventDetector**](classastrea_1_1astro_1_1EventDetector.md) _A class for detecting events in the astrea astro platform._ 
 * **class** [**astrea::astro::ForceModel**](classastrea_1_1astro_1_1ForceModel.md) _Class to manage multiple force models and compute the total force on a vehicle._ 
 * **class** [**astrea::astro::FrameReference**](classastrea_1_1astro_1_1FrameReference.md) _Base class for all frame references._     
-    * **class** [**astrea::astro::PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) _The_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _class represents a platform that can have payloads attached to it. It provides methods to attach payloads and retrieve the list of attached payloads._
     * **class** [**astrea::astro::NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md) _A class representing a null vehicle in the astrea astro platform. This class is used as a placeholder for vehicles that do not have a defined state or mass._ 
-    * **class** [**astrea::astro::PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) _The_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _class represents a platform that can have payloads attached to it. It provides methods to attach payloads and retrieve the list of attached payloads._
+    * **class** [**astrea::astro::PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md) _The_ [_**PayloadPlatform**_](classastrea_1_1astro_1_1PayloadPlatform.md) _class represents a platform that can have payloads attached to it. It provides methods to attach payloads and retrieve the list of attached payloads._    
+        * **class** [**astrea::astro::Spacecraft**](classastrea_1_1astro_1_1Spacecraft.md) _A class representing a spacecraft in the astrea astro platform. This class encapsulates the properties of a spacecraft, including its mass, dynamic coefficients, and surface areas._ 
     * **class** [**astrea::astro::Vehicle**](classastrea_1_1astro_1_1Vehicle.md) _A class representing a vehicle in the astrea astro platform. This class serves as a base for user-defined vehicles and provides a common interface._ 
     * **struct** [**astrea::astro::detail::VehicleInnerBase**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md) _Pure virtual base class for vehicle inner implementations._     
         * **struct** [**astrea::astro::detail::VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) _A template class for vehicle inner implementations._ 
@@ -83,9 +83,8 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **class** [**astrea::astro::StatePartial**](classastrea_1_1astro_1_1StatePartial.md) 
 * **class** [**astrea::astro::StateTransitionMatrix**](classastrea_1_1astro_1_1StateTransitionMatrix.md) 
 * **class** [**astrea::astro::TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) _Class representing the two-line element (TLE) format for orbital data._ 
-* **struct** [**astrea::astro::Frame**](structastrea_1_1astro_1_1Frame.md) _Base class for all state/frames._     
-    * **struct** [**astrea::astro::InertialFrame**](structastrea_1_1astro_1_1InertialFrame.md) _Base class for all inertial state/frames._ 
 * **struct** [**astrea::astro::CelestialBodyParameters**](structastrea_1_1astro_1_1CelestialBodyParameters.md) 
+* **struct** [**astrea::astro::Frame**](structastrea_1_1astro_1_1Frame.md) _Base class for all state/frames._ 
 * **struct** [**astrea::astro::GeneralPerturbations**](structastrea_1_1astro_1_1GeneralPerturbations.md) [_**GeneralPerturbations**_](structastrea_1_1astro_1_1GeneralPerturbations.md) _structure representing a Ground Position (GP) object from SpaceTrack._
 * **struct** [**astrea::astro::JplEphemerisTable**](structastrea_1_1astro_1_1JplEphemerisTable.md) _Base class for any JPL_ [_**CelestialBody**_](classastrea_1_1astro_1_1CelestialBody.md) _table._
 * **struct** [**astrea::astro::JulianDateClock**](structastrea_1_1astro_1_1JulianDateClock.md) _A clock implementation for Julian Dates._ 
@@ -95,6 +94,14 @@ This inheritance list is sorted roughly, but not completely, alphabetically:
 * **struct** [**mp\_units::quantity\_point\_like\_traits&lt; astrea::astro::Date &gt;**](structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4.md) _Specialization of mp\_units::quantity\_point\_like\_traits for the Date class._ 
 * **struct** [**std::hash&lt; astrea::astro::CelestialBody &gt;**](structstd_1_1hash_3_01astrea_1_1astro_1_1CelestialBody_01_4.md) _Hash function for CelestialBody._ 
 * **struct** [**std::hash&lt; std::tuple&lt; TT... &gt; &gt;**](structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4.md) 
+* **class** **DynamicFrame< EastNorthUp, FrameAxis::ENU >**    
+    * **class** [**astrea::astro::frames::EastNorthUp**](classastrea_1_1astro_1_1frames_1_1EastNorthUp.md) _Class representing the East, North, Up (ENU) frame._ 
+* **class** **DynamicFrame< LocalHorizontalLocalVertical, FrameAxis::LVLH >**    
+    * **class** [**astrea::astro::frames::LocalHorizontalLocalVertical**](classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical.md) _Class representing the Local Horizontal, Local Vertical (LVLH) frame._ 
+* **class** **DynamicFrame< RadialInTrackCrossTrack, FrameAxis::RIC >**    
+    * **class** [**astrea::astro::frames::RadialInTrackCrossTrack**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) _Class representing the Radial, In-Track, Cross-Track (RIC) frame._ 
+* **class** **DynamicFrame< VelocityNormalBinormal, FrameAxis::VNB >**    
+    * **class** [**astrea::astro::frames::VelocityNormalBinormal**](classastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md) _Class representing the Velocity, Normal, Binormal (VNB) frame._ 
 * **class** **std::false_type**    
     * **struct** [**astrea::astro::is\_specialization**](structastrea_1_1astro_1_1is__specialization.md) 
 * **class** **std::true_type**    

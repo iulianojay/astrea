@@ -1,10 +1,10 @@
 
 
-# Namespace astrea::astro::plotting
+# Namespace astrea::astro::plotting::@151
 
 
 
-[**Namespace List**](namespaces.md) **>** [**plotting**](namespaceastrea_1_1astro_1_1plotting_1_1_0d151.md)
+[**Namespace List**](namespaces.md) **>** [**@151**](namespaceastrea_1_1astro_1_1plotting_1_1_0d151.md)
 
 
 

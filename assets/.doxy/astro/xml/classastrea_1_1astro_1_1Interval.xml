@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1Interval" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::Interval</compoundname>
     <includes refid="Interval_8hpp" local="no">Interval.hpp</includes>
-    <sectiondef kind="public-attrib">
+      <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Interval_1acb1c4988ef0a24c881ecd49f2c0bf974" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref></type>
+        <type>Time</type>
         <definition>Time astrea::astro::Interval::start</definition>
         <argsstring></argsstring>
         <name>start</name>
-        <qualifiedname>astrea::astro::Interval::start</qualifiedname>
         <briefdescription>
 <para>The start time of the interval. </para>
         </briefdescription>
@@ -20,11 +19,10 @@
         <location file="astrea/astro/astro/time/Interval.hpp" line="49" column="10" bodyfile="astrea/astro/astro/time/Interval.hpp" bodystart="49" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Interval_1a573e9523971a721de762cf978478cd8b" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref></type>
+        <type>Time</type>
         <definition>Time astrea::astro::Interval::propTime</definition>
         <argsstring></argsstring>
         <name>propTime</name>
-        <qualifiedname>astrea::astro::Interval::propTime</qualifiedname>
         <briefdescription>
 <para>The end time of the interval. </para>
         </briefdescription>
@@ -34,20 +32,19 @@
         </inbodydescription>
         <location file="astrea/astro/astro/time/Interval.hpp" line="50" column="10" bodyfile="astrea/astro/astro/time/Interval.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Interval_1a9a7c26182b9941b17d2c36de25e37965" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::Interval::Interval</definition>
         <argsstring>(const Time &amp;start, const Time &amp;end)</argsstring>
         <name>Interval</name>
-        <qualifiedname>astrea::astro::Interval::Interval</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>start</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>end</declname>
         </param>
         <briefdescription>
@@ -82,7 +79,6 @@
         <definition>astrea::astro::Interval::~Interval</definition>
         <argsstring>()=default</argsstring>
         <name>~Interval</name>
-        <qualifiedname>astrea::astro::Interval::~Interval</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1astro_1_1Interval" kindref="compound">Interval</ref>. </para>
         </briefdescription>
@@ -92,7 +88,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/time/Interval.hpp" line="47" column="5"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Represents a time interval with a start and end time. </para>
     </briefdescription>

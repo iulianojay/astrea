@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1Cartesian" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::Cartesian</compoundname>
     <includes refid="Cartesian_8hpp" local="no">Cartesian.hpp</includes>
-    <sectiondef kind="friend">
+      <sectiondef kind="friend">
       <memberdef kind="friend" id="classastrea_1_1astro_1_1Cartesian_1ac71ddc6f2d42864c6ea75240b1086ffc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">class</ref></type>
+        <type>class</type>
         <definition>friend class OrbitalElements</definition>
         <argsstring></argsstring>
         <name>OrbitalElements</name>
-        <qualifiedname>astrea::astro::Cartesian::OrbitalElements</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref></type>
         </param>
@@ -19,20 +18,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="47" column="18" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" bodystart="47" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="47" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" bodystart="47" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="friend" id="classastrea_1_1astro_1_1Cartesian_1a71a5a2de9928bc83469c62ac128d105f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1Cartesian_1a341417c56d73c6a77b9b7031837f7965" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;, Cartesian const &amp;)</argsstring>
         <name>operator&lt;&lt;</name>
-        <qualifiedname>astrea::astro::Cartesian::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <defname>os</defname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> const &amp;</type>
           <defname>elements</defname>
         </param>
         <briefdescription>
@@ -43,14 +41,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="46" column="12" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.cpp" bodystart="302" bodyend="313"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-attrib">
+      </sectiondef>
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Cartesian_1adb0d7dc67368339eb530441755835e4c" prot="private" static="no" mutable="no">
-        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt;</type>
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt;</type>
         <definition>RadiusVector&lt;frames::earth::icrf&gt; astrea::astro::Cartesian::_r</definition>
         <argsstring></argsstring>
         <name>_r</name>
-        <qualifiedname>astrea::astro::Cartesian::_r</qualifiedname>
         <briefdescription>
 <para>Position vector. </para>
         </briefdescription>
@@ -61,11 +58,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="397" column="18" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" bodystart="397" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Cartesian_1a40b33721c575065e87c5671625f61e1b" prot="private" static="no" mutable="no">
-        <type><ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt;</type>
+        <type><ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; frames::earth::icrf &gt;</type>
         <definition>VelocityVector&lt;frames::earth::icrf&gt; astrea::astro::Cartesian::_v</definition>
         <argsstring></argsstring>
         <name>_v</name>
-        <qualifiedname>astrea::astro::Cartesian::_v</qualifiedname>
         <briefdescription>
 <para>Velocity vector. </para>
         </briefdescription>
@@ -75,16 +71,15 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="398" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" bodystart="398" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a1bc57f67ae1349d4008e374a2b0198ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::Cartesian::Cartesian</definition>
         <argsstring>(Unitless scale=0.0 *astrea::detail::unitless)</argsstring>
         <name>Cartesian</name>
-        <qualifiedname>astrea::astro::Cartesian::Cartesian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+          <type>Unitless</type>
           <declname>scale</declname>
           <defval>0.0 *astrea::detail::unitless</defval>
         </param>
@@ -103,13 +98,12 @@
         <definition>astrea::astro::Cartesian::Cartesian</definition>
         <argsstring>(const RadiusVector&lt; frames::earth::icrf &gt; &amp;r, const VelocityVector&lt; frames::earth::icrf &gt; &amp;v)</argsstring>
         <name>Cartesian</name>
-        <qualifiedname>astrea::astro::Cartesian::Cartesian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
           <declname>r</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
           <declname>v</declname>
         </param>
         <briefdescription>
@@ -144,29 +138,28 @@
         <definition>astrea::astro::Cartesian::Cartesian</definition>
         <argsstring>(const Distance &amp;x, const Distance &amp;y, const Distance &amp;z, const Velocity &amp;vx, const Velocity &amp;vy, const Velocity &amp;vz)</argsstring>
         <name>Cartesian</name>
-        <qualifiedname>astrea::astro::Cartesian::Cartesian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <type>const Distance &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <type>const Distance &amp;</type>
           <declname>y</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <type>const Distance &amp;</type>
           <declname>z</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref> &amp;</type>
+          <type>const Velocity &amp;</type>
           <declname>vx</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref> &amp;</type>
+          <type>const Velocity &amp;</type>
           <declname>vy</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref> &amp;</type>
+          <type>const Velocity &amp;</type>
           <declname>vz</declname>
         </param>
         <briefdescription>
@@ -233,13 +226,12 @@
         <definition>astrea::astro::Cartesian::Cartesian</definition>
         <argsstring>(const Cartesian &amp;elements, const GravParam &amp;mu)</argsstring>
         <name>Cartesian</name>
-        <qualifiedname>astrea::astro::Cartesian::Cartesian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -274,13 +266,12 @@
         <definition>astrea::astro::Cartesian::Cartesian</definition>
         <argsstring>(const Keplerian &amp;elements, const GravParam &amp;mu)</argsstring>
         <name>Cartesian</name>
-        <qualifiedname>astrea::astro::Cartesian::Cartesian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -315,13 +306,12 @@
         <definition>astrea::astro::Cartesian::Cartesian</definition>
         <argsstring>(const Equinoctial &amp;elements, const GravParam &amp;mu)</argsstring>
         <name>Cartesian</name>
-        <qualifiedname>astrea::astro::Cartesian::Cartesian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -356,13 +346,12 @@
         <definition>astrea::astro::Cartesian::Cartesian</definition>
         <argsstring>(const OrbitalElements &amp;elements, const GravParam &amp;mu)</argsstring>
         <name>Cartesian</name>
-        <qualifiedname>astrea::astro::Cartesian::Cartesian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -397,9 +386,8 @@
         <definition>astrea::astro::Cartesian::Cartesian</definition>
         <argsstring>(const Cartesian &amp;)</argsstring>
         <name>Cartesian</name>
-        <qualifiedname>astrea::astro::Cartesian::Cartesian</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -426,7 +414,6 @@
         <definition>astrea::astro::Cartesian::Cartesian</definition>
         <argsstring>(Cartesian &amp;&amp;) noexcept</argsstring>
         <name>Cartesian</name>
-        <qualifiedname>astrea::astro::Cartesian::Cartesian</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;&amp;</type>
           <defname>other</defname>
@@ -455,7 +442,6 @@
         <definition>Cartesian &amp; astrea::astro::Cartesian::operator=</definition>
         <argsstring>(Cartesian &amp;&amp;) noexcept</argsstring>
         <name>operator=</name>
-        <qualifiedname>astrea::astro::Cartesian::operator=</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;&amp;</type>
           <defname>other</defname>
@@ -486,9 +472,8 @@
         <definition>Cartesian &amp; astrea::astro::Cartesian::operator=</definition>
         <argsstring>(const Cartesian &amp;)</argsstring>
         <name>operator=</name>
-        <qualifiedname>astrea::astro::Cartesian::operator=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -517,7 +502,6 @@
         <definition>astrea::astro::Cartesian::~Cartesian</definition>
         <argsstring>()=default</argsstring>
         <name>~Cartesian</name>
-        <qualifiedname>astrea::astro::Cartesian::~Cartesian</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>. </para>
         </briefdescription>
@@ -528,13 +512,12 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="209" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1aff6fd37714ea8f5ac69afddb2124e7cf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Cartesian::operator==</definition>
         <argsstring>(const Cartesian &amp;other) const</argsstring>
         <name>operator==</name>
-        <qualifiedname>astrea::astro::Cartesian::operator==</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -561,13 +544,12 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="218" column="10" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.cpp" bodystart="190" bodyend="190"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1acb729fec7649d9b719c03eddfd214f62" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Cartesian::operator!=</definition>
         <argsstring>(const Cartesian &amp;other) const</argsstring>
         <name>operator!=</name>
-        <qualifiedname>astrea::astro::Cartesian::operator!=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -598,9 +580,8 @@
         <definition>Cartesian astrea::astro::Cartesian::operator+</definition>
         <argsstring>(const Cartesian &amp;other) const</argsstring>
         <name>operator+</name>
-        <qualifiedname>astrea::astro::Cartesian::operator+</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -629,9 +610,8 @@
         <definition>Cartesian astrea::astro::Cartesian::operator+</definition>
         <argsstring>(const RadiusVector&lt; frames::earth::icrf &gt; &amp;r) const</argsstring>
         <name>operator+</name>
-        <qualifiedname>astrea::astro::Cartesian::operator+</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
           <declname>r</declname>
         </param>
         <briefdescription>
@@ -647,9 +627,8 @@
         <definition>Cartesian astrea::astro::Cartesian::operator+</definition>
         <argsstring>(const VelocityVector&lt; frames::earth::icrf &gt; &amp;v) const</argsstring>
         <name>operator+</name>
-        <qualifiedname>astrea::astro::Cartesian::operator+</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
           <declname>v</declname>
         </param>
         <briefdescription>
@@ -665,9 +644,8 @@
         <definition>Cartesian &amp; astrea::astro::Cartesian::operator+=</definition>
         <argsstring>(const Cartesian &amp;other)</argsstring>
         <name>operator+=</name>
-        <qualifiedname>astrea::astro::Cartesian::operator+=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -696,9 +674,8 @@
         <definition>Cartesian &amp; astrea::astro::Cartesian::operator+=</definition>
         <argsstring>(const RadiusVector&lt; frames::earth::icrf &gt; &amp;r)</argsstring>
         <name>operator+=</name>
-        <qualifiedname>astrea::astro::Cartesian::operator+=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
           <declname>r</declname>
         </param>
         <briefdescription>
@@ -714,9 +691,8 @@
         <definition>Cartesian &amp; astrea::astro::Cartesian::operator+=</definition>
         <argsstring>(const VelocityVector&lt; frames::earth::icrf &gt; &amp;v)</argsstring>
         <name>operator+=</name>
-        <qualifiedname>astrea::astro::Cartesian::operator+=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
           <declname>v</declname>
         </param>
         <briefdescription>
@@ -732,9 +708,8 @@
         <definition>Cartesian astrea::astro::Cartesian::operator-</definition>
         <argsstring>(const Cartesian &amp;other) const</argsstring>
         <name>operator-</name>
-        <qualifiedname>astrea::astro::Cartesian::operator-</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -763,9 +738,8 @@
         <definition>Cartesian astrea::astro::Cartesian::operator-</definition>
         <argsstring>(const RadiusVector&lt; frames::earth::icrf &gt; &amp;r) const</argsstring>
         <name>operator-</name>
-        <qualifiedname>astrea::astro::Cartesian::operator-</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
           <declname>r</declname>
         </param>
         <briefdescription>
@@ -781,9 +755,8 @@
         <definition>Cartesian astrea::astro::Cartesian::operator-</definition>
         <argsstring>(const VelocityVector&lt; frames::earth::icrf &gt; &amp;v) const</argsstring>
         <name>operator-</name>
-        <qualifiedname>astrea::astro::Cartesian::operator-</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
           <declname>v</declname>
         </param>
         <briefdescription>
@@ -799,9 +772,8 @@
         <definition>Cartesian &amp; astrea::astro::Cartesian::operator-=</definition>
         <argsstring>(const Cartesian &amp;other)</argsstring>
         <name>operator-=</name>
-        <qualifiedname>astrea::astro::Cartesian::operator-=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -830,9 +802,8 @@
         <definition>Cartesian &amp; astrea::astro::Cartesian::operator-=</definition>
         <argsstring>(const RadiusVector&lt; frames::earth::icrf &gt; &amp;r)</argsstring>
         <name>operator-=</name>
-        <qualifiedname>astrea::astro::Cartesian::operator-=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
           <declname>r</declname>
         </param>
         <briefdescription>
@@ -848,9 +819,8 @@
         <definition>Cartesian &amp; astrea::astro::Cartesian::operator-=</definition>
         <argsstring>(const VelocityVector&lt; frames::earth::icrf &gt; &amp;v)</argsstring>
         <name>operator-=</name>
-        <qualifiedname>astrea::astro::Cartesian::operator-=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
           <declname>v</declname>
         </param>
         <briefdescription>
@@ -866,9 +836,8 @@
         <definition>Cartesian astrea::astro::Cartesian::operator*</definition>
         <argsstring>(const Unitless &amp;multiplier) const</argsstring>
         <name>operator*</name>
-        <qualifiedname>astrea::astro::Cartesian::operator*</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -897,9 +866,8 @@
         <definition>Cartesian &amp; astrea::astro::Cartesian::operator*=</definition>
         <argsstring>(const Unitless &amp;multiplier)</argsstring>
         <name>operator*=</name>
-        <qualifiedname>astrea::astro::Cartesian::operator*=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -928,9 +896,8 @@
         <definition>CartesianPartial astrea::astro::Cartesian::operator/</definition>
         <argsstring>(const Time &amp;time) const</argsstring>
         <name>operator/</name>
-        <qualifiedname>astrea::astro::Cartesian::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <briefdescription>
@@ -954,14 +921,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="295" column="22" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.cpp" bodystart="248" bodyend="248"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1ad6f004e862ae43b69d799ffcc7e3a1b9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt;</type>
-        <definition>std::vector&lt; Unitless &gt; astrea::astro::Cartesian::operator/</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a1ae37284c5c8ff05a4c65846d2a2c8a8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; Unitless &gt;</type>
+        <definition>std::vector&lt;Unitless&gt; astrea::astro::Cartesian::operator/</definition>
         <argsstring>(const Cartesian &amp;other) const</argsstring>
         <name>operator/</name>
-        <qualifiedname>astrea::astro::Cartesian::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -990,9 +956,8 @@
         <definition>Cartesian astrea::astro::Cartesian::operator/</definition>
         <argsstring>(const Unitless &amp;divisor) const</argsstring>
         <name>operator/</name>
-        <qualifiedname>astrea::astro::Cartesian::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -1021,9 +986,8 @@
         <definition>Cartesian &amp; astrea::astro::Cartesian::operator/=</definition>
         <argsstring>(const Unitless &amp;divisor)</argsstring>
         <name>operator/=</name>
-        <qualifiedname>astrea::astro::Cartesian::operator/=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -1047,17 +1011,16 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="319" column="15" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.cpp" bodystart="251" bodyend="256"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a645e8eb521a934b630ade316fcad0608" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
-        <definition>const RadiusVector&lt; frames::earth::icrf &gt; &amp; astrea::astro::Cartesian::get_position</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a114900dba41fa871e5aae11a577232ff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
+        <definition>const RadiusVector&lt;frames::earth::icrf&gt;&amp; astrea::astro::Cartesian::get_position</definition>
         <argsstring>() const</argsstring>
         <name>get_position</name>
-        <qualifiedname>astrea::astro::Cartesian::get_position</qualifiedname>
         <briefdescription>
-<para>Converts the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector to a <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector&lt;frames::earth::icrf&gt;</ref>. </para>
+<para>Converts the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector to a RadiusVector&lt;frames::earth::icrf&gt;. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector&lt;frames::earth::icrf&gt;</ref> The position vector in <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> coordinates. </para>
+<para><simplesect kind="return"><para>RadiusVector&lt;frames::earth::icrf&gt; The position vector in <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> coordinates. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -1065,17 +1028,16 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="326" column="24" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" bodystart="326" bodyend="326"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1ab7b03fac402f63eec0c051e3e85e6b86" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
-        <definition>const VelocityVector&lt; frames::earth::icrf &gt; &amp; astrea::astro::Cartesian::get_velocity</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a1da102cb81511bf31f0d9f8b8a4050c0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
+        <definition>const VelocityVector&lt;frames::earth::icrf&gt;&amp; astrea::astro::Cartesian::get_velocity</definition>
         <argsstring>() const</argsstring>
         <name>get_velocity</name>
-        <qualifiedname>astrea::astro::Cartesian::get_velocity</qualifiedname>
         <briefdescription>
-<para>Converts the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector to a <ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector&lt;frames::earth::icrf&gt;</ref>. </para>
+<para>Converts the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector to a VelocityVector&lt;frames::earth::icrf&gt;. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector&lt;frames::earth::icrf&gt;</ref> The velocity vector in <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> coordinates. </para>
+<para><simplesect kind="return"><para>VelocityVector&lt;frames::earth::icrf&gt; The velocity vector in <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> coordinates. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -1083,12 +1045,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="333" column="26" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" bodystart="333" bodyend="333"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a5b06f0275a5f031a152135a6f468375f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
-        <definition>const Distance &amp; astrea::astro::Cartesian::get_x</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a3b2785f5e8cc1e6da42a494cd4daf4ad" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Distance &amp;</type>
+        <definition>const Distance&amp; astrea::astro::Cartesian::get_x</definition>
         <argsstring>() const</argsstring>
         <name>get_x</name>
-        <qualifiedname>astrea::astro::Cartesian::get_x</qualifiedname>
         <briefdescription>
 <para>Get the x value of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector. </para>
         </briefdescription>
@@ -1101,12 +1062,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="340" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" bodystart="340" bodyend="340"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a0075f65403840282c8541b1a5a2a0634" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
-        <definition>const Distance &amp; astrea::astro::Cartesian::get_y</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a38d150a0727f7e793d8a38cc3bdb3135" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Distance &amp;</type>
+        <definition>const Distance&amp; astrea::astro::Cartesian::get_y</definition>
         <argsstring>() const</argsstring>
         <name>get_y</name>
-        <qualifiedname>astrea::astro::Cartesian::get_y</qualifiedname>
         <briefdescription>
 <para>Get the y value of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector. </para>
         </briefdescription>
@@ -1119,12 +1079,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="347" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" bodystart="347" bodyend="347"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a685bb6581796737ac45ee104a88b7ae0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
-        <definition>const Distance &amp; astrea::astro::Cartesian::get_z</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a86ab2495d650ba3ba2e42fba393aefb0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Distance &amp;</type>
+        <definition>const Distance&amp; astrea::astro::Cartesian::get_z</definition>
         <argsstring>() const</argsstring>
         <name>get_z</name>
-        <qualifiedname>astrea::astro::Cartesian::get_z</qualifiedname>
         <briefdescription>
 <para>Get the z value of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector. </para>
         </briefdescription>
@@ -1137,12 +1096,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="354" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" bodystart="354" bodyend="354"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1aa4c3bc712b99b52b5a702e5cfa902d6e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref> &amp;</type>
-        <definition>const Velocity &amp; astrea::astro::Cartesian::get_vx</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a8a4660ab677748568567a735ab560a99" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Velocity &amp;</type>
+        <definition>const Velocity&amp; astrea::astro::Cartesian::get_vx</definition>
         <argsstring>() const</argsstring>
         <name>get_vx</name>
-        <qualifiedname>astrea::astro::Cartesian::get_vx</qualifiedname>
         <briefdescription>
 <para>Get the vx value of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector. </para>
         </briefdescription>
@@ -1155,12 +1113,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="361" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" bodystart="361" bodyend="361"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a8fc6f3df2191274fd4fe23ef09d25da6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref> &amp;</type>
-        <definition>const Velocity &amp; astrea::astro::Cartesian::get_vy</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1ab805a08d9762698a30d93540fbc5f6fd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Velocity &amp;</type>
+        <definition>const Velocity&amp; astrea::astro::Cartesian::get_vy</definition>
         <argsstring>() const</argsstring>
         <name>get_vy</name>
-        <qualifiedname>astrea::astro::Cartesian::get_vy</qualifiedname>
         <briefdescription>
 <para>Get the vy value of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector. </para>
         </briefdescription>
@@ -1173,12 +1130,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="368" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" bodystart="368" bodyend="368"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1ab3c04b04410c55f987221ab74b0d5d2d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref> &amp;</type>
-        <definition>const Velocity &amp; astrea::astro::Cartesian::get_vz</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a083d5f4fe97c5539318a9969e1fcc586" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Velocity &amp;</type>
+        <definition>const Velocity&amp; astrea::astro::Cartesian::get_vz</definition>
         <argsstring>() const</argsstring>
         <name>get_vz</name>
-        <qualifiedname>astrea::astro::Cartesian::get_vz</qualifiedname>
         <briefdescription>
 <para>Get the vz value of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector. </para>
         </briefdescription>
@@ -1192,11 +1148,10 @@
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="375" column="20" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" bodystart="375" bodyend="375"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1aab72b9dd2ee58b3cb62f35c30d1600b5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt;</type>
+        <type>std::vector&lt; Unitless &gt;</type>
         <definition>std::vector&lt; Unitless &gt; astrea::astro::Cartesian::force_to_vector</definition>
         <argsstring>() const</argsstring>
         <name>force_to_vector</name>
-        <qualifiedname>astrea::astro::Cartesian::force_to_vector</qualifiedname>
         <briefdescription>
 <para>Converts the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector to a vector of unitless values. </para>
         </briefdescription>
@@ -1214,25 +1169,24 @@
         <definition>Cartesian astrea::astro::Cartesian::interpolate</definition>
         <argsstring>(const Time &amp;thisTime, const Time &amp;otherTime, const Cartesian &amp;other, const GravParam &amp;mu, const Time &amp;targetTime) const</argsstring>
         <name>interpolate</name>
-        <qualifiedname>astrea::astro::Cartesian::interpolate</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>thisTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>otherTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>targetTime</declname>
         </param>
         <briefdescription>
@@ -1288,16 +1242,15 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="394" column="15" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.cpp" bodystart="258" bodyend="269"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-static-func">
+      </sectiondef>
+      <sectiondef kind="public-static-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a8e5c222691582fcb68ce6d2a6fa16d22" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref></type>
         <definition>Cartesian astrea::astro::Cartesian::LEO</definition>
         <argsstring>(const GravParam &amp;mu)</argsstring>
         <name>LEO</name>
-        <qualifiedname>astrea::astro::Cartesian::LEO</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -1327,9 +1280,8 @@
         <definition>Cartesian astrea::astro::Cartesian::LMEO</definition>
         <argsstring>(const GravParam &amp;mu)</argsstring>
         <name>LMEO</name>
-        <qualifiedname>astrea::astro::Cartesian::LMEO</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -1359,9 +1311,8 @@
         <definition>Cartesian astrea::astro::Cartesian::GPS</definition>
         <argsstring>(const GravParam &amp;mu)</argsstring>
         <name>GPS</name>
-        <qualifiedname>astrea::astro::Cartesian::GPS</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -1391,9 +1342,8 @@
         <definition>Cartesian astrea::astro::Cartesian::HMEO</definition>
         <argsstring>(const GravParam &amp;mu)</argsstring>
         <name>HMEO</name>
-        <qualifiedname>astrea::astro::Cartesian::HMEO</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -1423,9 +1373,8 @@
         <definition>Cartesian astrea::astro::Cartesian::GEO</definition>
         <argsstring>(const GravParam &amp;mu)</argsstring>
         <name>GEO</name>
-        <qualifiedname>astrea::astro::Cartesian::GEO</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref> &amp;</type>
+          <type>const GravParam &amp;</type>
           <declname>mu</declname>
         </param>
         <briefdescription>
@@ -1450,16 +1399,15 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="174" column="22" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.cpp" bodystart="48" bodyend="48"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-static-func">
+      </sectiondef>
+      <sectiondef kind="private-static-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Cartesian_1a5618851c5d8c0716b53cb126e100f23e" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref></type>
         <definition>Cartesian astrea::astro::Cartesian::from_vector</definition>
         <argsstring>(const std::vector&lt; Unitless &gt; &amp;vec)</argsstring>
         <name>from_vector</name>
-        <qualifiedname>astrea::astro::Cartesian::from_vector</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt; &amp;</type>
+          <type>const std::vector&lt; Unitless &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <briefdescription>
@@ -1483,7 +1431,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp" line="406" column="22" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Cartesian.cpp" bodystart="277" bodyend="291"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Class representing a <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector in astrodynamics. </para>
     </briefdescription>
@@ -1506,14 +1454,14 @@
       <member refid="classastrea_1_1astro_1_1Cartesian_1aab72b9dd2ee58b3cb62f35c30d1600b5" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>force_to_vector</name></member>
       <member refid="classastrea_1_1astro_1_1Cartesian_1a5618851c5d8c0716b53cb126e100f23e" prot="private" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>from_vector</name></member>
       <member refid="classastrea_1_1astro_1_1Cartesian_1aa8d6a04114ccf18893befc82417a7809" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>GEO</name></member>
-      <member refid="classastrea_1_1astro_1_1Cartesian_1a645e8eb521a934b630ade316fcad0608" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_position</name></member>
-      <member refid="classastrea_1_1astro_1_1Cartesian_1ab7b03fac402f63eec0c051e3e85e6b86" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_velocity</name></member>
-      <member refid="classastrea_1_1astro_1_1Cartesian_1aa4c3bc712b99b52b5a702e5cfa902d6e" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_vx</name></member>
-      <member refid="classastrea_1_1astro_1_1Cartesian_1a8fc6f3df2191274fd4fe23ef09d25da6" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_vy</name></member>
-      <member refid="classastrea_1_1astro_1_1Cartesian_1ab3c04b04410c55f987221ab74b0d5d2d" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_vz</name></member>
-      <member refid="classastrea_1_1astro_1_1Cartesian_1a5b06f0275a5f031a152135a6f468375f" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_x</name></member>
-      <member refid="classastrea_1_1astro_1_1Cartesian_1a0075f65403840282c8541b1a5a2a0634" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_y</name></member>
-      <member refid="classastrea_1_1astro_1_1Cartesian_1a685bb6581796737ac45ee104a88b7ae0" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_z</name></member>
+      <member refid="classastrea_1_1astro_1_1Cartesian_1a114900dba41fa871e5aae11a577232ff" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_position</name></member>
+      <member refid="classastrea_1_1astro_1_1Cartesian_1a1da102cb81511bf31f0d9f8b8a4050c0" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_velocity</name></member>
+      <member refid="classastrea_1_1astro_1_1Cartesian_1a8a4660ab677748568567a735ab560a99" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_vx</name></member>
+      <member refid="classastrea_1_1astro_1_1Cartesian_1ab805a08d9762698a30d93540fbc5f6fd" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_vy</name></member>
+      <member refid="classastrea_1_1astro_1_1Cartesian_1a083d5f4fe97c5539318a9969e1fcc586" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_vz</name></member>
+      <member refid="classastrea_1_1astro_1_1Cartesian_1a3b2785f5e8cc1e6da42a494cd4daf4ad" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_x</name></member>
+      <member refid="classastrea_1_1astro_1_1Cartesian_1a38d150a0727f7e793d8a38cc3bdb3135" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_y</name></member>
+      <member refid="classastrea_1_1astro_1_1Cartesian_1a86ab2495d650ba3ba2e42fba393aefb0" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>get_z</name></member>
       <member refid="classastrea_1_1astro_1_1Cartesian_1abd88349fd69cbaa82163194c7a7c6549" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>GPS</name></member>
       <member refid="classastrea_1_1astro_1_1Cartesian_1a9cdf6c66cbcfc0b39bebfe9878d53c2d" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>HMEO</name></member>
       <member refid="classastrea_1_1astro_1_1Cartesian_1a5a95d8ef9bd1a0993946224559198212" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>interpolate</name></member>
@@ -1535,10 +1483,10 @@
       <member refid="classastrea_1_1astro_1_1Cartesian_1a19a726256e2b25dcaa0a13daf415023e" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>operator-=</name></member>
       <member refid="classastrea_1_1astro_1_1Cartesian_1a833ce707f37259f51c441e9039e6382b" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>operator-=</name></member>
       <member refid="classastrea_1_1astro_1_1Cartesian_1a1290bc982f6078f9bd1ae553fcba5a57" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>operator/</name></member>
-      <member refid="classastrea_1_1astro_1_1Cartesian_1ad6f004e862ae43b69d799ffcc7e3a1b9" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>operator/</name></member>
+      <member refid="classastrea_1_1astro_1_1Cartesian_1a1ae37284c5c8ff05a4c65846d2a2c8a8" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>operator/</name></member>
       <member refid="classastrea_1_1astro_1_1Cartesian_1a7befea96e839cc51164dea0ce1e00d16" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>operator/</name></member>
       <member refid="classastrea_1_1astro_1_1Cartesian_1a2c677c78618b9619934d4d763524c8a2" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>operator/=</name></member>
-      <member refid="classastrea_1_1astro_1_1Cartesian_1a71a5a2de9928bc83469c62ac128d105f" prot="private" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1astro_1_1Cartesian_1a341417c56d73c6a77b9b7031837f7965" prot="private" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>operator&lt;&lt;</name></member>
       <member refid="classastrea_1_1astro_1_1Cartesian_1a9ad22fada7e4c57d3a667fa9b04de162" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>operator=</name></member>
       <member refid="classastrea_1_1astro_1_1Cartesian_1a3f0c207a808a25b536e3aa7c33f36e2a" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>operator=</name></member>
       <member refid="classastrea_1_1astro_1_1Cartesian_1aff6fd37714ea8f5ac69afddb2124e7cf" prot="public" virt="non-virtual"><scope>astrea::astro::Cartesian</scope><name>operator==</name></member>

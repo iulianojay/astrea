@@ -1,0 +1,4 @@
+Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min Velocity Error
+Cowells_Method, 548.637 m, 316.133 m, 1059.62 m, 2.514e-09 m, 62.2798 cm/s, 35.7407 cm/s, 122.526 cm/s, 1.94453e-10 cm/s
+Keplerian_VOP, 548.637 m, 316.133 m, 1059.62 m, 2.514e-09 m, 62.2798 cm/s, 35.7407 cm/s, 122.526 cm/s, 1.94453e-10 cm/s
+Equinoctial_VOP, 560.594 m, 320.783 m, 1087.16 m, 2.72848e-09 m, 63.8193 cm/s, 36.3219 cm/s, 124.034 cm/s, 4.0817e-10 cm/s

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="Stats_8hpp" kind="file" language="C++">
     <compoundname>Stats.hpp</compoundname>
     <includes local="no">concepts</includes>
@@ -17,6 +17,60 @@
     <includedby refid="RiseSetStats_8hpp" local="no">astrea/trace/trace/analysis/stats/RiseSetStats.hpp</includedby>
     <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
     <incdepgraph>
+      <node id="11">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+      </node>
+      <node id="7">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="15">
+        <label>cstdint</label>
+      </node>
+      <node id="12">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="9">
+        <label>trace/risesets/RiseSetArray.hpp</label>
+        <link refid="RiseSetArray_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+      <node id="13">
+        <label>array</label>
+      </node>
+      <node id="14">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>mp-units/concepts.h</label>
+      </node>
       <node id="1">
         <label>astrea/trace/trace/analysis/stats/Stats.hpp</label>
         <link refid="Stats_8hpp"/>
@@ -39,19 +93,8 @@
         <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="9">
-        <label>trace/risesets/RiseSetArray.hpp</label>
-        <link refid="RiseSetArray_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
+      <node id="2">
+        <label>concepts</label>
       </node>
       <node id="10">
         <label>trace/risesets/riseset_utils.hpp</label>
@@ -63,57 +106,22 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="11">
-        <label>trace/trace.fwd.hpp</label>
-        <link refid="trace_8fwd_8hpp"/>
-      </node>
-      <node id="12">
-        <label>trace/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>trace/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>array</label>
-      </node>
-      <node id="2">
-        <label>concepts</label>
-      </node>
-      <node id="15">
-        <label>cstdint</label>
-      </node>
       <node id="5">
         <label>gtl/btree.hpp</label>
-      </node>
-      <node id="6">
-        <label>mp-units/concepts.h</label>
-      </node>
-      <node id="7">
-        <label>mp-units/systems/si.h</label>
-      </node>
-      <node id="3">
-        <label>string</label>
       </node>
       <node id="8">
         <label>units/units.hpp</label>
       </node>
-      <node id="4">
-        <label>vector</label>
-      </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="6">
+        <label>astrea/trace/trace/analysis/stats/HyperStats.hpp</label>
+        <link refid="HyperStats_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
       <node id="2">
         <label>astrea/trace/trace/analysis/stats/AccessStats.hpp</label>
         <link refid="AccessStats_8hpp"/>
@@ -122,21 +130,9 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp</label>
-        <link refid="FoldsOfCoverage_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>astrea/trace/trace/analysis/stats/HyperStats.hpp</label>
-        <link refid="HyperStats_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
+      <node id="4">
+        <label>astrea/trace/trace/trace.hpp</label>
+        <link refid="trace_8hpp"/>
       </node>
       <node id="7">
         <label>astrea/trace/trace/analysis/stats/RiseSetStats.hpp</label>
@@ -147,6 +143,12 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/trace/trace/io/output.hpp</label>
+        <link refid="output_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
@@ -164,15 +166,13 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="3">
-        <label>astrea/trace/trace/io/output.hpp</label>
-        <link refid="output_8hpp"/>
+      <node id="5">
+        <label>astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp</label>
+        <link refid="FoldsOfCoverage_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-      </node>
-      <node id="4">
-        <label>astrea/trace/trace/trace.hpp</label>
-        <link refid="trace_8hpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="structastrea_1_1trace_1_1Stats" prot="public">astrea::trace::Stats</innerclass>
@@ -223,8 +223,8 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="58"><highlight class="normal"></highlight></codeline>
 <codeline lineno="65" refid="structastrea_1_1trace_1_1Stats_1a1b108c7fe12455095ac08ff6d1dc7616" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structastrea_1_1trace_1_1Stats_1a1b108c7fe12455095ac08ff6d1dc7616" kindref="member">Stats</ref>(std::vector&lt;T&gt;<sp/>values)</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::one;</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::s;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::one;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::si::unit_symbols::s;</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"></highlight></codeline>
 <codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(values.size()<sp/>==<sp/>0)<sp/>{<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Cannot<sp/>calculate<sp/>statistics<sp/>on<sp/>an<sp/>empty<sp/>vector.&quot;</highlight><highlight class="normal">);<sp/>}</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
@@ -246,7 +246,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="95" refid="structastrea_1_1trace_1_1Stats_1af8428cd430f592acfa1aa65b6262b92e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/><ref refid="structastrea_1_1trace_1_1Stats_1af8428cd430f592acfa1aa65b6262b92e" kindref="member">to_string_vector</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="95" refid="structastrea_1_1trace_1_1Stats_1a1fe59a3c2242cae4aa87511a9653cbee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/><ref refid="structastrea_1_1trace_1_1Stats_1a1fe59a3c2242cae4aa87511a9653cbee" kindref="member">to_string_vector</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="96"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>retval;</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retval.reserve(<ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats&lt;T&gt;::size</ref>());</highlight></codeline>
@@ -262,7 +262,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>retval;</highlight></codeline>
 <codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="110"><highlight class="normal"></highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>std::size_t<sp/>size()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DEFAULT_PERCENTILES.size()<sp/>+<sp/>3;<sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/>std::size_t<sp/>size()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>DEFAULT_PERCENTILES.size()<sp/>+<sp/>3;<sp/>}</highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight></codeline>
 <codeline lineno="113" refid="structastrea_1_1trace_1_1Stats_1a68e0e90d994719f65e2f6be812d997ab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/><ref refid="structastrea_1_1trace_1_1Stats_1a68e0e90d994719f65e2f6be812d997ab" kindref="member">min</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="114" refid="structastrea_1_1trace_1_1Stats_1aed0afb8a9b721a68cfa963a455cb7810" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/><ref refid="structastrea_1_1trace_1_1Stats_1aed0afb8a9b721a68cfa963a455cb7810" kindref="member">max</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
@@ -288,7 +288,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="142"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="143"><highlight class="normal"></highlight></codeline>
 <codeline lineno="149"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
-<codeline lineno="150" refid="structastrea_1_1trace_1_1Stats_1a4642d8f303b592714a60fd787d14f428" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;<sp/><ref refid="structastrea_1_1trace_1_1Stats_1af8428cd430f592acfa1aa65b6262b92e" kindref="member">Stats&lt;Time&gt;::to_string_vector</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="150" refid="structastrea_1_1trace_1_1Stats_1a4642d8f303b592714a60fd787d14f428" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;<sp/><ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats&lt;Time&gt;::to_string_vector</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="151"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;std::string&gt;<sp/>retval;</highlight></codeline>
 <codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>retval.reserve(<ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats&lt;Time&gt;::size</ref>());</highlight></codeline>

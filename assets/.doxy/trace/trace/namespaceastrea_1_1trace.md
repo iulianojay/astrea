@@ -86,6 +86,13 @@
 
 
 
+## Public Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  concept | [**HasSize**](#variable-hassize)   = `/* multi line expression */`<br> |
+|  concept | [**HasSubscriptOperator**](#variable-hassubscriptoperator)   = `/* multi line expression */`<br> |
+|  concept | [**IsPlatformContainer**](#variable-isplatformcontainer)   = `HasSize&lt;T&gt; && HasSubscriptOperator&lt;T&gt;`<br> |
 
 
 ## Public Static Attributes
@@ -124,7 +131,7 @@
 |  std::string | [**get\_object\_name\_from\_id**](#function-get_object_name_from_id) (std::size\_t id, const astro::Constellation&lt; T &gt; & satellites, const U & grounds=U()) <br> |
 |  std::ostream & | [**operator&lt;&lt;**](#function-operator) (std::ostream & os, const [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) & accessarray) <br>_Overloads the output stream operator for the_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _._ |
 |  std::ostream & | [**operator&lt;&lt;**](#function-operator_1) (std::ostream & os, const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & risesets) <br> |
-|  bool | [**point\_in\_polygon**](#function-point_in_polygon) (const std::pair&lt; Unitless, Unitless &gt; & point, const std::vector&lt; std::pair&lt; Unitless, Unitless &gt; &gt; & polygon) <br> |
+|  bool | [**point\_in\_polygon**](#function-point_in_polygon) (const std::pair&lt; Unitless, Unitless &gt; & point, const std::vector&lt; std::pair&lt; Unitless, Unitless &gt;&gt; & polygon) <br> |
 |  [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) | [**riseset\_difference**](#function-riseset_difference) (const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & a, const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & b) <br>_Difference of two_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _objects._ |
 |  [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) | [**riseset\_intersection**](#function-riseset_intersection) (const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & a, const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & b) <br>_Intersection of two_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _objects._ |
 |  [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) | [**riseset\_union**](#function-riseset_union) (const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & a, const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & b) <br>_Union of two_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _objects._ |
@@ -406,6 +413,47 @@ using astrea::trace::ViewerRefVec = typedef std::vector<std::shared_ptr<Viewer> 
 
 
 <hr>
+## Public Attributes Documentation
+
+
+
+
+### variable HasSize 
+
+```C++
+concept astrea::trace::HasSize;
+```
+
+
+
+
+<hr>
+
+
+
+### variable HasSubscriptOperator 
+
+```C++
+concept astrea::trace::HasSubscriptOperator;
+```
+
+
+
+
+<hr>
+
+
+
+### variable IsPlatformContainer 
+
+```C++
+concept astrea::trace::IsPlatformContainer;
+```
+
+
+
+
+<hr>
 ## Public Static Attributes Documentation
 
 
@@ -657,7 +705,7 @@ std::ostream & astrea::trace::operator<< (
 ```C++
 bool astrea::trace::point_in_polygon (
     const std::pair< Unitless, Unitless > & point,
-    const std::vector< std::pair< Unitless, Unitless > > & polygon
+    const std::vector< std::pair< Unitless, Unitless >> & polygon
 ) 
 ```
 

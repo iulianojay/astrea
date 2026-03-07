@@ -38,11 +38,6 @@ _Header file for the DynamicFrame class in the astro namespace._ [More...](#deta
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
 
 
-## Classes
-
-| Type | Name |
-| ---: | :--- |
-| struct | [**DynamicFrame**](classastrea_1_1astro_1_1DynamicFrame.md) &lt;[**class**](classastrea_1_1astro_1_1CartesianVector.md) [**Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md), axis&gt;<br>_Base class for all dynamic state/frames._  |
 
 
 

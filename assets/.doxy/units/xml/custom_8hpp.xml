@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="custom_8hpp" kind="file" language="C++">
     <compoundname>custom.hpp</compoundname>
     <includes local="no">mp-units/systems/angular.h</includes>
@@ -9,6 +9,15 @@
     <includedby refid="typedefs_8hpp" local="no">astrea/units/units/typedefs.hpp</includedby>
     <includedby refid="units_8hpp" local="no">astrea/units/units/units.hpp</includedby>
     <incdepgraph>
+      <node id="5">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="3">
+        <label>mp-units/systems/iau.h</label>
+      </node>
+      <node id="2">
+        <label>mp-units/systems/angular.h</label>
+      </node>
       <node id="1">
         <label>astrea/units/units/custom.hpp</label>
         <link refid="custom_8hpp"/>
@@ -21,20 +30,25 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="3">
-        <label>mp-units/systems/iau.h</label>
-      </node>
       <node id="4">
         <label>mp-units/systems/isq_angle.h</label>
       </node>
-      <node id="5">
-        <label>mp-units/systems/si.h</label>
-      </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="4">
+        <label>astrea/units/units/units.hpp</label>
+        <link refid="units_8hpp"/>
+      </node>
+      <node id="2">
+        <label>astrea/units/units/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
       <node id="3">
         <label>astrea/units/units/constants.hpp</label>
         <link refid="constants_8hpp"/>
@@ -54,20 +68,6 @@
         <link refid="hash_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
-      </node>
-      <node id="2">
-        <label>astrea/units/units/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>astrea/units/units/units.hpp</label>
-        <link refid="units_8hpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="structastrea_1_1JulianCentury" prot="public">astrea::JulianCentury</innerclass>
@@ -97,10 +97,10 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31" refid="structastrea_1_1JulianCentury" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref><sp/>final<sp/>:<sp/>mp_units::named_unit&lt;&quot;JulianCentury&quot;,<sp/>mp_units::mag&lt;36525&gt;<sp/>*<sp/>mp_units::non_si::day&gt;<sp/>{</highlight></codeline>
+<codeline lineno="31" refid="structastrea_1_1JulianCentury" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref><sp/>final<sp/>:<sp/>mp_units::named_unit&lt;&quot;JulianCentury&quot;,<sp/>mp_units::mag&lt;36525&gt;<sp/>*<sp/>mp_units::non_si::day&gt;<sp/>{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal">}<sp/><ref refid="structastrea_1_1JulianCentury" kindref="compound">JulianCentury</ref>;</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37" refid="structastrea_1_1EarthRadii" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1EarthRadii" kindref="compound">EarthRadii</ref><sp/>final</highlight></codeline>
+<codeline lineno="37" refid="structastrea_1_1EarthRadii" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structastrea_1_1EarthRadii" kindref="compound">EarthRadii</ref><sp/>final</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>mp_units::named_unit&lt;&quot;EarthRadii&quot;,<sp/>mp_units::mag&lt;6378&gt;<sp/>*<sp/>mp_units::si::unit_symbols::km&gt;<sp/>{</highlight></codeline>
 <codeline lineno="39"><highlight class="normal">}<sp/><ref refid="structastrea_1_1EarthRadii" kindref="compound">EarthRadii</ref>;</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>

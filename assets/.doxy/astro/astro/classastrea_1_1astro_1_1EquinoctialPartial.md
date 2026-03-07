@@ -53,9 +53,9 @@ _Class representing a partial derivative of an_ [_**Equinoctial**_](classastrea_
 | Type | Name |
 | ---: | :--- |
 |   | [**EquinoctialPartial**](#function-equinoctialpartial-12) () = default<br>_Default constructor for_ [_**EquinoctialPartial**_](classastrea_1_1astro_1_1EquinoctialPartial.md) _._ |
-|   | [**EquinoctialPartial**](#function-equinoctialpartial-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md) & semilatusPartial, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**UnitlessPerTime**](classastrea_1_1astro_1_1CartesianVector.md) & fPartial, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**UnitlessPerTime**](classastrea_1_1astro_1_1CartesianVector.md) & gPartial, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**UnitlessPerTime**](classastrea_1_1astro_1_1CartesianVector.md) & hPartial, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**UnitlessPerTime**](classastrea_1_1astro_1_1CartesianVector.md) & kPartial, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**AngularRate**](classastrea_1_1astro_1_1CartesianVector.md) & trueLongitudePartial) <br>_Constructor for_ [_**EquinoctialPartial**_](classastrea_1_1astro_1_1EquinoctialPartial.md) _with velocity and acceleration components._ |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**EquinoctialPartial**_](classastrea_1_1astro_1_1EquinoctialPartial.md) _state vector to a vector of unitless values._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & time) const<br>_Multiplication operator for_ [_**EquinoctialPartial**_](classastrea_1_1astro_1_1EquinoctialPartial.md) _._ |
+|   | [**EquinoctialPartial**](#function-equinoctialpartial-22) (const Velocity & semilatusPartial, const UnitlessPerTime & fPartial, const UnitlessPerTime & gPartial, const UnitlessPerTime & hPartial, const UnitlessPerTime & kPartial, const AngularRate & trueLongitudePartial) <br>_Constructor for_ [_**EquinoctialPartial**_](classastrea_1_1astro_1_1EquinoctialPartial.md) _with velocity and acceleration components._ |
+|  std::vector&lt; Unitless &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**EquinoctialPartial**_](classastrea_1_1astro_1_1EquinoctialPartial.md) _state vector to a vector of unitless values._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**operator\***](#function-operator) (const Time & time) const<br>_Multiplication operator for_ [_**EquinoctialPartial**_](classastrea_1_1astro_1_1EquinoctialPartial.md) _._ |
 
 
 
@@ -112,12 +112,12 @@ Initializes the [**EquinoctialPartial**](classastrea_1_1astro_1_1EquinoctialPart
 _Constructor for_ [_**EquinoctialPartial**_](classastrea_1_1astro_1_1EquinoctialPartial.md) _with velocity and acceleration components._
 ```C++
 inline astrea::astro::EquinoctialPartial::EquinoctialPartial (
-    const  Velocity & semilatusPartial,
-    const  UnitlessPerTime & fPartial,
-    const  UnitlessPerTime & gPartial,
-    const  UnitlessPerTime & hPartial,
-    const  UnitlessPerTime & kPartial,
-    const  AngularRate & trueLongitudePartial
+    const Velocity & semilatusPartial,
+    const UnitlessPerTime & fPartial,
+    const UnitlessPerTime & gPartial,
+    const UnitlessPerTime & hPartial,
+    const UnitlessPerTime & kPartial,
+    const AngularRate & trueLongitudePartial
 ) 
 ```
 
@@ -174,7 +174,7 @@ std::vector&lt;Unitless&gt; Vector containing the components of the [**Equinocti
 _Multiplication operator for_ [_**EquinoctialPartial**_](classastrea_1_1astro_1_1EquinoctialPartial.md) _._
 ```C++
 Equinoctial astrea::astro::EquinoctialPartial::operator* (
-    const  Time & time
+    const Time & time
 ) const
 ```
 

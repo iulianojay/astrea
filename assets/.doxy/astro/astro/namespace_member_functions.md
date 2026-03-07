@@ -53,8 +53,6 @@
 
 ## o
 
-* **operator\*** ([**astrea::astro**](namespaceastrea_1_1astro.md))
-* **operator/** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **operator&lt;&lt;** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 
 
@@ -68,6 +66,7 @@
 
 ## r
 
+* **requires** ([**astrea::astro::frames**](namespaceastrea_1_1astro_1_1frames.md), [**astrea::astro**](namespaceastrea_1_1astro.md))
 * **rotate\_vector\_into\_frame** ([**astrea::astro::frames**](namespaceastrea_1_1astro_1_1frames.md))
 
 

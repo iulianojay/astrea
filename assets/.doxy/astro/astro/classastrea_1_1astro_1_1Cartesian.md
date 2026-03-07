@@ -52,47 +52,47 @@ _Class representing a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Cartesian**](#function-cartesian-19) ([**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) scale=0.0 \*astrea::detail::unitless) <br>_Default constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _._ |
-|   | [**Cartesian**](#function-cartesian-29) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & r, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & v) <br>_Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _with position and velocity vectors._ |
-|   | [**Cartesian**](#function-cartesian-39) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) & x, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) & y, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) & z, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md) & vx, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md) & vy, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md) & vz) <br>_Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _with individual position and velocity components._ |
-|   | [**Cartesian**](#function-cartesian-49) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & elements, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) <br>_Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _from another_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object._ |
-|   | [**Cartesian**](#function-cartesian-59) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & elements, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) <br>_Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _from_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _elements._ |
-|   | [**Cartesian**](#function-cartesian-69) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & elements, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) <br>_Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _from_[_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _elements._ |
-|   | [**Cartesian**](#function-cartesian-79) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elements, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) <br>_Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _from_[_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _._ |
-|   | [**Cartesian**](#function-cartesian-89) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) <br>_Copy constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _._ |
+|   | [**Cartesian**](#function-cartesian-19) (Unitless scale=0.0 \*astrea::detail::unitless) <br>_Default constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _._ |
+|   | [**Cartesian**](#function-cartesian-29) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::icrf &gt; & r, const [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::earth::icrf &gt; & v) <br>_Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _with position and velocity vectors._ |
+|   | [**Cartesian**](#function-cartesian-39) (const Distance & x, const Distance & y, const Distance & z, const Velocity & vx, const Velocity & vy, const Velocity & vz) <br>_Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _with individual position and velocity components._ |
+|   | [**Cartesian**](#function-cartesian-49) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & elements, const GravParam & mu) <br>_Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _from another_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object._ |
+|   | [**Cartesian**](#function-cartesian-59) (const [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & elements, const GravParam & mu) <br>_Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _from_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _elements._ |
+|   | [**Cartesian**](#function-cartesian-69) (const [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & elements, const GravParam & mu) <br>_Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _from_[_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _elements._ |
+|   | [**Cartesian**](#function-cartesian-79) (const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elements, const GravParam & mu) <br>_Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _from_[_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _._ |
+|   | [**Cartesian**](#function-cartesian-89) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) <br>_Copy constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _._ |
 |   | [**Cartesian**](#function-cartesian-99) ([**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) && other) noexcept<br>_Move constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _._ |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector to a vector of unitless values._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & | [**get\_position**](#function-get_position) () const<br>_Converts the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector to a_[_**RadiusVector&lt;frames::earth::icrf&gt;**_](namespaceastrea_1_1astro.md#typedef-radiusvector) _._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & | [**get\_velocity**](#function-get_velocity) () const<br>_Converts the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector to a_[_**VelocityVector&lt;frames::earth::icrf&gt;**_](namespaceastrea_1_1astro.md#typedef-velocityvector) _._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_vx**](#function-get_vx) () const<br>_Get the vx value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_vy**](#function-get_vy) () const<br>_Get the vy value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_vz**](#function-get_vz) () const<br>_Get the vz value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_x**](#function-get_x) () const<br>_Get the x value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_y**](#function-get_y) () const<br>_Get the y value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Distance**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_z**](#function-get_z) () const<br>_Get the z value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**interpolate**](#function-interpolate) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & thisTime, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & otherTime, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & targetTime) const<br>_Interpolates between two_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _states at a given time._ |
-|  [**bool**](classastrea_1_1astro_1_1CartesianVector.md) | [**operator!=**](#function-operator) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) const<br>_Compares two_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _objects for inequality._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator\***](#function-operator_1) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & multiplier) const<br>_Multiplies the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a scalar._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator\*=**](#function-operator_2) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & multiplier) <br>_Multiplies the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a scalar._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator+**](#function-operator_3) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) const<br>_Adds two_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _objects._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator+**](#function-operator_4) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & r) const<br> |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator+**](#function-operator_5) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & v) const<br> |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator+=**](#function-operator_6) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) <br>_Adds another_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object to the current one._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator+=**](#function-operator_7) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & r) <br> |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator+=**](#function-operator_8) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & v) <br> |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator-**](#function-operator-) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) const<br>_Subtracts another_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object from the current one._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator-**](#function-operator-_1) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & r) const<br> |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator-**](#function-operator-_2) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & v) const<br> |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator-=**](#function-operator-_3) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) <br>_Subtracts another_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object from the current one._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator-=**](#function-operator-_4) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & r) <br> |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator-=**](#function-operator-_5) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; & v) <br> |
-|  [**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md) | [**operator/**](#function-operator_9) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & time) const<br>_Divides the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a time._ |
-|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**operator/**](#function-operator_10) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) const<br>_Divides the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by another_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator/**](#function-operator_11) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & divisor) const<br>_Divides the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a scalar._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator/=**](#function-operator_12) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) & divisor) <br>_Divides the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a scalar._ |
+|  std::vector&lt; Unitless &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector to a vector of unitless values._ |
+|  const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::icrf &gt; & | [**get\_position**](#function-get_position) () const<br>_Converts the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector to a RadiusVector&lt;frames::earth::icrf&gt;._ |
+|  const [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::earth::icrf &gt; & | [**get\_velocity**](#function-get_velocity) () const<br>_Converts the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector to a VelocityVector&lt;frames::earth::icrf&gt;._ |
+|  const Velocity & | [**get\_vx**](#function-get_vx) () const<br>_Get the vx value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
+|  const Velocity & | [**get\_vy**](#function-get_vy) () const<br>_Get the vy value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
+|  const Velocity & | [**get\_vz**](#function-get_vz) () const<br>_Get the vz value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
+|  const Distance & | [**get\_x**](#function-get_x) () const<br>_Get the x value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
+|  const Distance & | [**get\_y**](#function-get_y) () const<br>_Get the y value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
+|  const Distance & | [**get\_z**](#function-get_z) () const<br>_Get the z value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**interpolate**](#function-interpolate) (const Time & thisTime, const Time & otherTime, const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other, const GravParam & mu, const Time & targetTime) const<br>_Interpolates between two_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _states at a given time._ |
+|  bool | [**operator!=**](#function-operator) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) const<br>_Compares two_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _objects for inequality._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator\***](#function-operator_1) (const Unitless & multiplier) const<br>_Multiplies the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a scalar._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator\*=**](#function-operator_2) (const Unitless & multiplier) <br>_Multiplies the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a scalar._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator+**](#function-operator_3) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) const<br>_Adds two_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _objects._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator+**](#function-operator_4) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::icrf &gt; & r) const<br> |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator+**](#function-operator_5) (const [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::earth::icrf &gt; & v) const<br> |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator+=**](#function-operator_6) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) <br>_Adds another_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object to the current one._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator+=**](#function-operator_7) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::icrf &gt; & r) <br> |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator+=**](#function-operator_8) (const [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::earth::icrf &gt; & v) <br> |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator-**](#function-operator-) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) const<br>_Subtracts another_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object from the current one._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator-**](#function-operator-_1) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::icrf &gt; & r) const<br> |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator-**](#function-operator-_2) (const [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::earth::icrf &gt; & v) const<br> |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator-=**](#function-operator-_3) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) <br>_Subtracts another_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object from the current one._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator-=**](#function-operator-_4) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::icrf &gt; & r) <br> |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator-=**](#function-operator-_5) (const [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::earth::icrf &gt; & v) <br> |
+|  [**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md) | [**operator/**](#function-operator_9) (const Time & time) const<br>_Divides the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a time._ |
+|  std::vector&lt; Unitless &gt; | [**operator/**](#function-operator_10) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) const<br>_Divides the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by another_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**operator/**](#function-operator_11) (const Unitless & divisor) const<br>_Divides the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a scalar._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator/=**](#function-operator_12) (const Unitless & divisor) <br>_Divides the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a scalar._ |
 |  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator=**](#function-operator_13) ([**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) && other) noexcept<br>_Move assignment operator for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator=**](#function-operator_14) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) <br>_Copy assignment operator for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _._ |
-|  [**bool**](classastrea_1_1astro_1_1CartesianVector.md) | [**operator==**](#function-operator_15) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) const<br>_Compares two_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _objects for equality._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & | [**operator=**](#function-operator_14) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) <br>_Copy assignment operator for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _._ |
+|  bool | [**operator==**](#function-operator_15) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & other) const<br>_Compares two_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _objects for equality._ |
 |   | [**~Cartesian**](#function-cartesian) () = default<br>_Default destructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _._ |
 
 
@@ -100,11 +100,11 @@ _Class representing a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _
 
 | Type | Name |
 | ---: | :--- |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**GEO**](#function-geo) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) <br>_A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a GEO orbit._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**GPS**](#function-gps) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) <br>_A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a GPS orbit._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**HMEO**](#function-hmeo) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) <br>_A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a HMEO orbit._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**LEO**](#function-leo) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) <br>_A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a LEO orbit._ |
-|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**LMEO**](#function-lmeo) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**GravParam**](classastrea_1_1astro_1_1CartesianVector.md) & mu) <br>_A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a LMEO orbit._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**GEO**](#function-geo) (const GravParam & mu) <br>_A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a GEO orbit._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**GPS**](#function-gps) (const GravParam & mu) <br>_A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a GPS orbit._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**HMEO**](#function-hmeo) (const GravParam & mu) <br>_A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a HMEO orbit._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**LEO**](#function-leo) (const GravParam & mu) <br>_A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a LEO orbit._ |
+|  [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) | [**LMEO**](#function-lmeo) (const GravParam & mu) <br>_A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a LMEO orbit._ |
 
 
 
@@ -168,8 +168,8 @@ Initializes the [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) state vect
 _Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _with position and velocity vectors._
 ```C++
 inline astrea::astro::Cartesian::Cartesian (
-    const  RadiusVector < frames::earth::icrf > & r,
-    const  VelocityVector < frames::earth::icrf > & v
+    const RadiusVector < frames::earth::icrf > & r,
+    const VelocityVector < frames::earth::icrf > & v
 ) 
 ```
 
@@ -197,12 +197,12 @@ inline astrea::astro::Cartesian::Cartesian (
 _Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _with individual position and velocity components._
 ```C++
 inline astrea::astro::Cartesian::Cartesian (
-    const  Distance & x,
-    const  Distance & y,
-    const  Distance & z,
-    const  Velocity & vx,
-    const  Velocity & vy,
-    const  Velocity & vz
+    const Distance & x,
+    const Distance & y,
+    const Distance & z,
+    const Velocity & vx,
+    const Velocity & vy,
+    const Velocity & vz
 ) 
 ```
 
@@ -234,8 +234,8 @@ inline astrea::astro::Cartesian::Cartesian (
 _Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _from another_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object._
 ```C++
 inline astrea::astro::Cartesian::Cartesian (
-    const  Cartesian & elements,
-    const  GravParam & mu
+    const Cartesian & elements,
+    const GravParam & mu
 ) 
 ```
 
@@ -263,8 +263,8 @@ inline astrea::astro::Cartesian::Cartesian (
 _Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _from_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _elements._
 ```C++
 astrea::astro::Cartesian::Cartesian (
-    const  Keplerian & elements,
-    const  GravParam & mu
+    const Keplerian & elements,
+    const GravParam & mu
 ) 
 ```
 
@@ -292,8 +292,8 @@ astrea::astro::Cartesian::Cartesian (
 _Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _from_[_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _elements._
 ```C++
 astrea::astro::Cartesian::Cartesian (
-    const  Equinoctial & elements,
-    const  GravParam & mu
+    const Equinoctial & elements,
+    const GravParam & mu
 ) 
 ```
 
@@ -321,8 +321,8 @@ astrea::astro::Cartesian::Cartesian (
 _Constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _from_[_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _._
 ```C++
 astrea::astro::Cartesian::Cartesian (
-    const  OrbitalElements & elements,
-    const  GravParam & mu
+    const OrbitalElements & elements,
+    const GravParam & mu
 ) 
 ```
 
@@ -350,7 +350,7 @@ astrea::astro::Cartesian::Cartesian (
 _Copy constructor for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _._
 ```C++
 astrea::astro::Cartesian::Cartesian (
-    const  Cartesian & other
+    const Cartesian & other
 ) 
 ```
 
@@ -426,9 +426,9 @@ std::vector&lt;Unitless&gt; Vector containing the x, y, z, vx, vy, and vz compon
 
 ### function get\_position 
 
-_Converts the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector to a_[_**RadiusVector&lt;frames::earth::icrf&gt;**_](namespaceastrea_1_1astro.md#typedef-radiusvector) _._
+_Converts the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector to a RadiusVector&lt;frames::earth::icrf&gt;._
 ```C++
-inline const  RadiusVector < frames::earth::icrf > & astrea::astro::Cartesian::get_position () const
+inline const RadiusVector < frames::earth::icrf > & astrea::astro::Cartesian::get_position () const
 ```
 
 
@@ -437,7 +437,7 @@ inline const  RadiusVector < frames::earth::icrf > & astrea::astro::Cartesian::g
 
 **Returns:**
 
-[**RadiusVector&lt;frames::earth::icrf&gt;**](namespaceastrea_1_1astro.md#typedef-radiusvector) The position vector in [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) coordinates. 
+RadiusVector&lt;frames::earth::icrf&gt; The position vector in [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) coordinates. 
 
 
 
@@ -451,9 +451,9 @@ inline const  RadiusVector < frames::earth::icrf > & astrea::astro::Cartesian::g
 
 ### function get\_velocity 
 
-_Converts the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector to a_[_**VelocityVector&lt;frames::earth::icrf&gt;**_](namespaceastrea_1_1astro.md#typedef-velocityvector) _._
+_Converts the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector to a VelocityVector&lt;frames::earth::icrf&gt;._
 ```C++
-inline const  VelocityVector < frames::earth::icrf > & astrea::astro::Cartesian::get_velocity () const
+inline const VelocityVector < frames::earth::icrf > & astrea::astro::Cartesian::get_velocity () const
 ```
 
 
@@ -462,7 +462,7 @@ inline const  VelocityVector < frames::earth::icrf > & astrea::astro::Cartesian:
 
 **Returns:**
 
-[**VelocityVector&lt;frames::earth::icrf&gt;**](namespaceastrea_1_1astro.md#typedef-velocityvector) The velocity vector in [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) coordinates. 
+VelocityVector&lt;frames::earth::icrf&gt; The velocity vector in [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) coordinates. 
 
 
 
@@ -478,7 +478,7 @@ inline const  VelocityVector < frames::earth::icrf > & astrea::astro::Cartesian:
 
 _Get the vx value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._
 ```C++
-inline const  Velocity & astrea::astro::Cartesian::get_vx () const
+inline const Velocity & astrea::astro::Cartesian::get_vx () const
 ```
 
 
@@ -503,7 +503,7 @@ const Velocity& Reference to the vx component of the [**Cartesian**](classastrea
 
 _Get the vy value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._
 ```C++
-inline const  Velocity & astrea::astro::Cartesian::get_vy () const
+inline const Velocity & astrea::astro::Cartesian::get_vy () const
 ```
 
 
@@ -528,7 +528,7 @@ const Velocity& Reference to the vy component of the [**Cartesian**](classastrea
 
 _Get the vz value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._
 ```C++
-inline const  Velocity & astrea::astro::Cartesian::get_vz () const
+inline const Velocity & astrea::astro::Cartesian::get_vz () const
 ```
 
 
@@ -553,7 +553,7 @@ const Velocity& Reference to the vz component of the [**Cartesian**](classastrea
 
 _Get the x value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._
 ```C++
-inline const  Distance & astrea::astro::Cartesian::get_x () const
+inline const Distance & astrea::astro::Cartesian::get_x () const
 ```
 
 
@@ -578,7 +578,7 @@ const Distance& Reference to the x component of the [**Cartesian**](classastrea_
 
 _Get the y value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._
 ```C++
-inline const  Distance & astrea::astro::Cartesian::get_y () const
+inline const Distance & astrea::astro::Cartesian::get_y () const
 ```
 
 
@@ -603,7 +603,7 @@ const Distance& Reference to the y component of the [**Cartesian**](classastrea_
 
 _Get the z value of the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._
 ```C++
-inline const  Distance & astrea::astro::Cartesian::get_z () const
+inline const Distance & astrea::astro::Cartesian::get_z () const
 ```
 
 
@@ -629,11 +629,11 @@ const Distance& Reference to the z component of the [**Cartesian**](classastrea_
 _Interpolates between two_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _states at a given time._
 ```C++
 Cartesian astrea::astro::Cartesian::interpolate (
-    const  Time & thisTime,
-    const  Time & otherTime,
-    const  Cartesian & other,
-    const  GravParam & mu,
-    const  Time & targetTime
+    const Time & thisTime,
+    const Time & otherTime,
+    const Cartesian & other,
+    const GravParam & mu,
+    const Time & targetTime
 ) const
 ```
 
@@ -671,7 +671,7 @@ Cartesian astrea::astro::Cartesian::interpolate (
 _Compares two_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _objects for inequality._
 ```C++
 bool astrea::astro::Cartesian::operator!= (
-    const  Cartesian & other
+    const Cartesian & other
 ) const
 ```
 
@@ -712,7 +712,7 @@ false if the two [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) objects a
 _Multiplies the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a scalar._
 ```C++
 Cartesian astrea::astro::Cartesian::operator* (
-    const  Unitless & multiplier
+    const Unitless & multiplier
 ) const
 ```
 
@@ -746,7 +746,7 @@ Resultant [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) after multiplica
 _Multiplies the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a scalar._
 ```C++
 Cartesian & astrea::astro::Cartesian::operator*= (
-    const  Unitless & multiplier
+    const Unitless & multiplier
 ) 
 ```
 
@@ -780,7 +780,7 @@ Reference to the current [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) o
 _Adds two_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _objects._
 ```C++
 Cartesian astrea::astro::Cartesian::operator+ (
-    const  Cartesian & other
+    const Cartesian & other
 ) const
 ```
 
@@ -813,7 +813,7 @@ Resultant [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) sum.
 
 ```C++
 Cartesian astrea::astro::Cartesian::operator+ (
-    const  RadiusVector < frames::earth::icrf > & r
+    const RadiusVector < frames::earth::icrf > & r
 ) const
 ```
 
@@ -828,7 +828,7 @@ Cartesian astrea::astro::Cartesian::operator+ (
 
 ```C++
 Cartesian astrea::astro::Cartesian::operator+ (
-    const  VelocityVector < frames::earth::icrf > & v
+    const VelocityVector < frames::earth::icrf > & v
 ) const
 ```
 
@@ -844,7 +844,7 @@ Cartesian astrea::astro::Cartesian::operator+ (
 _Adds another_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object to the current one._
 ```C++
 Cartesian & astrea::astro::Cartesian::operator+= (
-    const  Cartesian & other
+    const Cartesian & other
 ) 
 ```
 
@@ -877,7 +877,7 @@ Reference to the current [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) o
 
 ```C++
 Cartesian & astrea::astro::Cartesian::operator+= (
-    const  RadiusVector < frames::earth::icrf > & r
+    const RadiusVector < frames::earth::icrf > & r
 ) 
 ```
 
@@ -892,7 +892,7 @@ Cartesian & astrea::astro::Cartesian::operator+= (
 
 ```C++
 Cartesian & astrea::astro::Cartesian::operator+= (
-    const  VelocityVector < frames::earth::icrf > & v
+    const VelocityVector < frames::earth::icrf > & v
 ) 
 ```
 
@@ -908,7 +908,7 @@ Cartesian & astrea::astro::Cartesian::operator+= (
 _Subtracts another_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object from the current one._
 ```C++
 Cartesian astrea::astro::Cartesian::operator- (
-    const  Cartesian & other
+    const Cartesian & other
 ) const
 ```
 
@@ -941,7 +941,7 @@ Resultant [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) difference.
 
 ```C++
 Cartesian astrea::astro::Cartesian::operator- (
-    const  RadiusVector < frames::earth::icrf > & r
+    const RadiusVector < frames::earth::icrf > & r
 ) const
 ```
 
@@ -956,7 +956,7 @@ Cartesian astrea::astro::Cartesian::operator- (
 
 ```C++
 Cartesian astrea::astro::Cartesian::operator- (
-    const  VelocityVector < frames::earth::icrf > & v
+    const VelocityVector < frames::earth::icrf > & v
 ) const
 ```
 
@@ -972,7 +972,7 @@ Cartesian astrea::astro::Cartesian::operator- (
 _Subtracts another_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object from the current one._
 ```C++
 Cartesian & astrea::astro::Cartesian::operator-= (
-    const  Cartesian & other
+    const Cartesian & other
 ) 
 ```
 
@@ -1005,7 +1005,7 @@ Reference to the current [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) o
 
 ```C++
 Cartesian & astrea::astro::Cartesian::operator-= (
-    const  RadiusVector < frames::earth::icrf > & r
+    const RadiusVector < frames::earth::icrf > & r
 ) 
 ```
 
@@ -1020,7 +1020,7 @@ Cartesian & astrea::astro::Cartesian::operator-= (
 
 ```C++
 Cartesian & astrea::astro::Cartesian::operator-= (
-    const  VelocityVector < frames::earth::icrf > & v
+    const VelocityVector < frames::earth::icrf > & v
 ) 
 ```
 
@@ -1036,7 +1036,7 @@ Cartesian & astrea::astro::Cartesian::operator-= (
 _Divides the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a time._
 ```C++
 CartesianPartial astrea::astro::Cartesian::operator/ (
-    const  Time & time
+    const Time & time
 ) const
 ```
 
@@ -1070,7 +1070,7 @@ Resultant [**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md) af
 _Divides the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by another_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _object._
 ```C++
 std::vector< Unitless > astrea::astro::Cartesian::operator/ (
-    const  Cartesian & other
+    const Cartesian & other
 ) const
 ```
 
@@ -1104,7 +1104,7 @@ Resultant vector of unitless values after division.
 _Divides the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a scalar._
 ```C++
 Cartesian astrea::astro::Cartesian::operator/ (
-    const  Unitless & divisor
+    const Unitless & divisor
 ) const
 ```
 
@@ -1138,7 +1138,7 @@ Resultant [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) after division.
 _Divides the_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector by a scalar._
 ```C++
 Cartesian & astrea::astro::Cartesian::operator/= (
-    const  Unitless & divisor
+    const Unitless & divisor
 ) 
 ```
 
@@ -1206,7 +1206,7 @@ Cartesian & astrea::astro::Cartesian::operator= (
 _Copy assignment operator for_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _._
 ```C++
 Cartesian & astrea::astro::Cartesian::operator= (
-    const  Cartesian & other
+    const Cartesian & other
 ) 
 ```
 
@@ -1240,7 +1240,7 @@ Cartesian & astrea::astro::Cartesian::operator= (
 _Compares two_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _objects for equality._
 ```C++
 bool astrea::astro::Cartesian::operator== (
-    const  Cartesian & other
+    const Cartesian & other
 ) const
 ```
 
@@ -1297,7 +1297,7 @@ astrea::astro::Cartesian::~Cartesian () = default
 _A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a GEO orbit._
 ```C++
 static Cartesian astrea::astro::Cartesian::GEO (
-    const  GravParam & mu
+    const GravParam & mu
 ) 
 ```
 
@@ -1334,7 +1334,7 @@ This method return predefined [**Cartesian**](classastrea_1_1astro_1_1Cartesian.
 _A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a GPS orbit._
 ```C++
 static Cartesian astrea::astro::Cartesian::GPS (
-    const  GravParam & mu
+    const GravParam & mu
 ) 
 ```
 
@@ -1371,7 +1371,7 @@ This method return predefined [**Cartesian**](classastrea_1_1astro_1_1Cartesian.
 _A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a HMEO orbit._
 ```C++
 static Cartesian astrea::astro::Cartesian::HMEO (
-    const  GravParam & mu
+    const GravParam & mu
 ) 
 ```
 
@@ -1408,7 +1408,7 @@ This method return predefined [**Cartesian**](classastrea_1_1astro_1_1Cartesian.
 _A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a LEO orbit._
 ```C++
 static Cartesian astrea::astro::Cartesian::LEO (
-    const  GravParam & mu
+    const GravParam & mu
 ) 
 ```
 
@@ -1445,7 +1445,7 @@ This method return predefined [**Cartesian**](classastrea_1_1astro_1_1Cartesian.
 _A static method to create_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vectors for a LMEO orbit._
 ```C++
 static Cartesian astrea::astro::Cartesian::LMEO (
-    const  GravParam & mu
+    const GravParam & mu
 ) 
 ```
 

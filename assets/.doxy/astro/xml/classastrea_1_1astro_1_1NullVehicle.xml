@@ -1,16 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1NullVehicle" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::NullVehicle</compoundname>
     <basecompoundref refid="classastrea_1_1astro_1_1FrameReference" prot="public" virt="non-virtual">astrea::astro::FrameReference</basecompoundref>
     <includes refid="NullVehicle_8hpp" local="no">NullVehicle.hpp</includes>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1NullVehicle_1a9f5e4c05463a54666c9b7c63f0ec6201" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Mass</ref></type>
+        <type>Mass</type>
         <definition>Mass astrea::astro::NullVehicle::_mass</definition>
         <argsstring></argsstring>
         <name>_mass</name>
-        <qualifiedname>astrea::astro::NullVehicle::_mass</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -19,16 +18,15 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/vehicles/NullVehicle.hpp" line="89" column="10" bodyfile="astrea/astro/astro/platforms/vehicles/NullVehicle.hpp" bodystart="89" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1NullVehicle_1af1f0cbbce56824ad3b91edd52fcad415" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::NullVehicle::NullVehicle</definition>
         <argsstring>(const Mass &amp;mass=0.0 *mp_units::si::unit_symbols::kg)</argsstring>
         <name>NullVehicle</name>
-        <qualifiedname>astrea::astro::NullVehicle::NullVehicle</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Mass</ref> &amp;</type>
+          <type>const Mass &amp;</type>
           <declname>mass</declname>
           <defval>0.0 *mp_units::si::unit_symbols::kg</defval>
         </param>
@@ -56,7 +54,6 @@
         <definition>NullVehicle * astrea::astro::NullVehicle::clone</definition>
         <argsstring>() const</argsstring>
         <name>clone</name>
-        <qualifiedname>astrea::astro::NullVehicle::clone</qualifiedname>
         <briefdescription>
 <para>Clone the <ref refid="classastrea_1_1astro_1_1NullVehicle" kindref="compound">NullVehicle</ref> object. </para>
         </briefdescription>
@@ -70,11 +67,10 @@
         <location file="astrea/astro/astro/platforms/vehicles/NullVehicle.hpp" line="48" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/NullVehicle.cpp" bodystart="35" bodyend="35"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1NullVehicle_1a31642268a6735ab90d5e5a96e7b9a21e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Mass</ref></type>
+        <type>Mass</type>
         <definition>Mass astrea::astro::NullVehicle::get_mass</definition>
         <argsstring>() const</argsstring>
         <name>get_mass</name>
-        <qualifiedname>astrea::astro::NullVehicle::get_mass</qualifiedname>
         <briefdescription>
 <para>Gets the mass of the vehicle. </para>
         </briefdescription>
@@ -92,7 +88,6 @@
         <definition>std::string astrea::astro::NullVehicle::get_name</definition>
         <argsstring>() const</argsstring>
         <name>get_name</name>
-        <qualifiedname>astrea::astro::NullVehicle::get_name</qualifiedname>
         <reimplements refid="classastrea_1_1astro_1_1FrameReference_1aa182a016a8c50f478509353d386ee5bf">get_name</reimplements>
         <briefdescription>
 <para>Gets the name of the vehicle. </para>
@@ -107,14 +102,13 @@
         <location file="astrea/astro/astro/platforms/vehicles/NullVehicle.hpp" line="62" column="17" bodyfile="astrea/astro/astro/platforms/vehicles/NullVehicle.cpp" bodystart="39" bodyend="39"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1NullVehicle_1abc3f59525b2b6ea4574b82b00347ba0f" prot="public" static="no" const="yes" explicit="no" inline="no" final="yes" virt="virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>, <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt;</type>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Distance, frames::earth::icrf &gt;</type>
         <definition>RadiusVector&lt; frames::earth::icrf &gt; astrea::astro::NullVehicle::get_inertial_position</definition>
         <argsstring>(const Date &amp;date) const final</argsstring>
         <name>get_inertial_position</name>
-        <qualifiedname>astrea::astro::NullVehicle::get_inertial_position</qualifiedname>
-        <reimplements refid="classastrea_1_1astro_1_1FrameReference_1a108168d4fd0554f39b6acc3ac50581fa">get_inertial_position</reimplements>
+        <reimplements refid="classastrea_1_1astro_1_1FrameReference_1a6b9f096a7640d6e0ff5c7c4be9b415bf">get_inertial_position</reimplements>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -139,14 +133,13 @@
         <location file="astrea/astro/astro/platforms/vehicles/NullVehicle.hpp" line="70" column="21" bodyfile="astrea/astro/astro/platforms/vehicles/NullVehicle.cpp" bodystart="41" bodyend="44"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1NullVehicle_1a1a757dca70338a576f8455df31348ae8" prot="public" static="no" const="yes" explicit="no" inline="no" final="yes" virt="virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref>, <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt;</type>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Velocity, frames::earth::icrf &gt;</type>
         <definition>VelocityVector&lt; frames::earth::icrf &gt; astrea::astro::NullVehicle::get_inertial_velocity</definition>
         <argsstring>(const Date &amp;date) const final</argsstring>
         <name>get_inertial_velocity</name>
-        <qualifiedname>astrea::astro::NullVehicle::get_inertial_velocity</qualifiedname>
-        <reimplements refid="classastrea_1_1astro_1_1FrameReference_1acfacab425b09631d6afecbb7b7103830">get_inertial_velocity</reimplements>
+        <reimplements refid="classastrea_1_1astro_1_1FrameReference_1a568e7b60eeef6ade08cb3a6ce0061e66">get_inertial_velocity</reimplements>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -171,14 +164,13 @@
         <location file="astrea/astro/astro/platforms/vehicles/NullVehicle.hpp" line="78" column="21" bodyfile="astrea/astro/astro/platforms/vehicles/NullVehicle.cpp" bodystart="46" bodyend="49"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1NullVehicle_1a50f30bedf9885c4be65ff9f85aaa2aee" prot="public" static="no" const="yes" explicit="no" inline="no" final="yes" virt="virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Acceleration</ref>, <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt;</type>
+        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Acceleration, frames::earth::icrf &gt;</type>
         <definition>AccelerationVector&lt; frames::earth::icrf &gt; astrea::astro::NullVehicle::get_inertial_acceleration</definition>
         <argsstring>(const Date &amp;date) const final</argsstring>
         <name>get_inertial_acceleration</name>
-        <qualifiedname>astrea::astro::NullVehicle::get_inertial_acceleration</qualifiedname>
         <reimplements refid="classastrea_1_1astro_1_1FrameReference_1a8560cf47e7341aecc6d86a892f50ec8d">get_inertial_acceleration</reimplements>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -202,34 +194,34 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/vehicles/NullVehicle.hpp" line="86" column="21" bodyfile="astrea/astro/astro/platforms/vehicles/NullVehicle.cpp" bodystart="51" bodyend="54"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>A class representing a null vehicle in the astrea astro platform. This class is used as a placeholder for vehicles that do not have a defined state or mass. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>astrea::astro::FrameReference</label>
-        <link refid="classastrea_1_1astro_1_1FrameReference"/>
-      </node>
       <node id="1">
         <label>astrea::astro::NullVehicle</label>
         <link refid="classastrea_1_1astro_1_1NullVehicle"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::FrameReference</label>
+        <link refid="classastrea_1_1astro_1_1FrameReference"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>astrea::astro::FrameReference</label>
-        <link refid="classastrea_1_1astro_1_1FrameReference"/>
-      </node>
       <node id="1">
         <label>astrea::astro::NullVehicle</label>
         <link refid="classastrea_1_1astro_1_1NullVehicle"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::FrameReference</label>
+        <link refid="classastrea_1_1astro_1_1FrameReference"/>
       </node>
     </collaborationgraph>
     <location file="astrea/astro/astro/platforms/vehicles/NullVehicle.hpp" line="33" column="1" bodyfile="astrea/astro/astro/platforms/vehicles/NullVehicle.hpp" bodystart="33" bodyend="90"/>

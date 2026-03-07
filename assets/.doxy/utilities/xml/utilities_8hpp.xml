@@ -1,20 +1,32 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="utilities_8hpp" kind="file" language="C++">
     <compoundname>utilities.hpp</compoundname>
     <includes refid="ProgressBar_8hpp" local="no">utilities/ProgressBar.hpp</includes>
     <includes refid="json__util_8hpp" local="no">utilities/json_util.hpp</includes>
     <includes refid="string__util_8hpp" local="no">utilities/string_util.hpp</includes>
     <incdepgraph>
-      <node id="2">
-        <label>utilities/ProgressBar.hpp</label>
-        <link refid="ProgressBar_8hpp"/>
-        <childnode refid="3" relation="include">
+      <node id="1">
+        <label>astrea/utilities/utilities/utilities.hpp</label>
+        <link refid="utilities_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
+      </node>
+      <node id="3">
+        <label>cmath</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="13">
+        <label>cxxabi.h</label>
+      </node>
+      <node id="7">
+        <label>optional</label>
       </node>
       <node id="6">
         <label>utilities/json_util.hpp</label>
@@ -27,6 +39,15 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
+      </node>
+      <node id="16">
+        <label>vector</label>
+      </node>
+      <node id="11">
+        <label>cstdlib</label>
+      </node>
+      <node id="4">
+        <label>iostream</label>
       </node>
       <node id="9">
         <label>utilities/string_util.hpp</label>
@@ -52,51 +73,30 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="1">
-        <label>astrea/utilities/utilities/utilities.hpp</label>
-        <link refid="utilities_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>algorithm</label>
-      </node>
-      <node id="3">
-        <label>cmath</label>
-      </node>
-      <node id="11">
-        <label>cstdlib</label>
-      </node>
-      <node id="12">
-        <label>cstring</label>
-      </node>
-      <node id="13">
-        <label>cxxabi.h</label>
-      </node>
-      <node id="4">
-        <label>iostream</label>
-      </node>
-      <node id="14">
-        <label>memory</label>
+      <node id="15">
+        <label>type_traits</label>
       </node>
       <node id="8">
         <label>nlohmann/json.hpp</label>
       </node>
-      <node id="7">
-        <label>optional</label>
+      <node id="10">
+        <label>algorithm</label>
       </node>
-      <node id="5">
-        <label>string</label>
+      <node id="12">
+        <label>cstring</label>
       </node>
-      <node id="15">
-        <label>type_traits</label>
+      <node id="2">
+        <label>utilities/ProgressBar.hpp</label>
+        <link refid="ProgressBar_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
       </node>
-      <node id="16">
-        <label>vector</label>
+      <node id="14">
+        <label>memory</label>
       </node>
     </incdepgraph>
     <briefdescription>

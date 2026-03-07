@@ -6288,6 +6288,21 @@ You're not viewing the latest version.
 </ul>
 <p>Inherits the following classes: <a href="../classastrea_1_1trace_1_1AccessObject/">astrea::trace::AccessObject</a>,  astro::Payload&lt; Sensor, SensorParameters &gt;</p>
 <p>Inherited by the following classes: <a href="../classastrea_1_1trace_1_1Antenna/">astrea::trace::Antenna</a></p>
+<h2 id="public-attributes">Public Attributes<a class="headerlink" href="#public-attributes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">const <a href="../classastrea_1_1trace_1_1SensorParameters/"><strong>SensorParameters</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="#variable-parameters"><strong>parameters</strong></a>  <br></td>
+</tr>
+</tbody>
+</table>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -6298,8 +6313,8 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-sensor"><strong>Sensor</strong></a> (const Parent_T &amp; parent, const <a href="../classastrea_1_1trace_1_1SensorParameters/"><strong>SensorParameters</strong></a> &amp; parameters) <br><em>Constructs a</em> <a href="./"><em><strong>Sensor</strong></em></a> <em>from a</em><a href="../classastrea_1_1trace_1_1FieldOfView/"><em><strong>FieldOfView</strong></em></a> <em>object.</em></td>
+<td style="text-align: right;">const <a href="../classastrea_1_1trace_1_1SensorParameters/"><strong>SensorParameters</strong></a></td>
+<td style="text-align: left;"><a href="#function-payload"><strong>Payload</strong></a> (parent, parameters) <br></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
@@ -6308,6 +6323,10 @@ You're not viewing the latest version.
 <tr>
 <td style="text-align: right;">virtual std::size_t</td>
 <td style="text-align: left;"><a href="#function-get_id"><strong>get_id</strong></a> () const<br><em>Get the ID of the sensor.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"></td>
+<td style="text-align: left;"><a href="#function-requires"><strong>requires</strong></a> (std::is_base_of_v&lt; astro::FrameReference, Parent_T &gt;) const<br><em>Constructs a</em> <a href="./"><em><strong>Sensor</strong></em></a> <em>from a</em><a href="../classastrea_1_1trace_1_1FieldOfView/"><em><strong>FieldOfView</strong></em></a> <em>object.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual</td>
@@ -6369,30 +6388,26 @@ You're not viewing the latest version.
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
 <p>This class inherits from <a href="../classastrea_1_1trace_1_1AccessObject/"><strong>AccessObject</strong></a> and provides functionality for sensors, including field of view and access management. </p>
+<h2 id="public-attributes-documentation">Public Attributes Documentation<a class="headerlink" href="#public-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-parameters">variable parameters<a class="headerlink" href="#variable-parameters" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">const</span><span class="w"> </span><span class="n">SensorParameters</span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Sensor</span><span class="o">::</span><span class="n">parameters</span><span class="p">;</span>
+</span></code></pre></div>
+<hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-sensor">function Sensor<a class="headerlink" href="#function-sensor" title="Permanent link">&para;</a></h3>
-<p><em>Constructs a</em> <a href="./"><em><strong>Sensor</strong></em></a> <em>from a</em><a href="../classastrea_1_1trace_1_1FieldOfView/"><em><strong>FieldOfView</strong></em></a> <em>object.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Parent_T</span><span class="o">&gt;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Sensor</span><span class="o">::</span><span class="n">Sensor</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Parent_T</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parent</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">SensorParameters</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">parameters</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">)</span><span class="w"> </span>
-</span></code></pre></div></p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>parent</code> The parent platform to which the sensor is attached. </li>
-<li><code>fov</code> Field of view object defining the sensor's coverage area. </li>
-<li><code>boresight</code> The boresight vector of the sensor. </li>
-<li><code>attachmentPoint</code> The point on the platform where the sensor is attached. </li>
-</ul>
+<h3 id="function-payload">function Payload<a class="headerlink" href="#function-payload" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">SensorParameters</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Sensor</span><span class="o">::</span><span class="n">Payload</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">parent</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">parameters</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div>
 <hr>
 
 <h3 id="function-contains">function contains<a class="headerlink" href="#function-contains" title="Permanent link">&para;</a></h3>
 <p><em>Check if the sensor can see a target given the boresight vector.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Sensor</span><span class="o">::</span><span class="n">contains</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">RadiusVector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">frames</span><span class="o">::</span><span class="n">earth</span><span class="o">::</span><span class="n">icrf</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">sensor2target</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Sensor</span><span class="o">::</span><span class="n">contains</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">RadiusVector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">frames</span><span class="o">::</span><span class="n">earth</span><span class="o">::</span><span class="n">icrf</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">sensor2target</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6407,16 +6422,32 @@ You're not viewing the latest version.
 
 <h3 id="function-get_id">function get_id<a class="headerlink" href="#function-get_id" title="Permanent link">&para;</a></h3>
 <p><em>Get the ID of the sensor.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Sensor</span><span class="o">::</span><span class="n">get_id</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Sensor</span><span class="o">::</span><span class="n">get_id</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Returns:</strong></p>
 <p>std::size_t ID of the sensor. </p>
 <p>Implements <a href="../classastrea_1_1trace_1_1AccessObject/#function-get_id"><em>astrea::trace::AccessObject::get_id</em></a></p>
 <hr>
 
-<h3 id="function-sensor_1">function ~Sensor<a class="headerlink" href="#function-sensor_1" title="Permanent link">&para;</a></h3>
+<h3 id="function-requires">function requires<a class="headerlink" href="#function-requires" title="Permanent link">&para;</a></h3>
+<p><em>Constructs a</em> <a href="./"><em><strong>Sensor</strong></em></a> <em>from a</em><a href="../classastrea_1_1trace_1_1FieldOfView/"><em><strong>FieldOfView</strong></em></a> <em>object.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Parent_T</span><span class="o">&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Sensor</span><span class="o">::</span><span class="k">requires</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">is_base_of_v</span><span class="o">&lt;</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">FrameReference</span><span class="p">,</span><span class="w"> </span><span class="n">Parent_T</span><span class="w"> </span><span class="o">&gt;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>parent</code> The parent platform to which the sensor is attached. </li>
+<li><code>fov</code> Field of view object defining the sensor's coverage area. </li>
+<li><code>boresight</code> The boresight vector of the sensor. </li>
+<li><code>attachmentPoint</code> The point on the platform where the sensor is attached. </li>
+</ul>
+<hr>
+
+<h3 id="function-sensor">function ~Sensor<a class="headerlink" href="#function-sensor" title="Permanent link">&para;</a></h3>
 <p><em>Default destructor for</em> <a href="./"><em><strong>Sensor</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Sensor</span><span class="o">::~</span><span class="n">Sensor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">Sensor</span><span class="o">::~</span><span class="n">Sensor</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
 </span></code></pre></div></p>
 <hr>
 

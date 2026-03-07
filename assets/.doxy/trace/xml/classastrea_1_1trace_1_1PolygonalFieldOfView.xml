@@ -1,16 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1trace_1_1PolygonalFieldOfView" kind="class" language="C++" prot="public">
     <compoundname>astrea::trace::PolygonalFieldOfView</compoundname>
     <basecompoundref refid="classastrea_1_1trace_1_1FieldOfView" prot="public" virt="non-virtual">astrea::trace::FieldOfView</basecompoundref>
     <includes refid="PolygonalFieldOfView_8hpp" local="no">PolygonalFieldOfView.hpp</includes>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1trace_1_1PolygonalFieldOfView_1afa53766d8c14a28a377a761bad989c20" prot="private" static="no" mutable="no">
         <type>gtl::btree_map&lt; Angle, Angle &gt;</type>
         <definition>gtl::btree_map&lt;Angle, Angle&gt; astrea::trace::PolygonalFieldOfView::_points</definition>
         <argsstring></argsstring>
         <name>_points</name>
-        <qualifiedname>astrea::trace::PolygonalFieldOfView::_points</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,7 +23,6 @@
         <definition>Angle astrea::trace::PolygonalFieldOfView::_minHalfAngle</definition>
         <argsstring></argsstring>
         <name>_minHalfAngle</name>
-        <qualifiedname>astrea::trace::PolygonalFieldOfView::_minHalfAngle</qualifiedname>
         <initializer>= 0.0 * mp_units::angular::unit_symbols::rad</initializer>
         <briefdescription>
         </briefdescription>
@@ -39,7 +37,6 @@
         <definition>Angle astrea::trace::PolygonalFieldOfView::_maxHalfAngle</definition>
         <argsstring></argsstring>
         <name>_maxHalfAngle</name>
-        <qualifiedname>astrea::trace::PolygonalFieldOfView::_maxHalfAngle</qualifiedname>
         <initializer>= std::numeric_limits&lt;Angle&gt;::infinity()</initializer>
         <briefdescription>
         </briefdescription>
@@ -49,14 +46,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp" line="96" column="11" bodyfile="astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp" bodystart="96" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1trace_1_1PolygonalFieldOfView_1a57bc47f99079c7e580f1ae66b1b63308" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::PolygonalFieldOfView::PolygonalFieldOfView</definition>
         <argsstring>(const Angle &amp;halfConeAngle=std::numbers::pi/4.0 *mp_units::angular::unit_symbols::rad, const int &amp;nPoints=72)</argsstring>
         <name>PolygonalFieldOfView</name>
-        <qualifiedname>astrea::trace::PolygonalFieldOfView::PolygonalFieldOfView</qualifiedname>
         <param>
           <type>const Angle &amp;</type>
           <declname>halfConeAngle</declname>
@@ -99,7 +95,6 @@
         <definition>astrea::trace::PolygonalFieldOfView::PolygonalFieldOfView</definition>
         <argsstring>(const Angle &amp;halfConeWidth, const Angle &amp;halfConeHeight, const int &amp;nPoints=72)</argsstring>
         <name>PolygonalFieldOfView</name>
-        <qualifiedname>astrea::trace::PolygonalFieldOfView::PolygonalFieldOfView</qualifiedname>
         <param>
           <type>const Angle &amp;</type>
           <declname>halfConeWidth</declname>
@@ -153,7 +148,6 @@
         <definition>astrea::trace::PolygonalFieldOfView::PolygonalFieldOfView</definition>
         <argsstring>(const gtl::btree_map&lt; Angle, Angle &gt; &amp;points)</argsstring>
         <name>PolygonalFieldOfView</name>
-        <qualifiedname>astrea::trace::PolygonalFieldOfView::PolygonalFieldOfView</qualifiedname>
         <param>
           <type>const gtl::btree_map&lt; Angle, Angle &gt; &amp;</type>
           <declname>points</declname>
@@ -182,7 +176,6 @@
         <definition>astrea::trace::PolygonalFieldOfView::~PolygonalFieldOfView</definition>
         <argsstring>()=default</argsstring>
         <name>~PolygonalFieldOfView</name>
-        <qualifiedname>astrea::trace::PolygonalFieldOfView::~PolygonalFieldOfView</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1trace_1_1PolygonalFieldOfView" kindref="compound">PolygonalFieldOfView</ref>. </para>
         </briefdescription>
@@ -197,7 +190,6 @@
         <definition>bool astrea::trace::PolygonalFieldOfView::contains</definition>
         <argsstring>(const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp;boresight, const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp;target) const</argsstring>
         <name>contains</name>
-        <qualifiedname>astrea::trace::PolygonalFieldOfView::contains</qualifiedname>
         <reimplements refid="classastrea_1_1trace_1_1FieldOfView_1a0137e9279399302d4288927fcb874a76">contains</reimplements>
         <param>
           <type>const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; &amp;</type>
@@ -238,14 +230,13 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp" line="83" column="10" bodyfile="astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.cpp" bodystart="68" bodyend="90"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-func">
+      </sectiondef>
+      <sectiondef kind="private-func">
       <memberdef kind="function" id="classastrea_1_1trace_1_1PolygonalFieldOfView_1a7c1c848443028ab3115d6886b48571d7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void astrea::trace::PolygonalFieldOfView::find_min_and_max_angles</definition>
         <argsstring>()</argsstring>
         <name>find_min_and_max_angles</name>
-        <qualifiedname>astrea::trace::PolygonalFieldOfView::find_min_and_max_angles</qualifiedname>
         <briefdescription>
 <para>Finds the minimum and maximum off-boresight angles from _points. </para>
         </briefdescription>
@@ -260,7 +251,6 @@
         <definition>std::vector&lt; std::pair&lt; Unitless, Unitless &gt; &gt; astrea::trace::PolygonalFieldOfView::build_polygon</definition>
         <argsstring>() const</argsstring>
         <name>build_polygon</name>
-        <qualifiedname>astrea::trace::PolygonalFieldOfView::build_polygon</qualifiedname>
         <briefdescription>
 <para>Builds the polygon from the defined points. </para>
         </briefdescription>
@@ -273,7 +263,7 @@
         </inbodydescription>
         <location file="astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp" line="108" column="17" bodyfile="astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.cpp" bodystart="92" bodyend="104"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Polygonal field of view implementation. </para>
     </briefdescription>

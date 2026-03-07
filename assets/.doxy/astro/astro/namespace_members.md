@@ -88,8 +88,45 @@
 * **get\_variant\_index** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 
 
+## h
+
+* **HasDcm** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasDcmMethod** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasDirectCartesianConversion** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasDirectEquinoctialConversion** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasDirectKeplerianConversion** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetCoefficientOfDrag** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetCoefficientOfLift** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetCoefficientOfReflectivity** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetLiftArea** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetMass** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetName** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetRamArea** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasGetSolarArea** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasInPlaceMathOperators** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasIsTerminal** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasIterpolate** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasMathOperators** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasMeasureEvent** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasSameAxis** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasSameOrigin** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasToVector** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **HasTriggerEvent** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+
+
 ## i
 
+* **IsBodyFixedFrame** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsConstructableTo** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsDynamicFrame** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsGenericallyConstructableEvent** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsGenericallyConstructableVehicle** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsInertialFrame** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsOrbitalElements** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsSameFrame** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsStaticFrame** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsUserDefinedEvent** ([**astrea::astro**](namespaceastrea_1_1astro.md))
+* **IsUserDefinedVehicle** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **icrf** ([**astrea::astro::frames::callisto**](namespaceastrea_1_1astro_1_1frames_1_1callisto.md), [**astrea::astro::frames::deimos**](namespaceastrea_1_1astro_1_1frames_1_1deimos.md), [**astrea::astro::frames::earth**](namespaceastrea_1_1astro_1_1frames_1_1earth.md), [**astrea::astro::frames::earth\_barycenter**](namespaceastrea_1_1astro_1_1frames_1_1earth__barycenter.md), [**astrea::astro::frames::europa**](namespaceastrea_1_1astro_1_1frames_1_1europa.md), [**astrea::astro::frames::ganymede**](namespaceastrea_1_1astro_1_1frames_1_1ganymede.md), [**astrea::astro::frames::iapetus**](namespaceastrea_1_1astro_1_1frames_1_1iapetus.md), [**astrea::astro::frames::io**](namespaceastrea_1_1astro_1_1frames_1_1io.md), [**astrea::astro::frames::jupiter**](namespaceastrea_1_1astro_1_1frames_1_1jupiter.md), [**astrea::astro::frames::jupiter\_barycenter**](namespaceastrea_1_1astro_1_1frames_1_1jupiter__barycenter.md), [**astrea::astro::frames::mars**](namespaceastrea_1_1astro_1_1frames_1_1mars.md), [**astrea::astro::frames::mars\_barycenter**](namespaceastrea_1_1astro_1_1frames_1_1mars__barycenter.md), [**astrea::astro::frames::mercury**](namespaceastrea_1_1astro_1_1frames_1_1mercury.md), [**astrea::astro::frames::mercury\_barycenter**](namespaceastrea_1_1astro_1_1frames_1_1mercury__barycenter.md), [**astrea::astro::frames::moon**](namespaceastrea_1_1astro_1_1frames_1_1moon.md), [**astrea::astro::frames::neptune**](namespaceastrea_1_1astro_1_1frames_1_1neptune.md), [**astrea::astro::frames::neptune\_barycenter**](namespaceastrea_1_1astro_1_1frames_1_1neptune__barycenter.md), [**astrea::astro::frames::oberon**](namespaceastrea_1_1astro_1_1frames_1_1oberon.md), [**astrea::astro::frames::phobos**](namespaceastrea_1_1astro_1_1frames_1_1phobos.md), [**astrea::astro::frames::rhea**](namespaceastrea_1_1astro_1_1frames_1_1rhea.md), [**astrea::astro::frames::saturn**](namespaceastrea_1_1astro_1_1frames_1_1saturn.md), [**astrea::astro::frames::saturn\_barycenter**](namespaceastrea_1_1astro_1_1frames_1_1saturn__barycenter.md), [**astrea::astro::frames::solar\_system\_barycenter**](namespaceastrea_1_1astro_1_1frames_1_1solar__system__barycenter.md), [**astrea::astro::frames::sun**](namespaceastrea_1_1astro_1_1frames_1_1sun.md), [**astrea::astro::frames::titan**](namespaceastrea_1_1astro_1_1frames_1_1titan.md), [**astrea::astro::frames::titania**](namespaceastrea_1_1astro_1_1frames_1_1titania.md), [**astrea::astro::frames::triton**](namespaceastrea_1_1astro_1_1frames_1_1triton.md), [**astrea::astro::frames::uranus**](namespaceastrea_1_1astro_1_1frames_1_1uranus.md), [**astrea::astro::frames::uranus\_barycenter**](namespaceastrea_1_1astro_1_1frames_1_1uranus__barycenter.md), [**astrea::astro::frames::venus**](namespaceastrea_1_1astro_1_1frames_1_1venus.md), [**astrea::astro::frames::venus\_barycenter**](namespaceastrea_1_1astro_1_1frames_1_1venus__barycenter.md))
 
 
@@ -124,8 +161,6 @@
 
 ## o
 
-* **operator\*** ([**astrea::astro**](namespaceastrea_1_1astro.md))
-* **operator/** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **operator&lt;&lt;** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 
 
@@ -142,6 +177,7 @@
 * **RADIAL\_RIC** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **RadiusVector** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 * **ric** ([**astrea::astro::frames::dynamic**](namespaceastrea_1_1astro_1_1frames_1_1dynamic.md))
+* **requires** ([**astrea::astro::frames**](namespaceastrea_1_1astro_1_1frames.md), [**astrea::astro**](namespaceastrea_1_1astro.md))
 * **rotate\_vector\_into\_frame** ([**astrea::astro::frames**](namespaceastrea_1_1astro_1_1frames.md))
 * **remove\_cv\_ref** ([**astrea::astro**](namespaceastrea_1_1astro.md))
 

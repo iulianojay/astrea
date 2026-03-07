@@ -37,6 +37,11 @@ Inherits the following classes: [astrea::astro::Payload](classastrea_1_1astro_1_
 
 
 
+## Public Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  const [**ThrusterParameters**](classastrea_1_1astro_1_1ThrusterParameters.md) & | [**parameters**](#variable-parameters)  <br> |
 
 
 
@@ -73,9 +78,10 @@ Inherits the following classes: [astrea::astro::Payload](classastrea_1_1astro_1_
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Thruster**](#function-thruster) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Parent\_T**](classastrea_1_1astro_1_1CartesianVector.md) & parent, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**ThrusterParameters**](classastrea_1_1astro_1_1ThrusterParameters.md) & parameters) <br>_Constructor for_ [_**Thruster**_](classastrea_1_1astro_1_1Thruster.md) _._ |
+|  const [**ThrusterParameters**](classastrea_1_1astro_1_1ThrusterParameters.md) | [**ThrusterParameters**](#function-thrusterparameters) (parent, parameters) <br> |
 | virtual std::size\_t | [**get\_id**](#function-get_id) () const<br>_Get the ID of the sensor._  |
-|  [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_impulsive\_delta\_v**](#function-get_impulsive_delta_v) () const<br>_Get the impulsive delta-v provided by the thruster._  |
+|  Velocity | [**get\_impulsive\_delta\_v**](#function-get_impulsive_delta_v) () const<br>_Get the impulsive delta-v provided by the thruster._  |
+|   | [**requires**](#function-requires) (std::is\_base\_of\_v&lt; [**FrameReference**](classastrea_1_1astro_1_1FrameReference.md), Parent\_T &gt;) const<br>_Constructor for_ [_**Thruster**_](classastrea_1_1astro_1_1Thruster.md) _._ |
 | virtual  | [**~Thruster**](#function-thruster) () = default<br>_Default destructor for_ [_**Thruster**_](classastrea_1_1astro_1_1Thruster.md) _._ |
 
 
@@ -88,7 +94,7 @@ See [astrea::astro::Payload](classastrea_1_1astro_1_1Payload.md)
 |  std::size\_t | [**generate\_id**](classastrea_1_1astro_1_1Payload.md#function-generate_id) () const<br>_Generate a hash for the payload ID._  |
 | virtual std::size\_t | [**get\_id**](classastrea_1_1astro_1_1Payload.md#function-get_id) () const = 0<br>_Get the ID of the payload._  |
 |  PayloadParameters\_T | [**get\_parameters**](classastrea_1_1astro_1_1Payload.md#function-get_parameters) () const<br>_Get the payload parameters of the payload._  |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md)&lt; [**Payload\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; \*[**const**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_parent**](classastrea_1_1astro_1_1Payload.md#function-get_parent) () const<br>_Get the parent platform of the payload._  |
+|  const [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md)&lt; Payload\_T &gt; \*const | [**get\_parent**](classastrea_1_1astro_1_1Payload.md#function-get_parent) () const<br>_Get the parent platform of the payload._  |
 
 
 
@@ -111,9 +117,10 @@ See [astrea::astro::Payload](classastrea_1_1astro_1_1Payload.md)
 
 | Type | Name |
 | ---: | :--- |
-|  std::size\_t | [**\_id**](classastrea_1_1astro_1_1Payload.md#variable-_id)  <br>_Unique identifier for the payload._  |
-|  PayloadParameters\_T | [**\_parameters**](classastrea_1_1astro_1_1Payload.md#variable-_parameters)  <br>[_**Payload**_](classastrea_1_1astro_1_1Payload.md) _parameters._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md)&lt; [**Payload\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; \* | [**\_parent**](classastrea_1_1astro_1_1Payload.md#variable-_parent)  <br>_Parent platform._  |
+|  std::size\_t | [**\_id**](classastrea_1_1astro_1_1Payload.md#variable-_id-12)  <br>_Unique identifier for the payload._  |
+|  PayloadParameters\_T | [**\_parameters**](classastrea_1_1astro_1_1Payload.md#variable-_parameters-12)  <br>[_**Payload**_](classastrea_1_1astro_1_1Payload.md) _parameters._ |
+|  const [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md)&lt; Payload\_T &gt; \* | [**\_parent**](classastrea_1_1astro_1_1Payload.md#variable-_parent)  <br>_Parent platform._  |
+|  const PayloadParameters\_T & | [**parameters**](classastrea_1_1astro_1_1Payload.md#variable-parameters)  <br> |
 
 
 
@@ -152,8 +159,10 @@ See [astrea::astro::Payload](classastrea_1_1astro_1_1Payload.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Payload**](classastrea_1_1astro_1_1Payload.md#function-payload) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Parent\_T**](classastrea_1_1astro_1_1CartesianVector.md) & parent, [**const**](classastrea_1_1astro_1_1CartesianVector.md) PayloadParameters\_T & parameters) <br>_Constructs a_ [_**Payload**_](classastrea_1_1astro_1_1Payload.md) _from a FieldOfView object._ |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**set\_parent**](classastrea_1_1astro_1_1Payload.md#function-set_parent) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Parent\_T**](classastrea_1_1astro_1_1CartesianVector.md) & parent) <br>_Set the parent platform of the payload._  |
+|  const PayloadParameters\_T | [**\_id**](classastrea_1_1astro_1_1Payload.md#function-_id-22) ([**generate\_id**](classastrea_1_1astro_1_1Payload.md#function-generate_id)()) <br> |
+|  const PayloadParameters\_T | [**\_parameters**](classastrea_1_1astro_1_1Payload.md#function-_parameters-22) (parameters) <br> |
+|   | [**requires**](classastrea_1_1astro_1_1Payload.md#function-requires-12) (std::is\_base\_of\_v&lt; [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md)&lt; Payload\_T &gt;, Parent\_T &gt;) const<br>_Constructs a_ [_**Payload**_](classastrea_1_1astro_1_1Payload.md) _from a FieldOfView object._ |
+|   | [**requires**](classastrea_1_1astro_1_1Payload.md#function-requires-22) (std::is\_base\_of\_v&lt; [**PayloadPlatform**](classastrea_1_1astro_1_1PayloadPlatform.md)&lt; Payload\_T &gt;, Parent\_T &gt;) const<br>_Set the parent platform of the payload._  |
 | virtual  | [**~Payload**](classastrea_1_1astro_1_1Payload.md#function-payload) () = default<br>_Default destructor for_ [_**Payload**_](classastrea_1_1astro_1_1Payload.md) _._ |
 
 
@@ -168,36 +177,37 @@ This class inherits from AccessObject and provides functionality for thrusters, 
 
 
     
-## Public Functions Documentation
+## Public Attributes Documentation
 
 
 
 
-### function Thruster 
+### variable parameters 
 
-_Constructor for_ [_**Thruster**_](classastrea_1_1astro_1_1Thruster.md) _._
 ```C++
-template<typename  Parent_T>
-inline astrea::astro::Thruster::Thruster (
-    const  Parent_T & parent,
-    const  ThrusterParameters & parameters
-) 
+const ThrusterParameters& astrea::astro::Thruster::parameters;
 ```
 
 
 
 
-
-**Parameters:**
-
-
-* `parent` Parent frame reference. 
-* `parameters` [**Thruster**](classastrea_1_1astro_1_1Thruster.md) parameters. 
+<hr>
+## Public Functions Documentation
 
 
 
 
-        
+### function ThrusterParameters 
+
+```C++
+inline const ThrusterParameters astrea::astro::Thruster::ThrusterParameters (
+    parent,
+    parameters
+) 
+```
+
+
+
 
 <hr>
 
@@ -245,6 +255,35 @@ Velocity astrea::astro::Thruster::get_impulsive_delta_v () const
 
 Velocity The impulsive delta-v. 
 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function requires 
+
+_Constructor for_ [_**Thruster**_](classastrea_1_1astro_1_1Thruster.md) _._
+```C++
+template<typename Parent_T>
+astrea::astro::Thruster::requires (
+    std::is_base_of_v< FrameReference , Parent_T >
+) const
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `parent` Parent frame reference. 
+* `parameters` [**Thruster**](classastrea_1_1astro_1_1Thruster.md) parameters. 
 
 
 

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="FieldOfView_8cpp" kind="file" language="C++">
     <compoundname>FieldOfView.cpp</compoundname>
     <includes refid="FieldOfView_8hpp" local="no">trace/platforms/sensors/fov/FieldOfView.hpp</includes>
@@ -12,6 +12,47 @@
     <includes local="no">astro/frames/CartesianVector.hpp</includes>
     <includes local="no">astro/frames/frames.hpp</includes>
     <incdepgraph>
+      <node id="6">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="3">
+        <label>numbers</label>
+      </node>
+      <node id="10">
+        <label>mp-units/math.h</label>
+      </node>
+      <node id="13">
+        <label>mp-units/systems/si/math.h</label>
+      </node>
+      <node id="8">
+        <label>cmath</label>
+      </node>
+      <node id="9">
+        <label>stdexcept</label>
+      </node>
+      <node id="11">
+        <label>mp-units/systems/angular/math.h</label>
+      </node>
+      <node id="7">
+        <label>astro/frames/dynamic_frames.hpp</label>
+      </node>
+      <node id="2">
+        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
+        <link refid="FieldOfView_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>unordered_map</label>
+      </node>
       <node id="1">
         <label>astrea/trace/trace/platforms/sensors/fov/FieldOfView.cpp</label>
         <link refid="FieldOfView_8cpp"/>
@@ -34,58 +75,17 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
-        <link refid="FieldOfView_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>astro/astro.fwd.hpp</label>
-      </node>
-      <node id="14">
-        <label>astro/frames/CartesianVector.hpp</label>
-      </node>
-      <node id="7">
-        <label>astro/frames/dynamic_frames.hpp</label>
+      <node id="12">
+        <label>mp-units/systems/isq_angle.h</label>
       </node>
       <node id="15">
         <label>astro/frames/frames.hpp</label>
       </node>
-      <node id="8">
-        <label>cmath</label>
-      </node>
-      <node id="10">
-        <label>mp-units/math.h</label>
-      </node>
-      <node id="11">
-        <label>mp-units/systems/angular/math.h</label>
-      </node>
-      <node id="12">
-        <label>mp-units/systems/isq_angle.h</label>
-      </node>
-      <node id="13">
-        <label>mp-units/systems/si/math.h</label>
-      </node>
-      <node id="3">
-        <label>numbers</label>
-      </node>
-      <node id="9">
-        <label>stdexcept</label>
+      <node id="14">
+        <label>astro/frames/CartesianVector.hpp</label>
       </node>
       <node id="5">
         <label>units/units.hpp</label>
-      </node>
-      <node id="4">
-        <label>unordered_map</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
@@ -126,7 +126,7 @@
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units::angular;</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">EciRadiusVec<sp/>=<sp/>astro::RadiusVector&lt;astro::frames::earth::icrf&gt;;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>EciRadiusVec<sp/>=<sp/>astro::RadiusVector&lt;astro::frames::earth::icrf&gt;;</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal">Angle<sp/>calculate_angle_between_vectors(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>EciRadiusVec&amp;<sp/>vector1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>EciRadiusVec&amp;<sp/>vector2)</highlight></codeline>
 <codeline lineno="35"><highlight class="normal">{</highlight></codeline>

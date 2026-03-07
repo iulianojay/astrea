@@ -1,13 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1Integrator" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::Integrator</compoundname>
     <includes refid="Integrator_8hpp" local="no">Integrator.hpp</includes>
-    <sectiondef kind="public-type">
+      <sectiondef kind="public-type">
       <memberdef kind="enum" id="classastrea_1_1astro_1_1Integrator_1a4a414020ae194a0831394fcea56ae79c" prot="public" static="no" strong="yes">
         <type><ref refid="enums_8hpp_1a0293ecef8f8bc51bb729b396dc98f61d" kindref="member">EnumType</ref></type>
         <name>StepMethod</name>
-        <qualifiedname>astrea::astro::Integrator::StepMethod</qualifiedname>
         <enumvalue id="classastrea_1_1astro_1_1Integrator_1a4a414020ae194a0831394fcea56ae79ca0e973aab8dc2d2139fcbf6544574bac8" prot="public">
           <name>RK45</name>
           <briefdescription>
@@ -57,14 +56,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="46" column="5" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="46" bodyend="52"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-static-attrib">
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a7e8aab3b93f0bda88d441a275efdb1ae" prot="public" static="yes" mutable="no">
         <type><ref refid="classastrea_1_1astro_1_1Interval" kindref="compound">Interval</ref></type>
         <definition>Interval astrea::astro::Integrator::defaultInterval</definition>
         <argsstring></argsstring>
         <name>defaultInterval</name>
-        <qualifiedname>astrea::astro::Integrator::defaultInterval</qualifiedname>
         <initializer>{ 0.0 * astrea::detail::time_unit, 86400.0 * astrea::detail::time_unit }</initializer>
         <briefdescription>
 <para>Default time interval for propagation. </para>
@@ -73,16 +71,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="54" column="28" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="54" bodyend="54"/>
+        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="54" column="28" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-attrib">
+      </sectiondef>
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1ad7255ba89c9a0ab84c423b4f8c7c1180" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>const Unitless</type>
         <definition>const Unitless astrea::astro::Integrator::_EPSILON</definition>
         <argsstring></argsstring>
         <name>_EPSILON</name>
-        <qualifiedname>astrea::astro::Integrator::_EPSILON</qualifiedname>
         <initializer>= 0.8</initializer>
         <briefdescription>
 <para>Relative local step error tolerance usually 0.8 or 0.9. </para>
@@ -94,11 +91,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="171" column="20" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="171" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a28f287500e28c9bdfc454c7d176fcf01" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>const Unitless</type>
         <definition>const Unitless astrea::astro::Integrator::_MIN_ERROR_TO_CATCH</definition>
         <argsstring></argsstring>
         <name>_MIN_ERROR_TO_CATCH</name>
-        <qualifiedname>astrea::astro::Integrator::_MIN_ERROR_TO_CATCH</qualifiedname>
         <initializer>= 2.0e-4</initializer>
         <briefdescription>
 <para>If maximum error is less than this,. </para>
@@ -110,11 +106,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="172" column="20" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="172" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a531b3f81a368ea21b734557f2d7fec2c" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>const Unitless</type>
         <definition>const Unitless astrea::astro::Integrator::_MIN_ERROR_STEP_FACTOR</definition>
         <argsstring></argsstring>
         <name>_MIN_ERROR_STEP_FACTOR</name>
-        <qualifiedname>astrea::astro::Integrator::_MIN_ERROR_STEP_FACTOR</qualifiedname>
         <initializer>= 5.0</initializer>
         <briefdescription>
 <para>Increase step by this factor. </para>
@@ -126,11 +121,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="173" column="20" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="173" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a1a39d58c9c18a0003c38824efe7a7864" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>const Unitless</type>
         <definition>const Unitless astrea::astro::Integrator::_MIN_REL_STEP_SIZE</definition>
         <argsstring></argsstring>
         <name>_MIN_REL_STEP_SIZE</name>
-        <qualifiedname>astrea::astro::Integrator::_MIN_REL_STEP_SIZE</qualifiedname>
         <initializer>= 0.2</initializer>
         <briefdescription>
         </briefdescription>
@@ -142,11 +136,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="174" column="20" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="174" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1ad75c178a49cd7841abb275382915f1a1" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">unsigned</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">long</ref></type>
+        <type>unsigned long</type>
         <definition>unsigned long astrea::astro::Integrator::_iteration</definition>
         <argsstring></argsstring>
         <name>_iteration</name>
-        <qualifiedname>astrea::astro::Integrator::_iteration</qualifiedname>
         <initializer>= 0</initializer>
         <briefdescription>
 <para>Outer loop iteration count. </para>
@@ -158,11 +151,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="178" column="19" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="178" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1aa68f4ebb1c89a63c4698ac0f43b5b0d9" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">unsigned</ref></type>
+        <type>unsigned</type>
         <definition>unsigned astrea::astro::Integrator::_variableStepIteration</definition>
         <argsstring></argsstring>
         <name>_variableStepIteration</name>
-        <qualifiedname>astrea::astro::Integrator::_variableStepIteration</qualifiedname>
         <initializer>= 0</initializer>
         <briefdescription>
 <para>Inner loop iteration count. </para>
@@ -174,12 +166,11 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="179" column="14" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="179" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a4fc5cc44ea4e30002a392eadaa7b932b" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">unsigned</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">long</ref></type>
+        <type>unsigned long</type>
         <definition>unsigned long astrea::astro::Integrator::_MAX_ITER</definition>
         <argsstring></argsstring>
         <name>_MAX_ITER</name>
-        <qualifiedname>astrea::astro::Integrator::_MAX_ITER</qualifiedname>
-        <initializer>= 1<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">e8</ref></initializer>
+        <initializer>= 1e8</initializer>
         <briefdescription>
 <para>Maximum number of iterations for the integrator. </para>
         </briefdescription>
@@ -190,12 +181,11 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="180" column="19" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="180" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1ae514b913c749e20fd553842c2ec3f267" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">unsigned</ref></type>
+        <type>const unsigned</type>
         <definition>const unsigned astrea::astro::Integrator::_MAX_VAR_STEP_ITER</definition>
         <argsstring></argsstring>
         <name>_MAX_VAR_STEP_ITER</name>
-        <qualifiedname>astrea::astro::Integrator::_MAX_VAR_STEP_ITER</qualifiedname>
-        <initializer>= 1<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">e3</ref></initializer>
+        <initializer>= 1e3</initializer>
         <briefdescription>
 <para>Max iterations for step sizing loop -&gt; jj shouldn&apos;t get above ~10. </para>
         </briefdescription>
@@ -206,11 +196,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="181" column="20" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="181" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a804460a3f48442b71216e6e3ecaf7807" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">int</ref></type>
+        <type>int</type>
         <definition>int astrea::astro::Integrator::_functionEvaluations</definition>
         <argsstring></argsstring>
         <name>_functionEvaluations</name>
-        <qualifiedname>astrea::astro::Integrator::_functionEvaluations</qualifiedname>
         <initializer>= 0</initializer>
         <briefdescription>
 <para>Number of function evaluations during integration. </para>
@@ -222,11 +211,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="184" column="9" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="184" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a9bb9b87851f320bcc0f5aace235f3782" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref></type>
+        <type>Time</type>
         <definition>Time astrea::astro::Integrator::_timeStepPrevious</definition>
         <argsstring></argsstring>
         <name>_timeStepPrevious</name>
-        <qualifiedname>astrea::astro::Integrator::_timeStepPrevious</qualifiedname>
         <briefdescription>
 <para>Previous time step used in the integration. </para>
         </briefdescription>
@@ -241,7 +229,6 @@
         <definition>Date astrea::astro::Integrator::_epoch0</definition>
         <argsstring></argsstring>
         <name>_epoch0</name>
-        <qualifiedname>astrea::astro::Integrator::_epoch0</qualifiedname>
         <briefdescription>
 <para>Initial epoch for the propagation. </para>
         </briefdescription>
@@ -252,11 +239,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="188" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="188" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1acec010f084773118f3564bbc0d18c406" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Integrator::_maxErrorPrevious</definition>
         <argsstring></argsstring>
         <name>_maxErrorPrevious</name>
-        <qualifiedname>astrea::astro::Integrator::_maxErrorPrevious</qualifiedname>
         <briefdescription>
 <para>Maximum error from the previous step. </para>
         </briefdescription>
@@ -271,7 +257,6 @@
         <definition>std::size_t astrea::astro::Integrator::_nStages</definition>
         <argsstring></argsstring>
         <name>_nStages</name>
-        <qualifiedname>astrea::astro::Integrator::_nStages</qualifiedname>
         <initializer>{}</initializer>
         <briefdescription>
 <para>Number of stages in the Butcher tableau for the current step method. </para>
@@ -280,14 +265,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="194" column="17" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="194" bodyend="194"/>
+        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="194" column="17" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="194" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a7ea81bb72e984fd7c15057db3be7f17f" prot="private" static="no" mutable="no">
-        <type>std::array&lt; std::array&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>, _MAX_STAGES &gt;, _MAX_STAGES &gt;</type>
+        <type>std::array&lt; std::array&lt; Unitless, _MAX_STAGES &gt;, _MAX_STAGES &gt;</type>
         <definition>std::array&lt;std::array&lt;Unitless, _MAX_STAGES&gt;, _MAX_STAGES&gt; astrea::astro::Integrator::_a</definition>
         <argsstring></argsstring>
         <name>_a</name>
-        <qualifiedname>astrea::astro::Integrator::_a</qualifiedname>
         <initializer>= {}</initializer>
         <briefdescription>
 <para>Coefficients for the Butcher tableau. </para>
@@ -296,14 +280,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="196" column="16" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="196" bodyend="196"/>
+        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="196" column="16" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="196" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a07f7a4143e74d0b1dd7d85f0672f7cea" prot="private" static="no" mutable="no">
-        <type>std::array&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>, _MAX_STAGES &gt;</type>
+        <type>std::array&lt; Unitless, _MAX_STAGES &gt;</type>
         <definition>std::array&lt;Unitless, _MAX_STAGES&gt; astrea::astro::Integrator::_b</definition>
         <argsstring></argsstring>
         <name>_b</name>
-        <qualifiedname>astrea::astro::Integrator::_b</qualifiedname>
         <initializer>= {}</initializer>
         <briefdescription>
 <para>Weights for the Butcher tableau. </para>
@@ -312,14 +295,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="197" column="16" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="197" bodyend="197"/>
+        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="197" column="16" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="197" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a1fa90ee2d5b81498ecdbbac278b8e6d6" prot="private" static="no" mutable="no">
-        <type>std::array&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>, _MAX_STAGES &gt;</type>
+        <type>std::array&lt; Unitless, _MAX_STAGES &gt;</type>
         <definition>std::array&lt;Unitless, _MAX_STAGES&gt; astrea::astro::Integrator::_bhat</definition>
         <argsstring></argsstring>
         <name>_bhat</name>
-        <qualifiedname>astrea::astro::Integrator::_bhat</qualifiedname>
         <initializer>= {}</initializer>
         <briefdescription>
 <para>Modified weights for the Butcher tableau. </para>
@@ -328,14 +310,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="198" column="16" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="198" bodyend="198"/>
+        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="198" column="16" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="198" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1af0cd05f6335a9ee3145dcc3ee5922047" prot="private" static="no" mutable="no">
-        <type>std::array&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>, _MAX_STAGES &gt;</type>
+        <type>std::array&lt; Unitless, _MAX_STAGES &gt;</type>
         <definition>std::array&lt;Unitless, _MAX_STAGES&gt; astrea::astro::Integrator::_db</definition>
         <argsstring></argsstring>
         <name>_db</name>
-        <qualifiedname>astrea::astro::Integrator::_db</qualifiedname>
         <initializer>= {}</initializer>
         <briefdescription>
 <para>Derivative of the weights for the Butcher tableau. </para>
@@ -344,14 +325,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="199" column="16" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="199" bodyend="199"/>
+        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="199" column="16" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="199" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a27e5fe9521c19597fbc631957d284394" prot="private" static="no" mutable="no">
-        <type>std::array&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>, _MAX_STAGES &gt;</type>
+        <type>std::array&lt; Unitless, _MAX_STAGES &gt;</type>
         <definition>std::array&lt;Unitless, _MAX_STAGES&gt; astrea::astro::Integrator::_c</definition>
         <argsstring></argsstring>
         <name>_c</name>
-        <qualifiedname>astrea::astro::Integrator::_c</qualifiedname>
         <initializer>= {}</initializer>
         <briefdescription>
 <para>Nodes for the Butcher tableau. </para>
@@ -360,14 +340,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="200" column="16" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="200" bodyend="200"/>
+        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="200" column="16" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="200" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a9c1264de674c55286289f36ede4c3b3e" prot="private" static="no" mutable="no">
         <type>std::array&lt; <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>, _MAX_STAGES &gt;</type>
         <definition>std::array&lt;State, _MAX_STAGES&gt; astrea::astro::Integrator::_kMatrix</definition>
         <argsstring></argsstring>
         <name>_kMatrix</name>
-        <qualifiedname>astrea::astro::Integrator::_kMatrix</qualifiedname>
         <initializer>= {}</initializer>
         <briefdescription>
 <para>Matrix of intermediate steps for the Runge-Kutta method. </para>
@@ -376,14 +355,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="203" column="16" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="203" bodyend="203"/>
+        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="203" column="16" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="203" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a7e26a3591a820241060d5d46f7e6de87" prot="private" static="no" mutable="no">
         <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref></type>
         <definition>State astrea::astro::Integrator::_statePlusKi</definition>
         <argsstring></argsstring>
         <name>_statePlusKi</name>
-        <qualifiedname>astrea::astro::Integrator::_statePlusKi</qualifiedname>
         <briefdescription>
 <para><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> vector plus the ith order step. </para>
         </briefdescription>
@@ -398,7 +376,6 @@
         <definition>StatePartial astrea::astro::Integrator::_YFinalPrevious</definition>
         <argsstring></argsstring>
         <name>_YFinalPrevious</name>
-        <qualifiedname>astrea::astro::Integrator::_YFinalPrevious</qualifiedname>
         <briefdescription>
 <para>Previous final state vector for the Dormand-Prince method. </para>
         </briefdescription>
@@ -409,11 +386,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="205" column="18" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="205" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1aec8ecbe5c56393b79e685510accfe73a" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">clock_t</ref></type>
+        <type>clock_t</type>
         <definition>clock_t astrea::astro::Integrator::_startClock</definition>
         <argsstring></argsstring>
         <name>_startClock</name>
-        <qualifiedname>astrea::astro::Integrator::_startClock</qualifiedname>
         <initializer>{}</initializer>
         <briefdescription>
 <para>Start time for the timer. </para>
@@ -422,14 +398,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="208" column="13" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="208" bodyend="208"/>
+        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="208" column="13" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="208" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1ac1375a3fa2805f742fa529f0b81c3d22" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">clock_t</ref></type>
+        <type>clock_t</type>
         <definition>clock_t astrea::astro::Integrator::_endClock</definition>
         <argsstring></argsstring>
         <name>_endClock</name>
-        <qualifiedname>astrea::astro::Integrator::_endClock</qualifiedname>
         <initializer>{}</initializer>
         <briefdescription>
 <para>End time for the timer. </para>
@@ -438,14 +413,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="209" column="13" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="209" bodyend="209"/>
+        <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="209" column="13" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="209" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a212933584fc73996ecfe2d42f757aa1f" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Integrator::_ABS_TOL</definition>
         <argsstring></argsstring>
         <name>_ABS_TOL</name>
-        <qualifiedname>astrea::astro::Integrator::_ABS_TOL</qualifiedname>
         <initializer>= 1.0e-13</initializer>
         <briefdescription>
 <para>Absolute tolerance for the integrator. </para>
@@ -457,11 +431,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="212" column="14" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="212" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a9425438113f61ab9850c1e01fbf92b07" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Integrator::_REL_TOL</definition>
         <argsstring></argsstring>
         <name>_REL_TOL</name>
-        <qualifiedname>astrea::astro::Integrator::_REL_TOL</qualifiedname>
         <initializer>= 1.0e-13</initializer>
         <briefdescription>
 <para>Relative tolerance for the integrator. </para>
@@ -473,11 +446,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="213" column="14" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="213" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a9754ec5a0c98541813114c99323915cd" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref></type>
+        <type>Time</type>
         <definition>Time astrea::astro::Integrator::_timeStepInitial</definition>
         <argsstring></argsstring>
         <name>_timeStepInitial</name>
-        <qualifiedname>astrea::astro::Integrator::_timeStepInitial</qualifiedname>
         <initializer>= 60.0 * astrea::detail::time_unit</initializer>
         <briefdescription>
 <para>Initial time step for the integrator. </para>
@@ -489,12 +461,11 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="216" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="216" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a952af797d7c2086cc145b1c7981c4750" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Integrator::_printOn</definition>
         <argsstring></argsstring>
         <name>_printOn</name>
-        <qualifiedname>astrea::astro::Integrator::_printOn</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">false</ref></initializer>
+        <initializer>= false</initializer>
         <briefdescription>
 <para>Flag to control printing of integration details. </para>
         </briefdescription>
@@ -505,12 +476,11 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="219" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="219" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1ab9dc1496cd4745ca8438413f0ce211b9" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Integrator::_timerOn</definition>
         <argsstring></argsstring>
         <name>_timerOn</name>
-        <qualifiedname>astrea::astro::Integrator::_timerOn</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">false</ref></initializer>
+        <initializer>= false</initializer>
         <briefdescription>
 <para>Flag to control timing of integration performance. </para>
         </briefdescription>
@@ -525,7 +495,6 @@
         <definition>StepMethod astrea::astro::Integrator::_stepMethod</definition>
         <argsstring></argsstring>
         <name>_stepMethod</name>
-        <qualifiedname>astrea::astro::Integrator::_stepMethod</qualifiedname>
         <initializer>= <ref refid="classastrea_1_1astro_1_1Integrator_1a4a414020ae194a0831394fcea56ae79ca474c223bc78ad6557e236acf931e9072" kindref="member">StepMethod::DOP45</ref></initializer>
         <briefdescription>
 <para>Step method to use for the integration (default is Dormand-Prince RK4(5)) </para>
@@ -537,12 +506,11 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="222" column="16" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="222" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1aa43a98abb17b8e6d9ec4bb40bad383a8" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Integrator::_useFixedStep</definition>
         <argsstring></argsstring>
         <name>_useFixedStep</name>
-        <qualifiedname>astrea::astro::Integrator::_useFixedStep</qualifiedname>
-        <initializer>= <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">false</ref></initializer>
+        <initializer>= false</initializer>
         <briefdescription>
 <para>Flag to indicate if a fixed step size should be used. </para>
         </briefdescription>
@@ -553,11 +521,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="225" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="225" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a501d6072d106029e6dbe36558ccba0e2" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref></type>
+        <type>Time</type>
         <definition>Time astrea::astro::Integrator::_fixedTimeStep</definition>
         <argsstring></argsstring>
         <name>_fixedTimeStep</name>
-        <qualifiedname>astrea::astro::Integrator::_fixedTimeStep</qualifiedname>
         <initializer>= 1.0 * astrea::detail::time_unit</initializer>
         <briefdescription>
 <para>Fixed time step size to use if fixed step is enabled. </para>
@@ -573,7 +540,6 @@
         <definition>EventDetector astrea::astro::Integrator::_eventDetector</definition>
         <argsstring></argsstring>
         <name>_eventDetector</name>
-        <qualifiedname>astrea::astro::Integrator::_eventDetector</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -582,14 +548,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="229" column="19" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="229" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-static-attrib">
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Integrator_1a89ae88b3bd762740af882a33c1f1e9b5" prot="private" static="yes" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::size_t</type>
+        <type>const std::size_t</type>
         <definition>const std::size_t astrea::astro::Integrator::_MAX_STAGES</definition>
         <argsstring></argsstring>
         <name>_MAX_STAGES</name>
-        <qualifiedname>astrea::astro::Integrator::_MAX_STAGES</qualifiedname>
         <initializer>= 13</initializer>
         <briefdescription>
 <para>Maximum number of stages in the Butcher tableau. </para>
@@ -600,14 +565,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="195" column="30" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="195" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1add8332fb96d593d770a689b856782578" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::Integrator::Integrator</definition>
         <argsstring>()=default</argsstring>
         <name>Integrator</name>
-        <qualifiedname>astrea::astro::Integrator::Integrator</qualifiedname>
         <briefdescription>
 <para>Default constructor for the <ref refid="classastrea_1_1astro_1_1Integrator" kindref="compound">Integrator</ref> class. </para>
         </briefdescription>
@@ -622,7 +586,6 @@
         <definition>astrea::astro::Integrator::~Integrator</definition>
         <argsstring>()=default</argsstring>
         <name>~Integrator</name>
-        <qualifiedname>astrea::astro::Integrator::~Integrator</qualifiedname>
         <briefdescription>
 <para>Default destructor for the <ref refid="classastrea_1_1astro_1_1Integrator" kindref="compound">Integrator</ref> class. </para>
         </briefdescription>
@@ -637,17 +600,16 @@
         <definition>StateHistory astrea::astro::Integrator::propagate</definition>
         <argsstring>(const State &amp;state0, const Time &amp;propTime, const EquationsOfMotion &amp;eom, Vehicle vehicle, bool store=false, std::vector&lt; Event &gt; events={})</argsstring>
         <name>propagate</name>
-        <qualifiedname>astrea::astro::Integrator::propagate</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state0</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>propTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
           <declname>eom</declname>
         </param>
         <param>
@@ -655,9 +617,9 @@
           <declname>vehicle</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+          <type>bool</type>
           <declname>store</declname>
-          <defval><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">false</ref></defval>
+          <defval>false</defval>
         </param>
         <param>
           <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> &gt;</type>
@@ -722,17 +684,16 @@
         <definition>StateHistory astrea::astro::Integrator::propagate</definition>
         <argsstring>(const State &amp;state0, const Date &amp;endEpoch, const EquationsOfMotion &amp;eom, Vehicle vehicle, bool store=false, std::vector&lt; Event &gt; events={})</argsstring>
         <name>propagate</name>
-        <qualifiedname>astrea::astro::Integrator::propagate</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state0</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>endEpoch</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
           <declname>eom</declname>
         </param>
         <param>
@@ -740,9 +701,9 @@
           <declname>vehicle</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+          <type>bool</type>
           <declname>store</declname>
-          <defval><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">false</ref></defval>
+          <defval>false</defval>
         </param>
         <param>
           <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> &gt;</type>
@@ -803,13 +764,12 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="90" column="9" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="47" bodyend="51"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a0a844a5d4c4746130280ef86e4657302" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::set_abs_tol</definition>
         <argsstring>(const Unitless &amp;absTol)</argsstring>
         <name>set_abs_tol</name>
-        <qualifiedname>astrea::astro::Integrator::set_abs_tol</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>absTol</declname>
         </param>
         <briefdescription>
@@ -832,13 +792,12 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="97" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="528" bodyend="528"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1ab54658b5eff7dfdb31fb4c2d6adaf7de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::set_rel_tol</definition>
         <argsstring>(const Unitless &amp;relTol)</argsstring>
         <name>set_rel_tol</name>
-        <qualifiedname>astrea::astro::Integrator::set_rel_tol</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>relTol</declname>
         </param>
         <briefdescription>
@@ -861,13 +820,12 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="104" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="529" bodyend="529"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1aa4edd3e35bffc993b80c7132bd2b971d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::set_max_iter</definition>
         <argsstring>(const int &amp;itMax)</argsstring>
         <name>set_max_iter</name>
-        <qualifiedname>astrea::astro::Integrator::set_max_iter</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">int</ref> &amp;</type>
+          <type>const int &amp;</type>
           <declname>itMax</declname>
         </param>
         <briefdescription>
@@ -890,13 +848,12 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="111" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="530" bodyend="530"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a8f71d0254c7d1e26f3fdefec62d5a4a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::switch_print</definition>
         <argsstring>(const bool &amp;onOff)</argsstring>
         <name>switch_print</name>
-        <qualifiedname>astrea::astro::Integrator::switch_print</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref> &amp;</type>
+          <type>const bool &amp;</type>
           <declname>onOff</declname>
         </param>
         <briefdescription>
@@ -919,13 +876,12 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="118" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="532" bodyend="532"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1ae9b5e8813d1b8d6555d2cc3a83a26c5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::switch_timer</definition>
         <argsstring>(const bool &amp;onOff)</argsstring>
         <name>switch_timer</name>
-        <qualifiedname>astrea::astro::Integrator::switch_timer</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref> &amp;</type>
+          <type>const bool &amp;</type>
           <declname>onOff</declname>
         </param>
         <briefdescription>
@@ -948,13 +904,12 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="125" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="533" bodyend="533"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1ac6f7a2702bf49cdf42843e860ea9c462" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::set_step_method</definition>
         <argsstring>(const StepMethod &amp;stepMethod)</argsstring>
         <name>set_step_method</name>
-        <qualifiedname>astrea::astro::Integrator::set_step_method</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Integrator_1a4a414020ae194a0831394fcea56ae79c" kindref="member">StepMethod</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Integrator_1a4a414020ae194a0831394fcea56ae79c" kindref="member">StepMethod</ref> &amp;</type>
           <declname>stepMethod</declname>
         </param>
         <briefdescription>
@@ -977,13 +932,12 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="132" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="544" bodyend="544"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a24671641fc4be1075b6d7bad22320fc8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::set_initial_timestep</definition>
         <argsstring>(const Time &amp;dt0)</argsstring>
         <name>set_initial_timestep</name>
-        <qualifiedname>astrea::astro::Integrator::set_initial_timestep</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>dt0</declname>
         </param>
         <briefdescription>
@@ -1006,13 +960,12 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="139" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="535" bodyend="535"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a6e3162016aaf966c1e754637644d828b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::switch_fixed_timestep</definition>
         <argsstring>(const bool &amp;onOff)</argsstring>
         <name>switch_fixed_timestep</name>
-        <qualifiedname>astrea::astro::Integrator::switch_fixed_timestep</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref> &amp;</type>
+          <type>const bool &amp;</type>
           <declname>onOff</declname>
         </param>
         <briefdescription>
@@ -1035,17 +988,16 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="146" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="536" bodyend="536"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a2f837a883837445a98fff610062f66ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::switch_fixed_timestep</definition>
         <argsstring>(const bool &amp;onOff, const Time &amp;fixedTimeStep)</argsstring>
         <name>switch_fixed_timestep</name>
-        <qualifiedname>astrea::astro::Integrator::switch_fixed_timestep</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref> &amp;</type>
+          <type>const bool &amp;</type>
           <declname>onOff</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>fixedTimeStep</declname>
         </param>
         <briefdescription>
@@ -1068,13 +1020,12 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="153" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="537" bodyend="541"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a729bf451aaaebc63e73ce686b7c4cc63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::set_timestep</definition>
         <argsstring>(const Time &amp;fixedTimeStep)</argsstring>
         <name>set_timestep</name>
-        <qualifiedname>astrea::astro::Integrator::set_timestep</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>fixedTimeStep</declname>
         </param>
         <briefdescription>
@@ -1097,11 +1048,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="160" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="542" bodyend="542"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a61fb12be8c2b79f3e163642ca8cc8a08" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">int</ref></type>
+        <type>int</type>
         <definition>int astrea::astro::Integrator::n_func_evals</definition>
         <argsstring>()</argsstring>
         <name>n_func_evals</name>
-        <qualifiedname>astrea::astro::Integrator::n_func_evals</qualifiedname>
         <briefdescription>
 <para>Get the current timestep used by the integrator. </para>
         </briefdescription>
@@ -1114,24 +1064,23 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="167" column="9" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.hpp" bodystart="167" bodyend="167"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-func">
+      </sectiondef>
+      <sectiondef kind="private-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a8ae61eeb7c2ea3c11b59ac1d1ff9d9c9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1StatePartial" kindref="compound">StatePartial</ref></type>
         <definition>StatePartial astrea::astro::Integrator::find_state_derivative</definition>
         <argsstring>(const Time &amp;time, const State &amp;state, const EquationsOfMotion &amp;eom, Vehicle &amp;vehicle)</argsstring>
         <name>find_state_derivative</name>
-        <qualifiedname>astrea::astro::Integrator::find_state_derivative</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
           <declname>eom</declname>
         </param>
         <param>
@@ -1184,13 +1133,12 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="240" column="18" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="271" bodyend="283"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a35a48bc57009950d2e25ec3921707258" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::setup</definition>
         <argsstring>(const std::vector&lt; Event &gt; &amp;events)</argsstring>
         <name>setup</name>
-        <qualifiedname>astrea::astro::Integrator::setup</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> &gt; &amp;</type>
+          <type>const std::vector&lt; <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> &gt; &amp;</type>
           <declname>events</declname>
         </param>
         <briefdescription>
@@ -1213,11 +1161,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="247" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="158" bodyend="172"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a5403c1af5eb220f452b1ea48b0b64262" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::teardown</definition>
         <argsstring>()</argsstring>
         <name>teardown</name>
-        <qualifiedname>astrea::astro::Integrator::teardown</qualifiedname>
         <briefdescription>
 <para>Teardown after the main integration loop. </para>
         </briefdescription>
@@ -1228,11 +1175,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="252" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="174" bodyend="187"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a5daa347d432c5d70826d9427cdf09a47" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::setup_butcher_tableau</definition>
         <argsstring>()</argsstring>
         <name>setup_butcher_tableau</name>
-        <qualifiedname>astrea::astro::Integrator::setup_butcher_tableau</qualifiedname>
         <briefdescription>
 <para>Set up the stepper method based on the selected step method. </para>
         </briefdescription>
@@ -1243,17 +1189,16 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="257" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="190" bodyend="269"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1ae9ffd1276991bd45830b84d7ffe0bec3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Integrator::try_step</definition>
         <argsstring>(Time &amp;time, Time &amp;timeStep, State &amp;state, const EquationsOfMotion &amp;eom, Vehicle &amp;vehicle)</argsstring>
         <name>try_step</name>
-        <qualifiedname>astrea::astro::Integrator::try_step</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>Time &amp;</type>
           <declname>timeStep</declname>
         </param>
         <param>
@@ -1261,7 +1206,7 @@
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
           <declname>eom</declname>
         </param>
         <param>
@@ -1322,17 +1267,16 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="269" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="360" bodyend="370"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a249198973e4bd500c47160bbd313025c" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Integrator::find_max_error</definition>
         <argsstring>(const State &amp;stateNew, const State &amp;stateError) const</argsstring>
         <name>find_max_error</name>
-        <qualifiedname>astrea::astro::Integrator::find_max_error</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>stateNew</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>stateError</declname>
         </param>
         <briefdescription>
@@ -1365,17 +1309,16 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="278" column="14" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="331" bodyend="357"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a378683c648d14d5e86e78be9a7968853" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::take_fixed_step</definition>
         <argsstring>(Time &amp;time, Time &amp;timeStep, State &amp;state, const EquationsOfMotion &amp;eom, Vehicle &amp;vehicle)</argsstring>
         <name>take_fixed_step</name>
-        <qualifiedname>astrea::astro::Integrator::take_fixed_step</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>Time &amp;</type>
           <declname>timeStep</declname>
         </param>
         <param>
@@ -1383,7 +1326,7 @@
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
           <declname>eom</declname>
         </param>
         <param>
@@ -1446,21 +1389,20 @@
         <definition>std::pair&lt; State, State &gt; astrea::astro::Integrator::take_step</definition>
         <argsstring>(const Time &amp;time, const Time &amp;timeStep, const State &amp;state, const EquationsOfMotion &amp;eom, Vehicle &amp;vehicle)</argsstring>
         <name>take_step</name>
-        <qualifiedname>astrea::astro::Integrator::take_step</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>timeStep</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1EquationsOfMotion" kindref="compound">EquationsOfMotion</ref> &amp;</type>
           <declname>eom</declname>
         </param>
         <param>
@@ -1521,29 +1463,28 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="302" column="9" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="287" bodyend="329"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a1e1d4597ea5af7017ef7cb98feb4a8a3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Integrator::check_error</definition>
         <argsstring>(const Unitless &amp;maxError, const State &amp;stateNew, const State &amp;stateError, Time &amp;time, Time &amp;timeStep, State &amp;state)</argsstring>
         <name>check_error</name>
-        <qualifiedname>astrea::astro::Integrator::check_error</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>maxError</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>stateNew</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>stateError</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>Time &amp;</type>
           <declname>timeStep</declname>
         </param>
         <param>
@@ -1612,13 +1553,12 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="315" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="421" bodyend="454"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a1454ad18c2d389d0b4a1633d1e9cc2b9" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::Integrator::get_relative_step_size</definition>
         <argsstring>(const Unitless &amp;maxError) const</argsstring>
         <name>get_relative_step_size</name>
-        <qualifiedname>astrea::astro::Integrator::get_relative_step_size</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>maxError</declname>
         </param>
         <briefdescription>
@@ -1643,13 +1583,12 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="323" column="14" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="394" bodyend="419"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1aa0ebbe8a6c676b1c9225eaeb20953465" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::store_final_func_eval</definition>
         <argsstring>(const Time &amp;timeStep)</argsstring>
         <name>store_final_func_eval</name>
-        <qualifiedname>astrea::astro::Integrator::store_final_func_eval</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>timeStep</declname>
         </param>
         <briefdescription>
@@ -1672,25 +1611,24 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="330" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="386" bodyend="392"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a605e005c513722894d25ac088bfaeeeb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::print_iteration</definition>
         <argsstring>(const Time &amp;time, const State &amp;state, const Time &amp;timeFinal, const State &amp;stateInitial)</argsstring>
         <name>print_iteration</name>
-        <qualifiedname>astrea::astro::Integrator::print_iteration</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>timeFinal</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>stateInitial</declname>
         </param>
         <briefdescription>
@@ -1737,11 +1675,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="340" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="457" bodyend="476"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a7199121574fcafc10c650128545311be" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::print_performance</definition>
         <argsstring>() const</argsstring>
         <name>print_performance</name>
-        <qualifiedname>astrea::astro::Integrator::print_performance</qualifiedname>
         <briefdescription>
 <para>Print the performance metrics of the integration including total time, function evaluations, and iterations. </para>
         </briefdescription>
@@ -1752,11 +1689,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="345" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="478" bodyend="500"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1a2dea0ad690bd5c00aaacfbe2e84109fb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::startTimer</definition>
         <argsstring>()</argsstring>
         <name>startTimer</name>
-        <qualifiedname>astrea::astro::Integrator::startTimer</qualifiedname>
         <briefdescription>
 <para>Start the timer for measuring integration performance. </para>
         </briefdescription>
@@ -1767,11 +1703,10 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="350" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="516" bodyend="519"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1acd79224f9901e0c8cdb9ee24943519e2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::Integrator::endTimer</definition>
         <argsstring>()</argsstring>
         <name>endTimer</name>
-        <qualifiedname>astrea::astro::Integrator::endTimer</qualifiedname>
         <briefdescription>
 <para>End the timer for measuring integration performance. </para>
         </briefdescription>
@@ -1782,13 +1717,12 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="355" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="521" bodyend="524"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1ac51ee742921002f6f2caf1dec4d72faf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Integrator::check_event</definition>
         <argsstring>(const Time &amp;time, State &amp;state, Vehicle &amp;vehicle)</argsstring>
         <name>check_event</name>
-        <qualifiedname>astrea::astro::Integrator::check_event</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
@@ -1835,17 +1769,16 @@
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="364" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="502" bodyend="505"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Integrator_1acd23167ef39a89c9f9e58966be86ac12" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Integrator::validate_state_and_time</definition>
         <argsstring>(const Time &amp;time, const State &amp;state) const</argsstring>
         <name>validate_state_and_time</name>
-        <qualifiedname>astrea::astro::Integrator::validate_state_and_time</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <briefdescription>
@@ -1879,7 +1812,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/numerical/Integrator.hpp" line="374" column="10" bodyfile="astrea/astro/astro/propagation/numerical/Integrator.cpp" bodystart="507" bodyend="514"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para><ref refid="classastrea_1_1astro_1_1Integrator" kindref="compound">Integrator</ref> class for numerical propagation of orbital mechanics problems. </para>
     </briefdescription>

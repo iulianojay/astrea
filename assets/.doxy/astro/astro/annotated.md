@@ -8,7 +8,6 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
     * **namespace** [**astro**](namespaceastrea_1_1astro.md)     
         * **class** [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) _Represents a system of celestial bodies and their interactions._     
         * **class** [**AtmosphericForce**](classastrea_1_1astro_1_1AtmosphericForce.md) _Class to compute the atmospheric force on a vehicle._     
-        * **struct** [**BodyFixedFrame**](structastrea_1_1astro_1_1BodyFixedFrame.md) _Base class for all body fixed frames._     
         * **class** [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) _Class representing a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector in astrodynamics._    
         * **class** [**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md) _Class representing a partial derivative of a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._    
         * **class** [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md) _Class representing a 3D vector in_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _coordinates._    
@@ -22,7 +21,6 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **namespace** [**DOP78**](namespaceastrea_1_1astro_1_1DOP78.md)     
         * **class** [**Date**](classastrea_1_1astro_1_1Date.md) _Class representing a date in the astrea astro library._     
         * **class** [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) _Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames._     
-        * **struct** [**DynamicFrame**](classastrea_1_1astro_1_1DynamicFrame.md) _Base class for all dynamic state/frames._     
         * **class** [**EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md) _Base class for equations of motion in astrodynamics._     
         * **class** [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) _The_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _class represents the equinoctial orbital elements._    
         * **class** [**EquinoctialPartial**](classastrea_1_1astro_1_1EquinoctialPartial.md) _Class representing a partial derivative of an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._    
@@ -37,7 +35,6 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
         * **class** [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) _Class representing a_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector in astrodynamics._    
         * **class** [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) _Class representing a_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector in astrodynamics._    
         * **class** [**ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md) _A class representing an impulsive burn_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _. It triggers when the true anomaly wraps around (i.e. at perigee), and applies the total impulsive delta-v from all thrusters to the vehicle in the velocity direction. TODO: Generalize to a scheduler of some sort and other burn triggers. TODO: Generalize burn direction. TODO: Generalize which thrusters burn._    
-        * **struct** [**InertialFrame**](structastrea_1_1astro_1_1InertialFrame.md) _Base class for all inertial state/frames._     
         * **class** [**Integrator**](classastrea_1_1astro_1_1Integrator.md) [_**Integrator**_](classastrea_1_1astro_1_1Integrator.md) _class for numerical propagation of orbital mechanics problems._    
         * **class** [**Interval**](classastrea_1_1astro_1_1Interval.md) _Represents a time interval with a start and end time._     
         * **class** [**J2MeanVop**](classastrea_1_1astro_1_1J2MeanVop.md) _Class implementing the J2 Mean VOP equations of motion._     
@@ -144,8 +141,8 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
             * **class** [**Venus**](classastrea_1_1astro_1_1planetary__bodies_1_1Venus.md) _Represents the_ [_**Venus**_](classastrea_1_1astro_1_1planetary__bodies_1_1Venus.md) _celestial body._    
         * **namespace** [**plotting**](namespaceastrea_1_1astro_1_1plotting.md)     
 * **struct** [**EventTracker**](structastrea_1_1astro_1_1EventDetector_1_1EventTracker.md) _A struct for tracking events._     
-* **namespace** [**frames**](namespaceastrea_1_1astro_1_1frames_1_1_0d17.md) 
-* **namespace** [**plotting**](namespaceastrea_1_1astro_1_1plotting_1_1_0d151.md) 
+* **namespace** [**@17**](namespaceastrea_1_1astro_1_1frames_1_1_0d17.md) 
+* **namespace** [**@151**](namespaceastrea_1_1astro_1_1plotting_1_1_0d151.md) 
 * **namespace** [**matplot**](namespacematplot.md) 
 * **namespace** [**mp\_units**](namespacemp__units.md)     
     * **struct** [**quantity\_point\_like\_traits&lt; astrea::astro::Date &gt;**](structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4.md) _Specialization of mp\_units::quantity\_point\_like\_traits for the Date class._     
@@ -156,5 +153,5 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **namespace** [**std**](namespacestd.md)     
     * **struct** [**hash&lt; astrea::astro::CelestialBody &gt;**](structstd_1_1hash_3_01astrea_1_1astro_1_1CelestialBody_01_4.md) _Hash function for CelestialBody._     
     * **struct** [**hash&lt; std::tuple&lt; TT... &gt; &gt;**](structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4.md)     
-* **namespace** [**std**](namespacestd_1_1_0d145.md) 
+* **namespace** [**@145**](namespacestd_1_1_0d145.md) 
 

@@ -2,7 +2,7 @@
 
 # Class astrea::astro::Plane
 
-**template &lt;[**class**](classastrea_1_1astro_1_1CartesianVector.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1CartesianVector.md)&gt;**
+**template &lt;class Spacecraft\_T&gt;**
 
 
 
@@ -34,8 +34,8 @@ _A_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _is a collection of_[_**Spac
 
 | Type | Name |
 | ---: | :--- |
-| typedef std::vector&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt;::const\_iterator | [**const\_iterator**](#typedef-const_iterator)  <br>_Const iterator for iterating over all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
-| typedef std::vector&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt;::iterator | [**iterator**](#typedef-iterator)  <br>_Iterator for iterating over all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
+| typedef std::vector&lt; Spacecraft\_T &gt;::[**const\_iterator**](classastrea_1_1astro_1_1Plane.md#typedef-const_iterator) | [**const\_iterator**](#typedef-const_iterator)  <br>_Const iterator for iterating over all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
+| typedef std::vector&lt; Spacecraft\_T &gt;::[**iterator**](classastrea_1_1astro_1_1Plane.md#typedef-iterator) | [**iterator**](#typedef-iterator)  <br>_Iterator for iterating over all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
 
 
 
@@ -61,21 +61,21 @@ _A_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _is a collection of_[_**Spac
 | Type | Name |
 | ---: | :--- |
 |   | [**Plane**](#function-plane-12) () = default<br>_Default constructor for_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
-|   | [**Plane**](#function-plane-22) (std::vector&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; satellites) <br>_Construct a_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _from a vector of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _._ |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**add\_spacecraft**](#function-add_spacecraft) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1CartesianVector.md) & spacecraft) <br>_Add a_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _to the_[_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
+|   | [**Plane**](#function-plane-22) (std::vector&lt; Spacecraft\_T &gt; satellites) <br>_Construct a_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _from a vector of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _._ |
+|  void | [**add\_spacecraft**](#function-add_spacecraft) (const Spacecraft\_T & spacecraft) <br>_Add a_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _to the_[_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
 |  [**iterator**](classastrea_1_1astro_1_1Plane.md#typedef-iterator) | [**begin**](#function-begin-12) () <br>_Get an iterator to the beginning of the_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
 |  [**const\_iterator**](classastrea_1_1astro_1_1Plane.md#typedef-const_iterator) | [**begin**](#function-begin-22) () const<br>_Get a const iterator to the beginning of the_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
 |  [**const\_iterator**](classastrea_1_1astro_1_1Plane.md#typedef-const_iterator) | [**cbegin**](#function-cbegin) () const<br>_Get a const iterator to the beginning of the_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
 |  [**const\_iterator**](classastrea_1_1astro_1_1Plane.md#typedef-const_iterator) | [**cend**](#function-cend) () const<br>_Get a const iterator to the end of the_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
 |  [**iterator**](classastrea_1_1astro_1_1Plane.md#typedef-iterator) | [**end**](#function-end-12) () <br>_Get an iterator to the end of the_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
 |  [**const\_iterator**](classastrea_1_1astro_1_1Plane.md#typedef-const_iterator) | [**end**](#function-end-22) () const<br>_Get a const iterator to the end of the_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
-|  std::vector&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; & | [**get\_all\_spacecraft**](#function-get_all_spacecraft-12) () <br>_Get all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::vector&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; & | [**get\_all\_spacecraft**](#function-get_all_spacecraft-22) () const<br>_Get all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t | [**get\_id**](#function-get_id) () const<br>_Get the ID of the_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1CartesianVector.md) & | [**get\_spacecraft**](#function-get_spacecraft) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t & spacecraftId) const<br>_Get a_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _by its ID._ |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**propagate**](#function-propagate-12) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Time**](classastrea_1_1astro_1_1CartesianVector.md) & propTime, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md) & eom, [**Integrator**](classastrea_1_1astro_1_1Integrator.md) & integrator) <br>_Propagate the_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _using the provided epoch and Equations of Motion._ |
-|  [**void**](classastrea_1_1astro_1_1CartesianVector.md) | [**propagate**](#function-propagate-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & endEpoch, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md) & eom, [**Integrator**](classastrea_1_1astro_1_1Integrator.md) & integrator) <br>_Propagate the_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _using the provided epoch and Equations of Motion._ |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t | [**size**](#function-size) () const<br>_Get the number of_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
+|  std::vector&lt; Spacecraft\_T &gt; & | [**get\_all\_spacecraft**](#function-get_all_spacecraft-12) () <br>_Get all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
+|  const std::vector&lt; Spacecraft\_T &gt; & | [**get\_all\_spacecraft**](#function-get_all_spacecraft-22) () const<br>_Get all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
+|  const std::size\_t | [**get\_id**](#function-get_id) () const<br>_Get the ID of the_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
+|  const Spacecraft\_T & | [**get\_spacecraft**](#function-get_spacecraft) (const std::size\_t & spacecraftId) const<br>_Get a_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _by its ID._ |
+|  void | [**propagate**](#function-propagate-12) (const Time & propTime, const [**EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md) & eom, [**Integrator**](classastrea_1_1astro_1_1Integrator.md) & integrator) <br>_Propagate the_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _using the provided epoch and Equations of Motion._ |
+|  void | [**propagate**](#function-propagate-22) (const [**Date**](classastrea_1_1astro_1_1Date.md) & endEpoch, const [**EquationsOfMotion**](classastrea_1_1astro_1_1EquationsOfMotion.md) & eom, [**Integrator**](classastrea_1_1astro_1_1Integrator.md) & integrator) <br>_Propagate the_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _using the provided epoch and Equations of Motion._ |
+|  const std::size\_t | [**size**](#function-size) () const<br>_Get the number of_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
 |   | [**~Plane**](#function-plane) () <br>_Destructor for_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._ |
 
 
@@ -210,7 +210,7 @@ astrea::astro::Plane::Plane (
 _Add a_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _to the_[_**Plane**_](classastrea_1_1astro_1_1Plane.md) _._
 ```C++
 void astrea::astro::Plane::add_spacecraft (
-    const  Spacecraft_T & spacecraft
+    const Spacecraft_T & spacecraft
 ) 
 ```
 
@@ -461,7 +461,7 @@ const std::size\_t The unique identifier for the [**Plane**](classastrea_1_1astr
 
 _Get a_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _by its ID._
 ```C++
-const  Spacecraft_T & astrea::astro::Plane::get_spacecraft (
+const Spacecraft_T & astrea::astro::Plane::get_spacecraft (
     const std::size_t & spacecraftId
 ) const
 ```
@@ -496,8 +496,8 @@ Spacecraft\_T& A reference to the [**Spacecraft**](classastrea_1_1astro_1_1Space
 _Propagate the_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _using the provided epoch and Equations of Motion._
 ```C++
 void astrea::astro::Plane::propagate (
-    const  Time & propTime,
-    const  EquationsOfMotion & eom,
+    const Time & propTime,
+    const EquationsOfMotion & eom,
     Integrator & integrator
 ) 
 ```
@@ -527,8 +527,8 @@ void astrea::astro::Plane::propagate (
 _Propagate the_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _using the provided epoch and Equations of Motion._
 ```C++
 void astrea::astro::Plane::propagate (
-    const  Date & endEpoch,
-    const  EquationsOfMotion & eom,
+    const Date & endEpoch,
+    const EquationsOfMotion & eom,
     Integrator & integrator
 ) 
 ```

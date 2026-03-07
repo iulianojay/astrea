@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="dir_1a50007be9f0149ab221abcea88ff37f" kind="dir">
     <compoundname>astrea/astro/astro/state/angular_elements/instances</compoundname>
     <innerfile refid="Cylindrical_8cpp">Cylindrical.cpp</innerfile>

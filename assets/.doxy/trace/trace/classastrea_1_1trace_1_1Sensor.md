@@ -38,6 +38,11 @@ Inherited by the following classes: [astrea::trace::Antenna](classastrea_1_1trac
 
 
 
+## Public Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  const [**SensorParameters**](classastrea_1_1trace_1_1SensorParameters.md) & | [**parameters**](#variable-parameters)  <br> |
 
 
 
@@ -74,9 +79,10 @@ Inherited by the following classes: [astrea::trace::Antenna](classastrea_1_1trac
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Sensor**](#function-sensor) (const Parent\_T & parent, const [**SensorParameters**](classastrea_1_1trace_1_1SensorParameters.md) & parameters) <br>_Constructs a_ [_**Sensor**_](classastrea_1_1trace_1_1Sensor.md) _from a_[_**FieldOfView**_](classastrea_1_1trace_1_1FieldOfView.md) _object._ |
+|  const [**SensorParameters**](classastrea_1_1trace_1_1SensorParameters.md) | [**Payload**](#function-payload) (parent, parameters) <br> |
 |  bool | [**contains**](#function-contains) (const astro::RadiusVector&lt; astro::frames::earth::icrf &gt; & sensor2target, const astro::Date & date) const<br>_Check if the sensor can see a target given the boresight vector._  |
 | virtual std::size\_t | [**get\_id**](#function-get_id) () const<br>_Get the ID of the sensor._  |
+|   | [**requires**](#function-requires) (std::is\_base\_of\_v&lt; astro::FrameReference, Parent\_T &gt;) const<br>_Constructs a_ [_**Sensor**_](classastrea_1_1trace_1_1Sensor.md) _from a_[_**FieldOfView**_](classastrea_1_1trace_1_1FieldOfView.md) _object._ |
 | virtual  | [**~Sensor**](#function-sensor) () = default<br>_Default destructor for_ [_**Sensor**_](classastrea_1_1trace_1_1Sensor.md) _._ |
 
 
@@ -160,38 +166,37 @@ This class inherits from [**AccessObject**](classastrea_1_1trace_1_1AccessObject
 
 
     
-## Public Functions Documentation
+## Public Attributes Documentation
 
 
 
 
-### function Sensor 
+### variable parameters 
 
-_Constructs a_ [_**Sensor**_](classastrea_1_1trace_1_1Sensor.md) _from a_[_**FieldOfView**_](classastrea_1_1trace_1_1FieldOfView.md) _object._
 ```C++
-template<typename Parent_T>
-inline astrea::trace::Sensor::Sensor (
-    const Parent_T & parent,
-    const SensorParameters & parameters
-) 
+const SensorParameters& astrea::trace::Sensor::parameters;
 ```
 
 
 
 
-
-**Parameters:**
-
-
-* `parent` The parent platform to which the sensor is attached. 
-* `fov` Field of view object defining the sensor's coverage area. 
-* `boresight` The boresight vector of the sensor. 
-* `attachmentPoint` The point on the platform where the sensor is attached. 
+<hr>
+## Public Functions Documentation
 
 
 
 
-        
+### function Payload 
+
+```C++
+inline const SensorParameters astrea::trace::Sensor::Payload (
+    parent,
+    parameters
+) 
+```
+
+
+
 
 <hr>
 
@@ -262,6 +267,37 @@ std::size\_t ID of the sensor.
         
 Implements [*astrea::trace::AccessObject::get\_id*](classastrea_1_1trace_1_1AccessObject.md#function-get_id)
 
+
+<hr>
+
+
+
+### function requires 
+
+_Constructs a_ [_**Sensor**_](classastrea_1_1trace_1_1Sensor.md) _from a_[_**FieldOfView**_](classastrea_1_1trace_1_1FieldOfView.md) _object._
+```C++
+template<typename Parent_T>
+astrea::trace::Sensor::requires (
+    std::is_base_of_v< astro::FrameReference, Parent_T >
+) const
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `parent` The parent platform to which the sensor is attached. 
+* `fov` Field of view object defining the sensor's coverage area. 
+* `boresight` The boresight vector of the sensor. 
+* `attachmentPoint` The point on the platform where the sensor is attached. 
+
+
+
+
+        
 
 <hr>
 

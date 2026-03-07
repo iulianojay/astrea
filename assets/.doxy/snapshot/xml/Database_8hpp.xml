@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="Database_8hpp" kind="file" language="C++">
     <compoundname>Database.hpp</compoundname>
     <includes local="no">sqlite3.h</includes>
@@ -17,6 +17,9 @@
     <includedby refid="main_8cpp" local="no">astrea/snapshot/snapshot/drivers/main.cpp</includedby>
     <includedby refid="snapshot_8hpp" local="no">astrea/snapshot/snapshot/snapshot.hpp</includedby>
     <incdepgraph>
+      <node id="4">
+        <label>sqlite_orm/sqlite_orm.h</label>
+      </node>
       <node id="1">
         <label>astrea/snapshot/snapshot/database/Database.hpp</label>
         <link refid="Database_8hpp"/>
@@ -45,54 +48,51 @@
         <childnode refid="13" relation="include">
         </childnode>
       </node>
-      <node id="12">
-        <label>snapshot/snapshot.macros.hpp</label>
-        <link refid="snapshot_8macros_8hpp"/>
-      </node>
-      <node id="10">
-        <label>astro/astro.macros.hpp</label>
-      </node>
-      <node id="11">
-        <label>astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
-      </node>
-      <node id="5">
-        <label>mp-units/systems/angular.h</label>
+      <node id="8">
+        <label>mp-units/systems/si.h</label>
       </node>
       <node id="6">
         <label>mp-units/systems/iau.h</label>
       </node>
-      <node id="7">
-        <label>mp-units/systems/isq_angle.h</label>
-      </node>
-      <node id="8">
-        <label>mp-units/systems/si.h</label>
-      </node>
-      <node id="13">
-        <label>snapshot/database/Database.ipp</label>
+      <node id="11">
+        <label>astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
       </node>
       <node id="2">
         <label>sqlite3.h</label>
       </node>
-      <node id="4">
-        <label>sqlite_orm/sqlite_orm.h</label>
+      <node id="13">
+        <label>snapshot/database/Database.ipp</label>
       </node>
-      <node id="9">
-        <label>units/typedefs.hpp</label>
+      <node id="5">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="12">
+        <label>snapshot/snapshot.macros.hpp</label>
+        <link refid="snapshot_8macros_8hpp"/>
       </node>
       <node id="3">
         <label>vector</label>
       </node>
+      <node id="10">
+        <label>astro/astro.macros.hpp</label>
+      </node>
+      <node id="7">
+        <label>mp-units/systems/isq_angle.h</label>
+      </node>
+      <node id="9">
+        <label>units/typedefs.hpp</label>
+      </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="2">
+        <label>astrea/snapshot/snapshot/snapshot.hpp</label>
+        <link refid="snapshot_8hpp"/>
+      </node>
       <node id="1">
         <label>astrea/snapshot/snapshot/database/Database.hpp</label>
         <link refid="Database_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-      </node>
-      <node id="2">
-        <label>astrea/snapshot/snapshot/snapshot.hpp</label>
-        <link refid="snapshot_8hpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper" prot="public">astrea::snapshot::DatabaseUtilityWrapper</innerclass>
@@ -146,23 +146,23 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="64"><highlight class="normal"></highlight></codeline>
 <codeline lineno="68" refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a14ee0ab279a6aff86c23d620d70ddc3d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a14ee0ab279a6aff86c23d620d70ddc3d" kindref="member">~DatabaseUtilityWrapper</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75" refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a95a63422f211ef38a14970a315c68294" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>T&amp;<sp/><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a95a63422f211ef38a14970a315c68294" kindref="member">get_database</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="75" refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a08228f8dcbb2a540cafbb26822ff512c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>T&amp;<sp/><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a08228f8dcbb2a540cafbb26822ff512c" kindref="member">get_database</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal">...<sp/>Args&gt;</highlight></codeline>
-<codeline lineno="85" refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aa34d2fffb5fc8e1720d40807ac67acfa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;astro::GeneralPerturbations&gt;<sp/><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aa34d2fffb5fc8e1720d40807ac67acfa" kindref="member">get_all</ref>(Args&amp;&amp;...<sp/>args)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="85" refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a6494442e0eecbe54775957e5e0bb7482" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;astro::GeneralPerturbations&gt;<sp/><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a6494442e0eecbe54775957e5e0bb7482" kindref="member">get_all</ref>(Args&amp;&amp;...<sp/>args)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight></codeline>
 <codeline lineno="93" refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a8651a3c52201406b31f636b6f8939bdc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>astro::GeneralPerturbations<sp/><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a8651a3c52201406b31f636b6f8939bdc" kindref="member">get_sat_from_norad_id</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal">&amp;<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"></highlight></codeline>
-<codeline lineno="101" refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ab806e6f862f7c0f4995eb3df9a1ab105" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;astro::GeneralPerturbations&gt;<sp/><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ab806e6f862f7c0f4995eb3df9a1ab105" kindref="member">get_sats_by_name</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>name)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="101" refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a557b53a02c08308eeb34cd09b524ec4a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;astro::GeneralPerturbations&gt;<sp/><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a557b53a02c08308eeb34cd09b524ec4a" kindref="member">get_sats_by_name</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>name)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"></highlight></codeline>
-<codeline lineno="110" refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aba2efd4c1114240c4f771ee7e67af999" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;astro::GeneralPerturbations&gt;<sp/><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aba2efd4c1114240c4f771ee7e67af999" kindref="member">get_sats_in_range</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>minPeriapsis,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>maxApoapsis)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="110" refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a792fc6936eaf84f86ac63d5773f5bf27" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;astro::GeneralPerturbations&gt;<sp/><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a792fc6936eaf84f86ac63d5773f5bf27" kindref="member">get_sats_in_range</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>minPeriapsis,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>maxApoapsis)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>
 <codeline lineno="112"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/>_database;<sp/></highlight></codeline>
 <codeline lineno="114"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>
 <codeline lineno="126"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="127" refid="Database_8hpp_1ab92cb51524a78de36681420facc2e14a" refkind="member"><highlight class="normal"><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper" kindref="compound">DatabaseUtilityWrapper&lt;typename std::decay&lt;T&gt;::type</ref>&gt;<sp/><ref refid="Database_8hpp_1ab92cb51524a78de36681420facc2e14a" kindref="member">make_database</ref>(T&amp;&amp;<sp/>database)</highlight></codeline>
+<codeline lineno="127" refid="Database_8hpp_1ad6fcc711f7478741794cbb1534921002" refkind="member"><highlight class="normal"><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper" kindref="compound">DatabaseUtilityWrapper&lt;typename std::decay&lt;T&gt;::type</ref>&gt;<sp/><ref refid="Database_8hpp_1ad6fcc711f7478741794cbb1534921002" kindref="member">make_database</ref>(T&amp;&amp;<sp/>database)</highlight></codeline>
 <codeline lineno="128"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper" kindref="compound">DatabaseUtilityWrapper&lt;typename std::decay&lt;T&gt;::type</ref>&gt;{<sp/>std::forward&lt;T&gt;(database)<sp/>};</highlight></codeline>
 <codeline lineno="130"><highlight class="normal">}</highlight></codeline>
@@ -218,7 +218,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
 <codeline lineno="188"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="189"><highlight class="normal"></highlight></codeline>
-<codeline lineno="198" refid="Database_8hpp_1a34837a44992cb6cc96879ae9beb9691c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="Database_8hpp_1a34837a44992cb6cc96879ae9beb9691c" kindref="member">make_snapshot_wrapper</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="Database_8hpp_1ab92cb51524a78de36681420facc2e14a" kindref="member">make_database</ref>(<ref refid="Database_8hpp_1a4b3edf3a977a3468929b6eabf3802ba5" kindref="member">get_snapshot</ref>());<sp/>}</highlight></codeline>
+<codeline lineno="198" refid="Database_8hpp_1a34837a44992cb6cc96879ae9beb9691c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="Database_8hpp_1a34837a44992cb6cc96879ae9beb9691c" kindref="member">make_snapshot_wrapper</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="Database_8hpp_1ad6fcc711f7478741794cbb1534921002" kindref="member">make_database</ref>(<ref refid="Database_8hpp_1a4b3edf3a977a3468929b6eabf3802ba5" kindref="member">get_snapshot</ref>());<sp/>}</highlight></codeline>
 <codeline lineno="199"><highlight class="normal"></highlight></codeline>
 <codeline lineno="200"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>snapshot</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="201"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight><highlight class="normal"></highlight></codeline>

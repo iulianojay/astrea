@@ -2,7 +2,7 @@
 
 # Class astrea::astro::DirectionCosineMatrix
 
-**template &lt;[**typename**](classastrea_1_1astro_1_1CartesianVector.md) [**In\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**typename**](classastrea_1_1astro_1_1CartesianVector.md) [**Out\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md)&gt;**
+**template &lt;typename In\_Frame\_T, typename Out\_Frame\_T&gt;**
 
 
 
@@ -54,22 +54,22 @@ _Class representing a direction cosine matrix (DCM) for transforming vectors bet
 
 | Type | Name |
 | ---: | :--- |
-|   | [**DirectionCosineMatrix**](#function-directioncosinematrix) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) std::array&lt; std::array&lt; [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md), 3 &gt;, 3 &gt; & matrix) <br>_Constructor for_ [_**DirectionCosineMatrix**_](classastrea_1_1astro_1_1DirectionCosineMatrix.md) _from an array of CartesianVectors._ |
-|  [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**Out\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**operator\***](#function-operator) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Value\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**In\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; & vec) const<br>_Apply the direction cosine matrix to a_ [_**CartesianVector**_](classastrea_1_1astro_1_1CartesianVector.md) _._ |
-|  [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md), [**In\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**row**](#function-row) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t & idx) const<br>_Get a specific row of the direction cosine matrix._  |
-|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**Out\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**In\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**transpose**](#function-transpose) () const<br> |
+|   | [**DirectionCosineMatrix**](#function-directioncosinematrix) (const std::array&lt; std::array&lt; Unitless, 3 &gt;, 3 &gt; & matrix) <br>_Constructor for_ [_**DirectionCosineMatrix**_](classastrea_1_1astro_1_1DirectionCosineMatrix.md) _from an array of CartesianVectors._ |
+|  [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, Out\_Frame\_T &gt; | [**operator\***](#function-operator) (const [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Value\_T, In\_Frame\_T &gt; & vec) const<br>_Apply the direction cosine matrix to a_ [_**CartesianVector**_](classastrea_1_1astro_1_1CartesianVector.md) _._ |
+|  [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Unitless, In\_Frame\_T &gt; | [**row**](#function-row) (const std::size\_t & idx) const<br>_Get a specific row of the direction cosine matrix._  |
+|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; Out\_Frame\_T, In\_Frame\_T &gt; | [**transpose**](#function-transpose) () const<br> |
 
 
 ## Public Static Functions
 
 | Type | Name |
 | ---: | :--- |
-|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**In\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**Out\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**X**](#function-x) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & theta) <br>_Creates a direction cosine matrix for a rotation around the X-axis._  |
-|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**In\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**Out\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**XZX**](#function-xzx) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & alpha, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & beta, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & gamma) <br>_Creates a direction cosine matrix for a rotation around the X-axis followed by a rotation around the Z-axis._  |
-|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**In\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**Out\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**Y**](#function-y) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & theta) <br>_Creates a direction cosine matrix for a rotation around the Y-axis._  |
-|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**In\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**Out\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**Z**](#function-z) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Angle**](classastrea_1_1astro_1_1CartesianVector.md) & theta) <br>_Creates a direction cosine matrix for a rotation around the Z-axis._  |
-|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**In\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**Out\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**from\_vectors**](#function-from_vectors) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md), [**In\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; & x, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md), [**In\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; & y, [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md), [**In\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; & z) <br>_Creates a direction cosine matrix from three orthonormal vectors._  |
-|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; [**In\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md), [**Out\_Frame\_T**](classastrea_1_1astro_1_1CartesianVector.md) &gt; | [**identity**](#function-identity) () <br> |
+|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; In\_Frame\_T, Out\_Frame\_T &gt; | [**X**](#function-x) (const Angle & theta) <br>_Creates a direction cosine matrix for a rotation around the X-axis._  |
+|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; In\_Frame\_T, Out\_Frame\_T &gt; | [**XZX**](#function-xzx) (const Angle & alpha, const Angle & beta, const Angle & gamma) <br>_Creates a direction cosine matrix for a rotation around the X-axis followed by a rotation around the Z-axis._  |
+|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; In\_Frame\_T, Out\_Frame\_T &gt; | [**Y**](#function-y) (const Angle & theta) <br>_Creates a direction cosine matrix for a rotation around the Y-axis._  |
+|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; In\_Frame\_T, Out\_Frame\_T &gt; | [**Z**](#function-z) (const Angle & theta) <br>_Creates a direction cosine matrix for a rotation around the Z-axis._  |
+|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; In\_Frame\_T, Out\_Frame\_T &gt; | [**from\_vectors**](#function-from_vectors) (const [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Unitless, In\_Frame\_T &gt; & x, const [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Unitless, In\_Frame\_T &gt; & y, const [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Unitless, In\_Frame\_T &gt; & z) <br>_Creates a direction cosine matrix from three orthonormal vectors._  |
+|  [**DirectionCosineMatrix**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&lt; In\_Frame\_T, Out\_Frame\_T &gt; | [**identity**](#function-identity) () <br> |
 
 
 
@@ -123,7 +123,7 @@ This class provides methods to create DCMs for various rotations and to apply th
 _Constructor for_ [_**DirectionCosineMatrix**_](classastrea_1_1astro_1_1DirectionCosineMatrix.md) _from an array of CartesianVectors._
 ```C++
 inline astrea::astro::DirectionCosineMatrix::DirectionCosineMatrix (
-    const std::array< std::array< Unitless , 3 >, 3 > & matrix
+    const std::array< std::array< Unitless, 3 >, 3 > & matrix
 ) 
 ```
 
@@ -149,9 +149,9 @@ inline astrea::astro::DirectionCosineMatrix::DirectionCosineMatrix (
 
 _Apply the direction cosine matrix to a_ [_**CartesianVector**_](classastrea_1_1astro_1_1CartesianVector.md) _._
 ```C++
-template<typename  Value_T>
-inline CartesianVector < Value_T , Out_Frame_T > astrea::astro::DirectionCosineMatrix::operator* (
-    const  CartesianVector < Value_T , In_Frame_T > & vec
+template<typename Value_T>
+inline CartesianVector < Value_T, Out_Frame_T > astrea::astro::DirectionCosineMatrix::operator* (
+    const CartesianVector < Value_T, In_Frame_T > & vec
 ) const
 ```
 
@@ -192,7 +192,7 @@ CartesianVector&lt;Value\_T, Out\_Frame\_T&gt; The transformed [**CartesianVecto
 
 _Get a specific row of the direction cosine matrix._ 
 ```C++
-inline CartesianVector < Unitless , In_Frame_T > astrea::astro::DirectionCosineMatrix::row (
+inline CartesianVector < Unitless, In_Frame_T > astrea::astro::DirectionCosineMatrix::row (
     const std::size_t & idx
 ) const
 ```
@@ -225,7 +225,7 @@ const CartesianVector&lt;Value\_T, In\_Frame\_T&gt;& The requested row as a [**C
 ### function transpose 
 
 ```C++
-inline DirectionCosineMatrix < Out_Frame_T , In_Frame_T > astrea::astro::DirectionCosineMatrix::transpose () const
+inline DirectionCosineMatrix < Out_Frame_T, In_Frame_T > astrea::astro::DirectionCosineMatrix::transpose () const
 ```
 
 
@@ -241,8 +241,8 @@ inline DirectionCosineMatrix < Out_Frame_T , In_Frame_T > astrea::astro::Directi
 
 _Creates a direction cosine matrix for a rotation around the X-axis._ 
 ```C++
-static inline DirectionCosineMatrix < In_Frame_T , Out_Frame_T > astrea::astro::DirectionCosineMatrix::X (
-    const  Angle & theta
+static inline DirectionCosineMatrix < In_Frame_T, Out_Frame_T > astrea::astro::DirectionCosineMatrix::X (
+    const Angle & theta
 ) 
 ```
 
@@ -275,10 +275,10 @@ DirectionCosineMatrix&lt;Out\_Frame\_T&gt; The resulting direction cosine matrix
 
 _Creates a direction cosine matrix for a rotation around the X-axis followed by a rotation around the Z-axis._ 
 ```C++
-static inline DirectionCosineMatrix < In_Frame_T , Out_Frame_T > astrea::astro::DirectionCosineMatrix::XZX (
-    const  Angle & alpha,
-    const  Angle & beta,
-    const  Angle & gamma
+static inline DirectionCosineMatrix < In_Frame_T, Out_Frame_T > astrea::astro::DirectionCosineMatrix::XZX (
+    const Angle & alpha,
+    const Angle & beta,
+    const Angle & gamma
 ) 
 ```
 
@@ -313,8 +313,8 @@ DirectionCosineMatrix&lt;Out\_Frame\_T&gt; The resulting direction cosine matrix
 
 _Creates a direction cosine matrix for a rotation around the Y-axis._ 
 ```C++
-static inline DirectionCosineMatrix < In_Frame_T , Out_Frame_T > astrea::astro::DirectionCosineMatrix::Y (
-    const  Angle & theta
+static inline DirectionCosineMatrix < In_Frame_T, Out_Frame_T > astrea::astro::DirectionCosineMatrix::Y (
+    const Angle & theta
 ) 
 ```
 
@@ -347,8 +347,8 @@ DirectionCosineMatrix&lt;Out\_Frame\_T&gt; The resulting direction cosine matrix
 
 _Creates a direction cosine matrix for a rotation around the Z-axis._ 
 ```C++
-static inline DirectionCosineMatrix < In_Frame_T , Out_Frame_T > astrea::astro::DirectionCosineMatrix::Z (
-    const  Angle & theta
+static inline DirectionCosineMatrix < In_Frame_T, Out_Frame_T > astrea::astro::DirectionCosineMatrix::Z (
+    const Angle & theta
 ) 
 ```
 
@@ -381,10 +381,10 @@ DirectionCosineMatrix&lt;Out\_Frame\_T&gt; The resulting direction cosine matrix
 
 _Creates a direction cosine matrix from three orthonormal vectors._ 
 ```C++
-static inline DirectionCosineMatrix < In_Frame_T , Out_Frame_T > astrea::astro::DirectionCosineMatrix::from_vectors (
-    const  CartesianVector < Unitless , In_Frame_T > & x,
-    const  CartesianVector < Unitless , In_Frame_T > & y,
-    const  CartesianVector < Unitless , In_Frame_T > & z
+static inline DirectionCosineMatrix < In_Frame_T, Out_Frame_T > astrea::astro::DirectionCosineMatrix::from_vectors (
+    const CartesianVector < Unitless, In_Frame_T > & x,
+    const CartesianVector < Unitless, In_Frame_T > & y,
+    const CartesianVector < Unitless, In_Frame_T > & z
 ) 
 ```
 
@@ -418,7 +418,7 @@ DirectionCosineMatrix&lt;Out\_Frame\_T&gt; The resulting direction cosine matrix
 ### function identity 
 
 ```C++
-static inline DirectionCosineMatrix < In_Frame_T , Out_Frame_T > astrea::astro::DirectionCosineMatrix::identity () 
+static inline DirectionCosineMatrix < In_Frame_T, Out_Frame_T > astrea::astro::DirectionCosineMatrix::identity () 
 ```
 
 

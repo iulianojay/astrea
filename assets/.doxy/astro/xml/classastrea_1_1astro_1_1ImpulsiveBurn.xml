@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1ImpulsiveBurn" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::ImpulsiveBurn</compoundname>
     <includes refid="ImpulsiveBurn_8hpp" local="no">ImpulsiveBurn.hpp</includes>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1ImpulsiveBurn_1a14a4fa92de6c41cd5718d8d06493493d" prot="private" static="no" mutable="yes">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::ImpulsiveBurn::previousAnomaly</definition>
         <argsstring></argsstring>
         <name>previousAnomaly</name>
-        <qualifiedname>astrea::astro::ImpulsiveBurn::previousAnomaly</qualifiedname>
         <initializer>= 0.0 * astrea::detail::angle_unit</initializer>
         <briefdescription>
         </briefdescription>
@@ -19,14 +18,13 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="74" column="19" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" bodystart="74" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1ImpulsiveBurn_1a6d33fb8c2e0b2868bdfa1d1a70c7407a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
         <definition>std::string astrea::astro::ImpulsiveBurn::get_name</definition>
         <argsstring>() const</argsstring>
         <name>get_name</name>
-        <qualifiedname>astrea::astro::ImpulsiveBurn::get_name</qualifiedname>
         <briefdescription>
 <para>Gets the name of the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
         </briefdescription>
@@ -40,21 +38,20 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="45" column="17" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.cpp" bodystart="24" bodyend="24"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ImpulsiveBurn_1a6a56835141d67c671f0aaab79a178dfb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::ImpulsiveBurn::measure_event</definition>
         <argsstring>(const Time &amp;time, const State &amp;state, const Vehicle &amp;vehicle) const</argsstring>
         <name>measure_event</name>
-        <qualifiedname>astrea::astro::ImpulsiveBurn::measure_event</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -81,13 +78,12 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="54" column="14" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.cpp" bodystart="26" bodyend="42"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ImpulsiveBurn_1abde7c172225a3fb6457fae9377baaf50" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">void</ref></type>
+        <type>void</type>
         <definition>void astrea::astro::ImpulsiveBurn::trigger_action</definition>
         <argsstring>(const Time &amp;time, State &amp;state, Vehicle &amp;vehicle) const</argsstring>
         <name>trigger_action</name>
-        <qualifiedname>astrea::astro::ImpulsiveBurn::trigger_action</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>time</declname>
         </param>
         <param>
@@ -134,11 +130,10 @@
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="63" column="10" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.cpp" bodystart="44" bodyend="64"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1ImpulsiveBurn_1a3ca63a88814bcf6b2cd495946c20c229" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::ImpulsiveBurn::is_terminal</definition>
         <argsstring>() const</argsstring>
         <name>is_terminal</name>
-        <qualifiedname>astrea::astro::ImpulsiveBurn::is_terminal</qualifiedname>
         <briefdescription>
 <para>Checks if the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is a terminal <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
         </briefdescription>
@@ -153,7 +148,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.hpp" line="71" column="10" bodyfile="astrea/astro/astro/propagation/event_detection/events/ImpulsiveBurn.cpp" bodystart="66" bodyend="66"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>A class representing an impulsive burn <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. It triggers when the true anomaly wraps around (i.e. at perigee), and applies the total impulsive delta-v from all thrusters to the vehicle in the velocity direction. TODO: Generalize to a scheduler of some sort and other burn triggers. TODO: Generalize burn direction. TODO: Generalize which thrusters burn. </para>
     </briefdescription>

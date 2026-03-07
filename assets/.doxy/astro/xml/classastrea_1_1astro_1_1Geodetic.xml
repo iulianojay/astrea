@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1Geodetic" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::Geodetic</compoundname>
     <includes refid="Geodetic_8hpp" local="no">Geodetic.hpp</includes>
-    <sectiondef kind="private-attrib">
+      <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Geodetic_1a983cfb083b92d3df08a1a25d0e33496e" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::Geodetic::_latitude</definition>
         <argsstring></argsstring>
         <name>_latitude</name>
-        <qualifiedname>astrea::astro::Geodetic::_latitude</qualifiedname>
         <briefdescription>
 <para><ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> Latitude. </para>
         </briefdescription>
@@ -20,11 +19,10 @@
         <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" line="275" column="11" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" bodystart="275" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Geodetic_1abc2ebfc8af4150471894fd1d16deeff1" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref></type>
+        <type>Angle</type>
         <definition>Angle astrea::astro::Geodetic::_longitude</definition>
         <argsstring></argsstring>
         <name>_longitude</name>
-        <qualifiedname>astrea::astro::Geodetic::_longitude</qualifiedname>
         <briefdescription>
 <para>Longitude. </para>
         </briefdescription>
@@ -35,11 +33,10 @@
         <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" line="276" column="11" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" bodystart="276" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Geodetic_1a30508600a035fde12df4e7dda3a708c8" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref></type>
+        <type>Distance</type>
         <definition>Distance astrea::astro::Geodetic::_altitude</definition>
         <argsstring></argsstring>
         <name>_altitude</name>
-        <qualifiedname>astrea::astro::Geodetic::_altitude</qualifiedname>
         <briefdescription>
 <para>Altitude. </para>
         </briefdescription>
@@ -49,20 +46,19 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" line="277" column="14" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" bodystart="277" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="friend">
-      <memberdef kind="friend" id="classastrea_1_1astro_1_1Geodetic_1a714220f34966c0d11b8ea5c0f1e0611f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1Geodetic_1a557265b3d11751038f05a6713c420035" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;, Geodetic const &amp;)</argsstring>
         <name>operator&lt;&lt;</name>
-        <qualifiedname>astrea::astro::Geodetic::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <defname>os</defname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> const &amp;</type>
           <defname>elements</defname>
         </param>
         <briefdescription>
@@ -73,16 +69,15 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" line="44" column="12" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.cpp" bodystart="171" bodyend="179"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="public-func">
+      </sectiondef>
+      <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Geodetic_1adb48a0e040c17b1426d65926e0393555" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::Geodetic::Geodetic</definition>
         <argsstring>(Unitless scale=0.0 *astrea::detail::unitless)</argsstring>
         <name>Geodetic</name>
-        <qualifiedname>astrea::astro::Geodetic::Geodetic</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+          <type>Unitless</type>
           <declname>scale</declname>
           <defval>0.0 *astrea::detail::unitless</defval>
         </param>
@@ -101,17 +96,16 @@
         <definition>astrea::astro::Geodetic::Geodetic</definition>
         <argsstring>(const Angle &amp;latitude, const Angle &amp;longitude, const Distance &amp;altitude)</argsstring>
         <name>Geodetic</name>
-        <qualifiedname>astrea::astro::Geodetic::Geodetic</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>latitude</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
+          <type>const Angle &amp;</type>
           <declname>longitude</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
+          <type>const Distance &amp;</type>
           <declname>altitude</declname>
         </param>
         <briefdescription>
@@ -154,17 +148,16 @@
         <definition>astrea::astro::Geodetic::Geodetic</definition>
         <argsstring>(const RadiusVector&lt; frames::earth::icrf &gt; &amp;r, const Date &amp;date, const CelestialBody *parent)</argsstring>
         <name>Geodetic</name>
-        <qualifiedname>astrea::astro::Geodetic::Geodetic</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
           <declname>r</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
           <declname>parent</declname>
         </param>
         <briefdescription>
@@ -191,13 +184,12 @@
         <definition>astrea::astro::Geodetic::Geodetic</definition>
         <argsstring>(const RadiusVector&lt; frames::earth::earth_fixed &gt; &amp;r, const CelestialBody *parent)</argsstring>
         <name>Geodetic</name>
-        <qualifiedname>astrea::astro::Geodetic::Geodetic</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt; &amp;</type>
+          <type>const <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::earth_fixed &gt; &amp;</type>
           <declname>r</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
           <declname>parent</declname>
         </param>
         <briefdescription>
@@ -231,17 +223,16 @@
         <definition>astrea::astro::Geodetic::Geodetic</definition>
         <argsstring>(const T &amp;elements, const AstrodynamicsSystem &amp;sys, const Date &amp;date)</argsstring>
         <name>Geodetic</name>
-        <qualifiedname>astrea::astro::Geodetic::Geodetic</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">T</ref> &amp;</type>
+          <type>const T &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
           <declname>sys</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -276,9 +267,8 @@
         <definition>astrea::astro::Geodetic::Geodetic</definition>
         <argsstring>(const Geodetic &amp;)</argsstring>
         <name>Geodetic</name>
-        <qualifiedname>astrea::astro::Geodetic::Geodetic</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -305,7 +295,6 @@
         <definition>astrea::astro::Geodetic::Geodetic</definition>
         <argsstring>(Geodetic &amp;&amp;) noexcept</argsstring>
         <name>Geodetic</name>
-        <qualifiedname>astrea::astro::Geodetic::Geodetic</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;&amp;</type>
           <defname>other</defname>
@@ -334,7 +323,6 @@
         <definition>Geodetic &amp; astrea::astro::Geodetic::operator=</definition>
         <argsstring>(Geodetic &amp;&amp;) noexcept</argsstring>
         <name>operator=</name>
-        <qualifiedname>astrea::astro::Geodetic::operator=</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;&amp;</type>
           <defname>other</defname>
@@ -365,9 +353,8 @@
         <definition>Geodetic &amp; astrea::astro::Geodetic::operator=</definition>
         <argsstring>(const Geodetic &amp;)</argsstring>
         <name>operator=</name>
-        <qualifiedname>astrea::astro::Geodetic::operator=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -396,7 +383,6 @@
         <definition>astrea::astro::Geodetic::~Geodetic</definition>
         <argsstring>()=default</argsstring>
         <name>~Geodetic</name>
-        <qualifiedname>astrea::astro::Geodetic::~Geodetic</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref>. </para>
         </briefdescription>
@@ -407,13 +393,12 @@
         <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" line="135" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Geodetic_1af18de508e8fcfb4731086a34ec8ef5b8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Geodetic::operator==</definition>
         <argsstring>(const Geodetic &amp;other) const</argsstring>
         <name>operator==</name>
-        <qualifiedname>astrea::astro::Geodetic::operator==</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -440,13 +425,12 @@
         <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" line="144" column="10" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.cpp" bodystart="88" bodyend="91"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Geodetic_1aec42fb5cc97ee2a376c3fb21c81c6c7d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::Geodetic::operator!=</definition>
         <argsstring>(const Geodetic &amp;other) const</argsstring>
         <name>operator!=</name>
-        <qualifiedname>astrea::astro::Geodetic::operator!=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -477,9 +461,8 @@
         <definition>Geodetic astrea::astro::Geodetic::operator+</definition>
         <argsstring>(const Geodetic &amp;other) const</argsstring>
         <name>operator+</name>
-        <qualifiedname>astrea::astro::Geodetic::operator+</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -508,9 +491,8 @@
         <definition>Geodetic &amp; astrea::astro::Geodetic::operator+=</definition>
         <argsstring>(const Geodetic &amp;other)</argsstring>
         <name>operator+=</name>
-        <qualifiedname>astrea::astro::Geodetic::operator+=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -539,9 +521,8 @@
         <definition>Geodetic astrea::astro::Geodetic::operator-</definition>
         <argsstring>(const Geodetic &amp;other) const</argsstring>
         <name>operator-</name>
-        <qualifiedname>astrea::astro::Geodetic::operator-</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -570,9 +551,8 @@
         <definition>Geodetic &amp; astrea::astro::Geodetic::operator-=</definition>
         <argsstring>(const Geodetic &amp;other)</argsstring>
         <name>operator-=</name>
-        <qualifiedname>astrea::astro::Geodetic::operator-=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -601,9 +581,8 @@
         <definition>Geodetic astrea::astro::Geodetic::operator*</definition>
         <argsstring>(const Unitless &amp;multiplier) const</argsstring>
         <name>operator*</name>
-        <qualifiedname>astrea::astro::Geodetic::operator*</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -632,9 +611,8 @@
         <definition>Geodetic &amp; astrea::astro::Geodetic::operator*=</definition>
         <argsstring>(const Unitless &amp;multiplier)</argsstring>
         <name>operator*=</name>
-        <qualifiedname>astrea::astro::Geodetic::operator*=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -659,13 +637,12 @@
         <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" line="201" column="14" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.cpp" bodystart="125" bodyend="131"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Geodetic_1a08cea8ef7016ac56b055d1d682ec10f4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &gt;</type>
+        <type>std::vector&lt; Unitless &gt;</type>
         <definition>std::vector&lt; Unitless &gt; astrea::astro::Geodetic::operator/</definition>
         <argsstring>(const Geodetic &amp;other) const</argsstring>
         <name>operator/</name>
-        <qualifiedname>astrea::astro::Geodetic::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -694,9 +671,8 @@
         <definition>Geodetic astrea::astro::Geodetic::operator/</definition>
         <argsstring>(const Unitless &amp;divisor) const</argsstring>
         <name>operator/</name>
-        <qualifiedname>astrea::astro::Geodetic::operator/</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -725,9 +701,8 @@
         <definition>Geodetic &amp; astrea::astro::Geodetic::operator/=</definition>
         <argsstring>(const Unitless &amp;divisor)</argsstring>
         <name>operator/=</name>
-        <qualifiedname>astrea::astro::Geodetic::operator/=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref> &amp;</type>
+          <type>const Unitless &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -752,20 +727,19 @@
         <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" line="225" column="14" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.cpp" bodystart="142" bodyend="148"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Geodetic_1a69c472f2a8537aa0b74d57d6cd453ad4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1BodyFixedFrame" kindref="compound">frames::earth::earth_fixed</ref> &gt;</type>
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::earth_fixed &gt;</type>
         <definition>RadiusVector&lt; frames::earth::earth_fixed &gt; astrea::astro::Geodetic::get_position</definition>
         <argsstring>(const CelestialBody *parent) const</argsstring>
         <name>get_position</name>
-        <qualifiedname>astrea::astro::Geodetic::get_position</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
           <declname>parent</declname>
         </param>
         <briefdescription>
-<para>Converts the <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> state vector to a <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector&lt;frames::earth::earth_fixed&gt;</ref>. </para>
+<para>Converts the <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> state vector to a RadiusVector&lt;frames::earth::earth_fixed&gt;. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector&lt;frames::earth::earth_fixed&gt;</ref> The position vector in <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> coordinates. </para>
+<para><simplesect kind="return"><para>RadiusVector&lt;frames::earth::earth_fixed&gt; The position vector in <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> coordinates. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -774,24 +748,23 @@
         <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" line="232" column="18" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.cpp" bodystart="161" bodyend="164"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Geodetic_1a32cd960ecc6f7a20f7e9a4b4bb308bbe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; <ref refid="structastrea_1_1astro_1_1InertialFrame" kindref="compound">frames::earth::icrf</ref> &gt;</type>
+        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt;</type>
         <definition>RadiusVector&lt; frames::earth::icrf &gt; astrea::astro::Geodetic::get_position</definition>
         <argsstring>(const Date &amp;date, const CelestialBody *parent) const</argsstring>
         <name>get_position</name>
-        <qualifiedname>astrea::astro::Geodetic::get_position</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
           <declname>parent</declname>
         </param>
         <briefdescription>
-<para>Converts the <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> state vector to a <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector&lt;frames::earth::icrf&gt;</ref>. </para>
+<para>Converts the <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> state vector to a RadiusVector&lt;frames::earth::icrf&gt;. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector&lt;frames::earth::icrf&gt;</ref> The position vector in <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> coordinates. </para>
+<para><simplesect kind="return"><para>RadiusVector&lt;frames::earth::icrf&gt; The position vector in <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> coordinates. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -799,12 +772,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" line="239" column="18" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.cpp" bodystart="166" bodyend="169"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geodetic_1ace0e95c58bdb75cff63d9af7969f4e72" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>const Angle &amp; astrea::astro::Geodetic::get_latitude</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geodetic_1abac34a27f08e5d5ae6a56cdc6bff47f2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Angle &amp;</type>
+        <definition>const Angle&amp; astrea::astro::Geodetic::get_latitude</definition>
         <argsstring>() const</argsstring>
         <name>get_latitude</name>
-        <qualifiedname>astrea::astro::Geodetic::get_latitude</qualifiedname>
         <briefdescription>
 <para>Get the latitude of the <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> state vector. </para>
         </briefdescription>
@@ -817,12 +789,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" line="246" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" bodystart="246" bodyend="246"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geodetic_1ae9052d7a195dc87255ff7f915d19ea78" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Angle</ref> &amp;</type>
-        <definition>const Angle &amp; astrea::astro::Geodetic::get_longitude</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geodetic_1af91e34c038d6e3a01f8fed758b405dd9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Angle &amp;</type>
+        <definition>const Angle&amp; astrea::astro::Geodetic::get_longitude</definition>
         <argsstring>() const</argsstring>
         <name>get_longitude</name>
-        <qualifiedname>astrea::astro::Geodetic::get_longitude</qualifiedname>
         <briefdescription>
 <para>Get the longitude of the <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> state vector. </para>
         </briefdescription>
@@ -835,12 +806,11 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" line="253" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" bodystart="253" bodyend="253"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geodetic_1a3298185618874f15e2f7ddea61b6a5d2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref> &amp;</type>
-        <definition>const Distance &amp; astrea::astro::Geodetic::get_altitude</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geodetic_1a81583596155bc3c084e6ee777d8429b6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Distance &amp;</type>
+        <definition>const Distance&amp; astrea::astro::Geodetic::get_altitude</definition>
         <argsstring>() const</argsstring>
         <name>get_altitude</name>
-        <qualifiedname>astrea::astro::Geodetic::get_altitude</qualifiedname>
         <briefdescription>
 <para>Get the altitude of the <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> state vector. </para>
         </briefdescription>
@@ -858,21 +828,20 @@
         <definition>Geodetic astrea::astro::Geodetic::interpolate</definition>
         <argsstring>(const Time &amp;thisTime, const Time &amp;otherTime, const Geodetic &amp;other, const Time &amp;targetTime) const</argsstring>
         <name>interpolate</name>
-        <qualifiedname>astrea::astro::Geodetic::interpolate</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>thisTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>otherTime</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
+          <type>const <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &amp;</type>
+          <type>const Time &amp;</type>
           <declname>targetTime</declname>
         </param>
         <briefdescription>
@@ -928,7 +897,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp" line="272" column="14" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geodetic.cpp" bodystart="150" bodyend="159"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>Class representing a <ref refid="classastrea_1_1astro_1_1Geodetic" kindref="compound">Geodetic</ref> state vector in astrodynamics. </para>
     </briefdescription>
@@ -947,9 +916,9 @@
       <member refid="classastrea_1_1astro_1_1Geodetic_1a7a986ecf1a6401f10f6baa372c21edf9" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>Geodetic</name></member>
       <member refid="classastrea_1_1astro_1_1Geodetic_1a2bc51e430955fe4bf39647369f34cf2b" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>Geodetic</name></member>
       <member refid="classastrea_1_1astro_1_1Geodetic_1a1eff1b5b2d39356ade70d1b10ecc8cd2" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>Geodetic</name></member>
-      <member refid="classastrea_1_1astro_1_1Geodetic_1a3298185618874f15e2f7ddea61b6a5d2" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>get_altitude</name></member>
-      <member refid="classastrea_1_1astro_1_1Geodetic_1ace0e95c58bdb75cff63d9af7969f4e72" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>get_latitude</name></member>
-      <member refid="classastrea_1_1astro_1_1Geodetic_1ae9052d7a195dc87255ff7f915d19ea78" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>get_longitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Geodetic_1a81583596155bc3c084e6ee777d8429b6" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>get_altitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Geodetic_1abac34a27f08e5d5ae6a56cdc6bff47f2" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>get_latitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Geodetic_1af91e34c038d6e3a01f8fed758b405dd9" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>get_longitude</name></member>
       <member refid="classastrea_1_1astro_1_1Geodetic_1a69c472f2a8537aa0b74d57d6cd453ad4" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>get_position</name></member>
       <member refid="classastrea_1_1astro_1_1Geodetic_1a32cd960ecc6f7a20f7e9a4b4bb308bbe" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>get_position</name></member>
       <member refid="classastrea_1_1astro_1_1Geodetic_1aa0619b81fae5767ec06db7e69e898488" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>interpolate</name></member>
@@ -963,7 +932,7 @@
       <member refid="classastrea_1_1astro_1_1Geodetic_1a08cea8ef7016ac56b055d1d682ec10f4" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>operator/</name></member>
       <member refid="classastrea_1_1astro_1_1Geodetic_1a0abd21fcf66b70d228f4703a99a71ca8" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>operator/</name></member>
       <member refid="classastrea_1_1astro_1_1Geodetic_1a7b4214f48cd2bf1f868813de69438627" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>operator/=</name></member>
-      <member refid="classastrea_1_1astro_1_1Geodetic_1a714220f34966c0d11b8ea5c0f1e0611f" prot="private" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1astro_1_1Geodetic_1a557265b3d11751038f05a6713c420035" prot="private" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>operator&lt;&lt;</name></member>
       <member refid="classastrea_1_1astro_1_1Geodetic_1a866aae96818603a97e151893ad563d96" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>operator=</name></member>
       <member refid="classastrea_1_1astro_1_1Geodetic_1a5c15c29d2d3d6130d1c7a109bba2a957" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>operator=</name></member>
       <member refid="classastrea_1_1astro_1_1Geodetic_1af18de508e8fcfb4731086a34ec8ef5b8" prot="public" virt="non-virtual"><scope>astrea::astro::Geodetic</scope><name>operator==</name></member>

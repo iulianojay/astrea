@@ -2,7 +2,7 @@
 
 # Struct astrea::astro::detail::VehicleInner
 
-**template &lt;[**typename**](classastrea_1_1astro_1_1CartesianVector.md) [**T**](classastrea_1_1astro_1_1CartesianVector.md)&gt;**
+**template &lt;typename T&gt;**
 
 
 
@@ -47,7 +47,7 @@ Inherits the following classes: [astrea::astro::detail::VehicleInnerBase](struct
 
 | Type | Name |
 | ---: | :--- |
-|  [**T**](classastrea_1_1astro_1_1CartesianVector.md) | [**\_value**](#variable-_value)  <br>_The value of the vehicle inner implementation, which is the user-defined vehicle type._  |
+|  T | [**\_value**](#variable-_value)  <br>_The value of the vehicle inner implementation, which is the user-defined vehicle type._  |
 
 
 
@@ -101,26 +101,38 @@ Inherits the following classes: [astrea::astro::detail::VehicleInnerBase](struct
 | Type | Name |
 | ---: | :--- |
 |   | [**VehicleInner**](#function-vehicleinner-15) () = default<br>_Default constructor for_ [_**VehicleInner**_](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) _._ |
-|   | [**VehicleInner**](#function-vehicleinner-25) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) &) = delete<br>_Deleted copy assignment operator._  |
+|   | [**VehicleInner**](#function-vehicleinner-25) (const [**VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) &) = delete<br>_Deleted copy assignment operator._  |
 |   | [**VehicleInner**](#function-vehicleinner-35) ([**VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) &&) = delete<br>_Deleted move assignment operator._  |
-|   | [**VehicleInner**](#function-vehicleinner-45) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**T**](classastrea_1_1astro_1_1CartesianVector.md) & x) <br>_Constructs a_ [_**VehicleInner**_](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) _with a given value._ |
-|   | [**VehicleInner**](#function-vehicleinner-55) ([**T**](classastrea_1_1astro_1_1CartesianVector.md) && x) <br>_Constructs a_ [_**VehicleInner**_](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) _with a given value._ |
+|   | [**VehicleInner**](#function-vehicleinner-45) (const T & x) <br>_Constructs a_ [_**VehicleInner**_](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) _with a given value._ |
+|   | [**VehicleInner**](#function-vehicleinner-55) (T && x) <br>_Constructs a_ [_**VehicleInner**_](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) _with a given value._ |
 | virtual std::unique\_ptr&lt; [**VehicleInnerBase**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md) &gt; | [**clone**](#function-clone) () const<br>_Clones the vehicle inner implementation._  |
-| virtual [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_coefficient\_of\_drag**](#function-get_coefficient_of_drag) () const<br>_Gets the coefficient of drag of the vehicle or a default value._  |
-| virtual [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_coefficient\_of\_lift**](#function-get_coefficient_of_lift) () const<br>_Gets the coefficient of lift of the vehicle or a default value._  |
-| virtual [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_coefficient\_of\_reflectivity**](#function-get_coefficient_of_reflectivity) () const<br>_Gets the coefficient of reflectivity of the vehicle or a default value._  |
-| virtual [**AccelerationVector**](namespaceastrea_1_1astro.md#typedef-accelerationvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**get\_inertial\_acceleration**](#function-get_inertial_acceleration) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) override const<br>_Get the acceleration of the frame in Earth-Centered Inertial coordinates._  |
-| virtual [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**get\_inertial\_position**](#function-get_inertial_position) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) override const<br>_Get the position of the frame in Earth-Centered Inertial coordinates._  |
-| virtual [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**get\_inertial\_velocity**](#function-get_inertial_velocity) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) override const<br>_Get the velocity of the frame in Earth-Centered Inertial coordinates._  |
-| virtual [**SurfaceArea**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_lift\_area**](#function-get_lift_area) () const<br>_Gets the lift area of the vehicle or a default value._  |
-| virtual [**Mass**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_mass**](#function-get_mass) () const<br>_Gets the mass of the vehicle._  |
+| virtual Unitless | [**get\_coefficient\_of\_drag**](#function-get_coefficient_of_drag) () const<br>_Gets the coefficient of drag of the vehicle or a default value._  |
+| virtual Unitless | [**get\_coefficient\_of\_lift**](#function-get_coefficient_of_lift) () const<br>_Gets the coefficient of lift of the vehicle or a default value._  |
+| virtual Unitless | [**get\_coefficient\_of\_reflectivity**](#function-get_coefficient_of_reflectivity) () const<br>_Gets the coefficient of reflectivity of the vehicle or a default value._  |
+| virtual [**AccelerationVector**](namespaceastrea_1_1astro.md#typedef-accelerationvector)&lt; frames::earth::icrf &gt; | [**get\_inertial\_acceleration**](#function-get_inertial_acceleration) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) override const<br>_Get the acceleration of the frame in Earth-Centered Inertial coordinates._  |
+| virtual [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::icrf &gt; | [**get\_inertial\_position**](#function-get_inertial_position) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) override const<br>_Get the position of the frame in Earth-Centered Inertial coordinates._  |
+| virtual [**VelocityVector**](namespaceastrea_1_1astro.md#typedef-velocityvector)&lt; frames::earth::icrf &gt; | [**get\_inertial\_velocity**](#function-get_inertial_velocity) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) override const<br>_Get the velocity of the frame in Earth-Centered Inertial coordinates._  |
+| virtual SurfaceArea | [**get\_lift\_area**](#function-get_lift_area) () const<br>_Gets the lift area of the vehicle or a default value._  |
+| virtual Mass | [**get\_mass**](#function-get_mass) () const<br>_Gets the mass of the vehicle._  |
 | virtual std::string | [**get\_name**](#function-get_name) () override const<br>_Gets the name of the vehicle._  |
-| virtual [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**void**](classastrea_1_1astro_1_1CartesianVector.md) \* | [**get\_ptr**](#function-get_ptr-12) () const<br>_Gets a pointer to the internal vehicle instance._  |
-| virtual [**void**](classastrea_1_1astro_1_1CartesianVector.md) \* | [**get\_ptr**](#function-get_ptr-22) () <br>_Gets a pointer to the internal vehicle instance._  |
-| virtual [**SurfaceArea**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_ram\_area**](#function-get_ram_area) () const<br>_Gets the ram area of the vehicle or a default value._  |
-| virtual [**SurfaceArea**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_solar\_area**](#function-get_solar_area) () const<br>_Gets the solar area of the vehicle or a default value._  |
-|  [**VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) & | [**operator=**](#function-operator) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) &) = delete<br>_Deleted copy assignment operator._  |
+| virtual const void \* | [**get\_ptr**](#function-get_ptr-12) () const<br>_Gets a pointer to the internal vehicle instance._  |
+| virtual void \* | [**get\_ptr**](#function-get_ptr-22) () <br>_Gets a pointer to the internal vehicle instance._  |
+| virtual SurfaceArea | [**get\_ram\_area**](#function-get_ram_area) () const<br>_Gets the ram area of the vehicle or a default value._  |
+| virtual SurfaceArea | [**get\_solar\_area**](#function-get_solar_area) () const<br>_Gets the solar area of the vehicle or a default value._  |
+|  [**VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) & | [**operator=**](#function-operator) (const [**VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) &) = delete<br>_Deleted copy assignment operator._  |
 |  [**VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) & | [**operator=**](#function-operator_1) ([**VehicleInner**](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) &&) = delete<br>_Deleted move assignment operator._  |
+|   | [**requires**](#function-requires-112) (!HasGetRamArea&lt; U &gt;) const<br>_Gets the default ram area of the vehicle._  |
+|   | [**requires**](#function-requires-212) (HasGetRamArea&lt; U &gt;) const<br>_Gets the ram area of the vehicle._  |
+|   | [**requires**](#function-requires-312) (!HasGetLiftArea&lt; U &gt;) const<br>_Gets the default lift area of the vehicle._  |
+|   | [**requires**](#function-requires-412) (HasGetLiftArea&lt; U &gt;) const<br>_Gets the lift area of the vehicle._  |
+|   | [**requires**](#function-requires-512) (!HasGetSolarArea&lt; U &gt;) const<br>_Gets the default solar area of the vehicle._  |
+|   | [**requires**](#function-requires-612) (HasGetSolarArea&lt; U &gt;) const<br>_Gets the solar area of the vehicle._  |
+|   | [**requires**](#function-requires-712) (!HasGetCoefficientOfDrag&lt; U &gt;) const<br>_Gets the default coefficient of drag of the vehicle._  |
+|   | [**requires**](#function-requires-812) (HasGetCoefficientOfDrag&lt; U &gt;) const<br>_Gets the coefficient of drag of the vehicle._  |
+|   | [**requires**](#function-requires-912) (!HasGetCoefficientOfLift&lt; U &gt;) const<br>_Gets the default coefficient of lift of the vehicle._  |
+|   | [**requires**](#function-requires-1012) (HasGetCoefficientOfLift&lt; U &gt;) const<br>_Gets the coefficient of lift of the vehicle._  |
+|   | [**requires**](#function-requires-1112) (!HasGetCoefficientOfReflectivity&lt; U &gt;) const<br>_Gets the default coefficient of reflectivity of the vehicle._  |
+|   | [**requires**](#function-requires-1212) (HasGetCoefficientOfReflectivity&lt; U &gt;) const<br>_Gets the coefficient of reflectivity of the vehicle._  |
 
 
 ## Public Functions inherited from astrea::astro::detail::VehicleInnerBase
@@ -130,15 +142,15 @@ See [astrea::astro::detail::VehicleInnerBase](structastrea_1_1astro_1_1detail_1_
 | Type | Name |
 | ---: | :--- |
 | virtual std::unique\_ptr&lt; [**VehicleInnerBase**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md) &gt; | [**clone**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-clone) () const = 0<br>_Clones the vehicle inner implementation._  |
-| virtual [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_coefficient\_of\_drag**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_coefficient_of_drag) () const = 0<br>_Gets the coefficient of drag of the vehicle._  |
-| virtual [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_coefficient\_of\_lift**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_coefficient_of_lift) () const = 0<br>_Gets the coefficient of lift of the vehicle._  |
-| virtual [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_coefficient\_of\_reflectivity**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_coefficient_of_reflectivity) () const = 0<br>_Gets the coefficient of reflectivity of the vehicle._  |
-| virtual [**SurfaceArea**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_lift\_area**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_lift_area) () const = 0<br>_Gets the lift area of the vehicle._  |
-| virtual [**Mass**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_mass**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_mass) () const = 0<br>_Gets the mass of the vehicle._  |
-| virtual [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**void**](classastrea_1_1astro_1_1CartesianVector.md) \* | [**get\_ptr**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_ptr-12) () const = 0<br>_Gets a pointer to the internal vehicle instance._  |
-| virtual [**void**](classastrea_1_1astro_1_1CartesianVector.md) \* | [**get\_ptr**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_ptr-22) () = 0<br>_Gets a pointer to the internal vehicle instance._  |
-| virtual [**SurfaceArea**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_ram\_area**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_ram_area) () const = 0<br>_Gets the ram area of the vehicle._  |
-| virtual [**SurfaceArea**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_solar\_area**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_solar_area) () const = 0<br>_Gets the solar area of the vehicle._  |
+| virtual Unitless | [**get\_coefficient\_of\_drag**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_coefficient_of_drag) () const = 0<br>_Gets the coefficient of drag of the vehicle._  |
+| virtual Unitless | [**get\_coefficient\_of\_lift**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_coefficient_of_lift) () const = 0<br>_Gets the coefficient of lift of the vehicle._  |
+| virtual Unitless | [**get\_coefficient\_of\_reflectivity**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_coefficient_of_reflectivity) () const = 0<br>_Gets the coefficient of reflectivity of the vehicle._  |
+| virtual SurfaceArea | [**get\_lift\_area**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_lift_area) () const = 0<br>_Gets the lift area of the vehicle._  |
+| virtual Mass | [**get\_mass**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_mass) () const = 0<br>_Gets the mass of the vehicle._  |
+| virtual const void \* | [**get\_ptr**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_ptr-12) () const = 0<br>_Gets a pointer to the internal vehicle instance._  |
+| virtual void \* | [**get\_ptr**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_ptr-22) () = 0<br>_Gets a pointer to the internal vehicle instance._  |
+| virtual SurfaceArea | [**get\_ram\_area**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_ram_area) () const = 0<br>_Gets the ram area of the vehicle._  |
+| virtual SurfaceArea | [**get\_solar\_area**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-get_solar_area) () const = 0<br>_Gets the solar area of the vehicle._  |
 | virtual  | [**~VehicleInnerBase**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md#function-vehicleinnerbase) () <br>_Destructor for_ [_**VehicleInnerBase**_](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md) _._ |
 
 
@@ -149,29 +161,13 @@ See [astrea::astro::FrameReference](classastrea_1_1astro_1_1FrameReference.md)
 | Type | Name |
 | ---: | :--- |
 |   | [**FrameReference**](classastrea_1_1astro_1_1FrameReference.md#function-framereference) () = default<br>_Default constructor for_ [_**FrameReference**_](classastrea_1_1astro_1_1FrameReference.md) _._ |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Acceleration**](classastrea_1_1astro_1_1CartesianVector.md), [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**get\_inertial\_acceleration**](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_acceleration) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the acceleration of the frame in Earth-Centered Inertial coordinates._  |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1CartesianVector.md), [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**get\_inertial\_position**](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_position) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the position of the frame in Earth-Centered Inertial coordinates._  |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md), [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**get\_inertial\_velocity**](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_velocity) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the velocity of the frame in Earth-Centered Inertial coordinates._  |
+| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frames::earth::icrf &gt; | [**get\_inertial\_acceleration**](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_acceleration) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the acceleration of the frame in Earth-Centered Inertial coordinates._  |
+| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, frames::earth::icrf &gt; | [**get\_inertial\_position**](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_position) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the position of the frame in Earth-Centered Inertial coordinates._  |
+| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, frames::earth::icrf &gt; | [**get\_inertial\_velocity**](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_velocity) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the velocity of the frame in Earth-Centered Inertial coordinates._  |
 | virtual std::string | [**get\_name**](classastrea_1_1astro_1_1FrameReference.md#function-get_name) () const = 0<br>_Get the name of the frame reference._  |
 | virtual  | [**~FrameReference**](classastrea_1_1astro_1_1FrameReference.md#function-framereference) () = default<br>_Default destructor for_ [_**FrameReference**_](classastrea_1_1astro_1_1FrameReference.md) _._ |
 
 
-## Public Static Functions
-
-| Type | Name |
-| ---: | :--- |
-|  [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_coefficient\_of\_drag\_impl**](#function-get_coefficient_of_drag_impl-12) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**U**](classastrea_1_1astro_1_1CartesianVector.md) &) <br>_Gets the default coefficient of drag of the vehicle._  |
-|  [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_coefficient\_of\_drag\_impl**](#function-get_coefficient_of_drag_impl-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**U**](classastrea_1_1astro_1_1CartesianVector.md) & value) <br>_Gets the coefficient of drag of the vehicle._  |
-|  [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_coefficient\_of\_lift\_impl**](#function-get_coefficient_of_lift_impl-12) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**U**](classastrea_1_1astro_1_1CartesianVector.md) &) <br>_Gets the default coefficient of lift of the vehicle._  |
-|  [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_coefficient\_of\_lift\_impl**](#function-get_coefficient_of_lift_impl-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**U**](classastrea_1_1astro_1_1CartesianVector.md) & value) <br>_Gets the coefficient of lift of the vehicle._  |
-|  [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_coefficient\_of\_reflectivity\_impl**](#function-get_coefficient_of_reflectivity_impl-12) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**U**](classastrea_1_1astro_1_1CartesianVector.md) &) <br>_Gets the default coefficient of reflectivity of the vehicle._  |
-|  [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_coefficient\_of\_reflectivity\_impl**](#function-get_coefficient_of_reflectivity_impl-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**U**](classastrea_1_1astro_1_1CartesianVector.md) & value) <br>_Gets the coefficient of reflectivity of the vehicle._  |
-|  [**SurfaceArea**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_lift\_area\_impl**](#function-get_lift_area_impl-12) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**U**](classastrea_1_1astro_1_1CartesianVector.md) &) <br>_Gets the default lift area of the vehicle._  |
-|  [**SurfaceArea**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_lift\_area\_impl**](#function-get_lift_area_impl-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**U**](classastrea_1_1astro_1_1CartesianVector.md) & value) <br>_Gets the lift area of the vehicle._  |
-|  [**SurfaceArea**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_ram\_area\_impl**](#function-get_ram_area_impl-12) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**U**](classastrea_1_1astro_1_1CartesianVector.md) &) <br>_Gets the default ram area of the vehicle._  |
-|  [**SurfaceArea**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_ram\_area\_impl**](#function-get_ram_area_impl-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**U**](classastrea_1_1astro_1_1CartesianVector.md) & value) <br>_Gets the ram area of the vehicle._  |
-|  [**SurfaceArea**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_solar\_area\_impl**](#function-get_solar_area_impl-12) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**U**](classastrea_1_1astro_1_1CartesianVector.md) &) <br>_Gets the default solar area of the vehicle._  |
-|  [**SurfaceArea**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_solar\_area\_impl**](#function-get_solar_area_impl-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**U**](classastrea_1_1astro_1_1CartesianVector.md) & value) <br>_Gets the solar area of the vehicle._  |
 
 
 
@@ -304,7 +300,7 @@ astrea::astro::detail::VehicleInner::VehicleInner () = default
 _Deleted copy assignment operator._ 
 ```C++
 astrea::astro::detail::VehicleInner::VehicleInner (
-    const  VehicleInner &
+    const VehicleInner &
 ) = delete
 ```
 
@@ -336,7 +332,7 @@ astrea::astro::detail::VehicleInner::VehicleInner (
 _Constructs a_ [_**VehicleInner**_](structastrea_1_1astro_1_1detail_1_1VehicleInner.md) _with a given value._
 ```C++
 inline explicit astrea::astro::detail::VehicleInner::VehicleInner (
-    const  T & x
+    const T & x
 ) 
 ```
 
@@ -498,7 +494,7 @@ Implements [*astrea::astro::detail::VehicleInnerBase::get\_coefficient\_of\_refl
 _Get the acceleration of the frame in Earth-Centered Inertial coordinates._ 
 ```C++
 inline virtual AccelerationVector < frames::earth::icrf > astrea::astro::detail::VehicleInner::get_inertial_acceleration (
-    const  Date & date
+    const Date & date
 ) override const
 ```
 
@@ -515,7 +511,7 @@ inline virtual AccelerationVector < frames::earth::icrf > astrea::astro::detail:
 
 **Returns:**
 
-[**AccelerationVector&lt;frames::earth::icrf&gt;**](namespaceastrea_1_1astro.md#typedef-accelerationvector) 
+AccelerationVector&lt;frames::earth::icrf&gt; 
 
 
 
@@ -534,7 +530,7 @@ Implements [*astrea::astro::FrameReference::get\_inertial\_acceleration*](classa
 _Get the position of the frame in Earth-Centered Inertial coordinates._ 
 ```C++
 inline virtual RadiusVector < frames::earth::icrf > astrea::astro::detail::VehicleInner::get_inertial_position (
-    const  Date & date
+    const Date & date
 ) override const
 ```
 
@@ -551,7 +547,7 @@ inline virtual RadiusVector < frames::earth::icrf > astrea::astro::detail::Vehic
 
 **Returns:**
 
-[**RadiusVector&lt;frames::earth::icrf&gt;**](namespaceastrea_1_1astro.md#typedef-radiusvector) 
+RadiusVector&lt;frames::earth::icrf&gt; 
 
 
 
@@ -570,7 +566,7 @@ Implements [*astrea::astro::FrameReference::get\_inertial\_position*](classastre
 _Get the velocity of the frame in Earth-Centered Inertial coordinates._ 
 ```C++
 inline virtual VelocityVector < frames::earth::icrf > astrea::astro::detail::VehicleInner::get_inertial_velocity (
-    const  Date & date
+    const Date & date
 ) override const
 ```
 
@@ -587,7 +583,7 @@ inline virtual VelocityVector < frames::earth::icrf > astrea::astro::detail::Veh
 
 **Returns:**
 
-[**VelocityVector&lt;frames::earth::icrf&gt;**](namespaceastrea_1_1astro.md#typedef-velocityvector) 
+VelocityVector&lt;frames::earth::icrf&gt; 
 
 
 
@@ -686,7 +682,7 @@ Implements [*astrea::astro::FrameReference::get\_name*](classastrea_1_1astro_1_1
 
 _Gets a pointer to the internal vehicle instance._ 
 ```C++
-inline virtual const  void * astrea::astro::detail::VehicleInner::get_ptr () const
+inline virtual const void * astrea::astro::detail::VehicleInner::get_ptr () const
 ```
 
 
@@ -795,7 +791,7 @@ Implements [*astrea::astro::detail::VehicleInnerBase::get\_solar\_area*](structa
 _Deleted copy assignment operator._ 
 ```C++
 VehicleInner & astrea::astro::detail::VehicleInner::operator= (
-    const  VehicleInner &
+    const VehicleInner &
 ) = delete
 ```
 
@@ -819,355 +815,17 @@ VehicleInner & astrea::astro::detail::VehicleInner::operator= (
 
 
 <hr>
-## Public Static Functions Documentation
 
 
 
-
-### function get\_coefficient\_of\_drag\_impl [1/2]
-
-_Gets the default coefficient of drag of the vehicle._ 
-```C++
-template<typename  U>
-static inline Unitless astrea::astro::detail::VehicleInner::get_coefficient_of_drag_impl (
-    const  U &
-) 
-```
-
-
-
-
-
-**Template parameters:**
-
-
-* `U` The type of the vehicle implementation. 
-
-
-
-**Parameters:**
-
-
-* `value` The vehicle instance to get the coefficient of drag from. 
-
-
-
-**Returns:**
-
-Unitless The coefficient of drag of the vehicle. 
-
-
-
-
-
-        
-
-<hr>
-
-
-
-### function get\_coefficient\_of\_drag\_impl [2/2]
-
-_Gets the coefficient of drag of the vehicle._ 
-```C++
-template<typename  U>
-static inline Unitless astrea::astro::detail::VehicleInner::get_coefficient_of_drag_impl (
-    const  U & value
-) 
-```
-
-
-
-
-
-**Template parameters:**
-
-
-* `U` The type of the vehicle implementation. 
-
-
-
-**Parameters:**
-
-
-* `value` The vehicle instance to get the coefficient of drag from. 
-
-
-
-**Returns:**
-
-Unitless The coefficient of drag of the vehicle. 
-
-
-
-
-
-        
-
-<hr>
-
-
-
-### function get\_coefficient\_of\_lift\_impl [1/2]
-
-_Gets the default coefficient of lift of the vehicle._ 
-```C++
-template<typename  U>
-static inline Unitless astrea::astro::detail::VehicleInner::get_coefficient_of_lift_impl (
-    const  U &
-) 
-```
-
-
-
-
-
-**Template parameters:**
-
-
-* `U` The type of the vehicle implementation. 
-
-
-
-**Parameters:**
-
-
-* `value` The vehicle instance to get the coefficient of lift from. 
-
-
-
-**Returns:**
-
-Unitless The coefficient of lift of the vehicle. 
-
-
-
-
-
-        
-
-<hr>
-
-
-
-### function get\_coefficient\_of\_lift\_impl [2/2]
-
-_Gets the coefficient of lift of the vehicle._ 
-```C++
-template<typename  U>
-static inline Unitless astrea::astro::detail::VehicleInner::get_coefficient_of_lift_impl (
-    const  U & value
-) 
-```
-
-
-
-
-
-**Template parameters:**
-
-
-* `U` The type of the vehicle implementation. 
-
-
-
-**Parameters:**
-
-
-* `value` The vehicle instance to get the coefficient of lift from. 
-
-
-
-**Returns:**
-
-Unitless The coefficient of lift of the vehicle. 
-
-
-
-
-
-        
-
-<hr>
-
-
-
-### function get\_coefficient\_of\_reflectivity\_impl [1/2]
-
-_Gets the default coefficient of reflectivity of the vehicle._ 
-```C++
-template<typename  U>
-static inline Unitless astrea::astro::detail::VehicleInner::get_coefficient_of_reflectivity_impl (
-    const  U &
-) 
-```
-
-
-
-
-
-**Template parameters:**
-
-
-* `U` The type of the vehicle implementation. 
-
-
-
-**Parameters:**
-
-
-* `value` The vehicle instance to get the coefficient of reflectivity from. 
-
-
-
-**Returns:**
-
-Unitless The coefficient of reflectivity of the vehicle. 
-
-
-
-
-
-        
-
-<hr>
-
-
-
-### function get\_coefficient\_of\_reflectivity\_impl [2/2]
-
-_Gets the coefficient of reflectivity of the vehicle._ 
-```C++
-template<typename  U>
-static inline Unitless astrea::astro::detail::VehicleInner::get_coefficient_of_reflectivity_impl (
-    const  U & value
-) 
-```
-
-
-
-
-
-**Template parameters:**
-
-
-* `U` The type of the vehicle implementation. 
-
-
-
-**Parameters:**
-
-
-* `value` The vehicle instance to get the coefficient of reflectivity from. 
-
-
-
-**Returns:**
-
-Unitless The coefficient of reflectivity of the vehicle. 
-
-
-
-
-
-        
-
-<hr>
-
-
-
-### function get\_lift\_area\_impl [1/2]
-
-_Gets the default lift area of the vehicle._ 
-```C++
-template<typename  U>
-static inline SurfaceArea astrea::astro::detail::VehicleInner::get_lift_area_impl (
-    const  U &
-) 
-```
-
-
-
-
-
-**Template parameters:**
-
-
-* `U` The type of the vehicle implementation. 
-
-
-
-**Parameters:**
-
-
-* `value` The vehicle instance to get the lift area from. 
-
-
-
-**Returns:**
-
-SurfaceArea The lift area of the vehicle. 
-
-
-
-
-
-        
-
-<hr>
-
-
-
-### function get\_lift\_area\_impl [2/2]
-
-_Gets the lift area of the vehicle._ 
-```C++
-template<typename  U>
-static inline SurfaceArea astrea::astro::detail::VehicleInner::get_lift_area_impl (
-    const  U & value
-) 
-```
-
-
-
-
-
-**Template parameters:**
-
-
-* `U` The type of the vehicle implementation. 
-
-
-
-**Parameters:**
-
-
-* `value` The vehicle instance to get the lift area from. 
-
-
-
-**Returns:**
-
-SurfaceArea The lift area of the vehicle. 
-
-
-
-
-
-        
-
-<hr>
-
-
-
-### function get\_ram\_area\_impl [1/2]
+### function requires [1/12]
 
 _Gets the default ram area of the vehicle._ 
 ```C++
-template<typename  U>
-static inline SurfaceArea astrea::astro::detail::VehicleInner::get_ram_area_impl (
-    const  U &
-) 
+template<typename U>
+inline astrea::astro::detail::VehicleInner::requires (
+    !HasGetRamArea< U >
+) const
 ```
 
 
@@ -1202,14 +860,14 @@ SurfaceArea The ram area of the vehicle.
 
 
 
-### function get\_ram\_area\_impl [2/2]
+### function requires [2/12]
 
 _Gets the ram area of the vehicle._ 
 ```C++
-template<typename  U>
-static inline SurfaceArea astrea::astro::detail::VehicleInner::get_ram_area_impl (
-    const  U & value
-) 
+template<typename U>
+inline astrea::astro::detail::VehicleInner::requires (
+    HasGetRamArea< U >
+) const
 ```
 
 
@@ -1244,14 +902,98 @@ SurfaceArea The ram area of the vehicle.
 
 
 
-### function get\_solar\_area\_impl [1/2]
+### function requires [3/12]
+
+_Gets the default lift area of the vehicle._ 
+```C++
+template<typename U>
+inline astrea::astro::detail::VehicleInner::requires (
+    !HasGetLiftArea< U >
+) const
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `U` The type of the vehicle implementation. 
+
+
+
+**Parameters:**
+
+
+* `value` The vehicle instance to get the lift area from. 
+
+
+
+**Returns:**
+
+SurfaceArea The lift area of the vehicle. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function requires [4/12]
+
+_Gets the lift area of the vehicle._ 
+```C++
+template<typename U>
+inline astrea::astro::detail::VehicleInner::requires (
+    HasGetLiftArea< U >
+) const
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `U` The type of the vehicle implementation. 
+
+
+
+**Parameters:**
+
+
+* `value` The vehicle instance to get the lift area from. 
+
+
+
+**Returns:**
+
+SurfaceArea The lift area of the vehicle. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function requires [5/12]
 
 _Gets the default solar area of the vehicle._ 
 ```C++
-template<typename  U>
-static inline SurfaceArea astrea::astro::detail::VehicleInner::get_solar_area_impl (
-    const  U &
-) 
+template<typename U>
+inline astrea::astro::detail::VehicleInner::requires (
+    !HasGetSolarArea< U >
+) const
 ```
 
 
@@ -1286,14 +1028,14 @@ SurfaceArea The solar area of the vehicle.
 
 
 
-### function get\_solar\_area\_impl [2/2]
+### function requires [6/12]
 
 _Gets the solar area of the vehicle._ 
 ```C++
-template<typename  U>
-static inline SurfaceArea astrea::astro::detail::VehicleInner::get_solar_area_impl (
-    const  U & value
-) 
+template<typename U>
+inline astrea::astro::detail::VehicleInner::requires (
+    HasGetSolarArea< U >
+) const
 ```
 
 
@@ -1317,6 +1059,258 @@ static inline SurfaceArea astrea::astro::detail::VehicleInner::get_solar_area_im
 **Returns:**
 
 SurfaceArea The solar area of the vehicle. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function requires [7/12]
+
+_Gets the default coefficient of drag of the vehicle._ 
+```C++
+template<typename U>
+inline astrea::astro::detail::VehicleInner::requires (
+    !HasGetCoefficientOfDrag< U >
+) const
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `U` The type of the vehicle implementation. 
+
+
+
+**Parameters:**
+
+
+* `value` The vehicle instance to get the coefficient of drag from. 
+
+
+
+**Returns:**
+
+Unitless The coefficient of drag of the vehicle. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function requires [8/12]
+
+_Gets the coefficient of drag of the vehicle._ 
+```C++
+template<typename U>
+inline astrea::astro::detail::VehicleInner::requires (
+    HasGetCoefficientOfDrag< U >
+) const
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `U` The type of the vehicle implementation. 
+
+
+
+**Parameters:**
+
+
+* `value` The vehicle instance to get the coefficient of drag from. 
+
+
+
+**Returns:**
+
+Unitless The coefficient of drag of the vehicle. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function requires [9/12]
+
+_Gets the default coefficient of lift of the vehicle._ 
+```C++
+template<typename U>
+inline astrea::astro::detail::VehicleInner::requires (
+    !HasGetCoefficientOfLift< U >
+) const
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `U` The type of the vehicle implementation. 
+
+
+
+**Parameters:**
+
+
+* `value` The vehicle instance to get the coefficient of lift from. 
+
+
+
+**Returns:**
+
+Unitless The coefficient of lift of the vehicle. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function requires [10/12]
+
+_Gets the coefficient of lift of the vehicle._ 
+```C++
+template<typename U>
+inline astrea::astro::detail::VehicleInner::requires (
+    HasGetCoefficientOfLift< U >
+) const
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `U` The type of the vehicle implementation. 
+
+
+
+**Parameters:**
+
+
+* `value` The vehicle instance to get the coefficient of lift from. 
+
+
+
+**Returns:**
+
+Unitless The coefficient of lift of the vehicle. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function requires [11/12]
+
+_Gets the default coefficient of reflectivity of the vehicle._ 
+```C++
+template<typename U>
+inline astrea::astro::detail::VehicleInner::requires (
+    !HasGetCoefficientOfReflectivity< U >
+) const
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `U` The type of the vehicle implementation. 
+
+
+
+**Parameters:**
+
+
+* `value` The vehicle instance to get the coefficient of reflectivity from. 
+
+
+
+**Returns:**
+
+Unitless The coefficient of reflectivity of the vehicle. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function requires [12/12]
+
+_Gets the coefficient of reflectivity of the vehicle._ 
+```C++
+template<typename U>
+inline astrea::astro::detail::VehicleInner::requires (
+    HasGetCoefficientOfReflectivity< U >
+) const
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `U` The type of the vehicle implementation. 
+
+
+
+**Parameters:**
+
+
+* `value` The vehicle instance to get the coefficient of reflectivity from. 
+
+
+
+**Returns:**
+
+Unitless The coefficient of reflectivity of the vehicle. 
 
 
 

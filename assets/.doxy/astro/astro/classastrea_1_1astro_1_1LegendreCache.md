@@ -52,10 +52,10 @@
 | Type | Name |
 | ---: | :--- |
 |   | [**LegendreCache**](#function-legendrecache-12) () = default<br>_Default constructor for_ [_**LegendreCache**_](classastrea_1_1astro_1_1LegendreCache.md) _._ |
-|   | [**LegendreCache**](#function-legendrecache-22) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & sys, [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t & degree, [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t & order) <br>_Builds the cache for Legendre polynomials and coefficients._  |
-|  [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_cosine\_coefficient**](#function-get_cosine_coefficient) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t & n, [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t & m) const<br>_Gets the cosine coefficient for given n and m._  |
-|  [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_normalizing\_coefficient**](#function-get_normalizing_coefficient) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t & n, [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t & m) const<br>_Gets the normalizing coefficient for given n and m._  |
-|  [**Unitless**](classastrea_1_1astro_1_1CartesianVector.md) | [**get\_sine\_coefficient**](#function-get_sine_coefficient) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t & n, [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t & m) const<br>_Gets the sine coefficient for given n and m._  |
+|   | [**LegendreCache**](#function-legendrecache-22) (const [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & sys, const std::size\_t & degree, const std::size\_t & order) <br>_Builds the cache for Legendre polynomials and coefficients._  |
+|  Unitless | [**get\_cosine\_coefficient**](#function-get_cosine_coefficient) (const std::size\_t & n, const std::size\_t & m) const<br>_Gets the cosine coefficient for given n and m._  |
+|  Unitless | [**get\_normalizing\_coefficient**](#function-get_normalizing_coefficient) (const std::size\_t & n, const std::size\_t & m) const<br>_Gets the normalizing coefficient for given n and m._  |
+|  Unitless | [**get\_sine\_coefficient**](#function-get_sine_coefficient) (const std::size\_t & n, const std::size\_t & m) const<br>_Gets the sine coefficient for given n and m._  |
 |   | [**~LegendreCache**](#function-legendrecache) () = default<br>_Default destructor for_ [_**LegendreCache**_](classastrea_1_1astro_1_1LegendreCache.md) _._ |
 
 
@@ -109,7 +109,7 @@ astrea::astro::LegendreCache::LegendreCache () = default
 _Builds the cache for Legendre polynomials and coefficients._ 
 ```C++
 astrea::astro::LegendreCache::LegendreCache (
-    const  AstrodynamicsSystem & sys,
+    const AstrodynamicsSystem & sys,
     const std::size_t & degree,
     const std::size_t & order
 ) 

@@ -1,14 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="structastrea_1_1astro_1_1EventDetector_1_1EventTracker" kind="struct" language="C++" prot="private">
     <compoundname>astrea::astro::EventDetector::EventTracker</compoundname>
-    <sectiondef kind="public-attrib">
+      <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structastrea_1_1astro_1_1EventDetector_1_1EventTracker_1a65400142cd05d7ae43c27c7e08e2ca51" prot="public" static="no" mutable="no">
         <type><ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref></type>
         <definition>Event astrea::astro::EventDetector::EventTracker::event</definition>
         <argsstring></argsstring>
         <name>event</name>
-        <qualifiedname>astrea::astro::EventDetector::EventTracker::event</qualifiedname>
         <briefdescription>
 <para>The <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> being tracked. </para>
         </briefdescription>
@@ -19,11 +18,10 @@
         <location file="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" line="42" column="15" bodyfile="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1EventDetector_1_1EventTracker_1a80f6f2d5b2c22b78c814b7fe96a538ad" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">bool</ref></type>
+        <type>bool</type>
         <definition>bool astrea::astro::EventDetector::EventTracker::firstMeasurement</definition>
         <argsstring></argsstring>
         <name>firstMeasurement</name>
-        <qualifiedname>astrea::astro::EventDetector::EventTracker::firstMeasurement</qualifiedname>
         <briefdescription>
 <para>Whether this is the first measurement for the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
         </briefdescription>
@@ -34,11 +32,10 @@
         <location file="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" line="43" column="14" bodyfile="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1EventDetector_1_1EventTracker_1a106015195eff5a08068c203b476ca012" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref></type>
+        <type>Time</type>
         <definition>Time astrea::astro::EventDetector::EventTracker::previousTime</definition>
         <argsstring></argsstring>
         <name>previousTime</name>
-        <qualifiedname>astrea::astro::EventDetector::EventTracker::previousTime</qualifiedname>
         <briefdescription>
 <para>The previous time the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> was measured. </para>
         </briefdescription>
@@ -49,11 +46,10 @@
         <location file="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" line="44" column="14" bodyfile="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1EventDetector_1_1EventTracker_1a90b64accd1b72a8885c3260bda8c49c9" prot="public" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref></type>
+        <type>Unitless</type>
         <definition>Unitless astrea::astro::EventDetector::EventTracker::previousValue</definition>
         <argsstring></argsstring>
         <name>previousValue</name>
-        <qualifiedname>astrea::astro::EventDetector::EventTracker::previousValue</qualifiedname>
         <briefdescription>
 <para>The previous value the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> was measured at. </para>
         </briefdescription>
@@ -64,11 +60,10 @@
         <location file="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" line="45" column="18" bodyfile="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1astro_1_1EventDetector_1_1EventTracker_1aa3680f72299d1c319f23e70522107100" prot="public" static="no" mutable="no">
-        <type>std::set&lt; <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref> &gt;</type>
+        <type>std::set&lt; Time &gt;</type>
         <definition>std::set&lt;Time&gt; astrea::astro::EventDetector::EventTracker::detectionTimes</definition>
         <argsstring></argsstring>
         <name>detectionTimes</name>
-        <qualifiedname>astrea::astro::EventDetector::EventTracker::detectionTimes</qualifiedname>
         <briefdescription>
 <para>The times at which the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> was detected. </para>
         </briefdescription>
@@ -78,7 +73,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" line="46" column="18" bodyfile="astrea/astro/astro/propagation/event_detection/EventDetector.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
+      </sectiondef>
     <briefdescription>
 <para>A struct for tracking events. </para>
     </briefdescription>

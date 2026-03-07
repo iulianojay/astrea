@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="dir_8b2b76eceb189c78e8c8535df8f613d6" kind="dir">
     <compoundname>astrea/astro/astro/state/orbital_data_formats/instances</compoundname>
     <innerfile refid="GeneralPerturbations_8cpp">GeneralPerturbations.cpp</innerfile>

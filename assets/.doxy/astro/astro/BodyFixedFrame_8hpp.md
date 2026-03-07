@@ -33,11 +33,6 @@ _Header file for the BodyFixedFrame class in the astro namespace._ [More...](#de
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
 
 
-## Classes
-
-| Type | Name |
-| ---: | :--- |
-| struct | [**BodyFixedFrame**](structastrea_1_1astro_1_1BodyFixedFrame.md) &lt;origin&gt;<br>_Base class for all body fixed frames._  |
 
 
 

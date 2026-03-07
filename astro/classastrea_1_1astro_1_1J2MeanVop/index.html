@@ -6302,15 +6302,15 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1StateTransitionMatrix/"><strong>StateTransitionMatrix</strong></a></td>
-<td style="text-align: left;"><a href="#function-compute_stm"><strong>compute_stm</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) override const<br><em>Computes the state transition matrix (STM) using Cowell's method.</em></td>
+<td style="text-align: left;"><a href="#function-compute_stm"><strong>compute_stm</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, const <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) override const<br><em>Computes the state transition matrix (STM) using Cowell's method.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>constexpr</strong></a> std::size_t</td>
+<td style="text-align: right;">virtual constexpr std::size_t</td>
 <td style="text-align: left;"><a href="#function-get_expected_set_id"><strong>get_expected_set_id</strong></a> () override const<br><em>Returns the expected set of orbital elements for this equations of motion class.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1OrbitalElementPartials/"><strong>OrbitalElementPartials</strong></a></td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator()</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) override const<br><em>Computes the partial derivatives of the orbital elements using the J2 Mean VOP method.</em></td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator()</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, const <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) override const<br><em>Computes the partial derivatives of the orbital elements using the J2 Mean VOP method.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;"></td>
@@ -6334,15 +6334,15 @@ You're not viewing the latest version.
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1StateTransitionMatrix/"><strong>StateTransitionMatrix</strong></a></td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1EquationsOfMotion/#function-compute_stm"><strong>compute_stm</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const = 0<br><em>Computes the state transition matrix (STM).</em></td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1EquationsOfMotion/#function-compute_stm"><strong>compute_stm</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, const <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const = 0<br><em>Computes the state transition matrix (STM).</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>constexpr</strong></a> std::size_t</td>
+<td style="text-align: right;">virtual constexpr std::size_t</td>
 <td style="text-align: left;"><a href="../classastrea_1_1astro_1_1EquationsOfMotion/#function-get_expected_set_id"><strong>get_expected_set_id</strong></a> () const = 0<br><em>Returns the expected set of orbital elements for this method.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual <a href="../classastrea_1_1astro_1_1OrbitalElementPartials/"><strong>OrbitalElementPartials</strong></a></td>
-<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1EquationsOfMotion/#function-operator"><strong>operator()</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const = 0<br><em>Computes the partial derivatives of the orbital elements.</em></td>
+<td style="text-align: left;"><a href="../classastrea_1_1astro_1_1EquationsOfMotion/#function-operator"><strong>operator()</strong></a> (const <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> &amp; state, const <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> &amp; vehicle) const = 0<br><em>Computes the partial derivatives of the orbital elements.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual</td>
@@ -6360,8 +6360,8 @@ You're not viewing the latest version.
 <h3 id="function-compute_stm">function compute_stm<a class="headerlink" href="#function-compute_stm" title="Permanent link">&para;</a></h3>
 <p><em>Computes the state transition matrix (STM) using Cowell's method.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">StateTransitionMatrix</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">J2MeanVop</span><span class="o">::</span><span class="n">compute_stm</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Vehicle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Vehicle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6386,8 +6386,8 @@ You're not viewing the latest version.
 <h3 id="function-operator">function operator()<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
 <p><em>Computes the partial derivatives of the orbital elements using the J2 Mean VOP method.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">OrbitalElementPartials</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">J2MeanVop</span><span class="o">::</span><span class="k">operator</span><span class="p">()</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Vehicle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Vehicle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>

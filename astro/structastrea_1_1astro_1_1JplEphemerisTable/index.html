@@ -6296,11 +6296,11 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a></td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a></td>
 <td style="text-align: left;"><a href="#variable-start_date"><strong>START_DATE</strong></a>   = <code>[**Date**](classastrea_1_1astro_1_1Date.md)("1999-12-24 00:00:00")</code><br><em>Lower bound on MJD J2K in the TDB time system.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a></td>
+<td style="text-align: right;">const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a></td>
 <td style="text-align: left;"><a href="#variable-stop_date"><strong>STOP_DATE</strong></a>   = <code>[**Date**](classastrea_1_1astro_1_1Date.md)("2100-01-12 00:00:00")</code><br><em>Upper bound on MJD J2K in the TDB time system.</em></td>
 </tr>
 </tbody>
@@ -6335,7 +6335,7 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;">std::size_t</td>
-<td style="text-align: left;"><a href="#function-get_index"><strong>get_index</strong></a> (<a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date, <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>const</strong></a> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>Time</strong></a> &amp; timePerPoly) <br><em>Get the index corresponding to the Chebyshev polynomial coefficients.</em></td>
+<td style="text-align: left;"><a href="#function-get_index"><strong>get_index</strong></a> (const <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> &amp; date, const Time &amp; timePerPoly) <br><em>Get the index corresponding to the Chebyshev polynomial coefficients.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6365,8 +6365,8 @@ You're not viewing the latest version.
 <h3 id="function-get_index">function get_index<a class="headerlink" href="#function-get_index" title="Permanent link">&para;</a></h3>
 <p><em>Get the index corresponding to the Chebyshev polynomial coefficients.</em> 
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">JplEphemerisTable</span><span class="o">::</span><span class="n">get_index</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span><span class="p">,</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">timePerPoly</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">timePerPoly</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>

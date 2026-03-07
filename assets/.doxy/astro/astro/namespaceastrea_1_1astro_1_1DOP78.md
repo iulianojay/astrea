@@ -37,11 +37,11 @@
 
 | Type | Name |
 | ---: | :--- |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) | [**a**](#variable-a)  <br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) | [**b**](#variable-b)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) | [**bhat**](#variable-bhat)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) [**double**](classastrea_1_1astro_1_1CartesianVector.md) | [**c**](#variable-c)   = `/* multi line expression */`<br> |
-|  [**const**](classastrea_1_1astro_1_1CartesianVector.md) std::size\_t | [**nStages**](#variable-nstages)   = `13`<br> |
+|  const double | [**a**](#variable-a)  <br> |
+|  const double | [**b**](#variable-b)   = `/* multi line expression */`<br> |
+|  const double | [**bhat**](#variable-bhat)   = `/* multi line expression */`<br> |
+|  const double | [**c**](#variable-c)   = `/* multi line expression */`<br> |
+|  const std::size\_t | [**nStages**](#variable-nstages)   = `13`<br> |
 
 
 

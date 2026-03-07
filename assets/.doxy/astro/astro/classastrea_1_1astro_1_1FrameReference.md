@@ -16,7 +16,7 @@ _Base class for all frame references._ [More...](#detailed-description)
 
 
 
-Inherited by the following classes: [astrea::astro::PayloadPlatform](classastrea_1_1astro_1_1PayloadPlatform.md),  [astrea::astro::NullVehicle](classastrea_1_1astro_1_1NullVehicle.md),  [astrea::astro::PayloadPlatform](classastrea_1_1astro_1_1PayloadPlatform.md),  [astrea::astro::Vehicle](classastrea_1_1astro_1_1Vehicle.md),  [astrea::astro::detail::VehicleInnerBase](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md)
+Inherited by the following classes: [astrea::astro::NullVehicle](classastrea_1_1astro_1_1NullVehicle.md),  [astrea::astro::PayloadPlatform](classastrea_1_1astro_1_1PayloadPlatform.md),  [astrea::astro::Vehicle](classastrea_1_1astro_1_1Vehicle.md),  [astrea::astro::detail::VehicleInnerBase](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md)
 
 
 
@@ -54,9 +54,9 @@ Inherited by the following classes: [astrea::astro::PayloadPlatform](classastrea
 | Type | Name |
 | ---: | :--- |
 |   | [**FrameReference**](#function-framereference) () = default<br>_Default constructor for_ [_**FrameReference**_](classastrea_1_1astro_1_1FrameReference.md) _._ |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Acceleration**](classastrea_1_1astro_1_1CartesianVector.md), [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**get\_inertial\_acceleration**](#function-get_inertial_acceleration) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the acceleration of the frame in Earth-Centered Inertial coordinates._  |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1CartesianVector.md), [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**get\_inertial\_position**](#function-get_inertial_position) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the position of the frame in Earth-Centered Inertial coordinates._  |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; [**Velocity**](classastrea_1_1astro_1_1CartesianVector.md), [**frames::earth::icrf**](structastrea_1_1astro_1_1InertialFrame.md) &gt; | [**get\_inertial\_velocity**](#function-get_inertial_velocity) ([**const**](classastrea_1_1astro_1_1CartesianVector.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the velocity of the frame in Earth-Centered Inertial coordinates._  |
+| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frames::earth::icrf &gt; | [**get\_inertial\_acceleration**](#function-get_inertial_acceleration) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the acceleration of the frame in Earth-Centered Inertial coordinates._  |
+| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, frames::earth::icrf &gt; | [**get\_inertial\_position**](#function-get_inertial_position) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the position of the frame in Earth-Centered Inertial coordinates._  |
+| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, frames::earth::icrf &gt; | [**get\_inertial\_velocity**](#function-get_inertial_velocity) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the velocity of the frame in Earth-Centered Inertial coordinates._  |
 | virtual std::string | [**get\_name**](#function-get_name) () const = 0<br>_Get the name of the frame reference._  |
 | virtual  | [**~FrameReference**](#function-framereference) () = default<br>_Default destructor for_ [_**FrameReference**_](classastrea_1_1astro_1_1FrameReference.md) _._ |
 
@@ -121,8 +121,8 @@ Initializes the frame reference with default values.
 
 _Get the acceleration of the frame in Earth-Centered Inertial coordinates._ 
 ```C++
-virtual CartesianVector < Acceleration , frames::earth::icrf > astrea::astro::FrameReference::get_inertial_acceleration (
-    const  Date & date
+virtual CartesianVector < Acceleration, frames::earth::icrf > astrea::astro::FrameReference::get_inertial_acceleration (
+    const Date & date
 ) const
 ```
 
@@ -155,8 +155,8 @@ CartesianVector&lt;Acceleration, frames::earth::icrf&gt;
 
 _Get the position of the frame in Earth-Centered Inertial coordinates._ 
 ```C++
-virtual CartesianVector < Distance , frames::earth::icrf > astrea::astro::FrameReference::get_inertial_position (
-    const  Date & date
+virtual CartesianVector < Distance, frames::earth::icrf > astrea::astro::FrameReference::get_inertial_position (
+    const Date & date
 ) const = 0
 ```
 
@@ -189,8 +189,8 @@ CartesianVector&lt;Distance, frames::earth::icrf&gt;
 
 _Get the velocity of the frame in Earth-Centered Inertial coordinates._ 
 ```C++
-virtual CartesianVector < Velocity , frames::earth::icrf > astrea::astro::FrameReference::get_inertial_velocity (
-    const  Date & date
+virtual CartesianVector < Velocity, frames::earth::icrf > astrea::astro::FrameReference::get_inertial_velocity (
+    const Date & date
 ) const = 0
 ```
 

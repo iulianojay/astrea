@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
   <compounddef id="Cartesian_8hpp" kind="file" language="C++">
     <compoundname>Cartesian.hpp</compoundname>
     <includes local="no">iosfwd</includes>
@@ -16,15 +16,309 @@
     <includedby refid="TwoBody_8cpp" local="no">astrea/astro/astro/propagation/equations_of_motion/TwoBody.cpp</includedby>
     <includedby refid="OblatenessForce_8cpp" local="no">astrea/astro/astro/propagation/force_models/OblatenessForce.cpp</includedby>
     <includedby refid="SolarRadiationPressure_8cpp" local="no">astrea/astro/astro/propagation/force_models/SolarRadiationPressure.cpp</includedby>
-    <includedby refid="OrbitalElements_8hpp" local="no">astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp</includedby>
     <includedby refid="Cartesian_8cpp" local="no">astrea/astro/astro/state/orbital_elements/instances/Cartesian.cpp</includedby>
     <includedby refid="Keplerian_8cpp" local="no">astrea/astro/astro/state/orbital_elements/instances/Keplerian.cpp</includedby>
     <includedby refid="orbital__elements_8hpp" local="no">astrea/astro/astro/state/orbital_elements/orbital_elements.hpp</includedby>
+    <includedby refid="OrbitalElements_8hpp" local="no">astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp</includedby>
     <incdepgraph>
-      <node id="4">
-        <label>astro/astro.fwd.hpp</label>
-        <link refid="astro_8fwd_8hpp"/>
-        <childnode refid="5" relation="include">
+      <node id="19">
+        <label>astro/frames/frames.hpp</label>
+        <link refid="frames_8hpp_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>math/chebyshev_util.hpp</label>
+      </node>
+      <node id="13">
+        <label>utilities/string_util.hpp</label>
+      </node>
+      <node id="47">
+        <label>astro/systems/planetary_bodies/Jupiter/Europa.hpp</label>
+        <link refid="Europa_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>astro/systems/planetary_bodies/Venus/Venus.hpp</label>
+        <link refid="Venus_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>astro/systems/planetary_bodies/Saturn/Iapetus.hpp</label>
+        <link refid="Iapetus_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="6">
+        <label>stdint.h</label>
+      </node>
+      <node id="5">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>mp-units/math.h</label>
+      </node>
+      <node id="60">
+        <label>astro/systems/planetary_bodies/Saturn/Titan.hpp</label>
+        <link refid="Titan_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>mp-units/systems/iau.h</label>
+      </node>
+      <node id="64">
+        <label>astro/systems/planetary_bodies/Uranus/Uranus.hpp</label>
+        <link refid="Uranus_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>string</label>
+      </node>
+      <node id="21">
+        <label>astro/frames/instances/body_fixed_frames.hpp</label>
+        <link refid="body__fixed__frames_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>mp-units/systems/angular/math.h</label>
+      </node>
+      <node id="33">
+        <label>unordered_set</label>
+      </node>
+      <node id="48">
+        <label>astro/systems/planetary_bodies/Jupiter/Ganymede.hpp</label>
+        <link refid="Ganymede_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>astro/systems/planetary_bodies/Earth/Moon.hpp</label>
+        <link refid="Moon_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>astro/systems/planetary_bodies/Mars/Deimos.hpp</label>
+        <link refid="Deimos_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>astro/systems/planetary_bodies/Uranus/Oberon.hpp</label>
+        <link refid="Oberon_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>astro/utilities/conversions.hpp</label>
+        <link refid="conversions_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>astro/time/JulianDateClock.hpp</label>
+        <link refid="JulianDateClock_8hpp"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>astro/systems/planetary_bodies/Jupiter/Jupiter.hpp</label>
+        <link refid="Jupiter_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="63">
+        <label>astro/systems/planetary_bodies/Uranus/Titania.hpp</label>
+        <link refid="Titania_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>astro/systems/CelestialBodyParameters.hpp</label>
+        <link refid="CelestialBodyParameters_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>astro/systems/planetary_bodies/Neptune/Triton.hpp</label>
+        <link refid="Triton_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>astro/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="7">
@@ -51,6 +345,75 @@
         <childnode refid="18" relation="include">
         </childnode>
       </node>
+      <node id="1">
+        <label>astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp</label>
+        <link refid="Cartesian_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>typeinfo</label>
+      </node>
+      <node id="16">
+        <label>astro/frames/frame_concepts.hpp</label>
+        <link refid="frame__concepts_8hpp"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>vector</label>
+      </node>
+      <node id="8">
+        <label>array</label>
+      </node>
+      <node id="55">
+        <label>astro/systems/planetary_bodies/Neptune/Neptune.hpp</label>
+        <link refid="Neptune_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>astro/systems/planetary_bodies/Jupiter/Io.hpp</label>
+        <link refid="Io_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
       <node id="14">
         <label>astro/frames/Frame.hpp</label>
         <link refid="Frame_8hpp"/>
@@ -63,44 +426,46 @@
         <childnode refid="16" relation="include">
         </childnode>
       </node>
-      <node id="16">
-        <label>astro/frames/frame_concepts.hpp</label>
-        <link refid="frame__concepts_8hpp"/>
-        <childnode refid="17" relation="include">
+      <node id="54">
+        <label>astro/systems/planetary_bodies/Mercury/Mercury.hpp</label>
+        <link refid="Mercury_8hpp"/>
+        <childnode refid="41" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
-      </node>
-      <node id="19">
-        <label>astro/frames/frames.hpp</label>
-        <link refid="frames_8hpp_source"/>
-        <childnode refid="20" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="20">
-        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
-        <link refid="body__centered__inertial__frames_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>astro/frames/instances/body_fixed_frames.hpp</label>
-        <link refid="body__fixed__frames_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="22">
-        <label>astro/frames/instances/defined_rotations.hpp</label>
-        <link refid="defined__rotations_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="35" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>iosfwd</label>
+      </node>
+      <node id="24">
+        <label>iostream</label>
+      </node>
+      <node id="58">
+        <label>astro/systems/planetary_bodies/Saturn/Rhea.hpp</label>
+        <link refid="Rhea_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
         </childnode>
       </node>
       <node id="18">
@@ -135,50 +500,112 @@
         <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="23">
-        <label>astro/frames/types/DirectionCosineMatrix.hpp</label>
-        <link refid="DirectionCosineMatrix_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
+      <node id="28">
+        <label>chrono</label>
+      </node>
+      <node id="20">
+        <label>astro/frames/instances/body_centered_inertial_frames.hpp</label>
+        <link refid="body__centered__inertial__frames_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
+      </node>
+      <node id="26">
+        <label>mp-units/systems/si/chrono.h</label>
+      </node>
+      <node id="22">
+        <label>astro/frames/instances/defined_rotations.hpp</label>
+        <link refid="defined__rotations_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
         </childnode>
       </node>
-      <node id="30">
-        <label>astro/frames/types/InertialFrame.hpp</label>
-        <link refid="InertialFrame_8hpp"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
+      <node id="12">
+        <label>units/typedefs.hpp</label>
       </node>
-      <node id="1">
-        <label>astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp</label>
-        <link refid="Cartesian_8hpp"/>
-        <childnode refid="2" relation="include">
+      <node id="17">
+        <label>concepts</label>
+      </node>
+      <node id="52">
+        <label>astro/systems/planetary_bodies/Mars/Mars.hpp</label>
+        <link refid="Mars_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="35" relation="include">
         </childnode>
         <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>astro/systems/planetary_bodies/Jupiter/Callisto.hpp</label>
+        <link refid="Callisto_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>astro/systems/planetary_bodies/Sun/Sun.hpp</label>
+        <link refid="Sun_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>astro/systems/planetary_bodies/Mars/Phobos.hpp</label>
+        <link refid="Phobos_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
       <node id="31">
@@ -221,12 +648,52 @@
         <childnode refid="38" relation="include">
         </childnode>
       </node>
-      <node id="37">
-        <label>astro/systems/CelestialBodyParameters.hpp</label>
-        <link refid="CelestialBodyParameters_8hpp"/>
+      <node id="59">
+        <label>astro/systems/planetary_bodies/Saturn/Saturn.hpp</label>
+        <link refid="Saturn_8hpp"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>astro/frames/types/InertialFrame.hpp</label>
+        <link refid="InertialFrame_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>astro/frames/types/DirectionCosineMatrix.hpp</label>
+        <link refid="DirectionCosineMatrix_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="40">
@@ -247,382 +714,24 @@
         <childnode refid="44" relation="include">
         </childnode>
       </node>
-      <node id="45">
-        <label>astro/systems/planetary_bodies/Earth/Moon.hpp</label>
-        <link refid="Moon_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
+      <node id="3">
+        <label>units/units.hpp</label>
       </node>
-      <node id="46">
-        <label>astro/systems/planetary_bodies/Jupiter/Callisto.hpp</label>
-        <link refid="Callisto_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
+      <node id="32">
+        <label>memory</label>
       </node>
-      <node id="47">
-        <label>astro/systems/planetary_bodies/Jupiter/Europa.hpp</label>
-        <link refid="Europa_8hpp"/>
-        <childnode refid="41" relation="include">
+      <node id="25">
+        <label>astro/time/Date.hpp</label>
+        <link refid="Date_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="48">
-        <label>astro/systems/planetary_bodies/Jupiter/Ganymede.hpp</label>
-        <link refid="Ganymede_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="49">
-        <label>astro/systems/planetary_bodies/Jupiter/Io.hpp</label>
-        <link refid="Io_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="50">
-        <label>astro/systems/planetary_bodies/Jupiter/Jupiter.hpp</label>
-        <link refid="Jupiter_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="51">
-        <label>astro/systems/planetary_bodies/Mars/Deimos.hpp</label>
-        <link refid="Deimos_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="52">
-        <label>astro/systems/planetary_bodies/Mars/Mars.hpp</label>
-        <link refid="Mars_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="53">
-        <label>astro/systems/planetary_bodies/Mars/Phobos.hpp</label>
-        <link refid="Phobos_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="54">
-        <label>astro/systems/planetary_bodies/Mercury/Mercury.hpp</label>
-        <link refid="Mercury_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="55">
-        <label>astro/systems/planetary_bodies/Neptune/Neptune.hpp</label>
-        <link refid="Neptune_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="56">
-        <label>astro/systems/planetary_bodies/Neptune/Triton.hpp</label>
-        <link refid="Triton_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="57">
-        <label>astro/systems/planetary_bodies/Saturn/Iapetus.hpp</label>
-        <link refid="Iapetus_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="58">
-        <label>astro/systems/planetary_bodies/Saturn/Rhea.hpp</label>
-        <link refid="Rhea_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="59">
-        <label>astro/systems/planetary_bodies/Saturn/Saturn.hpp</label>
-        <link refid="Saturn_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="60">
-        <label>astro/systems/planetary_bodies/Saturn/Titan.hpp</label>
-        <link refid="Titan_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="61">
-        <label>astro/systems/planetary_bodies/Sun/Sun.hpp</label>
-        <link refid="Sun_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="62">
-        <label>astro/systems/planetary_bodies/Uranus/Oberon.hpp</label>
-        <link refid="Oberon_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="63">
-        <label>astro/systems/planetary_bodies/Uranus/Titania.hpp</label>
-        <link refid="Titania_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="64">
-        <label>astro/systems/planetary_bodies/Uranus/Uranus.hpp</label>
-        <link refid="Uranus_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-      </node>
-      <node id="65">
-        <label>astro/systems/planetary_bodies/Venus/Venus.hpp</label>
-        <link refid="Venus_8hpp"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="27" relation="include">
         </childnode>
       </node>
       <node id="39">
@@ -673,296 +782,143 @@
         <childnode refid="65" relation="include">
         </childnode>
       </node>
-      <node id="25">
-        <label>astro/time/Date.hpp</label>
-        <link refid="Date_8hpp"/>
-        <childnode refid="2" relation="include">
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="23">
+        <label>astrea/astro/astro/state/State.hpp</label>
+        <link refid="State_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="27" relation="include">
         </childnode>
       </node>
-      <node id="27">
-        <label>astro/time/JulianDateClock.hpp</label>
-        <link refid="JulianDateClock_8hpp"/>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>astro/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="44">
-        <label>astro/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
+      <node id="19">
+        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
+        <link refid="Plane_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="38">
-        <label>astro/utilities/conversions.hpp</label>
-        <link refid="conversions_8hpp"/>
-        <childnode refid="10" relation="include">
+      <node id="16">
+        <label>astrea/astro/astro/platforms/Payload.hpp</label>
+        <link refid="Payload_8hpp"/>
+        <childnode refid="17" relation="include">
         </childnode>
+      </node>
+      <node id="20">
+        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
+        <link refid="Shell_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-      </node>
-      <node id="8">
-        <label>array</label>
-      </node>
-      <node id="28">
-        <label>chrono</label>
-      </node>
-      <node id="17">
-        <label>concepts</label>
-      </node>
-      <node id="2">
-        <label>iosfwd</label>
-      </node>
-      <node id="24">
-        <label>iostream</label>
-      </node>
-      <node id="36">
-        <label>math/chebyshev_util.hpp</label>
-      </node>
-      <node id="32">
-        <label>memory</label>
-      </node>
-      <node id="10">
-        <label>mp-units/math.h</label>
-      </node>
-      <node id="41">
-        <label>mp-units/systems/angular.h</label>
-      </node>
-      <node id="11">
-        <label>mp-units/systems/angular/math.h</label>
-      </node>
-      <node id="42">
-        <label>mp-units/systems/iau.h</label>
-      </node>
-      <node id="43">
-        <label>mp-units/systems/si.h</label>
-      </node>
-      <node id="26">
-        <label>mp-units/systems/si/chrono.h</label>
       </node>
       <node id="6">
-        <label>stdint.h</label>
+        <label>astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp</label>
+        <link refid="EquinoctialVop_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
       </node>
-      <node id="15">
-        <label>string</label>
-      </node>
-      <node id="9">
-        <label>typeinfo</label>
-      </node>
-      <node id="12">
-        <label>units/typedefs.hpp</label>
+      <node id="27">
+        <label>astrea/astro/astro/state/StateHistory.hpp</label>
+        <link refid="StateHistory_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
       </node>
       <node id="3">
-        <label>units/units.hpp</label>
-      </node>
-      <node id="33">
-        <label>unordered_set</label>
-      </node>
-      <node id="13">
-        <label>utilities/string_util.hpp</label>
-      </node>
-      <node id="34">
-        <label>vector</label>
-      </node>
-    </incdepgraph>
-    <invincdepgraph>
-      <node id="4">
         <label>astrea/astro/astro/astro.hpp</label>
         <link refid="astro_8hpp"/>
       </node>
-      <node id="23">
+      <node id="15">
         <label>astrea/astro/astro/frames/dynamic_frames.hpp</label>
         <link refid="dynamic__frames_8hpp"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-      </node>
-      <node id="22">
-        <label>astrea/astro/astro/frames/instances/EastNorthUp.hpp</label>
-        <link refid="EastNorthUp_8hpp"/>
-        <childnode refid="23" relation="include">
-        </childnode>
-      </node>
-      <node id="24">
-        <label>astrea/astro/astro/platforms/Payload.hpp</label>
-        <link refid="Payload_8hpp"/>
-        <childnode refid="25" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
-        <link refid="Constellation_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
-        <link refid="Plane_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
-        <link refid="Shell_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-      </node>
-      <node id="25">
-        <label>astrea/astro/astro/platforms/thrusters/Thruster.hpp</label>
-        <link refid="Thruster_8hpp"/>
-        <childnode refid="4" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
       </node>
-      <node id="17">
-        <label>astrea/astro/astro/platforms/vehicles/Spacecraft.hpp</label>
-        <link refid="Spacecraft_8hpp"/>
-        <childnode refid="4" relation="include">
+      <node id="2">
+        <label>astrea/astro/astro/state/orbital_elements/orbital_elements.hpp</label>
+        <link refid="orbital__elements_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
+      </node>
+      <node id="13">
+        <label>astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp</label>
+        <link refid="Geodetic_8hpp"/>
         <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp</label>
-        <link refid="CowellsMethod_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>astrea/astro/astro/propagation/equations_of_motion/EquinoctialVop.hpp</label>
-        <link refid="EquinoctialVop_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp</label>
-        <link refid="J2MeanVop_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp</label>
-        <link refid="KeplerianVop_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp</label>
-        <link refid="TwoBody_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>astrea/astro/astro/propagation/event_detection/Event.hpp</label>
-        <link refid="Event_8hpp"/>
-        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="11">
-        <label>astrea/astro/astro/propagation/event_detection/EventDetector.hpp</label>
-        <link refid="EventDetector_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
+      <node id="10">
+        <label>astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp</label>
+        <link refid="Cylindrical_8hpp"/>
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="12">
-        <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
-        <link refid="Integrator_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>astrea/astro/astro/state/State.hpp</label>
-        <link refid="State_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>astrea/astro/astro/state/StateHistory.hpp</label>
-        <link refid="StateHistory_8hpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>astrea/astro/astro/state/angular_elements/angular_elements.hpp</label>
-        <link refid="angular__elements_8hpp"/>
-        <childnode refid="4" relation="include">
+      <node id="8">
+        <label>astrea/astro/astro/propagation/equations_of_motion/KeplerianVop.hpp</label>
+        <link refid="KeplerianVop_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
       <node id="18">
-        <label>astrea/astro/astro/state/angular_elements/instances/Cylindrical.hpp</label>
-        <link refid="Cylindrical_8hpp"/>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="20">
-        <label>astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp</label>
-        <link refid="Geocentric_8hpp"/>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp</label>
-        <link refid="Geodetic_8hpp"/>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="26">
-        <label>astrea/astro/astro/state/angular_elements/instances/Spherical.hpp</label>
-        <link refid="Spherical_8hpp"/>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp</label>
-        <link refid="OrbitalElements_8hpp"/>
+        <label>astrea/astro/astro/platforms/vehicles/Spacecraft.hpp</label>
+        <link refid="Spacecraft_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astrea/astro/astro/frames/instances/EastNorthUp.hpp</label>
+        <link refid="EastNorthUp_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp</label>
+        <link refid="Cartesian_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea/astro/astro/propagation/equations_of_motion/J2MeanVop.hpp</label>
+        <link refid="J2MeanVop_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>astrea/astro/astro/propagation/event_detection/EventDetector.hpp</label>
+        <link refid="EventDetector_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>astrea/astro/astro/platforms/thrusters/Thruster.hpp</label>
+        <link refid="Thruster_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea/astro/astro/state/orbital_elements/OrbitalElements.hpp</label>
+        <link refid="OrbitalElements_8hpp"/>
         <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
@@ -973,29 +929,73 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="20" relation="include">
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp</label>
+        <link refid="Geocentric_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>astrea/astro/astro/propagation/event_detection/Event.hpp</label>
+        <link refid="Event_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
+        <link refid="Integrator_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp</label>
-        <link refid="Cartesian_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="27">
-        <label>astrea/astro/astro/state/orbital_elements/orbital_elements.hpp</label>
-        <link refid="orbital__elements_8hpp"/>
-        <childnode refid="4" relation="include">
+      <node id="9">
+        <label>astrea/astro/astro/propagation/equations_of_motion/TwoBody.hpp</label>
+        <link refid="TwoBody_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.hpp</label>
+        <link refid="CowellsMethod_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>astrea/astro/astro/state/angular_elements/instances/Spherical.hpp</label>
+        <link refid="Spherical_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
+        <link refid="Constellation_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea/astro/astro/state/angular_elements/angular_elements.hpp</label>
+        <link refid="angular__elements_8hpp"/>
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -1040,144 +1040,144 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="38"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44" refid="classastrea_1_1astro_1_1Cartesian" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/>{</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator&lt;&lt;</ref>(std::ostream&amp;,<sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;,<sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;);</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref>;</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
 <codeline lineno="49"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="55" refid="classastrea_1_1astro_1_1Cartesian_1a1bc57f67ae1349d4008e374a2b0198ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a1bc57f67ae1349d4008e374a2b0198ee" kindref="member">Cartesian</ref>(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">scale</ref><sp/>=<sp/>0.0<sp/>*<sp/>astrea::detail::unitless)<sp/>:</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_r(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">scale</ref><sp/>*<sp/>astrea::detail::<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">distance_unit</ref>,<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">scale</ref><sp/>*<sp/>astrea::detail::<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">distance_unit</ref>,<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">scale</ref><sp/>*<sp/>astrea::detail::<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">distance_unit</ref>),</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_v(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">scale</ref><sp/>*<sp/>astrea::detail::<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">distance_unit</ref><sp/>/<sp/>astrea::detail::<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">time_unit</ref>,</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">scale</ref><sp/>*<sp/>astrea::detail::<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">distance_unit</ref><sp/>/<sp/>astrea::detail::<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">time_unit</ref>,</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">scale</ref><sp/>*<sp/>astrea::detail::<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">distance_unit</ref><sp/>/<sp/>astrea::detail::<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">time_unit</ref>)</highlight></codeline>
+<codeline lineno="55" refid="classastrea_1_1astro_1_1Cartesian_1a1bc57f67ae1349d4008e374a2b0198ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a1bc57f67ae1349d4008e374a2b0198ee" kindref="member">Cartesian</ref>(Unitless<sp/>scale<sp/>=<sp/>0.0<sp/>*<sp/>astrea::detail::unitless)<sp/>:</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_r(scale<sp/>*<sp/>astrea::detail::distance_unit,<sp/>scale<sp/>*<sp/>astrea::detail::distance_unit,<sp/>scale<sp/>*<sp/>astrea::detail::distance_unit),</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_v(scale<sp/>*<sp/>astrea::detail::distance_unit<sp/>/<sp/>astrea::detail::time_unit,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scale<sp/>*<sp/>astrea::detail::distance_unit<sp/>/<sp/>astrea::detail::time_unit,</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scale<sp/>*<sp/>astrea::detail::distance_unit<sp/>/<sp/>astrea::detail::time_unit)</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69" refid="classastrea_1_1astro_1_1Cartesian_1a96e7a77b5462fd962fc38a9cea2a03bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a96e7a77b5462fd962fc38a9cea2a03bb" kindref="member">Cartesian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector&lt;frames::earth::icrf&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">r</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector&lt;frames::earth::icrf&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">v</ref>)<sp/>:</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_r(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">r</ref>),</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_v(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">v</ref>)</highlight></codeline>
+<codeline lineno="69" refid="classastrea_1_1astro_1_1Cartesian_1a96e7a77b5462fd962fc38a9cea2a03bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a96e7a77b5462fd962fc38a9cea2a03bb" kindref="member">Cartesian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector&lt;frames::earth::icrf&gt;</ref>&amp;<sp/>r,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector&lt;frames::earth::icrf&gt;</ref>&amp;<sp/>v)<sp/>:</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_r(r),</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_v(v)</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="85" refid="classastrea_1_1astro_1_1Cartesian_1a1f251129d2415aabb4323b53ac85528a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a1f251129d2415aabb4323b53ac85528a" kindref="member">Cartesian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">x</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">y</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">z</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vx</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vy</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vz</ref>)<sp/>:</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_r(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">x</ref>,<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">y</ref>,<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">z</ref>),</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_v(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vx</ref>,<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vy</ref>,<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vz</ref>)</highlight></codeline>
+<codeline lineno="85" refid="classastrea_1_1astro_1_1Cartesian_1a1f251129d2415aabb4323b53ac85528a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a1f251129d2415aabb4323b53ac85528a" kindref="member">Cartesian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>y,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/>z,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Velocity&amp;<sp/>vx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Velocity&amp;<sp/>vy,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Velocity&amp;<sp/>vz)<sp/>:</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_r(x,<sp/>y,<sp/>z),</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_v(vx,<sp/>vy,<sp/>vz)</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="90"><highlight class="normal"></highlight></codeline>
-<codeline lineno="97" refid="classastrea_1_1astro_1_1Cartesian_1aa399ff61e005c1ad75f42aa7e5aaecf2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1aa399ff61e005c1ad75f42aa7e5aaecf2" kindref="member">Cartesian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>elements,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref>&amp;<sp/>mu)<sp/>:</highlight></codeline>
+<codeline lineno="97" refid="classastrea_1_1astro_1_1Cartesian_1aa399ff61e005c1ad75f42aa7e5aaecf2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1aa399ff61e005c1ad75f42aa7e5aaecf2" kindref="member">Cartesian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>elements,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu)<sp/>:</highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>(elements)</highlight></codeline>
 <codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref>&amp;<sp/>elements,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref>&amp;<sp/>mu);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a1bc57f67ae1349d4008e374a2b0198ee" kindref="member">Cartesian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Keplerian" kindref="compound">Keplerian</ref>&amp;<sp/>elements,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu);</highlight></codeline>
 <codeline lineno="109"><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref>&amp;<sp/>elements,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref>&amp;<sp/>mu);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a1bc57f67ae1349d4008e374a2b0198ee" kindref="member">Cartesian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref>&amp;<sp/>elements,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu);</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref>&amp;<sp/>elements,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref>&amp;<sp/>mu);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a1bc57f67ae1349d4008e374a2b0198ee" kindref="member">Cartesian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref>&amp;<sp/>elements,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu);</highlight></codeline>
 <codeline lineno="125"><highlight class="normal"></highlight></codeline>
-<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a8e5c222691582fcb68ce6d2a6fa16d22" kindref="member">LEO</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref>&amp;<sp/>mu);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a8e5c222691582fcb68ce6d2a6fa16d22" kindref="member">LEO</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu);</highlight></codeline>
 <codeline lineno="135"><highlight class="normal"></highlight></codeline>
-<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a3f0942524d488f8a63caf5a11dbfd71b" kindref="member">LMEO</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref>&amp;<sp/>mu);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a3f0942524d488f8a63caf5a11dbfd71b" kindref="member">LMEO</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu);</highlight></codeline>
 <codeline lineno="145"><highlight class="normal"></highlight></codeline>
-<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1abd88349fd69cbaa82163194c7a7c6549" kindref="member">GPS</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref>&amp;<sp/>mu);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1abd88349fd69cbaa82163194c7a7c6549" kindref="member">GPS</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu);</highlight></codeline>
 <codeline lineno="155"><highlight class="normal"></highlight></codeline>
-<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a9cdf6c66cbcfc0b39bebfe9878d53c2d" kindref="member">HMEO</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref>&amp;<sp/>mu);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a9cdf6c66cbcfc0b39bebfe9878d53c2d" kindref="member">HMEO</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu);</highlight></codeline>
 <codeline lineno="165"><highlight class="normal"></highlight></codeline>
-<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1aa8d6a04114ccf18893befc82417a7809" kindref="member">GEO</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref>&amp;<sp/>mu);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1aa8d6a04114ccf18893befc82417a7809" kindref="member">GEO</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu);</highlight></codeline>
 <codeline lineno="175"><highlight class="normal"></highlight></codeline>
-<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a1bc57f67ae1349d4008e374a2b0198ee" kindref="member">Cartesian</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;);</highlight></codeline>
 <codeline lineno="182"><highlight class="normal"></highlight></codeline>
-<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>(<ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;&amp;)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">noexcept</ref>;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a1bc57f67ae1349d4008e374a2b0198ee" kindref="member">Cartesian</ref>(<ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;&amp;)<sp/>noexcept;</highlight></codeline>
 <codeline lineno="189"><highlight class="normal"></highlight></codeline>
-<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>=(<ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;&amp;)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">noexcept</ref>;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>operator=(<ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;&amp;)<sp/>noexcept;</highlight></codeline>
 <codeline lineno="197"><highlight class="normal"></highlight></codeline>
-<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>=(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>operator=(const<sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;);</highlight></codeline>
 <codeline lineno="205"><highlight class="normal"></highlight></codeline>
-<codeline lineno="209" refid="classastrea_1_1astro_1_1Cartesian_1a78f94c9e02dae8cc60184e9055b1eec4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>~<ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>()<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">default</ref>;</highlight></codeline>
+<codeline lineno="209" refid="classastrea_1_1astro_1_1Cartesian_1a78f94c9e02dae8cc60184e9055b1eec4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>~<ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>()<sp/>=<sp/>default;</highlight></codeline>
 <codeline lineno="210"><highlight class="normal"></highlight></codeline>
-<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>==(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref>;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator==(const<sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>other)<sp/>const;</highlight></codeline>
 <codeline lineno="219"><highlight class="normal"></highlight></codeline>
-<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>!=(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref>;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>operator!=(const<sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>other)<sp/>const;</highlight></codeline>
 <codeline lineno="228"><highlight class="normal"></highlight></codeline>
-<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>+(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref>;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/>operator+(const<sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>other)<sp/>const;</highlight></codeline>
 <codeline lineno="236"><highlight class="normal"></highlight></codeline>
-<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>+(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">r</ref>)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref>;</highlight></codeline>
-<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>+(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">v</ref>)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref>;</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/>operator+(const<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/>r)<sp/>const;</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/>operator+(const<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/>v)<sp/>const;</highlight></codeline>
 <codeline lineno="239"><highlight class="normal"></highlight></codeline>
-<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>+=(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>);</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>operator+=(const<sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>other);</highlight></codeline>
 <codeline lineno="247"><highlight class="normal"></highlight></codeline>
-<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>+=(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">r</ref>);</highlight></codeline>
-<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>+=(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">v</ref>);</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>operator+=(const<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/>r);</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>operator+=(const<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/>v);</highlight></codeline>
 <codeline lineno="250"><highlight class="normal"></highlight></codeline>
-<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>-(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref>;</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/>operator-(const<sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>other)<sp/>const;</highlight></codeline>
 <codeline lineno="258"><highlight class="normal"></highlight></codeline>
-<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>-(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">r</ref>)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref>;</highlight></codeline>
-<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>-(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">v</ref>)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref>;</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/>operator-(const<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/>r)<sp/>const;</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/>operator-(const<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/>v)<sp/>const;</highlight></codeline>
 <codeline lineno="261"><highlight class="normal"></highlight></codeline>
-<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>-=(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>);</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>operator-=(const<sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>other);</highlight></codeline>
 <codeline lineno="269"><highlight class="normal"></highlight></codeline>
-<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>-=(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">r</ref>);</highlight></codeline>
-<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>-=(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">v</ref>);</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>operator-=(const<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/>r);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>operator-=(const<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/>v);</highlight></codeline>
 <codeline lineno="272"><highlight class="normal"></highlight></codeline>
-<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>*(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">multiplier</ref>)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref>;<sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>Add<sp/>left-hand<sp/>version<sp/>(i.e.<sp/>scalar<sp/>*<sp/>state)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/>operator*(const<sp/>Unitless&amp;<sp/>multiplier)<sp/>const;<sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>Add<sp/>left-hand<sp/>version<sp/>(i.e.<sp/>scalar<sp/>*<sp/>state)</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="280"><highlight class="normal"></highlight></codeline>
-<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>*=(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">multiplier</ref>);</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>operator*=(const<sp/>Unitless&amp;<sp/>multiplier);</highlight></codeline>
 <codeline lineno="288"><highlight class="normal"></highlight></codeline>
-<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianPartial" kindref="compound">CartesianPartial</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>/(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">time</ref>)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref>;</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianPartial" kindref="compound">CartesianPartial</ref><sp/>operator/(const<sp/>Time&amp;<sp/>time)<sp/>const;</highlight></codeline>
 <codeline lineno="296"><highlight class="normal"></highlight></codeline>
-<codeline lineno="303" refid="classastrea_1_1astro_1_1Cartesian_1ad6f004e862ae43b69d799ffcc7e3a1b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vector</ref>&lt;<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>&gt;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>/(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref>;</highlight></codeline>
+<codeline lineno="303" refid="classastrea_1_1astro_1_1Cartesian_1a1ae37284c5c8ff05a4c65846d2a2c8a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Unitless&gt;<sp/>operator/(const<sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>other)<sp/>const;</highlight></codeline>
 <codeline lineno="304"><highlight class="normal"></highlight></codeline>
-<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>/(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">divisor</ref>)<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref>;</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/>operator/(const<sp/>Unitless&amp;<sp/>divisor)<sp/>const;</highlight></codeline>
 <codeline lineno="312"><highlight class="normal"></highlight></codeline>
-<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator</ref>/=(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">divisor</ref>);</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>operator/=(const<sp/>Unitless&amp;<sp/>divisor);</highlight></codeline>
 <codeline lineno="320"><highlight class="normal"></highlight></codeline>
-<codeline lineno="326" refid="classastrea_1_1astro_1_1Cartesian_1a645e8eb521a934b630ade316fcad0608" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">const</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a645e8eb521a934b630ade316fcad0608" kindref="member">get_position</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_r;<sp/>}</highlight></codeline>
+<codeline lineno="326" refid="classastrea_1_1astro_1_1Cartesian_1a114900dba41fa871e5aae11a577232ff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>const<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector</ref>&lt;frames::earth::icrf&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a114900dba41fa871e5aae11a577232ff" kindref="member">get_position</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_r;<sp/>}</highlight></codeline>
 <codeline lineno="327"><highlight class="normal"></highlight></codeline>
-<codeline lineno="333" refid="classastrea_1_1astro_1_1Cartesian_1ab7b03fac402f63eec0c051e3e85e6b86" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector&lt;frames::earth::icrf&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1ab7b03fac402f63eec0c051e3e85e6b86" kindref="member">get_velocity</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_v;<sp/>}</highlight></codeline>
+<codeline lineno="333" refid="classastrea_1_1astro_1_1Cartesian_1a1da102cb81511bf31f0d9f8b8a4050c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector&lt;frames::earth::icrf&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a1da102cb81511bf31f0d9f8b8a4050c0" kindref="member">get_velocity</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_v;<sp/>}</highlight></codeline>
 <codeline lineno="334"><highlight class="normal"></highlight></codeline>
-<codeline lineno="340" refid="classastrea_1_1astro_1_1Cartesian_1a5b06f0275a5f031a152135a6f468375f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a5b06f0275a5f031a152135a6f468375f" kindref="member">get_x</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_r.<ref refid="classastrea_1_1astro_1_1CartesianVector_1a2e17b57e3a3f10b3f4214b00c73eb606" kindref="member">get_x</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="340" refid="classastrea_1_1astro_1_1Cartesian_1a3b2785f5e8cc1e6da42a494cd4daf4ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a3b2785f5e8cc1e6da42a494cd4daf4ad" kindref="member">get_x</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_r.get_x();<sp/>}</highlight></codeline>
 <codeline lineno="341"><highlight class="normal"></highlight></codeline>
-<codeline lineno="347" refid="classastrea_1_1astro_1_1Cartesian_1a0075f65403840282c8541b1a5a2a0634" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a0075f65403840282c8541b1a5a2a0634" kindref="member">get_y</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_r.<ref refid="classastrea_1_1astro_1_1CartesianVector_1ac4457fb41d1535f85876cc44033613f1" kindref="member">get_y</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="347" refid="classastrea_1_1astro_1_1Cartesian_1a38d150a0727f7e793d8a38cc3bdb3135" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a38d150a0727f7e793d8a38cc3bdb3135" kindref="member">get_y</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_r.get_y();<sp/>}</highlight></codeline>
 <codeline lineno="348"><highlight class="normal"></highlight></codeline>
-<codeline lineno="354" refid="classastrea_1_1astro_1_1Cartesian_1a685bb6581796737ac45ee104a88b7ae0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Distance</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a685bb6581796737ac45ee104a88b7ae0" kindref="member">get_z</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_r.<ref refid="classastrea_1_1astro_1_1CartesianVector_1ae59319ea24434e4f9b37c961b1a0d0f8" kindref="member">get_z</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="354" refid="classastrea_1_1astro_1_1Cartesian_1a86ab2495d650ba3ba2e42fba393aefb0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Distance&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a86ab2495d650ba3ba2e42fba393aefb0" kindref="member">get_z</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_r.get_z();<sp/>}</highlight></codeline>
 <codeline lineno="355"><highlight class="normal"></highlight></codeline>
-<codeline lineno="361" refid="classastrea_1_1astro_1_1Cartesian_1aa4c3bc712b99b52b5a702e5cfa902d6e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1aa4c3bc712b99b52b5a702e5cfa902d6e" kindref="member">get_vx</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_v.<ref refid="classastrea_1_1astro_1_1CartesianVector_1a2e17b57e3a3f10b3f4214b00c73eb606" kindref="member">get_x</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="361" refid="classastrea_1_1astro_1_1Cartesian_1a8a4660ab677748568567a735ab560a99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Velocity&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a8a4660ab677748568567a735ab560a99" kindref="member">get_vx</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_v.get_x();<sp/>}</highlight></codeline>
 <codeline lineno="362"><highlight class="normal"></highlight></codeline>
-<codeline lineno="368" refid="classastrea_1_1astro_1_1Cartesian_1a8fc6f3df2191274fd4fe23ef09d25da6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a8fc6f3df2191274fd4fe23ef09d25da6" kindref="member">get_vy</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_v.<ref refid="classastrea_1_1astro_1_1CartesianVector_1ac4457fb41d1535f85876cc44033613f1" kindref="member">get_y</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="368" refid="classastrea_1_1astro_1_1Cartesian_1ab805a08d9762698a30d93540fbc5f6fd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Velocity&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1ab805a08d9762698a30d93540fbc5f6fd" kindref="member">get_vy</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_v.get_y();<sp/>}</highlight></codeline>
 <codeline lineno="369"><highlight class="normal"></highlight></codeline>
-<codeline lineno="375" refid="classastrea_1_1astro_1_1Cartesian_1ab3c04b04410c55f987221ab74b0d5d2d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1ab3c04b04410c55f987221ab74b0d5d2d" kindref="member">get_vz</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_v.<ref refid="classastrea_1_1astro_1_1CartesianVector_1ae59319ea24434e4f9b37c961b1a0d0f8" kindref="member">get_z</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="375" refid="classastrea_1_1astro_1_1Cartesian_1a083d5f4fe97c5539318a9969e1fcc586" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Velocity&amp;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a083d5f4fe97c5539318a9969e1fcc586" kindref="member">get_vz</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_v.get_z();<sp/>}</highlight></codeline>
 <codeline lineno="376"><highlight class="normal"></highlight></codeline>
 <codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Unitless&gt;<sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1aab72b9dd2ee58b3cb62f35c30d1600b5" kindref="member">force_to_vector</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="383"><highlight class="normal"></highlight></codeline>
-<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a5a95d8ef9bd1a0993946224559198212" kindref="member">interpolate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">thisTime</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">otherTime</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">other</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">GravParam</ref>&amp;<sp/>mu,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">targetTime</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1Cartesian_1a5a95d8ef9bd1a0993946224559198212" kindref="member">interpolate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>thisTime,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>otherTime,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&amp;<sp/>other,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GravParam&amp;<sp/>mu,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>targetTime)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="395"><highlight class="normal"></highlight></codeline>
 <codeline lineno="396"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">RadiusVector&lt;frames::earth::icrf&gt;</ref><sp/>_r;<sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector&lt;frames::earth::icrf&gt;</ref><sp/>_v;<sp/></highlight></codeline>
 <codeline lineno="399"><highlight class="normal"></highlight></codeline>
-<codeline lineno="406"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/>from_vector(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Unitless&gt;&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vec</ref>);</highlight></codeline>
+<codeline lineno="406"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/>from_vector(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Unitless&gt;&amp;<sp/>vec);</highlight></codeline>
 <codeline lineno="407"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="408"><highlight class="normal"></highlight></codeline>
 <codeline lineno="414" refid="classastrea_1_1astro_1_1CartesianPartial" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1CartesianPartial" kindref="compound">CartesianPartial</ref><sp/>{</highlight></codeline>
 <codeline lineno="415"><highlight class="normal"></highlight></codeline>
-<codeline lineno="416"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">operator&lt;&lt;</ref>(std::ostream&amp;,<sp/><ref refid="classastrea_1_1astro_1_1CartesianPartial" kindref="compound">CartesianPartial</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;);</highlight></codeline>
+<codeline lineno="416"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;,<sp/><ref refid="classastrea_1_1astro_1_1CartesianPartial" kindref="compound">CartesianPartial</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;);</highlight></codeline>
 <codeline lineno="417"><highlight class="normal"></highlight></codeline>
 <codeline lineno="418"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="422" refid="classastrea_1_1astro_1_1CartesianPartial_1aaa69ffab32519ac601acf63aeaa13700" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianPartial_1aaa69ffab32519ac601acf63aeaa13700" kindref="member">CartesianPartial</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="423"><highlight class="normal"></highlight></codeline>
-<codeline lineno="434" refid="classastrea_1_1astro_1_1CartesianPartial_1a1d3583d75349d834c67af8537a3ac0bd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianPartial_1a1d3583d75349d834c67af8537a3ac0bd" kindref="member">CartesianPartial</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vx</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vy</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Velocity</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vz</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Acceleration</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">ax</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Acceleration</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">ay</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Acceleration</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">az</ref>)<sp/>:</highlight></codeline>
-<codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_v(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vx</ref>,<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vy</ref>,<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">vz</ref>),</highlight></codeline>
-<codeline lineno="436"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_a(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">ax</ref>,<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">ay</ref>,<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">az</ref>)</highlight></codeline>
+<codeline lineno="434" refid="classastrea_1_1astro_1_1CartesianPartial_1a1d3583d75349d834c67af8537a3ac0bd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianPartial_1a1d3583d75349d834c67af8537a3ac0bd" kindref="member">CartesianPartial</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Velocity&amp;<sp/>vx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Velocity&amp;<sp/>vy,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Velocity&amp;<sp/>vz,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Acceleration&amp;<sp/>ax,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Acceleration&amp;<sp/>ay,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Acceleration&amp;<sp/>az)<sp/>:</highlight></codeline>
+<codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_v(vx,<sp/>vy,<sp/>vz),</highlight></codeline>
+<codeline lineno="436"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_a(ax,<sp/>ay,<sp/>az)</highlight></codeline>
 <codeline lineno="437"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="438"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="439"><highlight class="normal"></highlight></codeline>
-<codeline lineno="446" refid="classastrea_1_1astro_1_1CartesianPartial_1aea38527650b9f68cf833b266234c0682" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianPartial_1aea38527650b9f68cf833b266234c0682" kindref="member">CartesianPartial</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector&lt;frames::earth::icrf&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">v</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">AccelerationVector&lt;frames::earth::icrf&gt;</ref>&amp;<sp/>a)<sp/>:</highlight></codeline>
-<codeline lineno="447"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_v(<ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">v</ref>),</highlight></codeline>
+<codeline lineno="446" refid="classastrea_1_1astro_1_1CartesianPartial_1aea38527650b9f68cf833b266234c0682" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1CartesianPartial_1aea38527650b9f68cf833b266234c0682" kindref="member">CartesianPartial</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">VelocityVector&lt;frames::earth::icrf&gt;</ref>&amp;<sp/>v,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">AccelerationVector&lt;frames::earth::icrf&gt;</ref>&amp;<sp/>a)<sp/>:</highlight></codeline>
+<codeline lineno="447"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_v(v),</highlight></codeline>
 <codeline lineno="448"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_a(a)</highlight></codeline>
 <codeline lineno="449"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="450"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="451"><highlight class="normal"></highlight></codeline>
-<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianPartial_1a56f34c8698997b5aa9207ba9363379bc" kindref="member">operator*</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">time</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref><sp/><ref refid="classastrea_1_1astro_1_1CartesianPartial_1a56f34c8698997b5aa9207ba9363379bc" kindref="member">operator*</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>time)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="459"><highlight class="normal"></highlight></codeline>
 <codeline lineno="465"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Unitless&gt;<sp/><ref refid="classastrea_1_1astro_1_1CartesianPartial_1ac24b5c0901975b1ec211b03e9f8f6960" kindref="member">force_to_vector</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="466"><highlight class="normal"></highlight></codeline>
