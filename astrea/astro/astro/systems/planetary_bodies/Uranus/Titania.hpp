@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_TITANIA_PARAMS{
 class Titania : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Titania class.
      *

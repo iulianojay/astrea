@@ -82,7 +82,7 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
     // Open coefficients file
     // TODO: Attach these files to the CelestialBody class
     // TODO: Change to binary files cause boy are these big
-    std::filesystem::path path = std::string(_ASTRO_ROOT_) + "/data/gravity_models/";
+    std::filesystem::path path = std::string(_ASTRO_ROOT_) + "/data/gravity_models";
     std::filesystem::path filename;
     const CelestialBodyId centerId =
         sys.get_central_body_id(); // TODO: This forces the oblatness to only consider the system central body
@@ -115,8 +115,8 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
 
         default:
             throw std::runtime_error(
-                "Legendre coefficient file for central body," + sys.get_central_body()->get_name() +
-                " , not found: " + filename.string()
+                "Legendre coefficient file for central body, " + sys.get_central_body()->get_name() +
+                ", not found. File: " + filename.string()
             );
     }
     std::ifstream file(filename);

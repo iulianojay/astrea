@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_DEIMOS_PARAMS{
 class Deimos : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Deimos class.
      *

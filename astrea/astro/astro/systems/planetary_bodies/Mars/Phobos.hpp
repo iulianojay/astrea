@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_PHOBOS_PARAMS{
 class Phobos : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Phobos class.
      *

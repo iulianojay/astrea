@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_URANUS_PARAMS{
 class Uranus : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Uranus class.
      *

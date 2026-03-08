@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_NEPTUNE_PARAMS{
 class Neptune : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Neptune class.
      *

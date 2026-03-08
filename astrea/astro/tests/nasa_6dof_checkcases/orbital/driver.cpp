@@ -70,6 +70,9 @@ using mp_units::si::unit_symbols::µm;
 
 namespace astrea {
 namespace astro {
+
+using namespace planetary_bodies;
+
 namespace tests {
 
 enum EomType { TWO_BODY = 0, COWELLS_METHOD = 1, KEPLERIAN_VOP = 2, EQUINOCTIAL_VOP = 3 };
@@ -100,9 +103,9 @@ class Orbital6DofTest : public testing::Test {
         propTime(28800.0 * s)
     {
         CelestialBodyParameters nasaEarthData = planetary_bodies::DEFAULT_EARTH_PARAMS;
-        nasaEarthData.mu                      = 398600.436 * pow<3>(km) / pow<2>(s);
+        nasaEarthData.mu                      = 398600.436 * pow<3>(km) / pow<2>(s); // different mu value
 
-        sys = AstrodynamicsSystem(CelestialBody(nasaEarthData), { CelestialBodyId::SUN });
+        sys = AstrodynamicsSystem(Earth(nasaEarthData), { CelestialBodyId::SUN });
 
         integrator.switch_fixed_timestep(true);
         integrator.set_timestep(1.0 * s);

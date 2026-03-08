@@ -70,6 +70,8 @@ static const CelestialBodyParameters DEFAULT_MOON_PARAMS{
  */
 class Moon : public CelestialBody {
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Moon class.
      *

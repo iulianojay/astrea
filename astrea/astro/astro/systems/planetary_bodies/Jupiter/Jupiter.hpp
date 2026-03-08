@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_JUPITER_PARAMS{
 class Jupiter : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Jupiter class.
      *

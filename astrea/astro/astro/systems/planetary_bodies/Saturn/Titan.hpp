@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_TITAN_PARAMS{
 class Titan : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Titan class.
      *

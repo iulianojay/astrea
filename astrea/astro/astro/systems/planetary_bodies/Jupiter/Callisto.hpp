@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_CALLISTO_PARAMS{
 class Callisto : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Callisto class.
      *

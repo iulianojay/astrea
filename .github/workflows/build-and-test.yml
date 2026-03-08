@@ -24,7 +24,7 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  Build-and-Test:
+  build-and-test:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/iulianojay/astrea:dev
@@ -64,7 +64,7 @@ jobs:
       run: |
         make run_examples
 
-  Coverage:
+  coverage:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/iulianojay/astrea:dev

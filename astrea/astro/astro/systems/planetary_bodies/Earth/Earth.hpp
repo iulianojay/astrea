@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_EARTH_PARAMS{
 class Earth : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Earth class.
      *

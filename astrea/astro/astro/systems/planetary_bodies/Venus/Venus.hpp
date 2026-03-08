@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_VENUS_PARAMS{
 class Venus : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Venus class.
      *

@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_SATURN_PARAMS{
 class Saturn : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Saturn class.
      *

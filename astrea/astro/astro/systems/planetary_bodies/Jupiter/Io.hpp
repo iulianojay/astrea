@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_IO_PARAMS{
 class Io : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Io class.
      *

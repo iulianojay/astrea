@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_GANYMEDE_PARAMS{
 class Ganymede : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Ganymede class.
      *

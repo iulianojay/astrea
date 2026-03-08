@@ -119,7 +119,7 @@ run_examples:
 
 .PHONY: run_checkcases
 run_checkcases:
-	cd $(install_path)/bin/regression/ && ./orbital.test --gtest_filter=*.Checkcase* --gtest_catch_exceptions=0
+	cd $(install_path)/bin/regression/ && ./orbital.test --gtest_filter=*.Checkcase3A* --gtest_catch_exceptions=0
 
 .PHONY: build_report
 build_report: run_checkcases

@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_SUN_PARAMS{
 class Sun : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Sun class.
      *

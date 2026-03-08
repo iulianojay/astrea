@@ -20,7 +20,7 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  Bump-Version:
+  bump-version:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/iulianojay/astrea:dev

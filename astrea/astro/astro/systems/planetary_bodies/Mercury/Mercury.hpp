@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_MERCURY_PARAMS{
 class Mercury : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Mercury class.
      *

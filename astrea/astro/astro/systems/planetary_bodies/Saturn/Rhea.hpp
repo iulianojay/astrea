@@ -71,7 +71,11 @@ static const CelestialBodyParameters DEFAULT_RHEA_PARAMS{
 class Rhea : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
+    using CelestialBody::CelestialBody;
+
      * @brief Default constructor for the Rhea class.
      *
      * Initializes the Rhea object with predefined physical and orbital parameters.

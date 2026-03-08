@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_EUROPA_PARAMS{
 class Europa : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Europa class.
      *

@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_IAPETUS_PARAMS{
 class Iapetus : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Iapetus class.
      *

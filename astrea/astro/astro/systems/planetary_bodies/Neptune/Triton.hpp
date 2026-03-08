@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_TRITON_PARAMS{
 class Triton : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Triton class.
      *

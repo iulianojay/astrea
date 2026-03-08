@@ -71,6 +71,8 @@ static const CelestialBodyParameters DEFAULT_MARS_PARAMS{
 class Mars : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Mars class.
      *

@@ -62,6 +62,8 @@ static const CelestialBodyParameters DEFAULT_OBERON_PARAMS{
 class Oberon : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Oberon class.
      *
