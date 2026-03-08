@@ -57,13 +57,19 @@ jobs:
           sudo apt update
           sudo apt install -y doxygen
 
+      - name: Mark repository as safe
+        run: git config --global --add safe.directory $GITHUB_WORKSPACE
+
+      - name: Fetch tags
+        run: git fetch --prune --unshallow --tags
+
       - name: Setup
         run: |
           make python_env
 
       - name: Build and Install Checkcases
         run: |
-          . .venv/bin/activate && make release install && make release checkcases all install
+          . .venv/bin/activate && make checkcases all install
 
       - name: Run Checkcases && Build Report
         run: |
