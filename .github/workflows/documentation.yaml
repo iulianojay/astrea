@@ -28,6 +28,7 @@ on:
       - "CHANGELOG.md"
       - "CONTRIBUTING.md"
       - "mkdocs.yml"
+      - "astrea/astro/pyastro/6dof_report/nasa_6dof_report.py"
 
 permissions:
   contents: write
