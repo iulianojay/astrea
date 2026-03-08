@@ -68,9 +68,17 @@ jobs:
           sudo apt update
           sudo apt install -y doxygen
 
-      - name: Installing python
+      - name: Setup
         run: |
-          pip install mkdocs-material mkdocs-rss-plugin mkdocs-material[imaging] mkdocs-exclude mkdoxy
+          make python_env
+
+      - name: Build and Install Checkcases
+        run: |
+          . .venv/bin/activate && make release checkcases all install
+
+      - name: Run Checkcases && Build Report
+        run: |
+          . .venv/bin/activate && make build_report
 
       - name: Building and deploying docs
         run: mkdocs gh-deploy --force

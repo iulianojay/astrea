@@ -35,14 +35,7 @@ OUTPUT_BASE = Path(__file__).parent.parent.parent.parent.parent / "docs" / "desi
 class NASA6DOFReportGenerator:
     """Class for generating comprehensive reports from NASA 6DOF orbital test results."""
     
-    def __init__(self, custom_introduction: str = None):
-        """
-        Initialize the report generator.
-        
-        Args:
-            results_dir: Path to the orbital results directory
-            custom_introduction: Custom introduction text for the report
-        """
+    def __init__(self):
         # Default to the standard location
         actual_results_dir = Path(__file__).parent.parent.parent / "tests" / "nasa_6dof_checkcases" / "orbital" / "results"
 
@@ -50,7 +43,19 @@ class NASA6DOFReportGenerator:
         os.makedirs(self.results_dir, exist_ok=True)
         shutil.copytree(actual_results_dir, self.results_dir, dirs_exist_ok=True)
         
-        self.custom_introduction = custom_introduction
+        self.custom_introduction = \
+'''
+This report gives a simple overview of comaprisons between NASA's published 6DoF propagation checkcases and the propagators available in Astrea.
+The calculations, methodology, and process are currently undocumented as they are not yet complete, but much of it is easy enough to figure out
+by examining the source files for the tests and the associated documentation (astrea/astro/tests/nasa_6dof_checkcases). By default, the tests that
+produce these outputs are not run with standard tests as acceptance is complex and simply associating raw numerical precision with agreement is
+generally a mistake. 
+
+While looking through this report, keep in mind that, while some parts are written by hand, like this introduction, the majority of the content is
+generated automatically and thus, may contain context errors, weird phrasing, or simply incorrect wording. This report is meant to be a way of coherently
+tracking the accuracy of Astrea's numerical propagators without requiring dozens of man hours every time something is updated. As such, it will be a living
+document that receives regular updates, at least for now, hopefully including improvements to the visuals, tables, and qualitative analysis.
+'''
             
         if not self.results_dir.exists():
             raise FileNotFoundError(f"Results directory not found: {self.results_dir}")
@@ -424,7 +429,7 @@ def main():
     
     try:
         # Initialize report generator
-        generator = NASA6DOFReportGenerator(args.introduction)
+        generator = NASA6DOFReportGenerator()
         
         # Load manual notes if provided
         manual_notes = {}

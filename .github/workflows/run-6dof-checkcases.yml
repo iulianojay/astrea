@@ -24,7 +24,7 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  Build-and-Test:
+  Run-Checkcases:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/iulianojay/astrea:dev
@@ -59,59 +59,3 @@ jobs:
     - name: Run Checkcases && Build Report
       run: |
         . .venv/bin/activate && make build_report
-
-  Coverage:
-    runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/iulianojay/astrea:dev
-      options: --user root
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
-
-    steps:
-    - name: https://github.com/actions/checkout/issues/1720
-      run: |
-        chmod -R u+rwX .
-
-    - uses: actions/checkout@v4
-      with:
-        ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref }} # https://github.com/actions/checkout/discussions/1637
-
-    - name: Mark repository as safe
-      run: git config --global --add safe.directory $GITHUB_WORKSPACE
-
-    - name: Fetch tags
-      run: git fetch --prune --unshallow --tags
-
-    - name: Setup
-      run: |
-        make python_env
-
-    - name: Build and Install Debug
-      run: |
-        . .venv/bin/activate && make debug all install
-
-    - name: Run Coverage
-      run: |
-        mkdir .gcovr
-        touch .gcovr/coverage.xml
-        . .venv/bin/activate && make coverage
-
-    - name: Extract Coverage Percentage
-      run: |
-        touch coverage.txt
-        bash ./scripts/extract_coverage_pct.sh
-        echo "COVERAGE_PCT=$(cat coverage.txt)" >> "$GITHUB_ENV"
-
-    - name: Create Coverage Badge
-      uses: schneegans/dynamic-badges-action@v1.7.0
-      with:
-        auth: ${{ secrets.GIST_SECRET }}
-        gistID: 238a4a61ca19471caa1e39376158d625
-        filename: coverage.json
-        label: Coverage
-        message: ${{ env.COVERAGE_PCT }}%
-        valColorRange: ${{ env.COVERAGE_PCT }}
-        maxColorRange: 100
-        minColorRange: 60
