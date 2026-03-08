@@ -113,7 +113,11 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
             filename = path / "Mars" / "jgmro_120f_sha.tab"; // Normalized?
             break;
 
-        default: throw std::runtime_error("Legendre coefficient file for central body not found.");
+        default:
+            throw std::runtime_error(
+                "Legendre coefficient file for central body," + sys.get_central_body()->get_name() +
+                " , not found: " + filename.string()
+            );
     }
     std::ifstream file(filename);
     if (file.fail()) { throw std::runtime_error("Failed to open Legendre coefficient file: " + filename.string()); }

@@ -55,7 +55,7 @@ jobs:
       - name: Installing Doxygen
         run: |
           sudo apt update
-          sudo apt install -y doxygen
+          sudo apt install -y doxygen gnuplot
 
       - name: Mark repository as safe
         run: git config --global --add safe.directory $GITHUB_WORKSPACE
