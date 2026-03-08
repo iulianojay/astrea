@@ -63,7 +63,7 @@ jobs:
 
       - name: Build and Install Checkcases
         run: |
-          . .venv/bin/activate && make release checkcases all install
+          . .venv/bin/activate && make release install && make release checkcases all install
 
       - name: Run Checkcases && Build Report
         run: |
