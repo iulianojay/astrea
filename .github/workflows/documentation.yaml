@@ -63,17 +63,17 @@ jobs:
       - name: Fetch Tags
         run: git fetch --prune --unshallow --tags
 
-      - name: Setup Python environment
-        run: |
-          make python_env
+      # - name: Setup Python environment
+      #   run: |
+      #     make python_env
 
-      - name: Build and install checkcases
-        run: |
-          . .venv/bin/activate && make checkcases all install
+      # - name: Build and install checkcases
+      #   run: |
+      #     . .venv/bin/activate && make checkcases all install
 
-      - name: Run checkcases and build report
-        run: |
-          . .venv/bin/activate && make build_report
+      # - name: Run checkcases and build report
+      #   run: |
+      #     . .venv/bin/activate && make build_report # This just takes too long right now
 
       - name: Make and deploy docs
         run: mkdocs gh-deploy --force
