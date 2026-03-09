@@ -360,11 +360,13 @@ class Orbital6DofTest : public testing::Test {
         }
 
         EXPECT_TRUE(rStats.max() <= _MAX_R_ERROR)
-            << "Max allowed position error (" << _MAX_R_ERROR.in(m) << ") violated comparing " << propLabel << " to "
-            << checkcaseLabel << "[" << rStats.mean() << " ± " << rStats.stddev() << ", " << rStats.max() << "]" << std::endl;
+            << std::setprecision(6) << "Max allowed position error (" << _MAX_R_ERROR.in(m) << ") violated comparing "
+            << propLabel << " to " << checkcaseLabel << "[" << rStats.mean() << " ± " << rStats.stddev() << ", "
+            << rStats.max() << "]" << std::endl;
         EXPECT_TRUE(vStats.max() <= _MAX_V_ERROR)
-            << "Max allowed velocity error (" << _MAX_V_ERROR.in(cm / s) << ") violated comparing " << propLabel << " to "
-            << checkcaseLabel << "[" << vStats.mean() << " ± " << vStats.stddev() << ", " << vStats.max() << "]" << std::endl;
+            << std::setprecision(6) << "Max allowed velocity error (" << _MAX_V_ERROR.in(cm / s)
+            << ") violated comparing " << propLabel << " to " << checkcaseLabel << "[" << vStats.mean() << " ± "
+            << vStats.stddev() << ", " << vStats.max() << "]" << std::endl;
 
         // Delete any existing plots from previous runs
         std::filesystem::path base = outputDir / checkcaseName / checkcaseLabel / propLabel;

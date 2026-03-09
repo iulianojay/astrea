@@ -212,7 +212,7 @@ class AstrodynamicsSystem {
     {
         const CelestialBodyId id = body.get_id();
         if (_bodies.count(id) == 0) {
-            _bodies.emplace(id, std::make_unique<CelestialBody>(body));
+            _bodies.emplace(id, std::make_unique<CelestialBody>(T(body)));
             _activeBodies.insert(id);
             _root = find_common_root(_activeBodies);
         }
