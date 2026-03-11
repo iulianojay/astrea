@@ -1,3 +1,4 @@
+# Installation
 
 # Installation and Usage
 
@@ -123,7 +124,7 @@ Example with custom options:
 cmake -B build -S . \
     -DCMAKE_BUILD_TYPE=Debug \
     -DASTREA_BUILD_TESTS=ON \
-    -DASTREA_BUILD_EXAMPLES=ON 
+    -DASTREA_BUILD_EXAMPLES=ON
 ```
 
 ## Verification
@@ -177,10 +178,10 @@ int main() {
         0.0 * deg,   // Argument of perigee
         0.0 * deg    // True anomaly
     )
-    
+
     std::cout << "Astrea integration successful!" << std::endl;
     std::cout << "Orbit: " << orbit << std::endl;
-    
+
     return 0;
 }
 ```
@@ -217,7 +218,7 @@ If you prefer to include Astrea as a subproject:
 add_subdirectory(extern/astrea/astrea)
 
 # Link against the components you need
-target_link_libraries(my_app PRIVATE 
+target_link_libraries(my_app PRIVATE
     astrea::astro
     astrea::math
     astrea::trace

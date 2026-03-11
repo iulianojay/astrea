@@ -20,7 +20,7 @@ All forces implement the abstract Force base class:
 
 class Force {
 public:
-    virtual AccelerationVector<frames::earth::icrf> 
+    virtual AccelerationVector<frames::earth::icrf>
         compute_force(const State& state, const Vehicle& vehicle) const = 0;
 };
 ```
@@ -92,12 +92,12 @@ OblatenessForce oblatenessForce(system, maxDegree, maxOrder);
 The oblateness force computes the acceleration from the Earth's gravity field using spherical harmonic coefficients, accounting for both zonal and tesseral terms accoding to the standard formulation for gravitational potential:
 $$
 V = \frac{\mu}{r} \sum_{n=0}^{N} \left( \frac{R_e}{r} \right)^n \sum_{m=0}^{\min(n,M)} P_{nm}(\sin(\phi)) \left( C_{nm} \cos(m\lambda) + S_{nm} \sin(m\lambda) \right)
-$$  
+$$
 
 ```cpp
 AccelerationVector<frames::earth::icrf> oblatenessAccel = oblatenessForce compute_force(state, vehicle);
 ```
-Currently, the oblateness force model only supports the EGM2008 gravity field, but future iterations will support additional fields and user-defined spherical harmonic coefficients. There are also stored coefficients for the Moon, Mars, Mercury, and Venus. 
+Currently, the oblateness force model only supports the EGM2008 gravity field, but future iterations will support additional fields and user-defined spherical harmonic coefficients. There are also stored coefficients for the Moon, Mars, Mercury, and Venus.
 
 ---
 ### Solar Radiation Pressure
@@ -113,7 +113,7 @@ SolarRadiationPressure srpForce;
 
 $$
 \vec{a}_\text{srp} = -P_{solar} η C_{R} \frac{A}{m}
-$$  
+$$
 
 ```cpp
 AccelerationVector<frames::earth::icrf>  srpAccel = srpForce.compute_force(state, satellite);
@@ -157,26 +157,26 @@ Users can create custom force models by inheriting from the Force base class:
 // Custom thruster force
 class ThrusterForce : public Force {
 public:
-    ThrusterForce(const RadiusVector<frames::earth::icrf>& thrustVector, const Time& startTime, const Time& duration) : 
-        _thrustVector(thrustVector), 
-        _startTime(startTime), 
-        _duration(duration) 
+    ThrusterForce(const RadiusVector<frames::earth::icrf>& thrustVector, const Time& startTime, const Time& duration) :
+        _thrustVector(thrustVector),
+        _startTime(startTime),
+        _duration(duration)
     {
     }
-    
-    AccelerationVector<frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override 
-    {    
+
+    AccelerationVector<frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override
+    {
         Time currentTime = state.get_epoch();
-        
+
         // Check if thrust is active
         if (currentTime >= _startTime && currentTime <= _startTime + _duration) {
             Mass vehicleMass = vehicle.get_mass();
             return _thrustVector / vehicleMass;  // F = ma -> a = F/m
         }
-        
+
         return AccelerationVector<frames::earth::icrf>(0.0 * m/s/s, 0.0 * m/s/s, 0.0 * m/s/s);
     }
-    
+
 private:
     RadiusVector<frames::earth::icrf> _thrustVector;
     Time _startTime;

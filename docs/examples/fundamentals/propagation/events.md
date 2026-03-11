@@ -1,6 +1,18 @@
 # Event Detection
 
-Astrea provides a comprehensive event detection system that enables monitoring and responding to specific conditions during orbit propagation. Events can trigger actions, halt propagation, or record state information when user-defined conditions are met.
+Astrea provides a comprehensive event detection system that enables monitoring and responding to specific conditions
+during orbit propagation. Events can trigger actions, halt propagation, or record state information when user-defined
+conditions are met.
+
+
+Fundamentally, events are functions that allow users to find zero-crossings during propagation. Astrea uses type-erasure
+to allow users to define their own events while keeping a static internal interface. Events use two main functions, one
+to measure the event value and look for zero-crossings, and another to trigger a post-event action by modifying the
+current vehicle or state.
+
+Currently, Astrea only defines a single event, an ImpulsiveBurn which triggers at perigee crossing and always burns in
+the velocity direction. The impulsive burn event uses the thrust of all attached thrusters in a simple instantaneous
+impulse. Future releases will support direct event scheduling, and more event types.
 
 ## Event System Architecture
 
@@ -30,7 +42,7 @@ concept HasGetName = requires(const T event) {
     { event.get_name() } -> std::same_as<std::string>;
 };
 
-// Terminal event concept  
+// Terminal event concept
 template <typename T>
 concept HasIsTerminal = requires(const T event) {
     { event.is_terminal() } -> std::same_as<bool>;
@@ -44,23 +56,23 @@ Custom events inherit from the Event base class:
 ```cpp
 class AltitudeEvent : public Event {
 public:
-    AltitudeEvent(Distance targetAltitude, bool isTerminal = false) 
+    AltitudeEvent(Distance targetAltitude, bool isTerminal = false)
         : targetAltitude_(targetAltitude), terminal_(isTerminal) {}
-    
+
     // Measure event condition (negative when condition is met)
     Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const override {
         Distance currentAltitude = state.get_altitude();
         return (currentAltitude - targetAltitude_) / (1.0 * km); // Normalized difference
     }
-    
+
     std::string get_name() const override {
         return "Altitude Event";
     }
-    
+
     bool is_terminal() const override {
         return terminal_;
     }
-    
+
 private:
     Distance targetAltitude_;
     bool terminal_;
@@ -78,11 +90,11 @@ The EventDetector manages event monitoring during propagation:
 EventDetector detector;
 
 // Add events to monitor
-auto altitudeEvent = std::make_unique<AltitudeEvent>(300.0 * km, true);  // Terminal
-auto apoapsisEvent = std::make_unique<ApoapsisEvent>();                   // Non-terminal
+auto altitudeEvent = AltitudeEvent(300.0 * km, true);  // Terminal
+auto apoapsisEvent = ApoapsisEvent();                  // Non-terminal
 
-detector.add_event(std::move(altitudeEvent));
-detector.add_event(std::move(apoapsisEvent));
+detector.add_event(altitudeEvent);
+detector.add_event(apoapsisEvent);
 ```
 
 ## Common Event Types
@@ -95,10 +107,10 @@ class AltitudeEvent : public Event {
 public:
     AltitudeEvent(Distance altitude, EventType type = EventType::CROSSING)
         : targetAltitude_(altitude), type_(type) {}
-    
+
     Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const override {
         Distance currentAlt = magnitude(state.get_position()) - EARTH_RADIUS;
-        
+
         switch(type_) {
             case EventType::CROSSING:
                 return (currentAlt - targetAltitude_) / (1.0 * km);
@@ -122,7 +134,7 @@ public:
         auto elements = state.get_elements<Keplerian>();
         return elements.get_true_anomaly_rate() / (1.0 * rad / s);
     }
-    
+
     std::string get_name() const override { return "Apoapsis"; }
     bool is_terminal() const override { return false; }
 };
@@ -134,7 +146,7 @@ public:
         auto elements = state.get_elements<Keplerian>();
         return elements.get_true_anomaly_rate() / (1.0 * rad / s);
     }
-    
+
     std::string get_name() const override { return "Periapsis"; }
     bool is_terminal() const override { return false; }
 };
@@ -148,14 +160,14 @@ class AbsoluteTimeEvent : public Event {
 public:
     AbsoluteTimeEvent(const Time& targetTime)
         : targetTime_(targetTime) {}
-    
+
     Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const override {
         return (time - targetTime_) / (1.0 * s);
     }
-    
+
     std::string get_name() const override { return "Absolute Time"; }
     bool is_terminal() const override { return true; }
-    
+
 private:
     Time targetTime_;
 };
@@ -165,14 +177,14 @@ class DurationEvent : public Event {
 public:
     DurationEvent(const Time& startTime, const Time& duration)
         : startTime_(startTime), duration_(duration) {}
-    
+
     Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const override {
         return ((time - startTime_) - duration_) / (1.0 * s);
     }
-    
+
     std::string get_name() const override { return "Duration"; }
     bool is_terminal() const override { return true; }
-    
+
 private:
     Time startTime_;
     Time duration_;
@@ -187,20 +199,20 @@ class EclipseEvent : public Event {
 public:
     EclipseEvent(const AstrodynamicsSystem& system)
         : system_(system) {}
-    
+
     Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const override {
         // Calculate sun angle relative to Earth shadow
         CartesianVector<Distance, ECI> sunPos = system_.get_sun_position(time);
         CartesianVector<Distance, ECI> satPos = state.get_position();
-        
+
         // Shadow cone calculation
         double shadowAngle = calculate_shadow_angle(sunPos, satPos);
         return shadowAngle; // Negative when in eclipse
     }
-    
+
     std::string get_name() const override { return "Eclipse"; }
     bool is_terminal() const override { return false; }
-    
+
 private:
     const AstrodynamicsSystem& system_;
 };
@@ -215,20 +227,20 @@ class ManeuverEvent : public Event {
 public:
     ManeuverEvent(const CartesianVector<Acceleration, ECI>& deltaV)
         : deltaV_(deltaV) {}
-    
+
     // Event action triggered after detection
     void trigger_action(State& state, Vehicle& vehicle) const override {
         // Apply instantaneous velocity change
         auto currentVel = state.get_velocity();
         auto newVel = currentVel + deltaV_ * (1.0 * s); // Convert acceleration to velocity
         state.set_velocity(newVel);
-        
+
         std::cout << "Maneuver executed: ΔV = " << magnitude(deltaV_) << std::endl;
     }
-    
+
     std::string get_name() const override { return "Maneuver"; }
     bool is_terminal() const override { return false; }
-    
+
 private:
     CartesianVector<Acceleration, ECI> deltaV_;
 };
@@ -246,9 +258,9 @@ RungeKutta4 integrator;
 EventDetector detector;
 
 // Add events
-detector.add_event(std::make_unique<AltitudeEvent>(200.0 * km, true));
-detector.add_event(std::make_unique<EclipseEvent>(system));
-detector.add_event(std::make_unique<ManeuverEvent>(deltaVVector));
+detector.add_event(AltitudeEvent(200.0 * km, true));
+detector.add_event(EclipseEvent(system));
+detector.add_event(ManeuverEvent(deltaVVector));
 
 // Propagate with event monitoring
 State initialState = /* ... */;
@@ -260,7 +272,7 @@ PropagationResult result = integrator.propagate_with_events(
 
 // Check which events were detected
 for (const auto& detectedEvent : result.detected_events) {
-    std::cout << "Event detected: " << detectedEvent.name 
+    std::cout << "Event detected: " << detectedEvent.name
               << " at time: " << detectedEvent.time << std::endl;
 }
 ```
@@ -287,11 +299,11 @@ public:
     Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const override {
         Distance altitude = state.get_altitude();
         Angle latitude = state.get_latitude();
-        
+
         // Event occurs when both conditions are satisfied
         bool altitudeCondition = altitude > 400.0 * km;
         bool latitudeCondition = abs(latitude) < 30.0 * deg;
-        
+
         // Return negative when both conditions are true
         return altitudeCondition && latitudeCondition ? -1.0 : 1.0;
     }
@@ -307,10 +319,10 @@ public:
     Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const override {
         Mass currentFuelMass = vehicle.get_fuel_mass();
         Mass minFuelMass = 10.0 * kg;
-        
+
         return (currentFuelMass - minFuelMass) / (1.0 * kg);
     }
-    
+
     std::string get_name() const override { return "Fuel Depletion"; }
     bool is_terminal() const override { return true; }
 };
