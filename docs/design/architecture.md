@@ -180,46 +180,23 @@ flowchart TB
 #### Mathematics (`math/`)
 
 ```cpp
-// Unit-aware vector operations
-template<typename Unit>
-class Vector3 {
-    mp_units::quantity<Unit> x_, y_, z_;
-public:
-    auto magnitude() const -> mp_units::quantity<Unit>;
-    auto normalized() const -> Vector3<mp_units::one>;
-    auto cross(const Vector3<Unit>& other) const -> Vector3<Unit>;
-    auto dot(const Vector3<Unit>& other) const -> mp_units::quantity<Unit * Unit>;
-};
 ```
 
 **Design Principles**:
 - All mathematical operations preserve unit information
 - Template-based for compile-time optimization
-- SIMD-friendly memory layout where possible
 - Immutable value semantics for safety
 
 #### Unit System (`units/`)
 
 ```cpp
-// Aerospace-specific unit extensions
-namespace astrea::units {
-    // Distance units
-    inline constexpr auto earth_radius = 6378.137 * si::kilometre;
-    inline constexpr auto astronomical_unit = 149597870.7 * si::kilometre;
-    
-    // Time units
-    inline constexpr auto julian_day = 86400.0 * si::second;
-    inline constexpr auto julian_year = 365.25 * julian_day;
-    
-    // Gravitational parameters
-    inline constexpr auto earth_mu = 398600.4418 * si::kilo<si::metre>.pow<3>() / si::second.pow<2>();
-}
 ```
 
 ## System Boundaries and Interfaces
 
 ### External Integration Points
 
+<!-- 
 #### SPICE Integration
 
 ```mermaid
@@ -232,11 +209,12 @@ sequenceDiagram
     App->>Astrea: Request planetary ephemeris
     Astrea->>SPICE: Load required kernels
     SPICE->>Kernel: Read ephemeris data
-    Kernel-->>SPICE: Chebyshev coefficients
-    SPICE-->>Astrea: Position/velocity vectors
+    Kernel->>SPICE: Chebyshev coefficients
+    SPICE->>Astrea: Position/velocity vectors
     Astrea->>Astrea: Convert to Astrea types
-    Astrea-->>App: Unit-aware State object
-```
+    Astrea->>App: Unit-aware State object
+``` -->
+
 
 #### Database Integration
 
@@ -290,7 +268,7 @@ auto invalid_transformation() {
 }
 ```
 
-### Runtime Error Handling
+<!-- ### Runtime Error Handling
 
 ```cpp
 // Exception hierarchy for runtime errors
@@ -311,7 +289,7 @@ namespace astrea::exceptions {
         // Invalid configurations, missing dependencies
     };
 }
-```
+``` -->
 
 ## Performance Architecture
 
@@ -319,19 +297,27 @@ namespace astrea::exceptions {
 
 ```cpp
 // Example: Coordinate transformation matrices computed at compile-time
-template<typename FromFrame, typename ToFrame>
-constexpr auto transformation_matrix() {
-    if constexpr (std::is_same_v<FromFrame, ToFrame>) {
-        return math::Matrix3::identity();
-    } else if constexpr (is_simple_rotation_v<FromFrame, ToFrame>) {
-        return compute_rotation_matrix<FromFrame, ToFrame>();
-    } else {
-        return compute_full_transformation<FromFrame, ToFrame>();
+template <typename FromFrame, typename ToFrame>
+DCM<FromFrame, ToFrame> get_dcm_impl(const Date& date)
+{
+    static_assert(!(HasDcm<FromFrame, ToFrame> && HasDcm<ToFrame, FromFrame>), "DCM defined in both directions, please define only one to avoid symmetry issues.");
+    static_assert(IsStaticFrame<FromFrame> && IsStaticFrame<ToFrame>, "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference.");
+    static_assert(HasDcm<FromFrame, ToFrame> || HasDcm<ToFrame, FromFrame> || IsSameFrame<FromFrame, ToFrame>, "No DCM defined between these two frames.");
+
+    if constexpr (IsSameFrame<FromFrame, ToFrame>) {
+        return DCM<FromFrame, ToFrame>::identity();
     }
+    else if constexpr (HasDcm<FromFrame, ToFrame>) {
+        return get_dcm<FromFrame, ToFrame>(date);
+    }
+    else if constexpr (HasDcm<ToFrame, FromFrame>) {
+        return get_dcm<ToFrame, FromFrame>(date).transpose();
+    }
+    throw std::logic_error("How did you get here?");
 }
 ```
 
-### Memory Layout Optimization
+<!-- ### Memory Layout Optimization
 
 ```cpp
 // Structure of Array (SoA) pattern for bulk operations
@@ -345,35 +331,29 @@ public:
     void propagate_all(mp_units::quantity<units::second> dt);
     void transform_all_to_frame(auto target_frame);
 };
-```
+``` -->
 
 ## Extensibility Architecture
 
 ### Plugin Interface Pattern
 
-```cpp
+<!-- ```cpp
 // Abstract interface for custom force models
 class ForceModel {
 public:
     virtual ~ForceModel() = default;
-    virtual auto acceleration(
-        const state::cartesian& state,
-        const time::epoch& epoch
-    ) const -> math::Vector3<units::acceleration> = 0;
+    virtual auto operator()(
+        const State& state,
+        const Date& epoch
+    ) const -> AccelerationVector<frames::earth::icrf> = 0;
     
     virtual auto name() const -> std::string_view = 0;
 };
-
-// Registration system for custom components
-template<typename T>
-void register_force_model(std::string_view name) {
-    ForceModelRegistry::instance().register_model<T>(name);
-}
-```
+``` -->
 
 ### Type Erasure for Runtime Flexibility
 
-```cpp
+<!-- ```cpp
 // Type-erased wrapper for different propagator types
 class Propagator {
     class PropagatorImpl {
@@ -394,7 +374,7 @@ class Propagator {
     
     std::unique_ptr<PropagatorImpl> impl_;
 };
-```
+``` -->
 
 ## Quality Assurance Architecture
 

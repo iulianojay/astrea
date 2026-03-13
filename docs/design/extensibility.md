@@ -21,29 +21,24 @@ Extension mechanisms introduce zero runtime overhead when not used and minimal o
 ### Custom Force Models
 
 ```cpp
-namespace astrea::propagation {
-    // Abstract base class for force models
-    class ForceModel {
-    public:
-        virtual ~ForceModel() = default;
-        
-        virtual auto name() const -> std::string_view = 0;
-    };
-}
+// Abstract base class for force models
+class ForceModel {
+public:
+    Force() = default;
+    virtual ~Force() = default;
+    virtual CartesianVector<Acceleration, frames::earth::icrf> compute_force(const State state, const Vehicle& vehicle) const = 0;
 
 // Example: Custom atmospheric drag model
-class CustomDragModel : public ForceModel {
-    double drag_coefficient_;
-    units::area cross_sectional_area_;
-    units::mass spacecraft_mass_;
+class CustomDragModel : public Force {
+    Unitless _dragCoefficient;
+    Area _crossSectionalArea;
+    units::mass _spacecraftMass;
     
 public:
-    auto acceleration(
-        const state::CartesianState<>& state,
-        const time::EpochTT& epoch
-    ) const -> math::Vector3<units::acceleration> override {
+    auto compute_force(const State state, const Vehicle& vehicle
+    ) const -> CartesianVector<Acceleration, frames::earth::icrf> override {
         // Implementation details...
-        return drag_acceleration;
+        return dragAcceleration;
     }
     
     auto name() const -> std::string_view override { return "CustomDrag"; }

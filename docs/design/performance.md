@@ -1,4 +1,4 @@
-# Performance
+<!-- # Performance
 
 Performance is a critical design consideration for Astrea, as aerospace applications often require real-time computation or processing of large datasets. This document outlines Astrea's performance architecture, optimization strategies, and benchmarking methodologies.
 
@@ -136,4 +136,4 @@ REGISTER_BENCHMARK(BenchmarkKeplerPropagation);
 
 ---
 
-*Astrea's performance architecture demonstrates that safety and performance are not mutually exclusive - through careful design and modern C++ techniques, we achieve both compile-time safety guarantees and runtime performance matching hand-optimized implementations.*
+*Astrea's performance architecture demonstrates that safety and performance are not mutually exclusive - through careful design and modern C++ techniques, we achieve both compile-time safety guarantees and runtime performance matching hand-optimized implementations.* -->
