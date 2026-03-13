@@ -43,14 +43,6 @@ COPY scripts $ASTREA_ROOT/scripts
 COPY CMakeLists.txt $ASTREA_ROOT/CMakeLists.txt
 COPY Makefile $ASTREA_ROOT/Makefile
 
-# Clone mp-units instead of copying local version
-RUN mkdir /github/home/open-source && \
-    cd /github/home/open-source && \
-    git clone https://github.com/mpusz/mp-units.git && \
-    cd mp-units && \
-    git checkout v2.4.0 && \
-    cd $ASTREA_ROOT
-
 RUN make python_env
 RUN make release all
 

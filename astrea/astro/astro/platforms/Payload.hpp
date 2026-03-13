@@ -30,12 +30,15 @@
 namespace astrea {
 namespace astro {
 
-static const astro::RadiusVector<astro::frames::dynamic::ric> NADIR_RIC = { -1.0 * astrea::detail::distance_unit,
-                                                                            0.0 * astrea::detail::distance_unit,
-                                                                            0.0 * astrea::detail::distance_unit };
-static const astro::RadiusVector<astro::frames::dynamic::ric> CENTER    = { 0.0 * astrea::detail::distance_unit,
-                                                                            0.0 * astrea::detail::distance_unit,
-                                                                            0.0 * astrea::detail::distance_unit };
+static const astro::RadiusVector<astro::frames::dynamic::ric> NADIR_RIC  = { -1.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit };
+static const astro::RadiusVector<astro::frames::dynamic::ric> RADIAL_RIC = { 1.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit };
+static const astro::RadiusVector<astro::frames::dynamic::ric> CENTER     = { 0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit };
 
 /**
  * @brief Class for storing and managing payload parameters.

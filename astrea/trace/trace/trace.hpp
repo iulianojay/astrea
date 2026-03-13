@@ -18,7 +18,17 @@
  */
 #pragma once
 
-#include <trace/analysis/access_analysis.hpp>
+#include <trace/analysis/AccessAnalyzer.hpp>
+#include <trace/analysis/PositionCache.hpp>
+#include <trace/analysis/SpatialIndex.hpp>
+#include <trace/analysis/plots/Plotter.hpp>
+#include <trace/analysis/stats/AccessStats.hpp>
+#include <trace/analysis/stats/FoldsOfCoverage.hpp>
+#include <trace/analysis/stats/HyperStats.hpp>
+#include <trace/analysis/stats/RiseSetStats.hpp>
+#include <trace/analysis/stats/Stats.hpp>
+
+#include <trace/io/output.hpp>
 
 #include <trace/platforms/ground/Grid.hpp>
 #include <trace/platforms/ground/GroundArchitecture.hpp>
@@ -28,6 +38,8 @@
 #include <trace/platforms/sensors/Antenna.hpp>
 #include <trace/platforms/sensors/Sensor.hpp>
 #include <trace/platforms/sensors/fov/FieldOfView.hpp>
+#include <trace/platforms/sensors/fov/instances/CircularFieldOfView.hpp>
+#include <trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp>
 
 #include <trace/platforms/vehicles/Viewer.hpp>
 
@@ -35,4 +47,5 @@
 #include <trace/risesets/RiseSetArray.hpp>
 #include <trace/risesets/riseset_utils.hpp>
 
+#include <trace/types/enums.hpp>
 #include <trace/types/typedefs.hpp>

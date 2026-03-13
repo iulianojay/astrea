@@ -65,5 +65,5 @@ TEST_F(GroundPointTest, GetParent) { ASSERT_EQ(point.get_parent(), sys.get_body(
 
 TEST_F(GroundPointTest, GetId)
 {
-    ASSERT_EQ(point.get_id() + 1, GroundPoint(sys.get_body(CelestialBodyId::EARTH).get(), latitude, longitude, altitude).get_id());
+    ASSERT_EQ(point.get_id() - 1, GroundPoint(sys.get_body(CelestialBodyId::EARTH).get(), latitude, longitude, altitude).get_id());
 }

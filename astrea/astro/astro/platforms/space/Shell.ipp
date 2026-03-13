@@ -34,6 +34,7 @@ Shell<Spacecraft_T>::Shell(
     const Angle& anchorAnomaly
 )
 {
+    using mp_units::angular::unit_symbols::deg;
 
     if (T % P) {
         throw std::runtime_error("The Walker constructor requires the total number planes is a multiple of the total "
@@ -41,8 +42,8 @@ Shell<Spacecraft_T>::Shell(
     }
 
     const size_t satsPerPlane = T / P;
-    const Angle deltaRAAN     = 360.0 / (static_cast<double>(P)) * mp_units::angular::unit_symbols::deg;
-    const Angle deltaAnomaly  = F * 360.0 / (static_cast<double>(T)) * mp_units::angular::unit_symbols::deg;
+    const Angle deltaRAAN     = 360.0 / (static_cast<double>(P)) * deg;
+    const Angle deltaAnomaly  = F * 360.0 / (static_cast<double>(T)) * deg;
 
     planes.resize(P);
     Unitless iAnom  = 0;
@@ -50,14 +51,17 @@ Shell<Spacecraft_T>::Shell(
     for (auto& plane : planes) {
         plane.satellites.resize(satsPerPlane);
         for (auto& sat : plane.satellites) {
-            sat = Spacecraft_T({ OrbitalElements(Keplerian{ semimajor,
-                                                            0.0 * mp_units::one,
-                                                            inclination,
-                                                            (anchorRAAN + deltaRAAN * iPlane),
-                                                            0.0 * mp_units::angular::unit_symbols::rad,
-                                                            (anchorAnomaly + deltaAnomaly * iAnom) }),
-                                 epoch,
-                                 sys });
+            const State state(
+                OrbitalElements(Keplerian{ semimajor,
+                                           0.0 * mp_units::one,
+                                           inclination,
+                                           (anchorRAAN + deltaRAAN * iPlane),
+                                           0.0 * mp_units::angular::unit_symbols::rad,
+                                           (anchorAnomaly + deltaAnomaly * iAnom) }),
+                epoch,
+                sys
+            );
+            sat.store_state(state);
             ++iAnom;
         }
         plane.generate_id();

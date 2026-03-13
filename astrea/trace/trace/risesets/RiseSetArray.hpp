@@ -23,18 +23,11 @@
 #include <units/units.hpp>
 
 #include <trace/risesets/riseset_utils.hpp>
+#include <trace/types/enums.hpp>
+#include <trace/types/typedefs.hpp>
 
 namespace astrea {
 namespace trace {
-
-/**
- * @brief Enumeration of statistical measures for RiseSetArray.
- */
-enum class Stat {
-    MIN,  //!< Minimum value
-    MEAN, //!< Mean value
-    MAX   //!< Maximum value
-};
 
 /**
  * @brief Represents an array of rise and set times.
@@ -212,18 +205,73 @@ class RiseSetArray {
     /**
      * @brief Calculates the gap between rise and set times.
      *
-     * @param stat The statistical measure to calculate (MIN, MEAN, MAX).
+     * @param stat The statistical measure to calculate (MIN, MEAN, MAX, PCT).
+     * @param percentile The percentile to calculate if stat is PCT (between 0 and 1).
      * @return Time The calculated gap based on the specified statistic.
      */
-    Time gap(const Stat& stat = Stat::MEAN) const;
+    Time gap(const StatType& stat = StatType::AVG, const Unitless percentile = 0.5) const;
+
+    /**
+     * @brief Get a vector of gap durations for this rise-set array
+     *
+     * @return std::vector<Time> Vector of gap durations in the order that they appear
+     */
+    std::vector<Time> get_gap_times() const;
 
     /**
      * @brief Calculates the access time based on rise and set times.
      *
-     * @param stat The statistical measure to calculate (MIN, MEAN, MAX).
+     * @param stat The statistical measure to calculate (MIN, MEAN, MAX, PCT).
+     * @param percentile The percentile to calculate if stat is PCT (between 0 and 1).
      * @return Time The calculated access time based on the specified statistic.
      */
-    Time access_time(const Stat& stat = Stat::MEAN) const;
+    Time access_time(const StatType& stat = StatType::AVG, const Unitless percentile = 0.5) const;
+
+    /**
+     * @brief Get a vector of access durations for this rise-set array
+     *
+     * @return std::vector<Time> Vector of access durations in the order that they appear
+     */
+    std::vector<Time> get_access_times() const;
+
+    /**
+     * @brief Checks if the given time occurs during an access window
+     *
+     * @param time Time to check for access
+     * @return true if time occurs during an access windows
+     * @return false if time occurs during a gap
+     */
+    bool has_access(const Time& time) const;
+
+    /**
+     * @brief Calculates the average daily visibility time based on the rise and set times.
+     *
+     * @return Time The calculated average daily visibility time.
+     */
+    Time average_daily_vis_time() const;
+
+    /**
+     * @brief Calculates the mean time to access (MTTA) for this RiseSetArray.
+     *
+     * @return Time The calculated mean time to access based on the rise and set times.
+     *
+     * @note
+     * access: |<--gap-->|<--access-->|<-gap->|<--access-->|...
+     *         |         |            |       |            |...
+     * tta:    |\        |            |       |            |...
+     *         |+\       |            |       |            |...
+     *         |++\      |            |\      |            |...
+     *         |+++\     |            |+\     |            |...
+     *         |++++\    |            |++\    |            |...
+     *         |+++++\   |            |+++\   |            |...
+     *         |++++++\  |            |++++\  |            |...
+     *         |+++++++\ |            |+++++\ |            |...
+     *         |++++++++\|____________|++++++\|____________|...
+     *
+     * MMTA is the mean time to access, or the mean height of the shaded regions
+     * MMTA = 0.5 * sqrt(gap0^2 + gap1^2 + ...)
+     */
+    Time mean_time_to_access() const;
 
     /**
      * @brief Iterator type for the RiseSetArray.
@@ -308,12 +356,14 @@ class RiseSetArray {
     void validate_risesets(const std::vector<Time>& risesets) const;
 
     /**
-     * @brief Converts a Time object to a formatted string.
+     * @brief Calculates a specified statistic (MIN, MEAN, MAX, PCT) for the rise/set pairs based on the specified metric (GAP or ACCESS_TIME).
      *
-     * @param t The Time object to convert.
-     * @return std::string A formatted string representation of the Time object.
+     * @param stat The statistical measure to calculate (MIN, MEAN, MAX, PCT).
+     * @param percentile The percentile to calculate if stat is PCT (between 0 and 1).
+     * @param metric The metric to calculate the statistic for (GAP or ACCESS_TIME).
+     * @return Time The calculated statistic based on the specified metric and statistic type.
      */
-    std::string to_formatted_string(Time t) const;
+    Time calculate_statistic(const StatType& stat, const Unitless& percentile, const RiseSetMetric metric) const;
 };
 
 } // namespace trace

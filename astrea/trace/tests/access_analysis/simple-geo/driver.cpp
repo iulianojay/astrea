@@ -121,7 +121,8 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
     twoBallGeo.propagate(propTime, eom, integrator);
 
     // Find access
-    const auto accesses = find_internal_accesses(twoBallGeo, resolution, epoch, epoch + propTime, sys);
+    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
+    const auto accesses = analyzer.find_internal_accesses(twoBallGeo);
 
     // Assert that there is 100% access
     ASSERT_TRUE(accesses.size() > 0);
@@ -164,7 +165,8 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
     twoBallGeo.propagate(propTime, eom, integrator);
 
     // Find access
-    const auto accesses = find_internal_accesses(twoBallGeo, resolution, epoch, epoch + propTime, sys);
+    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
+    const auto accesses = analyzer.find_internal_accesses(twoBallGeo);
 
     // Assert that there is never access
     ASSERT_TRUE(accesses.size() == 0);
@@ -210,7 +212,8 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
     fourBallGeo.propagate(propTime, eom, integrator);
 
     // Find access
-    auto accesses = find_internal_accesses(fourBallGeo, resolution, epoch, epoch + propTime, sys);
+    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
+    auto accesses = analyzer.find_internal_accesses(fourBallGeo);
 
     // Assert that there is 100% access for non-apposing sats, 0% for apposing sats
     ASSERT_TRUE(accesses.size() > 0);
@@ -233,10 +236,10 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
     ASSERT_EQ(access34.size(), 2);
 
     // Access time
-    ASSERT_EQ(access12.access_time(Stat::MEAN), propTime);
-    ASSERT_EQ(access13.access_time(Stat::MEAN), 0 * s);
-    ASSERT_EQ(access14.access_time(Stat::MEAN), propTime);
-    ASSERT_EQ(access23.access_time(Stat::MEAN), propTime);
-    ASSERT_EQ(access24.access_time(Stat::MEAN), 0 * s);
-    ASSERT_EQ(access34.access_time(Stat::MEAN), propTime);
+    ASSERT_EQ(access12.access_time(StatType::AVG), propTime);
+    ASSERT_EQ(access13.access_time(StatType::AVG), 0 * s);
+    ASSERT_EQ(access14.access_time(StatType::AVG), propTime);
+    ASSERT_EQ(access23.access_time(StatType::AVG), propTime);
+    ASSERT_EQ(access24.access_time(StatType::AVG), 0 * s);
+    ASSERT_EQ(access34.access_time(StatType::AVG), propTime);
 }

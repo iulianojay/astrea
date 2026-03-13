@@ -11,6 +11,7 @@ lib
 install
 __pycache__
 results
+site
 
 # File types
 *.o
@@ -29,6 +30,7 @@ pyastro/astro.py
 snapshot.db
 snapshot.db-journal
 spacetrack.query-history.json
+astrea/astro/pyastro/6dof_report/nasa_6dof_report.html
 
 # NASA 6DOF checkcases data files
 **/nasa_6dof_checkcases/checkcases/**/*.csv

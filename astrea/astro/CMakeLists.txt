@@ -93,6 +93,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/instances/body_centered_inertial_frames.hpp
     ${ASTRO_BASE}/frames/instances/body_fixed_frames.hpp
     ${ASTRO_BASE}/frames/instances/defined_rotations.hpp
+    ${ASTRO_BASE}/frames/instances/EastNorthUp.hpp
     ${ASTRO_BASE}/frames/instances/LocalHorizontalLocalVertical.hpp
     ${ASTRO_BASE}/frames/instances/RadialInTrackCrossTrack.hpp
     ${ASTRO_BASE}/frames/instances/VelocityNormalBinormal.hpp
@@ -265,4 +266,12 @@ endif()
 
 if(${BUILD_TESTS})
     add_subdirectory(tests)
+endif()
+
+if(${BUILD_PROFILERS})
+    add_subdirectory(tests/profiling)
+endif()
+
+if(${BUILD_CHECKCASE_DATABASE})
+    add_subdirectory(tests/nasa_6dof_checkcases)
 endif()

@@ -98,10 +98,6 @@ class AstrodynamicsSystem;
 class CelestialBody;
 
 // Time
-struct IdPair;
-class AccessArray;
-class RiseSetArray;
-
 class Date;
 class Interval;
 struct JulianDateClock;
