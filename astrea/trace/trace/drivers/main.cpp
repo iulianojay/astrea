@@ -245,6 +245,30 @@ AccessArray propagate_and_run_access_analysis(
     }
     start = std::chrono::steady_clock::now();
 
+    for (auto& shell : allSats.get_shells()) {
+        for (auto& plane : shell.get_planes()) {
+            for (auto& sat : plane.get_all_spacecraft()) {
+                // Check that state history is populated and has correct time frame
+                const auto& stateHistory = sat.get_state_history();
+                if (stateHistory.size() == 0) {
+                    throw std::runtime_error("Error: State history not populated after propagation.");
+                }
+                if (stateHistory.first().get_epoch() > startDate) {
+                    std::ostringstream oss;
+                    oss << "Error: State history starts at the wrong time! Expected: " << startDate
+                        << ", Actual: " << stateHistory.first().get_epoch();
+                    throw std::runtime_error(oss.str());
+                }
+                if (stateHistory.last().get_epoch() != endDate) {
+                    std::ostringstream oss;
+                    oss << "Error: State history ends at the wrong time! Expected: " << endDate
+                        << ", Actual: " << stateHistory.last().get_epoch();
+                    throw std::runtime_error(oss.str());
+                }
+            }
+        }
+    }
+
     // Find access
     AccessAnalyzer analyzer(accessResolution, startDate, endDate, sys, true);
     const auto accesses = analyzer.find_accesses(constellation, grounds, true);
