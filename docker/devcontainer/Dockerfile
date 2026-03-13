@@ -44,10 +44,3 @@ WORKDIR $USER_HOME
 
 # For some reason, this is the only way to install gcovr
 RUN pip install gcovr --break-system-packages
-
-# Clone mp-units instead of copying local version
-RUN mkdir $USER_HOME/open-source && \
-    cd $USER_HOME/open-source && \
-    git clone https://github.com/mpusz/mp-units.git && \
-    cd mp-units && \
-    git checkout v2.4.0
