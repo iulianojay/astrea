@@ -258,3 +258,21 @@ After successful installation:
 1. Explore the [Examples](../examples/index.md) to understand common usage patterns
 2. Review the [API Documentation](../api_reference/index.md) for detailed interface descriptions
 3. Join the community discussions on [GitHub](https://github.com/iulianojay/astrea)
+
+## Shrinking the size of Astrea
+Astrea is designed to be modular, allowing users to include only the components they need. For example, if you only need the core astrodynamics functionality, you can link against `astrea::astro` without pulling in the access analysis or satellite database components. This helps keep compile times and binary sizes down for users who don't need the full functionality of the project.
+
+To help with binary size, users can also consider using analytic approximations for ephemerides instead of the compiled Chebyshev polynomials, which can be quite large. To control which of the default `CelestialBody`s are compiled with these polynomial files, you can use the CMake `BUILD_<BODY>` options. For example, if you only need Earth ephemerides, you can disable the others:
+
+```bash
+cmake -B build -S . \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=install \
+    -DASTREA_BUILD_TESTS=OFF \
+    -DASTREA_BUILD_EXAMPLES=OFF \
+    -DBUILD_SUN=OFF \
+    -DBUILD_MOON=OFF
+```
+By default, Earth, Sun, and Moon are set to `ON` and all others are set to `OFF`.
+
+For users with a local clone of Astrea, a good chunk of the project size comes from some NASA 6DoF verification test data. Users that are not interested in running this, but would like to keep the source code around can simply delete `./astrea/astro/tests/nasa_6dof_checkcases/data` folder.

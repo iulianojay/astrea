@@ -2,6 +2,17 @@
 
 This chapter provides a high level overview of the Astrea project to make it easier to navigate, build, and use.
 
+Astrea was designed as a monorepo with a single CMake project to simplify development and ensure that all components are built and tested together. The project is organized into several core libraries and components, each with its own directory and CMake target.
+
+Currently, there are 3 main libraries:
+- `astrea::astro` - the core astrodynamics library with frames, propagation, time systems, and celestial mechanics
+- `astrea::trace` - the access analysis library for calculating access times, gaps, and interference between platforms
+- `astrea::snapshot` - the live satellite database with Spacetrack.org integration for real-time orbital data
+The other libraries (`astrea::math`, `astrea::units`, and `astrea::utilities`) provide supporting functionality used across the project.
+
+Future versions of Astrea may reorganize some of these for clarity and uniformity, and new libraries may be added as the project evolves. 
+
+There is not currently a single `astrea::astrea` target, or similar, but as user needs become more apparent, this may change.
 
 ## CMake projects and dependencies
 
@@ -9,11 +20,9 @@ The [GitHub repository](https://github.com/iulianojay/astrea) contains the main
 CMake-based project with several core components:
 
 - **_./astrea_**
-
-    - header-only project containing the whole **Astrea** astrodynamics library
-    - _./astrea/CMakeLists.txt_ file is the **entry point for library users**
-    - depends on the following external libraries:
-
+    - general umbrella for all the various smaller libraries and components that make up the core of the project
+    - constains all various components and high level requirements and dependencies
+    - dependencies include:
         - [mp-units](https://github.com/mpusz/mp-units) for compile-time dimensional analysis
           and unit safety
         - [sqlite-orm](https://github.com/fnc12/sqlite_orm) for orbital database management
@@ -22,35 +31,40 @@ CMake-based project with several core components:
         - [date](https://github.com/HowardHinnant/date) for time and calendar utilities
         - [csv-parser](https://github.com/vincentlaucsb/csv-parser) for data file processing
         - [parallel_hashmap](https://github.com/greg7mdp/parallel-hashmap) for high-performance containers
-
-- **_._**
-
-    - project used as an **entry point for library development and CI/CD**
-    - it wraps _./astrea_ project together with usage examples and tests
-    - additionally to the dependencies of _./astrea_ project, it uses:
-
         - [GoogleTest](https://github.com/google/googletest) library as a unit tests framework
         - [Google Benchmark](https://github.com/google/benchmark) for performance testing
 
-- **_./scripts_**
+- **_./astrea/astro_**
+    - Core astrodynamics library with frames, propagation, time systems, and celestial mechanics
+    - Provides the fundamental tools for orbital mechanics, spacecraft analysis, and mission planning
 
+- **_./astrea/snapshot_**
+    - Live satellite database with Spacetrack.org integration for real-time orbital data
+    - Provides tools for querying, storing, and analyzing satellite catalog data
+
+- **_./astrea/trace_**
+    - Access analysis library for calculating access times, gaps, and interference between platforms
+    - Integrates with the core astrodynamics library for accurate geometry and time handling
+    - Serves as an example of how to use and extend Astrea for specific aerospace applications
+
+- **_./astrea/math_**
+    - Mathematical utilities optimized for astrodynamics applications
+    - Provides unit-aware mathematical functions, vector/matrix operations, and numerical algorithms
+
+- **_./astrea/units_**
+    - Extensions to mp-units for aerospace-specific quantities and common unit definitions
+
+- **_./astrea/utilities_**
+    - General purpose utilities and algorithms used across the project
+
+- **_./scripts_**
     - Build automation, coverage reporting, and development utility scripts
 
 
-!!! important "Important: Library users should use the astrea/ directory as entry point"
+!!! important "Important: Library users should tailor their includes and dependencies to their needs"
 
-    Top level _CMakeLists.txt_ file should primarily be used by **Astrea** developers and
-    contributors as an entry point for the project's development. We want to ensure that
-    everyone will build **ALL** the code correctly before pushing a commit.
-
-    This is why our project has two main entry points:
-
-    - _./CMakeLists.txt_ is **to be used by project developers** to build **ALL** the project
-      code with restrictive compilation flags and comprehensive testing,
-    - _./astrea/CMakeLists.txt_ contains the pure library definition and **should be used by
-      customers** that prefer to use CMake's
-      [`add_subdirectory()`](https://cmake.org/cmake/help/latest/command/add_subdirectory.html)
-      to handle the dependencies.
+    The project is organized into multiple libraries to allow users to include only the components they need. 
+    For example, if you only need the core astrodynamics functionality, you can link against `astrea::astro` without pulling in the access analysis or satellite database components. This helps keep compile times and binary sizes down for users who don't need the full functionality of the project
 
 ## Core Components
 
@@ -65,6 +79,10 @@ flowchart TD
     astro --- math["math<br/>(Mathematical Utilities)"]
     astro --- units["units<br/>(Physical Units)"]
     astro --- utilities["utilities<br/>(General Utilities)"]
+    
+    snapshot --- math["math<br/>(Mathematical Utilities)"]
+    snapshot --- units["units<br/>(Physical Units)"]
+    snapshot --- utilities["utilities<br/>(General Utilities)"]
 
     trace --- astro["astro<br/>(Astrodynamics Core)"]
     trace --- snapshot["snapshot<br/>(Live Satellite Database)"]
@@ -75,7 +93,7 @@ flowchart TD
 | `astro`      | `astrea::astro`   | Core astrodynamics: frames, propagation, time, orbital states|
 | `math`       | `astrea::math`    | Mathematical utilities                                       |
 | `units`      | `astrea::units`   | Unit definitions and simple utilities                        |
-| `utilities`  | `astrea::utils`   | General purpose utilities and algorithms                     |
+| `utilities`  | `astrea::utilities`   | General purpose utilities and algorithms                     |
 | `trace`      | `astrea::trace`   | Access analysis: calculation of access, gap, and interference times with statistics |
 | `snapshot`   | `astrea::snapshot`| Spacetrack integrated databasing for real-time orbital data  |
 
