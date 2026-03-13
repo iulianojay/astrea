@@ -35,6 +35,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        
+      - name: Mark repository as safe
+        run: git config --global --add safe.directory $GITHUB_WORKSPACE
+        
+      - name: Fetch tags
+        run: git fetch --prune --unshallow --tags
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
