@@ -12,7 +12,12 @@ WORKDIR $ASTREA_ROOT
 
 FROM base AS build
 
+# Accept version as build argument with fallback
+ARG ASTREA_VERSION=1.1.1
+
 ENV DEBIAN_FRONTEND=noninteractive
+# Set version environment variable for CMake fallback
+ENV ASTREA_VERSION=${ASTREA_VERSION}
 RUN apt-get update && \
     apt-get -y install \
     gcc \
