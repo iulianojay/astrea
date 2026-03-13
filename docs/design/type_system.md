@@ -121,6 +121,8 @@ namespace astrea::astro {
         // Modified equinoctial elements for near-circular orbits
     };
 }
+```
+
 ### State Management
 
 The `State` class combines orbital elements with epoch and system information:
