@@ -7,6 +7,9 @@ RUN apt-get update && \
     make \
     cmake
 
+ENV ASTREA_ROOT=/github/home/astrea
+WORKDIR $ASTREA_ROOT
+
 FROM base AS build
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -33,14 +36,16 @@ RUN apt-get update && \
 # For some reason, this is the only way to install gcovr
 RUN pip install gcovr --break-system-packages
 
+COPY ./* $ASTREA_ROOT
+
 RUN make python_env
 RUN make release all install
 
 FROM base AS final
 
-COPY --from=build ./.venv ./.venv
-COPY --from=build ./build ./build
-COPY --from=build ./install ./install
-COPY --from=build ./Makefile ./Makefile
-COPY astrea/astro/data ./astrea/astro/data
+COPY --from=build $ASTREA_ROOT/.venv $ASTREA_ROOT/.venv
+COPY --from=build $ASTREA_ROOT/build $ASTREA_ROOT/build
+COPY --from=build $ASTREA_ROOT/install $ASTREA_ROOT/install
+COPY --from=build $ASTREA_ROOT/Makefile $ASTREA_ROOT/Makefile
+COPY astrea/astro/data $ASTREA_ROOT/astrea/astro/data
 
