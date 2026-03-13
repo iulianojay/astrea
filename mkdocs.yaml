@@ -158,7 +158,7 @@ plugins:
 nav:
   - Home: index.md
   - Getting Started:
-      - Getting Started: getting_started/index.md
+      - Introduction: getting_started/index.md
       - About Astrea: getting_started/about.md
       - Project Structure: getting_started/project_structure.md
       - Installation and Usage: getting_started/installation_and_usage.md
