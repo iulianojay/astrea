@@ -38,7 +38,6 @@ RUN pip install gcovr --break-system-packages
 
 COPY astrea $ASTREA_ROOT/astrea
 COPY cmake $ASTREA_ROOT/cmake
-COPY extern $ASTREA_ROOT/extern
 COPY scripts $ASTREA_ROOT/scripts
 COPY CMakeLists.txt $ASTREA_ROOT/CMakeLists.txt
 COPY Makefile $ASTREA_ROOT/Makefile
@@ -52,6 +51,5 @@ COPY --from=build $ASTREA_ROOT/.venv $ASTREA_ROOT/.venv
 COPY --from=build $ASTREA_ROOT/build $ASTREA_ROOT/build
 COPY --from=build $ASTREA_ROOT/install $ASTREA_ROOT/install
 COPY --from=build $ASTREA_ROOT/Makefile $ASTREA_ROOT/Makefile
-COPY --from=build $ASTREA_ROOT/extern $ASTREA_ROOT/extern
 COPY astrea/astro/data $ASTREA_ROOT/astrea/astro/data
 
