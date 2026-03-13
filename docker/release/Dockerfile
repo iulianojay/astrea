@@ -53,4 +53,3 @@ COPY --from=build $ASTREA_ROOT/build $ASTREA_ROOT/build
 COPY --from=build $ASTREA_ROOT/install $ASTREA_ROOT/install
 COPY --from=build $ASTREA_ROOT/Makefile $ASTREA_ROOT/Makefile
 COPY --from=build $ASTREA_ROOT/astrea/astro/data $ASTREA_ROOT/astrea/astro/data
-
