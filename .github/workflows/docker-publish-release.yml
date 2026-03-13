@@ -71,7 +71,7 @@ jobs:
       # Get version from git for build arg
       - name: Get version
         id: version
-        run: echo "version=$(git describe --tags --always)" >> $GITHUB_OUTPUT
+        run: echo "version=$(git describe --abbrev=0 --tags)" >> $GITHUB_OUTPUT
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
