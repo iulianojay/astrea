@@ -44,7 +44,7 @@ AccelerationVector<frames::earth::icrf> NBodyForce::compute_force(const State& s
     const RadiusVector<frames::earth::icrf>& rCenterToVehicle = state.get_position();
 
     // Center body properties
-    static const CelestialBodyUniquePtr& center = sys.get_central_body();
+    const CelestialBodyUniquePtr& center = sys.get_central_body();
 
     // Find day nearest to current time
     const RadiusVector<frames::solar_system_barycenter::icrf> rCenterToSsb = -center->get_position_at(date);

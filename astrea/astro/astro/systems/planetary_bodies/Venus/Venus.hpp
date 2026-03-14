@@ -32,6 +32,36 @@ namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
+static const CelestialBodyParameters DEFAULT_VENUS_PARAMS{
+    .name          = "Venus",
+    .parent        = CelestialBodyId::SUN,
+    .type          = CelestialBodyType::PLANET,
+    .referenceDate = Date("2000-01-01 12:00:00"),
+    .mu = GravParam(324860.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
+    .mass              = Mass(4.87 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
+    .equitorialRadius  = Distance(6051.8 * mp_units::si::unit_symbols::km),
+    .polarRadius       = Distance(6051.8 * mp_units::si::unit_symbols::km),
+    .crashRadius       = Distance(6301.8 * mp_units::si::unit_symbols::km),
+    .sphereOfInfluence = Distance(0.061640255733634 * mp_units::iau::unit_symbols::au),
+    .j2                = Unitless(4.458e-6 * mp_units::one),
+    .j3                = Unitless(-0.0000025323e-6 * mp_units::one),
+    .axialTilt         = Angle(2.64 * mp_units::angular::unit_symbols::deg),
+    .rotationRate      = AngularRate(-1.481329081370229 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
+    .siderealPeriod    = Time(224.701 * mp_units::non_si::day),
+    .semimajorAxis     = Distance(0.72333566 * mp_units::iau::unit_symbols::au),
+    .eccentricity      = Unitless(0.00677672 * mp_units::one),
+    .inclination       = Angle(3.39467605 * mp_units::angular::unit_symbols::deg),
+    .rightAscension    = Angle(76.67984255 * mp_units::angular::unit_symbols::deg),
+    .longitudeOfPerigee     = Angle(131.60246718 * mp_units::angular::unit_symbols::deg),
+    .meanLongitude          = Angle(181.97909950 * mp_units::angular::unit_symbols::deg),
+    .semimajorAxisRate      = InterplanetaryVelocity(0.00000390 * mp_units::iau::unit_symbols::au / JulianCentury),
+    .eccentricityRate       = BodyUnitlessPerTime(-0.00004107 * mp_units::one / JulianCentury),
+    .inclinationRate        = BodyAngularRate(-0.00078890 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .rightAscensionRate     = BodyAngularRate(-0.27769418 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .longitudeOfPerigeeRate = BodyAngularRate(0.00268329 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .meanLongitudeRate      = BodyAngularRate(58517.81538729 * mp_units::angular::unit_symbols::deg / JulianCentury)
+};
+
 /**
  * @class Venus
  * @brief Represents the Venus celestial body.
@@ -41,41 +71,15 @@ namespace planetary_bodies {
 class Venus : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Venus class.
      *
      * Initializes the Venus object with predefined physical and orbital parameters.
      */
     constexpr Venus() :
-        CelestialBody(
-            "Venus",                     //!< Name
-            CelestialBodyId::SUN,        //!< Parent celestial body
-            CelestialBodyType::PLANET,   //!< Type
-            Date("2000-01-01 12:00:00"), //!< Reference date for the celestial body data
-            GravParam(324860.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
-            Mass(4.87 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)), //!< Mass
-            Distance(6051.8 * mp_units::si::unit_symbols::km),                           //!< Equatorial radius
-            Distance(6051.8 * mp_units::si::unit_symbols::km),                           //!< Polar radius
-            Distance(6301.8 * mp_units::si::unit_symbols::km),                           //!< Crash radius
-            Distance(0.061640255733634 * mp_units::iau::unit_symbols::au),               //!< Crash radius
-            Unitless(4.458e-6 * mp_units::one),                 //!< J2 gravitational coefficient
-            Unitless(-0.0000025323e-6 * mp_units::one),         //!< J3 gravitational coefficient
-            Angle(2.64 * mp_units::angular::unit_symbols::deg), //!< Axial tilt
-            AngularRate(-1.481329081370229 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day), //!< Rotation rate
-            Time(224.701 * mp_units::non_si::day),                      //!< Sidereal period
-            Distance(0.72333566 * mp_units::iau::unit_symbols::au),     //!< Semimajor axis
-            Unitless(0.00677672 * mp_units::one),                       //!< Eccentricity
-            Angle(3.39467605 * mp_units::angular::unit_symbols::deg),   //!< Inclination
-            Angle(76.67984255 * mp_units::angular::unit_symbols::deg),  //!< Longitude of ascending node
-            Angle(131.60246718 * mp_units::angular::unit_symbols::deg), //!< Longitude of perihelion
-            Angle(181.97909950 * mp_units::angular::unit_symbols::deg), //!< Mean longitude
-            InterplanetaryVelocity(0.00000390 * mp_units::iau::unit_symbols::au / JulianCentury), //!< Rate of change of the semimajor axis
-            BodyUnitlessPerTime(-0.00004107 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
-            BodyAngularRate(-0.00078890 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
-            BodyAngularRate(-0.27769418 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of ascending node
-            BodyAngularRate(0.00268329 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perihelion
-            BodyAngularRate(58517.81538729 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the mean longitude
-        )
+        CelestialBody(DEFAULT_VENUS_PARAMS)
     {
     }
 
