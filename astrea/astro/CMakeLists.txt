@@ -31,6 +31,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/event_detection/Event.cpp
     ${ASTRO_BASE}/propagation/event_detection/EventDetector.cpp
     ${ASTRO_BASE}/propagation/event_detection/events/ImpulsiveBurn.cpp
+    ${ASTRO_BASE}/propagation/event_detection/events/Deorbit.cpp
 
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.cpp
     ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
@@ -124,6 +125,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/event_detection/EventDetector.hpp
     ${ASTRO_BASE}/propagation/event_detection/events/NullEvent.hpp
     ${ASTRO_BASE}/propagation/event_detection/events/ImpulsiveBurn.hpp
+    ${ASTRO_BASE}/propagation/event_detection/events/Deorbit.hpp
 
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.hpp
     ${ASTRO_BASE}/propagation/force_models/Force.hpp
