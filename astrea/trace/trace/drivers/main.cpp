@@ -245,7 +245,7 @@ AccessArray propagate_and_run_access_analysis(
     }
     start = std::chrono::steady_clock::now();
 
-    for (auto& shell : allSats.get_shells()) {
+    for (auto& shell : constellation.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             for (auto& sat : plane.get_all_spacecraft()) {
                 // Check that state history is populated and has correct time frame
