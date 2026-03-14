@@ -32,7 +32,7 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/propagation/event_detection/Event.cpp
     ${ASTRO_BASE}/propagation/event_detection/EventDetector.cpp
-    ${ASTRO_BASE}/propagation/event_detection/Scheduler.cpp
+    ${ASTRO_BASE}/propagation/event_detection/Schedule.cpp
     ${ASTRO_BASE}/propagation/event_detection/events/ImpulsiveBurn.cpp
     ${ASTRO_BASE}/propagation/event_detection/events/Deorbit.cpp
 
@@ -131,7 +131,7 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/propagation/event_detection/Event.hpp
     ${ASTRO_BASE}/propagation/event_detection/EventDetector.hpp
-    ${ASTRO_BASE}/propagation/event_detection/Scheduler.hpp
+    ${ASTRO_BASE}/propagation/event_detection/Schedule.hpp
     ${ASTRO_BASE}/propagation/event_detection/events/NullEvent.hpp
     ${ASTRO_BASE}/propagation/event_detection/events/ImpulsiveBurn.hpp
     ${ASTRO_BASE}/propagation/event_detection/events/Deorbit.hpp

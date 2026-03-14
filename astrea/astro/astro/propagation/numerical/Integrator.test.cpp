@@ -62,8 +62,6 @@ TEST_F(IntegratorTest, SetToleranceAndOptions)
     EXPECT_NO_THROW(integrator.set_abs_tol(1e-10));
     EXPECT_NO_THROW(integrator.set_rel_tol(1e-10));
     EXPECT_NO_THROW(integrator.set_max_iter(1000));
-    EXPECT_NO_THROW(integrator.switch_print(true));
-    EXPECT_NO_THROW(integrator.switch_timer(true));
 }
 
 TEST_F(IntegratorTest, SetStepMethod)
@@ -113,7 +111,6 @@ TEST_F(IntegratorTest, PropagateVariableStep)
     vehicle = Vehicle();
     EXPECT_NO_THROW({ auto history = integrator.propagate(state, propTime, eom, vehicle); });
 
-    integrator.switch_print(true);
     integrator.set_step_method(Integrator::StepMethod::DOP78);
     vehicle = Vehicle();
     EXPECT_NO_THROW({ auto history = integrator.propagate(state, propTime, eom, vehicle); });

@@ -11,19 +11,19 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/propagation/event_detection/Scheduler.hpp>
+#include <astro/propagation/event_detection/Schedule.hpp>
 
 namespace astrea {
 namespace astro {
 
-void Scheduler::schedule_event(const Date& date, const Event& event)
+void Schedule::schedule_event(const Date& date, const Event& event)
 {
     const std::size_t eventId = _events.size();
     _events[eventId]          = event;
     _schedule[date].push_back(eventId);
 }
 
-void Scheduler::schedule_event(const std::vector<Date>& dates, const Event& event)
+void Schedule::schedule_event(const std::vector<Date>& dates, const Event& event)
 {
     // This could end up with a lot of copies if the Event is large. Might need a redesign to store pointers to Events instead.
     for (const Date& date : dates) {
@@ -31,7 +31,7 @@ void Scheduler::schedule_event(const std::vector<Date>& dates, const Event& even
     }
 }
 
-std::vector<Event> Scheduler::get_events_at(const Date& date) const
+std::vector<Event> Schedule::get_events_at(const Date& date) const
 {
     std::vector<Event> eventsAtDate;
     const auto it = _schedule.find(date);
@@ -43,7 +43,7 @@ std::vector<Event> Scheduler::get_events_at(const Date& date) const
     return eventsAtDate;
 }
 
-std::vector<Date> Scheduler::get_scheduled_dates() const
+std::vector<Date> Schedule::get_scheduled_dates() const
 {
     std::vector<Date> dates;
     for (const auto& [date, eventIds] : _schedule) {
@@ -52,13 +52,13 @@ std::vector<Date> Scheduler::get_scheduled_dates() const
     return dates;
 }
 
-void Scheduler::clear_schedule()
+void Schedule::clear_schedule()
 {
     _schedule.clear();
     _events.clear();
 }
 
-void Scheduler::remove_events_at(const Date& date)
+void Schedule::remove_events_at(const Date& date)
 {
     const auto it = _schedule.find(date);
     if (it != _schedule.end()) {
@@ -69,7 +69,7 @@ void Scheduler::remove_events_at(const Date& date)
     }
 }
 
-void Scheduler::remove_events_between(const Date& startDate, const Date& endDate)
+void Schedule::remove_events_between(const Date& startDate, const Date& endDate)
 {
     auto it = _schedule.lower_bound(startDate);
     while (it != _schedule.end() && it->first <= endDate) {
@@ -80,7 +80,7 @@ void Scheduler::remove_events_between(const Date& startDate, const Date& endDate
     }
 }
 
-void Scheduler::trigger_scheduled_events(const Date& date, const Time& time, State& state, Vehicle& vehicle)
+void Schedule::trigger_scheduled_events(const Date& date, const Time& time, State& state, Vehicle& vehicle) const
 {
     const auto it = _schedule.find(date);
     if (it != _schedule.end()) {

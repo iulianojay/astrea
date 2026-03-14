@@ -78,10 +78,16 @@ class StateHistory {
     /**
      * @brief Inserts a state at a specific date into the history.
      *
-     * @param date The date at which the state is recorded.
      * @param state The state to be inserted.
      */
     void insert(const State& state);
+
+    /**
+     * @brief Inserts multiple states from another StateHistory into this history.
+     *
+     * @param stateHistory The StateHistory containing the states to be inserted.
+     */
+    void insert(const StateHistory& stateHistory);
 
     /**
      * @brief Get the number of states in the history.

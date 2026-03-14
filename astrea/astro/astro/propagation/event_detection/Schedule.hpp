@@ -1,7 +1,7 @@
 /**
- * @file Scheduler.hpp
+ * @file Schedule.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief A class representing a Scheduler in the astrea astro library.
+ * @brief A class representing a Schedule in the astrea astro library.
  * @date 2026-03-14
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
@@ -30,15 +30,15 @@ namespace astrea {
 namespace astro {
 
 /**
- * @brief A class representing a Scheduler in the astrea astro library.
- * The Scheduler is responsible for scheduling and managing Events that are set to trigger at specific Dates during propagation.
+ * @brief A class representing a Schedule in the astrea astro library.
+ * The Schedule is responsible for scheduling and managing Events that are set to trigger at specific Dates during propagation.
  */
-class Scheduler {
+class Schedule {
   public:
     /**
-     * @brief Default constructor for the Scheduler class.
+     * @brief Default constructor for the Schedule class.
      */
-    Scheduler() = default;
+    Schedule() = default;
 
     /**
      * @brief Schedules an Event to trigger at a specific Date.
@@ -72,7 +72,7 @@ class Scheduler {
     std::vector<Date> get_scheduled_dates() const;
 
     /**
-     * @brief Clears all scheduled Events and their associated Dates from the Scheduler.
+     * @brief Clears all scheduled Events and their associated Dates from the Schedule.
      */
     void clear_schedule();
 
@@ -99,7 +99,7 @@ class Scheduler {
      * @param state The current state of the vehicle represented as orbital elements.
      * @param vehicle The Vehicle to trigger the Events on.
      */
-    void trigger_scheduled_events(const Date& date, const Time& time, State& state, Vehicle& vehicle);
+    void trigger_scheduled_events(const Date& date, const Time& time, State& state, Vehicle& vehicle) const;
 
   private:
     gtl::btree_map<Date, std::vector<std::size_t>> _schedule; //!< A schedule of events
