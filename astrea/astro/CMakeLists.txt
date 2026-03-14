@@ -157,6 +157,7 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
+    ${ASTRO_BASE}/systems/CelestialBodyParameters.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/planetary_bodies.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/JplEphemerisTable.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Earth.hpp
@@ -266,12 +267,4 @@ endif()
 
 if(${BUILD_TESTS})
     add_subdirectory(tests)
-endif()
-
-if(${BUILD_PROFILERS})
-    add_subdirectory(tests/profiling)
-endif()
-
-if(${BUILD_CHECKCASE_DATABASE})
-    add_subdirectory(tests/nasa_6dof_checkcases)
 endif()

@@ -48,8 +48,8 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
-static const Time PROP_TIME         = months(6.0);
-static const Time ACCESS_RESOLUTION = minutes(1.0);
+static const Time PROP_TIME         = months(1.0);
+static const Time ACCESS_RESOLUTION = minutes(5.0);
 static const bool PRINT_PROGRESS    = true;
 static const Angle GRID_SPACING     = 5.0 * deg;
 
@@ -163,8 +163,8 @@ int iceye_test()
 
     // Query database
     auto snapshot = get_snapshot();
-    // auto iceyeSats = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE%%")));
-    auto iceyeSats = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE-X61%%")));
+    auto iceyeSats = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE%%")));
+    // auto iceyeSats = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE-X61%%")));
 
     if (iceyeSats.size() == 0) {
         std::cerr << "No ICEYE satellites found in database!" << std::endl;
@@ -201,7 +201,7 @@ int iceye_test()
     const AccessStats stats(accesses);
 
     // Save
-    std::filesystem::path outdir = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye-x61";
+    std::filesystem::path outdir = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye";
 
     save_risesets_to_file(accesses, outdir, iceyeConstel, grid);
     save_riseset_metrics_to_file(accesses, outdir, iceyeConstel, grid);

@@ -16,10 +16,10 @@ site
 # File types
 *.o
 *.so*
-*.png
 *.jpg
 *.zip
 *.pyc
+*.html
 
 # Specific files
 build.txt
@@ -36,6 +36,10 @@ astrea/astro/pyastro/6dof_report/nasa_6dof_report.html
 **/nasa_6dof_checkcases/checkcases/**/*.csv
 **/nasa_6dof_checkcases/**/*.m
 **/nasa_6dof_checkcases/data/**/*.csv
+
+# cxxdraft-htmlgen
+docs/reference/api_reference/src/source/
+docs/reference/api_reference/gen
 
 # Must include
 !CMakeLists.txt

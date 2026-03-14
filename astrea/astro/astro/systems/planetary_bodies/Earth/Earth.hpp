@@ -32,6 +32,36 @@ namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
+static const CelestialBodyParameters DEFAULT_EARTH_PARAMS{
+    .name          = "Earth",
+    .parent        = CelestialBodyId::SUN,
+    .type          = CelestialBodyType::PLANET,
+    .referenceDate = Date("2000-01-01 12:00:00"),
+    .mu = GravParam(398600.44189 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
+    .mass              = Mass(5.97 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
+    .equitorialRadius  = Distance(6378.137 * mp_units::si::unit_symbols::km),
+    .polarRadius       = Distance(6356.75538082 * mp_units::si::unit_symbols::km),
+    .crashRadius       = Distance(6478.1 * mp_units::si::unit_symbols::km),
+    .sphereOfInfluence = Distance(0.092449582665046 * mp_units::iau::unit_symbols::au),
+    .j2                = Unitless(0.00108262982 * mp_units::one),
+    .j3                = Unitless(-0.0000025323 * mp_units::one),
+    .axialTilt         = Angle(23.439292 * mp_units::angular::unit_symbols::deg),
+    .rotationRate = AngularRate(7.29211514670638e-5 * mp_units::angular::unit_symbols::rad / mp_units::si::unit_symbols::s),
+    .siderealPeriod         = Time(365.256 * mp_units::non_si::day),
+    .semimajorAxis          = Distance(1.00000261 * mp_units::iau::unit_symbols::au),
+    .eccentricity           = Unitless(0.01671123 * mp_units::one),
+    .inclination            = Angle(-0.00001531 * mp_units::angular::unit_symbols::deg),
+    .rightAscension         = Angle(0.0 * mp_units::angular::unit_symbols::deg),
+    .longitudeOfPerigee     = Angle(102.93768193 * mp_units::angular::unit_symbols::deg),
+    .meanLongitude          = Angle(100.46457166 * mp_units::angular::unit_symbols::deg),
+    .semimajorAxisRate      = InterplanetaryVelocity(0.00000562 * mp_units::iau::unit_symbols::au / JulianCentury),
+    .eccentricityRate       = BodyUnitlessPerTime(-0.00004392 * mp_units::one / JulianCentury),
+    .inclinationRate        = BodyAngularRate(-0.01294668 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .rightAscensionRate     = BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .longitudeOfPerigeeRate = BodyAngularRate(0.32327364 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .meanLongitudeRate      = BodyAngularRate(35999.37244981 * mp_units::angular::unit_symbols::deg / JulianCentury)
+};
+
 /**
  * @class Earth
  * @brief Represents the Earth celestial body.
@@ -41,43 +71,15 @@ namespace planetary_bodies {
 class Earth : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Earth class.
      *
      * Initializes the Earth object with predefined physical and orbital parameters.
      */
     constexpr Earth() :
-        CelestialBody(
-            "Earth",                     //!< Name
-            CelestialBodyId::SUN,        //!< Parent celestial body
-            CelestialBodyType::PLANET,   //!< Type
-            Date("2000-01-01 12:00:00"), //!< Reference date for the celestial body data
-            GravParam(398600.44189 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu) - real published number
-            // GravParam(398600.436 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu) - number that matches the NASA checkcases
-            Mass(5.97 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)), //!< Mass
-            Distance(6378.137 * mp_units::si::unit_symbols::km),                         //!< Equatorial radius
-            Distance(6356.75538082 * mp_units::si::unit_symbols::km),                    //!< Polar radius
-            Distance(6478.1 * mp_units::si::unit_symbols::km),                           //!< Crash radius
-            Distance(0.092449582665046 * mp_units::iau::unit_symbols::au),               //!< Crash radius
-            // Unitless(1082.63e-6 * mp_units::one),                    //!< J2 gravitational coefficient
-            Unitless(0.00108262982 * mp_units::one),                 //!< J2 gravitational coefficient
-            Unitless(-0.0000025323 * mp_units::one),                 //!< J3 gravitational coefficient
-            Angle(23.439292 * mp_units::angular::unit_symbols::deg), //!< Axial tilt
-            AngularRate(7.29211514670638e-5 * mp_units::angular::unit_symbols::rad / mp_units::si::unit_symbols::s), //!< Rotation rate
-            Time(365.256 * mp_units::non_si::day),                      //!< Sidereal period
-            Distance(1.00000261 * mp_units::iau::unit_symbols::au),     //!< Semimajor axis
-            Unitless(0.01671123 * mp_units::one),                       //!< Eccentricity
-            Angle(-0.00001531 * mp_units::angular::unit_symbols::deg),  //!< Inclination
-            Angle(0.0 * mp_units::angular::unit_symbols::deg),          //!< Longitude of ascending node
-            Angle(102.93768193 * mp_units::angular::unit_symbols::deg), //!< Longitude of perihelion
-            Angle(100.46457166 * mp_units::angular::unit_symbols::deg), //!< Mean longitude
-            InterplanetaryVelocity(0.00000562 * mp_units::iau::unit_symbols::au / JulianCentury), //!< Rate of change of the semimajor axis
-            BodyUnitlessPerTime(-0.00004392 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
-            BodyAngularRate(-0.01294668 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
-            BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of ascending node
-            BodyAngularRate(0.32327364 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perihelion
-            BodyAngularRate(35999.37244981 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the mean longitude
-        )
+        CelestialBody(DEFAULT_EARTH_PARAMS)
     {
     }
 
