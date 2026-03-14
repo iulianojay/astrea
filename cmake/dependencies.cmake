@@ -10,8 +10,34 @@
 include(cmake/CPM.cmake)
 include(FetchContent)
 
-# SQLite3 for databases
-find_package(SQLite3 REQUIRED)
+# ---- sqlite3 ----
+FetchContent_Declare(
+    sqlite3
+    URL https://www.sqlite.org/2026/sqlite-amalgamation-3510200.zip
+)
+
+FetchContent_MakeAvailable(sqlite3)
+
+add_library(sqlite3 STATIC
+    ${sqlite3_SOURCE_DIR}/sqlite3.c
+)
+
+target_include_directories(sqlite3
+    PUBLIC ${sqlite3_SOURCE_DIR}
+)
+
+# Tell FindSQLite3.cmake exactly where SQLite is
+set(SQLite3_INCLUDE_DIR
+    ${sqlite3_SOURCE_DIR}
+    CACHE PATH "SQLite3 include directory"
+)
+
+set(SQLite3_LIBRARY
+    sqlite3
+    CACHE STRING "SQLite3 library"
+)
+add_library(SQLite3::SQLite3 ALIAS sqlite3)
+set(SQLite3_FOUND TRUE)
 
 # MP-Units dependency that I need to install for some reason
 add_compile_definitions(gsl_FEATURE_GSL_COMPATIBILITY_MODE=1)

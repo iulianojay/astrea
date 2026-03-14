@@ -250,6 +250,8 @@ if(${BUILD_STATIC})
     target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_ASTRO_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
 endif()
 
+file(MAKE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/include)
+
 # Install headers
 file(COPY
     DIRECTORY ${ASTRO_BASE}

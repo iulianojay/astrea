@@ -1,0 +1,1 @@
+rm -r -fo build ;mkdir build ; cmake -S . -B .\build\ -DCMAKE_INSTALL_PREFIX:PATH=./debug; cmake --build ./build --target install

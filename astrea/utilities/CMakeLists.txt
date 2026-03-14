@@ -60,6 +60,8 @@ if(${BUILD_STATIC})
     target_include_directories (${PROJECT_NAME}_static PUBLIC ${UTILITIES_DIRS})
 endif()
 
+file(MAKE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/include)
+
 # Install headers
 file(COPY
     DIRECTORY ${UTILITIES_BASE}

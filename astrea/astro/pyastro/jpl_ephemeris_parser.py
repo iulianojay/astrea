@@ -3,9 +3,10 @@
 from enum import IntEnum
 import numpy as np
 import os
+import pathlib
 import argparse
 
-ASTRO_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..'))
+ASTRO_ROOT = pathlib.Path(os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')))
 
 def parse_header_file(headerFile):
     """
@@ -497,13 +498,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate JPL Ephemeris files for Astrea")
     parser.add_argument('--bodies', nargs='+', type=str, default=[body.name for body in CelestialBodies],
                         help='List of celestial bodies to generate ephemeris files for. Default is all bodies.')
-    parser.add_argument('-o', '--output_path', type=str, default=os.path.join(ASTRO_ROOT, "/systems/planetary_bodies"))
+    parser.add_argument('-o', '--output_path', type=str, default=pathlib.Path(ASTRO_ROOT,"systems","planetary_bodies"))
     args = parser.parse_args()
 
     # Parse the header table
     ephemNumber = "430"
-    base = os.path.join(ASTRO_ROOT, "data", "jpl_ephemeris_data")
-    emratio, jplEphemHeader = parse_header_file(f"{base}/de_{ephemNumber}/header.430_572")
+    base = pathlib.Path(ASTRO_ROOT,  "data", "jpl_ephemeris_data")
+    table_path = pathlib.Path(base, f"de_{ephemNumber}", "header.430_572").absolute()
+    emratio, jplEphemHeader = parse_header_file(table_path)
 
     # Parse the desired files
     files = [

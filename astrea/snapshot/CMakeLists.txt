@@ -72,6 +72,8 @@ target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
 target_compile_options     (${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs)
 # add_custom_target          (${PROJECT_NAME}_exe_symlink ALL COMMAND ${CMAKE_COMMAND} -E create_symlink ${PROJECT_NAME}_exe ${PROJECT_NAME})
 
+file(MAKE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/include)
+
 # Install headers
 file(COPY
     DIRECTORY ${SNAPSHOT_BASE}

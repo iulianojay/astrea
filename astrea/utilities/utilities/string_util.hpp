@@ -21,7 +21,13 @@
 #include <algorithm>
 #include <cstdlib>
 #include <cstring>
+#if defined ( _MSC_VER )
+#include <windows.h> 
+#include <dbghelp.h>
+#pragma comment(lib,"dbghelp.lib")     
+#else
 #include <cxxabi.h>
+#endif
 #include <iostream>
 #include <memory>
 #include <optional>
@@ -60,9 +66,15 @@ std::string replace_all(std::string const& original, std::string const& before, 
 template <typename T>
 std::string get_type_name()
 {
+    #if defined( _MSC_VER )
+    static const std::string name(1024);
+    //if alloc was OK then set 0 first char and use UnDecorateSymbolName
+    ::UnDecorateSymbolName(typeid(T).name(), name, 1024, 0) ;
+    #else
     static int status;
     static const std::string fullName = abi::__cxa_demangle(typeid(T).name(), NULL, NULL, &status);
     static const std::string name     = fullName.substr(fullName.find_last_of("::") + 1);
+    #endif
     return name;
 }
 
