@@ -44,6 +44,16 @@ class ImpulsiveBurn {
     };
 
   public:
+    ImpulsiveBurn() :
+        _nMaxTriggers(0),
+        _trigger(BurnTrigger::TRUE_ANOMALY),
+        _triggerAnomaly(0.0 * mp_units::angular::unit_symbols::rad),
+        _triggerAltitude(0.0 * mp_units::si::unit_symbols::km),
+        _triggerEpoch(Date()),
+        _burnDirection(UnitVector<frames::dynamic::ric>(1.0, 0.0, 0.0))
+    {
+    }
+
     /**
      * @brief Constructs an ImpulsiveBurn Event that triggers at a specific true anomaly.
      *

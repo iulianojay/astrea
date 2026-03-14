@@ -64,10 +64,10 @@ int main()
     Time propTime = days(1); // A propagation interval relative to the epoch. Intervals
                              // can also be negative for backwards propagation.
 
-    // Currently, Astrea only defines a single event, an ImpulsiveBurn which triggers at perigee crossing and always
-    // burns in the velocity direction. The impulsive burn event uses the thrust of all attached thrusters in a simple
-    // instantaneous impulse. Future releases will support direct event scheduling, and more event types.
-    ImpulsiveBurn burn;
+    // Currently, Astrea only defines a few built-in events, but users can easily define their own custom events by
+    // implementing a user-defined Event. Here, we use the built-in impulsive burn, and set it to trigger at a specific
+    // true anomaly. It can also be set to trigger at a specific mean anomaly, altitude, or epoch.
+    ImpulsiveBurn burn = ImpulsiveBurn::trigger_at_true_anomaly(0.0 * deg, UnitVector<frames::dynamic::ric>(1.0, 0.0, 0.0));
     Event burnEvent(burn);
 
     // Propagate - An arbitrary number of events can be passed to the integrator. The integrator will check for zero-crossings

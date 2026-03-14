@@ -80,11 +80,12 @@ Unitless ImpulsiveBurn::measure_epoch_event(const Time& time, const State& state
 
 void ImpulsiveBurn::trigger_action(const Time& time, State& state, Vehicle& vehicle) const
 {
-    static unsigned nTriggers = 0;
-    if (_nMaxTriggers > 0 && nTriggers >= _nMaxTriggers) {
-        return; // Event is disabled after reaching max triggers
+    // Event is disabled after reaching max triggers, unless max triggers is set to zero (infinite triggers)
+    if (_nMaxTriggers > 0) {
+        static unsigned nTriggers = 0;
+        if (nTriggers >= _nMaxTriggers) { return; }
+        ++nTriggers;
     }
-    ++nTriggers;
 
     // Pull out state
     Cartesian elements = state.in_element_set<Cartesian>();
