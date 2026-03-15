@@ -45,6 +45,7 @@
 #include <astro/astro.macros.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/planetary_bodies/Earth/Earth.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/utilities/plotting.hpp>
@@ -69,15 +70,18 @@ using mp_units::si::unit_symbols::µm;
 
 namespace astrea {
 namespace astro {
+
+using namespace planetary_bodies;
+
 namespace tests {
 
 enum EomType { TWO_BODY = 0, COWELLS_METHOD = 1, KEPLERIAN_VOP = 2, EQUINOCTIAL_VOP = 3 };
 enum InitialOrbitType { CIRCULAR = 0, ELLIPTIC = 1 };
 enum VehicleType { ISS = 0, SPHERE = 1, BRICK = 2, CYLINDER = 3 };
 
+
 class Orbital6DofTest : public testing::Test {
 
-    // TODO: Make NASA 6DoF Tests generate a report file. Add this output to CI.
     // TODO: Finish implementing all force models in the tests. This includes more atmosphere models, and different
     //       SRP models. It may also include closing down any errors further.
 
@@ -86,7 +90,6 @@ class Orbital6DofTest : public testing::Test {
 
   public:
     Orbital6DofTest() :
-        sys(CelestialBodyId::EARTH, { CelestialBodyId::SUN }),
         mu(sys.get_mu()),
         epoch("2007/324:00:00:00", "%Y/%j:%H:%M:%S"),
         circular(
@@ -99,6 +102,11 @@ class Orbital6DofTest : public testing::Test {
         ),
         propTime(28800.0 * s)
     {
+        CelestialBodyParameters nasaEarthData = planetary_bodies::DEFAULT_EARTH_PARAMS;
+        nasaEarthData.mu                      = 398600.436 * pow<3>(km) / pow<2>(s); // different mu value
+
+        sys = AstrodynamicsSystem(Earth(nasaEarthData), { CelestialBodyId::SUN });
+
         integrator.switch_fixed_timestep(true);
         integrator.set_timestep(1.0 * s);
         integrator.set_abs_tol(1.0e-13);
@@ -244,7 +252,11 @@ class Orbital6DofTest : public testing::Test {
 
     std::vector<std::pair<StateHistory, std::string>> get_checkcase_histories(const std::string& pattern) const
     {
-        const auto checkcases = get_checkcases(pattern);
+        auto checkcases = get_checkcases(pattern);
+        std::sort(checkcases.begin(), checkcases.end(), [](const auto& a, const auto& b) {
+            if (a.checkcase_num != b.checkcase_num) { return a.checkcase_num < b.checkcase_num; }
+            return a.sim_num < b.sim_num;
+        });
 
         std::vector<std::pair<StateHistory, std::string>> results;
         for (const auto& checkcase : checkcases) {
@@ -348,11 +360,13 @@ class Orbital6DofTest : public testing::Test {
         }
 
         EXPECT_TRUE(rStats.max() <= _MAX_R_ERROR)
-            << "Max allowed position error (" << _MAX_R_ERROR.in(m) << ") violated comparing " << propLabel << " to "
-            << checkcaseLabel << "[" << rStats.mean() << " ± " << rStats.stddev() << ", " << rStats.max() << "]" << std::endl;
+            << std::setprecision(6) << "Max allowed position error (" << _MAX_R_ERROR.in(m) << ") violated comparing "
+            << propLabel << " to " << checkcaseLabel << "[" << rStats.mean() << " ± " << rStats.stddev() << ", "
+            << rStats.max() << "]" << std::endl;
         EXPECT_TRUE(vStats.max() <= _MAX_V_ERROR)
-            << "Max allowed velocity error (" << _MAX_V_ERROR.in(cm / s) << ") violated comparing " << propLabel << " to "
-            << checkcaseLabel << "[" << vStats.mean() << " ± " << vStats.stddev() << ", " << vStats.max() << "]" << std::endl;
+            << std::setprecision(6) << "Max allowed velocity error (" << _MAX_V_ERROR.in(cm / s)
+            << ") violated comparing " << propLabel << " to " << checkcaseLabel << "[" << vStats.mean() << " ± "
+            << vStats.stddev() << ", " << vStats.max() << "]" << std::endl;
 
         // Delete any existing plots from previous runs
         std::filesystem::path base = outputDir / checkcaseName / checkcaseLabel / propLabel;
@@ -377,10 +391,10 @@ class Orbital6DofTest : public testing::Test {
 
         std::ofstream summaryFile;
         summaryFile.open(base / "summary.csv");
-        summaryFile << "Checkcase, Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min "
-                       "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min "
-                       "Velocity Error"
-                    << std::endl;
+        summaryFile
+            << "Checkcase, Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min "
+               "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min Velocity Error"
+            << std::endl;
         for (std::size_t i = 0; i < checkcaseHistories.size(); ++i) {
             const auto& checkcaseLabel = checkcaseHistories[i].second;
             for (std::size_t j = 0; j < propHistories.size(); ++j) {
@@ -404,10 +418,10 @@ class Orbital6DofTest : public testing::Test {
         std::ofstream summaryFile;
         summaryFile.open(base / "summary.csv");
 
-        summaryFile << "Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min "
-                       "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min "
-                       "Velocity Error"
-                    << std::endl;
+        summaryFile
+            << "Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min "
+               "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min Velocity Error"
+            << std::endl;
         for (std::size_t ii = 0; ii < propHistories.size(); ++ii) {
             summaryFile << make_row_string(propHistories[ii].second, rStatsList[ii], vStatsList[ii]) << std::endl;
         }

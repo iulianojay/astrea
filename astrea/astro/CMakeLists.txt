@@ -31,6 +31,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/event_detection/Event.cpp
     ${ASTRO_BASE}/propagation/event_detection/EventDetector.cpp
     ${ASTRO_BASE}/propagation/event_detection/events/ImpulsiveBurn.cpp
+    ${ASTRO_BASE}/propagation/event_detection/events/Deorbit.cpp
 
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.cpp
     ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
@@ -124,6 +125,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/event_detection/EventDetector.hpp
     ${ASTRO_BASE}/propagation/event_detection/events/NullEvent.hpp
     ${ASTRO_BASE}/propagation/event_detection/events/ImpulsiveBurn.hpp
+    ${ASTRO_BASE}/propagation/event_detection/events/Deorbit.hpp
 
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.hpp
     ${ASTRO_BASE}/propagation/force_models/Force.hpp
@@ -157,6 +159,7 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
+    ${ASTRO_BASE}/systems/CelestialBodyParameters.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/planetary_bodies.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/JplEphemerisTable.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Earth.hpp
@@ -268,12 +271,4 @@ endif()
 
 if(${BUILD_TESTS})
     add_subdirectory(tests)
-endif()
-
-if(${BUILD_PROFILERS})
-    add_subdirectory(tests/profiling)
-endif()
-
-if(${BUILD_CHECKCASE_DATABASE})
-    add_subdirectory(tests/nasa_6dof_checkcases)
 endif()

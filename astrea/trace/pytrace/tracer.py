@@ -254,6 +254,7 @@ class Tracer:
         df = pd.read_csv(accessFile)
 
         grid = self.build_grid(df)
+        df = df[df['Object'].str.contains("Earth")] # remove satellites for now
         vals = df[[col for col in df.columns if metric in col][0]].to_numpy() / 3600.0 # convert to hours
 
         # Build figure
@@ -316,6 +317,6 @@ if __name__ == "__main__":
         # '95th PCT',
         # '99th PCT'
     ]
-    tracer.plot_number_of_folds(metrics=metrics)
+    # tracer.plot_number_of_folds(metrics=metrics)
     tracer.plot_avg_daily_vis()
     tracer.plot_mtta()

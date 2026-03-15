@@ -96,6 +96,7 @@ class EventDetector;
 // Systems
 class AstrodynamicsSystem;
 class CelestialBody;
+struct CelestialBodyParameters;
 
 // Time
 class Date;
