@@ -18,12 +18,15 @@
  */
 #pragma once
 
+#include <optional>
 #include <vector>
 
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>
+#include <astro/propagation/event_detection/Schedule.hpp>
 #include <astro/state/State.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/types/typedefs.hpp>
@@ -51,8 +54,6 @@ class Integrator {
         DOP78, //!< Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
     };
 
-    static inline Interval defaultInterval{ 0.0 * astrea::detail::time_unit, 86400.0 * astrea::detail::time_unit }; //!< Default time interval for propagation
-
     /**
      * @brief Default constructor for the Integrator class.
      */
@@ -71,10 +72,19 @@ class Integrator {
      * @param eom The equations of motion to use for the propagation.
      * @param vehicle The vehicle whose state is to be propagated.
      * @param store Whether to store the state history during propagation. Default is false.
+     * @param events A vector of Events to check for during propagation. Default is an empty vector.
+     * @param schedule An optional Schedule to manage event scheduling during propagation. Default is an empty Schedule.
      * @return StateHistory The history of the vehicle's state over the propagated interval.
      */
-    StateHistory
-        propagate(const State& state0, const Time& propTime, const EquationsOfMotion& eom, Vehicle vehicle, bool store = false, std::vector<Event> events = {});
+    StateHistory propagate(
+        const State& state0,
+        const Time& propTime,
+        const EquationsOfMotion& eom,
+        Vehicle vehicle,
+        bool store                       = false,
+        const std::vector<Event>& events = {},
+        const Schedule& schedule         = Schedule()
+    );
 
     /**
      * @brief Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion.
@@ -84,10 +94,19 @@ class Integrator {
      * @param eom The equations of motion to use for the propagation.
      * @param vehicle The vehicle whose state is to be propagated.
      * @param store Whether to store the state history during propagation. Default is false.
+     * @param events A vector of Events to check for during propagation. Default is an empty vector.
+     * @param schedule An optional Schedule to manage event scheduling during propagation. Default is an empty Schedule.
      * @return StateHistory The history of the vehicle's state over the propagated interval.
      */
-    StateHistory
-        propagate(const State& state0, const Date& endEpoch, const EquationsOfMotion& eom, Vehicle vehicle, bool store = false, std::vector<Event> events = {});
+    StateHistory propagate(
+        const State& state0,
+        const Date& endEpoch,
+        const EquationsOfMotion& eom,
+        Vehicle vehicle,
+        bool store                       = false,
+        const std::vector<Event>& events = {},
+        const Schedule& schedule         = Schedule()
+    );
 
     /**
      * @brief Set the absolute tolerance for the integrator.
@@ -204,10 +223,6 @@ class Integrator {
     State _statePlusKi;                           //!< State vector plus the ith order step
     StatePartial _YFinalPrevious;                 //!< Previous final state vector for the Dormand-Prince method
 
-    // Clock variables
-    clock_t _startClock{}; //!< Start time for the timer
-    clock_t _endClock{};   //!< End time for the timer
-
     // Tolerances
     Unitless _ABS_TOL = 1.0e-13; //!< Absolute tolerance for the integrator
     Unitless _REL_TOL = 1.0e-13; //!< Relative tolerance for the integrator
@@ -217,11 +232,12 @@ class Integrator {
 
     // Run options
     bool _printOn = false; //!< Flag to control printing of integration details
-    bool _timerOn = false; //!< Flag to control timing of integration performance
+    bool _store   = false; //!< Flag to control whether to store the state history during propagation
 
     StepMethod _stepMethod = StepMethod::DOP45; //!< Step method to use for the integration (default is Dormand-Prince RK4(5))
+    const EquationsOfMotion* _eom;              //!< Equations of motion to use for the integration
 
-    // Fake fixed step
+    // Fixed step
     bool _useFixedStep  = false;                           //!< Flag to indicate if a fixed step size should be used
     Time _fixedTimeStep = 1.0 * astrea::detail::time_unit; //!< Fixed time step size to use if fixed step is enabled
 
@@ -229,27 +245,33 @@ class Integrator {
     EventDetector _eventDetector;
 
     /**
+     * @brief Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion.
+     *
+     * @param state0 The initial state from which to start propagation.
+     * @param propTime The propagation time interval.
+     * @param vehicle The vehicle whose state is to be propagated.
+     * @return StateHistory The history of the vehicle's state over the propagated interval.
+     */
+    StateHistory propagate_impl(const State& state0, const Time& propTime, Vehicle vehicle);
+
+    /**
      * @brief Find the state derivative at a given time using the equations of motion.
      *
      * @param time The time at which to evaluate the state derivative.
      * @param state The current state of the vehicle represented as orbital elements.
-     * @param eom The equations of motion to use for the evaluation.
      * @param vehicle The vehicle whose state is being evaluated.
      * @return StatePartial The derivatives of the orbital elements with respect to time.
      */
-    StatePartial find_state_derivative(const Time& time, const State& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    StatePartial find_state_derivative(const Time& time, const State& state, Vehicle& vehicle);
 
     /**
      * @brief Set up the main integration loop
      *
+     * @param store Whether to store the state history during propagation.
+     * @param eom The equations of motion to use for the integration.
      * @param events The events to be tracked during propagation.
      */
-    void setup(const std::vector<Event>& events);
-
-    /**
-     * @brief Teardown after the main integration loop
-     */
-    void teardown();
+    void setup(const bool store, const EquationsOfMotion& eom, const std::vector<Event>& events);
 
     /**
      * @brief Set up the stepper method based on the selected step method.
@@ -262,11 +284,10 @@ class Integrator {
      * @param time The current time in the integration.
      * @param timeStep The current time step to use for the integration.
      * @param state The current state of the vehicle represented as orbital elements.
-     * @param eom The equations of motion to use for the integration.
      * @param vehicle The vehicle whose state is being integrated.
      * @return bool True if the step was successful, false otherwise.
      */
-    bool try_step(Time& time, Time& timeStep, State& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    bool try_step(Time& time, Time& timeStep, State& state, Vehicle& vehicle);
 
     /**
      * @brief Find the maximum error between the new and error states.
@@ -283,10 +304,9 @@ class Integrator {
      * @param time The current time in the integration.
      * @param timeStep The current time step to use for the integration.
      * @param state The current state of the vehicle represented as orbital elements.
-     * @param eom The equations of motion to use for the integration.
      * @param vehicle The vehicle whose state is being integrated.
      */
-    void take_fixed_step(Time& time, Time& timeStep, State& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    void take_fixed_step(Time& time, Time& timeStep, State& state, Vehicle& vehicle);
 
     /**
      * @brief Take a step in the integration.
@@ -294,12 +314,10 @@ class Integrator {
      * @param time The current time in the integration.
      * @param timeStep The current time step to use for the integration.
      * @param state The current state of the vehicle represented as orbital elements.
-     * @param eom The equations of motion to use for the integration.
      * @param vehicle The vehicle whose state is being integrated.
      * @return std::pair<State, State> The new state and the error state after the step.
      */
-    std::pair<State, State>
-        take_step(const Time& time, const Time& timeStep, const State& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    std::pair<State, State> take_step(const Time& time, const Time& timeStep, const State& state, Vehicle& vehicle);
 
     /**
      * @brief Check the error of the current step and adjust the time step accordingly.
@@ -328,31 +346,6 @@ class Integrator {
      * @param timeStep The current time step used for the integration.
      */
     void store_final_func_eval(const Time& timeStep);
-
-    /**
-     * @brief Print the current iteration details including time, state, and performance metrics.
-     *
-     * @param time The current time in the integration.
-     * @param state The current state of the vehicle.
-     * @param timeFinal The final time for the integration.
-     * @param stateInitial The initial state of the vehicle at the start of the integration.
-     */
-    void print_iteration(const Time& time, const State& state, const Time& timeFinal, const State& stateInitial);
-
-    /**
-     * @brief Print the performance metrics of the integration including total time, function evaluations, and iterations.
-     */
-    void print_performance() const;
-
-    /**
-     * @brief Start the timer for measuring integration performance.
-     */
-    void startTimer();
-
-    /**
-     * @brief End the timer for measuring integration performance.
-     */
-    void endTimer();
 
     /**
      * @brief Check for events during the integration, such as collisions or specific conditions.
