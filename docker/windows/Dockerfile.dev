@@ -1,0 +1,41 @@
+# syntax=docker/dockerfile:1
+
+# Use Windows Server Core as base for building
+FROM mcr.microsoft.com/windows/servercore:ltsc2022 AS base
+
+# Install Chocolatey package manager
+RUN powershell -Command \
+    Set-ExecutionPolicy Bypass -Scope Process -Force; \
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; \
+    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+# Install build tools
+RUN choco install -y cmake --installargs 'ADD_CMAKE_TO_PATH=System' && \
+    choco install -y mingw && \
+    choco install -y make
+
+FROM base AS final
+
+# Install development tools equivalent to Linux dependencies
+RUN choco install -y git && \
+    choco install -y python && \
+    choco install -y visualstudio2022buildtools --package-parameters "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended" && \
+    choco install -y llvm && \
+    choco install -y gnuplot && \
+    choco install -y mono && \
+    choco install -y curl && \
+    choco install -y sqlite && \
+    choco install -y openssl
+
+# Create working directory
+WORKDIR C:\workspace
+
+# Install Python packages
+RUN pip install gcovr
+
+# Note: Visual Studio Build Tools includes:
+# - MSVC compiler (equivalent to gcc)
+# - MSVC debugger (equivalent to gdb) 
+# - Windows SDK with OpenGL headers (equivalent to libgl1-mesa-dev)
+# PowerShell provides completion features (equivalent to bash-completion)
+# xorg-dev is Linux X11 specific and not needed on Windows

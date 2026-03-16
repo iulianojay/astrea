@@ -1,0 +1,61 @@
+# syntax=docker/dockerfile:1
+
+# Use Windows Server Core as base for building
+FROM mcr.microsoft.com/windows/servercore:ltsc2022 AS base
+
+# Install Chocolatey package manager
+RUN powershell -Command \
+    Set-ExecutionPolicy Bypass -Scope Process -Force; \
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; \
+    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+# Install build tools
+RUN choco install -y cmake --installargs 'ADD_CMAKE_TO_PATH=System' && \
+    choco install -y mingw && \
+    choco install -y make
+
+ENV ASTREA_ROOT=C:\\astrea
+WORKDIR $ASTREA_ROOT
+
+FROM base AS build
+
+# Accept version as build argument with fallback
+ARG ASTREA_VERSION=1.1.1
+
+# Set version environment variable for CMake fallback
+ENV ASTREA_VERSION=${ASTREA_VERSION}
+
+# Install development tools equivalent to Linux dependencies
+RUN choco install -y git && \
+    choco install -y python && \
+    choco install -y visualstudio2022buildtools --package-parameters "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended" && \
+    choco install -y llvm && \
+    choco install -y gnuplot && \
+    choco install -y mono && \
+    choco install -y curl && \
+    choco install -y sqlite && \
+    choco install -y openssl
+
+# Install Python packages
+RUN pip install gcovr
+
+# Note: Visual Studio Build Tools includes:
+# - MSVC compiler (equivalent to gcc)
+# - MSVC debugger (equivalent to gdb) 
+# - Windows SDK with OpenGL headers (equivalent to libgl1-mesa-dev)
+# PowerShell provides completion features (equivalent to bash-completion)
+# xorg-dev is Linux X11 specific and not needed on Windows
+
+COPY . $ASTREA_ROOT
+
+# Build the project using make (assuming make works with Windows toolchain)
+RUN make python_env
+RUN make release all install
+
+FROM base AS final
+
+COPY --from=build $ASTREA_ROOT/.venv $ASTREA_ROOT/.venv
+COPY --from=build $ASTREA_ROOT/build $ASTREA_ROOT/build
+COPY --from=build $ASTREA_ROOT/install $ASTREA_ROOT/install
+COPY --from=build $ASTREA_ROOT/Makefile $ASTREA_ROOT/Makefile
+COPY --from=build $ASTREA_ROOT/astrea/astro/data $ASTREA_ROOT/astrea/astro/data
