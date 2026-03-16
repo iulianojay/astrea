@@ -69,9 +69,12 @@ OrbitalElementPartials KeplerianVop::operator()(const State& state, const Vehicl
     // Function for finding accel caused by perturbations
     const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(state, vehicle);
 
+    // Get vehicle-produced accels
+    const AccelerationVector<frames::earth::icrf> accelVehicle = vehicle.get_internal_acceleration(state);
+
     // Calculate R, N, and T
-    const frames::dynamic::ric ricFrame                     = frames::dynamic::ric::instantaneous(r, v);
-    const AccelerationVector<frames::dynamic::ric> accelRic = ricFrame.rotate_into_this_frame(accelPerts, date);
+    const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(r, v);
+    const AccelerationVector<frames::dynamic::ric> accelRic = ricFrame.rotate_into_this_frame(accelPerts + accelVehicle, date);
 
     const Acceleration& radialPert     = accelRic.get_x();
     const Acceleration& tangentialPert = accelRic.get_y();

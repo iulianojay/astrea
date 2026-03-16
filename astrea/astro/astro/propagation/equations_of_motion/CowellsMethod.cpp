@@ -54,8 +54,11 @@ OrbitalElementPartials CowellsMethod::operator()(const State& state, const Vehic
     // Run find functions for force model
     const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(state, vehicle);
 
+    // Get vehicle-produced accels
+    const AccelerationVector<frames::earth::icrf> accelVehicle = vehicle.get_internal_acceleration(state);
+
     // Derivative
-    return CartesianPartial(v, -muOverRadiusCubed * r + accelPerts);
+    return CartesianPartial(v, -muOverRadiusCubed * r + accelPerts + accelVehicle);
 }
 
 

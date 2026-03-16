@@ -105,6 +105,16 @@ concept HasGetCoefficientOfReflectivity = requires(T vehicle) {
 };
 
 /**
+ * @brief Concept to check if a type has a method to get the inertial position.
+ *
+ * @tparam T The type to check.
+ */
+template <typename T>
+concept HasGetThrust = requires(T vehicle, const State& state) {
+    { vehicle.get_thrust(state) } -> std::same_as<CartesianVector<Acceleration, frames::earth::icrf>>;
+};
+
+/**
  * @brief Concept to check if a type is a user-defined vehicle.
  *
  * @tparam T The type to check.
@@ -179,6 +189,14 @@ struct VehicleInnerBase : public virtual FrameReference {
      * @return Unitless The coefficient of reflectivity of the vehicle.
      */
     virtual Unitless get_coefficient_of_reflectivity() const = 0;
+
+    /**
+     * @brief Gets the thrust of the vehicle.
+     *
+     * @param state The state of the vehicle for which to get the thrust.
+     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
+     */
+    virtual CartesianVector<Acceleration, frames::earth::icrf> get_internal_acceleration(const State& state) const = 0;
 
     /**
      * @brief Clones the vehicle inner implementation.
@@ -514,6 +532,49 @@ struct VehicleInner final : public VehicleInnerBase {
     }
 
     /**
+     * @brief Gets the thrust of the vehicle or a default value.
+     *
+     * @param state The state of the vehicle for which to get the thrust.
+     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
+     */
+    CartesianVector<Acceleration, frames::earth::icrf> get_internal_acceleration(const State& state) const final
+    {
+        return get_internal_acceleration_impl(_value, state);
+    }
+
+    /**
+     * @brief Gets the default thrust of the vehicle.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the thrust from.
+     * @param state The state of the vehicle for which to get the thrust.
+     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
+     */
+    template <typename U>
+        requires(!HasGetThrust<U>)
+    CartesianVector<Acceleration, frames::earth::icrf> get_internal_acceleration_impl(const U&, const State&) const
+    {
+        using mp_units::si::unit_symbols::km;
+        using mp_units::si::unit_symbols::s;
+        return { 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) };
+    }
+
+    /**
+     * @brief Gets the thrust of the vehicle.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the thrust from.
+     * @param state The state of the vehicle for which to get the thrust.
+     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
+     */
+    template <typename U>
+        requires(HasGetThrust<U>)
+    CartesianVector<Acceleration, frames::earth::icrf> get_internal_acceleration_impl(const U& value, const State& state) const
+    {
+        return value.get_thrust(state);
+    }
+
+    /**
      * @brief Clones the vehicle inner implementation.
      *
      * @return std::unique_ptr<VehicleInnerBase> A unique pointer to the cloned vehicle inner implementation.
@@ -641,53 +702,77 @@ class Vehicle : public FrameReference {
     }
 
     /**
+     * @brief Extracts the user-defined vehicle from the Vehicle instance.
+     *
+     * @tparam T The type of the user-defined vehicle to extract.
+     * @return T* A pointer to the user-defined vehicle if it matches the type, otherwise nullptr.
+     */
+    template <IsGenericallyConstructableVehicle T>
+    std::shared_ptr<T> extract_shared_reference() noexcept
+    {
+        auto p = static_cast<detail::VehicleInner<T>*>(ptr());
+        return p == nullptr ? nullptr : std::make_shared<T>(p->_value);
+    }
+
+    /**
      * @brief Gets the mass of the vehicle.
      *
      * @return Mass The mass of the vehicle.
      */
-    Mass get_mass() const { return _ptr->get_mass(); }
+    Mass get_mass() const { return ptr()->get_mass(); }
 
     /**
      * @brief Get the ram area of the vehicle.
      *
      * @return SurfaceArea The ram area of the vehicle.
      */
-    SurfaceArea get_ram_area() const { return _ptr->get_ram_area(); }
+    SurfaceArea get_ram_area() const { return ptr()->get_ram_area(); }
 
     /**
      * @brief Get the lift area of the vehicle.
      *
      * @return SurfaceArea The lift area of the vehicle.
      */
-    SurfaceArea get_lift_area() const { return _ptr->get_lift_area(); }
+    SurfaceArea get_lift_area() const { return ptr()->get_lift_area(); }
 
     /**
      * @brief Get the solar area of the vehicle.
      *
      * @return SurfaceArea The solar area of the vehicle.
      */
-    SurfaceArea get_solar_area() const { return _ptr->get_solar_area(); }
+    SurfaceArea get_solar_area() const { return ptr()->get_solar_area(); }
 
     /**
      * @brief Gets the coefficient of drag.
      *
      * @return Unitless The coefficient of drag.
      */
-    Unitless get_coefficient_of_drag() const { return _ptr->get_coefficient_of_drag(); }
+    Unitless get_coefficient_of_drag() const { return ptr()->get_coefficient_of_drag(); }
 
     /**
      * @brief Gets the coefficient of lift.
      *
      * @return Unitless The coefficient of lift.
      */
-    Unitless get_coefficient_of_lift() const { return _ptr->get_coefficient_of_lift(); }
+    Unitless get_coefficient_of_lift() const { return ptr()->get_coefficient_of_lift(); }
 
     /**
      * @brief Gets the coefficient of reflectivity.
      *
      * @return Unitless The coefficient of reflectivity.
      */
-    Unitless get_coefficient_of_reflectivity() const { return _ptr->get_coefficient_of_reflectivity(); }
+    Unitless get_coefficient_of_reflectivity() const { return ptr()->get_coefficient_of_reflectivity(); }
+
+    /**
+     * @brief Gets the thrust of the vehicle.
+     *
+     * @param state The state of the vehicle for which to get the thrust.
+     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
+     */
+    CartesianVector<Acceleration, frames::earth::icrf> get_internal_acceleration(const State& state) const
+    {
+        return ptr()->get_internal_acceleration(state);
+    }
 
     /**
      * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
