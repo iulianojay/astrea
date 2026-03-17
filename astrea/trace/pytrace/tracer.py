@@ -28,22 +28,6 @@ class Tracer:
         self.nLats = 1000
         self.nLons = 1000
 
-        # Set up Basemap instance
-        self.lllon = -180
-        self.lllat = -90
-        self.urlon = 180
-        self.urlat = 90
-        self.map = Basemap(
-            projection = 'robin',
-            llcrnrlon = self.lllon,
-            llcrnrlat = self.lllat,
-            urcrnrlon = self.urlon,
-            urcrnrlat = self.urlat,
-            lat_0 = 0,
-            lon_0 = 0,
-            resolution='h'
-        )
-
         if not os.path.exists(self.outdir):
             os.makedirs(self.outdir)
 
@@ -62,8 +46,29 @@ class Tracer:
             infile, index_col=False, header=None, names=column_names, low_memory=False
         )
 
+    def build_base_basemap(self, lat0: float, lon0: float, lllon: float, lllat: float, urlon: float, urlat: float) -> None:
+        # Set up Basemap instance
+        self.lllon = lllon
+        self.lllat = lllat
+        self.urlon = urlon
+        self.urlat = urlat
+
+        projection = 'robin'
+        if (lllon != -180.0) :
+            projection = 'cea'
+        self.map = Basemap(
+            projection = projection,
+            llcrnrlon = self.lllon,
+            llcrnrlat = self.lllat,
+            urcrnrlon = self.urlon,
+            urcrnrlat = self.urlat,
+            lat_0 = lat0,
+            lon_0 = lon0,
+            resolution='h'
+        )
 
     def plot_basemap(self, ax: plt.Axes) -> None:
+
         # draw map details
         self.map.drawmapboundary(fill_color='white', ax=ax)
         self.map.fillcontinents(color='#C0C0C0', ax=ax)
@@ -77,6 +82,15 @@ class Tracer:
         )
 
         parallelSep = 30.0
+        if (self.urlat - self.lllat) < 5:
+            parallelSep = 1.0
+        elif (self.urlat - self.lllat) < 15:
+            parallelSep = 2.0
+        elif (self.urlat - self.lllat) < 30:
+            parallelSep = 5.0
+        elif (self.urlat - self.lllat) < 60:
+            parallelSep = 10.0
+
         parallels = np.arange(self.lllat, self.urlat + parallelSep, parallelSep)
         parallels[0] += 5
         parallels[-1] -= 5
@@ -90,6 +104,17 @@ class Tracer:
         )
 
         meridianSep = 60.0
+        if (self.urlon - self.lllon) < 5:
+            meridianSep = 1.0
+        elif (self.urlon - self.lllon) < 15:
+            meridianSep = 2.0
+        elif (self.urlon - self.lllon) < 30:
+            meridianSep = 10.0
+        elif (self.urlon - self.lllon) < 60:
+            meridianSep = 20.0
+        elif (self.urlon - self.lllon) < 120:
+            meridianSep = 30.0
+
         meridians = np.arange(self.lllon, self.urlon + meridianSep, meridianSep)
         meridians[0] += 5
         meridians[-1] -= 5
@@ -114,6 +139,22 @@ class Tracer:
             lat, lon = obj.replace('°','').split('[')[1].split(']')[0].split(",")
             lats = np.append(lats, float(lat))
             lons = np.append(lons, float(lon))
+
+        lllon = np.min(lons)
+        lllat = np.min(lats)
+        urlon = np.max(lons)
+        urlat = np.max(lats)
+
+        lonRange = urlon - lllon
+        latRange = urlat - lllat
+
+        extra = 0.0
+        lllon = np.max([np.round(lllon - extra * lonRange), -180.0])
+        lllat = np.max([np.round(lllat - extra * latRange), -90.0])
+        urlon = np.min([np.round(urlon + extra * lonRange), 180.0])
+        urlat = np.min([np.round(urlat + extra * latRange), 90.0])
+
+        self.build_base_basemap(np.mean(lons), np.mean(lats), lllon, lllat, urlon, urlat)
 
         # transform lon / lat coordinates to map projection
         x, y = self.map(*(lons, lats))
@@ -307,16 +348,16 @@ if __name__ == "__main__":
         'MIN',
         'AVG',
         'MAX',
-        # '1th PCT',
-        # '5th PCT',
-        # '10th PCT',
-        # '25th PCT',
-        # '50th PCT',
-        # '75th PCT',
-        # '90th PCT',
-        # '95th PCT',
-        # '99th PCT'
+        '1th PCT',
+        '5th PCT',
+        '10th PCT',
+        '25th PCT',
+        '50th PCT',
+        '75th PCT',
+        '90th PCT',
+        '95th PCT',
+        '99th PCT'
     ]
-    # tracer.plot_number_of_folds(metrics=metrics)
+    tracer.plot_number_of_folds(metrics=metrics)
     tracer.plot_avg_daily_vis()
     tracer.plot_mtta()
