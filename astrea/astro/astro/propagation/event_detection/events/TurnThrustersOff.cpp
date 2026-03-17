@@ -36,8 +36,15 @@ Unitless TurnThrustersOff::measure_event(const Time& time, const State& state, c
 
 void TurnThrustersOff::trigger_action(const Time& time, State& state, Vehicle& vehicle) const
 {
+    // WARNING: If you're looking at this as an example, know that this is one of the particularly fragile
+    // design points in the library. You need to know which type the vehicle holds for this to work properly
+    // (or a type it inherits from). We want to keep the generic, simple interface of the "Vehicle" for users
+    // instead of direct subclassing, but that means we have to do some dynamic type checking and extraction
+    // to modify the underlying type. You could replace this by replacing the input vehicle with a completely
+    // new one but that's a lot of copying.
+
     // First, we need to extract the vehcile as a thrusting thing
-    std::shared_ptr<Spacecraft> spacecraftPtr = vehicle.extract_shared_reference<Spacecraft>();
+    Spacecraft* spacecraftPtr = vehicle.extract_mutable_reference<Spacecraft>();
     if (spacecraftPtr) {
         for (auto& thruster : spacecraftPtr->get_payloads()) {
             thruster.switch_off();

@@ -218,6 +218,13 @@ struct VehicleInnerBase : public virtual FrameReference {
      * @return void* A pointer to the internal vehicle instance.
      */
     virtual void* get_ptr() = 0;
+
+    /**
+     * @brief Gets the type information of the internal vehicle instance.
+     *
+     * @return const std::type_info& The type information of the internal vehicle instance.
+     */
+    virtual const std::type_info& type() const = 0;
 };
 
 /**
@@ -595,6 +602,13 @@ struct VehicleInner final : public VehicleInnerBase {
      */
     void* get_ptr() final { return &_value; }
 
+    /**
+     * @brief Gets the type information of the internal vehicle instance.
+     *
+     * @return const std::type_info& The type information of the internal vehicle instance.
+     */
+    const std::type_info& type() const final { return typeid(T); }
+
     T _value; //!< The value of the vehicle inner implementation, which is the user-defined vehicle type.
 };
 
@@ -698,7 +712,7 @@ class Vehicle : public FrameReference {
     const T* extract() const noexcept
     {
         auto p = static_cast<const detail::VehicleInner<T>*>(ptr());
-        return p == nullptr ? nullptr : &(p->_value);
+        return ptr()->type() == typeid(T) ? &(p->_value) : nullptr;
     }
 
     /**
@@ -708,10 +722,10 @@ class Vehicle : public FrameReference {
      * @return T* A pointer to the user-defined vehicle if it matches the type, otherwise nullptr.
      */
     template <IsGenericallyConstructableVehicle T>
-    std::shared_ptr<T> extract_shared_reference() noexcept
+    T* extract_mutable_reference() noexcept
     {
         auto p = static_cast<detail::VehicleInner<T>*>(ptr());
-        return p == nullptr ? nullptr : std::make_shared<T>(p->_value);
+        return ptr()->type() == typeid(T) ? &(p->_value) : nullptr;
     }
 
     /**

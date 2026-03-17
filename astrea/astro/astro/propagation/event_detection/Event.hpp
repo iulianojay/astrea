@@ -408,8 +408,21 @@ class Event {
         requires(IsGenericallyConstructableEvent<T>)
     const T* extract() const noexcept
     {
-        auto p = static_cast<const detail::EventInner<T>*>(ptr());
-        return p == nullptr ? nullptr : &(p->_value);
+        auto p = static_cast<detail::EventInner<T>*>(ptr());
+        return ptr()->type() == typeid(T) ? &(p->_value) : nullptr;
+    }
+
+    /**
+     * @brief Extracts the user-defined Event from the Event instance.
+     *
+     * @tparam T The type of the user-defined Event to extract.
+     * @return T* A pointer to the user-defined Event if it matches the type, otherwise nullptr.
+     */
+    template <IsGenericallyConstructableEvent T>
+    T* extract_mutable_reference() noexcept
+    {
+        auto p = static_cast<detail::EventInner<T>*>(ptr());
+        return ptr()->type() == typeid(T) ? &(p->_value) : nullptr;
     }
 
     /**

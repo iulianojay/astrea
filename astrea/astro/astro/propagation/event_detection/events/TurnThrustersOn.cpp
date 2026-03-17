@@ -44,7 +44,7 @@ void TurnThrustersOn::trigger_action(const Time& time, State& state, Vehicle& ve
     // new one but that's a lot of copying.
 
     // First, we need to extract the vehcile as a thrusting thing
-    std::shared_ptr<Spacecraft> spacecraftPtr = vehicle.extract_shared_reference<Spacecraft>();
+    Spacecraft* spacecraftPtr = vehicle.extract_mutable_reference<Spacecraft>();
     if (spacecraftPtr) {
         for (auto& thruster : spacecraftPtr->get_payloads()) {
             thruster.switch_on();
