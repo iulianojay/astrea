@@ -70,7 +70,7 @@ OrbitalElementPartials KeplerianVop::operator()(const State& state, const Vehicl
     const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(state, vehicle);
 
     // Get vehicle-produced accels
-    const AccelerationVector<frames::earth::icrf> accelVehicle = vehicle.get_internal_acceleration(state);
+    const AccelerationVector<frames::earth::icrf> accelVehicle = vehicle.get_command_acceleration(state);
 
     // Calculate R, N, and T
     const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(r, v);

@@ -98,7 +98,7 @@ SurfaceArea Spacecraft::get_solar_area() const { return _sunArea; }
 SurfaceArea Spacecraft::get_lift_area() const { return _liftArea; }
 
 // Thrust
-CartesianVector<Acceleration, frames::earth::icrf> Spacecraft::get_internal_acceleration(const State& state) const
+CartesianVector<Acceleration, frames::earth::icrf> Spacecraft::get_command_acceleration(const State& state) const
 {
     // As a first cut, just burn in r direction
     CartesianVector<Acceleration, frames::dynamic::ric> totalAccel;

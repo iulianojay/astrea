@@ -196,7 +196,7 @@ struct VehicleInnerBase : public virtual FrameReference {
      * @param state The state of the vehicle for which to get the thrust.
      * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
      */
-    virtual CartesianVector<Acceleration, frames::earth::icrf> get_internal_acceleration(const State& state) const = 0;
+    virtual CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration(const State& state) const = 0;
 
     /**
      * @brief Clones the vehicle inner implementation.
@@ -544,9 +544,9 @@ struct VehicleInner final : public VehicleInnerBase {
      * @param state The state of the vehicle for which to get the thrust.
      * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
      */
-    CartesianVector<Acceleration, frames::earth::icrf> get_internal_acceleration(const State& state) const final
+    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration(const State& state) const final
     {
-        return get_internal_acceleration_impl(_value, state);
+        return get_command_acceleration_impl(_value, state);
     }
 
     /**
@@ -559,7 +559,7 @@ struct VehicleInner final : public VehicleInnerBase {
      */
     template <typename U>
         requires(!HasGetThrust<U>)
-    CartesianVector<Acceleration, frames::earth::icrf> get_internal_acceleration_impl(const U&, const State&) const
+    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration_impl(const U&, const State&) const
     {
         using mp_units::si::unit_symbols::km;
         using mp_units::si::unit_symbols::s;
@@ -576,7 +576,7 @@ struct VehicleInner final : public VehicleInnerBase {
      */
     template <typename U>
         requires(HasGetThrust<U>)
-    CartesianVector<Acceleration, frames::earth::icrf> get_internal_acceleration_impl(const U& value, const State& state) const
+    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration_impl(const U& value, const State& state) const
     {
         return value.get_thrust(state);
     }
@@ -783,9 +783,9 @@ class Vehicle : public FrameReference {
      * @param state The state of the vehicle for which to get the thrust.
      * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
      */
-    CartesianVector<Acceleration, frames::earth::icrf> get_internal_acceleration(const State& state) const
+    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration(const State& state) const
     {
-        return ptr()->get_internal_acceleration(state);
+        return ptr()->get_command_acceleration(state);
     }
 
     /**
