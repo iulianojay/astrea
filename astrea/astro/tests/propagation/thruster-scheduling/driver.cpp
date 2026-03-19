@@ -237,8 +237,8 @@ TEST_F(ThrusterSchedulingRegressionTest, MultipleScheduledBurnsCumulativeEffect)
 
     int burnsActivated = 0;
 
-    for (int i = 0; i < numSteps; ++i) {
-        currentTime = i * timeStep;
+    for (int ii = 0; ii < numSteps; ++ii) {
+        currentTime = ii * timeStep;
         currentDate = epoch + currentTime;
 
         // Check and trigger scheduled events
