@@ -110,8 +110,8 @@ concept HasGetCoefficientOfReflectivity = requires(T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetThrust = requires(T vehicle, const State& state) {
-    { vehicle.get_thrust(state) } -> std::same_as<CartesianVector<Acceleration, frames::earth::icrf>>;
+concept HasGetCommandAcceleration = requires(const T& vehicle, const State& state) {
+    { vehicle.get_command_acceleration(state) } -> std::same_as<CartesianVector<Acceleration, frames::earth::icrf>>;
 };
 
 /**
@@ -191,10 +191,10 @@ struct VehicleInnerBase : public virtual FrameReference {
     virtual Unitless get_coefficient_of_reflectivity() const = 0;
 
     /**
-     * @brief Gets the thrust of the vehicle.
+     * @brief Gets the command acceleration of the vehicle.
      *
-     * @param state The state of the vehicle for which to get the thrust.
-     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
+     * @param state The state of the vehicle for which to get the command acceleration.
+     * @return CartesianVector<Acceleration, frames::earth::icrf> The command acceleration of the vehicle.
      */
     virtual CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration(const State& state) const = 0;
 
@@ -558,7 +558,7 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
      */
     template <typename U>
-        requires(!HasGetThrust<U>)
+        requires(!HasGetCommandAcceleration<U>)
     CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration_impl(const U&, const State&) const
     {
         using mp_units::si::unit_symbols::km;
@@ -575,10 +575,10 @@ struct VehicleInner final : public VehicleInnerBase {
      * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
      */
     template <typename U>
-        requires(HasGetThrust<U>)
+        requires(HasGetCommandAcceleration<U>)
     CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration_impl(const U& value, const State& state) const
     {
-        return value.get_thrust(state);
+        return value.get_command_acceleration(state);
     }
 
     /**

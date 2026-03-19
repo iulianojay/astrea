@@ -100,11 +100,11 @@ SurfaceArea Spacecraft::get_lift_area() const { return _liftArea; }
 // Thrust
 CartesianVector<Acceleration, frames::earth::icrf> Spacecraft::get_command_acceleration(const State& state) const
 {
-    // As a first cut, just burn in r direction
+    // As a first cut, just burn in v direction
     CartesianVector<Acceleration, frames::dynamic::ric> totalAccel;
     for (const auto& thruster : get_payloads()) {
         if (!thruster.is_on()) { continue; }
-        totalAccel[0] += thruster.get_thrust() / get_mass();
+        totalAccel[1] += thruster.get_thrust() / get_mass();
     }
 
     const Cartesian elements = state.in_element_set<Cartesian>();

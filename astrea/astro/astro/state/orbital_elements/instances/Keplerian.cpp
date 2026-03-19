@@ -268,6 +268,12 @@ MeanMotion Keplerian::get_mean_motion(const GravParam& mu) const
     return sqrt(mu / (_semimajor * _semimajor * _semimajor));
 }
 
+Time Keplerian::get_orbital_period(const GravParam& mu) const
+{
+    const auto meanMotion = get_mean_motion(mu);
+    return (2.0 * std::numbers::pi) / meanMotion;
+}
+
 // Copy assignment operator
 Keplerian& Keplerian::operator=(const Keplerian& other) { return *this = Keplerian(other); }
 

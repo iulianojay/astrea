@@ -152,6 +152,13 @@ struct EventInnerBase {
      * @return void* A pointer to the internal Event instance.
      */
     virtual void* get_ptr() = 0;
+
+    /**
+     * @brief Gets the type information of the internal vehicle instance.
+     *
+     * @return const std::type_info& The type information of the internal vehicle instance.
+     */
+    virtual const std::type_info& type() const = 0;
 };
 
 /**
@@ -303,6 +310,13 @@ struct EventInner final : public EventInnerBase {
      */
     void* get_ptr() final { return &_value; }
 
+    /**
+     * @brief Gets the type information of the internal vehicle instance.
+     *
+     * @return const std::type_info& The type information of the internal vehicle instance.
+     */
+    const std::type_info& type() const final { return typeid(T); }
+
     T _value; //!< The value of the Event inner implementation, which is the user-defined Event type.
 };
 
@@ -408,7 +422,7 @@ class Event {
         requires(IsGenericallyConstructableEvent<T>)
     const T* extract() const noexcept
     {
-        auto p = static_cast<detail::EventInner<T>*>(ptr());
+        auto p = static_cast<const detail::EventInner<T>*>(ptr());
         return ptr()->type() == typeid(T) ? &(p->_value) : nullptr;
     }
 

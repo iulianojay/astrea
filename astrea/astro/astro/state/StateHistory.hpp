@@ -97,6 +97,13 @@ class StateHistory {
     std::size_t size() const;
 
     /**
+     * @brief Checks if the state history is empty.
+     *
+     * @return true if the state history is empty, false otherwise.
+     */
+    bool empty() const;
+
+    /**
      * @brief Clears the state history, removing all stored states.
      */
     void clear();
