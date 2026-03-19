@@ -27,7 +27,15 @@ State& StateHistory::operator[](const Date& date) { return _states[date]; }
 const State& StateHistory::at(const Date& date) const { return _states.at(date); }
 
 void StateHistory::insert(const State& state) { _states.insert({ state.get_epoch(), state }); }
+void StateHistory::insert(const StateHistory& stateHistory)
+{
+    for (const auto& [date, state] : stateHistory._states) {
+        _states.insert({ date, state });
+    }
+}
+
 std::size_t StateHistory::size() const { return _states.size(); }
+bool StateHistory::empty() const { return _states.empty(); }
 void StateHistory::clear() { _states.clear(); }
 
 const State& StateHistory::get_closest_state(const Date& date) const

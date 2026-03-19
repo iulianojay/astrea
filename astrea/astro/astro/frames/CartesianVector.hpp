@@ -350,14 +350,16 @@ class CartesianVector {
     /**
      * @brief Calculate the angle between this vector and another CartesianVector.
      *
+     * @tparam U The type of the other CartesianVector.
      * @param other The other CartesianVector to calculate the angle with.
      * @return Angle The angle between the two vectors.
      * @throws std::runtime_error If either vector has zero magnitude.
      */
-    Angle offset_angle(const CartesianVector<Value_T, Frame_T>& other) const
+    template <typename Value_U>
+    Angle offset_angle(const CartesianVector<Value_U, Frame_T>& other) const
     {
         const Value_T v1Mag = norm();
-        const Value_T v2Mag = other.norm();
+        const Value_U v2Mag = other.norm();
 
         if (v1Mag.numerical_value_in(v1Mag.unit) == 0 || v2Mag.numerical_value_in(v2Mag.unit) == 0) {
             throw std::runtime_error("Cannot calculate angle with zero-magnitude vector");

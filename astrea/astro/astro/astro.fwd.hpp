@@ -92,6 +92,7 @@ class Integrator;
 class LambertSolver;
 class Event;
 class EventDetector;
+class Schedule;
 
 // Systems
 class AstrodynamicsSystem;
