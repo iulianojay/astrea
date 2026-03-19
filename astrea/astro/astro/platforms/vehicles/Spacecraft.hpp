@@ -172,6 +172,14 @@ class Spacecraft : public ThrusterPlatform {
     SurfaceArea get_lift_area() const;
 
     /**
+     * @brief Gets the thrust of the spacecraft.
+     *
+     * @param state The state of the spacecraft for which to get the thrust.
+     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the spacecraft.
+     */
+    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration(const State& state) const;
+
+    /**
      * @brief Gets the unique identifier of the spacecraft.
      *
      * @return std::size_t The unique identifier of the spacecraft.

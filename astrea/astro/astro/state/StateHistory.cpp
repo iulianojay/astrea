@@ -35,6 +35,7 @@ void StateHistory::insert(const StateHistory& stateHistory)
 }
 
 std::size_t StateHistory::size() const { return _states.size(); }
+bool StateHistory::empty() const { return _states.empty(); }
 void StateHistory::clear() { _states.clear(); }
 
 const State& StateHistory::get_closest_state(const Date& date) const

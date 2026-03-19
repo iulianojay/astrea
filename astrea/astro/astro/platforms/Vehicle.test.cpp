@@ -145,3 +145,21 @@ TEST_F(VehicleTest, GetPtr)
     ASSERT_NO_THROW({ const void* p = static_cast<const Vehicle&>(vehicle).get_ptr(); });
     ASSERT_NO_THROW({ void* p = vehicle.get_ptr(); });
 }
+
+TEST_F(VehicleTest, ExtractMutableReference)
+{
+    // Test extracting the correct type (Spacecraft)
+    auto* spacecraftPtr = vehicle.extract_mutable_reference<Spacecraft>();
+    ASSERT_NE(spacecraftPtr, nullptr);
+    ASSERT_EQ(spacecraftPtr->get_mass(), sat.get_mass());
+
+    // Test with vehicle that has history
+    auto* spacecraftWithHistoryPtr = vehicleWithHistory.extract_mutable_reference<Spacecraft>();
+    ASSERT_NE(spacecraftWithHistoryPtr, nullptr);
+    ASSERT_EQ(spacecraftWithHistoryPtr->get_mass(), satWithHistory.get_mass());
+
+    // Test extracting wrong type - should return nullptr
+    // Note: This would need a different vehicle type to test properly,
+    // but for now we test that the method doesn't crash
+    ASSERT_NO_THROW({ auto ptr = vehicle.extract_mutable_reference<Spacecraft>(); });
+}
