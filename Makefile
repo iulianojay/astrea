@@ -9,19 +9,31 @@ os := Linux
 comp := GNU-13.1.0
 tests_path := tests
 
+# Compiler configuration - can be 'gcc' or 'mingw'
+compiler := gcc
+toolchain_name := $(compiler)-13-23
+toolchain_file := 
+extra_cmake_args :=
+
+# Set toolchain file for mingw cross-compilation
+ifeq ($(compiler),mingw)
+	toolchain_file := -DCMAKE_TOOLCHAIN_FILE=$(abspath cmake/windows_toolchain.cmake)
+	toolchain_name := mingw-w64
+endif
+
 build_type := Release
 build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
-build_path := $(abspath ./build/gcc-13-23/$(build_type))
-install_path := $(abspath ./install/gcc-13-23/$(build_type))
+build_path := $(abspath ./build/$(toolchain_name)/$(build_type))
+install_path := $(abspath ./install/$(toolchain_name)/$(build_type))
 build_tests := OFF
 build_examples := OFF
 build_profilers := OFF
 build_checkcase_db := OFF
 build_static := OFF
 run_6dof_checkcases := OFF
-cxx := g++-13
 verbose_makefile := OFF
 warnings_as_errors := OFF
+username := $(shell whoami)
 
 .DEFAULT_GOAL := install
 
@@ -38,9 +50,16 @@ profile: profiling install
 install: build
 	cmake --build $(build_path) --target install -j10
 
+.PHONY: install-gcc
+install-gcc: gcc install
+
+.PHONY: install-mingw
+install-mingw: mingw install
+
 .PHONY: build
 build:
 	cmake -S . -B $(build_path) \
+	$(toolchain_file) \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
 	-DBUILD_TESTS=$(build_tests) \
@@ -49,27 +68,50 @@ build:
 	-DBUILD_PROFILERS=$(build_profilers) \
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
 	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases)
+	
+.PHONY: build-gcc
+build-gcc: gcc build
+
+.PHONY: build-mingw
+build-mingw: mingw build
 
 .PHONY: debug
 debug:
 	$(eval build_type = Debug)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/gcc-13-23/$(build_type)))
-	$(eval install_path := $(abspath ./install/gcc-13-23/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(build_type)))
 
 .PHONY: release
 release:
 	$(eval build_type = Release)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/gcc-13-23/$(build_type)))
-	$(eval install_path := $(abspath ./install/gcc-13-23/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(build_type)))
 
 .PHONY: relwithdebinfo
 relwithdebinfo:
 	$(eval build_type = RelWithDebInfo)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/gcc-13-23/$(build_type)))
-	$(eval install_path := $(abspath ./install/gcc-13-23/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(build_type)))
+
+# Compiler selection targets
+.PHONY: gcc
+gcc:
+	$(eval compiler = gcc)
+	$(eval toolchain_name = gcc-13-23)
+	$(eval toolchain_file = )
+	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(build_type)))
+
+.PHONY: mingw
+mingw:
+	$(eval compiler = mingw)
+	$(eval toolchain_name = mingw-w64)
+	$(eval toolchain_file = -DCMAKE_TOOLCHAIN_FILE=$(abspath cmake/windows_toolchain.cmake))
+	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(build_type)))
 
 .PHONY: tests
 tests:
@@ -127,7 +169,11 @@ build_report: run_checkcases
 
 .PHONY: docker
 docker:
-	docker build -t astrea:latest -f ./docker/devcontainer/Dockerfile . --build-arg USER=$(username)
+	docker build -t astrea:latest -f ./docker/linux/Dockerfile.dev . --build-arg USER=$(username)
+
+.PHONY: docker-windows
+docker-windows:
+	docker build -t astrea:latest-windows -f ./docker/windows/Dockerfile.dev . --build-arg USER=$(username)
 
 .PHONY: clean
 clean:

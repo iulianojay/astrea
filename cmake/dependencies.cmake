@@ -27,12 +27,12 @@ target_include_directories(sqlite3
 )
 
 # Tell FindSQLite3.cmake exactly where SQLite is
-set(SQLite3_INCLUDE_DIR
-    ${sqlite3_SOURCE_DIR}
+set(SQLite3_INCLUDE_DIR 
+    ${sqlite3_SOURCE_DIR} 
     CACHE PATH "SQLite3 include directory"
 )
 
-set(SQLite3_LIBRARY
+set(SQLite3_LIBRARY 
     sqlite3
     CACHE STRING "SQLite3 library"
 )
