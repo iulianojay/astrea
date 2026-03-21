@@ -19,6 +19,7 @@
 #pragma once
 
 #include <array>
+#include <cmath>
 #include <iostream>
 
 #include <mp-units/math.h>
@@ -52,6 +53,7 @@ class DirectionCosineMatrix {
     DirectionCosineMatrix(const std::array<std::array<Unitless, 3>, 3>& matrix) :
         _matrix{ matrix }
     {
+        normalize();
     }
 
     /**
@@ -144,6 +146,11 @@ class DirectionCosineMatrix {
                                                                  std::array<Unitless, 3>{ z[0], z[1], z[2] } } };
     }
 
+    /**
+     * @brief Creates an identity direction cosine matrix (no rotation).
+     *
+     * @return DirectionCosineMatrix<Out_Frame_T> The identity direction cosine matrix.
+     */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> identity()
     {
         using mp_units::one;
@@ -152,6 +159,11 @@ class DirectionCosineMatrix {
                                                                  std::array<Unitless, 3>{ 0.0 * one, 0.0 * one, 1.0 * one } } };
     }
 
+    /**
+     * @brief Transposes the direction cosine matrix, effectively inverting the transformation.
+     *
+     * @return DirectionCosineMatrix<Out_Frame_T, In_Frame_T> The transposed direction cosine matrix.
+     */
     DirectionCosineMatrix<Out_Frame_T, In_Frame_T> transpose() const
     {
         return DirectionCosineMatrix<Out_Frame_T, In_Frame_T>{
@@ -160,6 +172,24 @@ class DirectionCosineMatrix {
               std::array<Unitless, 3>{ _matrix[0][2], _matrix[1][2], _matrix[2][2] } }
         };
     }
+
+    /**
+     * @brief Access operator for the elements of the direction cosine matrix.
+     *
+     * @param row The row index (0, 1, or 2).
+     * @param col The column index (0, 1, or 2).
+     * @return Unitless& Reference to the element at the specified row and column.
+     */
+    Unitless& operator[](std::size_t row, std::size_t col) { return _matrix[row][col]; }
+
+    /**
+     * @brief Const access operator for the elements of the direction cosine matrix.
+     *
+     * @param row The row index (0, 1, or 2).
+     * @param col The column index (0, 1, or 2).
+     * @return const Unitless& Reference to the element at the specified row and column.
+     */
+    const Unitless& operator[](std::size_t row, std::size_t col) const { return _matrix[row][col]; }
 
     /**
      * @brief Apply the direction cosine matrix to a CartesianVector.
@@ -185,8 +215,68 @@ class DirectionCosineMatrix {
         return { _matrix[idx][0], _matrix[idx][1], _matrix[idx][2] };
     }
 
+    /**
+     * @brief Get the trace of the direction cosine matrix (the sum of the diagonal elements).
+     *
+     * @return Unitless The trace of the direction cosine matrix.
+     */
+    Unitless trace() const { return _matrix[0][0] + _matrix[1][1] + _matrix[2][2]; }
+
+    /**
+     * @brief Get the determinant of the direction cosine matrix.
+     *
+     * @return Unitless The determinant of the direction cosine matrix.
+     */
+    Unitless determinant() const
+    {
+        return _matrix[0][0] * (_matrix[1][1] * _matrix[2][2] - _matrix[1][2] * _matrix[2][1]) -
+               _matrix[0][1] * (_matrix[1][0] * _matrix[2][2] - _matrix[1][2] * _matrix[2][0]) +
+               _matrix[0][2] * (_matrix[1][0] * _matrix[2][1] - _matrix[1][1] * _matrix[2][0]);
+    }
+
+    /**
+     * @brief Normalizes the direction cosine matrix to ensure it represents a valid rotation.
+     *
+     * This method scales the elements of the matrix so that the determinant is 1, which is a requirement for a valid
+     * rotation matrix. If the determinant is zero, an exception is thrown since the matrix cannot be normalized.
+     * Uses a linear approximation when the determinant is close to 1 for numerical efficiency.
+     */
+    void normalize()
+    {
+        using namespace mp_units;
+
+        const Unitless det = determinant();
+        if (det == 0.0 * mp_units::one) { throw std::runtime_error("Cannot normalize a zero-value determinant DCM."); }
+
+        // For 3x3 matrices, determinant scales as k^3 where k is the scaling factor
+        // Use linear approximation when determinant is close to 1: k ≈ 1 - (det-1)/3
+        // https://stackoverflow.com/questions/11667783/quaternion-and-normalization
+        if (abs(1.0 * one - det) < 2.107342e-08 * one) { _normalize(1.0 * one - (det - 1.0 * one) / 3.0); }
+        else {
+            // Exact formula: k = (1/det)^(1/3) to make k^3 * det = 1
+            _normalize(1.0 * one / cbrt(det));
+        }
+    }
+
   private:
     std::array<std::array<Unitless, 3>, 3> _matrix; //!< 3x3 matrix to hold the direction cosines.
+
+    /**
+     * @brief Normalizes the direction cosine matrix by scaling all elements by the given factor.
+     *
+     * @param scale The factor to scale the matrix elements by to achieve normalization.
+     */
+    void _normalize(const Unitless& scale)
+    {
+        using namespace mp_units;
+        for (auto& row : _matrix) {
+            for (auto& element : row) {
+                element *= scale;
+                // Avoid very small values that should be zero
+                if (abs(element) < 1.0e-15 * one) { element = 0.0 * one; }
+            }
+        }
+    }
 };
 
 /**

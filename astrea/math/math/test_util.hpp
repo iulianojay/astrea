@@ -38,6 +38,7 @@ namespace astrea {
  * @param x First quantity to compare.
  * @param y Second quantity to compare.
  * @param REL_TOL Relative tolerance for comparison.
+ * @param ABS_TOL Absolute tolerance for comparison.
  */
 template <auto R1, auto R2, typename Rep>
 void ASSERT_EQ_QUANTITY(
@@ -62,6 +63,7 @@ void ASSERT_EQ_QUANTITY(
  * @param x First quantity to compare.
  * @param y Second quantity to compare.
  * @param REL_TOL Relative tolerance for comparison.
+ * @param ABS_TOL Absolute tolerance for comparison.
  */
 template <auto R1, auto R2, typename Rep>
 void EXPECT_EQ_QUANTITY(

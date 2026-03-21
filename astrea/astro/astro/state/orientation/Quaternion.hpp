@@ -1,0 +1,403 @@
+/**
+ * @file Quaternion.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Class representing a quaternion for orientation transformations between state/frames.
+ * @date 2026-03-20
+ *
+ * @copyright Copyright (c) 2026 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
+ *
+ * This file is part of Astrea.
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+ * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ *
+ */
+#pragma once
+
+#include <stdexcept>
+
+#include <mp-units/core.h>
+#include <mp-units/math.h>
+
+#include <units/units.hpp>
+
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frame_concepts.hpp>
+
+namespace astrea {
+namespace astro {
+
+/**
+ * @brief Class representing a quaternion for orientation rotations between frames.
+ *
+ * @tparam In_Frame_T The input frame type (e.g., ECI, ECEF).
+ * @tparam Out_Frame_T The output frame type (e.g., ECI, ECEF).
+ *
+ * @note: These are not real quaternions and are not setup to behave properly as quaternions might.
+ * These Quaternions are specifically meant to represent frame rotations and are not meant to be used for general
+ * quaternion math. They are automatically normalized on construction to avoid tracking the magnitude and to
+ * avoid expensive sqrt as much as possible.
+ */
+template <typename In_Frame_T, typename Out_Frame_T>
+    requires(!IsSameFrame<In_Frame_T, Out_Frame_T>)
+class Quaternion {
+
+  public:
+    /**
+     * @brief Default constructor for the Quaternion class. Initializes to the identity quaternion (no rotation).
+     */
+    Quaternion() :
+        _s(1.0 * mp_units::one),
+        _u(CartesianVector<Unitless, In_Frame_T>())
+    {
+        normalize();
+    }
+
+    /**
+     * @brief Constructor for the Quaternion class from a CartesianVector.
+     *
+     * @param vec The CartesianVector representing the vector part of the quaternion. The scalar part is set to 0.
+     */
+    Quaternion(const CartesianVector<Unitless, In_Frame_T>& vec) :
+        _s(0.0 * mp_units::one),
+        _u(vec)
+    {
+        normalize();
+    }
+
+    /**
+     * @brief Constructor for the Quaternion class from a scalar and a CartesianVector.
+     *
+     * @param s The scalar part of the quaternion.
+     * @param vec The CartesianVector representing the vector part of the quaternion.
+     */
+    Quaternion(const Unitless& s, const CartesianVector<Unitless, In_Frame_T>& vec) :
+        _s(s),
+        _u(vec)
+    {
+        normalize();
+    }
+
+    /**
+     * @brief Constructor for the Quaternion class from individual components.
+     * @param s Scalar part of the quaternion (must be between -1 and 1).
+     * @param x X component of the vector part of the quaternion (must be between -1 and 1).
+     * @param y Y component of the vector part of the quaternion (must be between -1 and 1).
+     * @param z Z component of the vector part of the quaternion (must be between -1 and 1).
+     *
+     * @throws std::invalid_argument if any of the components are outside the range [-1, 1].
+     */
+    Quaternion(const Unitless& s, const Unitless& x, const Unitless& y, const Unitless& z) :
+        _s(s),
+        _u(x, y, z)
+    {
+        normalize();
+    }
+
+    /**
+     * @brief Default copy constructor
+     */
+    Quaternion(const Quaternion& other) = default;
+
+    /**
+     * @brief Default move constructor
+     */
+    Quaternion(Quaternion&& other) = default;
+
+    /**
+     * @brief Default copy assignment operator
+     */
+    Quaternion& operator=(const Quaternion& other) = default;
+
+    /**
+     * @brief Default move assignment operator
+     */
+    Quaternion& operator=(Quaternion&& other) = default;
+
+    /**
+     * @brief Equality operator for Quaternion.
+     *
+     * @param other The other Quaternion to compare with.
+     * @return true If the two quaternions are equal.
+     * @return false If the two quaternions are not equal.
+     */
+    bool operator==(const Quaternion& other) const { return _s == other._s && _u == other._u; }
+
+    /**
+     * @brief Constructor for the Quaternion class from a Direction Cosine Matrix (DCM).
+     *
+     * @param dcm The direction cosine matrix to convert to a quaternion.
+     *
+     * @note Uses Shepperd's method for numerical stability. Algorithm branches based on
+     * which element provides the most numerically stable computation.
+     *
+     * @cite Shepperd, S.W. "Quaternion from rotation matrix." Journal of Guidance and Control,
+     *       Vol. 1, No. 3, May-June 1978, pp. 223-224.
+     * @cite Wertz, J.R. (ed.), "Spacecraft Attitude Determination and Control,"
+     *       Kluwer Academic Publishers, 1978, pp. 414-416.
+     */
+    Quaternion(const DirectionCosineMatrix<In_Frame_T, Out_Frame_T>& dcm)
+    {
+        // Convert the DCM to a quaternion using Shepperd's numerically stable algorithm
+        const auto trace = dcm.trace();
+        const auto& xx   = dcm[0, 0];
+        const auto& xy   = dcm[0, 1];
+        const auto& xz   = dcm[0, 2];
+        const auto& yy   = dcm[1, 1];
+        const auto& yx   = dcm[1, 0];
+        const auto& yz   = dcm[1, 2];
+        const auto& zx   = dcm[2, 0];
+        const auto& zy   = dcm[2, 1];
+        const auto& zz   = dcm[2, 2];
+
+        // Case 1: Trace > 0 - Most numerically stable when rotation angle < 120°
+        // Ref: Shepperd (1978), Eq. 15
+        if (trace > 0) {
+            const auto r = sqrt(trace + 1.0) * 2.0;
+            _s           = 0.25 * r;
+            _u[0]        = (zy - yz) / r;
+            _u[1]        = (xz - zx) / r;
+            _u[2]        = (yx - xy) / r;
+        }
+        // Case 2: xx is the largest diagonal element
+        // Ref: Shepperd (1978), Eq. 16 - Stable when rotation is primarily about x-axis
+        else if ((xx > yy) && (xx > zz)) {
+            const auto r = sqrt(1.0 + xx - yy - zz) * 2.0;
+            _s           = (zy - yz) / r;
+            _u[0]        = 0.25 * r;
+            _u[1]        = (yx + xy) / r;
+            _u[2]        = (zx + xz) / r;
+        }
+        // Case 3: yy is the largest diagonal element
+        // Ref: Shepperd (1978), Eq. 17 - Stable when rotation is primarily about y-axis
+        else if (yy > zz) {
+            const auto r = sqrt(1.0 + yy - xx - zz) * 2.0;
+            _s           = (xz - zx) / r;
+            _u[0]        = (yx + xy) / r;
+            _u[1]        = 0.25 * r;
+            _u[2]        = (zy + yz) / r;
+        }
+        // Case 4: zz is the largest diagonal element
+        // Ref: Shepperd (1978), Eq. 18 - Stable when rotation is primarily about z-axis
+        else {
+            const auto r = sqrt(1.0 + zz - xx - yy) * 2.0;
+            _s           = (yx - xy) / r;
+            _u[0]        = (zx + xz) / r;
+            _u[1]        = (zy + yz) / r;
+            _u[2]        = 0.25 * r;
+        }
+        normalize();
+    }
+
+    /**
+     * @brief Get the scalar part of the quaternion.
+     *
+     * @return Unitless The scalar part of the quaternion.
+     */
+    DirectionCosineMatrix<In_Frame_T, Out_Frame_T> to_dcm() const
+    {
+        const auto& x = _u.get_x();
+        const auto& y = _u.get_y();
+        const auto& z = _u.get_z();
+        const auto& s = _s;
+
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { std::array<Unitless, 3>{ s * s + x * x - y * y - z * z, 2.0 * (x * y - s * z), 2.0 * (x * z + s * y) },
+              std::array<Unitless, 3>{ 2.0 * (x * y + s * z), s * s - x * x + y * y - z * z, 2.0 * (y * z - s * x) },
+              std::array<Unitless, 3>{ 2.0 * (x * z - s * y), 2.0 * (y * z + s * x), s * s - x * x - y * y + z * z } }
+        };
+    }
+
+    /**
+     * @brief Addition operator for the Quaternion class.
+     *
+     * @param other The quaternion to add to this quaternion.
+     * @return A new quaternion that is the sum of this quaternion and the other quaternion.
+     */
+    Quaternion<In_Frame_T, Out_Frame_T> operator+(const Quaternion<In_Frame_T, Out_Frame_T>& other) const
+    {
+        return { _s + other._s, _u + other._u };
+    }
+
+    /**
+     * @brief In-place addition operator for the Quaternion class.
+     *
+     * @param other The quaternion to add to this quaternion.
+     * @return Quaternion& A reference to this quaternion after addition.
+     */
+    Quaternion<In_Frame_T, Out_Frame_T>& operator+=(const Quaternion<In_Frame_T, Out_Frame_T>& other)
+    {
+        *this = *this + other;
+        return *this;
+    }
+
+    /**
+     * @brief Unary negation operator for the Quaternion class.
+     *
+     * @return A new quaternion that is the negation of this quaternion.
+     */
+    Quaternion<In_Frame_T, Out_Frame_T> operator-() const { return { -_s, -_u }; }
+
+    /**
+     * @brief Subtraction operator for the Quaternion class.
+     *
+     * @param other The quaternion to subtract from this quaternion.
+     * @return A new quaternion that is the difference between this quaternion and the other quaternion.
+     */
+    Quaternion<In_Frame_T, Out_Frame_T> operator-(const Quaternion<In_Frame_T, Out_Frame_T>& other) const
+    {
+        return *this + (-other);
+    }
+
+    /**
+     * @brief In-place subtraction operator for the Quaternion class.
+     *
+     * @param other The quaternion to subtract from this quaternion.
+     * @return Quaternion& A reference to this quaternion after subtraction.
+     */
+    Quaternion<In_Frame_T, Out_Frame_T>& operator-=(const Quaternion<In_Frame_T, Out_Frame_T>& other)
+    {
+        return *this += -other;
+    }
+
+    /**
+     * @brief Multiplication operator for the Quaternion class.
+     *
+     * @tparam Out_Frame_U The output frame type of the other quaternion.
+     * @param other The quaternion to multiply with this quaternion.
+     * @return A new quaternion that is the product of this quaternion and the other quaternion.
+     */
+    template <typename Out_Frame_U>
+        requires(!IsSameFrame<In_Frame_T, Out_Frame_U>)
+    Quaternion<In_Frame_T, Out_Frame_U> operator*(const Quaternion<Out_Frame_T, Out_Frame_U>& other) const
+    {
+        const auto& x1 = _u.get_x();
+        const auto& y1 = _u.get_y();
+        const auto& z1 = _u.get_z();
+        const auto& x2 = other.get_vector_part().get_x();
+        const auto& y2 = other.get_vector_part().get_y();
+        const auto& z2 = other.get_vector_part().get_z();
+        const auto& s1 = _s;
+        const auto& s2 = other.get_scalar_part();
+
+        return { s1 * s2 - (x1 * x2 + y1 * y2 + z1 * z2),
+                 s1 * x2 + x1 * s2 + y1 * z2 - z1 * y2,
+                 s1 * y2 - x1 * z2 + y1 * s2 + z1 * x2,
+                 s1 * z2 + x1 * y2 - y1 * x2 + z1 * s2 };
+    }
+
+    /**
+     * @brief Rotates a vector from the input frame to the output frame using this quaternion.
+     *
+     * @tparam Value_T The type of the vector components (e.g., double, quantity).
+     * @param vec The vector to rotate, expressed in the input frame.
+     * @return A new vector that is the result of rotating the input vector by this quaternion, expressed in the output frame.
+     */
+    template <typename Value_T>
+    CartesianVector<Value_T, Out_Frame_T> rotate_vector(const CartesianVector<Value_T, In_Frame_T>& vec) const
+    {
+        // Rotate the vector using the quaternion: v' = q * v * q^-1
+        // results in a quaternion with vector part 2(u ⋅ v)u + (s2 − u ⋅ u)v + 2s(u × v)
+        // This forces a frame conversion because there is no coherent way to keep the strong typing through the
+        // intermediate operations and still result in a meaningful rotation. This means we can't have a nice interface
+        // where users rotate by calling q * v * q.conjugate() but it's fine for now.
+        return (2.0 * _u.dot(vec) * _u + (_s * _s - _u.dot(_u)) * vec + 2.0 * _s * _u.cross(vec)).template force_frame_conversion<Out_Frame_T>();
+    }
+
+    /**
+     * @brief Computes the conjugate of the quaternion.
+     * @return The conjugate of the quaternion.
+     */
+    Quaternion<Out_Frame_T, In_Frame_T> conjugate() const
+    {
+        return { _s, -_u.template force_frame_conversion<Out_Frame_T>() };
+    }
+
+    /**
+     * @brief Computes the norm of the quaternion.
+     * @return The norm of the quaternion as a unitless quantity.
+     */
+    Unitless norm() const
+    {
+        using namespace mp_units;
+        return sqrt(norm_squared());
+    }
+
+    /**
+     * @brief Computes the square of the magnitude of the quaternion (s^2 + u^2).
+     * @return The square of the magnitude of the quaternion as a unitless quantity.
+     */
+    Unitless norm_squared() const { return _s * _s + _u.dot(_u); }
+
+    /**
+     * @brief Normalizes the quaternion to ensure it represents a valid rotation.
+     */
+    void normalize()
+    {
+        using namespace mp_units;
+
+        const Unitless nSq = norm_squared();
+        if (nSq == 0.0 * one) { throw std::runtime_error("Cannot normalize a quaternion with zero norm."); }
+
+        // https://stackoverflow.com/questions/11667783/quaternion-and-normalization
+        if (abs(1.0 * one - nSq) < 2.107342e-08 * one) { _normalize(2.0 * one / (1.0 * one + nSq)); }
+        else {
+            _normalize(1.0 * one / sqrt(nSq));
+        }
+    }
+
+    /**
+     * @brief Computes the inverse of the quaternion.
+     * @return The inverse of the quaternion.
+     *
+     * @throws std::runtime_error if the norm of the quaternion is zero (cannot compute inverse of a zero quaternion).
+     */
+    Quaternion<Out_Frame_T, In_Frame_T> inverse() const
+    {
+        using namespace mp_units;
+        const Unitless nSq = norm_squared();
+        if (nSq == 0.0 * one) { throw std::runtime_error("Cannot compute inverse of a quaternion with zero norm."); }
+
+        const auto conj    = conjugate();
+        const auto conjVec = conj.get_vector_part();
+        return { conj.get_scalar_part() / nSq, conjVec.get_x() / nSq, conjVec.get_y() / nSq, conjVec.get_z() / nSq };
+    }
+
+    /**
+     * @brief Gets the scalar part of the quaternion.
+     *
+     * @return Unitless The scalar part of the quaternion.
+     */
+    Unitless get_scalar_part() const { return _s; }
+
+    /**
+     * @brief Gets the vector part of the quaternion as a CartesianVector.
+     *
+     * @return CartesianVector<Unitless, In_Frame_T> The vector part of the quaternion.
+     */
+    CartesianVector<Unitless, In_Frame_T> get_vector_part() const { return _u; }
+
+  private:
+    Unitless _s;                              //!< Scalar part of the quaternion
+    CartesianVector<Unitless, In_Frame_T> _u; //!< Vector part of the quaternion
+
+    /**
+     * @brief Normalizes the quaternion by scaling its components with the given factor.
+     *
+     * @param scale The factor to scale the quaternion components by to achieve normalization.
+     */
+    void _normalize(const Unitless& scale)
+    {
+        _s *= scale;
+        _u[0] *= scale;
+        _u[1] *= scale;
+        _u[2] *= scale;
+    }
+};
+
+} // namespace astro
+} // namespace astrea

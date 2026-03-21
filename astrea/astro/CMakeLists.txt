@@ -160,17 +160,22 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
+
     ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geocentric.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Spherical.hpp
     ${ASTRO_BASE}/state/angular_elements/AngularElements.hpp
+
     ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.hpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.hpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.hpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.hpp
+
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.hpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.hpp
+    
+    ${ASTRO_BASE}/state/orientation/Quaternion.hpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
