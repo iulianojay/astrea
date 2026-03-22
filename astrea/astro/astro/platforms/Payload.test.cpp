@@ -47,7 +47,7 @@ class PayloadTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
-    Thrust thrust{ 1.0 * N };
+    Force thrust{ 1.0 * N };
     astro::RadiusVector<astro::frames::dynamic::ric> boresight{ -1.0 * km, 0.0 * km, 0.0 * km };
     astro::RadiusVector<astro::frames::dynamic::ric> attachmentPoint{ 0.5 * km, 0.2 * km, 0.1 * km };
     ThrusterParameters params{ thrust, boresight, attachmentPoint };

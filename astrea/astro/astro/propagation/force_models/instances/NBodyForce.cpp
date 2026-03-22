@@ -11,7 +11,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/propagation/force_models/NBodyForce.hpp>
+#include <astro/propagation/force_models/instances/NBodyForce.hpp>
 
 #include <iostream>
 
@@ -36,7 +36,7 @@ using mp_units::pow;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-AccelerationVector<frames::earth::icrf> NBodyForce::compute_force(const State& state, const Vehicle& vehicle) const
+Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Extract
     const AstrodynamicsSystem& sys                            = state.get_system();
@@ -78,7 +78,7 @@ AccelerationVector<frames::earth::icrf> NBodyForce::compute_force(const State& s
         accelNBody += directCoefficient * rVehicleToNbody - indirectCoefficient * rCenterToNbody;
     }
 
-    return accelNBody;
+    return { .force = accelNBody };
 }
 
 } // namespace astro

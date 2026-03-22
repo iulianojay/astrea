@@ -21,7 +21,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/propagation/force_models/Force.hpp>
+#include <astro/propagation/force_models/PerturbingForce.hpp>
 
 namespace astrea {
 namespace astro {
@@ -30,7 +30,7 @@ namespace astro {
  * @brief Class to compute the solar radiation pressure force on a spacecraft.
  *
  */
-class SolarRadiationPressure : public Force {
+class SolarRadiationPressure : public PerturbingForce {
   public:
     /**
      * @brief Default constructor for SolarRadiationPressure.
@@ -47,9 +47,9 @@ class SolarRadiationPressure : public Force {
      *
      * @param state Cartesian state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
-     * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to solar radiation pressure.
+     * @return Perturbation The computed force and torque due to solar radiation pressure.
      */
-    CartesianVector<Acceleration, frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override;
+    Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override;
 
   private:
 };

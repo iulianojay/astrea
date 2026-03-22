@@ -23,21 +23,25 @@ namespace astro {
 
 using namespace mp_units;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::N;
 using mp_units::si::unit_symbols::s;
 
-AccelerationVector<frames::earth::icrf> ForceModel::compute_forces(const State& state, const Vehicle& vehicle) const
+Perturbation ForceModel::compute_perturbations(const State& state, const Vehicle& vehicle) const
 {
-    AccelerationVector<frames::earth::icrf> sum{ 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) };
+    Perturbation sum{ .force  = { 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) },
+                      .torque = { 0.0 * N * m, 0.0 * N * m, 0.0 * N * m } };
     for (const auto& [name, force] : forces) {
-        const auto result = force->compute_force(state, vehicle);
+        const auto result = force->compute_perturbation(state, vehicle);
         for (std::size_t ii = 0; ii < 3; ++ii) {
-            sum[ii] += result[ii];
+            sum.force[ii] += result.force[ii];
+            sum.torque[ii] += result.torque[ii];
         }
     }
     return sum;
 }
 
-const std::unique_ptr<Force>& ForceModel::at(const std::string& name) const { return forces.at(name); }
+const std::unique_ptr<PerturbingForce>& ForceModel::at(const std::string& name) const { return forces.at(name); }
 
 
 } // namespace astro

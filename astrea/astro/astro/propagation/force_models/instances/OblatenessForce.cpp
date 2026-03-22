@@ -11,7 +11,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/propagation/force_models/OblatenessForce.hpp>
+#include <astro/propagation/force_models/instances/OblatenessForce.hpp>
 
 #include <filesystem>
 #include <fstream>
@@ -244,7 +244,7 @@ For the life of me, I could not get this to match the NASA checkcases. I can't f
 it out, let me know.
 
 AccelerationVector<frames::earth::icrf>
-    OblatenessForce::compute_force(const State& state, const Vehicle& vehicle) const
+    OblatenessForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Central body properties
     const GravParam& mu         = _sys->get_mu();
@@ -365,7 +365,7 @@ AccelerationVector<frames::earth::icrf>
 }
 */
 
-AccelerationVector<frames::earth::icrf> OblatenessForce::compute_force(const State& state, const Vehicle& vehicle) const
+Perturbation OblatenessForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Montenbruck & Gill (2000) V and W recurrence relations method
     // Reference: Satellite Orbits: Models, Methods and Applications, O. Montenbruck and E. Gill, Springer, 2000
@@ -481,7 +481,7 @@ AccelerationVector<frames::earth::icrf> OblatenessForce::compute_force(const Sta
     const AccelerationVector<frames::earth::earth_fixed> accelOblatenessEcef = { ax * muOverR2, ay * muOverR2, az * muOverR2 };
 
     // Transform back to inertial frame - original values are in ecef, not w.r.t ecef
-    return accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
+    return { .force = accelOblatenessEcef.in_frame<frames::earth::icrf>(date) };
 }
 
 } // namespace astro

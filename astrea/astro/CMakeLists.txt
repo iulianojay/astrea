@@ -39,11 +39,11 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOn.cpp
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOff.cpp
 
-    ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.cpp
     ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
-    ${ASTRO_BASE}/propagation/force_models/NBodyForce.cpp
-    ${ASTRO_BASE}/propagation/force_models/OblatenessForce.cpp
-    ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressure.cpp
+    ${ASTRO_BASE}/propagation/force_models/instances/AtmosphericForce.cpp
+    ${ASTRO_BASE}/propagation/force_models/instances/NBodyForce.cpp
+    ${ASTRO_BASE}/propagation/force_models/instances/OblatenessForce.cpp
+    ${ASTRO_BASE}/propagation/force_models/instances/SolarRadiationPressure.cpp
 
     ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.cpp
     ${ASTRO_BASE}/propagation/equations_of_motion/CowellsMethod.cpp
@@ -142,12 +142,12 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOn.hpp
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOff.hpp
 
-    ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.hpp
-    ${ASTRO_BASE}/propagation/force_models/Force.hpp
+    ${ASTRO_BASE}/propagation/force_models/instances/AtmosphericForce.hpp
+    ${ASTRO_BASE}/propagation/force_models/PerturbingForce.hpp
     ${ASTRO_BASE}/propagation/force_models/ForceModel.hpp
-    ${ASTRO_BASE}/propagation/force_models/NBodyForce.hpp
-    ${ASTRO_BASE}/propagation/force_models/OblatenessForce.hpp
-    ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressure.hpp
+    ${ASTRO_BASE}/propagation/force_models/instances/NBodyForce.hpp
+    ${ASTRO_BASE}/propagation/force_models/instances/OblatenessForce.hpp
+    ${ASTRO_BASE}/propagation/force_models/instances/SolarRadiationPressure.hpp
 
     ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.hpp
     ${ASTRO_BASE}/propagation/equations_of_motion/CowellsMethod.hpp

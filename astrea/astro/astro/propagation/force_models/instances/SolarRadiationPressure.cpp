@@ -11,7 +11,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/propagation/force_models/SolarRadiationPressure.hpp>
+#include <astro/propagation/force_models/instances/SolarRadiationPressure.hpp>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
@@ -41,7 +41,7 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::N;
 using mp_units::si::unit_symbols::s;
 
-AccelerationVector<frames::earth::icrf> SolarRadiationPressure::compute_force(const State& state, const Vehicle& vehicle) const
+Perturbation SolarRadiationPressure::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Extract
     const AstrodynamicsSystem& sys       = state.get_system();
@@ -109,7 +109,7 @@ AccelerationVector<frames::earth::icrf> SolarRadiationPressure::compute_force(co
     const Mass mass                          = vehicle.get_mass();
     const Acceleration accelRelMag = -srp * fractionOfRecievedSunlight * coefficientOfReflectivity * areaSun / mass;
 
-    return accelRelMag * rVehicleToSun / rMagVehicleToSun;
+    return { .force = accelRelMag * rVehicleToSun / rMagVehicleToSun };
 }
 
 } // namespace astro

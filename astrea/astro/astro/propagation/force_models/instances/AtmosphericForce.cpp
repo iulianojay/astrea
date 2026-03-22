@@ -11,7 +11,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/propagation/force_models/AtmosphericForce.hpp>
+#include <astro/propagation/force_models/instances/AtmosphericForce.hpp>
 
 // mp-units
 #include <mp-units/math.h>
@@ -49,7 +49,7 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
 
-AccelerationVector<frames::earth::icrf> AtmosphericForce::compute_force(const State& state, const Vehicle& vehicle) const
+Perturbation AtmosphericForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Extract
     const AstrodynamicsSystem& sys       = state.get_system();
@@ -92,7 +92,7 @@ AccelerationVector<frames::earth::icrf> AtmosphericForce::compute_force(const St
         0.5 * coefficientOfLift * areaLift / mass * atmosphericDensity * pow<2>(relVelMag) * sin(angleOfAttack);
     const AccelerationVector<frames::earth::icrf> accelLift = liftAccelMag * (r / R); // just assume radial lift for now
 
-    return { accelDrag[0] + accelLift[0], accelDrag[1] + accelLift[1], accelDrag[2] + accelLift[2] };
+    return { .force = { accelDrag[0] + accelLift[0], accelDrag[1] + accelLift[1], accelDrag[2] + accelLift[2] } };
 }
 
 

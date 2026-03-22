@@ -368,6 +368,18 @@ class Quaternion {
     }
 
     /**
+     * @brief Computes the inverse of the quaternion.
+     * @return The inverse of the quaternion.
+     *
+     * @throws std::runtime_error if the norm of the quaternion is zero (cannot compute inverse of a zero quaternion).
+     */
+    Quaternion<Out_Frame_T, In_Frame_T> inverse() const
+    {
+        const Unitless scale = 1.0 / norm_squared();
+        return { _s * scale, -_u.template force_frame_conversion<Out_Frame_T>() * scale };
+    }
+
+    /**
      * @brief Computes the norm of the quaternion.
      * @return The norm of the quaternion as a unitless quantity.
      */
@@ -398,23 +410,6 @@ class Quaternion {
         else {
             _normalize(1.0 * one / sqrt(nSq));
         }
-    }
-
-    /**
-     * @brief Computes the inverse of the quaternion.
-     * @return The inverse of the quaternion.
-     *
-     * @throws std::runtime_error if the norm of the quaternion is zero (cannot compute inverse of a zero quaternion).
-     */
-    Quaternion<Out_Frame_T, In_Frame_T> inverse() const
-    {
-        using namespace mp_units;
-        const Unitless nSq = norm_squared();
-        if (nSq == 0.0 * one) { throw std::runtime_error("Cannot compute inverse of a quaternion with zero norm."); }
-
-        const auto conj    = conjugate();
-        const auto conjVec = conj.get_vector_part();
-        return { conj.get_scalar_part() / nSq, conjVec.get_x() / nSq, conjVec.get_y() / nSq, conjVec.get_z() / nSq };
     }
 
     /**

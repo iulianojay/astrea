@@ -30,7 +30,7 @@ int main()
     // A ForceModel is a factory for arbitrary Force objects. These forces are called during propagation
     // to compute accelerations on the spacecraft. Several forces are provided with Astrea, and users can add
     // more by inheriting from the Force class.
-    struct ContinuousThrust : public Force {
+    struct ContinuousThrust : public PerturbingForce {
         ContinuousThrust(const std::string& name = "Continuous Thrust Force") :
             _name(name)
         {
@@ -38,7 +38,7 @@ int main()
 
         // Currently, forces are expected to return acceleration in the Earth-centered ICRF frame. Future releases will
         // allow forces to specify the output frame.
-        AccelerationVector<frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override
+        Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override
         {
             // Grab the cartesian elements and date
             const Date date           = state.get_epoch();
@@ -53,7 +53,7 @@ int main()
             std::cout << nadirAccel << std::endl;
 
             // Rotate the acceleration back to the inertial frame for output
-            return frame.rotate_out_of_this_frame(nadirAccel, date);
+            return { .force = frame.rotate_out_of_this_frame(nadirAccel, date) };
         }
 
       private:
@@ -68,7 +68,7 @@ int main()
     // During propagation, the force model is queried for the total acceleration
     Cartesian cart{ 7000.0 * km, 7000.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s };
     State state(cart, Date(), sys);
-    const auto totalAcceleration = forceModel.compute_forces(state, Vehicle());
+    const auto [totalAcceleration, totalTorque] = forceModel.compute_perturbations(state, Vehicle());
     std::cout << "Total Acceleration: " << totalAcceleration << std::endl;
 
     return 0;

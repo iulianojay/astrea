@@ -64,9 +64,9 @@ using Length = mp_units::quantity<detail::minor_distance_unit>;
 using Velocity = mp_units::quantity<detail::distance_unit / detail::time_unit>;
 
 /**
- * @brief Definition for a thrust quantity.
+ * @brief Definition for a force quantity.
  */
-using Thrust = mp_units::quantity<detail::force_unit>;
+using Force = mp_units::quantity<detail::force_unit>;
 
 /**
  * @brief Definition for a specific angular momentum quantity.

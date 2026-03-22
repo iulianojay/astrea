@@ -18,39 +18,59 @@
  */
 #pragma once
 
+#include <mp-units/systems/si.h>
+
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
 
 namespace astrea {
 namespace astro {
+
+namespace {
+using namespace mp_units;
+using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::N;
+using mp_units::si::unit_symbols::s;
+
+} // namespace
+
+/**
+ * @brief Struct to hold the results of a perturbation force computation, including both acceleration and torque.
+ */
+struct Perturbation {
+    CartesianVector<Acceleration, frames::earth::icrf> force = { 0.0 * km / (s * s) }; //!< The computed force vector due to the perturbing force.
+    CartesianVector<Moment, frames::earth::icrf> torque = { 0.0 * N * m }; //!< The computed torque vector due to the perturbing force.
+};
 
 /**
  * @brief Abstract base class for force models in astrodynamics.
  *
  * This class defines the interface for computing forces acting on a vehicle in space.
  */
-class Force {
+class PerturbingForce {
   public:
     /**
-     * @brief Default constructor for Force.
+     * @brief Default constructor for PerturbingForce.
      */
-    Force() = default;
+    PerturbingForce() = default;
 
     /**
-     * @brief Default destructor for Force.
+     * @brief Default destructor for PerturbingForce.
      */
-    virtual ~Force() = default;
+    virtual ~PerturbingForce() = default;
 
     /**
      * @brief Computes the force acting on a vehicle at a given date and state.
      *
      * @param state State of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
-     * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to the force.
+     * @return Perturbation The computed acceleration and torque vectors due to the force.
      */
-    virtual CartesianVector<Acceleration, frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const = 0;
+    virtual Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const = 0;
 };
 
 } // namespace astro

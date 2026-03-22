@@ -48,8 +48,8 @@ using BodyQuaternionPartial = QuaternionPartial<frames::earth::icrf, frames::dyn
 
 /**
  * @brief Class representing the state of an astronomical object.
- * * This class encapsulates the orbital elements, epoch, and the astrodynamics system
- * * that the state belongs to.
+ * This class encapsulates the orbital elements, epoch, and the astrodynamics system
+ * that the state belongs to. It also optionally includes the orientation of the object as a quaternion.
  */
 class State {
 

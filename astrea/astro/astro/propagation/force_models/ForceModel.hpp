@@ -26,7 +26,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/propagation/force_models/Force.hpp>
+#include <astro/propagation/force_models/PerturbingForce.hpp>
 
 namespace astrea {
 namespace astro {
@@ -62,10 +62,10 @@ class ForceModel {
      * @tparam T Type of the force model to add
      * @tparam Args Types of the arguments for the constructor of T
      * @param args Arguments to pass to the constructor of T
-     * @return const std::unique_ptr<Force>& Reference to the added force model
+     * @return const std::unique_ptr<PerturbingForce>& Reference to the added force model
      */
     template <typename T, typename... Args>
-    const std::unique_ptr<Force>& add(Args&&... args)
+    const std::unique_ptr<PerturbingForce>& add(Args&&... args)
     {
         static const std::string name = typeid(T).name();
         if (forces.count(name) == 0) { forces.emplace(name, std::make_unique<T>(std::forward<Args>(args)...)); }
@@ -77,33 +77,33 @@ class ForceModel {
      *
      * @param state Cartesian state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
-     * @return AccelerationVector<frames::earth::icrf> The total computed acceleration vector from all force models.
+     * @return Perturbation The total computed perturbation from all force models.
      */
-    CartesianVector<Acceleration, frames::earth::icrf> compute_forces(const State& state, const Vehicle& vehicle) const;
+    Perturbation compute_perturbations(const State& state, const Vehicle& vehicle) const;
 
     /**
      * @brief Retrieves a force model by name.
      *
      * @param name Name of the force model to retrieve
-     * @return const std::unique_ptr<Force>& Reference to the force model with the given name.
+     * @return const std::unique_ptr<PerturbingForce>& Reference to the force model with the given name.
      */
-    const std::unique_ptr<Force>& at(const std::string& name) const;
+    const std::unique_ptr<PerturbingForce>& at(const std::string& name) const;
 
     /**
      * @brief Retrieves a force model by type.
      *
      * @tparam T Type of the force model to retrieve
-     * @return const std::unique_ptr<Force>& Reference to the force model of type T.
+     * @return const std::unique_ptr<PerturbingForce>& Reference to the force model of type T.
      */
     template <typename T>
-    const std::unique_ptr<Force>& get() const
+    const std::unique_ptr<PerturbingForce>& get() const
     {
         static const std::string name = typeid(T).name();
         return forces.at(name);
     }
 
   private:
-    std::unordered_map<std::string, std::unique_ptr<Force>> forces; //!< Map of force models by name
+    std::unordered_map<std::string, std::unique_ptr<PerturbingForce>> forces; //!< Map of force models by name
 };
 
 } // namespace astro

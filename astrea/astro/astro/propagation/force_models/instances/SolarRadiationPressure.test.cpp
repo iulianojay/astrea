@@ -18,7 +18,7 @@
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/propagation/force_models/SolarRadiationPressure.hpp>
+#include <astro/propagation/force_models/instances/SolarRadiationPressure.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
@@ -82,7 +82,7 @@ TEST_F(SolarRadiationPressureTest, ComputeForceValladoEx85)
     Cartesian cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                     -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     State state(cart, epoch, sys);
-    const AccelerationVector<frames::earth::icrf> accel = force.compute_force(state, Vehicle(sat));
+    const auto [accel, torque] = force.compute_perturbation(state, Vehicle(sat));
 
     // // Vallado's expected results
     // const AccelerationVector<frames::earth::icrf> expected{ -1.8791e-10 * km / (s * s),

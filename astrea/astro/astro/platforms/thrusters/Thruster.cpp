@@ -34,7 +34,7 @@ std::size_t Thruster::generate_id() const
     return idCounter++;
 }
 
-Thrust Thruster::get_thrust() const { return get_parameters().get_thrust(); }
+Force Thruster::get_thrust() const { return get_parameters().get_thrust(); }
 
 void Thruster::switch_on() { get_parameters().switch_on(); }
 

@@ -25,7 +25,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/propagation/force_models/Force.hpp>
+#include <astro/propagation/force_models/PerturbingForce.hpp>
 
 namespace astrea {
 namespace astro {
@@ -114,7 +114,7 @@ class LegendreCache {
  * @brief Class to compute the gravitational force due to the oblateness of a celestial body.
  *
  */
-class OblatenessForce : public Force {
+class OblatenessForce : public PerturbingForce {
   public:
     /**
      * @brief Default destructor for OblatenessForce.
@@ -140,9 +140,9 @@ class OblatenessForce : public Force {
      *
      * @param state Cartesian state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
-     * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to oblateness.
+     * @return Perturbation The computed force and torque due to oblateness.
      */
-    CartesianVector<Acceleration, frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const;
+    Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const;
 
   private:
     const std::size_t _degree;          //!< Degree of the spherical harmonics

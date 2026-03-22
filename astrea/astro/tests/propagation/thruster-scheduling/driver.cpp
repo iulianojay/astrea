@@ -73,7 +73,7 @@ class ThrusterSchedulingRegressionTest : public testing::Test {
 
     AstrodynamicsSystem sys;
     GravParam mu;
-    Thrust thrusterForce;
+    Force thrusterForce;
     Date epoch;
     Integrator integrator;
     TwoBody eom;

@@ -17,8 +17,8 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
-#include <astro/propagation/force_models/Force.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/propagation/force_models/PerturbingForce.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
@@ -29,19 +29,22 @@ using namespace astrea;
 using namespace astro;
 using namespace mp_units;
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::N;
 using mp_units::si::unit_symbols::s;
 
-class DummyForce : public Force {
+class DummyForce : public PerturbingForce {
   public:
-    AccelerationVector<frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override
+    Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override
     {
-        return AccelerationVector<frames::earth::icrf>(0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s));
+        return Perturbation{ .force  = { 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) },
+                             .torque = { 0.0 * N * m, 0.0 * N * m, 0.0 * N * m } };
     }
 };
 
 class ForceModelTest : public testing::Test {
   public:
-    ForceModelTest(){};
+    ForceModelTest() {};
     void SetUp() override {}
 
     DummyForce force;
@@ -77,7 +80,7 @@ TEST(ForceModelTest, ComputeForces)
     Cartesian cart;
     State state(cart, date, sys);
 
-    auto accel = model.compute_forces(state, vehicle);
+    auto [accel, torque] = model.compute_perturbations(state, vehicle);
     EXPECT_EQ(accel.get_x(), 0.0 * km / (s * s));
     EXPECT_EQ(accel.get_y(), 0.0 * km / (s * s));
     EXPECT_EQ(accel.get_z(), 0.0 * km / (s * s));

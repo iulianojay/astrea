@@ -40,7 +40,7 @@ namespace astrea {
     using AngularRate = mp_units::quantity<detail::angle_unit / detail::time_unit>;
     
     // Specialized quantities
-    using Thrust = mp_units::quantity<detail::mass_unit * detail::distance_unit / 
+    using Force = mp_units::quantity<detail::mass_unit * detail::distance_unit / 
                                      mp_units::pow<2>(detail::time_unit)>;
     using SpecificAngularMomentum = mp_units::quantity<detail::distance_unit * 
                                                       detail::distance_unit / detail::time_unit>;

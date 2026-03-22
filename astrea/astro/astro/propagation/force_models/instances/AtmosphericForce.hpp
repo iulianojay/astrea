@@ -24,7 +24,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/propagation/force_models/Force.hpp>
+#include <astro/propagation/force_models/PerturbingForce.hpp>
 
 namespace astrea {
 namespace astro {
@@ -34,7 +34,7 @@ namespace astro {
  *
  * This class computes the atmospheric force on a vehicle based on its state and the celestial body's atmosphere.
  */
-class AtmosphericForce : public Force {
+class AtmosphericForce : public PerturbingForce {
 
   public:
     /**
@@ -52,9 +52,9 @@ class AtmosphericForce : public Force {
      *
      * @param state State of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
-     * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to atmospheric force.
+     * @return Perturbation The computed force and torque due to atmospheric force.
      */
-    CartesianVector<Acceleration, frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override;
+    Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override;
 
   private:
     /**

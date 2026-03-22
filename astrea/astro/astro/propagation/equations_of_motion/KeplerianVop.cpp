@@ -67,7 +67,7 @@ OrbitalElementPartials KeplerianVop::operator()(const State& state, const Vehicl
     const RadiusVector<frames::earth::icrf> r   = state.get_position();
 
     // Function for finding accel caused by perturbations
-    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(state, vehicle);
+    const auto [accelPerts, torquePerts] = forces->compute_perturbations(state, vehicle);
 
     // Get vehicle-produced accels
     const AccelerationVector<frames::earth::icrf> accelVehicle = vehicle.get_command_acceleration(state);

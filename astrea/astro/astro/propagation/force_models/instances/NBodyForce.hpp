@@ -21,7 +21,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/propagation/force_models/Force.hpp>
+#include <astro/propagation/force_models/PerturbingForce.hpp>
 
 namespace astrea {
 namespace astro {
@@ -30,7 +30,7 @@ namespace astro {
  * @brief Class to compute the gravitational force due to multiple celestial bodies.
  *
  */
-class NBodyForce : public Force {
+class NBodyForce : public PerturbingForce {
   public:
     /**
      * @brief Default constructor for NBodyForce.
@@ -47,9 +47,9 @@ class NBodyForce : public Force {
      *
      * @param state Cartesian state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
-     * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to multiple bodies.
+     * @return Perturbation The computed force and torque due to multiple bodies.
      */
-    CartesianVector<Acceleration, frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override;
+    Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override;
 };
 
 } // namespace astro
