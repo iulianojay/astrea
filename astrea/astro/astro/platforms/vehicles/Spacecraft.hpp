@@ -175,9 +175,9 @@ class Spacecraft : public ThrusterPlatform {
      * @brief Gets the thrust of the spacecraft.
      *
      * @param state The state of the spacecraft for which to get the thrust.
-     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the spacecraft.
+     * @return ForceVector<frames::earth::icrf> The thrust of the spacecraft.
      */
-    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration(const State& state) const;
+    ForceVector<frames::earth::icrf> get_command_force(const State& state) const;
 
     /**
      * @brief Gets the unique identifier of the spacecraft.

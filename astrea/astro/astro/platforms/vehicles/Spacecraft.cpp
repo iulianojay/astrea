@@ -98,18 +98,18 @@ SurfaceArea Spacecraft::get_solar_area() const { return _sunArea; }
 SurfaceArea Spacecraft::get_lift_area() const { return _liftArea; }
 
 // Thrust
-CartesianVector<Acceleration, frames::earth::icrf> Spacecraft::get_command_acceleration(const State& state) const
+ForceVector<frames::earth::icrf> Spacecraft::get_command_force(const State& state) const
 {
     // As a first cut, just burn in v direction
-    CartesianVector<Acceleration, frames::dynamic::ric> totalAccel;
+    ForceVector<frames::dynamic::ric> totalThrust;
     for (const auto& thruster : get_payloads()) {
         if (!thruster.is_on()) { continue; }
-        totalAccel[1] += thruster.get_thrust() / get_mass();
+        totalThrust[1] += thruster.get_thrust();
     }
 
     const Cartesian elements = state.in_element_set<Cartesian>();
     const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(elements.get_position(), elements.get_velocity());
-    return ricFrame.rotate_out_of_this_frame(totalAccel, state.get_epoch());
+    return ricFrame.rotate_out_of_this_frame(totalThrust, state.get_epoch());
 }
 
 // Setters

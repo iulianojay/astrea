@@ -30,6 +30,7 @@
 #include <astro/frames/frames.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/type_traits.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
@@ -111,7 +112,7 @@ concept HasGetCoefficientOfReflectivity = requires(T vehicle) {
  */
 template <typename T>
 concept HasGetCommandAcceleration = requires(const T& vehicle, const State& state) {
-    { vehicle.get_command_acceleration(state) } -> std::same_as<CartesianVector<Acceleration, frames::earth::icrf>>;
+    { vehicle.get_command_force(state) } -> std::same_as<ForceVector<frames::earth::icrf>>;
 };
 
 /**
@@ -194,9 +195,9 @@ struct VehicleInnerBase : public virtual FrameReference {
      * @brief Gets the command acceleration of the vehicle.
      *
      * @param state The state of the vehicle for which to get the command acceleration.
-     * @return CartesianVector<Acceleration, frames::earth::icrf> The command acceleration of the vehicle.
+     * @return ForceVector<frames::earth::icrf> The command acceleration of the vehicle.
      */
-    virtual CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration(const State& state) const = 0;
+    virtual ForceVector<frames::earth::icrf> get_command_force(const State& state) const = 0;
 
     /**
      * @brief Clones the vehicle inner implementation.
@@ -542,11 +543,11 @@ struct VehicleInner final : public VehicleInnerBase {
      * @brief Gets the thrust of the vehicle or a default value.
      *
      * @param state The state of the vehicle for which to get the thrust.
-     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
+     * @return ForceVector<frames::earth::icrf> The thrust of the vehicle.
      */
-    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration(const State& state) const final
+    ForceVector<frames::earth::icrf> get_command_force(const State& state) const final
     {
-        return get_command_acceleration_impl(_value, state);
+        return get_command_force_impl(_value, state);
     }
 
     /**
@@ -555,15 +556,14 @@ struct VehicleInner final : public VehicleInnerBase {
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the thrust from.
      * @param state The state of the vehicle for which to get the thrust.
-     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
+     * @return ForceVector<frames::earth::icrf> The thrust of the vehicle.
      */
     template <typename U>
         requires(!HasGetCommandAcceleration<U>)
-    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration_impl(const U&, const State&) const
+    ForceVector<frames::earth::icrf> get_command_force_impl(const U&, const State&) const
     {
-        using mp_units::si::unit_symbols::km;
-        using mp_units::si::unit_symbols::s;
-        return { 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) };
+        using mp_units::si::unit_symbols::N;
+        return { 0.0 * N, 0.0 * N, 0.0 * N };
     }
 
     /**
@@ -572,13 +572,13 @@ struct VehicleInner final : public VehicleInnerBase {
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the thrust from.
      * @param state The state of the vehicle for which to get the thrust.
-     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
+     * @return ForceVector<frames::earth::icrf> The thrust of the vehicle.
      */
     template <typename U>
         requires(HasGetCommandAcceleration<U>)
-    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration_impl(const U& value, const State& state) const
+    ForceVector<frames::earth::icrf> get_command_force_impl(const U& value, const State& state) const
     {
-        return value.get_command_acceleration(state);
+        return value.get_command_force(state);
     }
 
     /**
@@ -781,11 +781,11 @@ class Vehicle : public FrameReference {
      * @brief Gets the thrust of the vehicle.
      *
      * @param state The state of the vehicle for which to get the thrust.
-     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
+     * @return ForceVector<frames::earth::icrf> The thrust of the vehicle.
      */
-    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration(const State& state) const
+    ForceVector<frames::earth::icrf> get_command_force(const State& state) const
     {
-        return ptr()->get_command_acceleration(state);
+        return ptr()->get_command_force(state);
     }
 
     /**

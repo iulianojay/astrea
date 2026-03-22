@@ -45,11 +45,11 @@ OrbitalElementPartials TwoBody::operator()(const State& state, const Vehicle& ve
     const Distance R        = r.norm();
     const quantity muOverR3 = mu / pow<3>(R);
 
-    // Get vehicle-produced accels
-    const AccelerationVector<frames::earth::icrf> accelVehicle = vehicle.get_command_acceleration(state);
+    // Get vehicle-produced forces
+    const ForceVector<frames::earth::icrf> forceVehicle = vehicle.get_command_force(state);
 
     // Derivative
-    return CartesianPartial(v, -muOverR3 * r + accelVehicle);
+    return CartesianPartial(v, -muOverR3 * r + forceVehicle / vehicle.get_mass());
 }
 
 
