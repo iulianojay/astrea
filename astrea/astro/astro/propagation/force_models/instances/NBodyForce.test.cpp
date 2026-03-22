@@ -37,7 +37,7 @@ class NBodyForceTest : public testing::Test {
     NBodyForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
         sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN }),
-        force()
+        nBodyForce()
     {
     }
 
@@ -58,7 +58,7 @@ class NBodyForceTest : public testing::Test {
     Spacecraft sat;
     Date epoch;
     AstrodynamicsSystem sys;
-    NBodyForce force;
+    NBodyForce nBodyForce;
 };
 
 
@@ -82,7 +82,8 @@ TEST_F(NBodyForceTest, ComputeForceValladoEx85)
     Cartesian cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                     -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     State state(cart, epoch, sys);
-    const auto [accel, torque] = force.compute_perturbation(state, Vehicle(sat));
+    const auto [force, torque]                          = nBodyForce.compute_perturbation(state, Vehicle(sat));
+    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
 
     // Vallado's expected result:
     // const AccelerationVector<frames::earth::icrf> expected{ (1.8664e-10 + 9.0459e-11) * km / (s * s),

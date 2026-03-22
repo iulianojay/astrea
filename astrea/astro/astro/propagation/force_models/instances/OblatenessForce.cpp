@@ -481,7 +481,7 @@ Perturbation OblatenessForce::compute_perturbation(const State& state, const Veh
     const AccelerationVector<frames::earth::earth_fixed> accelOblatenessEcef = { ax * muOverR2, ay * muOverR2, az * muOverR2 };
 
     // Transform back to inertial frame - original values are in ecef, not w.r.t ecef
-    return { .force = accelOblatenessEcef.in_frame<frames::earth::icrf>(date) };
+    return { .force = (accelOblatenessEcef.in_frame<frames::earth::icrf>(date) * vehicle.get_mass()) };
 }
 
 } // namespace astro

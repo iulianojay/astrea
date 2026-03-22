@@ -37,7 +37,7 @@ class AtmosphericForceTest : public testing::Test {
     AtmosphericForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
         sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN }),
-        force()
+        atmoForce()
     {
     }
 
@@ -58,7 +58,7 @@ class AtmosphericForceTest : public testing::Test {
     Spacecraft sat;
     Date epoch;
     AstrodynamicsSystem sys;
-    AtmosphericForce force;
+    AtmosphericForce atmoForce;
 };
 
 
@@ -77,7 +77,8 @@ TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
     const Cartesian cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                           -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     const State state(cart, epoch, sys);
-    const auto [accel, torque] = force.compute_perturbation(state, Vehicle(sat));
+    const auto [force, torque]                          = atmoForce.compute_perturbation(state, Vehicle(sat));
+    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
 
     const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ 1.4553e-9 * km / (s * s),
                                                                        1.5354e-9 * km / (s * s),

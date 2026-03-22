@@ -62,7 +62,8 @@ OrbitalElementPartials EquinoctialVop::operator()(const State& state, const Vehi
     const VelocityVector<frames::earth::icrf> v = state.get_velocity();
 
     // Function for finding accel caused by perturbations
-    const auto [accelPerts, torquePerts] = forces->compute_perturbations(state, vehicle);
+    const auto [forcePerts, torquePerts]                     = forces->compute_perturbations(state, vehicle);
+    const AccelerationVector<frames::earth::icrf> accelPerts = forcePerts / vehicle.get_mass();
 
     // Get vehicle-produced accels
     const AccelerationVector<frames::earth::icrf> accelVehicle = vehicle.get_command_acceleration(state);

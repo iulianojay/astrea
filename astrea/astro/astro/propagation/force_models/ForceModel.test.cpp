@@ -37,8 +37,7 @@ class DummyForce : public PerturbingForce {
   public:
     Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override
     {
-        return Perturbation{ .force  = { 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) },
-                             .torque = { 0.0 * N * m, 0.0 * N * m, 0.0 * N * m } };
+        return Perturbation{ .force = { 0.0 * N }, .torque = { 0.0 * N * m } };
     }
 };
 
@@ -81,9 +80,12 @@ TEST(ForceModelTest, ComputeForces)
     State state(cart, date, sys);
 
     auto [accel, torque] = model.compute_perturbations(state, vehicle);
-    EXPECT_EQ(accel.get_x(), 0.0 * km / (s * s));
-    EXPECT_EQ(accel.get_y(), 0.0 * km / (s * s));
-    EXPECT_EQ(accel.get_z(), 0.0 * km / (s * s));
+    EXPECT_EQ(accel.get_x(), 0.0 * N);
+    EXPECT_EQ(accel.get_y(), 0.0 * N);
+    EXPECT_EQ(accel.get_z(), 0.0 * N);
+    EXPECT_EQ(torque.get_x(), 0.0 * N * m);
+    EXPECT_EQ(torque.get_y(), 0.0 * N * m);
+    EXPECT_EQ(torque.get_z(), 0.0 * N * m);
 }
 
 TEST(ForceModelTest, AtByName)

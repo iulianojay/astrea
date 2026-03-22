@@ -79,20 +79,18 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
     const Velocity relVelMag         = relVelocity.norm();
     const Unitless coefficientOfDrag = vehicle.get_coefficient_of_drag();
     const SurfaceArea areaRam        = vehicle.get_ram_area();
-    const Mass mass                  = vehicle.get_mass();
-    const Acceleration dragAccelMag = -0.5 * coefficientOfDrag * (areaRam) / mass * atmosphericDensity * pow<2>(relVelMag);
+    const Force dragForceMag         = -0.5 * coefficientOfDrag * areaRam * atmosphericDensity * pow<2>(relVelMag);
 
-    const AccelerationVector<frames::earth::icrf> accelDrag = dragAccelMag * (relVelocity / relVelMag);
+    const ForceVector<frames::earth::icrf> forceDrag = dragForceMag * (relVelocity / relVelMag);
 
     // accel due to lift
     const Angle angleOfAttack        = atan2(relVelocity.get_z(), relVelocity.get_x());
     const Unitless coefficientOfLift = vehicle.get_coefficient_of_lift();
     const SurfaceArea areaLift       = vehicle.get_lift_area();
-    const Acceleration liftAccelMag =
-        0.5 * coefficientOfLift * areaLift / mass * atmosphericDensity * pow<2>(relVelMag) * sin(angleOfAttack);
-    const AccelerationVector<frames::earth::icrf> accelLift = liftAccelMag * (r / R); // just assume radial lift for now
+    const Force liftForceMag = 0.5 * coefficientOfLift * areaLift * atmosphericDensity * pow<2>(relVelMag) * sin(angleOfAttack);
+    const ForceVector<frames::earth::icrf> forceLift = liftForceMag * (r / R); // just assume radial lift for now
 
-    return { .force = { accelDrag[0] + accelLift[0], accelDrag[1] + accelLift[1], accelDrag[2] + accelLift[2] } };
+    return { .force = { forceDrag[0] + forceLift[0], forceDrag[1] + forceLift[1], forceDrag[2] + forceLift[2] } };
 }
 
 

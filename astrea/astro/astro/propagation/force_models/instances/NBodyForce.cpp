@@ -50,7 +50,7 @@ Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle&
     const RadiusVector<frames::solar_system_barycenter::icrf> rCenterToSsb = -center->get_position_at(date);
 
     // Reset perturbation
-    AccelerationVector<frames::earth::icrf> accelNBody{ 0.0 * astrea::detail::distance_unit / pow<2>(astrea::detail::time_unit) };
+    AccelerationVector<frames::earth::icrf> accelNBody{ 0.0 * km / (s * s) };
     for (const auto& [id, body] : sys) {
 
         if (body->get_name() == center->get_name()) { continue; }
@@ -78,7 +78,7 @@ Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle&
         accelNBody += directCoefficient * rVehicleToNbody - indirectCoefficient * rCenterToNbody;
     }
 
-    return { .force = accelNBody };
+    return { .force = accelNBody * vehicle.get_mass() };
 }
 
 } // namespace astro

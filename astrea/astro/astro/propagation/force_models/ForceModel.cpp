@@ -13,24 +13,15 @@
 
 #include <astro/propagation/force_models/ForceModel.hpp>
 
-#include <mp-units/systems/si.h>
-
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
 
 namespace astrea {
 namespace astro {
 
-using namespace mp_units;
-using mp_units::si::unit_symbols::km;
-using mp_units::si::unit_symbols::m;
-using mp_units::si::unit_symbols::N;
-using mp_units::si::unit_symbols::s;
-
 Perturbation ForceModel::compute_perturbations(const State& state, const Vehicle& vehicle) const
 {
-    Perturbation sum{ .force  = { 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) },
-                      .torque = { 0.0 * N * m, 0.0 * N * m, 0.0 * N * m } };
+    Perturbation sum; // defaults to zero
     for (const auto& [name, force] : forces) {
         const auto result = force->compute_perturbation(state, vehicle);
         for (std::size_t ii = 0; ii < 3; ++ii) {

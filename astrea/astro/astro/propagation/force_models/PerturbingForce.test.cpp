@@ -28,15 +28,16 @@
 using namespace astrea;
 using namespace astro;
 using namespace mp_units;
-using mp_units::si::unit_symbols::km;
-using mp_units::si::unit_symbols::s;
+using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::N;
 
 class DummyForce : public PerturbingForce {
   public:
     DummyForce() = default;
     Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override
     {
-        return { .force = AccelerationVector<frames::earth::icrf>(0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)) };
+        return { .force  = ForceVector<frames::earth::icrf>(0.0 * N, 0.0 * N, 0.0 * N),
+                 .torque = MomentVector<frames::earth::icrf>(0.0 * N * m, 0.0 * N * m, 0.0 * N * m) };
     }
 };
 
@@ -45,7 +46,7 @@ class ForceTest : public testing::Test {
     ForceTest() = default;
     void SetUp() override {}
 
-    DummyForce force;
+    DummyForce dummyForce;
     Date date;
     Cartesian cart;
     Vehicle vehicle;
@@ -63,8 +64,11 @@ TEST_F(ForceTest, DefaultConstructor) { ASSERT_NO_THROW(DummyForce()); }
 TEST_F(ForceTest, ComputeForce)
 {
     const State state(cart, date, sys);
-    auto [accel, torque] = force.compute_perturbation(state, vehicle);
-    ASSERT_EQ(accel.get_x(), 0.0 * km / (s * s));
-    ASSERT_EQ(accel.get_y(), 0.0 * km / (s * s));
-    ASSERT_EQ(accel.get_z(), 0.0 * km / (s * s));
+    auto [force, torque] = dummyForce.compute_perturbation(state, vehicle);
+    ASSERT_EQ(force.get_x(), 0.0 * N);
+    ASSERT_EQ(force.get_y(), 0.0 * N);
+    ASSERT_EQ(force.get_z(), 0.0 * N);
+    ASSERT_EQ(torque.get_x(), 0.0 * N * m);
+    ASSERT_EQ(torque.get_y(), 0.0 * N * m);
+    ASSERT_EQ(torque.get_z(), 0.0 * N * m);
 }

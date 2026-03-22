@@ -51,5 +51,21 @@ using AccelerationVector = CartesianVector<Acceleration, Frame_T>;
 template <typename Frame_T>
 using UnitVector = CartesianVector<Unitless, Frame_T>;
 
+/**
+ * @brief Type alias for a vector representing force vectors in 3D space.
+ *
+ * This is used for vectors that represent forces acting on a vehicle.
+ */
+template <typename Frame_T>
+using ForceVector = CartesianVector<Force, Frame_T>;
+
+/**
+ * @brief Type alias for a vector representing moment vectors in 3D space.
+ *
+ * This is used for vectors that represent moments (torques) acting on a vehicle.
+ */
+template <typename Frame_T>
+using MomentVector = CartesianVector<Moment, Frame_T>;
+
 } // namespace astro
 } // namespace astrea

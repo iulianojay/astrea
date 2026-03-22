@@ -47,13 +47,13 @@ int main()
             // Build out a burn in the RIC frame, pointing in the nadir direction
             using RIC       = astro::frames::dynamic::ric;
             const RIC frame = frames::dynamic::ric::instantaneous(cartesian.get_position(), cartesian.get_velocity());
-            const AccelerationVector<RIC> nadirAccel{ -1.0 * m / (s * s), 0.0 * m / (s * s), 0.0 * m / (s * s) };
+            const ForceVector<RIC> nadirThrust{ -1.0 * N, 0.0 * N, 0.0 * N };
 
             std::cout << "Applying continuous thrust force: " << _name << " at time " << date << std::endl;
-            std::cout << nadirAccel << std::endl;
+            std::cout << nadirThrust << std::endl;
 
             // Rotate the acceleration back to the inertial frame for output
-            return { .force = frame.rotate_out_of_this_frame(nadirAccel, date) };
+            return { .force = frame.rotate_out_of_this_frame(nadirThrust, date) };
         }
 
       private:

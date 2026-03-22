@@ -37,7 +37,7 @@ class OblatenessForceTest : public testing::Test {
     OblatenessForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
         sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN }),
-        force(sys, 2, 2)
+        oblatenessForce(sys, 2, 2)
     {
     }
 
@@ -58,7 +58,7 @@ class OblatenessForceTest : public testing::Test {
     Spacecraft sat;
     Date epoch;
     AstrodynamicsSystem sys;
-    OblatenessForce force;
+    OblatenessForce oblatenessForce;
 };
 
 
@@ -77,7 +77,8 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
     Cartesian cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                     -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     State state(cart, epoch, sys);
-    const auto [accel, torque] = force.compute_perturbation(state, Vehicle(sat));
+    const auto [force, torque]                          = oblatenessForce.compute_perturbation(state, Vehicle(sat));
+    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
 
     // Vallado Ex. 8.5 expected results
     const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ -1.151903e-6 * km / (s * s),

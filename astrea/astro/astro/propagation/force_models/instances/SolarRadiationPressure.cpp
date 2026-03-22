@@ -106,10 +106,9 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
     // accel due to srp
     const Unitless coefficientOfReflectivity = vehicle.get_coefficient_of_reflectivity();
     const SurfaceArea areaSun                = vehicle.get_solar_area();
-    const Mass mass                          = vehicle.get_mass();
-    const Acceleration accelRelMag = -srp * fractionOfRecievedSunlight * coefficientOfReflectivity * areaSun / mass;
+    const Force forceRelMag                  = -srp * fractionOfRecievedSunlight * coefficientOfReflectivity * areaSun;
 
-    return { .force = accelRelMag * rVehicleToSun / rMagVehicleToSun };
+    return { .force = forceRelMag * rVehicleToSun / rMagVehicleToSun };
 }
 
 } // namespace astro

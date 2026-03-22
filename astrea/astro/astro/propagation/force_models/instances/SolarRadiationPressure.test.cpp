@@ -57,7 +57,7 @@ class SolarRadiationPressureTest : public testing::Test {
     Spacecraft sat;
     Date epoch;
     AstrodynamicsSystem sys;
-    SolarRadiationPressure force;
+    SolarRadiationPressure srpForce;
 };
 
 
@@ -82,7 +82,8 @@ TEST_F(SolarRadiationPressureTest, ComputeForceValladoEx85)
     Cartesian cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                     -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     State state(cart, epoch, sys);
-    const auto [accel, torque] = force.compute_perturbation(state, Vehicle(sat));
+    const auto [force, torque]                          = srpForce.compute_perturbation(state, Vehicle(sat));
+    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
 
     // // Vallado's expected results
     // const AccelerationVector<frames::earth::icrf> expected{ -1.8791e-10 * km / (s * s),

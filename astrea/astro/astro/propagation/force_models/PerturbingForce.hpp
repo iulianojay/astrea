@@ -25,11 +25,13 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
 
 namespace {
+
 using namespace mp_units;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
@@ -42,8 +44,8 @@ using mp_units::si::unit_symbols::s;
  * @brief Struct to hold the results of a perturbation force computation, including both acceleration and torque.
  */
 struct Perturbation {
-    CartesianVector<Acceleration, frames::earth::icrf> force = { 0.0 * km / (s * s) }; //!< The computed force vector due to the perturbing force.
-    CartesianVector<Moment, frames::earth::icrf> torque = { 0.0 * N * m }; //!< The computed torque vector due to the perturbing force.
+    ForceVector<frames::earth::icrf> force = { 0.0 * N }; //!< The computed force vector due to the perturbing force.
+    MomentVector<frames::earth::icrf> torque = { 0.0 * N * m }; //!< The computed torque vector due to the perturbing force.
 };
 
 /**
