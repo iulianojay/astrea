@@ -18,37 +18,23 @@
  */
 #pragma once
 
-#include <astro/astro.fwd.hpp>
-#include <astro/propagation/force_models/Perturbation.hpp>
+#include <mp-units/systems/si.h>
+
+#include <units/units.hpp>
+
+#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frames.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
 
 /**
- * @brief Abstract base class for force models in astrodynamics.
- *
- * This class defines the interface for computing forces acting on a vehicle in space.
+ * @brief Struct to hold the results of a perturbation force computation, including both acceleration and torque.
  */
-class PerturbingForce {
-  public:
-    /**
-     * @brief Default constructor for PerturbingForce.
-     */
-    PerturbingForce() = default;
-
-    /**
-     * @brief Default destructor for PerturbingForce.
-     */
-    virtual ~PerturbingForce() = default;
-
-    /**
-     * @brief Computes the force acting on a vehicle at a given date and state.
-     *
-     * @param state State of the vehicle
-     * @param vehicle Vehicle object representing the spacecraft
-     * @return Perturbation The computed acceleration and torque vectors due to the force.
-     */
-    virtual Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const = 0;
+struct Perturbation {
+    ForceVector<frames::earth::icrf> force = { 0.0 * mp_units::si::unit_symbols::N }; //!< The computed force vector due to the perturbing force.
+    TorqueVector<frames::earth::icrf> torque = { 0.0 * mp_units::si::unit_symbols::N * mp_units::si::unit_symbols::m }; //!< The computed torque vector due to the perturbing force.
 };
 
 } // namespace astro

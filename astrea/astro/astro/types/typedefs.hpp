@@ -65,7 +65,7 @@ using ForceVector = CartesianVector<Force, Frame_T>;
  * This is used for vectors that represent moments (torques) acting on a vehicle.
  */
 template <typename Frame_T>
-using MomentVector = CartesianVector<Moment, Frame_T>;
+using TorqueVector = CartesianVector<Moment, Frame_T>;
 
 } // namespace astro
 } // namespace astrea

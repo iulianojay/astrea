@@ -54,9 +54,10 @@
 
 #include <astro/propagation/analytic/LambertSolver.hpp>
 
-#include <astro/propagation/force_models/instances/AtmosphericForce.hpp>
-#include <astro/propagation/force_models/PerturbingForce.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/propagation/force_models/Perturbation.hpp>
+#include <astro/propagation/force_models/PerturbingForce.hpp>
+#include <astro/propagation/force_models/instances/AtmosphericForce.hpp>
 #include <astro/propagation/force_models/instances/NBodyForce.hpp>
 #include <astro/propagation/force_models/instances/OblatenessForce.hpp>
 #include <astro/propagation/force_models/instances/SolarRadiationPressure.hpp>

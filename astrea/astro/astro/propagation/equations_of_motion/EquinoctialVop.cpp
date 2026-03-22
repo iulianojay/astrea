@@ -64,8 +64,8 @@ OrbitalElementPartials EquinoctialVop::operator()(const State& state, const Vehi
     // Function for finding accel caused by perturbations
     const auto [forcePerts, torquePerts] = forces->compute_perturbations(state, vehicle);
 
-    // Get vehicle-produced forces
-    const ForceVector<frames::earth::icrf> forceVehicle = vehicle.get_command_force(state);
+    // Get vehicle-produced forces and torques
+    const auto [forceVehicle, torqueVehicle] = vehicle.get_control_authority(state);
 
     // Calculate R, N, and T
     const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(r, v);

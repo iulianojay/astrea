@@ -102,6 +102,10 @@ class Event;
 class EventDetector;
 class Schedule;
 
+class Perturbation;
+class ForceModel;
+class PerturbingForce;
+
 // Systems
 class AstrodynamicsSystem;
 class CelestialBody;

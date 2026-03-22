@@ -98,7 +98,7 @@ SurfaceArea Spacecraft::get_solar_area() const { return _sunArea; }
 SurfaceArea Spacecraft::get_lift_area() const { return _liftArea; }
 
 // Thrust
-ForceVector<frames::earth::icrf> Spacecraft::get_command_force(const State& state) const
+Perturbation Spacecraft::get_control_authority(const State& state) const
 {
     // As a first cut, just burn in v direction
     ForceVector<frames::dynamic::ric> totalThrust;
@@ -109,7 +109,9 @@ ForceVector<frames::earth::icrf> Spacecraft::get_command_force(const State& stat
 
     const Cartesian elements = state.in_element_set<Cartesian>();
     const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(elements.get_position(), elements.get_velocity());
-    return ricFrame.rotate_out_of_this_frame(totalThrust, state.get_epoch());
+    return {
+        .force = ricFrame.rotate_out_of_this_frame(totalThrust, state.get_epoch()), .torque = {} // first cut
+    };
 }
 
 // Setters

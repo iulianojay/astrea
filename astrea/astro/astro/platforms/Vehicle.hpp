@@ -28,6 +28,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/FrameReference.hpp>
 #include <astro/frames/frames.hpp>
+#include <astro/propagation/force_models/Perturbation.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
@@ -111,8 +112,8 @@ concept HasGetCoefficientOfReflectivity = requires(T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetCommandAcceleration = requires(const T& vehicle, const State& state) {
-    { vehicle.get_command_force(state) } -> std::same_as<ForceVector<frames::earth::icrf>>;
+concept HasGetControlAuthority = requires(const T& vehicle, const State& state) {
+    { vehicle.get_control_authority(state) } -> std::same_as<Perturbation>;
 };
 
 /**
@@ -192,12 +193,12 @@ struct VehicleInnerBase : public virtual FrameReference {
     virtual Unitless get_coefficient_of_reflectivity() const = 0;
 
     /**
-     * @brief Gets the command acceleration of the vehicle.
+     * @brief Gets the control authority of the vehicle.
      *
-     * @param state The state of the vehicle for which to get the command acceleration.
-     * @return ForceVector<frames::earth::icrf> The command acceleration of the vehicle.
+     * @param state The state of the vehicle for which to get the control authority.
+     * @return Perturbation The control force and torque of the vehicle.
      */
-    virtual ForceVector<frames::earth::icrf> get_command_force(const State& state) const = 0;
+    virtual Perturbation get_control_authority(const State& state) const = 0;
 
     /**
      * @brief Clones the vehicle inner implementation.
@@ -540,45 +541,46 @@ struct VehicleInner final : public VehicleInnerBase {
     }
 
     /**
-     * @brief Gets the thrust of the vehicle or a default value.
+     * @brief Gets the control authority of the vehicle or a default value.
      *
-     * @param state The state of the vehicle for which to get the thrust.
-     * @return ForceVector<frames::earth::icrf> The thrust of the vehicle.
+     * @param state The state of the vehicle for which to get the control authority.
+     * @return Perturbation The control authority of the vehicle.
      */
-    ForceVector<frames::earth::icrf> get_command_force(const State& state) const final
+    Perturbation get_control_authority(const State& state) const final
     {
-        return get_command_force_impl(_value, state);
+        return get_control_authority_impl(_value, state);
     }
 
     /**
      * @brief Gets the default thrust of the vehicle.
      *
      * @tparam U The type of the vehicle implementation.
-     * @param value The vehicle instance to get the thrust from.
-     * @param state The state of the vehicle for which to get the thrust.
-     * @return ForceVector<frames::earth::icrf> The thrust of the vehicle.
+     * @param value The vehicle instance to get the control authority from.
+     * @param state The state of the vehicle for which to get the control authority.
+     * @return Perturbation The control authority of the vehicle.
      */
     template <typename U>
-        requires(!HasGetCommandAcceleration<U>)
-    ForceVector<frames::earth::icrf> get_command_force_impl(const U&, const State&) const
+        requires(!HasGetControlAuthority<U>)
+    Perturbation get_control_authority_impl(const U&, const State&) const
     {
+        using mp_units::si::unit_symbols::m;
         using mp_units::si::unit_symbols::N;
-        return { 0.0 * N, 0.0 * N, 0.0 * N };
+        return { .force = { 0.0 * N, 0.0 * N, 0.0 * N }, .torque = { 0.0 * N * m, 0.0 * N * m, 0.0 * N * m } };
     }
 
     /**
-     * @brief Gets the thrust of the vehicle.
+     * @brief Gets the thrust and torque of the vehicle.
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the thrust from.
      * @param state The state of the vehicle for which to get the thrust.
-     * @return ForceVector<frames::earth::icrf> The thrust of the vehicle.
+     * @return Perturbation The thrust and torque of the vehicle.
      */
     template <typename U>
-        requires(HasGetCommandAcceleration<U>)
-    ForceVector<frames::earth::icrf> get_command_force_impl(const U& value, const State& state) const
+        requires(HasGetControlAuthority<U>)
+    Perturbation get_control_authority_impl(const U& value, const State& state) const
     {
-        return value.get_command_force(state);
+        return value.get_control_authority(state);
     }
 
     /**
@@ -778,15 +780,12 @@ class Vehicle : public FrameReference {
     Unitless get_coefficient_of_reflectivity() const { return ptr()->get_coefficient_of_reflectivity(); }
 
     /**
-     * @brief Gets the thrust of the vehicle.
+     * @brief Gets the control authority of the vehicle.
      *
-     * @param state The state of the vehicle for which to get the thrust.
-     * @return ForceVector<frames::earth::icrf> The thrust of the vehicle.
+     * @param state The state of the vehicle for which to get the control authority.
+     * @return Perturbation The control authority of the vehicle.
      */
-    ForceVector<frames::earth::icrf> get_command_force(const State& state) const
-    {
-        return ptr()->get_command_force(state);
-    }
+    Perturbation get_control_authority(const State& state) const { return ptr()->get_control_authority(state); }
 
     /**
      * @brief Get the position of the frame in Earth-Centered Inertial coordinates.

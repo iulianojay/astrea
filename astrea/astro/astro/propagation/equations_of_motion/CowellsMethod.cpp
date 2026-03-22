@@ -54,8 +54,8 @@ OrbitalElementPartials CowellsMethod::operator()(const State& state, const Vehic
     // Run find functions for force model
     const auto [forcePerts, torquePerts] = forces->compute_perturbations(state, vehicle);
 
-    // Get vehicle-produced forces
-    const ForceVector<frames::earth::icrf> forceVehicle = vehicle.get_command_force(state);
+    // Get vehicle-produced forces and torques
+    const auto [forceVehicle, torqueVehicle] = vehicle.get_control_authority(state);
 
     // Derivative
     return CartesianPartial(v, -muOverRadiusCubed * r + (forcePerts + forceVehicle) / vehicle.get_mass());

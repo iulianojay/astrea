@@ -37,7 +37,7 @@ class DummyForce : public PerturbingForce {
     Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override
     {
         return { .force  = ForceVector<frames::earth::icrf>(0.0 * N, 0.0 * N, 0.0 * N),
-                 .torque = MomentVector<frames::earth::icrf>(0.0 * N * m, 0.0 * N * m, 0.0 * N * m) };
+                 .torque = TorqueVector<frames::earth::icrf>(0.0 * N * m, 0.0 * N * m, 0.0 * N * m) };
     }
 };
 

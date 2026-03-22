@@ -22,7 +22,7 @@ using namespace astro;
 using namespace mp_units;
 
 using mp_units::si::unit_symbols::km;
-using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::N;
 using mp_units::si::unit_symbols::s;
 
 int main()
