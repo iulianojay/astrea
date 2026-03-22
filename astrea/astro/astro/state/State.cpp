@@ -38,41 +38,66 @@ State::State(const StateHistory& history)
 
 State State::from_vector(const std::vector<Unitless>& vec, const std::size_t idx, const AstrodynamicsSystem& sys)
 {
-    return State(OrbitalElements::from_vector(vec, idx), Date(), sys);
+    if (vec.size() == 6) { return State(OrbitalElements::from_vector(vec, idx), Date(), sys); }
+
+    const auto elementValues     = std::vector<Unitless>(vec.begin(), vec.begin() + 6);
+    const auto orientationValues = std::vector<Unitless>(vec.begin() + 6, vec.end());
+    return State(OrbitalElements::from_vector(elementValues, idx), Date(), sys, BodyQuaternion::from_vector(orientationValues));
 }
 
 bool State::operator==(const State& other) const
 {
-    return _epoch == other._epoch && _elements == other._elements && _system == other._system;
+    return _epoch == other._epoch && _elements == other._elements && _system == other._system &&
+           _orientation.has_value() == other._orientation.has_value() &&
+           (!_orientation.has_value() || _orientation.value() == other._orientation.value());
 }
 
 State State::operator+(const State& other) const
 {
     validate_system(other);
-    return { _elements + other._elements, _epoch, get_system() };
+    return { _elements + other._elements,
+             _epoch,
+             get_system(),
+             _orientation.has_value() && other._orientation.has_value() ?
+                 std::optional<BodyQuaternion>(_orientation.value() + other._orientation.value()) :
+                 std::nullopt };
 }
 
 State& State::operator+=(const State& other)
 {
     validate_system(other);
     _elements += other._elements;
+    if (_orientation.has_value() && other._orientation.has_value()) {
+        _orientation.value() += other._orientation.value();
+    }
     return *this;
 }
 
 State State::operator-(const State& other) const
 {
     validate_system(other);
-    return { _elements - other._elements, _epoch, get_system() };
+    return { _elements - other._elements,
+             _epoch,
+             get_system(),
+             _orientation.has_value() && other._orientation.has_value() ?
+                 std::optional<BodyQuaternion>(_orientation.value() - other._orientation.value()) :
+                 std::nullopt };
 }
 
 State& State::operator-=(const State& other)
 {
     validate_system(other);
     _elements -= other._elements;
+    if (_orientation.has_value() && other._orientation.has_value()) {
+        _orientation.value() -= other._orientation.value();
+    }
     return *this;
 }
 
-State State::operator*(const Unitless& scalar) const { return { _elements * scalar, _epoch, get_system() }; }
+State State::operator*(const Unitless& scalar) const
+{
+    return { _elements * scalar, _epoch, get_system(), _orientation }; // orientation shouldn't scale
+}
 
 State& State::operator*=(const Unitless& scalar)
 {
@@ -80,7 +105,10 @@ State& State::operator*=(const Unitless& scalar)
     return *this;
 }
 
-State State::operator/(const Unitless& scalar) const { return { _elements / scalar, _epoch, get_system() }; }
+State State::operator/(const Unitless& scalar) const
+{
+    return { _elements / scalar, _epoch, get_system(), _orientation }; // orientation shouldn't scale
+}
 
 State& State::operator/=(const Unitless& scalar)
 {
@@ -88,7 +116,13 @@ State& State::operator/=(const Unitless& scalar)
     return *this;
 }
 
-StatePartial State::operator/(const Time& divisor) const { return { _elements / divisor, _epoch, get_system() }; }
+StatePartial State::operator/(const Time& divisor) const
+{
+    return { _elements / divisor,
+             _epoch,
+             get_system(),
+             _orientation.has_value() ? std::optional<BodyQuaternionPartial>(_orientation.value() / divisor) : std::nullopt };
+}
 
 void State::validate_system(const State& other) const
 {
@@ -99,7 +133,10 @@ void State::validate_system(const State& other) const
 
 State StatePartial::operator*(const Time& time) const
 {
-    return { _elementPartials * time, _epoch + time, get_system() };
+    return { _elementPartials * time,
+             _epoch + time,
+             get_system(),
+             _orientationPartial.has_value() ? std::optional<BodyQuaternion>((_orientationPartial.value()) * time) : std::nullopt };
 }
 
 const AstrodynamicsSystem& StatePartial::get_system() const { return *_system; }

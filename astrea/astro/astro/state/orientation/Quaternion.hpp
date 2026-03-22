@@ -25,6 +25,7 @@
 
 #include <units/units.hpp>
 
+#include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frame_concepts.hpp>
 
@@ -43,8 +44,11 @@ namespace astro {
  * avoid expensive sqrt as much as possible.
  */
 template <typename In_Frame_T, typename Out_Frame_T>
-    requires(!IsSameFrame<In_Frame_T, Out_Frame_T>)
 class Quaternion {
+
+    static_assert(!IsSameFrame<In_Frame_T, Out_Frame_T>, "Quaternion must be defined between two different frames.");
+
+    friend class State;
 
   public:
     /**
@@ -232,6 +236,7 @@ class Quaternion {
     Quaternion<In_Frame_T, Out_Frame_T>& operator+=(const Quaternion<In_Frame_T, Out_Frame_T>& other)
     {
         *this = *this + other;
+        normalize();
         return *this;
     }
 
@@ -261,8 +266,42 @@ class Quaternion {
      */
     Quaternion<In_Frame_T, Out_Frame_T>& operator-=(const Quaternion<In_Frame_T, Out_Frame_T>& other)
     {
-        return *this += -other;
+        *this = *this - other;
+        normalize();
+        return *this;
     }
+
+    /**
+     * @brief Multiplication operator for the Quaternion class by a scalar unitless quantity.
+     *
+     * @param scalar The scalar unitless quantity to multiply the quaternion by.
+     * @return The original quaternion. NO scaling is applied to the quaternion.
+     */
+    Quaternion<In_Frame_T, Out_Frame_T> operator*(const Unitless& scalar) const { return *this; }
+
+    /**
+     * @brief Multiplication operator for the Quaternion class by a scalar unitless quantity.
+     *
+     * @param scalar The scalar unitless quantity to multiply the quaternion by.
+     * @return The original quaternion. NO scaling is applied to the quaternion.
+     */
+    Quaternion<In_Frame_T, Out_Frame_T>& operator*=(const Unitless& scalar) { return *this; }
+
+    /**
+     * @brief Division operator for the Quaternion class by a scalar unitless quantity.
+     *
+     * @param scalar The scalar unitless quantity to divide the quaternion by.
+     * @return The original quaternion. NO scaling is applied to the quaternion.
+     */
+    Quaternion<In_Frame_T, Out_Frame_T> operator/(const Unitless& scalar) const { return *this; }
+
+    /**
+     * @brief Division operator for the Quaternion class by a scalar unitless quantity.
+     *
+     * @param scalar The scalar unitless quantity to divide the quaternion by.
+     * @return The original quaternion. NO scaling is applied to the quaternion.
+     */
+    Quaternion<In_Frame_T, Out_Frame_T>& operator/=(const Unitless& scalar) { return *this; }
 
     /**
      * @brief Multiplication operator for the Quaternion class.
@@ -288,6 +327,17 @@ class Quaternion {
                  s1 * x2 + x1 * s2 + y1 * z2 - z1 * y2,
                  s1 * y2 - x1 * z2 + y1 * s2 + z1 * x2,
                  s1 * z2 + x1 * y2 - y1 * x2 + z1 * s2 };
+    }
+
+    /**
+     * @brief Division operator for the Quaternion class by a scalar time quantity, resulting in a QuaternionPartial.
+     *
+     * @param dt The time quantity to divide the quaternion by, representing the rate of change of the quaternion.
+     * @return A new QuaternionPartial that represents the rate of change of the quaternion with respect to time.
+     */
+    QuaternionPartial<In_Frame_T, Out_Frame_T> operator/(const Time& dt) const
+    {
+        return QuaternionPartial<In_Frame_T, Out_Frame_T>{ _s / dt, _u / dt };
     }
 
     /**
@@ -381,6 +431,13 @@ class Quaternion {
      */
     CartesianVector<Unitless, In_Frame_T> get_vector_part() const { return _u; }
 
+    /**
+     * @brief Converts the quaternion to a vector form for use in numerical integration.
+     *
+     * @return A std::vector of Unitless quantities representing the components of the quaternion, in the order [s, u_x, u_y, u_z].
+     */
+    std::vector<Unitless> force_to_vector() const { return { _s, _u[0], _u[1], _u[2] }; }
+
   private:
     Unitless _s;                              //!< Scalar part of the quaternion
     CartesianVector<Unitless, In_Frame_T> _u; //!< Vector part of the quaternion
@@ -397,6 +454,77 @@ class Quaternion {
         _u[1] *= scale;
         _u[2] *= scale;
     }
+
+    /**
+     * @brief Constructs a Quaternion from a vector of Unitless quantities representing the quaternion components.
+     *
+     * @param vec A std::vector of Unitless quantities representing the components of the quaternion, in the order [s, u_x, u_y, u_z].
+     * @return A new Quaternion constructed from the given vector.
+     *
+     * @throws std::invalid_argument if the input vector does not have exactly 4 components.
+     */
+    static Quaternion<In_Frame_T, Out_Frame_T> from_vector(const std::vector<Unitless>& vec)
+    {
+        if (vec.size() != 4) {
+            throw std::invalid_argument("Input vector must have exactly 4 components to convert to a Quaternion.");
+        }
+        return { vec[0], vec[1], vec[2], vec[3] };
+    }
+};
+
+/**
+ * @brief Class representing the partial derivative of a quaternion with respect to time, used for integration.
+ *
+ * @tparam In_Frame_T The input frame type (e.g., ECI, ECEF).
+ * @tparam Out_Frame_T The output frame type (e.g., ECI, ECEF).
+ */
+template <typename In_Frame_T, typename Out_Frame_T>
+class QuaternionPartial {
+
+    static_assert(!IsSameFrame<In_Frame_T, Out_Frame_T>, "QuaternionPartial must be defined between two different frames.");
+
+  public:
+    /**
+     * @brief Default constructor for the QuaternionPartial class. Initializes to zero rates of change.
+     */
+    QuaternionPartial() = default;
+
+    /**
+     * @brief Constructor for the QuaternionPartial class from a scalar and a CartesianVector.
+     *
+     * @param sDot The scalar part of the quaternion derivative.
+     * @param uDot The vector part of the quaternion derivative, representing the rate of change of the vector part of the quaternion.
+     */
+    QuaternionPartial(const UnitlessPerTime& sDot, const CartesianVector<UnitlessPerTime, In_Frame_T>& uDot) :
+        _sDot(sDot),
+        _uDot(uDot)
+    {
+    }
+
+    /**
+     * @brief Multiplies the quaternion derivative by a time quantity to get a quaternion representing the change in orientation over that time interval.
+     *
+     * @param dt The time quantity to multiply the quaternion derivative by, representing the time interval over which to apply the change in orientation.
+     * @return A new Quaternion that represents the change in orientation over the given time interval.
+     */
+    Quaternion<In_Frame_T, Out_Frame_T> operator*(const Time& dt) const
+    {
+        return Quaternion<In_Frame_T, Out_Frame_T>{ _sDot * dt, _uDot * dt };
+    }
+
+    /**
+     * @brief Converts the quaternion derivative to a vector form for use in numerical integration.
+     *
+     * @return A std::vector of Unitless quantities representing the components of the quaternion derivative, in the order [sDot, uDot_x, uDot_y, uDot_z].
+     */
+    std::vector<Unitless> force_to_vector() const
+    {
+        return { _sDot / _sDot.unit, _uDot[0] / _uDot[0].unit, _uDot[1] / _uDot[1].unit, _uDot[2] / _uDot[2].unit };
+    }
+
+  private:
+    UnitlessPerTime _sDot;                              //!< Scalar part of the quaternion derivative
+    CartesianVector<UnitlessPerTime, In_Frame_T> _uDot; //!< Vector part of the quaternion derivative with no frame association
 };
 
 } // namespace astro

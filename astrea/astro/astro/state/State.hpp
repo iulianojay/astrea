@@ -19,14 +19,32 @@
 #pragma once
 
 #include <iosfwd>
+#include <optional>
 
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/state/orientation/Quaternion.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
+
+// Declare a body frame without defining it
+namespace frames {
+namespace dynamic {
+
+struct body;
+
+} // namespace dynamic
+} // namespace frames
+
+namespace {
+
+using BodyQuaternion        = Quaternion<frames::earth::icrf, frames::dynamic::body>;
+using BodyQuaternionPartial = QuaternionPartial<frames::earth::icrf, frames::dynamic::body>;
+
+} // namespace
 
 /**
  * @brief Class representing the state of an astronomical object.
@@ -51,11 +69,13 @@ class State {
      * @param elements The orbital elements of the state.
      * @param epoch The epoch of the state.
      * @param sys The astrodynamics system associated with the state.
+     * @param orientation The orientation of the state, represented as a quaternion.
      */
-    State(const OrbitalElements& elements, const Date& epoch, const AstrodynamicsSystem& sys) :
+    State(const OrbitalElements& elements, const Date& epoch, const AstrodynamicsSystem& sys, const std::optional<BodyQuaternion>& orientation = std::nullopt) :
         _elements(elements),
         _epoch(epoch),
-        _system(&sys)
+        _system(&sys),
+        _orientation(orientation)
     {
     }
 
@@ -71,7 +91,7 @@ class State {
     /**
      * @brief Deleted constructor for State to prevent constructing a reference to an AstrodynamicsSystem rvalue
      */
-    State(const OrbitalElements&, const Date&, AstrodynamicsSystem&&) = delete;
+    State(const OrbitalElements&, const Date&, AstrodynamicsSystem&&, const std::optional<BodyQuaternion>&) = delete;
 
     /**
      * @brief Checks if two State objects are equal.
@@ -189,6 +209,14 @@ class State {
     }
 
     /**
+     * @brief Get the orientation of the state as a quaternion.
+     *
+     * @return std::optional<BodyQuaternion> The orientation of the state,
+     * represented as a quaternion. If no orientation is provided, returns an identity quaternion (no rotation).
+     */
+    const std::optional<BodyQuaternion>& get_orientation() const { return _orientation; }
+
+    /**
      * @brief Sets the orbital elements of the state.
      *
      * @param elements The new orbital elements to set.
@@ -200,6 +228,13 @@ class State {
         _elements                 = elements;
         if (convertToOriginal) { _elements.convert_to_set(originalIndex, get_mu()); }
     }
+
+    /**
+     * @brief Sets the orientation of the state.
+     *
+     * @param orientation The new orientation to set.
+     */
+    void set_orientation(const BodyQuaternion& orientation) { _orientation = orientation; }
 
     /**
      * @brief Sets the epoch of the state.
@@ -219,6 +254,7 @@ class State {
     OrbitalElements _elements; //!< The orbital elements of the state, defining the shape and orientation of the orbit.
     Date _epoch; //!< The epoch of the state, representing the time at which the orbital elements are defined.
     const AstrodynamicsSystem* _system; //!< Pointer to the astrodynamics system associated with the state, providing context for the orbital elements.
+    std::optional<BodyQuaternion> _orientation; //!< The orientation of the state, represented as a quaternion.
 
     /**
      * @brief Gets the gravitational parameter (mu) of the central body in the astrodynamics system.
@@ -236,8 +272,15 @@ class State {
      *
      * @return std::vector<Unitless> Vector containing the orbital elements as unitless values.
      */
-    std::vector<Unitless> force_to_vector() const { return _elements.force_to_vector(); }
-
+    std::vector<Unitless> force_to_vector() const
+    {
+        auto retval = _elements.force_to_vector();
+        if (_orientation.has_value()) {
+            const auto& orientationVector = _orientation->force_to_vector();
+            retval.insert(retval.end(), orientationVector.begin(), orientationVector.end());
+        }
+        return retval;
+    }
 
     /**
      * @brief Creates an State object from a vector of Unitless values.
@@ -330,6 +373,7 @@ class State {
 };
 
 class StatePartial {
+
   public:
     /**
      * @brief Default constructor for StatePartial.
@@ -342,11 +386,18 @@ class StatePartial {
      * @param elementPartials The orbital element partials of the state.
      * @param epoch The epoch of the state.
      * @param sys The astrodynamics system associated with the state.
+     * @param orientationPartial The orientation partial of the state, represented as a quaternion derivative.
      */
-    StatePartial(const OrbitalElementPartials& elementPartials, const Date& epoch, const AstrodynamicsSystem& sys) :
+    StatePartial(
+        const OrbitalElementPartials& elementPartials,
+        const Date& epoch,
+        const AstrodynamicsSystem& sys,
+        const std::optional<BodyQuaternionPartial>& orientationPartial = std::nullopt
+    ) :
         _elementPartials(elementPartials),
         _epoch(epoch),
-        _system(&sys)
+        _system(&sys),
+        _orientationPartial(orientationPartial)
     {
     }
 
@@ -376,6 +427,7 @@ class StatePartial {
     OrbitalElementPartials _elementPartials; //!< The orbital element partials of the state, defining the shape and orientation of the orbit.
     Date _epoch; //!< The epoch of the state partial, representing the time at which the orbital elements are defined.
     const AstrodynamicsSystem* _system; //!< Pointer to the astrodynamics system associated with the state, providing context for the orbital elements.
+    std::optional<BodyQuaternionPartial> _orientationPartial; //!< The orientation partial of the state, represented as a quaternion derivative.
 };
 
 } // namespace astro

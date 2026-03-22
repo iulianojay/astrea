@@ -57,6 +57,19 @@ class DirectionCosineMatrix {
     }
 
     /**
+     * @brief Constructor for DirectionCosineMatrix from an array of CartesianVectors.
+     *
+     * @param row1 An array containing the three elements of the first row of the DCM.
+     * @param row2 An array containing the three elements of the second row of the DCM.
+     * @param row3 An array containing the three elements of the third row of the DCM.
+     */
+    DirectionCosineMatrix(const std::array<Unitless, 3>& row1, const std::array<Unitless, 3>& row2, const std::array<Unitless, 3>& row3) :
+        _matrix{ row1, row2, row3 }
+    {
+        normalize();
+    }
+
+    /**
      * @brief Creates a direction cosine matrix for a rotation around the X-axis.
      *
      * @param theta The angle of rotation around the X-axis.
@@ -67,9 +80,9 @@ class DirectionCosineMatrix {
         using mp_units::one;
         using mp_units::angular::cos;
         using mp_units::angular::sin;
-        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { std::array<Unitless, 3>{ 1.0 * one, 0.0 * one, 0.0 * one },
-                                                                 std::array<Unitless, 3>{ 0.0 * one, cos(theta), -sin(theta) },
-                                                                 std::array<Unitless, 3>{ 0.0 * one, sin(theta), cos(theta) } } };
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { 1.0 * one, 0.0 * one, 0.0 * one },
+                                                               { 0.0 * one, cos(theta), -sin(theta) },
+                                                               { 0.0 * one, sin(theta), cos(theta) } };
     }
 
     /**
@@ -83,9 +96,9 @@ class DirectionCosineMatrix {
         using mp_units::one;
         using mp_units::angular::cos;
         using mp_units::angular::sin;
-        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { std::array<Unitless, 3>{ cos(theta), 0.0 * one, sin(theta) },
-                                                                 std::array<Unitless, 3>{ 0.0 * one, 1.0 * one, 0.0 * one },
-                                                                 std::array<Unitless, 3>{ -sin(theta), 0.0 * one, cos(theta) } } };
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { cos(theta), 0.0 * one, sin(theta) },
+                                                               { 0.0 * one, 1.0 * one, 0.0 * one },
+                                                               { -sin(theta), 0.0 * one, cos(theta) } };
     }
 
     /**
@@ -99,9 +112,9 @@ class DirectionCosineMatrix {
         using mp_units::one;
         using mp_units::angular::cos;
         using mp_units::angular::sin;
-        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { std::array<Unitless, 3>{ cos(theta), -sin(theta), 0.0 * one },
-                                                                 std::array<Unitless, 3>{ sin(theta), cos(theta), 0.0 * one },
-                                                                 std::array<Unitless, 3>{ 0.0 * one, 0.0 * one, 1.0 * one } } };
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { cos(theta), -sin(theta), 0.0 * one },
+                                                               { sin(theta), cos(theta), 0.0 * one },
+                                                               { 0.0 * one, 0.0 * one, 1.0 * one } };
     }
 
     /**
@@ -117,13 +130,13 @@ class DirectionCosineMatrix {
         using mp_units::angular::cos;
         using mp_units::angular::sin;
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
-            { std::array<Unitless, 3>{ cos(beta), -cos(gamma) * sin(beta), sin(beta) * sin(gamma) },
-              std::array<Unitless, 3>{ cos(alpha) * sin(beta),
-                                       cos(alpha) * cos(beta) * cos(gamma) - sin(alpha) * sin(gamma),
-                                       -cos(gamma) * sin(alpha) - cos(alpha) * cos(beta) * sin(gamma) },
-              std::array<Unitless, 3>{ sin(alpha) * sin(beta),
-                                       cos(alpha) * sin(beta) + cos(beta) * cos(gamma) * sin(alpha),
-                                       cos(alpha) * cos(gamma) - cos(beta) * sin(gamma) * sin(alpha) } }
+            { cos(beta), -cos(gamma) * sin(beta), sin(beta) * sin(gamma) },
+            { cos(alpha) * sin(beta),
+              cos(alpha) * cos(beta) * cos(gamma) - sin(alpha) * sin(gamma),
+              -cos(gamma) * sin(alpha) - cos(alpha) * cos(beta) * sin(gamma) },
+            { sin(alpha) * sin(beta),
+              cos(alpha) * sin(beta) + cos(beta) * cos(gamma) * sin(alpha),
+              cos(alpha) * cos(gamma) - cos(beta) * sin(gamma) * sin(alpha) }
         };
     }
 
@@ -141,9 +154,7 @@ class DirectionCosineMatrix {
         const CartesianVector<Unitless, In_Frame_T>& z
     )
     {
-        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { std::array<Unitless, 3>{ x[0], x[1], x[2] },
-                                                                 std::array<Unitless, 3>{ y[0], y[1], y[2] },
-                                                                 std::array<Unitless, 3>{ z[0], z[1], z[2] } } };
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { x[0], x[1], x[2] }, { y[0], y[1], y[2] }, { z[0], z[1], z[2] } };
     }
 
     /**
@@ -154,9 +165,9 @@ class DirectionCosineMatrix {
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> identity()
     {
         using mp_units::one;
-        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { std::array<Unitless, 3>{ 1.0 * one, 0.0 * one, 0.0 * one },
-                                                                 std::array<Unitless, 3>{ 0.0 * one, 1.0 * one, 0.0 * one },
-                                                                 std::array<Unitless, 3>{ 0.0 * one, 0.0 * one, 1.0 * one } } };
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { 1.0 * one, 0.0 * one, 0.0 * one },
+                                                               { 0.0 * one, 1.0 * one, 0.0 * one },
+                                                               { 0.0 * one, 0.0 * one, 1.0 * one } };
     }
 
     /**
@@ -166,11 +177,9 @@ class DirectionCosineMatrix {
      */
     DirectionCosineMatrix<Out_Frame_T, In_Frame_T> transpose() const
     {
-        return DirectionCosineMatrix<Out_Frame_T, In_Frame_T>{
-            { std::array<Unitless, 3>{ _matrix[0][0], _matrix[1][0], _matrix[2][0] },
-              std::array<Unitless, 3>{ _matrix[0][1], _matrix[1][1], _matrix[2][1] },
-              std::array<Unitless, 3>{ _matrix[0][2], _matrix[1][2], _matrix[2][2] } }
-        };
+        return DirectionCosineMatrix<Out_Frame_T, In_Frame_T>{ { _matrix[0][0], _matrix[1][0], _matrix[2][0] },
+                                                               { _matrix[0][1], _matrix[1][1], _matrix[2][1] },
+                                                               { _matrix[0][2], _matrix[1][2], _matrix[2][2] } };
     }
 
     /**

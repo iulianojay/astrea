@@ -45,6 +45,14 @@ class KeplerianStm;
 class EquinoctialStm;
 class StateTransitionMatrix;
 
+// Quaternions
+template <typename In_Frame_T, typename Out_Frame_T>
+class Quaternion;
+
+template <typename In_Frame_T, typename Out_Frame_T>
+class QuaternionPartial;
+
+// Frames
 template <class Value_T, class Frame_T>
 class CartesianVector;
 

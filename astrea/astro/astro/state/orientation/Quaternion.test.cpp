@@ -507,11 +507,7 @@ TEST_F(QuaternionTest, DCMToQuaternionConversion)
 
     // Test identity DCM -> should give identity quaternion
     EXPECT_NO_THROW({
-        TestDCM identityDCM(
-            { std::array<Unitless, 3>{ 1.0 * one, 0.0 * one, 0.0 * one },
-              std::array<Unitless, 3>{ 0.0 * one, 1.0 * one, 0.0 * one },
-              std::array<Unitless, 3>{ 0.0 * one, 0.0 * one, 1.0 * one } }
-        );
+        TestDCM identityDCM = TestDCM::identity();
 
         TestQuaternion q(identityDCM);
 
@@ -626,18 +622,12 @@ TEST_F(QuaternionTest, DCMQuaternionRoundTrip)
     using mp_units::angular::unit_symbols::deg;
 
     // Test various rotation angles and axes
-    std::vector<std::pair<std::string, TestDCM>> testCases = { { "Identity",
-                                                                 TestDCM(
-                                                                     { std::array<Unitless, 3>{ 1.0 * one, 0.0 * one, 0.0 * one },
-                                                                       std::array<Unitless, 3>{ 0.0 * one, 1.0 * one, 0.0 * one },
-                                                                       std::array<Unitless, 3>{ 0.0 * one, 0.0 * one, 1.0 * one } }
-                                                                 ) },
-                                                               { "X_30deg", TestDCM::X(30.0 * deg) },
-                                                               { "Y_45deg", TestDCM::Y(45.0 * deg) },
-                                                               { "Z_60deg", TestDCM::Z(60.0 * deg) },
-                                                               { "X_90deg", TestDCM::X(90.0 * deg) },
-                                                               { "Y_120deg", TestDCM::Y(120.0 * deg) },
-                                                               { "Z_180deg", TestDCM::Z(180.0 * deg) } };
+    std::vector<std::pair<std::string, TestDCM>> testCases = {
+        { "Identity", TestDCM::identity() },    { "X_30deg", TestDCM::X(30.0 * deg) },
+        { "Y_45deg", TestDCM::Y(45.0 * deg) },  { "Z_60deg", TestDCM::Z(60.0 * deg) },
+        { "X_90deg", TestDCM::X(90.0 * deg) },  { "Y_120deg", TestDCM::Y(120.0 * deg) },
+        { "Z_180deg", TestDCM::Z(180.0 * deg) }
+    };
 
     // Since all quaternions are normalized, all should have unit norm
     for (const auto& [name, originalDCM] : testCases) {
