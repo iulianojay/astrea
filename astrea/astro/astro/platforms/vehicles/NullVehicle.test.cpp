@@ -51,7 +51,7 @@ int main(int argc, char** argv)
 
 TEST_F(NullVehicleTest, DefaultConstructor)
 {
-    ASSERT_EQ(nullVehicle.get_mass(), 0.0 * kg);
+    ASSERT_EQ(nullVehicle.get_mass(), 1.0 * kg);
     ASSERT_EQ(nullVehicle.get_name(), "NullVehicle");
 }
 

@@ -9,7 +9,7 @@
  * The GNU Lesser General Public License (LGPL)
  *
  * This file is part of Astrea.
- * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * Astrea is free software: you cosAlphan redistribute it and/or modify it under the terms of the GNU Lesser General Public License
  * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
  * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
@@ -32,6 +32,14 @@
 
 namespace astrea {
 namespace astro {
+
+namespace {
+
+using mp_units::one;
+using mp_units::angular::cos;
+using mp_units::angular::sin;
+
+} // namespace
 
 // TODO: Probably should use eigen instead of arrays, might not matter for these small matrices used in
 //  rotation but worth looking into
@@ -77,9 +85,6 @@ class DirectionCosineMatrix {
      */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> X(const Angle& theta)
     {
-        using mp_units::one;
-        using mp_units::angular::cos;
-        using mp_units::angular::sin;
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { 1.0 * one, 0.0 * one, 0.0 * one },
                                                                { 0.0 * one, cos(theta), -sin(theta) },
                                                                { 0.0 * one, sin(theta), cos(theta) } };
@@ -93,9 +98,6 @@ class DirectionCosineMatrix {
      */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> Y(const Angle& theta)
     {
-        using mp_units::one;
-        using mp_units::angular::cos;
-        using mp_units::angular::sin;
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { cos(theta), 0.0 * one, sin(theta) },
                                                                { 0.0 * one, 1.0 * one, 0.0 * one },
                                                                { -sin(theta), 0.0 * one, cos(theta) } };
@@ -109,16 +111,13 @@ class DirectionCosineMatrix {
      */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> Z(const Angle& theta)
     {
-        using mp_units::one;
-        using mp_units::angular::cos;
-        using mp_units::angular::sin;
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { cos(theta), -sin(theta), 0.0 * one },
                                                                { sin(theta), cos(theta), 0.0 * one },
                                                                { 0.0 * one, 0.0 * one, 1.0 * one } };
     }
 
     /**
-     * @brief Creates a direction cosine matrix for a rotation around the X-axis followed by a rotation around the Z-axis.
+     * @brief Creates a direction cosine matrix for a rotation around the X-axis, the Z-axis, and the X-axis again.
      *
      * @param alpha The angle of rotation around the X-axis.
      * @param beta The angle of rotation around the Y-axis.
@@ -127,16 +126,184 @@ class DirectionCosineMatrix {
      */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> XZX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        using mp_units::angular::cos;
-        using mp_units::angular::sin;
+        const auto cosAlpha = cos(alpha);
+        const auto sinAlpha = sin(alpha);
+        const auto cosBeta  = cos(beta);
+        const auto sinBeta  = sin(beta);
+        const auto cosGamma = cos(gamma);
+        const auto sinGamma = sin(gamma);
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
-            { cos(beta), -cos(gamma) * sin(beta), sin(beta) * sin(gamma) },
-            { cos(alpha) * sin(beta),
-              cos(alpha) * cos(beta) * cos(gamma) - sin(alpha) * sin(gamma),
-              -cos(gamma) * sin(alpha) - cos(alpha) * cos(beta) * sin(gamma) },
-            { sin(alpha) * sin(beta),
-              cos(alpha) * sin(beta) + cos(beta) * cos(gamma) * sin(alpha),
-              cos(alpha) * cos(gamma) - cos(beta) * sin(gamma) * sin(alpha) }
+            { cosBeta, -cosGamma * sinBeta, sinBeta * sinGamma },
+            { cosAlpha * sinBeta, cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma, -cosGamma * sinAlpha - cosAlpha * cosBeta * sinGamma },
+            { sinAlpha * sinBeta, cosAlpha * sinBeta + cosBeta * cosGamma * sinAlpha, cosAlpha * cosGamma - cosBeta * sinGamma * sinAlpha }
+        };
+    }
+
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> XYX(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    {
+        const auto cosAlpha = cos(alpha);
+        const auto sinAlpha = sin(alpha);
+        const auto cosBeta  = cos(beta);
+        const auto sinBeta  = sin(beta);
+        const auto cosGamma = cos(gamma);
+        const auto sinGamma = sin(gamma);
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { cosBeta, sinBeta * sinGamma, cosGamma * sinBeta },
+            { sinAlpha * sinBeta, cosAlpha * cosBeta - cosGamma * sinAlpha * sinBeta, -cosAlpha * sinGamma - cosBeta * cosGamma * sinAlpha },
+            { -cosAlpha * sinBeta, cosGamma * cosAlpha * sinBeta + cosBeta * sinAlpha, cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma }
+        };
+    }
+
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> YZY(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    {
+        const auto cosAlpha = cos(alpha);
+        const auto sinAlpha = sin(alpha);
+        const auto cosBeta  = cos(beta);
+        const auto sinBeta  = sin(beta);
+        const auto cosGamma = cos(gamma);
+        const auto sinGamma = sin(gamma);
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma, cosGamma * sinAlpha + cosAlpha * cosBeta * sinGamma, -cosAlpha * sinBeta },
+            { -cosGamma * sinBeta, sinBeta * sinGamma, cosBeta },
+            { cosBeta * cosGamma * sinAlpha + cosAlpha * sinGamma, cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma, sinAlpha * sinBeta }
+        };
+    }
+
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> ZXZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    {
+        const auto cosAlpha = cos(alpha);
+        const auto sinAlpha = sin(alpha);
+        const auto cosBeta  = cos(beta);
+        const auto sinBeta  = sin(beta);
+        const auto cosGamma = cos(gamma);
+        const auto sinGamma = sin(gamma);
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma,
+                                                                 -cosAlpha * sinGamma - cosBeta * cosGamma * sinAlpha,
+                                                                 sinAlpha * sinBeta },
+                                                               { cosGamma * sinAlpha + cosAlpha * cosBeta * sinGamma,
+                                                                 cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma,
+                                                                 -cosAlpha * sinBeta },
+                                                               { sinBeta * sinGamma, cosGamma * sinBeta, cosBeta } };
+    }
+
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> ZYZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    {
+        const auto cosAlpha = cos(alpha);
+        const auto sinAlpha = sin(alpha);
+        const auto cosBeta  = cos(beta);
+        const auto sinBeta  = sin(beta);
+        const auto cosGamma = cos(gamma);
+        const auto sinGamma = sin(gamma);
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma, -cosGamma * sinAlpha - cosAlpha * cosBeta * sinGamma, cosAlpha * sinBeta },
+            { cosAlpha * sinGamma + cosBeta * cosGamma * sinAlpha, cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma, sinAlpha * sinBeta },
+            { -cosGamma * sinBeta, sinBeta * sinGamma, cosBeta }
+        };
+    }
+
+
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> YXY(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    {
+        const auto cosAlpha = cos(alpha);
+        const auto sinAlpha = sin(alpha);
+        const auto cosBeta  = cos(beta);
+        const auto sinBeta  = sin(beta);
+        const auto cosGamma = cos(gamma);
+        const auto sinGamma = sin(gamma);
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma, sinBeta * sinGamma, cosGamma * sinAlpha + cosAlpha * cosBeta * sinGamma },
+            { sinAlpha * sinBeta, cosBeta, -cosAlpha * sinBeta },
+            { -cosBeta * cosGamma * sinAlpha - cosAlpha * sinGamma, cosGamma * sinBeta, cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma }
+        };
+    }
+
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> XYZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    {
+        const auto cosAlpha = cos(alpha);
+        const auto sinAlpha = sin(alpha);
+        const auto cosBeta  = cos(beta);
+        const auto sinBeta  = sin(beta);
+        const auto cosGamma = cos(gamma);
+        const auto sinGamma = sin(gamma);
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { cosBeta * cosGamma, -cosBeta * sinGamma, sinBeta },
+            { cosAlpha * sinGamma + cosGamma * sinAlpha * sinBeta, cosAlpha * cosGamma - sinAlpha * sinBeta * sinGamma, -cosBeta * sinAlpha },
+            { sinAlpha * sinGamma - cosAlpha * cosGamma * sinBeta, cosGamma * sinAlpha + cosAlpha * sinBeta * sinGamma, cosAlpha * cosBeta }
+        };
+    }
+
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> YZX(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    {
+        const auto cosAlpha = cos(alpha);
+        const auto sinAlpha = sin(alpha);
+        const auto cosBeta  = cos(beta);
+        const auto sinBeta  = sin(beta);
+        const auto cosGamma = cos(gamma);
+        const auto sinGamma = sin(gamma);
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { cosAlpha * cosBeta, -sinBeta, cosBeta * sinAlpha },
+            { cosGamma * sinAlpha + cosAlpha * sinBeta * sinGamma, cosBeta * cosGamma, sinAlpha * sinBeta * sinGamma - cosAlpha * cosGamma },
+            { sinAlpha * sinGamma - cosAlpha * cosGamma * sinBeta, cosGamma * sinBeta, cosAlpha * sinGamma + cosGamma * sinAlpha * sinBeta }
+        };
+    }
+
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> ZXY(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    {
+        const auto cosAlpha = cos(alpha);
+        const auto sinAlpha = sin(alpha);
+        const auto cosBeta  = cos(beta);
+        const auto sinBeta  = sin(beta);
+        const auto cosGamma = cos(gamma);
+        const auto sinGamma = sin(gamma);
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { cosAlpha * cosGamma - sinAlpha * sinBeta * sinGamma, -cosBeta * sinAlpha, cosAlpha * sinGamma + cosGamma * sinAlpha * sinBeta },
+            { cosGamma * sinAlpha + cosAlpha * sinBeta * sinGamma, cosAlpha * cosBeta, sinAlpha * sinGamma - cosAlpha * cosGamma * sinBeta },
+            { -cosGamma * sinBeta, sinBeta, cosBeta * cosGamma }
+        };
+    }
+
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> XZY(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    {
+        const auto cosAlpha = cos(alpha);
+        const auto sinAlpha = sin(alpha);
+        const auto cosBeta  = cos(beta);
+        const auto sinBeta  = sin(beta);
+        const auto cosGamma = cos(gamma);
+        const auto sinGamma = sin(gamma);
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { cosBeta * cosGamma, -sinBeta, cosBeta * sinGamma },
+            { sinAlpha * sinGamma + cosAlpha * cosGamma * sinBeta, cosAlpha * cosBeta, cosAlpha * sinBeta * sinGamma - cosGamma * sinAlpha },
+            { cosGamma * sinAlpha * sinBeta - cosAlpha * sinGamma, cosBeta * sinAlpha, cosAlpha * cosGamma + sinAlpha * sinBeta * sinGamma }
+        };
+    }
+
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> ZYX(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    {
+        const auto cosAlpha = cos(alpha);
+        const auto sinAlpha = sin(alpha);
+        const auto cosBeta  = cos(beta);
+        const auto sinBeta  = sin(beta);
+        const auto cosGamma = cos(gamma);
+        const auto sinGamma = sin(gamma);
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { cosAlpha * cosBeta, -cosBeta * sinAlpha, sinBeta },
+            { cosAlpha * sinBeta * sinGamma + cosGamma * sinAlpha, cosAlpha * cosGamma - sinAlpha * sinBeta * sinGamma, -cosBeta * sinGamma },
+            { sinAlpha * sinGamma - cosAlpha * cosGamma * sinBeta, cosGamma * sinAlpha * sinBeta + cosAlpha * sinGamma, cosBeta * cosGamma }
+        };
+    }
+
+    static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> YXZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    {
+        const auto cosAlpha = cos(alpha);
+        const auto sinAlpha = sin(alpha);
+        const auto cosBeta  = cos(beta);
+        const auto sinBeta  = sin(beta);
+        const auto cosGamma = cos(gamma);
+        const auto sinGamma = sin(gamma);
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+            { cosAlpha * cosGamma + sinAlpha * sinBeta * sinGamma, cosGamma * sinAlpha * sinBeta - cosAlpha * sinGamma, cosBeta * sinAlpha },
+            { cosBeta * sinGamma, cosBeta * cosGamma, -sinBeta },
+            { cosAlpha * sinBeta * sinGamma - cosGamma * sinAlpha, cosAlpha * cosGamma * sinBeta + sinAlpha * sinGamma, cosAlpha * cosBeta }
         };
     }
 
@@ -164,7 +331,6 @@ class DirectionCosineMatrix {
      */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> identity()
     {
-        using mp_units::one;
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { 1.0 * one, 0.0 * one, 0.0 * one },
                                                                { 0.0 * one, 1.0 * one, 0.0 * one },
                                                                { 0.0 * one, 0.0 * one, 1.0 * one } };
@@ -246,9 +412,9 @@ class DirectionCosineMatrix {
     /**
      * @brief Normalizes the direction cosine matrix to ensure it represents a valid rotation.
      *
-     * This method scales the elements of the matrix so that the determinant is 1, which is a requirement for a valid
-     * rotation matrix. If the determinant is zero, an exception is thrown since the matrix cannot be normalized.
-     * Uses a linear approximation when the determinant is close to 1 for numerical efficiency.
+     * This method scosAlphales the elements of the matrix so that the determinant is 1, which is a requirement for a
+     * valid rotation matrix. If the determinant is zero, an exception is thrown since the matrix cosAlphannot be
+     * normalized. Uses a linear approximation when the determinant is close to 1 for numericosAlphal efficiency.
      */
     void normalize()
     {
@@ -257,7 +423,7 @@ class DirectionCosineMatrix {
         const Unitless det = determinant();
         if (det == 0.0 * mp_units::one) { throw std::runtime_error("Cannot normalize a zero-value determinant DCM."); }
 
-        // For 3x3 matrices, determinant scales as k^3 where k is the scaling factor
+        // For 3x3 matrices, determinant scosAlphales as k^3 where k is the scosAlphaling factor
         // Use linear approximation when determinant is close to 1: k ≈ 1 - (det-1)/3
         // https://stackoverflow.com/questions/11667783/quaternion-and-normalization
         if (abs(1.0 * one - det) < 2.107342e-08 * one) { _normalize(1.0 * one - (det - 1.0 * one) / 3.0); }
@@ -271,16 +437,16 @@ class DirectionCosineMatrix {
     std::array<std::array<Unitless, 3>, 3> _matrix; //!< 3x3 matrix to hold the direction cosines.
 
     /**
-     * @brief Normalizes the direction cosine matrix by scaling all elements by the given factor.
+     * @brief Normalizes the direction cosine matrix by scosAlphaling all elements by the given factor.
      *
-     * @param scale The factor to scale the matrix elements by to achieve normalization.
+     * @param scosAlphale The factor to scosAlphale the matrix elements by to achieve normalization.
      */
-    void _normalize(const Unitless& scale)
+    void _normalize(const Unitless& scosAlphale)
     {
         using namespace mp_units;
         for (auto& row : _matrix) {
             for (auto& element : row) {
-                element *= scale;
+                element *= scosAlphale;
                 // Avoid very small values that should be zero
                 if (abs(element) < 1.0e-15 * one) { element = 0.0 * one; }
             }
@@ -298,7 +464,7 @@ class DirectionCosineMatrix {
 template <typename In_Frame_T, typename Out_Frame_T>
 using DCM = DirectionCosineMatrix<In_Frame_T, Out_Frame_T>;
 
-// Defined template function and then delete it so we can enforce lookup restrictions
+// Defined template function and then delete it so we cosAlphan enforce lookup restrictions
 template <typename Frame_T, typename Frame_U>
 inline DCM<Frame_T, Frame_U> get_dcm(const Date& date) = delete;
 

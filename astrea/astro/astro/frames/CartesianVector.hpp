@@ -72,12 +72,19 @@ class CartesianVector {
 
     // Explicitly deleted copy/move assignment/constructor to prevent implicit frame switches.
     template <typename Frame_U>
+        requires(!IsSameFrame<Frame_T, Frame_U>)
     CartesianVector(const CartesianVector<Value_T, Frame_U>& other) = delete;
+
     template <typename Frame_U>
+        requires(!IsSameFrame<Frame_T, Frame_U>)
     CartesianVector(CartesianVector<Value_T, Frame_U>&& other) = delete;
+
     template <typename Frame_U>
+        requires(!IsSameFrame<Frame_T, Frame_U>)
     CartesianVector<Value_T, Frame_T> operator=(const CartesianVector<Value_T, Frame_U>& other) = delete;
+
     template <typename Frame_U>
+        requires(!IsSameFrame<Frame_T, Frame_U>)
     CartesianVector<Value_T, Frame_T> operator=(CartesianVector<Value_T, Frame_U>&& other) = delete;
 
     /**

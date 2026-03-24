@@ -1,7 +1,7 @@
 /**
- * @file dynamic_frames.hpp
+ * @file dynamic_body_frame.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for dynamic frames.
+ * @brief Header file for dynamic body frames.
  * @date 2025-08-05
  *
  * @copyright Copyright (c) 2025 Jay Iuliano
@@ -18,9 +18,16 @@
  */
 #pragma once
 
-#include <astro/frames/instances/EastNorthUp.hpp>
-#include <astro/frames/instances/LocalHorizontalLocalVertical.hpp>
-#include <astro/frames/instances/RadialInTrackCrossTrack.hpp>
-#include <astro/frames/instances/VelocityNormalBinormal.hpp>
-#include <astro/frames/instances/dynamic_body_frame.hpp>
-#include <astro/frames/types/DynamicFrame.hpp>
+namespace astrea {
+namespace astro {
+namespace frames {
+namespace dynamic {
+
+// Declare a body frame without defining it. Functionally, this will never need a strict definition since conversions to
+// and from this frame will always be handled by the euler angles or quaternion classes.
+struct body;
+
+} // namespace dynamic
+} // namespace frames
+} // namespace astro
+} // namespace astrea

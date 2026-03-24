@@ -69,7 +69,7 @@ CPMFindPackage(
 CPMFindPackage(
     NAME date
     GITHUB_REPOSITORY HowardHinnant/date
-    GIT_TAG v3.0.1
+    GIT_TAG v3.0.4
     GIT_SHALLOW TRUE
 )
 

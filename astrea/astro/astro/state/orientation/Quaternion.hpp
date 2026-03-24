@@ -2,7 +2,7 @@
  * @file Quaternion.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Class representing a quaternion for orientation transformations between state/frames.
- * @date 2026-03-20
+ * @date 2026-03-22
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
  *

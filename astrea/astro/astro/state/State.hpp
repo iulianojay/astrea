@@ -21,6 +21,7 @@
 #include <iosfwd>
 #include <optional>
 
+#include <astro/frames/instances/dynamic_body_frame.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orientation/Quaternion.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
@@ -29,15 +30,6 @@
 
 namespace astrea {
 namespace astro {
-
-// Declare a body frame without defining it
-namespace frames {
-namespace dynamic {
-
-struct body;
-
-} // namespace dynamic
-} // namespace frames
 
 namespace {
 
