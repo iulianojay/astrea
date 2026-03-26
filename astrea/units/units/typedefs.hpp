@@ -84,6 +84,11 @@ using UnitlessPerTime = mp_units::quantity<detail::unitless / detail::time_unit>
 using AngularRate = mp_units::quantity<detail::angle_unit / detail::time_unit>;
 
 /**
+ * @brief Definition for an angular acceleration quantity.
+ */
+using AngularAcceleration = mp_units::quantity<detail::angle_unit / mp_units::pow<2>(detail::time_unit)>;
+
+/**
  * @brief Definition for a interplanetary distance quantity.
  */
 using InterplanetaryDistance = mp_units::quantity<mp_units::iau::unit_symbols::au>;

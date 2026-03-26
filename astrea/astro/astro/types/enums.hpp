@@ -104,5 +104,20 @@ enum class FrameAxis : EnumType {
     ENU
 };
 
+/**
+ * @brief Enum representing possible Euler angle sequences.
+ */
+enum class EulerSequence { ZXZ, XYX, YZY, ZYZ, XZX, YXY };
+
+/**
+ * @brief Enum representing possible Tait-Bryan angle sequences.
+ */
+enum class TaitBryanSequence { XYZ, YZX, ZXY, XZY, ZYX, YXZ };
+
+/**
+ * @brief Enum representing whether the rotation sequence is intrinsic or extrinsic.
+ */
+enum class RotationSequenceType { EXTRINSIC, INTRINSIC };
+
 } // namespace astro
 } // namespace astrea

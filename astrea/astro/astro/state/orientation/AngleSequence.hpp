@@ -26,25 +26,11 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/types/enums.hpp>
 #include <astro/utilities/conversions.hpp>
 
 namespace astrea {
 namespace astro {
-
-/**
- * @brief Enum representing possible Euler angle sequences.
- */
-enum class EulerSequence { ZXZ, XYX, YZY, ZYZ, XZX, YXY };
-
-/**
- * @brief Enum representing possible Tait-Bryan angle sequences.
- */
-enum class TaitBryanSequence { XYZ, YZX, ZXY, XZY, ZYX, YXZ };
-
-/**
- * @brief Enum representing whether the rotation sequence is intrinsic or extrinsic.
- */
-enum class RotationSequenceType { EXTRINSIC, INTRINSIC };
 
 /**
  * @brief Concept to check if two AngleSequences can be added/subtracted safely
@@ -71,6 +57,8 @@ concept IsCompatibleAngleSequence =
 template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
     requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence> && !IsSameFrame<In_Frame_T, Out_Frame_T>)
 class AngleSequence {
+
+    friend State;
 
   public:
     /**
@@ -275,6 +263,18 @@ class AngleSequence {
     }
 
     /**
+     * @brief Scalar division operator for AngleSequence by a Time quantity, resulting in an AngularSequenceRate.
+     *
+     * @param time The time quantity to divide by.
+     * @return AngularSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
+     * AngularSequenceVelocity that is the quotient of this sequence and the time.
+     */
+    AngularSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> operator/(const Time& time) const
+    {
+        return { _angles / time };
+    }
+
+    /**
      * @brief Scalar division operator for AngleSequence.
      *
      * @param scalar The scalar value to divide by.
@@ -421,27 +421,13 @@ class AngleSequence {
     Angle norm() const { return _angles.norm(); }
 
     /**
-     * @brief Offset angle between this angle vector and another CartesianVector.
+     * @brief Converts the angle sequence to a vector form for use in numerical integration.
      *
-     * @tparam Value_U The type of the other CartesianVector's components.
-     * @param other The other CartesianVector to calculate the offset angle with.
-     * @return Angle The resulting offset angle between the two vectors.
+     * @return A std::vector of Unitless quantities representing the components of the angle sequence, in the order [first, second, third].
      */
-    template <typename Value_U>
-    Angle offset_angle(const CartesianVector<Value_U, In_Frame_T>& other) const
+    std::vector<Unitless> force_to_vector() const
     {
-        return _angles.offset_angle(other);
-    }
-
-    /**
-     * @brief Offset angle between this angle vector and another AngleSequence.
-     *
-     * @param other The other AngleSequence to calculate the offset angle with.
-     * @return Angle The resulting offset angle between the two sequences.
-     */
-    Angle offset_angle(const AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other) const
-    {
-        return _angles.offset_angle(other.get_angles());
+        return { _angles[0] / _angles[0].unit, _angles[1] / _angles[1].unit, _angles[2] / _angles[2].unit };
     }
 
   private:
@@ -528,6 +514,24 @@ class AngleSequence {
         else if constexpr (sequence == TaitBryanSequence::YXZ) {
             return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YXZ(first, second, third);
         }
+    }
+
+    /**
+     * @brief Constructs an AngleSequence from a vector of Unitless quantities representing the angle components.
+     *
+     * @param vec A std::vector of Unitless quantities representing the components of the angle sequence, in the order [first, second, third].
+     * @return A new AngleSequence constructed from the given vector.
+     *
+     * @throws std::invalid_argument if the input vector does not have exactly 3 components.
+     */
+    static AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> from_vector(const std::vector<Unitless>& vec)
+    {
+        using mp_units::angular::unit_symbols::rad;
+
+        if (vec.size() != 3) {
+            throw std::invalid_argument("Input vector must have exactly 3 components to convert to an AngleSequence.");
+        }
+        return { vec[0] * rad, vec[1] * rad, vec[2] * rad };
     }
 };
 

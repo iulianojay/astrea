@@ -415,16 +415,16 @@ class Quaternion {
     /**
      * @brief Gets the scalar part of the quaternion.
      *
-     * @return Unitless The scalar part of the quaternion.
+     * @return const Unitless& The scalar part of the quaternion.
      */
-    Unitless get_scalar_part() const { return _s; }
+    const Unitless& get_scalar_part() const { return _s; }
 
     /**
      * @brief Gets the vector part of the quaternion as a CartesianVector.
      *
-     * @return CartesianVector<Unitless, In_Frame_T> The vector part of the quaternion.
+     * @return const CartesianVector<Unitless, In_Frame_T>& The vector part of the quaternion.
      */
-    CartesianVector<Unitless, In_Frame_T> get_vector_part() const { return _u; }
+    const CartesianVector<Unitless, In_Frame_T>& get_vector_part() const { return _u; }
 
     /**
      * @brief Converts the quaternion to a vector form for use in numerical integration.

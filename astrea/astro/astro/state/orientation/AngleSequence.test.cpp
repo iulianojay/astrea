@@ -298,11 +298,13 @@ TEST_F(AngleSequenceTest, TestDotAndCrossProduct)
     EXPECT_EQ(dotProduct, 0.0 * one);
 
     dotProduct = euler1.dot(euler1);
-    ASSERT_EQ_QUANTITY(dotProduct, (M_PI_2 * rad) * (M_PI_2 * rad) / (1.0 * rad * rad), REL_TOL);
+    ASSERT_EQ_QUANTITY(dotProduct, M_PI_2 * M_PI_2 * one, REL_TOL);
 
     // Cross product
-    auto crossProduct = euler1.cross(euler2);
-    TestEulerAngles expectedCross(0.0 * deg, 0.0 * deg, 90.0 * deg);
+    auto crossProduct = euler1.cross(euler2).unit();
+    ASSERT_EQ_QUANTITY(crossProduct.get_x(), 0.0 * one, REL_TOL);
+    ASSERT_EQ_QUANTITY(crossProduct.get_y(), 0.0 * one, REL_TOL);
+    ASSERT_EQ_QUANTITY(crossProduct.get_z(), 1.0 * one, REL_TOL);
 }
 
 TEST_F(AngleSequenceTest, TestNormAndOffsetAngle)
@@ -312,18 +314,6 @@ TEST_F(AngleSequenceTest, TestNormAndOffsetAngle)
     // Norm (should be sqrt(3^2 + 4^2) = 5 degrees)
     auto normEuler = euler.norm();
     ASSERT_EQ_QUANTITY(normEuler, 5.0 * deg, REL_TOL);
-
-    // Offset angle between vectors
-    TestEulerAngles euler1(90.0 * deg, 0.0 * deg, 0.0 * deg);
-    TestEulerAngles euler2(0.0 * deg, 90.0 * deg, 0.0 * deg);
-
-    // Offset angle between orthogonal vectors
-    auto angle = euler1.offset_angle(euler2);
-    ASSERT_EQ_QUANTITY(angle, Angle(M_PI_2 * rad), REL_TOL);
-
-    // Offset angle between identical vectors
-    auto angle2 = euler1.offset_angle(euler1);
-    ASSERT_EQ_QUANTITY(angle2, Angle(0.0 * rad), REL_TOL);
 }
 
 TEST_F(AngleSequenceTest, TestComparisonBetweenEulerAndTaitBryan)
@@ -333,9 +323,7 @@ TEST_F(AngleSequenceTest, TestComparisonBetweenEulerAndTaitBryan)
     TestTaitBryanAngles taitBryan(angle1, angle2, angle3);
 
     // They should have the same angle values but different sequence types
-    ASSERT_EQ_QUANTITY(euler.get_phi(), taitBryan.get_phi(), REL_TOL);
-    ASSERT_EQ_QUANTITY(euler.get_theta(), taitBryan.get_theta(), REL_TOL);
-    ASSERT_EQ_QUANTITY(euler.get_psi(), taitBryan.get_psi(), REL_TOL);
+    compare_angle_sequences(euler, taitBryan, REL_TOL);
 
     // But they should be different types (cannot directly compare with ==)
     // This is enforced by the type system -- they are different template instantiations
