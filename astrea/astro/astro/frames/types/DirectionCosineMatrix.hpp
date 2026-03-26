@@ -472,18 +472,20 @@ class DirectionCosineMatrix {
     /**
      * @brief Normalizes the direction cosine matrix to ensure it represents a valid rotation.
      *
-     * This method scosAlphales the elements of the matrix so that the determinant is 1, which is a requirement for a
-     * valid rotation matrix. If the determinant is zero, an exception is thrown since the matrix cosAlphannot be
-     * normalized. Uses a linear approximation when the determinant is close to 1 for numericosAlphal efficiency.
+     * This method scales the elements of the matrix so that the determinant is 1, which is a requirement for a
+     * valid rotation matrix. If the determinant is zero, an exception is thrown since the matrix cannot be
+     * normalized. Uses a linear approximation when the determinant is close to 1 for numerical efficiency.
      */
     void normalize()
     {
         using namespace mp_units;
 
         const Unitless det = determinant();
-        if (det == 0.0 * mp_units::one) { throw std::runtime_error("Cannot normalize a zero-value determinant DCM."); }
+        if (det == 0.0 * mp_units::one) {
+            throw std::runtime_error("Cannot normalize a zero-value determinant DCM. The matrix is likely singular.");
+        }
 
-        // For 3x3 matrices, determinant scosAlphales as k^3 where k is the scosAlphaling factor
+        // For 3x3 matrices, determinant scales as k^3 where k is the scaling factor
         // Use linear approximation when determinant is close to 1: k ≈ 1 - (det-1)/3
         // https://stackoverflow.com/questions/11667783/quaternion-and-normalization
         if (abs(1.0 * one - det) < 2.107342e-08 * one) { _normalize(1.0 * one - (det - 1.0 * one) / 3.0); }
@@ -497,16 +499,16 @@ class DirectionCosineMatrix {
     std::array<std::array<Unitless, 3>, 3> _matrix; //!< 3x3 matrix to hold the direction cosines.
 
     /**
-     * @brief Normalizes the direction cosine matrix by scosAlphaling all elements by the given factor.
+     * @brief Normalizes the direction cosine matrix by scaling all elements by the given factor.
      *
-     * @param scosAlphale The factor to scosAlphale the matrix elements by to achieve normalization.
+     * @param scale The factor to scale the matrix elements by to achieve normalization.
      */
-    void _normalize(const Unitless& scosAlphale)
+    void _normalize(const Unitless& scale)
     {
         using namespace mp_units;
         for (auto& row : _matrix) {
             for (auto& element : row) {
-                element *= scosAlphale;
+                element *= scale;
                 // Avoid very small values that should be zero
                 if (abs(element) < 1.0e-15 * one) { element = 0.0 * one; }
             }

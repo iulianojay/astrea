@@ -26,11 +26,14 @@
 
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/state/orientation/AngleSequence.hpp>
 #include <astro/state/orientation/Quaternion.hpp>
 
 using namespace astrea;
 using namespace astro;
 using namespace mp_units;
+
+using mp_units::angular::unit_symbols::deg;
 
 // Define some dummy frame types for testing template functionality
 struct TestFrame1 {};
@@ -502,7 +505,6 @@ TEST_F(QuaternionTest, FrameTransformationChaining)
 TEST_F(QuaternionTest, DCMToQuaternionConversion)
 {
     using TestDCM = DirectionCosineMatrix<TestFrame1, TestFrame2>;
-    using mp_units::angular::unit_symbols::deg;
     using mp_units::angular::unit_symbols::rad;
 
     // Test identity DCM -> should give identity quaternion
@@ -619,7 +621,6 @@ TEST_F(QuaternionTest, QuaternionToDCMConversion)
 TEST_F(QuaternionTest, DCMQuaternionRoundTrip)
 {
     using TestDCM = DirectionCosineMatrix<TestFrame1, TestFrame2>;
-    using mp_units::angular::unit_symbols::deg;
 
     // Test various rotation angles and axes
     std::vector<std::pair<std::string, TestDCM>> testCases = {
@@ -682,7 +683,6 @@ TEST_F(QuaternionTest, DCMQuaternionRoundTrip)
 TEST_F(QuaternionTest, DCMConversionNumericalStability)
 {
     using TestDCM = DirectionCosineMatrix<TestFrame1, TestFrame2>;
-    using mp_units::angular::unit_symbols::deg;
 
     // Test near-180° rotations that challenge the trace-based algorithm
     std::vector<Angle> challengingAngles = {
@@ -731,4 +731,819 @@ TEST_F(QuaternionTest, DCMConversionNumericalStability)
             EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
         });
     }
+}
+
+TEST_F(QuaternionTest, BasicConstructorComprehensive)
+{
+    TestQuaternion q(scalar1, x1, y1, z1);
+
+    // Verify automatic normalization to unit quaternion
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+
+    // Calculate expected normalized values
+    Unitless inputNorm = sqrt(scalar1 * scalar1 + x1 * x1 + y1 * y1 + z1 * z1);
+
+    // Verify components are correctly normalized
+    EXPECT_EQ_QUANTITY(q.get_scalar_part(), scalar1 / inputNorm, REL_TOL, ABS_TOL);
+    auto vecPart = q.get_vector_part();
+    EXPECT_EQ_QUANTITY(vecPart.get_x(), x1 / inputNorm, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(vecPart.get_y(), y1 / inputNorm, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(vecPart.get_z(), z1 / inputNorm, REL_TOL, ABS_TOL);
+}
+
+TEST_F(QuaternionTest, IdentityQuaternions)
+{
+    TestQuaternion identity(1.0 * one, 0.0 * one, 0.0 * one, 0.0 * one);
+
+    EXPECT_EQ_QUANTITY(identity.get_scalar_part(), 1.0 * one, REL_TOL, ABS_TOL);
+    auto vecPart = identity.get_vector_part();
+    EXPECT_EQ_QUANTITY(vecPart.get_x(), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(vecPart.get_y(), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(vecPart.get_z(), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(identity.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+TEST_F(QuaternionTest, PureVectorQuaternions)
+{
+    TestQuaternion pureI(0.0 * one, 1.0 * one, 0.0 * one, 0.0 * one);
+    TestQuaternion pureJ(0.0 * one, 0.0 * one, 1.0 * one, 0.0 * one);
+    TestQuaternion pureK(0.0 * one, 0.0 * one, 0.0 * one, 1.0 * one);
+
+    // All should be normalized to unit quaternions
+    EXPECT_EQ_QUANTITY(pureI.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(pureJ.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(pureK.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+
+    // Verify components for pure I quaternion
+    EXPECT_EQ_QUANTITY(pureI.get_scalar_part(), 0.0 * one, REL_TOL, ABS_TOL);
+    auto vecPartI = pureI.get_vector_part();
+    EXPECT_EQ_QUANTITY(vecPartI.get_x(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(vecPartI.get_y(), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(vecPartI.get_z(), 0.0 * one, REL_TOL, ABS_TOL);
+}
+
+TEST_F(QuaternionTest, NegativeComponents)
+{
+    TestQuaternion negComponents(-scalar1, -x1, -y1, -z1);
+
+    EXPECT_EQ_QUANTITY(negComponents.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+
+    // Calculate expected normalized values for negative components
+    Unitless inputNorm = sqrt(scalar1 * scalar1 + x1 * x1 + y1 * y1 + z1 * z1);
+
+    EXPECT_EQ_QUANTITY(negComponents.get_scalar_part(), -scalar1 / inputNorm, REL_TOL, ABS_TOL);
+    auto vecPart = negComponents.get_vector_part();
+    EXPECT_EQ_QUANTITY(vecPart.get_x(), -x1 / inputNorm, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(vecPart.get_y(), -y1 / inputNorm, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(vecPart.get_z(), -z1 / inputNorm, REL_TOL, ABS_TOL);
+}
+
+TEST_F(QuaternionTest, MixedSignComponents)
+{
+    TestQuaternion mixed(scalar1, -x1, y1, -z1);
+
+    EXPECT_EQ_QUANTITY(mixed.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+
+    // Verify all components are finite
+    EXPECT_TRUE(std::isfinite(mixed.get_scalar_part().numerical_value_in(one)));
+    auto vecPart = mixed.get_vector_part();
+    EXPECT_TRUE(std::isfinite(vecPart.get_x().numerical_value_in(one)));
+    EXPECT_TRUE(std::isfinite(vecPart.get_y().numerical_value_in(one)));
+    EXPECT_TRUE(std::isfinite(vecPart.get_z().numerical_value_in(one)));
+}
+
+TEST_F(QuaternionTest, EdgeCaseVerySmallNonZeroComponents)
+{
+    // Test 1: Very small but non-zero components
+    Unitless small = 1e-10 * one;
+    TestQuaternion smallQ(small, small, small, small);
+
+    // Should normalize properly even with small components
+    EXPECT_EQ_QUANTITY(smallQ.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+
+    // Normalized components should be equal due to symmetry
+    Unitless expectedComponent = small / (2.0 * small); // sqrt(4 * small^2) = 2 * small
+    EXPECT_EQ_QUANTITY(smallQ.get_scalar_part(), expectedComponent, REL_TOL, ABS_TOL);
+}
+
+TEST_F(QuaternionTest, EdgeCaseVeryLargeNonZeroComponents)
+{
+    Unitless large = 1000.0 * one;
+    TestQuaternion largeQ(large, large, large, large);
+
+    // Should normalize to unit quaternion regardless of input magnitude
+    EXPECT_EQ_QUANTITY(largeQ.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+
+    // All normalized components should be equal
+    Unitless expectedComponent = 0.5 * one; // 1/sqrt(4) = 0.5
+    EXPECT_EQ_QUANTITY(largeQ.get_scalar_part(), expectedComponent, REL_TOL, ABS_TOL);
+    auto vecPart = largeQ.get_vector_part();
+    EXPECT_EQ_QUANTITY(vecPart.get_x(), expectedComponent, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(vecPart.get_y(), expectedComponent, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(vecPart.get_z(), expectedComponent, REL_TOL, ABS_TOL);
+}
+
+TEST_F(QuaternionTest, EdgeCaseZeroComponents)
+{
+    EXPECT_THROW({ TestQuaternion zeroQ(0.0 * one, 0.0 * one, 0.0 * one, 0.0 * one); }, std::runtime_error);
+}
+
+TEST_F(QuaternionTest, SingleNonZeroComponent)
+{
+    TestQuaternion singleNonZero(1.0 * one, 0.0 * one, 0.0 * one, 0.0 * one);
+
+    EXPECT_EQ_QUANTITY(singleNonZero.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(singleNonZero.get_scalar_part(), 1.0 * one, REL_TOL, ABS_TOL);
+    auto vecPart = singleNonZero.get_vector_part();
+    EXPECT_EQ_QUANTITY(vecPart.get_x(), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(vecPart.get_y(), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(vecPart.get_z(), 0.0 * one, REL_TOL, ABS_TOL);
+}
+
+TEST_F(QuaternionTest, BoundaryValues)
+{
+    auto maxVal = std::numeric_limits<double>::max() * one;
+    auto minVal = std::numeric_limits<double>::lowest() * one;
+
+    // These extreme values should throw an inf error
+    EXPECT_THROW({ TestQuaternion extremeQ(maxVal, minVal, 1.0 * one, -1.0 * one); }, std::runtime_error);
+}
+
+/**
+ * @brief Test individual component constructor equivalence with other constructors
+ */
+TEST_F(QuaternionTest, IndividualComponentConstructorEquivalence)
+{
+    // Test equivalence with scalar + vector constructor
+    TestVector testVec(x1, y1, z1);
+    TestQuaternion vectorConstructed(scalar1, testVec);
+    TestQuaternion componentConstructed(scalar1, x1, y1, z1);
+
+    // Both should produce identical quaternions
+    ExpectQuaternionNearlyEqual(vectorConstructed, componentConstructed);
+
+    // Test equivalence with copy constructor
+    TestQuaternion copied(componentConstructed);
+    ExpectQuaternionNearlyEqual(componentConstructed, copied);
+
+    // Test that different component orders produce different quaternions
+    TestQuaternion differentOrder(scalar1, z1, x1, y1); // Different vector component order
+
+    // These should NOT be equal (unless by coincidence)
+    if (x1 != z1 || y1 != x1 || z1 != y1) {
+        // Use a simple comparison instead of complex inequality logic
+        bool areEqual = (componentConstructed.get_scalar_part() == differentOrder.get_scalar_part());
+        auto vec1     = componentConstructed.get_vector_part();
+        auto vec2     = differentOrder.get_vector_part();
+        areEqual      = areEqual && (vec1.get_x() == vec2.get_x()) && (vec1.get_y() == vec2.get_y()) &&
+                   (vec1.get_z() == vec2.get_z());
+
+        EXPECT_FALSE(areEqual);
+    }
+}
+
+/**
+ * @brief Test AngleSequence constructor with ZXZ Intrinsic Euler angles
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Intrinsic)
+{
+    using TestAngleSequenceZXZ_Intrinsic =
+        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceZXZ_Intrinsic angles(30.0 * deg, 45.0 * deg, 60.0 * deg);
+    TestQuaternion q(angles);
+
+    // Should produce a valid unit quaternion
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with ZXZ Intrinsic Euler angles - component finiteness
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Intrinsic_ComponentFiniteness)
+{
+    using TestAngleSequenceZXZ_Intrinsic =
+        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceZXZ_Intrinsic angles(30.0 * deg, 45.0 * deg, 60.0 * deg);
+    TestQuaternion q(angles);
+
+    // Verify all components are finite
+    EXPECT_TRUE(std::isfinite(q.get_scalar_part().numerical_value_in(one)));
+}
+
+/**
+ * @brief Test AngleSequence constructor with ZXZ Intrinsic Euler angles - vector component finiteness
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Intrinsic_VectorFiniteness)
+{
+    using TestAngleSequenceZXZ_Intrinsic =
+        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceZXZ_Intrinsic angles(30.0 * deg, 45.0 * deg, 60.0 * deg);
+    TestQuaternion q(angles);
+    auto vec = q.get_vector_part();
+
+    EXPECT_TRUE(std::isfinite(vec.get_x().numerical_value_in(one)));
+    EXPECT_TRUE(std::isfinite(vec.get_y().numerical_value_in(one)));
+    EXPECT_TRUE(std::isfinite(vec.get_z().numerical_value_in(one)));
+}
+
+/**
+ * @brief Test AngleSequence constructor with ZXZ Intrinsic quaternion normalization
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Intrinsic_Normalization)
+{
+    using TestAngleSequenceZXZ_Intrinsic =
+        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    const Angle angle1 = 15.0 * deg;
+    const Angle angle2 = 30.0 * deg;
+    const Angle angle3 = 45.0 * deg;
+
+    TestAngleSequenceZXZ_Intrinsic intrinsicAngles(angle1, angle2, angle3);
+    TestQuaternion qIntrinsic(intrinsicAngles);
+
+    EXPECT_EQ_QUANTITY(qIntrinsic.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with ZXZ Extrinsic quaternion normalization
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Extrinsic_Normalization)
+{
+    using TestAngleSequenceZXZ_Extrinsic =
+        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+
+    const Angle angle1 = 15.0 * deg;
+    const Angle angle2 = 30.0 * deg;
+    const Angle angle3 = 45.0 * deg;
+
+    TestAngleSequenceZXZ_Extrinsic extrinsicAngles(angle1, angle2, angle3);
+    TestQuaternion qExtrinsic(extrinsicAngles);
+
+    EXPECT_EQ_QUANTITY(qExtrinsic.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor intrinsic vs extrinsic difference
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_IntrinsicExtrinsicDifference)
+{
+    using TestAngleSequenceZXZ_Intrinsic =
+        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceZXZ_Extrinsic =
+        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+
+    const Angle angle1 = 15.0 * deg;
+    const Angle angle2 = 30.0 * deg;
+    const Angle angle3 = 45.0 * deg;
+
+    TestAngleSequenceZXZ_Intrinsic intrinsicAngles(angle1, angle2, angle3);
+    TestAngleSequenceZXZ_Extrinsic extrinsicAngles(angle1, angle2, angle3);
+
+    TestQuaternion qIntrinsic(intrinsicAngles);
+    TestQuaternion qExtrinsic(extrinsicAngles);
+
+    // They should generally be different (unless special case)
+    bool areIdentical = (qIntrinsic.get_scalar_part() == qExtrinsic.get_scalar_part());
+    auto vec1         = qIntrinsic.get_vector_part();
+    auto vec2         = qExtrinsic.get_vector_part();
+    areIdentical      = areIdentical && (vec1.get_x() == vec2.get_x()) && (vec1.get_y() == vec2.get_y()) &&
+                   (vec1.get_z() == vec2.get_z());
+
+    // For non-trivial angles, intrinsic and extrinsic should differ
+    EXPECT_FALSE(areIdentical);
+}
+
+/**
+ * @brief Test AngleSequence constructor with XYX Intrinsic Euler sequence
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_XYX_Intrinsic)
+{
+    using TestAngleSequenceXYX_Intrinsic =
+        AngleSequence<EulerSequence, EulerSequence::XYX, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceXYX_Intrinsic angles(80.0 * deg, 10.0 * deg, 45.0 * deg);
+    TestQuaternion q(angles);
+
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with YZY Extrinsic Euler sequence
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_YZY_Extrinsic)
+{
+    using TestAngleSequenceYZY_Extrinsic =
+        AngleSequence<EulerSequence, EulerSequence::YZY, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceYZY_Extrinsic angles(120.0 * deg, 60.0 * deg, 30.0 * deg);
+    TestQuaternion q(angles);
+
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with XYZ Intrinsic Tait-Bryan angles - normalization
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Intrinsic_Normalization)
+{
+    using TestAngleSequenceXYZ_Intrinsic =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    const Angle roll  = 10.0 * deg;
+    const Angle pitch = 20.0 * deg;
+    const Angle yaw   = 30.0 * deg;
+
+    TestAngleSequenceXYZ_Intrinsic angles(roll, pitch, yaw);
+    TestQuaternion q(angles);
+
+    // Should produce a valid unit quaternion
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with XYZ Intrinsic Tait-Bryan angles - scalar finiteness
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Intrinsic_ScalarFiniteness)
+{
+    using TestAngleSequenceXYZ_Intrinsic =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    const Angle roll  = 10.0 * deg;
+    const Angle pitch = 20.0 * deg;
+    const Angle yaw   = 30.0 * deg;
+
+    TestAngleSequenceXYZ_Intrinsic angles(roll, pitch, yaw);
+    TestQuaternion q(angles);
+
+    // Verify components are finite and reasonable
+    EXPECT_TRUE(std::isfinite(q.get_scalar_part().numerical_value_in(one)));
+}
+
+/**
+ * @brief Test AngleSequence constructor with XYZ Intrinsic Tait-Bryan angles - vector finiteness
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Intrinsic_VectorFiniteness)
+{
+    using TestAngleSequenceXYZ_Intrinsic =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    const Angle roll  = 10.0 * deg;
+    const Angle pitch = 20.0 * deg;
+    const Angle yaw   = 30.0 * deg;
+
+    TestAngleSequenceXYZ_Intrinsic angles(roll, pitch, yaw);
+    TestQuaternion q(angles);
+    auto vec = q.get_vector_part();
+
+    EXPECT_TRUE(std::isfinite(vec.get_x().numerical_value_in(one)));
+    EXPECT_TRUE(std::isfinite(vec.get_y().numerical_value_in(one)));
+    EXPECT_TRUE(std::isfinite(vec.get_z().numerical_value_in(one)));
+}
+
+/**
+ * @brief Test AngleSequence constructor with XYZ Intrinsic normalization
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Intrinsic_Comparison_Normalization)
+{
+    using TestAngleSequenceXYZ_Intrinsic =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    const Angle angle1 = 25.0 * deg;
+    const Angle angle2 = 35.0 * deg;
+    const Angle angle3 = 45.0 * deg;
+
+    TestAngleSequenceXYZ_Intrinsic intrinsicAngles(angle1, angle2, angle3);
+    TestQuaternion qIntrinsic(intrinsicAngles);
+
+    EXPECT_EQ_QUANTITY(qIntrinsic.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with XYZ Extrinsic normalization
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Extrinsic_Normalization)
+{
+    using TestAngleSequenceXYZ_Extrinsic =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+
+    const Angle angle1 = 25.0 * deg;
+    const Angle angle2 = 35.0 * deg;
+    const Angle angle3 = 45.0 * deg;
+
+    TestAngleSequenceXYZ_Extrinsic extrinsicAngles(angle1, angle2, angle3);
+    TestQuaternion qExtrinsic(extrinsicAngles);
+
+    EXPECT_EQ_QUANTITY(qExtrinsic.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor XYZ intrinsic vs extrinsic difference
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_IntrinsicExtrinsicDifference)
+{
+    using TestAngleSequenceXYZ_Intrinsic =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ_Extrinsic =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+
+    const Angle angle1 = 25.0 * deg;
+    const Angle angle2 = 35.0 * deg;
+    const Angle angle3 = 45.0 * deg;
+
+    TestAngleSequenceXYZ_Intrinsic intrinsicAngles(angle1, angle2, angle3);
+    TestAngleSequenceXYZ_Extrinsic extrinsicAngles(angle1, angle2, angle3);
+
+    TestQuaternion qIntrinsic(intrinsicAngles);
+    TestQuaternion qExtrinsic(extrinsicAngles);
+
+    // For non-zero angles, they should be different
+    bool areIdentical = (qIntrinsic.get_scalar_part() == qExtrinsic.get_scalar_part());
+    auto vec1         = qIntrinsic.get_vector_part();
+    auto vec2         = qExtrinsic.get_vector_part();
+    areIdentical      = areIdentical && (vec1.get_x() == vec2.get_x()) && (vec1.get_y() == vec2.get_y()) &&
+                   (vec1.get_z() == vec2.get_z());
+
+    EXPECT_FALSE(areIdentical);
+}
+
+/**
+ * @brief Test AngleSequence constructor with ZYX Intrinsic (aerospace sequence)
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_ZYX_Intrinsic)
+{
+    using TestAngleSequenceZYX_Intrinsic =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::ZYX, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceZYX_Intrinsic angles(90.0 * deg, 0.0 * deg, 180.0 * deg);
+    TestQuaternion q(angles);
+
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with YXZ Extrinsic
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_YXZ_Extrinsic)
+{
+    using TestAngleSequenceYXZ_Extrinsic =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::YXZ, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceYXZ_Extrinsic angles(45.0 * deg, 90.0 * deg, 135.0 * deg);
+    TestQuaternion q(angles);
+
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with zero angles (identity rotation) - normalization
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_ZeroAngles_Normalization)
+{
+    using TestAngleSequenceXYZ =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceXYZ zeroAngles(0.0 * deg, 0.0 * deg, 0.0 * deg);
+    TestQuaternion q(zeroAngles);
+
+    // Should produce identity or near-identity quaternion
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with zero angles (identity rotation) - scalar part
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_ZeroAngles_ScalarPart)
+{
+    using TestAngleSequenceXYZ =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceXYZ zeroAngles(0.0 * deg, 0.0 * deg, 0.0 * deg);
+    TestQuaternion q(zeroAngles);
+
+    // Scalar part should be ±1, vector should be near zero
+    EXPECT_EQ_QUANTITY(abs(q.get_scalar_part()), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with zero angles (identity rotation) - vector parts
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_ZeroAngles_VectorParts)
+{
+    using TestAngleSequenceXYZ =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceXYZ zeroAngles(0.0 * deg, 0.0 * deg, 0.0 * deg);
+    TestQuaternion q(zeroAngles);
+    auto vec = q.get_vector_part();
+
+    EXPECT_EQ_QUANTITY(vec.get_x(), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(vec.get_y(), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_EQ_QUANTITY(vec.get_z(), 0.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with 180-degree rotations - normalization
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_180DegreeRotation_Normalization)
+{
+    using TestAngleSequenceXYZ =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceXYZ largeAngles(180.0 * deg, 0.0 * deg, 0.0 * deg);
+    TestQuaternion q(largeAngles);
+
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with 180-degree rotations - scalar part
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_180DegreeRotation_ScalarPart)
+{
+    using TestAngleSequenceXYZ =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceXYZ largeAngles(180.0 * deg, 0.0 * deg, 0.0 * deg);
+    TestQuaternion q(largeAngles);
+
+    // Should have zero or near-zero scalar part for 180° rotation
+    EXPECT_EQ_QUANTITY(abs(q.get_scalar_part()), 0.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with full 360-degree rotation
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_360DegreeRotation)
+{
+    using TestAngleSequenceXYZ =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceXYZ fullRotation(360.0 * deg, 0.0 * deg, 0.0 * deg);
+    TestQuaternion q(fullRotation);
+
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    // Should be equivalent to identity (angles are wrapped)
+}
+
+/**
+ * @brief Test AngleSequence constructor with negative angles - normalization
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_NegativeAngles_Normalization)
+{
+    using TestAngleSequenceZXZ =
+        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceZXZ negativeAngles(-30.0 * deg, -45.0 * deg, -60.0 * deg);
+    TestQuaternion q(negativeAngles);
+
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with positive equivalent angles - normalization
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_PositiveEquivalentAngles_Normalization)
+{
+    using TestAngleSequenceZXZ =
+        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+
+    // Compare with positive equivalent
+    TestAngleSequenceZXZ positiveAngles(330.0 * deg, 315.0 * deg, 300.0 * deg);
+    TestQuaternion qPos(positiveAngles);
+
+    // Should represent the same or equivalent rotation
+    EXPECT_EQ_QUANTITY(qPos.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with very small angles - normalization
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_SmallAngles_Normalization)
+{
+    using TestAngleSequenceXYZ =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceXYZ smallAngles(1e-6 * deg, 1e-5 * deg, 1e-4 * deg);
+    TestQuaternion q(smallAngles);
+
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with very small angles - near identity
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_SmallAngles_NearIdentity)
+{
+    using TestAngleSequenceXYZ =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceXYZ smallAngles(1e-6 * deg, 1e-5 * deg, 1e-4 * deg);
+    TestQuaternion q(smallAngles);
+
+    // Should be very close to identity
+    EXPECT_GT(abs(q.get_scalar_part()), 0.999 * one);
+}
+
+/**
+ * @brief Test AngleSequence to Quaternion equivalence with DCM conversion - direct normalization
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_DCMEquivalence_DirectNormalization)
+{
+    using TestAngleSequenceXYZ =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    const Angle roll  = 30.0 * deg;
+    const Angle pitch = 45.0 * deg;
+    const Angle yaw   = 60.0 * deg;
+
+    TestAngleSequenceXYZ angles(roll, pitch, yaw);
+
+    // Direct construction from AngleSequence
+    TestQuaternion qDirect(angles);
+
+    EXPECT_EQ_QUANTITY(qDirect.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence to Quaternion equivalence with DCM conversion - DCM normalization
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_DCMEquivalence_DCMNormalization)
+{
+    using TestAngleSequenceXYZ =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestDCM = DirectionCosineMatrix<TestFrame1, TestFrame2>;
+
+    const Angle roll  = 30.0 * deg;
+    const Angle pitch = 45.0 * deg;
+    const Angle yaw   = 60.0 * deg;
+
+    TestAngleSequenceXYZ angles(roll, pitch, yaw);
+
+    // Construction via DCM
+    TestDCM dcm = angles.to_dcm();
+    TestQuaternion qViaDCM(dcm);
+
+    EXPECT_EQ_QUANTITY(qViaDCM.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence to Quaternion equivalence with DCM conversion - equivalence
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_DCMEquivalence_Equivalence)
+{
+    using TestAngleSequenceXYZ =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestDCM = DirectionCosineMatrix<TestFrame1, TestFrame2>;
+
+    const Angle roll  = 30.0 * deg;
+    const Angle pitch = 45.0 * deg;
+    const Angle yaw   = 60.0 * deg;
+
+    TestAngleSequenceXYZ angles(roll, pitch, yaw);
+
+    // Direct construction from AngleSequence
+    TestQuaternion qDirect(angles);
+
+    // Construction via DCM
+    TestDCM dcm = angles.to_dcm();
+    TestQuaternion qViaDCM(dcm);
+
+    // Should represent the same rotation (accounting for quaternion double-cover)
+    bool areEqual = (abs(qDirect.get_scalar_part() - qViaDCM.get_scalar_part()) < REL_TOL &&
+                     abs(qDirect.get_vector_part().get_x() - qViaDCM.get_vector_part().get_x()) < REL_TOL &&
+                     abs(qDirect.get_vector_part().get_y() - qViaDCM.get_vector_part().get_y()) < REL_TOL &&
+                     abs(qDirect.get_vector_part().get_z() - qViaDCM.get_vector_part().get_z()) < REL_TOL) ||
+                    (abs(qDirect.get_scalar_part() + qViaDCM.get_scalar_part()) < REL_TOL &&
+                     abs(qDirect.get_vector_part().get_x() + qViaDCM.get_vector_part().get_x()) < REL_TOL &&
+                     abs(qDirect.get_vector_part().get_y() + qViaDCM.get_vector_part().get_y()) < REL_TOL &&
+                     abs(qDirect.get_vector_part().get_z() + qViaDCM.get_vector_part().get_z()) < REL_TOL);
+
+    EXPECT_TRUE(areEqual) << "Direct and DCM-based quaternion construction should give equivalent results";
+}
+
+/**
+ * @brief Test AngleSequence constructor with ZXZ Euler sequence
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Coverage)
+{
+    using TestAngleSequence =
+        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequence angles(30.0 * deg, 60.0 * deg, 90.0 * deg);
+    TestQuaternion q(angles);
+
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with XYX Euler sequence
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_XYX_Coverage)
+{
+    using TestAngleSequence =
+        AngleSequence<EulerSequence, EulerSequence::XYX, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequence angles(45.0 * deg, 30.0 * deg, 15.0 * deg);
+    TestQuaternion q(angles);
+
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with XYZ Tait-Bryan sequence
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Coverage)
+{
+    using TestAngleSequence =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequence angles(15.0 * deg, 30.0 * deg, 45.0 * deg);
+    TestQuaternion q(angles);
+
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with YZX Tait-Bryan sequence
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_YZX_Coverage)
+{
+    using TestAngleSequence =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::YZX, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequence angles(60.0 * deg, 45.0 * deg, 30.0 * deg);
+    TestQuaternion q(angles);
+
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor with ZXY Tait-Bryan sequence
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_ZXY_Coverage)
+{
+    using TestAngleSequence =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::ZXY, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequence angles(90.0 * deg, 0.0 * deg, 45.0 * deg);
+    TestQuaternion q(angles);
+
+    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor XYZ vs ZYX normalization
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_vs_ZYX_Normalization)
+{
+    using TestAngleSequenceXYZ =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceXYZ anglesXYZ(30.0 * deg, 45.0 * deg, 60.0 * deg);
+    TestQuaternion qXYZ(anglesXYZ);
+
+    EXPECT_EQ_QUANTITY(qXYZ.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test AngleSequence constructor ZYX normalization
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_ZYX_vs_XYZ_Normalization)
+{
+    using TestAngleSequenceZYX =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::ZYX, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceZYX anglesZYX(30.0 * deg, 45.0 * deg, 60.0 * deg);
+    TestQuaternion qZYX(anglesZYX);
+
+    EXPECT_EQ_QUANTITY(qZYX.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+}
+
+/**
+ * @brief Test different angle sequences produce different rotations
+ */
+TEST_F(QuaternionTest, AngleSequenceConstructor_DifferentSequencesDifferentResults)
+{
+    using TestAngleSequenceXYZ =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceZYX =
+        AngleSequence<TaitBryanSequence, TaitBryanSequence::ZYX, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+
+    TestAngleSequenceXYZ anglesXYZ(30.0 * deg, 45.0 * deg, 60.0 * deg);
+    TestAngleSequenceZYX anglesZYX(30.0 * deg, 45.0 * deg, 60.0 * deg);
+
+    TestQuaternion qXYZ(anglesXYZ);
+    TestQuaternion qZYX(anglesZYX);
+
+    // They should represent different rotations
+    bool areIdentical = (qXYZ.get_scalar_part() == qZYX.get_scalar_part());
+    auto vecXYZ       = qXYZ.get_vector_part();
+    auto vecZYX       = qZYX.get_vector_part();
+    areIdentical      = areIdentical && (vecXYZ.get_x() == vecZYX.get_x()) && (vecXYZ.get_y() == vecZYX.get_y()) &&
+                   (vecXYZ.get_z() == vecZYX.get_z());
+
+    EXPECT_FALSE(areIdentical) << "Different angle sequences should produce different rotations";
 }

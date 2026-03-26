@@ -28,6 +28,9 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frame_concepts.hpp>
+#include <astro/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/state/orientation/AngleSequence.hpp>
+#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
@@ -195,6 +198,12 @@ class Quaternion {
             _u[2]        = 0.25 * r;
         }
         normalize();
+    }
+
+    template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType>
+    Quaternion(const AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequence) :
+        Quaternion(angleSequence.to_dcm())
+    {
     }
 
     /**
@@ -404,6 +413,9 @@ class Quaternion {
 
         const Unitless nSq = norm_squared();
         if (nSq == 0.0 * one) { throw std::runtime_error("Cannot normalize a quaternion with zero norm."); }
+        else if (isnan(nSq) || isinf(nSq)) {
+            throw std::runtime_error("Cannot normalize a quaternion with non-finite norm.");
+        }
 
         // https://stackoverflow.com/questions/11667783/quaternion-and-normalization
         if (abs(1.0 * one - nSq) < 2.107342e-08 * one) { _normalize(2.0 * one / (1.0 * one + nSq)); }
