@@ -1,7 +1,7 @@
 /**
- * @file EulerAngles.hpp
+ * @file AngularSequenceVelocity.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Class representing Euler angles for orientation transformations between state/frames.
+ * @brief Class representing angular sequence velocities for orientation transformations between state/frames.
  * @date 2026-03-22
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
@@ -34,7 +34,7 @@ namespace astrea {
 namespace astro {
 
 /**
- * @brief Class representing a sequence of angles (either Euler or Tait-Bryan) for orientation transformations between frames.
+ * @brief Class representing a sequence of angular velocities (either Euler or Tait-Bryan) for orientation transformations between frames.
  *
  * @tparam Sequence_T The type of angle sequence (EulerSequence or TaitBryanSequence).
  * @tparam sequence The specific sequence of rotations (e.g., EulerSequence::ZXZ).
@@ -63,7 +63,7 @@ class AngularSequenceVelocity {
      * @param angle2 The second angle in the sequence.
      * @param angle3 The third angle in the sequence.
      */
-    AngularSequenceVelocity(const AngularRate& angle1, const AngularRate& angle2, const AngularRate& angle3) :
+    AngularSequenceVelocity(const AngularVelocity& angle1, const AngularVelocity& angle2, const AngularVelocity& angle3) :
         _angleRates(angle1, angle2, angle3)
     {
     }
@@ -73,7 +73,7 @@ class AngularSequenceVelocity {
      *
      * @param angles A CartesianVector containing the three angles in the sequence.
      */
-    AngularSequenceVelocity(const CartesianVector<AngularRate, In_Frame_T>& angles) :
+    AngularSequenceVelocity(const CartesianVector<AngularVelocity, In_Frame_T>& angles) :
         _angleRates(angles)
     {
     }
@@ -101,17 +101,17 @@ class AngularSequenceVelocity {
      * @brief Access operator for vector components.
      *
      * @param index The index of the component to access (0 for x, 1 for y, 2 for z).
-     * @return AngularRate& Reference to the component at the specified index.
+     * @return AngularVelocity& Reference to the component at the specified index.
      */
-    AngularRate& operator[](size_t index) { return _angleRates[index]; }
+    AngularVelocity& operator[](size_t index) { return _angleRates[index]; }
 
     /**
      * @brief Const access operator for vector components.
      *
      * @param index The index of the component to access (0 for x, 1 for y, 2 for z).
-     * @return const AngularRate& Reference to the component at the specified index.
+     * @return const AngularVelocity& Reference to the component at the specified index.
      */
-    const AngularRate& operator[](size_t index) const { return _angleRates[index]; }
+    const AngularVelocity& operator[](size_t index) const { return _angleRates[index]; }
 
     /**
      * @brief Equality operator for CartesianVector.
@@ -277,58 +277,58 @@ class AngularSequenceVelocity {
     /**
      * @brief Get the x value of the Cartesian vector.
      *
-     * @return AngularRate& Reference to the x component of the Cartesian vector.
+     * @return AngularVelocity& Reference to the x component of the Cartesian vector.
      */
-    AngularRate& get_phi_dot() { return _angleRates[0]; }
+    AngularVelocity& get_phi_dot() { return _angleRates[0]; }
 
     /**
      * @brief Get the x value of the Cartesian vector.
      *
-     * @return const AngularRate& Reference to the x component of the Cartesian vector.
+     * @return const AngularVelocity& Reference to the x component of the Cartesian vector.
      */
-    const AngularRate& get_phi_dot() const { return _angleRates[0]; }
+    const AngularVelocity& get_phi_dot() const { return _angleRates[0]; }
 
     /**
      * @brief Get the y value of the Cartesian vector.
      *
-     * @return AngularRate& Reference to the y component of the Cartesian vector.
+     * @return AngularVelocity& Reference to the y component of the Cartesian vector.
      */
-    AngularRate& get_theta_dot() { return _angleRates[1]; }
+    AngularVelocity& get_theta_dot() { return _angleRates[1]; }
 
     /**
      * @brief Get the y value of the Cartesian vector.
      *
-     * @return const AngularRate& Reference to the y component of the Cartesian vector.
+     * @return const AngularVelocity& Reference to the y component of the Cartesian vector.
      */
-    const AngularRate& get_theta_dot() const { return _angleRates[1]; }
+    const AngularVelocity& get_theta_dot() const { return _angleRates[1]; }
 
     /**
      * @brief Get the z value of the Cartesian vector.
      *
-     * @return AngularRate& Reference to the z component of the Cartesian vector.
+     * @return AngularVelocity& Reference to the z component of the Cartesian vector.
      */
-    AngularRate& get_psi_dot() { return _angleRates[2]; }
+    AngularVelocity& get_psi_dot() { return _angleRates[2]; }
 
     /**
      * @brief Get the z value of the Cartesian vector.
      *
-     * @return const AngularRate& Reference to the z component of the Cartesian vector.
+     * @return const AngularVelocity& Reference to the z component of the Cartesian vector.
      */
-    const AngularRate& get_psi_dot() const { return _angleRates[2]; }
+    const AngularVelocity& get_psi_dot() const { return _angleRates[2]; }
 
     /**
      * @brief Get the angles as a CartesianVector.
      *
-     * @return CartesianVector<AngularRate, In_Frame_T>& Reference to the angles as a CartesianVector.
+     * @return CartesianVector<AngularVelocity, In_Frame_T>& Reference to the angles as a CartesianVector.
      */
-    CartesianVector<AngularRate, In_Frame_T>& get_angleRates() { return _angleRates; }
+    CartesianVector<AngularVelocity, In_Frame_T>& get_angleRates() { return _angleRates; }
 
     /**
      * @brief Get the angles as a CartesianVector.
      *
-     * @return const CartesianVector<AngularRate, In_Frame_T>& Reference to the angles as a CartesianVector.
+     * @return const CartesianVector<AngularVelocity, In_Frame_T>& Reference to the angles as a CartesianVector.
      */
-    const CartesianVector<AngularRate, In_Frame_T>& get_angleRates() const { return _angleRates; }
+    const CartesianVector<AngularVelocity, In_Frame_T>& get_angleRates() const { return _angleRates; }
 
     /**
      * @brief Dot product of this angle vector with a CartesianVector.
@@ -392,9 +392,9 @@ class AngularSequenceVelocity {
     /**
      * @brief Norm of the angle vector.
      *
-     * @return AngularRate The resulting norm of the angle vector.
+     * @return AngularVelocity The resulting norm of the angle vector.
      */
-    AngularRate norm() const { return _angleRates.norm(); }
+    AngularVelocity norm() const { return _angleRates.norm(); }
 
     /**
      * @brief Converts the angle sequence velocity to a vector form for use in numerical integration.
@@ -409,7 +409,7 @@ class AngularSequenceVelocity {
     }
 
   private:
-    CartesianVector<AngularRate, In_Frame_T> _angleRates;
+    CartesianVector<AngularVelocity, In_Frame_T> _angleRates;
 
     /**
      * @brief Constructs an AngularSequenceVelocity from a vector of Unitless quantities representing the angle components.

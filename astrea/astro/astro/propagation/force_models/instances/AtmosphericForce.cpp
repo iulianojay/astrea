@@ -52,9 +52,9 @@ using mp_units::si::unit_symbols::s;
 Perturbation AtmosphericForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    const AstrodynamicsSystem& sys       = state.get_system();
-    const CelestialBodyUniquePtr& center = sys.get_central_body();
-    const AngularRate& bodyRotationRate  = center->get_rotation_rate();
+    const AstrodynamicsSystem& sys          = state.get_system();
+    const CelestialBodyUniquePtr& center    = sys.get_central_body();
+    const AngularVelocity& bodyRotationRate = center->get_rotation_rate();
 
     const RadiusVector<frames::earth::icrf>& r   = state.get_position();
     const VelocityVector<frames::earth::icrf>& v = state.get_velocity();

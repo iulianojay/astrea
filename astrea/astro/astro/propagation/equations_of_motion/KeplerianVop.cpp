@@ -100,12 +100,12 @@ OrbitalElementPartials KeplerianVop::operator()(const State& state, const Vehicl
     const UnitlessPerTime deccdt =
         h / mu * sinTA * radialPert + 1.0 / (mu * h) * ((hSquared + mu * R) * cosTA + mu * ecc * R) * tangentialPert;
     const Velocity dadt = 2.0 * a * (1.0 / h * dhdt + ecc / (1 - ecc * ecc) * deccdt); // TODO: Someone check this. It's my derivation from h = sqrt(mu*a(1-ecc^2))
-    const AngularRate dincdt = R / h * cosU * normalPert * (isq_angle::cotes_angle);
-    const AngularRate dthetadt =
+    const AngularVelocity dincdt = R / h * cosU * normalPert * (isq_angle::cotes_angle);
+    const AngularVelocity dthetadt =
         (hOverRSquared + (1 / (ecc * h)) * ((hSquared / mu) * cosTA * radialPert - (hSquared / mu + R) * sinTA * tangentialPert)) *
         (isq_angle::cotes_angle);
-    const AngularRate draandt = R * sinU / (h * sin(inc)) * normalPert * (isq_angle::cotes_angle);
-    const AngularRate dwdt    = (-dthetadt + (hOverRSquared * isq_angle::cotes_angle - draandt * cos(inc)));
+    const AngularVelocity draandt = R * sinU / (h * sin(inc)) * normalPert * (isq_angle::cotes_angle);
+    const AngularVelocity dwdt    = (-dthetadt + (hOverRSquared * isq_angle::cotes_angle - draandt * cos(inc)));
 
     return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }

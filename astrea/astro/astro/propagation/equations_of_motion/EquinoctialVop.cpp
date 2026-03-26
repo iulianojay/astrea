@@ -94,7 +94,7 @@ OrbitalElementPartials EquinoctialVop::operator()(const State& state, const Vehi
     const UnitlessPerTime dgdt = sqPOverMu * (-radialPert * cosL + ((w + 1) * sinL + g) / w * tangentialPert + g * termA); // TODO: My notes say: 'f * termA'. Find a second source
     const UnitlessPerTime dhdt = termB * cosL * normalPert;
     const UnitlessPerTime dkdt = termB * sinL * normalPert;
-    const AngularRate dLdt     = (sqrt(mu * p) * w * w / (p * p) + sqPOverMu * termA) * (isq_angle::cotes_angle);
+    const AngularVelocity dLdt = (sqrt(mu * p) * w * w / (p * p) + sqPOverMu * termA) * (isq_angle::cotes_angle);
 
     return EquinoctialPartial(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
 }

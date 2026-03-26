@@ -368,7 +368,7 @@ TEST_F(EquinoctialTest, EquinoctialPartialMultiplicationByTime)
     UnitlessPerTime gDot = 0.002 / s;
     UnitlessPerTime hDot = 0.003 / s;
     UnitlessPerTime kDot = 0.004 / s;
-    AngularRate LDot     = 0.5 * rad / s;
+    AngularVelocity LDot = 0.5 * rad / s;
     EquinoctialPartial partial(pDot, fDot, gDot, hDot, kDot, LDot);
 
     Time dt            = 2.0 * s;
@@ -391,7 +391,7 @@ TEST_F(EquinoctialTest, EquinoctialPartialStream)
     UnitlessPerTime gDot = 0.002 / s;
     UnitlessPerTime hDot = 0.003 / s;
     UnitlessPerTime kDot = 0.004 / s;
-    AngularRate LDot     = 0.5 * rad / s;
+    AngularVelocity LDot = 0.5 * rad / s;
     EquinoctialPartial partial(pDot, fDot, gDot, hDot, kDot, LDot);
 
     std::stringstream ss;

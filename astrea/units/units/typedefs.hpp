@@ -81,7 +81,7 @@ using UnitlessPerTime = mp_units::quantity<detail::unitless / detail::time_unit>
 /**
  * @brief Definition for an angular rate quantity.
  */
-using AngularRate = mp_units::quantity<detail::angle_unit / detail::time_unit>;
+using AngularVelocity = mp_units::quantity<detail::angle_unit / detail::time_unit>;
 
 /**
  * @brief Definition for an angular acceleration quantity.
@@ -106,7 +106,7 @@ using BodyUnitlessPerTime = mp_units::quantity<detail::unitless / JulianCentury>
 /**
  * @brief Definition for a body-related angular rate.
  */
-using BodyAngularRate = mp_units::quantity<detail::angle_unit / JulianCentury>;
+using BodyAngularVelocity = mp_units::quantity<detail::angle_unit / JulianCentury>;
 
 /**
  * @brief Definition for an acceleration quantity.

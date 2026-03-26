@@ -90,14 +90,14 @@ OrbitalElementPartials J2MeanVop::operator()(const State& state, const Vehicle& 
     // Calculate the derivatives of the Keplerian elements - only raan and w considered
     static const Velocity dadt          = 0.0 * km / s;
     static const UnitlessPerTime deccdt = 0.0 * one / s;
-    const AngularRate _dincdt           = R / h * cos(u) * normalPert * rad;
-    const AngularRate dthetadt          = h / (R * R) * rad;
-    const AngularRate draandt           = R * sin(u) / (h * sin(inc)) * normalPert * rad;
-    const AngularRate dwdt              = -draandt * cos(inc);
+    const AngularVelocity _dincdt       = R / h * cos(u) * normalPert * rad;
+    const AngularVelocity dthetadt      = h / (R * R) * rad;
+    const AngularVelocity draandt       = R * sin(u) / (h * sin(inc)) * normalPert * rad;
+    const AngularVelocity dwdt          = -draandt * cos(inc);
 
     // Loop to prevent crashes due to circular and zero inclination orbits.
     // Will cause an error
-    AngularRate dincdt = _dincdt;
+    AngularVelocity dincdt = _dincdt;
     if (inc == incTol && dincdt <= incTol * one / s) { dincdt = 0.0 * rad / s; }
 
     return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);

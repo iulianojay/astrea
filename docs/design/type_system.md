@@ -37,7 +37,7 @@ namespace astrea {
                                         mp_units::pow<2>(detail::time_unit)>;
     using Acceleration = mp_units::quantity<detail::distance_unit / 
                                            mp_units::pow<2>(detail::time_unit)>;
-    using AngularRate = mp_units::quantity<detail::angle_unit / detail::time_unit>;
+    using AngularVelocity = mp_units::quantity<detail::angle_unit / detail::time_unit>;
     
     // Specialized quantities
     using Force = mp_units::quantity<detail::mass_unit * detail::distance_unit / 

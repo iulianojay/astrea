@@ -116,8 +116,8 @@ Angle julian_date_to_sidereal_time(const JulianDate& _julianDate)
         (100.4606184 * one + 36000.77005361 * T0 + 0.00038793 * T0 * T0 - 2.583e-8 * T0 * T0 * T0) * deg;
 
     // GST
-    static const AngularRate earthRotRate = planetary_bodies::Earth().get_rotation_rate(); // in rad/s
-    const Angle greenwichSiderealTime     = wrap_angle(greenwichUniversalTime + earthRotRate * universalTime);
+    static const AngularVelocity earthRotRate = planetary_bodies::Earth().get_rotation_rate(); // in rad/s
+    const Angle greenwichSiderealTime         = wrap_angle(greenwichUniversalTime + earthRotRate * universalTime);
 
     return greenwichSiderealTime;
 }

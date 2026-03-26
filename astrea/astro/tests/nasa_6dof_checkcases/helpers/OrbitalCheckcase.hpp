@@ -112,9 +112,9 @@ struct OrbitalCheckcaseRow {
     std::optional<double> eulerAngleWrtEi_rad_Roll; //!< Euler angle (roll) with respect to Earth inertial frame in radians
     std::optional<double> eulerAngleWrtEi_rad_Pitch; //!< Euler angle (pitch) with respect to Earth inertial frame in radians
     std::optional<double> eulerAngleWrtEi_rad_Yaw; //!< Euler angle (yaw) with respect to Earth inertial frame in radians
-    std::optional<double> bodyAngularRateWrtEi_rad_s_Roll; //!< Body angular rate (roll) with respect to Earth inertial frame in radians per second
-    std::optional<double> bodyAngularRateWrtEi_rad_s_Pitch; //!< Body angular rate (pitch) with respect to Earth inertial frame in radians per second
-    std::optional<double> bodyAngularRateWrtEi_rad_s_Yaw; //!< Body angular rate (yaw) with respect to Earth inertial frame in radians per second
+    std::optional<double> bodyAngularVelocityWrtEi_rad_s_Roll; //!< Body angular rate (roll) with respect to Earth inertial frame in radians per second
+    std::optional<double> bodyAngularVelocityWrtEi_rad_s_Pitch; //!< Body angular rate (pitch) with respect to Earth inertial frame in radians per second
+    std::optional<double> bodyAngularVelocityWrtEi_rad_s_Yaw; //!< Body angular rate (yaw) with respect to Earth inertial frame in radians per second
     std::optional<double> altitudeMsl_m;          //!< Altitude above mean sea level in meters
     std::optional<double> airDensity_kg_m3;       //!< Air density in kilograms per cubic meter
     std::optional<double> ambientTemperature_dgK; //!< Ambient temperature in degrees Kelvin

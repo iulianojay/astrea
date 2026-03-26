@@ -46,20 +46,20 @@ static const CelestialBodyParameters DEFAULT_TITANIA_PARAMS{
     .j2                = Unitless(0.0 * mp_units::one),
     .j3                = Unitless(0.0 * mp_units::one),
     .axialTilt         = Angle(0.0 * mp_units::angular::unit_symbols::deg),
-    .rotationRate      = AngularRate(41.351424275146869 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
-    .siderealPeriod    = Time(8.70586 * mp_units::non_si::day),
-    .semimajorAxis     = Distance(436.30e3 * mp_units::si::unit_symbols::km),
-    .eccentricity      = Unitless(0.0011 * mp_units::one),
-    .inclination       = Angle(0.08 * mp_units::angular::unit_symbols::deg),
-    .rightAscension    = Angle(99.771 * mp_units::angular::unit_symbols::deg),
+    .rotationRate = AngularVelocity(41.351424275146869 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
+    .siderealPeriod         = Time(8.70586 * mp_units::non_si::day),
+    .semimajorAxis          = Distance(436.30e3 * mp_units::si::unit_symbols::km),
+    .eccentricity           = Unitless(0.0011 * mp_units::one),
+    .inclination            = Angle(0.08 * mp_units::angular::unit_symbols::deg),
+    .rightAscension         = Angle(99.771 * mp_units::angular::unit_symbols::deg),
     .longitudeOfPerigee     = Angle(24.17 * mp_units::angular::unit_symbols::deg),
     .meanLongitude          = Angle(48.785 * mp_units::angular::unit_symbols::deg),
     .semimajorAxisRate      = InterplanetaryVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury),
     .eccentricityRate       = BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),
-    .inclinationRate        = BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .rightAscensionRate     = BodyAngularRate(663360.1 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .longitudeOfPerigeeRate = BodyAngularRate(1465712.68 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .meanLongitudeRate      = BodyAngularRate(5438764533.33 * mp_units::angular::unit_symbols::deg / JulianCentury)
+    .inclinationRate        = BodyAngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .rightAscensionRate     = BodyAngularVelocity(663360.1 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .longitudeOfPerigeeRate = BodyAngularVelocity(1465712.68 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .meanLongitudeRate      = BodyAngularVelocity(5438764533.33 * mp_units::angular::unit_symbols::deg / JulianCentury)
 };
 
 /**

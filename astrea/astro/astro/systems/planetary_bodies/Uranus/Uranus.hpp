@@ -46,20 +46,20 @@ static const CelestialBodyParameters DEFAULT_URANUS_PARAMS{
     .j2                = Unitless(3343.43e-6 * mp_units::one),
     .j3                = Unitless(0.0 * mp_units::one),
     .axialTilt         = Angle(82.23 * mp_units::angular::unit_symbols::deg),
-    .rotationRate      = AngularRate(-501.1600928074246 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
-    .siderealPeriod    = Time(30685.4 * mp_units::non_si::day),
-    .semimajorAxis     = Distance(19.18916464 * mp_units::iau::unit_symbols::au),
-    .eccentricity      = Unitless(0.04725744 * mp_units::one),
-    .inclination       = Angle(0.77263783 * mp_units::angular::unit_symbols::deg),
-    .rightAscension    = Angle(74.01692503 * mp_units::angular::unit_symbols::deg),
+    .rotationRate = AngularVelocity(-501.1600928074246 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
+    .siderealPeriod         = Time(30685.4 * mp_units::non_si::day),
+    .semimajorAxis          = Distance(19.18916464 * mp_units::iau::unit_symbols::au),
+    .eccentricity           = Unitless(0.04725744 * mp_units::one),
+    .inclination            = Angle(0.77263783 * mp_units::angular::unit_symbols::deg),
+    .rightAscension         = Angle(74.01692503 * mp_units::angular::unit_symbols::deg),
     .longitudeOfPerigee     = Angle(170.95427630 * mp_units::angular::unit_symbols::deg),
     .meanLongitude          = Angle(313.23810451 * mp_units::angular::unit_symbols::deg),
     .semimajorAxisRate      = InterplanetaryVelocity(-0.00196176 * mp_units::iau::unit_symbols::au / JulianCentury),
     .eccentricityRate       = BodyUnitlessPerTime(-0.00004397 * mp_units::one / JulianCentury),
-    .inclinationRate        = BodyAngularRate(-0.00242939 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .rightAscensionRate     = BodyAngularRate(0.04240589 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .longitudeOfPerigeeRate = BodyAngularRate(0.40805281 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .meanLongitudeRate      = BodyAngularRate(428.48202785 * mp_units::angular::unit_symbols::deg / JulianCentury)
+    .inclinationRate        = BodyAngularVelocity(-0.00242939 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .rightAscensionRate     = BodyAngularVelocity(0.04240589 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .longitudeOfPerigeeRate = BodyAngularVelocity(0.40805281 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .meanLongitudeRate      = BodyAngularVelocity(428.48202785 * mp_units::angular::unit_symbols::deg / JulianCentury)
 };
 
 /**

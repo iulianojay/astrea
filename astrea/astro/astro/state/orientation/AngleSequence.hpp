@@ -1,7 +1,7 @@
 /**
- * @file EulerAngles.hpp
+ * @file AngleSequence.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Class representing Euler angles for orientation transformations between state/frames.
+ * @brief Class representing a sequence of angles (either Euler or Tait-Bryan) for orientation transformations between state/frames.
  * @date 2026-03-22
  *
  * @copyright Copyright (c) 2026 Jay Iuliano

@@ -52,9 +52,9 @@ class AngularSequenceVelocityTest : public testing::Test {
     Unitless REL_TOL = 1.0e-10 * one;
 
     // Test angular rates
-    AngularRate angularRate1 = 0.1 * rad / s;
-    AngularRate angularRate2 = 0.2 * rad / s;
-    AngularRate angularRate3 = 0.3 * rad / s;
+    AngularVelocity angularRate1 = 0.1 * rad / s;
+    AngularVelocity angularRate2 = 0.2 * rad / s;
+    AngularVelocity angularRate3 = 0.3 * rad / s;
 };
 
 int main(int argc, char** argv)
@@ -117,7 +117,7 @@ TEST_F(AngularSequenceVelocityTest, TestTaitBryanAngularVelocityGetters)
     ASSERT_EQ_QUANTITY(taitBryanVel[2], angularRate3, REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestAngularRateModification)
+TEST_F(AngularSequenceVelocityTest, TestAngularVelocityModification)
 {
     TestTaitBryanAngularVel taitBryanVel(angularRate1, angularRate2, angularRate3);
 
@@ -307,7 +307,7 @@ TEST_F(AngularSequenceVelocityTest, TestTimeOperations)
     ASSERT_EQ_QUANTITY(acceleration.get_psi_ddot(), 0.15 * rad / (s * s), REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestGetAngularRatesMethod)
+TEST_F(AngularSequenceVelocityTest, TestGetAngularVelocitysMethod)
 {
     TestEulerAngularVel eulerVel(angularRate1, angularRate2, angularRate3);
 
@@ -322,12 +322,12 @@ TEST_F(AngularSequenceVelocityTest, TestGetAngularRatesMethod)
     ASSERT_EQ_QUANTITY(eulerVel.get_phi_dot(), 0.5 * rad / s, REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestLargeAngularRates)
+TEST_F(AngularSequenceVelocityTest, TestLargeAngularVelocitys)
 {
     // Test with larger angular rates to ensure no overflow/underflow issues
-    AngularRate largeRate1 = 100.0 * rad / s;
-    AngularRate largeRate2 = -50.0 * rad / s;
-    AngularRate largeRate3 = 200.0 * rad / s;
+    AngularVelocity largeRate1 = 100.0 * rad / s;
+    AngularVelocity largeRate2 = -50.0 * rad / s;
+    AngularVelocity largeRate3 = 200.0 * rad / s;
 
     TestEulerAngularVel eulerVel(largeRate1, largeRate2, largeRate3);
 
@@ -342,10 +342,10 @@ TEST_F(AngularSequenceVelocityTest, TestLargeAngularRates)
     ASSERT_EQ_QUANTITY(doubledVel.get_psi_dot(), 400.0 * rad / s, REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestZeroAngularRates)
+TEST_F(AngularSequenceVelocityTest, TestZeroAngularVelocitys)
 {
     // Test with zero angular rates
-    AngularRate zeroRate = 0.0 * rad / s;
+    AngularVelocity zeroRate = 0.0 * rad / s;
     TestEulerAngularVel zeroVel(zeroRate, zeroRate, zeroRate);
 
     ASSERT_EQ_QUANTITY(zeroVel.get_phi_dot(), zeroRate, REL_TOL);
@@ -364,8 +364,8 @@ TEST_F(AngularSequenceVelocityTest, TestZeroAngularRates)
 TEST_F(AngularSequenceVelocityTest, TestUnitConversion)
 {
     // Test with different units (deg/s vs rad/s)
-    AngularRate rateInDegPerSec = 30.0 * deg / s;
-    AngularRate rateInRadPerSec = rateInDegPerSec;
+    AngularVelocity rateInDegPerSec = 30.0 * deg / s;
+    AngularVelocity rateInRadPerSec = rateInDegPerSec;
 
     TestEulerAngularVel eulerVel1(rateInDegPerSec, rateInDegPerSec, rateInDegPerSec);
     TestEulerAngularVel eulerVel2(rateInRadPerSec, rateInRadPerSec, rateInRadPerSec);

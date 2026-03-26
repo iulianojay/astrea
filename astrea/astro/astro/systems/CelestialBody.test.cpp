@@ -135,7 +135,7 @@ TEST_F(CelestialBodyTest, GetAxialTilt) { ASSERT_EQ_QUANTITY(earth.get_axial_til
 
 TEST_F(CelestialBodyTest, GetRotationRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_rotation_rate(), AngularRate(7.29211514670638e-5 * rad / s), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_rotation_rate(), AngularVelocity(7.29211514670638e-5 * rad / s), REL_TOL);
 }
 
 TEST_F(CelestialBodyTest, GetSiderealPeriod)
@@ -195,22 +195,22 @@ TEST_F(CelestialBodyTest, GetEccentricityRate)
 
 TEST_F(CelestialBodyTest, GetInclinationRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_inclination_rate(), BodyAngularRate(-0.01294668 * deg / JulianCentury), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_inclination_rate(), BodyAngularVelocity(-0.01294668 * deg / JulianCentury), REL_TOL);
 }
 
 TEST_F(CelestialBodyTest, GetRightAscensionRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_right_ascension_rate(), BodyAngularRate(0.0 * deg / JulianCentury), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_right_ascension_rate(), BodyAngularVelocity(0.0 * deg / JulianCentury), REL_TOL);
 }
 
 TEST_F(CelestialBodyTest, GetLongitudeOfPerigeeRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_longitude_of_perigee_rate(), BodyAngularRate(0.32327364 * deg / JulianCentury), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_longitude_of_perigee_rate(), BodyAngularVelocity(0.32327364 * deg / JulianCentury), REL_TOL);
 }
 
 TEST_F(CelestialBodyTest, GetMeanLongitudeRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_mean_longitude_rate(), BodyAngularRate(35999.37244981 * deg / JulianCentury), REL_TOL);
+    ASSERT_EQ_QUANTITY(earth.get_mean_longitude_rate(), BodyAngularVelocity(35999.37244981 * deg / JulianCentury), REL_TOL);
 }
 
 // Vallado, Ex. 8.5
@@ -321,7 +321,7 @@ TEST_F(CelestialBodyTest, FindAtmosphericDensity)
           .j2                     = Unitless(0.0 * one),
           .j3                     = Unitless(0.0 * one),
           .axialTilt              = Angle(0.0 * rad),
-          .rotationRate           = AngularRate(0.0 * rad / s),
+          .rotationRate           = AngularVelocity(0.0 * rad / s),
           .siderealPeriod         = Time(0.0 * s),
           .semimajorAxis          = Distance(0.0 * km),
           .eccentricity           = Unitless(0.0 * one),
@@ -331,10 +331,10 @@ TEST_F(CelestialBodyTest, FindAtmosphericDensity)
           .meanLongitude          = Angle(0.0 * rad),
           .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / s),
           .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / s),
-          .inclinationRate        = BodyAngularRate(0.0 * rad / s),
-          .rightAscensionRate     = BodyAngularRate(0.0 * rad / s),
-          .longitudeOfPerigeeRate = BodyAngularRate(0.0 * rad / s),
-          .meanLongitudeRate      = BodyAngularRate(0.0 * rad / s) }
+          .inclinationRate        = BodyAngularVelocity(0.0 * rad / s),
+          .rightAscensionRate     = BodyAngularVelocity(0.0 * rad / s),
+          .longitudeOfPerigeeRate = BodyAngularVelocity(0.0 * rad / s),
+          .meanLongitudeRate      = BodyAngularVelocity(0.0 * rad / s) }
     );
 
     // Test Earth (has atmosphere in derived class)
