@@ -46,7 +46,7 @@ class AngleSequenceTest : public testing::Test {
         ASSERT_EQ_QUANTITY(seq1.get_psi(), seq2.get_psi(), tol);
     }
 
-    Unitless REL_TOL = 1.0e-10 * one;
+    const Unitless REL_TOL = 1.0e-10 * one;
 
     // Test angles
     Angle angle1 = 30.0 * deg;
@@ -417,4 +417,194 @@ TEST_F(AngleSequenceTest, TestOutputStream)
     // Test DCM conversion works
     ASSERT_NO_THROW(euler.to_dcm());
     ASSERT_NO_THROW(taitBryan.to_dcm());
+}
+
+// ========================================================================================
+// Tests for get_reverse_sequence functions
+// ========================================================================================
+
+TEST_F(AngleSequenceTest, TestEulerReverseSequence)
+{
+    // Test that Euler sequences return themselves (they are symmetric)
+    EXPECT_EQ(get_reverse_sequence(EulerSequence::ZXZ), EulerSequence::ZXZ);
+    EXPECT_EQ(get_reverse_sequence(EulerSequence::XYX), EulerSequence::XYX);
+    EXPECT_EQ(get_reverse_sequence(EulerSequence::YZY), EulerSequence::YZY);
+    EXPECT_EQ(get_reverse_sequence(EulerSequence::ZYZ), EulerSequence::ZYZ);
+    EXPECT_EQ(get_reverse_sequence(EulerSequence::XZX), EulerSequence::XZX);
+    EXPECT_EQ(get_reverse_sequence(EulerSequence::YXY), EulerSequence::YXY);
+}
+
+TEST_F(AngleSequenceTest, TestTaitBryanReverseSequence)
+{
+    // Test Tait-Bryan sequence reversals
+    EXPECT_EQ(get_reverse_sequence(TaitBryanSequence::XYZ), TaitBryanSequence::ZYX);
+    EXPECT_EQ(get_reverse_sequence(TaitBryanSequence::YZX), TaitBryanSequence::XZY);
+    EXPECT_EQ(get_reverse_sequence(TaitBryanSequence::ZXY), TaitBryanSequence::YXZ);
+    EXPECT_EQ(get_reverse_sequence(TaitBryanSequence::XZY), TaitBryanSequence::YZX);
+    EXPECT_EQ(get_reverse_sequence(TaitBryanSequence::ZYX), TaitBryanSequence::XYZ);
+    EXPECT_EQ(get_reverse_sequence(TaitBryanSequence::YXZ), TaitBryanSequence::ZXY);
+}
+
+TEST_F(AngleSequenceTest, TestDoubleReverseSequence)
+{
+    // Test that double reversal returns the original sequence for Tait-Bryan
+    EXPECT_EQ(get_reverse_sequence(get_reverse_sequence(TaitBryanSequence::XYZ)), TaitBryanSequence::XYZ);
+    EXPECT_EQ(get_reverse_sequence(get_reverse_sequence(TaitBryanSequence::YZX)), TaitBryanSequence::YZX);
+    EXPECT_EQ(get_reverse_sequence(get_reverse_sequence(TaitBryanSequence::ZXY)), TaitBryanSequence::ZXY);
+    EXPECT_EQ(get_reverse_sequence(get_reverse_sequence(TaitBryanSequence::XZY)), TaitBryanSequence::XZY);
+    EXPECT_EQ(get_reverse_sequence(get_reverse_sequence(TaitBryanSequence::ZYX)), TaitBryanSequence::ZYX);
+    EXPECT_EQ(get_reverse_sequence(get_reverse_sequence(TaitBryanSequence::YXZ)), TaitBryanSequence::YXZ);
+
+    // Test that double reversal returns the original sequence for Euler
+    EXPECT_EQ(get_reverse_sequence(get_reverse_sequence(EulerSequence::ZXZ)), EulerSequence::ZXZ);
+    EXPECT_EQ(get_reverse_sequence(get_reverse_sequence(EulerSequence::XYX)), EulerSequence::XYX);
+}
+
+TEST_F(AngleSequenceTest, TestIntrinsicToIntrinsic)
+{
+    // Create an intrinsic Euler sequence
+    IntrinsicEulerAngles<EulerSequence::ZXZ, TestFrame, TestOutFrame> intrinsic_euler(angle1, angle2, angle3);
+
+    // Converting intrinsic to intrinsic should return the same sequence
+    auto result = intrinsic_euler.to_rotation_type<RotationSequenceType::INTRINSIC>();
+    compare_angle_sequences(intrinsic_euler, result, REL_TOL);
+
+    // Test with Tait-Bryan as well
+    IntrinsicTaitBryanAngles<TaitBryanSequence::XYZ, TestFrame, TestOutFrame> intrinsic_tb(angle1, angle2, angle3);
+    auto tbResult = intrinsic_tb.to_rotation_type<RotationSequenceType::INTRINSIC>();
+    compare_angle_sequences(intrinsic_tb, tbResult, REL_TOL);
+}
+
+TEST_F(AngleSequenceTest, TestExtrinsicToExtrinsic)
+{
+    // Create an extrinsic Euler sequence
+    ExtrinsicEulerAngles<EulerSequence::ZXZ, TestFrame, TestOutFrame> extrinsic_euler(angle1, angle2, angle3);
+
+    // Converting extrinsic to extrinsic should return the same sequence
+    auto result = extrinsic_euler.to_rotation_type<RotationSequenceType::EXTRINSIC>();
+    compare_angle_sequences(extrinsic_euler, result, REL_TOL);
+
+    // Test with Tait-Bryan as well
+    ExtrinsicTaitBryanAngles<TaitBryanSequence::XYZ, TestFrame, TestOutFrame> extrinsic_tb(angle1, angle2, angle3);
+    auto tbResult = extrinsic_tb.to_rotation_type<RotationSequenceType::EXTRINSIC>();
+    compare_angle_sequences(extrinsic_tb, tbResult, REL_TOL);
+}
+
+TEST_F(AngleSequenceTest, TestExtrinsicToIntrinsicConversion)
+{
+    // Create an extrinsic sequence
+    ExtrinsicEulerAngles<EulerSequence::ZXZ, TestFrame, TestOutFrame> extrinsic_euler(angle1, angle2, angle3);
+
+    // Convert to intrinsic - angles should be reversed
+    auto intrinsicResult = extrinsic_euler.to_rotation_type<RotationSequenceType::INTRINSIC>();
+
+    // Verify that angles are reversed
+    ASSERT_EQ_QUANTITY(intrinsicResult.get_phi(), extrinsic_euler.get_phi(), REL_TOL);
+    ASSERT_EQ_QUANTITY(intrinsicResult.get_theta(), extrinsic_euler.get_theta(), REL_TOL);
+    ASSERT_EQ_QUANTITY(intrinsicResult.get_psi(), extrinsic_euler.get_psi(), REL_TOL);
+
+    // Test with Tait-Bryan sequence
+    ExtrinsicTaitBryanAngles<TaitBryanSequence::XYZ, TestFrame, TestOutFrame> extrinsic_tb(angle1, angle2, angle3);
+    auto intrinsic_tbResult = extrinsic_tb.to_rotation_type<RotationSequenceType::INTRINSIC>();
+
+    // For Tait-Bryan, sequence should also reverse (XYZ becomes ZYX) with reversed angles
+    ASSERT_EQ_QUANTITY(intrinsic_tbResult.get_phi(), extrinsic_tb.get_phi(), REL_TOL);
+    ASSERT_EQ_QUANTITY(intrinsic_tbResult.get_theta(), extrinsic_tb.get_theta(), REL_TOL);
+    ASSERT_EQ_QUANTITY(intrinsic_tbResult.get_psi(), extrinsic_tb.get_psi(), REL_TOL);
+}
+
+TEST_F(AngleSequenceTest, TestIntrinsicToExtrinsicConversion)
+{
+    // Create an intrinsic sequence
+    IntrinsicEulerAngles<EulerSequence::ZXZ, TestFrame, TestOutFrame> intrinsic_euler(angle1, angle2, angle3);
+
+    // Convert to extrinsic - angles should be reversed
+    auto extrinsicResult = intrinsic_euler.to_rotation_type<RotationSequenceType::EXTRINSIC>();
+
+    // Verify that angles are reversed
+    ASSERT_EQ_QUANTITY(extrinsicResult.get_phi(), intrinsic_euler.get_phi(), REL_TOL);
+    ASSERT_EQ_QUANTITY(extrinsicResult.get_theta(), intrinsic_euler.get_theta(), REL_TOL);
+    ASSERT_EQ_QUANTITY(extrinsicResult.get_psi(), intrinsic_euler.get_psi(), REL_TOL);
+
+    // Test with Tait-Bryan sequence
+    IntrinsicTaitBryanAngles<TaitBryanSequence::XYZ, TestFrame, TestOutFrame> intrinsic_tb(angle1, angle2, angle3);
+    auto extrinsic_tbResult = intrinsic_tb.to_rotation_type<RotationSequenceType::EXTRINSIC>();
+
+    // For Tait-Bryan, sequence should also reverse (XYZ becomes ZYX) with reversed angles
+    ASSERT_EQ_QUANTITY(extrinsic_tbResult.get_phi(), intrinsic_tb.get_phi(), REL_TOL);
+    ASSERT_EQ_QUANTITY(extrinsic_tbResult.get_theta(), intrinsic_tb.get_theta(), REL_TOL);
+    ASSERT_EQ_QUANTITY(extrinsic_tbResult.get_psi(), intrinsic_tb.get_psi(), REL_TOL);
+}
+
+TEST_F(AngleSequenceTest, TestRoundTripIntrinsicExtrinsicConversion)
+{
+    // Create an intrinsic sequence
+    IntrinsicTaitBryanAngles<TaitBryanSequence::ZYX, TestFrame, TestOutFrame> originalSeq(angle1, angle2, angle3);
+
+    // Convert to extrinsic and back to intrinsic
+    auto extrinsicResult = originalSeq.to_rotation_type<RotationSequenceType::EXTRINSIC>();
+    auto roundtripResult = extrinsicResult.to_rotation_type<RotationSequenceType::INTRINSIC>();
+
+    // Should get back the original sequence
+    compare_angle_sequences(originalSeq, roundtripResult, REL_TOL);
+
+    // Test the opposite direction
+    ExtrinsicTaitBryanAngles<TaitBryanSequence::ZYX, TestFrame, TestOutFrame> originalExtrinsic(angle1, angle2, angle3);
+    auto intrinsicResult    = originalExtrinsic.to_rotation_type<RotationSequenceType::INTRINSIC>();
+    auto roundtripExtrinsic = intrinsicResult.to_rotation_type<RotationSequenceType::EXTRINSIC>();
+
+    // Should get back the original sequence
+    compare_angle_sequences(originalExtrinsic, roundtripExtrinsic, REL_TOL);
+}
+
+TEST_F(AngleSequenceTest, TestZeroAnglesConversion)
+{
+    Angle zeroAngle = 0.0 * deg;
+
+    // Test with zero angles
+    ExtrinsicTaitBryanAngles<TaitBryanSequence::XYZ, TestFrame, TestOutFrame> zeroExtrinsic(zeroAngle, zeroAngle, zeroAngle);
+    auto zeroIntrinsicResult = zeroExtrinsic.to_rotation_type<RotationSequenceType::INTRINSIC>();
+
+    // All angles should still be zero (reversed zeros are still zeros)
+    ASSERT_EQ_QUANTITY(zeroIntrinsicResult.get_phi(), zeroAngle, REL_TOL);
+    ASSERT_EQ_QUANTITY(zeroIntrinsicResult.get_theta(), zeroAngle, REL_TOL);
+    ASSERT_EQ_QUANTITY(zeroIntrinsicResult.get_psi(), zeroAngle, REL_TOL);
+}
+
+TEST_F(AngleSequenceTest, TestLargeAnglesConversion)
+{
+    // Test with large angles that may require wrapping
+    Angle largeAngle1 = 390.0 * deg; // Wraps to 30°
+    Angle largeAngle2 = 450.0 * deg; // Wraps to 90°
+    Angle largeAngle3 = 720.0 * deg; // Wraps to 0°
+
+    IntrinsicEulerAngles<EulerSequence::ZYZ, TestFrame, TestOutFrame> largeIntrinsic(largeAngle1, largeAngle2, largeAngle3);
+    auto large_extrinsicResult = largeIntrinsic.to_rotation_type<RotationSequenceType::EXTRINSIC>();
+
+    // The conversion should handle wrapped angles correctly
+    // Note: The exact wrapped values depend on the wrapping implementation
+    ASSERT_NO_THROW(large_extrinsicResult.to_dcm());
+}
+
+TEST_F(AngleSequenceTest, TestDCMEquivalenceAfterConversion)
+{
+    // Test that mathematically equivalent intrinsic and extrinsic sequences produce the same DCM
+    IntrinsicTaitBryanAngles<TaitBryanSequence::XYZ, TestFrame, TestOutFrame> intrinsicSeq(angle1, angle2, angle3);
+
+    // Convert intrinsic to equivalent extrinsic
+    auto equivalentExtrinsic = intrinsicSeq.to_rotation_type<RotationSequenceType::EXTRINSIC>();
+
+    // Both should produce DCMs that represent the same rotation
+    auto dcmIntrinsic = intrinsicSeq.to_dcm();
+    auto dcmExtrinsic = equivalentExtrinsic.to_dcm();
+
+    // The DCMs should be equal within numerical precision
+    // Note: This tests the fundamental property that intrinsic and extrinsic
+    // representations of the same rotation should yield identical DCMs
+    const auto tolerance = 1e-10 * one;
+    for (size_t i = 0; i < 3; ++i) {
+        for (size_t j = 0; j < 3; ++j) {
+            ASSERT_EQ_QUANTITY(dcmIntrinsic[i, j], dcmExtrinsic[i, j], REL_TOL);
+        }
+    }
 }

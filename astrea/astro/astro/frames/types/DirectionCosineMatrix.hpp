@@ -36,8 +36,13 @@ namespace astro {
 namespace {
 
 using mp_units::one;
-using mp_units::angular::cos;
-using mp_units::angular::sin;
+
+auto sin_cos_pack(const Angle& angle)
+{
+    using mp_units::angular::cos;
+    using mp_units::angular::sin;
+    return std::make_pair(sin(angle), cos(angle));
+}
 
 } // namespace
 
@@ -85,9 +90,10 @@ class DirectionCosineMatrix {
      */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> X(const Angle& theta)
     {
+        const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { 1.0 * one, 0.0 * one, 0.0 * one },
-                                                               { 0.0 * one, cos(theta), -sin(theta) },
-                                                               { 0.0 * one, sin(theta), cos(theta) } };
+                                                               { 0.0 * one, cosTheta, -sinTheta },
+                                                               { 0.0 * one, sinTheta, cosTheta } };
     }
 
     /**
@@ -98,9 +104,10 @@ class DirectionCosineMatrix {
      */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> Y(const Angle& theta)
     {
-        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { cos(theta), 0.0 * one, sin(theta) },
+        const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { cosTheta, 0.0 * one, sinTheta },
                                                                { 0.0 * one, 1.0 * one, 0.0 * one },
-                                                               { -sin(theta), 0.0 * one, cos(theta) } };
+                                                               { -sinTheta, 0.0 * one, cosTheta } };
     }
 
     /**
@@ -111,8 +118,9 @@ class DirectionCosineMatrix {
      */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> Z(const Angle& theta)
     {
-        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { cos(theta), -sin(theta), 0.0 * one },
-                                                               { sin(theta), cos(theta), 0.0 * one },
+        const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { cosTheta, -sinTheta, 0.0 * one },
+                                                               { sinTheta, cosTheta, 0.0 * one },
                                                                { 0.0 * one, 0.0 * one, 1.0 * one } };
     }
 
@@ -120,18 +128,15 @@ class DirectionCosineMatrix {
      * @brief Creates a direction cosine matrix for a rotation around the X-axis, the Z-axis, and the X-axis again.
      *
      * @param alpha The angle of rotation around the X-axis.
-     * @param beta The angle of rotation around the Y-axis.
-     * @param gamma The angle of rotation around the Z-axis.
+     * @param beta The angle of rotation around the Z-axis.
+     * @param gamma The angle of rotation around the X-axis.
      * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
      */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> XZX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto cosAlpha = cos(alpha);
-        const auto sinAlpha = sin(alpha);
-        const auto cosBeta  = cos(beta);
-        const auto sinBeta  = sin(beta);
-        const auto cosGamma = cos(gamma);
-        const auto sinGamma = sin(gamma);
+        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
             { cosBeta, -cosGamma * sinBeta, sinBeta * sinGamma },
             { cosAlpha * sinBeta, cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma, -cosGamma * sinAlpha - cosAlpha * cosBeta * sinGamma },
@@ -139,14 +144,19 @@ class DirectionCosineMatrix {
         };
     }
 
+    /**
+     * @brief Creates a direction cosine matrix for a rotation around the X-axis, the Y-axis, and the X-axis again.
+     *
+     * @param alpha The angle of rotation around the X-axis.
+     * @param beta The angle of rotation around the Y-axis.
+     * @param gamma The angle of rotation around the X-axis.
+     * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
+     */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> XYX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto cosAlpha = cos(alpha);
-        const auto sinAlpha = sin(alpha);
-        const auto cosBeta  = cos(beta);
-        const auto sinBeta  = sin(beta);
-        const auto cosGamma = cos(gamma);
-        const auto sinGamma = sin(gamma);
+        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
             { cosBeta, sinBeta * sinGamma, cosGamma * sinBeta },
             { sinAlpha * sinBeta, cosAlpha * cosBeta - cosGamma * sinAlpha * sinBeta, -cosAlpha * sinGamma - cosBeta * cosGamma * sinAlpha },
@@ -154,14 +164,19 @@ class DirectionCosineMatrix {
         };
     }
 
+    /**
+     * @brief Creates a direction cosine matrix for a rotation around the Y-axis, the Z-axis, and the Y-axis again.
+     *
+     * @param alpha The angle of rotation around the Y-axis.
+     * @param beta The angle of rotation around the Z-axis.
+     * @param gamma The angle of rotation around the Y-axis.
+     * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
+     */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> YZY(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto cosAlpha = cos(alpha);
-        const auto sinAlpha = sin(alpha);
-        const auto cosBeta  = cos(beta);
-        const auto sinBeta  = sin(beta);
-        const auto cosGamma = cos(gamma);
-        const auto sinGamma = sin(gamma);
+        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
             { cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma, cosGamma * sinAlpha + cosAlpha * cosBeta * sinGamma, -cosAlpha * sinBeta },
             { -cosGamma * sinBeta, sinBeta * sinGamma, cosBeta },
@@ -169,14 +184,19 @@ class DirectionCosineMatrix {
         };
     }
 
+    /**
+     * @brief Creates a direction cosine matrix for a rotation around the Z-axis, the X-axis, and the Z-axis again.
+     *
+     * @param alpha The angle of rotation around the Z-axis.
+     * @param beta The angle of rotation around the X-axis.
+     * @param gamma The angle of rotation around the Z-axis.
+     * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
+     */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> ZXZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto cosAlpha = cos(alpha);
-        const auto sinAlpha = sin(alpha);
-        const auto cosBeta  = cos(beta);
-        const auto sinBeta  = sin(beta);
-        const auto cosGamma = cos(gamma);
-        const auto sinGamma = sin(gamma);
+        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{ { cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma,
                                                                  -cosAlpha * sinGamma - cosBeta * cosGamma * sinAlpha,
                                                                  sinAlpha * sinBeta },
@@ -186,14 +206,19 @@ class DirectionCosineMatrix {
                                                                { sinBeta * sinGamma, cosGamma * sinBeta, cosBeta } };
     }
 
+    /**
+     * @brief Creates a direction cosine matrix for a rotation around the Z-axis, the Y-axis, and the Z-axis again.
+     *
+     * @param alpha The angle of rotation around the Z-axis.
+     * @param beta The angle of rotation around the Y-axis.
+     * @param gamma The angle of rotation around the Z-axis.
+     * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
+     */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> ZYZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto cosAlpha = cos(alpha);
-        const auto sinAlpha = sin(alpha);
-        const auto cosBeta  = cos(beta);
-        const auto sinBeta  = sin(beta);
-        const auto cosGamma = cos(gamma);
-        const auto sinGamma = sin(gamma);
+        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
             { cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma, -cosGamma * sinAlpha - cosAlpha * cosBeta * sinGamma, cosAlpha * sinBeta },
             { cosAlpha * sinGamma + cosBeta * cosGamma * sinAlpha, cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma, sinAlpha * sinBeta },
@@ -202,14 +227,19 @@ class DirectionCosineMatrix {
     }
 
 
+    /**
+     * @brief Creates a direction cosine matrix for a rotation around the Y-axis, the X-axis, and the Y-axis again.
+     *
+     * @param alpha The angle of rotation around the Y-axis.
+     * @param beta The angle of rotation around the X-axis.
+     * @param gamma The angle of rotation around the Y-axis.
+     * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
+     */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> YXY(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto cosAlpha = cos(alpha);
-        const auto sinAlpha = sin(alpha);
-        const auto cosBeta  = cos(beta);
-        const auto sinBeta  = sin(beta);
-        const auto cosGamma = cos(gamma);
-        const auto sinGamma = sin(gamma);
+        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
             { cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma, sinBeta * sinGamma, cosGamma * sinAlpha + cosAlpha * cosBeta * sinGamma },
             { sinAlpha * sinBeta, cosBeta, -cosAlpha * sinBeta },
@@ -217,14 +247,19 @@ class DirectionCosineMatrix {
         };
     }
 
+    /**
+     * @brief Creates a direction cosine matrix for a rotation around the X-axis, then Y-axis, then Z-axis.
+     *
+     * @param alpha The angle of rotation around the X-axis.
+     * @param beta The angle of rotation around the Y-axis.
+     * @param gamma The angle of rotation around the Z-axis.
+     * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
+     */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> XYZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto cosAlpha = cos(alpha);
-        const auto sinAlpha = sin(alpha);
-        const auto cosBeta  = cos(beta);
-        const auto sinBeta  = sin(beta);
-        const auto cosGamma = cos(gamma);
-        const auto sinGamma = sin(gamma);
+        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
             { cosBeta * cosGamma, -cosBeta * sinGamma, sinBeta },
             { cosAlpha * sinGamma + cosGamma * sinAlpha * sinBeta, cosAlpha * cosGamma - sinAlpha * sinBeta * sinGamma, -cosBeta * sinAlpha },
@@ -232,14 +267,19 @@ class DirectionCosineMatrix {
         };
     }
 
+    /**
+     * @brief Creates a direction cosine matrix for a rotation around the Y-axis, then Z-axis, then X-axis.
+     *
+     * @param alpha The angle of rotation around the Y-axis.
+     * @param beta The angle of rotation around the Z-axis.
+     * @param gamma The angle of rotation around the X-axis.
+     * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
+     */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> YZX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto cosAlpha = cos(alpha);
-        const auto sinAlpha = sin(alpha);
-        const auto cosBeta  = cos(beta);
-        const auto sinBeta  = sin(beta);
-        const auto cosGamma = cos(gamma);
-        const auto sinGamma = sin(gamma);
+        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
             { cosAlpha * cosBeta, -sinBeta, cosBeta * sinAlpha },
             { cosGamma * sinAlpha + cosAlpha * sinBeta * sinGamma, cosBeta * cosGamma, sinAlpha * sinBeta * sinGamma - cosAlpha * cosGamma },
@@ -247,14 +287,19 @@ class DirectionCosineMatrix {
         };
     }
 
+    /**
+     * @brief Creates a direction cosine matrix for a rotation around the Z-axis, then X-axis, then Y-axis.
+     *
+     * @param alpha The angle of rotation around the Z-axis.
+     * @param beta The angle of rotation around the X-axis.
+     * @param gamma The angle of rotation around the Y-axis.
+     * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
+     */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> ZXY(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto cosAlpha = cos(alpha);
-        const auto sinAlpha = sin(alpha);
-        const auto cosBeta  = cos(beta);
-        const auto sinBeta  = sin(beta);
-        const auto cosGamma = cos(gamma);
-        const auto sinGamma = sin(gamma);
+        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
             { cosAlpha * cosGamma - sinAlpha * sinBeta * sinGamma, -cosBeta * sinAlpha, cosAlpha * sinGamma + cosGamma * sinAlpha * sinBeta },
             { cosGamma * sinAlpha + cosAlpha * sinBeta * sinGamma, cosAlpha * cosBeta, sinAlpha * sinGamma - cosAlpha * cosGamma * sinBeta },
@@ -262,14 +307,19 @@ class DirectionCosineMatrix {
         };
     }
 
+    /**
+     * @brief Creates a direction cosine matrix for a rotation around the X-axis, then Z-axis, then Y-axis.
+     *
+     * @param alpha The angle of rotation around the X-axis.
+     * @param beta The angle of rotation around the Z-axis.
+     * @param gamma The angle of rotation around the Y-axis.
+     * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
+     */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> XZY(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto cosAlpha = cos(alpha);
-        const auto sinAlpha = sin(alpha);
-        const auto cosBeta  = cos(beta);
-        const auto sinBeta  = sin(beta);
-        const auto cosGamma = cos(gamma);
-        const auto sinGamma = sin(gamma);
+        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
             { cosBeta * cosGamma, -sinBeta, cosBeta * sinGamma },
             { sinAlpha * sinGamma + cosAlpha * cosGamma * sinBeta, cosAlpha * cosBeta, cosAlpha * sinBeta * sinGamma - cosGamma * sinAlpha },
@@ -277,14 +327,19 @@ class DirectionCosineMatrix {
         };
     }
 
+    /**
+     * @brief Creates a direction cosine matrix for a rotation around the Z-axis, then Y-axis, then X-axis.
+     *
+     * @param alpha The angle of rotation around the Z-axis.
+     * @param beta The angle of rotation around the Y-axis.
+     * @param gamma The angle of rotation around the X-axis.
+     * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
+     */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> ZYX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto cosAlpha = cos(alpha);
-        const auto sinAlpha = sin(alpha);
-        const auto cosBeta  = cos(beta);
-        const auto sinBeta  = sin(beta);
-        const auto cosGamma = cos(gamma);
-        const auto sinGamma = sin(gamma);
+        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
             { cosAlpha * cosBeta, -cosBeta * sinAlpha, sinBeta },
             { cosAlpha * sinBeta * sinGamma + cosGamma * sinAlpha, cosAlpha * cosGamma - sinAlpha * sinBeta * sinGamma, -cosBeta * sinGamma },
@@ -292,14 +347,19 @@ class DirectionCosineMatrix {
         };
     }
 
+    /**
+     * @brief Creates a direction cosine matrix for a rotation around the Y-axis, then X-axis, then Z-axis.
+     *
+     * @param alpha The angle of rotation around the Y-axis.
+     * @param beta The angle of rotation around the X-axis.
+     * @param gamma The angle of rotation around the Z-axis.
+     * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
+     */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> YXZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto cosAlpha = cos(alpha);
-        const auto sinAlpha = sin(alpha);
-        const auto cosBeta  = cos(beta);
-        const auto sinBeta  = sin(beta);
-        const auto cosGamma = cos(gamma);
-        const auto sinGamma = sin(gamma);
+        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
+        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
+        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
         return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
             { cosAlpha * cosGamma + sinAlpha * sinBeta * sinGamma, cosGamma * sinAlpha * sinBeta - cosAlpha * sinGamma, cosBeta * sinAlpha },
             { cosBeta * sinGamma, cosBeta * cosGamma, -sinBeta },
