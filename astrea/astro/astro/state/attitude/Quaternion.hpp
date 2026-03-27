@@ -1,7 +1,7 @@
 /**
  * @file Quaternion.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Class representing a quaternion for orientation transformations between state/frames.
+ * @brief Class representing a quaternion for attitude transformations between state/frames.
  * @date 2026-03-22
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
@@ -29,14 +29,14 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/state/orientation/AngleSequence.hpp>
+#include <astro/state/attitude/AngleSequence.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
 
 /**
- * @brief Class representing a quaternion for orientation rotations between frames.
+ * @brief Class representing a quaternion for attitude rotations between frames.
  *
  * @tparam In_Frame_T The input frame type (e.g., ECI, ECEF).
  * @tparam Out_Frame_T The output frame type (e.g., ECI, ECEF).
@@ -509,10 +509,10 @@ class QuaternionPartial {
     }
 
     /**
-     * @brief Multiplies the quaternion derivative by a time quantity to get a quaternion representing the change in orientation over that time interval.
+     * @brief Multiplies the quaternion derivative by a time quantity to get a quaternion representing the change in attitude over that time interval.
      *
-     * @param dt The time quantity to multiply the quaternion derivative by, representing the time interval over which to apply the change in orientation.
-     * @return A new Quaternion that represents the change in orientation over the given time interval.
+     * @param dt The time quantity to multiply the quaternion derivative by, representing the time interval over which to apply the change in attitude.
+     * @return A new Quaternion that represents the change in attitude over the given time interval.
      */
     Quaternion<In_Frame_T, Out_Frame_T> operator*(const Time& dt) const
     {

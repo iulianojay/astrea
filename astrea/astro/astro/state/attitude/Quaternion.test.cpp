@@ -26,8 +26,8 @@
 
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/state/orientation/AngleSequence.hpp>
-#include <astro/state/orientation/Quaternion.hpp>
+#include <astro/state/attitude/AngleSequence.hpp>
+#include <astro/state/attitude/Quaternion.hpp>
 
 using namespace astrea;
 using namespace astro;

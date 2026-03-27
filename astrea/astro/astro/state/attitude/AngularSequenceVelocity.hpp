@@ -1,7 +1,7 @@
 /**
  * @file AngularSequenceVelocity.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Class representing angular sequence velocities for orientation transformations between state/frames.
+ * @brief Class representing angular sequence velocities for attitude transformations between state/frames.
  * @date 2026-03-22
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
@@ -26,7 +26,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/state/orientation/AngleSequence.hpp>
+#include <astro/state/attitude/AngleSequence.hpp>
 #include <astro/types/enums.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -34,7 +34,7 @@ namespace astrea {
 namespace astro {
 
 /**
- * @brief Class representing a sequence of angular velocities (either Euler or Tait-Bryan) for orientation transformations between frames.
+ * @brief Class representing a sequence of angular velocities (either Euler or Tait-Bryan) for attitude transformations between frames.
  *
  * @tparam Sequence_T The type of angle sequence (EulerSequence or TaitBryanSequence).
  * @tparam sequence The specific sequence of rotations (e.g., EulerSequence::ZXZ).

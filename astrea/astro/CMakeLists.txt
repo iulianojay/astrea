@@ -175,7 +175,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.hpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.hpp
     
-    ${ASTRO_BASE}/state/orientation/Quaternion.hpp
+    ${ASTRO_BASE}/state/attitude/Quaternion.hpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp

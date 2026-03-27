@@ -1,7 +1,7 @@
 /**
  * @file AngleSequence.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Class representing a sequence of angles (either Euler or Tait-Bryan) for orientation transformations between state/frames.
+ * @brief Class representing a sequence of angles (either Euler or Tait-Bryan) for attitude transformations between state/frames.
  * @date 2026-03-22
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
@@ -99,7 +99,7 @@ concept IsCompatibleAngleSequence =
     IsEquivalentAngleSequence<Sequence_T, sequence_t, rotation_t, In_Frame_T, Out_Frame_T, Sequence_U, sequence_u, rotation_u, In_Frame_U, Out_Frame_U>;
 
 /**
- * @brief Class representing a sequence of angles (either Euler or Tait-Bryan) for orientation transformations between frames.
+ * @brief Class representing a sequence of angles (either Euler or Tait-Bryan) for attitude transformations between frames.
  *
  * @tparam Sequence_T The type of angle sequence (EulerSequence or TaitBryanSequence).
  * @tparam sequence The specific sequence of rotations (e.g., EulerSequence::ZXZ).

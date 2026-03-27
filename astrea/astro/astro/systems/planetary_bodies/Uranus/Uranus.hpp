@@ -109,10 +109,11 @@ class Uranus : public CelestialBody {
 
   private:
     /**
-     * @brief Get the coefficients for the linear expansion of the Uranus' orientation angles.
+     * @brief Get the coefficients for the linear expansion of Uranus' orbital elements.
      *
-     * This function provides the coefficients used in the linear expansion to calculate
-     * the orientation angles of Uranus over time.
+     * This function returns a tuple containing the coefficients used in the linear expansion
+     * of Uranus' orbital elements, which are essential for calculating its position and motion
+     * over time.
      *
      * @return CoefficientPack A tuple containing the coefficients for the linear expansion.
      */
