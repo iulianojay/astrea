@@ -198,4 +198,9 @@ using Pressure = mp_units::quantity<detail::pressure_unit>;
  */
 using Moment = mp_units::quantity<detail::force_unit * detail::minor_distance_unit>;
 
+/**
+ * @brief Definition for a moment of inertia quantity.
+ */
+using MomentOfInertia = mp_units::quantity<detail::mass_unit * mp_units::pow<2>(detail::minor_distance_unit)>;
+
 } // namespace astrea

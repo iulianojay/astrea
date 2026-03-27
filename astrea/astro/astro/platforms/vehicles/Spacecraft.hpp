@@ -23,6 +23,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/platforms/InertiaTensor.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/state/StateHistory.hpp>
@@ -130,6 +131,13 @@ class Spacecraft : public ThrusterPlatform {
     Mass get_mass() const;
 
     /**
+     * @brief Gets the inertia tensor of the spacecraft.
+     *
+     * @return InertiaTensor<> The inertia tensor of the spacecraft.
+     */
+    InertiaTensor<> get_inertia_tensor() const;
+
+    /**
      * @brief Gets the coefficients of drag, lift, and reflectivity.
      *
      * @return Unitless The coefficient of drag.
@@ -201,6 +209,13 @@ class Spacecraft : public ThrusterPlatform {
     void set_mass(const Mass& mass);
 
     /**
+     * @brief Sets the inertia tensor of the spacecraft.
+     *
+     * @param inertiaTensor The new inertia tensor to set for the spacecraft.
+     */
+    void set_inertia_tensor(const InertiaTensor<>& inertiaTensor);
+
+    /**
      * @brief Sets the coefficients of drag.
      *
      * @param cd The coefficient of drag to set.
@@ -253,7 +268,8 @@ class Spacecraft : public ThrusterPlatform {
     using PayloadPlatform<Thruster>::attach_payload;
     using PayloadPlatform<Thruster>::get_payloads;
 
-    static constexpr Mass DEFAULT_MASS = 1000.0 * astrea::detail::mass_unit; // Default mass of the spacecraft
+    static constexpr Mass DEFAULT_MASS = 1000.0 * astrea::detail::mass_unit;     // Default mass of the spacecraft
+    static constexpr InertiaTensor<> DEFAULT_INERTIA_TENSOR = InertiaTensor<>{}; // Default inertia tensor of the spacecraft
     static constexpr Unitless DEFAULT_COEFFICIENT_OF_DRAG = 2.2 * astrea::detail::unitless; // Default coefficient of drag
     static constexpr Unitless DEFAULT_COEFFICIENT_OF_LIFT = 0.9 * astrea::detail::unitless; // Default coefficient of lift
     static constexpr Unitless DEFAULT_COEFFICIENT_OF_REFLECTIVITY =
@@ -268,6 +284,7 @@ class Spacecraft : public ThrusterPlatform {
 
     // Spacecraft properties
     Mass _mass                          = DEFAULT_MASS;                        //!< Mass of the spacecraft
+    InertiaTensor<> _inertiaTensor      = DEFAULT_INERTIA_TENSOR;              //!< Inertia tensor of the spacecraft
     Unitless _coefficientOfDrag         = DEFAULT_COEFFICIENT_OF_DRAG;         //!< Coefficient of drag
     Unitless _coefficientOfLift         = DEFAULT_COEFFICIENT_OF_LIFT;         //!< Coefficient of lift
     Unitless _coefficientOfReflectivity = DEFAULT_COEFFICIENT_OF_REFLECTIVITY; //!< Coefficient of reflectivity

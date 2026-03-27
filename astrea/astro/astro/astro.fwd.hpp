@@ -107,6 +107,9 @@ template <class Payload_T>
 class PayloadPlatform;
 class Vehicle;
 
+template <class Frame_T>
+class InertiaTensor;
+
 // Propagation
 class EquationsOfMotion;
 class Integrator;

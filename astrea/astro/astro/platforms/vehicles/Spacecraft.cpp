@@ -90,6 +90,7 @@ void Spacecraft::store_state(const State& state) { _stateHistory[state.get_epoch
 
 // Spacecraft Property Getters
 Mass Spacecraft::get_mass() const { return _mass; }
+InertiaTensor<> Spacecraft::get_inertia_tensor() const { return _inertiaTensor; }
 Unitless Spacecraft::get_coefficient_of_drag() const { return _coefficientOfDrag; }
 Unitless Spacecraft::get_coefficient_of_lift() const { return _coefficientOfLift; }
 Unitless Spacecraft::get_coefficient_of_reflectivity() const { return _coefficientOfReflectivity; }
@@ -116,6 +117,7 @@ Perturbation Spacecraft::get_control_authority(const State& state) const
 
 // Setters
 void Spacecraft::set_mass(const Mass& mass) { _mass = mass; }
+void Spacecraft::set_inertia_tensor(const InertiaTensor<>& inertiaTensor) { _inertiaTensor = inertiaTensor; }
 
 void Spacecraft::set_coefficient_of_drag(const Unitless& cd) { _coefficientOfDrag = cd; }
 void Spacecraft::set_coefficient_of_lift(const Unitless& cl) { _coefficientOfLift = cl; }
