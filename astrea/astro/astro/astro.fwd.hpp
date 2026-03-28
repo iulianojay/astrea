@@ -18,7 +18,6 @@
  */
 #pragma once
 
-#include <astro/types/concepts.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {
@@ -54,16 +53,19 @@ template <typename In_Frame_T, typename Out_Frame_T>
 class QuaternionPartial;
 
 template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
-    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence> && !IsSameFrame<In_Frame_T, Out_Frame_T>)
+    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence>)
 class AngleSequence;
 
 template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
-    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence> && !IsSameFrame<In_Frame_T, Out_Frame_T>)
+    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence>)
 class AngularSequenceVelocity;
 
 template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
-    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence> && !IsSameFrame<In_Frame_T, Out_Frame_T>)
+    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence>)
 class AngularSequenceAcceleration;
+
+class Attitude;
+class AttitudePartials;
 
 // Frames
 template <class Value_T, class Frame_T>

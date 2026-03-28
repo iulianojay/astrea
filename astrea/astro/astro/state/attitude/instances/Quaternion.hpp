@@ -22,6 +22,7 @@
 
 #include <mp-units/core.h>
 #include <mp-units/math.h>
+#include <mp-units/systems/angular/math.h>
 
 #include <units/units.hpp>
 
@@ -29,7 +30,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/state/attitude/AngleSequence.hpp>
+#include <astro/state/attitude/instances/AngleSequence.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {
@@ -49,9 +50,7 @@ namespace astro {
 template <typename In_Frame_T, typename Out_Frame_T>
 class Quaternion {
 
-    static_assert(!IsSameFrame<In_Frame_T, Out_Frame_T>, "Quaternion must be defined between two different frames.");
-
-    friend class State;
+    friend class Attitude;
 
   public:
     /**
@@ -445,6 +444,67 @@ class Quaternion {
      */
     std::vector<Unitless> force_to_vector() const { return { _s, _u[0], _u[1], _u[2] }; }
 
+    /**
+     * @brief Computes the dot product between this quaternion and another quaternion.
+     *
+     * @param other The other quaternion to compute the dot product with.
+     * @return Unitless The dot product of this quaternion and the other quaternion, computed as s1*s2 + u1 ⋅ u2.
+     */
+    Unitless dot(const Quaternion<In_Frame_T, Out_Frame_T>& other) const { return _s * other._s + _u.dot(other._u); }
+
+    /**
+     * @brief Interpolates between this quaternion and another quaternion at a target time using SLERP.
+     *
+     * @param thisTime The time corresponding to this quaternion.
+     * @param otherTime The time corresponding to the other quaternion.
+     * @param other The other quaternion to interpolate with.
+     * @param targetTime The time at which to interpolate the quaternion.
+     * @return Quaternion<In_Frame_T, Out_Frame_T> A new
+     * Quaternion that is the interpolation of this quaternion and the other at the target time.
+     *
+     * @note: https://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/index.htm
+     */
+    Quaternion<In_Frame_T, Out_Frame_T>
+        interpolate(const Time& thisTime, const Time& otherTime, const Quaternion<In_Frame_T, Out_Frame_T>& other, const Time& targetTime) const
+    {
+        using namespace mp_units;
+        using namespace mp_units::angular;
+        using mp_units::angular::unit_symbols::rad;
+
+        // Calculate angle between them.
+        const Unitless cosHalfTheta = this->dot(other);
+
+        // Return one if quaternions are the same
+        if (abs(cosHalfTheta) >= 1.0 * one) { return *this; }
+
+        // Catch inversions
+        const auto qOther = (cosHalfTheta < 0.0 * one) ? -other : other;
+
+        // Calculate temporary values.
+        const Angle halfTheta       = acos(cosHalfTheta);
+        const Unitless sinHalfTheta = sqrt(1.0 * one - cosHalfTheta * cosHalfTheta);
+
+        // if theta = 180 degrees then result is not fully defined
+        // we could rotate around any axis normal to either
+        if (abs(sinHalfTheta) < 1.0e-3 * one) {
+            // Do the math manually to avoid normalization until construction
+            return { 0.5 * (_s + qOther._s),
+                     0.5 * (_u[0] + qOther._u[0]),
+                     0.5 * (_u[1] + qOther._u[1]),
+                     0.5 * (_u[2] + qOther._u[2]) };
+        }
+
+        // calculate quaternion
+        const Unitless tRatio = (targetTime - thisTime) / (otherTime - thisTime);
+        const Unitless ratioA = sin((1.0 * one - tRatio) * halfTheta) / sinHalfTheta;
+        const Unitless ratioB = sin(tRatio * halfTheta) / sinHalfTheta;
+
+        return { _s * ratioA + qOther._s * ratioB,
+                 _u[0] * ratioA + qOther._u[0] * ratioB,
+                 _u[1] * ratioA + qOther._u[1] * ratioB,
+                 _u[2] * ratioA + qOther._u[2] * ratioB };
+    }
+
   private:
     Unitless _s;                              //!< Scalar part of the quaternion
     CartesianVector<Unitless, In_Frame_T> _u; //!< Vector part of the quaternion
@@ -488,7 +548,7 @@ class Quaternion {
 template <typename In_Frame_T, typename Out_Frame_T>
 class QuaternionPartial {
 
-    static_assert(!IsSameFrame<In_Frame_T, Out_Frame_T>, "QuaternionPartial must be defined between two different frames.");
+    friend class AttitudePartial;
 
   public:
     /**
@@ -507,6 +567,20 @@ class QuaternionPartial {
         _uDot(uDot)
     {
     }
+
+    /**
+     * @brief Gets the scalar part of the quaternion.
+     *
+     * @return const UnitlessPerTime& The scalar part of the quaternion.
+     */
+    const UnitlessPerTime& get_scalar_part() const { return _sDot; }
+
+    /**
+     * @brief Gets the vector part of the quaternion as a CartesianVector.
+     *
+     * @return const CartesianVector<UnitlessPerTime, In_Frame_T>& The vector part of the quaternion.
+     */
+    const CartesianVector<UnitlessPerTime, In_Frame_T>& get_vector_part() const { return _uDot; }
 
     /**
      * @brief Multiplies the quaternion derivative by a time quantity to get a quaternion representing the change in attitude over that time interval.
@@ -533,6 +607,42 @@ class QuaternionPartial {
     UnitlessPerTime _sDot;                              //!< Scalar part of the quaternion derivative
     CartesianVector<UnitlessPerTime, In_Frame_T> _uDot; //!< Vector part of the quaternion derivative with no frame association
 };
+
+/**
+ * @brief Stream insertion operator for the Quaternion class, allowing for easy printing of quaternion components.
+ *
+ * @tparam In_Frame_T The input frame type of the quaternion.
+ * @tparam Out_Frame_T The output frame type of the quaternion.
+ * @param os The output stream to insert the quaternion into.
+ * @param quaternion The quaternion to be inserted into the stream.
+ * @return A reference to the output stream after inserting the quaternion.
+ */
+template <typename In_Frame_T, typename Out_Frame_T>
+std::ostream& operator<<(std::ostream& os, const Quaternion<In_Frame_T, Out_Frame_T>& quaternion)
+{
+    const auto& s = quaternion.get_scalar_part();
+    const auto& u = quaternion.get_vector_part();
+    os << "[" << s << " | " << u[0] << " , " << u[1] << " , " << u[2] << "]";
+    return os;
+}
+
+/**
+ * @brief Stream insertion operator for the QuaternionPartial class, allowing for easy printing of quaternion derivative components.
+ *
+ * @tparam In_Frame_T The input frame type of the quaternion derivative.
+ * @tparam Out_Frame_T The output frame type of the quaternion derivative.
+ * @param os The output stream to insert the quaternion derivative into.
+ * @param quaternion The quaternion derivative to be inserted into the stream.
+ * @return A reference to the output stream after inserting the quaternion derivative.
+ */
+template <typename In_Frame_T, typename Out_Frame_T>
+std::ostream& operator<<(std::ostream& os, const QuaternionPartial<In_Frame_T, Out_Frame_T>& quaternion)
+{
+    const auto& sDot = quaternion.get_scalar_part();
+    const auto& uDot = quaternion.get_vector_part();
+    os << "[" << sDot << " | " << uDot[0] << " , " << uDot[1] << " , " << uDot[2] << "]";
+    return os;
+}
 
 } // namespace astro
 } // namespace astrea

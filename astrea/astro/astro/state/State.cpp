@@ -42,7 +42,7 @@ State State::from_vector(const std::vector<Unitless>& vec, const std::size_t idx
 
     const auto elementValues  = std::vector<Unitless>(vec.begin(), vec.begin() + 6);
     const auto attitudeValues = std::vector<Unitless>(vec.begin() + 6, vec.end());
-    return State(OrbitalElements::from_vector(elementValues, idx), Date(), sys, BodyQuaternion::from_vector(attitudeValues));
+    return State(OrbitalElements::from_vector(elementValues, idx), Date(), sys, Attitude::from_vector(attitudeValues));
 }
 
 bool State::operator==(const State& other) const
@@ -59,7 +59,7 @@ State State::operator+(const State& other) const
              _epoch,
              get_system(),
              _attitude.has_value() && other._attitude.has_value() ?
-                 std::optional<BodyQuaternion>(_attitude.value() + other._attitude.value()) :
+                 std::optional<Attitude>(_attitude.value() + other._attitude.value()) :
                  std::nullopt };
 }
 
@@ -78,7 +78,7 @@ State State::operator-(const State& other) const
              _epoch,
              get_system(),
              _attitude.has_value() && other._attitude.has_value() ?
-                 std::optional<BodyQuaternion>(_attitude.value() - other._attitude.value()) :
+                 std::optional<Attitude>(_attitude.value() - other._attitude.value()) :
                  std::nullopt };
 }
 
@@ -117,7 +117,7 @@ StatePartial State::operator/(const Time& divisor) const
     return { _elements / divisor,
              _epoch,
              get_system(),
-             _attitude.has_value() ? std::optional<BodyQuaternionPartial>(_attitude.value() / divisor) : std::nullopt };
+             _attitude.has_value() ? std::optional<AttitudePartials>(_attitude.value() / divisor) : std::nullopt };
 }
 
 void State::validate_system(const State& other) const
@@ -132,7 +132,7 @@ State StatePartial::operator*(const Time& time) const
     return { _elementPartials * time,
              _epoch + time,
              get_system(),
-             _attitudePartial.has_value() ? std::optional<BodyQuaternion>((_attitudePartial.value()) * time) : std::nullopt };
+             _attitudePartial.has_value() ? std::optional<Attitude>((_attitudePartial.value()) * time) : std::nullopt };
 }
 
 const AstrodynamicsSystem& StatePartial::get_system() const { return *_system; }

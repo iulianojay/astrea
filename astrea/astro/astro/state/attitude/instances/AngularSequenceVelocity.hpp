@@ -26,7 +26,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/state/attitude/AngleSequence.hpp>
+#include <astro/state/attitude/instances/AngleSequence.hpp>
 #include <astro/types/enums.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -45,10 +45,10 @@ namespace astro {
  * @note: welcome to templating hell
  */
 template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
-    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence> && !IsSameFrame<In_Frame_T, Out_Frame_T>)
+    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence>)
 class AngularSequenceVelocity {
 
-    friend State;
+    friend class AttitudePartial;
 
   public:
     /**
@@ -410,6 +410,35 @@ class AngularSequenceVelocity {
                  _angleRates[2] / _angleRates[2].unit };
     }
 
+    /**
+     * @brief Interpolates between this angle sequence and another angle sequence at a target time.
+     *
+     * @param thisTime The time corresponding to this angle sequence.
+     * @param otherTime The time corresponding to the other angle sequence.
+     * @param other The other angle sequence to interpolate with.
+     * @param targetTime The time at which to interpolate the angle sequence.
+     * @return AngularSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
+     * AngularSequenceVelocity that is the interpolation of this sequence and the other at the target time.
+     */
+    AngularSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> interpolate(
+        const Time& thisTime,
+        const Time& otherTime,
+        const AngularSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other,
+        const Time& targetTime
+    ) const
+    {
+        // Linear interpolation is fine for angular rates
+        const std::array<Time, 2> times = { thisTime, otherTime };
+        const AngularVelocity interpPhiDot =
+            math::fast_interpolate<Time, AngularVelocity>(times, { _angleRates[0], other._angleRates[0] }, targetTime);
+        const AngularVelocity interpThetaDot =
+            math::fast_interpolate<Time, AngularVelocity>(times, { _angleRates[1], other._angleRates[1] }, targetTime);
+        const AngularVelocity interpPsiDot =
+            math::fast_interpolate<Time, AngularVelocity>(times, { _angleRates[2], other._angleRates[2] }, targetTime);
+
+        return { interpPhiDot, interpThetaDot, interpPsiDot };
+    }
+
   private:
     CartesianVector<AngularVelocity, In_Frame_T> _angleRates;
 
@@ -480,8 +509,11 @@ AngularSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Fram
  * @note: welcome to templating hell pt. 2
  */
 template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
-    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence> && !IsSameFrame<In_Frame_T, Out_Frame_T>)
+    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence>)
 class AngularSequenceAcceleration {
+
+    friend class Attitude;
+
   public:
     /**
      * @brief Default constructor for the AngularSequenceAcceleration class. Initializes all angular accelerations to zero.
@@ -509,6 +541,22 @@ class AngularSequenceAcceleration {
         _angularAccels(accels)
     {
     }
+
+    /**
+     * @brief Access operator for vector components.
+     *
+     * @param index The index of the component to access (0 for x, 1 for y, 2 for z).
+     * @return AngularAcceleration& Reference to the component at the specified index.
+     */
+    AngularAcceleration& operator[](size_t index) { return _angularAccels[index]; }
+
+    /**
+     * @brief Const access operator for vector components.
+     *
+     * @param index The index of the component to access (0 for x, 1 for y, 2 for z).
+     * @return const AngularAcceleration& Reference to the component at the specified index.
+     */
+    const AngularAcceleration& operator[](size_t index) const { return _angularAccels[index]; }
 
     /**
      * @brief Scalar multiplication operator for AngularSequenceAcceleration.
@@ -558,6 +606,46 @@ class AngularSequenceAcceleration {
   private:
     CartesianVector<AngularAcceleration, In_Frame_T> _angularAccels; //!< The angular accelerations of an angle sequence.
 };
+
+/**
+ * @brief Output stream operator for AngularSequenceVelocity.
+ *
+ * @tparam Sequence_T The type of angle sequence (EulerSequence or TaitBryanSequence).
+ * @tparam sequence The specific sequence of rotations (e.g., EulerSequence::ZXZ).
+ * @tparam rotationType Whether the sequence is intrinsic or extrinsic.
+ * @tparam In_Frame_T The input frame type (e.g., ECI, ECEF).
+ * @tparam Out_Frame_T The output frame type (e.g., ECI, ECEF).
+ * @param os The output stream to write to.
+ * @param angleSequenceRate The AngularSequenceVelocity to output.
+ * @return std::ostream& The output stream after writing the AngularSequenceVelocity.
+ */
+template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
+std::ostream&
+    operator<<(std::ostream& os, const AngularSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequenceRate)
+{
+    os << "[" << angleSequenceRate[0] << " , " << angleSequenceRate[1] << " , " << angleSequenceRate[2] << "]";
+    return os;
+}
+
+/**
+ * @brief Output stream operator for AngularSequenceAcceleration.
+ *
+ * @tparam Sequence_T The type of angle sequence (EulerSequence or TaitBryanSequence).
+ * @tparam sequence The specific sequence of rotations (e.g., EulerSequence::ZXZ).
+ * @tparam rotationType Whether the sequence is intrinsic or extrinsic.
+ * @tparam In_Frame_T The input frame type (e.g., ECI, ECEF).
+ * @tparam Out_Frame_T The output frame type (e.g., ECI, ECEF).
+ * @param os The output stream to write to.
+ * @param angleSequenceAccel The AngularSequenceAcceleration to output.
+ * @return std::ostream& The output stream after writing the AngularSequenceAcceleration.
+ */
+template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
+std::ostream&
+    operator<<(std::ostream& os, const AngularSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequenceAccel)
+{
+    os << "[" << angleSequenceAccel[0] << " , " << angleSequenceAccel[1] << " , " << angleSequenceAccel[2] << "]";
+    return os;
+}
 
 } // namespace astro
 } // namespace astrea

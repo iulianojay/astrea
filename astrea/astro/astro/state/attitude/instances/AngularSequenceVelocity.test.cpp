@@ -18,7 +18,7 @@
 
 #include <astro/frames/frames.hpp>
 #include <astro/frames/instances/dynamic_body_frame.hpp>
-#include <astro/state/attitude/AngularSequenceVelocity.hpp>
+#include <astro/state/attitude/instances/AngularSequenceVelocity.hpp>
 #include <astro/utilities/conversions.hpp>
 #include <tests/utilities/comparisons.hpp>
 

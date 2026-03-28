@@ -20,6 +20,7 @@
 
 #include <mp-units/systems/isq_angle.h>
 
+#include <math/interpolation.hpp>
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
@@ -110,10 +111,10 @@ concept IsCompatibleAngleSequence =
  * @note: welcome to templating hell
  */
 template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
-    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence> && !IsSameFrame<In_Frame_T, Out_Frame_T>)
+    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence>)
 class AngleSequence {
 
-    friend State;
+    friend class Attitude;
 
   public:
     /**
@@ -505,6 +506,26 @@ class AngleSequence {
         return { _angles[0] / _angles[0].unit, _angles[1] / _angles[1].unit, _angles[2] / _angles[2].unit };
     }
 
+    /**
+     * @brief Interpolates between this angle sequence and another angle sequence at a target time.
+     *
+     * @param thisTime The time corresponding to this angle sequence.
+     * @param otherTime The time corresponding to the other angle sequence.
+     * @param other The other angle sequence to interpolate with.
+     * @param targetTime The time at which to interpolate the angle sequence.
+     * @return AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new AngleSequence that is
+     * the interpolation of this sequence and the other at the target time.
+     */
+    AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> interpolate(
+        const Time& thisTime,
+        const Time& otherTime,
+        const AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other,
+        const Time& targetTime
+    ) const
+    {
+        static_assert(false, "Don't do this. Just use the Quaternion.");
+    }
+
   private:
     CartesianVector<Angle, In_Frame_T> _angles;
 
@@ -661,6 +682,25 @@ using IntrinsicTaitBryanAngles = TaitBryanAngles<sequence, RotationSequenceType:
 
 template <TaitBryanSequence sequence, typename In_Frame_T, typename Out_Frame_T>
 using ExtrinsicTaitBryanAngles = TaitBryanAngles<sequence, RotationSequenceType::EXTRINSIC, In_Frame_T, Out_Frame_T>;
+
+/**
+ * @brief Output stream operator for AngleSequence.
+ *
+ * @tparam Sequence_T The type of angle sequence (EulerSequence or TaitBryanSequence).
+ * @tparam sequence The specific sequence of rotations (e.g., EulerSequence::ZXZ).
+ * @tparam rotationType Whether the sequence is intrinsic or extrinsic.
+ * @tparam In_Frame_T The input frame type (e.g., ECI, ECEF).
+ * @tparam Out_Frame_T The output frame type (e.g., ECI, ECEF).
+ * @param os The output stream to write to.
+ * @param angleSequence The AngleSequence to output.
+ * @return std::ostream& The output stream after writing the AngleSequence.
+ */
+template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
+std::ostream& operator<<(std::ostream& os, const AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequence)
+{
+    os << "[" << angleSequence[0] << " , " << angleSequence[1] << " , " << angleSequence[2] << "]";
+    return os;
+}
 
 } // namespace astro
 } // namespace astrea

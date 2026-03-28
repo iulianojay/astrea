@@ -55,6 +55,8 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/state/State.cpp
     ${ASTRO_BASE}/state/StateHistory.cpp
+    
+    ${ASTRO_BASE}/state/attitude/Attitude.cpp
 
     ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.cpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.cpp
@@ -160,6 +162,11 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
+    
+    ${ASTRO_BASE}/state/attitude/Attitude.hpp
+    ${ASTRO_BASE}/state/attitude/instances/Quaternion.hpp
+    ${ASTRO_BASE}/state/attitude/instances/AngularSequenceVelocity.hpp
+    ${ASTRO_BASE}/state/attitude/instances/AngleSequence.hpp
 
     ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geocentric.hpp
@@ -175,7 +182,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.hpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.hpp
     
-    ${ASTRO_BASE}/state/attitude/Quaternion.hpp
+    ${ASTRO_BASE}/state/attitude/instances/Quaternion.hpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
