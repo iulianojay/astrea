@@ -114,9 +114,9 @@ State& State::operator/=(const Unitless& scalar)
 
 StatePartial State::operator/(const Time& divisor) const
 {
-    return { _elements / divisor,
-             _epoch,
+    return { _epoch,
              get_system(),
+             _elements / divisor,
              _attitude.has_value() ? std::optional<AttitudePartials>(_attitude.value() / divisor) : std::nullopt };
 }
 
@@ -132,7 +132,7 @@ State StatePartial::operator*(const Time& time) const
     return { _elementPartials * time,
              _epoch + time,
              get_system(),
-             _attitudePartial.has_value() ? std::optional<Attitude>((_attitudePartial.value()) * time) : std::nullopt };
+             _attitudePartial.has_value() ? std::optional<Attitude>(_attitudePartial.value() * time) : std::nullopt };
 }
 
 const AstrodynamicsSystem& StatePartial::get_system() const { return *_system; }

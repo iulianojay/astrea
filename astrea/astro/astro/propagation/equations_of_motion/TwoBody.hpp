@@ -49,9 +49,16 @@ class TwoBody : public EquationsOfMotion {
      *
      * @param state The current state of the vehicle.
      * @param vehicle The vehicle for which the equations of motion are being computed.
+     * @param perts The perturbations acting on the vehicle.
+     * @param control The control forces produced by the vehicle.
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
      */
-    OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials compute_dynamics(
+        const State& state,
+        const Vehicle& vehicle,
+        const ForceVector<frames::earth::icrf>& perts,
+        const ForceVector<frames::earth::icrf>& control
+    ) const override;
 
     /**
      * @brief Computes the state transition matrix (STM) using the Two Body method.

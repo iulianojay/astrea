@@ -53,7 +53,12 @@ class CowellsMethod : public EquationsOfMotion {
      * @param vehicle The vehicle for which the equations of motion are being computed.
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
      */
-    OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials compute_dynamics(
+        const State& state,
+        const Vehicle& vehicle,
+        const ForceVector<frames::earth::icrf>& perts,
+        const ForceVector<frames::earth::icrf>& control
+    ) const override;
 
     /**
      * @brief Computes the state transition matrix (STM) using Cowell's method.
@@ -70,9 +75,6 @@ class CowellsMethod : public EquationsOfMotion {
      * @return std::size_t The expected set id of orbital elements.
      */
     constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Cartesian>(); };
-
-  private:
-    const ForceModel* forces; //!< The force model used in the equations of motion.
 };
 
 } // namespace astro

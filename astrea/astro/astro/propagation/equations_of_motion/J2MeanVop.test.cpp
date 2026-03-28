@@ -39,6 +39,7 @@ class J2MeanTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
+    ForceVector<frames::earth::icrf> noForce;
     Vehicle sat;
     AstrodynamicsSystem sys;
     Date epoch;
@@ -63,6 +64,6 @@ TEST_F(J2MeanTest, Derivative)
 
     State state(kep0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom(state, sat);
+    OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }

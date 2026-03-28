@@ -18,6 +18,8 @@
  */
 #pragma once
 
+#include <concepts>
+
 #include <astro/types/enums.hpp>
 
 namespace astrea {

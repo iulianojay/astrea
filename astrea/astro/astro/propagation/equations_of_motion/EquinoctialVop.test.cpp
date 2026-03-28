@@ -42,6 +42,7 @@ class EquinoctialTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
+    ForceVector<frames::earth::icrf> noForce;
     Vehicle sat;
     AstrodynamicsSystem sys;
     Date epoch;
@@ -69,6 +70,6 @@ TEST_F(EquinoctialTest, Derivative)
         EquinoctialPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0010780076129942077 * rad / s);
     State state(equi0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom(state, sat);
+    OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }

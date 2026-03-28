@@ -37,6 +37,7 @@ class TwoBodyTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
+    ForceVector<frames::earth::icrf> noForce;
     Vehicle sat;
     AstrodynamicsSystem sys;
     Date epoch;
@@ -62,7 +63,7 @@ TEST_F(TwoBodyTest, Derivative)
 
     State state(cart0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom(state, sat);
+    OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }
 
@@ -77,6 +78,6 @@ TEST_F(TwoBodyTest, DerivativeValladoEx85)
 
     State state(cart0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom(state, sat);
+    OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }

@@ -42,7 +42,12 @@ EquinoctialVop::EquinoctialVop(const ForceModel& forces) :
 {
 }
 
-OrbitalElementPartials EquinoctialVop::operator()(const State& state, const Vehicle& vehicle) const
+OrbitalElementPartials EquinoctialVop::compute_dynamics(
+    const State& state,
+    const Vehicle& vehicle,
+    const ForceVector<frames::earth::icrf>& perts,
+    const ForceVector<frames::earth::icrf>& control
+) const
 {
     // Get need representations
     const auto mu                 = state.get_system().get_mu();
@@ -61,16 +66,10 @@ OrbitalElementPartials EquinoctialVop::operator()(const State& state, const Vehi
     const RadiusVector<frames::earth::icrf> r   = state.get_position();
     const VelocityVector<frames::earth::icrf> v = state.get_velocity();
 
-    // Function for finding accel caused by perturbations
-    const auto [forcePerts, torquePerts] = forces->compute_perturbations(state, vehicle);
-
-    // Get vehicle-produced forces and torques
-    const auto [forceVehicle, torqueVehicle] = vehicle.get_control_authority(state);
-
     // Calculate R, N, and T
     const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(r, v);
     const AccelerationVector<frames::dynamic::ric> accelRic =
-        ricFrame.rotate_into_this_frame((forcePerts + forceVehicle) / vehicle.get_mass(), date);
+        ricFrame.rotate_into_this_frame((perts + control) / vehicle.get_mass(), date);
 
     const Acceleration& radialPert     = accelRic.get_x();
     const Acceleration& tangentialPert = accelRic.get_y();
@@ -99,11 +98,6 @@ OrbitalElementPartials EquinoctialVop::operator()(const State& state, const Vehi
     return EquinoctialPartial(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
 }
 
-
-StateTransitionMatrix EquinoctialVop::compute_stm(const State& state, const Vehicle& vehicle) const
-{
-    return StateTransitionMatrix(*this, state, vehicle);
-}
 
 } // namespace astro
 } // namespace astrea

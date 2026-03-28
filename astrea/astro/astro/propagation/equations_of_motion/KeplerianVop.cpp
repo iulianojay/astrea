@@ -38,12 +38,17 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
 KeplerianVop::KeplerianVop(const ForceModel& forces, const bool doWarn) :
-    forces(&forces),
+    EquationsOfMotion(forces),
     doWarn(doWarn)
 {
 }
 
-OrbitalElementPartials KeplerianVop::operator()(const State& state, const Vehicle& vehicle) const
+OrbitalElementPartials KeplerianVop::compute_dynamics(
+    const State& state,
+    const Vehicle& vehicle,
+    const ForceVector<frames::earth::icrf>& perts,
+    const ForceVector<frames::earth::icrf>& control
+) const
 {
     // Extract
     const auto mu    = state.get_system().get_mu();
@@ -66,16 +71,10 @@ OrbitalElementPartials KeplerianVop::operator()(const State& state, const Vehicl
     const VelocityVector<frames::earth::icrf> v = state.get_velocity();
     const RadiusVector<frames::earth::icrf> r   = state.get_position();
 
-    // Function for finding accel caused by perturbations
-    const auto [forcePerts, torquePerts] = forces->compute_perturbations(state, vehicle);
-
-    // Get vehicle-produced forces and torques
-    const auto [forceVehicle, torqueVehicle] = vehicle.get_control_authority(state);
-
     // Calculate R, N, and T
     const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(r, v);
     const AccelerationVector<frames::dynamic::ric> accelRic =
-        ricFrame.rotate_into_this_frame((forcePerts + forceVehicle) / vehicle.get_mass(), date);
+        ricFrame.rotate_into_this_frame((perts + control) / vehicle.get_mass(), date);
 
     const Acceleration& radialPert     = accelRic.get_x();
     const Acceleration& tangentialPert = accelRic.get_y();
@@ -108,12 +107,6 @@ OrbitalElementPartials KeplerianVop::operator()(const State& state, const Vehicl
     const AngularVelocity dwdt    = (-dthetadt + (hOverRSquared * isq_angle::cotes_angle - draandt * cos(inc)));
 
     return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
-}
-
-
-StateTransitionMatrix KeplerianVop::compute_stm(const State& state, const Vehicle& vehicle) const
-{
-    return StateTransitionMatrix(*this, state, vehicle);
 }
 
 void KeplerianVop::check_degenerate(const Unitless& ecc, const Angle& inc) const

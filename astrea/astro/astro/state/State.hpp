@@ -96,6 +96,13 @@ class State {
     const OrbitalElements& get_elements() const { return _elements; }
 
     /**
+     * @brief Get the attitude of the state.
+     *
+     * @return std::optional<Attitude> The attitude of the state.
+     */
+    const std::optional<Attitude>& get_attitude() const { return _attitude; }
+
+    /**
      * @brief Gets the epoch of the state.
      *
      * @return const Date& Reference to the epoch of the state.
@@ -193,14 +200,6 @@ class State {
     {
         return get_position().template in_frame<Frame_T>(_epoch);
     }
-
-    /**
-     * @brief Get the attitude of the state as a quaternion.
-     *
-     * @return std::optional<Attitude> The attitude of the state,
-     * represented as a quaternion. If no attitude is provided, returns an identity quaternion (no rotation).
-     */
-    const std::optional<Attitude>& get_attitude() const { return _attitude; }
 
     /**
      * @brief Sets the orbital elements of the state.
@@ -369,20 +368,20 @@ class StatePartial {
     /**
      * @brief Constructs a StatePartial with given orbital element partials and astrodynamics system.
      *
-     * @param elementPartials The orbital element partials of the state.
      * @param epoch The epoch of the state.
      * @param sys The astrodynamics system associated with the state.
+     * @param elementPartials The orbital element partials of the state.
      * @param attitudePartial The attitude partial of the state, represented as a quaternion derivative.
      */
     StatePartial(
-        const OrbitalElementPartials& elementPartials,
         const Date& epoch,
         const AstrodynamicsSystem& sys,
+        const OrbitalElementPartials& elementPartials,
         const std::optional<AttitudePartials>& attitudePartial = std::nullopt
     ) :
-        _elementPartials(elementPartials),
         _epoch(epoch),
         _system(&sys),
+        _elementPartials(elementPartials),
         _attitudePartial(attitudePartial)
     {
     }
@@ -409,10 +408,25 @@ class StatePartial {
      */
     const Date& get_epoch() const;
 
+    /**
+     * @brief Converts the State to a vector of Unitless values.
+     *
+     * @return std::vector<Unitless> Vector containing the orbital element partials and attitude partials as unitless values.
+     */
+    std::vector<Unitless> force_to_vector() const
+    {
+        auto retval = _elementPartials.force_to_vector();
+        if (_attitudePartial.has_value()) {
+            const auto& attitudeVector = _attitudePartial->force_to_vector();
+            retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
+        }
+        return retval;
+    }
+
   private:
-    OrbitalElementPartials _elementPartials; //!< The orbital element partials of the state, defining the shape and attitude of the orbit.
     Date _epoch; //!< The epoch of the state partial, representing the time at which the orbital elements are defined.
     const AstrodynamicsSystem* _system; //!< Pointer to the astrodynamics system associated with the state, providing context for the orbital elements.
+    OrbitalElementPartials _elementPartials; //!< The orbital element partials of the state, defining the shape and attitude of the orbit.
     std::optional<AttitudePartials> _attitudePartial; //!< The attitude partial of the state, represented as a quaternion derivative.
 };
 

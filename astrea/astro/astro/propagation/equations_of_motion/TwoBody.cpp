@@ -33,7 +33,12 @@ using mp_units::pow;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-OrbitalElementPartials TwoBody::operator()(const State& state, const Vehicle& vehicle) const
+OrbitalElementPartials TwoBody::compute_dynamics(
+    const State& state,
+    const Vehicle& vehicle,
+    const ForceVector<frames::earth::icrf>& perts,
+    const ForceVector<frames::earth::icrf>& control
+) const
 {
     // Extract
     const auto mu = state.get_system().get_mu();
@@ -45,11 +50,8 @@ OrbitalElementPartials TwoBody::operator()(const State& state, const Vehicle& ve
     const Distance R        = r.norm();
     const quantity muOverR3 = mu / pow<3>(R);
 
-    // Get vehicle-produced forces and torques
-    const auto [forceVehicle, torqueVehicle] = vehicle.get_control_authority(state);
-
     // Dynamics
-    return CartesianPartial(v, -muOverR3 * r + forceVehicle / vehicle.get_mass());
+    return CartesianPartial(v, -muOverR3 * r + control / vehicle.get_mass());
 }
 
 

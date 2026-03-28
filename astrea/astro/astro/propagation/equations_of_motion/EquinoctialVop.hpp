@@ -51,20 +51,18 @@ class EquinoctialVop : public EquationsOfMotion {
      *
      * @param state The current state of the vehicle.
      * @param vehicle The vehicle for which the equations of motion are being computed.
+     * @param perts The perturbations acting on the vehicle.
+     * @param control The control forces and torques produced by the vehicle.
      * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
      *
      * @ref https://spsweb.fltops.jpl.nasa.gov/portaldataops/mpg/MPG_Docs/Source%20Docs/EquinoctalElements-modified.pdf
      */
-    OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override;
-
-    /**
-     * @brief Computes the state transition matrix (STM) using Cowell's method.
-     *
-     * @param state The current state of the vehicle.
-     * @param vehicle The vehicle for which the STM is being computed.
-     * @return StateTransitionMatrix The computed state transition matrix.
-     */
-    StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials compute_dynamics(
+        const State& state,
+        const Vehicle& vehicle,
+        const ForceVector<frames::earth::icrf>& perts,
+        const ForceVector<frames::earth::icrf>& control
+    ) const override;
 
     /**
      * @brief Returns the expected set of orbital elements for this equations of motion class.

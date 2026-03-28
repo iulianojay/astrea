@@ -41,7 +41,12 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
 
-OrbitalElementPartials J2MeanVop::operator()(const State& state, const Vehicle& vehicle) const
+OrbitalElementPartials J2MeanVop::compute_dynamics(
+    const State& state,
+    const Vehicle& vehicle,
+    const ForceVector<frames::earth::icrf>& perts,
+    const ForceVector<frames::earth::icrf>& control
+) const
 {
     // Extract
     const auto mu          = state.get_system().get_mu();
@@ -101,12 +106,6 @@ OrbitalElementPartials J2MeanVop::operator()(const State& state, const Vehicle& 
     if (inc == incTol && dincdt <= incTol * one / s) { dincdt = 0.0 * rad / s; }
 
     return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
-}
-
-
-StateTransitionMatrix J2MeanVop::compute_stm(const State& state, const Vehicle& vehicle) const
-{
-    return StateTransitionMatrix(*this, state, vehicle);
 }
 
 } // namespace astro

@@ -22,6 +22,7 @@
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/TwoBody.hpp>
+#include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 
@@ -35,11 +36,16 @@ namespace astrea {
 namespace astro {
 
 CowellsMethod::CowellsMethod(const ForceModel& forces) :
-    forces(&forces)
+    EquationsOfMotion(forces)
 {
 }
 
-OrbitalElementPartials CowellsMethod::operator()(const State& state, const Vehicle& vehicle) const
+OrbitalElementPartials CowellsMethod::compute_dynamics(
+    const State& state,
+    const Vehicle& vehicle,
+    const ForceVector<frames::earth::icrf>& perts,
+    const ForceVector<frames::earth::icrf>& control
+) const
 {
     // Extract
     const auto mu = state.get_system().get_mu();
@@ -51,14 +57,8 @@ OrbitalElementPartials CowellsMethod::operator()(const State& state, const Vehic
     const Distance R             = r.norm();
     const auto muOverRadiusCubed = mu / (R * R * R);
 
-    // Run find functions for force model
-    const auto [forcePerts, torquePerts] = forces->compute_perturbations(state, vehicle);
-
-    // Get vehicle-produced forces and torques
-    const auto [forceVehicle, torqueVehicle] = vehicle.get_control_authority(state);
-
     // Derivative
-    return CartesianPartial(v, -muOverRadiusCubed * r + (forcePerts + forceVehicle) / vehicle.get_mass());
+    return CartesianPartial(v, -muOverRadiusCubed * r + (perts + control) / vehicle.get_mass());
 }
 
 
