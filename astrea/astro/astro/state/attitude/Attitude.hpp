@@ -27,7 +27,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/instances/dynamic_body_frame.hpp>
 #include <astro/state/attitude/instances/AngleSequence.hpp>
-#include <astro/state/attitude/instances/AngularSequenceVelocity.hpp>
+#include <astro/state/attitude/instances/AngleSequenceVelocity.hpp>
 #include <astro/state/attitude/instances/Quaternion.hpp>
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
@@ -41,9 +41,9 @@ namespace {
 using BodyQuaternion     = Quaternion<frames::earth::icrf, frames::dynamic::body>;
 using BodyQuaternionRate = QuaternionPartial<frames::earth::icrf, frames::dynamic::body>;
 using BodyAngularVelocity =
-    AngularSequenceVelocity<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, frames::earth::icrf, frames::dynamic::body>;
+    AngleSequenceVelocity<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, frames::earth::icrf, frames::dynamic::body>;
 using BodyAngularAcceleration =
-    AngularSequenceAcceleration<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, frames::earth::icrf, frames::dynamic::body>;
+    AngleSequenceAcceleration<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, frames::earth::icrf, frames::dynamic::body>;
 
 } // namespace
 
@@ -101,7 +101,7 @@ class Attitude {
     template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
     Attitude(
         const AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequence,
-        const AngularSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequenceVelocity
+        const AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequenceVelocity
     ) :
         _orientation(angleSequence),
         _angularVelocity(angleSequenceVelocity)

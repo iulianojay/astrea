@@ -339,13 +339,13 @@ class AngleSequence {
     }
 
     /**
-     * @brief Scalar division operator for AngleSequence by a Time quantity, resulting in an AngularSequenceRate.
+     * @brief Scalar division operator for AngleSequence by a Time quantity, resulting in an AngleSequenceRate.
      *
      * @param time The time quantity to divide by.
-     * @return AngularSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
-     * AngularSequenceVelocity that is the quotient of this sequence and the time.
+     * @return AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
+     * AngleSequenceVelocity that is the quotient of this sequence and the time.
      */
-    AngularSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> operator/(const Time& time) const
+    AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> operator/(const Time& time) const
     {
         return { _angles / time };
     }

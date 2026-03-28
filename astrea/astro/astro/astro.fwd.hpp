@@ -58,11 +58,11 @@ class AngleSequence;
 
 template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
     requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence>)
-class AngularSequenceVelocity;
+class AngleSequenceVelocity;
 
 template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
     requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence>)
-class AngularSequenceAcceleration;
+class AngleSequenceAcceleration;
 
 class Attitude;
 class AttitudePartials;

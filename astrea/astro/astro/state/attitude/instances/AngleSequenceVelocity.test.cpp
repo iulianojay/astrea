@@ -18,7 +18,7 @@
 
 #include <astro/frames/frames.hpp>
 #include <astro/frames/instances/dynamic_body_frame.hpp>
-#include <astro/state/attitude/instances/AngularSequenceVelocity.hpp>
+#include <astro/state/attitude/instances/AngleSequenceVelocity.hpp>
 #include <astro/utilities/conversions.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -32,13 +32,13 @@ using mp_units::si::unit_symbols::s;
 using TestFrame    = frames::earth::icrf;
 using TestOutFrame = frames::dynamic::body;
 using TestEulerAngularVel =
-    AngularSequenceVelocity<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>;
+    AngleSequenceVelocity<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>;
 using TestTaitBryanAngularVel =
-    AngularSequenceVelocity<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>;
+    AngleSequenceVelocity<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>;
 
-class AngularSequenceVelocityTest : public testing::Test {
+class AngleSequenceVelocityTest : public testing::Test {
   public:
-    AngularSequenceVelocityTest() {}
+    AngleSequenceVelocityTest() {}
 
     void SetUp() override {}
 
@@ -63,31 +63,31 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST_F(AngularSequenceVelocityTest, TestEulerAngularVelocityConstructor)
+TEST_F(AngleSequenceVelocityTest, TestEulerAngularVelocityConstructor)
 {
     // Default constructor
     ASSERT_NO_THROW(TestEulerAngularVel());
 
     // Parameterized constructor with angular rates only
     ASSERT_NO_THROW(TestEulerAngularVel(angularRate1, angularRate2, angularRate3));
-    ASSERT_NO_THROW((AngularSequenceVelocity<EulerSequence, EulerSequence::XYX, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
+    ASSERT_NO_THROW((AngleSequenceVelocity<EulerSequence, EulerSequence::XYX, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
         angularRate1, angularRate2, angularRate3
     )));
 }
 
-TEST_F(AngularSequenceVelocityTest, TestTaitBryanAngularVelocityConstructor)
+TEST_F(AngleSequenceVelocityTest, TestTaitBryanAngularVelocityConstructor)
 {
     // Default constructor
     ASSERT_NO_THROW(TestTaitBryanAngularVel());
 
     // Parameterized constructor with angular rates only
     ASSERT_NO_THROW(TestTaitBryanAngularVel(angularRate1, angularRate2, angularRate3));
-    ASSERT_NO_THROW((AngularSequenceVelocity<TaitBryanSequence, TaitBryanSequence::ZYX, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
+    ASSERT_NO_THROW((AngleSequenceVelocity<TaitBryanSequence, TaitBryanSequence::ZYX, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
         angularRate1, angularRate2, angularRate3
     )));
 }
 
-TEST_F(AngularSequenceVelocityTest, TestEulerAngularVelocityGetters)
+TEST_F(AngleSequenceVelocityTest, TestEulerAngularVelocityGetters)
 {
     TestEulerAngularVel eulerVel(angularRate1, angularRate2, angularRate3);
 
@@ -102,7 +102,7 @@ TEST_F(AngularSequenceVelocityTest, TestEulerAngularVelocityGetters)
     ASSERT_EQ_QUANTITY(eulerVel[2], angularRate3, REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestTaitBryanAngularVelocityGetters)
+TEST_F(AngleSequenceVelocityTest, TestTaitBryanAngularVelocityGetters)
 {
     TestTaitBryanAngularVel taitBryanVel(angularRate1, angularRate2, angularRate3);
 
@@ -117,7 +117,7 @@ TEST_F(AngularSequenceVelocityTest, TestTaitBryanAngularVelocityGetters)
     ASSERT_EQ_QUANTITY(taitBryanVel[2], angularRate3, REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestAngularVelocityModification)
+TEST_F(AngleSequenceVelocityTest, TestAngularVelocityModification)
 {
     TestTaitBryanAngularVel taitBryanVel(angularRate1, angularRate2, angularRate3);
 
@@ -131,53 +131,53 @@ TEST_F(AngularSequenceVelocityTest, TestAngularVelocityModification)
     ASSERT_EQ_QUANTITY(taitBryanVel.get_psi_dot(), 0.75 * rad / s, REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestAllEulerSequences)
+TEST_F(AngleSequenceVelocityTest, TestAllEulerSequences)
 {
     // Test different Euler sequences can be constructed
-    ASSERT_NO_THROW((AngularSequenceVelocity<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>(
+    ASSERT_NO_THROW((AngleSequenceVelocity<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>(
         angularRate1, angularRate2, angularRate3
     )));
-    ASSERT_NO_THROW((AngularSequenceVelocity<EulerSequence, EulerSequence::XYX, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
+    ASSERT_NO_THROW((AngleSequenceVelocity<EulerSequence, EulerSequence::XYX, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
         angularRate1, angularRate2, angularRate3
     )));
-    ASSERT_NO_THROW((AngularSequenceVelocity<EulerSequence, EulerSequence::YZY, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>(
+    ASSERT_NO_THROW((AngleSequenceVelocity<EulerSequence, EulerSequence::YZY, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>(
         angularRate1, angularRate2, angularRate3
     )));
-    ASSERT_NO_THROW((AngularSequenceVelocity<EulerSequence, EulerSequence::ZYZ, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
+    ASSERT_NO_THROW((AngleSequenceVelocity<EulerSequence, EulerSequence::ZYZ, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
         angularRate1, angularRate2, angularRate3
     )));
-    ASSERT_NO_THROW((AngularSequenceVelocity<EulerSequence, EulerSequence::XZX, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>(
+    ASSERT_NO_THROW((AngleSequenceVelocity<EulerSequence, EulerSequence::XZX, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>(
         angularRate1, angularRate2, angularRate3
     )));
-    ASSERT_NO_THROW((AngularSequenceVelocity<EulerSequence, EulerSequence::YXY, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
+    ASSERT_NO_THROW((AngleSequenceVelocity<EulerSequence, EulerSequence::YXY, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
         angularRate1, angularRate2, angularRate3
     )));
 }
 
-TEST_F(AngularSequenceVelocityTest, TestAllTaitBryanSequences)
+TEST_F(AngleSequenceVelocityTest, TestAllTaitBryanSequences)
 {
     // Test different Tait-Bryan sequences can be constructed
-    ASSERT_NO_THROW((AngularSequenceVelocity<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>(
+    ASSERT_NO_THROW((AngleSequenceVelocity<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>(
         angularRate1, angularRate2, angularRate3
     )));
-    ASSERT_NO_THROW((AngularSequenceVelocity<TaitBryanSequence, TaitBryanSequence::YZX, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
+    ASSERT_NO_THROW((AngleSequenceVelocity<TaitBryanSequence, TaitBryanSequence::YZX, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
         angularRate1, angularRate2, angularRate3
     )));
-    ASSERT_NO_THROW((AngularSequenceVelocity<TaitBryanSequence, TaitBryanSequence::ZXY, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>(
+    ASSERT_NO_THROW((AngleSequenceVelocity<TaitBryanSequence, TaitBryanSequence::ZXY, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>(
         angularRate1, angularRate2, angularRate3
     )));
-    ASSERT_NO_THROW((AngularSequenceVelocity<TaitBryanSequence, TaitBryanSequence::XZY, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
+    ASSERT_NO_THROW((AngleSequenceVelocity<TaitBryanSequence, TaitBryanSequence::XZY, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
         angularRate1, angularRate2, angularRate3
     )));
-    ASSERT_NO_THROW((AngularSequenceVelocity<TaitBryanSequence, TaitBryanSequence::ZYX, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>(
+    ASSERT_NO_THROW((AngleSequenceVelocity<TaitBryanSequence, TaitBryanSequence::ZYX, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>(
         angularRate1, angularRate2, angularRate3
     )));
-    ASSERT_NO_THROW((AngularSequenceVelocity<TaitBryanSequence, TaitBryanSequence::YXZ, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
+    ASSERT_NO_THROW((AngleSequenceVelocity<TaitBryanSequence, TaitBryanSequence::YXZ, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
         angularRate1, angularRate2, angularRate3
     )));
 }
 
-TEST_F(AngularSequenceVelocityTest, TestCopyConstructor)
+TEST_F(AngleSequenceVelocityTest, TestCopyConstructor)
 {
     TestEulerAngularVel eulerVel1(angularRate1, angularRate2, angularRate3);
 
@@ -191,7 +191,7 @@ TEST_F(AngularSequenceVelocityTest, TestCopyConstructor)
     ASSERT_EQ_QUANTITY(eulerVel1.get_psi_dot(), eulerVelCopy.get_psi_dot(), REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestMoveConstructor)
+TEST_F(AngleSequenceVelocityTest, TestMoveConstructor)
 {
     // Move constructor within the same type should work
     auto eulerVelTemp = TestEulerAngularVel(angularRate1, angularRate2, angularRate3);
@@ -203,7 +203,7 @@ TEST_F(AngularSequenceVelocityTest, TestMoveConstructor)
     ASSERT_EQ_QUANTITY(eulerVelMove.get_psi_dot(), angularRate3, REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestAccessOperators)
+TEST_F(AngleSequenceVelocityTest, TestAccessOperators)
 {
     TestEulerAngularVel eulerVel(angularRate1, angularRate2, angularRate3);
     eulerVel[0] = 0.5 * rad / s;
@@ -221,7 +221,7 @@ TEST_F(AngularSequenceVelocityTest, TestAccessOperators)
     ASSERT_EQ_QUANTITY(constEulerVel[2], 0.75 * rad / s);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestEqualityOperators)
+TEST_F(AngleSequenceVelocityTest, TestEqualityOperators)
 {
     TestEulerAngularVel eulerVel1(angularRate1, angularRate2, angularRate3);
     TestEulerAngularVel eulerVel2(angularRate1, angularRate2, angularRate3);
@@ -234,13 +234,13 @@ TEST_F(AngularSequenceVelocityTest, TestEqualityOperators)
     EXPECT_FALSE(eulerVel1 == eulerVel3);
 
     // Different sequence types should not be equal (compile-time enforcement)
-    AngularSequenceVelocity<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame> eulerVel4(
+    AngleSequenceVelocity<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame> eulerVel4(
         angularRate1, angularRate2, angularRate3
     );
     // eulerVel1 == eulerVel4; // This should not compile due to type safety
 }
 
-TEST_F(AngularSequenceVelocityTest, TestAdditionAndSubtraction)
+TEST_F(AngleSequenceVelocityTest, TestAdditionAndSubtraction)
 {
     TestEulerAngularVel eulerVel1(0.1 * rad / s, 0.2 * rad / s, 0.3 * rad / s);
     TestEulerAngularVel eulerVel2(0.05 * rad / s, 0.1 * rad / s, 0.15 * rad / s);
@@ -268,7 +268,7 @@ TEST_F(AngularSequenceVelocityTest, TestAdditionAndSubtraction)
     compare_angular_velocity_sequences(eulerVelNeg, expectedNeg, REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestScalarMultiplicationAndDivision)
+TEST_F(AngleSequenceVelocityTest, TestScalarMultiplicationAndDivision)
 {
     TestEulerAngularVel eulerVel(0.1 * rad / s, 0.2 * rad / s, 0.3 * rad / s);
 
@@ -289,7 +289,7 @@ TEST_F(AngularSequenceVelocityTest, TestScalarMultiplicationAndDivision)
     compare_angular_velocity_sequences(eulerVelDivided, eulerVel, REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestTimeOperations)
+TEST_F(AngleSequenceVelocityTest, TestTimeOperations)
 {
     TestEulerAngularVel eulerVel(0.1 * rad / s, 0.2 * rad / s, 0.3 * rad / s);
     Time dt = 2.0 * s;
@@ -307,22 +307,22 @@ TEST_F(AngularSequenceVelocityTest, TestTimeOperations)
     ASSERT_EQ_QUANTITY(acceleration.get_psi_ddot(), 0.15 * rad / (s * s), REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestGetAngularVelocitysMethod)
+TEST_F(AngleSequenceVelocityTest, TestGetAngularVelocitysMethod)
 {
     TestEulerAngularVel eulerVel(angularRate1, angularRate2, angularRate3);
 
-    // Test that get_angleRates() returns the internal CartesianVector
-    auto& angleRates = eulerVel.get_angleRates();
+    // Test that get_angular_velocity() returns the internal CartesianVector
+    auto& angleRates = eulerVel.get_angular_velocity();
     ASSERT_EQ_QUANTITY(angleRates[0], angularRate1, REL_TOL);
     ASSERT_EQ_QUANTITY(angleRates[1], angularRate2, REL_TOL);
     ASSERT_EQ_QUANTITY(angleRates[2], angularRate3, REL_TOL);
 
-    // Test that modifications through get_angleRates() work
+    // Test that modifications through get_angular_velocity() work
     angleRates[0] = 0.5 * rad / s;
     ASSERT_EQ_QUANTITY(eulerVel.get_phi_dot(), 0.5 * rad / s, REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestLargeAngularVelocitys)
+TEST_F(AngleSequenceVelocityTest, TestLargeAngularVelocitys)
 {
     // Test with larger angular rates to ensure no overflow/underflow issues
     AngularVelocity largeRate1 = 100.0 * rad / s;
@@ -342,7 +342,7 @@ TEST_F(AngularSequenceVelocityTest, TestLargeAngularVelocitys)
     ASSERT_EQ_QUANTITY(doubledVel.get_psi_dot(), 400.0 * rad / s, REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestZeroAngularVelocitys)
+TEST_F(AngleSequenceVelocityTest, TestZeroAngularVelocitys)
 {
     // Test with zero angular rates
     AngularVelocity zeroRate = 0.0 * rad / s;
@@ -361,7 +361,7 @@ TEST_F(AngularSequenceVelocityTest, TestZeroAngularVelocitys)
     compare_angular_velocity_sequences(productWithZero, zeroVel, REL_TOL);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestUnitConversion)
+TEST_F(AngleSequenceVelocityTest, TestUnitConversion)
 {
     // Test with different units (deg/s vs rad/s)
     AngularVelocity rateInDegPerSec = 30.0 * deg / s;
@@ -374,7 +374,7 @@ TEST_F(AngularSequenceVelocityTest, TestUnitConversion)
     EXPECT_TRUE(eulerVel1 == eulerVel2);
 }
 
-TEST_F(AngularSequenceVelocityTest, TestChainedOperations)
+TEST_F(AngleSequenceVelocityTest, TestChainedOperations)
 {
     TestEulerAngularVel vel1(0.1 * rad / s, 0.2 * rad / s, 0.3 * rad / s);
     TestEulerAngularVel vel2(0.05 * rad / s, 0.1 * rad / s, 0.15 * rad / s);
