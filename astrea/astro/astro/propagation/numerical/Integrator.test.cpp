@@ -18,7 +18,7 @@
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
-#include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>
+#include <astro/propagation/equations_of_motion/StateTransitionMatrix.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 #include <astro/state/StateHistory.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>

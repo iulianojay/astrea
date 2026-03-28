@@ -11,7 +11,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/propagation/equations_of_motion/J2MeanVop.hpp>
+#include <astro/propagation/equations_of_motion/instances/J2MeanVop.hpp>
 
 #include <algorithm>
 #include <cmath>

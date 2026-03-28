@@ -17,26 +17,21 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
-#include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
-#include <astro/propagation/force_models/ForceModel.hpp>
+#include <astro/propagation/equations_of_motion/instances/TwoBody.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
+#include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <tests/utilities/comparisons.hpp>
 
-using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
 using namespace astrea;
 using namespace astro;
 
-class KeplerianVopTest : public testing::Test {
+class TwoBodyTest : public testing::Test {
   public:
-    KeplerianVopTest() :
-        eom(forces)
-    {
-    }
+    TwoBodyTest() {}
 
     void SetUp() override {}
 
@@ -46,8 +41,7 @@ class KeplerianVopTest : public testing::Test {
     Vehicle sat;
     AstrodynamicsSystem sys;
     Date epoch;
-    ForceModel forces;
-    KeplerianVop eom;
+    TwoBody eom;
 };
 
 
@@ -58,18 +52,31 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(KeplerianVopTest, GetExpectedSet)
+TEST_F(TwoBodyTest, GetExpectedSet) { ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian>()); }
+
+TEST_F(TwoBodyTest, Derivative)
 {
-    ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Keplerian>());
+    Cartesian cart0           = Cartesian::LEO(sys.get_mu());
+    CartesianPartial expected = CartesianPartial(
+        cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), -0.0081347028957142863 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
+    );
+
+    State state(cart0, epoch, sys);
+
+    OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
+    ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }
 
-TEST_F(KeplerianVopTest, Derivative)
+// Vallado, Ex. 8.5
+TEST_F(TwoBodyTest, DerivativeValladoEx85)
 {
-    Keplerian kep0 = Keplerian::LEO();
-    KeplerianPartial expected =
-        KeplerianPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * rad / s, 0.0 * rad / s, 0.0 * rad / s, 0.0010780076129942077 * rad / s);
+    Cartesian cart0{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                     -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    CartesianPartial expected = CartesianPartial(
+        cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), 0.00074873079 * km / (s * s), 0.00725534667 * km / (s * s), -0.00431725847 * km / (s * s)
+    );
 
-    State state(kep0, epoch, sys);
+    State state(cart0, epoch, sys);
 
     OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);

@@ -11,7 +11,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/propagation/equations_of_motion/TwoBody.hpp>
+#include <astro/propagation/equations_of_motion/instances/TwoBody.hpp>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
@@ -19,7 +19,7 @@
 
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/platforms/Vehicle.hpp>
-#include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>
+#include <astro/propagation/equations_of_motion/StateTransitionMatrix.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 

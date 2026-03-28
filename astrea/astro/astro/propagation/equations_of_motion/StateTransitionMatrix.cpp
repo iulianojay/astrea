@@ -1,4 +1,4 @@
-#include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>
+#include <astro/propagation/equations_of_motion/StateTransitionMatrix.hpp>
 
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/state/State.hpp>

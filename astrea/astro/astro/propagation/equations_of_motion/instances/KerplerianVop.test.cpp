@@ -17,7 +17,7 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
-#include <astro/propagation/equations_of_motion/J2MeanVop.hpp>
+#include <astro/propagation/equations_of_motion/instances/KeplerianVop.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
@@ -31,9 +31,12 @@ using mp_units::si::unit_symbols::s;
 using namespace astrea;
 using namespace astro;
 
-class J2MeanTest : public testing::Test {
+class KeplerianVopTest : public testing::Test {
   public:
-    J2MeanTest() {}
+    KeplerianVopTest() :
+        eom(forces)
+    {
+    }
 
     void SetUp() override {}
 
@@ -43,7 +46,8 @@ class J2MeanTest : public testing::Test {
     Vehicle sat;
     AstrodynamicsSystem sys;
     Date epoch;
-    J2MeanVop eom;
+    ForceModel forces;
+    KeplerianVop eom;
 };
 
 
@@ -54,9 +58,12 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(J2MeanTest, GetExpectedSet) { ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Keplerian>()); }
+TEST_F(KeplerianVopTest, GetExpectedSet)
+{
+    ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Keplerian>());
+}
 
-TEST_F(J2MeanTest, Derivative)
+TEST_F(KeplerianVopTest, Derivative)
 {
     Keplerian kep0 = Keplerian::LEO();
     KeplerianPartial expected =

@@ -17,21 +17,25 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
-#include <astro/propagation/equations_of_motion/TwoBody.hpp>
+#include <astro/propagation/equations_of_motion/instances/CowellsMethod.hpp>
+#include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <tests/utilities/comparisons.hpp>
 
+using namespace astrea;
+using namespace astro;
+using namespace mp_units;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-using namespace astrea;
-using namespace astro;
-
-class TwoBodyTest : public testing::Test {
+class CowellsMethodTest : public testing::Test {
   public:
-    TwoBodyTest() {}
+    CowellsMethodTest() :
+        eom(forces)
+    {
+    }
 
     void SetUp() override {}
 
@@ -41,7 +45,8 @@ class TwoBodyTest : public testing::Test {
     Vehicle sat;
     AstrodynamicsSystem sys;
     Date epoch;
-    TwoBody eom;
+    ForceModel forces;
+    CowellsMethod eom;
 };
 
 
@@ -52,32 +57,33 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(TwoBodyTest, GetExpectedSet) { ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian>()); }
+TEST_F(CowellsMethodTest, GetExpectedSet)
+{
+    ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian>());
+}
 
-TEST_F(TwoBodyTest, Derivative)
+TEST_F(CowellsMethodTest, Derivative)
 {
     Cartesian cart0           = Cartesian::LEO(sys.get_mu());
     CartesianPartial expected = CartesianPartial(
         cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), -0.0081347028957142863 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
     );
+    State state0(cart0, epoch, sys);
 
-    State state(cart0, epoch, sys);
-
-    OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
+    OrbitalElementPartials dstate = eom.compute_dynamics(state0, sat, noForce, noForce);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }
 
 // Vallado, Ex. 8.5
-TEST_F(TwoBodyTest, DerivativeValladoEx85)
+TEST_F(CowellsMethodTest, DerivativeValladoEx85)
 {
     Cartesian cart0{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                      -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     CartesianPartial expected = CartesianPartial(
         cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), 0.00074873079 * km / (s * s), 0.00725534667 * km / (s * s), -0.00431725847 * km / (s * s)
     );
+    State state0(cart0, epoch, sys);
 
-    State state(cart0, epoch, sys);
-
-    OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
+    OrbitalElementPartials dstate = eom.compute_dynamics(state0, sat, noForce, noForce);
     ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
 }

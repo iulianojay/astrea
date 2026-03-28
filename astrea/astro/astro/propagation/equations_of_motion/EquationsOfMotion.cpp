@@ -16,7 +16,7 @@
 #include <optional>
 
 #include <astro/platforms/Vehicle.hpp>
-#include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>
+#include <astro/propagation/equations_of_motion/StateTransitionMatrix.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/force_models/Perturbation.hpp>
 #include <astro/state/State.hpp>

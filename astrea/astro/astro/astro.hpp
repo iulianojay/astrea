@@ -62,12 +62,12 @@
 #include <astro/propagation/force_models/instances/OblatenessForce.hpp>
 #include <astro/propagation/force_models/instances/SolarRadiationPressure.hpp>
 
-#include <astro/propagation/equations_of_motion/CowellsMethod.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
-#include <astro/propagation/equations_of_motion/EquinoctialVop.hpp>
-#include <astro/propagation/equations_of_motion/J2MeanVop.hpp>
-#include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
-#include <astro/propagation/equations_of_motion/TwoBody.hpp>
+#include <astro/propagation/equations_of_motion/instances/CowellsMethod.hpp>
+#include <astro/propagation/equations_of_motion/instances/EquinoctialVop.hpp>
+#include <astro/propagation/equations_of_motion/instances/J2MeanVop.hpp>
+#include <astro/propagation/equations_of_motion/instances/KeplerianVop.hpp>
+#include <astro/propagation/equations_of_motion/instances/TwoBody.hpp>
 
 #include <astro/propagation/event_detection/Event.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>

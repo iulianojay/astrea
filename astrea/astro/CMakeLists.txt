@@ -45,14 +45,14 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/force_models/instances/OblatenessForce.cpp
     ${ASTRO_BASE}/propagation/force_models/instances/SolarRadiationPressure.cpp
 
-    ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.cpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/CowellsMethod.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/KeplerianVop.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/CowellsMethod.cpp
     ${ASTRO_BASE}/propagation/equations_of_motion/EquationsOfMotion.cpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/EquinoctialVop.cpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/J2MeanVop.cpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/EquinoctialVop.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/J2MeanVop.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/TwoBody.cpp
 
-    ${ASTRO_BASE}/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/StateTransitionMatrix.cpp
 
     ${ASTRO_BASE}/state/State.cpp
     ${ASTRO_BASE}/state/StateHistory.cpp
@@ -152,14 +152,14 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/force_models/instances/OblatenessForce.hpp
     ${ASTRO_BASE}/propagation/force_models/instances/SolarRadiationPressure.hpp
 
-    ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.hpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/CowellsMethod.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/KeplerianVop.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/CowellsMethod.hpp
     ${ASTRO_BASE}/propagation/equations_of_motion/EquationsOfMotion.hpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/J2MeanVop.hpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/EquinoctialVop.hpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/J2MeanVop.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/EquinoctialVop.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/TwoBody.hpp
 
-    ${ASTRO_BASE}/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/StateTransitionMatrix.hpp
 
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
