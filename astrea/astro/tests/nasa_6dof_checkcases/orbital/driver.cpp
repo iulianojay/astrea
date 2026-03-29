@@ -68,6 +68,8 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 using mp_units::si::unit_symbols::µm;
 
+inline constexpr auto slug = lbf * pow<2>(s) / ft;
+
 namespace astrea {
 namespace astro {
 
@@ -143,7 +145,17 @@ class Orbital6DofTest : public testing::Test {
         Spacecraft sat;
         switch (vehicleType) {
             case ISS: {
-                sat.set_mass(4.5e5 * kg);
+                sat.set_mass(400'000.0 * kg);
+                sat.set_inertia_tensor(
+                    {
+                        1.02e8 * kg / pow<2>(m),  // xx
+                        6.96e6 * kg / pow<2>(m),  // xy
+                        5.48e6 * kg / pow<2>(m),  // xz
+                        0.91e8 * kg / pow<2>(m),  // yy
+                        -5.90e5 * kg / pow<2>(m), // yz
+                        5.48e6 * kg / pow<2>(m)   // zz
+                    }
+                );
                 sat.set_ram_area(2.5e3 * m * m);
                 sat.set_lift_area(2.5e3 * m * m);
                 sat.set_solar_area(2.5e3 * m * m);
@@ -155,6 +167,7 @@ class Orbital6DofTest : public testing::Test {
 
             case SPHERE: {
                 sat.set_mass(1.0 * kg);
+                sat.set_inertia_tensor({ 2.0 / (5.0 * std::numbers::pi) * kg / pow<2>(m) });
                 sat.set_ram_area(1.0 * m * m);
                 sat.set_lift_area(0.0 * m * m);
                 sat.set_solar_area(1.0 * m * m);
@@ -166,6 +179,9 @@ class Orbital6DofTest : public testing::Test {
 
             case BRICK: {
                 sat.set_mass(1.0 * kg);
+                sat.set_inertia_tensor(
+                    { 0.001894220 * slug * pow<2>(ft), 0.006211019 * slug * pow<2>(ft), 0.00719466 * slug * pow<2>(ft) }
+                );
                 sat.set_ram_area(206.451 * cm * cm);
                 sat.set_lift_area(206.451 * cm * cm);
                 sat.set_solar_area(206.451 * cm * cm);
@@ -177,6 +193,7 @@ class Orbital6DofTest : public testing::Test {
 
             case CYLINDER: {
                 sat.set_mass(1000.0 * kg);
+                sat.set_inertia_tensor({ 500.0 * kg / pow<2>(m), 12250.0 * kg / pow<2>(m), 12250.0 * kg / pow<2>(m) });
                 sat.set_ram_area(12.0 * m * m);
                 sat.set_lift_area(12.0 * m * m);
                 sat.set_solar_area(12.0 * m * m);
@@ -247,7 +264,15 @@ class Orbital6DofTest : public testing::Test {
         const Time time = std::round(row.time) * s;
         const RadiusVector<frames::earth::icrf> position(row.eiPosition_m_X * m, row.eiPosition_m_Y * m, row.eiPosition_m_Z * m);
         const VelocityVector<frames::earth::icrf> velocity(row.eiVelocity_m_s_X * m / s, row.eiVelocity_m_s_Y * m / s, row.eiVelocity_m_s_Z * m / s);
-        return State({ Cartesian(position, velocity) }, epoch + time, sys);
+        const AngleSequence<RotationSequence::ZYX, frames::dynamic::ned, frames::earth::icrf> attitudeAngles(
+            row.eulerAngle_rad_Roll * rad, row.eulerAngle_rad_Pitch * rad, row.eulerAngle_rad_Yaw * rad
+        );
+        const IntrinsicTaitBryanAngleVelocities<RotationSequence::ZYX, frames::dynamic::body, frames::earth::icrf> angularVelocity(
+            row.bodyAngularVelocityWrtEi_rad_s_Roll * rad / s,
+            row.bodyAngularVelocityWrtEi_rad_s_Pitch * rad / s,
+            row.bodyAngularVelocityWrtEi_rad_s_Yaw * rad / s
+        );
+        return State({ Cartesian(position, velocity) }, epoch + time, sys, Attitude(attitudeAngles, angularVelocity));
     }
 
     std::vector<std::pair<StateHistory, std::string>> get_checkcase_histories(const std::string& pattern) const

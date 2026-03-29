@@ -907,8 +907,7 @@ TEST_F(QuaternionTest, IndividualComponentConstructorEquivalence)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Intrinsic)
 {
-    using TestAngleSequenceZXZ_Intrinsic =
-        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceZXZ_Intrinsic = AngleSequence<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceZXZ_Intrinsic angles(30.0 * deg, 45.0 * deg, 60.0 * deg);
     TestQuaternion q(angles);
@@ -922,8 +921,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Intrinsic)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Intrinsic_ComponentFiniteness)
 {
-    using TestAngleSequenceZXZ_Intrinsic =
-        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceZXZ_Intrinsic = AngleSequence<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceZXZ_Intrinsic angles(30.0 * deg, 45.0 * deg, 60.0 * deg);
     TestQuaternion q(angles);
@@ -937,8 +935,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Intrinsic_ComponentFinitenes
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Intrinsic_VectorFiniteness)
 {
-    using TestAngleSequenceZXZ_Intrinsic =
-        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceZXZ_Intrinsic = AngleSequence<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceZXZ_Intrinsic angles(30.0 * deg, 45.0 * deg, 60.0 * deg);
     TestQuaternion q(angles);
@@ -954,8 +951,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Intrinsic_VectorFiniteness)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Intrinsic_Normalization)
 {
-    using TestAngleSequenceZXZ_Intrinsic =
-        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceZXZ_Intrinsic = AngleSequence<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     const Angle angle1 = 15.0 * deg;
     const Angle angle2 = 30.0 * deg;
@@ -972,8 +968,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Intrinsic_Normalization)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Extrinsic_Normalization)
 {
-    using TestAngleSequenceZXZ_Extrinsic =
-        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceZXZ_Extrinsic = AngleSequence<RotationSequence::ZXZ, RotationType::EXTRINSIC, TestFrame1, TestFrame2>;
 
     const Angle angle1 = 15.0 * deg;
     const Angle angle2 = 30.0 * deg;
@@ -990,10 +985,8 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Extrinsic_Normalization)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_IntrinsicExtrinsicDifference)
 {
-    using TestAngleSequenceZXZ_Intrinsic =
-        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
-    using TestAngleSequenceZXZ_Extrinsic =
-        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceZXZ_Intrinsic = AngleSequence<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceZXZ_Extrinsic = AngleSequence<RotationSequence::ZXZ, RotationType::EXTRINSIC, TestFrame1, TestFrame2>;
 
     const Angle angle1 = 15.0 * deg;
     const Angle angle2 = 30.0 * deg;
@@ -1021,8 +1014,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_IntrinsicExtrinsicDifference
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_XYX_Intrinsic)
 {
-    using TestAngleSequenceXYX_Intrinsic =
-        AngleSequence<EulerSequence, EulerSequence::XYX, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYX_Intrinsic = AngleSequence<RotationSequence::XYX, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceXYX_Intrinsic angles(80.0 * deg, 10.0 * deg, 45.0 * deg);
     TestQuaternion q(angles);
@@ -1035,8 +1027,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_XYX_Intrinsic)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_YZY_Extrinsic)
 {
-    using TestAngleSequenceYZY_Extrinsic =
-        AngleSequence<EulerSequence, EulerSequence::YZY, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceYZY_Extrinsic = AngleSequence<RotationSequence::YZY, RotationType::EXTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceYZY_Extrinsic angles(120.0 * deg, 60.0 * deg, 30.0 * deg);
     TestQuaternion q(angles);
@@ -1049,8 +1040,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_YZY_Extrinsic)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Intrinsic_Normalization)
 {
-    using TestAngleSequenceXYZ_Intrinsic =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ_Intrinsic = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     const Angle roll  = 10.0 * deg;
     const Angle pitch = 20.0 * deg;
@@ -1068,8 +1058,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Intrinsic_Normalization)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Intrinsic_ScalarFiniteness)
 {
-    using TestAngleSequenceXYZ_Intrinsic =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ_Intrinsic = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     const Angle roll  = 10.0 * deg;
     const Angle pitch = 20.0 * deg;
@@ -1087,8 +1076,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Intrinsic_ScalarFiniteness)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Intrinsic_VectorFiniteness)
 {
-    using TestAngleSequenceXYZ_Intrinsic =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ_Intrinsic = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     const Angle roll  = 10.0 * deg;
     const Angle pitch = 20.0 * deg;
@@ -1108,8 +1096,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Intrinsic_VectorFiniteness)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Intrinsic_Comparison_Normalization)
 {
-    using TestAngleSequenceXYZ_Intrinsic =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ_Intrinsic = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     const Angle angle1 = 25.0 * deg;
     const Angle angle2 = 35.0 * deg;
@@ -1126,8 +1113,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Intrinsic_Comparison_Normali
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Extrinsic_Normalization)
 {
-    using TestAngleSequenceXYZ_Extrinsic =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ_Extrinsic = AngleSequence<RotationSequence::XYZ, RotationType::EXTRINSIC, TestFrame1, TestFrame2>;
 
     const Angle angle1 = 25.0 * deg;
     const Angle angle2 = 35.0 * deg;
@@ -1144,10 +1130,8 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Extrinsic_Normalization)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_IntrinsicExtrinsicDifference)
 {
-    using TestAngleSequenceXYZ_Intrinsic =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
-    using TestAngleSequenceXYZ_Extrinsic =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ_Intrinsic = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ_Extrinsic = AngleSequence<RotationSequence::XYZ, RotationType::EXTRINSIC, TestFrame1, TestFrame2>;
 
     const Angle angle1 = 25.0 * deg;
     const Angle angle2 = 35.0 * deg;
@@ -1174,8 +1158,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_IntrinsicExtrinsicDifference
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_ZYX_Intrinsic)
 {
-    using TestAngleSequenceZYX_Intrinsic =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::ZYX, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceZYX_Intrinsic = AngleSequence<RotationSequence::ZYX, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceZYX_Intrinsic angles(90.0 * deg, 0.0 * deg, 180.0 * deg);
     TestQuaternion q(angles);
@@ -1188,8 +1171,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_ZYX_Intrinsic)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_YXZ_Extrinsic)
 {
-    using TestAngleSequenceYXZ_Extrinsic =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::YXZ, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceYXZ_Extrinsic = AngleSequence<RotationSequence::YXZ, RotationType::EXTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceYXZ_Extrinsic angles(45.0 * deg, 90.0 * deg, 135.0 * deg);
     TestQuaternion q(angles);
@@ -1202,8 +1184,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_YXZ_Extrinsic)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_ZeroAngles_Normalization)
 {
-    using TestAngleSequenceXYZ =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceXYZ zeroAngles(0.0 * deg, 0.0 * deg, 0.0 * deg);
     TestQuaternion q(zeroAngles);
@@ -1217,8 +1198,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_ZeroAngles_Normalization)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_ZeroAngles_ScalarPart)
 {
-    using TestAngleSequenceXYZ =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceXYZ zeroAngles(0.0 * deg, 0.0 * deg, 0.0 * deg);
     TestQuaternion q(zeroAngles);
@@ -1232,8 +1212,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_ZeroAngles_ScalarPart)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_ZeroAngles_VectorParts)
 {
-    using TestAngleSequenceXYZ =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceXYZ zeroAngles(0.0 * deg, 0.0 * deg, 0.0 * deg);
     TestQuaternion q(zeroAngles);
@@ -1249,8 +1228,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_ZeroAngles_VectorParts)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_180DegreeRotation_Normalization)
 {
-    using TestAngleSequenceXYZ =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceXYZ largeAngles(180.0 * deg, 0.0 * deg, 0.0 * deg);
     TestQuaternion q(largeAngles);
@@ -1263,8 +1241,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_180DegreeRotation_Normalization)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_180DegreeRotation_ScalarPart)
 {
-    using TestAngleSequenceXYZ =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceXYZ largeAngles(180.0 * deg, 0.0 * deg, 0.0 * deg);
     TestQuaternion q(largeAngles);
@@ -1278,8 +1255,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_180DegreeRotation_ScalarPart)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_360DegreeRotation)
 {
-    using TestAngleSequenceXYZ =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceXYZ fullRotation(360.0 * deg, 0.0 * deg, 0.0 * deg);
     TestQuaternion q(fullRotation);
@@ -1293,8 +1269,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_360DegreeRotation)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_NegativeAngles_Normalization)
 {
-    using TestAngleSequenceZXZ =
-        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceZXZ = AngleSequence<RotationSequence::ZXZ, RotationType::EXTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceZXZ negativeAngles(-30.0 * deg, -45.0 * deg, -60.0 * deg);
     TestQuaternion q(negativeAngles);
@@ -1307,8 +1282,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_NegativeAngles_Normalization)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_PositiveEquivalentAngles_Normalization)
 {
-    using TestAngleSequenceZXZ =
-        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceZXZ = AngleSequence<RotationSequence::ZXZ, RotationType::EXTRINSIC, TestFrame1, TestFrame2>;
 
     // Compare with positive equivalent
     TestAngleSequenceZXZ positiveAngles(330.0 * deg, 315.0 * deg, 300.0 * deg);
@@ -1323,8 +1297,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_PositiveEquivalentAngles_Normali
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_SmallAngles_Normalization)
 {
-    using TestAngleSequenceXYZ =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceXYZ smallAngles(1e-6 * deg, 1e-5 * deg, 1e-4 * deg);
     TestQuaternion q(smallAngles);
@@ -1337,8 +1310,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_SmallAngles_Normalization)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_SmallAngles_NearIdentity)
 {
-    using TestAngleSequenceXYZ =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceXYZ smallAngles(1e-6 * deg, 1e-5 * deg, 1e-4 * deg);
     TestQuaternion q(smallAngles);
@@ -1352,8 +1324,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_SmallAngles_NearIdentity)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_DCMEquivalence_DirectNormalization)
 {
-    using TestAngleSequenceXYZ =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     const Angle roll  = 30.0 * deg;
     const Angle pitch = 45.0 * deg;
@@ -1372,9 +1343,8 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_DCMEquivalence_DirectNormalizati
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_DCMEquivalence_DCMNormalization)
 {
-    using TestAngleSequenceXYZ =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
-    using TestDCM = DirectionCosineMatrix<TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestDCM              = DirectionCosineMatrix<TestFrame1, TestFrame2>;
 
     const Angle roll  = 30.0 * deg;
     const Angle pitch = 45.0 * deg;
@@ -1394,9 +1364,8 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_DCMEquivalence_DCMNormalization)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_DCMEquivalence_Equivalence)
 {
-    using TestAngleSequenceXYZ =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
-    using TestDCM = DirectionCosineMatrix<TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestDCM              = DirectionCosineMatrix<TestFrame1, TestFrame2>;
 
     const Angle roll  = 30.0 * deg;
     const Angle pitch = 45.0 * deg;
@@ -1429,8 +1398,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_DCMEquivalence_Equivalence)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Coverage)
 {
-    using TestAngleSequence =
-        AngleSequence<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequence = AngleSequence<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequence angles(30.0 * deg, 60.0 * deg, 90.0 * deg);
     TestQuaternion q(angles);
@@ -1443,8 +1411,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_ZXZ_Coverage)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_XYX_Coverage)
 {
-    using TestAngleSequence =
-        AngleSequence<EulerSequence, EulerSequence::XYX, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequence = AngleSequence<RotationSequence::XYX, RotationType::EXTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequence angles(45.0 * deg, 30.0 * deg, 15.0 * deg);
     TestQuaternion q(angles);
@@ -1457,8 +1424,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_XYX_Coverage)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Coverage)
 {
-    using TestAngleSequence =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequence = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequence angles(15.0 * deg, 30.0 * deg, 45.0 * deg);
     TestQuaternion q(angles);
@@ -1471,8 +1437,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_Coverage)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_YZX_Coverage)
 {
-    using TestAngleSequence =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::YZX, RotationSequenceType::EXTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequence = AngleSequence<RotationSequence::YZX, RotationType::EXTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequence angles(60.0 * deg, 45.0 * deg, 30.0 * deg);
     TestQuaternion q(angles);
@@ -1485,8 +1450,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_YZX_Coverage)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_ZXY_Coverage)
 {
-    using TestAngleSequence =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::ZXY, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequence = AngleSequence<RotationSequence::ZXY, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequence angles(90.0 * deg, 0.0 * deg, 45.0 * deg);
     TestQuaternion q(angles);
@@ -1499,8 +1463,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_ZXY_Coverage)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_vs_ZYX_Normalization)
 {
-    using TestAngleSequenceXYZ =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceXYZ anglesXYZ(30.0 * deg, 45.0 * deg, 60.0 * deg);
     TestQuaternion qXYZ(anglesXYZ);
@@ -1513,8 +1476,7 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_XYZ_vs_ZYX_Normalization)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_ZYX_vs_XYZ_Normalization)
 {
-    using TestAngleSequenceZYX =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::ZYX, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceZYX = AngleSequence<RotationSequence::ZYX, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceZYX anglesZYX(30.0 * deg, 45.0 * deg, 60.0 * deg);
     TestQuaternion qZYX(anglesZYX);
@@ -1527,10 +1489,8 @@ TEST_F(QuaternionTest, AngleSequenceConstructor_ZYX_vs_XYZ_Normalization)
  */
 TEST_F(QuaternionTest, AngleSequenceConstructor_DifferentSequencesDifferentResults)
 {
-    using TestAngleSequenceXYZ =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
-    using TestAngleSequenceZYX =
-        AngleSequence<TaitBryanSequence, TaitBryanSequence::ZYX, RotationSequenceType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceXYZ = AngleSequence<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
+    using TestAngleSequenceZYX = AngleSequence<RotationSequence::ZYX, RotationType::INTRINSIC, TestFrame1, TestFrame2>;
 
     TestAngleSequenceXYZ anglesXYZ(30.0 * deg, 45.0 * deg, 60.0 * deg);
     TestAngleSequenceZYX anglesZYX(30.0 * deg, 45.0 * deg, 60.0 * deg);

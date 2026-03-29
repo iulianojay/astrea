@@ -91,6 +91,16 @@ class InertiaTensor {
     }
 
     /**
+     * @brief Constructs a spherical inertia tensor with the specified moment of inertia about any axis.
+     *
+     * @param Iii Moment of inertia about any axis (for a sphere, all moments of inertia are equal).
+     */
+    InertiaTensor(const MomentOfInertia& Iii) :
+        _tensor{ { { Iii, zero, zero }, { zero, Iii, zero }, { zero, zero, Iii } } }
+    {
+    }
+
+    /**
      * @brief Accesses the inertia tensor element at the specified row and column.
      */
     MomentOfInertia& operator[](size_t i, size_t j) { return _tensor[i][j]; }

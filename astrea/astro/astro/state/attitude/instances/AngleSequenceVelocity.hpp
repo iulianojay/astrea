@@ -35,19 +35,20 @@ namespace astro {
 /**
  * @brief Class representing a sequence of angular velocities (either Euler or Tait-Bryan) for attitude transformations between frames.
  *
- * @tparam Sequence_T The type of angle sequence (EulerSequence or TaitBryanSequence).
- * @tparam sequence The specific sequence of rotations (e.g., EulerSequence::ZXZ).
- * @tparam rotationType Whether the sequence is intrinsic or extrinsic.
+ * @tparam sequence The specific sequence of rotations (e.g., RotationSequence::ZXZ).
+ * @tparam type Whether the sequence is intrinsic or extrinsic.
  * @tparam In_Frame_T The input frame type (e.g., ECI, ECEF).
  * @tparam Out_Frame_T The output frame type (e.g., ECI, ECEF).
  */
-template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
-    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence>)
+template <RotationSequence sequence, RotationType rotation_type, typename In_Frame_T, typename Out_Frame_T>
 class AngleSequenceVelocity {
 
     friend class AttitudePartial;
 
   public:
+    using in_frame  = In_Frame_T;
+    using out_frame = Out_Frame_T;
+
     /**
      * @brief Default constructor for the AngleSequenceVelocity class. Initializes all angles to zero.
      */
@@ -106,23 +107,23 @@ class AngleSequenceVelocity {
     const CartesianVector<AngularVelocity, In_Frame_T>& get_angularVelocities() const { return _angularVelocities; }
 
     // Explicitly deleted copy/move assignment/constructor to prevent implicit frame switches, rotation type conversions, and sequence conversions.
-    template <typename Sequence_U, Sequence_U sequence_u, RotationSequenceType rotationType_u, typename In_Frame_U, typename Out_Frame_U>
-        requires(!IsSameAngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T, Sequence_U, sequence_u, rotationType_u, In_Frame_U, Out_Frame_U>)
-    AngleSequenceVelocity(const AngleSequenceVelocity<Sequence_U, sequence_u, rotationType_u, In_Frame_U, Out_Frame_U>& other) = delete;
+    template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
+        requires(!IsSameAngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
+    AngleSequenceVelocity(const AngleSequenceVelocity<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other) = delete;
 
-    template <typename Sequence_U, Sequence_U sequence_u, RotationSequenceType rotationType_u, typename In_Frame_U, typename Out_Frame_U>
-        requires(!IsSameAngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T, Sequence_U, sequence_u, rotationType_u, In_Frame_U, Out_Frame_U>)
-    AngleSequenceVelocity(AngleSequenceVelocity<Sequence_U, sequence_u, rotationType_u, In_Frame_U, Out_Frame_U>&& other) = delete;
+    template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
+        requires(!IsSameAngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
+    AngleSequenceVelocity(AngleSequenceVelocity<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>&& other) = delete;
 
-    template <typename Sequence_U, Sequence_U sequence_u, RotationSequenceType rotationType_u, typename In_Frame_U, typename Out_Frame_U>
-        requires(!IsSameAngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T, Sequence_U, sequence_u, rotationType_u, In_Frame_U, Out_Frame_U>)
-    AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>&
-        operator=(const AngleSequenceVelocity<Sequence_U, sequence_u, rotationType_u, In_Frame_U, Out_Frame_U>& other) = delete;
+    template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
+        requires(!IsSameAngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
+    AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>&
+        operator=(const AngleSequenceVelocity<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other) = delete;
 
-    template <typename Sequence_U, Sequence_U sequence_u, RotationSequenceType rotationType_u, typename In_Frame_U, typename Out_Frame_U>
-        requires(!IsSameAngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T, Sequence_U, sequence_u, rotationType_u, In_Frame_U, Out_Frame_U>)
-    AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>&
-        operator=(AngleSequenceVelocity<Sequence_U, sequence_u, rotationType_u, In_Frame_U, Out_Frame_U>&& other) = delete;
+    template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
+        requires(!IsSameAngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
+    AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>&
+        operator=(AngleSequenceVelocity<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>&& other) = delete;
 
     /**
      * @brief Equality operator for CartesianVector.
@@ -133,7 +134,7 @@ class AngleSequenceVelocity {
      *
      * @note Equivalent sequences aren't allowed here because it would imply that their derivatives are the same, which is not true.
      */
-    bool operator==(const AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other) const
+    bool operator==(const AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
     {
         return _angularVelocities == other._angularVelocities;
     }
@@ -145,9 +146,9 @@ class AngleSequenceVelocity {
      * @return true If the two vectors are not equal.
      * @return false If the two vectors are equal.
      */
-    template <typename Sequence_U, Sequence_U sequence_u, RotationSequenceType rotationType_u, typename In_Frame_U, typename Out_Frame_U>
-        requires(!IsSameAngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T, Sequence_U, sequence_u, rotationType_u, In_Frame_U, Out_Frame_U>)
-    bool operator==(const AngleSequenceVelocity<Sequence_U, sequence_u, rotationType_u, In_Frame_U, Out_Frame_U>& other) const
+    template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
+        requires(!IsSameAngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
+    bool operator==(const AngleSequenceVelocity<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other) const
     {
         return false;
     }
@@ -168,11 +169,11 @@ class AngleSequenceVelocity {
      * @brief Addition operator for CartesianVector.
      *
      * @param other The other AngleSequenceVelocity to add.
-     * @return AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
+     * @return AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new
      * AngleSequenceVelocity that is the sum of this sequence and the other.
      */
-    AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>
-        operator+(const AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other) const
+    AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>
+        operator+(const AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
     {
         return { _angularVelocities + other._angularVelocities };
     }
@@ -181,10 +182,10 @@ class AngleSequenceVelocity {
      * @brief Addition assignment operator for AngleSequenceVelocity.
      *
      * @param other The other AngleSequenceVelocity to add.
-     * @return AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& Reference to the current object after addition.
+     * @return AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& Reference to the current object after addition.
      */
-    AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>&
-        operator+=(const AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other)
+    AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>&
+        operator+=(const AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other)
     {
         _angularVelocities += other._angularVelocities;
         return *this;
@@ -193,10 +194,10 @@ class AngleSequenceVelocity {
     /**
      * @brief Unary negation operator for AngleSequenceVelocity.
      *
-     * @return AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
+     * @return AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new
      * AngleSequenceVelocity that is the negation of this sequence.
      */
-    AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> operator-() const
+    AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator-() const
     {
         return { -_angularVelocities };
     }
@@ -216,11 +217,11 @@ class AngleSequenceVelocity {
      * @brief Subtraction operator for AngleSequenceVelocity.
      *
      * @param other The other AngleSequenceVelocity to subtract.
-     * @return AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
+     * @return AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new
      * AngleSequenceVelocity that is the difference of this sequence and the other.
      */
-    AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>
-        operator-(const AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other) const
+    AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>
+        operator-(const AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
     {
         return { _angularVelocities - other._angularVelocities };
     }
@@ -229,10 +230,10 @@ class AngleSequenceVelocity {
      * @brief Subtraction assignment operator for AngleSequenceVelocity.
      *
      * @param other The other AngleSequenceVelocity to subtract.
-     * @return AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& Reference to the current object after subtraction.
+     * @return AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& Reference to the current object after subtraction.
      */
-    AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>&
-        operator-=(const AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other)
+    AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>&
+        operator-=(const AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other)
     {
         _angularVelocities -= other._angularVelocities;
         return *this;
@@ -255,10 +256,10 @@ class AngleSequenceVelocity {
      * @brief Scalar multiplication operator for AngleSequenceVelocity by a Time quantity, resulting in an AngleSequence.
      *
      * @param time The time quantity to multiply by.
-     * @return AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
+     * @return AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new
      * AngleSequence that is the product of this sequence and the time.
      */
-    AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> operator*(const Time& time) const
+    AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator*(const Time& time) const
     {
         return { _angularVelocities * time };
     }
@@ -267,10 +268,10 @@ class AngleSequenceVelocity {
      * @brief Scalar multiplication operator for AngleSequenceVelocity by a quantity, resulting in an AngleSequenceVelocity.
      *
      * @param scale The quantity to multiply by.
-     * @return AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
+     * @return AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new
      * AngleSequenceVelocity that is the product of this sequence and the quantity.
      */
-    AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> operator*(const Unitless& scale) const
+    AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator*(const Unitless& scale) const
     {
         return { _angularVelocities * scale };
     }
@@ -279,9 +280,9 @@ class AngleSequenceVelocity {
      * @brief Scalar multiplication assignment operator for AngleSequenceVelocity by a quantity.
      *
      * @param scale The quantity to multiply by.
-     * @return AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& Reference to the current object after multiplication.
+     * @return AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& Reference to the current object after multiplication.
      */
-    AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& operator*=(const Unitless& scale)
+    AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& operator*=(const Unitless& scale)
     {
         _angularVelocities *= scale;
         return *this;
@@ -304,10 +305,10 @@ class AngleSequenceVelocity {
      * @brief Scalar division operator for AngleSequenceVelocity by a Time quantity, resulting in an AngleSequenceAcceleration.
      *
      * @param time The time quantity to divide by.
-     * @return AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
+     * @return AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new
      * AngleSequenceAcceleration that is the quotient of this sequence and the time.
      */
-    AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> operator/(const Time& time) const
+    AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator/(const Time& time) const
     {
         return { _angularVelocities / time };
     }
@@ -316,10 +317,10 @@ class AngleSequenceVelocity {
      * @brief Scalar division operator for AngleSequenceVelocity by a quantity, resulting in an AngleSequenceVelocity.
      *
      * @param scale The quantity to divide by.
-     * @return AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
+     * @return AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new
      * AngleSequenceVelocity that is the quotient of this sequence and the quantity.
      */
-    AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> operator/(const Unitless& scale) const
+    AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator/(const Unitless& scale) const
     {
         return { _angularVelocities / scale };
     }
@@ -328,9 +329,9 @@ class AngleSequenceVelocity {
      * @brief Scalar division assignment operator for AngleSequenceVelocity by a quantity.
      *
      * @param scale The quantity to divide by.
-     * @return AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& Reference to the current object after division.
+     * @return AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& Reference to the current object after division.
      */
-    AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& operator/=(const Unitless& scale)
+    AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& operator/=(const Unitless& scale)
     {
         _angularVelocities /= scale;
         return *this;
@@ -355,7 +356,7 @@ class AngleSequenceVelocity {
      * @param other The other AngleSequenceVelocity to take the dot product with.
      * @return auto The resulting scalar from the dot product.
      */
-    auto dot(const AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other) const
+    auto dot(const AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
     {
         return _angularVelocities.dot(other._angularVelocities);
     }
@@ -380,7 +381,7 @@ class AngleSequenceVelocity {
      * @return CartesianVector<decltype(AngularVelocity{} * AngularVelocity{}), In_Frame_T> The resulting CartesianVector from the cross product.
      */
     CartesianVector<decltype(AngularVelocity{} * AngularVelocity{}), In_Frame_T>
-        cross(const AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other) const
+        cross(const AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
     {
         return _angularVelocities.cross(other._angularVelocities);
     }
@@ -404,13 +405,13 @@ class AngleSequenceVelocity {
      * @param otherTime The time corresponding to the other angle sequence.
      * @param other The other angle sequence to interpolate with.
      * @param targetTime The time at which to interpolate the angle sequence.
-     * @return AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
+     * @return AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new
      * AngleSequenceVelocity that is the interpolation of this sequence and the other at the target time.
      */
-    AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> interpolate(
+    AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> interpolate(
         const Time& thisTime,
         const Time& otherTime,
-        const AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other,
+        const AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other,
         const Time& targetTime
     ) const
     {
@@ -433,12 +434,11 @@ class AngleSequenceVelocity {
      * @brief Constructs an AngleSequenceVelocity from a vector of Unitless quantities representing the angle components.
      *
      * @param vec A std::vector of Unitless quantities representing the components of the angle sequence, in the order [first, second, third].
-     * @return A new AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> constructed from the given vector.
+     * @return A new AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> constructed from the given vector.
      *
      * @throws std::invalid_argument if the input vector does not have exactly 3 components.
      */
-    static AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>
-        from_vector(const std::vector<Unitless>& vec)
+    static AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> from_vector(const std::vector<Unitless>& vec)
     {
         using mp_units::angular::unit_symbols::rad;
         using mp_units::si::unit_symbols::s;
@@ -453,9 +453,8 @@ class AngleSequenceVelocity {
 /**
  * @brief Scalar multiplication operator for AngleSequenceVelocity with an InertiaTensor.
  *
- * @tparam Sequence_T The type of angle sequence (EulerSequence or TaitBryanSequence).
- * @tparam sequence The specific sequence of rotations (e.g., EulerSequence::ZXZ).
- * @tparam rotationType Whether the sequence is intrinsic or extrinsic.
+ * @tparam sequence The specific sequence of rotations (e.g., RotationSequence::ZXZ).
+ * @tparam type Whether the sequence is intrinsic or extrinsic.
  * @tparam In_Frame_T The input frame type (e.g., ECI, ECEF).
  * @tparam Out_Frame_T The output frame type (e.g., ECI, ECEF).
  * @param inertiaTensor The InertiaTensor to multiply with.
@@ -463,9 +462,9 @@ class AngleSequenceVelocity {
  * @return CartesianVector<decltype(MomentOfInertia{} * AngularVelocity{}), In_Frame_T> A new
  * CartesianVector that is the product of the inertia tensor and the angle sequence velocity.
  */
-template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
+template <RotationSequence sequence, RotationType rotation_type, typename In_Frame_T, typename Out_Frame_T>
 CartesianVector<decltype(MomentOfInertia{} * AngularVelocity{}), In_Frame_T>
-    operator*(const InertiaTensor<In_Frame_T>& inertiaTensor, const AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& vec)
+    operator*(const InertiaTensor<In_Frame_T>& inertiaTensor, const AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& vec)
 {
 
     return { inertiaTensor[0, 0] * vec[0] + inertiaTensor[0, 1] * vec[1] + inertiaTensor[0, 2] * vec[2],
@@ -476,19 +475,20 @@ CartesianVector<decltype(MomentOfInertia{} * AngularVelocity{}), In_Frame_T>
 /**
  * @brief Class representing the angular sequence acceleration, which is the time derivative of the angular sequence velocity.
  *
- * @tparam Sequence_T The type of angle sequence (EulerSequence or TaitBryanSequence).
- * @tparam sequence The specific sequence of rotations (e.g., EulerSequence::ZXZ).
- * @tparam rotationType Whether the sequence is intrinsic or extrinsic.
+ * @tparam sequence The specific sequence of rotations (e.g., RotationSequence::ZXZ).
+ * @tparam type Whether the sequence is intrinsic or extrinsic.
  * @tparam In_Frame_T The input frame type (e.g., ECI, ECEF).
  * @tparam Out_Frame_T The output frame type (e.g., ECI, ECEF).
  */
-template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
-    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence>)
+template <RotationSequence sequence, RotationType rotation_type, typename In_Frame_T, typename Out_Frame_T>
 class AngleSequenceAcceleration {
 
     friend class Attitude;
 
   public:
+    using in_frame  = In_Frame_T;
+    using out_frame = Out_Frame_T;
+
     /**
      * @brief Default constructor for the AngleSequenceAcceleration class. Initializes all angular accelerations to zero.
      */
@@ -550,11 +550,11 @@ class AngleSequenceAcceleration {
      * @brief Addition operator for AngleSequenceAcceleration.
      *
      * @param other The other AngleSequenceAcceleration to add.
-     * @return AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
+     * @return AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new
      * AngleSequenceAcceleration that is the sum of this and other.
      */
-    AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>
-        operator+(const AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other) const
+    AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>
+        operator+(const AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
     {
         return { _angularAccels + other._angularAccels };
     }
@@ -563,10 +563,10 @@ class AngleSequenceAcceleration {
      * @brief Addition assignment operator for AngleSequenceAcceleration.
      *
      * @param other The other AngleSequenceAcceleration to add.
-     * @return AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& Reference to the current object after addition.
+     * @return AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>& Reference to the current object after addition.
      */
-    AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>&
-        operator+=(const AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other)
+    AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>&
+        operator+=(const AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other)
     {
         _angularAccels += other._angularAccels;
         return *this;
@@ -576,11 +576,11 @@ class AngleSequenceAcceleration {
      * @brief Subtraction operator for AngleSequenceAcceleration.
      *
      * @param other The other AngleSequenceAcceleration to subtract.
-     * @return AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
+     * @return AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new
      * AngleSequenceAcceleration that is the difference of this and other.
      */
-    AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>
-        operator-(const AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other) const
+    AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>
+        operator-(const AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
     {
         return { _angularAccels - other._angularAccels };
     }
@@ -589,10 +589,10 @@ class AngleSequenceAcceleration {
      * @brief Subtraction assignment operator for AngleSequenceAcceleration.
      *
      * @param other The other AngleSequenceAcceleration to subtract.
-     * @return AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& Reference to the current object after subtraction.
+     * @return AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>& Reference to the current object after subtraction.
      */
-    AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>&
-        operator-=(const AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other)
+    AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>&
+        operator-=(const AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other)
     {
         _angularAccels -= other._angularAccels;
         return *this;
@@ -615,10 +615,10 @@ class AngleSequenceAcceleration {
      * @brief Scalar multiplication operator for AngleSequenceAcceleration.
      *
      * @param time The time value to multiply with.
-     * @return AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> A new
+     * @return AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new
      * AngleSequenceVelocity that is the product of this sequence and the time
      */
-    AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> operator*(const Time& time) const
+    AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator*(const Time& time) const
     {
         return { _angularAccels * time };
     }
@@ -655,7 +655,7 @@ class AngleSequenceAcceleration {
      * @param other The other AngleSequenceAcceleration to take the dot product with.
      * @return auto The resulting scalar from the dot product.
      */
-    auto dot(const AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other) const
+    auto dot(const AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
     {
         return _angularAccels.dot(other._angularAccels);
     }
@@ -681,7 +681,7 @@ class AngleSequenceAcceleration {
      * @return CartesianVector<decltype(AngularAcceleration{} * AngularAcceleration{}), In_Frame_T> The resulting CartesianVector from the cross product.
      */
     CartesianVector<decltype(AngularAcceleration{} * AngularAcceleration{}), In_Frame_T>
-        cross(const AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other) const
+        cross(const AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
     {
         return _angularAccels.cross(other._angularAccels);
     }
@@ -706,18 +706,17 @@ class AngleSequenceAcceleration {
  * @brief Scalar multiplication operator for a quantity multiplied by AngleSequenceAcceleration, resulting in a CartesianVector.
  *
  * @tparam Value_U The type of the scalar quantity.
- * @tparam Sequence_T The type of angle sequence (EulerSequence or TaitBryanSequence).
  * @tparam sequence The specific sequence of rotations.
- * @tparam rotationType Whether the sequence is intrinsic or extrinsic.
+ * @tparam type Whether the sequence is intrinsic or extrinsic.
  * @tparam In_Frame_T The input frame type.
  * @tparam Out_Frame_T The output frame type.
  * @param scalar The quantity to multiply with.
  * @param accel The AngleSequenceAcceleration to multiply.
  * @return CartesianVector<decltype(Value_U{} * AngularAcceleration{}), In_Frame_T> The resulting CartesianVector.
  */
-template <typename Value_U, typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
+template <typename Value_U, RotationSequence sequence, RotationType rotation_type, typename In_Frame_T, typename Out_Frame_T>
 CartesianVector<decltype(Value_U{} * AngularAcceleration{}), In_Frame_T>
-    operator*(const Value_U& scalar, const AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& accel)
+    operator*(const Value_U& scalar, const AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>& accel)
 {
     return { scalar * accel.get_angularAccels() };
 }
@@ -725,18 +724,17 @@ CartesianVector<decltype(Value_U{} * AngularAcceleration{}), In_Frame_T>
 /**
  * @brief Scalar multiplication operator for Time multiplied by AngleSequenceAcceleration, resulting in an AngleSequenceVelocity.
  *
- * @tparam Sequence_T The type of angle sequence (EulerSequence or TaitBryanSequence).
  * @tparam sequence The specific sequence of rotations.
- * @tparam rotationType Whether the sequence is intrinsic or extrinsic.
+ * @tparam type Whether the sequence is intrinsic or extrinsic.
  * @tparam In_Frame_T The input frame type.
  * @tparam Out_Frame_T The output frame type.
  * @param time The time value to multiply with.
  * @param accel The AngleSequenceAcceleration to multiply.
- * @return AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T> The resulting AngleSequenceVelocity.
+ * @return AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> The resulting AngleSequenceVelocity.
  */
-template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
-AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>
-    operator*(const Time& time, const AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& accel)
+template <RotationSequence sequence, RotationType rotation_type, typename In_Frame_T, typename Out_Frame_T>
+AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>
+    operator*(const Time& time, const AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>& accel)
 {
     return { time * accel.get_angularAccels() };
 }
@@ -744,18 +742,16 @@ AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_
 /**
  * @brief Output stream operator for AngleSequenceVelocity.
  *
- * @tparam Sequence_T The type of angle sequence (EulerSequence or TaitBryanSequence).
- * @tparam sequence The specific sequence of rotations (e.g., EulerSequence::ZXZ).
- * @tparam rotationType Whether the sequence is intrinsic or extrinsic.
+ * @tparam sequence The specific sequence of rotations (e.g., RotationSequence::ZXZ).
+ * @tparam type Whether the sequence is intrinsic or extrinsic.
  * @tparam In_Frame_T The input frame type (e.g., ECI, ECEF).
  * @tparam Out_Frame_T The output frame type (e.g., ECI, ECEF).
  * @param os The output stream to write to.
  * @param angleSequenceRate The AngleSequenceVelocity to output.
  * @return std::ostream& The output stream after writing the AngleSequenceVelocity.
  */
-template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
-std::ostream&
-    operator<<(std::ostream& os, const AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequenceRate)
+template <RotationSequence sequence, RotationType rotation_type, typename In_Frame_T, typename Out_Frame_T>
+std::ostream& operator<<(std::ostream& os, const AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T>& angleSequenceRate)
 {
     os << "[" << angleSequenceRate[0] << " , " << angleSequenceRate[1] << " , " << angleSequenceRate[2] << "]";
     return os;
@@ -764,18 +760,16 @@ std::ostream&
 /**
  * @brief Output stream operator for AngleSequenceAcceleration.
  *
- * @tparam Sequence_T The type of angle sequence (EulerSequence or TaitBryanSequence).
- * @tparam sequence The specific sequence of rotations (e.g., EulerSequence::ZXZ).
- * @tparam rotationType Whether the sequence is intrinsic or extrinsic.
+ * @tparam sequence The specific sequence of rotations (e.g., RotationSequence::ZXZ).
+ * @tparam type Whether the sequence is intrinsic or extrinsic.
  * @tparam In_Frame_T The input frame type (e.g., ECI, ECEF).
  * @tparam Out_Frame_T The output frame type (e.g., ECI, ECEF).
  * @param os The output stream to write to.
  * @param angleSequenceAccel The AngleSequenceAcceleration to output.
  * @return std::ostream& The output stream after writing the AngleSequenceAcceleration.
  */
-template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
-std::ostream&
-    operator<<(std::ostream& os, const AngleSequenceAcceleration<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequenceAccel)
+template <RotationSequence sequence, RotationType rotation_type, typename In_Frame_T, typename Out_Frame_T>
+std::ostream& operator<<(std::ostream& os, const AngleSequenceAcceleration<sequence, rotation_type, In_Frame_T, Out_Frame_T>& angleSequenceAccel)
 {
     os << "[" << angleSequenceAccel[0] << " , " << angleSequenceAccel[1] << " , " << angleSequenceAccel[2] << "]";
     return os;

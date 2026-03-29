@@ -53,6 +53,9 @@ class Quaternion {
     friend class Attitude;
 
   public:
+    using in_frame  = In_Frame_T;
+    using out_frame = Out_Frame_T;
+
     /**
      * @brief Default constructor for the Quaternion class. Initializes to the identity quaternion (no rotation).
      */
@@ -199,8 +202,8 @@ class Quaternion {
         normalize();
     }
 
-    template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType>
-    Quaternion(const AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequence) :
+    template <RotationSequence sequence, RotationType rotation_type>
+    Quaternion(const AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& angleSequence) :
         Quaternion(angleSequence.to_dcm())
     {
     }

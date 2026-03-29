@@ -54,16 +54,13 @@ class Quaternion;
 template <typename In_Frame_T, typename Out_Frame_T>
 class QuaternionPartial;
 
-template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
-    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence>)
+template <RotationSequence sequence, RotationType rotationType, typename In_Frame_T, typename Out_Frame_T>
 class AngleSequence;
 
-template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
-    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence>)
+template <RotationSequence sequence, RotationType rotationType, typename In_Frame_T, typename Out_Frame_T>
 class AngleSequenceVelocity;
 
-template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
-    requires(std::same_as<Sequence_T, EulerSequence> || std::same_as<Sequence_T, TaitBryanSequence>)
+template <RotationSequence sequence, RotationType rotationType, typename In_Frame_T, typename Out_Frame_T>
 class AngleSequenceAcceleration;
 
 class Attitude;

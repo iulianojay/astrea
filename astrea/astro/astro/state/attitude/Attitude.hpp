@@ -50,13 +50,13 @@ using BodyQuaternionRate = QuaternionPartial<frames::dynamic::body, frames::eart
  * @brief Type alias for a ICRF->body angle sequence velocity
  */
 using BodyAngularVelocity =
-    AngleSequenceVelocity<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>;
+    AngleSequenceVelocity<RotationSequence::ZXZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>;
 
 /**
  * @brief Type alias for a ICRF->body angle sequence acceleration
  */
 using BodyAngularAcceleration =
-    AngleSequenceAcceleration<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>;
+    AngleSequenceAcceleration<RotationSequence::ZXZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>;
 
 /**
  * @brief Concept to check if a type is an attitude type.
@@ -82,7 +82,7 @@ class AttitudePartials; // Forward declaration
 /**
  * @brief Class representing a set of orientation.
  *
- * This class encapsulates different types of orientation (ExtrinsicEulerAngles, IntrinsicEulerAngles, Quaternion)
+ * This class encapsulates different types of orientation (AngleSequence, AngleSequence, Quaternion)
  * and provides methods for conversion, interpolation, and mathematical operations.
  */
 class Attitude {
@@ -109,10 +109,10 @@ class Attitude {
      *
      * @param orientation The orientation to initialize with.
      */
-    template <typename Sequence_T, Sequence_T sequence, RotationSequenceType rotationType, typename In_Frame_T, typename Out_Frame_T>
+    template <RotationSequence sequence, RotationType rotationType, typename In_Frame_T, typename Out_Frame_T>
     Attitude(
-        const AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequence,
-        const AngleSequenceVelocity<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequenceVelocity
+        const AngleSequence<sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequence,
+        const AngleSequenceVelocity<sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequenceVelocity
     ) :
         _orientation(angleSequence),
         _angularVelocity(angleSequenceVelocity)
