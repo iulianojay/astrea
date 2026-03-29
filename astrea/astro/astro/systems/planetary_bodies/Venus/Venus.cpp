@@ -58,7 +58,7 @@ static const std::map<Altitude, Density> venutianAtmosphere = { // km, kg/m^3
 Density Venus::find_atmospheric_density(const Date& date, const Distance& altitude) const
 {
     const auto iter = venutianAtmosphere.upper_bound(altitude);
-    return (iter != venutianAtmosphere.end()) ? iter->second : 0.0 * kg / (m * m * m);
+    return (iter != venutianAtmosphere.end()) ? iter->second : 0.0 * kg / pow<3>(km);
 }
 
 #ifdef ASTREA_BUILD_VENUS_EPHEMERIS

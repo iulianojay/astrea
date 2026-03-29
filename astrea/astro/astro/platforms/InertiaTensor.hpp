@@ -18,6 +18,8 @@
  */
 #pragma once
 
+#include <mp-units/framework.h>
+
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
@@ -111,28 +113,33 @@ class InertiaTensor {
     }
 
     /**
-     * @brief Computes the inverse of the inertia tensor.
-     *
-     * @return InertiaTensor The inverse of the inertia tensor.
-     * @throws std::runtime_error if the inertia tensor is singular (determinant is zero).
+     * @brief Multiplies the inertia tensor by a CartesianVector, effectively applying the inertia tensor to the vector.
      */
-    InertiaTensor inverse() const
+    template <typename Value_U>
+    CartesianVector<decltype(Value_U{} / MomentOfInertia{}), Frame_T>
+        inverse_multiply(const CartesianVector<Value_U, Frame_T>& vec) const
     {
         // Compute the determinant
         // TODO: Generalize a 3x3 matrix class and use it with the DCM as well
         const auto det = determinant();
 
-        if (det == zero) { throw std::runtime_error("Inertia tensor is singular and cannot be inverted."); }
+        if (is_eq_zero(det)) { throw std::runtime_error("Inertia tensor is singular and cannot be inverted."); }
 
-        // Compute the inverse
-        return {
-            (_tensor[1][1] * _tensor[2][2] - _tensor[1][2] * _tensor[2][1]) / det, // xx
-            (_tensor[0][2] * _tensor[2][1] - _tensor[0][1] * _tensor[2][2]) / det, // xy = yx
-            (_tensor[0][1] * _tensor[1][2] - _tensor[0][2] * _tensor[1][1]) / det, // xz = zx
-            (_tensor[1][2] * _tensor[2][0] - _tensor[1][0] * _tensor[2][2]) / det, // yy
-            (_tensor[0][0] * _tensor[2][2] - _tensor[0][2] * _tensor[2][0]) / det, // yz = zy
-            (_tensor[1][0] * _tensor[2][1] - _tensor[1][1] * _tensor[2][0]) / det  // zz
-        };
+        // Compute the inverse using the formula for the inverse of a 3x3 matrix
+        const auto invDet = 1.0 / det;
+        const auto xx     = invDet * (_tensor[1][1] * _tensor[2][2] - _tensor[1][2] * _tensor[2][1]);
+        const auto xy     = invDet * (_tensor[0][2] * _tensor[2][1] - _tensor[0][1] * _tensor[2][2]);
+        const auto xz     = invDet * (_tensor[0][1] * _tensor[1][2] - _tensor[0][2] * _tensor[1][1]);
+        const auto yx     = invDet * (_tensor[1][0] * _tensor[2][2] - _tensor[1][2] * _tensor[2][0]);
+        const auto yy     = invDet * (_tensor[0][2] * _tensor[2][0] - _tensor[0][0] * _tensor[2][2]);
+        const auto yz     = invDet * (_tensor[0][0] * _tensor[1][1] - _tensor[0][1] * _tensor[1][0]);
+        const auto zx     = invDet * (_tensor[1][0] * _tensor[2][1] - _tensor[1][1] * _tensor[2][0]);
+        const auto zy     = invDet * (_tensor[0][1] * _tensor[2][0] - _tensor[0][0] * _tensor[2][1]);
+        const auto zz     = invDet * (_tensor[0][0] * _tensor[1][1] - _tensor[0][1] * _tensor[1][0]);
+
+        return { xx * vec[0] + xy * vec[1] + xz * vec[2],
+                 yx * vec[0] + yy * vec[1] + yz * vec[2],
+                 zx * vec[0] + zy * vec[1] + zz * vec[2] };
     }
 
   private:

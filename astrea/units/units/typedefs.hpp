@@ -56,7 +56,7 @@ using Time = mp_units::quantity<detail::time_unit>;
 /**
  * @brief Definition for a length quantity.
  */
-using Length = mp_units::quantity<detail::minor_distance_unit>;
+using Length = mp_units::quantity<detail::distance_unit>;
 
 /**
  * @brief Definition for a velocity quantity.
@@ -116,7 +116,7 @@ using Acceleration = mp_units::quantity<detail::distance_unit / mp_units::pow<2>
 /**
  * @brief Definition for a surface area quantity.
  */
-using SurfaceArea = mp_units::quantity<mp_units::pow<2>(detail::minor_distance_unit)>;
+using SurfaceArea = mp_units::quantity<mp_units::pow<2>(detail::distance_unit)>;
 
 /**
  * @brief Definition for a gravitational parameter quantity.
@@ -146,7 +146,7 @@ using BallisticCoefficient = mp_units::quantity<mp_units::one / EarthRadii>;
 /**
  * @brief Definition for a density quantity.
  */
-using Density = mp_units::quantity<detail::mass_unit / (mp_units::pow<3>(detail::minor_distance_unit))>;
+using Density = mp_units::quantity<detail::mass_unit / (mp_units::pow<3>(detail::distance_unit))>;
 
 /**
  * @brief Definition for an altitude quantity.
@@ -181,7 +181,7 @@ using Power = mp_units::quantity<detail::power_unit>;
 /**
  * @brief Definition for a power flux density quantity.
  */
-using PowerFluxDensity = mp_units::quantity<detail::power_unit / mp_units::pow<2>(detail::minor_distance_unit)>;
+using PowerFluxDensity = mp_units::quantity<detail::power_unit / mp_units::pow<2>(detail::distance_unit)>;
 
 /**
  * @brief Definition for a temperature quantity.
@@ -196,11 +196,11 @@ using Pressure = mp_units::quantity<detail::pressure_unit>;
 /**
  * @brief Definition for a moment quantity.
  */
-using Moment = mp_units::quantity<detail::force_unit * detail::minor_distance_unit>;
+using Moment = mp_units::quantity<detail::force_unit * detail::distance_unit>;
 
 /**
  * @brief Definition for a moment of inertia quantity.
  */
-using MomentOfInertia = mp_units::quantity<detail::mass_unit * mp_units::pow<2>(detail::minor_distance_unit)>;
+using MomentOfInertia = mp_units::quantity<detail::mass_unit * mp_units::pow<2>(detail::distance_unit)>;
 
 } // namespace astrea

@@ -55,20 +55,20 @@ Density Mars::find_atmospheric_density(const Date& date, const Distance& altitud
     Unitless altitudeValue = altitude / astrea::detail::distance_unit;
     if (altitude <= 80.0 * km) {
         const auto iter = martianAtmosphere.upper_bound(altitude);
-        return (iter != martianAtmosphere.end()) ? iter->second : 0.0 * kg / (m * m * m);
+        return (iter != martianAtmosphere.end()) ? iter->second : 0.0 * kg / pow<3>(km);
     }
     else if (altitude < 200.0 * km) {
         return exp(-2.55314e-10 * pow<5>(altitudeValue) + 2.31927e-7 * pow<4>(altitudeValue) -
                    8.33206e-5 * pow<3>(altitudeValue) + 0.0151947 * pow<2>(altitudeValue) - 1.52799 * altitudeValue + 48.69659) *
-               kg / (m * m * m);
+               kg / pow<3>(km);
     }
     else if (altitude < 300.0 * km) {
         return exp(2.65472e-11 * pow<5>(altitudeValue) - 2.45558e-8 * pow<4>(altitudeValue) + 6.31410e-6 * pow<3>(altitudeValue) +
                    4.73359e-4 * pow<2>(altitudeValue) - 0.443712 * altitudeValue + 23.79408) *
-               kg / (m * m * m);
+               kg / pow<3>(km);
     }
     else {
-        return 0.0 * kg / (m * m * m);
+        return 0.0 * kg / pow<3>(km);
     }
 }
 

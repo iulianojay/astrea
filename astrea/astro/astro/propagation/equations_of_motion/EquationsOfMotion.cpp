@@ -15,13 +15,23 @@
 
 #include <optional>
 
+#include <mp-units/systems/angular.h>
+
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/StateTransitionMatrix.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/force_models/Perturbation.hpp>
 #include <astro/state/State.hpp>
+#include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/types/typedefs.hpp>
+
+using namespace mp_units;
+using mp_units::angular::unit_symbols::rad;
+using mp_units::si::unit_symbols::kg;
+using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::s;
 
 namespace astrea {
 namespace astro {
@@ -58,7 +68,24 @@ AttitudePartials EquationsOfMotion::compute_kinematics(
     const TorqueVector<frames::earth::icrf>& control
 ) const
 {
-    return AttitudePartials();
+    // Has value is guaranteed by caller before calling compute_kinematics
+    const Attitude& attitude                                  = state.get_attitude().value();
+    const BodyQuaternion& q                                   = attitude.get_orientation();
+    const BodyAngularVelocity& w                              = attitude.get_angular_velocity();
+    const InertiaTensor<frames::dynamic::body>& inertiaTensor = vehicle.get_inertia_tensor();
+
+    // Compute angular acceleration
+    const DCM<frames::earth::icrf, frames::dynamic::body> dcm = q.to_dcm().transpose();
+    const TorqueVector<frames::dynamic::body> externalTorque  = dcm * (perts + control);
+    const BodyAngularAcceleration angularAcceleration =
+        inertiaTensor.inverse_multiply(externalTorque - w.cross(inertiaTensor * w) / pow<2>(rad)) * rad;
+
+    // Compute quaternion rate
+    const Unitless& s                          = q.get_scalar_part();
+    const UnitVector<frames::dynamic::body>& u = q.get_vector_part();
+    const BodyQuaternionRate quaternionRate{ 0.5 * w.dot(u) / rad, 0.5 * (w * s - w.cross(u)) / rad };
+
+    return AttitudePartials(quaternionRate, angularAcceleration);
 }
 
 StateTransitionMatrix EquationsOfMotion::compute_stm(const State& state, const Vehicle& vehicle) const

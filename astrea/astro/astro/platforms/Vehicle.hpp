@@ -360,7 +360,7 @@ struct VehicleInner final : public VehicleInnerBase {
         requires(!HasGetRamArea<U>)
     static SurfaceArea get_ram_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit);
+        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
     }
 
     /**
@@ -395,7 +395,7 @@ struct VehicleInner final : public VehicleInnerBase {
         requires(!HasGetLiftArea<U>)
     static SurfaceArea get_lift_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit);
+        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
     }
 
     /**
@@ -430,7 +430,7 @@ struct VehicleInner final : public VehicleInnerBase {
         requires(!HasGetSolarArea<U>)
     static SurfaceArea get_solar_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit);
+        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
     }
 
     /**

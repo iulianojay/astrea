@@ -18,8 +18,6 @@
  */
 #pragma once
 
-#include <mp-units/systems/isq_angle.h>
-
 #include <math/interpolation.hpp>
 #include <units/units.hpp>
 
@@ -147,6 +145,36 @@ class AngleSequence {
     }
 
     /**
+     * @brief Array access operator for accessing individual angle components.
+     *
+     * @param index The index of the angle component (0, 1, or 2).
+     * @return Angle& Reference to the angle component.
+     */
+    Angle& operator[](std::size_t index) { return _angles[index]; }
+
+    /**
+     * @brief Const array access operator for accessing individual angle components.
+     *
+     * @param index The index of the angle component (0, 1, or 2).
+     * @return const Angle& Const reference to the angle component.
+     */
+    const Angle& operator[](std::size_t index) const { return _angles[index]; }
+
+    /**
+     * @brief Get access to the underlying CartesianVector.
+     *
+     * @return CartesianVector<Angle, In_Frame_T>& Reference to the internal CartesianVector.
+     */
+    CartesianVector<Angle, In_Frame_T>& get_angles() { return _angles; }
+
+    /**
+     * @brief Get const access to the underlying CartesianVector.
+     *
+     * @return const CartesianVector<Angle, In_Frame_T>& Const reference to the internal CartesianVector.
+     */
+    const CartesianVector<Angle, In_Frame_T>& get_angles() const { return _angles; }
+
+    /**
      * @brief Converts the angle sequence to a direction cosine matrix (DCM) for transforming vectors between frames.
      *
      * @return DirectionCosineMatrix<In_Frame_T, Out_Frame_T> The resulting direction cosine matrix.
@@ -204,22 +232,6 @@ class AngleSequence {
         operator=(AngleSequence<Sequence_U, sequence_u, rotationType_u, In_Frame_U, Out_Frame_U>&& other) = delete;
 
     /**
-     * @brief Access operator for vector components.
-     *
-     * @param index The index of the component to access (0 for x, 1 for y, 2 for z).
-     * @return Angle& Reference to the component at the specified index.
-     */
-    Angle& operator[](size_t index) { return _angles[index]; }
-
-    /**
-     * @brief Const access operator for vector components.
-     *
-     * @param index The index of the component to access (0 for x, 1 for y, 2 for z).
-     * @return const Angle& Reference to the component at the specified index.
-     */
-    const Angle& operator[](size_t index) const { return _angles[index]; }
-
-    /**
      * @brief Equality operator for CartesianVector.
      *
      * @param other The other CartesianVector to compare with.
@@ -235,7 +247,7 @@ class AngleSequence {
         requires(IsEquivalentAngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T, Sequence_U, sequence_u, rotationType_u, In_Frame_U, Out_Frame_U>)
     bool operator==(const AngleSequence<Sequence_U, sequence_u, rotationType_u, In_Frame_U, Out_Frame_U>& other) const
     {
-        return _angles == other._angles.reverse();
+        return _angles == other.get_angles().reverse();
     }
 
     /**
@@ -375,118 +387,51 @@ class AngleSequence {
     }
 
     /**
-     * @brief Get the x value of the Cartesian vector.
-     *
-     * @return Angle& Reference to the x component of the Cartesian vector.
-     */
-    Angle& get_phi() { return _angles[0]; }
-
-    /**
-     * @brief Get the x value of the Cartesian vector.
-     *
-     * @return const Angle& Reference to the x component of the Cartesian vector.
-     */
-    const Angle& get_phi() const { return _angles[0]; }
-
-    /**
-     * @brief Get the y value of the Cartesian vector.
-     *
-     * @return Angle& Reference to the y component of the Cartesian vector.
-     */
-    Angle& get_theta() { return _angles[1]; }
-
-    /**
-     * @brief Get the y value of the Cartesian vector.
-     *
-     * @return const Angle& Reference to the y component of the Cartesian vector.
-     */
-    const Angle& get_theta() const { return _angles[1]; }
-
-    /**
-     * @brief Get the z value of the Cartesian vector.
-     *
-     * @return Angle& Reference to the z component of the Cartesian vector.
-     */
-    Angle& get_psi() { return _angles[2]; }
-
-    /**
-     * @brief Get the z value of the Cartesian vector.
-     *
-     * @return const Angle& Reference to the z component of the Cartesian vector.
-     */
-    const Angle& get_psi() const { return _angles[2]; }
-
-    /**
-     * @brief Get the angles as a CartesianVector.
-     *
-     * @return CartesianVector<Angle, In_Frame_T>& Reference to the angles as a CartesianVector.
-     */
-    CartesianVector<Angle, In_Frame_T>& get_angles() { return _angles; }
-
-    /**
-     * @brief Get the angles as a CartesianVector.
-     *
-     * @return const CartesianVector<Angle, In_Frame_T>& Reference to the angles as a CartesianVector.
-     */
-    const CartesianVector<Angle, In_Frame_T>& get_angles() const { return _angles; }
-
-    /**
-     * @brief Dot product of this angle vector with a CartesianVector.
-     *
-     * @tparam Value_U The type of the CartesianVector's components.
-     * @param vec The CartesianVector to take the dot product with.
-     * @return Value_U The resulting scalar from the dot product.
-     *
-     * @note The result is divided by the coates angle to convert from the angle units to the same units as the other
-     * vector's components. This is necessary because the resultant scalar is rarely desired in the base units
-     * multiplied by radians. If users want that, they can first extract the angle vector and multiply it directly.
-     */
-    template <typename Value_U>
-    Value_U dot(const CartesianVector<Value_U, In_Frame_T>& vec) const
-    {
-        using mp_units::isq_angle::cotes_angle;
-        return (_angles.dot(vec)) / cotes_angle;
-    }
-
-    /**
      * @brief Dot product of this angle vector with another AngleSequence.
      *
      * @param other The other AngleSequence to take the dot product with.
-     * @return Unitless The resulting scalar from the dot product.
-     *
-     * @note The result is divided by the coates angle to convert from the angle units to the same units as the other
-     * vector's components. This is necessary because the resultant scalar is rarely desired in the base units
-     * multiplied by radians. If users want that, they can first extract the angle vector and multiply it directly.
+     * @return auto The resulting scalar from the dot product.
      */
-    Unitless dot(const AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other) const
+    auto dot(const AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other) const
     {
-        using namespace mp_units;
-        using mp_units::isq_angle::cotes_angle;
-        return (_angles.dot(other.get_angles())) / pow<2>(cotes_angle);
+        return _angles.dot(other._angles);
     }
 
     /**
-     * @brief Cross product of this angle vector with a CartesianVector.
+     * @brief Dot product of this angle vector with a generic CartesianVector.
      *
-     * @tparam Value_U The type of the CartesianVector's components.
-     * @param vec The CartesianVector to take the cross product with.
-     * @return CartesianVector<decltype(Value_U{} * rad), In_Frame_T> The resulting CartesianVector from the cross product.
+     * @tparam Value_U The value type of the CartesianVector.
+     * @param other The CartesianVector to take the dot product with.
+     * @return auto The resulting scalar from the dot product.
      */
     template <typename Value_U>
-    auto cross(const CartesianVector<Value_U, In_Frame_T>& vec) const
+    auto dot(const CartesianVector<Value_U, In_Frame_T>& other) const
     {
-        return _angles.cross(vec);
+        return _angles.dot(other);
     }
 
     /**
      * @brief Cross product of this angle vector with another AngleSequence.
      *
      * @param other The other AngleSequence to take the cross product with.
-     * @return CartesianVector<decltype(mp_units::pow<2>(mp_units::isq_angle::rad)), In_Frame_T> The resulting AngleSequence from the cross product.
+     * @return auto The resulting CartesianVector from the cross product.
      */
     auto cross(const AngleSequence<Sequence_T, sequence, rotationType, In_Frame_T, Out_Frame_T>& other) const
     {
-        return this->cross(other.get_angles());
+        return _angles.cross(other._angles);
+    }
+
+    /**
+     * @brief Cross product of this angle vector with a generic CartesianVector.
+     *
+     * @tparam Value_U The value type of the CartesianVector.
+     * @param other The CartesianVector to take the cross product with.
+     * @return auto The resulting CartesianVector from the cross product.
+     */
+    template <typename Value_U>
+    auto cross(const CartesianVector<Value_U, In_Frame_T>& other) const
+    {
+        return _angles.cross(other);
     }
 
     /**

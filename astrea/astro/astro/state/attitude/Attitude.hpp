@@ -36,16 +36,27 @@
 namespace astrea {
 namespace astro {
 
-namespace {
+/**
+ * @brief Type alias for a ICRF->body quaternion
+ */
+using BodyQuaternion = Quaternion<frames::dynamic::body, frames::earth::icrf>;
 
-using BodyQuaternion     = Quaternion<frames::earth::icrf, frames::dynamic::body>;
-using BodyQuaternionRate = QuaternionPartial<frames::earth::icrf, frames::dynamic::body>;
+/**
+ * @brief Type alias for a ICRF->body quaternion derivative
+ */
+using BodyQuaternionRate = QuaternionPartial<frames::dynamic::body, frames::earth::icrf>;
+
+/**
+ * @brief Type alias for a ICRF->body angle sequence velocity
+ */
 using BodyAngularVelocity =
-    AngleSequenceVelocity<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, frames::earth::icrf, frames::dynamic::body>;
-using BodyAngularAcceleration =
-    AngleSequenceAcceleration<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, frames::earth::icrf, frames::dynamic::body>;
+    AngleSequenceVelocity<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>;
 
-} // namespace
+/**
+ * @brief Type alias for a ICRF->body angle sequence acceleration
+ */
+using BodyAngularAcceleration =
+    AngleSequenceAcceleration<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>;
 
 /**
  * @brief Concept to check if a type is an attitude type.
@@ -107,6 +118,20 @@ class Attitude {
         _angularVelocity(angleSequenceVelocity)
     {
     }
+
+    /**
+     * @brief Gets the orientation as a BodyQuaternion.
+     *
+     * @return const BodyQuaternion& The orientation as a BodyQuaternion.
+     */
+    const BodyQuaternion& get_orientation() const { return _orientation; }
+
+    /**
+     * @brief Gets the angular velocity as a BodyAngularVelocity.
+     *
+     * @return const BodyAngularVelocity& The angular velocity as a BodyAngularVelocity.
+     */
+    const BodyAngularVelocity& get_angular_velocity() const { return _angularVelocity; }
 
     /**
      * @brief Compares two Attitude objects for equality.

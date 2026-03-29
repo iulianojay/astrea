@@ -274,9 +274,9 @@ class Spacecraft : public ThrusterPlatform {
     static constexpr Unitless DEFAULT_COEFFICIENT_OF_LIFT = 0.9 * astrea::detail::unitless; // Default coefficient of lift
     static constexpr Unitless DEFAULT_COEFFICIENT_OF_REFLECTIVITY =
         1.1 * astrea::detail::unitless; // Default coefficient of reflectivity
-    static constexpr SurfaceArea DEFAULT_RAM_AREA = 1.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit); // Default ram area
-    static constexpr SurfaceArea DEFAULT_SOLAR_AREA = 1.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit); // Default solar area
-    static constexpr SurfaceArea DEFAULT_LIFT_AREA = 1.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit); // Default lift area
+    static constexpr SurfaceArea DEFAULT_RAM_AREA = 1.0 * mp_units::pow<2>(astrea::detail::distance_unit); // Default ram area
+    static constexpr SurfaceArea DEFAULT_SOLAR_AREA = 1.0 * mp_units::pow<2>(astrea::detail::distance_unit); // Default solar area
+    static constexpr SurfaceArea DEFAULT_LIFT_AREA = 1.0 * mp_units::pow<2>(astrea::detail::distance_unit); // Default lift area
 
   protected:
     std::size_t _id;   // Unique identifier for the spacecraft, generated from its properties

@@ -44,9 +44,9 @@ class AngleSequenceVelocityTest : public testing::Test {
 
     void compare_angular_velocity_sequences(const auto& seq1, const auto& seq2, const Unitless& tol)
     {
-        ASSERT_EQ_QUANTITY(seq1.get_phi_dot(), seq2.get_phi_dot(), tol);
-        ASSERT_EQ_QUANTITY(seq1.get_theta_dot(), seq2.get_theta_dot(), tol);
-        ASSERT_EQ_QUANTITY(seq1.get_psi_dot(), seq2.get_psi_dot(), tol);
+        ASSERT_EQ_QUANTITY(seq1[0], seq2[0], tol);
+        ASSERT_EQ_QUANTITY(seq1[1], seq2[1], tol);
+        ASSERT_EQ_QUANTITY(seq1[2], seq2[2], tol);
     }
 
     Unitless REL_TOL = 1.0e-10 * one;
@@ -91,11 +91,6 @@ TEST_F(AngleSequenceVelocityTest, TestEulerAngularVelocityGetters)
 {
     TestEulerAngularVel eulerVel(angularRate1, angularRate2, angularRate3);
 
-    // Test angular rate getters (phi_dot, theta_dot, psi_dot)
-    ASSERT_EQ_QUANTITY(eulerVel.get_phi_dot(), angularRate1, REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel.get_theta_dot(), angularRate2, REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel.get_psi_dot(), angularRate3, REL_TOL);
-
     // Test array access
     ASSERT_EQ_QUANTITY(eulerVel[0], angularRate1, REL_TOL);
     ASSERT_EQ_QUANTITY(eulerVel[1], angularRate2, REL_TOL);
@@ -105,11 +100,6 @@ TEST_F(AngleSequenceVelocityTest, TestEulerAngularVelocityGetters)
 TEST_F(AngleSequenceVelocityTest, TestTaitBryanAngularVelocityGetters)
 {
     TestTaitBryanAngularVel taitBryanVel(angularRate1, angularRate2, angularRate3);
-
-    // Test angular rate getters (phi_dot, theta_dot, psi_dot)
-    ASSERT_EQ_QUANTITY(taitBryanVel.get_phi_dot(), angularRate1, REL_TOL);
-    ASSERT_EQ_QUANTITY(taitBryanVel.get_theta_dot(), angularRate2, REL_TOL);
-    ASSERT_EQ_QUANTITY(taitBryanVel.get_psi_dot(), angularRate3, REL_TOL);
 
     // Test array access
     ASSERT_EQ_QUANTITY(taitBryanVel[0], angularRate1, REL_TOL);
@@ -121,14 +111,14 @@ TEST_F(AngleSequenceVelocityTest, TestAngularVelocityModification)
 {
     TestTaitBryanAngularVel taitBryanVel(angularRate1, angularRate2, angularRate3);
 
-    // Test angular rate modification through phi_dot/theta_dot/psi_dot getters
-    taitBryanVel.get_phi_dot()   = 0.5 * rad / s;
-    taitBryanVel.get_theta_dot() = 0.25 * rad / s;
-    taitBryanVel.get_psi_dot()   = 0.75 * rad / s;
+    // Test angular rate modification through array access
+    taitBryanVel[0] = 0.5 * rad / s;
+    taitBryanVel[1] = 0.25 * rad / s;
+    taitBryanVel[2] = 0.75 * rad / s;
 
-    ASSERT_EQ_QUANTITY(taitBryanVel.get_phi_dot(), 0.5 * rad / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(taitBryanVel.get_theta_dot(), 0.25 * rad / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(taitBryanVel.get_psi_dot(), 0.75 * rad / s, REL_TOL);
+    ASSERT_EQ_QUANTITY(taitBryanVel[0], 0.5 * rad / s, REL_TOL);
+    ASSERT_EQ_QUANTITY(taitBryanVel[1], 0.25 * rad / s, REL_TOL);
+    ASSERT_EQ_QUANTITY(taitBryanVel[2], 0.75 * rad / s, REL_TOL);
 }
 
 TEST_F(AngleSequenceVelocityTest, TestAllEulerSequences)
@@ -186,9 +176,9 @@ TEST_F(AngleSequenceVelocityTest, TestCopyConstructor)
     auto eulerVelCopy = TestEulerAngularVel(eulerVel1);
 
     EXPECT_EQ(eulerVel1, eulerVelCopy);
-    ASSERT_EQ_QUANTITY(eulerVel1.get_phi_dot(), eulerVelCopy.get_phi_dot(), REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel1.get_theta_dot(), eulerVelCopy.get_theta_dot(), REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel1.get_psi_dot(), eulerVelCopy.get_psi_dot(), REL_TOL);
+    ASSERT_EQ_QUANTITY(eulerVel1[0], eulerVelCopy[0], REL_TOL);
+    ASSERT_EQ_QUANTITY(eulerVel1[1], eulerVelCopy[1], REL_TOL);
+    ASSERT_EQ_QUANTITY(eulerVel1[2], eulerVelCopy[2], REL_TOL);
 }
 
 TEST_F(AngleSequenceVelocityTest, TestMoveConstructor)
@@ -198,9 +188,9 @@ TEST_F(AngleSequenceVelocityTest, TestMoveConstructor)
     ASSERT_NO_THROW(TestEulerAngularVel eulerVelMove(std::move(eulerVelTemp)));
     auto eulerVelMove = TestEulerAngularVel(std::move(eulerVelTemp));
 
-    ASSERT_EQ_QUANTITY(eulerVelMove.get_phi_dot(), angularRate1, REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVelMove.get_theta_dot(), angularRate2, REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVelMove.get_psi_dot(), angularRate3, REL_TOL);
+    ASSERT_EQ_QUANTITY(eulerVelMove[0], angularRate1, REL_TOL);
+    ASSERT_EQ_QUANTITY(eulerVelMove[1], angularRate2, REL_TOL);
+    ASSERT_EQ_QUANTITY(eulerVelMove[2], angularRate3, REL_TOL);
 }
 
 TEST_F(AngleSequenceVelocityTest, TestAccessOperators)
@@ -296,30 +286,29 @@ TEST_F(AngleSequenceVelocityTest, TestTimeOperations)
 
     // Multiplication by time should produce an angle sequence (integration)
     auto angleSequence = eulerVel * dt;
-    ASSERT_EQ_QUANTITY(angleSequence.get_phi(), 0.2 * rad, REL_TOL);
-    ASSERT_EQ_QUANTITY(angleSequence.get_theta(), 0.4 * rad, REL_TOL);
-    ASSERT_EQ_QUANTITY(angleSequence.get_psi(), 0.6 * rad, REL_TOL);
+    ASSERT_EQ_QUANTITY(angleSequence[0], 0.2 * rad, REL_TOL);
+    ASSERT_EQ_QUANTITY(angleSequence[1], 0.4 * rad, REL_TOL);
+    ASSERT_EQ_QUANTITY(angleSequence[2], 0.6 * rad, REL_TOL);
 
     // Division by time should produce angular acceleration
     auto acceleration = eulerVel / dt;
-    ASSERT_EQ_QUANTITY(acceleration.get_phi_ddot(), 0.05 * rad / (s * s), REL_TOL);
-    ASSERT_EQ_QUANTITY(acceleration.get_theta_ddot(), 0.1 * rad / (s * s), REL_TOL);
-    ASSERT_EQ_QUANTITY(acceleration.get_psi_ddot(), 0.15 * rad / (s * s), REL_TOL);
+    ASSERT_EQ_QUANTITY(acceleration[0], 0.05 * rad / (s * s), REL_TOL);
+    ASSERT_EQ_QUANTITY(acceleration[1], 0.1 * rad / (s * s), REL_TOL);
+    ASSERT_EQ_QUANTITY(acceleration[2], 0.15 * rad / (s * s), REL_TOL);
 }
 
 TEST_F(AngleSequenceVelocityTest, TestGetAngularVelocitysMethod)
 {
     TestEulerAngularVel eulerVel(angularRate1, angularRate2, angularRate3);
 
-    // Test that get_angular_velocity() returns the internal CartesianVector
-    auto& angleRates = eulerVel.get_angular_velocity();
-    ASSERT_EQ_QUANTITY(angleRates[0], angularRate1, REL_TOL);
-    ASSERT_EQ_QUANTITY(angleRates[1], angularRate2, REL_TOL);
-    ASSERT_EQ_QUANTITY(angleRates[2], angularRate3, REL_TOL);
+    // Test array access to the angular velocity components
+    ASSERT_EQ_QUANTITY(eulerVel[0], angularRate1, REL_TOL);
+    ASSERT_EQ_QUANTITY(eulerVel[1], angularRate2, REL_TOL);
+    ASSERT_EQ_QUANTITY(eulerVel[2], angularRate3, REL_TOL);
 
-    // Test that modifications through get_angular_velocity() work
-    angleRates[0] = 0.5 * rad / s;
-    ASSERT_EQ_QUANTITY(eulerVel.get_phi_dot(), 0.5 * rad / s, REL_TOL);
+    // Test that modifications through array access work
+    eulerVel[0] = 0.5 * rad / s;
+    ASSERT_EQ_QUANTITY(eulerVel[0], 0.5 * rad / s, REL_TOL);
 }
 
 TEST_F(AngleSequenceVelocityTest, TestLargeAngularVelocitys)
@@ -331,15 +320,15 @@ TEST_F(AngleSequenceVelocityTest, TestLargeAngularVelocitys)
 
     TestEulerAngularVel eulerVel(largeRate1, largeRate2, largeRate3);
 
-    ASSERT_EQ_QUANTITY(eulerVel.get_phi_dot(), largeRate1, REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel.get_theta_dot(), largeRate2, REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel.get_psi_dot(), largeRate3, REL_TOL);
+    ASSERT_EQ_QUANTITY(eulerVel[0], largeRate1, REL_TOL);
+    ASSERT_EQ_QUANTITY(eulerVel[1], largeRate2, REL_TOL);
+    ASSERT_EQ_QUANTITY(eulerVel[2], largeRate3, REL_TOL);
 
     // Test arithmetic with large values
     auto doubledVel = eulerVel * (2.0 * one);
-    ASSERT_EQ_QUANTITY(doubledVel.get_phi_dot(), 200.0 * rad / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(doubledVel.get_theta_dot(), -100.0 * rad / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(doubledVel.get_psi_dot(), 400.0 * rad / s, REL_TOL);
+    ASSERT_EQ_QUANTITY(doubledVel[0], 200.0 * rad / s, REL_TOL);
+    ASSERT_EQ_QUANTITY(doubledVel[1], -100.0 * rad / s, REL_TOL);
+    ASSERT_EQ_QUANTITY(doubledVel[2], 400.0 * rad / s, REL_TOL);
 }
 
 TEST_F(AngleSequenceVelocityTest, TestZeroAngularVelocitys)
@@ -348,9 +337,9 @@ TEST_F(AngleSequenceVelocityTest, TestZeroAngularVelocitys)
     AngularVelocity zeroRate = 0.0 * rad / s;
     TestEulerAngularVel zeroVel(zeroRate, zeroRate, zeroRate);
 
-    ASSERT_EQ_QUANTITY(zeroVel.get_phi_dot(), zeroRate, REL_TOL);
-    ASSERT_EQ_QUANTITY(zeroVel.get_theta_dot(), zeroRate, REL_TOL);
-    ASSERT_EQ_QUANTITY(zeroVel.get_psi_dot(), zeroRate, REL_TOL);
+    ASSERT_EQ_QUANTITY(zeroVel[0], zeroRate, REL_TOL);
+    ASSERT_EQ_QUANTITY(zeroVel[1], zeroRate, REL_TOL);
+    ASSERT_EQ_QUANTITY(zeroVel[2], zeroRate, REL_TOL);
 
     // Test arithmetic operations with zero
     auto nonZeroVel  = TestEulerAngularVel(angularRate1, angularRate2, angularRate3);
@@ -383,4 +372,79 @@ TEST_F(AngleSequenceVelocityTest, TestChainedOperations)
     auto result = (vel1 + vel2) * (2.0 * one) - vel1;
     TestEulerAngularVel expected(0.2 * rad / s, 0.4 * rad / s, 0.6 * rad / s);
     compare_angular_velocity_sequences(result, expected, REL_TOL);
+}
+
+// Tests for AngleSequenceAcceleration
+using TestEulerAcceleration =
+    AngleSequenceAcceleration<EulerSequence, EulerSequence::ZXZ, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>;
+using TestTaitBryanAcceleration =
+    AngleSequenceAcceleration<TaitBryanSequence, TaitBryanSequence::XYZ, RotationSequenceType::INTRINSIC, TestFrame, TestOutFrame>;
+
+class AngleSequenceAccelerationTest : public testing::Test {
+  public:
+    AngleSequenceAccelerationTest() {}
+
+    void SetUp() override {}
+
+    void compare_angular_acceleration_sequences(const auto& seq1, const auto& seq2, const Unitless& tol)
+    {
+        ASSERT_EQ_QUANTITY(seq1[0], seq2[0], tol);
+        ASSERT_EQ_QUANTITY(seq1[1], seq2[1], tol);
+        ASSERT_EQ_QUANTITY(seq2[2], seq2[2], tol);
+    }
+
+    Unitless REL_TOL = 1.0e-10 * one;
+
+    // Test angular accelerations
+    AngularAcceleration angularAccel1 = 0.1 * rad / (s * s);
+    AngularAcceleration angularAccel2 = 0.2 * rad / (s * s);
+    AngularAcceleration angularAccel3 = 0.3 * rad / (s * s);
+};
+
+TEST_F(AngleSequenceAccelerationTest, TestConstructors)
+{
+    // Default constructor
+    ASSERT_NO_THROW(TestEulerAcceleration());
+
+    // Parameterized constructor with angular accelerations
+    ASSERT_NO_THROW(TestEulerAcceleration(angularAccel1, angularAccel2, angularAccel3));
+    ASSERT_NO_THROW((AngleSequenceAcceleration<EulerSequence, EulerSequence::XYX, RotationSequenceType::EXTRINSIC, TestFrame, TestOutFrame>(
+        angularAccel1, angularAccel2, angularAccel3
+    )));
+}
+
+TEST_F(AngleSequenceAccelerationTest, TestAccess)
+{
+    TestEulerAcceleration accel(angularAccel1, angularAccel2, angularAccel3);
+
+    // Test array access
+    ASSERT_EQ_QUANTITY(accel[0], angularAccel1, REL_TOL);
+    ASSERT_EQ_QUANTITY(accel[1], angularAccel2, REL_TOL);
+    ASSERT_EQ_QUANTITY(accel[2], angularAccel3, REL_TOL);
+}
+
+TEST_F(AngleSequenceAccelerationTest, TestMultiplicationByTime)
+{
+    TestEulerAcceleration accel(angularAccel1, angularAccel2, angularAccel3);
+    Time dt = 2.0 * s;
+
+    // Multiplication by time should produce angular velocity
+    auto velocity = accel * dt;
+    ASSERT_EQ_QUANTITY(velocity[0], 0.2 * rad / s, REL_TOL);
+    ASSERT_EQ_QUANTITY(velocity[1], 0.4 * rad / s, REL_TOL);
+    ASSERT_EQ_QUANTITY(velocity[2], 0.6 * rad / s, REL_TOL);
+}
+
+TEST_F(AngleSequenceAccelerationTest, TestForceToVector)
+{
+    TestEulerAcceleration accel(angularAccel1, angularAccel2, angularAccel3);
+
+    // Convert to vector
+    auto vec = accel.force_to_vector();
+    ASSERT_EQ(vec.size(), 3);
+
+    // Check values (normalized by unit)
+    EXPECT_EQ_QUANTITY(vec[0], 0.1 * one, REL_TOL);
+    EXPECT_EQ_QUANTITY(vec[1], 0.2 * one, REL_TOL);
+    EXPECT_EQ_QUANTITY(vec[2], 0.3 * one, REL_TOL);
 }
