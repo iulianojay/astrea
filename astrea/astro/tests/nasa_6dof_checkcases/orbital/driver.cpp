@@ -264,7 +264,7 @@ class Orbital6DofTest : public testing::Test {
         const Time time = std::round(row.time) * s;
         const RadiusVector<frames::earth::icrf> position(row.eiPosition_m_X * m, row.eiPosition_m_Y * m, row.eiPosition_m_Z * m);
         const VelocityVector<frames::earth::icrf> velocity(row.eiVelocity_m_s_X * m / s, row.eiVelocity_m_s_Y * m / s, row.eiVelocity_m_s_Z * m / s);
-        const AngleSequence<RotationSequence::ZYX, frames::dynamic::ned, frames::earth::icrf> attitudeAngles(
+        const EulerAngles<RotationSequence::ZYX, frames::dynamic::ned, frames::earth::icrf> attitudeAngles(
             row.eulerAngle_rad_Roll * rad, row.eulerAngle_rad_Pitch * rad, row.eulerAngle_rad_Yaw * rad
         );
         const IntrinsicTaitBryanAngleVelocities<RotationSequence::ZYX, frames::dynamic::body, frames::earth::icrf> angularVelocity(

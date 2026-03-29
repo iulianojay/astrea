@@ -30,7 +30,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/state/attitude/instances/AngleSequence.hpp>
+#include <astro/state/attitude/instances/EulerAngles.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {
@@ -203,7 +203,7 @@ class Quaternion {
     }
 
     template <RotationSequence sequence, RotationType rotation_type>
-    Quaternion(const AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& angleSequence) :
+    Quaternion(const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& angleSequence) :
         Quaternion(angleSequence.to_dcm())
     {
     }

@@ -1,5 +1,5 @@
 /**
- * @file AngleSequence.hpp
+ * @file EulerAngles.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Class representing a sequence of angles (either Euler or Tait-Bryan) for attitude transformations between state/frames.
  * @date 2026-03-22
@@ -50,35 +50,35 @@ constexpr RotationSequence get_reverse_sequence(RotationSequence sequence)
 }
 
 /**
- * @brief Concept to check if two AngleSequences are the same (same sequence type, same specific sequence, same rotation type, and same frames).
+ * @brief Concept to check if two EulerAngless are the same (same sequence type, same specific sequence, same rotation type, and same frames).
  */
 template <RotationSequence sequence_t, RotationType rotation_t, typename In_Frame_T, typename Out_Frame_T, RotationSequence sequence_u, RotationType rotation_u, typename In_Frame_U, typename Out_Frame_U>
-concept IsSameAngleSequence = (sequence_t == sequence_u) && // Must both be the same specific sequence (e.g., ZXZ)
-                              (rotation_t == rotation_u) && // Must both be the same rotation type (intrinsic or extrinsic)
-                              IsSameFrame<In_Frame_T, In_Frame_U> && // Must have the same input frame
-                              IsSameFrame<Out_Frame_T, Out_Frame_U>; // Must have the same output frame
+concept IsSameEulerAngles = (sequence_t == sequence_u) && // Must both be the same specific sequence (e.g., ZXZ)
+                            (rotation_t == rotation_u) && // Must both be the same rotation type (intrinsic or extrinsic)
+                            IsSameFrame<In_Frame_T, In_Frame_U> && // Must have the same input frame
+                            IsSameFrame<Out_Frame_T, Out_Frame_U>; // Must have the same output frame
 
 /**
- * @brief Concept to check if two AngleSequences are equivalent (same sequence type, reverse specific sequence, opposite rotation type, and same frames).
+ * @brief Concept to check if two EulerAngless are equivalent (same sequence type, reverse specific sequence, opposite rotation type, and same frames).
  */
 template <RotationSequence sequence_t, RotationType rotation_t, typename In_Frame_T, typename Out_Frame_T, RotationSequence sequence_u, RotationType rotation_u, typename In_Frame_U, typename Out_Frame_U>
-concept IsEquivalentAngleSequence =
+concept IsEquivalentEulerAngles =
     (get_reverse_sequence(sequence_t) == sequence_u) && // Must be the reverse sequence (e.g., ZXZ vs ZXZ with reversed angles)
     (rotation_t != rotation_u) &&                       // Must be opposite rotation types (intrinsic vs extrinsic)
     IsSameFrame<In_Frame_T, In_Frame_U> &&              // Must have the same input frame
     IsSameFrame<Out_Frame_T, Out_Frame_U>;              // Must have the same output frame
 
 /**
- * @brief Concept to check if two AngleSequences are compatible (either the same or equivalent).
+ * @brief Concept to check if two EulerAngless are compatible (either the same or equivalent).
  *
  * @note Technically, all angle sequences can be represented as all others with the exception of singularities, but we
  * want to prevent implicit conversions between sequences that would lead to very non-obvious bugs. If users want to convert
  * between different sequences, they can do so explicitly through the DCM or by converting to the same rotation type and then using the reverse sequence if desired.
  */
 template <RotationSequence sequence_t, RotationType rotation_t, typename In_Frame_T, typename Out_Frame_T, RotationSequence sequence_u, RotationType rotation_u, typename In_Frame_U, typename Out_Frame_U>
-concept IsCompatibleAngleSequence =
-    IsSameAngleSequence<sequence_t, rotation_t, In_Frame_T, Out_Frame_T, sequence_u, rotation_u, In_Frame_U, Out_Frame_U> ||
-    IsEquivalentAngleSequence<sequence_t, rotation_t, In_Frame_T, Out_Frame_T, sequence_u, rotation_u, In_Frame_U, Out_Frame_U>;
+concept IsCompatibleEulerAngles =
+    IsSameEulerAngles<sequence_t, rotation_t, In_Frame_T, Out_Frame_T, sequence_u, rotation_u, In_Frame_U, Out_Frame_U> ||
+    IsEquivalentEulerAngles<sequence_t, rotation_t, In_Frame_T, Out_Frame_T, sequence_u, rotation_u, In_Frame_U, Out_Frame_U>;
 
 /**
  * @brief Class representing a sequence of angles (either Euler or Tait-Bryan) for attitude transformations between frames.
@@ -91,7 +91,7 @@ concept IsCompatibleAngleSequence =
  * @note: welcome to templating hell
  */
 template <RotationSequence sequence, RotationType rotation_type, typename In_Frame_T, typename Out_Frame_T>
-class AngleSequence {
+class EulerAngles {
 
     friend class Attitude;
 
@@ -100,29 +100,29 @@ class AngleSequence {
     using out_frame = Out_Frame_T;
 
     /**
-     * @brief Default constructor for the AngleSequence class. Initializes all angles to zero.
+     * @brief Default constructor for the EulerAngles class. Initializes all angles to zero.
      */
-    AngleSequence() = default;
+    EulerAngles() = default;
 
     /**
-     * @brief Constructor for the AngleSequence class from three angles.
+     * @brief Constructor for the EulerAngles class from three angles.
      *
      * @param angle1 The first angle in the sequence.
      * @param angle2 The second angle in the sequence.
      * @param angle3 The third angle in the sequence.
      */
-    AngleSequence(const Angle& angle1, const Angle& angle2, const Angle& angle3) :
+    EulerAngles(const Angle& angle1, const Angle& angle2, const Angle& angle3) :
         _angles(angle1, angle2, angle3)
     {
         wrap_angles();
     }
 
     /**
-     * @brief Constructor for the AngleSequence class from a CartesianVector of angles.
+     * @brief Constructor for the EulerAngles class from a CartesianVector of angles.
      *
      * @param angles A CartesianVector containing the three angles in the sequence.
      */
-    AngleSequence(const CartesianVector<Angle, In_Frame_T>& angles) :
+    EulerAngles(const CartesianVector<Angle, In_Frame_T>& angles) :
         _angles(angles)
     {
         wrap_angles();
@@ -180,7 +180,7 @@ class AngleSequence {
      */
     template <RotationType rotation_u>
         requires(rotation_type != rotation_u)
-    AngleSequence<get_reverse_sequence(sequence), rotation_u, In_Frame_T, Out_Frame_T> to_rotation_type() const
+    EulerAngles<get_reverse_sequence(sequence), rotation_u, In_Frame_T, Out_Frame_T> to_rotation_type() const
     {
         return { _angles };
     }
@@ -198,22 +198,22 @@ class AngleSequence {
 
     // Explicitly deleted copy/move assignment/constructor to prevent implicit frame switches, rotation type conversions, and sequence conversions.
     template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
-        requires(!IsCompatibleAngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
-    AngleSequence(const AngleSequence<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other) = delete;
+        requires(!IsCompatibleEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
+    EulerAngles(const EulerAngles<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other) = delete;
 
     template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
-        requires(!IsCompatibleAngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
-    AngleSequence(AngleSequence<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>&& other) = delete;
+        requires(!IsCompatibleEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
+    EulerAngles(EulerAngles<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>&& other) = delete;
 
     template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
-        requires(!IsCompatibleAngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
-    AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>&
-        operator=(const AngleSequence<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other) = delete;
+        requires(!IsCompatibleEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
+    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>&
+        operator=(const EulerAngles<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other) = delete;
 
     template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
-        requires(!IsCompatibleAngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
-    AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>&
-        operator=(AngleSequence<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>&& other) = delete;
+        requires(!IsCompatibleEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
+    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>&
+        operator=(EulerAngles<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>&& other) = delete;
 
     /**
      * @brief Equality operator for CartesianVector.
@@ -222,14 +222,14 @@ class AngleSequence {
      * @return true If the two vectors are equal.
      * @return false If the two vectors are not equal.
      */
-    bool operator==(const AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
+    bool operator==(const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
     {
         return _angles == other._angles;
     }
 
     template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
-        requires(IsEquivalentAngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
-    bool operator==(const AngleSequence<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other) const
+        requires(IsEquivalentEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
+    bool operator==(const EulerAngles<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other) const
     {
         return _angles == other.get_angles().reverse();
     }
@@ -242,8 +242,8 @@ class AngleSequence {
      * @return false If the two vectors are equal.
      */
     template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
-        requires(!IsCompatibleAngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
-    bool operator==(const AngleSequence<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other) const
+        requires(!IsCompatibleEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
+    bool operator==(const EulerAngles<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other) const
     {
         return false;
     }
@@ -251,23 +251,23 @@ class AngleSequence {
     /**
      * @brief Addition operator for CartesianVector.
      *
-     * @param other The other AngleSequence to add.
-     * @return AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new AngleSequence that is the sum of this sequence and the other.
+     * @param other The other EulerAngles to add.
+     * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new EulerAngles that is the sum of this sequence and the other.
      */
-    AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>
-        operator+(const AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
+    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>
+        operator+(const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
     {
         return { _angles + other._angles };
     }
 
     /**
-     * @brief Addition assignment operator for AngleSequence.
+     * @brief Addition assignment operator for EulerAngles.
      *
-     * @param other The other AngleSequence to add.
-     * @return AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& Reference to the current object after addition.
+     * @param other The other EulerAngles to add.
+     * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& Reference to the current object after addition.
      */
-    AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>&
-        operator+=(const AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other)
+    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>&
+        operator+=(const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other)
     {
         _angles += other._angles;
         wrap_angles();
@@ -275,33 +275,33 @@ class AngleSequence {
     }
 
     /**
-     * @brief Subtraction operator for AngleSequence.
+     * @brief Subtraction operator for EulerAngles.
      *
-     * @param other The other AngleSequence to subtract.
-     * @return AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new AngleSequence that
+     * @param other The other EulerAngles to subtract.
+     * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new EulerAngles that
      * is the difference of this sequence and the other.
      */
-    AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>
-        operator-(const AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
+    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>
+        operator-(const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
     {
         return { _angles - other._angles };
     }
 
     /**
-     * @brief Negation operator for AngleSequence.
+     * @brief Negation operator for EulerAngles.
      *
-     * @return AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new AngleSequence that is the negation of this sequence.
+     * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new EulerAngles that is the negation of this sequence.
      */
-    AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator-() const { return { -_angles }; }
+    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator-() const { return { -_angles }; }
 
     /**
-     * @brief Subtraction assignment operator for AngleSequence.
+     * @brief Subtraction assignment operator for EulerAngles.
      *
-     * @param other The other AngleSequence to subtract.
-     * @return AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& Reference to the current object after subtraction.
+     * @param other The other EulerAngles to subtract.
+     * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& Reference to the current object after subtraction.
      */
-    AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>&
-        operator-=(const AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other)
+    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>&
+        operator-=(const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other)
     {
         _angles -= other._angles;
         wrap_angles();
@@ -309,23 +309,23 @@ class AngleSequence {
     }
 
     /**
-     * @brief Scalar multiplication operator for AngleSequence.
+     * @brief Scalar multiplication operator for EulerAngles.
      *
      * @param scalar The scalar value to multiply with.
-     * @return AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new AngleSequence that is the product of this sequence and the scalar.
+     * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new EulerAngles that is the product of this sequence and the scalar.
      */
-    AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator*(const Unitless& scalar) const
+    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator*(const Unitless& scalar) const
     {
         return { _angles * scalar };
     }
 
     /**
-     * @brief Scalar multiplication assignment operator for AngleSequence.
+     * @brief Scalar multiplication assignment operator for EulerAngles.
      *
      * @param scalar The scalar value to multiply with.
-     * @return AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& Reference to the current object after multiplication.
+     * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& Reference to the current object after multiplication.
      */
-    AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& operator*=(const Unitless& scalar)
+    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& operator*=(const Unitless& scalar)
     {
         _angles *= scalar;
         wrap_angles();
@@ -333,35 +333,35 @@ class AngleSequence {
     }
 
     /**
-     * @brief Scalar division operator for AngleSequence by a Time quantity, resulting in an AngleSequenceRate.
+     * @brief Scalar division operator for EulerAngles by a Time quantity, resulting in an EulerAnglesRate.
      *
      * @param time The time quantity to divide by.
-     * @return AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new
-     * AngleSequenceVelocity that is the quotient of this sequence and the time.
+     * @return EulerAngleVelocities<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new
+     * EulerAngleVelocities that is the quotient of this sequence and the time.
      */
-    AngleSequenceVelocity<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator/(const Time& time) const
+    EulerAngleVelocities<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator/(const Time& time) const
     {
         return { _angles / time };
     }
 
     /**
-     * @brief Scalar division operator for AngleSequence.
+     * @brief Scalar division operator for EulerAngles.
      *
      * @param scalar The scalar value to divide by.
-     * @return AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new AngleSequence that is the quotient of this sequence and the scalar.
+     * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new EulerAngles that is the quotient of this sequence and the scalar.
      */
-    AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator/(const Unitless& scalar) const
+    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator/(const Unitless& scalar) const
     {
         return { _angles / scalar };
     }
 
     /**
-     * @brief Scalar division assignment operator for AngleSequence.
+     * @brief Scalar division assignment operator for EulerAngles.
      *
      * @param scalar The scalar value to divide by.
-     * @return AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& Reference to the current object after division.
+     * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& Reference to the current object after division.
      */
-    AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& operator/=(const Unitless& scalar)
+    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& operator/=(const Unitless& scalar)
     {
         _angles /= scalar;
         wrap_angles();
@@ -369,12 +369,12 @@ class AngleSequence {
     }
 
     /**
-     * @brief Dot product of this angle vector with another AngleSequence.
+     * @brief Dot product of this angle vector with another EulerAngles.
      *
-     * @param other The other AngleSequence to take the dot product with.
+     * @param other The other EulerAngles to take the dot product with.
      * @return auto The resulting scalar from the dot product.
      */
-    auto dot(const AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
+    auto dot(const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
     {
         return _angles.dot(other._angles);
     }
@@ -393,12 +393,12 @@ class AngleSequence {
     }
 
     /**
-     * @brief Cross product of this angle vector with another AngleSequence.
+     * @brief Cross product of this angle vector with another EulerAngles.
      *
-     * @param other The other AngleSequence to take the cross product with.
+     * @param other The other EulerAngles to take the cross product with.
      * @return auto The resulting CartesianVector from the cross product.
      */
-    auto cross(const AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
+    auto cross(const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) const
     {
         return _angles.cross(other._angles);
     }
@@ -440,13 +440,13 @@ class AngleSequence {
      * @param otherTime The time corresponding to the other angle sequence.
      * @param other The other angle sequence to interpolate with.
      * @param targetTime The time at which to interpolate the angle sequence.
-     * @return AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new AngleSequence that
+     * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new EulerAngles that
      * is the interpolation of this sequence and the other at the target time.
      */
-    AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> interpolate(
+    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> interpolate(
         const Time& thisTime,
         const Time& otherTime,
-        const AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other,
+        const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other,
         const Time& targetTime
     ) const
     {
@@ -523,69 +523,69 @@ class AngleSequence {
     }
 
     /**
-     * @brief Constructs an AngleSequence from a vector of Unitless quantities representing the angle components.
+     * @brief Constructs an EulerAngles from a vector of Unitless quantities representing the angle components.
      *
      * @param vec A std::vector of Unitless quantities representing the components of the angle sequence, in the order [first, second, third].
-     * @return A new AngleSequence constructed from the given vector.
+     * @return A new EulerAngles constructed from the given vector.
      *
      * @throws std::invalid_argument if the input vector does not have exactly 3 components.
      */
-    static AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> from_vector(const std::vector<Unitless>& vec)
+    static EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> from_vector(const std::vector<Unitless>& vec)
     {
         using mp_units::angular::unit_symbols::rad;
 
         if (vec.size() != 3) {
-            throw std::invalid_argument("Input vector must have exactly 3 components to convert to an AngleSequence.");
+            throw std::invalid_argument("Input vector must have exactly 3 components to convert to an EulerAngles.");
         }
         return { vec[0] * rad, vec[1] * rad, vec[2] * rad };
     }
 };
 
 /**
- * @brief Scalar multiplication operator for AngleSequences.
+ * @brief Scalar multiplication operator for EulerAngless.
  *
  * @tparam T The type of the vector components.
  * @tparam U The type of the scalar to multiply with.
  * @param scalar The scalar value to multiply with.
- * @param vec The AngleSequence to multiply.
- * @return AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new AngleSequence that is the product of the scalar and the vector.
+ * @param vec The EulerAngles to multiply.
+ * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new EulerAngles that is the product of the scalar and the vector.
  */
 template <RotationSequence sequence, RotationType rotation_type, typename In_Frame_T, typename Out_Frame_T>
-AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>
-    operator*(const Unitless& scalar, const AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& vec)
+EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>
+    operator*(const Unitless& scalar, const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& vec)
 {
     return vec * scalar;
 }
 
 /**
- * @brief Scalar division operator for AngleSequences.
+ * @brief Scalar division operator for EulerAngless.
  *
  * @tparam T The type of the vector components.
  * @tparam U The type of the scalar to divide by.
  * @param scalar The scalar value to divide by.
- * @param vec The AngleSequence to divide.
- * @return AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new AngleSequence that is the quotient of the scalar and the vector.
+ * @param vec The EulerAngles to divide.
+ * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new EulerAngles that is the quotient of the scalar and the vector.
  */
 template <RotationSequence sequence, RotationType rotation_type, typename In_Frame_T, typename Out_Frame_T>
-AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>
-    operator/(const Unitless& scalar, const AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& vec)
+EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>
+    operator/(const Unitless& scalar, const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& vec)
 {
     return vec / scalar;
 }
 
 /**
- * @brief Output stream operator for AngleSequence
+ * @brief Output stream operator for EulerAngles
  *
  * @tparam sequence The specific sequence of rotations (e.g., RotationSequence::ZXZ).
  * @tparam type Whether the sequence is intrinsic or extrinsic.
  * @tparam In_Frame_T The input frame type (e.g., ECI, ECEF).
  * @tparam Out_Frame_T The output frame type (e.g., ECI, ECEF).
  * @param os The output stream to write to.
- * @param angleSequence The AngleSequence to output.
- * @return std::ostream& The output stream after writing the AngleSequence.
+ * @param angleSequence The EulerAngles to output.
+ * @return std::ostream& The output stream after writing the EulerAngles.
  */
 template <RotationSequence sequence, RotationType rotation_type, typename In_Frame_T, typename Out_Frame_T>
-std::ostream& operator<<(std::ostream& os, const AngleSequence<sequence, rotation_type, In_Frame_T, Out_Frame_T>& angleSequence)
+std::ostream& operator<<(std::ostream& os, const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& angleSequence)
 {
     os << "[" << angleSequence[0] << " , " << angleSequence[1] << " , " << angleSequence[2] << "]";
     return os;

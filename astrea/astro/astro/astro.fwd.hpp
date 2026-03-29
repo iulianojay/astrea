@@ -55,13 +55,13 @@ template <typename In_Frame_T, typename Out_Frame_T>
 class QuaternionPartial;
 
 template <RotationSequence sequence, RotationType rotationType, typename In_Frame_T, typename Out_Frame_T>
-class AngleSequence;
+class EulerAngles;
 
 template <RotationSequence sequence, RotationType rotationType, typename In_Frame_T, typename Out_Frame_T>
-class AngleSequenceVelocity;
+class EulerAngleVelocities;
 
 template <RotationSequence sequence, RotationType rotationType, typename In_Frame_T, typename Out_Frame_T>
-class AngleSequenceAcceleration;
+class EulerAngleAccels;
 
 class Attitude;
 class AttitudePartials;

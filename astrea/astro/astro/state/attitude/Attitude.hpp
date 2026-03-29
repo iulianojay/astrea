@@ -26,8 +26,8 @@
 // Astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/instances/dynamic_body_frame.hpp>
-#include <astro/state/attitude/instances/AngleSequence.hpp>
-#include <astro/state/attitude/instances/AngleSequenceVelocity.hpp>
+#include <astro/state/attitude/instances/EulerAngleVelocities.hpp>
+#include <astro/state/attitude/instances/EulerAngles.hpp>
 #include <astro/state/attitude/instances/Quaternion.hpp>
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
@@ -50,13 +50,13 @@ using BodyQuaternionRate = QuaternionPartial<frames::dynamic::body, frames::eart
  * @brief Type alias for a ICRF->body angle sequence velocity
  */
 using BodyAngularVelocity =
-    AngleSequenceVelocity<RotationSequence::ZXZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>;
+    EulerAngleVelocities<RotationSequence::ZXZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>;
 
 /**
  * @brief Type alias for a ICRF->body angle sequence acceleration
  */
 using BodyAngularAcceleration =
-    AngleSequenceAcceleration<RotationSequence::ZXZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>;
+    EulerAngleAccels<RotationSequence::ZXZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>;
 
 /**
  * @brief Concept to check if a type is an attitude type.
@@ -82,7 +82,7 @@ class AttitudePartials; // Forward declaration
 /**
  * @brief Class representing a set of orientation.
  *
- * This class encapsulates different types of orientation (AngleSequence, AngleSequence, Quaternion)
+ * This class encapsulates different types of orientation (EulerAngles, EulerAngles, Quaternion)
  * and provides methods for conversion, interpolation, and mathematical operations.
  */
 class Attitude {
@@ -105,14 +105,14 @@ class Attitude {
     Attitude(const BodyQuaternion& orientation, const BodyAngularVelocity& angularVelocity);
 
     /**
-     * @brief Constructor initializing with AngleSequence orientation.
+     * @brief Constructor initializing with EulerAngles orientation.
      *
      * @param orientation The orientation to initialize with.
      */
     template <RotationSequence sequence, RotationType rotationType, typename In_Frame_T, typename Out_Frame_T>
     Attitude(
-        const AngleSequence<sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequence,
-        const AngleSequenceVelocity<sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequenceVelocity
+        const EulerAngles<sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequence,
+        const EulerAngleVelocities<sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequenceVelocity
     ) :
         _orientation(angleSequence),
         _angularVelocity(angleSequenceVelocity)
