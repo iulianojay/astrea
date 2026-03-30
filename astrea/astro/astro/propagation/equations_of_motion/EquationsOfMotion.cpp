@@ -71,7 +71,7 @@ AttitudePartials EquationsOfMotion::compute_kinematics(
     // Has value is guaranteed by caller before calling compute_kinematics
     const Attitude& attitude                                  = state.get_attitude().value();
     const BodyQuaternion& q                                   = attitude.get_orientation();
-    const BodyAngularVelocity& w                              = attitude.get_angular_velocity();
+    const BodyAngleVelocities& w                              = attitude.get_angular_velocity();
     const InertiaTensor<frames::dynamic::body>& inertiaTensor = vehicle.get_inertia_tensor();
 
     // Compute angular acceleration

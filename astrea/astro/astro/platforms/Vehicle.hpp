@@ -28,6 +28,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/FrameReference.hpp>
 #include <astro/frames/frames.hpp>
+#include <astro/frames/instances/dynamic_body_frame.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/propagation/force_models/Perturbation.hpp>
 #include <astro/time/Date.hpp>
@@ -54,7 +55,7 @@ concept HasGetMass = requires(const T vehicle) {
  */
 template <typename T>
 concept HasGetInertiaTensor = requires(const T vehicle) {
-    { vehicle.get_inertia_tensor() } -> std::same_as<InertiaTensor<>>;
+    { vehicle.get_inertia_tensor() } -> std::same_as<InertiaTensor<frames::dynamic::body>>;
 };
 
 /**
@@ -164,9 +165,12 @@ struct VehicleInnerBase : public virtual FrameReference {
     /**
      * @brief Gets the inertia tensor of the vehicle.
      *
-     * @return InertiaTensor<> The inertia tensor of the vehicle.
+     * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
      */
-    virtual InertiaTensor<> get_inertia_tensor() const { return InertiaTensor<>(); }
+    virtual InertiaTensor<frames::dynamic::body> get_inertia_tensor() const
+    {
+        return InertiaTensor<frames::dynamic::body>();
+    }
 
     /**
      * @brief Gets the ram area of the vehicle.
@@ -310,22 +314,22 @@ struct VehicleInner final : public VehicleInnerBase {
     /**
      * @brief Gets the inertia tensor of the vehicle.
      *
-     * @return InertiaTensor<> The inertia tensor of the vehicle.
+     * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
      */
-    InertiaTensor<> get_inertia_tensor() const final { return get_inertia_tensor_impl(_value); }
+    InertiaTensor<frames::dynamic::body> get_inertia_tensor() const final { return get_inertia_tensor_impl(_value); }
 
     /**
      * @brief Gets the default inertia tensor of the vehicle.
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the inertia tensor from.
-     * @return InertiaTensor<> The inertia tensor of the vehicle.
+     * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
      */
     template <typename U>
         requires(!HasGetInertiaTensor<U>)
-    static InertiaTensor<> get_inertia_tensor_impl(const U&)
+    static InertiaTensor<frames::dynamic::body> get_inertia_tensor_impl(const U&)
     {
-        return InertiaTensor<>();
+        return InertiaTensor<frames::dynamic::body>();
     }
 
     /**
@@ -333,11 +337,11 @@ struct VehicleInner final : public VehicleInnerBase {
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the inertia tensor from.
-     * @return InertiaTensor<> The inertia tensor of the vehicle.
+     * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
      */
     template <typename U>
         requires(HasGetInertiaTensor<U>)
-    static InertiaTensor<> get_inertia_tensor_impl(const U& value)
+    static InertiaTensor<frames::dynamic::body> get_inertia_tensor_impl(const U& value)
     {
         return value.get_inertia_tensor();
     }
@@ -792,9 +796,9 @@ class Vehicle : public FrameReference {
     /**
      * @brief Gets the inertia tensor of the vehicle.
      *
-     * @return InertiaTensor<> The inertia tensor of the vehicle.
+     * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
      */
-    InertiaTensor<> get_inertia_tensor() const { return ptr()->get_inertia_tensor(); }
+    InertiaTensor<frames::dynamic::body> get_inertia_tensor() const { return ptr()->get_inertia_tensor(); }
 
     /**
      * @brief Get the ram area of the vehicle.
@@ -903,14 +907,14 @@ class Vehicle : public FrameReference {
   private:
     std::unique_ptr<detail::VehicleInnerBase> _ptr; //!< Pointer to the internal vehicle implementation, which can be a user-defined type
 
-    Mass _mass;                          //!< Mass of the vehicle
-    InertiaTensor<> _inertiaTensor;      //!< Inertia tensor of the vehicle
-    SurfaceArea _ramArea;                //!< Ram area of the vehicle
-    SurfaceArea _liftArea;               //!< Lift area of the vehicle
-    SurfaceArea _solarArea;              //!< Solar area of the vehicle
-    Unitless _coefficientOfDrag;         //!< Coefficient of drag of the vehicle
-    Unitless _coefficientOfLift;         //!< Coefficient of lift of the vehicle
-    Unitless _coefficientOfReflectivity; //!< Coefficient of reflectivity of the vehicle
+    Mass _mass;                                          //!< Mass of the vehicle
+    InertiaTensor<frames::dynamic::body> _inertiaTensor; //!< Inertia tensor of the vehicle
+    SurfaceArea _ramArea;                                //!< Ram area of the vehicle
+    SurfaceArea _liftArea;                               //!< Lift area of the vehicle
+    SurfaceArea _solarArea;                              //!< Solar area of the vehicle
+    Unitless _coefficientOfDrag;                         //!< Coefficient of drag of the vehicle
+    Unitless _coefficientOfLift;                         //!< Coefficient of lift of the vehicle
+    Unitless _coefficientOfReflectivity;                 //!< Coefficient of reflectivity of the vehicle
 
     /**
      * @brief Gets a pointer to the internal vehicle instance.

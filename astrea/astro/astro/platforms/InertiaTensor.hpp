@@ -70,11 +70,14 @@ class InertiaTensor {
         const MomentOfInertia& Ixx,
         const MomentOfInertia& Ixy,
         const MomentOfInertia& Ixz,
+        const MomentOfInertia& Iyx,
         const MomentOfInertia& Iyy,
         const MomentOfInertia& Iyz,
+        const MomentOfInertia& Izx,
+        const MomentOfInertia& Izy,
         const MomentOfInertia& Izz
     ) :
-        _tensor{ { { Ixx, -Ixy, -Ixz }, { -Ixy, Iyy, -Iyz }, { -Ixz, -Iyz, Izz } } }
+        _tensor{ { { Ixx, -Ixy, -Ixz }, { -Iyx, Iyy, -Iyz }, { -Izx, -Izy, Izz } } }
     {
     }
 

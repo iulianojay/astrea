@@ -23,6 +23,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/instances/dynamic_body_frame.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
@@ -133,9 +134,9 @@ class Spacecraft : public ThrusterPlatform {
     /**
      * @brief Gets the inertia tensor of the spacecraft.
      *
-     * @return InertiaTensor<> The inertia tensor of the spacecraft.
+     * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the spacecraft.
      */
-    InertiaTensor<> get_inertia_tensor() const;
+    InertiaTensor<frames::dynamic::body> get_inertia_tensor() const;
 
     /**
      * @brief Gets the coefficients of drag, lift, and reflectivity.
@@ -213,7 +214,7 @@ class Spacecraft : public ThrusterPlatform {
      *
      * @param inertiaTensor The new inertia tensor to set for the spacecraft.
      */
-    void set_inertia_tensor(const InertiaTensor<>& inertiaTensor);
+    void set_inertia_tensor(const InertiaTensor<frames::dynamic::body>& inertiaTensor);
 
     /**
      * @brief Sets the coefficients of drag.
@@ -268,8 +269,9 @@ class Spacecraft : public ThrusterPlatform {
     using PayloadPlatform<Thruster>::attach_payload;
     using PayloadPlatform<Thruster>::get_payloads;
 
-    static constexpr Mass DEFAULT_MASS = 1000.0 * astrea::detail::mass_unit;     // Default mass of the spacecraft
-    static constexpr InertiaTensor<> DEFAULT_INERTIA_TENSOR = InertiaTensor<>{}; // Default inertia tensor of the spacecraft
+    static constexpr Mass DEFAULT_MASS = 1000.0 * astrea::detail::mass_unit; // Default mass of the spacecraft
+    static constexpr InertiaTensor<frames::dynamic::body> DEFAULT_INERTIA_TENSOR =
+        InertiaTensor<frames::dynamic::body>{}; // Default inertia tensor of the spacecraft
     static constexpr Unitless DEFAULT_COEFFICIENT_OF_DRAG = 2.2 * astrea::detail::unitless; // Default coefficient of drag
     static constexpr Unitless DEFAULT_COEFFICIENT_OF_LIFT = 0.9 * astrea::detail::unitless; // Default coefficient of lift
     static constexpr Unitless DEFAULT_COEFFICIENT_OF_REFLECTIVITY =
@@ -283,14 +285,14 @@ class Spacecraft : public ThrusterPlatform {
     std::string _name; // Name of the spacecraft, can be set by the user
 
     // Spacecraft properties
-    Mass _mass                          = DEFAULT_MASS;                        //!< Mass of the spacecraft
-    InertiaTensor<> _inertiaTensor      = DEFAULT_INERTIA_TENSOR;              //!< Inertia tensor of the spacecraft
-    Unitless _coefficientOfDrag         = DEFAULT_COEFFICIENT_OF_DRAG;         //!< Coefficient of drag
-    Unitless _coefficientOfLift         = DEFAULT_COEFFICIENT_OF_LIFT;         //!< Coefficient of lift
-    Unitless _coefficientOfReflectivity = DEFAULT_COEFFICIENT_OF_REFLECTIVITY; //!< Coefficient of reflectivity
-    SurfaceArea _ramArea                = DEFAULT_RAM_AREA;                    //!< Ram area of the spacecraft
-    SurfaceArea _sunArea                = DEFAULT_SOLAR_AREA;                  //!< Solar area of the spacecraft
-    SurfaceArea _liftArea               = DEFAULT_LIFT_AREA;                   //!< Lift area of the spacecraft
+    Mass _mass                                          = DEFAULT_MASS;           //!< Mass of the spacecraft
+    InertiaTensor<frames::dynamic::body> _inertiaTensor = DEFAULT_INERTIA_TENSOR; //!< Inertia tensor of the spacecraft
+    Unitless _coefficientOfDrag                         = DEFAULT_COEFFICIENT_OF_DRAG; //!< Coefficient of drag
+    Unitless _coefficientOfLift                         = DEFAULT_COEFFICIENT_OF_LIFT; //!< Coefficient of lift
+    Unitless _coefficientOfReflectivity = DEFAULT_COEFFICIENT_OF_REFLECTIVITY;         //!< Coefficient of reflectivity
+    SurfaceArea _ramArea                = DEFAULT_RAM_AREA;                            //!< Ram area of the spacecraft
+    SurfaceArea _sunArea                = DEFAULT_SOLAR_AREA;                          //!< Solar area of the spacecraft
+    SurfaceArea _liftArea               = DEFAULT_LIFT_AREA;                           //!< Lift area of the spacecraft
 
     // State history
     StateHistory _stateHistory; // History of states for the spacecraft

@@ -49,6 +49,37 @@ constexpr RotationSequence get_reverse_sequence(RotationSequence sequence)
     }
 }
 
+constexpr bool is_proper_euler_sequence(RotationSequence sequence)
+{
+    switch (sequence) {
+        case RotationSequence::ZXZ:
+        case RotationSequence::XYX:
+        case RotationSequence::YZY:
+        case RotationSequence::ZYZ:
+        case RotationSequence::XZX:
+        case RotationSequence::YXY: return true;
+        default: return false;
+    }
+}
+
+constexpr std::array<int, 3> get_sequence_numbers(RotationSequence sequence)
+{
+    switch (sequence) {
+        case RotationSequence::ZXZ: return std::array{ 3, 1, 3 };
+        case RotationSequence::XZX: return std::array{ 1, 3, 1 };
+        case RotationSequence::YXY: return std::array{ 2, 1, 2 };
+        case RotationSequence::XYX: return std::array{ 1, 2, 1 };
+        case RotationSequence::YZY: return std::array{ 2, 3, 2 };
+        case RotationSequence::ZYZ: return std::array{ 3, 2, 3 };
+        case RotationSequence::XYZ: return std::array{ 1, 2, 3 };
+        case RotationSequence::XZY: return std::array{ 1, 3, 2 };
+        case RotationSequence::YZX: return std::array{ 2, 3, 1 };
+        case RotationSequence::YXZ: return std::array{ 2, 1, 3 };
+        case RotationSequence::ZXY: return std::array{ 3, 1, 2 };
+        case RotationSequence::ZYX: return std::array{ 3, 2, 1 };
+    }
+}
+
 /**
  * @brief Concept to check if two EulerAngless are the same (same sequence type, same specific sequence, same rotation type, and same frames).
  */
@@ -127,6 +158,75 @@ class EulerAngles {
     {
         wrap_angles();
     }
+
+    /**
+     * Default copy and move constructors and assignment operators for the same sequence, rotation type, and frames.
+     */
+    EulerAngles(const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other)            = default;
+    EulerAngles(EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>&& other)                 = default;
+    EulerAngles& operator=(const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) = default;
+    EulerAngles& operator=(EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>&& other)      = default;
+
+    /**
+     * Copy and move constructors and assignment operators for equivalent sequences (reverse sequence and opposite rotation type).
+     * These allow for implicit conversions between equivalent sequences (e.g., ZXZ extrinsic with angles [x, y, z] to ZXZ intrinsic with angles [z, y, x]).
+     */
+    template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
+        requires IsEquivalentEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>
+    EulerAngles(const EulerAngles<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other) :
+        _angles(other._angles.reverse())
+    {
+    }
+
+    template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
+        requires IsEquivalentEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>
+    EulerAngles(EulerAngles<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>&& other) :
+        _angles(other._angles.reverse())
+    {
+    }
+
+    template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
+        requires IsEquivalentEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>
+    EulerAngles& operator=(const EulerAngles<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other)
+    {
+        _angles = other._angles.reverse();
+        return *this;
+    }
+
+    template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
+        requires IsEquivalentEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>
+    EulerAngles& operator=(EulerAngles<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>&& other)
+    {
+        _angles = other._angles.reverse();
+        return *this;
+    }
+
+    /**
+     * @brief Explicit copy constructor for incompatible sequences (different specific sequence, different rotation type,
+     * or different frames). Converts through the DCM to ensure correct transformations between frames and proper handling of singularities.
+     *
+     * @param other The other EulerAngles to copy from, which must be incompatible with this sequence.
+     * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new EulerAngles object that is the result of converting the other sequence to this sequence.
+     */
+    template <RotationSequence sequence_u, RotationType rotation_type_u>
+        requires(!IsCompatibleEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_T, Out_Frame_T>)
+    EulerAngles(const EulerAngles<sequence_u, rotation_type_u, In_Frame_T, Out_Frame_T>& other)
+    {
+        *this = Quaternion<In_Frame_T, Out_Frame_T>(other).template to_euler_angles<sequence, rotation_type, In_Frame_T, Out_Frame_T>();
+    }
+
+    /**
+     * @brief Constructs the inverse sequence with the same rotation type.
+     *
+     * @return EulerAngles<get_reverse_sequence(sequence), rotation_type, Out_Frame_T, In_Frame_T> A new EulerAngles
+     *object that is the inverse sequence with the same rotation type and reversed angles. object that is the inverse
+     *sequence with the same rotation type and reversed angles.
+     **/
+    EulerAngles<get_reverse_sequence(sequence), rotation_type, Out_Frame_T, In_Frame_T> get_inverse_sequence() const
+    {
+        return { -_angles.reverse() };
+    }
+
 
     /**
      * @brief Array access operator for accessing individual angle components.

@@ -33,7 +33,7 @@ std::ostream& operator<<(std::ostream& os, const AttitudePartials& attitude)
     return os;
 }
 
-Attitude::Attitude(const BodyQuaternion& orientation, const BodyAngularVelocity& angularVelocity) :
+Attitude::Attitude(const BodyQuaternion& orientation, const BodyAngleVelocities& angularVelocity) :
     _orientation(orientation),
     _angularVelocity(angularVelocity)
 {
@@ -124,7 +124,7 @@ Attitude Attitude::from_vector(const std::vector<Unitless>& vec)
         throw std::runtime_error("Invalid vector size for Attitude conversion. Expected 7 elements (4 for quaternion, 3 for angular velocity).");
     }
     const BodyQuaternion orientation(vec[0], vec[1], vec[2], vec[3]);
-    const BodyAngularVelocity angularVelocity(vec[4] * rad / s, vec[5] * rad / s, vec[6] * rad / s);
+    const BodyAngleVelocities angularVelocity(vec[4] * rad / s, vec[5] * rad / s, vec[6] * rad / s);
     return Attitude(orientation, angularVelocity);
 }
 

@@ -202,9 +202,33 @@ class Quaternion {
         normalize();
     }
 
+    /**
+     * @brief Constructor for the Quaternion class from an Euler angle sequence.
+     *
+     * @tparam sequence The rotation sequence of the Euler angles (e.g., XYZ, ZYX).
+     * @tparam rotationType The type of rotation (extrinsic or intrinsic).
+     * @param angleSequence The Euler angle sequence to convert to a quaternion.
+     *
+     * @note This constructor converts the Euler angles to a DCM and { uses the DCM constructor to create the quaternion.
+     */
     template <RotationSequence sequence, RotationType rotation_type>
     Quaternion(const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& angleSequence) :
         Quaternion(angleSequence.to_dcm())
+    {
+    }
+
+    /**
+     * @brief Constructor for the Quaternion class from an angle and rotation axis.
+     *
+     * @param angle The angle of rotation.
+     * @param axis The axis of rotation represented as a CartesianVector. Must be a unit vector.
+     *
+     * @note This constructor creates a quaternion representing a rotation of "angle" around the "axis" using the
+     * formula: q = [cos(angle/2), axis * sin(angle/2)]
+     */
+    Quaternion(const Angle& angle, const CartesianVector<Unitless, In_Frame_T>& axis) :
+        _s(mp_units::angular::cos(angle / 2.0)),
+        _u(axis * mp_units::angular::sin(angle / 2.0))
     {
     }
 
@@ -225,6 +249,63 @@ class Quaternion {
               std::array<Unitless, 3>{ 2.0 * (x * y + s * z), s * s - x * x + y * y - z * z, 2.0 * (y * z - s * x) },
               std::array<Unitless, 3>{ 2.0 * (x * z - s * y), 2.0 * (y * z + s * x), s * s - x * x - y * y + z * z } }
         };
+    }
+
+    /**
+     * @brief Convert the quaternion to an Euler angle sequence.
+     *
+     * @tparam sequence The rotation sequence of the Euler angles (e.g., XYZ, ZYX).
+     * @tparam rotationType The type of rotation (extrinsic or intrinsic).
+     * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> The resulting Euler angle sequence.
+     *
+     * @note This method converts the quaternion to a DCM and then extracts the Euler angles based on the specified
+     * sequence and rotation type. It uses this method: https://pmc.ncbi.nlm.nih.gov/articles/PMC9648712/
+     */
+    template <RotationSequence sequence, RotationType rotation_type>
+    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> to_euler_angles() const
+    {
+        using namespace mp_units;
+        using namespace mp_units::angular;
+        using mp_units::angular::unit_symbols::rad;
+
+        const bool isProper = is_proper_euler_sequence(sequence);
+        auto [i, j, k]      = get_sequence_numbers(sequence);
+
+        if (isProper) { k = 6 - i - j; }
+
+        const Unitless eps = (i - j) * (j - k) * (k - i) / 2 * one;
+
+        const Unitless a = isProper ? _s : _s - _u[j];
+        const Unitless b = isProper ? _u[i] : _u[i] + _u[k] * eps;
+        const Unitless c = isProper ? _u[j] : _u[j] + _s;
+        const Unitless d = isProper ? _u[k] * eps : _u[k] * eps - _u[i];
+
+        const Unitless aPlusBSquared = a * a + b * b;
+        const Unitless cPlusDSquared = c * c + d * d;
+        Angle theta2                 = acos(2.0 * aPlusBSquared / (aPlusBSquared + cPlusDSquared) - 1.0 * one);
+        const Angle thetaPlus        = atan2(b, a);
+        const Angle thetaMinus       = atan2(d, c);
+
+        Angle theta1, theta3;
+        static constexpr Angle piOver2 = std::numbers::pi / 2.0 * rad;
+        if (is_eq_zero(theta2)) {
+            theta1 = 0;
+            theta3 = 2 * thetaPlus - theta1;
+        }
+        else if (theta2 == piOver2) {
+            theta1 = 0;
+            theta3 = 2 * thetaMinus + theta1;
+        }
+        else {
+            theta1 = thetaPlus - thetaMinus;
+            theta3 = thetaPlus + thetaMinus;
+        }
+
+        if (!isProper) {
+            theta3 = eps * theta3;
+            theta2 = theta2 - piOver2;
+        }
+        return { theta1, theta2, theta3 };
     }
 
     /**
@@ -362,7 +443,7 @@ class Quaternion {
     CartesianVector<Value_T, Out_Frame_T> rotate_vector(const CartesianVector<Value_T, In_Frame_T>& vec) const
     {
         // Rotate the vector using the quaternion: v' = q * v * q^-1
-        // results in a quaternion with vector part 2(u ⋅ v)u + (s2 − u ⋅ u)v + 2s(u × v)
+        // results in a quaternion with vector part 2(u ⋅ v)u + (s2 - u ⋅ u)v + 2s(u * v)
         // This forces a frame conversion because there is no coherent way to keep the strong typing through the
         // intermediate operations and still result in a meaningful rotation. This means we can't have a nice interface
         // where users rotate by calling q * v * q.conjugate() but it's fine for now.
@@ -487,7 +568,7 @@ class Quaternion {
         const Angle halfTheta       = acos(cosHalfTheta);
         const Unitless sinHalfTheta = sqrt(1.0 * one - cosHalfTheta * cosHalfTheta);
 
-        // if theta = 180 degrees then result is not fully defined
+        // if theta = 180 degrees { result is not fully defined
         // we could rotate around any axis normal to either
         if (abs(sinHalfTheta) < 1.0e-3 * one) {
             // Do the math manually to avoid normalization until construction

@@ -47,9 +47,14 @@ using BodyQuaternion = Quaternion<frames::dynamic::body, frames::earth::icrf>;
 using BodyQuaternionRate = QuaternionPartial<frames::dynamic::body, frames::earth::icrf>;
 
 /**
+ * @brief Type alias for a ICRF->body angle sequence
+ */
+using BodyAngles = EulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>;
+
+/**
  * @brief Type alias for a ICRF->body angle sequence velocity
  */
-using BodyAngularVelocity =
+using BodyAngleVelocities =
     EulerAngleVelocities<RotationSequence::ZXZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>;
 
 /**
@@ -102,18 +107,15 @@ class Attitude {
      *
      * @param orientation The orientation to initialize with.
      */
-    Attitude(const BodyQuaternion& orientation, const BodyAngularVelocity& angularVelocity);
+    Attitude(const BodyQuaternion& orientation, const BodyAngleVelocities& angularVelocity);
 
     /**
      * @brief Constructor initializing with EulerAngles orientation.
      *
      * @param orientation The orientation to initialize with.
      */
-    template <RotationSequence sequence, RotationType rotationType, typename In_Frame_T, typename Out_Frame_T>
-    Attitude(
-        const EulerAngles<sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequence,
-        const EulerAngleVelocities<sequence, rotationType, In_Frame_T, Out_Frame_T>& angleSequenceVelocity
-    ) :
+    template <RotationSequence sequence, RotationType rotationType>
+    Attitude(const EulerAngles<sequence, rotationType, frames::dynamic::body, frames::earth::icrf>& angleSequence, const BodyAngleVelocities& angleSequenceVelocity) :
         _orientation(angleSequence),
         _angularVelocity(angleSequenceVelocity)
     {
@@ -127,11 +129,11 @@ class Attitude {
     const BodyQuaternion& get_orientation() const { return _orientation; }
 
     /**
-     * @brief Gets the angular velocity as a BodyAngularVelocity.
+     * @brief Gets the angular velocity as a BodyAngleVelocities.
      *
-     * @return const BodyAngularVelocity& The angular velocity as a BodyAngularVelocity.
+     * @return const BodyAngleVelocities& The angular velocity as a BodyAngleVelocities.
      */
-    const BodyAngularVelocity& get_angular_velocity() const { return _angularVelocity; }
+    const BodyAngleVelocities& get_angular_velocity() const { return _angularVelocity; }
 
     /**
      * @brief Compares two Attitude objects for equality.
@@ -234,7 +236,7 @@ class Attitude {
 
   private:
     BodyQuaternion _orientation;          //!< Variant holding the orientation
-    BodyAngularVelocity _angularVelocity; //!< Variant holding the orientation partials
+    BodyAngleVelocities _angularVelocity; //!< Variant holding the orientation partials
 
     /**
      * @brief Creates an Attitude object from a vector of Unitless values.
