@@ -91,7 +91,7 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
     const Distance semimajor     = altitude + sys.get_central_body()->get_equitorial_radius();
     const Angle inclination      = 97.6316 * deg; // roughly sunsync, whatever
     const std::size_t nSats      = 4;
-    const std::size_t nPlanes    = 4;
+    const std::size_t nPlanes    = 2;
     const Angle anchorRaan       = 20.0 * deg;
     const Angle anchorAnomaly    = 0.0 * deg;
     const Angle crossTrackOffset = 7.39 * deg; // 900 km off track
@@ -136,7 +136,7 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
     const AccessStats stats(accesses);
 
     // Save
-    std::filesystem::path outdir = std::string(_TRACE_ROOT_) + "/trace/drivers/results/poland/4_planes";
+    std::filesystem::path outdir = std::string(_TRACE_ROOT_) + "/trace/drivers/results/poland/2_planes";
 
     save_risesets_to_file(accesses, outdir, constellation, grid);
     save_riseset_metrics_to_file(accesses, outdir, constellation, grid);
