@@ -63,7 +63,7 @@ AccessArray propagate_and_run_access_analysis(
 
 int main()
 {
-    const Time propTime         = months(3.0);
+    const Time propTime         = days(3.0);
     const Time accessResolution = minutes(1.0);
     const bool printProgress    = true;
     const Angle gridSpacing     = 0.25 * deg;
@@ -134,15 +134,16 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
     const AccessArray accesses =
         propagate_and_run_access_analysis(constellation, grid, startDate, sys, propTime, accessResolution, printProgress);
     const AccessStats stats(accesses);
+    const FoldsOfCoverage folds(accesses, accessResolution, propTime);
 
     // Save
     std::filesystem::path outdir = std::string(_TRACE_ROOT_) + "/trace/drivers/results/poland/4_planes";
+    std::filesystem::create_directories(outdir);
+    std::filesystem::path dbPath = outdir / "poland_analysis.db";
+    if (printProgress) { std::cout << "Saving results to database at: " << dbPath << std::endl; }
 
-    save_risesets_to_file(accesses, outdir, constellation, grid);
-    save_riseset_metrics_to_file(accesses, outdir, constellation, grid);
-    save_receiver_riseset_metrics_to_file(stats, outdir, constellation, grid);
-    save_access_metrics_to_file(stats, outdir, constellation, grid);
-    save_number_of_folds_to_file(accesses, outdir, constellation, grid, accessResolution, propTime);
+    DatabaseOutputManager manager(dbPath, true);
+    manager.save_results(folds, stats, accesses, constellation, grid);
 
     // Call plotter
     std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/tracer.py " + outdir.string();

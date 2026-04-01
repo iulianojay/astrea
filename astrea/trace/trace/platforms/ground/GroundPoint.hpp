@@ -135,6 +135,11 @@ class GroundPoint : virtual public AccessObject, virtual astro::FrameReference {
      */
     astro::CartesianVector<Velocity, astro::frames::earth::icrf> get_inertial_velocity(const astro::Date& date) const;
 
+    /**
+     * @brief Get the name of the ground point.
+     *
+     * @return std::string The name of the ground point, typically derived from its coordinates or a user-defined identifier.
+     */
     std::string get_name() const;
 
   protected:

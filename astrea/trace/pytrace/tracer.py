@@ -6,6 +6,7 @@ import matplotlib.colors as mcolors
 import pandas as pd
 import numpy as np
 import datetime
+import sqlite3
 from typing import List, Any
 from risesets import riseset_difference
 from mpl_toolkits.basemap import Basemap
@@ -20,6 +21,12 @@ class Tracer:
     def __init__(self, resultsdir: str, outdir: str):
         self.resultsdir = resultsdir
         self.outdir = outdir
+        
+        # Find the database file in the results directory
+        db_files = [f for f in os.listdir(resultsdir) if f.endswith('.db')]
+        if not db_files:
+            raise FileNotFoundError(f"No .db file found in {resultsdir}")
+        self.db_path = os.path.join(resultsdir, db_files[0])
 
         self.fontSize = 14
         self.fontWeight = 'bold'
@@ -32,19 +39,28 @@ class Tracer:
             os.makedirs(self.outdir)
 
 
-    def ingest_csv(self, infile: str) -> pd.DataFrame:
-        # Loop the data lines
-        with open(infile, "r") as temp_f:
-            # get n of columns in each line
-            col_count = [len(l.split(",")) for l in temp_f.readlines()]
+    def read_folds_data(self) -> pd.DataFrame:
+        """Read folds data from SQLite database."""
+        conn = sqlite3.connect(self.db_path)
+        query = "SELECT * FROM folds"
+        df = pd.read_sql_query(query, conn)
+        conn.close()
+        return df
+        
+    def read_access_metrics_data(self) -> pd.DataFrame:
+        """Read access metrics data from SQLite database."""
+        conn = sqlite3.connect(self.db_path)
+        query = "SELECT * FROM access_metrics"
+        df = pd.read_sql_query(query, conn)
+        conn.close()
+        return df
 
-        # Generate column names  (names will be 0, 1, 2, ..., maximum columns - 1)
-        column_names = [i for i in range(0, max(col_count))]
-
-        # Read results
-        return pd.read_csv(
-            infile, index_col=False, header=None, names=column_names, low_memory=False
-        )
+    def read_ground_locations_data(self) -> pd.DataFrame:
+        """Read ground location coordinates from SQLite database."""
+        conn = sqlite3.connect(self.db_path)
+        df = pd.read_sql_query("SELECT * FROM ground_locations", conn)
+        conn.close()
+        return df
 
     def build_base_basemap(self, lat0: float, lon0: float, lllon: float, lllat: float, urlon: float, urlat: float) -> None:
         # Set up Basemap instance
@@ -127,34 +143,30 @@ class Tracer:
             fontsize=self.fontSize-2
         )
 
-    def build_grid(self, df: pd.DataFrame) -> tuple:
+    def build_grid(self, ground_locs: pd.DataFrame) -> tuple:
+        """Build grid from ground_locations DataFrame. Returns None if no data."""
+        if ground_locs.empty:
+            print("Warning: No ground location data found in database for geographic plotting.")
+            return None
 
-        lats = np.array([])
-        lons = np.array([])
-        for row in df.itertuples():
-            obj = row[1]
-            if "(Earth)" not in obj:
-                continue
+        lats = ground_locs['latitude'].to_numpy()
+        lons = ground_locs['longitude'].to_numpy()
 
-            lat, lon = obj.replace('°','').split('[')[1].split(']')[0].split(",")
-            lats = np.append(lats, float(lat))
-            lons = np.append(lons, float(lon))
-
-        lllon = np.min(lons)
-        lllat = np.min(lats)
-        urlon = np.max(lons)
-        urlat = np.max(lats)
+        lllon = float(np.min(lons))
+        lllat = float(np.min(lats))
+        urlon = float(np.max(lons))
+        urlat = float(np.max(lats))
 
         lonRange = urlon - lllon
         latRange = urlat - lllat
 
         extra = 0.0
-        lllon = np.max([np.round(lllon - extra * lonRange), -180.0])
-        lllat = np.max([np.round(lllat - extra * latRange), -90.0])
-        urlon = np.min([np.round(urlon + extra * lonRange), 180.0])
-        urlat = np.min([np.round(urlat + extra * latRange), 90.0])
+        lllon = float(np.max([np.round(lllon - extra * lonRange), -180.0]))
+        lllat = float(np.max([np.round(lllat - extra * latRange), -90.0]))
+        urlon = float(np.min([np.round(urlon + extra * lonRange), 180.0]))
+        urlat = float(np.min([np.round(urlat + extra * latRange), 90.0]))
 
-        self.build_base_basemap(np.mean(lons), np.mean(lats), lllon, lllat, urlon, urlat)
+        self.build_base_basemap(float(np.mean(lons)), float(np.mean(lats)), lllon, lllat, urlon, urlat)
 
         # transform lon / lat coordinates to map projection
         x, y = self.map(*(lons, lats))
@@ -205,35 +217,49 @@ class Tracer:
 
 
     def plot_number_of_folds(self, metrics=['AVG']) -> None:
+        """Plot number of folds. Skip if no ground location data available."""
+        df = self.read_folds_data()
+        if df.empty:
+            print("No folds data found in database.")
+            return
 
-        # Read results
-        foldsFile = os.path.join(self.resultsdir, "n_folds.csv")
-        df = self.ingest_csv(foldsFile)
-        grid = self.build_grid(df)
+        ground_locs = self.read_ground_locations_data()
+        grid = self.build_grid(ground_locs)
+        if grid is None:
+            print("Skipping folds plotting: No geographic data available.")
+            return
 
-        metricIndexMap = { # boy this is stupid
-            'MIN': 2,
-            'AVG': 3,
-            'MAX': 4,
-            '1th PCT' : 5,
-            '5th PCT': 6,
-            '10th PCT': 7,
-            '25th PCT': 8,
-            '50th PCT': 9,
-            '75th PCT': 10,
-            '90th PCT': 11,
-            '95th PCT': 12,
-            '99th PCT': 13
+        # Join folds to ground_locations by extracting base name from formatted object string
+        # folds.object format: "Name [lat°, lon°] (Earth)"  →  base name: "Name"
+        earth_folds = df[df['object'].str.contains("Earth", na=False)].copy()
+        earth_folds['_base_name'] = earth_folds['object'].str.split(' [', regex=False).str[0]
+        merged = ground_locs.merge(earth_folds, left_on='name', right_on='_base_name', how='inner')
+
+        metricColumnMap = {
+            'MIN': 'min_folds',
+            'AVG': 'avg_folds',
+            'MAX': 'max_folds'
         }
 
-        for metric in metrics:
-            metricIndex = metricIndexMap[metric]
+        # Build percentile lookup from merged data (each row = one ground point)
+        pct_labels = ['1th PCT', '5th PCT', '10th PCT', '25th PCT', '50th PCT',
+                      '75th PCT', '90th PCT', '95th PCT', '99th PCT']
+        percentile_data = {label: [] for label in pct_labels}
+        for _, row in merged.iterrows():
+            if pd.notna(row['percentiles']):
+                vals = [float(x) for x in row['percentiles'].split(',')]
+                for i, label in enumerate(pct_labels):
+                    if i < len(vals):
+                        percentile_data[label].append(vals[i])
+        percentile_data = {k: np.array(v) for k, v in percentile_data.items() if len(v) == len(merged)}
 
-            folds = np.array([])
-            for row in df.itertuples():
-                if "(Earth)" not in row[1]:
-                    continue
-                folds = np.append(folds, float(row[metricIndex]))
+        for metric in metrics:
+            if metric in metricColumnMap:
+                folds = merged[metricColumnMap[metric]].to_numpy()
+            elif metric in percentile_data:
+                folds = percentile_data[metric]
+            else:
+                continue
 
             # Build figure
             plt.clf()
@@ -289,14 +315,35 @@ class Tracer:
 
 
     def plot_access_metric(self, metric: str, title:str, cbar_label: str) -> None:
+        """Plot access metric. Skip if no ground location data available."""
+        df = self.read_access_metrics_data()
+        if df.empty:
+            print(f"No access metrics data found in database for {metric}.")
+            return
 
-        # Read results
-        accessFile = os.path.join(self.resultsdir, "access_metrics.csv")
-        df = pd.read_csv(accessFile)
+        ground_locs = self.read_ground_locations_data()
+        grid = self.build_grid(ground_locs)
+        if grid is None:
+            print(f"Skipping {title}: No geographic data available.")
+            return
 
-        grid = self.build_grid(df)
-        df = df[df['Object'].str.contains("Earth")] # remove satellites for now
-        vals = df[[col for col in df.columns if metric in col][0]].to_numpy() / 3600.0 # convert to hours
+        # Join access_metrics to ground_locations by extracting base name from formatted object string
+        # access_metrics.object format: "Name [lat°, lon°] (Earth)"  →  base name: "Name"
+        earth_data = df[
+            (df['object'].str.contains("Earth", na=False)) &
+            (df['metric_type'] == metric)
+        ].copy()
+        if earth_data.empty:
+            print(f"Skipping {title}: No geographic data available for {metric}.")
+            return
+
+        earth_data['_base_name'] = earth_data['object'].str.split(' [', regex=False).str[0]
+        merged = ground_locs.merge(earth_data, left_on='name', right_on='_base_name', how='inner')
+        if merged.empty:
+            print(f"Skipping {title}: Could not match ground locations to access metrics.")
+            return
+
+        vals = merged['time_value'].to_numpy() / 3600.0  # convert to hours
 
         # Build figure
         plt.clf()
