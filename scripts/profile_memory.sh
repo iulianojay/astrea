@@ -1,6 +1,6 @@
 
 DEBUG=RelWithDebInfo
-PROGRAM=./install/x86_64-Linux/GNU-13.1.0/$DEBUG/trace/bin/trace
+PROGRAM=./install/gcc-13-23/$DEBUG/bin/trace/trace
 OUTFILE=./astrea/trace/trace/drivers/results/massif.out
 
 OPTIONS="--massif-out-file=$OUTFILE --time-unit=B"

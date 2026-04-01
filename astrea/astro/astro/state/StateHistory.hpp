@@ -35,7 +35,6 @@ namespace astro {
  */
 class StateHistory {
 
-    using StateMap      = gtl::btree_map<Date, State>;
     using EventTimesMap = gtl::btree_map<std::string, std::vector<Date>>;
 
   public:
@@ -60,22 +59,6 @@ class StateHistory {
     ~StateHistory() = default;
 
     /**
-     * @brief Accesses the state at a specific date.
-     *
-     * @param date The date at which the state is requested.
-     * @return State& Reference to the state at the specified date.
-     */
-    State& operator[](const Date& date);
-
-    /**
-     * @brief Retrieves the state at a specific date.
-     *
-     * @param date The date at which the state is requested.
-     * @return const State& Reference to the state at the specified date.
-     */
-    const State& at(const Date& date) const;
-
-    /**
      * @brief Inserts a state at a specific date into the history.
      *
      * @param state The state to be inserted.
@@ -88,6 +71,26 @@ class StateHistory {
      * @param stateHistory The StateHistory containing the states to be inserted.
      */
     void insert(const StateHistory& stateHistory);
+
+    /**
+     * @brief Appends a state to the end of the history without sorting.
+     *
+     * This method is faster than insert() but does not maintain sorted order.
+     * Use with caution and only when you are sure the states are already sorted.
+     *
+     * @param state The state to be appended.
+     */
+    void fast_append(const State& state) { _states.push_back(state); }
+
+    /**
+     * @brief Prepends a state to the beginning of the history without sorting.
+     *
+     * This method is faster than insert() but does not maintain sorted order.
+     * Use with caution and only when you are sure the states are already sorted.
+     *
+     * @param state The state to be prepended.
+     */
+    void fast_prepend(const State& state) { _states.insert(_states.begin(), state); }
 
     /**
      * @brief Get the number of states in the history.
@@ -106,21 +109,35 @@ class StateHistory {
      *
      * @return const Date& Reference to the epoch of the state history.
      */
-    const Date& epoch() const { return _states.begin()->first; }
+    const Date& epoch() const { return _states.front().get_epoch(); }
+
+    /**
+     * @brief Retrieves the first and last states in the history.
+     *
+     * @return State& Reference to the first state.
+     */
+    State& first() { return _states.front(); }
 
     /**
      * @brief Retrieves the first and last states in the history.
      *
      * @return const State& Reference to the first state.
      */
-    const State& first() const { return _states.begin()->second; }
+    const State& first() const { return _states.front(); }
+
+    /**
+     * @brief Retrieves the last state in the history.
+     *
+     * @return State& Reference to the last state.
+     */
+    State& last() { return _states.back(); }
 
     /**
      * @brief Retrieves the last state in the history.
      *
      * @return const State& Reference to the last state.
      */
-    const State& last() const { return _states.rbegin()->second; }
+    const State& last() const { return _states.back(); }
 
     /**
      * @brief Sets the object ID for this state history.
@@ -151,12 +168,15 @@ class StateHistory {
      * @brief Retrieves the state at a specific date.
      *
      * This function returns the state at the specified date, or the closest
-     * state if no exact match is found.
+     * state if no exact match is found and allowApproximation is true, otherwise it interpolates to the given time.
      *
      * @param date The date for which the state is requested.
+     * @param allowApproximation Flag indicating whether to allow returning the closest state if an exact match is not found (default is true).
      * @return State The state at the specified date.
+     *
+     * @note Allowing the approximation is generally recommended and will only accept times within a second of any stored points without interpolation.
      */
-    State get_state_at(const Date& date) const;
+    State get_state_at(const Date& date, const bool allowApproximation = true) const;
 
     /**
      * @brief Sets the event times recorded during propagation.
@@ -182,12 +202,12 @@ class StateHistory {
     /**
      * @brief Iterator types for iterating over the states in the history.
      */
-    using iterator = StateMap::iterator;
+    using iterator = std::vector<State>::iterator;
 
     /**
      * @brief Constant iterator types for iterating over the states in the history.
      */
-    using const_iterator = StateMap::const_iterator;
+    using const_iterator = std::vector<State>::const_iterator;
 
     /**
      * @brief Returns an iterator to the beginning of the state history.
@@ -231,10 +251,18 @@ class StateHistory {
      */
     const_iterator cend() const { return _states.cend(); }
 
+    /**
+     * @brief Sorts the states in the history by date (epoch).
+     *
+     * This method should typically not be needed since insert() maintains sorted order,
+     * but can be useful if states were modified after insertion.
+     */
+    void sort();
+
   private:
-    StateMap _states;          //!< Map to store states indexed by date
-    EventTimesMap _eventTimes; //!< Vector to store event times during propagation
-    std::size_t _objectId = 0; //!< ID of the object for which this state history is maintained
+    std::vector<State> _states; //!< Vector to store states sorted by date
+    EventTimesMap _eventTimes;  //!< Vector to store event times during propagation
+    std::size_t _objectId = 0;  //!< ID of the object for which this state history is maintained
 };
 
 } // namespace astro

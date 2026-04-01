@@ -37,7 +37,7 @@ class SpacecraftTest : public testing::Test {
     void SetUp() override
     {
         StateHistory history;
-        history[Date()] = State();
+        history.insert(State());
         spacecraftWithHistory.set_state_history(history);
     }
 
@@ -173,8 +173,8 @@ TEST_F(SpacecraftTest, SetName)
 
 TEST_F(SpacecraftTest, GetStateHistory)
 {
-    ASSERT_EQ(spacecraftWithHistory.get_state_history()[Date()], State());
-    ASSERT_EQ(static_cast<const Spacecraft&>(spacecraftWithHistory).get_state_history().at(Date()), State());
+    ASSERT_EQ(spacecraftWithHistory.get_state_history().get_state_at(Date(), true), State());
+    ASSERT_EQ(static_cast<const Spacecraft&>(spacecraftWithHistory).get_state_history().get_state_at(Date(), true), State());
 }
 
 TEST_F(SpacecraftTest, GetInertialPosition)
