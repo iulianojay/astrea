@@ -37,10 +37,12 @@ RUN apt-get update && \
     && \
     rm -rf /var/lib/apt/lists/*
 
-# Install uv and gcovr
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
-    /root/.cargo/bin/uv tool install gcovr
-ENV PATH="/root/.cargo/bin:$PATH"
+# Install uv
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:$PATH"
+
+# Install gcovr using uv
+RUN uv tool install gcovr
 
 COPY . $ASTREA_ROOT
 
