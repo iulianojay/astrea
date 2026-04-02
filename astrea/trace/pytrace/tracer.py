@@ -405,6 +405,6 @@ if __name__ == "__main__":
         '95th PCT',
         '99th PCT'
     ]
-    tracer.plot_number_of_folds(metrics=metrics)
+    # tracer.plot_number_of_folds(metrics=metrics)
     tracer.plot_avg_daily_vis()
     tracer.plot_mtta()
