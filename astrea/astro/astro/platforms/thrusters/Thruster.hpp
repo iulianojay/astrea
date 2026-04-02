@@ -62,8 +62,26 @@ class ThrusterParameters : public PayloadParameters {
      */
     Thrust get_thrust() const { return _thrust; }
 
+    /**
+     * @brief Set the thrust magnitude.
+     *
+     * @param thrust Thrust magnitude to set.
+     */
+    bool is_on() const { return _isOn; }
+
+    /**
+     * @brief Switch the thruster on.
+     */
+    void switch_on() { _isOn = true; }
+
+    /**
+     * @brief Switch the thruster off.
+     */
+    void switch_off() { _isOn = false; }
+
   protected:
-    Thrust _thrust; //!< Thrust magnitude
+    Thrust _thrust;     //!< Thrust magnitude
+    bool _isOn = false; //!< Thruster state (on/off)
 };
 
 /**
@@ -108,6 +126,31 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
      * @return Velocity The impulsive delta-v.
      */
     Velocity get_impulsive_delta_v() const;
+
+    /**
+     * @brief Get the thrust of the thruster for a given state.
+     *
+     * @param state The state of the vehicle for which to get the thrust.
+     * @return Thrust The thrust of the thruster.
+     */
+    Thrust get_thrust() const;
+
+    /**
+     * @brief Switch the thruster on.
+     */
+    void switch_on();
+
+    /**
+     * @brief Switch the thruster off.
+     */
+    void switch_off();
+
+    /**
+     * @brief Check if the thruster is on.
+     *
+     * @return true if the thruster is on, false otherwise.
+     */
+    bool is_on() const;
 
   private:
     /**
