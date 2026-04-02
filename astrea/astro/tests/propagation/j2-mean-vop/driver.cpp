@@ -79,7 +79,7 @@ TEST_F(J2MeanVopPropagationTest, GEONoForces)
     const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
 
     // Validate
-    for (const auto& [time, state] : stateHistory) {
+    for (const auto& state : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
     }
@@ -98,7 +98,7 @@ TEST_F(J2MeanVopPropagationTest, GPSNoForces)
     const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
 
     // Validate
-    for (const auto& [time, state] : stateHistory) {
+    for (const auto& state : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
     }
@@ -117,7 +117,7 @@ TEST_F(J2MeanVopPropagationTest, LEONoForces)
     const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
 
     // Validate
-    for (const auto& [time, state] : stateHistory) {
+    for (const auto& state : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
     }

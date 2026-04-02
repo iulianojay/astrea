@@ -29,7 +29,7 @@ class VehicleTest : public testing::Test {
     void SetUp() override
     {
         StateHistory history;
-        history[Date()] = State();
+        history.insert(State());
         satWithHistory.set_state_history(history);
 
         vehicle            = Vehicle(sat);

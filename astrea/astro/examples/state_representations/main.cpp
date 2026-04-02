@@ -50,9 +50,9 @@ int main()
     // Note: A StateHistory may be updated to "Trajectory" in future releases.
     StateHistory history;
     std::cout << "StateHistory Size: " << history.size() << std::endl;
-    history[epoch] = state;
+    history.insert(state);
     std::cout << "StateHistory Size: " << history.size() << std::endl;
-    std::cout << "history(epoch): " << history.at(epoch) << std::endl;
+    std::cout << "history(epoch): " << history.get_state_at(epoch) << std::endl;
 
     return 0;
 }

@@ -122,8 +122,8 @@ std::vector<double> extract_raw_time_data(const StateHistory& trajectory)
 {
     std::vector<double> time;
     const Date epoch = trajectory.epoch();
-    for (const auto& [date, state] : trajectory) {
-        const Time t = date - epoch;
+    for (const auto& state : trajectory) {
+        const Time t = state.get_epoch() - epoch;
         time.push_back(t.numerical_value_in(day));
     }
     return time;
@@ -133,7 +133,7 @@ std::vector<double> extract_raw_time_data(const StateHistory& trajectory)
 std::array<std::vector<double>, 6> extract_raw_orbital_elements(const StateHistory& trajectory)
 {
     std::array<std::vector<double>, 6> data;
-    for (const auto& [date, state] : trajectory) {
+    for (const auto& state : trajectory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
 
         const auto a  = kep.get_semimajor();
@@ -181,7 +181,7 @@ std::array<std::vector<double>, 6> extract_raw_orbital_elements_at_times(const s
 std::array<std::vector<double>, 6> extract_raw_cartesian_elements(const StateHistory& trajectory)
 {
     std::array<std::vector<double>, 6> data;
-    for (const auto& [date, state] : trajectory) {
+    for (const auto& state : trajectory) {
         const Cartesian cart = state.in_element_set<Cartesian>();
 
         const auto x  = cart.get_x();

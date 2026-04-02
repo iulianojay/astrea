@@ -81,7 +81,7 @@
 //     const auto stateHistory = integrator.propagate(state0, propTime, eom, vehicle, true);
 
 //     // Validate
-//     for (const auto& [time, state] : stateHistory) {
+//     for (const auto& state : stateHistory) {
 //         const Keplerian kep = state.in_element_set<Keplerian>();
 //         ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
 //     }
@@ -99,7 +99,7 @@
 //     const auto stateHistory = integrator.propagate(state0, propTime, eom, vehicle, true);
 
 //     // Validate
-//     for (const auto& [time, state] : stateHistory) {
+//     for (const auto& state : stateHistory) {
 //         const Keplerian kep = state.in_element_set<Keplerian>();
 //         ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
 //     }
@@ -117,7 +117,7 @@
 //     const auto stateHistory = integrator.propagate(state0, propTime, eom, vehicle, true);
 
 //     // Validate
-//     for (const auto& [time, state] : stateHistory) {
+//     for (const auto& state : stateHistory) {
 //         const Keplerian kep = state.in_element_set<Keplerian>();
 //         ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
 //     }
