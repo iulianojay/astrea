@@ -42,7 +42,7 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.cargo/bin:$PATH"
 
 # Install gcovr using uv
-RUN source $HOME/.local/bin/env
+RUN source /root/.local/bin/env
 RUN uv tool install gcovr
 
 COPY . $ASTREA_ROOT
