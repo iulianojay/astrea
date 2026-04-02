@@ -254,45 +254,6 @@ class AccessAnalyzer {
      * @return std::vector<AccessInfo> A vector of AccessInfo objects containing trace information for the pair of objects.
      */
     std::vector<AccessInfo> build_access_info(const std::size_t& id1, const std::size_t& id2) const;
-
-    /**
-     * @brief Filter out impossible viewer-viewer pairs based on Earth occultation.
-     *
-     * @param viewers The vector of viewer pointers to check.
-     * @return PairVec A vector of index pairs (iViewer, iGround) representing possible accesses.
-     */
-    PairVec filter_impossible_pairs(const ViewerRefVec& viewers) const;
-
-    /**
-     * @brief Filter out impossible viewer-ground pairs based on Earth occultation.
-     *
-     * @param objects1 The vector of object shared pointers to check.
-     * @param objects2 The vector of object shared pointers to check.
-     * @return PairVec A vector of index pairs (iViewer, iGround) representing possible accesses.
-     */
-    template <typename T, typename U>
-        requires requires(T t) { t.get_id(); } && requires(U u) { u.get_id(); }
-    PairVec filter_impossible_pairs(const std::vector<std::shared_ptr<T>>& objects1, const std::vector<std::shared_ptr<U>>& objects2) const
-    {
-        if (_printProgress) { std::cout << "\tFiltering impossible sat-to-ground pairs..." << std::flush; }
-
-        constexpr bool atmosphereBlocks = !(std::is_base_of_v<GroundPoint, T> || std::is_base_of_v<GroundPoint, U>);
-        PairVec validPairs;
-        for (std::size_t ii = 0; ii < objects1.size(); ++ii) {
-            for (std::size_t jj = 0; jj < objects2.size(); ++jj) {
-                if (can_objects_ever_access_each_other(objects1[ii]->get_id(), objects2[jj]->get_id(), atmosphereBlocks)) {
-                    validPairs.emplace_back(ii, jj);
-                }
-            }
-        }
-
-        if (_printProgress) {
-            std::cout << " kept " << validPairs.size() << " / " << (objects1.size() * objects2.size()) << " pairs ("
-                      << (100.0 * validPairs.size() / (objects1.size() * objects2.size())) << "%)" << std::endl;
-        }
-
-        return validPairs;
-    }
 };
 
 } // namespace trace

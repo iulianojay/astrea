@@ -48,14 +48,7 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
-static const Time PROP_TIME         = months(1.0);
-static const Time ACCESS_RESOLUTION = minutes(5.0);
-static const bool PRINT_PROGRESS    = true;
-static const Angle GRID_SPACING     = 5.0 * deg;
-
-
-int arcturus_starlink_interference_test();
-int iceye_test();
+int trace_analysis(const Time propTime, const Time accessResolution, const bool printProgress, const Angle gridSpacing);
 
 template <typename T, typename U>
 AccessArray propagate_and_run_access_analysis(
@@ -64,150 +57,93 @@ AccessArray propagate_and_run_access_analysis(
     const Date& startDate,
     const AstrodynamicsSystem& sys,
     const Time propTime,
-    const Time accessResolution
+    const Time accessResolution,
+    const bool printProgress
 );
 
 int main()
 {
-    // return arcturus_starlink_interference_test();
-    return iceye_test();
+    const Time propTime         = days(3.0);
+    const Time accessResolution = minutes(1.0);
+    const bool printProgress    = true;
+    const Angle gridSpacing     = 0.25 * deg;
+
+    return trace_analysis(propTime, accessResolution, printProgress, gridSpacing);
 }
 
-int arcturus_starlink_interference_test()
+int trace_analysis(const Time propTime, const Time accessResolution, const bool printProgress, const Angle gridSpacing)
 {
-
     // Setup system
     AstrodynamicsSystem sys;
     Date startDate = Date::now();
 
     // Query database
-    auto snapshot = get_snapshot();
-    auto geoGp = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ARCTURUS%")));
-    auto everythingElseGps =
-        snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%STARLINK%")));
-
-
-    if (geoGp.size() == 0 || everythingElseGps.size() == 0) {
-        throw std::runtime_error("Error: Nothing pulled from database. Are you sure you filled it?");
-    }
-
-    // Build constellation
-    Viewer geo(geoGp[0], sys);
-    Constellation<Viewer> allSats(everythingElseGps, sys);
-
-    // Add sensors
-    CircularFieldOfView fovGeo(15.0 * deg);
-    CircularFieldOfView fovLeo(90.0 * deg);
-    SensorParameters geoCone(&fovGeo);
-    SensorParameters leoCone(&fovLeo);
-
-    // for (auto& viewer : allSats | std::views::join) { // TODO: Figure out how this works
-    //     viewer.attach_payload(simpleCone);
+    // auto snapshot = get_snapshot();
+    // auto iceyeSats = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE%%")));
+    // auto iceyeSats = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE-X61%%")));
+    // if (iceyeSats.size() == 0) {
+    //     std::cerr << "No ICEYE satellites found in database!" << std::endl;
+    //     return -1;
     // }
 
-    geo.attach_payload(geoCone);
-    for (auto& shell : allSats.get_shells()) {
-        for (auto& plane : shell.get_planes()) {
-            for (auto& sat : plane.get_all_spacecraft()) {
-                sat.attach_payload(leoCone);
-            }
-        }
-    }
-    allSats.add_spacecraft(geo);
-
-    // Build out grounds
-    GroundStation dc(sys.get_central_body().get(), 38.895 * deg, -77.0366 * deg, 0.0 * km, { "Washington DC" });
-    SensorParameters groundCone(
-        &fovLeo,
-        { 1.0 * m, // Anti-Nadir, units don't matter
-          0.0 * m,
-          0.0 * m }
-    );
-    dc.attach_payload(groundCone);
-
-    LatLon corner1{ -50.0 * deg, -180.0 * deg };
-    LatLon corner4{ 50.0 * deg, 180.0 * deg };
-    Angle spacing = 10.0 * deg;
-    Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, spacing);
-
-    GroundArchitecture grounds({ dc });
-
-    // Propagate and find access
-    const AccessArray accesses = propagate_and_run_access_analysis(allSats, grid, startDate, sys, PROP_TIME, ACCESS_RESOLUTION);
-    const AccessStats stats(accesses);
-
-    // Save
-    std::filesystem::path outdir = std::string(_TRACE_ROOT_) + "/trace/drivers/results/";
-
-    save_risesets_to_file(accesses, outdir, allSats, grid);
-    save_riseset_metrics_to_file(accesses, outdir, allSats, grid);
-    save_receiver_riseset_metrics_to_file(stats, outdir, allSats, grid);
-    save_access_metrics_to_file(stats, outdir, allSats, grid);
-    save_number_of_folds_to_file(accesses, outdir, allSats, grid, ACCESS_RESOLUTION, PROP_TIME);
-
-    // Call plotter
-    std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/plots.py --outfile " + outdir.string() +
-                                     " --target \"Washington DC\" --main \"ARCTURUS\"";
-    const std::string cmd = "python3 " + plotFile.string();
-
-    std::cout << "Plotting results with command: " << cmd << std::endl;
-    return std::system(cmd.c_str());
-}
-
-
-int iceye_test()
-{
-    // Setup system
-    AstrodynamicsSystem sys;
-    Date startDate = Date::now();
-
-    // Query database
-    auto snapshot = get_snapshot();
-    auto iceyeSats = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE%%")));
-    // auto iceyeSats = snapshot.get_all<GeneralPerturbations>(where(like(&GeneralPerturbations::OBJECT_NAME, "%%ICEYE-X61%%")));
-
-    if (iceyeSats.size() == 0) {
-        std::cerr << "No ICEYE satellites found in database!" << std::endl;
-        return -1;
-    }
-
     // Build constellation
-    Constellation<Viewer> iceyeConstel(iceyeSats, sys);
+    const Distance altitude      = 560.0 * km;
+    const Distance semimajor     = altitude + sys.get_central_body()->get_equitorial_radius();
+    const Angle inclination      = 97.6316 * deg; // roughly sunsync, whatever
+    const std::size_t nSats      = 4;
+    const std::size_t nPlanes    = 4;
+    const Angle anchorRaan       = 20.0 * deg;
+    const Angle anchorAnomaly    = 0.0 * deg;
+    const Angle crossTrackOffset = 7.39 * deg; // 900 km off track
+    const Angle phasing          = 7.39 * deg;
+    Shell<Viewer> shell1(sys, startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan, anchorAnomaly);
+    Shell<Viewer> shell2(sys, startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan + crossTrackOffset, anchorAnomaly - phasing);
+    Shell<Viewer> shell3(sys, startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan, anchorAnomaly - 2.0 * phasing);
+    Constellation<Viewer> constellation({ shell1, shell2, shell3 });
 
     // Add sensors
-    CircularFieldOfView fovLeo(15.0 * deg);
+    CircularFieldOfView fovLeo(30.0 * deg);
     SensorParameters leoCone(&fovLeo);
-
-    for (auto& shell : iceyeConstel.get_shells()) {
+    for (auto& shell : constellation.get_shells()) {
         for (auto& plane : shell.get_planes()) {
+            // const auto elements = plane.get_elements();
+            // std::cout << "RAAN: " << elements.in_element_set<Keplerian>(sys.get_mu()).get_right_ascension().in(deg) << std::endl;
             for (auto& sat : plane.get_all_spacecraft()) {
+                // const auto state = sat.get_state_history().first();
+                // std::cout << "\t" << state;
+                // const auto rEci = state.in_element_set<Cartesian>().get_position();
+                // const auto lla  = Geodetic(rEci, startDate, sys.get_central_body().get());
+                // std::cout << "-> Lon: " << lla.get_longitude().in(deg) << std::endl;
                 sat.attach_payload(leoCone);
-                // std::cout << sat.get_name() << " : " << sat.get_initial_state() << std::endl;
+                sat.set_name("Sat " + std::to_string(sat.get_id()) + "(Cluster " + std::to_string(sat.get_id() % 3 + 1) + ")");
             }
         }
     }
 
     // Build out grounds
-    GroundStation home(sys.get_central_body().get(), 60.1869 * deg, 24.8201 * deg, 0.0 * km, { "ICEYE Oy" });
-    SensorParameters groundCone(&fovLeo, astro::RADIAL_RIC);
-    home.attach_payload(groundCone);
+    // GroundStation home(sys.get_central_body().get(), 60.1869 * deg, 24.8201 * deg, 0.0 * km, { "ICEYE Oy" });
+    // SensorParameters groundCone(&fovLeo, astro::RADIAL_RIC);
+    // home.attach_payload(groundCone);
 
-    LatLon corner1{ -90.0 * deg, -180.0 * deg };
-    LatLon corner4{ 90.0 * deg, 180.0 * deg };
-    Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, GRID_SPACING);
+    // Polandish
+    LatLon corner1{ 48.0 * deg, 14.0 * deg };
+    LatLon corner4{ 55.0 * deg, 25.0 * deg };
+    Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, gridSpacing);
 
     // Propagate and find access
-    const AccessArray accesses = propagate_and_run_access_analysis(iceyeConstel, grid, startDate, sys, PROP_TIME, ACCESS_RESOLUTION);
+    const AccessArray accesses =
+        propagate_and_run_access_analysis(constellation, grid, startDate, sys, propTime, accessResolution, printProgress);
     const AccessStats stats(accesses);
+    const FoldsOfCoverage folds(accesses, accessResolution, propTime);
 
     // Save
-    std::filesystem::path outdir = std::string(_TRACE_ROOT_) + "/trace/drivers/results/iceye";
+    std::filesystem::path outdir = std::string(_TRACE_ROOT_) + "/trace/drivers/results/poland/4_planes";
+    std::filesystem::create_directories(outdir);
+    std::filesystem::path dbPath = outdir / "poland_analysis.db";
+    if (printProgress) { std::cout << "Saving results to database at: " << dbPath << std::endl; }
 
-    save_risesets_to_file(accesses, outdir, iceyeConstel, grid);
-    save_riseset_metrics_to_file(accesses, outdir, iceyeConstel, grid);
-    save_receiver_riseset_metrics_to_file(stats, outdir, iceyeConstel, grid);
-    save_access_metrics_to_file(stats, outdir, iceyeConstel, grid);
-    save_number_of_folds_to_file(accesses, outdir, iceyeConstel, grid, ACCESS_RESOLUTION, PROP_TIME);
+    DatabaseOutputManager manager(dbPath, true);
+    manager.save_results(folds, stats, accesses, constellation, grid);
 
     // Call plotter
     std::filesystem::path plotFile = std::string(_TRACE_ROOT_) + "/pytrace/tracer.py " + outdir.string();
@@ -223,13 +159,14 @@ AccessArray propagate_and_run_access_analysis(
     const Date& startDate,
     const AstrodynamicsSystem& sys,
     const Time propTime,
-    const Time accessResolution
+    const Time accessResolution,
+    const bool printProgress
 )
 {
     // Setup integrator
     J2MeanVop eom;
     Integrator integrator;
-    integrator.set_timestep(accessResolution);
+    integrator.switch_fixed_timestep(true, accessResolution);
 
     // Propagate
     auto start = std::chrono::steady_clock::now();
@@ -240,7 +177,7 @@ AccessArray propagate_and_run_access_analysis(
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
-    if (PRINT_PROGRESS) {
+    if (printProgress) {
         std::cout << std::endl << "Propagation Time: " << diff.count() / 1e9 << " (s)" << std::endl << std::endl;
     }
     start = std::chrono::steady_clock::now();
@@ -276,7 +213,7 @@ AccessArray propagate_and_run_access_analysis(
     end  = std::chrono::steady_clock::now();
     diff = std::chrono::duration_cast<nanoseconds>(end - start);
 
-    if (PRINT_PROGRESS) {
+    if (printProgress) {
         std::cout << std::endl
                   << std::endl
                   << "Access Analysis Time: " << diff.count() / 1.0e9 << " (s)" << std::endl

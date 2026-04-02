@@ -22,9 +22,10 @@
 #include <fstream>
 #include <iostream>
 #include <optional>
+#include <sstream>
 
-#include <csv.hpp>
 #include <mp-units/systems/si/units.h>
+#include <sqlite_orm/sqlite_orm.h>
 
 #include <astro/platforms/space/Constellation.hpp>
 
@@ -36,10 +37,133 @@
 #include <trace/risesets/RiseSetArray.hpp>
 #include <trace/risesets/riseset_utils.hpp>
 
+using mp_units::angular::unit_symbols::deg;
+using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
 namespace astrea {
 namespace trace {
+
+// Database schema structures
+struct RiseSetRecord {
+    int id;
+    std::string sender;
+    std::string receiver;
+    std::string riseSetTimes;
+};
+
+struct RiseSetMetricsRecord {
+    int id;
+    std::string sender;
+    std::string receiver;
+    std::string metricType;
+    double minTime;
+    double avgTime;
+    double maxTime;
+    std::string percentiles; // JSON string of percentile values
+};
+
+struct ReceiverRiseSetMetricsRecord {
+    int id;
+    std::string object;
+    std::string metricType;
+    std::string statType;
+    double minTime;
+    double avgTime;
+    double maxTime;
+    std::string percentiles;
+};
+
+struct AccessMetricsRecord {
+    int id;
+    std::string object;
+    std::string metricType;
+    double timeValue;
+};
+
+struct FoldsRecord {
+    int id;
+    std::string object;
+    double minFolds;
+    double avgFolds;
+    double maxFolds;
+    std::string percentiles;
+};
+
+struct GroundLocationRecord {
+    int id;
+    std::string name;
+    double latitude;
+    double longitude;
+    double altitude;
+};
+
+// Create database storage with schema
+inline auto make_database_storage(const std::filesystem::path& dbPath)
+{
+    using namespace sqlite_orm;
+    return make_storage(
+        dbPath.string(),
+        make_table(
+            "rise_sets",
+            make_column("id", &RiseSetRecord::id, primary_key().autoincrement()),
+            make_column("sender", &RiseSetRecord::sender),
+            make_column("receiver", &RiseSetRecord::receiver),
+            make_column("rise_set_times", &RiseSetRecord::riseSetTimes)
+        ),
+
+        make_table(
+            "rise_set_metrics",
+            make_column("id", &RiseSetMetricsRecord::id, primary_key().autoincrement()),
+            make_column("sender", &RiseSetMetricsRecord::sender),
+            make_column("receiver", &RiseSetMetricsRecord::receiver),
+            make_column("metric_type", &RiseSetMetricsRecord::metricType),
+            make_column("min_time", &RiseSetMetricsRecord::minTime),
+            make_column("avg_time", &RiseSetMetricsRecord::avgTime),
+            make_column("max_time", &RiseSetMetricsRecord::maxTime),
+            make_column("percentiles", &RiseSetMetricsRecord::percentiles)
+        ),
+
+        make_table(
+            "receiver_rise_set_metrics",
+            make_column("id", &ReceiverRiseSetMetricsRecord::id, primary_key().autoincrement()),
+            make_column("object", &ReceiverRiseSetMetricsRecord::object),
+            make_column("metric_type", &ReceiverRiseSetMetricsRecord::metricType),
+            make_column("stat_type", &ReceiverRiseSetMetricsRecord::statType),
+            make_column("min_time", &ReceiverRiseSetMetricsRecord::minTime),
+            make_column("avg_time", &ReceiverRiseSetMetricsRecord::avgTime),
+            make_column("max_time", &ReceiverRiseSetMetricsRecord::maxTime),
+            make_column("percentiles", &ReceiverRiseSetMetricsRecord::percentiles)
+        ),
+
+        make_table(
+            "access_metrics",
+            make_column("id", &AccessMetricsRecord::id, primary_key().autoincrement()),
+            make_column("object", &AccessMetricsRecord::object),
+            make_column("metric_type", &AccessMetricsRecord::metricType),
+            make_column("time_value", &AccessMetricsRecord::timeValue)
+        ),
+
+        make_table(
+            "folds",
+            make_column("id", &FoldsRecord::id, primary_key().autoincrement()),
+            make_column("object", &FoldsRecord::object),
+            make_column("min_folds", &FoldsRecord::minFolds),
+            make_column("avg_folds", &FoldsRecord::avgFolds),
+            make_column("max_folds", &FoldsRecord::maxFolds),
+            make_column("percentiles", &FoldsRecord::percentiles)
+        ),
+
+        make_table(
+            "ground_locations",
+            make_column("id", &GroundLocationRecord::id, primary_key().autoincrement()),
+            make_column("name", &GroundLocationRecord::name),
+            make_column("latitude", &GroundLocationRecord::latitude),
+            make_column("longitude", &GroundLocationRecord::longitude),
+            make_column("altitude", &GroundLocationRecord::altitude)
+        )
+    );
+}
 
 template <typename T, typename U>
 std::string get_object_name_from_id(std::size_t id, const astro::Constellation<T>& satellites, const U& grounds = U())
@@ -62,247 +186,385 @@ std::string get_object_name_from_id(std::size_t id, const astro::Constellation<T
 
 
 /**
- * @brief Saves the AccessArray to a file in a human-readable format.
+ * @brief A class for managing database output operations with a single database instance.
  *
- * @tparam T The type of Spacecraft used in the Constellation.
- * @param accesses The AccessArray containing the access times to be saved.
- * @param outdir The directory to save the file to.
- * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
- * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
+ * This class creates or loads a database on construction and provides methods to save
+ * various types of analysis data using the same database connection.
  */
-template <typename T, typename U>
-void save_risesets_to_file(const AccessArray& accesses, const std::filesystem::path& outdir, const astro::Constellation<T>& satellites, const U& grounds = U())
-{
-    std::filesystem::create_directories(outdir);
-    std::ofstream ss(outdir / "risesets.csv");
-    auto writer = csv::make_csv_writer(ss);
+class DatabaseOutputManager {
+  public:
+    using DatabaseStorage = decltype(make_database_storage(std::filesystem::path{}));
 
-    writer << std::vector<std::string>({ "Sender", "Receiver", "Rise - Set Times (s)" });
-    for (const auto& [idPair, risesets] : accesses) {
-        if (risesets.size() > 0) {
+  private:
+    DatabaseStorage _storage;
 
-            // Gross
-            const std::string sender   = get_object_name_from_id(idPair.sender, satellites, grounds);
-            const std::string receiver = get_object_name_from_id(idPair.receiver, satellites, grounds);
+  public:
+    /**
+     * @brief Constructs a DatabaseOutputManager with the specified database path.
+     *
+     * @param dbPath The path to the database file. Will be created if it doesn't exist.
+     * @param overwrite If true, the existing database will be overwritten. Default is false.
+     */
+    explicit DatabaseOutputManager(const std::filesystem::path& dbPath, const bool overwrite = false) :
+        _storage([&dbPath, overwrite]() {
+            if (overwrite) { std::filesystem::remove(dbPath); }
+            return make_database_storage(dbPath);
+        }())
+    {
+        _storage.sync_schema();
+        optimize_database_performance();
+    }
 
-            std::vector<std::string> row{ sender, receiver };
-            for (const auto& str : risesets.to_string_vector()) {
-                row.push_back(str);
+  private:
+    /**
+     * @brief Optimizes SQLite database performance for bulk operations.
+     */
+    void optimize_database_performance()
+    {
+        // Use basic optimizations supported by sqlite_orm
+        try {
+            _storage.pragma.journal_mode(sqlite_orm::journal_mode::WAL);
+        }
+        catch (...) {
+            // If WAL mode fails, continue with default
+        }
+    }
+
+  public:
+    /**
+     * @brief Saves all results to the database in a structured format.
+     *
+     * @tparam T The type of Spacecraft used in the Constellation.
+     * @tparam U The type of the ground container.
+     * @param folds The FoldsOfCoverage containing the fold statistics to be saved.
+     * @param stats The AccessStats containing the access statistics to be saved.
+     * @param accesses The AccessArray containing the access times to be saved.
+     * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
+     * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
+     */
+    template <typename T, typename U>
+    void save_results(
+        const FoldsOfCoverage& folds,
+        const AccessStats& stats,
+        const AccessArray& accesses,
+        const astro::Constellation<T>& satellites,
+        const U& grounds = U()
+    )
+    {
+        save_ground_locations(grounds);
+        save_risesets(accesses, satellites, grounds);
+        save_riseset_metrics(accesses, satellites, grounds);
+        save_receiver_riseset_metrics(stats, satellites, grounds);
+        save_access_metrics(stats, satellites, grounds);
+        save_number_of_folds(folds, satellites, grounds);
+    }
+
+    /**
+     * @brief Saves the AccessArray to the database in a structured format.
+     *
+     * @tparam T The type of Spacecraft used in the Constellation.
+     * @tparam U The type of the ground container.
+     * @param accesses The AccessArray containing the access times to be saved.
+     * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
+     * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
+     */
+    template <typename T, typename U>
+    void save_risesets(const AccessArray& accesses, const astro::Constellation<T>& satellites, const U& grounds = U())
+    {
+        // Clear existing data first
+        _storage.remove_all<RiseSetRecord>();
+
+        // Use transaction for bulk inserts
+        _storage.transaction([&] {
+            for (const auto& [idPair, risesets] : accesses) {
+                if (risesets.size() > 0) {
+                    const std::string sender   = get_object_name_from_id(idPair.sender, satellites, grounds);
+                    const std::string receiver = get_object_name_from_id(idPair.receiver, satellites, grounds);
+
+                    // Convert rise-set times to a single string
+                    std::stringstream riseSetStream;
+                    auto riseSetStrings = risesets.to_string_vector();
+                    for (size_t i = 0; i < riseSetStrings.size(); ++i) {
+                        if (i > 0) riseSetStream << ";";
+                        riseSetStream << riseSetStrings[i];
+                    }
+
+                    RiseSetRecord record{ -1, sender, receiver, riseSetStream.str() };
+                    _storage.insert(record);
+                }
             }
-            writer << row;
-        }
-    }
-}
-
-
-/**
- * @brief Saves the AccessArray to a file in a human-readable format.
- *
- * @tparam T The type of Spacecraft used in the Constellation.
- * @param accesses The AccessArray containing the access times to be saved.
- * @param outdir The directory to save the file to.
- * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
- * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
- */
-template <typename T, typename U>
-void save_riseset_metrics_to_file(
-    const AccessArray& accesses,
-    const std::filesystem::path& outdir,
-    const astro::Constellation<T>& satellites,
-    const U& grounds = U()
-)
-{
-    std::filesystem::create_directories(outdir);
-    std::ofstream ss(outdir / "riseset_metrics.csv");
-    auto writer = csv::make_csv_writer(ss);
-
-    std::vector<std::string> header = { "Sender", "Receiver" };
-    for (const auto& metric : ALL_RISE_SET_METRICS) {
-        const std::string metricStr = RISE_SET_METRIC_STRINGS.at(metric);
-        header.push_back(std::string("MIN ") + metricStr + " Time (s)");
-        header.push_back(std::string("AVG ") + metricStr + " Time (s)");
-        header.push_back(std::string("MAX ") + metricStr + " Time (s)");
-
-        for (const auto& pct : DEFAULT_PERCENTILES) {
-            int pctVal = pct.numerical_value_ref_in(pct.unit);
-            header.push_back(std::to_string(pctVal) + "th PCT " + metricStr + " Time (s)");
-        }
+            return true; // Commit transaction
+        });
     }
 
-    writer << header;
-    for (const auto& [idPair, risesets] : accesses) {
-        if (risesets.size() > 0) {
+    /**
+     * @brief Saves the RiseSet metrics to the database in a structured format.
+     *
+     * @tparam T The type of Spacecraft used in the Constellation.
+     * @tparam U The type of the ground container.
+     * @param accesses The AccessArray containing the access times to be saved.
+     * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
+     * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
+     */
+    template <typename T, typename U>
+    void save_riseset_metrics(const AccessArray& accesses, const astro::Constellation<T>& satellites, const U& grounds = U())
+    {
+        // Clear existing data first
+        _storage.remove_all<RiseSetMetricsRecord>();
 
-            // Gross
-            const std::string sender   = get_object_name_from_id(idPair.sender, satellites, grounds);
-            const std::string receiver = get_object_name_from_id(idPair.receiver, satellites, grounds);
+        // Use transaction for bulk inserts
+        _storage.transaction([&] {
+            for (const auto& [idPair, risesets] : accesses) {
+                if (risesets.size() > 0) {
+                    const std::string sender   = get_object_name_from_id(idPair.sender, satellites, grounds);
+                    const std::string receiver = get_object_name_from_id(idPair.receiver, satellites, grounds);
 
-            RiseSetStats stats(risesets);
+                    RiseSetStats stats(risesets);
+                    auto statsVector = stats.to_string_vector();
 
-            std::vector<std::string> row{ sender, receiver };
-            for (const auto& str : stats.to_string_vector()) {
-                row.push_back(str);
+                    // Parse stats vector based on expected structure
+                    size_t idx = 0;
+                    for (const auto& metric : ALL_RISE_SET_METRICS) {
+                        const std::string metricStr = RISE_SET_METRIC_STRINGS.at(metric);
+
+                        if (idx + 2 < statsVector.size()) {
+                            double minTime = std::stod(statsVector[idx]);
+                            double avgTime = std::stod(statsVector[idx + 1]);
+                            double maxTime = std::stod(statsVector[idx + 2]);
+                            idx += 3;
+
+                            // Collect percentile values
+                            std::stringstream percentilesStream;
+                            for (size_t i = 0; i < DEFAULT_PERCENTILES.size() && idx < statsVector.size(); ++i, ++idx) {
+                                if (i > 0) percentilesStream << ",";
+                                percentilesStream << statsVector[idx];
+                            }
+
+                            RiseSetMetricsRecord record{ -1,      sender,  receiver, metricStr,
+                                                         minTime, avgTime, maxTime,  percentilesStream.str() };
+                            _storage.insert(record);
+                        }
+                    }
+                }
             }
-            writer << row;
-        }
-    }
-}
-
-
-/**
- * @brief Saves the AccessArray to a file in a human-readable format.
- *
- * @tparam T The type of Spacecraft used in the Constellation.
- * @param accesses The AccessArray containing the access times to be saved.
- * @param outdir The directory to save the file to.
- * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
- * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
- */
-template <typename T, typename U>
-void save_receiver_riseset_metrics_to_file(
-    const AccessStats& stats,
-    const std::filesystem::path& outdir,
-    const astro::Constellation<T>& satellites,
-    const U& grounds = U()
-)
-{
-    std::filesystem::create_directories(outdir);
-    std::ofstream ss(outdir / "receiver_riseset_metrics.csv");
-    auto writer = csv::make_csv_writer(ss);
-
-    std::vector<std::string> statStrings = { "MIN", "AVG", "MAX" };
-    for (const auto& pct : DEFAULT_PERCENTILES) {
-        int pctVal = pct.numerical_value_ref_in(pct.unit);
-        statStrings.push_back(std::to_string(pctVal) + "th PCT");
+            return true; // Commit transaction
+        });
     }
 
-    std::vector<std::string> header = { "Object" };
-    for (const auto& statStr : statStrings) {
-        for (const auto& metric : ALL_RISE_SET_METRICS) {
-            const std::string metricStr = RISE_SET_METRIC_STRINGS.at(metric);
-            header.push_back(std::string("MIN ") + statStr + " " + metricStr + " Time (s)");
-            header.push_back(std::string("AVG ") + statStr + " " + metricStr + " Time (s)");
-            header.push_back(std::string("MAX ") + statStr + " " + metricStr + " Time (s)");
+    /**
+     * @brief Saves the receiver RiseSet metrics to the database in a structured format.
+     *
+     * @tparam T The type of Spacecraft used in the Constellation.
+     * @tparam U The type of the ground container.
+     * @param stats The AccessStats containing the statistics to be saved.
+     * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
+     * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
+     */
+    template <typename T, typename U>
+    void save_receiver_riseset_metrics(const AccessStats& stats, const astro::Constellation<T>& satellites, const U& grounds = U())
+    {
+        // Clear existing data first
+        _storage.remove_all<ReceiverRiseSetMetricsRecord>();
 
+        // Use transaction for bulk inserts
+        _storage.transaction([&] {
+            std::vector<std::string> statStrings = { "MIN", "AVG", "MAX" };
             for (const auto& pct : DEFAULT_PERCENTILES) {
                 int pctVal = pct.numerical_value_ref_in(pct.unit);
-                header.push_back(std::to_string(pctVal) + "th PCT " + statStr + " " + metricStr + " Time (s)");
-            }
-        }
-    }
-
-    writer << header;
-    for (const auto& metric : ALL_RISE_SET_METRICS) {
-        for (const auto& [id, statsMap] : stats.get_riseset_statistics()) {
-
-            // Gross
-            const std::string object = get_object_name_from_id(id, satellites, grounds);
-
-            std::vector<std::string> row{ object };
-            for (const auto& str : statsMap.at(metric).to_string_vector()) {
-                row.push_back(str);
+                statStrings.push_back(std::to_string(pctVal) + "th PCT");
             }
 
-            const auto hyperStats = stats.get_hyper_statistics(metric);
-            for (const auto& str : hyperStats.to_string_vector()) {
-                row.push_back(str);
+            for (const auto& metric : ALL_RISE_SET_METRICS) {
+                const std::string metricStr = RISE_SET_METRIC_STRINGS.at(metric);
+
+                for (const auto& [id, statsMap] : stats.get_riseset_statistics()) {
+                    const std::string object = get_object_name_from_id(id, satellites, grounds);
+
+                    // Get stats vector for this metric
+                    auto statsVector = statsMap.at(metric).to_string_vector();
+
+                    // Parse and store min/avg/max and percentiles
+                    if (statsVector.size() >= 3) {
+                        double minTime = std::stod(statsVector[0]);
+                        double avgTime = std::stod(statsVector[1]);
+                        double maxTime = std::stod(statsVector[2]);
+
+                        // Collect percentiles
+                        std::stringstream percentilesStream;
+                        for (size_t i = 3; i < statsVector.size(); ++i) {
+                            if (i > 3) percentilesStream << ",";
+                            percentilesStream << statsVector[i];
+                        }
+
+                        ReceiverRiseSetMetricsRecord record{ -1,      object,  metricStr, "BASIC",
+                                                             minTime, avgTime, maxTime,   percentilesStream.str() };
+                        _storage.insert(record);
+                    }
+
+                    // Get hyper statistics
+                    const auto hyperStats = stats.get_hyper_statistics(metric);
+                    auto hyperStatsVector = hyperStats.to_string_vector();
+
+                    if (hyperStatsVector.size() >= 3) {
+                        double hyperMin = std::stod(hyperStatsVector[0]);
+                        double hyperAvg = std::stod(hyperStatsVector[1]);
+                        double hyperMax = std::stod(hyperStatsVector[2]);
+
+                        // Collect hyper percentiles
+                        std::stringstream hyperPercentilesStream;
+                        for (size_t i = 3; i < hyperStatsVector.size(); ++i) {
+                            if (i > 3) hyperPercentilesStream << ",";
+                            hyperPercentilesStream << hyperStatsVector[i];
+                        }
+
+                        ReceiverRiseSetMetricsRecord hyperRecord{
+                            -1, object, metricStr, "HYPER", hyperMin, hyperAvg, hyperMax, hyperPercentilesStream.str()
+                        };
+                        _storage.insert(hyperRecord);
+                    }
+                }
             }
-
-            writer << row;
-        }
-    }
-}
-
-
-/**
- * @brief Saves the AccessArray to a file in a human-readable format.
- *
- * @tparam T The type of Spacecraft used in the Constellation.
- * @param accesses The AccessArray containing the access times to be saved.
- * @param outdir The directory to save the file to.
- * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
- * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
- */
-template <typename T, typename U>
-void save_access_metrics_to_file(
-    const AccessStats& stats,
-    const std::filesystem::path& outdir,
-    const astro::Constellation<T>& satellites,
-    const U& grounds = U()
-)
-{
-    std::filesystem::create_directories(outdir);
-    std::ofstream ss(outdir / "access_metrics.csv");
-    auto writer = csv::make_csv_writer(ss);
-
-    std::vector<std::string> header = { "Object" };
-    for (const auto& metric : ALL_ACCESS_METRICS) {
-        header.push_back(ACCESS_METRIC_STRINGS.at(metric) + " Time (s)");
+            return true; // Commit transaction
+        });
     }
 
-    writer << header;
-    for (const auto& [id, statsMap] : stats.get_access_metrics()) {
 
-        // Gross
-        const std::string object = get_object_name_from_id(id, satellites, grounds);
+    /**
+     * @brief Saves the access metrics to the database in a structured format.
+     *
+     * @tparam T The type of Spacecraft used in the Constellation.
+     * @tparam U The type of the ground container.
+     * @param stats The AccessStats containing the metrics to be saved.
+     * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
+     * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
+     */
+    template <typename T, typename U>
+    void save_access_metrics(const AccessStats& stats, const astro::Constellation<T>& satellites, const U& grounds = U())
+    {
+        // Clear existing data first
+        _storage.remove_all<AccessMetricsRecord>();
 
-        std::vector<std::string> row{ object };
-        for (const auto& metric : ALL_ACCESS_METRICS) {
-            row.push_back(to_formatted_string(statsMap.at(metric)));
-        }
-        writer << row;
-    }
-}
+        // Use transaction for bulk inserts
+        _storage.transaction([&] {
+            for (const auto& [id, statsMap] : stats.get_access_metrics()) {
+                const std::string object = get_object_name_from_id(id, satellites, grounds);
 
+                for (const auto& metric : ALL_ACCESS_METRICS) {
+                    const std::string metricStr = ACCESS_METRIC_STRINGS.at(metric);
+                    double timeValue            = statsMap.at(metric).numerical_value_ref_in(s);
 
-/**
- * @brief Saves the AccessArray to a file in a human-readable format.
- *
- * @tparam T The type of Spacecraft used in the Constellation.
- * @param accesses The AccessArray containing the access times to be saved.
- * @param outdir The directory to save the file to.
- * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
- * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
- */
-template <typename T, typename U>
-void save_number_of_folds_to_file(
-    const AccessArray& accesses,
-    const std::filesystem::path& outdir,
-    const astro::Constellation<T>& satellites,
-    const U& grounds,
-    const Time& resolution,
-    const Time& end
-)
-{
-    FoldsOfCoverage folds(accesses, resolution, end);
-
-    std::filesystem::create_directories(outdir);
-    std::ofstream ss(outdir / "n_folds.csv");
-    auto writer = csv::make_csv_writer(ss);
-
-    std::vector<std::string> header = { "Object" };
-    header.push_back(std::string("MIN N Folds"));
-    header.push_back(std::string("AVG N Folds"));
-    header.push_back(std::string("MAX N Folds"));
-
-    for (const auto& pct : DEFAULT_PERCENTILES) {
-        int pctVal = pct.numerical_value_ref_in(pct.unit);
-        header.push_back(std::to_string(pctVal) + "th PCT N Folds");
+                    AccessMetricsRecord record{ -1, object, metricStr, timeValue };
+                    _storage.insert(record);
+                }
+            }
+            return true; // Commit transaction
+        });
     }
 
-    writer << header;
-    for (const auto& [id, foldsVector] : folds) {
+    /**
+     * @brief Saves the number of folds coverage data to the database in a structured format.
+     *
+     * @tparam T The type of Spacecraft used in the Constellation.
+     * @tparam U The type of the ground container.
+     * @param folds The FoldsOfCoverage containing the folds data to be saved.
+     * @param satellites The Constellation containing the Spacecraft for which access times are being saved.
+     * @param grounds The GroundArchitecture containing the ground stations for which access times are being saved
+     */
+    template <typename T, typename U>
+    void save_number_of_folds(const FoldsOfCoverage& folds, const astro::Constellation<T>& satellites, const U& grounds)
+    {
+        // Clear existing data first
+        _storage.remove_all<FoldsRecord>();
 
-        // Gross
-        const std::string object = get_object_name_from_id(id, satellites, grounds);
+        // Use transaction for bulk inserts
+        _storage.transaction([&] {
+            for (const auto& [id, foldsVector] : folds) {
+                const std::string object = get_object_name_from_id(id, satellites, grounds);
 
-        std::vector<std::string> row{ object };
-        for (const auto& str : folds.get_stats(id).to_string_vector()) {
-            row.push_back(str);
-        }
-        writer << row;
+                auto statsVector = folds.get_stats(id).to_string_vector();
+
+                if (statsVector.size() >= 3) {
+                    double minFolds = std::stod(statsVector[0]);
+                    double avgFolds = std::stod(statsVector[1]);
+                    double maxFolds = std::stod(statsVector[2]);
+
+                    // Collect percentiles
+                    std::stringstream percentilesStream;
+                    for (size_t i = 3; i < statsVector.size(); ++i) {
+                        if (i > 3) percentilesStream << ",";
+                        percentilesStream << statsVector[i];
+                    }
+
+                    FoldsRecord record{ -1, object, minFolds, avgFolds, maxFolds, percentilesStream.str() };
+                    _storage.insert(record);
+                }
+            }
+            return true; // Commit transaction
+        });
     }
-}
+
+    /**
+     * @brief Saves ground location coordinates to the database.
+     *
+     * @tparam U The type of the ground container (e.g., Grid, GroundArchitecture).
+     * @param grounds The container of ground objects to save.
+     */
+    template <typename U>
+    void save_ground_locations(const U& grounds)
+    {
+        // Clear existing data first
+        _storage.remove_all<GroundLocationRecord>();
+
+        // Use transaction for bulk inserts
+        _storage.transaction([&] {
+            for (const auto& ground : grounds) {
+                if constexpr (requires {
+                                  ground.get_latitude();
+                                  ground.get_longitude();
+                                  ground.get_altitude();
+                              }) {
+                    GroundLocationRecord record{ -1,
+                                                 ground.get_name(),
+                                                 ground.get_latitude().numerical_value_in(deg),
+                                                 ground.get_longitude().numerical_value_in(deg),
+                                                 ground.get_altitude().numerical_value_in(km) };
+                    _storage.insert(record);
+                }
+            }
+            return true; // Commit transaction
+        });
+    }
+
+    /**
+     * @brief Clears all data from all tables in the database.
+     *
+     * This is useful when you want to completely reset the database
+     * before saving new analysis results.
+     */
+    void clear_all_tables()
+    {
+        _storage.remove_all<RiseSetRecord>();
+        _storage.remove_all<RiseSetMetricsRecord>();
+        _storage.remove_all<ReceiverRiseSetMetricsRecord>();
+        _storage.remove_all<AccessMetricsRecord>();
+        _storage.remove_all<FoldsRecord>();
+        _storage.remove_all<GroundLocationRecord>();
+    }
+
+    /**
+     * @brief Gets a reference to the underlying database storage.
+     *
+     * @return DatabaseStorage& Reference to the database storage instance.
+     */
+    DatabaseStorage& get_storage() { return _storage; }
+
+    /**
+     * @brief Gets a const reference to the underlying database storage.
+     *
+     * @return const DatabaseStorage& Const reference to the database storage instance.
+     */
+    const DatabaseStorage& get_storage() const { return _storage; }
+};
 
 } // namespace trace
 } // namespace astrea

@@ -86,7 +86,7 @@ bool Spacecraft::operator==(const Spacecraft& other) const
 void Spacecraft::set_state_history(const StateHistory& history) { _stateHistory = history; }
 StateHistory& Spacecraft::get_state_history() { return _stateHistory; }
 const StateHistory& Spacecraft::get_state_history() const { return _stateHistory; }
-void Spacecraft::store_state(const State& state) { _stateHistory[state.get_epoch()] = state; }
+void Spacecraft::store_state(const State& state) { _stateHistory.insert(state); }
 
 // Spacecraft Property Getters
 Mass Spacecraft::get_mass() const { return _mass; }
