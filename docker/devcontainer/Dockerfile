@@ -23,7 +23,6 @@ RUN apt-get update && \
     libgl1-mesa-dev \
     xorg-dev \
     python3 \
-    python3-pip \
     python3-venv \
     git \
     gnuplot \
@@ -42,5 +41,9 @@ RUN chown -R $USER:$USER $USER_HOME
 USER $USER
 WORKDIR $USER_HOME
 
-# For some reason, this is the only way to install gcovr
-RUN pip install gcovr --break-system-packages
+# Install uv
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="$USER_HOME/.cargo/bin:$PATH"
+
+# Install gcovr using uv 
+RUN uv tool install gcovr
