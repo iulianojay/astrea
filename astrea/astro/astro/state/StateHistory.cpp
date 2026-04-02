@@ -87,9 +87,9 @@ State StateHistory::get_state_at(const Date& date, const bool allowApproximation
     });
 
     // If within a second, return it
-    static constexpr auto allowableTimeError = 1.0 * s;
+    static constexpr auto allowableTimeError = 0.5 * s;
     if (iter != _states.end() &&
-        (allowApproximation ? abs(iter->get_epoch() - date) < allowableTimeError : iter->get_epoch() == date)) {
+        (allowApproximation ? abs(iter->get_epoch() - date) <= allowableTimeError : iter->get_epoch() == date)) {
         return *iter;
     }
 

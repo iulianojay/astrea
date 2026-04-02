@@ -147,7 +147,7 @@ TEST_F(StateHistoryTest, GetStateAt)
     ASSERT_EQ(newHistory.get_state_at(epoch + time1), state1);
 }
 
-TEST_F(StateHistoryTest, GetStateAtBeforeFirstEpoch) { ASSERT_ANY_THROW(history.get_state_at(epoch - time1)); }
+TEST_F(StateHistoryTest, GetStateAtBeforeFirstEpoch) { ASSERT_ANY_THROW(history.get_state_at(epoch - time2)); }
 
 TEST_F(StateHistoryTest, GetStateAtAfterLastEpoch) { ASSERT_ANY_THROW(history.get_state_at(epoch + 2.0 * time1)); }
 
