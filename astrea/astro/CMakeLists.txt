@@ -27,10 +27,17 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/platforms/thrusters/Thruster.cpp
 
     ${ASTRO_BASE}/propagation/numerical/Integrator.cpp
+    
     ${ASTRO_BASE}/propagation/analytic/LambertSolver.cpp
+
     ${ASTRO_BASE}/propagation/event_detection/Event.cpp
     ${ASTRO_BASE}/propagation/event_detection/EventDetector.cpp
+    ${ASTRO_BASE}/propagation/event_detection/Schedule.cpp
+
     ${ASTRO_BASE}/propagation/event_detection/events/ImpulsiveBurn.cpp
+    ${ASTRO_BASE}/propagation/event_detection/events/Deorbit.cpp
+    ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOn.cpp
+    ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOff.cpp
 
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.cpp
     ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
@@ -97,9 +104,11 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/instances/LocalHorizontalLocalVertical.hpp
     ${ASTRO_BASE}/frames/instances/RadialInTrackCrossTrack.hpp
     ${ASTRO_BASE}/frames/instances/VelocityNormalBinormal.hpp
+
     ${ASTRO_BASE}/frames/types/DirectionCosineMatrix.hpp
     ${ASTRO_BASE}/frames/types/InertialFrame.hpp
     ${ASTRO_BASE}/frames/types/BodyFixedFrame.hpp
+
     ${ASTRO_BASE}/frames/CartesianVector.hpp
     ${ASTRO_BASE}/frames/dynamic_frames.hpp
     ${ASTRO_BASE}/frames/frame_concepts.hpp
@@ -114,16 +123,24 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/platforms/space/Plane.ipp
     ${ASTRO_BASE}/platforms/space/Shell.hpp
     ${ASTRO_BASE}/platforms/space/Shell.ipp
+
     ${ASTRO_BASE}/platforms/vehicles/Spacecraft.hpp
     ${ASTRO_BASE}/platforms/Vehicle.hpp
 
     ${ASTRO_BASE}/propagation/numerical/Integrator.hpp
     ${ASTRO_BASE}/propagation/numerical/butcher_tableau.hpp
+
     ${ASTRO_BASE}/propagation/analytic/LambertSolver.hpp
+
     ${ASTRO_BASE}/propagation/event_detection/Event.hpp
     ${ASTRO_BASE}/propagation/event_detection/EventDetector.hpp
+    ${ASTRO_BASE}/propagation/event_detection/Schedule.hpp
+
     ${ASTRO_BASE}/propagation/event_detection/events/NullEvent.hpp
     ${ASTRO_BASE}/propagation/event_detection/events/ImpulsiveBurn.hpp
+    ${ASTRO_BASE}/propagation/event_detection/events/Deorbit.hpp
+    ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOn.hpp
+    ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOff.hpp
 
     ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.hpp
     ${ASTRO_BASE}/propagation/force_models/Force.hpp

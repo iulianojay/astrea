@@ -71,6 +71,9 @@ OrbitalElementPartials J2MeanVop::operator()(const State& state, const Vehicle& 
     const auto termA = -1.5 * J2 * mu * pow<2>(equitorialR) / pow<5>(R);
     const auto termB = pow<2>(z / R);
 
+    // TODO: Do we want to add vehicle acceleration here? It basically invalidates these equations since you'd need the
+    // entire keplerian VoP form, in which case you should just use the KeplerianVoP class.
+
     // accel due to oblateness
     AccelerationVector<frames::earth::icrf> accelOblateness = { termA * (1.0 - 5.0 * termB) * x,
                                                                 termA * (1.0 - 5.0 * termB) * y,

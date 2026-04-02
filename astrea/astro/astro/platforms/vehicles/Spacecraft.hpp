@@ -99,14 +99,14 @@ class Spacecraft : public ThrusterPlatform {
      *
      * @return State& A reference to the initial state of the spacecraft.
      */
-    State& get_initial_state() { return _stateHistory.begin()->second; }
+    State& get_initial_state() { return _stateHistory.first(); }
 
     /**
      * @brief Gets the initial state of the spacecraft.
      *
      * @return const State& A reference to the initial state of the spacecraft.
      */
-    const State& get_initial_state() const { return _stateHistory.begin()->second; }
+    const State& get_initial_state() const { return _stateHistory.first(); }
 
     /**
      * @brief Gets the state history of the spacecraft.
@@ -170,6 +170,14 @@ class Spacecraft : public ThrusterPlatform {
      * @return SurfaceArea The lift area of the spacecraft.
      */
     SurfaceArea get_lift_area() const;
+
+    /**
+     * @brief Gets the thrust of the spacecraft.
+     *
+     * @param state The state of the spacecraft for which to get the thrust.
+     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the spacecraft.
+     */
+    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration(const State& state) const;
 
     /**
      * @brief Gets the unique identifier of the spacecraft.

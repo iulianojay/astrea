@@ -89,6 +89,13 @@ class Plane {
     const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
 
     /**
+     * @brief Get the orbital elements shared by all Spacecraft in the Plane. The fast variable can be ignored.
+     *
+     * @return const OrbitalElements& A const reference to the orbital elements of the Plane.
+     */
+    const OrbitalElements& get_elements() const { return elements; }
+
+    /**
      * @brief Get the number of Spacecraft in the Plane.
      *
      * @return std::size_t The number of Spacecraft in the Plane.

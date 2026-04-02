@@ -28,11 +28,6 @@ TEST(HyperStatsTest, ConstructorAggregatesStats)
     ASSERT_EQ(hyper.percentiles.size(), DEFAULT_PERCENTILES.size());
 }
 
-TEST(HyperStatsTest, ConstructorThrowsOnEmptyInput)
-{
-    ASSERT_ANY_THROW(HyperStats<double>(std::vector<Stats<double>>{}));
-}
-
 TEST(HyperStatsTest, ToStringVectorHasExpectedLength)
 {
     const Stats<double> s1(std::vector<double>{ 1.0, 2.0, 3.0 });

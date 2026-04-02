@@ -129,30 +129,6 @@ GroundPointRefVec AccessAnalyzer::cache_ground_points(Grid& grid)
 }
 
 
-PairVec AccessAnalyzer::filter_impossible_pairs(const ViewerRefVec& viewers) const
-{
-    const std::size_t nViewers = viewers.size();
-
-    if (_printProgress && nViewers > 1) { std::cout << "\tFiltering impossible sat-to-sat pairs..." << std::flush; }
-
-    PairVec validPairs;
-    for (std::size_t ii = 0; ii < nViewers - 1; ++ii) {
-        for (std::size_t jj = ii + 1; jj < nViewers; ++jj) {
-            if (can_objects_ever_access_each_other(viewers[ii]->get_id(), viewers[jj]->get_id(), true)) {
-                validPairs.emplace_back(ii, jj);
-            }
-        }
-    }
-
-    if (_printProgress && nViewers > 1) {
-        std::cout << " kept " << validPairs.size() << " / " << (nViewers * (nViewers - 1) / 2) << " pairs ("
-                  << (100.0 * validPairs.size() / (nViewers * (nViewers - 1) / 2)) << "%)" << std::endl;
-    }
-
-    return validPairs;
-}
-
-
 AccessArray AccessAnalyzer::find_internal_accesses(ViewerConstellation& constel, const bool clearPositionCache)
 {
     const std::size_t nViewers = constel.size();
@@ -164,32 +140,31 @@ AccessArray AccessAnalyzer::find_internal_accesses(ViewerConstellation& constel,
     }
     ViewerRefVec viewers = cache_viewers(constel);
 
-    // Pre-filter impossible pairs using geometric tests
-    const auto validPairs = filter_impossible_pairs(viewers);
-
     // Process access checks in parallel
     AccessArray allAccesses;
 
     if (_printProgress) { std::cout << std::endl; }
-    utilities::ProgressBar progressBar(validPairs.size(), "\tSat->Sat Access");
+    utilities::ProgressBar progressBar(nViewers * (nViewers - 1) / 2, "\tSat->Sat Access");
 
     // Note: Parallel execution requires thread-safe access storage
-    for (const auto& [iViewer, jViewer] : validPairs) {
-        auto& viewer1 = viewers[iViewer];
-        auto& viewer2 = viewers[jViewer];
+    for (std::size_t iViewer = 0; iViewer < nViewers - 1; ++iViewer) {
+        for (std::size_t jViewer = iViewer + 1; jViewer < nViewers; ++jViewer) {
+            auto& viewer1 = viewers[iViewer];
+            auto& viewer2 = viewers[jViewer];
 
-        const RiseSetArray satAccess = find_platform_to_platform_accesses(viewer1, viewer2);
+            const RiseSetArray satAccess = find_platform_to_platform_accesses(viewer1, viewer2);
 
-        if (satAccess.size() > 0) {
-            const std::size_t id1 = viewer1->get_id();
-            const std::size_t id2 = viewer2->get_id();
+            if (satAccess.size() > 0) {
+                const std::size_t id1 = viewer1->get_id();
+                const std::size_t id2 = viewer2->get_id();
 
-            viewer1->add_access(id2, satAccess);
-            viewer2->add_access(id1, satAccess);
-            allAccesses[id1, id2] = satAccess;
-            allAccesses[id2, id1] = satAccess;
+                viewer1->add_access(id2, satAccess);
+                viewer2->add_access(id1, satAccess);
+                allAccesses[id1, id2] = satAccess;
+                allAccesses[id2, id1] = satAccess;
+            }
+            if (_printProgress) { progressBar(); }
         }
-        if (_printProgress) { progressBar(); }
     }
 
     return allAccesses;
@@ -207,35 +182,34 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, GroundAr
     ViewerRefVec viewers               = cache_viewers(constel);
     GroundStationRefVec groundStations = cache_ground_points(grounds);
 
-    // Pre-filter impossible pairs
-    const auto validPairs = filter_impossible_pairs(viewers, groundStations);
-
     // Internal accesses if requested
     AccessArray allAccesses = includeInternalAccesses ? find_internal_accesses(constel, false) : AccessArray();
 
     if (_printProgress) { std::cout << std::endl; }
-    utilities::ProgressBar progressBar(validPairs.size(), "\tSat->Ground Arch Access");
+    utilities::ProgressBar progressBar(nViewers * nGrounds, "\tSat->Ground Arch Access");
 
-    for (const auto& [iViewer, iGround] : validPairs) {
-        auto& viewer        = viewers[iViewer];
-        auto& groundStation = groundStations[iGround];
+    for (std::size_t iViewer = 0; iViewer < nViewers; ++iViewer) {
+        for (std::size_t iGround = 0; iGround < nGrounds; ++iGround) {
+            auto& viewer        = viewers[iViewer];
+            auto& groundStation = groundStations[iGround];
 
-        // If the ground station has Sensors, treat it as a SensorPlatform, otherwise, treat it as a GroundPoint
-        const bool groundHasSensors  = (groundStation->get_payloads().size() > 0);
-        const RiseSetArray satAccess = groundHasSensors ? find_platform_to_platform_accesses(viewer, groundStation) :
-                                                          find_platform_to_ground_point_accesses(viewer, groundStation);
+            // If the ground station has Sensors, treat it as a SensorPlatform, otherwise, treat it as a GroundPoint
+            const bool groundHasSensors = (groundStation->get_payloads().size() > 0);
+            const RiseSetArray satAccess = groundHasSensors ? find_platform_to_platform_accesses(viewer, groundStation) :
+                                                              find_platform_to_ground_point_accesses(viewer, groundStation);
 
-        if (satAccess.size() > 0) {
-            const std::size_t viewerId = viewer->get_id();
-            const std::size_t groundId = groundStation->get_id();
+            if (satAccess.size() > 0) {
+                const std::size_t viewerId = viewer->get_id();
+                const std::size_t groundId = groundStation->get_id();
 
-            viewer->add_access(groundId, satAccess);
-            groundStation->add_access(viewerId, satAccess);
+                viewer->add_access(groundId, satAccess);
+                groundStation->add_access(viewerId, satAccess);
 
-            allAccesses[viewerId, groundId] = satAccess;
-            if (groundHasSensors) { allAccesses[groundId, viewerId] = satAccess; }
+                allAccesses[viewerId, groundId] = satAccess;
+                if (groundHasSensors) { allAccesses[groundId, viewerId] = satAccess; }
+            }
+            if (_printProgress) { progressBar(); }
         }
-        if (_printProgress) { progressBar(); }
     }
 
     return allAccesses;
@@ -253,30 +227,29 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, Grid& gr
     ViewerRefVec viewers           = cache_viewers(constel);
     GroundPointRefVec groundPoints = cache_ground_points(grid);
 
-    // Pre-filter and build pairs using spatial indexing
-    const auto validPairs = filter_impossible_pairs(viewers, groundPoints);
-
     // Internal accesses if requested
     AccessArray allAccesses = includeInternalAccesses ? find_internal_accesses(constel, false) : AccessArray();
 
     if (_printProgress) { std::cout << std::endl; }
-    utilities::ProgressBar progressBar(validPairs.size(), "\tSat->Grid Access");
+    utilities::ProgressBar progressBar(nViewers * nGrounds, "\tSat->Grid Access");
 
-    for (const auto& [iViewer, iGround] : validPairs) {
-        auto& viewer      = viewers[iViewer];
-        auto& groundPoint = groundPoints[iGround];
+    for (std::size_t iViewer = 0; iViewer < nViewers; ++iViewer) {
+        for (std::size_t iGround = 0; iGround < nGrounds; ++iGround) {
+            auto& viewer      = viewers[iViewer];
+            auto& groundPoint = groundPoints[iGround];
 
-        const RiseSetArray satAccess = find_platform_to_ground_point_accesses(viewer, groundPoint);
+            const RiseSetArray satAccess = find_platform_to_ground_point_accesses(viewer, groundPoint);
 
-        if (satAccess.size() > 0) {
-            const std::size_t viewerId = viewer->get_id();
-            const std::size_t groundId = groundPoint->get_id();
+            if (satAccess.size() > 0) {
+                const std::size_t viewerId = viewer->get_id();
+                const std::size_t groundId = groundPoint->get_id();
 
-            viewer->add_access(groundId, satAccess);
-            groundPoint->add_access(viewerId, satAccess);
-            allAccesses[viewerId, groundId] = satAccess;
+                viewer->add_access(groundId, satAccess);
+                groundPoint->add_access(viewerId, satAccess);
+                allAccesses[viewerId, groundId] = satAccess;
+            }
+            if (_printProgress) { progressBar(); }
         }
-        if (_printProgress) { progressBar(); }
     }
 
     return allAccesses;

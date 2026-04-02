@@ -50,21 +50,25 @@ Shell<Spacecraft_T>::Shell(
     Unitless iPlane = 0;
     for (auto& plane : planes) {
         plane.satellites.resize(satsPerPlane);
+
+        const Keplerian planeElements{ semimajor,
+                                       0.0 * mp_units::one,
+                                       inclination,
+                                       (anchorRAAN + deltaRAAN * iPlane),
+                                       0.0 * mp_units::angular::unit_symbols::rad,
+                                       0.0 * mp_units::angular::unit_symbols::rad };
+        plane.elements = OrbitalElements(planeElements);
+
         for (auto& sat : plane.satellites) {
-            const State state(
-                OrbitalElements(Keplerian{ semimajor,
-                                           0.0 * mp_units::one,
-                                           inclination,
-                                           (anchorRAAN + deltaRAAN * iPlane),
-                                           0.0 * mp_units::angular::unit_symbols::rad,
-                                           (anchorAnomaly + deltaAnomaly * iAnom) }),
-                epoch,
-                sys
-            );
+            auto satElements = planeElements;
+            satElements.set_true_anomaly(anchorAnomaly + deltaAnomaly * iAnom);
+
+            const State state(OrbitalElements(satElements), epoch, sys);
             sat.store_state(state);
             ++iAnom;
         }
         plane.generate_id();
+        ++iPlane;
     }
     generate_id();
 }

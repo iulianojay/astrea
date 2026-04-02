@@ -18,69 +18,101 @@
 #include <mp-units/math.h>
 
 using namespace mp_units;
+using mp_units::si::unit_symbols::s;
 
 namespace astrea {
 namespace astro {
 
+void StateHistory::insert(const State& state)
+{
+    auto iter = std::lower_bound(_states.begin(), _states.end(), state.get_epoch(), [](const State& existingState, const Date& date) {
+        return existingState.get_epoch() < date;
+    });
 
-State& StateHistory::operator[](const Date& date) { return _states[date]; }
-const State& StateHistory::at(const Date& date) const { return _states.at(date); }
+    // If state with same epoch exists, replace it
+    if (iter != _states.end() && iter->get_epoch() == state.get_epoch()) { *iter = state; }
+    else {
+        // Insert at the correct position to maintain sorted order
+        _states.insert(iter, state);
+    }
+}
 
-void StateHistory::insert(const State& state) { _states.insert({ state.get_epoch(), state }); }
+void StateHistory::insert(const StateHistory& stateHistory)
+{
+    for (const auto& state : stateHistory._states) {
+        insert(state);
+    }
+}
+
 std::size_t StateHistory::size() const { return _states.size(); }
+bool StateHistory::empty() const { return _states.empty(); }
 void StateHistory::clear() { _states.clear(); }
 
 const State& StateHistory::get_closest_state(const Date& date) const
 {
-    // If exact, return
-    if (_states.contains(date)) { return _states.at(date); }
+    if (_states.empty()) { throw std::runtime_error("No states stored in StateHistory."); }
+
+    // Find the first state with epoch >= date
+    auto iter = std::lower_bound(_states.begin(), _states.end(), date, [](const State& state, const Date& target_date) {
+        return state.get_epoch() < target_date;
+    });
+
+    // If exact match, return it
+    if (iter != _states.end() && iter->get_epoch() == date) { return *iter; }
 
     // Check if input date is out of bounds
-    auto iter = _states.lower_bound(date);
     if (iter == _states.begin()) { return first(); }
     else if (iter == _states.end()) {
         return last();
     }
 
     // Compare date before and after index
-    const Time upperDiff = abs((iter)->first - date);
-    const Time lowerDiff = abs(std::prev(iter)->first - date);
+    const Time upperDiff = abs(iter->get_epoch() - date);
+    const Time lowerDiff = abs(std::prev(iter)->get_epoch() - date);
 
     // Return closest
-    if (lowerDiff < upperDiff) { return std::prev(iter)->second; }
+    if (lowerDiff < upperDiff) { return *std::prev(iter); }
     else {
-        return (iter)->second;
+        return *iter;
     }
 }
 
-State StateHistory::get_state_at(const Date& date) const
+State StateHistory::get_state_at(const Date& date, const bool allowApproximation) const
 {
     if (_states.size() == 0) { throw std::runtime_error("No states stored in StateHistory to extrapolate from."); }
 
-    // If exact, return
-    if (_states.contains(date)) { return _states.at(date); }
+    // Find the first state with epoch >= date
+    auto iter = std::lower_bound(_states.begin(), _states.end(), date, [](const State& state, const Date& target_date) {
+        return state.get_epoch() < target_date;
+    });
+
+    // If within a second, return it
+    static constexpr auto allowableTimeError = 0.5 * s;
+    if (iter != _states.end() &&
+        (allowApproximation ? abs(iter->get_epoch() - date) <= allowableTimeError : iter->get_epoch() == date)) {
+        return *iter;
+    }
 
     // Check if input date is out of bounds
-    auto iter = _states.lower_bound(date);
     if (iter == _states.begin()) {
         std::ostringstream oss;
-        oss << "Cannot extrapolate to date (" << date << ") before first state (" << _states.begin()->first
+        oss << "Cannot extrapolate to date (" << date << ") before first state (" << _states.begin()->get_epoch()
             << "). Try repropagating to include all desired dates.";
         throw std::runtime_error(oss.str());
     }
     else if (iter == _states.end()) {
         std::ostringstream oss;
-        oss << "Cannot extrapolate to date (" << date << ") after last state (" << _states.rbegin()->first
+        oss << "Cannot extrapolate to date (" << date << ") after last state (" << _states.rbegin()->get_epoch()
             << "). Try repropagating to include all desired dates.";
         throw std::runtime_error(oss.str());
     }
 
     // Interpolate
-    const Date& postDate                = iter->first;
-    const OrbitalElements& postElements = (iter->second).get_elements();
+    const Date& postDate                = iter->get_epoch();
+    const OrbitalElements& postElements = iter->get_elements();
 
-    const Date& preDate                = std::prev(iter)->first;
-    const State& preState              = std::prev(iter)->second;
+    const Date& preDate                = std::prev(iter)->get_epoch();
+    const State& preState              = *std::prev(iter);
     const OrbitalElements& preElements = preState.get_elements();
 
     const AstrodynamicsSystem& system = preState.get_system();
@@ -98,6 +130,13 @@ State StateHistory::get_state_at(const Date& date) const
     // _states[date] = interpolatedState;
 
     // return _states.at(date);
+}
+
+void StateHistory::sort()
+{
+    std::sort(_states.begin(), _states.end(), [](const State& a, const State& b) {
+        return a.get_epoch() < b.get_epoch();
+    });
 }
 
 } // namespace astro

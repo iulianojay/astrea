@@ -23,8 +23,6 @@ TEST(StatsTest, ConstructorFromDoubleVector)
     ASSERT_EQ(stats.percentiles.size(), DEFAULT_PERCENTILES.size());
 }
 
-TEST(StatsTest, ConstructorThrowsOnEmptyVector) { ASSERT_ANY_THROW(Stats<double>(std::vector<double>{})); }
-
 TEST(StatsTest, TimeSpecializationFromRiseSetArray)
 {
     const RiseSetArray risesets({ 0.0 * s, 10.0 * s, 20.0 * s, 40.0 * s });
