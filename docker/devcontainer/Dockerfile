@@ -41,9 +41,7 @@ RUN chown -R $USER:$USER $USER_HOME
 USER $USER
 WORKDIR $USER_HOME
 
-# Install uv
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+# Install uv and gcovr
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
+    $USER_HOME/.cargo/bin/uv tool install gcovr
 ENV PATH="$USER_HOME/.cargo/bin:$PATH"
-
-# Install gcovr using uv 
-RUN uv tool install gcovr
