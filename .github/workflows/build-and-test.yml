@@ -81,6 +81,7 @@ jobs:
 
     - name: Setup
       run: |
+        export PATH="$HOME/.local/bin:$PATH"
         make python_env
 
     - name: Build and Install Release
@@ -123,6 +124,7 @@ jobs:
 
     - name: Setup
       run: |
+        export PATH="$HOME/.local/bin:$PATH"
         make python_env
 
     - name: Build and Install Debug
