@@ -177,8 +177,7 @@ coverage: debug run_tests run_examples
 
 .PHONY: build_env
 build_env:
-	rm -rf .venv
-	python3 -m venv .venv
+	uv venv .venv
 
 .PHONY: activate_env
 activate_env:
@@ -186,7 +185,11 @@ activate_env:
 
 .PHONY: install_deps
 install_deps:
-	.venv/bin/pip install -r requirements.txt
+	uv pip install -r pyproject.toml
 
 .PHONY: python_env
 python_env: build_env activate_env install_deps
+
+.PHONY: clean-env
+clean-env:
+	rm -rf .venv
