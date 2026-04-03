@@ -19,6 +19,7 @@ name: Publish Devcontainer
 # documentation.
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "dev" ]
     paths:
