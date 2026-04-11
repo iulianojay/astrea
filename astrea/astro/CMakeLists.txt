@@ -166,7 +166,7 @@ set(ASTRO_HEADERS
     
     ${ASTRO_BASE}/state/attitude/Attitude.hpp
     ${ASTRO_BASE}/state/attitude/instances/Quaternion.hpp
-    ${ASTRO_BASE}/state/attitude/instances/EulerAngleVelocities.hpp
+    ${ASTRO_BASE}/state/attitude/instances/AngularVelocities.hpp
     ${ASTRO_BASE}/state/attitude/instances/EulerAngles.hpp
 
     ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.hpp

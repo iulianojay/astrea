@@ -18,7 +18,7 @@
 
 #include <astro/frames/frames.hpp>
 #include <astro/frames/instances/dynamic_body_frame.hpp>
-#include <astro/state/attitude/instances/EulerAngleVelocities.hpp>
+#include <astro/state/attitude/instances/AngularVelocities.hpp>
 #include <astro/state/attitude/instances/EulerAngles.hpp>
 #include <astro/utilities/conversions.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -397,7 +397,7 @@ TEST_F(EulerAnglesTest, TestDivisionByTimeToVelocity)
     TestEulerAngles euler(30.0 * deg, 45.0 * deg, 60.0 * deg);
     Time time = 2.0 * s;
 
-    // Division by time should produce EulerAngleVelocities
+    // Division by time should produce AngularVelocities
     auto eulerVel = euler / time;
 
     // Check that the resulting angular velocities are correct

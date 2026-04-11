@@ -26,7 +26,7 @@
 // Astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/instances/dynamic_body_frame.hpp>
-#include <astro/state/attitude/instances/EulerAngleVelocities.hpp>
+#include <astro/state/attitude/instances/AngularVelocities.hpp>
 #include <astro/state/attitude/instances/EulerAngles.hpp>
 #include <astro/state/attitude/instances/Quaternion.hpp>
 #include <astro/types/type_traits.hpp>
@@ -54,14 +54,12 @@ using BodyAngles = EulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, f
 /**
  * @brief Type alias for a ICRF->body angle sequence velocity
  */
-using BodyAngleVelocities =
-    EulerAngleVelocities<RotationSequence::ZXZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>;
+using BodyAngleVelocities = AngularVelocities<frames::dynamic::body, frames::earth::icrf>;
 
 /**
  * @brief Type alias for a ICRF->body angle sequence acceleration
  */
-using BodyAngularAcceleration =
-    EulerAngleAccels<RotationSequence::ZXZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>;
+using BodyAngularAcceleration = AngularAccels<frames::dynamic::body, frames::earth::icrf>;
 
 /**
  * @brief Concept to check if a type is an attitude type.

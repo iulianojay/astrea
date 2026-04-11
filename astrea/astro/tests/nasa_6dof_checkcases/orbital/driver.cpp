@@ -282,7 +282,7 @@ class Orbital6DofTest : public testing::Test {
                 row.eulerAngleWrtEi_rad_Pitch.value() * rad,
                 row.eulerAngleWrtEi_rad_Yaw.value() * rad
             );
-            const EulerAngleVelocities<RotationSequence::XYZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf> angularVelocity(
+            const AngularVelocities<frames::dynamic::body, frames::earth::icrf> angularVelocity(
                 row.bodyAngularVelocityWrtEi_rad_s_Roll.value() * rad / s,
                 row.bodyAngularVelocityWrtEi_rad_s_Pitch.value() * rad / s,
                 row.bodyAngularVelocityWrtEi_rad_s_Yaw.value() * rad / s
@@ -579,12 +579,6 @@ int main(int argc, char** argv)
 
 TEST_F(Orbital6DofTest, Checkcase2_Propagation)
 {
-
-    /*
-    A mu value of 398600.436 reduces the error of this comparison to mm level. This suggests that the published value
-    used by the checkcases is wrong or imprecise.
-    */
-
     ForceModel forces;
 
     const auto propagations = run_all_propagations(forces, CIRCULAR, ISS, false);

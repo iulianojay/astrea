@@ -206,10 +206,10 @@ TEST_F(CartesianVectorTest, TestNormAndUnit)
 {
     // Norm
     auto normVec1 = vec1.norm();
-    EXPECT_EQ(normVec1, 1.0 * one);
+    ASSERT_EQ_QUANTITY(normVec1, 1.0 * one, REL_TOL);
 
     auto normVec2 = (vec1 + vec2).norm();
-    EXPECT_EQ(normVec2, sqrt(2.0) * one);
+    ASSERT_EQ_QUANTITY(normVec2, sqrt(2.0) * one, REL_TOL);
 
     // Unit vector
     auto unitVec1 = vec1.unit();

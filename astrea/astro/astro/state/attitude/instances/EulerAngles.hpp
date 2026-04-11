@@ -436,13 +436,10 @@ class EulerAngles {
      * @brief Scalar division operator for EulerAngles by a Time quantity, resulting in an EulerAnglesRate.
      *
      * @param time The time quantity to divide by.
-     * @return EulerAngleVelocities<sequence, rotation_type, In_Frame_T, Out_Frame_T> A new
-     * EulerAngleVelocities that is the quotient of this sequence and the time.
+     * @return AngularVelocities<In_Frame_T, Out_Frame_T> A new
+     * AngularVelocities that is the quotient of this sequence and the time.
      */
-    EulerAngleVelocities<sequence, rotation_type, In_Frame_T, Out_Frame_T> operator/(const Time& time) const
-    {
-        return { _angles / time };
-    }
+    AngularVelocities<In_Frame_T, Out_Frame_T> operator/(const Time& time) const { return { _angles / time }; }
 
     /**
      * @brief Scalar division operator for EulerAngles.
