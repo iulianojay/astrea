@@ -2,6 +2,8 @@ SHELL := bash
 MAKEFLAGS += --no-builtin-rules --no-print-directory
 
 config_path := $(abspath .)
+venv_activate := $(config_path)/.venv/bin/activate
+CMAKE := source $(venv_activate) && cmake
 source_path := astrea
 examples_path := examples
 arch := x86_64
@@ -39,19 +41,21 @@ profile: profiling install
 
 .PHONY: install
 install: build
-	cmake --build $(build_path) --target install -j10
+	$(CMAKE) --build $(build_path) --target install -j10
 
 .PHONY: build
 build:
-	cmake -S . -B $(build_path) \
+	$(CMAKE) -S . -B $(build_path) \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
+	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
 	-DBUILD_TESTS=$(build_tests) \
 	-DBUILD_EXAMPLES=$(build_examples) \
 	-DBUILD_STATIC=$(build_static) \
 	-DBUILD_PROFILERS=$(build_profilers) \
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
-	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases)
+	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases) \
+	-Wno-dev
 
 .PHONY: debug
 debug:

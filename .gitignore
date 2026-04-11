@@ -4,6 +4,7 @@
 .gcovr
 .venv
 .vscode
+.cpm-cache
 CMake*
 bin
 build
