@@ -289,11 +289,11 @@ class Quaternion {
         Angle theta1, theta3;
         static constexpr Angle piOver2 = std::numbers::pi / 2.0 * rad;
         if (is_eq_zero(theta2)) {
-            theta1 = 0;
+            theta1 = 0.0 * rad;
             theta3 = 2 * thetaPlus - theta1;
         }
         else if (theta2 == piOver2) {
-            theta1 = 0;
+            theta1 = 0.0 * rad;
             theta3 = 2 * thetaMinus + theta1;
         }
         else {
