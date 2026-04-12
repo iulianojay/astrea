@@ -90,8 +90,10 @@ class Orbital6DofTest : public testing::Test {
     // TODO: Finish implementing all force models in the tests. This includes more atmosphere models, and different
     //       SRP models. It may also include closing down any errors further.
 
-    using RStats = Stats<m, double>;
-    using VStats = Stats<(cm / s), double>;
+    using RStats     = Stats<m, double>;
+    using VStats     = Stats<(cm / s), double>;
+    using AStats     = Stats<rad, double>;
+    using OmegaStats = Stats<(rad / s), double>;
 
   public:
     Orbital6DofTest() :
@@ -330,29 +332,37 @@ class Orbital6DofTest : public testing::Test {
 
         std::vector<std::vector<RStats>> allRStats;
         std::vector<std::vector<VStats>> allVStats;
+        std::vector<std::vector<std::optional<AStats>>> allAStats;
+        std::vector<std::vector<std::optional<OmegaStats>>> allOmegaStats;
 
         std::vector<StateHistory> checkcaseHistories;
         std::vector<std::string> checkcaseLabels;
         for (const auto& [checkcaseHistory, checkcaseLabel] : checkcases) {
             std::vector<RStats> rStatsList;
             std::vector<VStats> vStatsList;
+            std::vector<std::optional<AStats>> aStatsList;
+            std::vector<std::optional<OmegaStats>> omegaStatsList;
             for (const auto& [propHistory, propLabel] : propagations) {
-                const auto [rStats, vStats] =
+                const auto [rStats, vStats, aStats, omegaStats] =
                     validate_propagation_vs_checkcase(propHistory, propLabel, checkcaseHistory, checkcaseLabel, checkcaseName);
                 rStatsList.push_back(rStats);
                 vStatsList.push_back(vStats);
+                aStatsList.push_back(aStats);
+                omegaStatsList.push_back(omegaStats);
             }
 
             std::filesystem::path base = outputDir / checkcaseName / checkcaseLabel;
-            make_summary_for_all_propagations(rStatsList, vStatsList, propagations, checkcaseLabel, base);
+            make_summary_for_all_propagations(rStatsList, vStatsList, aStatsList, omegaStatsList, propagations, checkcaseLabel, base);
 
             allRStats.push_back(rStatsList);
             allVStats.push_back(vStatsList);
+            allAStats.push_back(aStatsList);
+            allOmegaStats.push_back(omegaStatsList);
 
             checkcaseHistories.push_back(checkcaseHistory);
             checkcaseLabels.push_back(checkcaseLabel);
         }
-        make_summary_for_all_checkcases(propagations, checkcases, checkcaseName, allRStats, allVStats);
+        make_summary_for_all_checkcases(propagations, checkcases, checkcaseName, allRStats, allVStats, allAStats, allOmegaStats);
 
         std::vector<StateHistory> propHistories;
         std::vector<std::string> propLabels;
@@ -369,7 +379,7 @@ class Orbital6DofTest : public testing::Test {
         make_comparison_plots(propHistories, propLabels, checkcaseHistories, checkcaseLabels, outputDir / checkcaseName);
     }
 
-    std::pair<RStats, VStats> validate_propagation_vs_checkcase(
+    std::tuple<RStats, VStats, std::optional<AStats>, std::optional<OmegaStats>> validate_propagation_vs_checkcase(
         const StateHistory& propHistory,
         const std::string& propLabel,
         const StateHistory& checkcaseHistory,
@@ -382,6 +392,8 @@ class Orbital6DofTest : public testing::Test {
 
         RStats rStats;
         VStats vStats;
+        std::optional<AStats> aStats;
+        std::optional<OmegaStats> omegaStats;
         for (const auto& checkcaseState : checkcaseHistory) {
             const Date date          = checkcaseState.get_epoch();
             const State propState    = propHistory.get_state_at(date);
@@ -408,6 +420,28 @@ class Orbital6DofTest : public testing::Test {
 
             rStats.add_value(positionErrorMag);
             vStats.add_value(velocityErrorMag);
+
+            // Compare orientation and angular rates when both states carry attitude data
+            const auto& propAtt = propState.get_attitude();
+            const auto& ccAtt   = checkcaseState.get_attitude();
+            if (propAtt.has_value() && ccAtt.has_value()) {
+                if (!aStats.has_value()) {
+                    aStats     = AStats{};
+                    omegaStats = OmegaStats{};
+                }
+
+                const auto& propQ            = propAtt->get_orientation();
+                const auto& ccQ              = ccAtt->get_orientation();
+                const double dotVal          = propQ.dot(ccQ).numerical_value_in(mp_units::one);
+                const double absDotClamped   = std::min(1.0, std::abs(dotVal));
+                const Angle orientationError = 2.0 * std::acos(absDotClamped) * rad;
+                aStats->add_value(orientationError);
+
+                const auto& propOmegaVec         = propAtt->get_angular_velocity().get_angular_velocities();
+                const auto& ccOmegaVec           = ccAtt->get_angular_velocity().get_angular_velocities();
+                const AngularVelocity omegaError = (propOmegaVec - ccOmegaVec).norm();
+                omegaStats->add_value(omegaError);
+            }
         }
 
         EXPECT_TRUE(rStats.max() <= _MAX_R_ERROR)
@@ -418,6 +452,16 @@ class Orbital6DofTest : public testing::Test {
             << std::setprecision(6) << "Max allowed velocity error (" << _MAX_V_ERROR.in(cm / s)
             << ") violated comparing " << propLabel << " to " << checkcaseLabel << "[" << vStats.mean() << " ± "
             << vStats.stddev() << ", " << vStats.max() << "]" << std::endl;
+        if (aStats.has_value()) {
+            EXPECT_TRUE(aStats->max() <= _MAX_A_ERROR)
+                << std::setprecision(6) << "Max allowed orientation error (" << _MAX_A_ERROR.in(rad)
+                << " rad) violated comparing " << propLabel << " to " << checkcaseLabel << "[" << aStats->mean()
+                << " ± " << aStats->stddev() << ", " << aStats->max() << "]" << std::endl;
+            EXPECT_TRUE(omegaStats->max() <= _MAX_OMEGA_ERROR)
+                << std::setprecision(6) << "Max allowed angular rate error (" << _MAX_OMEGA_ERROR.in(rad / s)
+                << " rad/s) violated comparing " << propLabel << " to " << checkcaseLabel << "[" << omegaStats->mean()
+                << " ± " << omegaStats->stddev() << ", " << omegaStats->max() << "]" << std::endl;
+        }
 
         // Delete any existing plots from previous runs
         std::filesystem::path base = outputDir / checkcaseName / checkcaseLabel / propLabel;
@@ -426,7 +470,7 @@ class Orbital6DofTest : public testing::Test {
         // Plot
         make_comparison_plots(propHistory, propLabel, checkcaseHistory, checkcaseLabel, base);
 
-        return { rStats, vStats };
+        return { rStats, vStats, aStats, omegaStats };
     }
 
     void make_summary_for_all_checkcases(
@@ -434,23 +478,37 @@ class Orbital6DofTest : public testing::Test {
         const std::vector<std::pair<StateHistory, std::string>>& checkcaseHistories,
         const std::string& checkcaseName,
         const std::vector<std::vector<RStats>>& allRStats,
-        const std::vector<std::vector<VStats>>& allVStats
+        const std::vector<std::vector<VStats>>& allVStats,
+        const std::vector<std::vector<std::optional<AStats>>>& allAStats,
+        const std::vector<std::vector<std::optional<OmegaStats>>>& allOmegaStats
     ) const
     {
         std::filesystem::path base = outputDir / checkcaseName;
         std::filesystem::create_directories(base);
 
+        const bool hasAttitude =
+            !allAStats.empty() &&
+            std::any_of(allAStats.front().begin(), allAStats.front().end(), [](const auto& a) { return a.has_value(); });
+
         std::ofstream summaryFile;
         summaryFile.open(base / "summary.csv");
         summaryFile
             << "Checkcase, Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min "
-               "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min Velocity Error"
-            << std::endl;
+               "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min Velocity Error";
+        if (hasAttitude) {
+            summaryFile << ", Mean Orientation Error (rad), Std Dev Orientation Error (rad), Max Orientation Error "
+                           "(rad), Min Orientation Error (rad)"
+                           ", Mean Angular Rate Error (rad/s), Std Dev Angular Rate Error (rad/s), Max Angular Rate "
+                           "Error (rad/s), Min Angular Rate Error (rad/s)";
+        }
+        summaryFile << std::endl;
         for (std::size_t i = 0; i < checkcaseHistories.size(); ++i) {
             const auto& checkcaseLabel = checkcaseHistories[i].second;
             for (std::size_t j = 0; j < propHistories.size(); ++j) {
-                summaryFile << checkcaseLabel << ", "
-                            << make_row_string(propHistories[j].second, allRStats[i][j], allVStats[i][j]) << std::endl;
+                summaryFile
+                    << checkcaseLabel << ", "
+                    << make_row_string(propHistories[j].second, allRStats[i][j], allVStats[i][j], allAStats[i][j], allOmegaStats[i][j])
+                    << std::endl;
             }
         }
         summaryFile.close();
@@ -459,6 +517,8 @@ class Orbital6DofTest : public testing::Test {
     void make_summary_for_all_propagations(
         const std::vector<RStats>& rStatsList,
         const std::vector<VStats>& vStatsList,
+        const std::vector<std::optional<AStats>>& aStatsList,
+        const std::vector<std::optional<OmegaStats>>& omegaStatsList,
         const std::vector<std::pair<StateHistory, std::string>>& propHistories,
         const std::string& checkcaseLabel,
         const std::filesystem::path& base
@@ -466,21 +526,38 @@ class Orbital6DofTest : public testing::Test {
     {
         std::filesystem::create_directories(base);
 
+        const bool hasAttitude =
+            std::any_of(aStatsList.begin(), aStatsList.end(), [](const auto& a) { return a.has_value(); });
+
         std::ofstream summaryFile;
         summaryFile.open(base / "summary.csv");
 
         summaryFile
             << "Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min "
-               "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min Velocity Error"
-            << std::endl;
+               "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min Velocity Error";
+        if (hasAttitude) {
+            summaryFile << ", Mean Orientation Error (rad), Std Dev Orientation Error (rad), Max Orientation Error "
+                           "(rad), Min Orientation Error (rad)"
+                           ", Mean Angular Rate Error (rad/s), Std Dev Angular Rate Error (rad/s), Max Angular Rate "
+                           "Error (rad/s), Min Angular Rate Error (rad/s)";
+        }
+        summaryFile << std::endl;
         for (std::size_t ii = 0; ii < propHistories.size(); ++ii) {
-            summaryFile << make_row_string(propHistories[ii].second, rStatsList[ii], vStatsList[ii]) << std::endl;
+            summaryFile
+                << make_row_string(propHistories[ii].second, rStatsList[ii], vStatsList[ii], aStatsList[ii], omegaStatsList[ii])
+                << std::endl;
         }
 
         summaryFile.close();
     }
 
-    std::string make_row_string(const std::string& propLabel, const RStats& rStats, const VStats& vStats) const
+    std::string make_row_string(
+        const std::string& propLabel,
+        const RStats& rStats,
+        const VStats& vStats,
+        const std::optional<AStats>& aStats         = std::nullopt,
+        const std::optional<OmegaStats>& omegaStats = std::nullopt
+    ) const
     {
         std::ostringstream oss;
         oss << propLabel << ", ";
@@ -488,6 +565,12 @@ class Orbital6DofTest : public testing::Test {
             << rStats.min().in(m) << ", ";
         oss << vStats.mean().in(cm / s) << ", " << vStats.stddev().in(cm / s) << ", " << vStats.max().in(cm / s) << ", "
             << vStats.min().in(cm / s);
+        if (aStats.has_value()) {
+            oss << ", " << aStats->mean().in(rad) << ", " << aStats->stddev().in(rad) << ", " << aStats->max().in(rad)
+                << ", " << aStats->min().in(rad);
+            oss << ", " << omegaStats->mean().in(rad / s) << ", " << omegaStats->stddev().in(rad / s) << ", "
+                << omegaStats->max().in(rad / s) << ", " << omegaStats->min().in(rad / s);
+        }
         return oss.str();
     }
 
@@ -504,11 +587,13 @@ class Orbital6DofTest : public testing::Test {
 
         plotting::plot_difference_orbital_elements(checkcaseHistory, { propHistory }, { propLabel }, base / "orbital_elements_difference.png");
         plotting::plot_difference_trajectories(checkcaseHistory, { propHistory }, { propLabel }, base / "trajectory_difference.png");
+        plotting::plot_difference_attitude(checkcaseHistory, { propHistory }, { propLabel }, base / "attitude_difference.png");
 
         std::vector<StateHistory> histories = { checkcaseHistory, propHistory };
         std::vector<std::string> labels     = { checkcaseLabel, propLabel };
         plotting::compare_orbital_elements(histories, labels, base / "orbital_elements_comparison.png");
         plotting::compare_trajectories(histories, labels, base / "trajectory_comparison.png");
+        plotting::compare_attitudes(histories, labels, base / "attitude_comparison.png");
 
         std::cout.clear();
         std::cerr.clear();
@@ -557,13 +642,16 @@ class Orbital6DofTest : public testing::Test {
 
         plotting::compare_orbital_elements(histories, labels, base / "orbital_elements_comparison.png");
         plotting::compare_trajectories(histories, labels, base / "trajectory_comparison.png");
+        plotting::compare_attitudes(histories, labels, base / "attitude_comparison.png");
 
         std::cout.clear();
         std::cerr.clear();
     }
 
-    const Distance _MAX_R_ERROR = 10.0 * m;
-    const Velocity _MAX_V_ERROR = 1.0 * cm / s;
+    const Distance _MAX_R_ERROR            = 10.0 * m;
+    const Velocity _MAX_V_ERROR            = 1.0 * cm / s;
+    const Angle _MAX_A_ERROR               = 1.0e-3 * rad;
+    const AngularVelocity _MAX_OMEGA_ERROR = 1.0e-4 * (rad / s);
 
     std::filesystem::path outputDir;
 

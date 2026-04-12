@@ -275,10 +275,10 @@ class Quaternion {
 
         const Unitless eps = (i - j) * (j - k) * (k - i) / 2 * one;
 
-        const Unitless a = isProper ? _s : _s - _u[j];
-        const Unitless b = isProper ? _u[i] : _u[i] + _u[k] * eps;
-        const Unitless c = isProper ? _u[j] : _u[j] + _s;
-        const Unitless d = isProper ? _u[k] * eps : _u[k] * eps - _u[i];
+        const Unitless a = isProper ? _s : _s - _u[j - 1];
+        const Unitless b = isProper ? _u[i - 1] : _u[i - 1] + _u[k - 1] * eps;
+        const Unitless c = isProper ? _u[j - 1] : _u[j - 1] + _s;
+        const Unitless d = isProper ? _u[k - 1] * eps : _u[k - 1] * eps - _u[i - 1];
 
         const Unitless aPlusBSquared = a * a + b * b;
         const Unitless cPlusDSquared = c * c + d * d;

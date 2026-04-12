@@ -101,14 +101,14 @@ class AngularVelocities {
      *
      * @return CartesianVector<AngularVelocity, In_Frame_T>& Reference to the internal CartesianVector.
      */
-    CartesianVector<AngularVelocity, In_Frame_T>& get_angularVelocities() { return _angularVelocities; }
+    CartesianVector<AngularVelocity, In_Frame_T>& get_angular_velocities() { return _angularVelocities; }
 
     /**
      * @brief Get const access to the underlying CartesianVector.
      *
      * @return const CartesianVector<AngularVelocity, In_Frame_T>& Const reference to the internal CartesianVector.
      */
-    const CartesianVector<AngularVelocity, In_Frame_T>& get_angularVelocities() const { return _angularVelocities; }
+    const CartesianVector<AngularVelocity, In_Frame_T>& get_angular_velocities() const { return _angularVelocities; }
 
     // Explicitly deleted copy/move assignment/constructor to prevent implicit frame switches, rotation type conversions, and sequence conversions.
     template <typename In_Frame_U, typename Ref_Frame_U>
