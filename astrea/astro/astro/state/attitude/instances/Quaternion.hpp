@@ -730,3 +730,6 @@ std::ostream& operator<<(std::ostream& os, const QuaternionPartial<In_Frame_T, O
 
 } // namespace astro
 } // namespace astrea
+
+// C++ circular-include bullshit. Can we please just use modules?
+#include <astro/state/attitude/instances/EulerAngles.ipp>

@@ -75,6 +75,11 @@ class AngularVelocities {
     {
     }
 
+    explicit AngularVelocities(const AngularVelocities& other)   = default;
+    explicit AngularVelocities(AngularVelocities&& other)        = default;
+    AngularVelocities& operator=(const AngularVelocities& other) = default;
+    AngularVelocities& operator=(AngularVelocities&& other)      = default;
+
     /**
      * @brief Array access operator for accessing individual angular velocity components.
      *

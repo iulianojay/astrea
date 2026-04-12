@@ -276,22 +276,28 @@ class Orbital6DofTest : public testing::Test {
         const RadiusVector<frames::earth::icrf> position(row.eiPosition_m_X * m, row.eiPosition_m_Y * m, row.eiPosition_m_Z * m);
         const VelocityVector<frames::earth::icrf> velocity(row.eiVelocity_m_s_X * m / s, row.eiVelocity_m_s_Y * m / s, row.eiVelocity_m_s_Z * m / s);
 
+        EulerAngles<RotationSequence::XYZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf> attitudeAngles;
         if (row.eulerAngleWrtEi_rad_Roll.has_value()) {
-            const EulerAngles<RotationSequence::XYZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf> attitudeAngles(
-                row.eulerAngleWrtEi_rad_Roll.value() * rad,
-                row.eulerAngleWrtEi_rad_Pitch.value() * rad,
-                row.eulerAngleWrtEi_rad_Yaw.value() * rad
-            );
-            const AngularVelocities<frames::dynamic::body, frames::earth::icrf> angularVelocity(
-                row.bodyAngularVelocityWrtEi_rad_s_Roll.value() * rad / s,
-                row.bodyAngularVelocityWrtEi_rad_s_Pitch.value() * rad / s,
-                row.bodyAngularVelocityWrtEi_rad_s_Yaw.value() * rad / s
-            );
-            return State({ Cartesian(position, velocity) }, epoch + time, sys, Attitude(attitudeAngles, angularVelocity));
+            attitudeAngles =
+                EulerAngles<RotationSequence::XYZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>(
+                    row.eulerAngleWrtEi_rad_Roll.value() * rad,
+                    row.eulerAngleWrtEi_rad_Pitch.value() * rad,
+                    row.eulerAngleWrtEi_rad_Yaw.value() * rad
+                );
         }
         else {
             return State({ Cartesian(position, velocity) }, epoch + time, sys);
         }
+
+        AngularVelocities<frames::dynamic::body, frames::earth::icrf> angularVelocity(0.0 * rad / s, 0.0 * rad / s, 0.0 * rad / s);
+        if (row.bodyAngularVelocityWrtEi_rad_s_Roll.has_value()) {
+            angularVelocity = AngularVelocities<frames::dynamic::body, frames::earth::icrf>(
+                row.bodyAngularVelocityWrtEi_rad_s_Roll.value() * rad / s,
+                row.bodyAngularVelocityWrtEi_rad_s_Pitch.value() * rad / s,
+                row.bodyAngularVelocityWrtEi_rad_s_Yaw.value() * rad / s
+            );
+        }
+        return State({ Cartesian(position, velocity) }, epoch + time, sys, Attitude(attitudeAngles, angularVelocity));
     }
 
     std::vector<std::pair<StateHistory, std::string>> get_checkcase_histories(const std::string& pattern) const
@@ -376,7 +382,8 @@ class Orbital6DofTest : public testing::Test {
 
         RStats rStats;
         VStats vStats;
-        for (const auto& [date, checkcaseState] : checkcaseHistory) {
+        for (const auto& checkcaseState : checkcaseHistory) {
+            const Date date          = checkcaseState.get_epoch();
             const State propState    = propHistory.get_state_at(date);
             const Cartesian propCart = propState.in_element_set<Cartesian>();
             const auto propPos       = propCart.get_position();

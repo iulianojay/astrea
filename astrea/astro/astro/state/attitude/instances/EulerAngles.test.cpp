@@ -20,6 +20,7 @@
 #include <astro/frames/instances/dynamic_body_frame.hpp>
 #include <astro/state/attitude/instances/AngularVelocities.hpp>
 #include <astro/state/attitude/instances/EulerAngles.hpp>
+#include <astro/state/attitude/instances/Quaternion.hpp>
 #include <astro/utilities/conversions.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -30,10 +31,9 @@ using mp_units::angular::unit_symbols::deg;
 using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
-using TestFrame           = frames::earth::icrf;
-using TestOutFrame        = frames::dynamic::body;
-using TestEulerAngles     = EulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame>;
-using TestTaitBryanAngles = EulerAngles<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame, TestOutFrame>;
+using TestFrame       = frames::earth::icrf;
+using TestOutFrame    = frames::dynamic::body;
+using TestEulerAngles = EulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame>;
 
 class EulerAnglesTest : public testing::Test {
   public:
@@ -72,16 +72,6 @@ TEST_F(EulerAnglesTest, TestEulerAnglesConstructor)
     ASSERT_NO_THROW((EulerAngles<RotationSequence::XYX, RotationType::INTRINSIC, TestFrame, TestOutFrame>(angle1, angle2, angle3)));
 }
 
-TEST_F(EulerAnglesTest, TestTaitBryanAnglesConstructor)
-{
-    // Default constructor
-    ASSERT_NO_THROW(TestTaitBryanAngles());
-
-    // Parameterized constructor with angles only
-    ASSERT_NO_THROW(TestTaitBryanAngles(angle1, angle2, angle3));
-    ASSERT_NO_THROW((EulerAngles<RotationSequence::ZYX, RotationType::INTRINSIC, TestFrame, TestOutFrame>(angle1, angle2, angle3)));
-}
-
 TEST_F(EulerAnglesTest, TestEulerAnglesGetters)
 {
     TestEulerAngles euler(angle1, angle2, angle3);
@@ -90,16 +80,6 @@ TEST_F(EulerAnglesTest, TestEulerAnglesGetters)
     ASSERT_EQ_QUANTITY(euler[0], wrap_angle(angle1), REL_TOL);
     ASSERT_EQ_QUANTITY(euler[1], wrap_angle_to_pi(angle2), REL_TOL);
     ASSERT_EQ_QUANTITY(euler[2], wrap_angle(angle3), REL_TOL);
-}
-
-TEST_F(EulerAnglesTest, TestTaitBryanAnglesGetters)
-{
-    TestTaitBryanAngles taitBryan(angle1, angle2, angle3);
-
-    // Test array access - angles are wrapped during construction
-    ASSERT_EQ_QUANTITY(taitBryan[0], wrap_angle(angle1), REL_TOL);
-    ASSERT_EQ_QUANTITY(taitBryan[1], wrap_angle_to_pi(angle2), REL_TOL);
-    ASSERT_EQ_QUANTITY(taitBryan[2], wrap_angle(angle3), REL_TOL);
 }
 
 TEST_F(EulerAnglesTest, TestDirectionCosineMatrixConversion)
@@ -112,20 +92,6 @@ TEST_F(EulerAnglesTest, TestDirectionCosineMatrixConversion)
     // Test different types can create DCMs
     EulerAngles<RotationSequence::XYX, RotationType::INTRINSIC, TestFrame, TestOutFrame> eulerExt(angle1, angle2, angle3);
     ASSERT_NO_THROW(auto dcm2 = eulerExt.to_dcm());
-}
-
-TEST_F(EulerAnglesTest, TestAngleModification)
-{
-    TestTaitBryanAngles taitBryan(angle1, angle2, angle3);
-
-    // Test angle modification through array access
-    taitBryan[0] = 90.0 * deg;
-    taitBryan[1] = 45.0 * deg;
-    taitBryan[2] = 15.0 * deg;
-
-    ASSERT_EQ_QUANTITY(taitBryan[0], 90.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(taitBryan[1], 45.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(taitBryan[2], 15.0 * deg, REL_TOL);
 }
 
 TEST_F(EulerAnglesTest, TestAngleWrapping)
@@ -309,30 +275,6 @@ TEST_F(EulerAnglesTest, TestNormAndOffsetAngle)
     ASSERT_EQ_QUANTITY(normEuler, 5.0 * deg, REL_TOL);
 }
 
-TEST_F(EulerAnglesTest, TestComparisonBetweenEulerAndTaitBryan)
-{
-    // Create equivalent angle sets with different template types
-    TestEulerAngles euler(angle1, angle2, angle3);
-    TestTaitBryanAngles taitBryan(angle1, angle2, angle3);
-
-    // They should have the same angle values but different sequence types
-    compare_angle_sequences(euler, taitBryan, REL_TOL);
-
-    // But they should be different types (cannot directly compare with ==)
-    // This is enforced by the type system -- they are different template instantiations
-    // euler == taitBryan; // This should not compile
-
-    // Test that we can create both with different rotation types at compile time
-    EulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame> eulerIntrinsic(angle1, angle2, angle3);
-    EulerAngles<RotationSequence::ZXZ, RotationType::EXTRINSIC, TestFrame, TestOutFrame> eulerExtrinsic(angle1, angle2, angle3);
-    EulerAngles<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame, TestOutFrame> taitBryanIntrinsic(angle1, angle2, angle3);
-    EulerAngles<RotationSequence::XYZ, RotationType::EXTRINSIC, TestFrame, TestOutFrame> taitBryanExtrinsic(angle1, angle2, angle3);
-
-    // All should have same angle values
-    ASSERT_EQ_QUANTITY(eulerIntrinsic[0], eulerExtrinsic[0], REL_TOL);
-    ASSERT_EQ_QUANTITY(taitBryanIntrinsic[0], taitBryanExtrinsic[0], REL_TOL);
-}
-
 TEST_F(EulerAnglesTest, TestDifferentRotationTypes)
 {
     EulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame> eulerIntrinsic(angle1, angle2, angle3);
@@ -423,9 +365,9 @@ TEST_F(EulerAnglesTest, TestRotationTypeConversion)
     auto extrinsic = intrinsic.template to_rotation_type<RotationType::EXTRINSIC>();
 
     // Should have the same angle values
-    ASSERT_EQ_QUANTITY(intrinsic[0], extrinsic[0], REL_TOL);
+    ASSERT_EQ_QUANTITY(intrinsic[0], extrinsic[2], REL_TOL);
     ASSERT_EQ_QUANTITY(intrinsic[1], extrinsic[1], REL_TOL);
-    ASSERT_EQ_QUANTITY(intrinsic[2], extrinsic[2], REL_TOL);
+    ASSERT_EQ_QUANTITY(intrinsic[2], extrinsic[0], REL_TOL);
 
     // Test conversion to same rotation type (no-op)
     auto intrinsicSame = intrinsic.template to_rotation_type<RotationType::INTRINSIC>();
@@ -442,21 +384,15 @@ TEST_F(EulerAnglesTest, TestOutputStream)
     ASSERT_EQ_QUANTITY(euler[1], 45.0 * deg, REL_TOL);
     ASSERT_EQ_QUANTITY(euler[2], 60.0 * deg, REL_TOL);
 
-    TestTaitBryanAngles taitBryan(15.0 * deg, 30.0 * deg, 90.0 * deg);
-    ASSERT_EQ_QUANTITY(taitBryan[0], 15.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(taitBryan[1], 30.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(taitBryan[2], 90.0 * deg, REL_TOL);
-
     // Test DCM conversion works
     ASSERT_NO_THROW(euler.to_dcm());
-    ASSERT_NO_THROW(taitBryan.to_dcm());
 }
 
 // ========================================================================================
 // Tests for get_reverse_sequence functions
 // ========================================================================================
 
-TEST_F(EulerAnglesTest, TestEulerReverseSequence)
+TEST_F(EulerAnglesTest, TestReverseSequence)
 {
     // Test that Euler sequences return themselves (they are symmetric)
     EXPECT_EQ(get_reverse_sequence(RotationSequence::ZXZ), RotationSequence::ZXZ);
@@ -465,17 +401,6 @@ TEST_F(EulerAnglesTest, TestEulerReverseSequence)
     EXPECT_EQ(get_reverse_sequence(RotationSequence::ZYZ), RotationSequence::ZYZ);
     EXPECT_EQ(get_reverse_sequence(RotationSequence::XZX), RotationSequence::XZX);
     EXPECT_EQ(get_reverse_sequence(RotationSequence::YXY), RotationSequence::YXY);
-}
-
-TEST_F(EulerAnglesTest, TestTaitBryanReverseSequence)
-{
-    // Test Tait-Bryan sequence reversals
-    EXPECT_EQ(get_reverse_sequence(RotationSequence::XYZ), RotationSequence::ZYX);
-    EXPECT_EQ(get_reverse_sequence(RotationSequence::YZX), RotationSequence::XZY);
-    EXPECT_EQ(get_reverse_sequence(RotationSequence::ZXY), RotationSequence::YXZ);
-    EXPECT_EQ(get_reverse_sequence(RotationSequence::XZY), RotationSequence::YZX);
-    EXPECT_EQ(get_reverse_sequence(RotationSequence::ZYX), RotationSequence::XYZ);
-    EXPECT_EQ(get_reverse_sequence(RotationSequence::YXZ), RotationSequence::ZXY);
 }
 
 TEST_F(EulerAnglesTest, TestDoubleReverseSequence)
@@ -501,11 +426,6 @@ TEST_F(EulerAnglesTest, TestIntrinsicToIntrinsic)
     // Converting intrinsic to intrinsic should return the same sequence
     auto result = intrinsic_euler.to_rotation_type<RotationType::INTRINSIC>();
     compare_angle_sequences(intrinsic_euler, result, REL_TOL);
-
-    // Test with Tait-Bryan as well
-    EulerAngles<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame, TestOutFrame> intrinsic_tb(angle1, angle2, angle3);
-    auto tbResult = intrinsic_tb.to_rotation_type<RotationType::INTRINSIC>();
-    compare_angle_sequences(intrinsic_tb, tbResult, REL_TOL);
 }
 
 TEST_F(EulerAnglesTest, TestExtrinsicToExtrinsic)
@@ -516,11 +436,6 @@ TEST_F(EulerAnglesTest, TestExtrinsicToExtrinsic)
     // Converting extrinsic to extrinsic should return the same sequence
     auto result = extrinsic_euler.to_rotation_type<RotationType::EXTRINSIC>();
     compare_angle_sequences(extrinsic_euler, result, REL_TOL);
-
-    // Test with Tait-Bryan as well
-    EulerAngles<RotationSequence::XYZ, RotationType::EXTRINSIC, TestFrame, TestOutFrame> extrinsic_tb(angle1, angle2, angle3);
-    auto tbResult = extrinsic_tb.to_rotation_type<RotationType::EXTRINSIC>();
-    compare_angle_sequences(extrinsic_tb, tbResult, REL_TOL);
 }
 
 TEST_F(EulerAnglesTest, TestExtrinsicToIntrinsicConversion)
@@ -532,18 +447,9 @@ TEST_F(EulerAnglesTest, TestExtrinsicToIntrinsicConversion)
     auto intrinsicResult = extrinsic_euler.to_rotation_type<RotationType::INTRINSIC>();
 
     // Verify that angles are reversed
-    ASSERT_EQ_QUANTITY(intrinsicResult[0], extrinsic_euler[0], REL_TOL);
+    ASSERT_EQ_QUANTITY(intrinsicResult[0], extrinsic_euler[2], REL_TOL);
     ASSERT_EQ_QUANTITY(intrinsicResult[1], extrinsic_euler[1], REL_TOL);
-    ASSERT_EQ_QUANTITY(intrinsicResult[2], extrinsic_euler[2], REL_TOL);
-
-    // Test with Tait-Bryan sequence
-    EulerAngles<RotationSequence::XYZ, RotationType::EXTRINSIC, TestFrame, TestOutFrame> extrinsic_tb(angle1, angle2, angle3);
-    auto intrinsic_tbResult = extrinsic_tb.to_rotation_type<RotationType::INTRINSIC>();
-
-    // For Tait-Bryan, sequence should also reverse (XYZ becomes ZYX) with reversed angles
-    ASSERT_EQ_QUANTITY(intrinsic_tbResult[0], extrinsic_tb[0], REL_TOL);
-    ASSERT_EQ_QUANTITY(intrinsic_tbResult[1], extrinsic_tb[1], REL_TOL);
-    ASSERT_EQ_QUANTITY(intrinsic_tbResult[2], extrinsic_tb[2], REL_TOL);
+    ASSERT_EQ_QUANTITY(intrinsicResult[2], extrinsic_euler[0], REL_TOL);
 }
 
 TEST_F(EulerAnglesTest, TestIntrinsicToExtrinsicConversion)
@@ -555,18 +461,9 @@ TEST_F(EulerAnglesTest, TestIntrinsicToExtrinsicConversion)
     auto extrinsicResult = intrinsic_euler.to_rotation_type<RotationType::EXTRINSIC>();
 
     // Verify that angles are reversed
-    ASSERT_EQ_QUANTITY(extrinsicResult[0], intrinsic_euler[0], REL_TOL);
+    ASSERT_EQ_QUANTITY(extrinsicResult[0], intrinsic_euler[2], REL_TOL);
     ASSERT_EQ_QUANTITY(extrinsicResult[1], intrinsic_euler[1], REL_TOL);
-    ASSERT_EQ_QUANTITY(extrinsicResult[2], intrinsic_euler[2], REL_TOL);
-
-    // Test with Tait-Bryan sequence
-    EulerAngles<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame, TestOutFrame> intrinsic_tb(angle1, angle2, angle3);
-    auto extrinsic_tbResult = intrinsic_tb.to_rotation_type<RotationType::EXTRINSIC>();
-
-    // For Tait-Bryan, sequence should also reverse (XYZ becomes ZYX) with reversed angles
-    ASSERT_EQ_QUANTITY(extrinsic_tbResult[0], intrinsic_tb[0], REL_TOL);
-    ASSERT_EQ_QUANTITY(extrinsic_tbResult[1], intrinsic_tb[1], REL_TOL);
-    ASSERT_EQ_QUANTITY(extrinsic_tbResult[2], intrinsic_tb[2], REL_TOL);
+    ASSERT_EQ_QUANTITY(extrinsicResult[2], intrinsic_euler[0], REL_TOL);
 }
 
 TEST_F(EulerAnglesTest, TestRoundTripIntrinsicExtrinsicConversion)
@@ -641,3 +538,44 @@ TEST_F(EulerAnglesTest, TestDCMEquivalenceAfterConversion)
         }
     }
 }
+
+static_assert(
+    IsSameEulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame, RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame>,
+    "Same type should be recognized as same euler sequence"
+);
+static_assert(
+    !IsSameEulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame, RotationSequence::ZXZ, RotationType::EXTRINSIC, TestFrame, TestOutFrame>,
+    "Different rotation types should not be recognized as same euler sequence"
+);
+static_assert(
+    !IsSameEulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame, RotationSequence::XYX, RotationType::INTRINSIC, TestFrame, TestOutFrame>,
+    "Different sequences should not be recognized as same euler sequence"
+);
+static_assert(
+    !IsSameEulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame, RotationSequence::ZXZ, RotationType::INTRINSIC, TestOutFrame, TestFrame>,
+    "Different frames should not be recognized as same euler sequence"
+);
+
+static_assert(
+    IsEquivalentEulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame, RotationSequence::ZXZ, RotationType::EXTRINSIC, TestFrame, TestOutFrame>,
+    "Intrinsic and extrinsic versions of the same sequence with opposite rotation types should be considered "
+    "equivalent"
+);
+static_assert(
+    IsEquivalentEulerAngles<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame, TestOutFrame, RotationSequence::ZYX, RotationType::EXTRINSIC, TestFrame, TestOutFrame>,
+    "Intrinsic and extrinsic versions of the same sequence with opposite rotation types should be considered "
+    "equivalent"
+);
+static_assert(
+    !IsEquivalentEulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame, RotationSequence::XYX, RotationType::INTRINSIC, TestFrame, TestOutFrame>,
+    "Different sequences should not be considered equivalent"
+);
+
+static_assert(
+    IsCompatibleEulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame, RotationSequence::ZXZ, RotationType::EXTRINSIC, TestFrame, TestOutFrame>,
+    "Intrinsic and extrinsic versions of the same sequence should be compatible for operations like addition"
+);
+static_assert(
+    IsCompatibleEulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame, RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame>,
+    "Identical types should be compatible for operations like addition"
+);

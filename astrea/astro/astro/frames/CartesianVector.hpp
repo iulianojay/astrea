@@ -75,6 +75,11 @@ class CartesianVector {
     }
 
     /**
+     * @brief Return the reverse of the vector, which switches the x and z components. This is useful for converting between different rotation sequences.
+     */
+    CartesianVector reverse() const { return { _vector[2], _vector[1], _vector[0] }; }
+
+    /**
      * @brief Virtual destructor for CartesianVector.
      */
     virtual ~CartesianVector() = default;

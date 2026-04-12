@@ -162,31 +162,32 @@ class EulerAngles {
     /**
      * Default copy and move constructors and assignment operators for the same sequence, rotation type, and frames.
      */
-    EulerAngles(const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other)            = default;
-    EulerAngles(EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>&& other)                 = default;
-    EulerAngles& operator=(const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& other) = default;
-    EulerAngles& operator=(EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>&& other)      = default;
+    explicit EulerAngles(const EulerAngles& other)   = default;
+    explicit EulerAngles(EulerAngles&& other)        = default;
+    EulerAngles& operator=(const EulerAngles& other) = default;
+    EulerAngles& operator=(EulerAngles&& other)      = default;
 
     /**
-     * Copy and move constructors and assignment operators for equivalent sequences (reverse sequence and opposite rotation type).
-     * These allow for implicit conversions between equivalent sequences (e.g., ZXZ extrinsic with angles [x, y, z] to ZXZ intrinsic with angles [z, y, x]).
+     * Copy and move constructors and assignment operators for equivalent sequences (reverse sequence and opposite
+     * rotation type). These allow for implicit conversions between equivalent sequences (e.g., ZXZ extrinsic with
+     * angles [x, y, z] to ZXZ intrinsic with angles [z, y, x]).
      */
     template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
-        requires IsEquivalentEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>
+        requires(IsEquivalentEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
     EulerAngles(const EulerAngles<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other) :
         _angles(other._angles.reverse())
     {
     }
 
     template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
-        requires IsEquivalentEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>
+        requires(IsEquivalentEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
     EulerAngles(EulerAngles<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>&& other) :
         _angles(other._angles.reverse())
     {
     }
 
     template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
-        requires IsEquivalentEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>
+        requires(IsEquivalentEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
     EulerAngles& operator=(const EulerAngles<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>& other)
     {
         _angles = other._angles.reverse();
@@ -194,7 +195,7 @@ class EulerAngles {
     }
 
     template <RotationSequence sequence_u, RotationType rotation_type_u, typename In_Frame_U, typename Out_Frame_U>
-        requires IsEquivalentEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>
+        requires(IsEquivalentEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>)
     EulerAngles& operator=(EulerAngles<sequence_u, rotation_type_u, In_Frame_U, Out_Frame_U>&& other)
     {
         _angles = other._angles.reverse();
@@ -210,17 +211,14 @@ class EulerAngles {
      */
     template <RotationSequence sequence_u, RotationType rotation_type_u>
         requires(!IsCompatibleEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_T, Out_Frame_T>)
-    EulerAngles(const EulerAngles<sequence_u, rotation_type_u, In_Frame_T, Out_Frame_T>& other)
-    {
-        *this = Quaternion<In_Frame_T, Out_Frame_T>(other).template to_euler_angles<sequence, rotation_type, In_Frame_T, Out_Frame_T>();
-    }
+    EulerAngles(const EulerAngles<sequence_u, rotation_type_u, In_Frame_T, Out_Frame_T>& other);
 
     /**
      * @brief Constructs the inverse sequence with the same rotation type.
      *
      * @return EulerAngles<get_reverse_sequence(sequence), rotation_type, Out_Frame_T, In_Frame_T> A new EulerAngles
-     *object that is the inverse sequence with the same rotation type and reversed angles. object that is the inverse
-     *sequence with the same rotation type and reversed angles.
+     * object that is the inverse sequence with the same rotation type and reversed angles. object that is the
+     * inverse sequence with the same rotation type and reversed angles.
      **/
     EulerAngles<get_reverse_sequence(sequence), rotation_type, Out_Frame_T, In_Frame_T> get_inverse_sequence() const
     {
@@ -282,7 +280,7 @@ class EulerAngles {
         requires(rotation_type != rotation_u)
     EulerAngles<get_reverse_sequence(sequence), rotation_u, In_Frame_T, Out_Frame_T> to_rotation_type() const
     {
-        return { _angles };
+        return { _angles.reverse() };
     }
 
     /**
@@ -291,9 +289,9 @@ class EulerAngles {
      */
     template <RotationType rotation_u>
         requires(rotation_type == rotation_u)
-    auto to_rotation_type() const
+    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> to_rotation_type() const
     {
-        return *this;
+        return { _angles };
     }
 
     // Explicitly deleted copy/move assignment/constructor to prevent implicit frame switches, rotation type conversions, and sequence conversions.
@@ -600,22 +598,34 @@ class EulerAngles {
             return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YXY(first, second, third);
         }
         else if constexpr (sequence == RotationSequence::XYZ) {
-            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XYZ(first, second, third);
+            return rotation_type == RotationType::EXTRINSIC ?
+                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XYZ(first, second, third) :
+                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZYX(first, second, third);
         }
         else if constexpr (sequence == RotationSequence::YZX) {
-            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YZX(first, second, third);
+            return rotation_type == RotationType::EXTRINSIC ?
+                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YZX(first, second, third) :
+                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XZY(first, second, third);
         }
         else if constexpr (sequence == RotationSequence::ZXY) {
-            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZXY(first, second, third);
+            return rotation_type == RotationType::EXTRINSIC ?
+                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZXY(first, second, third) :
+                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YXZ(first, second, third);
         }
         else if constexpr (sequence == RotationSequence::XZY) {
-            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XZY(first, second, third);
+            return rotation_type == RotationType::EXTRINSIC ?
+                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XZY(first, second, third) :
+                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YZX(first, second, third);
         }
         else if constexpr (sequence == RotationSequence::ZYX) {
-            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZYX(first, second, third);
+            return rotation_type == RotationType::EXTRINSIC ?
+                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZYX(first, second, third) :
+                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XYZ(first, second, third);
         }
         else if constexpr (sequence == RotationSequence::YXZ) {
-            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YXZ(first, second, third);
+            return rotation_type == RotationType::EXTRINSIC ?
+                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YXZ(first, second, third) :
+                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZXY(first, second, third);
         }
     }
 
