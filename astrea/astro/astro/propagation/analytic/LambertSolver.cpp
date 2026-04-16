@@ -115,13 +115,15 @@ std::pair<VelocityVector<frames::earth::icrf>, VelocityVector<frames::earth::icr
     const Distance Rf   = rf.norm();
     const quantity sqMU = sqrt(mu);
 
+    static constexpr Angle twoPi = 2.0 * std::numbers::pi * rad;
+
     // Change in TA
     Angle dtheta = acos((r0.dot(rf) / (R0 * Rf)));
     if (r0[0] * rf[1] - r0[1] * rf[0] >= 0.0 * pow<2>(astrea::detail::distance_unit)) {
-        if (direction == OrbitDirection::RETROGRADE) { dtheta = 2.0 * std::numbers::pi * rad - dtheta; }
+        if (direction == OrbitDirection::RETROGRADE) { dtheta = twoPi - dtheta; }
     }
     else {
-        if (direction == OrbitDirection::PROGRADE) { dtheta = 2.0 * std::numbers::pi * rad - dtheta; }
+        if (direction == OrbitDirection::PROGRADE) { dtheta = twoPi - dtheta; }
     }
 
     const Distance A = sin(dtheta) * sqrt(R0 * Rf / (1.0 * one - cos(dtheta)));
@@ -169,6 +171,78 @@ std::pair<VelocityVector<frames::earth::icrf>, VelocityVector<frames::earth::icr
             throw std::runtime_error("LambertSolver: Maximum iterations reached");
         }
     }
+}
+
+// Optimal (unconstrained time) Lambert solver
+LambertSolver::Solution LambertSolver::solve(
+    const RadiusVector<frames::earth::icrf>& r0,
+    const RadiusVector<frames::earth::icrf>& rf,
+    const GravParam& mu,
+    const LambertSolver::OrbitDirection& direction,
+    const LambertSolver::SolutionType& solutionType
+)
+{
+    const Distance R0   = r0.norm();
+    const Distance Rf   = rf.norm();
+    const quantity sqMU = sqrt(mu);
+
+    static constexpr Angle onePi = std::numbers::pi * rad;
+    static constexpr Angle twoPi = 2.0 * std::numbers::pi * rad;
+
+    // Change in TA (same convention as the r & r solver)
+    Angle dtheta = acos((r0.dot(rf) / (R0 * Rf)));
+    if (r0[0] * rf[1] - r0[1] * rf[0] >= 0.0 * pow<2>(astrea::detail::distance_unit)) {
+        if (direction == OrbitDirection::RETROGRADE) { dtheta = twoPi - dtheta; }
+    }
+    else {
+        if (direction == OrbitDirection::PROGRADE) { dtheta = twoPi - dtheta; }
+    }
+
+    const Distance A = sin(dtheta) * sqrt(R0 * Rf / (1.0 * one - cos(dtheta)));
+
+    if (solutionType == SolutionType::MINIMUM_TIME) {
+        // Parabolic trajectory (z = 0): C(0) = 1/2, S(0) = 1/6 — minimises time of flight
+        const Distance y = R0 + Rf - A * sqrt(2.0 * one);
+
+        if (y <= 0.0 * detail::distance_unit) {
+            throw std::runtime_error("LambertSolver: parabolic (minimum-time) trajectory is geometrically impossible "
+                                     "for these endpoints");
+        }
+
+        const Time tof      = (pow<3, 2>(y / (0.5 * one)) * (1.0 / 6.0 * one) + A * sqrt(y)) / sqMU;
+        const quantity f    = 1.0 * one - y / R0;
+        const quantity g    = A * sqrt(y) / sqMU;
+        const quantity gdot = 1.0 * one - y / Rf;
+        const quantity divG = 1.0 / g;
+
+        const VelocityVector<frames::earth::icrf> v0Result = divG * (rf - f * r0);
+        const VelocityVector<frames::earth::icrf> vfResult = divG * (gdot * rf - r0);
+
+        return { tof, v0Result, vfResult };
+    }
+
+    // MINIMUM_ENERGY: minimum semi-major axis (a = s/2) elliptic transfer
+    // Chord and semi-perimeter
+    const Distance c = (rf - r0).norm();
+    const Distance s = (R0 + Rf + c) * 0.5;
+
+    // β₀ = 2·arcsin(√((s−c)/s))
+    const Unitless scRatio = (s - c) / s;
+    const Angle beta0      = 2.0 * asin(sqrt(scRatio));
+
+    // Treat angle values as pure scalars (radians) for Lambert's theorem
+    const Unitless beta0U   = beta0 / (1.0 * rad);
+    const Unitless sinBeta0 = sin(beta0);
+
+    // t_me = √(s³/8μ) · (π ∓ β₀ ± sin(β₀))
+    const Time baseTime = sqrt(pow<3>(s) / (8.0 * mu));
+    const Time tof = (dtheta <= onePi) ? baseTime * (onePi / isq_angle::cotes_angle - beta0U + sinBeta0) : // short arc
+                                         baseTime * (onePi / isq_angle::cotes_angle + beta0U - sinBeta0);                  // long arc
+
+    // Delegate to the existing r & r solver using the computed minimum-energy time
+    const auto [v0Result, vfResult] = LambertSolver::solve(r0, rf, tof, mu, direction);
+
+    return { tof, v0Result, vfResult };
 }
 
 std::pair<Unitless, Unitless> LambertSolver::evaluate_stumpff(const Unitless& z)

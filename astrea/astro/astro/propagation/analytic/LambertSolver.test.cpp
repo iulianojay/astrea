@@ -66,3 +66,35 @@ TEST_F(LambertSolverTest, SolveRR)
     ASSERT_EQ_CART_VEC(res0, v0, REL_TOL);
     ASSERT_EQ_CART_VEC(resf, vf, REL_TOL);
 }
+
+TEST_F(LambertSolverTest, SolveOptimalMinimumEnergy)
+{
+    const auto sol =
+        LambertSolver::solve(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_ENERGY);
+
+    // Round-trip: feeding the returned tof back into the r&r solver must reproduce the same velocities
+    const auto [v0Check, vfCheck] = LambertSolver::solve(r0, rf, sol.tof, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
+    ASSERT_EQ_CART_VEC(v0Check, sol.v0, REL_TOL);
+    ASSERT_EQ_CART_VEC(vfCheck, sol.vf, REL_TOL);
+}
+
+TEST_F(LambertSolverTest, SolveOptimalMinimumTime)
+{
+    const auto sol =
+        LambertSolver::solve(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_TIME);
+
+    // Round-trip: feeding the returned tof back into the r&r solver must reproduce the same velocities
+    const auto [v0Check, vfCheck] = LambertSolver::solve(r0, rf, sol.tof, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
+    ASSERT_EQ_CART_VEC(v0Check, sol.v0, REL_TOL);
+    ASSERT_EQ_CART_VEC(vfCheck, sol.vf, REL_TOL);
+}
+
+TEST_F(LambertSolverTest, MinimumTimeHasShorterTOFThanMinimumEnergy)
+{
+    const auto minEnergy =
+        LambertSolver::solve(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_ENERGY);
+    const auto minTime =
+        LambertSolver::solve(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_TIME);
+
+    EXPECT_LT(minTime.tof.numerical_value_in(s), minEnergy.tof.numerical_value_in(s));
+}

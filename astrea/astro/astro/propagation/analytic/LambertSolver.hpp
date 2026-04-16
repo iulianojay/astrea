@@ -59,6 +59,23 @@ class LambertSolver {
     };
 
     /**
+     * @brief Enum class for the type of optimal Lambert solution.
+     */
+    enum class SolutionType : EnumType {
+        MINIMUM_ENERGY, //!< Minimum delta-v (minimum semi-major axis) transfer
+        MINIMUM_TIME    //!< Minimum time of flight (parabolic) transfer
+    };
+
+    /**
+     * @brief Result structure for optimal Lambert solutions.
+     */
+    struct Solution {
+        Time tof;                               //!< Time of flight for the transfer
+        VelocityVector<frames::earth::icrf> v0; //!< Initial velocity vector at r0
+        VelocityVector<frames::earth::icrf> vf; //!< Final velocity vector at rf
+    };
+
+    /**
      * @brief Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution.
      *
      * @param state0 The initial state (position and velocity) of the spacecraft.
@@ -86,6 +103,25 @@ class LambertSolver {
         const OrbitDirection& direction
     );
 
+    /**
+     * @brief Solve Lambert's problem for an optimal trajectory without a fixed time of flight.
+     *
+     * @param r0 The initial position of the spacecraft.
+     * @param rf The final position of the spacecraft.
+     * @param mu The gravitational parameter of the central body.
+     * @param direction The direction of the orbit (prograde or retrograde).
+     * @param solutionType MINIMUM_ENERGY returns the minimum delta-v (minimum semi-major axis) transfer;
+     *                     MINIMUM_TIME returns the minimum time of flight (parabolic) transfer.
+     * @return A Solution containing the time of flight and the initial/final velocity vectors.
+     */
+    static Solution solve(
+        const RadiusVector<frames::earth::icrf>& r0,
+        const RadiusVector<frames::earth::icrf>& rf,
+        const GravParam& mu,
+        const OrbitDirection& direction,
+        const SolutionType& solutionType
+    );
+
   private:
     static constexpr unsigned ITER_MAX = 1e4;                     //!< Maximum number of iterations for the solver.
     static constexpr Unitless TOL      = 1.0e-12 * mp_units::one; //!< Tolerance for convergence.
@@ -98,9 +134,6 @@ class LambertSolver {
      */
     static std::pair<Unitless, Unitless> evaluate_stumpff(const Unitless& z);
 };
-
-// TODO: Implement Battin algorithm
-// TODO: give min time and min energy options
 
 } // namespace astro
 } // namespace astrea
