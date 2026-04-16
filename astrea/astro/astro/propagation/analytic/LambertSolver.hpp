@@ -67,6 +67,17 @@ class LambertSolver {
     };
 
     /**
+     * @brief Enum class for the branch of a multi-revolution Lambert solution.
+     *
+     * For N > 0 revolutions two solutions exist on either side of the minimum-time orbit.
+     * LEFT (low-energy) has a longer time of flight; RIGHT (high-energy) has a shorter one.
+     */
+    enum class MultiRevBranch : EnumType {
+        LEFT, //!< Low-energy branch (longer TOF)
+        RIGHT //!< High-energy branch (shorter TOF)
+    };
+
+    /**
      * @brief Result structure for optimal Lambert solutions.
      */
     struct Solution {
@@ -120,6 +131,32 @@ class LambertSolver {
         const GravParam& mu,
         const OrbitDirection& direction,
         const SolutionType& solutionType
+    );
+
+    /**
+     * @brief Solve Lambert's problem for a multi-revolution transfer with a fixed time of flight.
+     *
+     * For N > 0 complete revolutions two solutions exist (LEFT and RIGHT branches); this overload
+     * returns the requested branch. The caller must supply a time of flight that exceeds the
+     * minimum possible multi-rev TOF (i.e. dt > T_min(N)), otherwise a std::runtime_error is thrown.
+     *
+     * @param r0        The initial position of the spacecraft.
+     * @param rf        The final position of the spacecraft.
+     * @param dt        The desired time of flight.
+     * @param mu        The gravitational parameter of the central body.
+     * @param direction The direction of the orbit (prograde or retrograde).
+     * @param N         The number of complete revolutions (must be ≥ 1).
+     * @param branch    Which of the two solutions to return (LEFT or RIGHT).
+     * @return A pair of velocity vectors (initial and final) for the spacecraft.
+     */
+    static std::pair<VelocityVector<frames::earth::icrf>, VelocityVector<frames::earth::icrf>> solve(
+        const RadiusVector<frames::earth::icrf>& r0,
+        const RadiusVector<frames::earth::icrf>& rf,
+        const Time& dt,
+        const GravParam& mu,
+        const OrbitDirection& direction,
+        unsigned N,
+        const MultiRevBranch& branch
     );
 
   private:

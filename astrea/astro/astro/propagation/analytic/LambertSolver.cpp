@@ -13,6 +13,7 @@
 
 #include <astro/propagation/analytic/LambertSolver.hpp>
 
+#include <algorithm>
 #include <cmath>
 #include <iostream>
 #include <math.h>
@@ -23,7 +24,9 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 
+#include <math/operations.hpp>
 #include <math/trig.hpp>
+#include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
@@ -243,6 +246,130 @@ LambertSolver::Solution LambertSolver::solve(
     const auto [v0Result, vfResult] = LambertSolver::solve(r0, rf, tof, mu, direction);
 
     return { tof, v0Result, vfResult };
+}
+
+// Multi-revolution Lambert solver (Gooding 1990 / Lancaster-Blanchard x-parameter)
+//
+// Normalisation (Gooding 1990):
+//   n  = (R0 + Rf) / 2                              [km]
+//   λ  = √(R0·Rf) · cos(Δθ/2) / n                  [−]  (λ ∈ [0,1])
+//   τ  = √(2μ/n³) · dt / 2                          [−]  (normalised half-TOF)
+//
+// TOF equation (Eq. 16):
+//   T(x) = [N·π + atan2(σ, x) − λ·x·σ] / (1 − x²)
+//   where  σ = √(1 − λ²x²),  x ∈ (−1, 1)
+//
+// For N ≥ 1 there are two solutions separated by x* (argmin of T):
+//   LEFT  branch (x < x*): lower-energy, longer TOF
+//   RIGHT branch (x > x*): higher-energy, shorter TOF
+//
+// After finding x, the semi-latus rectum is:
+//   p = n · (1−λ²) · (1−x²) / σ²
+// and the f-and-g functions give the velocities.
+std::pair<VelocityVector<frames::earth::icrf>, VelocityVector<frames::earth::icrf>> LambertSolver::solve(
+    const RadiusVector<frames::earth::icrf>& r0,
+    const RadiusVector<frames::earth::icrf>& rf,
+    const Time& dt,
+    const GravParam& mu,
+    const LambertSolver::OrbitDirection& direction,
+    unsigned N,
+    const LambertSolver::MultiRevBranch& branch
+)
+{
+    if (N == 0) { throw std::invalid_argument("LambertSolver: N must be >= 1 for multi-rev solve"); }
+
+    const Distance R0 = r0.norm();
+    const Distance Rf = rf.norm();
+
+    static constexpr Angle twoPi       = 2.0 * std::numbers::pi * rad;
+    static constexpr Unitless itTol    = 1e-12 * one;
+    static constexpr Unitless clampTol = 1e-10 * one;
+
+    // True-anomaly change (same sign convention as single-rev solvers)
+    Angle dtheta = acos((r0.dot(rf) / (R0 * Rf)));
+    if (r0[0] * rf[1] - r0[1] * rf[0] >= 0.0 * pow<2>(astrea::detail::distance_unit)) {
+        if (direction == OrbitDirection::RETROGRADE) { dtheta = twoPi - dtheta; }
+    }
+    else {
+        if (direction == OrbitDirection::PROGRADE) { dtheta = twoPi - dtheta; }
+    }
+
+    // Gooding geometry parameters (all dimensionless after normalisation)
+    const Distance n        = (R0 + Rf) * 0.5;
+    const Unitless lambda   = sqrt(R0 * Rf) * cos(dtheta * 0.5) / n;
+    const Unitless tau      = sqrt(2.0 * mu / pow<3>(n)) * dt * 0.5;
+    const Unitless lambdaSq = lambda * lambda;
+
+    // Normalised TOF and its first two derivatives w.r.t. x (Gooding 1990, Eqs 16–18)
+    const Unitless NN = static_cast<double>(N) * one;
+
+    auto T = [&](Unitless x) -> Unitless {
+        const Unitless sig = sqrt(1.0 * one - lambdaSq * x * x);
+        return (NN * std::numbers::pi + atan2(sig, x) / isq_angle::cotes_angle - lambda * x * sig) / (1.0 - x * x);
+    };
+
+    auto dT = [&](Unitless x, Unitless Tx) -> Unitless {
+        const Unitless sig  = sqrt(1.0 * one - lambdaSq * x * x);
+        const Unitless sig3 = sig * sig * sig;
+        return (3.0 * x * Tx - lambda * (lambdaSq * x * x + 2.0 * sig * sig) / sig3) / (1.0 - x * x);
+    };
+
+    auto d2T = [&](Unitless x, Unitless Tx, Unitless dTx) -> Unitless {
+        const Unitless sig2 = 1.0 * one - lambdaSq * x * x;
+        return (5.0 * x * dTx + (3.0 - 4.0 * lambdaSq * x * x / sig2) * Tx) / (1.0 - x * x);
+    };
+
+    // Find x* = argmin T(x) via Newton iterations on dT/dx = 0
+    Unitless xStar = 0.0;
+    for (unsigned k = 0; k < 50; ++k) {
+        const Unitless Tv   = T(xStar);
+        const Unitless dTv  = dT(xStar, Tv);
+        const Unitless d2Tv = d2T(xStar, Tv, dTv);
+        if (abs(d2Tv) < 1e-30 * one) { break; }
+        const Unitless step = -dTv / d2Tv;
+        xStar               = math::clamp(xStar + step, -1.0 * one + clampTol, 1.0 * one - clampTol);
+        if (abs(step) < itTol) { break; }
+    }
+
+    if (tau < T(xStar)) {
+        throw std::runtime_error("LambertSolver: time of flight is below the multi-rev minimum for N=" + std::to_string(N));
+    }
+
+    // Initial guess on chosen branch
+    const Unitless x0 = (branch == MultiRevBranch::LEFT) ? xStar - 0.5 * (1.0 + xStar) * one // midpoint of (−1, x*)
+                                                           :
+                                                           xStar + 0.5 * (1.0 - xStar) * one; // midpoint of (x*,  1)
+
+    // Halley iterations on F(x) = T(x) − τ = 0
+    Unitless x  = math::clamp(x0, (-1.0 + clampTol) * one, (1.0 - clampTol) * one);
+    unsigned it = 0;
+    while (true) {
+        // Halley: δ = −F / (dT − F·d²T / (2·dT))
+        const Unitless Tv   = T(x);
+        const Unitless dTv  = dT(x, Tv);
+        const Unitless F    = Tv - tau;
+        const Unitless step = -F / (dTv - 0.5 * F * d2T(x, Tv, dTv) / dTv);
+
+        x = math::clamp(x + step, (-1.0 + clampTol) * one, (1.0 - clampTol) * one);
+
+        ++it;
+        if (abs(step) < itTol) { break; }
+        if (it >= ITER_MAX) { throw std::runtime_error("LambertSolver: multi-rev solver maximum iterations reached"); }
+    }
+
+    // Recover semi-latus rectum from x
+    const Unitless sig2 = 1.0 * one - lambdaSq * x * x;
+    const Distance p    = n * (1.0 - lambdaSq) * (1.0 - x * x) / sig2;
+
+    // f-and-g coefficients  (Bate-Mueller-White, Eq. 5.4-4)
+    const Unitless f    = 1.0 * one - p / R0;
+    const Unitless gdot = 1.0 * one - p / Rf;
+    const Time g        = R0 * Rf * sin(dtheta) / sqrt(mu * p);
+
+    const VelocityVector<frames::earth::icrf> v0Ret = (rf - f * r0) / g;
+    const VelocityVector<frames::earth::icrf> vfRet = (gdot * rf - r0) / g;
+
+    return { v0Ret, vfRet };
 }
 
 std::pair<Unitless, Unitless> LambertSolver::evaluate_stumpff(const Unitless& z)
