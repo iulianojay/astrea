@@ -118,6 +118,14 @@ TEST_F(DateTest, SYS)
     ASSERT_LE(std::chrono::round<std::chrono::seconds>(now.sys()), std::chrono::round<std::chrono::seconds>(std::chrono::system_clock::now()));
 }
 
+TEST_F(DateTest, TT)
+{
+    // TT = TAI + 32.184 s
+    const double tt_secs  = std::chrono::duration<double>(now.tt().time_since_epoch()).count();
+    const double tai_secs = std::chrono::duration<double>(now.tai().time_since_epoch()).count();
+    ASSERT_NEAR(tt_secs - tai_secs, astro::TerrestrialTimeClock::tt_tai_offset.count(), 1e-3);
+}
+
 TEST_F(DateTest, Epoch) { ASSERT_EQ(Date(J2000).epoch(), "2000-01-01 12:00:00.000"); }
 
 TEST_F(DateTest, GMST)
