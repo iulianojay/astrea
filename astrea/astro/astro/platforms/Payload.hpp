@@ -20,6 +20,8 @@
 
 #include <memory>
 
+#include <utilities/IdProvider.hpp>
+
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/FrameReference.hpp>
 #include <astro/frames/dynamic_frames.hpp>
@@ -127,7 +129,7 @@ class Payload { // TODO: add -> : public FrameReference
     Payload(const Parent_T& parent, const PayloadParameters_T& parameters) :
         _parent(&parent),
         _parameters(parameters),
-        _id(generate_id())
+        _id(utilities::IdProvider::get_next_id<"Payload">())
     {
     }
 
@@ -143,11 +145,6 @@ class Payload { // TODO: add -> : public FrameReference
      * @return std::size_t ID of the payload.
      */
     virtual std::size_t get_id() const = 0;
-
-    /**
-     * @brief Generate a hash for the payload ID.
-     */
-    std::size_t generate_id() const { return static_cast<const Payload_T*>(this)->generate_id(); }
 
     /**
      * @brief Get the parent platform of the payload.

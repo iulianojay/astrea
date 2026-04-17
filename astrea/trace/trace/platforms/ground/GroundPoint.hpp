@@ -146,12 +146,6 @@ class GroundPoint : virtual public AccessObject, virtual astro::FrameReference {
     const astro::CelestialBody* _parent; //!< Pointer to the parent celestial body
     astro::Geodetic _lla;                //!< Geodetic coordinates of the ground point
     std::size_t _id;                     //!< Unique identifier for the ground station, generated from its properties.
-
-    /**
-     * @brief Generates a unique identifier for the ground station based on its properties.
-     * This method is called in the constructor to ensure that each ground station has a unique ID.
-     */
-    std::size_t generate_id();
 };
 
 } // namespace trace

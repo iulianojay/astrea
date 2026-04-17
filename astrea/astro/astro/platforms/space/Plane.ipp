@@ -26,7 +26,7 @@ Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
         }
     }
 
-    generate_id();
+    id = utilities::IdProvider::get_next_id<"Plane">();
 }
 
 
@@ -64,14 +64,6 @@ const Spacecraft_T& Plane<Spacecraft_T>::get_spacecraft(const size_t& spacecraft
         if (sat.get_id() == spacecraftId) { return sat; }
     }
     throw std::runtime_error("No spacecraft found with matching id: " + std::to_string(spacecraftId) + "\n");
-}
-
-
-template <class Spacecraft_T>
-void Plane<Spacecraft_T>::generate_id()
-{
-    static std::size_t idCounter = 0;
-    id                           = idCounter++;
 }
 
 

@@ -22,6 +22,7 @@
 #include <vector>
 
 #include <units/units.hpp>
+#include <utilities/IdProvider.hpp>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/platforms/space/Plane.hpp>
@@ -92,7 +93,7 @@ class Shell {
      * @brief Destructor for Shell.
      * Cleans up the shell and its planes.
      */
-    ~Shell() { generate_id(); };
+    ~Shell() { id = utilities::IdProvider::get_next_id<"Shell">(); };
 
     /**
      * @brief Returns the size of the shell, which is the number of spacecraft it contains.
@@ -405,8 +406,6 @@ class Shell {
     std::size_t id;
     std::string name;
     std::vector<Plane<Spacecraft_T>> planes;
-
-    void generate_id();
 };
 
 } // namespace astro

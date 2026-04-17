@@ -361,7 +361,7 @@ class CartesianVector {
         const Value_T v1Mag = norm();
         const Value_U v2Mag = other.norm();
 
-        if (v1Mag.numerical_value_in(v1Mag.unit) == 0 || v2Mag.numerical_value_in(v2Mag.unit) == 0) {
+        if (v1Mag == Value_T::zero() || v2Mag == Value_U::zero()) {
             throw std::runtime_error("Cannot calculate angle with zero-magnitude vector");
         }
 
