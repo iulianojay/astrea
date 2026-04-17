@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
@@ -105,112 +105,121 @@ TEST_F(CelestialBodyTest, GetType) { ASSERT_EQ(earth.get_type(), CelestialBodyTy
 
 TEST_F(CelestialBodyTest, GetMu)
 {
-    ASSERT_EQ_QUANTITY(earth.get_mu(), 398600.44189 * mp_units::pow<3>(km) / mp_units::pow<2>(s), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_mu(), 398600.44189 * mp_units::pow<3>(km) / mp_units::pow<2>(s), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetMass)
 {
-    ASSERT_EQ_QUANTITY(earth.get_mass(), Mass(5.97 * (mag_power<10, 24> * kg)), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_mass(), Mass(5.97 * (mag_power<10, 24> * kg)), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetEquitorialRadius)
 {
-    ASSERT_EQ_QUANTITY(earth.get_equitorial_radius(), 6378.138 * km, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_equitorial_radius(), 6378.138 * km, REL_TOL));
 }
 
-TEST_F(CelestialBodyTest, GetPolarRadius) { ASSERT_EQ_QUANTITY(earth.get_polar_radius(), 6356.752 * km, REL_TOL); }
+TEST_F(CelestialBodyTest, GetPolarRadius)
+{
+    ASSERT_TRUE(math::nearly_equal(earth.get_polar_radius(), 6356.752 * km, REL_TOL));
+}
 
-TEST_F(CelestialBodyTest, GetCrashRadius) { ASSERT_EQ_QUANTITY(earth.get_crash_radius(), 6478.1 * km, REL_TOL); }
+TEST_F(CelestialBodyTest, GetCrashRadius)
+{
+    ASSERT_TRUE(math::nearly_equal(earth.get_crash_radius(), 6478.1 * km, REL_TOL));
+}
 
 TEST_F(CelestialBodyTest, GetSphereOfInfluence)
 {
-    ASSERT_EQ_QUANTITY(earth.get_sphere_of_influence(), Distance(0.092449582665046 * au), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_sphere_of_influence(), Distance(0.092449582665046 * au), REL_TOL));
 }
 
-TEST_F(CelestialBodyTest, GetJ2) { ASSERT_EQ_QUANTITY(earth.get_j2(), 1082.63e-6 * one, REL_TOL); }
+TEST_F(CelestialBodyTest, GetJ2) { ASSERT_TRUE(math::nearly_equal(earth.get_j2(), 1082.63e-6 * one, REL_TOL)); }
 
-TEST_F(CelestialBodyTest, GetJ3) { ASSERT_EQ_QUANTITY(earth.get_j3(), -0.0000025323 * one, REL_TOL); }
+TEST_F(CelestialBodyTest, GetJ3) { ASSERT_TRUE(math::nearly_equal(earth.get_j3(), -0.0000025323 * one, REL_TOL)); }
 
-TEST_F(CelestialBodyTest, GetAxialTilt) { ASSERT_EQ_QUANTITY(earth.get_axial_tilt(), Angle(23.439292 * deg), REL_TOL); }
+TEST_F(CelestialBodyTest, GetAxialTilt)
+{
+    ASSERT_TRUE(math::nearly_equal(earth.get_axial_tilt(), Angle(23.439292 * deg), REL_TOL));
+}
 
 TEST_F(CelestialBodyTest, GetRotationRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_rotation_rate(), AngularRate(7.29211514670638e-5 * rad / s), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_rotation_rate(), AngularRate(7.29211514670638e-5 * rad / s), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetSiderealPeriod)
 {
-    ASSERT_EQ_QUANTITY(earth.get_sidereal_period(), Time(365.256 * day), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_sidereal_period(), Time(365.256 * day), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetSemimajor)
 {
-    ASSERT_EQ_QUANTITY(earth.get_semimajor(), Distance(1.00000261 * au), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_semimajor(), Distance(1.00000261 * au), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetEccentricity)
 {
-    ASSERT_EQ_QUANTITY(earth.get_eccentricity(), Unitless(0.01671123 * one), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_eccentricity(), Unitless(0.01671123 * one), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetInclination)
 {
-    ASSERT_EQ_QUANTITY(earth.get_inclination(), Angle(-0.00001531 * deg), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_inclination(), Angle(-0.00001531 * deg), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetRightAscension)
 {
-    ASSERT_EQ_QUANTITY(earth.get_right_ascension(), Angle(0.0 * deg), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_right_ascension(), Angle(0.0 * deg), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetLongitudeOfPerigee)
 {
-    ASSERT_EQ_QUANTITY(earth.get_longitude_of_perigee(), Angle(102.93768193 * deg), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_longitude_of_perigee(), Angle(102.93768193 * deg), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetMeanLongitude)
 {
-    ASSERT_EQ_QUANTITY(earth.get_mean_longitude(), Angle(100.4645716 * deg), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_mean_longitude(), Angle(100.4645716 * deg), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetTrueAnomaly)
 {
-    ASSERT_EQ_QUANTITY(earth.get_true_anomaly(), Angle(6.238549 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_true_anomaly(), Angle(6.238549 * rad), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetMeanAnomaly)
 {
-    ASSERT_EQ_QUANTITY(earth.get_mean_anomaly(), Angle(6.240021 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_mean_anomaly(), Angle(6.240021 * rad), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetSemimajorRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_semimajor_rate(), InterplanetaryVelocity(0.00000562 * au / JulianCentury), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_semimajor_rate(), InterplanetaryVelocity(0.00000562 * au / JulianCentury), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetEccentricityRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_eccentricity_rate(), BodyUnitlessPerTime(-0.00004392 * one / JulianCentury), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_eccentricity_rate(), BodyUnitlessPerTime(-0.00004392 * one / JulianCentury), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetInclinationRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_inclination_rate(), BodyAngularRate(-0.01294668 * deg / JulianCentury), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_inclination_rate(), BodyAngularRate(-0.01294668 * deg / JulianCentury), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetRightAscensionRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_right_ascension_rate(), BodyAngularRate(0.0 * deg / JulianCentury), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_right_ascension_rate(), BodyAngularRate(0.0 * deg / JulianCentury), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetLongitudeOfPerigeeRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_longitude_of_perigee_rate(), BodyAngularRate(0.32327364 * deg / JulianCentury), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_longitude_of_perigee_rate(), BodyAngularRate(0.32327364 * deg / JulianCentury), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetMeanLongitudeRate)
 {
-    ASSERT_EQ_QUANTITY(earth.get_mean_longitude_rate(), BodyAngularRate(35999.37244981 * deg / JulianCentury), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earth.get_mean_longitude_rate(), BodyAngularRate(35999.37244981 * deg / JulianCentury), REL_TOL));
 }
 
 // Vallado, Ex. 8.5
@@ -244,14 +253,15 @@ TEST_F(CelestialBodyTest, GetStateAtValldoEx)
     // These comparisons are close but not exact. It could be due to the tables Vallado uses differing from the output
     // of the Chebyshev approximations. We just lower the required tolerance a bit so the tests pass. The following test
     // returns exact values so this is likely not an indication that there are any accuracy issues
-    ASSERT_EQ_CART_VEC(sunPosition - earthPosition, expEarth2SunPosition, 0.0 * one, 1800.0 * one);
-    ASSERT_EQ_CART_VEC(moonPosition, expEarth2MoonPosition, 0.0 * one, 50.0 * one); // x value has largest inaccuracy but it's more accurate than Vallado's approximation
+    ASSERT_TRUE(nearly_equal(sunPosition - earthPosition, expEarth2SunPosition, 0.0 * one, 1800.0 * one));
+    ASSERT_TRUE(nearly_equal(moonPosition, expEarth2MoonPosition, 0.0 * one, 50.0 * one)
+    ); // x value has largest inaccuracy but it's more accurate than Vallado's approximation
 
 #elif !defined(ASTREA_BUILD_EARTH_EPHEMERIS) && !defined(ASTREA_BUILD_SUN_EPHEMERIS)
 
     // Linear approximations are not great
-    ASSERT_EQ_CART_VEC(sunPosition - earthPosition, expEarth2SunPosition, 1.0e-1 * one);
-    ASSERT_EQ_CART_VEC(moonPosition, expEarth2MoonPosition, 1.0 * one); // big ooph
+    ASSERT_TRUE(nearly_equal(sunPosition - earthPosition, expEarth2SunPosition, 1.0e-1 * one));
+    ASSERT_TRUE(nearly_equal(moonPosition, expEarth2MoonPosition, 1.0 * one)); // big ooph
 
 #endif
 }
@@ -284,7 +294,7 @@ TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
     std::cout << "Sun to Moon Position: " << moonPosition + earthPosition - sunPosition << std::endl;
     std::cout << "Expected Sun to Moon Position: " << expSunToMoonPosition << std::endl << std::endl;
 
-    ASSERT_EQ_CART_VEC(moonPosition + earthPosition - sunPosition, expSunToMoonPosition, REL_TOL);
+    ASSERT_TRUE(nearly_equal(moonPosition + earthPosition - sunPosition, expSunToMoonPosition, REL_TOL));
 }
 
 #endif // defined(ASTREA_BUILD_EARTH_EPHEMERIS) && defined(ASTREA_BUILD_MOON_EPHEMERIS) && defined(ASTREA_BUILD_SUN_EPHEMERIS)
@@ -307,35 +317,33 @@ TEST_F(CelestialBodyTest, GetKeplerianElementsAt)
 TEST_F(CelestialBodyTest, FindAtmosphericDensity)
 {
     const Date date("2020-02-18 15:08:47.23847");
-    const CelestialBody dummyBody(
-        { .name                   = "test",
-          .parent                 = CelestialBodyId::SUN,
-          .type                   = CelestialBodyType::STAR,
-          .referenceDate          = date,
-          .mu                     = GravParam(1.32712440018e11 * km * km * km / (s * s)),
-          .mass                   = Mass(1.989e30 * kg),
-          .equitorialRadius       = Distance(696340.0 * km),
-          .polarRadius            = Distance(696340.0 * km),
-          .crashRadius            = Distance(696340.0 * km),
-          .sphereOfInfluence      = Distance(0.0 * km),
-          .j2                     = Unitless(0.0 * one),
-          .j3                     = Unitless(0.0 * one),
-          .axialTilt              = Angle(0.0 * rad),
-          .rotationRate           = AngularRate(0.0 * rad / s),
-          .siderealPeriod         = Time(0.0 * s),
-          .semimajorAxis          = Distance(0.0 * km),
-          .eccentricity           = Unitless(0.0 * one),
-          .inclination            = Angle(0.0 * rad),
-          .rightAscension         = Angle(0.0 * rad),
-          .longitudeOfPerigee     = Angle(0.0 * rad),
-          .meanLongitude          = Angle(0.0 * rad),
-          .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / s),
-          .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / s),
-          .inclinationRate        = BodyAngularRate(0.0 * rad / s),
-          .rightAscensionRate     = BodyAngularRate(0.0 * rad / s),
-          .longitudeOfPerigeeRate = BodyAngularRate(0.0 * rad / s),
-          .meanLongitudeRate      = BodyAngularRate(0.0 * rad / s) }
-    );
+    const CelestialBody dummyBody({ .name                   = "test",
+                                    .parent                 = CelestialBodyId::SUN,
+                                    .type                   = CelestialBodyType::STAR,
+                                    .referenceDate          = date,
+                                    .mu                     = GravParam(1.32712440018e11 * km * km * km / (s * s)),
+                                    .mass                   = Mass(1.989e30 * kg),
+                                    .equitorialRadius       = Distance(696340.0 * km),
+                                    .polarRadius            = Distance(696340.0 * km),
+                                    .crashRadius            = Distance(696340.0 * km),
+                                    .sphereOfInfluence      = Distance(0.0 * km),
+                                    .j2                     = Unitless(0.0 * one),
+                                    .j3                     = Unitless(0.0 * one),
+                                    .axialTilt              = Angle(0.0 * rad),
+                                    .rotationRate           = AngularRate(0.0 * rad / s),
+                                    .siderealPeriod         = Time(0.0 * s),
+                                    .semimajorAxis          = Distance(0.0 * km),
+                                    .eccentricity           = Unitless(0.0 * one),
+                                    .inclination            = Angle(0.0 * rad),
+                                    .rightAscension         = Angle(0.0 * rad),
+                                    .longitudeOfPerigee     = Angle(0.0 * rad),
+                                    .meanLongitude          = Angle(0.0 * rad),
+                                    .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / s),
+                                    .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / s),
+                                    .inclinationRate        = BodyAngularRate(0.0 * rad / s),
+                                    .rightAscensionRate     = BodyAngularRate(0.0 * rad / s),
+                                    .longitudeOfPerigeeRate = BodyAngularRate(0.0 * rad / s),
+                                    .meanLongitudeRate      = BodyAngularRate(0.0 * rad / s) });
 
     // Test Earth (has atmosphere in derived class)
     ASSERT_NO_THROW(dummyBody.find_atmospheric_density(date, 0.0 * km));
@@ -368,8 +376,8 @@ TEST_F(CelestialBodyTest, CopyConstructor)
     ASSERT_EQ(earthCopy.get_name(), earth.get_name());
     ASSERT_EQ(earthCopy.get_parent(), earth.get_parent());
     ASSERT_EQ(earthCopy.get_type(), earth.get_type());
-    ASSERT_EQ_QUANTITY(earthCopy.get_mu(), earth.get_mu(), REL_TOL);
-    ASSERT_EQ_QUANTITY(earthCopy.get_mass(), earth.get_mass(), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(earthCopy.get_mu(), earth.get_mu(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(earthCopy.get_mass(), earth.get_mass(), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetId)

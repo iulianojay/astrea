@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
@@ -63,7 +63,7 @@ TEST_F(CartesianVectorTest, TestCopyConstructor)
     // Copy constructor within the same frame should work
     ASSERT_NO_THROW(TestVector vecCopy(vec1));
     auto vecCopy = TestVector(vec1);
-    ASSERT_EQ_CART_VEC(vec1, vecCopy, REL_TOL);
+    ASSERT_TRUE(nearly_equal(vec1, vecCopy, REL_TOL));
 
     // Copy constructor between different frames should not compile
     // CartesianVector<Unitless, frames::earth::j2000> vecInvalidCopy(vec1);
@@ -75,7 +75,7 @@ TEST_F(CartesianVectorTest, TestMoveConstructor)
     auto vecTemp = TestVector(1.0 * one, 2.0 * one, 3.0 * one);
     ASSERT_NO_THROW(TestVector vecMove(std::move(vecTemp)));
     auto vecMove = TestVector(std::move(vecTemp));
-    ASSERT_EQ_CART_VEC(vecMove, TestVector(1.0 * one, 2.0 * one, 3.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecMove, TestVector(1.0 * one, 2.0 * one, 3.0 * one), REL_TOL));
 
     // Move constructor between different frames should not compile
     // CartesianVector<Unitless, frames::earth::j2000> vecInvalidMove(std::move(vec1));
@@ -86,7 +86,7 @@ TEST_F(CartesianVectorTest, TestForceFrameConversion)
     // Force frame conversion should work between different frames
     ASSERT_NO_THROW(vec1.force_frame_conversion<frames::earth::j2000>());
     auto vecConverted = vec1.force_frame_conversion<frames::earth::icrf>();
-    ASSERT_EQ_CART_VEC(vecConverted, TestVector(1.0 * one, 0.0 * one, 0.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecConverted, TestVector(1.0 * one, 0.0 * one, 0.0 * one), REL_TOL));
 }
 
 TEST_F(CartesianVectorTest, TestAccessOperators)
@@ -95,7 +95,7 @@ TEST_F(CartesianVectorTest, TestAccessOperators)
     vec1[0] = 5.0 * one;
     vec1[1] = 6.0 * one;
     vec1[2] = 7.0 * one;
-    ASSERT_EQ_CART_VEC(vec1, TestVector(5.0 * one, 6.0 * one, 7.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vec1, TestVector(5.0 * one, 6.0 * one, 7.0 * one), REL_TOL));
 
     // Const access
     const auto& constVec = vec1;
@@ -113,7 +113,7 @@ TEST_F(CartesianVectorTest, TestGetters)
     vec1.get_x() = 2.0 * one;
     vec1.get_y() = 3.0 * one;
     vec1.get_z() = 4.0 * one;
-    ASSERT_EQ_CART_VEC(vec1, TestVector(2.0 * one, 3.0 * one, 4.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vec1, TestVector(2.0 * one, 3.0 * one, 4.0 * one), REL_TOL));
 }
 
 TEST_F(CartesianVectorTest, TestEqualityOperators)
@@ -134,55 +134,55 @@ TEST_F(CartesianVectorTest, TestAdditionAndSubtraction)
 {
     // Addition within the same frame
     auto vecSum = vec1 + vec2;
-    ASSERT_EQ_CART_VEC(vecSum, TestVector(1.0 * one, 1.0 * one, 0.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecSum, TestVector(1.0 * one, 1.0 * one, 0.0 * one), REL_TOL));
 
     vecSum += vec3;
-    ASSERT_EQ_CART_VEC(vecSum, TestVector(1.0 * one, 1.0 * one, 1.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecSum, TestVector(1.0 * one, 1.0 * one, 1.0 * one), REL_TOL));
 
     // Subtraction within the same frame
     auto vecDiff = vecSum - vec1;
-    ASSERT_EQ_CART_VEC(vecDiff, TestVector(0.0 * one, 1.0 * one, 1.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecDiff, TestVector(0.0 * one, 1.0 * one, 1.0 * one), REL_TOL));
 
     vecDiff -= vec2;
-    ASSERT_EQ_CART_VEC(vecDiff, TestVector(0.0 * one, 0.0 * one, 1.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecDiff, TestVector(0.0 * one, 0.0 * one, 1.0 * one), REL_TOL));
 
     // Negation
     auto vecNeg = -vecDiff;
-    ASSERT_EQ_CART_VEC(vecNeg, TestVector(0.0 * one, 0.0 * one, -1.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecNeg, TestVector(0.0 * one, 0.0 * one, -1.0 * one), REL_TOL));
 }
 
 TEST_F(CartesianVectorTest, TestScalarMultiplicationAndDivision)
 {
     // Scalar multiplication
     auto vecScaled = vec1 * 3.0 * one;
-    ASSERT_EQ_CART_VEC(vecScaled, TestVector(3.0 * one, 0.0 * one, 0.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecScaled, TestVector(3.0 * one, 0.0 * one, 0.0 * one), REL_TOL));
 
     vecScaled *= 2.0 * one;
-    ASSERT_EQ_CART_VEC(vecScaled, TestVector(6.0 * one, 0.0 * one, 0.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecScaled, TestVector(6.0 * one, 0.0 * one, 0.0 * one), REL_TOL));
 
     // Scalar division
     auto vecDivided = vecScaled / (2.0 * one);
-    ASSERT_EQ_CART_VEC(vecDivided, TestVector(3.0 * one, 0.0 * one, 0.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecDivided, TestVector(3.0 * one, 0.0 * one, 0.0 * one), REL_TOL));
 
     vecDivided /= (3.0 * one);
-    ASSERT_EQ_CART_VEC(vecDivided, TestVector(1.0 * one, 0.0 * one, 0.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecDivided, TestVector(1.0 * one, 0.0 * one, 0.0 * one), REL_TOL));
 }
 
 TEST_F(CartesianVectorTest, TestUnitedMultiplicationAndDivision)
 {
     // Scalar multiplication
     auto vecScaled = vec1 * 3.0 * km;
-    ASSERT_EQ_CART_VEC(vecScaled, CartesianVector<Distance, TestFrame>(3.0 * km, 0.0 * km, 0.0 * km), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecScaled, CartesianVector<Distance, TestFrame>(3.0 * km, 0.0 * km, 0.0 * km), REL_TOL));
 
     vecScaled *= 2.0 * one;
-    ASSERT_EQ_CART_VEC(vecScaled, CartesianVector<Distance, TestFrame>(6.0 * km, 0.0 * km, 0.0 * km), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecScaled, CartesianVector<Distance, TestFrame>(6.0 * km, 0.0 * km, 0.0 * km), REL_TOL));
 
     // Scalar division
     auto vecDivided = vecScaled / (2.0 * s);
-    ASSERT_EQ_CART_VEC(vecDivided, CartesianVector<Velocity, TestFrame>(3.0 * km / s, 0.0 * km / s, 0.0 * km / s), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecDivided, CartesianVector<Velocity, TestFrame>(3.0 * km / s, 0.0 * km / s, 0.0 * km / s), REL_TOL));
 
     vecDivided /= (3.0 * one);
-    ASSERT_EQ_CART_VEC(vecDivided, CartesianVector<Velocity, TestFrame>(1.0 * km / s, 0.0 * km / s, 0.0 * km / s), REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecDivided, CartesianVector<Velocity, TestFrame>(1.0 * km / s, 0.0 * km / s, 0.0 * km / s), REL_TOL));
 }
 
 TEST_F(CartesianVectorTest, TestDotAndCrossProduct)
@@ -196,10 +196,10 @@ TEST_F(CartesianVectorTest, TestDotAndCrossProduct)
 
     // Cross product
     auto crossProduct = vec1.cross(vec2);
-    ASSERT_EQ_CART_VEC(crossProduct, TestVector(0.0 * one, 0.0 * one, 1.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(crossProduct, TestVector(0.0 * one, 0.0 * one, 1.0 * one), REL_TOL));
 
     crossProduct = vec2.cross(vec3);
-    ASSERT_EQ_CART_VEC(crossProduct, TestVector(1.0 * one, 0.0 * one, 0.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(crossProduct, TestVector(1.0 * one, 0.0 * one, 0.0 * one), REL_TOL));
 }
 
 TEST_F(CartesianVectorTest, TestNormAndUnit)
@@ -213,33 +213,33 @@ TEST_F(CartesianVectorTest, TestNormAndUnit)
 
     // Unit vector
     auto unitVec1 = vec1.unit();
-    ASSERT_EQ_CART_VEC(unitVec1, TestVector(1.0 * one, 0.0 * one, 0.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(unitVec1, TestVector(1.0 * one, 0.0 * one, 0.0 * one), REL_TOL));
 
     auto unitVec2   = (vec1 + vec2).unit();
     double invSqrt2 = 1.0 / sqrt(2.0);
-    ASSERT_EQ_CART_VEC(unitVec2, TestVector(invSqrt2 * one, invSqrt2 * one, 0.0 * one), REL_TOL);
+    ASSERT_TRUE(nearly_equal(unitVec2, TestVector(invSqrt2 * one, invSqrt2 * one, 0.0 * one), REL_TOL));
 }
 
 TEST_F(CartesianVectorTest, TestAngleBetweenVectors)
 {
     // Angle between orthogonal vectors
     auto angle1 = vec1.offset_angle(vec2);
-    ASSERT_EQ_QUANTITY(angle1, Angle(M_PI_2 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(angle1, Angle(M_PI_2 * rad), REL_TOL));
 
     // Angle between identical vectors
     auto angle2 = vec1.offset_angle(vec1);
-    ASSERT_EQ_QUANTITY(angle2, Angle(0.0 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(angle2, Angle(0.0 * rad), REL_TOL));
 
     // Angle between opposite vectors
     auto angle3 = vec1.offset_angle(-vec1);
-    ASSERT_EQ_QUANTITY(angle3, Angle(M_PI * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(angle3, Angle(M_PI * rad), REL_TOL));
 }
 
 TEST_F(CartesianVectorTest, TestFrameTransformation)
 {
     // Frame transformation to the same frame should return the same vector
     TestVector vecInSameFrame = vec1.in_frame<TestFrame>(Date());
-    ASSERT_EQ_CART_VEC(vecInSameFrame, vec1, REL_TOL);
+    ASSERT_TRUE(nearly_equal(vecInSameFrame, vec1, REL_TOL));
 
     // Frame transformation to a different frame should compile and return a vector in the new frame
     vec1.in_frame<frames::earth::j2000>(Date()); // really just want these to compile

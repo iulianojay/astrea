@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
@@ -56,13 +56,13 @@ int main(int argc, char** argv)
 TEST_F(LambertSolverTest, SolveRV)
 {
     const Cartesian result = LambertSolver::solve({ r0, v0 }, dt, sys.get_mu());
-    ASSERT_EQ_CART_VEC(result.get_position(), rf, REL_TOL);
-    ASSERT_EQ_CART_VEC(result.get_velocity(), vf, REL_TOL);
+    ASSERT_TRUE(nearly_equal(result.get_position(), rf, REL_TOL));
+    ASSERT_TRUE(nearly_equal(result.get_velocity(), vf, REL_TOL));
 }
 
 TEST_F(LambertSolverTest, SolveRR)
 {
     const auto [res0, resf] = LambertSolver::solve(r0, rf, dt, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
-    ASSERT_EQ_CART_VEC(res0, v0, REL_TOL);
-    ASSERT_EQ_CART_VEC(resf, vf, REL_TOL);
+    ASSERT_TRUE(nearly_equal(res0, v0, REL_TOL));
+    ASSERT_TRUE(nearly_equal(resf, vf, REL_TOL));
 }

@@ -208,32 +208,5 @@ void throw_mismatched_types()
                              "element sets.");
 }
 
-
-bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, bool ignoreFastVariable, Unitless relTol)
-{
-    if (first.index() != second.index()) { throw_mismatched_types(); }
-
-    const std::vector<Unitless> firstScaled  = first.force_to_vector();
-    const std::vector<Unitless> secondScaled = second.force_to_vector();
-    for (int ii = 0; ii < 6; ii++) {
-        if (!math::nearly_equal(firstScaled[ii], secondScaled[ii], relTol)) { return false; }
-    }
-    return true;
-}
-
-bool nearly_equal(const OrbitalElementPartials& first, const OrbitalElementPartials& second, bool ignoreFastVariable, Unitless relTol)
-{
-    if (first.index() != second.index()) { throw_mismatched_types(); }
-
-    // arbitrary normalization. shouldn't affect relative size
-    const Time scale                         = 1.0 * mp_units::si::unit_symbols::s;
-    const std::vector<Unitless> firstScaled  = (first * scale).force_to_vector();
-    const std::vector<Unitless> secondScaled = (second * scale).force_to_vector();
-    for (int ii = 0; ii < 6; ii++) {
-        if (!math::nearly_equal(firstScaled[ii], secondScaled[ii], relTol)) { return false; }
-    }
-    return true;
-}
-
 } // namespace astro
 } // namespace astrea
