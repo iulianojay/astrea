@@ -77,6 +77,7 @@
 
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/systems/CelestialBody.hpp>
+#include <astro/systems/CelestialBodyParameters.hpp>
 #include <astro/systems/planetary_bodies/planetary_bodies.hpp>
 
 #include <astro/time/Date.hpp>

@@ -56,7 +56,7 @@ TEST_F(GroundStationTest, Constructor)
 {
     ASSERT_EQ(station->get_name(), name);
     ASSERT_EQ(
-        station->get_id() + 1,
+        station->get_id() - 1,
         GroundStation(sys.get_body(CelestialBodyId::EARTH).get(), latitude, longitude, altitude, name, sensors).get_id()
     );
 }

@@ -99,7 +99,9 @@ enum class FrameAxis : EnumType {
     /** Radial/Along-track/Cross-track frame */
     RIC,
     /** Velocity/Normal/Body frame */
-    VNB
+    VNB,
+    /** Earth-North-Up frame */
+    ENU
 };
 
 } // namespace astro

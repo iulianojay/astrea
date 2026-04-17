@@ -30,12 +30,15 @@
 namespace astrea {
 namespace astro {
 
-static const astro::RadiusVector<astro::frames::dynamic::ric> NADIR_RIC = { -1.0 * astrea::detail::distance_unit,
-                                                                            0.0 * astrea::detail::distance_unit,
-                                                                            0.0 * astrea::detail::distance_unit };
-static const astro::RadiusVector<astro::frames::dynamic::ric> CENTER    = { 0.0 * astrea::detail::distance_unit,
-                                                                            0.0 * astrea::detail::distance_unit,
-                                                                            0.0 * astrea::detail::distance_unit };
+static const astro::RadiusVector<astro::frames::dynamic::ric> NADIR_RIC  = { -1.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit };
+static const astro::RadiusVector<astro::frames::dynamic::ric> RADIAL_RIC = { 1.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit };
+static const astro::RadiusVector<astro::frames::dynamic::ric> CENTER     = { 0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit };
 
 /**
  * @brief Class for storing and managing payload parameters.
@@ -68,14 +71,14 @@ class PayloadParameters {
      *
      * @return astro::RadiusVector<astro::frames::dynamic::ric>Boresight direction of the payload.
      */
-    astro::RadiusVector<astro::frames::dynamic::ric> get_boresight() const { return _boresight; }
+    const astro::RadiusVector<astro::frames::dynamic::ric>& get_boresight() const { return _boresight; }
 
     /**
      * @brief Get the attachment point of the payload.
      *
      * @return astro::RadiusVector<astro::frames::dynamic::ric>Attachment point of the payload.
      */
-    astro::RadiusVector<astro::frames::dynamic::ric> get_attachment_point() const { return _attachmentPoint; }
+    const astro::RadiusVector<astro::frames::dynamic::ric>& get_attachment_point() const { return _attachmentPoint; }
 
     /**
      * @brief Set the boresight direction of the payload.
@@ -158,7 +161,14 @@ class Payload { // TODO: add -> : public FrameReference
      *
      * @return PayloadParameters_T Payload parameters of the payload.
      */
-    PayloadParameters_T get_parameters() const { return _parameters; }
+    const PayloadParameters_T& get_parameters() const { return _parameters; }
+
+    /**
+     * @brief Get the payload parameters of the payload.
+     *
+     * @return PayloadParameters_T Payload parameters of the payload.
+     */
+    PayloadParameters_T& get_parameters() { return _parameters; }
 
   protected:
     const PayloadPlatform<Payload_T>* _parent; //!< Parent platform

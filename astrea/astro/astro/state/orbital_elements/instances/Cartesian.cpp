@@ -257,13 +257,13 @@ Cartesian& Cartesian::operator/=(const Unitless& divisor)
 
 Cartesian Cartesian::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const GravParam& mu, const Time& targetTime) const
 {
-    const std::vector<Time> times = { thisTime, otherTime };
-    const Distance interpX        = math::interpolate<Time, Distance>(times, { _r[0], other._r[0] }, targetTime);
-    const Distance interpY        = math::interpolate<Time, Distance>(times, { _r[1], other._r[1] }, targetTime);
-    const Distance interpZ        = math::interpolate<Time, Distance>(times, { _r[2], other._r[2] }, targetTime);
-    const Velocity interpVx       = math::interpolate<Time, Velocity>(times, { _v[0], other._v[0] }, targetTime);
-    const Velocity interpVy       = math::interpolate<Time, Velocity>(times, { _v[1], other._v[1] }, targetTime);
-    const Velocity interpVz       = math::interpolate<Time, Velocity>(times, { _v[2], other._v[2] }, targetTime);
+    const std::array<Time, 2> times = { thisTime, otherTime };
+    const Distance interpX          = math::fast_interpolate<Time, Distance>(times, { _r[0], other._r[0] }, targetTime);
+    const Distance interpY          = math::fast_interpolate<Time, Distance>(times, { _r[1], other._r[1] }, targetTime);
+    const Distance interpZ          = math::fast_interpolate<Time, Distance>(times, { _r[2], other._r[2] }, targetTime);
+    const Velocity interpVx         = math::fast_interpolate<Time, Velocity>(times, { _v[0], other._v[0] }, targetTime);
+    const Velocity interpVy         = math::fast_interpolate<Time, Velocity>(times, { _v[1], other._v[1] }, targetTime);
+    const Velocity interpVz         = math::fast_interpolate<Time, Velocity>(times, { _v[2], other._v[2] }, targetTime);
 
     return Cartesian(interpX, interpY, interpZ, interpVx, interpVy, interpVz);
 }

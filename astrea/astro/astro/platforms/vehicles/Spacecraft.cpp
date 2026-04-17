@@ -86,7 +86,7 @@ bool Spacecraft::operator==(const Spacecraft& other) const
 void Spacecraft::set_state_history(const StateHistory& history) { _stateHistory = history; }
 StateHistory& Spacecraft::get_state_history() { return _stateHistory; }
 const StateHistory& Spacecraft::get_state_history() const { return _stateHistory; }
-void Spacecraft::store_state(const State& state) { _stateHistory[state.get_epoch()] = state; }
+void Spacecraft::store_state(const State& state) { _stateHistory.insert(state); }
 
 // Spacecraft Property Getters
 Mass Spacecraft::get_mass() const { return _mass; }
@@ -96,6 +96,21 @@ Unitless Spacecraft::get_coefficient_of_reflectivity() const { return _coefficie
 SurfaceArea Spacecraft::get_ram_area() const { return _ramArea; }
 SurfaceArea Spacecraft::get_solar_area() const { return _sunArea; }
 SurfaceArea Spacecraft::get_lift_area() const { return _liftArea; }
+
+// Thrust
+CartesianVector<Acceleration, frames::earth::icrf> Spacecraft::get_command_acceleration(const State& state) const
+{
+    // As a first cut, just burn in v direction
+    CartesianVector<Acceleration, frames::dynamic::ric> totalAccel;
+    for (const auto& thruster : get_payloads()) {
+        if (!thruster.is_on()) { continue; }
+        totalAccel[1] += thruster.get_thrust() / get_mass();
+    }
+
+    const Cartesian elements = state.in_element_set<Cartesian>();
+    const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(elements.get_position(), elements.get_velocity());
+    return ricFrame.rotate_out_of_this_frame(totalAccel, state.get_epoch());
+}
 
 // Setters
 void Spacecraft::set_mass(const Mass& mass) { _mass = mass; }

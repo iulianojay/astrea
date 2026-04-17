@@ -78,14 +78,14 @@ void Plane<Spacecraft_T>::generate_id()
 template <class Spacecraft_T>
 void Plane<Spacecraft_T>::propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator)
 {
-    std::cout << std::endl;
-    utilities::ProgressBar progressBar(satellites.size(), "\tPropagating Plane " + std::to_string(id));
+    // std::cout << std::endl;
+    // utilities::ProgressBar progressBar(satellites.size(), "\tPropagating Plane " + std::to_string(id));
     for (auto& sat : satellites) {
         Vehicle vehicle{ sat };
         const StateHistory& satHistory = sat.get_state_history();
         if (satHistory.size() == 0) {
             throw std::runtime_error(
-                "Cannot propagate spacecraft with empty state history. Spacecraft id: " + std::to_string(sat.get_id()) + "\n"
+                "Cannot propagate spacecraft with no initial state. Spacecraft id: " + std::to_string(sat.get_id()) + "\n"
             );
         }
         State state0            = satHistory.first();
@@ -93,7 +93,7 @@ void Plane<Spacecraft_T>::propagate(const Time& propTime, const EquationsOfMotio
 
         sat.set_state_history(stateHistory);
 
-        progressBar();
+        // progressBar();
     }
 }
 
@@ -101,14 +101,14 @@ void Plane<Spacecraft_T>::propagate(const Time& propTime, const EquationsOfMotio
 template <class Spacecraft_T>
 void Plane<Spacecraft_T>::propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator)
 {
-    std::cout << std::endl;
-    utilities::ProgressBar progressBar(satellites.size(), "\tPropagating Plane " + std::to_string(id));
+    // std::cout << std::endl;
+    // utilities::ProgressBar progressBar(satellites.size(), "\tPropagating Plane " + std::to_string(id));
     for (auto& sat : satellites) {
         Vehicle vehicle{ sat };
         const StateHistory& satHistory = sat.get_state_history();
         if (satHistory.size() == 0) {
             throw std::runtime_error(
-                "Cannot propagate spacecraft with empty state history. Spacecraft id: " + std::to_string(sat.get_id()) + "\n"
+                "Cannot propagate spacecraft with no initial state. Spacecraft id: " + std::to_string(sat.get_id()) + "\n"
             );
         }
         State state0            = satHistory.first();
@@ -116,7 +116,7 @@ void Plane<Spacecraft_T>::propagate(const Date& endEpoch, const EquationsOfMotio
 
         sat.set_state_history(stateHistory);
 
-        progressBar();
+        // progressBar();
     }
 }
 

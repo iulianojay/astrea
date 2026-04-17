@@ -18,7 +18,7 @@
  */
 #pragma once
 
-#include <stdint.h>
+#include <cstdint>
 
 namespace astrea {
 namespace trace {
@@ -27,6 +27,14 @@ namespace trace {
  * @brief Type definition for enumeration types.
  */
 using EnumType = uint32_t;
+
+/**
+ * @brief Latitude/Longitude coordinate pair.
+ *
+ * This type is used to represent a geographic location on the Earth's surface.
+ */
+using LatLon = std::pair<Angle, Angle>;
+
 
 } // namespace trace
 } // namespace astrea

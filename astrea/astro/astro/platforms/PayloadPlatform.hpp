@@ -21,6 +21,7 @@
 #include <vector>
 
 #include <astro/frames/FrameReference.hpp>
+#include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
 
 
@@ -34,7 +35,8 @@ namespace astro {
 template <class Payload_T>
 class PayloadPlatform : virtual public FrameReference {
 
-    using PayloadParameters_T = decltype(std::declval<Payload_T>().get_parameters());
+    // This is cursed
+    using PayloadParameters_T = remove_cv_ref<decltype(std::declval<Payload_T>().get_parameters())>;
 
   protected:
     /**

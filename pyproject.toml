@@ -1,0 +1,31 @@
+[project]
+name = "astrea-python-deps"
+version = "3.5.1"
+description = "Python dependencies for the Astrea C++ astrodynamics library"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    {name = "Jay Iuliano"},
+]
+license = {text = "LGPL-3.0-or-later"}
+
+dependencies = [
+    "numpy>=1.21.0",
+    "pandas>=1.3.0",
+    "matplotlib>=3.5.0",
+    "gcovr>=5.0",
+    "gprof2dot>=2021.2.0",
+    "graphviz>=0.20.1",
+    "scipy>=1.7.0",
+    "basemap>=1.3.0",
+    "basemap-data-hires>=1.3.0",
+    "mkdocs>=1.4.0",
+    "mkdocs-material[imaging]>=9.0.0",
+    "mkdocs-rss-plugin>=0.1.0",
+    "mkdoxy",
+    "tabulate",
+    "cmake"
+]
+
+[tool.uv]
+dev-dependencies = []

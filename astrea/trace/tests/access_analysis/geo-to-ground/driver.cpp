@@ -130,7 +130,8 @@ TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
     constel.propagate(propTime, eom, integrator);
 
     // Find access
-    const auto accesses = find_accesses(constel, grounds, resolution, epoch, epoch + propTime, sys);
+    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
+    const auto accesses = analyzer.find_accesses(constel, grounds);
 
     // Assert that there is access
     ASSERT_TRUE(accesses.size() > 0);
@@ -168,7 +169,8 @@ TEST_F(GeoToGroundAccessTest, TwoBallGeoNeverConnected)
     twoBallGeo.propagate(propTime, eom, integrator);
 
     // Find access
-    const auto accesses = find_internal_accesses(twoBallGeo, resolution, epoch, epoch + propTime, sys);
+    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
+    const auto accesses = analyzer.find_internal_accesses(twoBallGeo);
 
     // Assert that there is never access
     ASSERT_TRUE(accesses.size() == 0);
@@ -214,7 +216,8 @@ TEST_F(GeoToGroundAccessTest, FourBallGeo)
     fourBallGeo.propagate(propTime, eom, integrator);
 
     // Find access
-    auto accesses = find_internal_accesses(fourBallGeo, resolution, epoch, epoch + propTime, sys);
+    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
+    auto accesses = analyzer.find_internal_accesses(fourBallGeo);
 
     // Assert that there is 100% access for non-apposing sats, 0% for apposing sats
     ASSERT_TRUE(accesses.size() > 0);

@@ -64,23 +64,27 @@ TEST_F(StateHistoryTest, DefaultConstructor) { ASSERT_NO_THROW(StateHistory()); 
 
 TEST_F(StateHistoryTest, IdConstructor) { ASSERT_NO_THROW(StateHistory(0)); }
 
-TEST_F(StateHistoryTest, SubscriptOperator)
+TEST_F(StateHistoryTest, GetStateAtExact)
 {
-    ASSERT_EQ(history[epoch + time0], state0);
-    ASSERT_EQ(history[epoch + time1], state1);
+    // Test getting exact states that exist
+    ASSERT_EQ(history.get_state_at(epoch + time0, true), state0);
+    ASSERT_EQ(history.get_state_at(epoch + time1, true), state1);
 
+    // Test inserting a new state
     ASSERT_EQ(history.size(), 2);
-    history[epoch + time2] = state2;
+    history.insert(state2);
     ASSERT_EQ(history.size(), 3);
 
-    ASSERT_EQ(history[epoch + time2], state2);
+    ASSERT_EQ(history.get_state_at(epoch + time2, true), state2);
 }
 
-TEST_F(StateHistoryTest, At)
+TEST_F(StateHistoryTest, GetStateAtWithoutApproximation)
 {
-    ASSERT_EQ(history.at(epoch + time0), state0);
-    ASSERT_EQ(history.at(epoch + time1), state1);
-    ASSERT_ANY_THROW(history.at(epoch + time2));
+    // Test getting exact states with allowApproximation=false
+    ASSERT_EQ(history.get_state_at(epoch + time0, false), state0);
+    ASSERT_EQ(history.get_state_at(epoch + time1, false), state1);
+    // Should throw when state doesn't exist and no approximation allowed
+    ASSERT_ANY_THROW(history.get_state_at(epoch + time2, false));
 }
 
 TEST_F(StateHistoryTest, Insert)
@@ -89,7 +93,7 @@ TEST_F(StateHistoryTest, Insert)
     history.insert(state2);
     ASSERT_EQ(history.size(), 3);
 
-    ASSERT_EQ(history.at(epoch + time2), state2);
+    ASSERT_EQ(history.get_state_at(epoch + time2, true), state2);
 }
 
 TEST_F(StateHistoryTest, Size)
@@ -143,10 +147,44 @@ TEST_F(StateHistoryTest, GetStateAt)
     ASSERT_EQ(newHistory.get_state_at(epoch + time1), state1);
 }
 
-TEST_F(StateHistoryTest, GetStateAtBeforeFirstEpoch) { ASSERT_ANY_THROW(history.get_state_at(epoch - time1)); }
+TEST_F(StateHistoryTest, GetStateAtBeforeFirstEpoch) { ASSERT_ANY_THROW(history.get_state_at(epoch - time2)); }
 
 TEST_F(StateHistoryTest, GetStateAtAfterLastEpoch) { ASSERT_ANY_THROW(history.get_state_at(epoch + 2.0 * time1)); }
 
-TEST_F(StateHistoryTest, Iterator) { ASSERT_NO_THROW(for (auto& [t, s] : history)); }
+TEST_F(StateHistoryTest, Iterator)
+{
+    ASSERT_NO_THROW(for (auto& state : history) { (void)state; });
+}
 
-TEST_F(StateHistoryTest, ConstIterator) { ASSERT_NO_THROW(for (const auto& [t, s] : history)); }
+TEST_F(StateHistoryTest, ConstIterator)
+{
+    ASSERT_NO_THROW(for (const auto& state : history) { (void)state; });
+}
+
+TEST_F(StateHistoryTest, FastAppend)
+{
+    StateHistory newHistory;
+    ASSERT_EQ(newHistory.size(), 0);
+
+    newHistory.fast_append(state0);
+    ASSERT_EQ(newHistory.size(), 1);
+    ASSERT_EQ(newHistory.first(), state0);
+
+    newHistory.fast_append(state1);
+    ASSERT_EQ(newHistory.size(), 2);
+    ASSERT_EQ(newHistory.last(), state1);
+}
+
+TEST_F(StateHistoryTest, FastPrepend)
+{
+    StateHistory newHistory;
+    ASSERT_EQ(newHistory.size(), 0);
+
+    newHistory.fast_prepend(state1);
+    ASSERT_EQ(newHistory.size(), 1);
+    ASSERT_EQ(newHistory.first(), state1);
+
+    newHistory.fast_prepend(state0);
+    ASSERT_EQ(newHistory.size(), 2);
+    ASSERT_EQ(newHistory.first(), state0);
+}

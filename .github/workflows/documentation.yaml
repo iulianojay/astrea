@@ -1,0 +1,78 @@
+#
+# The GNU Lesser General Public License (LGPL)
+#
+# Copyright (c) 2026 Jay Iuliano
+#
+# This file is part of Astrea.
+# Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+# as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+# Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+# have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+#
+
+name: Deploy Documentation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+      - dev
+    tags:
+      - v*
+    paths:
+      - "docs/**"
+      - ".github/workflows/documentation.yml"
+      - "CHANGELOG.md"
+      - "CONTRIBUTING.md"
+      - "mkdocs.yml"
+      - "astrea/astro/pyastro/6dof_report/nasa_6dof_report.py"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          
+      - name: Configure git credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+      - name: Install Doxygen
+        run: |
+          sudo apt update
+          sudo apt install -y doxygen gnuplot
+
+      - name: Mark repository as safe
+        run: git config --global --add safe.directory $GITHUB_WORKSPACE
+
+      - name: Fetch Tags
+        run: git fetch --prune --unshallow --tags
+
+      # - name: Setup Python environment
+      #   run: |
+      #     make python_env
+
+      # - name: Build and install checkcases
+      #   run: |
+      #     . .venv/bin/activate && make checkcases all install
+
+      # - name: Run checkcases and build report
+      #   run: |
+      #     . .venv/bin/activate && make build_report # This just takes too long right now
+
+      - name: Make and deploy docs
+        run: mkdocs gh-deploy --force

@@ -35,10 +35,33 @@ void AccessArray::erase(const std::size_t& senderId, const std::size_t& receiver
 
 std::size_t AccessArray::size() const { return _accesses.size(); }
 
-AccessArray& AccessArray::operator|(const AccessArray& other)
+RiseSetArray AccessArray::get_all_accesses_to_receiver(const std::size_t& receiverId) const
+{
+    RiseSetArray result;
+    for (const auto& [ids, risesets] : _accesses) {
+        if (ids.receiver == receiverId) { result |= risesets; }
+    }
+    return result;
+}
+
+RiseSetArray AccessArray::get_all_accesses_from_sender(const std::size_t& senderId) const
+{
+    RiseSetArray result;
+    for (const auto& [ids, risesets] : _accesses) {
+        if (ids.sender == senderId) { result |= risesets; }
+    }
+    return result;
+}
+
+bool AccessArray::operator==(const AccessArray& other) const { return _accesses == other._accesses; }
+
+AccessArray& AccessArray::operator|=(const AccessArray& other)
 {
     for (const auto& [ids, risesets] : other) {
-        if (contains(ids)) { _accesses[ids] = (risesets | _accesses[ids]); } // TODO: Should this modify in place? Copy?
+        if (contains(ids)) { _accesses[ids] |= risesets; }
+        else {
+            _accesses[ids] = risesets;
+        }
     }
     return *this;
 }
@@ -46,14 +69,14 @@ AccessArray& AccessArray::operator|(const AccessArray& other)
 AccessArray AccessArray::operator|(const AccessArray& other) const
 {
     AccessArray result = *this;
-    result | other;
+    result |= other;
     return result;
 }
 
-AccessArray& AccessArray::operator&(const AccessArray& other)
+AccessArray& AccessArray::operator&=(const AccessArray& other)
 {
     for (const auto& [ids, risesets] : other) {
-        if (contains(ids)) { _accesses[ids] = (risesets & _accesses[ids]); }
+        if (contains(ids)) { _accesses[ids] &= risesets; }
     }
     return *this;
 }
@@ -61,7 +84,7 @@ AccessArray& AccessArray::operator&(const AccessArray& other)
 AccessArray AccessArray::operator&(const AccessArray& other) const
 {
     AccessArray result = *this;
-    result & other;
+    result &= other;
     return result;
 }
 
