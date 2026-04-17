@@ -19,7 +19,9 @@
 
 using namespace astrea;
 using namespace astrea::math;
+
 using mp_units::one;
+using mp_units::quantity;
 using mp_units::angular::unit_symbols::rad;
 
 int main(int argc, char** argv)
@@ -33,6 +35,10 @@ TEST(TrigTest, Sinc)
     auto x      = 1.0 * rad;
     auto result = sinc(x);
     ASSERT_NEAR(result.numerical_value_ref_in(result.unit), std::sin(x.numerical_value_ref_in(x.unit)), 1e-10);
+
+    quantity<rad, int> y = 1 * rad;
+    auto result2         = sinc(y);
+    ASSERT_NEAR(result2.numerical_value_ref_in(result2.unit), std::sin(y.numerical_value_ref_in(y.unit)), 1e-10);
 }
 
 TEST(TrigTest, Cosh)
@@ -40,6 +46,10 @@ TEST(TrigTest, Cosh)
     auto x      = 1.0 * rad;
     auto result = cosh(x);
     ASSERT_NEAR(result.numerical_value_ref_in(result.unit), std::cosh(x.numerical_value_ref_in(x.unit)), 1e-10);
+
+    quantity<rad, int> y = 1 * rad;
+    auto result2         = cosh(y);
+    ASSERT_NEAR(result2.numerical_value_ref_in(result2.unit), std::cosh(y.numerical_value_ref_in(y.unit)), 1e-10);
 }
 
 TEST(TrigTest, Sinh)
@@ -47,6 +57,10 @@ TEST(TrigTest, Sinh)
     auto x      = 1.0 * rad;
     auto result = sinh(x);
     ASSERT_NEAR(result.numerical_value_ref_in(result.unit), std::sinh(x.numerical_value_ref_in(x.unit)), 1e-10);
+
+    quantity<rad, int> y = 1 * rad;
+    auto result2         = sinh(y);
+    ASSERT_NEAR(result2.numerical_value_ref_in(result2.unit), std::sinh(y.numerical_value_ref_in(y.unit)), 1e-10);
 }
 
 TEST(TrigTest, CylBesselJ)

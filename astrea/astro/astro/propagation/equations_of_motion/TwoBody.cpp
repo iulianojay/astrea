@@ -18,6 +18,7 @@
 #include <mp-units/systems/si/math.h>
 
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
@@ -44,8 +45,11 @@ OrbitalElementPartials TwoBody::operator()(const State& state, const Vehicle& ve
     const Distance R        = r.norm();
     const quantity muOverR3 = mu / pow<3>(R);
 
+    // Get vehicle-produced accels
+    const AccelerationVector<frames::earth::icrf> accelVehicle = vehicle.get_command_acceleration(state);
+
     // Derivative
-    return CartesianPartial(v, -muOverR3 * r);
+    return CartesianPartial(v, -muOverR3 * r + accelVehicle);
 }
 
 

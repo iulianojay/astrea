@@ -171,9 +171,9 @@ RadiusVector<frames::earth::icrf> Geodetic::get_position(const Date& date, const
 std::ostream& operator<<(std::ostream& os, Geodetic const& elements)
 {
     os << "[";
-    os << elements.get_latitude() << ", ";
-    os << elements.get_longitude() << ", ";
-    os << elements.get_altitude();
+    os << elements.get_latitude().in(deg) << ", ";
+    os << elements.get_longitude().in(deg);
+    if (elements.get_altitude() != 0.0 * km) { os << ", " << elements.get_altitude(); }
     os << "] (Geodetic)";
     return os;
 }

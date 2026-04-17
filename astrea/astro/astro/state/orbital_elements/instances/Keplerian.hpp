@@ -374,6 +374,14 @@ class Keplerian {
     MeanMotion get_mean_motion(const GravParam& mu) const;
 
     /**
+     * @brief Get the orbital period of the Keplerian state vector.
+     *
+     * @param mu Gravitational parameter of the central body
+     * @return Time Orbital period of the Keplerian state vector.
+     */
+    Time get_orbital_period(const GravParam& mu) const;
+
+    /**
      * @brief Interpolates between two Keplerian state vectors.
      *
      * This method performs linear interpolation between two Keplerian state vectors at a specified target time.
@@ -418,7 +426,7 @@ class Keplerian {
      * @param other The angle at the second time point.
      * @return Angle The interpolated angle at the target time.
      */
-    Angle interpolate_angle(const std::vector<Time>& times, const std::vector<Angle>& angles, const Time& targetTime) const;
+    Angle interpolate_angle(const std::array<Time, 2>& times, const std::array<Angle, 2>& angles, const Time& targetTime) const;
 
 
     /**

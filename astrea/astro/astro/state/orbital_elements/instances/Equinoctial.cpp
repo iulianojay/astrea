@@ -215,14 +215,14 @@ Equinoctial& Equinoctial::operator/=(const Unitless& divisor)
 Equinoctial
     Equinoctial::interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const GravParam& mu, const Time& targetTime) const
 {
+    const std::array<Time, 2> times = { thisTime, otherTime };
     const Distance interpSemimajor =
-        math::interpolate<Time, Distance>({ thisTime, otherTime }, { _semilatus, other.get_semilatus() }, targetTime);
-    const Unitless interpEcc = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _f, other.get_f() }, targetTime);
-    const Unitless interpInc = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _g, other.get_g() }, targetTime);
-    const Unitless interpRaan = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _h, other.get_h() }, targetTime);
-    const Unitless interpArgPer = math::interpolate<Time, Unitless>({ thisTime, otherTime }, { _k, other.get_k() }, targetTime);
-    const Angle interpTheta =
-        math::interpolate<Time, Angle>({ thisTime, otherTime }, { _trueLongitude, other.get_true_longitude() }, targetTime);
+        math::fast_interpolate<Time, Distance>(times, { _semilatus, other.get_semilatus() }, targetTime);
+    const Unitless interpEcc    = math::fast_interpolate<Time, Unitless>(times, { _f, other.get_f() }, targetTime);
+    const Unitless interpInc    = math::fast_interpolate<Time, Unitless>(times, { _g, other.get_g() }, targetTime);
+    const Unitless interpRaan   = math::fast_interpolate<Time, Unitless>(times, { _h, other.get_h() }, targetTime);
+    const Unitless interpArgPer = math::fast_interpolate<Time, Unitless>(times, { _k, other.get_k() }, targetTime);
+    const Angle interpTheta = math::fast_interpolate<Time, Angle>(times, { _trueLongitude, other.get_true_longitude() }, targetTime);
 
     return Equinoctial(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }

@@ -54,8 +54,22 @@ OrbitalElementPartials CowellsMethod::operator()(const State& state, const Vehic
     // Run find functions for force model
     const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(state, vehicle);
 
+    // Get vehicle-produced accels
+    const AccelerationVector<frames::earth::icrf> accelVehicle = vehicle.get_command_acceleration(state);
+
     // Derivative
-    return CartesianPartial(v, -muOverRadiusCubed * r + accelPerts);
+    return CartesianPartial(v, -muOverRadiusCubed * r + accelPerts + accelVehicle);
+}
+
+
+StateTransitionMatrix CowellsMethod::compute_stm(const State& state, const Vehicle& vehicle) const
+{
+    if (forces->size() == 0) {
+        // If no perturbations, use two-body STM
+        const TwoBody twoBody;
+        return twoBody.compute_stm(state, vehicle);
+    }
+    return StateTransitionMatrix(*this, state, vehicle);
 }
 
 

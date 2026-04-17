@@ -32,6 +32,36 @@ namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
+static const CelestialBodyParameters DEFAULT_SATURN_PARAMS{
+    .name          = "Saturn",
+    .parent        = CelestialBodyId::SUN,
+    .type          = CelestialBodyType::PLANET,
+    .referenceDate = Date("2000-01-01 12:00:00"),
+    .mu = GravParam(37931187.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
+    .mass               = Mass(568.0 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
+    .equitorialRadius   = Distance(60268.0 * mp_units::si::unit_symbols::km),
+    .polarRadius        = Distance(54364.0 * mp_units::si::unit_symbols::km),
+    .crashRadius        = Distance(60268.0 * mp_units::si::unit_symbols::km),
+    .sphereOfInfluence  = Distance(5.453426873248700 * mp_units::iau::unit_symbols::au),
+    .j2                 = Unitless(16298e-6 * mp_units::one),
+    .j3                 = Unitless(26.73 * mp_units::one),
+    .axialTilt          = Angle(0.0 * mp_units::angular::unit_symbols::deg),
+    .rotationRate       = AngularRate(810.8108108108107 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
+    .siderealPeriod     = Time(10759.22 * mp_units::non_si::day),
+    .semimajorAxis      = Distance(9.53667594 * mp_units::iau::unit_symbols::au),
+    .eccentricity       = Unitless(0.05386179 * mp_units::one),
+    .inclination        = Angle(2.48599187 * mp_units::angular::unit_symbols::deg),
+    .rightAscension     = Angle(113.66242448 * mp_units::angular::unit_symbols::deg),
+    .longitudeOfPerigee = Angle(92.59887831 * mp_units::angular::unit_symbols::deg),
+    .meanLongitude      = Angle(49.95424423 * mp_units::angular::unit_symbols::deg),
+    .semimajorAxisRate  = InterplanetaryVelocity(-0.00125060 * mp_units::iau::unit_symbols::au / JulianCentury),
+    .eccentricityRate   = BodyUnitlessPerTime(-0.00050991 * mp_units::one / JulianCentury),
+    .inclinationRate    = BodyAngularRate(0.00193609 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .rightAscensionRate = BodyAngularRate(-0.28867794 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .longitudeOfPerigeeRate = BodyAngularRate(-0.41897216 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .meanLongitudeRate      = BodyAngularRate(1222.49362201 * mp_units::angular::unit_symbols::deg / JulianCentury)
+};
+
 /**
  * @class Saturn
  * @brief Represents the Saturn celestial body.
@@ -41,41 +71,15 @@ namespace planetary_bodies {
 class Saturn : public CelestialBody {
 
   public:
+    using CelestialBody::CelestialBody;
+
     /**
      * @brief Default constructor for the Saturn class.
      *
      * Initializes the Saturn object with predefined physical and orbital parameters.
      */
     constexpr Saturn() :
-        CelestialBody(
-            "Saturn",                    //!< Name
-            CelestialBodyId::SUN,        //!< Parent celestial body
-            CelestialBodyType::PLANET,   //!< Type
-            Date("2000-01-01 12:00:00"), //!< Reference date for the celestial body data
-            GravParam(37931187.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)), //!< Gravitational parameter (mu)
-            Mass(568.0 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)), //!< Mass
-            Distance(60268.0 * mp_units::si::unit_symbols::km),                           //!< Equatorial radius
-            Distance(54364.0 * mp_units::si::unit_symbols::km),                           //!< Polar radius
-            Distance(60268.0 * mp_units::si::unit_symbols::km),                           //!< Crash radius
-            Distance(5.453426873248700 * mp_units::iau::unit_symbols::au), //!< Semi-major axis of the orbit around the parent body
-            Unitless(16298e-6 * mp_units::one),                            //!< J2 gravitational coefficient
-            Unitless(26.73 * mp_units::one),                               //!< J3 gravitational coefficient
-            Angle(0.0 * mp_units::angular::unit_symbols::deg),             //!< Axial tilt
-            AngularRate(810.8108108108107 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day), //!< Mean motion
-            Time(10759.22 * mp_units::non_si::day),                     //!< Orbital period
-            Distance(9.53667594 * mp_units::iau::unit_symbols::au),     //!< Semi-major axis of the orbit
-            Unitless(0.05386179 * mp_units::one),                       //!< Eccentricity of the orbit
-            Angle(2.48599187 * mp_units::angular::unit_symbols::deg),   //!< Inclination of the orbit
-            Angle(113.66242448 * mp_units::angular::unit_symbols::deg), //!< Longitude of the ascending node
-            Angle(92.59887831 * mp_units::angular::unit_symbols::deg),  //!< Longitude of perihelion
-            Angle(49.95424423 * mp_units::angular::unit_symbols::deg),  //!< Mean longitude
-            InterplanetaryVelocity(-0.00125060 * mp_units::iau::unit_symbols::au / JulianCentury), //!< Rate of change of the semi-major axis
-            BodyUnitlessPerTime(-0.00050991 * mp_units::one / JulianCentury), //!< Rate of change of the eccentricity
-            BodyAngularRate(0.00193609 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the inclination
-            BodyAngularRate(-0.28867794 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of ascending node
-            BodyAngularRate(-0.41897216 * mp_units::angular::unit_symbols::deg / JulianCentury), //!< Rate of change of the longitude of perihelion
-            BodyAngularRate(1222.49362201 * mp_units::angular::unit_symbols::deg / JulianCentury) //!< Rate of change of the mean longitude
-        )
+        CelestialBody(DEFAULT_SATURN_PARAMS)
     {
     }
 

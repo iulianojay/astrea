@@ -11,29 +11,34 @@ lib
 install
 __pycache__
 results
+site
 
 # File types
 *.o
 *.so*
-*.png
 *.jpg
 *.zip
 *.pyc
+*.html
 
 # Specific files
 build.txt
 package.json
-get-pip.py
 pyastro/astro.py
 .coverage.info
 snapshot.db
 snapshot.db-journal
 spacetrack.query-history.json
+astrea/astro/pyastro/6dof_report/nasa_6dof_report.html
 
 # NASA 6DOF checkcases data files
 **/nasa_6dof_checkcases/checkcases/**/*.csv
 **/nasa_6dof_checkcases/**/*.m
 **/nasa_6dof_checkcases/data/**/*.csv
+
+# cxxdraft-htmlgen
+docs/reference/api_reference/src/source/
+docs/reference/api_reference/gen
 
 # Must include
 !CMakeLists.txt

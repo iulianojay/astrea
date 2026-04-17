@@ -20,31 +20,16 @@
 
 #include <vector>
 
+#include <units/units.hpp>
+
 #include <astro/systems/CelestialBody.hpp>
 
 #include <trace/platforms/ground/GroundPoint.hpp>
+#include <trace/types/enums.hpp>
 #include <trace/types/typedefs.hpp>
 
 namespace astrea {
 namespace trace {
-
-/**
- * @brief Enumeration for different grid types.
- */
-enum class GridType : EnumType {
-    UNIFORM,     //!< Uniform grid with equal spacing
-    EQUAL_AREA,  //!< Equal area grid with varying spacing
-    WEIGHTED_NS, //!< Weighted grid with North-South emphasis
-    WEIGHTED_EW, //!< Weighted grid with East-West emphasis
-    MANUAL       //!< Manual grid with user-defined points
-};
-
-/**
- * @brief Latitude/Longitude coordinate pair.
- *
- * This type is used to represent a geographic location on the Earth's surface.
- */
-using LatLon = std::pair<Angle, Angle>;
 
 /**
  * @brief Class representing a grid of ground points.
@@ -56,12 +41,19 @@ using LatLon = std::pair<Angle, Angle>;
 class Grid {
   public:
     /**
+     * @brief Default constructor for the Grid class.
+     *
+     * Initializes an empty grid with no ground points.
+     */
+    Grid() = default;
+
+    /**
      * @brief Construct a Grid with a vector of ground stations.
      *
-     * @param groundStations Vector of GroundPoint objects representing the grid.
+     * @param groundPoints Vector of GroundPoint objects representing the grid.
      */
-    Grid(const std::vector<GroundPoint>& groundStations = {}) :
-        _groundStations(groundStations),
+    Grid(const std::vector<GroundPoint>& groundPoints) :
+        _groundPoints(groundPoints),
         _gridType(GridType::MANUAL)
     {
     }
@@ -84,7 +76,7 @@ class Grid {
         const Unitless& weight = 0.0 * mp_units::one
     ) :
         _parent(parent),
-        _groundStations(build_grid(corner1, corner4, gridType, spacing, weight)),
+        _groundPoints(build_grid(corner1, corner4, gridType, spacing, weight)),
         _gridType(gridType)
     {
     }
@@ -93,6 +85,27 @@ class Grid {
      * @brief Default destructor for the Grid class.
      */
     virtual ~Grid() = default;
+
+    /**
+     * @brief Get the type of grid.
+     *
+     * @return GridType The type of grid (uniform, equal area, etc.).
+     */
+    GridType get_grid_type() const { return _gridType; }
+
+    /**
+     * @brief Get the parent celestial body of the grid.
+     *
+     * @return const CelestialBody* Pointer to the parent celestial body.
+     */
+    const astro::CelestialBody* get_parent() const { return _parent; }
+
+    /**
+     * @brief Get the number of ground points in the grid.
+     *
+     * @return std::size_t The number of ground points in the grid.
+     */
+    std::size_t size() const { return _groundPoints.size(); }
 
     /**
      * @brief Iterator types for the Grid class.
@@ -109,42 +122,42 @@ class Grid {
      *
      * @return An iterator to the first ground point.
      */
-    iterator begin() { return _groundStations.begin(); }
+    iterator begin() { return _groundPoints.begin(); }
 
     /**
      * @brief Returns an iterator to the end of the ground points in the grid.
      *
      * @return An iterator to one past the last ground point.
      */
-    iterator end() { return _groundStations.end(); }
+    iterator end() { return _groundPoints.end(); }
 
     /**
      * @brief Returns a constant iterator to the beginning of the ground points in the grid.
      *
      * @return A constant iterator to the first ground point.
      */
-    const_iterator begin() const { return _groundStations.begin(); }
+    const_iterator begin() const { return _groundPoints.begin(); }
 
     /**
      * @brief Returns a constant iterator to the end of the ground points in the grid.
      *
      * @return A constant iterator to one past the last ground point.
      */
-    const_iterator end() const { return _groundStations.end(); }
+    const_iterator end() const { return _groundPoints.end(); }
 
     /**
      * @brief Returns a constant iterator to the beginning of the ground points in the grid.
      *
      * @return A constant iterator to the first ground point.
      */
-    const_iterator cbegin() const { return _groundStations.begin(); }
+    const_iterator cbegin() const { return _groundPoints.begin(); }
 
     /**
      * @brief Returns a constant iterator to the end of the ground points in the grid.
      *
      * @return A constant iterator to one past the last ground point.
      */
-    const_iterator cend() const { return _groundStations.end(); }
+    const_iterator cend() const { return _groundPoints.end(); }
 
     /**
      * @brief Access ground points in the grid by index.
@@ -152,7 +165,7 @@ class Grid {
      * @param index Index of the ground point to access.
      * @return Reference to the GroundPoint at the specified index.
      */
-    GroundPoint& operator[](const std::size_t index) { return _groundStations[index]; }
+    GroundPoint& operator[](const std::size_t index) { return _groundPoints[index]; }
 
     /**
      * @brief Access ground points in the grid by index (constant version).
@@ -160,12 +173,12 @@ class Grid {
      * @param index Index of the ground point to access.
      * @return Constant reference to the GroundPoint at the specified index.
      */
-    const GroundPoint& operator[](const std::size_t index) const { return _groundStations[index]; }
+    const GroundPoint& operator[](const std::size_t index) const { return _groundPoints[index]; }
 
   private:
-    const astro::CelestialBody* _parent;      //!< Pointer to the parent celestial body
-    std::vector<GroundPoint> _groundStations; //!< Vector of ground points in the grid
-    GridType _gridType;                       //!< Type of grid (uniform, equal area, etc.)
+    const astro::CelestialBody* _parent;    //!< Pointer to the parent celestial body
+    std::vector<GroundPoint> _groundPoints; //!< Vector of ground points in the grid
+    GridType _gridType;                     //!< Type of grid (uniform, equal area, etc.)
 
     /**
      * @brief Builds a grid of ground points based on the specified parameters.

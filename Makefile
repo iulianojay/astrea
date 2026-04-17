@@ -117,6 +117,14 @@ rerun_tests:
 run_examples:
 	sh ./scripts/run_examples.sh
 
+.PHONY: run_checkcases
+run_checkcases:
+	cd $(install_path)/bin/regression/ && ./orbital.test --gtest_filter=*.Checkcase* --gtest_catch_exceptions=0 2> /dev/null
+
+.PHONY: build_report
+build_report: run_checkcases
+	cd astrea/astro/pyastro/6dof_report && python3 nasa_6dof_report.py
+
 .PHONY: docker
 docker:
 	docker build -t astrea:latest -f ./docker/devcontainer/Dockerfile . --build-arg USER=$(username)
@@ -148,9 +156,10 @@ coverage-html: debug run_tests run_examples
 	-o ../.gcovr/coverage.html \
 	--merge-mode-functions=separate \
 	--filter ".*/astrea/" \
-	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*test_util.hpp|.*plotting.*|.*/plots/.*|.*SpatialIndex.*" \
 	--exclude-unreachable-branches -s \
-	--gcov-ignore-errors=no_working_dir_found && \
+	--gcov-ignore-errors=no_working_dir_found \
+	--gcov-ignore-parse-errors=suspicious_hits.warn_once_per_file && \
 	cd ..
 
 .PHONY: coverage
@@ -160,15 +169,15 @@ coverage: debug run_tests run_examples
 	-o ../.gcovr/coverage.xml  \
 	--merge-mode-functions=separate \
 	--filter ".*/astrea/" \
-	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*test_util.hpp|.*plotting.*|.*/plots/.*|.*SpatialIndex.*" \
 	--exclude-unreachable-branches -s \
 	--gcov-ignore-errors=no_working_dir_found \
+	--gcov-ignore-parse-errors=suspicious_hits.warn_once_per_file \
 	&& cd ..
 
 .PHONY: build_env
 build_env:
-	rm -rf .venv
-	python3 -m venv .venv
+	uv venv .venv
 
 .PHONY: activate_env
 activate_env:
@@ -176,7 +185,11 @@ activate_env:
 
 .PHONY: install_deps
 install_deps:
-	.venv/bin/pip install -r requirements.txt
+	uv pip install -r pyproject.toml
 
 .PHONY: python_env
 python_env: build_env activate_env install_deps
+
+.PHONY: clean-env
+clean-env:
+	rm -rf .venv

@@ -21,8 +21,7 @@
 #include <memory>
 
 #include <trace/risesets/AccessArray.hpp>
-
-#include <astro/types/typedefs.hpp>
+#include <trace/types/typedefs.hpp>
 
 namespace astrea {
 namespace trace {

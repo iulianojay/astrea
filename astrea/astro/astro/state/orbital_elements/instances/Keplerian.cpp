@@ -268,6 +268,12 @@ MeanMotion Keplerian::get_mean_motion(const GravParam& mu) const
     return sqrt(mu / (_semimajor * _semimajor * _semimajor));
 }
 
+Time Keplerian::get_orbital_period(const GravParam& mu) const
+{
+    const auto meanMotion = get_mean_motion(mu);
+    return (2.0 * std::numbers::pi) / meanMotion;
+}
+
 // Copy assignment operator
 Keplerian& Keplerian::operator=(const Keplerian& other) { return *this = Keplerian(other); }
 
@@ -367,9 +373,11 @@ Keplerian& Keplerian::operator/=(const Unitless& divisor)
 
 Keplerian Keplerian::interpolate(const Time& thisTime, const Time& otherTime, const Keplerian& other, const GravParam& mu, const Time& targetTime) const
 {
-    const std::vector<Time> times = { thisTime, otherTime };
-    const Distance interpSemimajor = math::interpolate<Time, Distance>(times, { _semimajor, other.get_semimajor() }, targetTime);
-    const Unitless interpEcc = math::interpolate<Time, Unitless>(times, { _eccentricity, other.get_eccentricity() }, targetTime);
+    const std::array<Time, 2> times = { thisTime, otherTime };
+    const Distance interpSemimajor =
+        math::fast_interpolate<Time, Distance>(times, { _semimajor, other.get_semimajor() }, targetTime);
+    const Unitless interpEcc =
+        math::fast_interpolate<Time, Unitless>(times, { _eccentricity, other.get_eccentricity() }, targetTime);
     const Angle interpInc    = interpolate_angle(times, { _inclination, other.get_inclination() }, targetTime);
     const Angle interpRaan   = interpolate_angle(times, { _rightAscension, other.get_right_ascension() }, targetTime);
     const Angle interpArgPer = interpolate_angle(times, { _argPerigee, other.get_argument_of_perigee() }, targetTime);
@@ -378,17 +386,17 @@ Keplerian Keplerian::interpolate(const Time& thisTime, const Time& otherTime, co
     return Keplerian(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }
 
-Angle Keplerian::interpolate_angle(const std::vector<Time>& times, const std::vector<Angle>& angles, const Time& targetTime) const
+Angle Keplerian::interpolate_angle(const std::array<Time, 2>& times, const std::array<Angle, 2>& angles, const Time& targetTime) const
 {
     // These is an assumption on the size of the diff. If the time step is too big, this will cause errors
     // TODO: Catch large interpolation steps
     if (abs(angles[0] - angles[1]) > 300.0 * deg) {
         if (angles[0] > angles[1]) {
-            return math::interpolate<Time, Angle>(times, { angles[0], angles[1] + 360.0 * deg }, targetTime);
+            return math::fast_interpolate<Time, Angle>(times, { angles[0], angles[1] + 360.0 * deg }, targetTime);
         }
-        return math::interpolate<Time, Angle>(times, { angles[0] + 360.0 * deg, angles[1] }, targetTime);
+        return math::fast_interpolate<Time, Angle>(times, { angles[0] + 360.0 * deg, angles[1] }, targetTime);
     }
-    return math::interpolate<Time, Angle>(times, { angles[0], angles[1] }, targetTime);
+    return math::fast_interpolate<Time, Angle>(times, { angles[0], angles[1] }, targetTime);
 }
 
 std::vector<Unitless> Keplerian::force_to_vector() const

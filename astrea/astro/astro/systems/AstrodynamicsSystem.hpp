@@ -26,10 +26,17 @@
 #include <astro/systems/planetary_bodies/planetary_bodies.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/enums.hpp>
+#include <astro/types/type_traits.hpp>
 
 
 namespace astrea {
 namespace astro {
+
+template <typename T>
+concept IsDerivedCelestialBody = requires(T) {
+    std::is_base_of<CelestialBody, T>::value;
+    std::negation<std::is_same<CelestialBody, remove_cv_ref<T>>>::value;
+};
 
 /**
  * @class AstrodynamicsSystem
@@ -43,7 +50,7 @@ class AstrodynamicsSystem {
      * @brief Constructs an AstrodynamicsSystem with a specified central body, and the set of all other bodies.
      *
      * @param centralBody The name of the central celestial body (default is "Earth").
-     * @param allBodies A set of names of all secondary celestial bodies in the system (default is the "Moon").
+     * @param allBodies A set of names of all secondary celestial bodies in the system (default is none).
      */
     constexpr AstrodynamicsSystem(
         const CelestialBodyId& centralBody                         = CelestialBodyId::EARTH,
@@ -51,6 +58,23 @@ class AstrodynamicsSystem {
     ) :
         _centerType(SystemCenter::CENTRAL_BODY),
         _centralBody(centralBody)
+    {
+        add_body(centralBody);
+        for (const auto& body : secondaryBodies) {
+            add_body(body);
+        }
+    }
+
+    /**
+     * @brief Constructs an AstrodynamicsSystem with a specified central body, and the set of all other bodies.
+     *
+     * @param centralBody The central celestial body.
+     * @param allBodies A set of all secondary celestial bodies in the system (default is none).
+     */
+    template <IsDerivedCelestialBody T>
+    constexpr AstrodynamicsSystem(const T& centralBody, const std::unordered_set<CelestialBodyId>& secondaryBodies = {}) :
+        _centerType(SystemCenter::CENTRAL_BODY),
+        _centralBody(centralBody.get_id())
     {
         add_body(centralBody);
         for (const auto& body : secondaryBodies) {
@@ -71,7 +95,17 @@ class AstrodynamicsSystem {
     /**
      * @brief Deleted assignment operator for the AstrodynamicsSystem class.
      */
-    AstrodynamicsSystem operator=(const AstrodynamicsSystem&) = delete;
+    AstrodynamicsSystem& operator=(const AstrodynamicsSystem&) = delete;
+
+    /**
+     * @brief Default move constructor for the AstrodynamicsSystem class.
+     */
+    AstrodynamicsSystem(AstrodynamicsSystem&&) = default;
+
+    /**
+     * @brief Default move assignment operator for the AstrodynamicsSystem class.
+     */
+    AstrodynamicsSystem& operator=(AstrodynamicsSystem&&) = default;
 
     /**
      * @brief Creates a default AstrodynamicsSystem.
@@ -135,8 +169,7 @@ class AstrodynamicsSystem {
      * @param system The astrodynamics system to which the body belongs.
      * @return A unique pointer to the created CelestialBody of type T.
      */
-    template <typename T, typename... Args>
-        requires(std::is_base_of<CelestialBody, T>::value)
+    template <IsDerivedCelestialBody T, typename... Args>
     constexpr const CelestialBodyUniquePtr& add_body(Args&&... args)
     {
         const CelestialBodyId id = T::get_id();
@@ -164,6 +197,25 @@ class AstrodynamicsSystem {
             _root = find_common_root(_activeBodies);
         }
 
+        return get_body(id);
+    }
+
+    /**
+     * @brief Store manually generated celestial body.
+     *
+     * @param id The id of the celestial body to create.
+     * @param system The astrodynamics system to which the body belongs.
+     * @return const CelestialBodyUniquePtr& A pointer to the created celestial body.
+     */
+    template <IsDerivedCelestialBody T>
+    constexpr const CelestialBodyUniquePtr& add_body(const T& body)
+    {
+        const CelestialBodyId id = body.get_id();
+        if (_bodies.count(id) == 0) {
+            _bodies.emplace(id, std::make_unique<CelestialBody>(T(body)));
+            _activeBodies.insert(id);
+            _root = find_common_root(_activeBodies);
+        }
         return get_body(id);
     }
 

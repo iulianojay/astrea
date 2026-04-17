@@ -1,0 +1,197 @@
+# NASA 6DOF Orbital Test Report Generator
+
+This Python script automatically generates comprehensive HTML reports from NASA 6DOF orbital checkcase test results.
+
+An AI wrote this file.
+
+## Features
+
+- **Automatic Discovery**: Finds all orbit test directories and loads results
+- **Performance Analysis**: Calculates statistics and identifies best/worst performing methods  
+- **Visual Reports**: Embeds trajectory and orbital element comparison plots
+- **Manual Annotations**: Allows adding custom notes and commentary for each test
+- **Responsive HTML**: Generates professional-looking reports with CSS styling
+- **CLI Interface**: Easy command-line usage with various options
+
+## File Structure Expected
+
+The script expects the following directory structure:
+```
+orbital/results/
+├── Orbit_02/
+│   ├── summary.csv
+│   ├── trajectory_comparison.png
+│   ├── orbital_elements_comparison.png
+│   └── Checkcase 0/
+│       ├── summary.csv
+│       ├── trajectory_comparison.png
+│       ├── orbital_elements_comparison.png
+│       └── [Propagation Method Directories]/
+├── Orbit_03A/
+│   └── [similar structure]
+└── Orbit_04/
+    └── [similar structure]
+```
+
+## Quick Start
+
+### 1. Basic Report Generation
+```bash
+python nasa_6dof_report.py --output my_report.html
+```
+
+### 2. Report with Manual Notes
+```bash
+python nasa_6dof_report.py --output my_report.html --notes-file example_notes.json
+```
+
+### 3. Custom Results Directory
+```bash
+python nasa_6dof_report.py --results-dir /path/to/results --output my_report.html
+```
+
+## Python API Usage
+
+```python
+from nasa_6dof_report import NASA6DOFReportGenerator
+
+# Initialize the generator
+generator = NASA6DOFReportGenerator()
+
+# Add manual notes
+manual_notes = {
+    "Orbit_02": "Baseline validation test - excellent agreement expected",
+    "Orbit_03A": "Atmospheric drag effects validation",
+    "Orbit_04": "High-eccentricity stability test"
+}
+
+# Generate comprehensive report
+html_report = generator.generate_full_report("report.html", manual_notes)
+```
+
+## Manual Notes Format
+
+Create a JSON file with manual notes for each orbit test:
+
+```json
+{
+    "Orbit_02": "Your analysis and notes for Orbit_02 test",
+    "Orbit_03A": "Commentary on atmospheric drag validation",
+    "Orbit_04": "Notes about high-eccentricity performance"
+}
+```
+
+## Report Contents
+
+Each generated report includes:
+
+### Executive Summary
+- Total number of orbit tests and checkcases
+- List of propagation methods tested
+- Overview of test coverage
+
+### Per-Orbit Analysis
+- Manual notes and commentary 
+- Performance statistics (best/worst methods)
+- Position and velocity error metrics
+- Embedded comparison plots
+- Detailed results tables
+- Individual checkcase breakdowns
+
+### Performance Metrics
+
+The script analyzes:
+- **Position Errors**: Mean, std dev, min/max in meters
+- **Velocity Errors**: Mean, std dev, min/max in cm/s  
+- **Method Comparison**: Ranking by overall performance
+- **Statistical Analysis**: Error distributions by propagation method
+
+## Example Output
+
+The generated HTML report includes:
+- 📊 Interactive tables with all numerical results
+- 📈 Embedded trajectory and orbital element plots
+- 📝 Manual annotations and test notes
+- 📋 Executive summary with key statistics
+- 🎨 Professional styling with responsive design
+
+## Dependencies
+
+Required Python packages:
+- `pandas` - for CSV data processing
+- `numpy` - for numerical analysis
+- `matplotlib` (optional) - for enhanced plotting features
+
+Install with:
+```bash
+uv add pandas numpy matplotlib
+```
+
+## CLI Options
+
+```bash
+python nasa_6dof_report.py [OPTIONS]
+
+Options:
+  --results-dir PATH    Path to orbital results directory
+  --output, -o PATH     Output HTML file path (default: nasa_6dof_report.html)
+  --notes-file PATH     JSON file with manual notes for each orbit test
+  --help               Show help message
+```
+
+## Examples
+
+Run the example script to see various usage patterns:
+```bash
+python run_examples.py
+```
+
+This demonstrates:
+- Basic report generation
+- Adding manual notes
+- Single orbit analysis
+- Custom results directories
+
+## Customization
+
+The report generator is highly customizable:
+
+### Custom Styling
+Modify the CSS in `_generate_html_header()` to change colors, fonts, or layout.
+
+### Additional Metrics  
+Extend `analyze_performance_metrics()` to compute custom performance indicators.
+
+### Custom Sections
+Add new report sections by creating additional `_generate_*_html()` methods.
+
+### Data Sources
+Adapt `load_test_results()` to work with different file formats or directory structures.
+
+## Troubleshooting
+
+### Common Issues
+
+**FileNotFoundError**: Check that the results directory exists and contains the expected structure.
+
+**Empty Report**: Verify that summary.csv files exist and contain valid data.
+
+**Missing Images**: Ensure PNG comparison plots are generated by the test suite.
+
+**Import Errors**: Install required dependencies with uv.
+
+### Debug Mode
+
+Add debug print statements to see what data is being loaded:
+```python
+generator = NASA6DOFReportGenerator()
+print(f"Found orbit tests: {generator.orbit_tests}")
+
+for orbit in generator.orbit_tests:
+    data = generator.load_test_results(orbit)
+    print(f"{orbit}: {len(data['checkcases'])} checkcases")
+```
+
+## License
+
+This script is part of the Astrea project and follows the same licensing terms.

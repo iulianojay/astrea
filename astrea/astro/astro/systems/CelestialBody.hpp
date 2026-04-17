@@ -25,6 +25,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/frames.hpp>
+#include <astro/systems/CelestialBodyParameters.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/enums.hpp>
 #include <astro/utilities/conversions.hpp>
@@ -51,91 +52,37 @@ class CelestialBody {
     /**
      * @brief Constructs a CelestialBody from individual parameters.
      *
-     * @param name Name of the celestial body.
-     * @param parent Reference to the parent planetary body.
-     * @param type Type of the celestial body.
-     * @param referenceDate Reference date for the celestial body data.
-     * @param mu Gravitational parameter (mu) of the celestial body.
-     * @param mass Mass of the celestial body.
-     * @param equitorialRadius Equatorial radius of the celestial body.
-     * @param polarRadius Polar radius of the celestial body.
-     * @param crashRadius Crash radius of the celestial body.
-     * @param sphereOfInfluence Crash radius of the celestial body.
-     * @param j2 J2 gravitational coefficient of the celestial body.
-     * @param j3 J3 gravitational coefficient of the celestial body.
-     * @param axialTilt Axial tilt of the celestial body.
-     * @param rotationRate Rotation rate of the celestial body.
-     * @param siderealPeriod Sidereal period of the celestial body.
-     * @param semimajorAxis Semimajor axis.
-     * @param eccentricity Eccentricity.
-     * @param inclination Inclination.
-     * @param rightAscension Right ascension.
-     * @param longitudeOfPerigee Longitude of perigee.
-     * @param meanLongitude Mean longitude.
-     * @param semimajorAxisRate Rate of change of the semimajor axis.
-     * @param eccentricityRate Rate of change of the eccentricity.
-     * @param inclinationRate Rate of change of the inclination.
-     * @param rightAscensionRate Rate of change of the right ascension.
-     * @param longitudeOfPerigeeRate Rate of change of the longitude of perigee.
-     * @param meanLongitudeRate Rate of change of the mean longitude.
+     * @param data The CelestialBodyParameters struct containing all the necessary parameters to construct a CelestialBody.
      */
-    constexpr CelestialBody(
-        const std::string& name,
-        const CelestialBodyId& parent,
-        const CelestialBodyType& type,
-        const Date& referenceDate,
-        const GravParam& mu,
-        const Mass& mass,
-        const Distance& equitorialRadius,
-        const Distance& polarRadius,
-        const Distance& crashRadius,
-        const Distance& sphereOfInfluence,
-        const Unitless& j2,
-        const Unitless& j3,
-        const Angle& axialTilt,
-        const AngularRate& rotationRate,
-        const Time& siderealPeriod,
-        const Distance& semimajorAxis,
-        const Unitless& eccentricity,
-        const Angle& inclination,
-        const Angle& rightAscension,
-        const Angle& longitudeOfPerigee,
-        const Angle& meanLongitude,
-        const InterplanetaryVelocity& semimajorAxisRate,
-        const BodyUnitlessPerTime& eccentricityRate,
-        const BodyAngularRate& inclinationRate,
-        const BodyAngularRate& rightAscensionRate,
-        const BodyAngularRate& longitudeOfPerigeeRate,
-        const BodyAngularRate& meanLongitudeRate
-    ) :
-        _name(name),
-        _parent(parent),
-        _type(type),
-        _referenceDate(referenceDate),
-        _mu(mu),
-        _mass(mass),
-        _equitorialRadius(equitorialRadius),
-        _polarRadius(polarRadius),
-        _crashRadius(crashRadius),
-        _sphereOfInfluence(sphereOfInfluence),
-        _j2(j2),
-        _j3(j3),
-        _axialTilt(axialTilt),
-        _rotationRate(rotationRate),
-        _siderealPeriod(siderealPeriod),
-        _semimajorAxis(semimajorAxis),
-        _eccentricity(eccentricity),
-        _inclination(inclination),
-        _rightAscension(rightAscension),
-        _longitudeOfPerigee(longitudeOfPerigee),
-        _meanLongitude(meanLongitude),
+    constexpr CelestialBody(const CelestialBodyParameters& data) :
+        _name(data.name),
+        _parent(data.parent),
+        _type(data.type),
+        _referenceDate(data.referenceDate),
+        _mu(data.mu),
+        _mass(data.mass),
+        _equitorialRadius(data.equitorialRadius),
+        _polarRadius(data.polarRadius),
+        _crashRadius(data.crashRadius),
+        _sphereOfInfluence(data.sphereOfInfluence),
+        _j2(data.j2),
+        _j3(data.j3),
+        _axialTilt(data.axialTilt),
+        _rotationRate(data.rotationRate),
+        _siderealPeriod(data.siderealPeriod),
+        _semimajorAxis(data.semimajorAxis),
+        _eccentricity(data.eccentricity),
+        _inclination(data.inclination),
+        _rightAscension(data.rightAscension),
+        _longitudeOfPerigee(data.longitudeOfPerigee),
+        _meanLongitude(data.meanLongitude),
         _meanAnomaly(wrap_angle(_meanLongitude - _longitudeOfPerigee)),
-        _semimajorAxisRate(semimajorAxisRate),
-        _eccentricityRate(eccentricityRate),
-        _inclinationRate(inclinationRate),
-        _rightAscensionRate(rightAscensionRate),
-        _longitudeOfPerigeeRate(longitudeOfPerigeeRate),
-        _meanLongitudeRate(meanLongitudeRate)
+        _semimajorAxisRate(data.semimajorAxisRate),
+        _eccentricityRate(data.eccentricityRate),
+        _inclinationRate(data.inclinationRate),
+        _rightAscensionRate(data.rightAscensionRate),
+        _longitudeOfPerigeeRate(data.longitudeOfPerigeeRate),
+        _meanLongitudeRate(data.meanLongitudeRate)
     {
     }
 

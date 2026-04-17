@@ -92,16 +92,14 @@ class Integrator;
 class LambertSolver;
 class Event;
 class EventDetector;
+class Schedule;
 
 // Systems
 class AstrodynamicsSystem;
 class CelestialBody;
+struct CelestialBodyParameters;
 
 // Time
-struct IdPair;
-class AccessArray;
-class RiseSetArray;
-
 class Date;
 class Interval;
 struct JulianDateClock;
