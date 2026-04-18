@@ -83,6 +83,7 @@
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/time/JulianDateClock.hpp>
+#include <astro/time/TerrestrialTimeClock.hpp>
 
 #include <astro/types/tuple_hash.hpp>
 #include <astro/types/typedefs.hpp>
