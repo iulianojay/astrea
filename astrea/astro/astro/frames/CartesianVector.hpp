@@ -358,6 +358,9 @@ class CartesianVector {
     template <typename Value_U>
     Angle offset_angle(const CartesianVector<Value_U, Frame_T>& other) const
     {
+        using namespace mp_units;
+        using namespace mp_units::angular;
+
         const Value_T v1Mag = norm();
         const Value_U v2Mag = other.norm();
 
@@ -367,10 +370,10 @@ class CartesianVector {
 
         const auto v1DotV2 = dot(other);
         const auto ratio   = v1DotV2 / (v1Mag * v2Mag);
-        if (mp_units::abs(ratio) > 1.0 * mp_units::one) {
-            return 0.0 * astrea::detail::angle_unit;
-        } // catch rounding errors - TODO: Make this more intelligent
-        return mp_units::angular::acos(ratio);
+
+        // magic number is 0.5 ULP for floats near 1.0
+        if (abs(ratio - 1.0 * one) < 2.107342e-08 * one) { return 0.0 * astrea::detail::angle_unit; }
+        return acos(ratio);
     }
 
     /**
