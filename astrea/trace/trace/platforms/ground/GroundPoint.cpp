@@ -19,6 +19,8 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 
+#include <utilities/IdProvider.hpp>
+
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/time/Date.hpp>
@@ -39,7 +41,7 @@ GroundPoint::GroundPoint(const CelestialBody* parent, const Angle& latitutde, co
     AccessObject(),
     _parent(parent),
     _lla(latitutde, longitude, altitude),
-    _id(generate_id())
+    _id(utilities::IdProvider::get_next_id<"Platform">())
 {
 }
 
@@ -88,12 +90,6 @@ std::string GroundPoint::get_name() const
     oss << "]";
     oss << " (" << _parent->get_name() << ")";
     return oss.str();
-}
-
-std::size_t GroundPoint::generate_id()
-{
-    static std::size_t idCounter = -1; // UNDERFLOW DEPENDENT BEHAVIOR LETS GOOOOOOO
-    return idCounter--; // TODO: not this (but have to for now cause otherwise viewer ids can conflict with ground IDs)
 }
 
 } // namespace trace

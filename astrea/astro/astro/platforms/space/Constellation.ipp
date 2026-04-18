@@ -7,7 +7,7 @@ template <class Spacecraft_T>
 Constellation<Spacecraft_T>::Constellation(std::vector<Shell<Spacecraft_T>> _shells)
 {
     shells = _shells;
-    generate_id();
+    id     = utilities::IdProvider::get_next_id<"Constellation">();
 }
 
 
@@ -20,7 +20,7 @@ Constellation<Spacecraft_T>::Constellation(std::vector<Plane<Spacecraft_T>> plan
 
     shells.push_back(noShell);
 
-    generate_id();
+    id = utilities::IdProvider::get_next_id<"Constellation">();
 }
 
 
@@ -33,7 +33,7 @@ Constellation<Spacecraft_T>::Constellation(std::vector<Spacecraft_T> satellites)
 
     shells.push_back(noShell);
 
-    generate_id();
+    id = utilities::IdProvider::get_next_id<"Constellation">();
 }
 
 template <class Spacecraft_T>
@@ -63,7 +63,7 @@ Constellation<Spacecraft_T>::Constellation(
 
     shells.emplace_back(Shell<Spacecraft_T>(sys, epoch, semimajor, inclination, T, P, F, anchorRAAN, anchorAnomaly));
 
-    generate_id();
+    id = utilities::IdProvider::get_next_id<"Constellation">();
 }
 
 template <class Spacecraft_T>
@@ -260,14 +260,6 @@ const Spacecraft_T& Constellation<Spacecraft_T>::get_spacecraft(const size_t& sp
         }
     }
     throw std::runtime_error("No spacecraft found with matching id: " + std::to_string(spacecraftId) + "\n");
-}
-
-
-template <class Spacecraft_T>
-void Constellation<Spacecraft_T>::generate_id()
-{
-    static std::size_t idCounter = 0;
-    id                           = idCounter++;
 }
 
 

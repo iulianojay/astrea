@@ -65,5 +65,7 @@ TEST_F(GroundPointTest, GetParent) { ASSERT_EQ(point.get_parent(), sys.get_body(
 
 TEST_F(GroundPointTest, GetId)
 {
-    ASSERT_EQ(point.get_id() - 1, GroundPoint(sys.get_body(CelestialBodyId::EARTH).get(), latitude, longitude, altitude).get_id());
+    const auto ground1 = GroundPoint(sys.get_body(CelestialBodyId::EARTH).get(), latitude, longitude, altitude);
+    const auto ground2 = GroundPoint(sys.get_body(CelestialBodyId::EARTH).get(), latitude, longitude, altitude);
+    ASSERT_EQ(ground1.get_id() + 1, ground2.get_id());
 }

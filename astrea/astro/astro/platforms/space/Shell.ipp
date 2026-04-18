@@ -7,7 +7,7 @@ template <class Spacecraft_T>
 Shell<Spacecraft_T>::Shell(std::vector<Plane<Spacecraft_T>> _planes) :
     planes(_planes)
 {
-    generate_id();
+    id = utilities::IdProvider::get_next_id<"Shell">();
 }
 
 
@@ -18,7 +18,7 @@ Shell<Spacecraft_T>::Shell(std::vector<Spacecraft_T> satellites)
 
     planes.push_back(noPlane);
 
-    generate_id();
+    id = utilities::IdProvider::get_next_id<"Shell">();
 }
 
 template <class Spacecraft_T>
@@ -67,10 +67,9 @@ Shell<Spacecraft_T>::Shell(
             sat.store_state(state);
             ++iAnom;
         }
-        plane.generate_id();
         ++iPlane;
     }
-    generate_id();
+    id = utilities::IdProvider::get_next_id<"Shell">();
 }
 
 
@@ -103,7 +102,10 @@ template <class Spacecraft_T>
 void Shell<Spacecraft_T>::add_spacecraft(const Spacecraft_T& spacecraft, const size_t& planeId)
 {
     for (auto& plane : planes) {
-        if (plane.id == planeId) { plane.add_spacecraft(spacecraft); }
+        if (plane.id == planeId) {
+            plane.add_spacecraft(spacecraft);
+            return;
+        }
     }
     throw std::runtime_error("No plane found with matching id: " + std::to_string(planeId) + "\n");
 }
@@ -159,14 +161,6 @@ const Spacecraft_T& Shell<Spacecraft_T>::get_spacecraft(const size_t& spacecraft
         }
     }
     throw std::runtime_error("No spacecraft found with matching id: " + std::to_string(spacecraftId) + "\n");
-}
-
-
-template <class Spacecraft_T>
-void Shell<Spacecraft_T>::generate_id()
-{
-    static std::size_t idCounter = 0;
-    id                           = idCounter++;
 }
 
 
