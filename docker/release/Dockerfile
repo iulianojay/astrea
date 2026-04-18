@@ -21,6 +21,7 @@ ENV ASTREA_VERSION=${ASTREA_VERSION}
 RUN apt-get update && \
     apt-get -y install \
     gcc \
+    g++ \
     gdb \
     bash-completion \
     mono-mcs \
