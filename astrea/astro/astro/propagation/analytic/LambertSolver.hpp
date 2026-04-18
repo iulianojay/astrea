@@ -59,6 +59,34 @@ class LambertSolver {
     };
 
     /**
+     * @brief Enum class for the type of optimal Lambert solution.
+     */
+    enum class SolutionType : EnumType {
+        MINIMUM_ENERGY, //!< Minimum delta-v (minimum semi-major axis) transfer
+        MINIMUM_TIME    //!< Minimum time of flight (parabolic) transfer
+    };
+
+    /**
+     * @brief Enum class for the branch of a multi-revolution Lambert solution.
+     *
+     * For N > 0 revolutions two solutions exist on either side of the minimum-time orbit.
+     * LEFT (low-energy) has a longer time of flight; RIGHT (high-energy) has a shorter one.
+     */
+    enum class MultiRevBranch : EnumType {
+        LEFT, //!< Low-energy branch (longer TOF)
+        RIGHT //!< High-energy branch (shorter TOF)
+    };
+
+    /**
+     * @brief Result structure for optimal Lambert solutions.
+     */
+    struct Solution {
+        Time tof;                               //!< Time of flight for the transfer
+        VelocityVector<frames::earth::icrf> v0; //!< Initial velocity vector at r0
+        VelocityVector<frames::earth::icrf> vf; //!< Final velocity vector at rf
+    };
+
+    /**
      * @brief Solve Lambert's problem for a given initial and final state. Returns the minimum energy solution.
      *
      * @param state0 The initial state (position and velocity) of the spacecraft.
@@ -86,6 +114,51 @@ class LambertSolver {
         const OrbitDirection& direction
     );
 
+    /**
+     * @brief Solve Lambert's problem for an optimal trajectory without a fixed time of flight.
+     *
+     * @param r0 The initial position of the spacecraft.
+     * @param rf The final position of the spacecraft.
+     * @param mu The gravitational parameter of the central body.
+     * @param direction The direction of the orbit (prograde or retrograde).
+     * @param solutionType MINIMUM_ENERGY returns the minimum delta-v (minimum semi-major axis) transfer;
+     *                     MINIMUM_TIME returns the minimum time of flight (parabolic) transfer.
+     * @return A Solution containing the time of flight and the initial/final velocity vectors.
+     */
+    static Solution solve(
+        const RadiusVector<frames::earth::icrf>& r0,
+        const RadiusVector<frames::earth::icrf>& rf,
+        const GravParam& mu,
+        const OrbitDirection& direction,
+        const SolutionType& solutionType
+    );
+
+    /**
+     * @brief Solve Lambert's problem for a multi-revolution transfer with a fixed time of flight.
+     *
+     * For N > 0 complete revolutions two solutions exist (LEFT and RIGHT branches); this overload
+     * returns the requested branch. The caller must supply a time of flight that exceeds the
+     * minimum possible multi-rev TOF (i.e. dt > T_min(N)), otherwise a std::runtime_error is thrown.
+     *
+     * @param r0        The initial position of the spacecraft.
+     * @param rf        The final position of the spacecraft.
+     * @param dt        The desired time of flight.
+     * @param mu        The gravitational parameter of the central body.
+     * @param direction The direction of the orbit (prograde or retrograde).
+     * @param N         The number of complete revolutions (must be ≥ 1).
+     * @param branch    Which of the two solutions to return (LEFT or RIGHT).
+     * @return A pair of velocity vectors (initial and final) for the spacecraft.
+     */
+    static std::pair<VelocityVector<frames::earth::icrf>, VelocityVector<frames::earth::icrf>> solve(
+        const RadiusVector<frames::earth::icrf>& r0,
+        const RadiusVector<frames::earth::icrf>& rf,
+        const Time& dt,
+        const GravParam& mu,
+        const OrbitDirection& direction,
+        unsigned N,
+        const MultiRevBranch& branch
+    );
+
   private:
     static constexpr unsigned ITER_MAX = 1e4;                     //!< Maximum number of iterations for the solver.
     static constexpr Unitless TOL      = 1.0e-12 * mp_units::one; //!< Tolerance for convergence.
@@ -98,9 +171,6 @@ class LambertSolver {
      */
     static std::pair<Unitless, Unitless> evaluate_stumpff(const Unitless& z);
 };
-
-// TODO: Implement Battin algorithm
-// TODO: give min time and min energy options
 
 } // namespace astro
 } // namespace astrea

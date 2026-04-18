@@ -28,6 +28,7 @@
 #include <units/units.hpp>
 
 #include <astro/time/JulianDateClock.hpp>
+#include <astro/time/TerrestrialTimeClock.hpp>
 
 namespace astrea {
 namespace astro {
@@ -196,16 +197,11 @@ class Date {
     std::chrono::time_point<std::chrono::tai_clock> tai() const { return in_clock<std::chrono::tai_clock>(); }
 
     /**
-     * @brief Get the Date in TT clock format.
+     * @brief Get the Date in Terrestrial Time (TT) clock format.
      *
-     * @return std::chrono::time_point<std::chrono::tt_clock>
+     * @return TerrestrialTime The Date in TT clock format.
      */
-    // std::chrono::time_point<std::chrono::tai_clock> tt() const
-    // {
-    //     // TODO: Make tt clock. Find better conversion numbers
-    //     using namespace std::chrono;
-    //     return in_clock<tai_clock>().time_since_epoch() + std::chrono::milliseconds{ 32184.0 };
-    // }
+    TerrestrialTime tt() const { return in_clock<TerrestrialTimeClock>(); }
 
     /**
      * @brief Get the Date in sys clock format.
