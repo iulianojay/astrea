@@ -194,7 +194,7 @@ void SpaceTrackClient::check_query_history(const std::string& username) const
             // Stream date string into time point
             std::istringstream timestampStream{ timestamp.template get<std::string>() };
             Time queryTime;
-            timestampStream >> parse(TIMESTAMP_FORMAT, queryTime);
+            timestampStream >> std::chrono::parse(TIMESTAMP_FORMAT, queryTime);
 
             if (queryTime < oneHourAgo) { oldQueries.insert(idx); }
             else {
@@ -226,7 +226,7 @@ void SpaceTrackClient::check_query_history(const std::string& username) const
 
     // If it didn't throw, log the query time
     std::ostringstream outStream;
-    outStream << now;
+    outStream << std::chrono::format(TIMESTAMP_FORMAT, now);
     queryHistory[username].push_back(outStream.str());
 
     // Save
