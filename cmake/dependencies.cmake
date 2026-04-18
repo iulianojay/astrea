@@ -65,14 +65,6 @@ CPMFindPackage(
     "MATPLOTPP_BUILD_TESTS OFF"
 )
 
-# Date for literally just like one thing please standards committee, adopt this
-CPMFindPackage(
-    NAME date
-    GITHUB_REPOSITORY HowardHinnant/date
-    GIT_TAG v3.0.1
-    GIT_SHALLOW TRUE
-)
-
 # JSON parsing that doesn't suck
 CPMFindPackage(
     NAME nlohmann_json

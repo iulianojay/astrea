@@ -13,7 +13,6 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
 #include <units/units.hpp>
 
 #include <astro/time/TerrestrialTimeClock.hpp>

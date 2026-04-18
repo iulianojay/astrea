@@ -238,7 +238,6 @@ set(ASTRO_LIBS
     matplot
     nlohmann_json::nlohmann_json
     sqlite_orm::sqlite_orm
-    date::date
     gtl
 )
 

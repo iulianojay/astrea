@@ -260,9 +260,9 @@ TEST_F(PayloadTest, GetInertialPositionMatchesParentWithCenterAttachment)
     Thruster thruster(satWithHistory, paramsCenter);
     const auto payloadPos = thruster.get_inertial_position(Date());
     const auto parentPos  = satWithHistory.get_inertial_position(Date());
-    ASSERT_EQ_QUANTITY(payloadPos.get_x(), parentPos.get_x(), REL_TOL);
-    ASSERT_EQ_QUANTITY(payloadPos.get_y(), parentPos.get_y(), REL_TOL);
-    ASSERT_EQ_QUANTITY(payloadPos.get_z(), parentPos.get_z(), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(payloadPos.get_x(), parentPos.get_x(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(payloadPos.get_y(), parentPos.get_y(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(payloadPos.get_z(), parentPos.get_z(), REL_TOL));
 }
 
 TEST_F(PayloadTest, GetInertialVelocityThrowsWithoutHistory)
@@ -282,7 +282,7 @@ TEST_F(PayloadTest, GetInertialVelocityMatchesParent)
     Thruster thruster(satWithHistory, params);
     const auto payloadVel = thruster.get_inertial_velocity(Date());
     const auto parentVel  = satWithHistory.get_inertial_velocity(Date());
-    ASSERT_EQ_QUANTITY(payloadVel.get_x(), parentVel.get_x(), REL_TOL);
-    ASSERT_EQ_QUANTITY(payloadVel.get_y(), parentVel.get_y(), REL_TOL);
-    ASSERT_EQ_QUANTITY(payloadVel.get_z(), parentVel.get_z(), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(payloadVel.get_x(), parentVel.get_x(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(payloadVel.get_y(), parentVel.get_y(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(payloadVel.get_z(), parentVel.get_z(), REL_TOL));
 }

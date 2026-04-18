@@ -104,7 +104,6 @@ set(TRACE_LIBS
     nlohmann_json::nlohmann_json
     csv
     sqlite_orm::sqlite_orm
-    date::date
 )
 
 # Shared library
