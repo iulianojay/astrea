@@ -19,6 +19,7 @@
 #include <astro/platforms/Payload.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
+#include <astro/state/StateHistory.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
@@ -43,7 +44,12 @@ class PayloadTest : public testing::Test {
   public:
     PayloadTest() {}
 
-    void SetUp() override {}
+    void SetUp() override
+    {
+        StateHistory history;
+        history.insert(State());
+        satWithHistory.set_state_history(history);
+    }
 
     const Unitless REL_TOL = 1.0e-6;
 
@@ -51,7 +57,9 @@ class PayloadTest : public testing::Test {
     astro::RadiusVector<astro::frames::dynamic::ric> boresight{ -1.0 * km, 0.0 * km, 0.0 * km };
     astro::RadiusVector<astro::frames::dynamic::ric> attachmentPoint{ 0.5 * km, 0.2 * km, 0.1 * km };
     ThrusterParameters params{ thrust, boresight, attachmentPoint };
+    ThrusterParameters paramsCenter{ thrust, boresight, CENTER };
     Spacecraft sat;
+    Spacecraft satWithHistory;
 };
 
 int main(int argc, char** argv)
@@ -227,4 +235,54 @@ TEST_F(PayloadTest, MultiplePayloadsWithSameParameters)
 
     // But they should be different objects
     ASSERT_NE(&thruster1, &thruster2);
+}
+
+TEST_F(PayloadTest, GetName)
+{
+    Thruster thruster(sat, params);
+    ASSERT_EQ(thruster.get_name(), "Payload");
+}
+
+TEST_F(PayloadTest, GetInertialPositionThrowsWithoutHistory)
+{
+    Thruster thruster(sat, paramsCenter);
+    ASSERT_ANY_THROW({ auto pos = thruster.get_inertial_position(Date()); });
+}
+
+TEST_F(PayloadTest, GetInertialPositionNoThrowWithHistory)
+{
+    Thruster thruster(satWithHistory, paramsCenter);
+    ASSERT_NO_THROW({ auto pos = thruster.get_inertial_position(Date()); });
+}
+
+TEST_F(PayloadTest, GetInertialPositionMatchesParentWithCenterAttachment)
+{
+    Thruster thruster(satWithHistory, paramsCenter);
+    const auto payloadPos = thruster.get_inertial_position(Date());
+    const auto parentPos  = satWithHistory.get_inertial_position(Date());
+    ASSERT_EQ_QUANTITY(payloadPos.get_x(), parentPos.get_x(), REL_TOL);
+    ASSERT_EQ_QUANTITY(payloadPos.get_y(), parentPos.get_y(), REL_TOL);
+    ASSERT_EQ_QUANTITY(payloadPos.get_z(), parentPos.get_z(), REL_TOL);
+}
+
+TEST_F(PayloadTest, GetInertialVelocityThrowsWithoutHistory)
+{
+    Thruster thruster(sat, params);
+    ASSERT_ANY_THROW({ auto vel = thruster.get_inertial_velocity(Date()); });
+}
+
+TEST_F(PayloadTest, GetInertialVelocityNoThrowWithHistory)
+{
+    Thruster thruster(satWithHistory, params);
+    ASSERT_NO_THROW({ auto vel = thruster.get_inertial_velocity(Date()); });
+}
+
+TEST_F(PayloadTest, GetInertialVelocityMatchesParent)
+{
+    Thruster thruster(satWithHistory, params);
+    const auto payloadVel = thruster.get_inertial_velocity(Date());
+    const auto parentVel  = satWithHistory.get_inertial_velocity(Date());
+    ASSERT_EQ_QUANTITY(payloadVel.get_x(), parentVel.get_x(), REL_TOL);
+    ASSERT_EQ_QUANTITY(payloadVel.get_y(), parentVel.get_y(), REL_TOL);
+    ASSERT_EQ_QUANTITY(payloadVel.get_z(), parentVel.get_z(), REL_TOL);
 }

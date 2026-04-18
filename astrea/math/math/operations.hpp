@@ -91,5 +91,16 @@ template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
     return mp_units::quantity{ pow(q.numerical_value_in(mp_units::one), n.numerical_value_in(mp_units::one)), mp_units::one };
 }
 
+template <auto R, typename Rep>
+    requires requires(Rep v) { clamp(v, v, v); } || requires(Rep v) { std::clamp(v, v, v); }
+[[nodiscard]] inline mp_units::quantity<R, Rep>
+    clamp(const mp_units::quantity<R, Rep>& q, const mp_units::quantity<R, Rep>& low, const mp_units::quantity<R, Rep>& high) noexcept
+{
+    using std::clamp;
+    return mp_units::quantity{ clamp(q.numerical_value_in(q.unit), low.numerical_value_in(q.unit), high.numerical_value_in(q.unit)),
+                               q.unit };
+}
+
+
 } // namespace math
 } // namespace astrea

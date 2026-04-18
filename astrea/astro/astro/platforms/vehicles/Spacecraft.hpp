@@ -21,6 +21,7 @@
 #include <string>
 
 #include <units/units.hpp>
+#include <utilities/IdProvider.hpp>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/platforms/Vehicle.hpp>
@@ -41,7 +42,7 @@ class Spacecraft : public ThrusterPlatform {
     /**
      * @brief Default constructor for Spacecraft.
      */
-    Spacecraft() { generate_id(); };
+    Spacecraft() { _id = utilities::IdProvider::get_next_id<"Platform">(); };
 
     /**
      * @brief Constructs a Spacecraft with a GeneralPerturbations object and an AstrodynamicsSystem.
@@ -277,12 +278,6 @@ class Spacecraft : public ThrusterPlatform {
 
     // State history
     StateHistory _stateHistory; // History of states for the spacecraft
-
-    /**
-     * @brief Generates a unique identifier for the spacecraft based on its properties.
-     * This method is called in the constructor to ensure that each spacecraft has a unique ID.
-     */
-    void generate_id();
 };
 
 static_assert(IsUserDefinedVehicle<Spacecraft>, "Spacecraft must satisfy the IsVehicle concept");

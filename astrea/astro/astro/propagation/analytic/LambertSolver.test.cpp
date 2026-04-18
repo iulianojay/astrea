@@ -66,3 +66,120 @@ TEST_F(LambertSolverTest, SolveRR)
     ASSERT_TRUE(nearly_equal(res0, v0, REL_TOL));
     ASSERT_TRUE(nearly_equal(resf, vf, REL_TOL));
 }
+
+TEST_F(LambertSolverTest, SolveOptimalMinimumEnergy)
+{
+    const auto sol =
+        LambertSolver::solve(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_ENERGY);
+
+    // Round-trip: feeding the returned tof back into the r&r solver must reproduce the same velocities
+    const auto [v0Check, vfCheck] = LambertSolver::solve(r0, rf, sol.tof, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
+    ASSERT_EQ_CART_VEC(v0Check, sol.v0, REL_TOL);
+    ASSERT_EQ_CART_VEC(vfCheck, sol.vf, REL_TOL);
+}
+
+TEST_F(LambertSolverTest, SolveOptimalMinimumTime)
+{
+    const auto sol =
+        LambertSolver::solve(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_TIME);
+
+    // Round-trip: feeding the returned tof back into the r&r solver must reproduce the same velocities
+    const auto [v0Check, vfCheck] = LambertSolver::solve(r0, rf, sol.tof, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
+    ASSERT_EQ_CART_VEC(v0Check, sol.v0, REL_TOL);
+    ASSERT_EQ_CART_VEC(vfCheck, sol.vf, REL_TOL);
+}
+
+TEST_F(LambertSolverTest, MinimumTimeHasShorterTOFThanMinimumEnergy)
+{
+    const auto minEnergy =
+        LambertSolver::solve(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_ENERGY);
+    const auto minTime =
+        LambertSolver::solve(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_TIME);
+
+    EXPECT_LT(minTime.tof.numerical_value_in(s), minEnergy.tof.numerical_value_in(s));
+}
+
+// ── Multi-revolution tests ────────────────────────────────────────────────────
+
+class LambertSolverMultiRevTest : public testing::Test {
+  public:
+    LambertSolverMultiRevTest() :
+        mu(sys.get_mu())
+    {
+    }
+
+    void SetUp() override {}
+
+    const Unitless REL_TOL = 1.0e-6;
+
+    AstrodynamicsSystem sys;
+    GravParam mu;
+
+    // ISS-like LEO endpoints separated by ~90° in the orbit plane
+    RadiusVector<frames::earth::icrf> r0{ 6778.0 * km, 0.0 * km, 0.0 * km };
+    RadiusVector<frames::earth::icrf> rf{ 0.0 * km, 6778.0 * km, 0.0 * km };
+};
+
+TEST_F(LambertSolverMultiRevTest, N1LeftBranchRoundTrip)
+{
+    // 1-rev LEFT branch: choose a TOF well above the 1-rev minimum
+    // T_orbit for ISS ≈ 5559 s; use 1.5× that for a safe margin
+    const Time dt = 8000.0 * s;
+
+    const auto [v0Res, vfRes] =
+        LambertSolver::solve(r0, rf, dt, mu, LambertSolver::OrbitDirection::PROGRADE, 1, LambertSolver::MultiRevBranch::LEFT);
+
+    // Physics round-trip: specific orbital energy must be identical at both endpoints (same orbit)
+    const auto eps0 = v0Res.norm() * v0Res.norm() * 0.5 - mu / r0.norm();
+    const auto epsf = vfRes.norm() * vfRes.norm() * 0.5 - mu / rf.norm();
+    ASSERT_EQ_QUANTITY(eps0, epsf, REL_TOL);
+
+    // Specific angular momentum magnitude must also match
+    ASSERT_EQ_QUANTITY(r0.cross(v0Res).norm(), rf.cross(vfRes).norm(), REL_TOL);
+}
+
+TEST_F(LambertSolverMultiRevTest, N1RightBranchRoundTrip)
+{
+    const Time dt = 8000.0 * s;
+
+    const auto [v0Res, vfRes] =
+        LambertSolver::solve(r0, rf, dt, mu, LambertSolver::OrbitDirection::PROGRADE, 1, LambertSolver::MultiRevBranch::RIGHT);
+
+    // Physics round-trip: specific orbital energy must be identical at both endpoints (same orbit)
+    const auto eps0 = v0Res.norm() * v0Res.norm() * 0.5 - mu / r0.norm();
+    const auto epsf = vfRes.norm() * vfRes.norm() * 0.5 - mu / rf.norm();
+    ASSERT_EQ_QUANTITY(eps0, epsf, REL_TOL);
+
+    // Specific angular momentum magnitude must also match
+    ASSERT_EQ_QUANTITY(r0.cross(v0Res).norm(), rf.cross(vfRes).norm(), REL_TOL);
+}
+
+TEST_F(LambertSolverMultiRevTest, TwoBranchesProduceDifferentVelocities)
+{
+    const Time dt = 8000.0 * s;
+
+    const auto [v0Left, vfLeft] =
+        LambertSolver::solve(r0, rf, dt, mu, LambertSolver::OrbitDirection::PROGRADE, 1, LambertSolver::MultiRevBranch::LEFT);
+    const auto [v0Right, vfRight] =
+        LambertSolver::solve(r0, rf, dt, mu, LambertSolver::OrbitDirection::PROGRADE, 1, LambertSolver::MultiRevBranch::RIGHT);
+
+    // The two branches must yield distinct initial velocities
+    const bool v0Same = (v0Left - v0Right).norm().numerical_value_in(km / s) < 1e-6;
+    EXPECT_FALSE(v0Same);
+}
+
+TEST_F(LambertSolverMultiRevTest, BelowMinimumTOFThrows)
+{
+    // 1-rev min TOF for a circular 6778 km orbit is roughly T_orbit/2 (half-period ≈ 2779 s)
+    // Use a very short TOF that is guaranteed to be below the multi-rev minimum
+    const Time dt = 100.0 * s;
+
+    EXPECT_THROW(LambertSolver::solve(r0, rf, dt, mu, LambertSolver::OrbitDirection::PROGRADE, 1, LambertSolver::MultiRevBranch::LEFT), std::runtime_error);
+}
+
+TEST_F(LambertSolverMultiRevTest, ZeroRevsThrows)
+{
+    const Time dt = 8000.0 * s;
+
+    EXPECT_THROW(LambertSolver::solve(r0, rf, dt, mu, LambertSolver::OrbitDirection::PROGRADE, 0, LambertSolver::MultiRevBranch::LEFT), std::invalid_argument);
+}
