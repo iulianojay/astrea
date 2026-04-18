@@ -168,7 +168,7 @@ void SpaceTrackClient::check_query_history(const std::string& username) const
     static const std::size_t MAX_QUERIES_PER_HOUR   = 300;
     static const std::filesystem::path QUERY_HISTORY_FILE =
         "./astrea/snapshot/snapshot/database/spacetrack.query-history.json";
-    static const std::string TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S";
+    static constexpr std::string TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S";
 
     // Ingest query history
     nlohmann::json queryHistory;
