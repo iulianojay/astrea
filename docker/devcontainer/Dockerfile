@@ -13,6 +13,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get -y install \
     gcc \
+    g++ \
     gdb \
     bash-completion \
     mono-mcs \
@@ -45,5 +46,5 @@ WORKDIR $USER_HOME
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="$USER_HOME/.local/bin:$PATH"
 
-# Install gcovr using uv 
+# Install gcovr using uv
 RUN uv tool install gcovr
