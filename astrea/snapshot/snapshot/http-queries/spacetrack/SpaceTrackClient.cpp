@@ -226,7 +226,7 @@ void SpaceTrackClient::check_query_history(const std::string& username) const
 
     // If it didn't throw, log the query time
     std::ostringstream outStream;
-    outStream << std::chrono::format(TIMESTAMP_FORMAT, now);
+    outStream << std::format(TIMESTAMP_FORMAT, now);
     queryHistory[username].push_back(outStream.str());
 
     // Save
