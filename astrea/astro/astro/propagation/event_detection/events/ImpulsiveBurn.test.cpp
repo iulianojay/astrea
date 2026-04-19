@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/instances/RadialInTrackCrossTrack.hpp>
@@ -122,7 +122,7 @@ TEST_F(ImpulsiveBurnTest, MeasureEventTrueAnomaly)
     // Our test state is already at 0 degrees true anomaly
     Unitless result = burn.measure_event(time, state, vehicle);
 
-    ASSERT_EQ_QUANTITY(result, Unitless(0.0 * one), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result, Unitless(0.0 * one), REL_TOL));
 }
 
 TEST_F(ImpulsiveBurnTest, MeasureEventAltitude)
@@ -146,5 +146,5 @@ TEST_F(ImpulsiveBurnTest, MeasureEventEpoch)
     Unitless result = burn.measure_event(time, state, vehicle);
 
     // At the trigger epoch, the result should be 0 or very small
-    ASSERT_EQ_QUANTITY(result, Unitless(0.0 * one), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result, Unitless(0.0 * one), REL_TOL));
 }

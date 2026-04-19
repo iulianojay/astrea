@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
@@ -56,15 +56,15 @@ int main(int argc, char** argv)
 TEST_F(LambertSolverTest, SolveRV)
 {
     const Cartesian result = LambertSolver::solve({ r0, v0 }, dt, sys.get_mu());
-    ASSERT_EQ_CART_VEC(result.get_position(), rf, REL_TOL);
-    ASSERT_EQ_CART_VEC(result.get_velocity(), vf, REL_TOL);
+    ASSERT_TRUE(nearly_equal(result.get_position(), rf, REL_TOL));
+    ASSERT_TRUE(nearly_equal(result.get_velocity(), vf, REL_TOL));
 }
 
 TEST_F(LambertSolverTest, SolveRR)
 {
     const auto [res0, resf] = LambertSolver::solve(r0, rf, dt, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
-    ASSERT_EQ_CART_VEC(res0, v0, REL_TOL);
-    ASSERT_EQ_CART_VEC(resf, vf, REL_TOL);
+    ASSERT_TRUE(nearly_equal(res0, v0, REL_TOL));
+    ASSERT_TRUE(nearly_equal(resf, vf, REL_TOL));
 }
 
 TEST_F(LambertSolverTest, SolveOptimalMinimumEnergy)
@@ -74,8 +74,8 @@ TEST_F(LambertSolverTest, SolveOptimalMinimumEnergy)
 
     // Round-trip: feeding the returned tof back into the r&r solver must reproduce the same velocities
     const auto [v0Check, vfCheck] = LambertSolver::solve(r0, rf, sol.tof, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
-    ASSERT_EQ_CART_VEC(v0Check, sol.v0, REL_TOL);
-    ASSERT_EQ_CART_VEC(vfCheck, sol.vf, REL_TOL);
+    ASSERT_TRUE(nearly_equal(v0Check, sol.v0, REL_TOL));
+    ASSERT_TRUE(nearly_equal(vfCheck, sol.vf, REL_TOL));
 }
 
 TEST_F(LambertSolverTest, SolveOptimalMinimumTime)
@@ -85,8 +85,8 @@ TEST_F(LambertSolverTest, SolveOptimalMinimumTime)
 
     // Round-trip: feeding the returned tof back into the r&r solver must reproduce the same velocities
     const auto [v0Check, vfCheck] = LambertSolver::solve(r0, rf, sol.tof, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
-    ASSERT_EQ_CART_VEC(v0Check, sol.v0, REL_TOL);
-    ASSERT_EQ_CART_VEC(vfCheck, sol.vf, REL_TOL);
+    ASSERT_TRUE(nearly_equal(v0Check, sol.v0, REL_TOL));
+    ASSERT_TRUE(nearly_equal(vfCheck, sol.vf, REL_TOL));
 }
 
 TEST_F(LambertSolverTest, MinimumTimeHasShorterTOFThanMinimumEnergy)
@@ -132,10 +132,10 @@ TEST_F(LambertSolverMultiRevTest, N1LeftBranchRoundTrip)
     // Physics round-trip: specific orbital energy must be identical at both endpoints (same orbit)
     const auto eps0 = v0Res.norm() * v0Res.norm() * 0.5 - mu / r0.norm();
     const auto epsf = vfRes.norm() * vfRes.norm() * 0.5 - mu / rf.norm();
-    ASSERT_EQ_QUANTITY(eps0, epsf, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(eps0, epsf, REL_TOL));
 
     // Specific angular momentum magnitude must also match
-    ASSERT_EQ_QUANTITY(r0.cross(v0Res).norm(), rf.cross(vfRes).norm(), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(r0.cross(v0Res).norm(), rf.cross(vfRes).norm(), REL_TOL));
 }
 
 TEST_F(LambertSolverMultiRevTest, N1RightBranchRoundTrip)
@@ -148,10 +148,10 @@ TEST_F(LambertSolverMultiRevTest, N1RightBranchRoundTrip)
     // Physics round-trip: specific orbital energy must be identical at both endpoints (same orbit)
     const auto eps0 = v0Res.norm() * v0Res.norm() * 0.5 - mu / r0.norm();
     const auto epsf = vfRes.norm() * vfRes.norm() * 0.5 - mu / rf.norm();
-    ASSERT_EQ_QUANTITY(eps0, epsf, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(eps0, epsf, REL_TOL));
 
     // Specific angular momentum magnitude must also match
-    ASSERT_EQ_QUANTITY(r0.cross(v0Res).norm(), rf.cross(vfRes).norm(), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(r0.cross(v0Res).norm(), rf.cross(vfRes).norm(), REL_TOL));
 }
 
 TEST_F(LambertSolverMultiRevTest, TwoBranchesProduceDifferentVelocities)

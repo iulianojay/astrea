@@ -27,5 +27,5 @@ dependencies = [
     "cmake"
 ]
 
-[tool.uv]
-dev-dependencies = []
+[dependency-groups]
+dev = []

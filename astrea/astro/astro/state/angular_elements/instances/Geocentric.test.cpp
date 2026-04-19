@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
@@ -68,14 +68,14 @@ TEST_F(GeocentricTest, DefaultConstructor) { ASSERT_NO_THROW(Geocentric()); }
 TEST_F(GeocentricTest, UnitlessConstructor)
 {
     Geocentric zeroState;
-    ASSERT_EQ_QUANTITY(zeroState.get_altitude(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(zeroState.get_latitude(), Angle(0.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(zeroState.get_longitude(), Angle(0.0 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(zeroState.get_altitude(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(zeroState.get_latitude(), Angle(0.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(zeroState.get_longitude(), Angle(0.0 * rad), REL_TOL));
 
     Geocentric scaledState(2.0 * one);
-    ASSERT_EQ_QUANTITY(scaledState.get_altitude(), Distance(2.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_latitude(), Angle(2.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_longitude(), Angle(2.0 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_altitude(), Distance(2.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_latitude(), Angle(2.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_longitude(), Angle(2.0 * rad), REL_TOL));
 }
 
 TEST_F(GeocentricTest, ParameterizedConstructor) { ASSERT_NO_THROW(Geocentric(latitude, longitude, altitude)); }
@@ -205,14 +205,14 @@ TEST_F(GeocentricTest, Interpolate)
     Time otherTime    = seconds(10);
     Time targetTime   = seconds(5);
     Geocentric result = state.interpolate(thisTime, otherTime, other, targetTime);
-    ASSERT_EQ_QUANTITY(result.get_altitude(), Distance(15000.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_latitude(), Angle(0.75 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_longitude(), Angle(0.75 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_altitude(), Distance(15000.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_latitude(), Angle(0.75 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_longitude(), Angle(0.75 * rad), REL_TOL));
 }
 
 TEST_F(GeocentricTest, Getters)
 {
-    ASSERT_EQ_QUANTITY(state.get_altitude(), altitude, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_latitude(), latitude, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_longitude(), longitude, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_altitude(), altitude, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_latitude(), latitude, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_longitude(), longitude, REL_TOL));
 }

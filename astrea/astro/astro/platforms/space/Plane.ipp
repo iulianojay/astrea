@@ -1,15 +1,25 @@
 #include <astro/utilities/conversions.hpp>
 
+#include <math/operations.hpp>
 #include <utilities/ProgressBar.hpp>
 
 namespace astrea {
 namespace astro {
 
+
+bool planes_are_nearly_equal(const OrbitalElements& elem1, const OrbitalElements& elem2, const Unitless& relTol)
+{
+    const auto blob1 = elem1.force_to_vector();
+    const auto blob2 = elem2.force_to_vector();
+    return math::nearly_equal(blob1[0], blob2[0], relTol) && math::nearly_equal(blob1[1], blob2[1], relTol) &&
+           math::nearly_equal(blob1[2], blob2[2], relTol) && math::nearly_equal(blob1[3], blob2[3], relTol) &&
+           math::nearly_equal(blob1[4], blob2[4], relTol);
+}
+
 template <class Spacecraft_T>
 Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
     satellites(_satellites)
 {
-
     // Assume Earth-system for now. TODO: Fix this
     AstrodynamicsSystem sys;
 
@@ -19,8 +29,9 @@ Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
     // Check if other satellites are actually in-plane
     strict = true;
     for (const auto& sat : satellites) {
-        OrbitalElements satElements = sat.get_initial_state().get_elements().template in_element_set<Keplerian>(sys.get_mu());
-        if (!nearly_equal(elements, satElements, true)) {
+        const OrbitalElements satElements =
+            sat.get_initial_state().get_elements().template in_element_set<Keplerian>(sys.get_mu());
+        if (!planes_are_nearly_equal(elements, satElements, 1.0e-6 * mp_units::one)) {
             strict = false;
             break;
         }
@@ -28,7 +39,6 @@ Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
 
     id = utilities::IdProvider::get_next_id<"Plane">();
 }
-
 
 template <class Spacecraft_T>
 const size_t Plane<Spacecraft_T>::size() const

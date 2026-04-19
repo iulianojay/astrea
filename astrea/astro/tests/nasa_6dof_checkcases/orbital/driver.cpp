@@ -22,7 +22,6 @@
 #include <mp-units/systems/international.h>
 
 #include <math/operations.hpp>
-#include <math/test_util.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>

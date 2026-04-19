@@ -9,7 +9,7 @@
 
 # Compiler flags
 set(COMMON_FLAGS "-DWL=64 -m64 -fPIC -mfpmath=387 -DLINUX")
-set(DEBUG_FLAGS "${COMMON_FLAGS} -g -fno-inline -fno-inline-small-functions -fno-default-inline --coverage")
+set(DEBUG_FLAGS "${COMMON_FLAGS} -g -fno-inline -fno-inline-small-functions -fno-default-inline --coverage -O0")
 set(RELEASE_FLAGS "${COMMON_FLAGS} -O3 -ffast-math")
 set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
 

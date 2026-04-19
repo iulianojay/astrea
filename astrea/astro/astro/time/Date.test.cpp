@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/time/Date.hpp>
@@ -45,7 +45,7 @@ TEST_F(DateTest, JulianDateToSiderealTime)
 {
     // Vallado, Ex. 3-5
     Date date("1992-08-20 12:14:00.0");
-    ASSERT_EQ_QUANTITY(julian_date_to_sidereal_time(date.jd()), Angle(152.57878 * mp_units::angular::unit_symbols::deg), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(julian_date_to_sidereal_time(date.jd()), Angle(152.57878 * mp_units::angular::unit_symbols::deg), REL_TOL));
 }
 
 TEST_F(DateTest, DefaultConstructor) { ASSERT_NO_THROW(Date()); }
@@ -78,7 +78,7 @@ TEST_F(DateTest, DateSubtraction)
 {
     const Date nowPlusTen = now + seconds(10.0);
     const Time diff       = nowPlusTen - now;
-    ASSERT_EQ_QUANTITY(diff, 10.0 * mp_units::si::unit_symbols::s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(diff, 10.0 * mp_units::si::unit_symbols::s, REL_TOL));
 }
 
 TEST_F(DateTest, SpaceshipOperator)
@@ -130,5 +130,5 @@ TEST_F(DateTest, Epoch) { ASSERT_EQ(Date(J2000).epoch(), "2000-01-01 12:00:00.00
 
 TEST_F(DateTest, GMST)
 {
-    ASSERT_EQ_QUANTITY(Date(J2000).gmst(), Angle(4.89496 * mp_units::angular::unit_symbols::rad), REL_TOL); // Is this right? Who knows
+    ASSERT_TRUE(math::nearly_equal(Date(J2000).gmst(), Angle(4.89496 * mp_units::angular::unit_symbols::rad), REL_TOL)); // Is this right? Who knows
 }

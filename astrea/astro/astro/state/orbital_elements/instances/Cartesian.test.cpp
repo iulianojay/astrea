@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
@@ -72,23 +72,23 @@ TEST_F(CartesianTest, Stream)
 TEST_F(CartesianTest, DefaultConstructor)
 {
     Cartesian defaultState;
-    ASSERT_EQ_QUANTITY(defaultState.get_x(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_y(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_z(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_vx(), Velocity(0.0 * km / s), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_vy(), Velocity(0.0 * km / s), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_vz(), Velocity(0.0 * km / s), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_x(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_y(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_z(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_vx(), Velocity(0.0 * km / s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_vy(), Velocity(0.0 * km / s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_vz(), Velocity(0.0 * km / s), REL_TOL));
 }
 
 TEST_F(CartesianTest, UnitlessConstructor)
 {
     Cartesian scaledState(2.0 * one);
-    ASSERT_EQ_QUANTITY(scaledState.get_x(), Distance(2.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_y(), Distance(2.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_z(), Distance(2.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_vx(), Velocity(2.0 * km / s), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_vy(), Velocity(2.0 * km / s), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_vz(), Velocity(2.0 * km / s), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_x(), Distance(2.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_y(), Distance(2.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_z(), Distance(2.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_vx(), Velocity(2.0 * km / s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_vy(), Velocity(2.0 * km / s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_vz(), Velocity(2.0 * km / s), REL_TOL));
 }
 
 TEST_F(CartesianTest, VectorConstructor)
@@ -164,12 +164,12 @@ TEST_F(CartesianTest, CopyConstructor)
 {
     ASSERT_NO_THROW(Cartesian newCart(state));
     Cartesian newCart(state);
-    ASSERT_EQ_QUANTITY(newCart.get_x(), x, REL_TOL);
-    ASSERT_EQ_QUANTITY(newCart.get_y(), y, REL_TOL);
-    ASSERT_EQ_QUANTITY(newCart.get_z(), z, REL_TOL);
-    ASSERT_EQ_QUANTITY(newCart.get_vx(), vx, REL_TOL);
-    ASSERT_EQ_QUANTITY(newCart.get_vy(), vy, REL_TOL);
-    ASSERT_EQ_QUANTITY(newCart.get_vz(), vz, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(newCart.get_x(), x, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newCart.get_y(), y, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newCart.get_z(), z, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newCart.get_vx(), vx, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newCart.get_vy(), vy, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newCart.get_vz(), vz, REL_TOL));
 }
 
 TEST_F(CartesianTest, MoveConstructor)
@@ -182,12 +182,12 @@ TEST_F(CartesianTest, CopyAssignment)
 {
     ASSERT_NO_THROW(Cartesian newCart = state);
     Cartesian newCart = state;
-    ASSERT_EQ_QUANTITY(newCart.get_x(), x, REL_TOL);
-    ASSERT_EQ_QUANTITY(newCart.get_y(), y, REL_TOL);
-    ASSERT_EQ_QUANTITY(newCart.get_z(), z, REL_TOL);
-    ASSERT_EQ_QUANTITY(newCart.get_vx(), vx, REL_TOL);
-    ASSERT_EQ_QUANTITY(newCart.get_vy(), vy, REL_TOL);
-    ASSERT_EQ_QUANTITY(newCart.get_vz(), vz, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(newCart.get_x(), x, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newCart.get_y(), y, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newCart.get_z(), z, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newCart.get_vx(), vx, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newCart.get_vy(), vy, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newCart.get_vz(), vz, REL_TOL));
 }
 
 TEST_F(CartesianTest, MoveAssignment)
@@ -210,168 +210,168 @@ TEST_F(CartesianTest, AdditionOperator)
 {
     Cartesian other{ 1000.0 * km, 500.0 * km, 250.0 * km, 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
     Cartesian result = state + other;
-    ASSERT_EQ_QUANTITY(result.get_x(), x + 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_y(), y + 500.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_z(), z + 250.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vx(), vx + 0.1 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vy(), vy + 0.2 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vz(), vz + 0.3 * km / s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_x(), x + 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_y(), y + 500.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_z(), z + 250.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vx(), vx + 0.1 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vy(), vy + 0.2 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vz(), vz + 0.3 * km / s, REL_TOL));
 }
 
 TEST_F(CartesianTest, AdditionOperatorRadiusVector)
 {
     RadiusVector<frames::earth::icrf> r{ 1000.0 * km, 500.0 * km, 250.0 * km };
     Cartesian result = state + r;
-    ASSERT_EQ_QUANTITY(result.get_x(), x + 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_y(), y + 500.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_z(), z + 250.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vx(), vx, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vy(), vy, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vz(), vz, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_x(), x + 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_y(), y + 500.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_z(), z + 250.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vx(), vx, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vy(), vy, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vz(), vz, REL_TOL));
 }
 
 TEST_F(CartesianTest, AdditionOperatorVelocityVector)
 {
     VelocityVector<frames::earth::icrf> v{ 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
     Cartesian result = state + v;
-    ASSERT_EQ_QUANTITY(result.get_x(), x, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_y(), y, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_z(), z, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vx(), vx + 0.1 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vy(), vy + 0.2 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vz(), vz + 0.3 * km / s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_x(), x, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_y(), y, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_z(), z, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vx(), vx + 0.1 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vy(), vy + 0.2 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vz(), vz + 0.3 * km / s, REL_TOL));
 }
 
 TEST_F(CartesianTest, AdditionAssignmentOperator)
 {
     Cartesian other{ 1000.0 * km, 500.0 * km, 250.0 * km, 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
     state += other;
-    ASSERT_EQ_QUANTITY(state.get_x(), x + 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_y(), y + 500.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_z(), z + 250.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vx(), vx + 0.1 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vy(), vy + 0.2 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vz(), vz + 0.3 * km / s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_x(), x + 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_y(), y + 500.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_z(), z + 250.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vx(), vx + 0.1 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vy(), vy + 0.2 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vz(), vz + 0.3 * km / s, REL_TOL));
 }
 
 TEST_F(CartesianTest, AdditionAssignmentOperatorRadiusVector)
 {
     RadiusVector<frames::earth::icrf> r{ 1000.0 * km, 500.0 * km, 250.0 * km };
     state += r;
-    ASSERT_EQ_QUANTITY(state.get_x(), x + 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_y(), y + 500.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_z(), z + 250.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vx(), vx, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vy(), vy, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vz(), vz, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_x(), x + 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_y(), y + 500.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_z(), z + 250.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vx(), vx, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vy(), vy, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vz(), vz, REL_TOL));
 }
 
 TEST_F(CartesianTest, AdditionAssignmentOperatorVelocityVector)
 {
     VelocityVector<frames::earth::icrf> v{ 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
     state += v;
-    ASSERT_EQ_QUANTITY(state.get_x(), x, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_y(), y, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_z(), z, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vx(), vx + 0.1 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vy(), vy + 0.2 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vz(), vz + 0.3 * km / s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_x(), x, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_y(), y, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_z(), z, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vx(), vx + 0.1 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vy(), vy + 0.2 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vz(), vz + 0.3 * km / s, REL_TOL));
 }
 
 TEST_F(CartesianTest, SubtractionOperator)
 {
     Cartesian other{ 1000.0 * km, 500.0 * km, 250.0 * km, 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
     Cartesian result = state - other;
-    ASSERT_EQ_QUANTITY(result.get_x(), x - 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_y(), y - 500.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_z(), z - 250.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vx(), vx - 0.1 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vy(), vy - 0.2 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vz(), vz - 0.3 * km / s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_x(), x - 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_y(), y - 500.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_z(), z - 250.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vx(), vx - 0.1 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vy(), vy - 0.2 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vz(), vz - 0.3 * km / s, REL_TOL));
 }
 
 TEST_F(CartesianTest, SubtractionOperatorRadiusVector)
 {
     RadiusVector<frames::earth::icrf> r{ 1000.0 * km, 500.0 * km, 250.0 * km };
     Cartesian result = state - r;
-    ASSERT_EQ_QUANTITY(result.get_x(), x - 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_y(), y - 500.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_z(), z - 250.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vx(), vx, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vy(), vy, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vz(), vz, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_x(), x - 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_y(), y - 500.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_z(), z - 250.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vx(), vx, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vy(), vy, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vz(), vz, REL_TOL));
 }
 
 TEST_F(CartesianTest, SubtractionOperatorVelocityVector)
 {
     VelocityVector<frames::earth::icrf> v{ 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
     Cartesian result = state - v;
-    ASSERT_EQ_QUANTITY(result.get_x(), x, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_y(), y, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_z(), z, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vx(), vx - 0.1 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vy(), vy - 0.2 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vz(), vz - 0.3 * km / s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_x(), x, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_y(), y, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_z(), z, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vx(), vx - 0.1 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vy(), vy - 0.2 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vz(), vz - 0.3 * km / s, REL_TOL));
 }
 
 TEST_F(CartesianTest, SubtractionAssignmentOperator)
 {
     Cartesian other{ 1000.0 * km, 500.0 * km, 250.0 * km, 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
     state -= other;
-    ASSERT_EQ_QUANTITY(state.get_x(), x - 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_y(), y - 500.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_z(), z - 250.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vx(), vx - 0.1 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vy(), vy - 0.2 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vz(), vz - 0.3 * km / s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_x(), x - 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_y(), y - 500.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_z(), z - 250.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vx(), vx - 0.1 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vy(), vy - 0.2 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vz(), vz - 0.3 * km / s, REL_TOL));
 }
 
 TEST_F(CartesianTest, SubtractionAssignmentOperatorRadiusVector)
 {
     RadiusVector<frames::earth::icrf> r{ 1000.0 * km, 500.0 * km, 250.0 * km };
     state -= r;
-    ASSERT_EQ_QUANTITY(state.get_x(), x - 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_y(), y - 500.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_z(), z - 250.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vx(), vx, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vy(), vy, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vz(), vz, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_x(), x - 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_y(), y - 500.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_z(), z - 250.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vx(), vx, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vy(), vy, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vz(), vz, REL_TOL));
 }
 
 TEST_F(CartesianTest, SubtractionAssignmentOperatorVelocityVector)
 {
     VelocityVector<frames::earth::icrf> v{ 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
     state -= v;
-    ASSERT_EQ_QUANTITY(state.get_x(), x, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_y(), y, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_z(), z, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vx(), vx - 0.1 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vy(), vy - 0.2 * km / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vz(), vz - 0.3 * km / s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_x(), x, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_y(), y, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_z(), z, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vx(), vx - 0.1 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vy(), vy - 0.2 * km / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vz(), vz - 0.3 * km / s, REL_TOL));
 }
 
 TEST_F(CartesianTest, MultiplicationOperator)
 {
     Unitless multiplier = 2.0 * one;
     Cartesian result    = state * multiplier;
-    ASSERT_EQ_QUANTITY(result.get_x(), x * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_y(), y * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_z(), z * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vx(), vx * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vy(), vy * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vz(), vz * multiplier, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_x(), x * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_y(), y * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_z(), z * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vx(), vx * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vy(), vy * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vz(), vz * multiplier, REL_TOL));
 }
 
 TEST_F(CartesianTest, MultiplicationAssignmentOperator)
 {
     Unitless multiplier = 2.0 * one;
     state *= multiplier;
-    ASSERT_EQ_QUANTITY(state.get_x(), x * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_y(), y * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_z(), z * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vx(), vx * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vy(), vy * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vz(), vz * multiplier, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_x(), x * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_y(), y * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_z(), z * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vx(), vx * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vy(), vy * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vz(), vz * multiplier, REL_TOL));
 }
 
 TEST_F(CartesianTest, DivisionByTimeOperator)
@@ -387,64 +387,64 @@ TEST_F(CartesianTest, DivisionByScalarOperator)
 {
     Unitless divisor = 2.0 * one;
     Cartesian result = state / divisor;
-    ASSERT_EQ_QUANTITY(result.get_x(), x / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_y(), y / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_z(), z / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vx(), vx / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vy(), vy / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vz(), vz / divisor, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_x(), x / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_y(), y / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_z(), z / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vx(), vx / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vy(), vy / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vz(), vz / divisor, REL_TOL));
 }
 
 TEST_F(CartesianTest, DivisionAssignmentOperator)
 {
     Unitless divisor = 2.0 * one;
     state /= divisor;
-    ASSERT_EQ_QUANTITY(state.get_x(), x / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_y(), y / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_z(), z / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vx(), vx / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vy(), vy / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_vz(), vz / divisor, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_x(), x / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_y(), y / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_z(), z / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vx(), vx / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vy(), vy / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_vz(), vz / divisor, REL_TOL));
 }
 
 TEST_F(CartesianTest, GetPosition)
 {
     const auto& pos = state.get_position();
-    ASSERT_EQ_QUANTITY(pos.get_x(), x, REL_TOL);
-    ASSERT_EQ_QUANTITY(pos.get_y(), y, REL_TOL);
-    ASSERT_EQ_QUANTITY(pos.get_z(), z, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(pos.get_x(), x, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos.get_y(), y, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos.get_z(), z, REL_TOL));
 }
 
 TEST_F(CartesianTest, GetVelocity)
 {
     const auto& vel = state.get_velocity();
-    ASSERT_EQ_QUANTITY(vel.get_x(), vx, REL_TOL);
-    ASSERT_EQ_QUANTITY(vel.get_y(), vy, REL_TOL);
-    ASSERT_EQ_QUANTITY(vel.get_z(), vz, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(vel.get_x(), vx, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vel.get_y(), vy, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vel.get_z(), vz, REL_TOL));
 }
 
-TEST_F(CartesianTest, GetX) { ASSERT_EQ_QUANTITY(state.get_x(), x, REL_TOL); }
+TEST_F(CartesianTest, GetX) { ASSERT_TRUE(math::nearly_equal(state.get_x(), x, REL_TOL)); }
 
-TEST_F(CartesianTest, GetY) { ASSERT_EQ_QUANTITY(state.get_y(), y, REL_TOL); }
+TEST_F(CartesianTest, GetY) { ASSERT_TRUE(math::nearly_equal(state.get_y(), y, REL_TOL)); }
 
-TEST_F(CartesianTest, GetZ) { ASSERT_EQ_QUANTITY(state.get_z(), z, REL_TOL); }
+TEST_F(CartesianTest, GetZ) { ASSERT_TRUE(math::nearly_equal(state.get_z(), z, REL_TOL)); }
 
-TEST_F(CartesianTest, GetVx) { ASSERT_EQ_QUANTITY(state.get_vx(), vx, REL_TOL); }
+TEST_F(CartesianTest, GetVx) { ASSERT_TRUE(math::nearly_equal(state.get_vx(), vx, REL_TOL)); }
 
-TEST_F(CartesianTest, GetVy) { ASSERT_EQ_QUANTITY(state.get_vy(), vy, REL_TOL); }
+TEST_F(CartesianTest, GetVy) { ASSERT_TRUE(math::nearly_equal(state.get_vy(), vy, REL_TOL)); }
 
-TEST_F(CartesianTest, GetVz) { ASSERT_EQ_QUANTITY(state.get_vz(), vz, REL_TOL); }
+TEST_F(CartesianTest, GetVz) { ASSERT_TRUE(math::nearly_equal(state.get_vz(), vz, REL_TOL)); }
 
 TEST_F(CartesianTest, ToVector)
 {
     std::vector<Unitless> vec = state.force_to_vector();
     ASSERT_EQ(vec.size(), 6);
-    ASSERT_EQ_QUANTITY(vec[0], x / (1.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[1], y / (1.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[2], z / (1.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[3], vx / (1.0 * km / s), REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[4], vy / (1.0 * km / s), REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[5], vz / (1.0 * km / s), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(vec[0], x / (1.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[1], y / (1.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[2], z / (1.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[3], vx / (1.0 * km / s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[4], vy / (1.0 * km / s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[5], vz / (1.0 * km / s), REL_TOL));
 }
 
 TEST_F(CartesianTest, Interpolate)
@@ -456,12 +456,12 @@ TEST_F(CartesianTest, Interpolate)
     Cartesian result = state.interpolate(thisTime, otherTime, other, sys.get_mu(), targetTime);
 
     // At t=5s (midpoint), expect average of start and end values
-    ASSERT_EQ_QUANTITY(result.get_x(), (x + 14000.0 * km) / 2.0, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_y(), (y + 2000.0 * km) / 2.0, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_z(), (z + 500.0 * km) / 2.0, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vx(), (vx + 1.0 * km / s) / 2.0, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vy(), (vy + 5.0 * km / s) / 2.0, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vz(), (vz + 1.0 * km / s) / 2.0, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_x(), (x + 14000.0 * km) / 2.0, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_y(), (y + 2000.0 * km) / 2.0, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_z(), (z + 500.0 * km) / 2.0, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vx(), (vx + 1.0 * km / s) / 2.0, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vy(), (vy + 5.0 * km / s) / 2.0, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vz(), (vz + 1.0 * km / s) / 2.0, REL_TOL));
 }
 
 TEST_F(CartesianTest, FromKeplerianConversion)
@@ -495,12 +495,12 @@ TEST_F(CartesianTest, ZeroSemimajorKeplerianConversion)
     Keplerian kep{ 0.0 * km, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg };
     Cartesian cart(kep, sys.get_mu());
 
-    ASSERT_EQ_QUANTITY(cart.get_x(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(cart.get_y(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(cart.get_z(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(cart.get_vx(), Velocity(0.0 * km / s), REL_TOL);
-    ASSERT_EQ_QUANTITY(cart.get_vy(), Velocity(0.0 * km / s), REL_TOL);
-    ASSERT_EQ_QUANTITY(cart.get_vz(), Velocity(0.0 * km / s), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(cart.get_x(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(cart.get_y(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(cart.get_z(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(cart.get_vx(), Velocity(0.0 * km / s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(cart.get_vy(), Velocity(0.0 * km / s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(cart.get_vz(), Velocity(0.0 * km / s), REL_TOL));
 }
 
 TEST_F(CartesianTest, ZeroSemilatusEquinoctialConversion)
@@ -509,12 +509,12 @@ TEST_F(CartesianTest, ZeroSemilatusEquinoctialConversion)
     Equinoctial equi{ 0.0 * km, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
     Cartesian cart(equi, sys.get_mu());
 
-    ASSERT_EQ_QUANTITY(cart.get_x(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(cart.get_y(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(cart.get_z(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(cart.get_vx(), Velocity(0.0 * km / s), REL_TOL);
-    ASSERT_EQ_QUANTITY(cart.get_vy(), Velocity(0.0 * km / s), REL_TOL);
-    ASSERT_EQ_QUANTITY(cart.get_vz(), Velocity(0.0 * km / s), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(cart.get_x(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(cart.get_y(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(cart.get_z(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(cart.get_vx(), Velocity(0.0 * km / s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(cart.get_vy(), Velocity(0.0 * km / s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(cart.get_vz(), Velocity(0.0 * km / s), REL_TOL));
 }
 
 TEST_F(CartesianTest, CartesianPartialMultiplicationByTime)
@@ -528,12 +528,12 @@ TEST_F(CartesianTest, CartesianPartialMultiplicationByTime)
     Cartesian result = partial * dt;
 
     // Verify the result is a Cartesian state
-    ASSERT_EQ_QUANTITY(result.get_x(), vel.get_x() * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_y(), vel.get_y() * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_z(), vel.get_z() * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vx(), acc.get_x() * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vy(), acc.get_y() * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_vz(), acc.get_z() * dt, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_x(), vel.get_x() * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_y(), vel.get_y() * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_z(), vel.get_z() * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vx(), acc.get_x() * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vy(), acc.get_y() * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_vz(), acc.get_z() * dt, REL_TOL));
 }
 
 TEST_F(CartesianTest, CartesianPartialStream)

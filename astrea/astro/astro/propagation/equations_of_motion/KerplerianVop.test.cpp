@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
@@ -71,5 +71,5 @@ TEST_F(KeplerianVopTest, Derivative)
     State state(kep0, epoch, sys);
 
     OrbitalElementPartials dstate = eom(state, sat);
-    ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
+    ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
 }

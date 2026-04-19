@@ -238,7 +238,6 @@ set(ASTRO_LIBS
     matplot
     nlohmann_json::nlohmann_json
     sqlite_orm::sqlite_orm
-    date::date
     gtl
 )
 
@@ -269,9 +268,9 @@ if(${BUILD_STATIC})
 endif()
 
 # Install headers
-file(COPY
+install(
     DIRECTORY ${ASTRO_BASE}
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+    DESTINATION include
     FILES_MATCHING
     PATTERN *.hpp
     PATTERN *.ipp
