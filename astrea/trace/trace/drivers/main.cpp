@@ -17,11 +17,9 @@
 #include <iostream>
 #include <ranges>
 #include <set>
+#include <sqlite3.h>
 #include <stdio.h>
 
-#include <sqlite3.h>
-
-#include <csv.hpp>
 #include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>
 

@@ -2,24 +2,29 @@ SHELL := bash
 MAKEFLAGS += --no-builtin-rules --no-print-directory
 
 config_path := $(abspath .)
+venv_activate := $(config_path)/.venv/bin/activate
+CMAKE := source $(venv_activate) && cmake
 source_path := astrea
 examples_path := examples
 arch := x86_64
 os := Linux
-comp := GNU-13.1.0
+cxx := g++
+cxx_std := 23
+cxx_name := $(shell echo $(cxx) | sed 's/g++/gcc/; s/clang++/clang/' | sed 's/-[0-9.]*$$//')
+cxx_ver := $(shell $(cxx) -dumpversion | cut -d. -f1)
+comp := $(cxx_name)-$(cxx_ver)-$(cxx_std)
 tests_path := tests
 
 build_type := Release
 build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
-build_path := $(abspath ./build/gcc-13-23/$(build_type))
-install_path := $(abspath ./install/gcc-13-23/$(build_type))
+build_path := $(abspath ./build/$(comp)/$(build_type))
+install_path := $(abspath ./install/$(comp)/$(build_type))
 build_tests := OFF
 build_examples := OFF
 build_profilers := OFF
 build_checkcase_db := OFF
 build_static := OFF
 run_6dof_checkcases := OFF
-cxx := g++-13
 verbose_makefile := OFF
 warnings_as_errors := OFF
 
@@ -36,40 +41,42 @@ profile: profiling install
 
 .PHONY: install
 install: build
-	cmake --build $(build_path) --target install -j10
+	$(CMAKE) --build $(build_path) --target install -j10
 
 .PHONY: build
 build:
-	cmake -S . -B $(build_path) \
+	$(CMAKE) -S . -B $(build_path) \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
+	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
 	-DBUILD_TESTS=$(build_tests) \
 	-DBUILD_EXAMPLES=$(build_examples) \
 	-DBUILD_STATIC=$(build_static) \
 	-DBUILD_PROFILERS=$(build_profilers) \
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
-	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases)
+	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases) \
+	-Wno-dev
 
 .PHONY: debug
 debug:
 	$(eval build_type = Debug)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/gcc-13-23/$(build_type)))
-	$(eval install_path := $(abspath ./install/gcc-13-23/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(comp)/$(build_type)))
 
 .PHONY: release
 release:
 	$(eval build_type = Release)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/gcc-13-23/$(build_type)))
-	$(eval install_path := $(abspath ./install/gcc-13-23/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(comp)/$(build_type)))
 
 .PHONY: relwithdebinfo
 relwithdebinfo:
 	$(eval build_type = RelWithDebInfo)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/gcc-13-23/$(build_type)))
-	$(eval install_path := $(abspath ./install/gcc-13-23/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(comp)/$(build_type)))
 
 .PHONY: tests
 tests:

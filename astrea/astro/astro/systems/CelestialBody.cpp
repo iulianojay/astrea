@@ -87,16 +87,15 @@ RadiusVector<frames::solar_system_barycenter::icrf> CelestialBody::get_position_
                                               a * sqrt(1 - ecc * ecc) * sin(eccentricAnomaly),
                                               0.0 * m };
 
-    // Rotate to the J2000 frame
+    // Perifocal to J2000 transformation: R3(-RAAN) * R1(-inc) * R3(-argPer)
     const DCM<perifocal, frames::solar_system_barycenter::j2000> dcmPeri2J2000(
-        { // TODO: Figure this out
-          std::array<Unitless, 3>{ cos(argPer) * cos(raan) - sin(argPer) * sin(raan) * cos(inc),
-                                   -sin(argPer) * cos(raan) - cos(argPer) * sin(raan) * cos(inc),
-                                   0.0 * one },
-          std::array<Unitless, 3>{ cos(argPer) * sin(raan) + sin(argPer) * cos(raan) * cos(inc),
-                                   -sin(argPer) * sin(raan) + cos(argPer) * cos(raan) * cos(inc),
-                                   0.0 * one },
-          std::array<Unitless, 3>{ sin(argPer) * sin(inc), cos(argPer) * sin(inc), 0.0 * one } }
+        { { cos(argPer) * cos(raan) - sin(argPer) * sin(raan) * cos(inc),
+            -sin(argPer) * cos(raan) - cos(argPer) * sin(raan) * cos(inc),
+            sin(inc) * sin(raan) },
+          { cos(argPer) * sin(raan) + sin(argPer) * cos(raan) * cos(inc),
+            -sin(argPer) * sin(raan) + cos(argPer) * cos(raan) * cos(inc),
+            -sin(inc) * cos(raan) },
+          { sin(argPer) * sin(inc), cos(argPer) * sin(inc), cos(inc) } }
     );
     const RadiusVector<frames::solar_system_barycenter::j2000> rJ2000 = dcmPeri2J2000 * rPerifocal;
 

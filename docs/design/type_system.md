@@ -25,7 +25,7 @@ Astrea defines aerospace-specific quantities as type aliases over mp-units:
 namespace astrea {
     // Basic quantities
     using Distance = mp_units::quantity<detail::distance_unit>;        // kilometers
-    using Length = mp_units::quantity<detail::minor_distance_unit>;    // meters
+    using Length = mp_units::quantity<detail::distance_unit>;    // meters
     using Time = mp_units::quantity<detail::time_unit>;               // seconds
     using Angle = mp_units::quantity<detail::angle_unit>;             // radians
     using Velocity = mp_units::quantity<detail::distance_unit / detail::time_unit>;
@@ -37,10 +37,10 @@ namespace astrea {
                                         mp_units::pow<2>(detail::time_unit)>;
     using Acceleration = mp_units::quantity<detail::distance_unit / 
                                            mp_units::pow<2>(detail::time_unit)>;
-    using AngularRate = mp_units::quantity<detail::angle_unit / detail::time_unit>;
+    using AngularVelocity = mp_units::quantity<detail::angle_unit / detail::time_unit>;
     
     // Specialized quantities
-    using Thrust = mp_units::quantity<detail::mass_unit * detail::distance_unit / 
+    using Force = mp_units::quantity<detail::mass_unit * detail::distance_unit / 
                                      mp_units::pow<2>(detail::time_unit)>;
     using SpecificAngularMomentum = mp_units::quantity<detail::distance_unit * 
                                                       detail::distance_unit / detail::time_unit>;
@@ -56,7 +56,7 @@ namespace astrea::detail {
     // Base units optimized for aerospace calculations
     inline constexpr auto time_unit           = mp_units::si::unit_symbols::s;     // seconds
     inline constexpr auto distance_unit       = mp_units::si::unit_symbols::km;    // kilometers  
-    inline constexpr auto minor_distance_unit = mp_units::si::unit_symbols::m;     // meters
+    inline constexpr auto distance_unit = mp_units::si::unit_symbols::m;     // meters
     inline constexpr auto angle_unit          = mp_units::angular::unit_symbols::rad; // radians
     inline constexpr auto mass_unit           = mp_units::si::unit_symbols::kg;    // kilograms
     inline constexpr auto unitless            = mp_units::one;                     // dimensionless

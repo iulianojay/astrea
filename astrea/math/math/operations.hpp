@@ -29,13 +29,14 @@ namespace math {
 
 
 /**
- * @brief Check if two quantities of the same unit are nearly equal within a relative tolerance.
+ * @brief Check if two quantities of the same unit are nearly equal within a relative and absolute tolerance.
  *
  * @tparam R The unit type (e.g., distance, time).
  * @tparam Rep The representation type (e.g., double).
  * @param x First quantity to compare.
  * @param y Second quantity to compare.
- * @param relTol Relative tolerance for comparison.
+ * @param relTol Relative tolerance for comparison. Default is 0, which means relative differences are not considered.
+ * @param absTol Absolute tolerance for comparison. Default is 0, which means absolute differences are not considered.
  * @return true if the two quantities are nearly equal within the specified tolerance.
  * @return false if they are not nearly equal.
  */
@@ -66,6 +67,15 @@ template <auto R1, auto R2, typename Rep>
     return true;
 }
 
+/**
+ * @brief Returns the maximum of two quantities of the same unit.
+ *
+ * @tparam R The unit type (e.g., distance, time).
+ * @tparam Rep The representation type (e.g., double).
+ * @param q1 First quantity to compare.
+ * @param q2 Second quantity to compare.
+ * @return The maximum of the two quantities.
+ */
 template <auto R, typename Rep>
     requires requires(Rep v) { max(v, v); } || requires(Rep v) { std::max(v, v); }
 [[nodiscard]] inline mp_units::quantity<R, Rep> max(const mp_units::quantity<R, Rep>& q1, const mp_units::quantity<R, Rep>& q2) noexcept
@@ -74,6 +84,15 @@ template <auto R, typename Rep>
     return mp_units::quantity{ max(q1.numerical_value_in(q1.unit), q2.numerical_value_in(q1.unit)), q1.unit };
 }
 
+/**
+ * @brief Returns the minimum of two quantities of the same unit.
+ *
+ * @tparam R The unit type (e.g., distance, time).
+ * @tparam Rep The representation type (e.g., double).
+ * @param q1 First quantity to compare.
+ * @param q2 Second quantity to compare.
+ * @return The minimum of the two quantities.
+ */
 template <auto R, typename Rep>
     requires requires(Rep v) { min(v, v); } || requires(Rep v) { std::min(v, v); }
 [[nodiscard]] inline mp_units::quantity<R, Rep> min(const mp_units::quantity<R, Rep>& q1, const mp_units::quantity<R, Rep>& q2) noexcept
@@ -82,6 +101,15 @@ template <auto R, typename Rep>
     return mp_units::quantity{ min(q1.numerical_value_in(q1.unit), q2.numerical_value_in(q1.unit)), q1.unit };
 }
 
+/**
+ * @brief Returns the result of raising a dimensionless quantity to the power of another dimensionless quantity.
+ *
+ * @tparam R The unit type (must be dimensionless).
+ * @tparam Rep The representation type (e.g., double).
+ * @param q The quantity to be raised to a power.
+ * @param n The exponent quantity.
+ * @return The result of raising q to the power of n, with the same unit as q (which is dimensionless).
+ */
 template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
     requires requires(Rep v) { pow(v, v); } || requires(Rep v) { std::pow(v, v); }
 [[nodiscard]] inline mp_units::quantity<mp_units::one, Rep>

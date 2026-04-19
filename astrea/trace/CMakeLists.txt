@@ -102,7 +102,6 @@ set(TRACE_LIBS
     mp-units::mp-units
     matplot
     nlohmann_json::nlohmann_json
-    csv
     sqlite_orm::sqlite_orm
 )
 

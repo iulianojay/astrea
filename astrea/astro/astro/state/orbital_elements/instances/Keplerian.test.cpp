@@ -386,12 +386,12 @@ TEST_F(KeplerianTest, FromEquinoctialConversion)
 TEST_F(KeplerianTest, KeplerianPartialMultiplicationByTime)
 {
     // Test KeplerianPartial operator* with Time
-    Velocity aDot        = 1.0 * km / s;
-    UnitlessPerTime eDot = 0.001 / s;
-    AngularRate incDot   = 0.1 * deg / s;
-    AngularRate raanDot  = 0.2 * deg / s;
-    AngularRate wDot     = 0.3 * deg / s;
-    AngularRate thetaDot = 0.5 * deg / s;
+    Velocity aDot            = 1.0 * km / s;
+    UnitlessPerTime eDot     = 0.001 / s;
+    AngularVelocity incDot   = 0.1 * deg / s;
+    AngularVelocity raanDot  = 0.2 * deg / s;
+    AngularVelocity wDot     = 0.3 * deg / s;
+    AngularVelocity thetaDot = 0.5 * deg / s;
     KeplerianPartial partial(aDot, eDot, incDot, raanDot, wDot, thetaDot);
 
     Time dt          = 2.0 * s;
@@ -409,12 +409,12 @@ TEST_F(KeplerianTest, KeplerianPartialMultiplicationByTime)
 TEST_F(KeplerianTest, KeplerianPartialStream)
 {
     // Test KeplerianPartial stream operator
-    Velocity aDot        = 1.0 * km / s;
-    UnitlessPerTime eDot = 0.001 / s;
-    AngularRate incDot   = 0.1 * deg / s;
-    AngularRate raanDot  = 0.2 * deg / s;
-    AngularRate wDot     = 0.3 * deg / s;
-    AngularRate thetaDot = 0.5 * deg / s;
+    Velocity aDot            = 1.0 * km / s;
+    UnitlessPerTime eDot     = 0.001 / s;
+    AngularVelocity incDot   = 0.1 * deg / s;
+    AngularVelocity raanDot  = 0.2 * deg / s;
+    AngularVelocity wDot     = 0.3 * deg / s;
+    AngularVelocity thetaDot = 0.5 * deg / s;
     KeplerianPartial partial(aDot, eDot, incDot, raanDot, wDot, thetaDot);
 
     std::stringstream ss;

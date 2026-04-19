@@ -17,7 +17,7 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/propagation/equations_of_motion/TwoBody.hpp>
+#include <astro/propagation/equations_of_motion/instances/TwoBody.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>

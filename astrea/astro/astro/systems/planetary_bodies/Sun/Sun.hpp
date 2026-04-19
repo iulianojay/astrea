@@ -46,7 +46,7 @@ static const CelestialBodyParameters DEFAULT_SUN_PARAMS{
     .j2                     = Unitless(0.2e-6 * mp_units::one),
     .j3                     = Unitless(0.0 * mp_units::one),
     .axialTilt              = Angle(0.0 * mp_units::angular::unit_symbols::deg),
-    .rotationRate           = AngularRate(0.0 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
+    .rotationRate           = AngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
     .siderealPeriod         = Time(0.0 * mp_units::non_si::day),
     .semimajorAxis          = Distance(0.0 * mp_units::si::unit_symbols::km),
     .eccentricity           = Unitless(0.0 * mp_units::one),
@@ -56,10 +56,10 @@ static const CelestialBodyParameters DEFAULT_SUN_PARAMS{
     .meanLongitude          = Angle(0.0 * mp_units::angular::unit_symbols::deg),
     .semimajorAxisRate      = InterplanetaryVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury),
     .eccentricityRate       = BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),
-    .inclinationRate        = BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .rightAscensionRate     = BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .longitudeOfPerigeeRate = BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .meanLongitudeRate      = BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury)
+    .inclinationRate        = BodyAngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .rightAscensionRate     = BodyAngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .longitudeOfPerigeeRate = BodyAngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .meanLongitudeRate      = BodyAngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury)
 };
 
 /**

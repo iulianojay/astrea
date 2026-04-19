@@ -17,7 +17,7 @@ find_package(SQLite3 REQUIRED)
 add_compile_definitions(gsl_FEATURE_GSL_COMPATIBILITY_MODE=1)
 CPMFindPackage(
     NAME gsl-lite
-    VERSION 1.0.1
+    VERSION 1.1.0
     GITHUB_REPOSITORY gsl-lite/gsl-lite
 )
 
@@ -68,7 +68,7 @@ CPMFindPackage(
 # JSON parsing that doesn't suck
 CPMFindPackage(
     NAME nlohmann_json
-    VERSION 3.11.3
+    VERSION 3.12.0
     GITHUB_REPOSITORY nlohmann/json
     GIT_SHALLOW TRUE
 )
@@ -87,7 +87,7 @@ FetchContent_Declare(
     csv
     GIT_REPOSITORY https://github.com/vincentlaucsb/csv-parser.git
     GIT_SHALLOW TRUE
-    GIT_TAG 2.3.0
+    GIT_TAG 3.1.0
 )
 FetchContent_MakeAvailable(csv)
 

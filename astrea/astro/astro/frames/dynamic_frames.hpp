@@ -22,4 +22,5 @@
 #include <astro/frames/instances/LocalHorizontalLocalVertical.hpp>
 #include <astro/frames/instances/RadialInTrackCrossTrack.hpp>
 #include <astro/frames/instances/VelocityNormalBinormal.hpp>
+#include <astro/frames/instances/dynamic_body_frame.hpp>
 #include <astro/frames/types/DynamicFrame.hpp>

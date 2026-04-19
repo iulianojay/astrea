@@ -90,6 +90,7 @@ void Spacecraft::store_state(const State& state) { _stateHistory.insert(state); 
 
 // Spacecraft Property Getters
 Mass Spacecraft::get_mass() const { return _mass; }
+InertiaTensor<frames::dynamic::body> Spacecraft::get_inertia_tensor() const { return _inertiaTensor; }
 Unitless Spacecraft::get_coefficient_of_drag() const { return _coefficientOfDrag; }
 Unitless Spacecraft::get_coefficient_of_lift() const { return _coefficientOfLift; }
 Unitless Spacecraft::get_coefficient_of_reflectivity() const { return _coefficientOfReflectivity; }
@@ -98,22 +99,28 @@ SurfaceArea Spacecraft::get_solar_area() const { return _sunArea; }
 SurfaceArea Spacecraft::get_lift_area() const { return _liftArea; }
 
 // Thrust
-CartesianVector<Acceleration, frames::earth::icrf> Spacecraft::get_command_acceleration(const State& state) const
+Perturbation Spacecraft::get_control_authority(const State& state) const
 {
     // As a first cut, just burn in v direction
-    CartesianVector<Acceleration, frames::dynamic::ric> totalAccel;
+    ForceVector<frames::dynamic::ric> totalThrust;
     for (const auto& thruster : get_payloads()) {
         if (!thruster.is_on()) { continue; }
-        totalAccel[1] += thruster.get_thrust() / get_mass();
+        totalThrust[1] += thruster.get_thrust();
     }
 
     const Cartesian elements = state.in_element_set<Cartesian>();
     const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(elements.get_position(), elements.get_velocity());
-    return ricFrame.rotate_out_of_this_frame(totalAccel, state.get_epoch());
+    return {
+        .force = ricFrame.rotate_out_of_this_frame(totalThrust, state.get_epoch()), .torque = {} // first cut
+    };
 }
 
 // Setters
 void Spacecraft::set_mass(const Mass& mass) { _mass = mass; }
+void Spacecraft::set_inertia_tensor(const InertiaTensor<frames::dynamic::body>& inertiaTensor)
+{
+    _inertiaTensor = inertiaTensor;
+}
 
 void Spacecraft::set_coefficient_of_drag(const Unitless& cd) { _coefficientOfDrag = cd; }
 void Spacecraft::set_coefficient_of_lift(const Unitless& cl) { _coefficientOfLift = cl; }

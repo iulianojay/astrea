@@ -18,7 +18,7 @@
 
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/propagation/equations_of_motion/TwoBody.hpp>
+#include <astro/propagation/equations_of_motion/instances/TwoBody.hpp>
 #include <astro/propagation/event_detection/Event.hpp>
 #include <astro/propagation/event_detection/Schedule.hpp>
 #include <astro/propagation/event_detection/events/TurnThrustersOff.hpp>
@@ -73,7 +73,7 @@ class ThrusterSchedulingRegressionTest : public testing::Test {
 
     AstrodynamicsSystem sys;
     GravParam mu;
-    Thrust thrusterForce;
+    Force thrusterForce;
     Date epoch;
     Integrator integrator;
     TwoBody eom;

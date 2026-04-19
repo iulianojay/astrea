@@ -88,9 +88,9 @@ OrbitalCheckcaseRow::OrbitalCheckcaseRow(const unsigned& checkcase_num, const un
     eulerAngleWrtEi_rad_Roll(extract_optional_from_json<double>(data, "eulerAngleWrtEi_rad_Roll")),
     eulerAngleWrtEi_rad_Pitch(extract_optional_from_json<double>(data, "eulerAngleWrtEi_rad_Pitch")),
     eulerAngleWrtEi_rad_Yaw(extract_optional_from_json<double>(data, "eulerAngleWrtEi_rad_Yaw")),
-    bodyAngularRateWrtEi_rad_s_Roll(extract_optional_from_json<double>(data, "bodyAngularRateWrtEi_rad_s_Roll")),
-    bodyAngularRateWrtEi_rad_s_Pitch(extract_optional_from_json<double>(data, "bodyAngularRateWrtEi_rad_s_Pitch")),
-    bodyAngularRateWrtEi_rad_s_Yaw(extract_optional_from_json<double>(data, "bodyAngularRateWrtEi_rad_s_Yaw")),
+    bodyAngularVelocityWrtEi_rad_s_Roll(extract_optional_from_json<double>(data, "bodyAngularVelocityWrtEi_rad_s_Roll")),
+    bodyAngularVelocityWrtEi_rad_s_Pitch(extract_optional_from_json<double>(data, "bodyAngularVelocityWrtEi_rad_s_Pitch")),
+    bodyAngularVelocityWrtEi_rad_s_Yaw(extract_optional_from_json<double>(data, "bodyAngularVelocityWrtEi_rad_s_Yaw")),
     altitudeMsl_m(extract_optional_from_json<double>(data, "altitudeMsl_m")),
     airDensity_kg_m3(extract_optional_from_json<double>(data, "airDensity_kg_m3")),
     ambientTemperature_dgK(extract_optional_from_json<double>(data, "ambientTemperature_dgK")),
@@ -126,9 +126,9 @@ std::ostream& operator<<(std::ostream& os, const OrbitalCheckcaseRow& orbitalRow
     os << "eulerAngleWrtEi_rad_Roll: " << orbitalRow.eulerAngleWrtEi_rad_Roll << std::endl;
     os << "eulerAngleWrtEi_rad_Pitch: " << orbitalRow.eulerAngleWrtEi_rad_Pitch << std::endl;
     os << "eulerAngleWrtEi_rad_Yaw: " << orbitalRow.eulerAngleWrtEi_rad_Yaw << std::endl;
-    os << "bodyAngularRateWrtEi_rad_s_Roll: " << orbitalRow.bodyAngularRateWrtEi_rad_s_Roll << std::endl;
-    os << "bodyAngularRateWrtEi_rad_s_Pitch: " << orbitalRow.bodyAngularRateWrtEi_rad_s_Pitch << std::endl;
-    os << "bodyAngularRateWrtEi_rad_s_Yaw: " << orbitalRow.bodyAngularRateWrtEi_rad_s_Yaw << std::endl;
+    os << "bodyAngularVelocityWrtEi_rad_s_Roll: " << orbitalRow.bodyAngularVelocityWrtEi_rad_s_Roll << std::endl;
+    os << "bodyAngularVelocityWrtEi_rad_s_Pitch: " << orbitalRow.bodyAngularVelocityWrtEi_rad_s_Pitch << std::endl;
+    os << "bodyAngularVelocityWrtEi_rad_s_Yaw: " << orbitalRow.bodyAngularVelocityWrtEi_rad_s_Yaw << std::endl;
     os << "altitudeMsl_m: " << orbitalRow.altitudeMsl_m << std::endl;
     os << "airDensity_kg_m3: " << orbitalRow.airDensity_kg_m3 << std::endl;
     os << "ambientTemperature_dgK: " << orbitalRow.ambientTemperature_dgK << std::endl;

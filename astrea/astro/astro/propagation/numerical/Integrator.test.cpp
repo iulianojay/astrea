@@ -18,6 +18,7 @@
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
+#include <astro/propagation/equations_of_motion/StateTransitionMatrix.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 #include <astro/state/StateHistory.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
@@ -30,7 +31,11 @@ using namespace astro;
 
 class DummyEOM : public EquationsOfMotion {
   public:
-    OrbitalElementPartials operator()(const State&, const Vehicle&) const override { return OrbitalElementPartials(); }
+    OrbitalElementPartials
+        compute_dynamics(const State&, const Vehicle&, const ForceVector<frames::earth::icrf>&, const ForceVector<frames::earth::icrf>&) const override
+    {
+        return OrbitalElementPartials();
+    }
 
     StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override
     {
