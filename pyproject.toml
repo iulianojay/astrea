@@ -3,7 +3,7 @@ name = "astrea-python-deps"
 version = "3.5.1"
 description = "Python dependencies for the Astrea C++ astrodynamics library"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.12"
 authors = [
     {name = "Jay Iuliano"},
 ]
@@ -24,7 +24,15 @@ dependencies = [
     "mkdocs-rss-plugin>=0.1.0",
     "mkdoxy",
     "tabulate",
-    "cmake"
+    "cmake",
+    "urllib3>=2.6.3",
+    "Pillow>=12.2.0",
+    "CairoSVG>=2.9.0",
+    "fonttools>=4.60.2",
+    "Markdown>=3.8.1",
+    "requests>=2.33.0",
+    "pymdown-extensions>=10.16.1",
+    "Pygments>=2.20.0"
 ]
 
 [dependency-groups]
