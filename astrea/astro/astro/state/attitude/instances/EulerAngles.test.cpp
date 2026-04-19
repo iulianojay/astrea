@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/frames.hpp>
@@ -43,9 +43,9 @@ class EulerAnglesTest : public testing::Test {
 
     void compare_angle_sequences(const auto& seq1, const auto& seq2, const Unitless& tol)
     {
-        ASSERT_EQ_QUANTITY(seq1[0], seq2[0], tol);
-        ASSERT_EQ_QUANTITY(seq1[1], seq2[1], tol);
-        ASSERT_EQ_QUANTITY(seq1[2], seq2[2], tol);
+        ASSERT_TRUE(math::nearly_equal(seq1[0], seq2[0], tol));
+        ASSERT_TRUE(math::nearly_equal(seq1[1], seq2[1], tol));
+        ASSERT_TRUE(math::nearly_equal(seq1[2], seq2[2], tol));
     }
 
     const Unitless REL_TOL = 1.0e-10 * one;
@@ -77,9 +77,9 @@ TEST_F(EulerAnglesTest, TestEulerAnglesGetters)
     TestEulerAngles euler(angle1, angle2, angle3);
 
     // Test array access - angles are wrapped during construction
-    ASSERT_EQ_QUANTITY(euler[0], wrap_angle(angle1), REL_TOL);
-    ASSERT_EQ_QUANTITY(euler[1], wrap_angle_to_pi(angle2), REL_TOL);
-    ASSERT_EQ_QUANTITY(euler[2], wrap_angle(angle3), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(euler[0], wrap_angle(angle1), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(euler[1], wrap_angle_to_pi(angle2), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(euler[2], wrap_angle(angle3), REL_TOL));
 }
 
 TEST_F(EulerAnglesTest, TestDirectionCosineMatrixConversion)
@@ -104,14 +104,14 @@ TEST_F(EulerAnglesTest, TestAngleWrapping)
     TestEulerAngles euler(largeAngle1, largeAngle2, largeAngle3);
 
     // Verify wrapping behavior
-    ASSERT_EQ_QUANTITY(euler[0], wrap_angle(largeAngle1), REL_TOL);
-    ASSERT_EQ_QUANTITY(euler[1], wrap_angle_to_pi(largeAngle2), REL_TOL);
-    ASSERT_EQ_QUANTITY(euler[2], wrap_angle(largeAngle3), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(euler[0], wrap_angle(largeAngle1), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(euler[1], wrap_angle_to_pi(largeAngle2), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(euler[2], wrap_angle(largeAngle3), REL_TOL));
 
     // Test specifically known wrapped values
-    ASSERT_EQ_QUANTITY(euler[0], 30.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(euler[1], 45.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(euler[2], 330.0 * deg, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(euler[0], 30.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(euler[1], 45.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(euler[2], 330.0 * deg, REL_TOL));
 }
 
 TEST_F(EulerAnglesTest, TestAllRotationSequences)
@@ -142,9 +142,9 @@ TEST_F(EulerAnglesTest, TestCopyConstructor)
     auto eulerCopy = TestEulerAngles(euler1);
 
     EXPECT_EQ(euler1, eulerCopy);
-    ASSERT_EQ_QUANTITY(euler1[0], eulerCopy[0], REL_TOL);
-    ASSERT_EQ_QUANTITY(euler1[1], eulerCopy[1], REL_TOL);
-    ASSERT_EQ_QUANTITY(euler1[2], eulerCopy[2], REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(euler1[0], eulerCopy[0], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(euler1[1], eulerCopy[1], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(euler1[2], eulerCopy[2], REL_TOL));
 }
 
 TEST_F(EulerAnglesTest, TestMoveConstructor)
@@ -154,9 +154,9 @@ TEST_F(EulerAnglesTest, TestMoveConstructor)
     ASSERT_NO_THROW(TestEulerAngles eulerMove(std::move(eulerTemp)));
     auto eulerMove = TestEulerAngles(std::move(eulerTemp));
 
-    ASSERT_EQ_QUANTITY(eulerMove[0], wrap_angle(angle1), REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerMove[1], wrap_angle_to_pi(angle2), REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerMove[2], wrap_angle(angle3), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(eulerMove[0], wrap_angle(angle1), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerMove[1], wrap_angle_to_pi(angle2), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerMove[2], wrap_angle(angle3), REL_TOL));
 }
 
 TEST_F(EulerAnglesTest, TestAccessOperators)
@@ -166,15 +166,15 @@ TEST_F(EulerAnglesTest, TestAccessOperators)
     euler[1] = 45.0 * deg;
     euler[2] = 180.0 * deg;
 
-    ASSERT_EQ_QUANTITY(euler[0], 90.0 * deg);
-    ASSERT_EQ_QUANTITY(euler[1], 45.0 * deg);
-    ASSERT_EQ_QUANTITY(euler[2], 180.0 * deg);
+    ASSERT_TRUE(math::nearly_equal(euler[0], 90.0 * deg));
+    ASSERT_TRUE(math::nearly_equal(euler[1], 45.0 * deg));
+    ASSERT_TRUE(math::nearly_equal(euler[2], 180.0 * deg));
 
     // Const access
     const auto& constEuler = euler;
-    ASSERT_EQ_QUANTITY(constEuler[0], 90.0 * deg);
-    ASSERT_EQ_QUANTITY(constEuler[1], 45.0 * deg);
-    ASSERT_EQ_QUANTITY(constEuler[2], 180.0 * deg);
+    ASSERT_TRUE(math::nearly_equal(constEuler[0], 90.0 * deg));
+    ASSERT_TRUE(math::nearly_equal(constEuler[1], 45.0 * deg));
+    ASSERT_TRUE(math::nearly_equal(constEuler[2], 180.0 * deg));
 }
 
 TEST_F(EulerAnglesTest, TestEqualityOperators)
@@ -250,19 +250,19 @@ TEST_F(EulerAnglesTest, TestDotAndCrossProduct)
 
     // Dot product
     auto dotProduct = euler1.dot(euler2);
-    ASSERT_EQ_QUANTITY(dotProduct, 0.0 * pow<2>(deg), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(dotProduct, 0.0 * pow<2>(deg), REL_TOL));
 
     dotProduct = euler1.dot(euler1);
-    ASSERT_EQ_QUANTITY(dotProduct, M_PI_2 * M_PI_2 * pow<2>(rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(dotProduct, M_PI_2 * M_PI_2 * pow<2>(rad), REL_TOL));
 
     // Cross product
     auto crossProduct = euler1.cross(euler2);
     auto crossNorm    = crossProduct.norm();
     if (crossNorm > 0.0 * crossNorm.unit) {
         auto crossUnit = crossProduct / crossNorm;
-        ASSERT_EQ_QUANTITY(crossUnit[0], 0.0 * one, REL_TOL);
-        ASSERT_EQ_QUANTITY(crossUnit[1], 0.0 * one, REL_TOL);
-        ASSERT_EQ_QUANTITY(crossUnit[2], 1.0 * one, REL_TOL);
+        ASSERT_TRUE(math::nearly_equal(crossUnit[0], 0.0 * one, REL_TOL));
+        ASSERT_TRUE(math::nearly_equal(crossUnit[1], 0.0 * one, REL_TOL));
+        ASSERT_TRUE(math::nearly_equal(crossUnit[2], 1.0 * one, REL_TOL));
     }
 }
 
@@ -272,7 +272,7 @@ TEST_F(EulerAnglesTest, TestNormAndOffsetAngle)
 
     // Norm (should be sqrt(3^2 + 4^2) = 5 degrees)
     auto normEuler = euler.norm();
-    ASSERT_EQ_QUANTITY(normEuler, 5.0 * deg, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(normEuler, 5.0 * deg, REL_TOL));
 }
 
 TEST_F(EulerAnglesTest, TestDifferentRotationTypes)
@@ -281,9 +281,9 @@ TEST_F(EulerAnglesTest, TestDifferentRotationTypes)
     EulerAngles<RotationSequence::ZXZ, RotationType::EXTRINSIC, TestFrame, TestOutFrame> eulerExtrinsic(angle1, angle2, angle3);
 
     // Same angle values
-    ASSERT_EQ_QUANTITY(eulerIntrinsic[0], eulerExtrinsic[0], REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerIntrinsic[1], eulerExtrinsic[1], REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerIntrinsic[2], eulerExtrinsic[2], REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(eulerIntrinsic[0], eulerExtrinsic[0], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerIntrinsic[1], eulerExtrinsic[1], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerIntrinsic[2], eulerExtrinsic[2], REL_TOL));
 
     // But they should be different types (cannot directly compare with ==)
     // eulerIntrinsic == eulerExtrinsic; // This should not compile
@@ -291,6 +291,9 @@ TEST_F(EulerAnglesTest, TestDifferentRotationTypes)
     // They should produce different DCMs due to different rotation order
     auto dcmIntrinsic = eulerIntrinsic.to_dcm();
     auto dcmExtrinsic = eulerExtrinsic.to_dcm();
+    std::cout << "DCM from Intrinsic: \n" << dcmIntrinsic << std::endl;
+    std::cout << "DCM from Extrinsic: \n" << dcmExtrinsic << std::endl;
+    ASSERT_FALSE(nearly_equal(dcmIntrinsic, dcmExtrinsic, REL_TOL));
 }
 
 TEST_F(EulerAnglesTest, TestFrameConsistency)
@@ -300,9 +303,9 @@ TEST_F(EulerAnglesTest, TestFrameConsistency)
     EulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, frames::earth::j2000, frames::earth::icrf> eulerJ2000(angle1, angle2, angle3);
 
     // They should have the same angle values
-    ASSERT_EQ_QUANTITY(eulerICRF[0], eulerJ2000[0], REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerICRF[1], eulerJ2000[1], REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerICRF[2], eulerJ2000[2], REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(eulerICRF[0], eulerJ2000[0], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerICRF[1], eulerJ2000[1], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerICRF[2], eulerJ2000[2], REL_TOL));
 
     // But different frames should not be directly comparable with ==
     // This test verifies the type safety is maintained
@@ -317,8 +320,8 @@ TEST_F(EulerAnglesTest, TestSequenceSpecificBehavior)
     EulerAngles<RotationSequence::YZY, RotationType::INTRINSIC, TestFrame, TestOutFrame> eulerYZY(angle1, angle2, angle3);
 
     // All should have same angle values but different DCM output
-    ASSERT_EQ_QUANTITY(eulerZXZ[0], eulerXYX[0], REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerXYX[0], eulerYZY[0], REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(eulerZXZ[0], eulerXYX[0], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerXYX[0], eulerYZY[0], REL_TOL));
 
     // Test Tait-Bryan sequences
     EulerAngles<RotationSequence::XYZ, RotationType::INTRINSIC, TestFrame, TestOutFrame> taitBryanXYZ(angle1, angle2, angle3);
@@ -326,8 +329,8 @@ TEST_F(EulerAnglesTest, TestSequenceSpecificBehavior)
     EulerAngles<RotationSequence::YXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame> taitBryanYXZ(angle1, angle2, angle3);
 
     // All should have same angle values but different DCM output
-    ASSERT_EQ_QUANTITY(taitBryanXYZ[0], taitBryanZYX[0], REL_TOL);
-    ASSERT_EQ_QUANTITY(taitBryanZYX[0], taitBryanYXZ[0], REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(taitBryanXYZ[0], taitBryanZYX[0], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(taitBryanZYX[0], taitBryanYXZ[0], REL_TOL));
 
     // Different sequences should produce different DCMs
     ASSERT_NO_THROW(eulerZXZ.to_dcm());
@@ -343,9 +346,9 @@ TEST_F(EulerAnglesTest, TestDivisionByTimeToVelocity)
     auto eulerVel = euler / time;
 
     // Check that the resulting angular velocities are correct
-    ASSERT_EQ_QUANTITY(eulerVel[0], 15.0 * deg / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel[1], 22.5 * deg / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel[2], 30.0 * deg / s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(eulerVel[0], 15.0 * deg / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerVel[1], 22.5 * deg / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerVel[2], 30.0 * deg / s, REL_TOL));
 }
 
 TEST_F(EulerAnglesTest, TestForceToVectorAndFromVector)
@@ -365,9 +368,9 @@ TEST_F(EulerAnglesTest, TestRotationTypeConversion)
     auto extrinsic = intrinsic.template to_rotation_type<RotationType::EXTRINSIC>();
 
     // Should have the same angle values
-    ASSERT_EQ_QUANTITY(intrinsic[0], extrinsic[2], REL_TOL);
-    ASSERT_EQ_QUANTITY(intrinsic[1], extrinsic[1], REL_TOL);
-    ASSERT_EQ_QUANTITY(intrinsic[2], extrinsic[0], REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(intrinsic[0], extrinsic[0], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(intrinsic[1], extrinsic[1], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(intrinsic[2], extrinsic[2], REL_TOL));
 
     // Test conversion to same rotation type (no-op)
     auto intrinsicSame = intrinsic.template to_rotation_type<RotationType::INTRINSIC>();
@@ -380,9 +383,9 @@ TEST_F(EulerAnglesTest, TestOutputStream)
 
     // Test that the angles can be accessed for output
     // Note: Direct stream output may not be implemented, but angle access should work
-    ASSERT_EQ_QUANTITY(euler[0], 30.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(euler[1], 45.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(euler[2], 60.0 * deg, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(euler[0], 30.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(euler[1], 45.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(euler[2], 60.0 * deg, REL_TOL));
 
     // Test DCM conversion works
     ASSERT_NO_THROW(euler.to_dcm());
@@ -447,9 +450,9 @@ TEST_F(EulerAnglesTest, TestExtrinsicToIntrinsicConversion)
     auto intrinsicResult = extrinsic_euler.to_rotation_type<RotationType::INTRINSIC>();
 
     // Verify that angles are reversed
-    ASSERT_EQ_QUANTITY(intrinsicResult[0], extrinsic_euler[2], REL_TOL);
-    ASSERT_EQ_QUANTITY(intrinsicResult[1], extrinsic_euler[1], REL_TOL);
-    ASSERT_EQ_QUANTITY(intrinsicResult[2], extrinsic_euler[0], REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(intrinsicResult[0], extrinsic_euler[0], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(intrinsicResult[1], extrinsic_euler[1], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(intrinsicResult[2], extrinsic_euler[2], REL_TOL));
 }
 
 TEST_F(EulerAnglesTest, TestIntrinsicToExtrinsicConversion)
@@ -461,9 +464,9 @@ TEST_F(EulerAnglesTest, TestIntrinsicToExtrinsicConversion)
     auto extrinsicResult = intrinsic_euler.to_rotation_type<RotationType::EXTRINSIC>();
 
     // Verify that angles are reversed
-    ASSERT_EQ_QUANTITY(extrinsicResult[0], intrinsic_euler[2], REL_TOL);
-    ASSERT_EQ_QUANTITY(extrinsicResult[1], intrinsic_euler[1], REL_TOL);
-    ASSERT_EQ_QUANTITY(extrinsicResult[2], intrinsic_euler[0], REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(extrinsicResult[0], intrinsic_euler[0], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(extrinsicResult[1], intrinsic_euler[1], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(extrinsicResult[2], intrinsic_euler[2], REL_TOL));
 }
 
 TEST_F(EulerAnglesTest, TestRoundTripIntrinsicExtrinsicConversion)
@@ -496,9 +499,9 @@ TEST_F(EulerAnglesTest, TestZeroAnglesConversion)
     auto zeroIntrinsicResult = zeroExtrinsic.to_rotation_type<RotationType::INTRINSIC>();
 
     // All angles should still be zero (reversed zeros are still zeros)
-    ASSERT_EQ_QUANTITY(zeroIntrinsicResult[0], zeroAngle, REL_TOL);
-    ASSERT_EQ_QUANTITY(zeroIntrinsicResult[1], zeroAngle, REL_TOL);
-    ASSERT_EQ_QUANTITY(zeroIntrinsicResult[2], zeroAngle, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(zeroIntrinsicResult[0], zeroAngle, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(zeroIntrinsicResult[1], zeroAngle, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(zeroIntrinsicResult[2], zeroAngle, REL_TOL));
 }
 
 TEST_F(EulerAnglesTest, TestLargeAnglesConversion)
@@ -528,15 +531,13 @@ TEST_F(EulerAnglesTest, TestDCMEquivalenceAfterConversion)
     auto dcmIntrinsic = intrinsicSeq.to_dcm();
     auto dcmExtrinsic = equivalentExtrinsic.to_dcm();
 
+    std::cout << "DCM from Intrinsic: \n" << dcmIntrinsic << std::endl;
+    std::cout << "DCM from Extrinsic: \n" << dcmExtrinsic << std::endl;
+
     // The DCMs should be equal within numerical precision
     // Note: This tests the fundamental property that intrinsic and extrinsic
     // representations of the same rotation should yield identical DCMs
-    const auto tolerance = 1e-10 * one;
-    for (size_t i = 0; i < 3; ++i) {
-        for (size_t j = 0; j < 3; ++j) {
-            ASSERT_EQ_QUANTITY(dcmIntrinsic[i, j], dcmExtrinsic[i, j], REL_TOL);
-        }
-    }
+    ASSERT_TRUE(nearly_equal(dcmIntrinsic, dcmExtrinsic, REL_TOL));
 }
 
 static_assert(

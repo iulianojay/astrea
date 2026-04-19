@@ -144,7 +144,7 @@ TEST_F(CelestialBodyTest, GetAxialTilt)
 
 TEST_F(CelestialBodyTest, GetRotationRate)
 {
-    ASSERT_TRUE(math::nearly_equal(earth.get_rotation_rate(), AngularRate(7.29211514670638e-5 * rad / s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(earth.get_rotation_rate(), AngularVelocity(7.29211514670638e-5 * rad / s), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetSiderealPeriod)
@@ -204,22 +204,22 @@ TEST_F(CelestialBodyTest, GetEccentricityRate)
 
 TEST_F(CelestialBodyTest, GetInclinationRate)
 {
-    ASSERT_TRUE(math::nearly_equal(earth.get_inclination_rate(), BodyAngularRate(-0.01294668 * deg / JulianCentury), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(earth.get_inclination_rate(), BodyAngularVelocity(-0.01294668 * deg / JulianCentury), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetRightAscensionRate)
 {
-    ASSERT_TRUE(math::nearly_equal(earth.get_right_ascension_rate(), BodyAngularRate(0.0 * deg / JulianCentury), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(earth.get_right_ascension_rate(), BodyAngularVelocity(0.0 * deg / JulianCentury), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetLongitudeOfPerigeeRate)
 {
-    ASSERT_TRUE(math::nearly_equal(earth.get_longitude_of_perigee_rate(), BodyAngularRate(0.32327364 * deg / JulianCentury), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(earth.get_longitude_of_perigee_rate(), BodyAngularVelocity(0.32327364 * deg / JulianCentury), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetMeanLongitudeRate)
 {
-    ASSERT_TRUE(math::nearly_equal(earth.get_mean_longitude_rate(), BodyAngularRate(35999.37244981 * deg / JulianCentury), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(earth.get_mean_longitude_rate(), BodyAngularVelocity(35999.37244981 * deg / JulianCentury), REL_TOL));
 }
 
 // Vallado, Ex. 8.5
@@ -254,8 +254,7 @@ TEST_F(CelestialBodyTest, GetStateAtValldoEx)
     // of the Chebyshev approximations. We just lower the required tolerance a bit so the tests pass. The following test
     // returns exact values so this is likely not an indication that there are any accuracy issues
     ASSERT_TRUE(nearly_equal(sunPosition - earthPosition, expEarth2SunPosition, 0.0 * one, 1800.0 * one));
-    ASSERT_TRUE(nearly_equal(moonPosition, expEarth2MoonPosition, 0.0 * one, 50.0 * one)
-    ); // x value has largest inaccuracy but it's more accurate than Vallado's approximation
+    ASSERT_TRUE(nearly_equal(moonPosition, expEarth2MoonPosition, 0.0 * one, 50.0 * one)); // x value has largest inaccuracy but it's more accurate than Vallado's approximation
 
 #elif !defined(ASTREA_BUILD_EARTH_EPHEMERIS) && !defined(ASTREA_BUILD_SUN_EPHEMERIS)
 
@@ -317,33 +316,35 @@ TEST_F(CelestialBodyTest, GetKeplerianElementsAt)
 TEST_F(CelestialBodyTest, FindAtmosphericDensity)
 {
     const Date date("2020-02-18 15:08:47.23847");
-    const CelestialBody dummyBody({ .name                   = "test",
-                                    .parent                 = CelestialBodyId::SUN,
-                                    .type                   = CelestialBodyType::STAR,
-                                    .referenceDate          = date,
-                                    .mu                     = GravParam(1.32712440018e11 * km * km * km / (s * s)),
-                                    .mass                   = Mass(1.989e30 * kg),
-                                    .equitorialRadius       = Distance(696340.0 * km),
-                                    .polarRadius            = Distance(696340.0 * km),
-                                    .crashRadius            = Distance(696340.0 * km),
-                                    .sphereOfInfluence      = Distance(0.0 * km),
-                                    .j2                     = Unitless(0.0 * one),
-                                    .j3                     = Unitless(0.0 * one),
-                                    .axialTilt              = Angle(0.0 * rad),
-                                    .rotationRate           = AngularRate(0.0 * rad / s),
-                                    .siderealPeriod         = Time(0.0 * s),
-                                    .semimajorAxis          = Distance(0.0 * km),
-                                    .eccentricity           = Unitless(0.0 * one),
-                                    .inclination            = Angle(0.0 * rad),
-                                    .rightAscension         = Angle(0.0 * rad),
-                                    .longitudeOfPerigee     = Angle(0.0 * rad),
-                                    .meanLongitude          = Angle(0.0 * rad),
-                                    .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / s),
-                                    .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / s),
-                                    .inclinationRate        = BodyAngularRate(0.0 * rad / s),
-                                    .rightAscensionRate     = BodyAngularRate(0.0 * rad / s),
-                                    .longitudeOfPerigeeRate = BodyAngularRate(0.0 * rad / s),
-                                    .meanLongitudeRate      = BodyAngularRate(0.0 * rad / s) });
+    const CelestialBody dummyBody(
+        { .name                   = "test",
+          .parent                 = CelestialBodyId::SUN,
+          .type                   = CelestialBodyType::STAR,
+          .referenceDate          = date,
+          .mu                     = GravParam(1.32712440018e11 * km * km * km / (s * s)),
+          .mass                   = Mass(1.989e30 * kg),
+          .equitorialRadius       = Distance(696340.0 * km),
+          .polarRadius            = Distance(696340.0 * km),
+          .crashRadius            = Distance(696340.0 * km),
+          .sphereOfInfluence      = Distance(0.0 * km),
+          .j2                     = Unitless(0.0 * one),
+          .j3                     = Unitless(0.0 * one),
+          .axialTilt              = Angle(0.0 * rad),
+          .rotationRate           = AngularVelocity(0.0 * rad / s),
+          .siderealPeriod         = Time(0.0 * s),
+          .semimajorAxis          = Distance(0.0 * km),
+          .eccentricity           = Unitless(0.0 * one),
+          .inclination            = Angle(0.0 * rad),
+          .rightAscension         = Angle(0.0 * rad),
+          .longitudeOfPerigee     = Angle(0.0 * rad),
+          .meanLongitude          = Angle(0.0 * rad),
+          .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / s),
+          .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / s),
+          .inclinationRate        = BodyAngularVelocity(0.0 * rad / s),
+          .rightAscensionRate     = BodyAngularVelocity(0.0 * rad / s),
+          .longitudeOfPerigeeRate = BodyAngularVelocity(0.0 * rad / s),
+          .meanLongitudeRate      = BodyAngularVelocity(0.0 * rad / s) }
+    );
 
     // Test Earth (has atmosphere in derived class)
     ASSERT_NO_THROW(dummyBody.find_atmospheric_density(date, 0.0 * km));

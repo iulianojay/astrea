@@ -70,7 +70,7 @@ TEST_F(CowellsMethodTest, Derivative)
     );
     State state0(cart0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom(state0, sat);
+    OrbitalElementPartials dstate = eom.compute_dynamics(state0, sat, noForce, noForce);
     ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
 }
 
@@ -84,6 +84,6 @@ TEST_F(CowellsMethodTest, DerivativeValladoEx85)
     );
     State state0(cart0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom(state0, sat);
+    OrbitalElementPartials dstate = eom.compute_dynamics(state0, sat, noForce, noForce);
     ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
 }

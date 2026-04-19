@@ -64,6 +64,6 @@ TEST_F(J2MeanTest, Derivative)
 
     State state(kep0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom(state, sat);
+    OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
     ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
 }

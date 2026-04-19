@@ -57,6 +57,19 @@ auto sin_cos_pack(const Angle& angle)
  */
 template <typename In_Frame_T, typename Out_Frame_T>
 class DirectionCosineMatrix {
+
+    friend std::ostream& operator<<(std::ostream& os, const DirectionCosineMatrix& dcm)
+    {
+        for (const auto& row : dcm._matrix) {
+            os << "| ";
+            for (const auto& element : row) {
+                os << element << " ";
+            }
+            os << "|\n";
+        }
+        return os;
+    }
+
   public:
     /**
      * @brief Constructor for DirectionCosineMatrix from an array of CartesianVectors.
@@ -317,14 +330,7 @@ class DirectionCosineMatrix {
      */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> XZY(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
-        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
-        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
-            { cosBeta * cosGamma, -sinBeta, cosBeta * sinGamma },
-            { sinAlpha * sinGamma + cosAlpha * cosGamma * sinBeta, cosAlpha * cosBeta, cosAlpha * sinBeta * sinGamma - cosGamma * sinAlpha },
-            { cosGamma * sinAlpha * sinBeta - cosAlpha * sinGamma, cosBeta * sinAlpha, cosAlpha * cosGamma + sinAlpha * sinBeta * sinGamma }
-        };
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YZX(gamma, beta, alpha);
     }
 
     /**
@@ -337,14 +343,7 @@ class DirectionCosineMatrix {
      */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> ZYX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
-        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
-        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
-            { cosAlpha * cosBeta, -cosBeta * sinAlpha, sinBeta },
-            { cosAlpha * sinBeta * sinGamma + cosGamma * sinAlpha, cosAlpha * cosGamma - sinAlpha * sinBeta * sinGamma, -cosBeta * sinGamma },
-            { sinAlpha * sinGamma - cosAlpha * cosGamma * sinBeta, cosGamma * sinAlpha * sinBeta + cosAlpha * sinGamma, cosBeta * cosGamma }
-        };
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XYZ(gamma, beta, alpha);
     }
 
     /**
@@ -357,14 +356,7 @@ class DirectionCosineMatrix {
      */
     static DirectionCosineMatrix<In_Frame_T, Out_Frame_T> YXZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
-        const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
-        const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
-            { cosAlpha * cosGamma + sinAlpha * sinBeta * sinGamma, cosGamma * sinAlpha * sinBeta - cosAlpha * sinGamma, cosBeta * sinAlpha },
-            { cosBeta * sinGamma, cosBeta * cosGamma, -sinBeta },
-            { cosAlpha * sinBeta * sinGamma - cosGamma * sinAlpha, cosAlpha * cosGamma * sinBeta + sinAlpha * sinGamma, cosAlpha * cosBeta }
-        };
+        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZXY(gamma, beta, alpha);
     }
 
     /**

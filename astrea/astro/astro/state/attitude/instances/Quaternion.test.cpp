@@ -21,13 +21,14 @@
 
 #include <stdexcept>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
 #include <astro/state/attitude/instances/EulerAngles.hpp>
 #include <astro/state/attitude/instances/Quaternion.hpp>
+#include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -81,14 +82,14 @@ class QuaternionTest : public ::testing::Test {
     void ExpectQuaternionNearlyEqual(const Quaternion<In_Frame_T, Out_Frame_T>& actual, const Quaternion<In_Frame_T, Out_Frame_T>& expected)
     {
         // Compare scalar parts
-        EXPECT_EQ_QUANTITY(actual.get_scalar_part(), expected.get_scalar_part(), REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(actual.get_scalar_part(), expected.get_scalar_part(), REL_TOL, ABS_TOL));
 
         // Compare vector parts
         auto actualVec   = actual.get_vector_part();
         auto expectedVec = expected.get_vector_part();
-        EXPECT_EQ_QUANTITY(actualVec.get_x(), expectedVec.get_x(), REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(actualVec.get_y(), expectedVec.get_y(), REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(actualVec.get_z(), expectedVec.get_z(), REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(actualVec.get_x(), expectedVec.get_x(), REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(actualVec.get_y(), expectedVec.get_y(), REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(actualVec.get_z(), expectedVec.get_z(), REL_TOL, ABS_TOL));
     }
 };
 
@@ -110,27 +111,27 @@ TEST_F(QuaternionTest, ConstructorWithDefaults)
     // Test with only scalar part - should be automatically normalized
     TestQuaternion q1;
     // After normalization, quaternion should have unit norm
-    EXPECT_EQ_QUANTITY(q1.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q1.norm(), 1.0 * one, REL_TOL, ABS_TOL));
     // Scalar part should be normalized: scalar1 / |scalar1|
-    EXPECT_EQ_QUANTITY(q1.get_scalar_part(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q1.get_scalar_part(), 1.0 * one, REL_TOL, ABS_TOL));
     auto vec1 = q1.get_vector_part();
-    EXPECT_EQ_QUANTITY(vec1.get_x(), 0.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vec1.get_y(), 0.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vec1.get_z(), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(vec1.get_x(), 0.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vec1.get_y(), 0.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vec1.get_z(), 0.0 * one, REL_TOL, ABS_TOL));
 
     // Test with scalar and vector - should be automatically normalized
     TestVector testVec(x1, y1, z1);
     TestQuaternion q2(scalar1, testVec);
     // Should have unit norm after normalization
-    EXPECT_EQ_QUANTITY(q2.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q2.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
     // Calculate expected normalized values
     Unitless inputNorm = sqrt(scalar1 * scalar1 + x1 * x1 + y1 * y1 + z1 * z1);
-    EXPECT_EQ_QUANTITY(q2.get_scalar_part(), scalar1 / inputNorm, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q2.get_scalar_part(), scalar1 / inputNorm, REL_TOL, ABS_TOL));
     auto vec2 = q2.get_vector_part();
-    EXPECT_EQ_QUANTITY(vec2.get_x(), x1 / inputNorm, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vec2.get_y(), y1 / inputNorm, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vec2.get_z(), z1 / inputNorm, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(vec2.get_x(), x1 / inputNorm, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vec2.get_y(), y1 / inputNorm, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vec2.get_z(), z1 / inputNorm, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -142,18 +143,18 @@ TEST_F(QuaternionTest, ParameterizedConstructor_ValidInputs)
     EXPECT_NO_THROW({
         TestQuaternion q(scalar1, x1, y1, z1);
         // All quaternions should have unit norm due to automatic normalization
-        EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
     });
 
     // Test boundary values - should result in unit quaternions
     EXPECT_NO_THROW({
         TestQuaternion q(1.0 * one, 0.0 * one, 0.0 * one, 0.0 * one);
-        EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
     });
 
     EXPECT_NO_THROW({
         TestQuaternion q(-1.0 * one, 0.0 * one, 0.0 * one, 0.0 * one);
-        EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
     });
 
     // Test zero quaternion should throw error (cannot normalize)
@@ -171,7 +172,7 @@ TEST_F(QuaternionTest, AdditionOperator)
     TestQuaternion result = q1 + q2;
 
     // Result should be automatically normalized to unit quaternion
-    EXPECT_EQ_QUANTITY(result.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(result.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
     // Addition should be commutative (after normalization)
     TestQuaternion result2 = q2 + q1;
@@ -209,7 +210,7 @@ TEST_F(QuaternionTest, UnaryNegationOperator)
     TestQuaternion negated = -q;
 
     // Negated quaternion should still have unit norm
-    EXPECT_EQ_QUANTITY(negated.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(negated.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
     // Adding a quaternion to its negation gives zero vector, which after normalization
     // is undefined - this should throw an error
@@ -231,7 +232,7 @@ TEST_F(QuaternionTest, SubtractionOperator)
     TestQuaternion result = q1 - q2;
 
     // Result should be automatically normalized to unit quaternion
-    EXPECT_EQ_QUANTITY(result.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(result.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
     // Should be equivalent to adding negation (both normalized)
     TestQuaternion expected = q1 + (-q2);
@@ -277,7 +278,7 @@ TEST_F(QuaternionTest, MultiplicationOperator)
     EXPECT_NO_THROW({
         QFrame13 result = q12 * q23;
         // Result should have unit norm (quaternions are automatically normalized)
-        EXPECT_EQ_QUANTITY(result.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(result.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
         // Verify we can access components of the result
         EXPECT_TRUE(std::isfinite(result.get_scalar_part().numerical_value_in(one)));
@@ -289,10 +290,10 @@ TEST_F(QuaternionTest, MultiplicationOperator)
 
     // Since all quaternions have unit norm, |q1 * q2| = 1
     auto chainResult = q12 * q23;
-    EXPECT_EQ_QUANTITY(chainResult.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(chainResult.norm(), 1.0 * one, REL_TOL, ABS_TOL));
     // Original quaternions also have unit norm
-    EXPECT_EQ_QUANTITY(q12.norm(), 1.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(q23.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q12.norm(), 1.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(q23.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
     // Test associativity with frame chaining
     using QFrame34 = Quaternion<TestFrame3, TestFrame1>; // Close the loop
@@ -301,8 +302,8 @@ TEST_F(QuaternionTest, MultiplicationOperator)
     auto leftAssoc  = (q12 * q23) * q34; // QFrame11
     auto rightAssoc = q12 * (q23 * q34); // QFrame11
     // Both should have unit norm
-    EXPECT_EQ_QUANTITY(leftAssoc.norm(), 1.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(rightAssoc.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(leftAssoc.norm(), 1.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(rightAssoc.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -314,11 +315,11 @@ TEST_F(QuaternionTest, ConjugateMethod)
     auto conj = q.conjugate();
 
     // Verify conjugate properties - scalar stays same, vector negated
-    EXPECT_EQ_QUANTITY(conj.get_scalar_part(), scalar1);
+    EXPECT_TRUE(math::nearly_equal(conj.get_scalar_part(), scalar1));
     auto conjVec = conj.get_vector_part();
-    EXPECT_EQ_QUANTITY(conjVec.get_x(), -x1);
-    EXPECT_EQ_QUANTITY(conjVec.get_y(), -y1);
-    EXPECT_EQ_QUANTITY(conjVec.get_z(), -z1);
+    EXPECT_TRUE(math::nearly_equal(conjVec.get_x(), -x1));
+    EXPECT_TRUE(math::nearly_equal(conjVec.get_y(), -y1));
+    EXPECT_TRUE(math::nearly_equal(conjVec.get_z(), -z1));
 
     // Note: conjugate returns Quaternion<Out_Frame_T, In_Frame_T>, so double conjugate
     // will return Quaternion<In_Frame_T, Out_Frame_T> which matches original
@@ -335,18 +336,18 @@ TEST_F(QuaternionTest, NormMethod)
     Unitless normValue = q.norm();
 
     // All quaternions should have unit norm due to automatic normalization
-    EXPECT_EQ_QUANTITY(normValue, 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(normValue, 1.0 * one, REL_TOL, ABS_TOL));
 
     // Norm should be real and finite
     EXPECT_TRUE(std::isfinite(normValue.numerical_value_in(one)));
 
     // Unit quaternion cannot be constructed (throws in constructor)
     TestQuaternion identity;
-    EXPECT_EQ_QUANTITY(identity.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(identity.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
     // Any valid quaternion should have norm 1
     TestQuaternion unitI(0.0 * one, 1.0 * one, 0.0 * one, 0.0 * one);
-    EXPECT_EQ_QUANTITY(unitI.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(unitI.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -359,10 +360,10 @@ TEST_F(QuaternionTest, InverseMethod)
 
     // Note: inverse returns Quaternion<Out_Frame_T, In_Frame_T>
     // Since quaternions are unit quaternions, inverse should also have unit norm
-    EXPECT_EQ_QUANTITY(inv.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(inv.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
     // Original quaternion should have unit norm
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -378,8 +379,8 @@ TEST_F(QuaternionTest, UnitMethod)
     ExpectQuaternionNearlyEqual(unitQ, q);
 
     // Unit quaternion should have norm 1 (but so should the original)
-    EXPECT_EQ_QUANTITY(unitQ.norm(), 1.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(unitQ.norm(), 1.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
     // Test with any quaternion - unit() should be idempotent
     TestQuaternion anyUnit(1.0 * one, 0.0 * one, 0.0 * one, 0.0 * one);
@@ -411,7 +412,7 @@ TEST_F(QuaternionTest, EdgeCases)
     EXPECT_NO_THROW({
         TestQuaternion smallQ(smallScalar, smallX, smallY, smallZ);
         // Should be normalized to unit quaternion
-        EXPECT_EQ_QUANTITY(smallQ.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(smallQ.norm(), 1.0 * one, REL_TOL, ABS_TOL));
         // normalize() method should return the same quaternion (idempotent)
         TestQuaternion unitQ = smallQ;
         unitQ.normalize();
@@ -422,29 +423,29 @@ TEST_F(QuaternionTest, EdgeCases)
     // Test pure scalar quaternion (after normalization)
     TestQuaternion pureScalar(0.8 * one, 0.0 * one, 0.0 * one, 0.0 * one);
     // Should be normalized
-    EXPECT_EQ_QUANTITY(pureScalar.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(pureScalar.norm(), 1.0 * one, REL_TOL, ABS_TOL));
     auto conjScalar = pureScalar.conjugate();
     // For pure scalar, conjugate should have same scalar part and zero vector
-    EXPECT_EQ_QUANTITY(conjScalar.get_scalar_part(), pureScalar.get_scalar_part());
+    EXPECT_TRUE(math::nearly_equal(conjScalar.get_scalar_part(), pureScalar.get_scalar_part()));
     auto conjVec = conjScalar.get_vector_part();
-    EXPECT_EQ_QUANTITY(conjVec.get_x(), 0.0 * one);
-    EXPECT_EQ_QUANTITY(conjVec.get_y(), 0.0 * one);
-    EXPECT_EQ_QUANTITY(conjVec.get_z(), 0.0 * one);
+    EXPECT_TRUE(math::nearly_equal(conjVec.get_x(), 0.0 * one));
+    EXPECT_TRUE(math::nearly_equal(conjVec.get_y(), 0.0 * one));
+    EXPECT_TRUE(math::nearly_equal(conjVec.get_z(), 0.0 * one));
 
     // Test pure vector quaternion (scalar = 0, will be normalized)
     TestQuaternion pureVector(0.0 * one, 0.6 * one, 0.8 * one, 0.0 * one);
     // Should be normalized to unit quaternion
-    EXPECT_EQ_QUANTITY(pureVector.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(pureVector.norm(), 1.0 * one, REL_TOL, ABS_TOL));
     auto conjVector              = pureVector.conjugate();
     TestQuaternion negatedVector = -pureVector;
 
     // For pure vector quaternion, conjugate should negate the vector part
-    EXPECT_EQ_QUANTITY(conjVector.get_scalar_part(), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(conjVector.get_scalar_part(), 0.0 * one, REL_TOL, ABS_TOL));
     auto conjVecPart = conjVector.get_vector_part();
     auto negVecPart  = negatedVector.get_vector_part();
-    EXPECT_EQ_QUANTITY(conjVecPart.get_x(), negVecPart.get_x());
-    EXPECT_EQ_QUANTITY(conjVecPart.get_y(), negVecPart.get_y());
-    EXPECT_EQ_QUANTITY(conjVecPart.get_z(), negVecPart.get_z());
+    EXPECT_TRUE(math::nearly_equal(conjVecPart.get_x(), negVecPart.get_x()));
+    EXPECT_TRUE(math::nearly_equal(conjVecPart.get_y(), negVecPart.get_y()));
+    EXPECT_TRUE(math::nearly_equal(conjVecPart.get_z(), negVecPart.get_z()));
 }
 
 /**
@@ -464,7 +465,7 @@ TEST_F(QuaternionTest, FrameTransformationChaining)
 
         // Chain should preserve composition properties
         Unitless expectedNorm = q12.norm() * q23.norm();
-        EXPECT_EQ_QUANTITY(result13.norm(), expectedNorm, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(result13.norm(), expectedNorm, REL_TOL, ABS_TOL));
     });
 
     // Test three-step chaining: Frame1 -> Frame2 -> Frame3 -> Frame1 (full cycle)
@@ -474,7 +475,7 @@ TEST_F(QuaternionTest, FrameTransformationChaining)
 
         // Test associativity in chaining
         Q11 alternateCycle = q12 * (q23 * q31);
-        EXPECT_EQ_QUANTITY(fullCycle.norm(), alternateCycle.norm(), REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(fullCycle.norm(), alternateCycle.norm(), REL_TOL, ABS_TOL));
 
         // Components should be finite and reasonable
         auto vec = fullCycle.get_vector_part();
@@ -515,11 +516,11 @@ TEST_F(QuaternionTest, DCMToQuaternionConversion)
 
         // Identity quaternion should have scalar part = ±1 and zero vector part
         // (sign ambiguity is normal for quaternions)
-        EXPECT_EQ_QUANTITY(abs(q.get_scalar_part()), 1.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(abs(q.get_scalar_part()), 1.0 * one, REL_TOL, ABS_TOL));
         auto vec = q.get_vector_part();
-        EXPECT_EQ_QUANTITY(vec.get_x(), 0.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(vec.get_y(), 0.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(vec.get_z(), 0.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(vec.get_x(), 0.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(vec.get_y(), 0.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(vec.get_z(), 0.0 * one, REL_TOL, ABS_TOL));
     });
 
     // Test 90° rotation about Z-axis
@@ -528,12 +529,12 @@ TEST_F(QuaternionTest, DCMToQuaternionConversion)
         TestQuaternion q(zRot90);
 
         // Should be valid quaternion with unit norm
-        EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
         // For 90° Z rotation: cos(45°) ≈ 0.7071, sin(45°) ≈ 0.7071
-        EXPECT_EQ_QUANTITY(abs(q.get_scalar_part()), 0.7071067811865475 * one, 1e-10 * one);
+        EXPECT_TRUE(math::nearly_equal(abs(q.get_scalar_part()), 0.7071067811865475 * one, 1e-10 * one));
         auto vec = q.get_vector_part();
-        EXPECT_EQ_QUANTITY(abs(vec.get_z()), 0.7071067811865475 * one, 1e-10 * one);
+        EXPECT_TRUE(math::nearly_equal(abs(vec.get_z()), 0.7071067811865475 * one, 1e-10 * one));
     });
 
     // Test 180° rotation about X-axis (edge case for trace-based algorithm)
@@ -542,12 +543,12 @@ TEST_F(QuaternionTest, DCMToQuaternionConversion)
         TestQuaternion q(xRot180);
 
         // Should be unit quaternion
-        EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
         // 180° rotation should have zero scalar part and unit vector component
-        EXPECT_EQ_QUANTITY(abs(q.get_scalar_part()), 0.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(abs(q.get_scalar_part()), 0.0 * one, REL_TOL, ABS_TOL));
         auto vec = q.get_vector_part();
-        EXPECT_EQ_QUANTITY(abs(vec.get_x()), 1.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(abs(vec.get_x()), 1.0 * one, REL_TOL, ABS_TOL));
     });
 }
 
@@ -564,15 +565,15 @@ TEST_F(QuaternionTest, QuaternionToDCMConversion)
         TestDCM dcm = identityQ.to_dcm();
 
         // Should be identity matrix
-        EXPECT_EQ_QUANTITY(dcm[0, 0], 1.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[0, 1], 0.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[0, 2], 0.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[1, 0], 0.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[1, 1], 1.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[1, 2], 0.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[2, 0], 0.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[2, 1], 0.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[2, 2], 1.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 1.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[0, 1], 0.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 0.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[1, 1], 1.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[1, 2], 0.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 0.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 0.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[2, 2], 1.0 * one, REL_TOL, ABS_TOL));
     });
 
     // Test 90° Z rotation quaternion
@@ -586,15 +587,15 @@ TEST_F(QuaternionTest, QuaternionToDCMConversion)
         // [ 0 -1  0]
         // [ 1  0  0]
         // [ 0  0  1]
-        EXPECT_EQ_QUANTITY(dcm[0, 0], 0.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[0, 1], -1.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[0, 2], 0.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[1, 0], 1.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[1, 1], 0.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[1, 2], 0.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[2, 0], 0.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[2, 1], 0.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(dcm[2, 2], 1.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 0.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[0, 1], -1.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 1.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[1, 1], 0.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[1, 2], 0.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 0.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 0.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(dcm[2, 2], 1.0 * one, REL_TOL, ABS_TOL));
     });
 
     // Test that DCM is orthogonal (DCM * DCM^T = I)
@@ -609,9 +610,9 @@ TEST_F(QuaternionTest, QuaternionToDCMConversion)
         Unitless col1Norm = sqrt(dcm[0, 1] * dcm[0, 1] + dcm[1, 1] * dcm[1, 1] + dcm[2, 1] * dcm[2, 1]);
         Unitless col2Norm = sqrt(dcm[0, 2] * dcm[0, 2] + dcm[1, 2] * dcm[1, 2] + dcm[2, 2] * dcm[2, 2]);
 
-        EXPECT_EQ_QUANTITY(col0Norm, 1.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(col1Norm, 1.0 * one, REL_TOL, ABS_TOL);
-        EXPECT_EQ_QUANTITY(col2Norm, 1.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(col0Norm, 1.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(col1Norm, 1.0 * one, REL_TOL, ABS_TOL));
+        EXPECT_TRUE(math::nearly_equal(col2Norm, 1.0 * one, REL_TOL, ABS_TOL));
     });
 }
 
@@ -638,13 +639,13 @@ TEST_F(QuaternionTest, DCMQuaternionRoundTrip)
         EXPECT_NO_THROW({
             TestQuaternion q(originalDCM);
             // Quaternion should be automatically normalized
-            EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+            EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
             TestDCM roundTripDCM = q.to_dcm();
 
             // Compare each element (accounting for possible quaternion sign ambiguity)
             for (int ii = 0; ii < 3; ++ii) {
                 for (int jj = 0; jj < 3; ++jj) {
-                    EXPECT_EQ_QUANTITY(roundTripDCM[ii, jj], originalDCM[ii, jj], REL_TOL, ABS_TOL);
+                    EXPECT_TRUE(math::nearly_equal(roundTripDCM[ii, jj], originalDCM[ii, jj], REL_TOL, ABS_TOL));
                 }
             }
         });
@@ -654,12 +655,12 @@ TEST_F(QuaternionTest, DCMQuaternionRoundTrip)
     EXPECT_NO_THROW({
         TestQuaternion originalQ(scalar1, x1, y1, z1);
         // originalQ is automatically normalized to unit quaternion
-        EXPECT_EQ_QUANTITY(originalQ.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(originalQ.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
         TestDCM dcm = originalQ.to_dcm();
         TestQuaternion roundTripQ(dcm);
         // Round trip quaternion should also be unit
-        EXPECT_EQ_QUANTITY(roundTripQ.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+        EXPECT_TRUE(math::nearly_equal(roundTripQ.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
         // Quaternions q and -q represent the same rotation, so check both possibilities
         bool matches = (abs(roundTripQ.get_scalar_part() - originalQ.get_scalar_part()) < REL_TOL &&
@@ -700,13 +701,13 @@ TEST_F(QuaternionTest, DCMConversionNumericalStability)
             TestQuaternion q(dcm);
 
             // Should produce a unit quaternion
-            EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+            EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
             // Round-trip should preserve the DCM
             TestDCM roundTrip = q.to_dcm();
             for (int ii = 0; ii < 3; ++ii) {
                 for (int jj = 0; jj < 3; ++jj) {
-                    EXPECT_EQ_QUANTITY(roundTrip[ii, jj], dcm[ii, jj], REL_TOL, ABS_TOL);
+                    EXPECT_TRUE(math::nearly_equal(roundTrip[ii, jj], dcm[ii, jj], REL_TOL, ABS_TOL));
                 }
             }
         });
@@ -728,7 +729,7 @@ TEST_F(QuaternionTest, DCMConversionNumericalStability)
 
             // Should be close to identity quaternion
             EXPECT_GT(abs(q.get_scalar_part()), 0.9999 * one); // cos(small_angle/2) ≈ 1
-            EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+            EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
         });
     }
 }
@@ -738,29 +739,29 @@ TEST_F(QuaternionTest, BasicConstructorComprehensive)
     TestQuaternion q(scalar1, x1, y1, z1);
 
     // Verify automatic normalization to unit quaternion
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
     // Calculate expected normalized values
     Unitless inputNorm = sqrt(scalar1 * scalar1 + x1 * x1 + y1 * y1 + z1 * z1);
 
     // Verify components are correctly normalized
-    EXPECT_EQ_QUANTITY(q.get_scalar_part(), scalar1 / inputNorm, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.get_scalar_part(), scalar1 / inputNorm, REL_TOL, ABS_TOL));
     auto vecPart = q.get_vector_part();
-    EXPECT_EQ_QUANTITY(vecPart.get_x(), x1 / inputNorm, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vecPart.get_y(), y1 / inputNorm, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vecPart.get_z(), z1 / inputNorm, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_x(), x1 / inputNorm, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_y(), y1 / inputNorm, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_z(), z1 / inputNorm, REL_TOL, ABS_TOL));
 }
 
 TEST_F(QuaternionTest, IdentityQuaternions)
 {
     TestQuaternion identity(1.0 * one, 0.0 * one, 0.0 * one, 0.0 * one);
 
-    EXPECT_EQ_QUANTITY(identity.get_scalar_part(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(identity.get_scalar_part(), 1.0 * one, REL_TOL, ABS_TOL));
     auto vecPart = identity.get_vector_part();
-    EXPECT_EQ_QUANTITY(vecPart.get_x(), 0.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vecPart.get_y(), 0.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vecPart.get_z(), 0.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(identity.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_x(), 0.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_y(), 0.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_z(), 0.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(identity.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 TEST_F(QuaternionTest, PureVectorQuaternions)
@@ -770,39 +771,39 @@ TEST_F(QuaternionTest, PureVectorQuaternions)
     TestQuaternion pureK(0.0 * one, 0.0 * one, 0.0 * one, 1.0 * one);
 
     // All should be normalized to unit quaternions
-    EXPECT_EQ_QUANTITY(pureI.norm(), 1.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(pureJ.norm(), 1.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(pureK.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(pureI.norm(), 1.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(pureJ.norm(), 1.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(pureK.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
     // Verify components for pure I quaternion
-    EXPECT_EQ_QUANTITY(pureI.get_scalar_part(), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(pureI.get_scalar_part(), 0.0 * one, REL_TOL, ABS_TOL));
     auto vecPartI = pureI.get_vector_part();
-    EXPECT_EQ_QUANTITY(vecPartI.get_x(), 1.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vecPartI.get_y(), 0.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vecPartI.get_z(), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(vecPartI.get_x(), 1.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vecPartI.get_y(), 0.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vecPartI.get_z(), 0.0 * one, REL_TOL, ABS_TOL));
 }
 
 TEST_F(QuaternionTest, NegativeComponents)
 {
     TestQuaternion negComponents(-scalar1, -x1, -y1, -z1);
 
-    EXPECT_EQ_QUANTITY(negComponents.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(negComponents.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
     // Calculate expected normalized values for negative components
     Unitless inputNorm = sqrt(scalar1 * scalar1 + x1 * x1 + y1 * y1 + z1 * z1);
 
-    EXPECT_EQ_QUANTITY(negComponents.get_scalar_part(), -scalar1 / inputNorm, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(negComponents.get_scalar_part(), -scalar1 / inputNorm, REL_TOL, ABS_TOL));
     auto vecPart = negComponents.get_vector_part();
-    EXPECT_EQ_QUANTITY(vecPart.get_x(), -x1 / inputNorm, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vecPart.get_y(), -y1 / inputNorm, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vecPart.get_z(), -z1 / inputNorm, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_x(), -x1 / inputNorm, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_y(), -y1 / inputNorm, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_z(), -z1 / inputNorm, REL_TOL, ABS_TOL));
 }
 
 TEST_F(QuaternionTest, MixedSignComponents)
 {
     TestQuaternion mixed(scalar1, -x1, y1, -z1);
 
-    EXPECT_EQ_QUANTITY(mixed.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(mixed.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
     // Verify all components are finite
     EXPECT_TRUE(std::isfinite(mixed.get_scalar_part().numerical_value_in(one)));
@@ -819,11 +820,11 @@ TEST_F(QuaternionTest, EdgeCaseVerySmallNonZeroComponents)
     TestQuaternion smallQ(small, small, small, small);
 
     // Should normalize properly even with small components
-    EXPECT_EQ_QUANTITY(smallQ.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(smallQ.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
     // Normalized components should be equal due to symmetry
     Unitless expectedComponent = small / (2.0 * small); // sqrt(4 * small^2) = 2 * small
-    EXPECT_EQ_QUANTITY(smallQ.get_scalar_part(), expectedComponent, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(smallQ.get_scalar_part(), expectedComponent, REL_TOL, ABS_TOL));
 }
 
 TEST_F(QuaternionTest, EdgeCaseVeryLargeNonZeroComponents)
@@ -832,15 +833,15 @@ TEST_F(QuaternionTest, EdgeCaseVeryLargeNonZeroComponents)
     TestQuaternion largeQ(large, large, large, large);
 
     // Should normalize to unit quaternion regardless of input magnitude
-    EXPECT_EQ_QUANTITY(largeQ.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(largeQ.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
     // All normalized components should be equal
     Unitless expectedComponent = 0.5 * one; // 1/sqrt(4) = 0.5
-    EXPECT_EQ_QUANTITY(largeQ.get_scalar_part(), expectedComponent, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(largeQ.get_scalar_part(), expectedComponent, REL_TOL, ABS_TOL));
     auto vecPart = largeQ.get_vector_part();
-    EXPECT_EQ_QUANTITY(vecPart.get_x(), expectedComponent, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vecPart.get_y(), expectedComponent, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vecPart.get_z(), expectedComponent, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_x(), expectedComponent, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_y(), expectedComponent, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_z(), expectedComponent, REL_TOL, ABS_TOL));
 }
 
 TEST_F(QuaternionTest, EdgeCaseZeroComponents)
@@ -852,12 +853,12 @@ TEST_F(QuaternionTest, SingleNonZeroComponent)
 {
     TestQuaternion singleNonZero(1.0 * one, 0.0 * one, 0.0 * one, 0.0 * one);
 
-    EXPECT_EQ_QUANTITY(singleNonZero.norm(), 1.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(singleNonZero.get_scalar_part(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(singleNonZero.norm(), 1.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(singleNonZero.get_scalar_part(), 1.0 * one, REL_TOL, ABS_TOL));
     auto vecPart = singleNonZero.get_vector_part();
-    EXPECT_EQ_QUANTITY(vecPart.get_x(), 0.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vecPart.get_y(), 0.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vecPart.get_z(), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_x(), 0.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_y(), 0.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vecPart.get_z(), 0.0 * one, REL_TOL, ABS_TOL));
 }
 
 TEST_F(QuaternionTest, BoundaryValues)
@@ -913,7 +914,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_ZXZ_Intrinsic)
     TestQuaternion q(angles);
 
     // Should produce a valid unit quaternion
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -960,7 +961,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_ZXZ_Intrinsic_Normalization)
     TestEulerAnglesZXZ_Intrinsic intrinsicAngles(angle1, angle2, angle3);
     TestQuaternion qIntrinsic(intrinsicAngles);
 
-    EXPECT_EQ_QUANTITY(qIntrinsic.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(qIntrinsic.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -977,7 +978,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_ZXZ_Extrinsic_Normalization)
     TestEulerAnglesZXZ_Extrinsic extrinsicAngles(angle1, angle2, angle3);
     TestQuaternion qExtrinsic(extrinsicAngles);
 
-    EXPECT_EQ_QUANTITY(qExtrinsic.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(qExtrinsic.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1019,7 +1020,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_XYX_Intrinsic)
     TestEulerAnglesXYX_Intrinsic angles(80.0 * deg, 10.0 * deg, 45.0 * deg);
     TestQuaternion q(angles);
 
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1032,7 +1033,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_YZY_Extrinsic)
     TestEulerAnglesYZY_Extrinsic angles(120.0 * deg, 60.0 * deg, 30.0 * deg);
     TestQuaternion q(angles);
 
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1050,7 +1051,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_XYZ_Intrinsic_Normalization)
     TestQuaternion q(angles);
 
     // Should produce a valid unit quaternion
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1105,7 +1106,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_XYZ_Intrinsic_Comparison_Normaliza
     TestEulerAnglesXYZ_Intrinsic intrinsicAngles(angle1, angle2, angle3);
     TestQuaternion qIntrinsic(intrinsicAngles);
 
-    EXPECT_EQ_QUANTITY(qIntrinsic.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(qIntrinsic.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1122,7 +1123,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_XYZ_Extrinsic_Normalization)
     TestEulerAnglesXYZ_Extrinsic extrinsicAngles(angle1, angle2, angle3);
     TestQuaternion qExtrinsic(extrinsicAngles);
 
-    EXPECT_EQ_QUANTITY(qExtrinsic.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(qExtrinsic.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1135,20 +1136,23 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_XYZ_IntrinsicExtrinsicDifference)
 
     const Angle angle1 = 25.0 * deg;
     const Angle angle2 = 35.0 * deg;
-    const Angle angle3 = 45.0 * deg;
+    const Angle angle3 = 55.0 * deg;
 
     TestEulerAnglesXYZ_Intrinsic intrinsicAngles(angle1, angle2, angle3);
     TestEulerAnglesXYZ_Extrinsic extrinsicAngles(angle1, angle2, angle3);
+
+    auto dcmIntrinsic = intrinsicAngles.to_dcm();
+    auto dcmExtrinsic = extrinsicAngles.to_dcm();
+    ASSERT_FALSE(nearly_equal(dcmIntrinsic, dcmExtrinsic, REL_TOL));
 
     TestQuaternion qIntrinsic(intrinsicAngles);
     TestQuaternion qExtrinsic(extrinsicAngles);
 
     // For non-zero angles, they should be different
-    bool areIdentical = (qIntrinsic.get_scalar_part() == qExtrinsic.get_scalar_part());
-    auto vec1         = qIntrinsic.get_vector_part();
-    auto vec2         = qExtrinsic.get_vector_part();
-    areIdentical      = areIdentical && (vec1.get_x() == vec2.get_x()) && (vec1.get_y() == vec2.get_y()) &&
-                   (vec1.get_z() == vec2.get_z());
+    bool areIdentical = math::nearly_equal(qIntrinsic.get_scalar_part(), qExtrinsic.get_scalar_part(), REL_TOL, ABS_TOL);
+    auto vec1    = qIntrinsic.get_vector_part();
+    auto vec2    = qExtrinsic.get_vector_part();
+    areIdentical = areIdentical && nearly_equal(vec1, vec2, REL_TOL, ABS_TOL);
 
     EXPECT_FALSE(areIdentical);
 }
@@ -1163,7 +1167,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_ZYX_Intrinsic)
     TestEulerAnglesZYX_Intrinsic angles(90.0 * deg, 0.0 * deg, 180.0 * deg);
     TestQuaternion q(angles);
 
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1176,7 +1180,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_YXZ_Extrinsic)
     TestEulerAnglesYXZ_Extrinsic angles(45.0 * deg, 90.0 * deg, 135.0 * deg);
     TestQuaternion q(angles);
 
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1190,7 +1194,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_ZeroAngles_Normalization)
     TestQuaternion q(zeroAngles);
 
     // Should produce identity or near-identity quaternion
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1204,7 +1208,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_ZeroAngles_ScalarPart)
     TestQuaternion q(zeroAngles);
 
     // Scalar part should be ±1, vector should be near zero
-    EXPECT_EQ_QUANTITY(abs(q.get_scalar_part()), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(abs(q.get_scalar_part()), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1218,9 +1222,9 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_ZeroAngles_VectorParts)
     TestQuaternion q(zeroAngles);
     auto vec = q.get_vector_part();
 
-    EXPECT_EQ_QUANTITY(vec.get_x(), 0.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vec.get_y(), 0.0 * one, REL_TOL, ABS_TOL);
-    EXPECT_EQ_QUANTITY(vec.get_z(), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(vec.get_x(), 0.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vec.get_y(), 0.0 * one, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(math::nearly_equal(vec.get_z(), 0.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1233,7 +1237,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_180DegreeRotation_Normalization)
     TestEulerAnglesXYZ largeAngles(180.0 * deg, 0.0 * deg, 0.0 * deg);
     TestQuaternion q(largeAngles);
 
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1247,7 +1251,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_180DegreeRotation_ScalarPart)
     TestQuaternion q(largeAngles);
 
     // Should have zero or near-zero scalar part for 180° rotation
-    EXPECT_EQ_QUANTITY(abs(q.get_scalar_part()), 0.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(abs(q.get_scalar_part()), 0.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1260,7 +1264,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_360DegreeRotation)
     TestEulerAnglesXYZ fullRotation(360.0 * deg, 0.0 * deg, 0.0 * deg);
     TestQuaternion q(fullRotation);
 
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
     // Should be equivalent to identity (angles are wrapped)
 }
 
@@ -1274,7 +1278,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_NegativeAngles_Normalization)
     TestEulerAnglesZXZ negativeAngles(-30.0 * deg, -45.0 * deg, -60.0 * deg);
     TestQuaternion q(negativeAngles);
 
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1289,7 +1293,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_PositiveEquivalentAngles_Normaliza
     TestQuaternion qPos(positiveAngles);
 
     // Should represent the same or equivalent rotation
-    EXPECT_EQ_QUANTITY(qPos.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(qPos.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1302,7 +1306,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_SmallAngles_Normalization)
     TestEulerAnglesXYZ smallAngles(1e-6 * deg, 1e-5 * deg, 1e-4 * deg);
     TestQuaternion q(smallAngles);
 
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1335,7 +1339,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_DCMEquivalence_DirectNormalization
     // Direct construction from EulerAngles
     TestQuaternion qDirect(angles);
 
-    EXPECT_EQ_QUANTITY(qDirect.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(qDirect.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1356,7 +1360,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_DCMEquivalence_DCMNormalization)
     TestDCM dcm = angles.to_dcm();
     TestQuaternion qViaDCM(dcm);
 
-    EXPECT_EQ_QUANTITY(qViaDCM.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(qViaDCM.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1403,7 +1407,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_ZXZ_Coverage)
     TestEulerAngles angles(30.0 * deg, 60.0 * deg, 90.0 * deg);
     TestQuaternion q(angles);
 
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1416,7 +1420,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_XYX_Coverage)
     TestEulerAngles angles(45.0 * deg, 30.0 * deg, 15.0 * deg);
     TestQuaternion q(angles);
 
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1429,7 +1433,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_XYZ_Coverage)
     TestEulerAngles angles(15.0 * deg, 30.0 * deg, 45.0 * deg);
     TestQuaternion q(angles);
 
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1442,7 +1446,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_YZX_Coverage)
     TestEulerAngles angles(60.0 * deg, 45.0 * deg, 30.0 * deg);
     TestQuaternion q(angles);
 
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1455,7 +1459,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_ZXY_Coverage)
     TestEulerAngles angles(90.0 * deg, 0.0 * deg, 45.0 * deg);
     TestQuaternion q(angles);
 
-    EXPECT_EQ_QUANTITY(q.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1468,7 +1472,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_XYZ_vs_ZYX_Normalization)
     TestEulerAnglesXYZ anglesXYZ(30.0 * deg, 45.0 * deg, 60.0 * deg);
     TestQuaternion qXYZ(anglesXYZ);
 
-    EXPECT_EQ_QUANTITY(qXYZ.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(qXYZ.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**
@@ -1481,7 +1485,7 @@ TEST_F(QuaternionTest, EulerAnglesConstructor_ZYX_vs_XYZ_Normalization)
     TestEulerAnglesZYX anglesZYX(30.0 * deg, 45.0 * deg, 60.0 * deg);
     TestQuaternion qZYX(anglesZYX);
 
-    EXPECT_EQ_QUANTITY(qZYX.norm(), 1.0 * one, REL_TOL, ABS_TOL);
+    EXPECT_TRUE(math::nearly_equal(qZYX.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 }
 
 /**

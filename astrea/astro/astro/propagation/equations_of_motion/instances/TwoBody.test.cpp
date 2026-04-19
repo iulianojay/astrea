@@ -63,7 +63,7 @@ TEST_F(TwoBodyTest, Derivative)
 
     State state(cart0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom(state, sat);
+    OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
     ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
 }
 
@@ -78,6 +78,6 @@ TEST_F(TwoBodyTest, DerivativeValladoEx85)
 
     State state(cart0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom(state, sat);
+    OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
     ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
 }

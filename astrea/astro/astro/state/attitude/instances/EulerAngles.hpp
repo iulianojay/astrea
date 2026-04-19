@@ -280,7 +280,7 @@ class EulerAngles {
         requires(rotation_type != rotation_u)
     EulerAngles<get_reverse_sequence(sequence), rotation_u, In_Frame_T, Out_Frame_T> to_rotation_type() const
     {
-        return { _angles.reverse() };
+        return { _angles };
     }
 
     /**
@@ -574,6 +574,10 @@ class EulerAngles {
      * @param second The second angle in the sequence.
      * @param third The third angle in the sequence.
      * @return DirectionCosineMatrix<In_Frame_T, Out_Frame_T> The resulting direction cosine matrix.
+     *
+     * @note: The angles are passed in the order of application (first, second, third) regardless of whether the sequence
+     * is intrinsic or extrinsic. The calling function will determine the order of the angles based on the rotation type and pass them in
+     * the correct order to this function.
      */
     static constexpr DirectionCosineMatrix<In_Frame_T, Out_Frame_T>
         to_dcm_impl(const Angle& first, const Angle& second, const Angle& third)
@@ -598,34 +602,22 @@ class EulerAngles {
             return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YXY(first, second, third);
         }
         else if constexpr (sequence == RotationSequence::XYZ) {
-            return rotation_type == RotationType::EXTRINSIC ?
-                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XYZ(first, second, third) :
-                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZYX(first, second, third);
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XYZ(first, second, third);
         }
         else if constexpr (sequence == RotationSequence::YZX) {
-            return rotation_type == RotationType::EXTRINSIC ?
-                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YZX(first, second, third) :
-                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XZY(first, second, third);
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YZX(first, second, third);
         }
         else if constexpr (sequence == RotationSequence::ZXY) {
-            return rotation_type == RotationType::EXTRINSIC ?
-                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZXY(first, second, third) :
-                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YXZ(first, second, third);
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZXY(first, second, third);
         }
         else if constexpr (sequence == RotationSequence::XZY) {
-            return rotation_type == RotationType::EXTRINSIC ?
-                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XZY(first, second, third) :
-                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YZX(first, second, third);
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XZY(first, second, third);
         }
         else if constexpr (sequence == RotationSequence::ZYX) {
-            return rotation_type == RotationType::EXTRINSIC ?
-                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZYX(first, second, third) :
-                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XYZ(first, second, third);
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZYX(first, second, third);
         }
         else if constexpr (sequence == RotationSequence::YXZ) {
-            return rotation_type == RotationType::EXTRINSIC ?
-                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YXZ(first, second, third) :
-                       DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZXY(first, second, third);
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YXZ(first, second, third);
         }
     }
 

@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/frames.hpp>
@@ -41,9 +41,9 @@ class AngularVelocitiesTest : public testing::Test {
 
     void compare_angular_velocity_sequences(const auto& seq1, const auto& seq2, const Unitless& tol)
     {
-        ASSERT_EQ_QUANTITY(seq1[0], seq2[0], tol);
-        ASSERT_EQ_QUANTITY(seq1[1], seq2[1], tol);
-        ASSERT_EQ_QUANTITY(seq1[2], seq2[2], tol);
+        ASSERT_TRUE(math::nearly_equal(seq1[0], seq2[0], tol));
+        ASSERT_TRUE(math::nearly_equal(seq1[1], seq2[1], tol));
+        ASSERT_TRUE(math::nearly_equal(seq1[2], seq2[2], tol));
     }
 
     Unitless REL_TOL = 1.0e-10 * one;
@@ -75,9 +75,9 @@ TEST_F(AngularVelocitiesTest, TestAngularVelocityGetters)
     TestAngularVel eulerVel(angularRate1, angularRate2, angularRate3);
 
     // Test array access
-    ASSERT_EQ_QUANTITY(eulerVel[0], angularRate1, REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel[1], angularRate2, REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel[2], angularRate3, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(eulerVel[0], angularRate1, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerVel[1], angularRate2, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerVel[2], angularRate3, REL_TOL));
 }
 
 TEST_F(AngularVelocitiesTest, TestAngularVelocityModification)
@@ -89,9 +89,9 @@ TEST_F(AngularVelocitiesTest, TestAngularVelocityModification)
     taitBryanVel[1] = 0.25 * rad / s;
     taitBryanVel[2] = 0.75 * rad / s;
 
-    ASSERT_EQ_QUANTITY(taitBryanVel[0], 0.5 * rad / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(taitBryanVel[1], 0.25 * rad / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(taitBryanVel[2], 0.75 * rad / s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(taitBryanVel[0], 0.5 * rad / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(taitBryanVel[1], 0.25 * rad / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(taitBryanVel[2], 0.75 * rad / s, REL_TOL));
 }
 
 TEST_F(AngularVelocitiesTest, TestCopyConstructor)
@@ -103,9 +103,9 @@ TEST_F(AngularVelocitiesTest, TestCopyConstructor)
     auto eulerVelCopy = TestAngularVel(eulerVel1);
 
     EXPECT_EQ(eulerVel1, eulerVelCopy);
-    ASSERT_EQ_QUANTITY(eulerVel1[0], eulerVelCopy[0], REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel1[1], eulerVelCopy[1], REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel1[2], eulerVelCopy[2], REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(eulerVel1[0], eulerVelCopy[0], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerVel1[1], eulerVelCopy[1], REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerVel1[2], eulerVelCopy[2], REL_TOL));
 }
 
 // TEST_F(AngularVelocitiesTest, TestMoveConstructor)
@@ -115,9 +115,9 @@ TEST_F(AngularVelocitiesTest, TestCopyConstructor)
 //     ASSERT_NO_THROW(TestAngularVel eulerVelMove(std::move(eulerVelTemp)));
 //     auto eulerVelMove = TestAngularVel(std::move(eulerVelTemp));
 
-//     ASSERT_EQ_QUANTITY(eulerVelMove[0], angularRate1, REL_TOL);
-//     ASSERT_EQ_QUANTITY(eulerVelMove[1], angularRate2, REL_TOL);
-//     ASSERT_EQ_QUANTITY(eulerVelMove[2], angularRate3, REL_TOL);
+//     ASSERT_TRUE(math::nearly_equal(eulerVelMove[0], angularRate1, REL_TOL));
+//     ASSERT_TRUE(math::nearly_equal(eulerVelMove[1], angularRate2, REL_TOL));
+//     ASSERT_TRUE(math::nearly_equal(eulerVelMove[2], angularRate3, REL_TOL));
 // }
 
 TEST_F(AngularVelocitiesTest, TestAccessOperators)
@@ -127,15 +127,15 @@ TEST_F(AngularVelocitiesTest, TestAccessOperators)
     eulerVel[1] = 0.25 * rad / s;
     eulerVel[2] = 0.75 * rad / s;
 
-    ASSERT_EQ_QUANTITY(eulerVel[0], 0.5 * rad / s);
-    ASSERT_EQ_QUANTITY(eulerVel[1], 0.25 * rad / s);
-    ASSERT_EQ_QUANTITY(eulerVel[2], 0.75 * rad / s);
+    ASSERT_TRUE(math::nearly_equal(eulerVel[0], 0.5 * rad / s));
+    ASSERT_TRUE(math::nearly_equal(eulerVel[1], 0.25 * rad / s));
+    ASSERT_TRUE(math::nearly_equal(eulerVel[2], 0.75 * rad / s));
 
     // Const access
     const auto& constEulerVel = eulerVel;
-    ASSERT_EQ_QUANTITY(constEulerVel[0], 0.5 * rad / s);
-    ASSERT_EQ_QUANTITY(constEulerVel[1], 0.25 * rad / s);
-    ASSERT_EQ_QUANTITY(constEulerVel[2], 0.75 * rad / s);
+    ASSERT_TRUE(math::nearly_equal(constEulerVel[0], 0.5 * rad / s));
+    ASSERT_TRUE(math::nearly_equal(constEulerVel[1], 0.25 * rad / s));
+    ASSERT_TRUE(math::nearly_equal(constEulerVel[2], 0.75 * rad / s));
 }
 
 TEST_F(AngularVelocitiesTest, TestEqualityOperators)
@@ -211,15 +211,15 @@ TEST_F(AngularVelocitiesTest, TestTimeOperations)
 
     // Multiplication by time should produce an angle sequence (integration)
     auto angleSequence = eulerVel * dt;
-    ASSERT_EQ_QUANTITY(angleSequence[0], 0.2 * rad, REL_TOL);
-    ASSERT_EQ_QUANTITY(angleSequence[1], 0.4 * rad, REL_TOL);
-    ASSERT_EQ_QUANTITY(angleSequence[2], 0.6 * rad, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(angleSequence[0], 0.2 * rad, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(angleSequence[1], 0.4 * rad, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(angleSequence[2], 0.6 * rad, REL_TOL));
 
     // Division by time should produce angular acceleration
     auto acceleration = eulerVel / dt;
-    ASSERT_EQ_QUANTITY(acceleration[0], 0.05 * rad / (s * s), REL_TOL);
-    ASSERT_EQ_QUANTITY(acceleration[1], 0.1 * rad / (s * s), REL_TOL);
-    ASSERT_EQ_QUANTITY(acceleration[2], 0.15 * rad / (s * s), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(acceleration[0], 0.05 * rad / (s * s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(acceleration[1], 0.1 * rad / (s * s), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(acceleration[2], 0.15 * rad / (s * s), REL_TOL));
 }
 
 TEST_F(AngularVelocitiesTest, TestGetAngularVelocitysMethod)
@@ -227,13 +227,13 @@ TEST_F(AngularVelocitiesTest, TestGetAngularVelocitysMethod)
     TestAngularVel eulerVel(angularRate1, angularRate2, angularRate3);
 
     // Test array access to the angular velocity components
-    ASSERT_EQ_QUANTITY(eulerVel[0], angularRate1, REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel[1], angularRate2, REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel[2], angularRate3, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(eulerVel[0], angularRate1, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerVel[1], angularRate2, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerVel[2], angularRate3, REL_TOL));
 
     // Test that modifications through array access work
     eulerVel[0] = 0.5 * rad / s;
-    ASSERT_EQ_QUANTITY(eulerVel[0], 0.5 * rad / s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(eulerVel[0], 0.5 * rad / s, REL_TOL));
 }
 
 TEST_F(AngularVelocitiesTest, TestLargeAngularVelocitys)
@@ -245,15 +245,15 @@ TEST_F(AngularVelocitiesTest, TestLargeAngularVelocitys)
 
     TestAngularVel eulerVel(largeRate1, largeRate2, largeRate3);
 
-    ASSERT_EQ_QUANTITY(eulerVel[0], largeRate1, REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel[1], largeRate2, REL_TOL);
-    ASSERT_EQ_QUANTITY(eulerVel[2], largeRate3, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(eulerVel[0], largeRate1, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerVel[1], largeRate2, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(eulerVel[2], largeRate3, REL_TOL));
 
     // Test arithmetic with large values
     auto doubledVel = eulerVel * (2.0 * one);
-    ASSERT_EQ_QUANTITY(doubledVel[0], 200.0 * rad / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(doubledVel[1], -100.0 * rad / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(doubledVel[2], 400.0 * rad / s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(doubledVel[0], 200.0 * rad / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(doubledVel[1], -100.0 * rad / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(doubledVel[2], 400.0 * rad / s, REL_TOL));
 }
 
 TEST_F(AngularVelocitiesTest, TestZeroAngularVelocitys)
@@ -262,9 +262,9 @@ TEST_F(AngularVelocitiesTest, TestZeroAngularVelocitys)
     AngularVelocity zeroRate = 0.0 * rad / s;
     TestAngularVel zeroVel(zeroRate, zeroRate, zeroRate);
 
-    ASSERT_EQ_QUANTITY(zeroVel[0], zeroRate, REL_TOL);
-    ASSERT_EQ_QUANTITY(zeroVel[1], zeroRate, REL_TOL);
-    ASSERT_EQ_QUANTITY(zeroVel[2], zeroRate, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(zeroVel[0], zeroRate, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(zeroVel[1], zeroRate, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(zeroVel[2], zeroRate, REL_TOL));
 
     // Test arithmetic operations with zero
     auto nonZeroVel  = TestAngularVel(angularRate1, angularRate2, angularRate3);
@@ -311,9 +311,9 @@ class AngularAccelsTest : public testing::Test {
 
     void compare_angular_acceleration_sequences(const auto& seq1, const auto& seq2, const Unitless& tol)
     {
-        ASSERT_EQ_QUANTITY(seq1[0], seq2[0], tol);
-        ASSERT_EQ_QUANTITY(seq1[1], seq2[1], tol);
-        ASSERT_EQ_QUANTITY(seq1[2], seq2[2], tol);
+        ASSERT_TRUE(math::nearly_equal(seq1[0], seq2[0], tol));
+        ASSERT_TRUE(math::nearly_equal(seq1[1], seq2[1], tol));
+        ASSERT_TRUE(math::nearly_equal(seq1[2], seq2[2], tol));
     }
 
     Unitless REL_TOL = 1.0e-10 * one;
@@ -339,9 +339,9 @@ TEST_F(AngularAccelsTest, TestAccess)
     TestEulerAcceleration accel(angularAccel1, angularAccel2, angularAccel3);
 
     // Test array access
-    ASSERT_EQ_QUANTITY(accel[0], angularAccel1, REL_TOL);
-    ASSERT_EQ_QUANTITY(accel[1], angularAccel2, REL_TOL);
-    ASSERT_EQ_QUANTITY(accel[2], angularAccel3, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(accel[0], angularAccel1, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(accel[1], angularAccel2, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(accel[2], angularAccel3, REL_TOL));
 }
 
 TEST_F(AngularAccelsTest, TestMultiplicationByTime)
@@ -351,9 +351,9 @@ TEST_F(AngularAccelsTest, TestMultiplicationByTime)
 
     // Multiplication by time should produce angular velocity
     auto velocity = accel * dt;
-    ASSERT_EQ_QUANTITY(velocity[0], 0.2 * rad / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(velocity[1], 0.4 * rad / s, REL_TOL);
-    ASSERT_EQ_QUANTITY(velocity[2], 0.6 * rad / s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(velocity[0], 0.2 * rad / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(velocity[1], 0.4 * rad / s, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(velocity[2], 0.6 * rad / s, REL_TOL));
 }
 
 TEST_F(AngularAccelsTest, TestForceToVector)
@@ -365,7 +365,7 @@ TEST_F(AngularAccelsTest, TestForceToVector)
     ASSERT_EQ(vec.size(), 3);
 
     // Check values (normalized by unit)
-    EXPECT_EQ_QUANTITY(vec[0], 0.1 * one, REL_TOL);
-    EXPECT_EQ_QUANTITY(vec[1], 0.2 * one, REL_TOL);
-    EXPECT_EQ_QUANTITY(vec[2], 0.3 * one, REL_TOL);
+    EXPECT_TRUE(math::nearly_equal(vec[0], 0.1 * one, REL_TOL));
+    EXPECT_TRUE(math::nearly_equal(vec[1], 0.2 * one, REL_TOL));
+    EXPECT_TRUE(math::nearly_equal(vec[2], 0.3 * one, REL_TOL));
 }

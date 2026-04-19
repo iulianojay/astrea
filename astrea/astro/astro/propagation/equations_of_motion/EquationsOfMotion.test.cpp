@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
@@ -134,12 +134,12 @@ TEST_F(EquationsOfMotionTest, ComputeDynamics)
 
     // Check that we get a valid CartesianPartial (our mock returns zeros)
     auto cartResult = std::get<CartesianPartial>(result.extract());
-    EXPECT_EQ_QUANTITY(cartResult.get_vx(), 0.0 * km / s);
-    EXPECT_EQ_QUANTITY(cartResult.get_vy(), 0.0 * km / s);
-    EXPECT_EQ_QUANTITY(cartResult.get_vz(), 0.0 * km / s);
-    EXPECT_EQ_QUANTITY(cartResult.get_ax(), 0.0 * km / (s * s));
-    EXPECT_EQ_QUANTITY(cartResult.get_ay(), 0.0 * km / (s * s));
-    EXPECT_EQ_QUANTITY(cartResult.get_az(), 0.0 * km / (s * s));
+    EXPECT_TRUE(math::nearly_equal(cartResult.get_vx(), 0.0 * km / s));
+    EXPECT_TRUE(math::nearly_equal(cartResult.get_vy(), 0.0 * km / s));
+    EXPECT_TRUE(math::nearly_equal(cartResult.get_vz(), 0.0 * km / s));
+    EXPECT_TRUE(math::nearly_equal(cartResult.get_ax(), 0.0 * km / (s * s)));
+    EXPECT_TRUE(math::nearly_equal(cartResult.get_ay(), 0.0 * km / (s * s)));
+    EXPECT_TRUE(math::nearly_equal(cartResult.get_az(), 0.0 * km / (s * s)));
 }
 
 // Test compute_kinematics method with attitude

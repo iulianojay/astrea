@@ -31,7 +31,7 @@ StateTransitionMatrix::StateTransitionMatrix(const EquationsOfMotion& eom, const
     const AstrodynamicsSystem& sys = state.get_system();
     const std::vector<Unitless> s0 = state.force_to_vector();
     const std::size_t typeIdx      = state.get_elements().index();
-    const std::vector<Unitless> f0 = eom(state, vehicle).force_to_vector();
+    const std::vector<Unitless> f0 = eom.compute_dynamics(state, vehicle, {}, {}).force_to_vector();
 
     // The size of dsi will have different sensitivity based on the element type so we use a relative perturbation
     const Unitless relPerturbation = 1.0e-8 * one;
@@ -51,8 +51,8 @@ StateTransitionMatrix::StateTransitionMatrix(const EquationsOfMotion& eom, const
             const State stateMinus = State::from_vector(sMinusDs, typeIdx, sys);
 
             // Compute f(s + dsi)
-            const std::vector<Unitless> fPerturbedPlus  = eom(statePlus, vehicle).force_to_vector();
-            const std::vector<Unitless> fPerturbedMinus = eom(stateMinus, vehicle).force_to_vector();
+            const std::vector<Unitless> fPerturbedPlus = eom.compute_dynamics(statePlus, vehicle, {}, {}).force_to_vector();
+            const std::vector<Unitless> fPerturbedMinus = eom.compute_dynamics(stateMinus, vehicle, {}, {}).force_to_vector();
 
             // Compute partial derivative
             _stm[jj][ii] = (fPerturbedPlus[jj] - fPerturbedMinus[jj]) / (2 * dsi);
