@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
@@ -103,7 +103,7 @@ TEST_F(DeorbitTest, MeasureEventDefaultAltitude)
     const Distance crashRadius = sys.get_central_body()->get_crash_radius();
     Unitless expected          = (altitude - crashRadius) / (1.0 * km);
 
-    ASSERT_EQ_QUANTITY(result, expected, 1.0e-6 * one);
+    ASSERT_TRUE(math::nearly_equal(result, expected, 1.0e-6 * one));
 }
 
 TEST_F(DeorbitTest, MeasureEventWithCustomAltitude)
@@ -115,5 +115,5 @@ TEST_F(DeorbitTest, MeasureEventWithCustomAltitude)
     const Distance altitude = Geodetic(cartesian.get_position(), epoch, sys.get_central_body().get()).get_altitude();
     Unitless expected       = (altitude - triggerAltitude) / (1.0 * km);
 
-    ASSERT_EQ_QUANTITY(result, expected, 1.0e-6 * one);
+    ASSERT_TRUE(math::nearly_equal(result, expected, 1.0e-6 * one));
 }

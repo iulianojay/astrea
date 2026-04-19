@@ -15,7 +15,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 
@@ -23,7 +23,7 @@ namespace astrea {
 
 namespace astro {
 
-void ASSERT_EQ_ORB_ELEM(
+bool nearly_equal(
     const OrbitalElements& first,
     const OrbitalElements& second,
     const bool& ignoreFastVariable,
@@ -31,27 +31,33 @@ void ASSERT_EQ_ORB_ELEM(
     const std::vector<Unitless>& absTol
 ) noexcept
 {
-    if (first.index() != second.index()) { FAIL() << "Orbital element sets do not match"; }
+    if (first.index() != second.index()) { return false; }
 
     auto firstUnitless  = first.force_to_vector();
     auto secondUnitless = second.force_to_vector();
     const int maxIdx    = ignoreFastVariable ? 5 : 6;
     for (int ii = 0; ii < maxIdx; ii++) {
-        ASSERT_EQ_QUANTITY(firstUnitless[ii], secondUnitless[ii], relTol, absTol.size() == 1 ? absTol[0] : absTol[ii]);
+        if (!math::nearly_equal(firstUnitless[ii], secondUnitless[ii], relTol, absTol.size() == 1 ? absTol[0] : absTol[ii])) {
+            return false;
+        }
     }
+    return true;
 }
 
-void ASSERT_EQ_ORB_PART(const OrbitalElementPartials& first, const OrbitalElementPartials& second, const Unitless& relTol, const std::vector<Unitless>& absTol) noexcept
+bool nearly_equal(const OrbitalElementPartials& first, const OrbitalElementPartials& second, const Unitless& relTol, const std::vector<Unitless>& absTol) noexcept
 {
-    if (first.index() != second.index()) { FAIL() << "Orbital element sets do not match"; }
+    if (first.index() != second.index()) { return false; }
 
     // arbitrary normalization. shouldn't affect relative size
     const Time scale                         = 1.0 * mp_units::si::unit_symbols::s;
     const std::vector<Unitless> firstScaled  = (first * scale).force_to_vector();
     const std::vector<Unitless> secondScaled = (second * scale).force_to_vector();
     for (int ii = 0; ii < 6; ii++) {
-        ASSERT_EQ_QUANTITY(firstScaled[ii], secondScaled[ii], relTol, absTol.size() == 1 ? absTol[0] : absTol[ii]);
+        if (!math::nearly_equal(firstScaled[ii], secondScaled[ii], relTol, absTol.size() == 1 ? absTol[0] : absTol[ii])) {
+            return false;
+        }
     }
+    return true;
 }
 
 } // namespace astro

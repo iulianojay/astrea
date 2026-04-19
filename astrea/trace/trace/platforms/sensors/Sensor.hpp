@@ -127,14 +127,6 @@ class Sensor : public AccessObject, public astro::Payload<Sensor, SensorParamete
     bool contains(const astro::RadiusVector<astro::frames::earth::icrf>& sensor2target, const astro::Date& date) const;
 
   private:
-    /**
-     * @brief Generate a hash for the sensor ID.
-     */
-    std::size_t generate_id() const
-    {
-        static std::size_t idCounter = 0;
-        return idCounter++;
-    }
 };
 
 /**

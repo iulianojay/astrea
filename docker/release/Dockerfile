@@ -20,7 +20,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV ASTREA_VERSION=${ASTREA_VERSION}
 RUN apt-get update && \
     apt-get -y install \
-    gcc \
     gdb \
     bash-completion \
     mono-mcs \
@@ -31,15 +30,24 @@ RUN apt-get update && \
     libgl1-mesa-dev \
     xorg-dev \
     python3 \
-    python3-pip \
     python3-venv \
     git \
     gnuplot \
+    software-properties-common \
     && \
+    add-apt-repository ppa:ubuntu-toolchain-r/test && \
+    apt-get update && \
+    apt-get -y install gcc-15 g++-15 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-15 100 && \
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-15 100 && \
     rm -rf /var/lib/apt/lists/*
 
-# For some reason, this is the only way to install gcovr
-RUN pip install gcovr --break-system-packages
+# Install uv
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:$PATH"
+
+# Install gcovr using uv
+RUN uv tool install gcovr
 
 COPY . $ASTREA_ROOT
 

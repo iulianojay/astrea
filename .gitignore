@@ -1,6 +1,7 @@
 # Folders
 .devcontainer
 .coverage
+.cpm-cache
 .gcovr
 .venv
 .vscode
@@ -24,7 +25,6 @@ site
 # Specific files
 build.txt
 package.json
-get-pip.py
 pyastro/astro.py
 .coverage.info
 snapshot.db
