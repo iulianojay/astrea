@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
@@ -88,8 +88,8 @@ TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();
 
-    // ASSERT_EQ_QUANTITY(accelNorm, expectedNorm, REL_TOL);
-    // ASSERT_EQ_CART_VEC(accel, expected, REL_TOL);
+    // ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL));
+    // ASSERT_TRUE(nearly_equal(accel, expected, REL_TOL));
 }
 
 TEST_F(AtmosphericForceTest, MartianAtmosphere)

@@ -90,11 +90,11 @@ jobs:
 
     - name: Run Tests
       run: |
-        make run_tests
+        . .venv/bin/activate && make run_tests
 
     - name: Run Examples
       run: |
-        make run_examples
+        . .venv/bin/activate && make run_examples
 
   coverage:
     runs-on: ubuntu-latest

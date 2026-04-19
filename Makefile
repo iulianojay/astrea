@@ -157,17 +157,17 @@ check: build
 	find $(examples_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
 
 .PHONY: coverage-html
-coverage-html: debug run_tests run_examples
+coverage-html: #debug run_tests run_examples
 	cd build && \
 	gcovr -r .. --html-nested \
 	-o ../.gcovr/coverage.html \
 	--merge-mode-functions=separate \
 	--filter ".*/astrea/" \
-	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*test_util.hpp|.*plotting.*|.*/plots/.*|.*SpatialIndex.*" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*plotting.*|.*/plots/.*|.*SpatialIndex.*" \
 	--exclude-unreachable-branches -s \
 	--gcov-ignore-errors=no_working_dir_found \
-	--gcov-ignore-parse-errors=suspicious_hits.warn_once_per_file && \
-	cd ..
+	--gcov-ignore-parse-errors=suspicious_hits.warn_once_per_file \
+	--gcov-executable gcov-15
 
 .PHONY: coverage
 coverage: debug run_tests run_examples
@@ -176,11 +176,11 @@ coverage: debug run_tests run_examples
 	-o ../.gcovr/coverage.xml  \
 	--merge-mode-functions=separate \
 	--filter ".*/astrea/" \
-	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*test_util.hpp|.*plotting.*|.*/plots/.*|.*SpatialIndex.*" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*plotting.*|.*/plots/.*|.*SpatialIndex.*" \
 	--exclude-unreachable-branches -s \
 	--gcov-ignore-errors=no_working_dir_found \
 	--gcov-ignore-parse-errors=suspicious_hits.warn_once_per_file \
-	&& cd ..
+	--gcov-executable gcov-15
 
 .PHONY: build_env
 build_env:

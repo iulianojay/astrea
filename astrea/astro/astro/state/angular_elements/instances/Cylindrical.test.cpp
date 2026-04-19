@@ -14,7 +14,7 @@
 #include <gtest/gtest.h>
 #include <mp-units/systems/angular/math.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
@@ -72,14 +72,14 @@ TEST_F(CylindricalTest, DefaultConstructor) { ASSERT_NO_THROW(Cylindrical()); }
 TEST_F(CylindricalTest, UnitlessConstructor)
 {
     Cylindrical zeroState;
-    ASSERT_EQ_QUANTITY(zeroState.get_range(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(zeroState.get_azimuth(), Angle(0.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(zeroState.get_elevation(), Distance(0.0 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(zeroState.get_range(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(zeroState.get_azimuth(), Angle(0.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(zeroState.get_elevation(), Distance(0.0 * km), REL_TOL));
 
     Cylindrical scaledState(2.0 * one);
-    ASSERT_EQ_QUANTITY(scaledState.get_range(), Distance(2.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_azimuth(), Angle(2.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_elevation(), Distance(2.0 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_range(), Distance(2.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_azimuth(), Angle(2.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_elevation(), Distance(2.0 * km), REL_TOL));
 }
 
 TEST_F(CylindricalTest, ParameterizedConstructor) { ASSERT_NO_THROW(Cylindrical(range, azimuth, elevation)); }
@@ -209,16 +209,16 @@ TEST_F(CylindricalTest, Interpolate)
     Time otherTime     = seconds(10);
     Time targetTime    = seconds(5);
     Cylindrical result = state.interpolate(thisTime, otherTime, other, targetTime);
-    ASSERT_EQ_QUANTITY(result.get_range(), Distance(15000.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_azimuth(), Angle(0.75 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_elevation(), Distance(10.0 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_range(), Distance(15000.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_azimuth(), Angle(0.75 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_elevation(), Distance(10.0 * km), REL_TOL));
 }
 
 TEST_F(CylindricalTest, Getters)
 {
-    ASSERT_EQ_QUANTITY(state.get_range(), range, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_azimuth(), azimuth, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_elevation(), elevation, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_range(), range, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_azimuth(), azimuth, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_elevation(), elevation, REL_TOL));
 }
 
 TEST_F(CylindricalTest, GetPositionEcef)
@@ -226,41 +226,41 @@ TEST_F(CylindricalTest, GetPositionEcef)
     // Test case 1: Zero azimuth (on x-axis)
     Cylindrical cyl1{ 10000.0 * km, 0.0 * rad, 0.0 * km };
     auto pos1 = cyl1.get_position(sys.get_central_body().get());
-    ASSERT_EQ_QUANTITY(pos1.get_x(), Distance(10000.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(pos1.get_y(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(pos1.get_z(), Distance(0.0 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(pos1.get_x(), Distance(10000.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos1.get_y(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos1.get_z(), Distance(0.0 * km), REL_TOL));
 
     // Test case 2: 90 degree azimuth (on y-axis)
     Cylindrical cyl2{ 5000.0 * km, 90.0 * deg, 0.0 * km };
     auto pos2 = cyl2.get_position(sys.get_central_body().get());
-    ASSERT_EQ_QUANTITY(pos2.get_x(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(pos2.get_y(), Distance(5000.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(pos2.get_z(), Distance(0.0 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(pos2.get_x(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos2.get_y(), Distance(5000.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos2.get_z(), Distance(0.0 * km), REL_TOL));
 
     // Test case 3: Non-zero elevation
     Cylindrical cyl3{ 8000.0 * km, 0.0 * rad, 1500.0 * km };
     auto pos3 = cyl3.get_position(sys.get_central_body().get());
-    ASSERT_EQ_QUANTITY(pos3.get_x(), Distance(8000.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(pos3.get_y(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(pos3.get_z(), Distance(1500.0 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(pos3.get_x(), Distance(8000.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos3.get_y(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos3.get_z(), Distance(1500.0 * km), REL_TOL));
 
     // Test case 4: Arbitrary azimuth and elevation
     Cylindrical cyl4{ 6000.0 * km, 45.0 * deg, 2000.0 * km };
     auto pos4          = cyl4.get_position(sys.get_central_body().get());
     Distance expectedX = 6000.0 * km * cos(45.0 * deg);
     Distance expectedY = 6000.0 * km * sin(45.0 * deg);
-    ASSERT_EQ_QUANTITY(pos4.get_x(), expectedX, REL_TOL);
-    ASSERT_EQ_QUANTITY(pos4.get_y(), expectedY, REL_TOL);
-    ASSERT_EQ_QUANTITY(pos4.get_z(), Distance(2000.0 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(pos4.get_x(), expectedX, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos4.get_y(), expectedY, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos4.get_z(), Distance(2000.0 * km), REL_TOL));
 
     // Test case 5: Negative azimuth
     Cylindrical cyl5{ 7000.0 * km, -60.0 * deg, 500.0 * km };
     auto pos5           = cyl5.get_position(sys.get_central_body().get());
     Distance expectedX5 = 7000.0 * km * cos(-60.0 * deg);
     Distance expectedY5 = 7000.0 * km * sin(-60.0 * deg);
-    ASSERT_EQ_QUANTITY(pos5.get_x(), expectedX5, REL_TOL);
-    ASSERT_EQ_QUANTITY(pos5.get_y(), expectedY5, REL_TOL);
-    ASSERT_EQ_QUANTITY(pos5.get_z(), Distance(500.0 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(pos5.get_x(), expectedX5, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos5.get_y(), expectedY5, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(pos5.get_z(), Distance(500.0 * km), REL_TOL));
 }
 
 TEST_F(CylindricalTest, GetPositionEci)

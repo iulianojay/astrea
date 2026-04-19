@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/PayloadPlatform.hpp>
@@ -199,12 +199,12 @@ TEST_F(PayloadPlatformTest, PayloadParametersPreserved)
     ASSERT_EQ(payloads.size(), 1u);
 
     auto retrievedParams = payloads[0].get_parameters();
-    ASSERT_EQ_QUANTITY(retrievedParams.get_thrust(), thrust1, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(retrievedParams.get_thrust(), thrust1, REL_TOL));
 
     auto boresight = retrievedParams.get_boresight();
-    ASSERT_EQ_QUANTITY(boresight.get_x(), boresight1.get_x(), REL_TOL);
-    ASSERT_EQ_QUANTITY(boresight.get_y(), boresight1.get_y(), REL_TOL);
-    ASSERT_EQ_QUANTITY(boresight.get_z(), boresight1.get_z(), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(boresight.get_x(), boresight1.get_x(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(boresight.get_y(), boresight1.get_y(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(boresight.get_z(), boresight1.get_z(), REL_TOL));
 }
 
 TEST_F(PayloadPlatformTest, CopyConstructor)

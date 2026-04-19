@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
@@ -70,14 +70,14 @@ TEST_F(SphericalTest, DefaultConstructor) { ASSERT_NO_THROW(Spherical()); }
 TEST_F(SphericalTest, UnitlessConstructor)
 {
     Spherical zeroState;
-    ASSERT_EQ_QUANTITY(zeroState.get_range(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(zeroState.get_inclination(), Angle(0.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(zeroState.get_azimuth(), Angle(0.0 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(zeroState.get_range(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(zeroState.get_inclination(), Angle(0.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(zeroState.get_azimuth(), Angle(0.0 * rad), REL_TOL));
 
     Spherical scaledState(2.0 * one);
-    ASSERT_EQ_QUANTITY(scaledState.get_range(), Distance(2.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_inclination(), Angle(2.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_azimuth(), Angle(2.0 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_range(), Distance(2.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_inclination(), Angle(2.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_azimuth(), Angle(2.0 * rad), REL_TOL));
 }
 
 TEST_F(SphericalTest, ParameterizedConstructor) { ASSERT_NO_THROW(Spherical(range, inclination, azimuth)); }
@@ -204,18 +204,18 @@ TEST_F(SphericalTest, GetPositionEcef)
 {
     RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position(sys.get_central_body().get());
     auto [convRange, convInc, convAzimuth]         = convert_earth_fixed_to_spherical(rEcef);
-    ASSERT_EQ_QUANTITY(convRange, range, REL_TOL);
-    ASSERT_EQ_QUANTITY(convInc, inclination, REL_TOL);
-    ASSERT_EQ_QUANTITY(convAzimuth, azimuth, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(convRange, range, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(convInc, inclination, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(convAzimuth, azimuth, REL_TOL));
 }
 
 TEST_F(SphericalTest, GetPositionEci)
 {
     RadiusVector<frames::earth::icrf> rEci = state.get_position(epoch, sys.get_central_body().get());
     auto [convRange, convInc, convAzimuth] = convert_earth_fixed_to_spherical(rEci.in_frame<frames::earth::earth_fixed>(epoch));
-    ASSERT_EQ_QUANTITY(convRange, range, REL_TOL);
-    ASSERT_EQ_QUANTITY(convInc, inclination, REL_TOL);
-    ASSERT_EQ_QUANTITY(convAzimuth, azimuth, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(convRange, range, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(convInc, inclination, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(convAzimuth, azimuth, REL_TOL));
 }
 
 TEST_F(SphericalTest, Interpolate)
@@ -225,32 +225,32 @@ TEST_F(SphericalTest, Interpolate)
     Time otherTime   = seconds(10);
     Time targetTime  = seconds(5);
     Spherical result = state.interpolate(thisTime, otherTime, other, targetTime);
-    ASSERT_EQ_QUANTITY(result.get_range(), Distance(15000.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_inclination(), Angle(0.75 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_azimuth(), Angle(0.75 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_range(), Distance(15000.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_inclination(), Angle(0.75 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_azimuth(), Angle(0.75 * rad), REL_TOL));
 }
 
 TEST_F(SphericalTest, Getters)
 {
-    ASSERT_EQ_QUANTITY(state.get_range(), range, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_inclination(), inclination, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_azimuth(), azimuth, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_range(), range, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_inclination(), inclination, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_azimuth(), azimuth, REL_TOL));
 }
 
 TEST_F(SphericalTest, ConvertEarthFixedToSpherical)
 {
     RadiusVector<frames::earth::earth_fixed> rEcef{ range, 0.0 * km, 0.0 * km };
     auto [convRange, convInc, convAzimuth] = convert_earth_fixed_to_spherical(rEcef);
-    ASSERT_EQ_QUANTITY(convRange, range, REL_TOL);
-    ASSERT_EQ_QUANTITY(convInc, inclination, REL_TOL);
-    ASSERT_EQ_QUANTITY(convAzimuth, azimuth, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(convRange, range, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(convInc, inclination, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(convAzimuth, azimuth, REL_TOL));
 }
 
 TEST_F(SphericalTest, ConvertSphericalToEarthFixed)
 {
     RadiusVector<frames::earth::earth_fixed> rEcef = convert_spherical_to_earth_fixed(range, inclination, azimuth);
     auto [convRange, convInc, convAzimuth]         = convert_earth_fixed_to_spherical(rEcef);
-    ASSERT_EQ_QUANTITY(convRange, range, REL_TOL);
-    ASSERT_EQ_QUANTITY(convInc, inclination, REL_TOL);
-    ASSERT_EQ_QUANTITY(convAzimuth, azimuth, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(convRange, range, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(convInc, inclination, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(convAzimuth, azimuth, REL_TOL));
 }

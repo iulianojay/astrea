@@ -22,6 +22,7 @@
 #include <vector>
 
 #include <units/units.hpp>
+#include <utilities/IdProvider.hpp>
 
 #include <astro/platforms/space/Shell.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
@@ -44,7 +45,7 @@ class Constellation {
     /**
      * @brief Default constructor for Constellation.
      */
-    Constellation() { generate_id(); };
+    Constellation() { id = utilities::IdProvider::get_next_id<"Constellation">(); };
 
     /**
      * @brief Construct a Constellation from a vector of Shells.
@@ -482,11 +483,6 @@ class Constellation {
     std::size_t id;                          // Unique identifier for the Constellation
     std::string name;                        // Name of the Constellation
     std::vector<Shell<Spacecraft_T>> shells; // Vector of Shells in the Constellation
-
-    /**
-     * @brief Generate a unique ID hash for the Constellation.
-     */
-    void generate_id();
 };
 
 } // namespace astro

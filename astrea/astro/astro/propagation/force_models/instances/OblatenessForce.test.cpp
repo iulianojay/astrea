@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
@@ -96,6 +96,6 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
 
     // These are much much closer than before, to be expected. They show abou the same size error as when comparing
     // to the NASA 6DoF checkcases so it's possible that there remains a small calculation error somewhere.
-    ASSERT_EQ_QUANTITY(accelNorm, expectedNorm, REL_TOL);
-    ASSERT_EQ_CART_VEC(accel, expected, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL));
+    ASSERT_TRUE(nearly_equal(accel, expected, REL_TOL));
 }

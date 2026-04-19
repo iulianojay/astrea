@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/thrusters/Thruster.hpp>
@@ -50,5 +50,5 @@ TEST_F(ThrusterTest, GetId) { ASSERT_EQ(thruster.get_id(), 0); }
 
 TEST_F(ThrusterTest, GetImpulsiveDeltaV)
 {
-    ASSERT_EQ_QUANTITY(thruster.get_impulsive_delta_v(), thrust / sat.get_mass() * 1.0 * s, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(thruster.get_impulsive_delta_v(), thrust / sat.get_mass() * 1.0 * s, REL_TOL));
 }

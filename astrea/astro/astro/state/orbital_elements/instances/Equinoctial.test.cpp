@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
@@ -72,23 +72,23 @@ TEST_F(EquinoctialTest, Stream)
 TEST_F(EquinoctialTest, DefaultConstructor)
 {
     Equinoctial defaultState;
-    ASSERT_EQ_QUANTITY(defaultState.get_semilatus(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_f(), Unitless(0.0 * one), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_g(), Unitless(0.0 * one), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_h(), Unitless(0.0 * one), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_k(), Unitless(0.0 * one), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_true_longitude(), Angle(0.0 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_semilatus(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_f(), Unitless(0.0 * one), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_g(), Unitless(0.0 * one), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_h(), Unitless(0.0 * one), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_k(), Unitless(0.0 * one), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_true_longitude(), Angle(0.0 * rad), REL_TOL));
 }
 
 TEST_F(EquinoctialTest, UnitlessConstructor)
 {
     Equinoctial scaledState(2.0 * one);
-    ASSERT_EQ_QUANTITY(scaledState.get_semilatus(), Distance(2.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_f(), Unitless(2.0 * one), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_g(), Unitless(2.0 * one), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_h(), Unitless(2.0 * one), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_k(), Unitless(2.0 * one), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_true_longitude(), Angle(2.0 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_semilatus(), Distance(2.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_f(), Unitless(2.0 * one), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_g(), Unitless(2.0 * one), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_h(), Unitless(2.0 * one), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_k(), Unitless(2.0 * one), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_true_longitude(), Angle(2.0 * rad), REL_TOL));
 }
 
 TEST_F(EquinoctialTest, ParameterizedConstructor) { ASSERT_NO_THROW(Equinoctial(p, f, g, h, k, L)); }
@@ -157,12 +157,12 @@ TEST_F(EquinoctialTest, CopyConstructor)
 {
     ASSERT_NO_THROW(Equinoctial newEqui(state));
     Equinoctial newEqui(state);
-    ASSERT_EQ_QUANTITY(newEqui.get_semilatus(), p, REL_TOL);
-    ASSERT_EQ_QUANTITY(newEqui.get_f(), f, REL_TOL);
-    ASSERT_EQ_QUANTITY(newEqui.get_g(), g, REL_TOL);
-    ASSERT_EQ_QUANTITY(newEqui.get_h(), h, REL_TOL);
-    ASSERT_EQ_QUANTITY(newEqui.get_k(), k, REL_TOL);
-    ASSERT_EQ_QUANTITY(newEqui.get_true_longitude(), L, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(newEqui.get_semilatus(), p, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newEqui.get_f(), f, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newEqui.get_g(), g, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newEqui.get_h(), h, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newEqui.get_k(), k, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newEqui.get_true_longitude(), L, REL_TOL));
 }
 
 TEST_F(EquinoctialTest, MoveConstructor)
@@ -175,12 +175,12 @@ TEST_F(EquinoctialTest, CopyAssignment)
 {
     ASSERT_NO_THROW(Equinoctial newEqui = state);
     Equinoctial newEqui = state;
-    ASSERT_EQ_QUANTITY(newEqui.get_semilatus(), p, REL_TOL);
-    ASSERT_EQ_QUANTITY(newEqui.get_f(), f, REL_TOL);
-    ASSERT_EQ_QUANTITY(newEqui.get_g(), g, REL_TOL);
-    ASSERT_EQ_QUANTITY(newEqui.get_h(), h, REL_TOL);
-    ASSERT_EQ_QUANTITY(newEqui.get_k(), k, REL_TOL);
-    ASSERT_EQ_QUANTITY(newEqui.get_true_longitude(), L, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(newEqui.get_semilatus(), p, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newEqui.get_f(), f, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newEqui.get_g(), g, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newEqui.get_h(), h, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newEqui.get_k(), k, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newEqui.get_true_longitude(), L, REL_TOL));
 }
 
 TEST_F(EquinoctialTest, MoveAssignment)
@@ -203,72 +203,72 @@ TEST_F(EquinoctialTest, AdditionOperator)
 {
     Equinoctial other{ 1000.0 * km, 0.005 * one, 0.003 * one, 0.002 * one, 0.001 * one, 0.1 * rad };
     Equinoctial result = state + other;
-    ASSERT_EQ_QUANTITY(result.get_semilatus(), p + 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_f(), f + 0.005 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_g(), g + 0.003 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_h(), h + 0.002 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_k(), k + 0.001 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_true_longitude(), L + 0.1 * rad, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), p + 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_f(), f + 0.005 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_g(), g + 0.003 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_h(), h + 0.002 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_k(), k + 0.001 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_true_longitude(), L + 0.1 * rad, REL_TOL));
 }
 
 TEST_F(EquinoctialTest, AdditionAssignmentOperator)
 {
     Equinoctial other{ 1000.0 * km, 0.005 * one, 0.003 * one, 0.002 * one, 0.001 * one, 0.1 * rad };
     state += other;
-    ASSERT_EQ_QUANTITY(state.get_semilatus(), p + 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_f(), f + 0.005 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_g(), g + 0.003 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_h(), h + 0.002 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_k(), k + 0.001 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_true_longitude(), L + 0.1 * rad, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_semilatus(), p + 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_f(), f + 0.005 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_g(), g + 0.003 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_h(), h + 0.002 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_k(), k + 0.001 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_true_longitude(), L + 0.1 * rad, REL_TOL));
 }
 
 TEST_F(EquinoctialTest, SubtractionOperator)
 {
     Equinoctial other{ 1000.0 * km, 0.005 * one, 0.003 * one, 0.002 * one, 0.001 * one, 0.1 * rad };
     Equinoctial result = state - other;
-    ASSERT_EQ_QUANTITY(result.get_semilatus(), p - 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_f(), f - 0.005 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_g(), g - 0.003 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_h(), h - 0.002 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_k(), k - 0.001 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_true_longitude(), L - 0.1 * rad, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), p - 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_f(), f - 0.005 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_g(), g - 0.003 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_h(), h - 0.002 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_k(), k - 0.001 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_true_longitude(), L - 0.1 * rad, REL_TOL));
 }
 
 TEST_F(EquinoctialTest, SubtractionAssignmentOperator)
 {
     Equinoctial other{ 1000.0 * km, 0.005 * one, 0.003 * one, 0.002 * one, 0.001 * one, 0.1 * rad };
     state -= other;
-    ASSERT_EQ_QUANTITY(state.get_semilatus(), p - 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_f(), f - 0.005 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_g(), g - 0.003 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_h(), h - 0.002 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_k(), k - 0.001 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_true_longitude(), L - 0.1 * rad, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_semilatus(), p - 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_f(), f - 0.005 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_g(), g - 0.003 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_h(), h - 0.002 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_k(), k - 0.001 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_true_longitude(), L - 0.1 * rad, REL_TOL));
 }
 
 TEST_F(EquinoctialTest, MultiplicationOperator)
 {
     Unitless multiplier = 2.0 * one;
     Equinoctial result  = state * multiplier;
-    ASSERT_EQ_QUANTITY(result.get_semilatus(), p * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_f(), f * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_g(), g * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_h(), h * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_k(), k * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_true_longitude(), L * multiplier, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), p * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_f(), f * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_g(), g * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_h(), h * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_k(), k * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_true_longitude(), L * multiplier, REL_TOL));
 }
 
 TEST_F(EquinoctialTest, MultiplicationAssignmentOperator)
 {
     Unitless multiplier = 2.0 * one;
     state *= multiplier;
-    ASSERT_EQ_QUANTITY(state.get_semilatus(), p * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_f(), f * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_g(), g * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_h(), h * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_k(), k * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_true_longitude(), L * multiplier, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_semilatus(), p * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_f(), f * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_g(), g * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_h(), h * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_k(), k * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_true_longitude(), L * multiplier, REL_TOL));
 }
 
 TEST_F(EquinoctialTest, DivisionByTimeOperator)
@@ -284,46 +284,46 @@ TEST_F(EquinoctialTest, DivisionByScalarOperator)
 {
     Unitless divisor   = 2.0 * one;
     Equinoctial result = state / divisor;
-    ASSERT_EQ_QUANTITY(result.get_semilatus(), p / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_f(), f / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_g(), g / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_h(), h / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_k(), k / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_true_longitude(), L / divisor, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), p / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_f(), f / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_g(), g / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_h(), h / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_k(), k / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_true_longitude(), L / divisor, REL_TOL));
 }
 
 TEST_F(EquinoctialTest, DivisionAssignmentOperator)
 {
     Unitless divisor = 2.0 * one;
     state /= divisor;
-    ASSERT_EQ_QUANTITY(state.get_semilatus(), p / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_f(), f / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_g(), g / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_h(), h / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_k(), k / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_true_longitude(), L / divisor, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_semilatus(), p / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_f(), f / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_g(), g / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_h(), h / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_k(), k / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_true_longitude(), L / divisor, REL_TOL));
 }
 
 TEST_F(EquinoctialTest, Getters)
 {
-    ASSERT_EQ_QUANTITY(state.get_semilatus(), p, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_f(), f, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_g(), g, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_h(), h, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_k(), k, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_true_longitude(), L, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_semilatus(), p, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_f(), f, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_g(), g, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_h(), h, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_k(), k, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_true_longitude(), L, REL_TOL));
 }
 
 TEST_F(EquinoctialTest, ToVector)
 {
     std::vector<Unitless> vec = state.force_to_vector();
     ASSERT_EQ(vec.size(), 6);
-    ASSERT_EQ_QUANTITY(vec[0], p / (1.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[1], f, REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[2], g, REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[3], h, REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[4], k, REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[5], L / (1.0 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(vec[0], p / (1.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[1], f, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[2], g, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[3], h, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[4], k, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[5], L / (1.0 * rad), REL_TOL));
 }
 
 TEST_F(EquinoctialTest, Interpolate)
@@ -335,9 +335,9 @@ TEST_F(EquinoctialTest, Interpolate)
     Equinoctial result = state.interpolate(thisTime, otherTime, other, sys.get_mu(), targetTime);
 
     // At t=5s (midpoint), expect average of start and end values
-    ASSERT_EQ_QUANTITY(result.get_semilatus(), (p + 14000.0 * km) / 2.0, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_f(), (f + 0.02 * one) / 2.0, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_g(), (g + 0.01 * one) / 2.0, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), (p + 14000.0 * km) / 2.0, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_f(), (f + 0.02 * one) / 2.0, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_g(), (g + 0.01 * one) / 2.0, REL_TOL));
 }
 
 TEST_F(EquinoctialTest, FromKeplerianConversion)
@@ -375,12 +375,12 @@ TEST_F(EquinoctialTest, EquinoctialPartialMultiplicationByTime)
     Equinoctial result = partial * dt;
 
     // Verify the result is an Equinoctial state
-    ASSERT_EQ_QUANTITY(result.get_semilatus(), pDot * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_f(), fDot * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_g(), gDot * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_h(), hDot * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_k(), kDot * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_true_longitude(), LDot * dt, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), pDot * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_f(), fDot * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_g(), gDot * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_h(), hDot * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_k(), kDot * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_true_longitude(), LDot * dt, REL_TOL));
 }
 
 TEST_F(EquinoctialTest, EquinoctialPartialStream)

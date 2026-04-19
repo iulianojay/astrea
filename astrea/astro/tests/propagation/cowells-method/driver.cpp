@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/vehicles/Spacecraft.hpp>
@@ -81,7 +81,7 @@ TEST_F(CowellsMethodPropagationTest, GEONoForces)
     // Validate
     for (const auto& state : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
+        ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }
 
@@ -100,7 +100,7 @@ TEST_F(CowellsMethodPropagationTest, GPSNoForces)
     // Validate
     for (const auto& state : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
+        ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }
 
@@ -119,6 +119,6 @@ TEST_F(CowellsMethodPropagationTest, LEONoForces)
     // Validate
     for (const auto& state : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
+        ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }

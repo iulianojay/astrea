@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
@@ -70,6 +70,6 @@ TEST_F(EquinoctialTest, Derivative)
         EquinoctialPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0010780076129942077 * rad / s);
     State state(equi0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
-    ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
+    OrbitalElementPartials dstate = eom(state, sat);
+    ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
 }

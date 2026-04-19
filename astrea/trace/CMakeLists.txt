@@ -131,11 +131,12 @@ target_compile_options(${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs -Wn
 # add_custom_target          (${PROJECT_NAME}_exe_symlink ALL COMMAND ${CMAKE_COMMAND} -E create_symlink ${PROJECT_NAME}_exe ${PROJECT_NAME})
 
 # Install headers
-file(COPY
+install(
     DIRECTORY ${TRACE_BASE}
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+    DESTINATION include
     FILES_MATCHING
     PATTERN *.hpp
+    PATTERN *.ipp
     PATTERN *.h
 )
 

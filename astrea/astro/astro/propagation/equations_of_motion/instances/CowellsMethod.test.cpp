@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
@@ -70,8 +70,8 @@ TEST_F(CowellsMethodTest, Derivative)
     );
     State state0(cart0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom.compute_dynamics(state0, sat, noForce, noForce);
-    ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
+    OrbitalElementPartials dstate = eom(state0, sat);
+    ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
 }
 
 // Vallado, Ex. 8.5
@@ -84,6 +84,6 @@ TEST_F(CowellsMethodTest, DerivativeValladoEx85)
     );
     State state0(cart0, epoch, sys);
 
-    OrbitalElementPartials dstate = eom.compute_dynamics(state0, sat, noForce, noForce);
-    ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
+    OrbitalElementPartials dstate = eom(state0, sat);
+    ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
 }

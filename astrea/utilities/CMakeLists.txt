@@ -61,11 +61,12 @@ if(${BUILD_STATIC})
 endif()
 
 # Install headers
-file(COPY
+install(
     DIRECTORY ${UTILITIES_BASE}
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+    DESTINATION include
     FILES_MATCHING
     PATTERN *.hpp
+    PATTERN *.ipp
     PATTERN *.h
 )
 

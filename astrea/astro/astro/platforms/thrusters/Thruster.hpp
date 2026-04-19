@@ -151,12 +151,6 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
      * @return true if the thruster is on, false otherwise.
      */
     bool is_on() const;
-
-  private:
-    /**
-     * @brief Generate a hash for the thruster ID.
-     */
-    std::size_t generate_id() const;
 };
 
 /**

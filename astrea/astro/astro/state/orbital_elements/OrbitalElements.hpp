@@ -439,38 +439,5 @@ class OrbitalElementPartials {
  */
 void throw_mismatched_types();
 
-/**
- * @brief Checks if two OrbitalElements objects are nearly equal.
- *
- * This function compares two OrbitalElements objects for equality within a specified tolerance.
- *
- * @param first The first OrbitalElements object to compare.
- * @param second The second OrbitalElements object to compare.
- * @param ignoreFastVariable If true, ignores fast-changing variables in the comparison.
- * @param relTol Relative tolerance for the comparison.
- * @return true if the two OrbitalElements objects are nearly equal
- * @return false if the two OrbitalElements objects are not nearly equal
- */
-bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, bool ignoreFastVariable = false, Unitless relTol = 1.0e-5 * astrea::detail::unitless);
-
-/**
- * @brief Checks if two OrbitalElementPartials objects are nearly equal.
- *
- * This function compares two OrbitalElementPartials objects for equality within a specified tolerance.
- *
- * @param first The first OrbitalElementPartials object to compare.
- * @param second The second OrbitalElementPartials object to compare.
- * @param ignoreFastVariable If true, ignores fast-changing variables in the comparison.
- * @param relTol Relative tolerance for the comparison.
- * @return true if the two OrbitalElementPartials objects are nearly equal
- * @return false if the two OrbitalElementPartials objects are not nearly equal
- */
-bool nearly_equal(
-    const OrbitalElementPartials& first,
-    const OrbitalElementPartials& second,
-    bool ignoreFastVariable = false,
-    Unitless relTol         = 1.0e-5 * astrea::detail::unitless
-);
-
 } // namespace astro
 } // namespace astrea

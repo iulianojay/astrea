@@ -64,7 +64,7 @@ Spacecraft::Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem
 
     store_state(State(coes, epoch, sys));
 
-    generate_id();
+    _id = utilities::IdProvider::get_next_id<"Platform">();
 
     // All of these are just default values - TODO: Look into different or better values for approximating these
     // effects, or find how to approximate these
@@ -142,12 +142,6 @@ VelocityVector<frames::earth::icrf> Spacecraft::get_inertial_velocity(const Date
 {
     const Cartesian elements = _stateHistory.get_state_at(date).in_element_set<Cartesian>();
     return elements.get_velocity();
-}
-
-void Spacecraft::generate_id()
-{
-    static std::size_t idCounter = 0;
-    _id                          = idCounter++;
 }
 
 } // namespace astro

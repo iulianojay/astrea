@@ -16,7 +16,7 @@
 #include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>

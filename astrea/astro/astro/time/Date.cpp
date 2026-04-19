@@ -83,7 +83,7 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
     // Stream date string into time point
     std::istringstream epochStream{ epoch };
     sys_time<std::chrono::milliseconds> systemTime;
-    epochStream >> parse(format, systemTime);
+    epochStream >> std::chrono::parse(format, systemTime);
 
     // Convert with clock cast
     return round<std::chrono::milliseconds>(clock_cast<JulianDateClock>(systemTime));
