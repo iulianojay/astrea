@@ -52,6 +52,7 @@ int main()
     const auto gps        = date.gps();
     const auto sys        = date.sys();
     const auto tai        = date.tai();
+    const auto tt         = date.tt();
 
     // Users can also convert to other clock types manually
     auto highResClockTime = date.in_clock<std::chrono::high_resolution_clock>();
