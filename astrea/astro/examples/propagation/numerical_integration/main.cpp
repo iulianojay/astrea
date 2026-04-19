@@ -39,6 +39,15 @@ int main()
     const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
     const State state0(elements, epoch, sys);
 
+    // Including attitude will automatically trigger kinematic eoms during propagation. This is meant to be used with a
+    // control model to propagate attitude states, but can be used without one if you just want the kinematic effects.
+    // If you simple want to model a local orbital frame, you don't need to include attitude dyanmics! You can just
+    // model the effects in your custom forces, eoms, or in your vehicle model.
+    /*
+    const BodyQuaternion attitude{ 1.0, 0.0, 0.0, 0.0 }; // Identity quaternion - no rotation
+    const State state0(elements, epoch, sys, attitude);
+    */
+
     // Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing
     // for more flexibility and extensibility for users.
     Spacecraft sat;
