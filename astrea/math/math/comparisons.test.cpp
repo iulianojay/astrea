@@ -198,14 +198,14 @@ TEST(NearlyEqualUlp, LossyCalcs)
 {
     const auto x = 1.0 * m;
 
-    const double scale = 1e10;
+    const double scale = 1e15;
     const auto offset  = 1.0 * m;
 
     // Lossy division
     auto y = x / scale;  // x / scale
     y += offset;         // x / scale + offset
     y *= scale;          // (x / scale + offset) * scale = x + offset * scale
-    y -= offset / scale; // x + offset * scale - offset / scale = x
+    y -= offset * scale; // x + offset * scale - offset * scale = x
     EXPECT_FALSE(nearly_equal_by_ulp(x, y, 0.5));
     EXPECT_EQ(calculate_ulp_difference(x, y), 9) << "ULP difference (lossy division): " << calculate_ulp_difference(x, y) << " ULPs\n";
 
