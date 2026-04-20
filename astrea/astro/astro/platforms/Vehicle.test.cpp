@@ -117,13 +117,13 @@ TEST_F(VehicleTest, GetCoefficientOfReflectivity)
 
 TEST_F(VehicleTest, GetInertialPosition)
 {
-    ASSERT_ANY_THROW({ auto v = vehicle.get_inertial_position(Date()); });
+    ASSERT_NO_THROW({ auto v = vehicle.get_inertial_position(Date()); });
     ASSERT_NO_THROW({ auto v = vehicleWithHistory.get_inertial_position(Date()); });
 }
 
 TEST_F(VehicleTest, GetInertialVelocity)
 {
-    ASSERT_ANY_THROW({ auto v = vehicle.get_inertial_velocity(Date()); });
+    ASSERT_NO_THROW({ auto v = vehicle.get_inertial_velocity(Date()); });
     ASSERT_NO_THROW({ auto v = vehicleWithHistory.get_inertial_velocity(Date()); });
 }
 
