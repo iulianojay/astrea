@@ -57,12 +57,12 @@ Custom events inherit from the Event base class:
 class AltitudeEvent : public Event {
 public:
     AltitudeEvent(Distance targetAltitude, bool isTerminal = false)
-        : targetAltitude_(targetAltitude), terminal_(isTerminal) {}
+        : _targetAltitude(targetAltitude), _terminal(isTerminal) {}
 
     // Measure event condition (negative when condition is met)
     Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const override {
         Distance currentAltitude = state.get_altitude();
-        return (currentAltitude - targetAltitude_) / (1.0 * km); // Normalized difference
+        return (currentAltitude - _targetAltitude) / (1.0 * km); // Normalized difference
     }
 
     std::string get_name() const override {
@@ -70,12 +70,12 @@ public:
     }
 
     bool is_terminal() const override {
-        return terminal_;
+        return _terminal;
     }
 
 private:
-    Distance targetAltitude_;
-    bool terminal_;
+    Distance _targetAltitude;
+    bool _terminal;
 };
 ```
 
@@ -106,18 +106,18 @@ detector.add_event(apoapsisEvent);
 class AltitudeEvent : public Event {
 public:
     AltitudeEvent(Distance altitude, EventType type = EventType::CROSSING)
-        : targetAltitude_(altitude), type_(type) {}
+        : _targetAltitude(altitude), _type(type) {}
 
     Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const override {
         Distance currentAlt = magnitude(state.get_position()) - EARTH_RADIUS;
 
-        switch(type_) {
+        switch(_type) {
             case EventType::CROSSING:
-                return (currentAlt - targetAltitude_) / (1.0 * km);
+                return (currentAlt - _targetAltitude) / (1.0 * km);
             case EventType::MINIMUM:
-                return (targetAltitude_ - currentAlt) / (1.0 * km);  // Detect minimum
+                return (_targetAltitude - currentAlt) / (1.0 * km);  // Detect minimum
             case EventType::MAXIMUM:
-                return (currentAlt - targetAltitude_) / (1.0 * km);  // Detect maximum
+                return (currentAlt - _targetAltitude) / (1.0 * km);  // Detect maximum
         }
     }
 };
@@ -159,35 +159,35 @@ public:
 class AbsoluteTimeEvent : public Event {
 public:
     AbsoluteTimeEvent(const Time& targetTime)
-        : targetTime_(targetTime) {}
+        : _targetTime(targetTime) {}
 
     Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const override {
-        return (time - targetTime_) / (1.0 * s);
+        return (time - _targetTime) / (1.0 * s);
     }
 
     std::string get_name() const override { return "Absolute Time"; }
     bool is_terminal() const override { return true; }
 
 private:
-    Time targetTime_;
+    Time _targetTime;
 };
 
 // Duration event
 class DurationEvent : public Event {
 public:
     DurationEvent(const Time& startTime, const Time& duration)
-        : startTime_(startTime), duration_(duration) {}
+        : _startTime(startTime), _duration(duration) {}
 
     Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const override {
-        return ((time - startTime_) - duration_) / (1.0 * s);
+        return ((time - _startTime) - _duration) / (1.0 * s);
     }
 
     std::string get_name() const override { return "Duration"; }
     bool is_terminal() const override { return true; }
 
 private:
-    Time startTime_;
-    Time duration_;
+    Time _startTime;
+    Time _duration;
 };
 ```
 
@@ -198,11 +198,11 @@ private:
 class EclipseEvent : public Event {
 public:
     EclipseEvent(const AstrodynamicsSystem& system)
-        : system_(system) {}
+        : _system(system) {}
 
     Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const override {
         // Calculate sun angle relative to Earth shadow
-        CartesianVector<Distance, ECI> sunPos = system_.get_sun_position(time);
+        CartesianVector<Distance, ECI> sunPos = _system.get_sun_position(time);
         CartesianVector<Distance, ECI> satPos = state.get_position();
 
         // Shadow cone calculation
@@ -214,7 +214,7 @@ public:
     bool is_terminal() const override { return false; }
 
 private:
-    const AstrodynamicsSystem& system_;
+    const AstrodynamicsSystem& _system;
 };
 ```
 
@@ -226,23 +226,23 @@ Events can trigger custom actions when detected:
 class ManeuverEvent : public Event {
 public:
     ManeuverEvent(const CartesianVector<Acceleration, ECI>& deltaV)
-        : deltaV_(deltaV) {}
+        : _deltaV(deltaV) {}
 
     // Event action triggered after detection
     void trigger_action(State& state, Vehicle& vehicle) const override {
         // Apply instantaneous velocity change
         auto currentVel = state.get_velocity();
-        auto newVel = currentVel + deltaV_ * (1.0 * s); // Convert acceleration to velocity
+        auto newVel = currentVel + _deltaV * (1.0 * s); // Convert acceleration to velocity
         state.set_velocity(newVel);
 
-        std::cout << "Maneuver executed: ΔV = " << magnitude(deltaV_) << std::endl;
+        std::cout << "Maneuver executed: ΔV = " << magnitude(_deltaV) << std::endl;
     }
 
     std::string get_name() const override { return "Maneuver"; }
     bool is_terminal() const override { return false; }
 
 private:
-    CartesianVector<Acceleration, ECI> deltaV_;
+    CartesianVector<Acceleration, ECI> _deltaV;
 };
 ```
 

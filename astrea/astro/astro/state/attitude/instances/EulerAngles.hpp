@@ -125,6 +125,11 @@ template <RotationSequence sequence, RotationType rotation_type, typename In_Fra
 class EulerAngles {
 
     friend class Attitude;
+    friend std::ostream& operator<<(std::ostream& os, const EulerAngles& euler)
+    {
+        os << euler._angles;
+        return os;
+    }
 
   public:
     using in_frame  = In_Frame_T;
