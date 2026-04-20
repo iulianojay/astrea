@@ -202,17 +202,19 @@ TEST(NearlyEqualUlp, LossyCalcs)
     const auto offset  = 1.0 * m;
 
     // Lossy division
-    auto y = x / scale;
-    y += offset;
-    y *= scale;
-    y -= offset / scale;
-
+    auto y = x / scale;  // x / scale
+    y += offset;         // x / scale + offset
+    y *= scale;          // (x / scale + offset) * scale = x + offset * scale
+    y -= offset / scale; // x + offset * scale - offset / scale = x
     EXPECT_FALSE(nearly_equal_by_ulp(x, y, 0.5));
+    EXPECT_EQ(calculate_ulp_difference(x, y), 9) << "ULP difference (lossy division): " << calculate_ulp_difference(x, y) << " ULPs\n";
 
     // Non-lossy multiplication
-    auto z = x * scale;
-    z += offset;
-    z /= scale;
-    z -= offset / scale;
+    auto z = x * scale;  // x * scale
+    z += offset;         // x * scale + offset
+    z /= scale;          // (x * scale + offset) / scale = x + offset / scale
+    z -= offset / scale; // x + offset / scale - offset / scale = x
     EXPECT_TRUE(nearly_equal_by_ulp(x, z, 0.5));
+    EXPECT_EQ(calculate_ulp_difference(x, z), 0)
+        << "ULP difference (non-lossy multiplication): " << calculate_ulp_difference(x, z) << " ULPs\n";
 }

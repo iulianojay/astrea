@@ -20,6 +20,7 @@
 
 #include <cmath>
 
+#include <mp-units/core.h>
 #include <mp-units/math.h>
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
@@ -87,6 +88,25 @@ template <typename T>
 }
 
 /**
+ * @brief Calculate the difference between two floating-point values in terms of ULPs.
+ *
+ * @tparam T The floating-point type (e.g., float, double).
+ * @param x First floating-point value.
+ * @param y Second floating-point value.
+ * @return The difference between x and y in terms of ULPs.
+ */
+template <typename T>
+    requires(std::is_floating_point_v<T>)
+[[nodiscard]] inline constexpr int calculate_ulp_difference(T x, T y) noexcept
+{
+    const T minUlp          = std::min(ulp(x), ulp(y));
+    const unsigned nUlpDiff = std::ceil(std::abs(x - y) / minUlp);
+    if (nUlpDiff == 0) { return 0; }     // Handle the case where x and y are exactly equal
+    return (int)log10((double)nUlpDiff); // Convert to number of ULPs
+}
+
+
+/**
  * @brief Returns the unit in the last place (ULP) of a quantity, which is the distance to the next representable value.
  *
  * @tparam R The unit type (e.g., distance, time).
@@ -99,6 +119,23 @@ template <auto R, typename Rep>
 [[nodiscard]] inline constexpr mp_units::quantity<R, Rep> ulp(const mp_units::quantity<R, Rep>& q) noexcept
 {
     return mp_units::quantity{ ulp(q.numerical_value_in(q.unit)), q.unit };
+}
+
+/**
+ * @brief Calculate the difference between two quantities in terms of ULPs.
+ *
+ * @tparam R The unit type (e.g., distance, time).
+ * @tparam Rep The representation type (e.g., double).
+ * @param x First quantity.
+ * @param y Second quantity.
+ * @return The difference between x and y in terms of ULPs, with the same unit as x and y.
+ */
+template <auto R1, auto R2, typename Rep>
+    requires(std::is_floating_point_v<Rep>)
+[[nodiscard]] inline constexpr int
+    calculate_ulp_difference(const mp_units::quantity<R1, Rep>& x, const mp_units::quantity<R2, Rep>& y) noexcept
+{
+    return calculate_ulp_difference(x.numerical_value_in(x.unit), y.numerical_value_in(x.unit));
 }
 
 /**
