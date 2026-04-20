@@ -1,5 +1,6 @@
 #include <astro/utilities/conversions.hpp>
 
+#include <math/comparisons.hpp>
 #include <math/operations.hpp>
 #include <utilities/ProgressBar.hpp>
 

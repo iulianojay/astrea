@@ -13,6 +13,7 @@
 
 #include <gtest/gtest.h>
 
+#include <math/comparisons.hpp>
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
@@ -43,7 +44,7 @@ class DummyForce : public PerturbingForce {
 
 class ForceModelTest : public testing::Test {
   public:
-    ForceModelTest() {};
+    ForceModelTest(){};
     void SetUp() override {}
 
     DummyForce force;

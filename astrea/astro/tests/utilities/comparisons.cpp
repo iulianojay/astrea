@@ -15,7 +15,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/operations.hpp>
+#include <math/comparisons.hpp>
 
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 

@@ -19,6 +19,7 @@
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
+#include <math/comparisons.hpp>
 #include <math/operations.hpp>
 
 using namespace astrea;

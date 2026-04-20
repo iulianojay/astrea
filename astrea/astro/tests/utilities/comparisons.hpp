@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include <math/operations.hpp>
+#include <math/comparisons.hpp>
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>

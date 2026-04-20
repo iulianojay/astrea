@@ -14,6 +14,7 @@
 #include <gtest/gtest.h>
 #include <mp-units/systems/angular/math.h>
 
+#include <math/comparisons.hpp>
 #include <math/operations.hpp>
 #include <units/units.hpp>
 

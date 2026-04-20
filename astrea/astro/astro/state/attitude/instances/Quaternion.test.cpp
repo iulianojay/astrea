@@ -21,6 +21,7 @@
 
 #include <stdexcept>
 
+#include <math/comparisons.hpp>
 #include <math/operations.hpp>
 #include <units/units.hpp>
 

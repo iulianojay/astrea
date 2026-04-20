@@ -16,6 +16,7 @@
 #include <gtest/gtest.h>
 #include <mp-units/random.h>
 
+#include <math/comparisons.hpp>
 #include <math/operations.hpp>
 #include <units/units.hpp>
 

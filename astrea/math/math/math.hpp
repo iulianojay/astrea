@@ -19,6 +19,7 @@
 #pragma once
 
 #include <math/chebyshev_util.hpp>
+#include <math/comparisons.hpp>
 #include <math/interpolation.hpp>
 #include <math/operations.hpp>
 #include <math/trig.hpp>

@@ -15,6 +15,7 @@
 
 #include <gtest/gtest.h>
 
+#include <math/comparisons.hpp>
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
