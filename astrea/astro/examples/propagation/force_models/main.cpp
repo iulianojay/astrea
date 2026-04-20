@@ -22,22 +22,23 @@ using namespace astro;
 using namespace mp_units;
 
 using mp_units::si::unit_symbols::km;
+using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::N;
 using mp_units::si::unit_symbols::s;
 
 int main()
 {
-    // A ForceModel is a factory for arbitrary Force objects. These forces are called during propagation
-    // to compute accelerations on the spacecraft. Several forces are provided with Astrea, and users can add
-    // more by inheriting from the Force class.
+    // A ForceModel is a factory for arbitrary PerturbingForce objects. These forces are called during propagation
+    // to compute accelerations and torques on the spacecraft. Several forces are provided with Astrea, and users can
+    // add more by inheriting from the PerturbingForce class.
     struct ContinuousThrust : public PerturbingForce {
         ContinuousThrust(const std::string& name = "Continuous Thrust Force") :
             _name(name)
         {
         }
 
-        // Currently, forces are expected to return acceleration in the Earth-centered ICRF frame. Future releases will
-        // allow forces to specify the output frame.
+        // Currently, forces and torques are expected to return acceleration in the Earth-centered ICRF frame. Future
+        // releases will allow perturbating forces to specify the output frame.
         Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override
         {
             // Grab the cartesian elements and date
@@ -52,8 +53,15 @@ int main()
             std::cout << "Applying continuous thrust force: " << _name << " at time " << date << std::endl;
             std::cout << nadirThrust << std::endl;
 
-            // Rotate the acceleration back to the inertial frame for output
-            return { .force = frame.rotate_out_of_this_frame(nadirThrust, date) };
+            // Rotate the acceleration back to the inertial frame for output. Include a torque, if you want to model
+            // attitude effects as well.
+            const auto thrustForce = frame.rotate_out_of_this_frame(nadirThrust, date);
+            std::cout << "Thrust force in inertial frame: " << thrustForce << std::endl;
+
+            const CartesianVector<Length, RIC> thrusterOffset{ 0.0 * m, 1.0 * m, 0.0 * m };
+            const auto thrustTorque = frame.rotate_out_of_this_frame(nadirThrust.cross(thrusterOffset), date);
+
+            return { .force = thrustForce, .torque = thrustTorque };
         }
 
       private:
@@ -70,6 +78,7 @@ int main()
     State state(cart, Date(), sys);
     const auto [totalAcceleration, totalTorque] = forceModel.compute_perturbations(state, Vehicle());
     std::cout << "Total Acceleration: " << totalAcceleration << std::endl;
+    std::cout << "Total Torque: " << totalTorque << std::endl;
 
     return 0;
 }

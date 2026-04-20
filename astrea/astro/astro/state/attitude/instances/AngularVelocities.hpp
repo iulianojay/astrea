@@ -43,6 +43,11 @@ template <typename In_Frame_T = frames::dynamic::body, typename Ref_Frame_T = fr
 class AngularVelocities {
 
     friend class AttitudePartial;
+    friend std::ostream& operator<<(std::ostream& os, const AngularVelocities& angularVelocities)
+    {
+        os << angularVelocities._angularVelocities;
+        return os;
+    }
 
   public:
     using in_frame  = In_Frame_T;

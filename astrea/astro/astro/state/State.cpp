@@ -23,6 +23,7 @@ namespace astro {
 std::ostream& operator<<(std::ostream& os, const State& state)
 {
     os << state.get_epoch() << ", " << state.get_elements();
+    if (state.get_attitude().has_value()) { os << ", " << state.get_attitude().value(); }
     return os;
 }
 

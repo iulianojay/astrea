@@ -51,6 +51,11 @@ template <typename In_Frame_T, typename Out_Frame_T>
 class Quaternion {
 
     friend class Attitude;
+    friend std::ostream& operator<<(std::ostream& os, const Quaternion& quaternion)
+    {
+        os << "[s: " << quaternion._s << ", u: " << quaternion._u << "]";
+        return os;
+    }
 
   public:
     using in_frame  = In_Frame_T;

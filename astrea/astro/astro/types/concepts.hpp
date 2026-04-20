@@ -185,5 +185,16 @@ concept HasInPlaceMathOperators = requires(T elements, const T other, const Unit
     { elements /= scalar };
 };
 
+
+/**
+ * @brief Concept to check if a type has a method to get the event name.
+ *
+ * @tparam T The type to check.
+ */
+template <typename T>
+concept HasGetName = requires(const T event) {
+    { event.get_name() } -> std::same_as<std::string>;
+};
+
 } // namespace astro
 } // namespace astrea

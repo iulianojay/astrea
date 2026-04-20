@@ -56,6 +56,9 @@ int main()
             return OrbitalElements::get_set_id<Cartesian>();
         };
 
+        // Dynamics are computed from the current state. The eom model is also passed the current vehicle, in case
+        // checking it's state is required, as well as perturbing and control forces. Perturbing forces are computed
+        // from the current force model, and control forces are returned from the vehicle. Both are customizable.
         OrbitalElementPartials compute_dynamics(
             const State& state,
             const Vehicle& vehicle,

@@ -32,6 +32,7 @@
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/propagation/force_models/Perturbation.hpp>
 #include <astro/time/Date.hpp>
+#include <astro/types/concepts.hpp>
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -126,6 +127,36 @@ concept HasGetCoefficientOfReflectivity = requires(const T vehicle) {
 template <typename T>
 concept HasGetControlAuthority = requires(const T& vehicle, const State& state) {
     { vehicle.get_control_authority(state) } -> std::same_as<Perturbation>;
+};
+
+/**
+ * @brief Concept to check if a type has a method to get the inertial position.
+ *
+ * @tparam T The type to check.
+ */
+template <typename T>
+concept HasGetInertialPosition = requires(const T vehicle) {
+    { vehicle.get_inertial_position() } -> std::same_as<RadiusVector<frames::earth::icrf>>;
+};
+
+/**
+ * @brief Concept to check if a type has a method to get the inertial velocity.
+ *
+ * @tparam T The type to check.
+ */
+template <typename T>
+concept HasGetInertialVelocity = requires(const T vehicle) {
+    { vehicle.get_inertial_velocity() } -> std::same_as<VelocityVector<frames::earth::icrf>>;
+};
+
+/**
+ * @brief Concept to check if a type has a method to get the inertial acceleration.
+ *
+ * @tparam T The type to check.
+ */
+template <typename T>
+concept HasGetInertialAcceleration = requires(const T vehicle) {
+    { vehicle.get_inertial_acceleration() } -> std::same_as<AccelerationVector<frames::earth::icrf>>;
 };
 
 /**
@@ -564,7 +595,37 @@ struct VehicleInner final : public VehicleInnerBase {
      */
     RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const override final
     {
-        return _value.get_inertial_position(date);
+        return get_inertial_position_impl(_value, date);
+    }
+
+    /**
+     * @brief Get the default position of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the position from.
+     * @param date The date for which to get the position.
+     * @return RadiusVector<frames::earth::icrf> The position of the frame in Earth-Centered Inertial coordinates.
+     */
+    template <typename U>
+        requires(HasGetInertialPosition<U>)
+    RadiusVector<frames::earth::icrf> get_inertial_position_impl(const U& value, const Date& date) const
+    {
+        return value.get_inertial_position(date);
+    }
+
+    /**
+     * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the inertial position from.
+     * @param date The date for which to get the position.
+     * @return RadiusVector<frames::earth::icrf> The position of the frame in Earth-Centered Inertial coordinates.
+     */
+    template <typename U>
+        requires(!HasGetInertialPosition<U>)
+    RadiusVector<frames::earth::icrf> get_inertial_position_impl(const U&, const Date&) const
+    {
+        return RadiusVector<frames::earth::icrf>{};
     }
 
     /**
@@ -575,7 +636,37 @@ struct VehicleInner final : public VehicleInnerBase {
      */
     VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const override final
     {
-        return _value.get_inertial_velocity(date);
+        return get_inertial_velocity_impl(_value, date);
+    }
+
+    /**
+     * @brief Get the default velocity of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the velocity from.
+     * @param date The date for which to get the velocity.
+     * @return VelocityVector<frames::earth::icrf> The velocity of the frame in Earth-Centered Inertial coordinates.
+     */
+    template <typename U>
+        requires(HasGetInertialVelocity<U>)
+    VelocityVector<frames::earth::icrf> get_inertial_velocity_impl(const U& value, const Date& date) const
+    {
+        return value.get_inertial_velocity(date);
+    }
+
+    /**
+     * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the inertial velocity from.
+     * @param date The date for which to get the velocity.
+     * @return VelocityVector<frames::earth::icrf> The velocity of the frame in Earth-Centered Inertial coordinates.
+     */
+    template <typename U>
+        requires(!HasGetInertialVelocity<U>)
+    VelocityVector<frames::earth::icrf> get_inertial_velocity_impl(const U&, const Date&) const
+    {
+        return VelocityVector<frames::earth::icrf>{};
     }
 
     /**
@@ -586,7 +677,37 @@ struct VehicleInner final : public VehicleInnerBase {
      */
     AccelerationVector<frames::earth::icrf> get_inertial_acceleration(const Date& date) const override final
     {
-        return _value.get_inertial_acceleration(date);
+        return get_inertial_acceleration_impl(_value, date);
+    }
+
+    /**
+     * @brief Get the default acceleration of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the acceleration from.
+     * @param date The date for which to get the acceleration.
+     * @return AccelerationVector<frames::earth::icrf> The acceleration of the frame in Earth-Centered Inertial coordinates.
+     */
+    template <typename U>
+        requires(HasGetInertialAcceleration<U>)
+    AccelerationVector<frames::earth::icrf> get_inertial_acceleration_impl(const U& value, const Date& date) const
+    {
+        return value.get_inertial_acceleration(date);
+    }
+
+    /**
+     * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the inertial acceleration from.
+     * @param date The date for which to get the acceleration.
+     * @return AccelerationVector<frames::earth::icrf> The acceleration of the frame in Earth-Centered Inertial coordinates.
+     */
+    template <typename U>
+        requires(!HasGetInertialAcceleration<U>)
+    AccelerationVector<frames::earth::icrf> get_inertial_acceleration_impl(const U&, const Date&) const
+    {
+        return AccelerationVector<frames::earth::icrf>{};
     }
 
     /**
@@ -594,7 +715,33 @@ struct VehicleInner final : public VehicleInnerBase {
      *
      * @return std::string The name of the vehicle.
      */
-    std::string get_name() const override final { return _value.get_name(); }
+    std::string get_name() const override final { return get_name_impl(_value); }
+
+    /**
+     * @brief Gets the default name of the vehicle.
+     *
+     * @return std::string The name of the vehicle.
+     */
+    template <typename U>
+        requires(!HasGetName<U>)
+    std::string get_name_impl(const U&) const
+    {
+        return "Vehicle";
+    }
+
+    /**
+     * @brief Gets the name of the vehicle.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the name from.
+     * @return std::string The name of the vehicle.
+     */
+    template <typename U>
+        requires(HasGetName<U>)
+    std::string get_name_impl(const U& value) const
+    {
+        return value.get_name();
+    }
 
     /**
      * @brief Gets the control authority of the vehicle or a default value.
