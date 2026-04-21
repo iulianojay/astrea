@@ -18,9 +18,8 @@ class AccessAnalyzerTest : public testing::Test {
     ViewerConstellation make_constellation()
     {
         ViewerConstellation constellation(sys, startDate, 7000.0 * km, 53.0 * deg, 1, 1, 2.0);
-        TwoBody eom;
         Integrator integrator;
-        constellation.propagate(endDate, eom, integrator);
+        constellation.propagate(endDate, integrator);
         return constellation;
     }
 

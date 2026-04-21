@@ -45,6 +45,7 @@ class KeplerianVopPropagationTest : public testing::Test {
         propTime(weeks(1)),
         epoch(J2000)
     {
+        integrator.set_equations_of_motion(eom);
     }
 
     void SetUp() override {}
@@ -77,7 +78,7 @@ TEST_F(KeplerianVopPropagationTest, GEONoForces)
     Vehicle vehicle{ geo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {
@@ -96,7 +97,7 @@ TEST_F(KeplerianVopPropagationTest, GPSNoForces)
     Vehicle vehicle{ meo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {
@@ -115,7 +116,7 @@ TEST_F(KeplerianVopPropagationTest, LEONoForces)
     Vehicle vehicle{ leo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {

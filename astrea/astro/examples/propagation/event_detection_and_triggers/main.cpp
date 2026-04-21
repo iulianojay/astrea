@@ -60,6 +60,7 @@ int main()
     integrator.set_abs_tol(1.0e-10);
     integrator.set_rel_tol(1.0e-10);
     integrator.switch_fixed_timestep(true, 60.0 * s);
+    integrator.set_equations_of_motion(eoms);
 
     bool store    = true;    // Users can choose to store the state history during propagation, or not
     Time propTime = days(1); // A propagation interval relative to the epoch. Intervals
@@ -70,10 +71,11 @@ int main()
     // true anomaly. It can also be set to trigger at a specific mean anomaly, altitude, or epoch.
     ImpulsiveBurn burn = ImpulsiveBurn::trigger_at_true_anomaly(0.0 * deg, UnitVector<frames::dynamic::ric>(0.0, 1.0, 0.0));
     Event burnEvent(burn);
+    integrator.add_event(burnEvent);
 
     // Propagate - An arbitrary number of events can be passed to the integrator. The integrator will check for zero-crossings
     // at each step, and trigger the event action when a zero-crossing is found or stop propagation if specified.
-    const StateHistory history = integrator.propagate(state0, propTime, eoms, vehicle, store, { burnEvent });
+    const StateHistory history = integrator.propagate(state0, propTime, vehicle);
 
     // Track period as a quasi-measure of the burn effect
     std::cout << "Initial State: " << elements << std::endl;

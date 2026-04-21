@@ -152,7 +152,7 @@ TEST_F(ScheduleTest, ClearSchedule)
     schedule.schedule_event(date1, testEvent1);
     schedule.schedule_event(date2, testEvent2);
 
-    schedule.clear_schedule();
+    schedule.clear();
 
     auto scheduledDates = schedule.get_scheduled_dates();
     ASSERT_TRUE(scheduledDates.empty());
