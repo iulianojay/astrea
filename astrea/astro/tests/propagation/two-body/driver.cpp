@@ -54,7 +54,6 @@ class TwoBodyPropagationTest : public testing::Test {
 
     AstrodynamicsSystem sys;
     GravParam mu;
-    TwoBody eom;
     ForceModel forces;
     Integrator integrator;
     Time propTime;
@@ -78,7 +77,7 @@ TEST_F(TwoBodyPropagationTest, GEO)
     Vehicle vehicle{ geo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {
@@ -97,7 +96,7 @@ TEST_F(TwoBodyPropagationTest, GPS)
     Vehicle vehicle{ meo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {
@@ -116,7 +115,7 @@ TEST_F(TwoBodyPropagationTest, LEO)
     Vehicle vehicle{ leo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {

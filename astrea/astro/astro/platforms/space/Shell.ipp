@@ -165,19 +165,19 @@ const Spacecraft_T& Shell<Spacecraft_T>::get_spacecraft(const size_t& spacecraft
 
 
 template <class Spacecraft_T>
-void Shell<Spacecraft_T>::propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator)
+void Shell<Spacecraft_T>::propagate(const Time& propTime, Integrator& integrator)
 {
     for (auto& plane : planes) {
-        plane.propagate(propTime, eom, integrator);
+        plane.propagate(propTime, integrator);
     }
 }
 
 
 template <class Spacecraft_T>
-void Shell<Spacecraft_T>::propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator)
+void Shell<Spacecraft_T>::propagate(const Date& endEpoch, Integrator& integrator)
 {
     for (auto& plane : planes) {
-        plane.propagate(endEpoch, eom, integrator);
+        plane.propagate(endEpoch, integrator);
     }
 }
 

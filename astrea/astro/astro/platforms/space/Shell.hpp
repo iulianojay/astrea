@@ -172,19 +172,17 @@ class Shell {
      * @brief Propagates the shell's spacecraft using the provided equations of motion and integrator.
      *
      * @param propTime The total propagation time after the initial state epoch.
-     * @param eom The equations of motion to be used for propagation.
      * @param integrator The integrator to be used for numerical integration.
      */
-    void propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Time& propTime, Integrator& integrator);
 
     /**
      * @brief Propagates the shell's spacecraft using the provided equations of motion and integrator.
      *
      * @param endEpoch The end epoch for propagation.
-     * @param eom The equations of motion to be used for propagation.
      * @param integrator The integrator to be used for numerical integration.
      */
-    void propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Date& endEpoch, Integrator& integrator);
 
 
     // using iterator       = std::vector<Plane<Spacecraft_T>>::iterator;

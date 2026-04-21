@@ -66,7 +66,6 @@ class LeoToGroundAccessTest : public testing::Test {
     AstrodynamicsSystem sys;
     GravParam mu;
     const Distance semimajorLeo;
-    TwoBody eom;
     ForceModel forces;
     Integrator integrator;
     Time propTime;
@@ -109,7 +108,7 @@ TEST_F(LeoToGroundAccessTest, LeoThinCone)
     }
 
     // Propagate
-    constel.propagate(propTime, eom, integrator);
+    constel.propagate(propTime, integrator);
 
     // Build out grounds from points in the satellite's ground track
     CircularFieldOfView groundFov(75.0 * deg);

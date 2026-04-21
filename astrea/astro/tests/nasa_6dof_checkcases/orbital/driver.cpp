@@ -150,19 +150,17 @@ class Orbital6DofTest : public testing::Test {
         switch (vehicleType) {
             case ISS: {
                 sat.set_mass(400'000.0 * kg);
-                sat.set_inertia_tensor(
-                    InertiaTensor<frames::dynamic::body>(
-                        1.02e8 * kg * pow<2>(m),  // xx
-                        6.96e6 * kg * pow<2>(m),  // xy
-                        5.48e6 * kg * pow<2>(m),  // xz
-                        6.96e6 * kg * pow<2>(m),  // yx
-                        0.91e8 * kg * pow<2>(m),  // yy
-                        -5.90e5 * kg * pow<2>(m), // yz
-                        5.48e6 * kg * pow<2>(m),  // zx
-                        -5.90e5 * kg * pow<2>(m), // zy
-                        5.48e6 * kg * pow<2>(m)   // zz
-                    )
-                );
+                sat.set_inertia_tensor(InertiaTensor<frames::dynamic::body>(
+                    1.02e8 * kg * pow<2>(m),  // xx
+                    6.96e6 * kg * pow<2>(m),  // xy
+                    5.48e6 * kg * pow<2>(m),  // xz
+                    6.96e6 * kg * pow<2>(m),  // yx
+                    0.91e8 * kg * pow<2>(m),  // yy
+                    -5.90e5 * kg * pow<2>(m), // yz
+                    5.48e6 * kg * pow<2>(m),  // zx
+                    -5.90e5 * kg * pow<2>(m), // zy
+                    5.48e6 * kg * pow<2>(m)   // zz
+                ));
                 sat.set_ram_area(2.5e3 * m * m);
                 sat.set_lift_area(2.5e3 * m * m);
                 sat.set_solar_area(2.5e3 * m * m);
@@ -232,22 +230,26 @@ class Orbital6DofTest : public testing::Test {
         switch (eomId) {
             case TWO_BODY: {
                 TwoBody twoBody;
-                return integrator.propagate(state0, propTime, twoBody, vehicle, true);
+                integrator.set_equations_of_motion(twoBody);
+                return integrator.propagate(state0, propTime, vehicle);
             }
 
             case COWELLS_METHOD: {
                 CowellsMethod cowells(forces);
-                return integrator.propagate(state0, propTime, cowells, vehicle, true);
+                integrator.set_equations_of_motion(cowells);
+                return integrator.propagate(state0, propTime, vehicle);
             }
 
             case KEPLERIAN_VOP: {
                 KeplerianVop keplerianVop(forces, false);
-                return integrator.propagate(state0, propTime, keplerianVop, vehicle, true);
+                integrator.set_equations_of_motion(keplerianVop);
+                return integrator.propagate(state0, propTime, vehicle);
             }
 
             case EQUINOCTIAL_VOP: {
                 EquinoctialVop equinoctialVop(forces);
-                return integrator.propagate(state0, propTime, equinoctialVop, vehicle, true);
+                integrator.set_equations_of_motion(equinoctialVop);
+                return integrator.propagate(state0, propTime, vehicle);
             }
 
             default: throw std::runtime_error("Invalid EOM ID");

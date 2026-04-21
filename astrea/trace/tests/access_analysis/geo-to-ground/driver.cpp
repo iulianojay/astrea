@@ -66,7 +66,6 @@ class GeoToGroundAccessTest : public testing::Test {
     AstrodynamicsSystem sys;
     GravParam mu;
     const Distance semimajorGeo;
-    TwoBody eom;
     ForceModel forces;
     Integrator integrator;
     Time propTime;
@@ -118,7 +117,7 @@ TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
     GroundArchitecture grounds({ ground });
 
     // Propagate
-    constel.propagate(propTime, eom, integrator);
+    constel.propagate(propTime, integrator);
 
     // Find access
     AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
@@ -157,7 +156,7 @@ TEST_F(GeoToGroundAccessTest, TwoBallGeoNeverConnected)
     }
 
     // Propagate
-    twoBallGeo.propagate(propTime, eom, integrator);
+    twoBallGeo.propagate(propTime, integrator);
 
     // Find access
     AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
@@ -204,7 +203,7 @@ TEST_F(GeoToGroundAccessTest, FourBallGeo)
     }
 
     // Propagate
-    fourBallGeo.propagate(propTime, eom, integrator);
+    fourBallGeo.propagate(propTime, integrator);
 
     // Find access
     AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);

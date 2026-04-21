@@ -87,6 +87,7 @@ int main()
     // Propagation is done using a RKF78 method with a variable step size by default. This can be changed using
     // the integrator setters.
     Integrator integrator;
+    integrator.set_equations_of_motion(myEoms);
 
     bool store    = true;       // Users can choose to store the state history during propagation, or not
     Time propTime = minutes(1); // Propagation time can also be negative for backwards propagation.
@@ -94,7 +95,7 @@ int main()
     // Propagation is done with the element representation that the equations of motion expect. This is to avoid
     // unnecessary conversions during the integration process.
     std::cout << "Propagating My Equations of Motion...";
-    const StateHistory history = integrator.propagate(state0, propTime, myEoms, vehicle, store);
+    const StateHistory history = integrator.propagate(state0, propTime, vehicle);
 
     std::cout << " Propagation Complete." << std::endl;
 

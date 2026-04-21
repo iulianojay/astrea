@@ -322,8 +322,8 @@ class Event; // Forward declaration of the Event class
  */
 template <typename T>
 concept IsGenericallyConstructableEvent = requires(T) {
+    requires !std::is_same<Event, remove_cv_ref<T>>::value;
     requires IsUserDefinedEvent<T>;
-    std::negation<std::is_same<Event, remove_cv_ref<T>>>::value;
 };
 
 
