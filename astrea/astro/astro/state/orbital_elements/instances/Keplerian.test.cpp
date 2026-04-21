@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
@@ -72,23 +72,23 @@ TEST_F(KeplerianTest, Stream)
 TEST_F(KeplerianTest, DefaultConstructor)
 {
     Keplerian defaultState;
-    ASSERT_EQ_QUANTITY(defaultState.get_semimajor(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_eccentricity(), Unitless(0.0 * one), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_inclination(), Angle(0.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_right_ascension(), Angle(0.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_argument_of_perigee(), Angle(0.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(defaultState.get_true_anomaly(), Angle(0.0 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_semimajor(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_eccentricity(), Unitless(0.0 * one), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_inclination(), Angle(0.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_right_ascension(), Angle(0.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_argument_of_perigee(), Angle(0.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(defaultState.get_true_anomaly(), Angle(0.0 * rad), REL_TOL));
 }
 
 TEST_F(KeplerianTest, UnitlessConstructor)
 {
     Keplerian scaledState(2.0 * one);
-    ASSERT_EQ_QUANTITY(scaledState.get_semimajor(), Distance(2.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_eccentricity(), Unitless(2.0 * one), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_inclination(), Angle(2.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_right_ascension(), Angle(2.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_argument_of_perigee(), Angle(2.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(scaledState.get_true_anomaly(), Angle(2.0 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_semimajor(), Distance(2.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_eccentricity(), Unitless(2.0 * one), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_inclination(), Angle(2.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_right_ascension(), Angle(2.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_argument_of_perigee(), Angle(2.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(scaledState.get_true_anomaly(), Angle(2.0 * rad), REL_TOL));
 }
 
 TEST_F(KeplerianTest, ParameterizedConstructor) { ASSERT_NO_THROW(Keplerian(a, ecc, inc, raan, w, theta)); }
@@ -157,12 +157,12 @@ TEST_F(KeplerianTest, CopyConstructor)
 {
     ASSERT_NO_THROW(Keplerian newKep(state));
     Keplerian newKep(state);
-    ASSERT_EQ_QUANTITY(newKep.get_semimajor(), a, REL_TOL);
-    ASSERT_EQ_QUANTITY(newKep.get_eccentricity(), ecc, REL_TOL);
-    ASSERT_EQ_QUANTITY(newKep.get_inclination(), inc, REL_TOL);
-    ASSERT_EQ_QUANTITY(newKep.get_right_ascension(), raan, REL_TOL);
-    ASSERT_EQ_QUANTITY(newKep.get_argument_of_perigee(), w, REL_TOL);
-    ASSERT_EQ_QUANTITY(newKep.get_true_anomaly(), theta, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(newKep.get_semimajor(), a, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newKep.get_eccentricity(), ecc, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newKep.get_inclination(), inc, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newKep.get_right_ascension(), raan, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newKep.get_argument_of_perigee(), w, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newKep.get_true_anomaly(), theta, REL_TOL));
 }
 
 TEST_F(KeplerianTest, MoveConstructor)
@@ -175,12 +175,12 @@ TEST_F(KeplerianTest, CopyAssignment)
 {
     ASSERT_NO_THROW(Keplerian newKep = state);
     Keplerian newKep = state;
-    ASSERT_EQ_QUANTITY(newKep.get_semimajor(), a, REL_TOL);
-    ASSERT_EQ_QUANTITY(newKep.get_eccentricity(), ecc, REL_TOL);
-    ASSERT_EQ_QUANTITY(newKep.get_inclination(), inc, REL_TOL);
-    ASSERT_EQ_QUANTITY(newKep.get_right_ascension(), raan, REL_TOL);
-    ASSERT_EQ_QUANTITY(newKep.get_argument_of_perigee(), w, REL_TOL);
-    ASSERT_EQ_QUANTITY(newKep.get_true_anomaly(), theta, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(newKep.get_semimajor(), a, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newKep.get_eccentricity(), ecc, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newKep.get_inclination(), inc, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newKep.get_right_ascension(), raan, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newKep.get_argument_of_perigee(), w, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(newKep.get_true_anomaly(), theta, REL_TOL));
 }
 
 TEST_F(KeplerianTest, MoveAssignment)
@@ -203,72 +203,72 @@ TEST_F(KeplerianTest, AdditionOperator)
 {
     Keplerian other{ 1000.0 * km, 0.005 * one, 10.0 * deg, 5.0 * deg, 10.0 * deg, 15.0 * deg };
     Keplerian result = state + other;
-    ASSERT_EQ_QUANTITY(result.get_semimajor(), a + 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_eccentricity(), ecc + 0.005 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_inclination(), inc + 10.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_right_ascension(), raan + 5.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_argument_of_perigee(), w + 10.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_true_anomaly(), theta + 15.0 * deg, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), a + 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_eccentricity(), ecc + 0.005 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_inclination(), inc + 10.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_right_ascension(), raan + 5.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_argument_of_perigee(), w + 10.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_true_anomaly(), theta + 15.0 * deg, REL_TOL));
 }
 
 TEST_F(KeplerianTest, AdditionAssignmentOperator)
 {
     Keplerian other{ 1000.0 * km, 0.005 * one, 10.0 * deg, 5.0 * deg, 10.0 * deg, 15.0 * deg };
     state += other;
-    ASSERT_EQ_QUANTITY(state.get_semimajor(), a + 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_eccentricity(), ecc + 0.005 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_inclination(), inc + 10.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_right_ascension(), raan + 5.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_argument_of_perigee(), w + 10.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_true_anomaly(), theta + 15.0 * deg, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_semimajor(), a + 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_eccentricity(), ecc + 0.005 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_inclination(), inc + 10.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_right_ascension(), raan + 5.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_argument_of_perigee(), w + 10.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_true_anomaly(), theta + 15.0 * deg, REL_TOL));
 }
 
 TEST_F(KeplerianTest, SubtractionOperator)
 {
     Keplerian other{ 1000.0 * km, 0.005 * one, 10.0 * deg, 5.0 * deg, 10.0 * deg, 15.0 * deg };
     Keplerian result = state - other;
-    ASSERT_EQ_QUANTITY(result.get_semimajor(), a - 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_eccentricity(), ecc - 0.005 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_inclination(), inc - 10.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_right_ascension(), raan - 5.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_argument_of_perigee(), w - 10.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_true_anomaly(), theta - 15.0 * deg, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), a - 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_eccentricity(), ecc - 0.005 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_inclination(), inc - 10.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_right_ascension(), raan - 5.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_argument_of_perigee(), w - 10.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_true_anomaly(), theta - 15.0 * deg, REL_TOL));
 }
 
 TEST_F(KeplerianTest, SubtractionAssignmentOperator)
 {
     Keplerian other{ 1000.0 * km, 0.005 * one, 10.0 * deg, 5.0 * deg, 10.0 * deg, 15.0 * deg };
     state -= other;
-    ASSERT_EQ_QUANTITY(state.get_semimajor(), a - 1000.0 * km, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_eccentricity(), ecc - 0.005 * one, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_inclination(), inc - 10.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_right_ascension(), raan - 5.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_argument_of_perigee(), w - 10.0 * deg, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_true_anomaly(), theta - 15.0 * deg, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_semimajor(), a - 1000.0 * km, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_eccentricity(), ecc - 0.005 * one, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_inclination(), inc - 10.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_right_ascension(), raan - 5.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_argument_of_perigee(), w - 10.0 * deg, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_true_anomaly(), theta - 15.0 * deg, REL_TOL));
 }
 
 TEST_F(KeplerianTest, MultiplicationOperator)
 {
     Unitless multiplier = 2.0 * one;
     Keplerian result    = state * multiplier;
-    ASSERT_EQ_QUANTITY(result.get_semimajor(), a * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_eccentricity(), ecc * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_inclination(), inc * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_right_ascension(), raan * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_argument_of_perigee(), w * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_true_anomaly(), theta * multiplier, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), a * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_eccentricity(), ecc * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_inclination(), inc * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_right_ascension(), raan * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_argument_of_perigee(), w * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_true_anomaly(), theta * multiplier, REL_TOL));
 }
 
 TEST_F(KeplerianTest, MultiplicationAssignmentOperator)
 {
     Unitless multiplier = 2.0 * one;
     state *= multiplier;
-    ASSERT_EQ_QUANTITY(state.get_semimajor(), a * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_eccentricity(), ecc * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_inclination(), inc * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_right_ascension(), raan * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_argument_of_perigee(), w * multiplier, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_true_anomaly(), theta * multiplier, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_semimajor(), a * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_eccentricity(), ecc * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_inclination(), inc * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_right_ascension(), raan * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_argument_of_perigee(), w * multiplier, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_true_anomaly(), theta * multiplier, REL_TOL));
 }
 
 TEST_F(KeplerianTest, DivisionByTimeOperator)
@@ -284,24 +284,24 @@ TEST_F(KeplerianTest, DivisionByScalarOperator)
 {
     Unitless divisor = 2.0 * one;
     Keplerian result = state / divisor;
-    ASSERT_EQ_QUANTITY(result.get_semimajor(), a / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_eccentricity(), ecc / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_inclination(), inc / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_right_ascension(), raan / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_argument_of_perigee(), w / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_true_anomaly(), theta / divisor, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), a / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_eccentricity(), ecc / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_inclination(), inc / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_right_ascension(), raan / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_argument_of_perigee(), w / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_true_anomaly(), theta / divisor, REL_TOL));
 }
 
 TEST_F(KeplerianTest, DivisionAssignmentOperator)
 {
     Unitless divisor = 2.0 * one;
     state /= divisor;
-    ASSERT_EQ_QUANTITY(state.get_semimajor(), a / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_eccentricity(), ecc / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_inclination(), inc / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_right_ascension(), raan / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_argument_of_perigee(), w / divisor, REL_TOL);
-    ASSERT_EQ_QUANTITY(state.get_true_anomaly(), theta / divisor, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(state.get_semimajor(), a / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_eccentricity(), ecc / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_inclination(), inc / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_right_ascension(), raan / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_argument_of_perigee(), w / divisor, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(state.get_true_anomaly(), theta / divisor, REL_TOL));
 }
 
 TEST_F(KeplerianTest, SettersAndGetters)
@@ -315,12 +315,12 @@ TEST_F(KeplerianTest, SettersAndGetters)
     testState.set_argument_of_perigee(w);
     testState.set_true_anomaly(theta);
 
-    ASSERT_EQ_QUANTITY(testState.get_semimajor(), a, REL_TOL);
-    ASSERT_EQ_QUANTITY(testState.get_eccentricity(), ecc, REL_TOL);
-    ASSERT_EQ_QUANTITY(testState.get_inclination(), inc, REL_TOL);
-    ASSERT_EQ_QUANTITY(testState.get_right_ascension(), raan, REL_TOL);
-    ASSERT_EQ_QUANTITY(testState.get_argument_of_perigee(), w, REL_TOL);
-    ASSERT_EQ_QUANTITY(testState.get_true_anomaly(), theta, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(testState.get_semimajor(), a, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(testState.get_eccentricity(), ecc, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(testState.get_inclination(), inc, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(testState.get_right_ascension(), raan, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(testState.get_argument_of_perigee(), w, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(testState.get_true_anomaly(), theta, REL_TOL));
 }
 
 TEST_F(KeplerianTest, GetMeanAnomaly)
@@ -340,12 +340,12 @@ TEST_F(KeplerianTest, ToVector)
 {
     std::vector<Unitless> vec = state.force_to_vector();
     ASSERT_EQ(vec.size(), 6);
-    ASSERT_EQ_QUANTITY(vec[0], a / (1.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[1], ecc, REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[2], inc / (1.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[3], raan / (1.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[4], w / (1.0 * rad), REL_TOL);
-    ASSERT_EQ_QUANTITY(vec[5], theta / (1.0 * rad), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(vec[0], a / (1.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[1], ecc, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[2], inc / (1.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[3], raan / (1.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[4], w / (1.0 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(vec[5], theta / (1.0 * rad), REL_TOL));
 }
 
 TEST_F(KeplerianTest, Interpolate)
@@ -357,8 +357,8 @@ TEST_F(KeplerianTest, Interpolate)
     Keplerian result = state.interpolate(thisTime, otherTime, other, sys.get_mu(), targetTime);
 
     // At t=5s (midpoint), expect average of start and end values
-    ASSERT_EQ_QUANTITY(result.get_semimajor(), (a + 14000.0 * km) / 2.0, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_eccentricity(), (ecc + 0.02 * one) / 2.0, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), (a + 14000.0 * km) / 2.0, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_eccentricity(), (ecc + 0.02 * one) / 2.0, REL_TOL));
 }
 
 TEST_F(KeplerianTest, FromCartesianConversion)
@@ -386,35 +386,35 @@ TEST_F(KeplerianTest, FromEquinoctialConversion)
 TEST_F(KeplerianTest, KeplerianPartialMultiplicationByTime)
 {
     // Test KeplerianPartial operator* with Time
-    Velocity aDot        = 1.0 * km / s;
-    UnitlessPerTime eDot = 0.001 / s;
-    AngularRate incDot   = 0.1 * deg / s;
-    AngularRate raanDot  = 0.2 * deg / s;
-    AngularRate wDot     = 0.3 * deg / s;
-    AngularRate thetaDot = 0.5 * deg / s;
+    Velocity aDot            = 1.0 * km / s;
+    UnitlessPerTime eDot     = 0.001 / s;
+    AngularVelocity incDot   = 0.1 * deg / s;
+    AngularVelocity raanDot  = 0.2 * deg / s;
+    AngularVelocity wDot     = 0.3 * deg / s;
+    AngularVelocity thetaDot = 0.5 * deg / s;
     KeplerianPartial partial(aDot, eDot, incDot, raanDot, wDot, thetaDot);
 
     Time dt          = 2.0 * s;
     Keplerian result = partial * dt;
 
     // Verify the result is a Keplerian state
-    ASSERT_EQ_QUANTITY(result.get_semimajor(), aDot * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_eccentricity(), eDot * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_inclination(), incDot * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_right_ascension(), raanDot * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_argument_of_perigee(), wDot * dt, REL_TOL);
-    ASSERT_EQ_QUANTITY(result.get_true_anomaly(), thetaDot * dt, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), aDot * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_eccentricity(), eDot * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_inclination(), incDot * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_right_ascension(), raanDot * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_argument_of_perigee(), wDot * dt, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(result.get_true_anomaly(), thetaDot * dt, REL_TOL));
 }
 
 TEST_F(KeplerianTest, KeplerianPartialStream)
 {
     // Test KeplerianPartial stream operator
-    Velocity aDot        = 1.0 * km / s;
-    UnitlessPerTime eDot = 0.001 / s;
-    AngularRate incDot   = 0.1 * deg / s;
-    AngularRate raanDot  = 0.2 * deg / s;
-    AngularRate wDot     = 0.3 * deg / s;
-    AngularRate thetaDot = 0.5 * deg / s;
+    Velocity aDot            = 1.0 * km / s;
+    UnitlessPerTime eDot     = 0.001 / s;
+    AngularVelocity incDot   = 0.1 * deg / s;
+    AngularVelocity raanDot  = 0.2 * deg / s;
+    AngularVelocity wDot     = 0.3 * deg / s;
+    AngularVelocity thetaDot = 0.5 * deg / s;
     KeplerianPartial partial(aDot, eDot, incDot, raanDot, wDot, thetaDot);
 
     std::stringstream ss;

@@ -26,16 +26,16 @@ class ForceModel {
 public:
     Force() = default;
     virtual ~Force() = default;
-    virtual CartesianVector<Acceleration, frames::earth::icrf> compute_force(const State state, const Vehicle& vehicle) const = 0;
+    virtual Perturbation compute_perturbation(const State state, const Vehicle& vehicle) const = 0;
 
 // Example: Custom atmospheric drag model
-class CustomDragModel : public Force {
+class CustomDragModel : public PerturbingForce {
     Unitless _dragCoefficient;
     Area _crossSectionalArea;
     units::mass _spacecraftMass;
     
 public:
-    auto compute_force(const State state, const Vehicle& vehicle
+    auto compute_perturbation(const State state, const Vehicle& vehicle
     ) const -> CartesianVector<Acceleration, frames::earth::icrf> override {
         // Implementation details...
         return dragAcceleration;

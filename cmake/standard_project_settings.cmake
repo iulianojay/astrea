@@ -9,13 +9,13 @@
 
 # Compiler flags
 set(COMMON_FLAGS "-DWL=64 -m64 -fPIC -mfpmath=387 -DLINUX")
-set(DEBUG_FLAGS "${COMMON_FLAGS} -g -fno-inline -fno-inline-small-functions -fno-default-inline --coverage")
-set(RELEASE_FLAGS "${COMMON_FLAGS} -O3 -ffast-math")
+set(DEBUG_FLAGS "${COMMON_FLAGS} -g -fno-inline -fno-inline-small-functions -fno-default-inline --coverage -O0")
+set(RELEASE_FLAGS "${COMMON_FLAGS} -O3 -ffast-math -fno-finite-math-only")
 set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
 
 if (UNIX AND NOT APPLE)
-    set(C_FLAGS "${C_FLAGS} -Wall")
-    set(CXX_FLAGS "${CXX_FLAGS} -Wall -fpermissive")
+    set(C_FLAGS "${C_FLAGS} -Wall -Wno-deprecated-declarations -Wno-deprecated-literal-operator")
+    set(CXX_FLAGS "${CXX_FLAGS} -Wall -fpermissive -Wno-deprecated-declarations -Wno-deprecated-literal-operator")
 elseif(NOT CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set(C_FLAGS "${C_FLAGS} -Wl,--kill-at")
     set(CXX_FLAGS "${CXX_FLAGS} -Wl,--kill-at -fpermissive")

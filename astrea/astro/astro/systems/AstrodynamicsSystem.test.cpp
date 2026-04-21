@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
@@ -172,7 +172,7 @@ TEST_F(AstrodynamicsSystemTest, GetRoot)
 TEST_F(AstrodynamicsSystemTest, GetMuCentralBody)
 {
     const auto mu = sys.get_mu();
-    ASSERT_EQ_QUANTITY(mu, Earth().get_mu(), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(mu, Earth().get_mu(), REL_TOL));
 }
 
 

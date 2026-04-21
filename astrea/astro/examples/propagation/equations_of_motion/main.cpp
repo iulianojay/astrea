@@ -56,7 +56,15 @@ int main()
             return OrbitalElements::get_set_id<Cartesian>();
         };
 
-        OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override
+        // Dynamics are computed from the current state. The eom model is also passed the current vehicle, in case
+        // checking it's state is required, as well as perturbing and control forces. Perturbing forces are computed
+        // from the current force model, and control forces are returned from the vehicle. Both are customizable.
+        OrbitalElementPartials compute_dynamics(
+            const State& state,
+            const Vehicle& vehicle,
+            const ForceVector<frames::earth::icrf>& perts,
+            const ForceVector<frames::earth::icrf>& control
+        ) const override
         {
             // Extracting into the desired set can be convenient
             const AstrodynamicsSystem& system = state.get_system();
@@ -69,15 +77,9 @@ int main()
             const auto v = cartesian.get_velocity();
 
             // Compute the partials
-            CartesianPartial partials(v, -mu / (R * R * R) * r);
+            CartesianPartial partials(v, -mu / (R * R * R) * r + control / vehicle.get_mass());
 
             return partials;
-        }
-
-        StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override
-        {
-            // For simple EoMs, the STM can be computed using the StateTransitionMatrix class
-            return StateTransitionMatrix(*this, state, vehicle);
         }
     };
     MyEquationsOfMotion myEoms;

@@ -28,100 +28,11 @@
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/types/type_traits.hpp>
-#include <astro/types/typedefs.hpp>
+#include <astro/types/concepts.hpp>
 #include <astro/types/variant_util.hpp>
 
 namespace astrea {
 namespace astro {
-
-/**
- * @brief Concept to check if a type can be constructed from a set of orbital elements.
- *
- * @tparam T The type to check.
- * @tparam U The type to construct from.
- */
-template <typename T, typename U>
-concept IsConstructableTo = requires(T elements, const GravParam& mu) {
-    { U(elements, mu) };
-};
-
-/**
- * @brief Concept to check if a type can be converted to Cartesian elements.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasDirectCartesianConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_cartesian(mu) } -> std::same_as<Cartesian>;
-};
-
-/**
- * @brief Concept to check if a type can be converted to Keplerian elements.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasDirectKeplerianConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_keplerian(mu) } -> std::same_as<Keplerian>;
-};
-
-/**
- * @brief Concept to check if a type can be converted to Equinoctial elements.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasDirectEquinoctialConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_equinoctial(mu) } -> std::same_as<Equinoctial>;
-};
-
-/**
- * @brief Concept to check if a type can be converted to Cartesian elements.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasIterpolate =
-    requires(const T elements, const Time& thisTime, const Time& otherTime, const T& other, const GravParam& mu, const Time& targetTime) {
-        { elements.interpolate(thisTime, otherTime, other, mu, targetTime) } -> std::same_as<T>;
-    };
-
-/**
- * @brief Concept to check if a type can be converted to a vector of Unitless.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasToVector = requires(const T elements) {
-    { elements.force_to_vector() } -> std::same_as<std::vector<Unitless>>;
-};
-
-/**
- * @brief Concept to check if a type has mathematical operators defined.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasMathOperators = requires(const T elements, const T other, const Unitless scalar) {
-    { elements + other } -> std::same_as<T>;
-    { elements - other } -> std::same_as<T>;
-    { elements* scalar } -> std::same_as<T>;
-    { elements / scalar } -> std::same_as<T>;
-};
-
-/**
- * @brief Concept to check if a type has in-place mathematical operators defined.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasInPlaceMathOperators = requires(T elements, const T other, const Unitless scalar) {
-    { elements += other };
-    { elements -= other };
-    { elements *= scalar };
-    { elements /= scalar };
-};
 
 /**
  * @brief Concept to check if a type is an orbital elements type.
@@ -527,39 +438,6 @@ class OrbitalElementPartials {
  * @throws std::runtime_error with a message indicating the mismatch.
  */
 void throw_mismatched_types();
-
-/**
- * @brief Checks if two OrbitalElements objects are nearly equal.
- *
- * This function compares two OrbitalElements objects for equality within a specified tolerance.
- *
- * @param first The first OrbitalElements object to compare.
- * @param second The second OrbitalElements object to compare.
- * @param ignoreFastVariable If true, ignores fast-changing variables in the comparison.
- * @param relTol Relative tolerance for the comparison.
- * @return true if the two OrbitalElements objects are nearly equal
- * @return false if the two OrbitalElements objects are not nearly equal
- */
-bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, bool ignoreFastVariable = false, Unitless relTol = 1.0e-5 * astrea::detail::unitless);
-
-/**
- * @brief Checks if two OrbitalElementPartials objects are nearly equal.
- *
- * This function compares two OrbitalElementPartials objects for equality within a specified tolerance.
- *
- * @param first The first OrbitalElementPartials object to compare.
- * @param second The second OrbitalElementPartials object to compare.
- * @param ignoreFastVariable If true, ignores fast-changing variables in the comparison.
- * @param relTol Relative tolerance for the comparison.
- * @return true if the two OrbitalElementPartials objects are nearly equal
- * @return false if the two OrbitalElementPartials objects are not nearly equal
- */
-bool nearly_equal(
-    const OrbitalElementPartials& first,
-    const OrbitalElementPartials& second,
-    bool ignoreFastVariable = false,
-    Unitless relTol         = 1.0e-5 * astrea::detail::unitless
-);
 
 } // namespace astro
 } // namespace astrea

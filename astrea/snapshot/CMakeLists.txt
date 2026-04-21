@@ -75,11 +75,12 @@ target_compile_options     (${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedef
 file(MAKE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/include)
 
 # Install headers
-file(COPY
+install(
     DIRECTORY ${SNAPSHOT_BASE}
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+    DESTINATION include
     FILES_MATCHING
     PATTERN *.hpp
+    PATTERN *.ipp
     PATTERN *.h
 )
 

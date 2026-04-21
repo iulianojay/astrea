@@ -471,10 +471,10 @@ class KeplerianPartial {
     KeplerianPartial(
         const Velocity& semimajorPartial,
         const UnitlessPerTime& eccentricityPartial,
-        const AngularRate& inclinationPartial,
-        const AngularRate& rightAscensionPartial,
-        const AngularRate& argPerigeePartial,
-        const AngularRate& trueAnomalyPartial
+        const AngularVelocity& inclinationPartial,
+        const AngularVelocity& rightAscensionPartial,
+        const AngularVelocity& argPerigeePartial,
+        const AngularVelocity& trueAnomalyPartial
     ) :
         _semimajorPartial(semimajorPartial),
         _eccentricityPartial(eccentricityPartial),
@@ -503,12 +503,12 @@ class KeplerianPartial {
     std::vector<Unitless> force_to_vector() const;
 
   private:
-    Velocity _semimajorPartial;           //!< Semimajor axis partial derivative
-    UnitlessPerTime _eccentricityPartial; //!< Eccentricity partial derivative
-    AngularRate _inclinationPartial;      //!< Inclination partial derivative
-    AngularRate _rightAscensionPartial;   //!< Right ascension partial derivative
-    AngularRate _argPerigeePartial;       //!< Argument of perigee partial derivative
-    AngularRate _trueAnomalyPartial;      //!< True anomaly partial derivative
+    Velocity _semimajorPartial;             //!< Semimajor axis partial derivative
+    UnitlessPerTime _eccentricityPartial;   //!< Eccentricity partial derivative
+    AngularVelocity _inclinationPartial;    //!< Inclination partial derivative
+    AngularVelocity _rightAscensionPartial; //!< Right ascension partial derivative
+    AngularVelocity _argPerigeePartial;     //!< Argument of perigee partial derivative
+    AngularVelocity _trueAnomalyPartial;    //!< True anomaly partial derivative
 };
 
 } // namespace astro

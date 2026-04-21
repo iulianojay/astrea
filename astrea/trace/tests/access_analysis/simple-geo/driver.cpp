@@ -15,18 +15,9 @@
 #include <fstream>
 #include <iostream>
 #include <ranges>
+#include <sqlite3.h>
 #include <stdio.h>
 
-// #include <arrow/api.h>
-// #include <arrow/csv/api.h>
-// #include <arrow/io/api.h>
-// #include <arrow/ipc/api.h>
-// #include <parquet/arrow/reader.h>
-// #include <parquet/arrow/writer.h>
-
-#include <sqlite3.h>
-
-#include <csv.hpp>
 #include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>

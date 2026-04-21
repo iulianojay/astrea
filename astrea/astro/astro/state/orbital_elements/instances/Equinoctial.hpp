@@ -393,7 +393,7 @@ class EquinoctialPartial {
         const UnitlessPerTime& gPartial,
         const UnitlessPerTime& hPartial,
         const UnitlessPerTime& kPartial,
-        const AngularRate& trueLongitudePartial
+        const AngularVelocity& trueLongitudePartial
     ) :
         _semilatusPartial(semilatusPartial),
         _fPartial(fPartial),
@@ -420,12 +420,12 @@ class EquinoctialPartial {
     std::vector<Unitless> force_to_vector() const;
 
   private:
-    Velocity _semilatusPartial;        //!< Semilatus rectum partial derivative
-    UnitlessPerTime _fPartial;         //!< First component of the eccentricity vector partial derivative
-    UnitlessPerTime _gPartial;         //!< Second component of the eccentricity vector partial derivative
-    UnitlessPerTime _hPartial;         //!< First component of the planar vector partial derivative
-    UnitlessPerTime _kPartial;         //!< Second component of the planar vector partial derivative
-    AngularRate _trueLongitudePartial; //!< True longitude partial derivative
+    Velocity _semilatusPartial;            //!< Semilatus rectum partial derivative
+    UnitlessPerTime _fPartial;             //!< First component of the eccentricity vector partial derivative
+    UnitlessPerTime _gPartial;             //!< Second component of the eccentricity vector partial derivative
+    UnitlessPerTime _hPartial;             //!< First component of the planar vector partial derivative
+    UnitlessPerTime _kPartial;             //!< Second component of the planar vector partial derivative
+    AngularVelocity _trueLongitudePartial; //!< True longitude partial derivative
 };
 
 } // namespace astro

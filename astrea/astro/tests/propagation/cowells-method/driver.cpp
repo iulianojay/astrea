@@ -13,11 +13,11 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/propagation/equations_of_motion/CowellsMethod.hpp>
+#include <astro/propagation/equations_of_motion/instances/CowellsMethod.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
@@ -79,9 +79,9 @@ TEST_F(CowellsMethodPropagationTest, GEONoForces)
     const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
 
     // Validate
-    for (const auto& [time, state] : stateHistory) {
+    for (const auto& state : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
+        ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }
 
@@ -98,9 +98,9 @@ TEST_F(CowellsMethodPropagationTest, GPSNoForces)
     const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
 
     // Validate
-    for (const auto& [time, state] : stateHistory) {
+    for (const auto& state : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
+        ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }
 
@@ -117,8 +117,8 @@ TEST_F(CowellsMethodPropagationTest, LEONoForces)
     const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
 
     // Validate
-    for (const auto& [time, state] : stateHistory) {
+    for (const auto& state : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
+        ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }

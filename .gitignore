@@ -1,9 +1,11 @@
 # Folders
 .devcontainer
 .coverage
+.cpm-cache
 .gcovr
 .venv
 .vscode
+.cpm-cache
 CMake*
 bin
 build
@@ -24,7 +26,6 @@ site
 # Specific files
 build.txt
 package.json
-get-pip.py
 pyastro/astro.py
 .coverage.info
 snapshot.db

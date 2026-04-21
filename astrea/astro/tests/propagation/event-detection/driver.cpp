@@ -13,11 +13,11 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/propagation/equations_of_motion/TwoBody.hpp>
+#include <astro/propagation/equations_of_motion/instances/TwoBody.hpp>
 #include <astro/propagation/event_detection/Event.hpp>
 #include <astro/propagation/event_detection/events/ImpulsiveBurn.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
@@ -86,9 +86,9 @@ TEST_F(EventDetectionTest, NoThrust)
     const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true, { impulse });
 
     // Validate
-    for (const auto& [time, state] : stateHistory) {
+    for (const auto& state : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
+        ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }
 
@@ -113,9 +113,9 @@ TEST_F(EventDetectionTest, ImpulsiveBurn)
     // Validate
     std::cout << "state0: " << kep0 << std::endl;
     bool elementsChanged = false;
-    for (const auto& [time, state] : stateHistory) {
+    for (const auto& state : stateHistory) {
         const Keplerian kep = state.in_element_set<Keplerian>();
-        std::cout << "\t" << time << ": " << kep << std::endl;
+        std::cout << "\t" << state.get_epoch() << ": " << kep << std::endl;
         if (!nearly_equal(kep, kep0, true, REL_TOL)) {
             elementsChanged = true;
             break;

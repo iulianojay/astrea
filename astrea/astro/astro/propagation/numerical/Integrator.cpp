@@ -301,12 +301,11 @@ StatePartial Integrator::find_state_derivative(const Time& time, const State& st
     ++_functionEvaluations;
 
     // Ask eom object to evaluate
+    // TODO: Figure out how to get rid of this copy
     State stateTemp = state;
     stateTemp.set_epoch(_epoch0 + time);
 
-    const OrbitalElementPartials orbitalElementPartials = _eom->operator()(stateTemp, vehicle);
-
-    return { orbitalElementPartials, stateTemp.get_epoch(), state.get_system() };
+    return _eom->operator()(stateTemp, vehicle);
 }
 
 // This is a generic form of an rk step method. Works for any rk, rkf, or dop method.

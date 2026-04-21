@@ -16,12 +16,12 @@ The force modeling system is built around several key components:
 All forces implement the abstract Force base class:
 
 ```cpp
-#include <astro/propagation/force_models/Force.hpp>
+#include <astro/propagation/force_models/PerturbingForce.hpp>
 
 class Force {
 public:
     virtual AccelerationVector<frames::earth::icrf>
-        compute_force(const State& state, const Vehicle& vehicle) const = 0;
+        compute_perturbation(const State& state, const Vehicle& vehicle) const = 0;
 };
 ```
 
@@ -57,7 +57,7 @@ The `ForceModel` uses a factory pattern to create, store, and invoke forces. For
 Models atmospheric drag effects on spacecraft:
 
 ```cpp
-#include <astro/propagation/force_models/AtmosphericForce.hpp>
+#include <astro/propagation/force_models/instances/AtmosphericForce.hpp>
 
 // Create atmospheric force model
 AtmosphericModel atmosphereModel = /* density model */;
@@ -69,7 +69,7 @@ $$
 $$
 
 ```cpp
-AccelerationVector<frames::earth::icrf>  dragAccel = dragForce.compute_force(state, satellite);
+AccelerationVector<frames::earth::icrf>  dragAccel = dragForce.compute_perturbation(state, satellite);
 ```
 Currently, the atmospheric force model only supports the Jaccia-Roberts 1971 density model, but future iterations will support additional models and user-defined density profiles.
 
@@ -79,7 +79,7 @@ Currently, the atmospheric force model only supports the Jaccia-Roberts 1971 den
 Models gravitational perturbations due to Earth's non-spherical shape:
 
 ```cpp
-#include <astro/propagation/force_models/OblatenessForce.hpp>
+#include <astro/propagation/force_models/instances/OblatenessForce.hpp>
 
 // Create oblateness force with zonal harmonics
 AstrodynamicsSystem system;   // Earth system
@@ -95,7 +95,7 @@ V = \frac{\mu}{r} \sum_{n=0}^{N} \left( \frac{R_e}{r} \right)^n \sum_{m=0}^{\min
 $$
 
 ```cpp
-AccelerationVector<frames::earth::icrf> oblatenessAccel = oblatenessForce compute_force(state, vehicle);
+AccelerationVector<frames::earth::icrf> oblatenessAccel = oblatenessForce compute_perturbation(state, vehicle);
 ```
 Currently, the oblateness force model only supports the EGM2008 gravity field, but future iterations will support additional fields and user-defined spherical harmonic coefficients. There are also stored coefficients for the Moon, Mars, Mercury, and Venus.
 
@@ -105,7 +105,7 @@ Currently, the oblateness force model only supports the EGM2008 gravity field, b
 Models radiation pressure from solar photons:
 
 ```cpp
-#include <astro/propagation/force_models/SolarRadiationPressure.hpp>
+#include <astro/propagation/force_models/instances/SolarRadiationPressure.hpp>
 
 // Create solar radiation pressure model
 SolarRadiationPressure srpForce;
@@ -116,7 +116,7 @@ $$
 $$
 
 ```cpp
-AccelerationVector<frames::earth::icrf>  srpAccel = srpForce.compute_force(state, satellite);
+AccelerationVector<frames::earth::icrf>  srpAccel = srpForce.compute_perturbation(state, satellite);
 ```
 The solar radiation pressure model currently uses a single averaged value for the solar radiation pressure at 1 AU and a simple umbra/penumbra model, but future iterations will support time-varying solar flux and user-defined radiation pressure values as well as more complex models that account for eclipses and shadowing effects.
 
@@ -126,7 +126,7 @@ The solar radiation pressure model currently uses a single averaged value for th
 Models gravitational effects from third bodies (Moon, Sun, planets):
 
 ```cpp
-#include <astro/propagation/force_models/NBodyForce.hpp>
+#include <astro/propagation/force_models/instances/NBodyForce.hpp>
 
 // Create multi-body system
 AstrodynamicsSystem system(
@@ -145,7 +145,7 @@ $$
 where \(\vec{r}_i\) is position of perturbing body \(i\) relative to central body
 
 ```cpp
-AccelerationVector<frames::earth::icrf>  nBodyAccel = nBodyForce.compute_force(state, vehicle);
+AccelerationVector<frames::earth::icrf>  nBodyAccel = nBodyForce.compute_perturbation(state, vehicle);
 ```
 The n-body force relies on assumptions of relative positions hard coded into the AstrodynamicsSystem that fixes it to an Earth-centric model, but future iterations will support user-defined perturbing bodies and more flexible ephemeris handling.
 
@@ -155,7 +155,7 @@ Users can create custom force models by inheriting from the Force base class:
 
 ```cpp
 // Custom thruster force
-class ThrusterForce : public Force {
+class ThrusterForce : public PerturbingForce {
 public:
     ThrusterForce(const RadiusVector<frames::earth::icrf>& thrustVector, const Time& startTime, const Time& duration) :
         _thrustVector(thrustVector),
@@ -164,7 +164,7 @@ public:
     {
     }
 
-    AccelerationVector<frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override
+    Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override
     {
         Time currentTime = state.get_epoch();
 

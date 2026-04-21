@@ -135,18 +135,17 @@ class GroundPoint : virtual public AccessObject, virtual astro::FrameReference {
      */
     astro::CartesianVector<Velocity, astro::frames::earth::icrf> get_inertial_velocity(const astro::Date& date) const;
 
+    /**
+     * @brief Get the name of the ground point.
+     *
+     * @return std::string The name of the ground point, typically derived from its coordinates or a user-defined identifier.
+     */
     std::string get_name() const;
 
   protected:
     const astro::CelestialBody* _parent; //!< Pointer to the parent celestial body
     astro::Geodetic _lla;                //!< Geodetic coordinates of the ground point
     std::size_t _id;                     //!< Unique identifier for the ground station, generated from its properties.
-
-    /**
-     * @brief Generates a unique identifier for the ground station based on its properties.
-     * This method is called in the constructor to ensure that each ground station has a unique ID.
-     */
-    std::size_t generate_id();
 };
 
 } // namespace trace

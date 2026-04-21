@@ -28,6 +28,7 @@
 #include <units/units.hpp>
 
 #include <astro/time/JulianDateClock.hpp>
+#include <astro/time/TerrestrialTimeClock.hpp>
 
 namespace astrea {
 namespace astro {
@@ -143,12 +144,7 @@ class Date {
      * @param other The Date object to compare with.
      * @return std::strong_ordering A strong ordering result indicating the comparison.
      */
-    auto operator<=>(const Date& other) const
-    {
-        using std::chrono::floor;
-        using std::chrono::milliseconds;
-        return floor<milliseconds>(_julianDate) <=> floor<milliseconds>(other._julianDate);
-    }
+    auto operator<=>(const Date& other) const { return _julianDate <=> other._julianDate; }
 
     /**
      * @brief Check if this Date object is equal to another Date object.
@@ -156,12 +152,7 @@ class Date {
      * @param other The Date object to compare with.
      * @return bool True if the two Date objects are equal, false otherwise.
      */
-    bool operator==(const Date& other) const
-    {
-        using std::chrono::floor;
-        using std::chrono::milliseconds;
-        return floor<milliseconds>(_julianDate) == floor<milliseconds>(other._julianDate);
-    }
+    bool operator==(const Date& other) const { return _julianDate == other._julianDate; }
 
     /**
      * @brief Get the Julian date representation of this Date object.
@@ -206,16 +197,11 @@ class Date {
     std::chrono::time_point<std::chrono::tai_clock> tai() const { return in_clock<std::chrono::tai_clock>(); }
 
     /**
-     * @brief Get the Date in TT clock format.
+     * @brief Get the Date in Terrestrial Time (TT) clock format.
      *
-     * @return std::chrono::time_point<std::chrono::tt_clock>
+     * @return TerrestrialTime The Date in TT clock format.
      */
-    // std::chrono::time_point<std::chrono::tai_clock> tt() const
-    // {
-    //     // TODO: Make tt clock. Find better conversion numbers
-    //     using namespace std::chrono;
-    //     return in_clock<tai_clock>().time_since_epoch() + std::chrono::milliseconds{ 32184.0 };
-    // }
+    TerrestrialTime tt() const { return in_clock<TerrestrialTimeClock>(); }
 
     /**
      * @brief Get the Date in sys clock format.

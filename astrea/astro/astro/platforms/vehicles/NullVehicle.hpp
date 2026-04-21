@@ -36,9 +36,9 @@ class NullVehicle : public FrameReference {
     /**
      * @brief Constructs a NullVehicle with an initial state and mass.
      *
-     * @param mass The mass of the vehicle, defaulting to zero kilograms.
+     * @param mass The mass of the vehicle, defaulting to one kilogram.
      */
-    NullVehicle(const Mass& mass = 0.0 * mp_units::si::unit_symbols::kg);
+    NullVehicle(const Mass& mass = 1.0 * mp_units::si::unit_symbols::kg);
 
     /**
      * @brief Clone the NullVehicle object.

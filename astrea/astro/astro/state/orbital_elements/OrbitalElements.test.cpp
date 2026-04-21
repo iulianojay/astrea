@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
@@ -246,7 +246,7 @@ TEST_F(OrbitalElementsTest, InterpolateCartesian)
     OrbitalElements result   = _cartElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), _mu, 0.5 * s);
     OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, _mu, 0.5 * s);
 
-    ASSERT_EQ_ORB_ELEM(result, OrbitalElements(expected), false, REL_TOL);
+    ASSERT_TRUE(nearly_equal(result, OrbitalElements(expected), false, REL_TOL));
     ASSERT_ANY_THROW(_cartElements.interpolate(0.0 * s, 1.0 * s, _keplElements, _mu, 0.5 * s));
     ASSERT_ANY_THROW(_cartElements.interpolate(0.0 * s, 1.0 * s, _equiElements, _mu, 0.5 * s));
 }
@@ -259,7 +259,7 @@ TEST_F(OrbitalElementsTest, InterpolateKeplerian)
     OrbitalElements result   = _keplElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), _mu, 0.5 * s);
     OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, _mu, 0.5 * s);
 
-    ASSERT_EQ_ORB_ELEM(result, OrbitalElements(expected), false, REL_TOL);
+    ASSERT_TRUE(nearly_equal(result, OrbitalElements(expected), false, REL_TOL));
     ASSERT_ANY_THROW(_keplElements.interpolate(0.0 * s, 1.0 * s, _cartElements, _mu, 0.5 * s));
     ASSERT_ANY_THROW(_keplElements.interpolate(0.0 * s, 1.0 * s, _equiElements, _mu, 0.5 * s));
 }
@@ -272,7 +272,7 @@ TEST_F(OrbitalElementsTest, InterpolateEquinoctial)
     OrbitalElements result   = _equiElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), _mu, 0.5 * s);
     OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, _mu, 0.5 * s);
 
-    ASSERT_EQ_ORB_ELEM(result, OrbitalElements(expected), false, REL_TOL);
+    ASSERT_TRUE(nearly_equal(result, OrbitalElements(expected), false, REL_TOL));
     ASSERT_ANY_THROW(_equiElements.interpolate(0.0 * s, 1.0 * s, _cartElements, _mu, 0.5 * s));
     ASSERT_ANY_THROW(_equiElements.interpolate(0.0 * s, 1.0 * s, _keplElements, _mu, 0.5 * s));
 }

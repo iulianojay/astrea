@@ -29,7 +29,7 @@ struct MyEquationsOfMotion : public EquationsOfMotion {
         return OrbitalElements::get_set_id<Cartesian>();
     };
 
-    OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override
+    OrbitalElementPartials compute_dynamics(const State& state, const Vehicle& vehicle, const ForceVector<frames::earth::icrf>& perts, const ForceVector<frames::earth::icrf>& control) const override
     {
         // Extracting into the desired set can be convenient
         const AstrodynamicsSystem& system = state.get_system();

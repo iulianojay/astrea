@@ -33,8 +33,8 @@ set(CMAKE_INSTALL_MESSAGE LAZY)
 # add_library(astrea_options INTERFACE)
 
 # target_compile_features(astrea_options INTERFACE cxx_std_${CMAKE_CXX_STANDARD})
-if(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.0.0)
-    message(FATAL_ERROR "GCC 13.0.0 or greater required.")
+if(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 14.0.0)
+    message(FATAL_ERROR "GCC 14.0.0 or greater required.")
 endif()
 
 # Include dependencies

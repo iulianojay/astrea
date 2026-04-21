@@ -2,11 +2,17 @@ SHELL := bash
 MAKEFLAGS += --no-builtin-rules --no-print-directory
 
 config_path := $(abspath .)
+venv_activate := $(config_path)/.venv/bin/activate
+CMAKE := source $(venv_activate) && cmake
 source_path := astrea
 examples_path := examples
 arch := x86_64
 os := Linux
-comp := GNU-13.1.0
+cxx := g++
+cxx_std := 23
+cxx_name := $(shell echo $(cxx) | sed 's/g++/gcc/; s/clang++/clang/' | sed 's/-[0-9.]*$$//')
+cxx_ver := $(shell $(cxx) -dumpversion | cut -d. -f1)
+comp := $(cxx_name)-$(cxx_ver)-$(cxx_std)
 tests_path := tests
 
 # Compiler configuration - can be 'gcc' or 'mingw'
@@ -23,8 +29,8 @@ endif
 
 build_type := Release
 build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
-build_path := $(abspath ./build/$(toolchain_name)/$(build_type))
-install_path := $(abspath ./install/$(toolchain_name)/$(build_type))
+build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type))
+install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type))
 build_tests := OFF
 build_examples := OFF
 build_profilers := OFF
@@ -48,7 +54,7 @@ profile: profiling install
 
 .PHONY: install
 install: build
-	cmake --build $(build_path) --target install -j10
+	$(CMAKE) --build $(build_path) --target install -j10
 
 .PHONY: install-gcc
 install-gcc: gcc install
@@ -62,12 +68,14 @@ build:
 	$(toolchain_file) \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
+	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
 	-DBUILD_TESTS=$(build_tests) \
 	-DBUILD_EXAMPLES=$(build_examples) \
 	-DBUILD_STATIC=$(build_static) \
 	-DBUILD_PROFILERS=$(build_profilers) \
 	-DBUILD_CHECKCASE_DATABASE=$(build_checkcase_db) \
-	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases)
+	-DRUN_6DOF_CHECKCASES=$(run_6dof_checkcases) \
+	-Wno-dev
 	
 .PHONY: build-gcc
 build-gcc: gcc build
@@ -79,22 +87,22 @@ build-mingw: mingw build
 debug:
 	$(eval build_type = Debug)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type)))
 
 .PHONY: release
 release:
 	$(eval build_type = Release)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type)))
 
 .PHONY: relwithdebinfo
 relwithdebinfo:
 	$(eval build_type = RelWithDebInfo)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type)))
 
 # Compiler selection targets
 .PHONY: gcc
@@ -102,16 +110,16 @@ gcc:
 	$(eval compiler = gcc)
 	$(eval toolchain_name = gcc-13-23)
 	$(eval toolchain_file = )
-	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type)))
 
 .PHONY: mingw
 mingw:
 	$(eval compiler = mingw)
 	$(eval toolchain_name = mingw-w64)
 	$(eval toolchain_file = -DCMAKE_TOOLCHAIN_FILE=$(abspath cmake/windows_toolchain.cmake))
-	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type)))
 
 .PHONY: tests
 tests:
@@ -196,17 +204,17 @@ check: build
 	find $(examples_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
 
 .PHONY: coverage-html
-coverage-html: debug run_tests run_examples
+coverage-html: #debug run_tests run_examples
 	cd build && \
 	gcovr -r .. --html-nested \
 	-o ../.gcovr/coverage.html \
 	--merge-mode-functions=separate \
 	--filter ".*/astrea/" \
-	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*test_util.hpp|.*plotting.*|.*/plots/.*|.*SpatialIndex.*" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*plotting.*|.*/plots/.*|.*SpatialIndex.*" \
 	--exclude-unreachable-branches -s \
 	--gcov-ignore-errors=no_working_dir_found \
-	--gcov-ignore-parse-errors=suspicious_hits.warn_once_per_file && \
-	cd ..
+	--gcov-ignore-parse-errors=suspicious_hits.warn_once_per_file \
+	--gcov-executable gcov-15
 
 .PHONY: coverage
 coverage: debug run_tests run_examples
@@ -215,16 +223,15 @@ coverage: debug run_tests run_examples
 	-o ../.gcovr/coverage.xml  \
 	--merge-mode-functions=separate \
 	--filter ".*/astrea/" \
-	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*test_util.hpp|.*plotting.*|.*/plots/.*|.*SpatialIndex.*" \
+	--exclude ".*.test.cpp|.*/tests/.*|.*/snapshot/.*|.*plotting.*|.*/plots/.*|.*SpatialIndex.*" \
 	--exclude-unreachable-branches -s \
 	--gcov-ignore-errors=no_working_dir_found \
 	--gcov-ignore-parse-errors=suspicious_hits.warn_once_per_file \
-	&& cd ..
+	--gcov-executable gcov-15
 
 .PHONY: build_env
 build_env:
-	rm -rf .venv
-	python3 -m venv .venv
+	uv venv .venv
 
 .PHONY: activate_env
 activate_env:
@@ -232,7 +239,11 @@ activate_env:
 
 .PHONY: install_deps
 install_deps:
-	.venv/bin/pip install -r requirements.txt
+	uv pip install -r pyproject.toml
 
 .PHONY: python_env
 python_env: build_env activate_env install_deps
+
+.PHONY: clean-env
+clean-env:
+	rm -rf .venv

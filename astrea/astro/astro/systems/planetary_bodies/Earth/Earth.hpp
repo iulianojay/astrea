@@ -46,7 +46,7 @@ static const CelestialBodyParameters DEFAULT_EARTH_PARAMS{
     .j2                = Unitless(0.00108262982 * mp_units::one),
     .j3                = Unitless(-0.0000025323 * mp_units::one),
     .axialTilt         = Angle(23.439292 * mp_units::angular::unit_symbols::deg),
-    .rotationRate = AngularRate(7.29211514670638e-5 * mp_units::angular::unit_symbols::rad / mp_units::si::unit_symbols::s),
+    .rotationRate = AngularVelocity(7.29211514670638e-5 * mp_units::angular::unit_symbols::rad / mp_units::si::unit_symbols::s),
     .siderealPeriod         = Time(365.256 * mp_units::non_si::day),
     .semimajorAxis          = Distance(1.00000261 * mp_units::iau::unit_symbols::au),
     .eccentricity           = Unitless(0.01671123 * mp_units::one),
@@ -56,10 +56,10 @@ static const CelestialBodyParameters DEFAULT_EARTH_PARAMS{
     .meanLongitude          = Angle(100.46457166 * mp_units::angular::unit_symbols::deg),
     .semimajorAxisRate      = InterplanetaryVelocity(0.00000562 * mp_units::iau::unit_symbols::au / JulianCentury),
     .eccentricityRate       = BodyUnitlessPerTime(-0.00004392 * mp_units::one / JulianCentury),
-    .inclinationRate        = BodyAngularRate(-0.01294668 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .rightAscensionRate     = BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .longitudeOfPerigeeRate = BodyAngularRate(0.32327364 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .meanLongitudeRate      = BodyAngularRate(35999.37244981 * mp_units::angular::unit_symbols::deg / JulianCentury)
+    .inclinationRate        = BodyAngularVelocity(-0.01294668 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .rightAscensionRate     = BodyAngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .longitudeOfPerigeeRate = BodyAngularVelocity(0.32327364 * mp_units::angular::unit_symbols::deg / JulianCentury),
+    .meanLongitudeRate      = BodyAngularVelocity(35999.37244981 * mp_units::angular::unit_symbols::deg / JulianCentury)
 };
 
 /**

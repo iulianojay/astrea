@@ -20,6 +20,8 @@
 
 #include <vector>
 
+#include <utilities/IdProvider.hpp>
+
 #include <astro/astro.fwd.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
@@ -45,7 +47,7 @@ class Plane {
     /**
      * @brief Default constructor for Plane.
      */
-    Plane() = default;
+    Plane() { id = utilities::IdProvider::get_next_id<"Plane">(); };
 
     /**
      * @brief Construct a Plane from a vector of Spacecraft.
@@ -57,7 +59,7 @@ class Plane {
     /**
      * @brief Destructor for Plane.
      */
-    ~Plane() { generate_id(); };
+    ~Plane() = default;
 
     /**
      * @brief Add a Spacecraft to the Plane.
@@ -87,6 +89,13 @@ class Plane {
      * @return Spacecraft_T& A reference to the Spacecraft with the specified ID.
      */
     const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
+
+    /**
+     * @brief Get the orbital elements shared by all Spacecraft in the Plane. The fast variable can be ignored.
+     *
+     * @return const OrbitalElements& A const reference to the orbital elements of the Plane.
+     */
+    const OrbitalElements& get_elements() const { return elements; }
 
     /**
      * @brief Get the number of Spacecraft in the Plane.
@@ -178,13 +187,6 @@ class Plane {
     std::vector<Spacecraft_T> satellites; // Vector of Spacecraft in the Plane
 
     bool strict; // Flag to indicate if the Plane is strict (all Spacecraft must have the same orbital elements)
-
-    /**
-     * @brief Generate a unique ID hash for the Plane.
-     *
-     * This function generates a unique ID hash for the Plane based on its contents.
-     */
-    void generate_id();
 };
 
 } // namespace astro

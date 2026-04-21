@@ -102,9 +102,7 @@ set(TRACE_LIBS
     mp-units::mp-units
     matplot
     nlohmann_json::nlohmann_json
-    csv
     sqlite_orm::sqlite_orm
-    date::date
 )
 
 # Shared library
@@ -135,11 +133,12 @@ target_compile_options(${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs -Wn
 file(MAKE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/include)
 
 # Install headers
-file(COPY
+install(
     DIRECTORY ${TRACE_BASE}
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+    DESTINATION include
     FILES_MATCHING
     PATTERN *.hpp
+    PATTERN *.ipp
     PATTERN *.h
 )
 

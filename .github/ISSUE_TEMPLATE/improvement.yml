@@ -1,0 +1,49 @@
+name: Improvement
+description: Suggest an improvement to existing functionality
+title: "[IMPROVEMENT] "
+labels: [improvement]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement. Please fill out the sections below to help us understand your proposal.
+
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: What currently exists
+      description: Describe the existing functionality you'd like to see improved.
+    validations:
+      required: true
+
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Suggested improvement
+      description: A clear and concise description of how the existing functionality should be improved.
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Why would this improvement be beneficial? What problem does it solve or what value does it add?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any alternative approaches you've considered.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Add any other context, screenshots, or benchmarks here.

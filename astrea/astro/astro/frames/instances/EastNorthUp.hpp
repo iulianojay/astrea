@@ -88,9 +88,7 @@ class EastNorthUp : public DynamicFrame<EastNorthUp, FrameAxis::ENU> {
         const Unitless cosLon = cos(lon);
 
         return DirectionCosineMatrix<frames::earth::icrf, EastNorthUp>(
-            { std::array<Unitless, 3>{ -sinLat, cosLat, 0.0 * one },
-              std::array<Unitless, 3>{ -cosLat * sinLon, -sinLat * sinLon, cosLon },
-              std::array<Unitless, 3>{ cosLat * cosLon, sinLat * cosLon, sinLon } }
+            { -sinLat, cosLat, 0.0 * one }, { -cosLat * sinLon, -sinLat * sinLon, cosLon }, { cosLat * cosLon, sinLat * cosLon, sinLon }
         );
     }
 

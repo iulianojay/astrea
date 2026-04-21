@@ -28,13 +28,7 @@ Velocity Thruster::get_impulsive_delta_v() const
     return get_parameters().get_thrust() / get_parent()->get_mass() * s;
 }
 
-std::size_t Thruster::generate_id() const
-{
-    static std::size_t idCounter = 0;
-    return idCounter++;
-}
-
-Thrust Thruster::get_thrust() const { return get_parameters().get_thrust(); }
+Force Thruster::get_thrust() const { return get_parameters().get_thrust(); }
 
 void Thruster::switch_on() { get_parameters().switch_on(); }
 

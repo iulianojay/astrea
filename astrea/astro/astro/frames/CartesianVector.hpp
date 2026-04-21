@@ -21,6 +21,7 @@
 #include <array>
 #include <typeinfo>
 
+#include <mp-units/framework.h>
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 
@@ -57,6 +58,9 @@ template <class Value_T, class Frame_T>
 class CartesianVector {
 
   public:
+    using value_type = Value_T;
+    using frame_type = Frame_T;
+
     /**
      * @brief Default constructor for CartesianVector.
      *
@@ -70,15 +74,44 @@ class CartesianVector {
     {
     }
 
+    /**
+     * @brief Return the reverse of the vector, which switches the x and z components. This is useful for converting between different rotation sequences.
+     */
+    CartesianVector reverse() const { return { _vector[2], _vector[1], _vector[0] }; }
+
+    /**
+     * @brief Virtual destructor for CartesianVector.
+     */
+    virtual ~CartesianVector() = default;
+
     // Explicitly deleted copy/move assignment/constructor to prevent implicit frame switches.
     template <typename Frame_U>
+        requires(!IsSameFrame<Frame_T, Frame_U>)
     CartesianVector(const CartesianVector<Value_T, Frame_U>& other) = delete;
+
     template <typename Frame_U>
+        requires(!IsSameFrame<Frame_T, Frame_U>)
     CartesianVector(CartesianVector<Value_T, Frame_U>&& other) = delete;
+
     template <typename Frame_U>
+        requires(!IsSameFrame<Frame_T, Frame_U>)
     CartesianVector<Value_T, Frame_T> operator=(const CartesianVector<Value_T, Frame_U>& other) = delete;
+
     template <typename Frame_U>
+        requires(!IsSameFrame<Frame_T, Frame_U>)
     CartesianVector<Value_T, Frame_T> operator=(CartesianVector<Value_T, Frame_U>&& other) = delete;
+
+    /**
+     * @brief Copy constructor for CartesianVector that implicitly converts the unit.
+     *
+     * @return CartesianVector<Value_T, Frame_T> A new CartesianVector with the same components but potentially different unit.
+     */
+    template <typename Value_U>
+        requires(!is_specialization<Value_U, CartesianVector>::value && std::constructible_from<Value_T, Value_U>)
+    CartesianVector<Value_T, Frame_T> operator=(const CartesianVector<Value_U, Frame_T>& other) const
+    {
+        return CartesianVector<Value_T, Frame_T>(other[0], other[1], other[2]);
+    }
 
     /**
      * @brief Copy constructor for CartesianVector that implicitly converts the frame.
@@ -86,7 +119,7 @@ class CartesianVector {
      * @param other The other CartesianVector to copy from.
      */
     template <typename Frame_U>
-    CartesianVector<Value_T, Frame_U> force_frame_conversion() const
+    constexpr CartesianVector<Value_T, Frame_U> force_frame_conversion() const
     {
         return CartesianVector<Value_T, Frame_U>(_vector[0], _vector[1], _vector[2]);
     }
@@ -358,19 +391,22 @@ class CartesianVector {
     template <typename Value_U>
     Angle offset_angle(const CartesianVector<Value_U, Frame_T>& other) const
     {
+        using namespace mp_units;
+        using namespace mp_units::angular;
+
         const Value_T v1Mag = norm();
         const Value_U v2Mag = other.norm();
 
-        if (v1Mag.numerical_value_in(v1Mag.unit) == 0 || v2Mag.numerical_value_in(v2Mag.unit) == 0) {
+        if (v1Mag == Value_T::zero() || v2Mag == Value_U::zero()) {
             throw std::runtime_error("Cannot calculate angle with zero-magnitude vector");
         }
 
         const auto v1DotV2 = dot(other);
         const auto ratio   = v1DotV2 / (v1Mag * v2Mag);
-        if (mp_units::abs(ratio) > 1.0 * mp_units::one) {
-            return 0.0 * astrea::detail::angle_unit;
-        } // catch rounding errors - TODO: Make this more intelligent
-        return mp_units::angular::acos(ratio);
+
+        // magic number is 0.5 ULP for floats near 1.0
+        if (abs(ratio - 1.0 * one) < 2.107342e-08 * one) { return 0.0 * astrea::detail::angle_unit; }
+        return acos(ratio);
     }
 
     /**
@@ -449,7 +485,7 @@ class CartesianVector {
         );
     }
 
-  private:
+  protected:
     std::array<Value_T, 3> _vector; //!< Array to hold the x, y, and z components of the vector.
 };
 
@@ -463,28 +499,9 @@ class CartesianVector {
  * @return The output stream.
  */
 template <class Value_T, class Frame_T>
-    requires(std::is_constructible<Frame_T>::value)
 std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, Frame_T>& state)
 {
-    // static const Frame_T frame;
-    os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "]";
-    return os;
-}
-
-/**
- * @brief Overload the output stream operator for CartesianVector.
- *
- * @tparam Value_T The type of the vector components.
- * @tparam Frame_T The type of the frame.
- * @param os The output stream.
- * @param state The CartesianVector to output.
- * @return The output stream.
- */
-template <class Value_T, class Frame_T>
-    requires(!std::is_constructible<Frame_T>::value)
-std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, Frame_T>& state)
-{
-    // static const std::string name = utilities::get_type_name<Frame_T>(); // Make this utilities function constexpr
+    // static const std::string name = utilities::get_type_name<Frame_T>();
     os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "]";
     return os;
 }

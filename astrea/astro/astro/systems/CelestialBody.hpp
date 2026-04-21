@@ -195,9 +195,9 @@ class CelestialBody {
     /**
      * @brief Get the rotation rate of the celestial body.
      *
-     * @return const AngularRate& Reference to the rotation rate of the celestial body.
+     * @return const AngularVelocity& Reference to the rotation rate of the celestial body.
      */
-    constexpr const AngularRate& get_rotation_rate() const { return _rotationRate; };
+    constexpr const AngularVelocity& get_rotation_rate() const { return _rotationRate; };
 
     /**
      * @brief Get the sidereal period of the celestial body.
@@ -282,30 +282,30 @@ class CelestialBody {
     /**
      * @brief Get the inclination rate of the celestial body.
      *
-     * @return const BodyAngularRate& Reference to the inclination rate of the celestial body.
+     * @return const BodyAngularVelocity& Reference to the inclination rate of the celestial body.
      */
-    constexpr const BodyAngularRate& get_inclination_rate() const { return _inclinationRate; };
+    constexpr const BodyAngularVelocity& get_inclination_rate() const { return _inclinationRate; };
 
     /**
      * @brief Get the right ascension rate of the celestial body.
      *
-     * @return const BodyAngularRate& Reference to the right ascension rate of the celestial body.
+     * @return const BodyAngularVelocity& Reference to the right ascension rate of the celestial body.
      */
-    constexpr const BodyAngularRate& get_right_ascension_rate() const { return _rightAscensionRate; };
+    constexpr const BodyAngularVelocity& get_right_ascension_rate() const { return _rightAscensionRate; };
 
     /**
      * @brief Get the longitude of perigee rate of the celestial body.
      *
-     * @return const BodyAngularRate& Reference to the longitude of perigee rate of the celestial body.
+     * @return const BodyAngularVelocity& Reference to the longitude of perigee rate of the celestial body.
      */
-    constexpr const BodyAngularRate& get_longitude_of_perigee_rate() const { return _longitudeOfPerigeeRate; };
+    constexpr const BodyAngularVelocity& get_longitude_of_perigee_rate() const { return _longitudeOfPerigeeRate; };
 
     /**
      * @brief Get the mean longitude rate of the celestial body.
      *
-     * @return const BodyAngularRate& Reference to the mean longitude rate of the celestial body.
+     * @return const BodyAngularVelocity& Reference to the mean longitude rate of the celestial body.
      */
-    constexpr const BodyAngularRate& get_mean_longitude_rate() const { return _meanLongitudeRate; };
+    constexpr const BodyAngularVelocity& get_mean_longitude_rate() const { return _meanLongitudeRate; };
 
     /**
      * @brief Finds the atmospheric density at a given date and state.
@@ -353,11 +353,11 @@ class CelestialBody {
     Distance _crashRadius;       //!< Crash radius of the celestial body
     Distance _sphereOfInfluence; //!< Crash radius of the celestial body
 
-    Unitless _j2;              //!< J2 gravitational coefficient of the celestial body
-    Unitless _j3;              //!< J3 gravitational coefficient of the celestial body
-    Angle _axialTilt;          //!< Axial tilt of the celestial body
-    AngularRate _rotationRate; //!< Rotation rate of the celestial body
-    Time _siderealPeriod;      //!< Sidereal period of the celestial body
+    Unitless _j2;                  //!< J2 gravitational coefficient of the celestial body
+    Unitless _j3;                  //!< J3 gravitational coefficient of the celestial body
+    Angle _axialTilt;              //!< Axial tilt of the celestial body
+    AngularVelocity _rotationRate; //!< Rotation rate of the celestial body
+    Time _siderealPeriod;          //!< Sidereal period of the celestial body
 
     Distance _semimajorAxis;   //!< Semimajor axis
     Unitless _eccentricity;    //!< Eccentricity
@@ -369,12 +369,12 @@ class CelestialBody {
     Angle _meanAnomaly;        //!< Mean anomaly
 
     // These rates need to stay in rate/JC to avoid numerical issues
-    InterplanetaryVelocity _semimajorAxisRate; //!< Rate of change of the semimajor axis
-    BodyUnitlessPerTime _eccentricityRate;     //!< Rate of change of the eccentricity
-    BodyAngularRate _inclinationRate;          //!< Rate of change of the inclination
-    BodyAngularRate _rightAscensionRate;       //!< Rate of change of the right ascension
-    BodyAngularRate _longitudeOfPerigeeRate;   //!< Rate of change of the longitude of perigee
-    BodyAngularRate _meanLongitudeRate;        //!< Rate of change of the mean longitude
+    InterplanetaryVelocity _semimajorAxisRate;   //!< Rate of change of the semimajor axis
+    BodyUnitlessPerTime _eccentricityRate;       //!< Rate of change of the eccentricity
+    BodyAngularVelocity _inclinationRate;        //!< Rate of change of the inclination
+    BodyAngularVelocity _rightAscensionRate;     //!< Rate of change of the right ascension
+    BodyAngularVelocity _longitudeOfPerigeeRate; //!< Rate of change of the longitude of perigee
+    BodyAngularVelocity _meanLongitudeRate;      //!< Rate of change of the mean longitude
 
     static constexpr double _COEFF_ZERO_FACTOR = 1.0;
 

@@ -19,7 +19,6 @@
 #include <iostream>
 #include <sstream>
 
-#include <date/date.h> // NOTE: This is standard in std::chrono as of GNU 13.2
 #include <mp-units/math.h>
 
 #include <astro/systems/planetary_bodies/Earth/Earth.hpp>
@@ -84,7 +83,7 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
     // Stream date string into time point
     std::istringstream epochStream{ epoch };
     sys_time<std::chrono::milliseconds> systemTime;
-    epochStream >> date::parse(format, systemTime);
+    epochStream >> std::chrono::parse(format, systemTime);
 
     // Convert with clock cast
     return round<std::chrono::milliseconds>(clock_cast<JulianDateClock>(systemTime));
@@ -116,8 +115,8 @@ Angle julian_date_to_sidereal_time(const JulianDate& _julianDate)
         (100.4606184 * one + 36000.77005361 * T0 + 0.00038793 * T0 * T0 - 2.583e-8 * T0 * T0 * T0) * deg;
 
     // GST
-    static const AngularRate earthRotRate = planetary_bodies::Earth().get_rotation_rate(); // in rad/s
-    const Angle greenwichSiderealTime     = wrap_angle(greenwichUniversalTime + earthRotRate * universalTime);
+    static const AngularVelocity earthRotRate = planetary_bodies::Earth().get_rotation_rate(); // in rad/s
+    const Angle greenwichSiderealTime         = wrap_angle(greenwichUniversalTime + earthRotRate * universalTime);
 
     return greenwichSiderealTime;
 }

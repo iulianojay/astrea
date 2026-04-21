@@ -15,7 +15,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/state/orbital_data_formats/instances/TwoLineElements.hpp>
@@ -95,21 +95,21 @@ TEST_F(TwoLineElementsTest, StringConstructor)
     ASSERT_EQ(tle.get_launch_number(), "067");
     ASSERT_EQ(tle.get_launch_piece(), "A");
     ASSERT_EQ(tle.get_epoch(), Date("2008-09-20 12:25:40"));
-    ASSERT_EQ_QUANTITY(tle.get_mean_motion_1st_derivative(), MeanMotion1stDer(-0.00002182 * one / pow<2>(day)), REL_TOL);
-    ASSERT_EQ_QUANTITY(tle.get_mean_motion_2nd_derivative(), MeanMotion2ndDer(-0.0 * one / pow<3>(day)), REL_TOL);
-    ASSERT_EQ_QUANTITY(tle.get_ballistic_coefficient(), BallisticCoefficient(-0.000011606 * one / EarthRadii), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(tle.get_mean_motion_1st_derivative(), MeanMotion1stDer(-0.00002182 * one / pow<2>(day)), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(tle.get_mean_motion_2nd_derivative(), MeanMotion2ndDer(-0.0 * one / pow<3>(day)), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(tle.get_ballistic_coefficient(), BallisticCoefficient(-0.000011606 * one / EarthRadii), REL_TOL));
     ASSERT_EQ(tle.get_ephemeris_type(), 0);
     ASSERT_EQ(tle.get_element_set_number(), 292);
     ASSERT_EQ(tle.get_check_sum1(), 7);
 
-    ASSERT_EQ_QUANTITY(tle.get_semimajor(), Distance(22919.069 * km), REL_TOL); // derived
-    ASSERT_EQ_QUANTITY(tle.get_eccentricity(), Unitless(0.0006703), REL_TOL);
-    ASSERT_EQ_QUANTITY(tle.get_inclination(), Angle(51.6416 * deg), REL_TOL);
-    ASSERT_EQ_QUANTITY(tle.get_right_ascension(), Angle(247.4627 * deg), REL_TOL);
-    ASSERT_EQ_QUANTITY(tle.get_argument_of_perigee(), Angle(130.5360 * deg), REL_TOL);
-    ASSERT_EQ_QUANTITY(tle.get_true_anomaly(), Angle(324.9847 * deg), REL_TOL); // derived
+    ASSERT_TRUE(math::nearly_equal(tle.get_semimajor(), Distance(22919.069 * km), REL_TOL)); // derived
+    ASSERT_TRUE(math::nearly_equal(tle.get_eccentricity(), Unitless(0.0006703), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(tle.get_inclination(), Angle(51.6416 * deg), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(tle.get_right_ascension(), Angle(247.4627 * deg), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(tle.get_argument_of_perigee(), Angle(130.5360 * deg), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(tle.get_true_anomaly(), Angle(324.9847 * deg), REL_TOL)); // derived
 
-    ASSERT_EQ_QUANTITY(tle.get_mean_motion(), MeanMotion(15.72125391 * one / day), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(tle.get_mean_motion(), MeanMotion(15.72125391 * one / day), REL_TOL));
 
     ASSERT_EQ(tle.get_rev_number(), 56353);
     ASSERT_EQ(tle.get_check_sum2(), 7);
@@ -134,21 +134,21 @@ TEST_F(TwoLineElementsTest, StringConstructor3Line)
     ASSERT_EQ(tle.get_launch_number(), "067");
     ASSERT_EQ(tle.get_launch_piece(), "A");
     ASSERT_EQ(tle.get_epoch(), Date("2008-09-20 12:25:40"));
-    ASSERT_EQ_QUANTITY(tle.get_mean_motion_1st_derivative(), MeanMotion1stDer(-0.00002182 * one / pow<2>(day)), REL_TOL);
-    ASSERT_EQ_QUANTITY(tle.get_mean_motion_2nd_derivative(), MeanMotion2ndDer(-0.0 * one / pow<3>(day)), REL_TOL);
-    ASSERT_EQ_QUANTITY(tle.get_ballistic_coefficient(), BallisticCoefficient(-0.000011606 * one / EarthRadii), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(tle.get_mean_motion_1st_derivative(), MeanMotion1stDer(-0.00002182 * one / pow<2>(day)), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(tle.get_mean_motion_2nd_derivative(), MeanMotion2ndDer(-0.0 * one / pow<3>(day)), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(tle.get_ballistic_coefficient(), BallisticCoefficient(-0.000011606 * one / EarthRadii), REL_TOL));
     ASSERT_EQ(tle.get_ephemeris_type(), 0);
     ASSERT_EQ(tle.get_element_set_number(), 292);
     ASSERT_EQ(tle.get_check_sum1(), 7);
 
-    ASSERT_EQ_QUANTITY(tle.get_semimajor(), Distance(22919.069 * km), REL_TOL); // derived
-    ASSERT_EQ_QUANTITY(tle.get_eccentricity(), Unitless(0.0006703), REL_TOL);
-    ASSERT_EQ_QUANTITY(tle.get_inclination(), Angle(51.6416 * deg), REL_TOL);
-    ASSERT_EQ_QUANTITY(tle.get_right_ascension(), Angle(247.4627 * deg), REL_TOL);
-    ASSERT_EQ_QUANTITY(tle.get_argument_of_perigee(), Angle(130.5360 * deg), REL_TOL);
-    ASSERT_EQ_QUANTITY(tle.get_true_anomaly(), Angle(324.9847 * deg), REL_TOL); // derived
+    ASSERT_TRUE(math::nearly_equal(tle.get_semimajor(), Distance(22919.069 * km), REL_TOL)); // derived
+    ASSERT_TRUE(math::nearly_equal(tle.get_eccentricity(), Unitless(0.0006703), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(tle.get_inclination(), Angle(51.6416 * deg), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(tle.get_right_ascension(), Angle(247.4627 * deg), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(tle.get_argument_of_perigee(), Angle(130.5360 * deg), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(tle.get_true_anomaly(), Angle(324.9847 * deg), REL_TOL)); // derived
 
-    ASSERT_EQ_QUANTITY(tle.get_mean_motion(), MeanMotion(15.72125391 * one / day), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(tle.get_mean_motion(), MeanMotion(15.72125391 * one / day), REL_TOL));
 
     ASSERT_EQ(tle.get_rev_number(), 56353);
     ASSERT_EQ(tle.get_check_sum2(), 7);

@@ -450,6 +450,48 @@ class CartesianPartial {
     }
 
     /**
+     * @brief Get the vx value of the CartesianPartial state vector.
+     *
+     * @return Velocity The vx component of the CartesianPartial state vector.
+     */
+    Velocity get_vx() const { return _v.get_x(); }
+
+    /**
+     * @brief Get the vy value of the CartesianPartial state vector.
+     *
+     * @return Velocity The vy component of the CartesianPartial state vector.
+     */
+    Velocity get_vy() const { return _v.get_y(); }
+
+    /**
+     * @brief Get the vz value of the CartesianPartial state vector.
+     *
+     * @return Velocity The vz component of the CartesianPartial state vector.
+     */
+    Velocity get_vz() const { return _v.get_z(); }
+
+    /**
+     * @brief Get the ax value of the CartesianPartial state vector.
+     *
+     * @return Acceleration The ax component of the CartesianPartial state vector.
+     */
+    Acceleration get_ax() const { return _a.get_x(); }
+
+    /**
+     * @brief Get the ay value of the CartesianPartial state vector.
+     *
+     * @return Acceleration The ay component of the CartesianPartial state vector.
+     */
+    Acceleration get_ay() const { return _a.get_y(); }
+
+    /**
+     * @brief Get the az value of the CartesianPartial state vector.
+     *
+     * @return Acceleration The az component of the CartesianPartial state vector.
+     */
+    Acceleration get_az() const { return _a.get_z(); }
+
+    /**
      * @brief Multiplication operator for CartesianPartial.
      *
      * @param time Time to multiply the CartesianPartial by

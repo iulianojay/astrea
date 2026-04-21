@@ -18,6 +18,8 @@
  */
 #pragma once
 
+#include <concepts>
+
 #include <astro/types/enums.hpp>
 
 namespace astrea {
@@ -45,6 +47,26 @@ class KeplerianStm;
 class EquinoctialStm;
 class StateTransitionMatrix;
 
+// Quaternions
+template <typename In_Frame_T, typename Out_Frame_T>
+class Quaternion;
+
+template <typename In_Frame_T, typename Out_Frame_T>
+class QuaternionPartial;
+
+template <RotationSequence sequence, RotationType rotationType, typename In_Frame_T, typename Out_Frame_T>
+class EulerAngles;
+
+template <typename In_Frame_T, typename Ref_Frame_T>
+class AngularVelocities;
+
+template <typename In_Frame_T, typename Ref_Frame_T>
+class AngularAccels;
+
+class Attitude;
+class AttitudePartials;
+
+// Frames
 template <class Value_T, class Frame_T>
 class CartesianVector;
 
@@ -86,6 +108,9 @@ template <class Payload_T>
 class PayloadPlatform;
 class Vehicle;
 
+template <class Frame_T>
+class InertiaTensor;
+
 // Propagation
 class EquationsOfMotion;
 class Integrator;
@@ -93,6 +118,10 @@ class LambertSolver;
 class Event;
 class EventDetector;
 class Schedule;
+
+class Perturbation;
+class ForceModel;
+class PerturbingForce;
 
 // Systems
 class AstrodynamicsSystem;
