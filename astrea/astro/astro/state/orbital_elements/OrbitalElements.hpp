@@ -25,6 +25,7 @@
 
 // Astro
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/frame_registry.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
@@ -33,6 +34,23 @@
 
 namespace astrea {
 namespace astro {
+/**
+ * @brief Variant of all registered Cartesian<Frame> types plus any extra element types.
+ *
+ * Driven entirely by frame_registry.hpp — adding frames there automatically
+ * extends this variant. Typically used as:
+ *
+ * @code
+ *   using ElementVariant = OrbitalElementVariant<Keplerian, Equinoctial>;
+ * @endcode
+ *
+ * To register frames from user code, see ExtraRegisteredFrames in
+ * astro/frames/frame_registry.hpp.
+ */
+template <typename... ExtraElementTypes>
+using OrbitalElementVariant =
+    typename detail::tuple_to_variant<typename detail::apply_template<Cartesian, detail::AllRegisteredFrames>::type, ExtraElementTypes...>::type;
+
 
 /**
  * @brief Concept to check if a type is an orbital elements type.
@@ -70,8 +88,11 @@ class OrbitalElements {
 
     /**
      * @brief Variant type to hold different orbital element types.
+     *
+     * Extended at compile time via ExtraRegisteredFrames<> specialization.
+     * See cartesian_frame_registry.hpp for details.
      */
-    using ElementVariant = std::variant<Cartesian<frames::earth::icrf>, Keplerian, Equinoctial>;
+    using ElementVariant = OrbitalElementVariant<Keplerian, Equinoctial>;
 
     friend std::ostream& operator<<(std::ostream& os, const OrbitalElements& state);
     friend class StateTransitionMatrix;
