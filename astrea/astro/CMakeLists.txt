@@ -18,6 +18,9 @@ project(
 
 set(CMAKE_CXX_STANDARD 23)
 
+# Include export header generation
+include(${CMAKE_SOURCE_DIR}/cmake/generate_export_header.cmake)
+
 # Objects
 set(ASTRO_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(ASTRO_SOURCES
@@ -217,7 +220,13 @@ option(BUILD_JUPITER "Build Jupiter Ephemeris" OFF)
 option(BUILD_SATURN "Build Saturn Ephemeris" OFF)
 option(BUILD_URANUS "Build Uranus Ephemeris" OFF)
 option(BUILD_NEPTUNE "Build Neptune Ephemeris" OFF)
-set(BUILD_EPHEMERIDES(BUILD_SUN OR BUILD_MERCURY OR BUILD_EARTH OR BUILD_MARS OR BUILD_VENUS OR BUILD_JUPITER OR BUILD_SATURN OR BUILD_URANUS OR BUILD_NEPTUNE))
+
+# Determine if any ephemerides should be built
+if(BUILD_SUN OR BUILD_MERCURY OR BUILD_EARTH OR BUILD_MARS OR BUILD_VENUS OR BUILD_JUPITER OR BUILD_SATURN OR BUILD_URANUS OR BUILD_NEPTUNE)
+    set(BUILD_EPHEMERIDES ON)
+else()
+    set(BUILD_EPHEMERIDES OFF)
+endif()
 
 set(EPHEMERIS_COMPILE_DEFINES "")
 generate_ephemeris_files(${CMAKE_CURRENT_LIST_DIR})
@@ -252,6 +261,9 @@ set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_
 target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared ${ASTRO_LIBS})
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
 target_compile_definitions (${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_ASTRO_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+
+# Generate export header for Windows DLL
+astrea_generate_export_header(${PROJECT_NAME})
 
 # Static library
 if(${BUILD_STATIC})

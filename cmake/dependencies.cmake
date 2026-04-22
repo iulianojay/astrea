@@ -11,7 +11,63 @@ include(cmake/CPM.cmake)
 include(FetchContent)
 
 # SQLite3 for databases
-find_package(SQLite3 REQUIRED)
+# Try to find system SQLite3 first, otherwise fetch amalgamation from source
+find_package(SQLite3 QUIET)
+if(NOT SQLite3_FOUND)
+    message(STATUS "SQLite3 not found on system, fetching amalgamation from source...")
+
+    # Download SQLite amalgamation (pre-processed single file distribution)
+    CPMAddPackage(
+        NAME sqlite3_amalgamation
+        URL https://www.sqlite.org/2024/sqlite-amalgamation-3470200.zip
+        DOWNLOAD_ONLY YES
+    )
+
+    if(sqlite3_amalgamation_ADDED)
+        # Create SQLite3 library from amalgamation
+        add_library(SQLite3 SHARED
+            ${sqlite3_amalgamation_SOURCE_DIR}/sqlite3.c
+        )
+
+        target_include_directories(SQLite3 PUBLIC
+            $<BUILD_INTERFACE:${sqlite3_amalgamation_SOURCE_DIR}>
+            $<INSTALL_INTERFACE:include>
+        )
+
+        # Set compile definitions
+        target_compile_definitions(SQLite3 PRIVATE
+            SQLITE_ENABLE_COLUMN_METADATA
+            SQLITE_ENABLE_FTS5
+            SQLITE_ENABLE_RTREE
+        )
+
+        # Windows-specific: Let CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS handle DLL exports
+        if(WIN32)
+            set_target_properties(SQLite3 PROPERTIES
+                WINDOWS_EXPORT_ALL_SYMBOLS ON
+            )
+        endif()
+
+        # Set properties
+        set_target_properties(SQLite3 PROPERTIES
+            OUTPUT_NAME sqlite3
+            VERSION 3.47.2
+            SOVERSION 0
+        )
+
+        # Create alias to match find_package result
+        add_library(SQLite::SQLite3 ALIAS SQLite3)
+
+        # Set variables that find_package would set
+        set(SQLite3_FOUND TRUE CACHE BOOL "SQLite3 found")
+        set(SQLite3_INCLUDE_DIR ${sqlite3_amalgamation_SOURCE_DIR} CACHE PATH "SQLite3 include directory")
+        set(SQLite3_LIBRARY SQLite3 CACHE STRING "SQLite3 library")
+        set(SQLite3_LIBRARIES SQLite::SQLite3 CACHE STRING "SQLite3 libraries")
+
+        # Export for subdirectories
+        mark_as_advanced(SQLite3_INCLUDE_DIR SQLite3_LIBRARY SQLite3_LIBRARIES)
+    endif()
+endif()
 
 # MP-Units dependency that I need to install for some reason
 add_compile_definitions(gsl_FEATURE_GSL_COMPATIBILITY_MODE=1)
@@ -34,6 +90,13 @@ CPMFindPackage(
     "MP_UNITS_BUILD_INSTALL OFF"
 )
 
+# Patch mp-units for MSVC C++23 compatibility - remove constexpr from template specializations
+if(MSVC AND mp-units_ADDED)
+    file(READ "${mp-units_SOURCE_DIR}/src/systems/include/mp-units/systems/angular/units.h" MP_UNITS_ANGULAR_CONTENT)
+    string(REPLACE "MP_UNITS_INLINE constexpr bool space_before_unit_symbol" "MP_UNITS_INLINE bool space_before_unit_symbol" MP_UNITS_ANGULAR_CONTENT "${MP_UNITS_ANGULAR_CONTENT}")
+    file(WRITE "${mp-units_SOURCE_DIR}/src/systems/include/mp-units/systems/angular/units.h" "${MP_UNITS_ANGULAR_CONTENT}")
+endif()
+
 # CPR for HTTP requests
 CPMFindPackage(
     NAME cpr
@@ -46,12 +109,34 @@ CPMFindPackage(
 )
 
 # SQLite ORM for better interaction with SQLite
-CPMFindPackage(
+# Download only, we'll configure it manually to avoid its dependency search
+CPMAddPackage(
     NAME sqlite_orm
     GITHUB_REPOSITORY fnc12/sqlite_orm
     GIT_TAG v1.9.1
     GIT_SHALLOW TRUE
+    DOWNLOAD_ONLY YES
 )
+
+if(sqlite_orm_ADDED)
+    # Create header-only interface library for sqlite_orm
+    add_library(sqlite_orm INTERFACE)
+    target_include_directories(sqlite_orm INTERFACE
+        $<BUILD_INTERFACE:${sqlite_orm_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+    )
+
+    # Link to our SQLite3 target
+    if(TARGET SQLite3)
+        target_link_libraries(sqlite_orm INTERFACE SQLite::SQLite3)
+    endif()
+
+    # Set compile features
+    target_compile_features(sqlite_orm INTERFACE cxx_std_20)
+
+    # Create alias for consistency
+    add_library(sqlite_orm::sqlite_orm ALIAS sqlite_orm)
+endif()
 
 # Matplot++ for plotting
 CPMFindPackage(

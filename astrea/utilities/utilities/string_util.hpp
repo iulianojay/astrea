@@ -21,7 +21,9 @@
 #include <algorithm>
 #include <cstdlib>
 #include <cstring>
+#ifdef __GNUG__
 #include <cxxabi.h>
+#endif
 #include <iostream>
 #include <memory>
 #include <optional>
@@ -60,10 +62,22 @@ std::string replace_all(std::string const& original, std::string const& before, 
 template <typename T>
 std::string get_type_name()
 {
+#ifdef __GNUG__
+    // GCC/Clang implementation using cxxabi
     static int status;
     static const std::string fullName = abi::__cxa_demangle(typeid(T).name(), NULL, NULL, &status);
     static const std::string name     = fullName.substr(fullName.find_last_of("::") + 1);
     return name;
+#else
+    // MSVC and other compilers - use typeid name directly
+    static const std::string fullName = typeid(T).name();
+    // Try to extract just the class name after last ::
+    size_t pos = fullName.find_last_of("::");
+    if (pos != std::string::npos && pos + 1 < fullName.size()) {
+        return fullName.substr(pos + 1);
+    }
+    return fullName;
+#endif
 }
 
 /**

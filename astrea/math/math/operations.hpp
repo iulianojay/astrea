@@ -18,6 +18,7 @@
  */
 #pragma once
 
+#include <algorithm>
 #include <cmath>
 
 #include <mp-units/math.h>

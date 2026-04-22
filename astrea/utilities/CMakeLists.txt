@@ -18,6 +18,9 @@ project(
 
 set(CMAKE_CXX_STANDARD 23)
 
+# Include export header generation
+include(${CMAKE_SOURCE_DIR}/cmake/generate_export_header.cmake)
+
 # Objects
 set(UTILITIES_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(UTILITIES_SOURCES
@@ -51,6 +54,9 @@ add_library                (${PROJECT_NAME}_shared SHARED ${UTILITIES_SOURCES} $
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries      (${PROJECT_NAME}_shared PUBLIC ${UTILITIES_LIBS})
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${UTILITIES_DIRS})
+
+# Generate export header for Windows DLL
+astrea_generate_export_header(${PROJECT_NAME})
 
 # Static library
 if(${BUILD_STATIC})

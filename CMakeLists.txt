@@ -29,6 +29,25 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_INSTALL_MESSAGE LAZY)
 
+# Windows DLL support
+if(WIN32)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+    set(BUILD_SHARED_LIBS ON)
+endif()
+
+# Build options
+option(BUILD_TESTS "Build test suite" OFF)
+option(BUILD_EXAMPLES "Build example programs" OFF)
+option(BUILD_STATIC "Build static libraries" OFF)
+option(BUILD_PROFILERS "Build profiling tools" OFF)
+option(BUILD_CHECKCASE_DATABASE "Build checkcase database" OFF)
+option(RUN_6DOF_CHECKCASES "Run NASA 6DOF checkcase tests" OFF)
+
+# Work around mp-units "constant" keyword issue with MSVC
+if(MSVC)
+    add_compile_definitions(_SILENCE_CXX23_DEPRECATION_WARNINGS)
+endif()
+
 # add_library(astrea_warnings INTERFACE)
 # add_library(astrea_options INTERFACE)
 

@@ -27,7 +27,13 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES USE_HELPER_HDRS HELPER
         add_executable(${TEST_EXE} ${TEST_FILE})
 
         # Set properties
-        target_compile_options(${TEST_EXE} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+        if(MSVC)
+            # MSVC-specific warning suppressions
+            target_compile_options(${TEST_EXE} PUBLIC /wd4244 /wd4267)
+        else()
+            # GCC/Clang warning suppressions
+            target_compile_options(${TEST_EXE} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+        endif()
         set_target_properties(${TEST_EXE} PROPERTIES OUTPUT_NAME ${TEST_EXE})
         set(GTEST_CREATE_SHARED_LIBRARY 1)
         set(BUILD_GMOCK OFF)
@@ -69,7 +75,13 @@ function(build_examples CURRENT_PROJECT EXAMPLE_FILES)
 
         add_executable         (${EXAMPLE_NAME} ${EXAMPLE_FILE})
         set_target_properties  (${EXAMPLE_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXAMPLE_DIRECTORY}/bin)
-        target_compile_options (${EXAMPLE_NAME} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+        if(MSVC)
+            # MSVC-specific warning suppressions
+            target_compile_options(${EXAMPLE_NAME} PUBLIC /wd4244 /wd4267)
+        else()
+            # GCC/Clang warning suppressions
+            target_compile_options(${EXAMPLE_NAME} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+        endif()
         target_link_libraries  (${EXAMPLE_NAME} PUBLIC ${CURRENT_PROJECT}_shared)
 
     endforeach(EXAMPLE_FILE ${EXAMPLE_FILES})
@@ -162,11 +174,18 @@ function(generate_ephemeris_files PROJECT_SOURCE_DIRECTORY)
     message(" -- Compiled Ephemeride SOURCES: \n\t" ${PRINTABLE_SOURCES})
 
     string(REPLACE ";"  " " PYTHONIC_BODIES "${ALL_BODIES}")
+
+    # Find Python executable (works on both Windows and Unix)
+    find_package(Python3 COMPONENTS Interpreter)
+    if(NOT Python3_FOUND)
+        message(FATAL_ERROR "Python 3 is required for ephemeris generation but was not found")
+    endif()
+
     add_custom_command(
         OUTPUT
             ${BODY_EPHEMERIS_HEADERS}
             ${BODY_EPHEMERIS_SOURCES}
-        COMMAND ${PROJECT_SOURCE_DIRECTORY}/../../.venv/bin/python ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides --bodies ${PYTHONIC_BODIES}
+        COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides --bodies ${PYTHONIC_BODIES}
         DEPENDS
             ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIRECTORY}

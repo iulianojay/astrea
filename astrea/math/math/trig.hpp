@@ -18,11 +18,17 @@
  */
 #pragma once
 
+#define _USE_MATH_DEFINES
 #include <cmath>
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
+
+// Define M_PI if not available (Windows MSVC)
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 namespace astrea {
 namespace math {

@@ -52,7 +52,7 @@ class AstrodynamicsSystem {
      * @param centralBody The name of the central celestial body (default is "Earth").
      * @param allBodies A set of names of all secondary celestial bodies in the system (default is none).
      */
-    constexpr AstrodynamicsSystem(
+    AstrodynamicsSystem(
         const CelestialBodyId& centralBody                         = CelestialBodyId::EARTH,
         const std::unordered_set<CelestialBodyId>& secondaryBodies = {}
     ) :
@@ -72,7 +72,7 @@ class AstrodynamicsSystem {
      * @param allBodies A set of all secondary celestial bodies in the system (default is none).
      */
     template <IsDerivedCelestialBody T>
-    constexpr AstrodynamicsSystem(const T& centralBody, const std::unordered_set<CelestialBodyId>& secondaryBodies = {}) :
+    AstrodynamicsSystem(const T& centralBody, const std::unordered_set<CelestialBodyId>& secondaryBodies = {}) :
         _centerType(SystemCenter::CENTRAL_BODY),
         _centralBody(centralBody.get_id())
     {
@@ -112,7 +112,7 @@ class AstrodynamicsSystem {
      *
      * @return A default AstrodynamicsSystem instance.
      */
-    static constexpr AstrodynamicsSystem EarthMoon()
+    static AstrodynamicsSystem EarthMoon()
     {
         return AstrodynamicsSystem(CelestialBodyId::EARTH, { CelestialBodyId::MOON });
     }
@@ -122,21 +122,21 @@ class AstrodynamicsSystem {
      *
      * @return const SystemCenter& The name of the central celestial body.
      */
-    constexpr const SystemCenter& get_center_type() const { return _centerType; }
+    const SystemCenter& get_center_type() const { return _centerType; }
 
     /**
      * @brief Returns the central celestial body ID.
      *
      * @return const CelestialBodyId& The ID of the central celestial body.
      */
-    constexpr const CelestialBodyId& get_central_body_id() const { return _centralBody; }
+    const CelestialBodyId& get_central_body_id() const { return _centralBody; }
 
     /**
      * @brief Returns the central celestial body as a CelestialBodyUniquePtr.
      *
      * @return const CelestialBodyUniquePtr& A pointer to the central celestial body.
      */
-    constexpr const CelestialBodyUniquePtr& get_central_body() const
+    const CelestialBodyUniquePtr& get_central_body() const
     {
         switch (_centerType) {
             case SystemCenter::CENTRAL_BODY: return get_body(_centralBody);
@@ -151,7 +151,7 @@ class AstrodynamicsSystem {
      * @param id The ID of the celestial body to retrieve.
      * @return const CelestialBodyUniquePtr& A pointer to the celestial body with the specified ID.
      */
-    constexpr const CelestialBodyUniquePtr& get_body(const CelestialBodyId& id) const
+    const CelestialBodyUniquePtr& get_body(const CelestialBodyId& id) const
     {
         if (_bodies.count(id) > 0) { return _bodies.at(id); }
         throw std::out_of_range("Input gravitational body not found.");
@@ -170,7 +170,7 @@ class AstrodynamicsSystem {
      * @return A unique pointer to the created CelestialBody of type T.
      */
     template <IsDerivedCelestialBody T, typename... Args>
-    constexpr const CelestialBodyUniquePtr& add_body(Args&&... args)
+    const CelestialBodyUniquePtr& add_body(Args&&... args)
     {
         const CelestialBodyId id = T::get_id();
         if (_bodies.count(id) == 0) {
@@ -189,7 +189,7 @@ class AstrodynamicsSystem {
      * @param system The astrodynamics system to which the body belongs.
      * @return const CelestialBodyUniquePtr& A pointer to the created celestial body.
      */
-    constexpr const CelestialBodyUniquePtr& add_body(const CelestialBodyId& id)
+    const CelestialBodyUniquePtr& add_body(const CelestialBodyId& id)
     {
         if (_bodies.count(id) == 0) {
             _bodies.emplace(id, create_impl(id));
@@ -208,7 +208,7 @@ class AstrodynamicsSystem {
      * @return const CelestialBodyUniquePtr& A pointer to the created celestial body.
      */
     template <IsDerivedCelestialBody T>
-    constexpr const CelestialBodyUniquePtr& add_body(const T& body)
+    const CelestialBodyUniquePtr& add_body(const T& body)
     {
         const CelestialBodyId id = body.get_id();
         if (_bodies.count(id) == 0) {
@@ -225,28 +225,28 @@ class AstrodynamicsSystem {
      * @param id The id of the celestial body to create.
      * @return const CelestialBodyUniquePtr& A pointer to the created celestial body.
      */
-    constexpr CelestialBodyUniquePtr add_body(const CelestialBodyId& id) const { return create_impl(id); }
+    CelestialBodyUniquePtr add_body(const CelestialBodyId& id) const { return create_impl(id); }
 
     /**
      * @brief Returns a vector of all celestial bodies in the system.
      *
      * @return const std::vector<CelestialBodyUniquePtr>& A vector containing pointers to all celestial bodies in the system.
      */
-    constexpr const auto& get_all_bodies() const { return _bodies; }
+    const auto& get_all_bodies() const { return _bodies; }
 
     /**
      * @brief Get the root object of the celestial body hierarchy.
      *
      * @return const CelestialBodyId& The name of the root celestial body.
      */
-    constexpr const CelestialBodyId& get_system_root() const { return _root; }
+    const CelestialBodyId& get_system_root() const { return _root; }
 
     /**
      * @brief Get the gravitational parameter (mu) of the central body.
      *
      * @return GravParam The gravitational parameter of the central body.
      */
-    constexpr GravParam get_mu() const
+    GravParam get_mu() const
     {
         switch (_centerType) {
             case SystemCenter::CENTRAL_BODY: return get_central_body()->get_mu();
@@ -261,12 +261,12 @@ class AstrodynamicsSystem {
      *
      * @return const std::size_t The number of celestial bodies.
      */
-    constexpr const std::size_t size() const { return _bodies.size(); }
+    const std::size_t size() const { return _bodies.size(); }
 
     /**
      * @brief Clears all celestial bodies managed by this factory.
      */
-    constexpr void clear() { return _bodies.clear(); }
+    void clear() { return _bodies.clear(); }
 
     /**
      * @brief Get the relative position between two celestial bodies at a specific date.
@@ -294,14 +294,14 @@ class AstrodynamicsSystem {
      *
      * @return iterator An iterator to the first celestial body.
      */
-    constexpr auto begin() const { return _bodies.begin(); }
+    auto begin() const { return _bodies.begin(); }
 
     /**
      * @brief Returns an iterator to the end of the celestial bodies.
      *
      * @return iterator An iterator to the end of the celestial bodies.
      */
-    constexpr auto end() const { return _bodies.end(); }
+    auto end() const { return _bodies.end(); }
 
   private:
     SystemCenter _centerType;                          //!< System center type, either "CENTRAL_BODY" or "BARYCENTER".
@@ -316,7 +316,7 @@ class AstrodynamicsSystem {
      * @param bodies A set of celestial body IDs to consider.
      * @return CelestialBodyId The ID of the root celestial body.
      */
-    constexpr CelestialBodyId find_common_root(const std::unordered_set<CelestialBodyId>& bodies)
+    CelestialBodyId find_common_root(const std::unordered_set<CelestialBodyId>& bodies)
     {
         // If there's only one body, it is the root
         if (bodies.size() == 1) { return *(bodies.begin()); }
@@ -366,7 +366,7 @@ class AstrodynamicsSystem {
      * @throws std::runtime_error If the celestial body ID is not implemented in the factory.
      * @note Dont judge me.
      */
-    constexpr CelestialBodyUniquePtr create_impl(const CelestialBodyId& id) const
+    CelestialBodyUniquePtr create_impl(const CelestialBodyId& id) const
     {
         using namespace planetary_bodies;
         switch (id) {

@@ -257,8 +257,8 @@ struct mp_units::quantity_point_like_traits<astrea::astro::Date> {
     static constexpr bool explicit_import = false;
     static constexpr bool explicit_export = true;
     using rep                             = long double;
-    static constexpr rep to_numerical_value(astrea::astro::Date date) { return date.jd().time_since_epoch().count(); }
-    static constexpr astrea::astro::Date from_numerical_value(rep v)
+    static rep to_numerical_value(astrea::astro::Date date) { return date.jd().time_since_epoch().count(); }
+    static astrea::astro::Date from_numerical_value(rep v)
     {
         using namespace astrea;
         using namespace astro;
