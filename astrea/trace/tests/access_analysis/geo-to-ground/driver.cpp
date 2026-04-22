@@ -84,7 +84,7 @@ int main(int argc, char** argv)
 TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
 {
     // Build constellation
-    const Cartesian elem0(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
+    const Cartesian<frames::earth::icrf> elem0(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
     const State state0(elem0, epoch, sys);
 
     const auto rEcef           = elem0.get_position().in_frame<frames::earth::earth_fixed>(epoch);

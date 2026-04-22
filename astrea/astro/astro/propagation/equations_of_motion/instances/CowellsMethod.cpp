@@ -50,15 +50,15 @@ OrbitalElementPartials CowellsMethod::compute_dynamics(
     // Extract
     const auto mu = state.get_system().get_mu();
 
-    const RadiusVector<frames::earth::icrf> r   = state.get_position();
-    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position<frames::earth::icrf>();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity<frames::earth::icrf>();
 
     // mu/R^3
     const Distance R             = r.norm();
     const auto muOverRadiusCubed = mu / (R * R * R);
 
     // Derivative
-    return CartesianPartial(v, -muOverRadiusCubed * r + (perts + control) / vehicle.get_mass());
+    return CartesianPartial<frames::earth::icrf>(v, -muOverRadiusCubed * r + (perts + control) / vehicle.get_mass());
 }
 
 

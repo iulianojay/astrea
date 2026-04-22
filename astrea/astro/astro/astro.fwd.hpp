@@ -30,10 +30,12 @@ class StatePartial;
 class StateHistory;
 
 // ELement sets
+template <typename Frame_T>
 class Cartesian;
 class Keplerian;
 class Equinoctial;
 class TwoLineElements;
+template <typename Frame_T>
 class CartesianPartial;
 class KeplerianPartial;
 class EquinoctialPartial;

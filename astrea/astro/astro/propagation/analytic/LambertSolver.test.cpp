@@ -55,25 +55,28 @@ int main(int argc, char** argv)
 
 TEST_F(LambertSolverTest, SolveRV)
 {
-    const Cartesian result = LambertSolver::solve({ r0, v0 }, dt, sys.get_mu());
+    const Cartesian<frames::earth::icrf> result = LambertSolver::solve<frames::earth::icrf>({ r0, v0 }, dt, sys.get_mu());
     ASSERT_TRUE(nearly_equal(result.get_position(), rf, REL_TOL));
     ASSERT_TRUE(nearly_equal(result.get_velocity(), vf, REL_TOL));
 }
 
 TEST_F(LambertSolverTest, SolveRR)
 {
-    const auto [res0, resf] = LambertSolver::solve(r0, rf, dt, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
+    const auto [res0, resf] =
+        LambertSolver::solve<frames::earth::icrf>(r0, rf, dt, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
     ASSERT_TRUE(nearly_equal(res0, v0, REL_TOL));
     ASSERT_TRUE(nearly_equal(resf, vf, REL_TOL));
 }
 
 TEST_F(LambertSolverTest, SolveOptimalMinimumEnergy)
 {
-    const auto sol =
-        LambertSolver::solve(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_ENERGY);
+    const auto sol = LambertSolver::solve<frames::earth::icrf>(
+        r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_ENERGY
+    );
 
     // Round-trip: feeding the returned tof back into the r&r solver must reproduce the same velocities
-    const auto [v0Check, vfCheck] = LambertSolver::solve(r0, rf, sol.tof, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
+    const auto [v0Check, vfCheck] =
+        LambertSolver::solve<frames::earth::icrf>(r0, rf, sol.tof, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
     ASSERT_TRUE(nearly_equal(v0Check, sol.v0, REL_TOL));
     ASSERT_TRUE(nearly_equal(vfCheck, sol.vf, REL_TOL));
 }
@@ -81,20 +84,22 @@ TEST_F(LambertSolverTest, SolveOptimalMinimumEnergy)
 TEST_F(LambertSolverTest, SolveOptimalMinimumTime)
 {
     const auto sol =
-        LambertSolver::solve(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_TIME);
+        LambertSolver::solve<frames::earth::icrf>(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_TIME);
 
     // Round-trip: feeding the returned tof back into the r&r solver must reproduce the same velocities
-    const auto [v0Check, vfCheck] = LambertSolver::solve(r0, rf, sol.tof, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
+    const auto [v0Check, vfCheck] =
+        LambertSolver::solve<frames::earth::icrf>(r0, rf, sol.tof, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
     ASSERT_TRUE(nearly_equal(v0Check, sol.v0, REL_TOL));
     ASSERT_TRUE(nearly_equal(vfCheck, sol.vf, REL_TOL));
 }
 
 TEST_F(LambertSolverTest, MinimumTimeHasShorterTOFThanMinimumEnergy)
 {
-    const auto minEnergy =
-        LambertSolver::solve(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_ENERGY);
+    const auto minEnergy = LambertSolver::solve<frames::earth::icrf>(
+        r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_ENERGY
+    );
     const auto minTime =
-        LambertSolver::solve(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_TIME);
+        LambertSolver::solve<frames::earth::icrf>(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_TIME);
 
     EXPECT_LT(minTime.tof.numerical_value_in(s), minEnergy.tof.numerical_value_in(s));
 }

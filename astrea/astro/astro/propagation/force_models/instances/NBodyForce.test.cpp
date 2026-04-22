@@ -79,8 +79,8 @@ TEST_F(NBodyForceTest, ComputeForceValladoEx85)
     // are meant to be pragmatically approachable estimations, not exact reproductions of Vallado's work, and since
     // matching them exactly is impractical, the expected values are taken from a run of this code, not Vallado's.
 
-    Cartesian cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
-                    -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    Cartesian<frames::earth::icrf> cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                                         -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     State state(cart, epoch, sys);
     const auto [force, torque]                          = nBodyForce.compute_perturbation(state, Vehicle(sat));
     const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();

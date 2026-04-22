@@ -59,13 +59,13 @@ int main(int argc, char** argv)
 
 TEST_F(CowellsMethodTest, GetExpectedSet)
 {
-    ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian>());
+    ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>());
 }
 
 TEST_F(CowellsMethodTest, Derivative)
 {
-    Cartesian cart0           = Cartesian::LEO(sys.get_mu());
-    CartesianPartial expected = CartesianPartial(
+    Cartesian<frames::earth::icrf> cart0           = Cartesian<frames::earth::icrf>::LEO(sys.get_mu());
+    CartesianPartial<frames::earth::icrf> expected = CartesianPartial(
         cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), -0.0081347028957142863 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
     );
     State state0(cart0, epoch, sys);
@@ -77,9 +77,9 @@ TEST_F(CowellsMethodTest, Derivative)
 // Vallado, Ex. 8.5
 TEST_F(CowellsMethodTest, DerivativeValladoEx85)
 {
-    Cartesian cart0{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
-                     -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
-    CartesianPartial expected = CartesianPartial(
+    Cartesian<frames::earth::icrf> cart0{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                                          -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    CartesianPartial<frames::earth::icrf> expected = CartesianPartial(
         cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), 0.00074873079 * km / (s * s), 0.00725534667 * km / (s * s), -0.00431725847 * km / (s * s)
     );
     State state0(cart0, epoch, sys);

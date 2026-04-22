@@ -23,7 +23,6 @@
 
 #include <math/interpolation.hpp>
 
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
@@ -67,16 +66,6 @@ Equinoctial::Equinoctial(const Keplerian& elements, const GravParam& mu)
 
     // True longitude
     _trueLongitude = wrap_angle(raan + argPer + theta);
-}
-
-Equinoctial::Equinoctial(const Cartesian& elements, const GravParam& mu) :
-    Equinoctial(Keplerian(elements, mu), mu)
-{
-}
-
-Equinoctial::Equinoctial(const OrbitalElements& elements, const GravParam& mu)
-{
-    *this = elements.in_element_set<Equinoctial>(mu);
 }
 
 // Copy constructor

@@ -43,15 +43,15 @@ OrbitalElementPartials TwoBody::compute_dynamics(
     // Extract
     const auto mu = state.get_system().get_mu();
 
-    const RadiusVector<frames::earth::icrf> r   = state.get_position();
-    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position<frames::earth::icrf>();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity<frames::earth::icrf>();
 
     // mu/R^3
     const Distance R        = r.norm();
     const quantity muOverR3 = mu / pow<3>(R);
 
     // Dynamics
-    return CartesianPartial(v, -muOverR3 * r + control / vehicle.get_mass());
+    return CartesianPartial<frames::earth::icrf>(v, -muOverR3 * r + control / vehicle.get_mass());
 }
 
 
@@ -77,7 +77,7 @@ StateTransitionMatrix TwoBody::compute_stm(const State& state, const Vehicle& ve
     */
     const auto mu = state.get_system().get_mu();
 
-    const auto r  = state.get_position();
+    const auto r  = state.get_position<frames::earth::icrf>();
     const auto& x = r[0];
     const auto& y = r[1];
     const auto& z = r[2];

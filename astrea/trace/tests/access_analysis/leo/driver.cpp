@@ -84,7 +84,7 @@ int main(int argc, char** argv)
 TEST_F(LeoToGroundAccessTest, LeoThinCone)
 {
     // Build constellation
-    const Cartesian elem0(Keplerian(semimajorLeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
+    const Cartesian<frames::earth::icrf> elem0(Keplerian(semimajorLeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
     const State state0(elem0, epoch, sys);
 
     const auto& centralBody = sys.get_central_body();
@@ -120,7 +120,7 @@ TEST_F(LeoToGroundAccessTest, LeoThinCone)
     // use a coarser resolution for the ground points so the analysis doesn't skip over them
     for (Date date = epoch; date <= epoch + propTime; date += minutes(1.0)) {
         const auto state = stateHistory.get_state_at(date);
-        const auto rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
+        const auto rEcef = state.get_position<frames::earth::icrf>().in_frame<frames::earth::earth_fixed>(date);
         const auto lla   = astro::Geodetic(rEcef, centralBody.get());
         const auto lat   = lla.get_latitude();
         const auto lon   = lla.get_longitude();

@@ -64,8 +64,8 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
     const Angle& inc    = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
 
     // conversions Keplerian elements to r and v
-    const RadiusVector<frames::earth::icrf> r   = state.get_position();
-    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position<frames::earth::icrf>();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity<frames::earth::icrf>();
 
     const Distance& x = r.get_x();
     const Distance& y = r.get_y();

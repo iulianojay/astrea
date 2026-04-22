@@ -75,7 +75,7 @@ class ForceModel {
     /**
      * @brief Computes the total force on a vehicle by summing the forces from all added force models.
      *
-     * @param state Cartesian state vector of the vehicle
+     * @param state Cartesian<frames::earth::icrf> state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
      * @return Perturbation The total computed perturbation from all force models.
      */

@@ -252,7 +252,7 @@ AccelerationVector<frames::earth::icrf>
     const Distance& polarR      = _sys->get_central_body()->get_polar_radius();
 
     // Find lat and lon
-    const RadiusVector<frames::earth::icrf> rEci = state.get_position();
+    const RadiusVector<frames::earth::icrf> rEci = state.get_position<frames::earth::icrf>();
     const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
     const auto [latitude, longitude, altitude] = convert_earth_fixed_to_geocentric(rEcef, equitorialR, polarR);
 
@@ -376,7 +376,8 @@ Perturbation OblatenessForce::compute_perturbation(const State& state, const Veh
 
     // Transform position to body-fixed frame
     const Date date                                      = state.get_epoch();
-    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position_in_frame<frames::earth::earth_fixed>();
+    const RadiusVector<frames::earth::icrf> rEci         = state.get_position<frames::earth::icrf>();
+    const RadiusVector<frames::earth::earth_fixed> rEcef = rEci.in_frame<frames::earth::earth_fixed>(date);
 
     // Position components in ECEF
     const Distance& x = rEcef[0];

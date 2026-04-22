@@ -42,8 +42,8 @@ int main()
         Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override
         {
             // Grab the cartesian elements and date
-            const Date date           = state.get_epoch();
-            const Cartesian cartesian = state.in_element_set<Cartesian>();
+            const Date date                                = state.get_epoch();
+            const Cartesian<frames::earth::icrf> cartesian = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
             // Build out a burn in the RIC frame, pointing in the nadir direction
             using RIC       = astro::frames::dynamic::ric;
@@ -74,7 +74,7 @@ int main()
     forceModel.add<ContinuousThrust>("My Continuous Thrust");
 
     // During propagation, the force model is queried for the total acceleration
-    Cartesian cart{ 7000.0 * km, 7000.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s };
+    Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 7000.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s };
     State state(cart, Date(), sys);
     const auto [totalAcceleration, totalTorque] = forceModel.compute_perturbations(state, Vehicle());
     std::cout << "Total Acceleration: " << totalAcceleration << std::endl;

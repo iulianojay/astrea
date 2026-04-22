@@ -48,7 +48,7 @@ class ForceTest : public testing::Test {
 
     DummyForce dummyForce;
     Date date;
-    Cartesian cart;
+    Cartesian<frames::earth::icrf> cart;
     Vehicle vehicle;
     AstrodynamicsSystem sys;
 };

@@ -114,7 +114,7 @@ int main(int argc, char** argv)
 TEST_F(ConversionTest, KeplerianToCartesian)
 {
     OrbitalElements elements = _keplExp;
-    elements.convert_to_set<Cartesian>(mu);
+    elements.convert_to_set<Cartesian<frames::earth::icrf>>(mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _cartExp, false, REL_TOL)));
 }
 TEST_F(ConversionTest, CartesianToKeplerian)
@@ -130,7 +130,7 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
-            elements.convert_to_set<Cartesian>(mu);
+            elements.convert_to_set<Cartesian<frames::earth::icrf>>(mu);
 
             // Convert back
             elements.convert_to_set<Keplerian>(mu);
@@ -145,7 +145,7 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
 TEST_F(ConversionTest, EquinoctialToCartesian)
 {
     OrbitalElements elements = _equiExp;
-    elements.convert_to_set<Cartesian>(mu);
+    elements.convert_to_set<Cartesian<frames::earth::icrf>>(mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _cartExp, false, REL_TOL)));
 }
 TEST_F(ConversionTest, CartesianToEquinoctial)
@@ -161,7 +161,7 @@ TEST_F(ConversionTest, CartesianEquinoctialCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
-            elements.convert_to_set<Cartesian>(mu);
+            elements.convert_to_set<Cartesian<frames::earth::icrf>>(mu);
 
             // Convert back
             elements.convert_to_set<Equinoctial>(mu);

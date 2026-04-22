@@ -49,7 +49,7 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
     const CelestialBodyUniquePtr& center = sys.get_central_body();
     const CelestialBodyUniquePtr& sun    = sys.add_body(CelestialBodyId::SUN);
 
-    const RadiusVector<frames::earth::icrf> rCenterToVehicle = state.get_position();
+    const RadiusVector<frames::earth::icrf> rCenterToVehicle = state.get_position<frames::earth::icrf>();
     const Distance rMagCenterToVehicle                       = rCenterToVehicle.norm();
 
     // Central body properties

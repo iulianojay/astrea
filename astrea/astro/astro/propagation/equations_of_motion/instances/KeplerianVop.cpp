@@ -68,8 +68,8 @@ OrbitalElementPartials KeplerianVop::compute_dynamics(
     if (doWarn) { check_degenerate(ecc, inc); }
 
     // conversions KEPLERIANs to r and v
-    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
-    const RadiusVector<frames::earth::icrf> r   = state.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity<frames::earth::icrf>();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position<frames::earth::icrf>();
 
     // Calculate R, N, and T
     const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(r, v);

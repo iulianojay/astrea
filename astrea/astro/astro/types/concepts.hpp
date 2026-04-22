@@ -112,10 +112,11 @@ concept IsConstructableTo = requires(T elements, const GravParam& mu) {
  * @brief Concept to check if a type can be converted to Cartesian elements.
  *
  * @tparam T The type to check.
+ * @tparam Frame_T The frame type to check.
  */
-template <typename T>
+template <typename T, typename Frame_T>
 concept HasDirectCartesianConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_cartesian(mu) } -> std::same_as<Cartesian>;
+    { elements.to_cartesian(mu) } -> std::same_as<Cartesian<Frame_T>>;
 };
 
 /**
@@ -168,7 +169,7 @@ template <typename T>
 concept HasMathOperators = requires(const T elements, const T other, const Unitless scalar) {
     { elements + other } -> std::same_as<T>;
     { elements - other } -> std::same_as<T>;
-    { elements * scalar } -> std::same_as<T>;
+    { elements* scalar } -> std::same_as<T>;
     { elements / scalar } -> std::same_as<T>;
 };
 

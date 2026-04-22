@@ -41,7 +41,7 @@ Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle&
     // Extract
     const AstrodynamicsSystem& sys                            = state.get_system();
     const Date date                                           = state.get_epoch();
-    const RadiusVector<frames::earth::icrf>& rCenterToVehicle = state.get_position();
+    const RadiusVector<frames::earth::icrf>& rCenterToVehicle = state.get_position<frames::earth::icrf>();
 
     // Center body properties
     const CelestialBodyUniquePtr& center = sys.get_central_body();
@@ -56,14 +56,8 @@ Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle&
         if (body->get_name() == center->get_name()) { continue; }
 
         // Find center to nth body and spacecraft to nth body
-        RadiusVector<frames::earth::icrf> rCenterToNbody;
-        if (body->get_type() == CelestialBodyType::MOON) {
-            // TODO: Moons return position w.r.t their planet. Fix this. This will only work for the Earth-Moon system right now
-            rCenterToNbody = body->get_position_at(date).force_frame_conversion<frames::earth::icrf>();
-        }
-        else {
-            rCenterToNbody = (body->get_position_at(date) - rCenterToSsb).force_frame_conversion<frames::earth::icrf>(); // Gross
-        }
+        const RadiusVector<frames::earth::icrf> rCenterToNbody =
+            sys.get_relative_position(date, body->get_id(), center->get_id()).force_frame_conversion<frames::earth::icrf>();
         const RadiusVector<frames::earth::icrf> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
 
         // Normalize

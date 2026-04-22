@@ -56,8 +56,8 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
     const CelestialBodyUniquePtr& center    = sys.get_central_body();
     const AngularVelocity& bodyRotationRate = center->get_rotation_rate();
 
-    const RadiusVector<frames::earth::icrf>& r   = state.get_position();
-    const VelocityVector<frames::earth::icrf>& v = state.get_velocity();
+    const RadiusVector<frames::earth::icrf>& r   = state.get_position<frames::earth::icrf>();
+    const VelocityVector<frames::earth::icrf>& v = state.get_velocity<frames::earth::icrf>();
 
     const Distance& x = r.get_x();
     const Distance& y = r.get_y();
@@ -97,7 +97,8 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
 const Density AtmosphericForce::find_atmospheric_density(const State& state, const CelestialBodyUniquePtr& center) const
 {
     // Find altitude
-    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position_in_frame<frames::earth::earth_fixed>();
+    const RadiusVector<frames::earth::icrf> rEci         = state.get_position<frames::earth::icrf>();
+    const RadiusVector<frames::earth::earth_fixed> rEcef = rEci.in_frame<frames::earth::earth_fixed>(state.get_epoch());
     const auto [latitude, longitude, altitude] =
         convert_earth_fixed_to_geodetic(rEcef, center->get_equitorial_radius(), center->get_polar_radius());
 

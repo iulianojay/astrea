@@ -60,7 +60,10 @@ class MockEquationsOfMotion : public EquationsOfMotion {
         return CartesianPartial(0.0 * km / s, 0.0 * km / s, 0.0 * km / s, 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s));
     }
 
-    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Cartesian>(); }
+    constexpr std::size_t get_expected_set_id() const override
+    {
+        return OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>();
+    }
 };
 
 class EquationsOfMotionTest : public testing::Test {
@@ -69,8 +72,8 @@ class EquationsOfMotionTest : public testing::Test {
 
     void SetUp() override
     {
-        // Set up test state with basic Cartesian elements
-        cart  = Cartesian::LEO(sys.get_mu());
+        // Set up test state with basic Cartesian<frames::earth::icrf> elements
+        cart  = Cartesian<frames::earth::icrf>::LEO(sys.get_mu());
         state = State(cart, epoch, sys);
     }
 
@@ -82,7 +85,7 @@ class EquationsOfMotionTest : public testing::Test {
     Vehicle vehicle;
     AstrodynamicsSystem sys;
     Date epoch;
-    Cartesian cart;
+    Cartesian<frames::earth::icrf> cart;
     State state;
     MockEquationsOfMotion eomDefault;
     MockEquationsOfMotion eomWithForces{ forceModel };
@@ -102,8 +105,8 @@ TEST_F(EquationsOfMotionTest, ConstructorWithForceModel) { ASSERT_NO_THROW(MockE
 // Test get_expected_set_id method
 TEST_F(EquationsOfMotionTest, GetExpectedSetId)
 {
-    ASSERT_EQ(eomDefault.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian>());
-    ASSERT_EQ(eomWithForces.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian>());
+    ASSERT_EQ(eomDefault.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>());
+    ASSERT_EQ(eomWithForces.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>());
 }
 
 // Test operator() method
@@ -133,7 +136,7 @@ TEST_F(EquationsOfMotionTest, ComputeDynamics)
     ASSERT_NO_THROW(result = eomDefault.compute_dynamics(state, vehicle, noForce, noForce));
 
     // Check that we get a valid CartesianPartial (our mock returns zeros)
-    auto cartResult = std::get<CartesianPartial>(result.extract());
+    auto cartResult = std::get<CartesianPartial<frames::earth::icrf>>(result.extract());
     EXPECT_TRUE(math::nearly_equal(cartResult.get_vx(), 0.0 * km / s));
     EXPECT_TRUE(math::nearly_equal(cartResult.get_vy(), 0.0 * km / s));
     EXPECT_TRUE(math::nearly_equal(cartResult.get_vz(), 0.0 * km / s));
