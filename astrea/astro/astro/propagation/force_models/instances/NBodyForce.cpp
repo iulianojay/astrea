@@ -56,8 +56,13 @@ Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle&
         if (body->get_name() == center->get_name()) { continue; }
 
         // Find center to nth body and spacecraft to nth body
-        const RadiusVector<frames::earth::icrf> rCenterToNbody =
-            sys.get_relative_position(date, body->get_id(), center->get_id()).force_frame_conversion<frames::earth::icrf>();
+        RadiusVector<frames::earth::icrf> rCenterToNbody;
+        if (body->get_type() == CelestialBodyType::MOON) {
+            rCenterToNbody = body->get_position_at(date).force_frame_conversion<frames::earth::icrf>();
+        }
+        else {
+            rCenterToNbody = (body->get_position_at(date) - rCenterToSsb).force_frame_conversion<frames::earth::icrf>(); // Gross
+        }
         const RadiusVector<frames::earth::icrf> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
 
         // Normalize

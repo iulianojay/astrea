@@ -294,14 +294,14 @@ class AstrodynamicsSystem {
      *
      * @return iterator An iterator to the first celestial body.
      */
-    constexpr auto begin() const { return _bodies.begin(); }
+    auto begin() const { return _bodies.begin(); }
 
     /**
      * @brief Returns an iterator to the end of the celestial bodies.
      *
      * @return iterator An iterator to the end of the celestial bodies.
      */
-    constexpr auto end() const { return _bodies.end(); }
+    auto end() const { return _bodies.end(); }
 
   private:
     SystemCenter _centerType;                          //!< System center type, either "CENTRAL_BODY" or "BARYCENTER".
