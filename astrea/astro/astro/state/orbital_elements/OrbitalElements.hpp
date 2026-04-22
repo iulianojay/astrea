@@ -57,7 +57,7 @@ using OrbitalElementVariant =
  *
  * This concept checks if a type is a valid orbital elements type, ensuring it meets
  * the requirements for being default constructible, copyable, movable, destructible,
- * and convertible to Cartesian<frames::earth::icrf> elements.
+ * and convertible to Cartesian<frames::primary> elements.
  *
  * @tparam T The type to check.
  */
@@ -69,8 +69,8 @@ concept IsOrbitalElements = requires(T) {
     std::is_move_constructible<T>::value;
     std::is_destructible<T>::value;
     requires !std::is_same<T, OrbitalElements>::value;
-    requires std::is_same<T, Cartesian<frames::earth::icrf>>::value || IsConstructableTo<T, Cartesian<frames::earth::icrf>> ||
-                 HasDirectCartesianConversion<T, Cartesian<frames::earth::icrf>>;
+    requires std::is_same<T, Cartesian<frames::primary>>::value || IsConstructableTo<T, Cartesian<frames::primary>> ||
+                 HasDirectCartesianConversion<T, Cartesian<frames::primary>>;
     requires HasToVector<T>;
     requires HasMathOperators<T>;
     requires HasInPlaceMathOperators<T>;
@@ -100,19 +100,21 @@ class OrbitalElements {
 
   public:
     /**
-     * @brief Default constructor initializing to Cartesian<frames::earth::icrf> elements.
+     * @brief Default constructor initializing to Cartesian<frames::primary> elements.
      */
     OrbitalElements() :
-        _elements(Cartesian<frames::earth::icrf>())
+        _elements(Cartesian<frames::primary>())
     {
     }
 
     /**
-     * @brief Constructor initializing with Cartesian<frames::earth::icrf> elements.
+     * @brief Constructor initializing with Cartesian<Frame_T> elements.
      *
      * @param elements The orbital elements to initialize with.
      */
-    OrbitalElements(Cartesian<frames::earth::icrf> elements) :
+    template <typename Frame_T>
+        requires(IsRegisteredFrame<Frame_T>)
+    OrbitalElements(Cartesian<Frame_T> elements) :
         _elements(elements)
     {
     }
@@ -350,18 +352,22 @@ class OrbitalElements {
     static OrbitalElements from_vector(const std::vector<Unitless>& vec, const std::size_t idx);
 };
 
+template <typename... ExtraElementTypes>
+using OrbitalElementPartialVariant =
+    typename detail::tuple_to_variant<typename detail::apply_template<CartesianPartial, detail::AllRegisteredFrames>::type, ExtraElementTypes...>::type;
+
 /**
  * @brief Class representing partial derivatives of orbital elements.
  *
  * This class encapsulates the partial derivatives of orbital elements, allowing for
- * operations such as multiplication by time to obtain Cartesian<frames::earth::icrf> state vectors.
+ * operations such as multiplication by time to obtain Cartesian<frames::primary> state vectors.
  */
 class OrbitalElementPartials {
 
     /**
      * @brief Variant type to hold different partial element types.
      */
-    using PartialVariant = std::variant<CartesianPartial<frames::earth::icrf>, KeplerianPartial, EquinoctialPartial>;
+    using PartialVariant = OrbitalElementPartialVariant<KeplerianPartial, EquinoctialPartial>;
 
     friend std::ostream& operator<<(std::ostream& os, const OrbitalElementPartials& state);
 
@@ -370,7 +376,7 @@ class OrbitalElementPartials {
      * @brief Default constructor initializing to CartesianPartial elements.
      */
     OrbitalElementPartials() :
-        _elements(CartesianPartial<frames::earth::icrf>())
+        _elements(CartesianPartial<frames::primary>())
     {
     }
 
@@ -379,7 +385,9 @@ class OrbitalElementPartials {
      *
      * @param elements The orbital element partials to initialize with.
      */
-    OrbitalElementPartials(CartesianPartial<frames::earth::icrf> elements) :
+    template <typename Frame_T>
+        requires(IsRegisteredFrame<Frame_T>)
+    OrbitalElementPartials(CartesianPartial<Frame_T> elements) :
         _elements(elements)
     {
     }

@@ -98,7 +98,7 @@ DCM<Frame_T, Frame_U> get_dcm_impl(const Date& date)
 {
     static_assert(!(HasDcm<Frame_T, Frame_U> && HasDcm<Frame_U, Frame_T>), "DCM defined in both directions, please define only one to avoid symmetry issues.");
     static_assert(IsStaticFrame<Frame_T> && IsStaticFrame<Frame_U>, "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference.");
-    static_assert(HasDcm<Frame_T, Frame_U> || HasDcm<Frame_U, Frame_T> || IsSameFrame<Frame_T, Frame_U>, "No DCM defined between these two frames.");
+    static_assert(HasDcm<Frame_T, Frame_U> || HasDcm<Frame_U, Frame_T> || IsSameFrame<Frame_T, Frame_U>, "No DCM (get_dcm method) defined between these two frames.");
 
     if constexpr (IsSameFrame<Frame_T, Frame_U>) {
         return DCM<Frame_T, Frame_U>::identity(); // TODO: Figure out how to do this earlier to avoid unnecessary matrix math
@@ -113,6 +113,13 @@ DCM<Frame_T, Frame_U> get_dcm_impl(const Date& date)
 }
 
 } // namespace
+
+template <typename Frame_T, typename Frame_U>
+concept HasValidFrameTransformation = requires(Date date) {
+    { get_dcm_impl<Frame_T, Frame_U>(date) } -> std::same_as<DCM<Frame_T, Frame_U>>;
+} || requires(Date date) {
+    { get_dcm_impl<Frame_U, Frame_T>(date) } -> std::same_as<DCM<Frame_U, Frame_T>>;
+} || IsSameFrame<Frame_T, Frame_U>;
 
 /**
  * @brief Rotate a vector from one frame to another at a given date using the Direction Cosine Matrix (DCM).

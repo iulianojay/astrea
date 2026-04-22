@@ -22,16 +22,23 @@
 #include <variant>
 
 #include <astro/frames/frames.hpp>
+#include <astro/frames/transformations.hpp>
 
 namespace astrea {
 namespace astro {
+
+namespace frames {
+
+using primary = earth::icrf;
+
+}
 
 /**
  * @brief The built-in set of Cartesian frames known to astrea.
  *
  * Add new built-in frames here as additional tuple elements.
  */
-using AutomaticallyRegisteredFrames = std::tuple<frames::earth::icrf>;
+using AutomaticallyRegisteredFrames = std::tuple<frames::primary>;
 
 /**
  * @brief Trait that users specialize to register additional Cartesian frames.
@@ -93,6 +100,28 @@ struct tuple_to_variant<std::tuple<Ts...>, Extra...> {
 using AllRegisteredFrames = typename tuple_cat_types<AutomaticallyRegisteredFrames, typename ExtraRegisteredFrames<>::type>::type;
 
 } // namespace detail
+
+
+// Concept: true if Frame_T is one of the types in AllRegisteredFrames
+template <typename Frame_T>
+concept IsRegisteredFrame = []<std::size_t... I>(std::index_sequence<I...>) {
+    return (std::same_as<Frame_T, std::tuple_element_t<I, detail::AllRegisteredFrames>> || ...);
+}(std::make_index_sequence<std::tuple_size_v<detail::AllRegisteredFrames>>{});
+
+// Enforce: all ExtraRegisteredFrames can be transformed into frames::primary
+template <typename Tuple, typename Primary, std::size_t... I>
+constexpr bool all_have_valid_transformation_impl(std::index_sequence<I...>)
+{
+    return (frames::HasValidFrameTransformation<std::tuple_element_t<I, Tuple>, Primary> && ...);
+}
+
+template <typename Tuple, typename Primary>
+constexpr bool all_have_valid_transformation()
+{
+    return all_have_valid_transformation_impl<Tuple, Primary>(std::make_index_sequence<std::tuple_size_v<Tuple>>{});
+}
+
+static_assert(all_have_valid_transformation<ExtraRegisteredFrames<>::type, frames::primary>(), "All ExtraRegisteredFrames must be transformable into frames::primary (HasValidFrameTransformation).");
 
 } // namespace astro
 } // namespace astrea

@@ -30,6 +30,7 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frame_registry.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -41,7 +42,7 @@ namespace astro {
  *
  * This class encapsulates the position and velocity of a vehicle in Cartesian coordinates.
  */
-template <typename Frame_T = frames::earth::icrf>
+template <typename Frame_T = frames::primary>
 class Cartesian {
 
     template <typename F>
@@ -405,7 +406,7 @@ class Cartesian {
  *
  * This class encapsulates the velocity and acceleration components of a vehicle in Cartesian coordinates.
  */
-template <typename Frame_T = frames::earth::icrf>
+template <typename Frame_T = frames::primary>
 class CartesianPartial {
 
     template <typename F>

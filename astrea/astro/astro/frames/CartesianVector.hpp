@@ -410,6 +410,20 @@ class CartesianVector {
     }
 
     /**
+     * @brief No-op overload when calling in_frame with the same frame.
+     *
+     * @tparam Frame_U The target frame type to get the vector in.
+     * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
+     * @throws std::runtime_error If the frames do not share the same origin or if the DCM cannot be obtained.
+     */
+    template <typename Frame_U>
+        requires(IsSameFrame<Frame_T, Frame_U>)
+    CartesianVector<Value_T, Frame_U> in_frame(const Date&) const
+    {
+        return *this;
+    }
+
+    /**
      * @brief Rotate this vector into another frame at a given date.
      *
      * @tparam Frame_U The target frame type to rotate into.
@@ -417,7 +431,8 @@ class CartesianVector {
      * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
      * @throws std::runtime_error If the frames do not share the same origin or if the DCM cannot be obtained.
      */
-    template <IsStaticFrame Frame_U>
+    template <typename Frame_U>
+        requires(!IsSameFrame<Frame_T, Frame_U> && IsStaticFrame<Frame_U>)
     CartesianVector<Value_T, Frame_U> in_frame(const Date& date) const
     {
         return frames::rotate_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
@@ -432,7 +447,7 @@ class CartesianVector {
     //  * @throws std::runtime_error If the frames do not have a known transformation or if the DCM cannot be obtained.
     //  */
     // template <typename Frame_U>
-    //     requires(IsStaticFrame<Frame_U>)
+    //     requires(!IsSameFrame<Frame_T, Frame_U> && IsStaticFrame<Frame_U>)
     // CartesianVector<Value_T, Frame_U> with_respect_to_frame(const Date& date) const
     // {
     //     return frames::transform_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
