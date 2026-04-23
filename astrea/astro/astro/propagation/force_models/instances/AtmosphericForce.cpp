@@ -56,8 +56,8 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
     const CelestialBodyUniquePtr& center    = sys.get_central_body();
     const AngularVelocity& bodyRotationRate = center->get_rotation_rate();
 
-    const RadiusVector<frames::earth::icrf>& r   = state.get_position();
-    const VelocityVector<frames::earth::icrf>& v = state.get_velocity();
+    const RadiusVector<frames::primary>& r   = state.get_position();
+    const VelocityVector<frames::primary>& v = state.get_velocity();
 
     const Distance& x = r.get_x();
     const Distance& y = r.get_y();
@@ -68,9 +68,9 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
     const Velocity& vz = v.get_z();
 
     // Find velocity relative to atmosphere
-    const VelocityVector<frames::earth::icrf> relVelocity = { vx + y * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
-                                                              vy - x * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
-                                                              vz };
+    const VelocityVector<frames::primary> relVelocity = { vx + y * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
+                                                          vy - x * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
+                                                          vz };
 
     // Exponential Drag Model
     const Density atmosphericDensity = find_atmospheric_density(state, center);
@@ -81,14 +81,14 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
     const SurfaceArea areaRam        = vehicle.get_ram_area();
     const Force dragForceMag         = -0.5 * coefficientOfDrag * areaRam * atmosphericDensity * pow<2>(relVelMag);
 
-    const ForceVector<frames::earth::icrf> forceDrag = dragForceMag * (relVelocity / relVelMag);
+    const ForceVector<frames::primary> forceDrag = dragForceMag * (relVelocity / relVelMag);
 
     // accel due to lift
     const Angle angleOfAttack        = atan2(relVelocity.get_z(), relVelocity.get_x());
     const Unitless coefficientOfLift = vehicle.get_coefficient_of_lift();
     const SurfaceArea areaLift       = vehicle.get_lift_area();
     const Force liftForceMag = 0.5 * coefficientOfLift * areaLift * atmosphericDensity * pow<2>(relVelMag) * sin(angleOfAttack);
-    const ForceVector<frames::earth::icrf> forceLift = liftForceMag * (r / R); // just assume radial lift for now
+    const ForceVector<frames::primary> forceLift = liftForceMag * (r / R); // just assume radial lift for now
 
     return { .force = { forceDrag[0] + forceLift[0], forceDrag[1] + forceLift[1], forceDrag[2] + forceLift[2] } };
 }
@@ -97,9 +97,10 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
 const Density AtmosphericForce::find_atmospheric_density(const State& state, const CelestialBodyUniquePtr& center) const
 {
     // Find altitude
-    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position_in_frame<frames::earth::earth_fixed>();
+    const RadiusVector<frames::primary> r                = state.get_position();
+    const RadiusVector<frames::primary_fixed> rBodyFixed = r.in_frame<frames::primary_fixed>(state.get_epoch());
     const auto [latitude, longitude, altitude] =
-        convert_earth_fixed_to_geodetic(rEcef, center->get_equitorial_radius(), center->get_polar_radius());
+        convert_body_fixed_to_geodetic(rBodyFixed, center->get_equitorial_radius(), center->get_polar_radius());
 
     return center->find_atmospheric_density(state.get_epoch(), altitude);
 }

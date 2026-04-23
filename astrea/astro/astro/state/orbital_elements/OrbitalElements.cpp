@@ -164,7 +164,8 @@ OrbitalElements OrbitalElements::convert_to_set_impl(const std::size_t idx, cons
 {
     // TODO: Surely, there's a better way to do this
     switch (idx) { // ooh boy we're fragile
-        case (OrbitalElements::get_set_id<Cartesian>()): return in_element_set<Cartesian>(mu);
+        case (OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>()):
+            return in_element_set<Cartesian<frames::earth::icrf>>(mu);
         case (OrbitalElements::get_set_id<Keplerian>()): return in_element_set<Keplerian>(mu);
         case (OrbitalElements::get_set_id<Equinoctial>()): return in_element_set<Equinoctial>(mu);
         default: throw std::runtime_error("Unrecognized element set requested.");
@@ -174,7 +175,8 @@ OrbitalElements OrbitalElements::convert_to_set_impl(const std::size_t idx, cons
 OrbitalElements OrbitalElements::from_vector(const std::vector<Unitless>& vec, const std::size_t idx)
 {
     switch (idx) {
-        case OrbitalElements::get_set_id<Cartesian>(): return OrbitalElements(Cartesian::from_vector(vec));
+        case OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>():
+            return OrbitalElements(Cartesian<frames::earth::icrf>::from_vector(vec));
         case OrbitalElements::get_set_id<Keplerian>(): return OrbitalElements(Keplerian::from_vector(vec));
         case OrbitalElements::get_set_id<Equinoctial>(): return OrbitalElements(Equinoctial::from_vector(vec));
         default: throw std::runtime_error("Invalid orbital element set index for from_vector.");

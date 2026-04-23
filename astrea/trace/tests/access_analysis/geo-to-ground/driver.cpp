@@ -84,14 +84,14 @@ int main(int argc, char** argv)
 TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
 {
     // Build constellation
-    const Cartesian elem0(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
+    const Cartesian<frames::earth::icrf> elem0(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
     const State state0(elem0, epoch, sys);
 
     const auto rEcef           = elem0.get_position().in_frame<frames::earth::earth_fixed>(epoch);
     const auto& centralBody    = sys.get_central_body();
     const auto rEq             = centralBody->get_equitorial_radius();
     const auto rPolar          = centralBody->get_polar_radius();
-    const auto [lat, lon, alt] = astro::convert_earth_fixed_to_geodetic(rEcef, rEq, rPolar);
+    const auto [lat, lon, alt] = astro::convert_body_fixed_to_geodetic(rEcef, rEq, rPolar);
 
     Viewer geo;
     geo.store_state(state0);

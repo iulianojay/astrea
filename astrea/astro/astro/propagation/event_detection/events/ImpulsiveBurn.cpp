@@ -63,7 +63,7 @@ Unitless ImpulsiveBurn::measure_anomaly_event(const Time& time, const State& sta
 
 Unitless ImpulsiveBurn::measure_altitude_event(const Time& time, const State& state, const Vehicle& vehicle) const
 {
-    const Cartesian elements = state.in_element_set<Cartesian>();
+    const Cartesian<frames::earth::icrf> elements = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
     const CelestialBodyUniquePtr& center = state.get_system().get_central_body();
     const Distance altitude = Geodetic(elements.get_position(), state.get_epoch(), center.get()).get_altitude();
@@ -88,7 +88,7 @@ void ImpulsiveBurn::trigger_action(const Time& time, State& state, Vehicle& vehi
     }
 
     // Pull out state
-    Cartesian elements = state.in_element_set<Cartesian>();
+    Cartesian<frames::earth::icrf> elements = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
     // Just sum up all the thrusters
     const Spacecraft* sat = vehicle.extract<Spacecraft>();

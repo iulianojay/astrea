@@ -396,15 +396,15 @@ class Orbital6DofTest : public testing::Test {
         std::optional<AStats> aStats;
         std::optional<OmegaStats> omegaStats;
         for (const auto& checkcaseState : checkcaseHistory) {
-            const Date date          = checkcaseState.get_epoch();
-            const State propState    = propHistory.get_state_at(date);
-            const Cartesian propCart = propState.in_element_set<Cartesian>();
-            const auto propPos       = propCart.get_position();
-            const auto propVel       = propCart.get_velocity();
+            const Date date                               = checkcaseState.get_epoch();
+            const State propState                         = propHistory.get_state_at(date);
+            const Cartesian<frames::earth::icrf> propCart = propState.in_element_set<Cartesian<frames::earth::icrf>>();
+            const auto propPos                            = propCart.get_position();
+            const auto propVel                            = propCart.get_velocity();
 
-            const Cartesian cart = checkcaseState.in_element_set<Cartesian>();
-            const auto pos       = cart.get_position();
-            const auto vel       = cart.get_velocity();
+            const Cartesian<frames::earth::icrf> cart = checkcaseState.in_element_set<Cartesian<frames::earth::icrf>>();
+            const auto pos                            = cart.get_position();
+            const auto vel                            = cart.get_velocity();
 
             // Compare
             const auto positionError    = propPos - pos;
@@ -659,8 +659,8 @@ class Orbital6DofTest : public testing::Test {
     AstrodynamicsSystem sys;
     GravParam mu;
     Date epoch;
-    Cartesian circular;
-    Cartesian elliptic;
+    Cartesian<frames::earth::icrf> circular;
+    Cartesian<frames::earth::icrf> elliptic;
     Time propTime;
     Integrator integrator;
 };

@@ -56,8 +56,8 @@ class CowellsMethod : public EquationsOfMotion {
     OrbitalElementPartials compute_dynamics(
         const State& state,
         const Vehicle& vehicle,
-        const ForceVector<frames::earth::icrf>& perts,
-        const ForceVector<frames::earth::icrf>& control
+        const ForceVector<frames::primary>& perts,
+        const ForceVector<frames::primary>& control
     ) const override;
 
     /**
@@ -74,7 +74,10 @@ class CowellsMethod : public EquationsOfMotion {
      *
      * @return std::size_t The expected set id of orbital elements.
      */
-    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Cartesian>(); };
+    constexpr std::size_t get_expected_set_id() const override
+    {
+        return OrbitalElements::get_set_id<Cartesian<frames::primary>>();
+    };
 };
 
 } // namespace astro

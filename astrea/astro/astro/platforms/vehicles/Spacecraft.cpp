@@ -108,7 +108,7 @@ Perturbation Spacecraft::get_control_authority(const State& state) const
         totalThrust[1] += thruster.get_thrust();
     }
 
-    const Cartesian elements = state.in_element_set<Cartesian>();
+    const Cartesian<frames::earth::icrf> elements = state.in_element_set<Cartesian<frames::earth::icrf>>();
     const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(elements.get_position(), elements.get_velocity());
     return {
         .force = ricFrame.rotate_out_of_this_frame(totalThrust, state.get_epoch()), .torque = {} // first cut
@@ -134,13 +134,15 @@ void Spacecraft::set_name(const std::string& name) { _name = name; }
 
 RadiusVector<frames::earth::icrf> Spacecraft::get_inertial_position(const Date& date) const
 {
-    const Cartesian elements = _stateHistory.get_state_at(date).in_element_set<Cartesian>();
+    const Cartesian<frames::earth::icrf> elements =
+        _stateHistory.get_state_at(date).in_element_set<Cartesian<frames::earth::icrf>>();
     return elements.get_position();
 }
 
 VelocityVector<frames::earth::icrf> Spacecraft::get_inertial_velocity(const Date& date) const
 {
-    const Cartesian elements = _stateHistory.get_state_at(date).in_element_set<Cartesian>();
+    const Cartesian<frames::earth::icrf> elements =
+        _stateHistory.get_state_at(date).in_element_set<Cartesian<frames::earth::icrf>>();
     return elements.get_velocity();
 }
 

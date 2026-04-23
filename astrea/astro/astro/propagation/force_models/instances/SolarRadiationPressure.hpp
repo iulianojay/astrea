@@ -45,7 +45,7 @@ class SolarRadiationPressure : public PerturbingForce {
     /**
      * @brief Computes the solar radiation pressure force on a spacecraft.
      *
-     * @param state Cartesian state vector of the vehicle
+     * @param state Cartesian<frames::primary> state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
      * @return Perturbation The computed force and torque due to solar radiation pressure.
      */

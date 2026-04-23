@@ -31,7 +31,7 @@ int main()
     // orbital element set, an epoch, and the system the set is defined in. Currently, it does not
     // support angular (kinematic) states, but this will be added in a future release.
     AstrodynamicsSystem sys; // Default system is Earth-Moon
-    Cartesian cartesian{
+    Cartesian<frames::earth::icrf> cartesian{
         7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s,
     };
     Date epoch = Date::now();
@@ -43,7 +43,8 @@ int main()
     // for users who don't want to lug around a system object.
     std::cout << "State in Keplerian: " << state.in_element_set<Keplerian>() << std::endl;
     std::cout << "State in Equinoctial: " << state.in_element_set<Equinoctial>() << std::endl;
-    std::cout << "State in Cartesian: " << state.in_element_set<Cartesian>() << std::endl << std::endl;
+    std::cout << "State in Cartesian: " << state.in_element_set<Cartesian<frames::earth::icrf>>() << std::endl
+              << std::endl;
 
     // A state also can hold an optional attitude.
     const BodyQuaternion orientation{ 1.0, 0.0, 0.0, 0.0 }; // Identity quaternion - no rotation

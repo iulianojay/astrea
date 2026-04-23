@@ -280,6 +280,16 @@ class AstrodynamicsSystem {
         get_relative_position(const Date& date, const CelestialBodyId id1, const CelestialBodyId id2) const;
 
     /**
+     * @brief Get the position of a celestial body relative to the root at a specific date.
+     *
+     * @param date The date at which to get the position.
+     * @param id The ID of the celestial body.
+     * @return CartesianVector<Distance, frames::solar_system_barycenter::icrf> The position vector of the celestial body relative to the root.
+     */
+    CartesianVector<Distance, frames::solar_system_barycenter::icrf>
+        get_position_relative_to_root(const Date& date, const CelestialBodyId id, const CelestialBodyId root) const;
+
+    /**
      * @brief Iterator type for iterating over celestial bodies.
      */
     using iterator = std::unordered_map<CelestialBodyId, CelestialBodyUniquePtr>::iterator;
@@ -294,14 +304,14 @@ class AstrodynamicsSystem {
      *
      * @return iterator An iterator to the first celestial body.
      */
-    constexpr auto begin() const { return _bodies.begin(); }
+    auto begin() const { return _bodies.begin(); }
 
     /**
      * @brief Returns an iterator to the end of the celestial bodies.
      *
      * @return iterator An iterator to the end of the celestial bodies.
      */
-    constexpr auto end() const { return _bodies.end(); }
+    auto end() const { return _bodies.end(); }
 
   private:
     SystemCenter _centerType;                          //!< System center type, either "CENTRAL_BODY" or "BARYCENTER".
@@ -316,7 +326,7 @@ class AstrodynamicsSystem {
      * @param bodies A set of celestial body IDs to consider.
      * @return CelestialBodyId The ID of the root celestial body.
      */
-    constexpr CelestialBodyId find_common_root(const std::unordered_set<CelestialBodyId>& bodies)
+    constexpr CelestialBodyId find_common_root(const std::unordered_set<CelestialBodyId>& bodies) const
     {
         // If there's only one body, it is the root
         if (bodies.size() == 1) { return *(bodies.begin()); }

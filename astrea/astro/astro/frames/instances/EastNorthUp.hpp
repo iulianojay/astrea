@@ -77,7 +77,7 @@ class EastNorthUp : public DynamicFrame<EastNorthUp, FrameAxis::ENU> {
         // eci -> ecef -> lat/lon -> n/e/u
         const RadiusVector<frames::earth::icrf> r            = get_inertial_position(date);
         const RadiusVector<frames::earth::earth_fixed> rEcef = r.in_frame<frames::earth::earth_fixed>(date);
-        const auto [lat, lon, alt] = convert_earth_fixed_to_geodetic(rEcef, rEquitorial, rPolar);
+        const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef, rEquitorial, rPolar);
 
         using mp_units::one;
         using mp_units::angular::cos;

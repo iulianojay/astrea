@@ -180,25 +180,43 @@ class State {
      *
      * @return RadiusVector<frames::earth::icrf> The position vector of the state.
      */
-    RadiusVector<frames::earth::icrf> get_position() const { return in_element_set<Cartesian>().get_position(); }
+    RadiusVector<frames::primary> get_position() const
+    {
+        return in_element_set<Cartesian<frames::primary>>().get_position();
+    }
+
+    /**
+     * @brief Gets the position vector in a specified frame from the state.
+     *
+     * @tparam Frame_T The frame to get the position vector in.
+     * @return RadiusVector<Frame_T> The position vector of the state in the specified frame.
+     */
+    template <typename Frame_T>
+    RadiusVector<Frame_T> get_position_in_frame(const Date& date) const
+    {
+        return get_position().template in_frame<Frame_T>(date);
+    }
 
     /**
      * @brief Gets the velocity vector from the state.
      *
      * @return VelocityVector<frames::earth::icrf> The velocity vector of the state.
      */
-    VelocityVector<frames::earth::icrf> get_velocity() const { return in_element_set<Cartesian>().get_velocity(); }
+    VelocityVector<frames::primary> get_velocity() const
+    {
+        return in_element_set<Cartesian<frames::primary>>().get_velocity();
+    }
 
     /**
-     * @brief Gets the position vector in a specified frame.
+     * @brief Gets the velocity vector in a specified frame from the state.
      *
-     * @tparam Frame_T The frame type to get the position in.
-     * @return RadiusVector<Frame_T> The position vector in the specified frame.
+     * @tparam Frame_T The frame to get the velocity vector in.
+     * @return VelocityVector<Frame_T> The velocity vector of the state in the specified frame.
      */
     template <typename Frame_T>
-    RadiusVector<Frame_T> get_position_in_frame() const
+    VelocityVector<Frame_T> get_velocity_in_frame(const Date& date) const
     {
-        return get_position().template in_frame<Frame_T>(_epoch);
+        return get_velocity().template in_frame<Frame_T>(date);
     }
 
     /**

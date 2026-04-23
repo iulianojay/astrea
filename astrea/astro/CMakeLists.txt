@@ -27,7 +27,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/platforms/thrusters/Thruster.cpp
 
     ${ASTRO_BASE}/propagation/numerical/Integrator.cpp
-    
+
     ${ASTRO_BASE}/propagation/analytic/LambertSolver.cpp
 
     ${ASTRO_BASE}/propagation/event_detection/Event.cpp
@@ -56,7 +56,7 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/state/State.cpp
     ${ASTRO_BASE}/state/StateHistory.cpp
-    
+
     ${ASTRO_BASE}/state/attitude/Attitude.cpp
 
     ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.cpp
@@ -64,7 +64,6 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/state/angular_elements/instances/Geocentric.cpp
     ${ASTRO_BASE}/state/angular_elements/instances/Spherical.cpp
 
-    ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.cpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.cpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.cpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.cpp
@@ -163,7 +162,7 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
-    
+
     ${ASTRO_BASE}/state/attitude/Attitude.hpp
     ${ASTRO_BASE}/state/attitude/instances/Quaternion.hpp
     ${ASTRO_BASE}/state/attitude/instances/AngularVelocities.hpp
@@ -182,7 +181,7 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.hpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.hpp
-    
+
     ${ASTRO_BASE}/state/attitude/instances/Quaternion.hpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
@@ -261,10 +260,10 @@ if(${BUILD_EPHEMERIDES})
     add_dependencies(${PROJECT_NAME}_shared generated_ephemerides)
 endif()
 
-set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared ${ASTRO_LIBS})
-target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
-target_compile_definitions (${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_ASTRO_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_link_libraries(${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared ${ASTRO_LIBS})
+target_include_directories(${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
+target_compile_definitions(${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_ASTRO_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
 
 # Static library
 if(${BUILD_STATIC})
@@ -274,10 +273,10 @@ if(${BUILD_STATIC})
         add_dependencies(${PROJECT_NAME}_static generated_ephemerides)
     endif()
 
-    set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-    target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static ${ASTRO_LIBS})
-    target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
-    target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_ASTRO_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+    set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+    target_link_libraries(${PROJECT_NAME}_static PUBLIC math_static utilities_static ${ASTRO_LIBS})
+    target_include_directories(${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
+    target_compile_definitions(${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_ASTRO_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
 endif()
 
 # Install headers

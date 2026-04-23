@@ -72,11 +72,11 @@ template <typename Frame_T, typename Frame_U>
 CartesianVector<Distance, Frame_T> get_center_offset(const Date& date)
 {
     // Build a system out of these bodies
-    static const AstrodynamicsSystem sys(CelestialBodyId::SUN, { Frame_T::get_origin(), Frame_U::get_origin() });
+    static const AstrodynamicsSystem sys(CelestialBodyId::SUN, { Frame_T::origin, Frame_U::origin });
 
     // Forcing the frame change here doesn't matter since the offset is just a difference and it's already implied that
     // these two frames share an axis.
-    return sys.get_relative_position(date, Frame_T::get_origin(), Frame_U::get_origin()).template force_frame_conversion<Frame_T>();
+    return sys.get_relative_position(date, Frame_T::origin, Frame_U::origin).template force_frame_conversion<Frame_T>();
 }
 
 namespace {
@@ -98,7 +98,7 @@ DCM<Frame_T, Frame_U> get_dcm_impl(const Date& date)
 {
     static_assert(!(HasDcm<Frame_T, Frame_U> && HasDcm<Frame_U, Frame_T>), "DCM defined in both directions, please define only one to avoid symmetry issues.");
     static_assert(IsStaticFrame<Frame_T> && IsStaticFrame<Frame_U>, "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference.");
-    static_assert(HasDcm<Frame_T, Frame_U> || HasDcm<Frame_U, Frame_T> || IsSameFrame<Frame_T, Frame_U>, "No DCM defined between these two frames.");
+    static_assert(HasDcm<Frame_T, Frame_U> || HasDcm<Frame_U, Frame_T> || IsSameFrame<Frame_T, Frame_U>, "No DCM (get_dcm method) defined between these two frames.");
 
     if constexpr (IsSameFrame<Frame_T, Frame_U>) {
         return DCM<Frame_T, Frame_U>::identity(); // TODO: Figure out how to do this earlier to avoid unnecessary matrix math
@@ -113,6 +113,13 @@ DCM<Frame_T, Frame_U> get_dcm_impl(const Date& date)
 }
 
 } // namespace
+
+template <typename Frame_T, typename Frame_U>
+concept HasValidFrameTransformation = requires(Date date) {
+    { get_dcm_impl<Frame_T, Frame_U>(date) } -> std::same_as<DCM<Frame_T, Frame_U>>;
+} || requires(Date date) {
+    { get_dcm_impl<Frame_U, Frame_T>(date) } -> std::same_as<DCM<Frame_U, Frame_T>>;
+} || IsSameFrame<Frame_T, Frame_U>;
 
 /**
  * @brief Rotate a vector from one frame to another at a given date using the Direction Cosine Matrix (DCM).

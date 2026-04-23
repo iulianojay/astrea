@@ -287,7 +287,7 @@ class Geodetic {
  * @return The latitude, longitude, and altitude as a tuple.
  */
 std::tuple<Angle, Angle, Distance>
-    convert_earth_fixed_to_geodetic(const RadiusVector<frames::earth::earth_fixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar);
+    convert_body_fixed_to_geodetic(const RadiusVector<frames::earth::earth_fixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar);
 
 
 /**

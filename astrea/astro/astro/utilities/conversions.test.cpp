@@ -114,7 +114,7 @@ int main(int argc, char** argv)
 TEST_F(ConversionTest, KeplerianToCartesian)
 {
     OrbitalElements elements = _keplExp;
-    elements.convert_to_set<Cartesian>(mu);
+    elements.convert_to_set<Cartesian<frames::earth::icrf>>(mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _cartExp, false, REL_TOL)));
 }
 TEST_F(ConversionTest, CartesianToKeplerian)
@@ -130,7 +130,7 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
-            elements.convert_to_set<Cartesian>(mu);
+            elements.convert_to_set<Cartesian<frames::earth::icrf>>(mu);
 
             // Convert back
             elements.convert_to_set<Keplerian>(mu);
@@ -145,7 +145,7 @@ TEST_F(ConversionTest, CartesianKeplerianCycle)
 TEST_F(ConversionTest, EquinoctialToCartesian)
 {
     OrbitalElements elements = _equiExp;
-    elements.convert_to_set<Cartesian>(mu);
+    elements.convert_to_set<Cartesian<frames::earth::icrf>>(mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _cartExp, false, REL_TOL)));
 }
 TEST_F(ConversionTest, CartesianToEquinoctial)
@@ -161,7 +161,7 @@ TEST_F(ConversionTest, CartesianEquinoctialCycle)
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
-            elements.convert_to_set<Cartesian>(mu);
+            elements.convert_to_set<Cartesian<frames::earth::icrf>>(mu);
 
             // Convert back
             elements.convert_to_set<Equinoctial>(mu);
@@ -209,7 +209,7 @@ TEST_F(ConversionTest, EcefToLla)
     // Vallado ex. 3-3
     const RadiusVector<frames::earth::earth_fixed> rEcef = { 6524.834 * km, 6862.875 * km, 6448.296 * km };
 
-    const auto [lat, lon, alt] = convert_earth_fixed_to_geodetic(rEcef, rEquitorial, rPolar);
+    const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef, rEquitorial, rPolar);
 
     ASSERT_TRUE(math::nearly_equal(lat, Angle(34.3529 * deg), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(lon, Angle(46.4464 * deg), REL_TOL));

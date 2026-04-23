@@ -53,7 +53,7 @@ int main()
         constexpr std::size_t get_expected_set_id() const
         {
             // The orbital element class provides a static helper to get the set id for a given element type
-            return OrbitalElements::get_set_id<Cartesian>();
+            return OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>();
         };
 
         // Dynamics are computed from the current state. The eom model is also passed the current vehicle, in case
@@ -67,9 +67,9 @@ int main()
         ) const override
         {
             // Extracting into the desired set can be convenient
-            const AstrodynamicsSystem& system = state.get_system();
-            const auto mu                     = system.get_mu();
-            const Cartesian cartesian         = state.in_element_set<Cartesian>();
+            const AstrodynamicsSystem& system              = state.get_system();
+            const auto mu                                  = system.get_mu();
+            const Cartesian<frames::earth::icrf> cartesian = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
             // Pull out the pieces for simple two-body gravity
             const auto r = cartesian.get_position();
@@ -77,7 +77,7 @@ int main()
             const auto v = cartesian.get_velocity();
 
             // Compute the partials
-            CartesianPartial partials(v, -mu / (R * R * R) * r + control / vehicle.get_mass());
+            CartesianPartial<frames::earth::icrf> partials(v, -mu / (R * R * R) * r + control / vehicle.get_mass());
 
             return partials;
         }

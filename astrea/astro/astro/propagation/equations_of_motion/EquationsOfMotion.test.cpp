@@ -52,15 +52,18 @@ class MockEquationsOfMotion : public EquationsOfMotion {
     OrbitalElementPartials compute_dynamics(
         const State& state,
         const Vehicle& vehicle,
-        const ForceVector<frames::earth::icrf>& perts,
-        const ForceVector<frames::earth::icrf>& control
+        const ForceVector<frames::primary>& perts,
+        const ForceVector<frames::primary>& control
     ) const override
     {
         // Return simple mock dynamics (zero acceleration for testing)
         return CartesianPartial(0.0 * km / s, 0.0 * km / s, 0.0 * km / s, 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s));
     }
 
-    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Cartesian>(); }
+    constexpr std::size_t get_expected_set_id() const override
+    {
+        return OrbitalElements::get_set_id<Cartesian<frames::primary>>();
+    }
 };
 
 class EquationsOfMotionTest : public testing::Test {
@@ -69,20 +72,20 @@ class EquationsOfMotionTest : public testing::Test {
 
     void SetUp() override
     {
-        // Set up test state with basic Cartesian elements
-        cart  = Cartesian::LEO(sys.get_mu());
+        // Set up test state with basic Cartesian<frames::primary> elements
+        cart  = Cartesian<frames::primary>::LEO(sys.get_mu());
         state = State(cart, epoch, sys);
     }
 
     const Unitless REL_TOL = 1.0e-6;
 
     ForceModel forceModel;
-    ForceVector<frames::earth::icrf> noForce;
-    TorqueVector<frames::earth::icrf> noTorque;
+    ForceVector<frames::primary> noForce;
+    TorqueVector<frames::primary> noTorque;
     Vehicle vehicle;
     AstrodynamicsSystem sys;
     Date epoch;
-    Cartesian cart;
+    Cartesian<frames::primary> cart;
     State state;
     MockEquationsOfMotion eomDefault;
     MockEquationsOfMotion eomWithForces{ forceModel };
@@ -102,8 +105,8 @@ TEST_F(EquationsOfMotionTest, ConstructorWithForceModel) { ASSERT_NO_THROW(MockE
 // Test get_expected_set_id method
 TEST_F(EquationsOfMotionTest, GetExpectedSetId)
 {
-    ASSERT_EQ(eomDefault.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian>());
-    ASSERT_EQ(eomWithForces.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian>());
+    ASSERT_EQ(eomDefault.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian<frames::primary>>());
+    ASSERT_EQ(eomWithForces.get_expected_set_id(), OrbitalElements::get_set_id<Cartesian<frames::primary>>());
 }
 
 // Test operator() method
@@ -133,7 +136,7 @@ TEST_F(EquationsOfMotionTest, ComputeDynamics)
     ASSERT_NO_THROW(result = eomDefault.compute_dynamics(state, vehicle, noForce, noForce));
 
     // Check that we get a valid CartesianPartial (our mock returns zeros)
-    auto cartResult = std::get<CartesianPartial>(result.extract());
+    auto cartResult = std::get<CartesianPartial<frames::primary>>(result.extract());
     EXPECT_TRUE(math::nearly_equal(cartResult.get_vx(), 0.0 * km / s));
     EXPECT_TRUE(math::nearly_equal(cartResult.get_vy(), 0.0 * km / s));
     EXPECT_TRUE(math::nearly_equal(cartResult.get_vz(), 0.0 * km / s));
@@ -161,8 +164,8 @@ TEST_F(EquationsOfMotionTest, ComputeKinematicsWithAttitude)
 TEST_F(EquationsOfMotionTest, OperatorCallWithForces)
 {
     // Test with non-zero forces (still using mock that returns zeros)
-    ForceVector<frames::earth::icrf> testForce(1.0 * N, 0.0 * N, 0.0 * N);
-    TorqueVector<frames::earth::icrf> testTorque(0.1 * N * m, 0.0 * N * m, 0.0 * N * m);
+    ForceVector<frames::primary> testForce(1.0 * N, 0.0 * N, 0.0 * N);
+    TorqueVector<frames::primary> testTorque(0.1 * N * m, 0.0 * N * m, 0.0 * N * m);
 
     StatePartial result;
     ASSERT_NO_THROW(result = eomDefault(state, vehicle));

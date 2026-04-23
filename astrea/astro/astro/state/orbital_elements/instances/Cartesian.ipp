@@ -10,8 +10,7 @@
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
-
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
+#pragma once
 
 #include <iomanip>
 #include <iostream>
@@ -22,14 +21,13 @@
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/types/typedefs.hpp>
 #include <math/interpolation.hpp>
 
-
+namespace {
 using namespace mp_units;
 using namespace mp_units::non_si;
 using namespace mp_units::angular;
@@ -37,17 +35,13 @@ using angular::unit_symbols::deg;
 using angular::unit_symbols::rad;
 using si::unit_symbols::km;
 using si::unit_symbols::s;
+} // namespace
 
 namespace astrea {
 namespace astro {
 
-Cartesian Cartesian::LEO(const GravParam& mu) { return Cartesian(Keplerian::LEO(), mu); }
-Cartesian Cartesian::LMEO(const GravParam& mu) { return Cartesian(Keplerian::LMEO(), mu); }
-Cartesian Cartesian::GPS(const GravParam& mu) { return Cartesian(Keplerian::GPS(), mu); }
-Cartesian Cartesian::HMEO(const GravParam& mu) { return Cartesian(Keplerian::HMEO(), mu); }
-Cartesian Cartesian::GEO(const GravParam& mu) { return Cartesian(Keplerian::GEO(), mu); }
-
-Cartesian::Cartesian(const Keplerian& elements, const GravParam& mu)
+template <typename Frame_T>
+Cartesian<Frame_T>::Cartesian(const Keplerian& elements, const GravParam& mu)
 {
     // Extract elements
     const auto& a     = elements.get_semimajor();
@@ -107,8 +101,8 @@ Cartesian::Cartesian(const Keplerian& elements, const GravParam& mu)
     _v[2] = DcmPeri2Eci31 * vxPeri + DcmPeri2Eci32 * vyPeri;
 }
 
-
-Cartesian::Cartesian(const Equinoctial& elements, const GravParam& mu)
+template <typename Frame_T>
+Cartesian<Frame_T>::Cartesian(const Equinoctial& elements, const GravParam& mu)
 {
     // Extract
     const auto& semilatus     = elements.get_semilatus();
@@ -154,27 +148,54 @@ Cartesian::Cartesian(const Equinoctial& elements, const GravParam& mu)
     _v[2] = 2.0 * gamma * (h * cosL + k * sinL + f * h + g * k);
 }
 
-Cartesian::Cartesian(const OrbitalElements& elements, const GravParam& mu)
+template <typename Frame_T>
+Cartesian<Frame_T> Cartesian<Frame_T>::LEO(const GravParam& mu)
 {
-    *this = elements.in_element_set<Cartesian>(mu);
+    return Cartesian<Frame_T>(Keplerian::LEO(), mu);
 }
 
-// Copy constructor
-Cartesian::Cartesian(const Cartesian& other) :
-    _r(other._r),
-    _v(other._v)
+template <typename Frame_T>
+Cartesian<Frame_T> Cartesian<Frame_T>::LMEO(const GravParam& mu)
 {
+    return Cartesian<Frame_T>(Keplerian::LMEO(), mu);
 }
 
-// Move constructor
-Cartesian::Cartesian(Cartesian&& other) noexcept :
+template <typename Frame_T>
+Cartesian<Frame_T> Cartesian<Frame_T>::GPS(const GravParam& mu)
+{
+    return Cartesian<Frame_T>(Keplerian::GPS(), mu);
+}
+
+template <typename Frame_T>
+Cartesian<Frame_T> Cartesian<Frame_T>::HMEO(const GravParam& mu)
+{
+    return Cartesian<Frame_T>(Keplerian::HMEO(), mu);
+}
+
+template <typename Frame_T>
+Cartesian<Frame_T> Cartesian<Frame_T>::GEO(const GravParam& mu)
+{
+    return Cartesian<Frame_T>(Keplerian::GEO(), mu);
+}
+
+template <typename Frame_T>
+Cartesian<Frame_T>::Cartesian(Cartesian<Frame_T>&& other) noexcept :
     _r(std::move(other._r)),
     _v(std::move(other._v))
 {
 }
 
+template <typename Frame_T>
+Cartesian<Frame_T>::Cartesian(const Cartesian<Frame_T>& other) :
+    _r(other._r),
+    _v(other._v)
+{
+}
+
+
 // Move assignment operator
-Cartesian& Cartesian::operator=(Cartesian&& other) noexcept
+template <typename Frame_T>
+Cartesian<Frame_T>& Cartesian<Frame_T>::operator=(Cartesian<Frame_T>&& other) noexcept
 {
     if (this != &other) {
         _r = std::move(other._r);
@@ -184,78 +205,144 @@ Cartesian& Cartesian::operator=(Cartesian&& other) noexcept
 }
 
 // Copy assignment operator
-Cartesian& Cartesian::operator=(const Cartesian& other) { return *this = Cartesian(other); }
+template <typename Frame_T>
+Cartesian<Frame_T>& Cartesian<Frame_T>::operator=(const Cartesian<Frame_T>& other)
+{
+    return *this = Cartesian(other);
+}
 
-// Comparitors operators
-bool Cartesian::operator==(const Cartesian& other) const { return (_r == other._r && _v == other._v); }
+// Comparitor operators
+template <typename Frame_T>
+bool Cartesian<Frame_T>::operator==(const Cartesian<Frame_T>& other) const
+{
+    return (_r == other._r && _v == other._v);
+}
 
-bool Cartesian::operator!=(const Cartesian& other) const { return !(*this == other); }
+template <typename Frame_T>
+bool Cartesian<Frame_T>::operator!=(const Cartesian<Frame_T>& other) const
+{
+    return !(*this == other);
+}
 
 
-// Mathmatical operators
-Cartesian Cartesian::operator+(const Cartesian& other) const { return Cartesian(_r + other._r, _v + other._v); }
-Cartesian& Cartesian::operator+=(const Cartesian& other)
+// Mathematical operators
+template <typename Frame_T>
+Cartesian<Frame_T> Cartesian<Frame_T>::operator+(const Cartesian<Frame_T>& other) const
+{
+    return Cartesian(_r + other._r, _v + other._v);
+}
+
+template <typename Frame_T>
+Cartesian<Frame_T>& Cartesian<Frame_T>::operator+=(const Cartesian<Frame_T>& other)
 {
     _r += other._r;
     _v += other._v;
     return *this;
 }
 
-Cartesian Cartesian::operator+(const RadiusVector<frames::earth::icrf>& r) const { return Cartesian(_r + r, _v); }
-Cartesian& Cartesian::operator+=(const RadiusVector<frames::earth::icrf>& r)
+template <typename Frame_T>
+Cartesian<Frame_T> Cartesian<Frame_T>::operator+(const RadiusVector<Frame_T>& r) const
+{
+    return Cartesian(_r + r, _v);
+}
+
+template <typename Frame_T>
+Cartesian<Frame_T>& Cartesian<Frame_T>::operator+=(const RadiusVector<Frame_T>& r)
 {
     _r += r;
     return *this;
 }
 
-Cartesian Cartesian::operator+(const VelocityVector<frames::earth::icrf>& v) const { return Cartesian(_r, _v + v); }
-Cartesian& Cartesian::operator+=(const VelocityVector<frames::earth::icrf>& v)
+template <typename Frame_T>
+Cartesian<Frame_T> Cartesian<Frame_T>::operator+(const VelocityVector<Frame_T>& v) const
+{
+    return Cartesian(_r, _v + v);
+}
+
+template <typename Frame_T>
+Cartesian<Frame_T>& Cartesian<Frame_T>::operator+=(const VelocityVector<Frame_T>& v)
 {
     _v += v;
     return *this;
 }
 
-Cartesian Cartesian::operator-(const Cartesian& other) const { return Cartesian(_r - other._r, _v - other._v); }
-Cartesian& Cartesian::operator-=(const Cartesian& other)
+template <typename Frame_T>
+Cartesian<Frame_T> Cartesian<Frame_T>::operator-(const Cartesian<Frame_T>& other) const
+{
+    return Cartesian(_r - other._r, _v - other._v);
+}
+
+template <typename Frame_T>
+Cartesian<Frame_T>& Cartesian<Frame_T>::operator-=(const Cartesian<Frame_T>& other)
 {
     _r -= other._r;
     _v -= other._v;
     return *this;
 }
 
-Cartesian Cartesian::operator-(const RadiusVector<frames::earth::icrf>& r) const { return Cartesian(_r - r, _v); }
-Cartesian& Cartesian::operator-=(const RadiusVector<frames::earth::icrf>& r)
+template <typename Frame_T>
+Cartesian<Frame_T> Cartesian<Frame_T>::operator-(const RadiusVector<Frame_T>& r) const
+{
+    return Cartesian(_r - r, _v);
+}
+
+template <typename Frame_T>
+Cartesian<Frame_T>& Cartesian<Frame_T>::operator-=(const RadiusVector<Frame_T>& r)
 {
     _r -= r;
     return *this;
 }
 
-Cartesian Cartesian::operator-(const VelocityVector<frames::earth::icrf>& v) const { return Cartesian(_r, _v - v); }
-Cartesian& Cartesian::operator-=(const VelocityVector<frames::earth::icrf>& v)
+template <typename Frame_T>
+Cartesian<Frame_T> Cartesian<Frame_T>::operator-(const VelocityVector<Frame_T>& v) const
+{
+    return Cartesian(_r, _v - v);
+}
+
+template <typename Frame_T>
+Cartesian<Frame_T>& Cartesian<Frame_T>::operator-=(const VelocityVector<Frame_T>& v)
 {
     _v -= v;
     return *this;
 }
 
-Cartesian Cartesian::operator*(const Unitless& multiplier) const { return Cartesian(_r * multiplier, _v * multiplier); }
-Cartesian& Cartesian::operator*=(const Unitless& multiplier)
+template <typename Frame_T>
+Cartesian<Frame_T> Cartesian<Frame_T>::operator*(const Unitless& multiplier) const
+{
+    return Cartesian(_r * multiplier, _v * multiplier);
+}
+
+template <typename Frame_T>
+Cartesian<Frame_T>& Cartesian<Frame_T>::operator*=(const Unitless& multiplier)
 {
     _r *= multiplier;
     _v *= multiplier;
     return *this;
 }
 
-CartesianPartial Cartesian::operator/(const Time& time) const { return CartesianPartial(_r / time, _v / time); }
+template <typename Frame_T>
+CartesianPartial<Frame_T> Cartesian<Frame_T>::operator/(const Time& time) const
+{
+    return CartesianPartial<Frame_T>(_r / time, _v / time);
+}
 
-Cartesian Cartesian::operator/(const Unitless& divisor) const { return Cartesian(_r / divisor, _v / divisor); }
-Cartesian& Cartesian::operator/=(const Unitless& divisor)
+template <typename Frame_T>
+Cartesian<Frame_T> Cartesian<Frame_T>::operator/(const Unitless& divisor) const
+{
+    return Cartesian<Frame_T>(_r / divisor, _v / divisor);
+}
+
+template <typename Frame_T>
+Cartesian<Frame_T>& Cartesian<Frame_T>::operator/=(const Unitless& divisor)
 {
     _r /= divisor;
     _v /= divisor;
     return *this;
 }
 
-Cartesian Cartesian::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const GravParam& mu, const Time& targetTime) const
+template <typename Frame_T>
+Cartesian<Frame_T>
+    Cartesian<Frame_T>::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<Frame_T>& other, const GravParam& mu, const Time& targetTime) const
 {
     const std::array<Time, 2> times = { thisTime, otherTime };
     const Distance interpX          = math::fast_interpolate<Time, Distance>(times, { _r[0], other._r[0] }, targetTime);
@@ -265,16 +352,18 @@ Cartesian Cartesian::interpolate(const Time& thisTime, const Time& otherTime, co
     const Velocity interpVy         = math::fast_interpolate<Time, Velocity>(times, { _v[1], other._v[1] }, targetTime);
     const Velocity interpVz         = math::fast_interpolate<Time, Velocity>(times, { _v[2], other._v[2] }, targetTime);
 
-    return Cartesian(interpX, interpY, interpZ, interpVx, interpVy, interpVz);
+    return Cartesian<Frame_T>(interpX, interpY, interpZ, interpVx, interpVy, interpVz);
 }
 
-std::vector<Unitless> Cartesian::force_to_vector() const
+template <typename Frame_T>
+std::vector<Unitless> Cartesian<Frame_T>::force_to_vector() const
 {
     return { _r[0] / _r[0].unit, _r[1] / _r[1].unit, _r[2] / _r[2].unit,
              _v[0] / _v[0].unit, _v[1] / _v[1].unit, _v[2] / _v[2].unit };
 }
 
-Cartesian Cartesian::from_vector(const std::vector<Unitless>& vec)
+template <typename Frame_T>
+Cartesian<Frame_T> Cartesian<Frame_T>::from_vector(const std::vector<Unitless>& vec)
 {
     if (vec.size() != 6) {
         throw std::runtime_error("Input vector must have exactly 6 elements to convert to Cartesian.");
@@ -290,16 +379,21 @@ Cartesian Cartesian::from_vector(const std::vector<Unitless>& vec)
     );
 }
 
-Cartesian CartesianPartial::operator*(const Time& time) const { return Cartesian(_v * time, _a * time); }
+template <typename Frame_T>
+Cartesian<Frame_T> CartesianPartial<Frame_T>::operator*(const Time& time) const
+{
+    return Cartesian<Frame_T>(_v * time, _a * time);
+}
 
-
-std::vector<Unitless> CartesianPartial::force_to_vector() const
+template <typename Frame_T>
+std::vector<Unitless> CartesianPartial<Frame_T>::force_to_vector() const
 {
     return { _v[0] / _v[0].unit, _v[1] / _v[1].unit, _v[2] / _v[2].unit,
              _a[0] / _a[0].unit, _a[1] / _a[1].unit, _a[2] / _a[2].unit };
 }
 
-std::ostream& operator<<(std::ostream& os, Cartesian const& elements)
+template <typename Frame_T>
+std::ostream& operator<<(std::ostream& os, Cartesian<Frame_T> const& elements)
 {
     os << "[";
     os << elements.get_x() << ", ";
@@ -312,7 +406,8 @@ std::ostream& operator<<(std::ostream& os, Cartesian const& elements)
     return os;
 }
 
-std::ostream& operator<<(std::ostream& os, CartesianPartial const& elements)
+template <typename Frame_T>
+std::ostream& operator<<(std::ostream& os, CartesianPartial<Frame_T> const& elements)
 {
     os << "[";
     os << elements._v[0] << ", ";
