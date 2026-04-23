@@ -148,22 +148,6 @@ Cartesian<Frame_T>::Cartesian(const Equinoctial& elements, const GravParam& mu)
     _v[2] = 2.0 * gamma * (h * cosL + k * sinL + f * h + g * k);
 }
 
-// Copy constructor
-template <typename Frame_T>
-Cartesian<Frame_T>::Cartesian(const Cartesian& other) :
-    _r(other._r),
-    _v(other._v)
-{
-}
-
-// Move constructor
-template <typename Frame_T>
-Cartesian<Frame_T>::Cartesian(Cartesian&& other) noexcept :
-    _r(std::move(other._r)),
-    _v(std::move(other._v))
-{
-}
-
 template <typename Frame_T>
 Cartesian<Frame_T> Cartesian<Frame_T>::LEO(const GravParam& mu)
 {
@@ -194,9 +178,24 @@ Cartesian<Frame_T> Cartesian<Frame_T>::GEO(const GravParam& mu)
     return Cartesian<Frame_T>(Keplerian::GEO(), mu);
 }
 
+template <typename Frame_T>
+Cartesian<Frame_T>::Cartesian(Cartesian<Frame_T>&& other) noexcept :
+    _r(std::move(other._r)),
+    _v(std::move(other._v))
+{
+}
+
+template <typename Frame_T>
+Cartesian<Frame_T>::Cartesian(const Cartesian<Frame_T>& other) :
+    _r(other._r),
+    _v(other._v)
+{
+}
+
+
 // Move assignment operator
 template <typename Frame_T>
-Cartesian<Frame_T>& Cartesian<Frame_T>::operator=(Cartesian&& other) noexcept
+Cartesian<Frame_T>& Cartesian<Frame_T>::operator=(Cartesian<Frame_T>&& other) noexcept
 {
     if (this != &other) {
         _r = std::move(other._r);
@@ -207,20 +206,20 @@ Cartesian<Frame_T>& Cartesian<Frame_T>::operator=(Cartesian&& other) noexcept
 
 // Copy assignment operator
 template <typename Frame_T>
-Cartesian<Frame_T>& Cartesian<Frame_T>::operator=(const Cartesian& other)
+Cartesian<Frame_T>& Cartesian<Frame_T>::operator=(const Cartesian<Frame_T>& other)
 {
     return *this = Cartesian(other);
 }
 
 // Comparitor operators
 template <typename Frame_T>
-bool Cartesian<Frame_T>::operator==(const Cartesian& other) const
+bool Cartesian<Frame_T>::operator==(const Cartesian<Frame_T>& other) const
 {
     return (_r == other._r && _v == other._v);
 }
 
 template <typename Frame_T>
-bool Cartesian<Frame_T>::operator!=(const Cartesian& other) const
+bool Cartesian<Frame_T>::operator!=(const Cartesian<Frame_T>& other) const
 {
     return !(*this == other);
 }
@@ -228,13 +227,13 @@ bool Cartesian<Frame_T>::operator!=(const Cartesian& other) const
 
 // Mathematical operators
 template <typename Frame_T>
-Cartesian<Frame_T> Cartesian<Frame_T>::operator+(const Cartesian& other) const
+Cartesian<Frame_T> Cartesian<Frame_T>::operator+(const Cartesian<Frame_T>& other) const
 {
     return Cartesian(_r + other._r, _v + other._v);
 }
 
 template <typename Frame_T>
-Cartesian<Frame_T>& Cartesian<Frame_T>::operator+=(const Cartesian& other)
+Cartesian<Frame_T>& Cartesian<Frame_T>::operator+=(const Cartesian<Frame_T>& other)
 {
     _r += other._r;
     _v += other._v;
@@ -268,13 +267,13 @@ Cartesian<Frame_T>& Cartesian<Frame_T>::operator+=(const VelocityVector<Frame_T>
 }
 
 template <typename Frame_T>
-Cartesian<Frame_T> Cartesian<Frame_T>::operator-(const Cartesian& other) const
+Cartesian<Frame_T> Cartesian<Frame_T>::operator-(const Cartesian<Frame_T>& other) const
 {
     return Cartesian(_r - other._r, _v - other._v);
 }
 
 template <typename Frame_T>
-Cartesian<Frame_T>& Cartesian<Frame_T>::operator-=(const Cartesian& other)
+Cartesian<Frame_T>& Cartesian<Frame_T>::operator-=(const Cartesian<Frame_T>& other)
 {
     _r -= other._r;
     _v -= other._v;
@@ -343,7 +342,7 @@ Cartesian<Frame_T>& Cartesian<Frame_T>::operator/=(const Unitless& divisor)
 
 template <typename Frame_T>
 Cartesian<Frame_T>
-    Cartesian<Frame_T>::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const GravParam& mu, const Time& targetTime) const
+    Cartesian<Frame_T>::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<Frame_T>& other, const GravParam& mu, const Time& targetTime) const
 {
     const std::array<Time, 2> times = { thisTime, otherTime };
     const Distance interpX          = math::fast_interpolate<Time, Distance>(times, { _r[0], other._r[0] }, targetTime);

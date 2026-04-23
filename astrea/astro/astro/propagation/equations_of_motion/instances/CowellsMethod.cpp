@@ -50,8 +50,8 @@ OrbitalElementPartials CowellsMethod::compute_dynamics(
     // Extract
     const auto mu = state.get_system().get_mu();
 
-    const RadiusVector<frames::earth::icrf> r   = state.get_position<frames::earth::icrf>();
-    const VelocityVector<frames::earth::icrf> v = state.get_velocity<frames::earth::icrf>();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
 
     // mu/R^3
     const Distance R             = r.norm();

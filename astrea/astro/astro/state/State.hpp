@@ -180,10 +180,21 @@ class State {
      *
      * @return RadiusVector<frames::earth::icrf> The position vector of the state.
      */
-    template <typename Frame_T>
-    RadiusVector<Frame_T> get_position() const
+    RadiusVector<frames::primary> get_position() const
     {
-        return in_element_set<Cartesian<Frame_T>>().get_position();
+        return in_element_set<Cartesian<frames::primary>>().get_position();
+    }
+
+    /**
+     * @brief Gets the position vector in a specified frame from the state.
+     *
+     * @tparam Frame_T The frame to get the position vector in.
+     * @return RadiusVector<Frame_T> The position vector of the state in the specified frame.
+     */
+    template <typename Frame_T>
+    RadiusVector<Frame_T> get_position_in_frame(const Date& date) const
+    {
+        return get_position().template in_frame<Frame_T>(date);
     }
 
     /**
@@ -191,10 +202,21 @@ class State {
      *
      * @return VelocityVector<frames::earth::icrf> The velocity vector of the state.
      */
-    template <typename Frame_T>
-    VelocityVector<Frame_T> get_velocity() const
+    VelocityVector<frames::primary> get_velocity() const
     {
-        return in_element_set<Cartesian<Frame_T>>().get_velocity();
+        return in_element_set<Cartesian<frames::primary>>().get_velocity();
+    }
+
+    /**
+     * @brief Gets the velocity vector in a specified frame from the state.
+     *
+     * @tparam Frame_T The frame to get the velocity vector in.
+     * @return VelocityVector<Frame_T> The velocity vector of the state in the specified frame.
+     */
+    template <typename Frame_T>
+    VelocityVector<Frame_T> get_velocity_in_frame(const Date& date) const
+    {
+        return get_velocity().template in_frame<Frame_T>(date);
     }
 
     /**

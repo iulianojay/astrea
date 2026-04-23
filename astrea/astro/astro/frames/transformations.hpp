@@ -72,11 +72,11 @@ template <typename Frame_T, typename Frame_U>
 CartesianVector<Distance, Frame_T> get_center_offset(const Date& date)
 {
     // Build a system out of these bodies
-    static const AstrodynamicsSystem sys(CelestialBodyId::SUN, { Frame_T::get_origin(), Frame_U::get_origin() });
+    static const AstrodynamicsSystem sys(CelestialBodyId::SUN, { Frame_T::origin, Frame_U::origin });
 
     // Forcing the frame change here doesn't matter since the offset is just a difference and it's already implied that
     // these two frames share an axis.
-    return sys.get_relative_position(date, Frame_T::get_origin(), Frame_U::get_origin()).template force_frame_conversion<Frame_T>();
+    return sys.get_relative_position(date, Frame_T::origin, Frame_U::origin).template force_frame_conversion<Frame_T>();
 }
 
 namespace {

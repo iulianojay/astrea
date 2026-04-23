@@ -173,14 +173,14 @@ class Cartesian {
      *
      * @param other Another Cartesian object
      */
-    Cartesian(const Cartesian&);
+    Cartesian(const Cartesian<Frame_T>&);
 
     /**
      * @brief Move constructor for Cartesian.
      *
      * @param other Another Cartesian object
      */
-    Cartesian(Cartesian&&) noexcept;
+    Cartesian(Cartesian<Frame_T>&&) noexcept;
 
     /**
      * @brief Move assignment operator for Cartesian.
@@ -188,7 +188,7 @@ class Cartesian {
      * @param other Another Cartesian object
      * @return Cartesian& Reference to the current object
      */
-    Cartesian& operator=(Cartesian&&) noexcept;
+    Cartesian& operator=(Cartesian<Frame_T>&&) noexcept;
 
     /**
      * @brief Copy assignment operator for Cartesian.
@@ -196,7 +196,7 @@ class Cartesian {
      * @param other Another Cartesian object
      * @return Cartesian& Reference to the current object
      */
-    Cartesian& operator=(const Cartesian&);
+    Cartesian& operator=(const Cartesian<Frame_T>&);
 
     /**
      * @brief Default destructor for Cartesian.
@@ -210,7 +210,7 @@ class Cartesian {
      * @return true if the two Cartesian objects are equal
      * @return false if the two Cartesian objects are not equal
      */
-    bool operator==(const Cartesian& other) const;
+    bool operator==(const Cartesian<Frame_T>& other) const;
 
     /**
      * @brief Compares two Cartesian objects for inequality.
@@ -219,7 +219,7 @@ class Cartesian {
      * @return true if the two Cartesian objects are not equal
      * @return false if the two Cartesian objects are equal
      */
-    bool operator!=(const Cartesian& other) const;
+    bool operator!=(const Cartesian<Frame_T>& other) const;
 
     /**
      * @brief Adds two Cartesian objects.
@@ -227,7 +227,7 @@ class Cartesian {
      * @param other Another Cartesian object
      * @return Resultant Cartesian sum.
      */
-    Cartesian operator+(const Cartesian& other) const;
+    Cartesian operator+(const Cartesian<Frame_T>& other) const;
 
     Cartesian operator+(const RadiusVector<Frame_T>& r) const;
     Cartesian operator+(const VelocityVector<Frame_T>& v) const;
@@ -238,7 +238,7 @@ class Cartesian {
      * @param other Another Cartesian object
      * @return Reference to the current Cartesian object after addition.
      */
-    Cartesian& operator+=(const Cartesian& other);
+    Cartesian& operator+=(const Cartesian<Frame_T>& other);
 
     Cartesian& operator+=(const RadiusVector<Frame_T>& r);
     Cartesian& operator+=(const VelocityVector<Frame_T>& v);
@@ -249,7 +249,7 @@ class Cartesian {
      * @param other Another Cartesian object
      * @return Resultant Cartesian difference.
      */
-    Cartesian operator-(const Cartesian& other) const;
+    Cartesian operator-(const Cartesian<Frame_T>& other) const;
 
     Cartesian operator-(const RadiusVector<Frame_T>& r) const;
     Cartesian operator-(const VelocityVector<Frame_T>& v) const;
@@ -260,7 +260,7 @@ class Cartesian {
      * @param other Another Cartesian object
      * @return Reference to the current Cartesian object after subtraction.
      */
-    Cartesian& operator-=(const Cartesian& other);
+    Cartesian& operator-=(const Cartesian<Frame_T>& other);
 
     Cartesian& operator-=(const RadiusVector<Frame_T>& r);
     Cartesian& operator-=(const VelocityVector<Frame_T>& v);
@@ -295,7 +295,7 @@ class Cartesian {
      * @param other Another Cartesian object
      * @return Resultant vector of unitless values after division.
      */
-    std::vector<Unitless> operator/(const Cartesian& other) const;
+    std::vector<Unitless> operator/(const Cartesian<Frame_T>& other) const;
 
     /**
      * @brief Divides the Cartesian state vector by a scalar.

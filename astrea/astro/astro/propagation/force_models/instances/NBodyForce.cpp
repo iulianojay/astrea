@@ -41,7 +41,7 @@ Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle&
     // Extract
     const AstrodynamicsSystem& sys                            = state.get_system();
     const Date date                                           = state.get_epoch();
-    const RadiusVector<frames::earth::icrf>& rCenterToVehicle = state.get_position<frames::earth::icrf>();
+    const RadiusVector<frames::earth::icrf>& rCenterToVehicle = state.get_position();
 
     // Center body properties
     const CelestialBodyUniquePtr& center = sys.get_central_body();

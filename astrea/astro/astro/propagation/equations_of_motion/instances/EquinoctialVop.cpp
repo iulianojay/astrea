@@ -63,8 +63,8 @@ OrbitalElementPartials EquinoctialVop::compute_dynamics(
     const Angle& L    = equinoctial.get_true_longitude();
 
     // R and V
-    const RadiusVector<frames::earth::icrf> r   = state.get_position<frames::earth::icrf>();
-    const VelocityVector<frames::earth::icrf> v = state.get_velocity<frames::earth::icrf>();
+    const RadiusVector<frames::earth::icrf> r   = state.get_position();
+    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
 
     // Calculate R, N, and T
     const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(r, v);

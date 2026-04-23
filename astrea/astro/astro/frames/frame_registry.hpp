@@ -21,6 +21,7 @@
 #include <tuple>
 #include <variant>
 
+#include <astro/frames/Frame.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/frames/transformations.hpp>
 
@@ -32,6 +33,10 @@ namespace frames {
 using primary = earth::icrf;
 
 }
+
+static constexpr CelestialBodyId primary_body = frames::primary::origin;
+
+static_assert(IsInertialFrame<frames::primary>, "The primary frame must be inertial.");
 
 /**
  * @brief The built-in set of Cartesian frames known to astrea.
