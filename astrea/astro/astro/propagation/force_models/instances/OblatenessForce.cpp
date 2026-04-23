@@ -243,7 +243,7 @@ OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size
 For the life of me, I could not get this to match the NASA checkcases. I can't find anything wrong with it. If you figure
 it out, let me know.
 
-AccelerationVector<frames::earth::icrf>
+AccelerationVector<frames::primary>
     OblatenessForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Central body properties
@@ -252,8 +252,8 @@ AccelerationVector<frames::earth::icrf>
     const Distance& polarR      = _sys->get_central_body()->get_polar_radius();
 
     // Find lat and lon
-    const RadiusVector<frames::earth::icrf> rEci = state.get_position();
-    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
+    const RadiusVector<frames::primary> rEci = state.get_position();
+    const RadiusVector<frames::primary_fixed> rEcef = state.get_position().in_frame<frames::primary_fixed>(date);
     const auto [latitude, longitude, altitude] = convert_earth_fixed_to_geocentric(rEcef, equitorialR, polarR);
 
     // Precomput common terms
@@ -335,23 +335,23 @@ AccelerationVector<frames::earth::icrf>
     const auto term2 = dVdlon / (rho * rho);
 
     // Calculate accel in ECEF (not with respect to ECEF)
-    const AccelerationVector<frames::earth::earth_fixed> accelOblatenessEcef = {
+    const AccelerationVector<frames::primary_fixed> accelOblatenessEcef = {
         term1 * xEcef - term2 * yEcef,                      //
         term1 * yEcef + term2 * xEcef,                      //
         oneOverR * (dVdr * zEcef + oneOverR * rho * dVdlat) //
     };
 
     // Rotate back into inertial coordinates (no accel conversions required)
-    const AccelerationVector<frames::earth::icrf> accelOblatenessIcrf = accelOblatenessEcef.in_frame<frames::earth::icrf>(date);
+    const AccelerationVector<frames::primary> accelOblatenessIcrf = accelOblatenessEcef.in_frame<frames::primary>(date);
     static bool compare = true;
     if (compare) { // TODO: Remove this
-        const AccelerationVector<frames::earth::icrf> gravity = -mu / pow<3>(rEci.norm()) * rEci;
-        AccelerationVector<frames::earth::icrf> expected      = { 5.51387371235876 * m / (s * s),
+        const AccelerationVector<frames::primary> gravity = -mu / pow<3>(rEci.norm()) * rEci;
+        AccelerationVector<frames::primary> expected      = { 5.51387371235876 * m / (s * s),
                                                                   -1.22700119262805 * m / (s * s),
                                                                   -6.62056474851441 * m / (s * s) };
         expected -= gravity;
 
-        const AccelerationVector<frames::earth::icrf> diff = accelOblatenessIcrf - expected;
+        const AccelerationVector<frames::primary> diff = accelOblatenessIcrf - expected;
 
         std::cout << "Expected Accel: " << expected << " (" << expected.norm() << ")" << std::endl;
         std::cout << "Computed Accel: " << accelOblatenessIcrf << " (" << accelOblatenessIcrf.norm() << ")" << std::endl;
@@ -375,9 +375,9 @@ Perturbation OblatenessForce::compute_perturbation(const State& state, const Veh
     const Distance& equitorialR = _sys->get_central_body()->get_equitorial_radius();
 
     // Transform position to body-fixed frame
-    const Date date                                      = state.get_epoch();
-    const RadiusVector<frames::earth::icrf> rEci         = state.get_position();
-    const RadiusVector<frames::earth::earth_fixed> rEcef = rEci.in_frame<frames::earth::earth_fixed>(date);
+    const Date date                                 = state.get_epoch();
+    const RadiusVector<frames::primary> rEci        = state.get_position();
+    const RadiusVector<frames::primary_fixed> rEcef = rEci.in_frame<frames::primary_fixed>(date);
 
     // Position components in ECEF
     const Distance& x = rEcef[0];
@@ -479,10 +479,10 @@ Perturbation OblatenessForce::compute_perturbation(const State& state, const Veh
 
     // Scale by mu/r^2
     const Acceleration muOverR2 = mu / (equitorialR * equitorialR);
-    const AccelerationVector<frames::earth::earth_fixed> accelOblatenessEcef = { ax * muOverR2, ay * muOverR2, az * muOverR2 };
+    const AccelerationVector<frames::primary_fixed> accelOblatenessEcef = { ax * muOverR2, ay * muOverR2, az * muOverR2 };
 
     // Transform back to inertial frame - original values are in ecef, not w.r.t ecef
-    return { .force = (accelOblatenessEcef.in_frame<frames::earth::icrf>(date) * vehicle.get_mass()) };
+    return { .force = (accelOblatenessEcef.in_frame<frames::primary>(date) * vehicle.get_mass()) };
 }
 
 } // namespace astro

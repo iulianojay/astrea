@@ -39,9 +39,9 @@ using mp_units::si::unit_symbols::s;
 Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    const AstrodynamicsSystem& sys                            = state.get_system();
-    const Date date                                           = state.get_epoch();
-    const RadiusVector<frames::earth::icrf>& rCenterToVehicle = state.get_position();
+    const AstrodynamicsSystem& sys                        = state.get_system();
+    const Date date                                       = state.get_epoch();
+    const RadiusVector<frames::primary>& rCenterToVehicle = state.get_position();
 
     // Center body properties
     const CelestialBodyUniquePtr& center = sys.get_central_body();
@@ -50,20 +50,20 @@ Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle&
     const RadiusVector<frames::solar_system_barycenter::icrf> rCenterToSsb = -center->get_position_at(date);
 
     // Reset perturbation
-    AccelerationVector<frames::earth::icrf> accelNBody{ 0.0 * km / (s * s) };
+    AccelerationVector<frames::primary> accelNBody{ 0.0 * km / (s * s) };
     for (const auto& [id, body] : sys) {
 
         if (body->get_name() == center->get_name()) { continue; }
 
         // Find center to nth body and spacecraft to nth body
-        RadiusVector<frames::earth::icrf> rCenterToNbody;
+        RadiusVector<frames::primary> rCenterToNbody;
         if (body->get_type() == CelestialBodyType::MOON) {
-            rCenterToNbody = body->get_position_at(date).force_frame_conversion<frames::earth::icrf>();
+            rCenterToNbody = body->get_position_at(date).force_frame_conversion<frames::primary>();
         }
         else {
-            rCenterToNbody = (body->get_position_at(date) - rCenterToSsb).force_frame_conversion<frames::earth::icrf>(); // Gross
+            rCenterToNbody = (body->get_position_at(date) - rCenterToSsb).force_frame_conversion<frames::primary>(); // Gross
         }
-        const RadiusVector<frames::earth::icrf> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
+        const RadiusVector<frames::primary> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
 
         // Normalize
         const Distance rMagVehicleToNbody = rVehicleToNbody.norm();

@@ -49,8 +49,8 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
     const CelestialBodyUniquePtr& center = sys.get_central_body();
     const CelestialBodyUniquePtr& sun    = sys.add_body(CelestialBodyId::SUN);
 
-    const RadiusVector<frames::earth::icrf> rCenterToVehicle = state.get_position();
-    const Distance rMagCenterToVehicle                       = rCenterToVehicle.norm();
+    const RadiusVector<frames::primary> rCenterToVehicle = state.get_position();
+    const Distance rMagCenterToVehicle                   = rCenterToVehicle.norm();
 
     // Central body properties
     const bool isSun = (center->get_id() == CelestialBodyId::SUN);
@@ -60,12 +60,11 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
     const RadiusVector<frames::solar_system_barycenter::icrf> rSsbToSun    = sun->get_position_at(date);
 
     // Radius from central body to sun
-    const RadiusVector<frames::earth::icrf> rCenterToSun =
-        (rSsbToSun - rSsbToCenter).force_frame_conversion<frames::earth::icrf>(); // TODO: Should this use the translate function? I hate that function.
+    const RadiusVector<frames::primary> rCenterToSun = (rSsbToSun - rSsbToCenter).force_frame_conversion<frames::primary>(); // TODO: Should this use the translate function? I hate that function.
     const Distance rMagCenterToSun = rCenterToSun.norm();
 
-    const RadiusVector<frames::earth::icrf> rVehicleToSun = rCenterToSun - rCenterToVehicle;
-    const Distance rMagVehicleToSun                       = rVehicleToSun.norm();
+    const RadiusVector<frames::primary> rVehicleToSun = rCenterToSun - rCenterToVehicle;
+    const Distance rMagVehicleToSun                   = rVehicleToSun.norm();
 
     // Average solar radiation pressure at 1 AU scaled to average distance from Sun
     static const quantity<N / pow<2>(m)> srpAtOneAU = 4.556485540406757e-6 * N / pow<2>(m);
@@ -87,12 +86,12 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
             static const Distance diamSun = 696000.0 * km;
             const Distance Xu             = equitorialR * rMagCenterToSun / (diamSun - equitorialR);
 
-            const RadiusVector<frames::earth::icrf> rP = -Xu * rCenterToSun / rMagCenterToSun;
-            const Distance normRP                      = rP.norm();
+            const RadiusVector<frames::primary> rP = -Xu * rCenterToSun / rMagCenterToSun;
+            const Distance normRP                  = rP.norm();
 
-            const RadiusVector<frames::earth::icrf> rPs = rCenterToVehicle - rP;
-            const Distance normRPs                      = rPs.norm();
-            const Angle alphaps                         = abs(asin(-rPs.dot(rP) / (normRP * normRPs)));
+            const RadiusVector<frames::primary> rPs = rCenterToVehicle - rP;
+            const Distance normRPs                  = rPs.norm();
+            const Angle alphaps                     = abs(asin(-rPs.dot(rP) / (normRP * normRPs)));
 
             if (alphaps < asin(equitorialR / Xu)) { // Umbra
                 fractionOfRecievedSunlight = 0.0 * one;
