@@ -13,8 +13,8 @@
 
 #include <astro/systems/AstrodynamicsSystem.hpp>
 
+#include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
-#include <astro/state/StateHistory.hpp>
 
 namespace astrea {
 namespace astro {
@@ -22,9 +22,35 @@ namespace astro {
 RadiusVector<frames::solar_system_barycenter::icrf>
     AstrodynamicsSystem::get_relative_position(const Date& date, const CelestialBodyId id1, const CelestialBodyId id2) const
 {
-    const auto pos1 = get_body(id1)->get_position_at(date);
-    const auto pos2 = get_body(id2)->get_position_at(date);
+    // If one is the parent of the other, easy
+    const auto parent1 = get_body(id1)->get_parent();
+    const auto parent2 = get_body(id2)->get_parent();
+
+    if (parent1 == id2) { return get_body(id1)->get_position_at(date); }
+    if (parent2 == id1) { return -get_body(id2)->get_position_at(date); }
+
+    // Find the position using the root but it's fine to represent in ssb since it's just a relative position vector
+    const CelestialBodyId root = find_common_root({ id1, id2 });
+
+    const RadiusVector<frames::solar_system_barycenter::icrf> pos1 = get_position_relative_to_root(date, id1, root);
+    const RadiusVector<frames::solar_system_barycenter::icrf> pos2 = get_position_relative_to_root(date, id2, root);
+
     return pos1 - pos2;
+}
+
+RadiusVector<frames::solar_system_barycenter::icrf>
+    AstrodynamicsSystem::get_position_relative_to_root(const Date& date, const CelestialBodyId id, const CelestialBodyId root) const
+{
+    auto object = id;
+    auto parent = get_body(object)->get_parent();
+
+    RadiusVector<frames::solar_system_barycenter::icrf> pos = get_body(object)->get_position_at(date);
+    while (parent != root) {
+        object = parent;
+        parent = get_body(parent)->get_parent();
+        pos += get_body(object)->get_position_at(date);
+    }
+    return pos;
 }
 
 } // namespace astro
