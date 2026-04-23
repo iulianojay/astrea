@@ -97,10 +97,10 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
 const Density AtmosphericForce::find_atmospheric_density(const State& state, const CelestialBodyUniquePtr& center) const
 {
     // Find altitude
-    const RadiusVector<frames::primary> rEci        = state.get_position();
-    const RadiusVector<frames::primary_fixed> rEcef = rEci.in_frame<frames::primary_fixed>(state.get_epoch());
+    const RadiusVector<frames::primary> r                = state.get_position();
+    const RadiusVector<frames::primary_fixed> rBodyFixed = r.in_frame<frames::primary_fixed>(state.get_epoch());
     const auto [latitude, longitude, altitude] =
-        convert_earth_fixed_to_geodetic(rEcef, center->get_equitorial_radius(), center->get_polar_radius());
+        convert_body_fixed_to_geodetic(rBodyFixed, center->get_equitorial_radius(), center->get_polar_radius());
 
     return center->find_atmospheric_density(state.get_epoch(), altitude);
 }

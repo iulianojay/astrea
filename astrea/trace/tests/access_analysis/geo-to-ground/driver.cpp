@@ -91,7 +91,7 @@ TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
     const auto& centralBody    = sys.get_central_body();
     const auto rEq             = centralBody->get_equitorial_radius();
     const auto rPolar          = centralBody->get_polar_radius();
-    const auto [lat, lon, alt] = astro::convert_earth_fixed_to_geodetic(rEcef, rEq, rPolar);
+    const auto [lat, lon, alt] = astro::convert_body_fixed_to_geodetic(rEcef, rEq, rPolar);
 
     Viewer geo;
     geo.store_state(state0);

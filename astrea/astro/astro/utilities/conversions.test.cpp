@@ -209,7 +209,7 @@ TEST_F(ConversionTest, EcefToLla)
     // Vallado ex. 3-3
     const RadiusVector<frames::earth::earth_fixed> rEcef = { 6524.834 * km, 6862.875 * km, 6448.296 * km };
 
-    const auto [lat, lon, alt] = convert_earth_fixed_to_geodetic(rEcef, rEquitorial, rPolar);
+    const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef, rEquitorial, rPolar);
 
     ASSERT_TRUE(math::nearly_equal(lat, Angle(34.3529 * deg), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(lon, Angle(46.4464 * deg), REL_TOL));
