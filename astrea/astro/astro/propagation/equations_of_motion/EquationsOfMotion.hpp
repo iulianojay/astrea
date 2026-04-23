@@ -19,6 +19,7 @@
 #pragma once
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/frame_registry.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -69,8 +70,8 @@ class EquationsOfMotion {
     virtual OrbitalElementPartials compute_dynamics(
         const State& state,
         const Vehicle& vehicle,
-        const ForceVector<frames::earth::icrf>& perts,
-        const ForceVector<frames::earth::icrf>& control
+        const ForceVector<frames::primary>& perts,
+        const ForceVector<frames::primary>& control
     ) const = 0;
 
     /**
@@ -85,8 +86,8 @@ class EquationsOfMotion {
     virtual AttitudePartials compute_kinematics(
         const State& state,
         const Vehicle& vehicle,
-        const TorqueVector<frames::earth::icrf>& perts,
-        const TorqueVector<frames::earth::icrf>& control
+        const TorqueVector<frames::primary>& perts,
+        const TorqueVector<frames::primary>& control
     ) const;
 
     /**

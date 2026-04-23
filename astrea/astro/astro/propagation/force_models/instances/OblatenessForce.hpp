@@ -138,7 +138,7 @@ class OblatenessForce : public PerturbingForce {
      * by O. Montenbruck and E. Gill (Springer, 2000), which uses V and W auxiliary functions
      * with recurrence relations for more efficient and numerically stable computation.
      *
-     * @param state Cartesian<frames::earth::icrf> state vector of the vehicle
+     * @param state Cartesian<frames::primary> state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
      * @return Perturbation The computed force and torque due to oblateness.
      */

@@ -45,7 +45,7 @@ class NBodyForce : public PerturbingForce {
     /**
      * @brief Computes the gravitational force due to multiple celestial bodies.
      *
-     * @param state Cartesian<frames::earth::icrf> state vector of the vehicle
+     * @param state Cartesian<frames::primary> state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
      * @return Perturbation The computed force and torque due to multiple bodies.
      */

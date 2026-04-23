@@ -34,8 +34,6 @@ using primary = earth::icrf;
 
 }
 
-static constexpr CelestialBodyId primary_body = frames::primary::origin;
-
 static_assert(IsInertialFrame<frames::primary>, "The primary frame must be inertial.");
 
 /**

@@ -36,22 +36,22 @@ using mp_units::si::unit_symbols::s;
 OrbitalElementPartials TwoBody::compute_dynamics(
     const State& state,
     const Vehicle& vehicle,
-    const ForceVector<frames::earth::icrf>& perts,
-    const ForceVector<frames::earth::icrf>& control
+    const ForceVector<frames::primary>& perts,
+    const ForceVector<frames::primary>& control
 ) const
 {
     // Extract
     const auto mu = state.get_system().get_mu();
 
-    const RadiusVector<frames::earth::icrf> r   = state.get_position();
-    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
+    const RadiusVector<frames::primary> r   = state.get_position();
+    const VelocityVector<frames::primary> v = state.get_velocity();
 
     // mu/R^3
     const Distance R        = r.norm();
     const quantity muOverR3 = mu / pow<3>(R);
 
     // Dynamics
-    return CartesianPartial<frames::earth::icrf>(v, -muOverR3 * r + control / vehicle.get_mass());
+    return CartesianPartial<frames::primary>(v, -muOverR3 * r + control / vehicle.get_mass());
 }
 
 

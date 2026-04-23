@@ -44,8 +44,8 @@ using mp_units::si::unit_symbols::s;
 OrbitalElementPartials J2MeanVop::compute_dynamics(
     const State& state,
     const Vehicle& vehicle,
-    const ForceVector<frames::earth::icrf>& perts,
-    const ForceVector<frames::earth::icrf>& control
+    const ForceVector<frames::primary>& perts,
+    const ForceVector<frames::primary>& control
 ) const
 {
     // Extract
@@ -64,8 +64,8 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
     const Angle& inc    = (elements.get_inclination() < incTol) ? incTol : elements.get_inclination();
 
     // conversions Keplerian elements to r and v
-    const RadiusVector<frames::earth::icrf> r   = state.get_position();
-    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
+    const RadiusVector<frames::primary> r   = state.get_position();
+    const VelocityVector<frames::primary> v = state.get_velocity();
 
     const Distance& x = r.get_x();
     const Distance& y = r.get_y();
@@ -80,9 +80,9 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
     // entire keplerian VoP form, in which case you should just use the KeplerianVoP class.
 
     // accel due to oblateness
-    AccelerationVector<frames::earth::icrf> accelOblateness = { termA * (1.0 - 5.0 * termB) * x,
-                                                                termA * (1.0 - 5.0 * termB) * y,
-                                                                termA * (3.0 - 5.0 * termB) * z };
+    AccelerationVector<frames::primary> accelOblateness = { termA * (1.0 - 5.0 * termB) * x,
+                                                            termA * (1.0 - 5.0 * termB) * y,
+                                                            termA * (3.0 - 5.0 * termB) * z };
 
     // Only normal pert required
     const UnitVector Nhat         = r.cross(v).unit();

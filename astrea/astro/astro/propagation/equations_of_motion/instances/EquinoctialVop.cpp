@@ -45,8 +45,8 @@ EquinoctialVop::EquinoctialVop(const ForceModel& forces) :
 OrbitalElementPartials EquinoctialVop::compute_dynamics(
     const State& state,
     const Vehicle& vehicle,
-    const ForceVector<frames::earth::icrf>& perts,
-    const ForceVector<frames::earth::icrf>& control
+    const ForceVector<frames::primary>& perts,
+    const ForceVector<frames::primary>& control
 ) const
 {
     // Get need representations
@@ -63,8 +63,8 @@ OrbitalElementPartials EquinoctialVop::compute_dynamics(
     const Angle& L    = equinoctial.get_true_longitude();
 
     // R and V
-    const RadiusVector<frames::earth::icrf> r   = state.get_position();
-    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
+    const RadiusVector<frames::primary> r   = state.get_position();
+    const VelocityVector<frames::primary> v = state.get_velocity();
 
     // Calculate R, N, and T
     const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(r, v);
