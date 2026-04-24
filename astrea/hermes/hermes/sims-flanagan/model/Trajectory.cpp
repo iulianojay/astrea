@@ -11,7 +11,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <hermes/sims-flanagan/Trajectory.hpp>
+#include <hermes/sims-flanagan/model/Trajectory.hpp>
 
 namespace astrea {
 namespace hermes {
@@ -19,7 +19,7 @@ namespace hermes {
 Trajectory::Trajectory(const std::vector<Segment>& segments) :
     _segments(segments)
 {
-    _id = utilities::IdProvider::get_next_id<"Trajectory">();
+    _id = utilities::IdProvider::get_next_id<"SimsFlanagan">();
 }
 
 Trajectory Trajectory::ballistic(

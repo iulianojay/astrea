@@ -11,20 +11,28 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <hermes/sims-flanagan/DeltaV.hpp>
+#include <hermes/sims-flanagan/SimsFlanaganProblem.hpp>
 
 namespace astrea {
 namespace hermes {
 
-DeltaV::DeltaV(const astro::VelocityVector<astro::frames::primary>& deltaV) :
-    _dv(deltaV)
+using pamgo::vector_double;
+
+
+std::string SimsFlanaganProblem::get_name() const { return "Sims-Flanagan Problem"; }
+
+vector_double::size_type SimsFlanaganProblem::get_nic() const { return 0; }
+
+vector_double::size_type SimsFlanaganProblem::get_nobj() const { return 1; }
+
+std::pair<vector_double, vector_double> SimsFlanaganProblem::get_bounds() const
 {
-    _id = utilities::IdProvider::get_next_id<"DeltaV">();
+    const vector_double lb{ 0.0 };
+    const vector_double ub{ 1e6 };
+    return { lb, ub };
 }
 
-std::size_t DeltaV::get_id() const { return _id; }
-
-const astro::VelocityVector<astro::frames::primary>& DeltaV::get_delta_v() const { return _dv; }
+vector_double SimsFlanaganProblem::fitness(const vector_double&) const {}
 
 } // namespace hermes
 } // namespace astrea

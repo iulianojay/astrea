@@ -11,7 +11,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <hermes/sims-flanagan/Subsegment.hpp>
+#include <hermes/sims-flanagan/model/Subsegment.hpp>
 
 namespace astrea {
 namespace hermes {
@@ -21,7 +21,7 @@ Subsegment::Subsegment(const Node& initialNode, const Node& finalNode, const Tim
     _initialNode(initialNode),
     _finalNode(finalNode)
 {
-    _id = utilities::IdProvider::get_next_id<"Subsegment">();
+    _id = utilities::IdProvider::get_next_id<"SimsFlanagan">();
 }
 
 Subsegment Subsegment::ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timOfFlight)

@@ -22,9 +22,9 @@
 
 #include <utilities/IdProvider.hpp>
 
-#include <hermes/sims-flanagan/DeltaV.hpp>
-#include <hermes/sims-flanagan/State.hpp>
-#include <hermes/sims-flanagan/Subsegment.hpp>
+#include <hermes/sims-flanagan/model/DeltaV.hpp>
+#include <hermes/sims-flanagan/model/State.hpp>
+#include <hermes/sims-flanagan/model/Subsegment.hpp>
 #include <hermes/types/typedefs.hpp>
 
 namespace astrea {
@@ -33,6 +33,7 @@ namespace hermes {
 class Segment {
   public:
     Segment(const std::vector<Subsegment>& subsegments = {});
+
     ~Segment() = default;
 
     static Segment

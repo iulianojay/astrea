@@ -1,7 +1,7 @@
 /**
- * @file Trajectory.hpp
+ * @file Subsegment.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the Trajectory module
+ * @brief Header file for the Subsegment module
  * @date 2026-04-24
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
@@ -20,41 +20,50 @@
 
 #include <vector>
 
+#include <astro/astro.hpp>
+#include <units/units.hpp>
 #include <utilities/IdProvider.hpp>
 
-#include <hermes/sims-flanagan/DeltaV.hpp>
-#include <hermes/sims-flanagan/Segment.hpp>
-#include <hermes/sims-flanagan/State.hpp>
+#include <hermes/sims-flanagan/model/Node.hpp>
+#include <hermes/sims-flanagan/model/State.hpp>
 #include <hermes/types/typedefs.hpp>
 
 namespace astrea {
 namespace hermes {
 
-class Trajectory {
+class Subsegment {
   public:
-    Trajectory(const std::vector<Segment>& segments = {});
-    ~Trajectory() = default;
+    Subsegment(const Node& initialNode = {}, const Node& finalNode = {}, const Time& timeOfFlight = {});
 
-    static Trajectory
-        ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& propTime, std::size_t nSegments, std::size_t nSubsegmentsPerSegment);
+    ~Subsegment() = default;
+
+    static Subsegment ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timOfFlight);
 
     std::size_t get_id() const;
-    const std::vector<Segment>& get_segments() const;
+
+    const Node& get_initial_node() const;
+
+    const Node& get_final_node() const;
+
+    const Time& get_time_of_flight() const;
+
     const State& get_initial_state() const;
+
     const State& get_final_state() const;
-    OptionalRef<const Segment> get_segment(std::size_t id) const;
-    OptionalRef<Segment> get_segment(std::size_t id);
-    OptionalRef<const Subsegment> get_subsegment(std::size_t id) const;
-    OptionalRef<Subsegment> get_subsegment(std::size_t id);
+
     OptionalRef<const Node> get_node(std::size_t id) const;
+
     OptionalRef<Node> get_node(std::size_t id);
+
     OptionalRef<const State> get_state(std::size_t id) const;
+
     OptionalRef<State> get_state(std::size_t id);
 
   private:
     std::size_t _id;
-    std::vector<Segment> _segments;
-    std::vector<DeltaV> _burns;
+    Time _timeOfFlight;
+    Node _initialNode;
+    Node _finalNode;
 };
 
 } // namespace hermes

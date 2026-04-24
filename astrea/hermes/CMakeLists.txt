@@ -21,12 +21,12 @@ set(CMAKE_CXX_STANDARD 23)
 # Objects
 set(HERMES_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(HERMES_SOURCES
-    ${HERMES_BASE}/sims-flanagan/State.cpp
-    ${HERMES_BASE}/sims-flanagan/DeltaV.cpp
-    ${HERMES_BASE}/sims-flanagan/Node.cpp
-    ${HERMES_BASE}/sims-flanagan/Subsegment.cpp
-    ${HERMES_BASE}/sims-flanagan/Segment.cpp
-    ${HERMES_BASE}/sims-flanagan/Trajectory.cpp
+    ${HERMES_BASE}/sims-flanagan/model/State.cpp
+    ${HERMES_BASE}/sims-flanagan/model/DeltaV.cpp
+    ${HERMES_BASE}/sims-flanagan/model/Node.cpp
+    ${HERMES_BASE}/sims-flanagan/model/Subsegment.cpp
+    ${HERMES_BASE}/sims-flanagan/model/Segment.cpp
+    ${HERMES_BASE}/sims-flanagan/model/Trajectory.cpp
 )
 
 # Headers
@@ -34,10 +34,10 @@ set(HERMES_HEADERS
     ${HERMES_BASE}/hermes.hpp
     ${HERMES_BASE}/hermes.fwd.hpp
 
-    ${HERMES_BASE}/sims-flanagan/Node.hpp
-    ${HERMES_BASE}/sims-flanagan/Subsegment.hpp
-    ${HERMES_BASE}/sims-flanagan/Segment.hpp
-    ${HERMES_BASE}/sims-flanagan/Trajectory.hpp
+    ${HERMES_BASE}/sims-flanagan/model/Node.hpp
+    ${HERMES_BASE}/sims-flanagan/model/Subsegment.hpp
+    ${HERMES_BASE}/sims-flanagan/model/Segment.hpp
+    ${HERMES_BASE}/sims-flanagan/model/Trajectory.hpp
 )
 
 # Includes

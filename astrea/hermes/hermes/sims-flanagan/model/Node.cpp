@@ -11,7 +11,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <hermes/sims-flanagan/Node.hpp>
+#include <hermes/sims-flanagan/model/Node.hpp>
 
 namespace astrea {
 namespace hermes {
@@ -20,14 +20,14 @@ Node::Node(const State& state) :
     _stateIn(state),
     _stateOut(state)
 {
-    _id = utilities::IdProvider::get_next_id<"Node">();
+    _id = utilities::IdProvider::get_next_id<"SimsFlanagan">();
 }
 
 Node::Node(const State& stateIn, const State& stateOut) :
     _stateIn(stateIn),
     _stateOut(stateOut)
 {
-    _id = utilities::IdProvider::get_next_id<"Node">();
+    _id = utilities::IdProvider::get_next_id<"SimsFlanagan">();
 }
 
 std::size_t Node::get_id() const { return _id; }
