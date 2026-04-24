@@ -39,14 +39,14 @@ class Segment {
     }
 
     static Segment
-        ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& segmentTime, std::size_t nSubsegments);
+        ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const astro::State& initialState, const Time& segmentTime, std::size_t nSubsegments);
 
     std::size_t get_id() const { return _id; }
 
     const std::vector<Subsegment>& get_subsegments() const { return _subsegments; }
 
-    const State& get_initial_state() const { return _subsegments.front().get_initial_state(); }
-    const State& get_final_state() const { return _subsegments.back().get_final_state(); }
+    const astro::State& get_initial_state() const { return _subsegments.front().get_initial_state(); }
+    const astro::State& get_final_state() const { return _subsegments.back().get_final_state(); }
 
   private:
     std::size_t _id;

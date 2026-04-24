@@ -20,7 +20,7 @@ using astro::State;
 
 Subsegment Subsegment::ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timOfFlight)
 {
-    const State state = integrator.propagate(initialState, timOfFlight, vehicle).back();
+    const State state = integrator.propagate(initialState, timOfFlight, vehicle).last();
     const Subsegment subsegment({ Node(initialState), Node(state), timOfFlight });
     return subsegment;
 }

@@ -30,13 +30,12 @@ Trajectory Trajectory::ballistic(
     std::vector<Segment> segments;
     segments.reserve(nSegments);
 
-    State segmentState        = initialState;
-    const Time segmentTime    = propTime / nSegments;
-    const Time subsegmentTime = segmentTime / nSubsegmentsPerSegment;
+    State segmentState     = initialState;
+    const Time segmentTime = propTime / nSegments;
     for (std::size_t ii = 0; ii < nSegments; ++ii) {
         const Segment segment = Segment::ballistic(integrator, vehicle, segmentState, segmentTime, nSubsegmentsPerSegment);
-        segments.emplace_back(segment);
         segmentState = segment.get_final_state();
+        segments.emplace_back(segment);
     }
     return Trajectory(segments);
 }

@@ -1,7 +1,7 @@
-#include <astro/utilities/conversions.hpp>
-
 #include <math/operations.hpp>
 #include <utilities/ProgressBar.hpp>
+
+#include <astro/utilities/conversions.hpp>
 
 namespace astrea {
 namespace astro {

@@ -28,9 +28,10 @@ Segment Segment::ballistic(astro::Integrator& integrator, astro::Vehicle& vehicl
     State subsegmentState = initialState;
     for (std::size_t ii = 0; ii < nSubsegments; ++ii) {
         const Subsegment subsegment = Subsegment::ballistic(integrator, vehicle, subsegmentState, subsegmentTime);
+        subsegmentState             = subsegment.get_final_state();
         subsegments.emplace_back(subsegment);
-        subsegmentState = subsegment.get_final_state();
     }
+
     const Segment segment(subsegments);
     return Segment(subsegments);
 }

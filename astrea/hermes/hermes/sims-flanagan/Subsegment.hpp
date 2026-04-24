@@ -21,6 +21,7 @@
 #include <vector>
 
 #include <astro/astro.hpp>
+#include <units/units.hpp>
 #include <utilities/IdProvider.hpp>
 
 #include <hermes/sims-flanagan/Node.hpp>
@@ -33,28 +34,29 @@ class Subsegment {
     Subsegment()  = default;
     ~Subsegment() = default;
 
-    Subsegment(const Node& initialNode, const Node& finalNode, const astro::Time& timeOfFlight) :
+    Subsegment(const Node& initialNode, const Node& finalNode, const Time& timeOfFlight) :
+        _timeOfFlight(timeOfFlight),
         _initialNode(initialNode),
-        _finalNode(finalNode),
-        _timeOfFlight(timeOfFlight)
+        _finalNode(finalNode)
     {
         _id = utilities::IdProvider::get_next_id<"Subsegment">();
     }
 
-    static Subsegment ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timOfFlight);
+    static Subsegment
+        ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const astro::State& initialState, const Time& timOfFlight);
 
     std::size_t get_id() const { return _id; }
 
     const Node& get_initial_node() const { return _initialNode; }
     const Node& get_final_node() const { return _finalNode; }
 
-    const astro::Time& get_time_of_flight() const { return _timeOfFlight; }
-    const State& get_initial_state() const { return _initialNode.get_state_in(); }
-    const State& get_final_state() const { return _finalNode.get_state_out(); }
+    const Time& get_time_of_flight() const { return _timeOfFlight; }
+    const astro::State& get_initial_state() const { return _initialNode.get_state_in(); }
+    const astro::State& get_final_state() const { return _finalNode.get_state_out(); }
 
   private:
     std::size_t _id;
-    astro::Time _timeOfFlight;
+    Time _timeOfFlight;
     Node _initialNode;
     Node _finalNode;
 };
