@@ -16,7 +16,11 @@
 namespace astrea {
 namespace hermes {
 
-using astro::State;
+Segment::Segment(const std::vector<Subsegment>& subsegments) :
+    _subsegments(subsegments)
+{
+    _id = utilities::IdProvider::get_next_id<"Segment">();
+}
 
 Segment Segment::ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& segmentTime, std::size_t nSubsegments)
 {
@@ -34,6 +38,66 @@ Segment Segment::ballistic(astro::Integrator& integrator, astro::Vehicle& vehicl
 
     const Segment segment(subsegments);
     return Segment(subsegments);
+}
+
+std::size_t Segment::get_id() const { return _id; }
+
+const std::vector<Subsegment>& Segment::get_subsegments() const { return _subsegments; }
+
+const State& Segment::get_initial_state() const { return _subsegments.front().get_initial_state(); }
+
+const State& Segment::get_final_state() const { return _subsegments.back().get_final_state(); }
+
+OptionalRef<const Subsegment> Segment::get_subsegment(std::size_t id) const
+{
+    for (const auto& subsegment : _subsegments) {
+        if (subsegment.get_id() == id) { return subsegment; }
+    }
+    return std::nullopt;
+}
+
+OptionalRef<Subsegment> Segment::get_subsegment(std::size_t id)
+{
+    for (auto& subsegment : _subsegments) {
+        if (subsegment.get_id() == id) { return subsegment; }
+    }
+    return std::nullopt;
+}
+
+OptionalRef<const Node> Segment::get_node(std::size_t id) const
+{
+    for (const auto& subsegment : _subsegments) {
+        const auto node = subsegment.get_node(id);
+        if (node) { return node; }
+    }
+    return std::nullopt;
+}
+
+OptionalRef<Node> Segment::get_node(std::size_t id)
+{
+    for (auto& subsegment : _subsegments) {
+        auto node = subsegment.get_node(id);
+        if (node) { return node; }
+    }
+    return std::nullopt;
+}
+
+OptionalRef<const State> Segment::get_state(std::size_t id) const
+{
+    for (const auto& subsegment : _subsegments) {
+        const auto state = subsegment.get_state(id);
+        if (state) { return state; }
+    }
+    return std::nullopt;
+}
+
+OptionalRef<State> Segment::get_state(std::size_t id)
+{
+    for (auto& subsegment : _subsegments) {
+        auto state = subsegment.get_state(id);
+        if (state) { return state; }
+    }
+    return std::nullopt;
 }
 
 } // namespace hermes

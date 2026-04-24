@@ -1,7 +1,7 @@
 /**
- * @file Node.hpp
+ * @file typedefs.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the Node module
+ * @brief Header file for the hermes module
  * @date 2026-04-24
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
@@ -18,39 +18,14 @@
  */
 #pragma once
 
-#include <astro/astro.hpp>
-#include <units/units.hpp>
-#include <utilities/IdProvider.hpp>
-
-#include <hermes/sims-flanagan/State.hpp>
-#include <hermes/types/typedefs.hpp>
+#include <functional>
+#include <optional>
 
 namespace astrea {
 namespace hermes {
 
-class Node {
-  public:
-    Node(const State& state = {});
-
-    Node(const State& stateIn, const State& stateOut);
-
-    ~Node() = default;
-
-    std::size_t get_id() const;
-
-    const State& get_state_in() const;
-
-    const State& get_state_out() const;
-
-    OptionalRef<const State> get_state(std::size_t id) const;
-
-    OptionalRef<State> get_state(std::size_t id);
-
-  private:
-    std::size_t _id;
-    State _stateIn;
-    State _stateOut;
-};
+template <typename T>
+using OptionalRef = std::optional<std::reference_wrapper<T>>;
 
 } // namespace hermes
 } // namespace astrea

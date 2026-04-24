@@ -1,7 +1,7 @@
 /**
- * @file Subsegment.hpp
+ * @file DeltaV.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the Subsegment module
+ * @brief Header file for the DeltaV module
  * @date 2026-04-24
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
@@ -18,52 +18,26 @@
  */
 #pragma once
 
-#include <vector>
-
 #include <astro/astro.hpp>
 #include <units/units.hpp>
 #include <utilities/IdProvider.hpp>
 
-#include <hermes/sims-flanagan/Node.hpp>
-#include <hermes/sims-flanagan/State.hpp>
-#include <hermes/types/typedefs.hpp>
-
 namespace astrea {
 namespace hermes {
 
-class Subsegment {
+class DeltaV {
   public:
-    Subsegment(const Node& initialNode = {}, const Node& finalNode = {}, const Time& timeOfFlight = {});
+    DeltaV(const astro::VelocityVector<astro::frames::primary>& deltaV);
 
-    ~Subsegment() = default;
-
-    static Subsegment ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& timOfFlight);
+    ~DeltaV() = default;
 
     std::size_t get_id() const;
 
-    const Node& get_initial_node() const;
-
-    const Node& get_final_node() const;
-
-    const Time& get_time_of_flight() const;
-
-    const State& get_initial_state() const;
-
-    const State& get_final_state() const;
-
-    OptionalRef<const Node> get_node(std::size_t id) const;
-
-    OptionalRef<Node> get_node(std::size_t id);
-
-    OptionalRef<const State> get_state(std::size_t id) const;
-
-    OptionalRef<State> get_state(std::size_t id);
+    const astro::VelocityVector<astro::frames::primary>& get_delta_v() const;
 
   private:
     std::size_t _id;
-    Time _timeOfFlight;
-    Node _initialNode;
-    Node _finalNode;
+    astro::VelocityVector<astro::frames::primary> _dv;
 };
 
 } // namespace hermes

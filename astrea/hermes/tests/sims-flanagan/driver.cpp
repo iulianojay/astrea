@@ -31,7 +31,7 @@ class SimsFlanaganTest : public testing::Test {
         propTime(weeks(1)),
         epoch(J2000)
     {
-        state = State({ Keplerian::LEO() }, epoch, sys);
+        state = astro::State({ Keplerian::LEO() }, epoch, sys);
         integrator.set_equations_of_motion(eom);
     }
 
@@ -50,7 +50,7 @@ class SimsFlanaganTest : public testing::Test {
     std::size_t nSubsegmentsPerSegment = 2;
     Date epoch;
     Vehicle vehicle;
-    State state;
+    astro::State state;
 };
 
 

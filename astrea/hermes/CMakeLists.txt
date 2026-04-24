@@ -21,6 +21,9 @@ set(CMAKE_CXX_STANDARD 23)
 # Objects
 set(HERMES_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(HERMES_SOURCES
+    ${HERMES_BASE}/sims-flanagan/State.cpp
+    ${HERMES_BASE}/sims-flanagan/DeltaV.cpp
+    ${HERMES_BASE}/sims-flanagan/Node.cpp
     ${HERMES_BASE}/sims-flanagan/Subsegment.cpp
     ${HERMES_BASE}/sims-flanagan/Segment.cpp
     ${HERMES_BASE}/sims-flanagan/Trajectory.cpp

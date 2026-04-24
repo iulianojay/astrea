@@ -22,35 +22,46 @@
 
 #include <utilities/IdProvider.hpp>
 
+#include <hermes/sims-flanagan/DeltaV.hpp>
+#include <hermes/sims-flanagan/State.hpp>
 #include <hermes/sims-flanagan/Subsegment.hpp>
+#include <hermes/types/typedefs.hpp>
 
 namespace astrea {
 namespace hermes {
 
 class Segment {
   public:
-    Segment()  = default;
+    Segment(const std::vector<Subsegment>& subsegments = {});
     ~Segment() = default;
 
-    Segment(const std::vector<Subsegment>& subsegments) :
-        _subsegments(subsegments)
-    {
-        _id = utilities::IdProvider::get_next_id<"Segment">();
-    }
-
     static Segment
-        ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const astro::State& initialState, const Time& segmentTime, std::size_t nSubsegments);
+        ballistic(astro::Integrator& integrator, astro::Vehicle& vehicle, const State& initialState, const Time& segmentTime, std::size_t nSubsegments);
 
-    std::size_t get_id() const { return _id; }
+    std::size_t get_id() const;
 
-    const std::vector<Subsegment>& get_subsegments() const { return _subsegments; }
+    const std::vector<Subsegment>& get_subsegments() const;
 
-    const astro::State& get_initial_state() const { return _subsegments.front().get_initial_state(); }
-    const astro::State& get_final_state() const { return _subsegments.back().get_final_state(); }
+    const State& get_initial_state() const;
+
+    const State& get_final_state() const;
+
+    OptionalRef<const Subsegment> get_subsegment(std::size_t id) const;
+
+    OptionalRef<Subsegment> get_subsegment(std::size_t id);
+
+    OptionalRef<const Node> get_node(std::size_t id) const;
+
+    OptionalRef<Node> get_node(std::size_t id);
+
+    OptionalRef<const State> get_state(std::size_t id) const;
+
+    OptionalRef<State> get_state(std::size_t id);
 
   private:
     std::size_t _id;
     std::vector<Subsegment> _subsegments;
+    std::vector<DeltaV> _burns;
 };
 
 } // namespace hermes

@@ -16,7 +16,11 @@
 namespace astrea {
 namespace hermes {
 
-using astro::State;
+Trajectory::Trajectory(const std::vector<Segment>& segments) :
+    _segments(segments)
+{
+    _id = utilities::IdProvider::get_next_id<"Trajectory">();
+}
 
 Trajectory Trajectory::ballistic(
     astro::Integrator& integrator,
@@ -38,6 +42,84 @@ Trajectory Trajectory::ballistic(
         segments.emplace_back(segment);
     }
     return Trajectory(segments);
+}
+
+std::size_t Trajectory::get_id() const { return _id; }
+
+const std::vector<Segment>& Trajectory::get_segments() const { return _segments; }
+
+const State& Trajectory::get_initial_state() const { return _segments.front().get_initial_state(); }
+
+const State& Trajectory::get_final_state() const { return _segments.back().get_final_state(); }
+
+OptionalRef<const Segment> Trajectory::get_segment(std::size_t id) const
+{
+    for (const auto& segment : _segments) {
+        if (segment.get_id() == id) { return segment; }
+    }
+    return std::nullopt;
+}
+
+OptionalRef<Segment> Trajectory::get_segment(std::size_t id)
+{
+    for (auto& segment : _segments) {
+        if (segment.get_id() == id) { return segment; }
+    }
+    return std::nullopt;
+}
+
+OptionalRef<const Subsegment> Trajectory::get_subsegment(std::size_t id) const
+{
+    for (const auto& segment : _segments) {
+        auto subsegment = segment.get_subsegment(id);
+        if (subsegment) { return subsegment; }
+    }
+    return std::nullopt;
+}
+
+OptionalRef<Subsegment> Trajectory::get_subsegment(std::size_t id)
+{
+    for (auto& segment : _segments) {
+        auto subsegment = segment.get_subsegment(id);
+        if (subsegment) { return subsegment; }
+    }
+    return std::nullopt;
+}
+
+OptionalRef<const Node> Trajectory::get_node(std::size_t id) const
+{
+    for (const auto& segment : _segments) {
+        const auto node = segment.get_node(id);
+        if (node) { return node; }
+    }
+    return std::nullopt;
+}
+
+OptionalRef<Node> Trajectory::get_node(std::size_t id)
+{
+    for (auto& segment : _segments) {
+        auto node = segment.get_node(id);
+        if (node) { return node; }
+    }
+    return std::nullopt;
+}
+
+OptionalRef<const State> Trajectory::get_state(std::size_t id) const
+{
+    for (const auto& segment : _segments) {
+        const auto state = segment.get_state(id);
+        if (state) { return state; }
+    }
+    return std::nullopt;
+}
+
+OptionalRef<State> Trajectory::get_state(std::size_t id)
+{
+    for (auto& segment : _segments) {
+        auto state = segment.get_state(id);
+        if (state) { return state; }
+    }
+    return std::nullopt;
 }
 
 } // namespace hermes
