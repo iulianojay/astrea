@@ -161,6 +161,21 @@ CPMFindPackage(
     GIT_TAG v1.18.0
 )
 
+# Optimization
+CPMAddPackage(
+    NAME pagmo
+    SOURCE_DIR ${CMAKE_SOURCE_DIR}/../open-source/pagmo2
+    OPTIONS
+    "PAGMO_BUILD_TESTS OFF"
+    "PAGMO_BUILD_BENCHMARKS OFF"
+    "PAGMO_BUILD_TUTORIALS OFF"
+    "PAGMO_WITH_EIGEN3 OFF"
+    "PAGMO_WITH_NLOPT OFF"
+    "PAGMO_WITH_IPOPT OFF"
+    "PAGMO_WITH_MPI OFF"
+    "PAGMO_BUILD_STATIC_LIBRARY OFF"
+)
+
 # CSV Parsing that sucks less
 # Doesn't follow standard versioning so use FetchContent
 FetchContent_Declare(

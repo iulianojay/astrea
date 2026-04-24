@@ -78,6 +78,7 @@ build:
 	$(toolchain_file) \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
+	-DCPM_USE_LOCAL_PACKAGES=ON \
 	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
 	-DCMAKE_CXX_COMPILER=$(cxx) \
 	-DCMAKE_C_COMPILER=$(cc) \
