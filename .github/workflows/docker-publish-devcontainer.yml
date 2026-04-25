@@ -116,7 +116,7 @@ jobs:
         
   build-and-publish-windows:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
