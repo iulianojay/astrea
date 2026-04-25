@@ -53,7 +53,7 @@ int main()
         constexpr std::size_t get_expected_set_id() const
         {
             // The orbital element class provides a static helper to get the set id for a given element type
-            return OrbitalElements::get_set_id<Cartesian>();
+            return OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>();
         };
 
         // Dynamics are computed from the current state. The eom model is also passed the current vehicle, in case
@@ -67,9 +67,9 @@ int main()
         ) const override
         {
             // Extracting into the desired set can be convenient
-            const AstrodynamicsSystem& system = state.get_system();
-            const auto mu                     = system.get_mu();
-            const Cartesian cartesian         = state.in_element_set<Cartesian>();
+            const AstrodynamicsSystem& system              = state.get_system();
+            const auto mu                                  = system.get_mu();
+            const Cartesian<frames::earth::icrf> cartesian = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
             // Pull out the pieces for simple two-body gravity
             const auto r = cartesian.get_position();
@@ -77,7 +77,7 @@ int main()
             const auto v = cartesian.get_velocity();
 
             // Compute the partials
-            CartesianPartial partials(v, -mu / (R * R * R) * r + control / vehicle.get_mass());
+            CartesianPartial<frames::earth::icrf> partials(v, -mu / (R * R * R) * r + control / vehicle.get_mass());
 
             return partials;
         }
@@ -87,6 +87,7 @@ int main()
     // Propagation is done using a RKF78 method with a variable step size by default. This can be changed using
     // the integrator setters.
     Integrator integrator;
+    integrator.set_equations_of_motion(myEoms);
 
     bool store    = true;       // Users can choose to store the state history during propagation, or not
     Time propTime = minutes(1); // Propagation time can also be negative for backwards propagation.
@@ -94,7 +95,7 @@ int main()
     // Propagation is done with the element representation that the equations of motion expect. This is to avoid
     // unnecessary conversions during the integration process.
     std::cout << "Propagating My Equations of Motion...";
-    const StateHistory history = integrator.propagate(state0, propTime, myEoms, vehicle, store);
+    const StateHistory history = integrator.propagate(state0, propTime, vehicle);
 
     std::cout << " Propagation Complete." << std::endl;
 

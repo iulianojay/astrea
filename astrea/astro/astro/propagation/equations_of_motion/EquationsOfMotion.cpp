@@ -64,8 +64,8 @@ StatePartial EquationsOfMotion::operator()(const State& state, const Vehicle& ve
 AttitudePartials EquationsOfMotion::compute_kinematics(
     const State& state,
     const Vehicle& vehicle,
-    const TorqueVector<frames::earth::icrf>& perts,
-    const TorqueVector<frames::earth::icrf>& control
+    const TorqueVector<frames::primary>& perts,
+    const TorqueVector<frames::primary>& control
 ) const
 {
     // Has value is guaranteed by caller before calling compute_kinematics
@@ -75,8 +75,8 @@ AttitudePartials EquationsOfMotion::compute_kinematics(
     const InertiaTensor<frames::dynamic::body>& inertiaTensor = vehicle.get_inertia_tensor();
 
     // Compute angular acceleration
-    const DCM<frames::earth::icrf, frames::dynamic::body> dcm = q.to_dcm().transpose();
-    const TorqueVector<frames::dynamic::body> externalTorque  = dcm * (perts + control);
+    const DCM<frames::primary, frames::dynamic::body> dcm    = q.to_dcm().transpose();
+    const TorqueVector<frames::dynamic::body> externalTorque = dcm * (perts + control);
     const BodyAngularAcceleration angularAcceleration =
         inertiaTensor.inverse_multiply(externalTorque - w.cross(inertiaTensor * w) / pow<2>(rad)) * rad;
 

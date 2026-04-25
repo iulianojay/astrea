@@ -38,33 +38,29 @@ using mp_units::si::unit_symbols::s;
 
 Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
+    if (frames::primary::axis != FrameAxis::ICRF) {
+        throw std::runtime_error("NBodyForce only works in ICRF frames right now.");
+    }
+
     // Extract
-    const AstrodynamicsSystem& sys                            = state.get_system();
-    const Date date                                           = state.get_epoch();
-    const RadiusVector<frames::earth::icrf>& rCenterToVehicle = state.get_position();
+    const AstrodynamicsSystem& sys                        = state.get_system();
+    const Date date                                       = state.get_epoch();
+    const RadiusVector<frames::primary>& rCenterToVehicle = state.get_position();
 
     // Center body properties
-    const CelestialBodyUniquePtr& center = sys.get_central_body();
-
-    // Find day nearest to current time
-    const RadiusVector<frames::solar_system_barycenter::icrf> rCenterToSsb = -center->get_position_at(date);
+    const CelestialBodyId center = sys.get_central_body_id();
 
     // Reset perturbation
-    AccelerationVector<frames::earth::icrf> accelNBody{ 0.0 * km / (s * s) };
+    AccelerationVector<frames::primary> accelNBody{ 0.0 * km / (s * s) };
     for (const auto& [id, body] : sys) {
 
-        if (body->get_name() == center->get_name()) { continue; }
+        if (id == center) { continue; }
 
         // Find center to nth body and spacecraft to nth body
-        RadiusVector<frames::earth::icrf> rCenterToNbody;
-        if (body->get_type() == CelestialBodyType::MOON) {
-            // TODO: Moons return position w.r.t their planet. Fix this. This will only work for the Earth-Moon system right now
-            rCenterToNbody = body->get_position_at(date).force_frame_conversion<frames::earth::icrf>();
-        }
-        else {
-            rCenterToNbody = (body->get_position_at(date) - rCenterToSsb).force_frame_conversion<frames::earth::icrf>(); // Gross
-        }
-        const RadiusVector<frames::earth::icrf> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
+        // NOTE: The forced frame conversion here is fine since it's just a translation, no rotation or velocity
+        const RadiusVector<frames::primary> rCenterToNbody =
+            sys.get_relative_position(date, id, center).force_frame_conversion<frames::primary>();
+        const RadiusVector<frames::primary> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
 
         // Normalize
         const Distance rMagVehicleToNbody = rVehicleToNbody.norm();
@@ -78,7 +74,7 @@ Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle&
         accelNBody += directCoefficient * rVehicleToNbody - indirectCoefficient * rCenterToNbody;
     }
 
-    return { .force = accelNBody * vehicle.get_mass() };
+    return { .force = accelNBody.force_frame_conversion<frames::primary>() * vehicle.get_mass() };
 }
 
 } // namespace astro

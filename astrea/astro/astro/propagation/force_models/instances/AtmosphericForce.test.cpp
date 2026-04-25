@@ -74,8 +74,8 @@ TEST_F(AtmosphericForceTest, DefaultConstructor) { ASSERT_NO_THROW(AtmosphericFo
 // Vallado, Ex. 8.5
 TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
 {
-    const Cartesian cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
-                          -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    const Cartesian<frames::earth::icrf> cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                                               -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     const State state(cart, epoch, sys);
     const auto [force, torque]                          = atmoForce.compute_perturbation(state, Vehicle(sat));
     const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
@@ -96,7 +96,7 @@ TEST_F(AtmosphericForceTest, MartianAtmosphere)
 {
     AstrodynamicsSystem martianSys(CelestialBodyId::MARS, { CelestialBodyId::PHOBOS, CelestialBodyId::DEIMOS, CelestialBodyId::SUN });
     AtmosphericForce martianAtmosphere;
-    State state(Cartesian::LEO(martianSys.get_mu()), epoch, martianSys);
+    State state(Cartesian<frames::earth::icrf>::LEO(martianSys.get_mu()), epoch, martianSys);
     ASSERT_NO_THROW(martianAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }
 
@@ -104,7 +104,7 @@ TEST_F(AtmosphericForceTest, VenutianAtmosphere)
 {
     AstrodynamicsSystem venutianSys(CelestialBodyId::VENUS, { CelestialBodyId::SUN });
     AtmosphericForce venutianAtmosphere;
-    State state(Cartesian::LEO(venutianSys.get_mu()), epoch, venutianSys);
+    State state(Cartesian<frames::earth::icrf>::LEO(venutianSys.get_mu()), epoch, venutianSys);
     ASSERT_NO_THROW(venutianAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }
 
@@ -112,6 +112,6 @@ TEST_F(AtmosphericForceTest, TitanAtmosphere)
 {
     AstrodynamicsSystem titanSys(CelestialBodyId::TITAN, { CelestialBodyId::TITAN, CelestialBodyId::SATURN });
     AtmosphericForce titanAtmosphere;
-    State state(Cartesian::LEO(titanSys.get_mu()), epoch, titanSys);
+    State state(Cartesian<frames::earth::icrf>::LEO(titanSys.get_mu()), epoch, titanSys);
     ASSERT_NO_THROW(titanAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }

@@ -96,7 +96,7 @@ class Attitude {
 
   public:
     /**
-     * @brief Default constructor initializing to Cartesian orientation.
+     * @brief Default constructor initializing to Cartesian<frames::earth::icrf> orientation.
      */
     Attitude() = default;
 
@@ -249,7 +249,7 @@ class Attitude {
  * @brief Class representing partial derivatives of orientation.
  *
  * This class encapsulates the partial derivatives of orientation, allowing for
- * operations such as multiplication by time to obtain Cartesian state vectors.
+ * operations such as multiplication by time to obtain Cartesian<frames::earth::icrf> state vectors.
  */
 class AttitudePartials {
 

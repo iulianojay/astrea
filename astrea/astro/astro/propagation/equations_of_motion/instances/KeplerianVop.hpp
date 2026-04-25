@@ -62,8 +62,8 @@ class KeplerianVop : public EquationsOfMotion {
     OrbitalElementPartials compute_dynamics(
         const State& state,
         const Vehicle& vehicle,
-        const ForceVector<frames::earth::icrf>& perts,
-        const ForceVector<frames::earth::icrf>& control
+        const ForceVector<frames::primary>& perts,
+        const ForceVector<frames::primary>& control
     ) const override;
 
     /**

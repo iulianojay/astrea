@@ -57,7 +57,7 @@ class DeorbitTest : public testing::Test {
     AstrodynamicsSystem sys;
     Time time;
     Date epoch;
-    Cartesian cartesian;
+    Cartesian<frames::earth::icrf> cartesian;
     State state;
     Spacecraft spacecraft;
     Vehicle vehicle;

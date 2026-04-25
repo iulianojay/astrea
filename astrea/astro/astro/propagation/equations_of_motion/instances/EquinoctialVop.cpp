@@ -45,8 +45,8 @@ EquinoctialVop::EquinoctialVop(const ForceModel& forces) :
 OrbitalElementPartials EquinoctialVop::compute_dynamics(
     const State& state,
     const Vehicle& vehicle,
-    const ForceVector<frames::earth::icrf>& perts,
-    const ForceVector<frames::earth::icrf>& control
+    const ForceVector<frames::primary>& perts,
+    const ForceVector<frames::primary>& control
 ) const
 {
     // Get need representations
@@ -63,8 +63,8 @@ OrbitalElementPartials EquinoctialVop::compute_dynamics(
     const Angle& L    = equinoctial.get_true_longitude();
 
     // R and V
-    const RadiusVector<frames::earth::icrf> r   = state.get_position();
-    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
+    const RadiusVector<frames::primary> r   = state.get_position();
+    const VelocityVector<frames::primary> v = state.get_velocity();
 
     // Calculate R, N, and T
     const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(r, v);
@@ -90,7 +90,8 @@ OrbitalElementPartials EquinoctialVop::compute_dynamics(
     // Derivative functions
     const Velocity dpdt = 2.0 * p / w * sqPOverMu * tangentialPert;
     const UnitlessPerTime dfdt = sqPOverMu * (radialPert * sinL + ((w + 1) * cosL + f) / w * tangentialPert - g * termA);
-    const UnitlessPerTime dgdt = sqPOverMu * (-radialPert * cosL + ((w + 1) * sinL + g) / w * tangentialPert + g * termA); // TODO: My notes say: 'f * termA'. Find a second source
+    const UnitlessPerTime dgdt = sqPOverMu * (-radialPert * cosL + ((w + 1) * sinL + g) / w * tangentialPert + g * termA
+                                             ); // TODO: My notes say: 'f * termA'. Find a second source
     const UnitlessPerTime dhdt = termB * cosL * normalPert;
     const UnitlessPerTime dkdt = termB * sinL * normalPert;
     const AngularVelocity dLdt = (sqrt(mu * p) * w * w / (p * p) + sqPOverMu * termA) * (isq_angle::cotes_angle);

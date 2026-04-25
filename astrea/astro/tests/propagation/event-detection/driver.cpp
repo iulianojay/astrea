@@ -56,7 +56,6 @@ class EventDetectionTest : public testing::Test {
 
     AstrodynamicsSystem sys;
     GravParam mu;
-    TwoBody eom;
     ForceModel forces;
     Integrator integrator;
     Time propTime;
@@ -81,9 +80,10 @@ TEST_F(EventDetectionTest, NoThrust)
 
     // Impulsive burn event
     Event impulse = Event{ ImpulsiveBurn() };
+    integrator.add_event(impulse);
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true, { impulse });
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {
@@ -106,9 +106,10 @@ TEST_F(EventDetectionTest, ImpulsiveBurn)
 
     // Impulsive burn event
     Event impulse = Event{ ImpulsiveBurn() };
+    integrator.add_event(impulse);
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true, { impulse });
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     std::cout << "state0: " << kep0 << std::endl;

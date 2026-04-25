@@ -35,7 +35,7 @@ namespace astro {
  * @return true if the frame is inertial (ICRF or J2000), false otherwise.
  */
 template <typename Frame_T>
-concept IsInertialFrame = (Frame_T::get_axis() == FrameAxis::ICRF || Frame_T::get_axis() == FrameAxis::J2000);
+concept IsInertialFrame = (Frame_T::axis == FrameAxis::ICRF || Frame_T::axis == FrameAxis::J2000);
 
 /**
  * @brief Concept to determine if a frame is body-fixed.
@@ -44,7 +44,7 @@ concept IsInertialFrame = (Frame_T::get_axis() == FrameAxis::ICRF || Frame_T::ge
  * @return true if the frame is body-fixed, false otherwise.
  */
 template <typename Frame_T>
-concept IsBodyFixedFrame = (Frame_T::get_axis() == FrameAxis::BODY_FIXED);
+concept IsBodyFixedFrame = (Frame_T::axis == FrameAxis::BODY_FIXED);
 
 /**
  * @brief Concept to determine if a frame is static (inertial or body-fixed).
@@ -54,7 +54,7 @@ concept IsBodyFixedFrame = (Frame_T::get_axis() == FrameAxis::BODY_FIXED);
  */
 template <typename Frame_T>
 concept IsStaticFrame =
-    (Frame_T::get_axis() == FrameAxis::ICRF || Frame_T::get_axis() == FrameAxis::J2000 || Frame_T::get_axis() == FrameAxis::BODY_FIXED);
+    (Frame_T::axis == FrameAxis::ICRF || Frame_T::axis == FrameAxis::J2000 || Frame_T::axis == FrameAxis::BODY_FIXED);
 
 /**
  * @brief Concept to determine if a frame is dynamic (LVLH, RIC, VNB).
@@ -64,7 +64,7 @@ concept IsStaticFrame =
  */
 template <typename Frame_T>
 concept IsDynamicFrame =
-    (Frame_T::get_axis() == FrameAxis::LVLH || Frame_T::get_axis() == FrameAxis::RIC || Frame_T::get_axis() == FrameAxis::VNB);
+    (Frame_T::axis == FrameAxis::LVLH || Frame_T::axis == FrameAxis::RIC || Frame_T::axis == FrameAxis::VNB);
 
 /**
  * @brief Concept to determine if two frames share the same origin.
@@ -74,7 +74,7 @@ concept IsDynamicFrame =
  * @return true if both frames share the same origin, false otherwise.
  */
 template <typename Frame_T, typename Frame_U>
-concept HasSameOrigin = (Frame_T::get_origin() == Frame_U::get_origin());
+concept HasSameOrigin = (Frame_T::origin == Frame_U::origin);
 
 /**
  * @brief Concept to determine if two frames share the same axis.
@@ -84,7 +84,7 @@ concept HasSameOrigin = (Frame_T::get_origin() == Frame_U::get_origin());
  * @return true if both frames share the same axis, false otherwise.
  */
 template <typename Frame_T, typename Frame_U>
-concept HasSameAxis = (Frame_T::get_axis() == Frame_U::get_axis());
+concept HasSameAxis = (Frame_T::axis == Frame_U::axis);
 
 /**
  * @brief Concept to determine if two frames are the same (same origin and same axis).
@@ -112,10 +112,11 @@ concept IsConstructableTo = requires(T elements, const GravParam& mu) {
  * @brief Concept to check if a type can be converted to Cartesian elements.
  *
  * @tparam T The type to check.
+ * @tparam Frame_T The frame type to check.
  */
-template <typename T>
+template <typename T, typename Frame_T>
 concept HasDirectCartesianConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_cartesian(mu) } -> std::same_as<Cartesian>;
+    { elements.to_cartesian(mu) } -> std::same_as<Cartesian<Frame_T>>;
 };
 
 /**
@@ -168,7 +169,7 @@ template <typename T>
 concept HasMathOperators = requires(const T elements, const T other, const Unitless scalar) {
     { elements + other } -> std::same_as<T>;
     { elements - other } -> std::same_as<T>;
-    { elements * scalar } -> std::same_as<T>;
+    { elements* scalar } -> std::same_as<T>;
     { elements / scalar } -> std::same_as<T>;
 };
 

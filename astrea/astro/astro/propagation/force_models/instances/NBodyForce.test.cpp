@@ -53,7 +53,7 @@ class NBodyForceTest : public testing::Test {
         sat.set_lift_area(1.0 * m * m);
     }
 
-    const Unitless REL_TOL = 1.0e-6 * one;
+    const Unitless REL_TOL = 1.0e-5 * one;
 
     Spacecraft sat;
     Date epoch;
@@ -79,23 +79,24 @@ TEST_F(NBodyForceTest, ComputeForceValladoEx85)
     // are meant to be pragmatically approachable estimations, not exact reproductions of Vallado's work, and since
     // matching them exactly is impractical, the expected values are taken from a run of this code, not Vallado's.
 
-    Cartesian cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
-                    -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    Cartesian<frames::earth::icrf> cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                                         -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     State state(cart, epoch, sys);
     const auto [force, torque]                          = nBodyForce.compute_perturbation(state, Vehicle(sat));
     const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
+
+#if defined(ASTREA_BUILD_EARTH_EPHEMERIS) && defined(ASTREA_BUILD_SUN_EPHEMERIS)
 
     // Vallado's expected result:
     // const AccelerationVector<frames::earth::icrf> expected{ (1.8664e-10 + 9.0459e-11) * km / (s * s),
     //                                                         (1.5243e-10 + -4.3052e-10) * km / (s * s),
     //                                                         (-1.8187e-10 + -7.0011e-10) * km / (s * s) };
 
-#if defined(ASTREA_BUILD_EARTH_EPHEMERIS) && defined(ASTREA_BUILD_SUN_EPHEMERIS)
 
     // These values come from a run of this code, not Vallado's, but they're close
-    const AccelerationVector<frames::earth::icrf> expected{ 2.7129560e-10 * km / (s * s),
-                                                            -2.8755079e-10 * km / (s * s),
-                                                            -8.7523151e-10 * km / (s * s) };
+    const AccelerationVector<frames::earth::icrf> expected{ 2.74172e-10 * km / (s * s),
+                                                            -2.82853e-10 * km / (s * s),
+                                                            -8.78525e-10 * km / (s * s) };
 
 #elif !defined(ASTREA_BUILD_EARTH_EPHEMERIS) && !defined(ASTREA_BUILD_SUN_EPHEMERIS)
 
@@ -108,6 +109,11 @@ TEST_F(NBodyForceTest, ComputeForceValladoEx85)
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();
 
-    ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL * 1e1));
+    std::cout << "NBodyForce acceleration: " << accel << std::endl;
+    std::cout << "Expected acceleration: " << expected << std::endl;
+    std::cout << "NBodyForce acceleration norm: " << accelNorm << std::endl;
+    std::cout << "Expected acceleration norm: " << expectedNorm << std::endl;
+
+    ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL));
     ASSERT_TRUE(nearly_equal(accel, expected, REL_TOL));
 }

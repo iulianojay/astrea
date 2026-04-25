@@ -107,15 +107,8 @@ TEST_F(EquinoctialTest, KeplerianConstructor)
 
 TEST_F(EquinoctialTest, CartesianConstructor)
 {
-    Cartesian cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
+    Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
     ASSERT_NO_THROW(Equinoctial(cart, sys.get_mu()));
-}
-
-TEST_F(EquinoctialTest, OrbitalElementsConstructor)
-{
-    Keplerian kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
-    OrbitalElements elements(kep);
-    ASSERT_NO_THROW(Equinoctial(elements, sys.get_mu()));
 }
 
 TEST_F(EquinoctialTest, LEOStaticMethod)
@@ -353,7 +346,7 @@ TEST_F(EquinoctialTest, FromKeplerianConversion)
 TEST_F(EquinoctialTest, FromCartesianConversion)
 {
     // Test conversion from Cartesian to Equinoctial
-    Cartesian cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
+    Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
     Equinoctial equi(cart, sys.get_mu());
 
     // Verify the Equinoctial state has reasonable values

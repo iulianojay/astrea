@@ -828,8 +828,8 @@ class Vehicle; // Forward declaration of the Vehicle class
  */
 template <typename T>
 concept IsGenericallyConstructableVehicle = requires(T) {
+    requires !std::is_same<Vehicle, remove_cv_ref<T>>::value;
     requires IsUserDefinedVehicle<T>;
-    std::negation<std::is_same<Vehicle, remove_cv_ref<T>>>::value;
 };
 
 

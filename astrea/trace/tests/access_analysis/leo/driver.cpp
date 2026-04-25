@@ -66,7 +66,6 @@ class LeoToGroundAccessTest : public testing::Test {
     AstrodynamicsSystem sys;
     GravParam mu;
     const Distance semimajorLeo;
-    TwoBody eom;
     ForceModel forces;
     Integrator integrator;
     Time propTime;
@@ -85,7 +84,7 @@ int main(int argc, char** argv)
 TEST_F(LeoToGroundAccessTest, LeoThinCone)
 {
     // Build constellation
-    const Cartesian elem0(Keplerian(semimajorLeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
+    const Cartesian<frames::earth::icrf> elem0(Keplerian(semimajorLeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
     const State state0(elem0, epoch, sys);
 
     const auto& centralBody = sys.get_central_body();
@@ -109,7 +108,7 @@ TEST_F(LeoToGroundAccessTest, LeoThinCone)
     }
 
     // Propagate
-    constel.propagate(propTime, eom, integrator);
+    constel.propagate(propTime, integrator);
 
     // Build out grounds from points in the satellite's ground track
     CircularFieldOfView groundFov(75.0 * deg);

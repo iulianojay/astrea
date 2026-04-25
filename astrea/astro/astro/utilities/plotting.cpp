@@ -86,10 +86,10 @@ std::array<std::vector<double>, 6>
     extract_raw_orbital_elements_at_times(const std::vector<double>& times, const StateHistory& trajectory);
 
 /**
- * @brief Extracts raw Cartesian elements from a StateHistory object.
+ * @brief Extracts raw Cartesian<frames::earth::icrf> elements from a StateHistory object.
  *
  * @param trajectory The state history representing the trajectory.
- * @return std::array<std::vector<double>, 6> An array of vectors containing the Cartesian elements:
+ * @return std::array<std::vector<double>, 6> An array of vectors containing the Cartesian<frames::earth::icrf> elements:
  *         [0] X Position (km)
  *         [1] Y Position (km)
  *         [2] Z Position (km)
@@ -102,11 +102,11 @@ std::array<std::vector<double>, 6>
 std::array<std::vector<double>, 6> extract_raw_cartesian_elements(const StateHistory& trajectory);
 
 /**
- * @brief Extracts raw Cartesian elements from a StateHistory object at specified times.
+ * @brief Extracts raw Cartesian<frames::earth::icrf> elements from a StateHistory object at specified times.
  *
- * @param times A vector of time values in days at which to extract the Cartesian elements.
+ * @param times A vector of time values in days at which to extract the Cartesian<frames::earth::icrf> elements.
  * @param trajectory The state history representing the trajectory.
- * @return std::array<std::vector<double>, 6> An array of vectors containing the Cartesian elements:
+ * @return std::array<std::vector<double>, 6> An array of vectors containing the Cartesian<frames::earth::icrf> elements:
  *         [0] X Position (km)
  *         [1] Y Position (km)
  *         [2] Z Position (km)
@@ -223,7 +223,7 @@ std::array<std::vector<double>, 6> extract_raw_cartesian_elements(const StateHis
 {
     std::array<std::vector<double>, 6> data;
     for (const auto& state : trajectory) {
-        const Cartesian cart = state.in_element_set<Cartesian>();
+        const Cartesian<frames::earth::icrf> cart = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
         const auto x  = cart.get_x();
         const auto y  = cart.get_y();
@@ -248,7 +248,8 @@ std::array<std::vector<double>, 6> extract_raw_cartesian_elements_at_times(const
     std::array<std::vector<double>, 6> data;
     const Date epoch = trajectory.epoch();
     for (const auto& time : times) {
-        const Cartesian cart = trajectory.get_state_at(epoch + time * day).in_element_set<Cartesian>();
+        const Cartesian<frames::earth::icrf> cart =
+            trajectory.get_state_at(epoch + time * day).in_element_set<Cartesian<frames::earth::icrf>>();
 
         const auto x  = cart.get_x();
         const auto y  = cart.get_y();

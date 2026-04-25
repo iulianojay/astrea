@@ -33,9 +33,14 @@ namespace astro {
 /**
  * @brief Base class for all dynamic state/frames.
  */
-template <class Frame_T, FrameAxis axis>
-    requires(axis != FrameAxis::ICRF && axis != FrameAxis::J2000 && axis != FrameAxis::BODY_FIXED)
-struct DynamicFrame : public Frame<CelestialBodyId::CUSTOM, axis> {
+template <class Frame_T, FrameAxis _axis>
+    requires(_axis != FrameAxis::ICRF && _axis != FrameAxis::J2000 && _axis != FrameAxis::BODY_FIXED)
+struct DynamicFrame : public Frame<CelestialBodyId::CUSTOM, _axis> {
+
+    static constexpr CelestialBodyId origin =
+        Frame<CelestialBodyId::CUSTOM, _axis>::origin; //!< The central body associated with the inertial frame.
+    static constexpr FrameAxis axis = Frame<CelestialBodyId::CUSTOM, _axis>::axis; //!< The axis type of the inertial frame.
+
   protected:
     /**
      * @brief Constructor for DynamicFrame.
@@ -49,10 +54,8 @@ struct DynamicFrame : public Frame<CelestialBodyId::CUSTOM, axis> {
         _isInstantaneous(false)
     {
         if (parent == nullptr) {
-            throw std::invalid_argument(
-                "Parent of a dynamic frame cannot be null. Use Frame_T::instantaneous(r, v) "
-                "for instantaneous dynamic state/frames."
-            );
+            throw std::invalid_argument("Parent of a dynamic frame cannot be null. Use Frame_T::instantaneous(r, v) "
+                                        "for instantaneous dynamic state/frames.");
         }
     }
 
@@ -71,20 +74,6 @@ struct DynamicFrame : public Frame<CelestialBodyId::CUSTOM, axis> {
     }
 
   public:
-    /**
-     * @brief Get the origin of the frame.
-     *
-     * @return The origin of the frame.
-     */
-    static constexpr CelestialBodyId get_origin() { return Frame<CelestialBodyId::CUSTOM, axis>::get_origin(); }
-
-    /**
-     * @brief Get the origin of the frame.
-     *
-     * @return The origin of the frame.
-     */
-    static constexpr FrameAxis get_axis() { return Frame<CelestialBodyId::CUSTOM, axis>::get_axis(); }
-
     /**
      * @brief Creates an instantaneous Frame_T frame.
      *

@@ -101,15 +101,11 @@ class Equinoctial {
      * @param elements The Cartesian elements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    Equinoctial(const Cartesian& elements, const GravParam& mu);
-
-    /**
-     * @brief Constructs an Equinoctial object from OrbitalElements.
-     *
-     * @param elements The OrbitalElements to convert.
-     * @param sys The astrodynamics system context for conversion.
-     */
-    Equinoctial(const OrbitalElements& elements, const GravParam& mu);
+    template <typename Frame_T>
+    Equinoctial(const Cartesian<Frame_T>& elements, const GravParam& mu) :
+        Equinoctial(Keplerian(elements, mu), mu)
+    {
+    }
 
     /**
      * @brief A static method to create Equinoctial state vectors for a LEO orbit.

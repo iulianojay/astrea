@@ -43,7 +43,7 @@ class DummyForce : public PerturbingForce {
 
 class ForceModelTest : public testing::Test {
   public:
-    ForceModelTest() {};
+    ForceModelTest(){};
     void SetUp() override {}
 
     DummyForce force;
@@ -76,7 +76,7 @@ TEST(ForceModelTest, ComputeForces)
     Vehicle vehicle;
     AstrodynamicsSystem sys;
     Date date;
-    Cartesian cart;
+    Cartesian<frames::primary> cart;
     State state(cart, date, sys);
 
     auto [accel, torque] = model.compute_perturbations(state, vehicle);

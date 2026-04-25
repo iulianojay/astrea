@@ -43,6 +43,7 @@ class CowellsMethodPropagationTest : public testing::Test {
         propTime(weeks(1)),
         epoch(J2000)
     {
+        integrator.set_equations_of_motion(eom);
     }
 
     void SetUp() override {}
@@ -76,7 +77,7 @@ TEST_F(CowellsMethodPropagationTest, GEONoForces)
     Vehicle vehicle{ geo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {
@@ -95,7 +96,7 @@ TEST_F(CowellsMethodPropagationTest, GPSNoForces)
     Vehicle vehicle{ meo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {
@@ -114,7 +115,7 @@ TEST_F(CowellsMethodPropagationTest, LEONoForces)
     Vehicle vehicle{ leo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {

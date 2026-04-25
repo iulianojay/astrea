@@ -60,7 +60,7 @@ class AtmosphericForce : public PerturbingForce {
     /**
      * @brief Finds the atmospheric density at a given altitude.
      *
-     * @param state Cartesian state vector of the vehicle
+     * @param state Cartesian<frames::primary> state vector of the vehicle
      * @param center Celestial body around which the vehicle is orbiting
      * @return Density The atmospheric density at the given altitude.
      */

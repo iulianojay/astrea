@@ -65,7 +65,6 @@ class SimpleGeoAccessTest : public testing::Test {
 
     AstrodynamicsSystem sys;
     const Distance semimajorGeo;
-    TwoBody eom;
     ForceModel forces;
     Integrator integrator;
     Time propTime;
@@ -109,7 +108,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
     }
 
     // Propagate
-    twoBallGeo.propagate(propTime, eom, integrator);
+    twoBallGeo.propagate(propTime, integrator);
 
     // Find access
     AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
@@ -153,7 +152,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
     }
 
     // Propagate
-    twoBallGeo.propagate(propTime, eom, integrator);
+    twoBallGeo.propagate(propTime, integrator);
 
     // Find access
     AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
@@ -200,7 +199,7 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
     }
 
     // Propagate
-    fourBallGeo.propagate(propTime, eom, integrator);
+    fourBallGeo.propagate(propTime, integrator);
 
     // Find access
     AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);

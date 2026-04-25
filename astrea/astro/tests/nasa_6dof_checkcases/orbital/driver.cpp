@@ -150,19 +150,17 @@ class Orbital6DofTest : public testing::Test {
         switch (vehicleType) {
             case ISS: {
                 sat.set_mass(400'000.0 * kg);
-                sat.set_inertia_tensor(
-                    InertiaTensor<frames::dynamic::body>(
-                        1.02e8 * kg * pow<2>(m),  // xx
-                        6.96e6 * kg * pow<2>(m),  // xy
-                        5.48e6 * kg * pow<2>(m),  // xz
-                        6.96e6 * kg * pow<2>(m),  // yx
-                        0.91e8 * kg * pow<2>(m),  // yy
-                        -5.90e5 * kg * pow<2>(m), // yz
-                        5.48e6 * kg * pow<2>(m),  // zx
-                        -5.90e5 * kg * pow<2>(m), // zy
-                        5.48e6 * kg * pow<2>(m)   // zz
-                    )
-                );
+                sat.set_inertia_tensor(InertiaTensor<frames::dynamic::body>(
+                    1.02e8 * kg * pow<2>(m),  // xx
+                    6.96e6 * kg * pow<2>(m),  // xy
+                    5.48e6 * kg * pow<2>(m),  // xz
+                    6.96e6 * kg * pow<2>(m),  // yx
+                    0.91e8 * kg * pow<2>(m),  // yy
+                    -5.90e5 * kg * pow<2>(m), // yz
+                    5.48e6 * kg * pow<2>(m),  // zx
+                    -5.90e5 * kg * pow<2>(m), // zy
+                    5.48e6 * kg * pow<2>(m)   // zz
+                ));
                 sat.set_ram_area(2.5e3 * m * m);
                 sat.set_lift_area(2.5e3 * m * m);
                 sat.set_solar_area(2.5e3 * m * m);
@@ -232,22 +230,26 @@ class Orbital6DofTest : public testing::Test {
         switch (eomId) {
             case TWO_BODY: {
                 TwoBody twoBody;
-                return integrator.propagate(state0, propTime, twoBody, vehicle, true);
+                integrator.set_equations_of_motion(twoBody);
+                return integrator.propagate(state0, propTime, vehicle);
             }
 
             case COWELLS_METHOD: {
                 CowellsMethod cowells(forces);
-                return integrator.propagate(state0, propTime, cowells, vehicle, true);
+                integrator.set_equations_of_motion(cowells);
+                return integrator.propagate(state0, propTime, vehicle);
             }
 
             case KEPLERIAN_VOP: {
                 KeplerianVop keplerianVop(forces, false);
-                return integrator.propagate(state0, propTime, keplerianVop, vehicle, true);
+                integrator.set_equations_of_motion(keplerianVop);
+                return integrator.propagate(state0, propTime, vehicle);
             }
 
             case EQUINOCTIAL_VOP: {
                 EquinoctialVop equinoctialVop(forces);
-                return integrator.propagate(state0, propTime, equinoctialVop, vehicle, true);
+                integrator.set_equations_of_motion(equinoctialVop);
+                return integrator.propagate(state0, propTime, vehicle);
             }
 
             default: throw std::runtime_error("Invalid EOM ID");
@@ -394,15 +396,15 @@ class Orbital6DofTest : public testing::Test {
         std::optional<AStats> aStats;
         std::optional<OmegaStats> omegaStats;
         for (const auto& checkcaseState : checkcaseHistory) {
-            const Date date          = checkcaseState.get_epoch();
-            const State propState    = propHistory.get_state_at(date);
-            const Cartesian propCart = propState.in_element_set<Cartesian>();
-            const auto propPos       = propCart.get_position();
-            const auto propVel       = propCart.get_velocity();
+            const Date date                               = checkcaseState.get_epoch();
+            const State propState                         = propHistory.get_state_at(date);
+            const Cartesian<frames::earth::icrf> propCart = propState.in_element_set<Cartesian<frames::earth::icrf>>();
+            const auto propPos                            = propCart.get_position();
+            const auto propVel                            = propCart.get_velocity();
 
-            const Cartesian cart = checkcaseState.in_element_set<Cartesian>();
-            const auto pos       = cart.get_position();
-            const auto vel       = cart.get_velocity();
+            const Cartesian<frames::earth::icrf> cart = checkcaseState.in_element_set<Cartesian<frames::earth::icrf>>();
+            const auto pos                            = cart.get_position();
+            const auto vel                            = cart.get_velocity();
 
             // Compare
             const auto positionError    = propPos - pos;
@@ -657,8 +659,8 @@ class Orbital6DofTest : public testing::Test {
     AstrodynamicsSystem sys;
     GravParam mu;
     Date epoch;
-    Cartesian circular;
-    Cartesian elliptic;
+    Cartesian<frames::earth::icrf> circular;
+    Cartesian<frames::earth::icrf> elliptic;
     Time propTime;
     Integrator integrator;
 };

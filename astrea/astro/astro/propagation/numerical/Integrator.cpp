@@ -26,6 +26,7 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
+#include <astro/propagation/equations_of_motion/instances/TwoBody.hpp>
 #include <astro/propagation/event_detection/Event.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>
 #include <astro/propagation/numerical/butcher_tableau.hpp>
@@ -42,37 +43,21 @@ using mp_units::si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-StateHistory Integrator::propagate(
-    const State& state0,
-    const Date& endEpoch,
-    const EquationsOfMotion& eom,
-    Vehicle vehicle,
-    bool store,
-    const std::vector<Event>& events,
-    const Schedule& schedule
-)
+StateHistory Integrator::propagate(const State& state0, const Date& endEpoch, Vehicle vehicle)
 {
     const Time propTime = endEpoch - state0.get_epoch();
-    return propagate(state0, propTime, eom, vehicle, store, events, schedule);
+    return propagate(state0, propTime, vehicle);
 }
 
-StateHistory Integrator::propagate(
-    const State& state0,
-    const Time& propTime,
-    const EquationsOfMotion& eom,
-    Vehicle vehicle,
-    bool store,
-    const std::vector<Event>& events,
-    const Schedule& schedule
-)
+StateHistory Integrator::propagate(const State& state0, const Time& propTime, Vehicle vehicle)
 {
-    setup(store, eom, events);
+    setup();
 
-    if (schedule.get_scheduled_dates().empty()) { return propagate_impl(state0, propTime, vehicle); }
+    if (_schedule.get_scheduled_dates().empty()) { return propagate_impl(state0, propTime, vehicle); }
 
     // Erase anything in the schedule that is outside the propagation interval
     const Date finalEpoch            = state0.get_epoch() + propTime;
-    std::vector<Date> scheduledDates = schedule.get_scheduled_dates();
+    std::vector<Date> scheduledDates = _schedule.get_scheduled_dates();
     for (auto it = scheduledDates.rbegin(); it != scheduledDates.rend();) {
         if (*it < state0.get_epoch() || *it > finalEpoch) {
             it = decltype(it)(scheduledDates.erase(std::next(it).base()));
@@ -95,13 +80,40 @@ StateHistory Integrator::propagate(
 
         // Trigger events at the scheduled date
         State stateAtEvent = stateHistory.get_state_at(nextEpoch);
-        schedule.trigger_scheduled_events(nextEpoch, timeToNextEpoch, stateAtEvent, vehicle);
+        _schedule.trigger_scheduled_events(nextEpoch, timeToNextEpoch, stateAtEvent, vehicle);
 
         // Update initial state for next propagation segment
         state = stateAtEvent;
     }
     return fullStateHistory;
 }
+
+void Integrator::propagate_no_storage(const State& state0, const Time& propTime, Vehicle vehicle)
+{
+    _store = false;
+    propagate(state0, propTime, vehicle);
+}
+
+void Integrator::propagate_no_storage(const State& state0, const Date& endEpoch, Vehicle vehicle)
+{
+    _store = false;
+    propagate(state0, endEpoch, vehicle);
+}
+
+void Integrator::set_schedule(const Schedule& schedule) { _schedule = schedule; }
+
+void Integrator::clear() { _schedule.clear(); }
+
+void Integrator::add_event(const Event& event) { _eventDetector.add_event(event); }
+
+void Integrator::add_events(const std::vector<Event>& events)
+{
+    for (const auto& event : events) {
+        add_event(event);
+    }
+}
+
+void Integrator::clear_events() { _eventDetector.clear_events(); }
 
 StateHistory Integrator::propagate_impl(const State& state0, const Time& propTime, Vehicle vehicle)
 {
@@ -197,11 +209,9 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
     return stateHistory;
 }
 
-void Integrator::setup(const bool store, const EquationsOfMotion& eom, const std::vector<Event>& events)
+void Integrator::setup()
 {
-    _store = store;
-    _eom   = &eom;
-    _eventDetector.set_events(events);
+    if (!_eom) { _eom = std::make_unique<TwoBody>(); };
 
     // Ensure counts restart
     _functionEvaluations = 0;
@@ -288,10 +298,8 @@ void Integrator::setup_butcher_tableau()
             break;
         }
         default:
-            throw std::invalid_argument(
-                "Integration Error: Stepping method not found. Options are {RK45, RKF45, "
-                "RKF78, DOP45, DOP78}."
-            );
+            throw std::invalid_argument("Integration Error: Stepping method not found. Options are {RK45, RKF45, "
+                                        "RKF78, DOP45, DOP78}.");
     }
 }
 

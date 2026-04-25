@@ -73,13 +73,13 @@ TEST_F(EventDetectorTest, GetEvents) { ASSERT_EQ(detector.get_events().size(), 0
 TEST_F(EventDetectorTest, SetEvents)
 {
     ASSERT_EQ(detector.get_events().size(), 0);
-    detector.set_events({ event });
+    detector.add_event(event);
     ASSERT_EQ(detector.get_events().size(), 1);
 }
 
 TEST_F(EventDetectorTest, DetectNonTerminalEvents)
 {
-    detector.set_events({ event });
+    detector.add_event(event);
     for (int ii = 0; ii < 10; ++ii) {
         const bool isTerminal = detector.detect_events(Time(ii * s), state, vehicle);
         ASSERT_EQ(isTerminal, false);
@@ -88,7 +88,7 @@ TEST_F(EventDetectorTest, DetectNonTerminalEvents)
 
 TEST_F(EventDetectorTest, DetectTerminalEvents)
 {
-    detector.set_events({ terminalEvent });
+    detector.add_event(terminalEvent);
     for (int ii = 0; ii < 10; ++ii) {
         const bool isTerminal = detector.detect_events(Time(ii * s), state, vehicle);
         ASSERT_EQ(isTerminal, bool(ii > 0));

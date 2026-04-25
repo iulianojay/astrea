@@ -68,12 +68,11 @@ int main()
     State state0(Keplerian::LEO(), epoch, sys);
     Time propTime = hours(1.0);
 
-    TwoBody twoBodyEom;
-    Integrator integrator;
+    Integrator integrator; // default to two-body
 
-    integrator.propagate(state0, propTime, twoBodyEom, vehicle);
-    integrator.propagate(state0, propTime, twoBodyEom, complicatedVehicle);
-    integrator.propagate(state0, propTime, twoBodyEom, spacecraft);
+    integrator.propagate(state0, propTime, vehicle);
+    integrator.propagate(state0, propTime, complicatedVehicle);
+    integrator.propagate(state0, propTime, spacecraft);
 
     return 0;
 }

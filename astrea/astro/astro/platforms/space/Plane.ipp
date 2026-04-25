@@ -78,10 +78,8 @@ const Spacecraft_T& Plane<Spacecraft_T>::get_spacecraft(const size_t& spacecraft
 
 
 template <class Spacecraft_T>
-void Plane<Spacecraft_T>::propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator)
+void Plane<Spacecraft_T>::propagate(const Time& propTime, Integrator& integrator)
 {
-    // std::cout << std::endl;
-    // utilities::ProgressBar progressBar(satellites.size(), "\tPropagating Plane " + std::to_string(id));
     for (auto& sat : satellites) {
         Vehicle vehicle{ sat };
         const StateHistory& satHistory = sat.get_state_history();
@@ -91,20 +89,16 @@ void Plane<Spacecraft_T>::propagate(const Time& propTime, const EquationsOfMotio
             );
         }
         State state0            = satHistory.first();
-        const auto stateHistory = integrator.propagate(state0, propTime, eom, vehicle, true);
+        const auto stateHistory = integrator.propagate(state0, propTime, vehicle);
 
         sat.set_state_history(stateHistory);
-
-        // progressBar();
     }
 }
 
 
 template <class Spacecraft_T>
-void Plane<Spacecraft_T>::propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator)
+void Plane<Spacecraft_T>::propagate(const Date& endEpoch, Integrator& integrator)
 {
-    // std::cout << std::endl;
-    // utilities::ProgressBar progressBar(satellites.size(), "\tPropagating Plane " + std::to_string(id));
     for (auto& sat : satellites) {
         Vehicle vehicle{ sat };
         const StateHistory& satHistory = sat.get_state_history();
@@ -114,11 +108,9 @@ void Plane<Spacecraft_T>::propagate(const Date& endEpoch, const EquationsOfMotio
             );
         }
         State state0            = satHistory.first();
-        const auto stateHistory = integrator.propagate(state0, endEpoch, eom, vehicle, true);
+        const auto stateHistory = integrator.propagate(state0, endEpoch, vehicle);
 
         sat.set_state_history(stateHistory);
-
-        // progressBar();
     }
 }
 

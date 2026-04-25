@@ -101,7 +101,7 @@ TEST_F(KeplerianTest, KeplerianConstructor)
 
 TEST_F(KeplerianTest, CartesianConstructor)
 {
-    Cartesian cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
+    Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
     ASSERT_NO_THROW(Keplerian(cart, sys.get_mu()));
 }
 
@@ -109,13 +109,6 @@ TEST_F(KeplerianTest, EquinoctialConstructor)
 {
     Equinoctial equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
     ASSERT_NO_THROW(Keplerian(equi, sys.get_mu()));
-}
-
-TEST_F(KeplerianTest, OrbitalElementsConstructor)
-{
-    Cartesian cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
-    OrbitalElements elements(cart);
-    ASSERT_NO_THROW(Keplerian(elements, sys.get_mu()));
 }
 
 TEST_F(KeplerianTest, LEOStaticMethod)
@@ -364,7 +357,7 @@ TEST_F(KeplerianTest, Interpolate)
 TEST_F(KeplerianTest, FromCartesianConversion)
 {
     // Test conversion from Cartesian to Keplerian
-    Cartesian cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
+    Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
     Keplerian kep(cart, sys.get_mu());
 
     // Verify the Keplerian state has reasonable values
