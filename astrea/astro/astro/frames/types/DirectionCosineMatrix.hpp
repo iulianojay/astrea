@@ -473,7 +473,7 @@ class DirectionCosineMatrix {
         using namespace mp_units;
 
         const Unitless det = determinant();
-        if (det == 0.0 * mp_units::one) {
+        if (is_eq_zero(det)) {
             throw std::runtime_error("Cannot normalize a zero-value determinant DCM. The matrix is likely singular.");
         }
 
@@ -497,12 +497,11 @@ class DirectionCosineMatrix {
      */
     void _normalize(const Unitless& scale)
     {
-        using namespace mp_units;
         for (auto& row : _matrix) {
             for (auto& element : row) {
                 element *= scale;
                 // Avoid very small values that should be zero
-                if (abs(element) < 1.0e-15 * one) { element = 0.0 * one; }
+                if (mp_units::abs(element) < 1.0e-15 * one) { element = 0.0 * one; }
             }
         }
     }

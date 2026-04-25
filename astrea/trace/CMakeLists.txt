@@ -110,7 +110,11 @@ add_library(${PROJECT_NAME}_shared SHARED ${TRACE_SOURCES} ${TRACE_HEADERS})
 set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries(${PROJECT_NAME}_shared PUBLIC math_shared astro_shared ${TRACE_LIBS})
 target_include_directories(${PROJECT_NAME}_shared PUBLIC ${TRACE_DIRS})
-target_compile_definitions(${PROJECT_NAME}_shared PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+if(WIN32)
+    target_compile_definitions(${PROJECT_NAME}_shared PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"" WIN32_LEAN_AND_MEAN NOMINMAX)
+else()
+    target_compile_definitions(${PROJECT_NAME}_shared PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+endif()
 
 # Static library
 if(${BUILD_STATIC})

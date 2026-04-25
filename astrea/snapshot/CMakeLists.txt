@@ -53,7 +53,11 @@ add_library                (${PROJECT_NAME}_shared SHARED ${SNAPSHOT_SOURCES} ${
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries      (${PROJECT_NAME}_shared PUBLIC astro_shared utilities_shared ${SNAPSHOT_LIBS})
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${SNAPSHOT_DIRS})
-target_compile_definitions (${PROJECT_NAME}_shared PUBLIC "_SNAPSHOT_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+if(WIN32)
+    target_compile_definitions (${PROJECT_NAME}_shared PUBLIC "_SNAPSHOT_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"" WIN32_LEAN_AND_MEAN NOMINMAX)
+else()
+    target_compile_definitions (${PROJECT_NAME}_shared PUBLIC "_SNAPSHOT_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+endif()
 
 # Static library
 if(${BUILD_STATIC})

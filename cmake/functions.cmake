@@ -162,16 +162,16 @@ function(generate_ephemeris_files PROJECT_SOURCE_DIRECTORY)
     message(" -- Compiled Ephemeride SOURCES: \n\t" ${PRINTABLE_SOURCES})
 
     string(REPLACE ";"  " " PYTHONIC_BODIES "${ALL_BODIES}")
-    if (WIN32)
-        set(PYTHON_COMMAND_FOR_BUILD ${CMAKE_SOURCE_DIR}/.venv/Scripts/python.exe)
-    else()
-        set(PYTHON_COMMAND_FOR_BUILD ${CMAKE_SOURCE_DIR}/.venv/bin/python)
+    find_package(Python3 COMPONENTS Interpreter)
+    if(NOT Python3_FOUND)
+        message(FATAL_ERROR "Python 3 is required for ephemeris generation but was not found")
     endif()
+
     add_custom_command(
         OUTPUT
             ${BODY_EPHEMERIS_HEADERS}
             ${BODY_EPHEMERIS_SOURCES}
-        COMMAND ${PYTHON_COMMAND_FOR_BUILD} ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides --bodies ${PYTHONIC_BODIES}
+        COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides --bodies ${PYTHONIC_BODIES}
         DEPENDS
             ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIRECTORY}

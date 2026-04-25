@@ -2,12 +2,10 @@ SHELL := bash
 MAKEFLAGS += --no-builtin-rules --no-print-directory
 
 config_path := $(abspath .)
-venv_activate := $(config_path)/.venv/bin/activate
-CMAKE := source $(venv_activate) && cmake
 source_path := astrea
 examples_path := examples
 arch := x86_64
-os := Linux
+os := Windows
 cxx := g++
 cxx_std := 23
 cxx_name := $(shell echo $(cxx) | sed 's/g++/gcc/; s/clang++/clang/' | sed 's/-[0-9.]*$$//')
@@ -16,17 +14,22 @@ comp := $(cxx_name)-$(cxx_ver)-$(cxx_std)
 tests_path := tests
 
 # Compiler configuration - can be 'gcc' or 'mingw'
-compiler := gcc
+venv_activate := $(config_path)/.venv/bin/activate
+compiler := mingw
 toolchain_name := $(compiler)-13-23
 toolchain_file := 
+toolchain_make :=
 extra_cmake_args :=
 
 # Set toolchain file for mingw cross-compilation
 ifeq ($(compiler),mingw)
+	venv_activate := $(config_path)/.venv/Scripts/activate
 	toolchain_file := -DCMAKE_TOOLCHAIN_FILE=$(abspath cmake/windows_toolchain.cmake)
 	toolchain_name := mingw-w64
+toolchain_make := -G "MinGW Makefiles"
 endif
 
+CMAKE := source $(venv_activate) && cmake
 build_type := Release
 build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
 build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type))
@@ -65,6 +68,7 @@ install-mingw: mingw install
 .PHONY: build
 build:
 	cmake -S . -B $(build_path) \
+	$(toolchain_make) \
 	$(toolchain_file) \
 	-DCMAKE_BUILD_TYPE=$(build_type) \
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
@@ -235,11 +239,18 @@ build_env:
 
 .PHONY: activate_env
 activate_env:
-	. .venv/bin/activate
+	@if [ -f .venv/bin/activate ]; then \
+		. .venv/bin/activate; \
+	elif [ -f .venv/Scripts/activate ]; then \
+		. .venv/Scripts/activate; \
+	else \
+		echo "No virtual environment found!"; \
+		exit 1; \
+	fi
 
 .PHONY: install_deps
 install_deps:
-	uv pip install -r pyproject.toml
+	uv sync --no-dev
 
 .PHONY: python_env
 python_env: build_env activate_env install_deps
