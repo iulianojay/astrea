@@ -2,12 +2,11 @@
 SHELL := bash
 MAKEFLAGS += --no-builtin-rules --no-print-directory
 
+# Set OS variable to 'Windows', 'Linux', or 'Apple' (cross-platform robust)
 config_path := $(abspath .)
 source_path := astrea
 examples_path := examples
 arch := x86_64
-# Set OS variable to 'Windows', 'Linux', or 'Apple' (cross-platform robust)
-os := $(shell uname 2>/dev/null | grep -qiE 'mingw|msys|cygwin' && echo Windows || uname 2>/dev/null | grep -qi linux && echo Linux || uname 2>/dev/null | grep -qi darwin && echo Apple || echo $(OS))
 cxx := g++
 cxx_std := 23
 cxx_name := $(shell echo $(cxx) | sed 's/g++/gcc/; s/clang++/clang/' | sed 's/-[0-9.]*$$//')
@@ -17,25 +16,23 @@ tests_path := tests
 
 # Compiler configuration - can be 'gcc' or 'mingw'
 venv_activate := $(config_path)/.venv/bin/activate
-compiler := g++
-toolchain_name := $(compiler)-13-23
+compiler := gcc
 toolchain_file :=
 toolchain_make :=
 extra_cmake_args :=
 
 # Set toolchain file for mingw cross-compilation
-ifeq ($(os),Windows)
+ifeq ($(compiler),Windows)
 	venv_activate := $(config_path)/.venv/Scripts/activate
 	toolchain_file := -DCMAKE_TOOLCHAIN_FILE=$(abspath cmake/windows_toolchain.cmake)
-	toolchain_name := mingw-w64
 	toolchain_make := -G "MinGW Makefiles"
 endif
 
 CMAKE := source $(venv_activate) && cmake
 build_type := Release
 build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
-build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type))
-install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type))
+build_path := $(abspath ./build/$(comp)/$(build_type))
+install_path := $(abspath ./install/$(comp)/$(build_type))
 build_tests := OFF
 build_examples := OFF
 build_profilers := OFF
@@ -87,48 +84,45 @@ build-mingw: mingw build
 debug:
 	$(eval build_type = Debug)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(comp)/$(build_type)))
 
 .PHONY: release
 release:
 	$(eval build_type = Release)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(comp)/$(build_type)))
 
 .PHONY: relwithdebinfo
 relwithdebinfo:
 	$(eval build_type = RelWithDebInfo)
 	$(eval build_type_lower := $(shell echo $(build_type) | tr A-Z a-z))
-	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(comp)/$(build_type)))
 
 # Compiler selection targets
 .PHONY: gcc
 gcc:
 	$(eval compiler = gcc)
-	$(eval toolchain_name = gcc-13-23)
 	$(eval toolchain_file = )
-	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(comp)/$(build_type)))
 
 .PHONY: msvc
 msvc:
 	$(eval compiler = msvc)
-	$(eval toolchain_name = msvc-17-23)
 	$(eval toolchain_file = )
 	$(eval toolchain_make = -G "Visual Studio 17 2022" -A x64)
-	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(comp)/$(build_type)))
 
 .PHONY: mingw
 mingw:
 	$(eval compiler = mingw)
-	$(eval toolchain_name = mingw-w64)
 	$(eval toolchain_file = -DCMAKE_TOOLCHAIN_FILE=$(abspath cmake/windows_toolchain.cmake))
-	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type)))
-	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type)))
+	$(eval build_path := $(abspath ./build/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(comp)/$(build_type)))
 
 .PHONY: tests
 tests:
