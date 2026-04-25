@@ -1,3 +1,4 @@
+
 SHELL := bash
 MAKEFLAGS += --no-builtin-rules --no-print-directory
 
@@ -5,7 +6,8 @@ config_path := $(abspath .)
 source_path := astrea
 examples_path := examples
 arch := x86_64
-os := Windows
+# Set OS variable to 'Windows', 'Linux', or 'Apple' (cross-platform robust)
+os := $(shell uname 2>/dev/null | grep -qiE 'mingw|msys|cygwin' && echo Windows || uname 2>/dev/null | grep -qi linux && echo Linux || uname 2>/dev/null | grep -qi darwin && echo Apple || echo $(OS))
 cxx := g++
 cxx_std := 23
 cxx_name := $(shell echo $(cxx) | sed 's/g++/gcc/; s/clang++/clang/' | sed 's/-[0-9.]*$$//')
@@ -15,18 +17,18 @@ tests_path := tests
 
 # Compiler configuration - can be 'gcc' or 'mingw'
 venv_activate := $(config_path)/.venv/bin/activate
-compiler := mingw
+compiler := g++
 toolchain_name := $(compiler)-13-23
-toolchain_file := 
+toolchain_file :=
 toolchain_make :=
 extra_cmake_args :=
 
 # Set toolchain file for mingw cross-compilation
-ifeq ($(compiler),mingw)
+ifeq ($(os),Windows)
 	venv_activate := $(config_path)/.venv/Scripts/activate
 	toolchain_file := -DCMAKE_TOOLCHAIN_FILE=$(abspath cmake/windows_toolchain.cmake)
 	toolchain_name := mingw-w64
-toolchain_make := -G "MinGW Makefiles"
+	toolchain_make := -G "MinGW Makefiles"
 endif
 
 CMAKE := source $(venv_activate) && cmake
@@ -58,12 +60,6 @@ profile: profiling install
 .PHONY: install
 install: build
 	$(CMAKE) --build $(build_path) --target install -j10
-
-.PHONY: install-gcc
-install-gcc: gcc install
-
-.PHONY: install-mingw
-install-mingw: mingw install
 
 .PHONY: build
 build:
@@ -114,6 +110,15 @@ gcc:
 	$(eval compiler = gcc)
 	$(eval toolchain_name = gcc-13-23)
 	$(eval toolchain_file = )
+	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type)))
+	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type)))
+
+.PHONY: msvc
+msvc:
+	$(eval compiler = msvc)
+	$(eval toolchain_name = msvc-17-23)
+	$(eval toolchain_file = )
+	$(eval toolchain_make = -G "Visual Studio 17 2022" -A x64)
 	$(eval build_path := $(abspath ./build/$(toolchain_name)/$(comp)/$(build_type)))
 	$(eval install_path := $(abspath ./install/$(toolchain_name)/$(comp)/$(build_type)))
 
