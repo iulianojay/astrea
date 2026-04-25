@@ -110,12 +110,13 @@ CPMFindPackage(
 CPMFindPackage(
     NAME matplotplusplus
     GITHUB_REPOSITORY alandefreitas/matplotplusplus
-    GIT_TAG v1.2.2
+    GIT_TAG v1.2.2 # Use latest stable release for better Windows DLL support
     GIT_SHALLOW TRUE
     OPTIONS
     "MATPLOTPP_BUILD_EXAMPLES OFF"
     "MATPLOTPP_BUILD_SHARED_LIBS ON"
     "MATPLOTPP_BUILD_TESTS OFF"
+    "BUILD_SHARED_LIBS ON"
 )
 
 # JSON parsing that doesn't suck

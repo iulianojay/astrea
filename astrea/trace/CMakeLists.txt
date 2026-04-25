@@ -110,11 +110,19 @@ add_library(${PROJECT_NAME}_shared SHARED ${TRACE_SOURCES} ${TRACE_HEADERS})
 set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries(${PROJECT_NAME}_shared PUBLIC math_shared astro_shared ${TRACE_LIBS})
 target_include_directories(${PROJECT_NAME}_shared PUBLIC ${TRACE_DIRS})
+
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME}_shared PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"" WIN32_LEAN_AND_MEAN NOMINMAX)
 else()
     target_compile_definitions(${PROJECT_NAME}_shared PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
 endif()
+
+# Install shared library (DLL)
+install(TARGETS ${PROJECT_NAME}_shared
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
 
 # Static library
 if(${BUILD_STATIC})
@@ -123,6 +131,13 @@ if(${BUILD_STATIC})
     target_link_libraries(${PROJECT_NAME}_static PUBLIC math_static astro_static ${TRACE_LIBS})
     target_include_directories(${PROJECT_NAME}_static PUBLIC ${TRACE_DIRS})
     target_compile_definitions(${PROJECT_NAME}_static PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+
+    # Install static library (A)
+    install(TARGETS ${PROJECT_NAME}_static
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+    )
 endif()
 
 # Executable

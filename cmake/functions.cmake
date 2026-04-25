@@ -44,8 +44,14 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES USE_HELPER_HDRS HELPER
         # Install
         if (${TEST_TYPE} STREQUAL "UNIT")
             set_target_properties(${TEST_EXE} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/unit)
+            install(TARGETS ${TEST_EXE}
+                RUNTIME DESTINATION bin/unit
+            )
         else()
             set_target_properties(${TEST_EXE} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/regression)
+            install(TARGETS ${TEST_EXE}
+                RUNTIME DESTINATION bin/regression
+            )
         endif()
 
         # Send to gtest

@@ -53,11 +53,19 @@ add_library                (${PROJECT_NAME}_shared SHARED ${SNAPSHOT_SOURCES} ${
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries      (${PROJECT_NAME}_shared PUBLIC astro_shared utilities_shared ${SNAPSHOT_LIBS})
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${SNAPSHOT_DIRS})
+
 if(WIN32)
     target_compile_definitions (${PROJECT_NAME}_shared PUBLIC "_SNAPSHOT_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"" WIN32_LEAN_AND_MEAN NOMINMAX)
 else()
     target_compile_definitions (${PROJECT_NAME}_shared PUBLIC "_SNAPSHOT_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
 endif()
+
+# Install shared library (DLL)
+install(TARGETS ${PROJECT_NAME}_shared
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
 
 # Static library
 if(${BUILD_STATIC})
@@ -66,6 +74,13 @@ if(${BUILD_STATIC})
     target_link_libraries      (${PROJECT_NAME}_static PUBLIC astro_shared utilities_static ${SNAPSHOT_LIBS})
     target_include_directories (${PROJECT_NAME}_static PUBLIC ${SNAPSHOT_DIRS})
     target_compile_definitions (${PROJECT_NAME}_static PUBLIC "_SNAPSHOT_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+
+    # Install static library (A)
+    install(TARGETS ${PROJECT_NAME}_static
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+    )
 endif()
 
 # Executable

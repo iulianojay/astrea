@@ -52,12 +52,26 @@ set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_
 target_link_libraries      (${PROJECT_NAME}_shared PUBLIC ${UTILITIES_LIBS})
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${UTILITIES_DIRS})
 
+# Install shared library (DLL)
+install(TARGETS ${PROJECT_NAME}_shared
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
+
 # Static library
 if(${BUILD_STATIC})
     add_library                (${PROJECT_NAME}_static STATIC ${UTILITIES_SOURCES} ${UTILITIES_HEADERS})
     set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
     target_link_libraries      (${PROJECT_NAME}_static PUBLIC ${UTILITIES_LIBS})
     target_include_directories (${PROJECT_NAME}_static PUBLIC ${UTILITIES_DIRS})
+
+    # Install static library (A)
+    install(TARGETS ${PROJECT_NAME}_static
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+    )
 endif()
 
 file(MAKE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/include)
