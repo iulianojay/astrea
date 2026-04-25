@@ -28,7 +28,7 @@ ENV ASTREA_VERSION=${ASTREA_VERSION}
 # Install development tools equivalent to Linux dependencies
 RUN choco install -y git && \
     choco install -y python && \
-    choco install -y visualstudio2022buildtools --package-parameters "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended" && \
+    choco install -y mingw && \
     choco install -y llvm && \
     choco install -y gnuplot && \
     choco install -y mono && \
@@ -39,10 +39,7 @@ RUN choco install -y git && \
 # Install Python packages
 RUN pip install gcovr
 
-# Note: Visual Studio Build Tools includes:
-# - MSVC compiler (equivalent to gcc)
-# - MSVC debugger (equivalent to gdb) 
-# - Windows SDK with OpenGL headers (equivalent to libgl1-mesa-dev)
+# Note: MinGW provides GCC and G++ compilers for Windows.
 # PowerShell provides completion features (equivalent to bash-completion)
 # xorg-dev is Linux X11 specific and not needed on Windows
 

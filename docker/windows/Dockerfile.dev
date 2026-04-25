@@ -19,7 +19,7 @@ FROM base AS final
 # Install development tools equivalent to Linux dependencies
 RUN choco install -y git && \
     choco install -y python && \
-    choco install -y visualstudio2022buildtools --package-parameters "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended" && \
+    choco install -y mingw && \
     choco install -y llvm && \
     choco install -y gnuplot && \
     choco install -y mono && \
