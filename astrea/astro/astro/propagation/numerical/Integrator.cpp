@@ -88,16 +88,15 @@ StateHistory Integrator::propagate(const State& state0, const Time& propTime, Ve
     return fullStateHistory;
 }
 
-void Integrator::propagate_no_storage(const State& state0, const Time& propTime, Vehicle vehicle)
+State Integrator::propagate_no_storage(const State& state0, const Time& propTime, Vehicle vehicle)
 {
     _store = false;
-    propagate(state0, propTime, vehicle);
+    return propagate(state0, propTime, vehicle).last();
 }
 
-void Integrator::propagate_no_storage(const State& state0, const Date& endEpoch, Vehicle vehicle)
+State Integrator::propagate_no_storage(const State& state0, const Date& endEpoch, Vehicle vehicle)
 {
-    _store = false;
-    propagate(state0, endEpoch, vehicle);
+    return propagate_no_storage(state0, endEpoch - state0.get_epoch(), vehicle);
 }
 
 void Integrator::set_schedule(const Schedule& schedule) { _schedule = schedule; }
@@ -184,6 +183,7 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
         }
 
         // Successful event
+        watch_step(time, state, vehicle);
         if (_store) { stateHistory.insert(state); }
 
         // Ensure last step goes to exact final time
@@ -298,8 +298,10 @@ void Integrator::setup_butcher_tableau()
             break;
         }
         default:
-            throw std::invalid_argument("Integration Error: Stepping method not found. Options are {RK45, RKF45, "
-                                        "RKF78, DOP45, DOP78}.");
+            throw std::invalid_argument(
+                "Integration Error: Stepping method not found. Options are {RK45, RKF45, "
+                "RKF78, DOP45, DOP78}."
+            );
     }
 }
 
@@ -500,19 +502,55 @@ bool Integrator::validate_state_and_time(const Time& time, const State& state) c
     return true;
 }
 
+void Integrator::watch_step(const Time& time, const State& state, const Vehicle& vehicle) const
+{
+    for (const auto& watcher : _stepWatchers) {
+        watcher(time, state, vehicle);
+    }
+}
+
 
 // Integrator Properties
-void Integrator::set_abs_tol(const Unitless& absTol) { _ABS_TOL = absTol; }
-void Integrator::set_rel_tol(const Unitless& relTol) { _REL_TOL = relTol; }
-void Integrator::set_max_iter(const int& itMax) { _MAX_ITER = itMax; }
+void Integrator::add_step_watcher(const StepWatcher& watcher) { _stepWatchers.push_back(watcher); }
+
+void Integrator::clear_watchers() { _stepWatchers.clear(); }
+
+void Integrator::set_abs_tol(const Unitless& absTol)
+{
+    if (is_lteq_zero(absTol)) {
+        throw std::invalid_argument("Integration Error: Absolute tolerance must be positive and non-zero.");
+    }
+    _ABS_TOL = absTol;
+}
+
+void Integrator::set_rel_tol(const Unitless& relTol)
+{
+    if (is_lteq_zero(relTol)) {
+        throw std::invalid_argument("Integration Error: Relative tolerance must be positive and non-zero.");
+    }
+    _REL_TOL = relTol;
+}
+
+void Integrator::set_max_iter(const int& itMax)
+{
+    if (itMax <= 0) {
+        throw std::invalid_argument("Integration Error: Maximum iterations must be positive and non-zero.");
+    }
+    _MAX_ITER = itMax;
+}
+
 void Integrator::set_initial_timestep(const Time& dt0) { _timeStepInitial = dt0; }
+
 void Integrator::switch_fixed_timestep(const bool& onOff) { _useFixedStep = onOff; }
+
 void Integrator::switch_fixed_timestep(const bool& onOff, const Time& fixedTimeStep)
 {
     _useFixedStep  = onOff;
     _fixedTimeStep = fixedTimeStep;
 }
+
 void Integrator::set_timestep(const Time& fixedTimeStep) { _fixedTimeStep = fixedTimeStep; }
+
 void Integrator::set_step_method(const StepMethod& stepMethod) { _stepMethod = stepMethod; }
 
 } // namespace astro
