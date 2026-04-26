@@ -109,48 +109,50 @@ markdown_extensions:
 
 # Plugins
 plugins:
+  - search:
+      lang: en
   - mkdoxy:
       projects:
         astro:
           src-dirs: astrea/astro/astro
           full-doc: True
           doxy-cfg:
-            FILE_PATTERNS: "*.cpp *.h *.hpp"
+            FILE_PATTERNS: "*.cpp *.h *.hpp *.ipp"
             EXCLUDE_PATTERNS: "*test*.*"
             RECURSIVE: True
         math:
           src-dirs: astrea/math/math
           full-doc: True
           doxy-cfg:
-            FILE_PATTERNS: "*.cpp *.h *.hpp"
+            FILE_PATTERNS: "*.cpp *.h *.hpp *.ipp"
             EXCLUDE_PATTERNS: "*test*.*"
             RECURSIVE: True
         snapshot:
           src-dirs: astrea/snapshot/snapshot
           full-doc: True
           doxy-cfg:
-            FILE_PATTERNS: "*.cpp *.h *.hpp"
+            FILE_PATTERNS: "*.cpp *.h *.hpp *.ipp"
             EXCLUDE_PATTERNS: "*test*.*"
             RECURSIVE: True
         trace:
           src-dirs: astrea/trace/trace
           full-doc: True
           doxy-cfg:
-            FILE_PATTERNS: "*.cpp *.h *.hpp"
+            FILE_PATTERNS: "*.cpp *.h *.hpp *.ipp"
             EXCLUDE_PATTERNS: "*test*.*"
             RECURSIVE: True
         units:
           src-dirs: astrea/units/units
           full-doc: True
           doxy-cfg:
-            FILE_PATTERNS: "*.cpp *.h *.hpp"
+            FILE_PATTERNS: "*.cpp *.h *.hpp *.ipp"
             EXCLUDE_PATTERNS: "*test*.*"
             RECURSIVE: True
         utilities:
           src-dirs: astrea/utilities/utilities
           full-doc: True
           doxy-cfg:
-            FILE_PATTERNS: "*.cpp *.h *.hpp"
+            FILE_PATTERNS: "*.cpp *.h *.hpp *.ipp"
             EXCLUDE_PATTERNS: "*test*.*"
             RECURSIVE: True
 
