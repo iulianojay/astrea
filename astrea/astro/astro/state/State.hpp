@@ -266,8 +266,7 @@ class State {
      */
     GravParam get_mu() const
     {
-        using namespace mp_units;
-        return _system ? _system->get_mu() : 0.0 * pow<3>(astrea::detail::distance_unit) / pow<2>(astrea::detail::time_unit);
+        return _system ? _system->get_mu() : GravParam::zero();
     }
 
     /**

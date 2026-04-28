@@ -91,4 +91,3 @@
 #include <astro/types/typedefs.hpp>
 
 #include <astro/utilities/conversions.hpp>
-#include <astro/utilities/plotting.hpp>

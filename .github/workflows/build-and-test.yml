@@ -48,7 +48,7 @@ jobs:
       id: wait-for-docker
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        checkName: build
+        checkName: build-and-publish
         ref: ${{ github.event.pull_request.head.sha || github.sha }}
         intervalSeconds: 30
         timeoutSeconds: 1800

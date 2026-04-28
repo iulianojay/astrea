@@ -482,8 +482,7 @@ class Quaternion {
      */
     Unitless norm() const
     {
-        using namespace mp_units;
-        return sqrt(norm_squared());
+        return mp_units::sqrt(norm_squared());
     }
 
     /**
@@ -500,7 +499,7 @@ class Quaternion {
         using namespace mp_units;
 
         const Unitless nSq = norm_squared();
-        if (nSq == 0.0 * one) { throw std::runtime_error("Cannot normalize a quaternion with zero norm."); }
+        if (is_eq_zero(nSq)) { throw std::runtime_error("Cannot normalize a quaternion with zero norm."); }
         else if (isnan(nSq) || isinf(nSq)) {
             throw std::runtime_error("Cannot normalize a quaternion with non-finite norm.");
         }

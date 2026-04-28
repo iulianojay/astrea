@@ -11,6 +11,8 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
+
+
 #include <astro/utilities/plotting.hpp>
 
 #include <array>
@@ -382,7 +384,7 @@ void plot_orbital_elements(const StateHistory& trajectory, const std::filesystem
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
 }
 
 
@@ -467,7 +469,7 @@ void plot_trajectory(const StateHistory& trajectory, const std::filesystem::path
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
 }
 
 
@@ -531,7 +533,7 @@ void compare_orbital_elements(const std::vector<StateHistory>& trajectories, con
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
 }
 
 
@@ -628,7 +630,7 @@ void compare_trajectories(const std::vector<StateHistory>& trajectories, const s
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
 }
 
 void plot_difference_orbital_elements(
@@ -705,7 +707,7 @@ void plot_difference_orbital_elements(
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
 }
 
 void plot_difference_trajectories(
@@ -813,7 +815,7 @@ void plot_difference_trajectories(
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
 }
 
 void plot_attitude(const StateHistory& trajectory, const std::filesystem::path& outfile)
@@ -862,7 +864,7 @@ void plot_attitude(const StateHistory& trajectory, const std::filesystem::path& 
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
 }
 
 
@@ -925,7 +927,7 @@ void compare_attitudes(const std::vector<StateHistory>& trajectories, const std:
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
 }
 
 
@@ -1004,7 +1006,7 @@ void plot_difference_attitude(
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
 }
 
 } // namespace plotting
