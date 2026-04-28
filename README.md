@@ -187,7 +187,7 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
   class MySpacecraft : public Vehicle {
     // Custom spacecraft definition with mass properties, geometry, and subsystems
   };
-  integrator.propagate(state0, propTime, eoms, { MySpacecraft() }, store);
+  integrator.propagate(state0, propTime, { MySpacecraft() });
 ```
 - **Celestial body definitions** with customizable parameters
 ```cpp
@@ -249,9 +249,9 @@ Direct modifications, derivatives, forks, or extensions of the library must be r
 In order to demonstrate and expand the core libraries in Astrea, a simple revisit analysis tool was added to the code. This tool, Trace, uses the foundational Astrea libraries, builds on-top of them, and provides a good set of examples on how one might safely expand and make use of the library in larger projects. Some of the features will be ingested into the core astrodynamics sub-library, but for now, their separation is used as both a practical testing ground and a demonstration of real-world practical applications.
 
 <center>
-  <img src="docs/assets/images/avg-daily-visibility.png" alt="Average Daily Visibility" width="350"/>
-  <img src="docs/assets/images/mean-time-to-access.png" alt="Mean Time to Access" width="350"/>
-  <img src="docs/assets/images/avg-folds-of-coverage.png" alt="Average Folds of Coverage" width="350"/>
+  <img src="docs/assets/images/avg-daily-visibility.png" alt="Average Daily Visibility" width="45%"/>
+  <img src="docs/assets/images/mean-time-to-access.png" alt="Mean Time to Access" width="45%"/>
+  <img src="docs/assets/images/avg-folds-of-coverage.png" alt="Average Folds of Coverage" width="45%"/>
 </center>
 
 These images are some of the outputs from a simple example run of Trace. Further capabilities, expanded examples, and more detailed documentation on how to use Trace will be added in the future. 

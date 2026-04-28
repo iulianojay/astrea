@@ -74,6 +74,7 @@
 #include <astro/propagation/event_detection/events/ImpulsiveBurn.hpp>
 
 #include <astro/propagation/numerical/Integrator.hpp>
+#include <astro/propagation/numerical/StepWatcher.hpp>
 #include <astro/propagation/numerical/butcher_tableau.hpp>
 
 #include <astro/systems/AstrodynamicsSystem.hpp>

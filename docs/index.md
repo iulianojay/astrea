@@ -13,3 +13,7 @@ Astrea is open-source and available on GitHub. We welcome contributions from the
 <center>
   <img src="assets/images/astrea-transparent.png" alt="Astrea Logo" width="600"/>
 </center>
+
+---
+
+*Note: The documentation is a work in progress and may contain incomplete sections, placeholders, or areas marked for future updates. We are actively working on improving the documentation and filling in any gaps. If you come across any issues or have suggestions for improvement, please don't hesitate to contribute or reach out to us.*

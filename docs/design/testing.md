@@ -73,7 +73,7 @@ protected:
 
 ### Benchmark Validation Tests
 
-None yet.
+None yet, but they're currently being designed. A future release will ship with runtime performance guarantees.
 
 
 ## NASA 6DOF Checkcases
