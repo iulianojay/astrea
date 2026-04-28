@@ -51,7 +51,7 @@ Geodetic::Geodetic(const RadiusVector<frames::earth::icrf>& rEci, const Date& da
 Geodetic::Geodetic(const RadiusVector<frames::earth::earth_fixed>& rEcef, const CelestialBody* parent)
 {
     std::tie(_latitude, _longitude, _altitude) =
-        convert_earth_fixed_to_geodetic(rEcef, parent->get_equitorial_radius(), parent->get_polar_radius());
+        convert_body_fixed_to_geodetic(rEcef, parent->get_equitorial_radius(), parent->get_polar_radius());
 }
 
 // Copy constructor
@@ -179,7 +179,7 @@ std::ostream& operator<<(std::ostream& os, Geodetic const& elements)
 }
 
 std::tuple<Angle, Angle, Distance>
-    convert_earth_fixed_to_geodetic(const RadiusVector<frames::earth::earth_fixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar)
+    convert_body_fixed_to_geodetic(const RadiusVector<frames::earth::earth_fixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar)
 {
     static const unsigned MAX_ITER  = 1e4;
     static const Distance MAX_ERROR = 1 * mm;

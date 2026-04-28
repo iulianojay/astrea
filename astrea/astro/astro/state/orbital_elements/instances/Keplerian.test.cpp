@@ -101,7 +101,7 @@ TEST_F(KeplerianTest, KeplerianConstructor)
 
 TEST_F(KeplerianTest, CartesianConstructor)
 {
-    Cartesian cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
+    Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
     ASSERT_NO_THROW(Keplerian(cart, sys.get_mu()));
 }
 
@@ -109,13 +109,6 @@ TEST_F(KeplerianTest, EquinoctialConstructor)
 {
     Equinoctial equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
     ASSERT_NO_THROW(Keplerian(equi, sys.get_mu()));
-}
-
-TEST_F(KeplerianTest, OrbitalElementsConstructor)
-{
-    Cartesian cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
-    OrbitalElements elements(cart);
-    ASSERT_NO_THROW(Keplerian(elements, sys.get_mu()));
 }
 
 TEST_F(KeplerianTest, LEOStaticMethod)
@@ -364,7 +357,7 @@ TEST_F(KeplerianTest, Interpolate)
 TEST_F(KeplerianTest, FromCartesianConversion)
 {
     // Test conversion from Cartesian to Keplerian
-    Cartesian cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
+    Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
     Keplerian kep(cart, sys.get_mu());
 
     // Verify the Keplerian state has reasonable values
@@ -386,12 +379,12 @@ TEST_F(KeplerianTest, FromEquinoctialConversion)
 TEST_F(KeplerianTest, KeplerianPartialMultiplicationByTime)
 {
     // Test KeplerianPartial operator* with Time
-    Velocity aDot        = 1.0 * km / s;
-    UnitlessPerTime eDot = 0.001 / s;
-    AngularRate incDot   = 0.1 * deg / s;
-    AngularRate raanDot  = 0.2 * deg / s;
-    AngularRate wDot     = 0.3 * deg / s;
-    AngularRate thetaDot = 0.5 * deg / s;
+    Velocity aDot            = 1.0 * km / s;
+    UnitlessPerTime eDot     = 0.001 / s;
+    AngularVelocity incDot   = 0.1 * deg / s;
+    AngularVelocity raanDot  = 0.2 * deg / s;
+    AngularVelocity wDot     = 0.3 * deg / s;
+    AngularVelocity thetaDot = 0.5 * deg / s;
     KeplerianPartial partial(aDot, eDot, incDot, raanDot, wDot, thetaDot);
 
     Time dt          = 2.0 * s;
@@ -409,12 +402,12 @@ TEST_F(KeplerianTest, KeplerianPartialMultiplicationByTime)
 TEST_F(KeplerianTest, KeplerianPartialStream)
 {
     // Test KeplerianPartial stream operator
-    Velocity aDot        = 1.0 * km / s;
-    UnitlessPerTime eDot = 0.001 / s;
-    AngularRate incDot   = 0.1 * deg / s;
-    AngularRate raanDot  = 0.2 * deg / s;
-    AngularRate wDot     = 0.3 * deg / s;
-    AngularRate thetaDot = 0.5 * deg / s;
+    Velocity aDot            = 1.0 * km / s;
+    UnitlessPerTime eDot     = 0.001 / s;
+    AngularVelocity incDot   = 0.1 * deg / s;
+    AngularVelocity raanDot  = 0.2 * deg / s;
+    AngularVelocity wDot     = 0.3 * deg / s;
+    AngularVelocity thetaDot = 0.5 * deg / s;
     KeplerianPartial partial(aDot, eDot, incDot, raanDot, wDot, thetaDot);
 
     std::stringstream ss;

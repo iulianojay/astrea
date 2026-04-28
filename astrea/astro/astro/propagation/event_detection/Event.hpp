@@ -22,19 +22,10 @@
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
+#include <astro/types/concepts.hpp>
 
 namespace astrea {
 namespace astro {
-
-/**
- * @brief Concept to check if a type has a method to get the event name.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasGetName = requires(const T event) {
-    { event.get_name() } -> std::same_as<std::string>;
-};
 
 /**
  * @brief Concept to check if a type has a method to detect an event.
@@ -331,8 +322,8 @@ class Event; // Forward declaration of the Event class
  */
 template <typename T>
 concept IsGenericallyConstructableEvent = requires(T) {
+    requires !std::is_same<Event, remove_cv_ref<T>>::value;
     requires IsUserDefinedEvent<T>;
-    std::negation<std::is_same<Event, remove_cv_ref<T>>>::value;
 };
 
 

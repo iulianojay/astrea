@@ -17,7 +17,7 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/propagation/equations_of_motion/EquinoctialVop.hpp>
+#include <astro/propagation/equations_of_motion/instances/EquinoctialVop.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
@@ -46,6 +46,7 @@ class EquinoctialVopPropagationTest : public testing::Test {
         propTime(weeks(1)),
         epoch(J2000)
     {
+        integrator.set_equations_of_motion(eom);
     }
 
     void SetUp() override {}
@@ -79,7 +80,7 @@ TEST_F(EquinoctialVopPropagationTest, GEONoForces)
     Vehicle vehicle{ geo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {
@@ -98,7 +99,7 @@ TEST_F(EquinoctialVopPropagationTest, GPSNoForces)
     Vehicle vehicle{ meo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {
@@ -117,7 +118,7 @@ TEST_F(EquinoctialVopPropagationTest, LEONoForces)
     Vehicle vehicle{ leo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {

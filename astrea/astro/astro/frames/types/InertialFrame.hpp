@@ -30,24 +30,13 @@ namespace astro {
 /**
  * @brief Base class for all inertial state/frames.
  */
-template <CelestialBodyId origin, FrameAxis axis = FrameAxis::ICRF>
-    requires(origin != CelestialBodyId::UNSET && origin != CelestialBodyId::CUSTOM)
-struct InertialFrame : Frame<origin, axis> {
+template <CelestialBodyId _origin, FrameAxis _axis = FrameAxis::ICRF>
+    requires(_origin != CelestialBodyId::UNSET && _origin != CelestialBodyId::CUSTOM)
+struct InertialFrame : Frame<_origin, _axis> {
     virtual ~InertialFrame() = default;
 
-    /**
-     * @brief Get the origin of the frame.
-     *
-     * @return The origin of the frame.
-     */
-    static constexpr CelestialBodyId get_origin() { return Frame<origin, axis>::get_origin(); }
-
-    /**
-     * @brief Get the origin of the frame.
-     *
-     * @return The origin of the frame.
-     */
-    static constexpr FrameAxis get_axis() { return Frame<origin, axis>::get_axis(); }
+    static constexpr CelestialBodyId origin = Frame<_origin, _axis>::origin; //!< The central body associated with the inertial frame.
+    static constexpr FrameAxis axis = Frame<_origin, _axis>::axis; //!< The axis type of the inertial frame.
 };
 
 } // namespace astro

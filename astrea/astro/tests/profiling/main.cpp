@@ -71,19 +71,23 @@ int main()
     Time propTime = days(1);
 
     std::cout << "Propagating with Cowell's Method... ";
-    const auto trajCm = integrator.propagate(state0, propTime, cm, Vehicle(sat), true);
+    integrator.set_equations_of_motion(cm);
+    const auto trajCm = integrator.propagate(state0, propTime, Vehicle(sat), true);
     std::cout << "Cowell's Method Complete." << std::endl;
 
     std::cout << "Propagating with Keplerian VOP... ";
-    const auto trajKepVop = integrator.propagate(state0, propTime, kepVop, Vehicle(sat), true);
+    integrator.set_equations_of_motion(kepVop);
+    const auto trajKepVop = integrator.propagate(state0, propTime, Vehicle(sat), true);
     std::cout << "Keplerian VOP Complete." << std::endl;
 
     std::cout << "Propagating with Equinoctial VOP... ";
-    const auto trajEqVop = integrator.propagate(state0, propTime, eqVop, Vehicle(sat), true);
+    integrator.set_equations_of_motion(eqVop);
+    const auto trajEqVop = integrator.propagate(state0, propTime, Vehicle(sat), true);
     std::cout << "Equinoctial VOP Complete." << std::endl;
 
     std::cout << "Propagating with Mean J2 VOP... ";
-    const auto trajJ2 = integrator.propagate(state0, propTime, j2, Vehicle(sat), true);
+    integrator.set_equations_of_motion(j2);
+    const auto trajJ2 = integrator.propagate(state0, propTime, Vehicle(sat), true);
     std::cout << "Mean J2 VOP Complete." << std::endl;
 
     auto end  = std::chrono::steady_clock::now();

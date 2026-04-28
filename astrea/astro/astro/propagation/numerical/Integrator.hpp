@@ -27,12 +27,34 @@
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>
 #include <astro/propagation/event_detection/Schedule.hpp>
+#include <astro/propagation/numerical/StepWatcher.hpp>
 #include <astro/state/State.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
+
+/**
+ * @brief Enumeration for different Runge-Kutta stepper methods.
+ */
+enum class StepMethod : EnumType {
+    RK45,  //!< Traditional Runge-Kutta 4(5)th order 6 stage method
+    RKF45, //!< Runge-Kutta-Fehlberg 4(5)th order 6 stage method
+    RKF78, //!< Runge-Kutta-Fehlberg 7(8)th order 13 stage method
+    DOP45, //!< Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
+    DOP78, //!< Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
+};
+
+struct IntegratorSettings {
+    Unitless absTol       = 1.0e-13;                              //!< Absolute tolerance for the integrator
+    Unitless relTol       = 1.0e-13;                              //!< Relative tolerance for the integrator
+    int itMax             = 10000;                                //!< Maximum number of iterations for the integrator
+    StepMethod stepMethod = StepMethod::RKF78;                    //!< Step method for the integrator
+    Time initialTimeStep  = 1.0 * mp_units::si::unit_symbols::s;  //!< Initial timestep for the integrator
+    bool useFixedStep     = false;                                //!< Flag to indicate whether to use a fixed timestep
+    Time fixedTimeStep    = 30.0 * mp_units::si::unit_symbols::s; //!< Fixed timestep to use if useFixedStep is true
+};
 
 /**
  * @brief Integrator class for numerical propagation of orbital mechanics problems.
@@ -44,20 +66,25 @@ class Integrator {
 
   public:
     /**
-     * @brief Enumeration for different Runge-Kutta stepper methods.
-     */
-    enum class StepMethod : EnumType {
-        RK45,  //!< Traditional Runge-Kutta 4(5)th order 6 stage method
-        RKF45, //!< Runge-Kutta-Fehlberg 4(5)th order 6 stage method
-        RKF78, //!< Runge-Kutta-Fehlberg 7(8)th order 13 stage method
-        DOP45, //!< Dormand-Prince Runge-Kutta 4(5)th 7-6 stage method. This is the method Matlab's ode45 uses
-        DOP78, //!< Dormand-Prince Runge-Kutta 7(8)th 13-12 stage method.
-    };
-
-    /**
      * @brief Default constructor for the Integrator class.
      */
     Integrator() = default;
+
+    /**
+     * @brief Constructor for the Integrator class that takes an IntegratorSettings struct.
+     *
+     * @param settings The settings to configure the integrator.
+     */
+    Integrator(const IntegratorSettings& settings) :
+        _ABS_TOL(settings.absTol),
+        _REL_TOL(settings.relTol),
+        _MAX_ITER(settings.itMax),
+        _timeStepInitial(settings.initialTimeStep),
+        _stepMethod(settings.stepMethod),
+        _useFixedStep(settings.useFixedStep),
+        _fixedTimeStep(settings.fixedTimeStep)
+    {
+    }
 
     /**
      * @brief Default destructor for the Integrator class.
@@ -69,44 +96,97 @@ class Integrator {
      *
      * @param state0 The initial state from which to start propagation.
      * @param propTime The total propagation time after the initial state epoch.
-     * @param eom The equations of motion to use for the propagation.
      * @param vehicle The vehicle whose state is to be propagated.
-     * @param store Whether to store the state history during propagation. Default is false.
-     * @param events A vector of Events to check for during propagation. Default is an empty vector.
-     * @param schedule An optional Schedule to manage event scheduling during propagation. Default is an empty Schedule.
      * @return StateHistory The history of the vehicle's state over the propagated interval.
      */
-    StateHistory propagate(
-        const State& state0,
-        const Time& propTime,
-        const EquationsOfMotion& eom,
-        Vehicle vehicle,
-        bool store                       = false,
-        const std::vector<Event>& events = {},
-        const Schedule& schedule         = Schedule()
-    );
+    StateHistory propagate(const State& state0, const Time& propTime, Vehicle vehicle);
 
     /**
      * @brief Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion.
      *
      * @param state0 The initial state from which to start propagation.
      * @param endEpoch The final epoch (end time) for the propagation.
-     * @param eom The equations of motion to use for the propagation.
      * @param vehicle The vehicle whose state is to be propagated.
-     * @param store Whether to store the state history during propagation. Default is false.
-     * @param events A vector of Events to check for during propagation. Default is an empty vector.
-     * @param schedule An optional Schedule to manage event scheduling during propagation. Default is an empty Schedule.
      * @return StateHistory The history of the vehicle's state over the propagated interval.
      */
-    StateHistory propagate(
-        const State& state0,
-        const Date& endEpoch,
-        const EquationsOfMotion& eom,
-        Vehicle vehicle,
-        bool store                       = false,
-        const std::vector<Event>& events = {},
-        const Schedule& schedule         = Schedule()
-    );
+    StateHistory propagate(const State& state0, const Date& endEpoch, Vehicle vehicle);
+
+    /**
+     * @brief Propagate the state of a vehicle over a specified time interval without storing the state history.
+     *
+     * @param state0 The initial state from which to start propagation.
+     * @param propTime The total propagation time after the initial state epoch.
+     * @param vehicle The vehicle whose state is to be propagated.
+     * @return State The final state of the vehicle at the end of the propagation interval.
+     */
+    State propagate_no_storage(const State& state0, const Time& propTime, Vehicle vehicle);
+
+    /**
+     * @brief Propagate the state of a vehicle from its current epoch to a specified end epoch without storing the state history.
+     *
+     * @param state0 The initial state from which to start propagation.
+     * @param endEpoch The final epoch (end time) for the propagation.
+     * @param vehicle The vehicle whose state is to be propagated.
+     * @return State The final state of the vehicle at the end of the propagation interval.
+     */
+    State propagate_no_storage(const State& state0, const Date& endEpoch, Vehicle vehicle);
+
+    /**
+     * @brief Set the schedule of events to be tracked during propagation.
+     *
+     * @param schedule The Schedule object containing the events to be tracked.
+     */
+    void set_schedule(const Schedule& schedule);
+
+    /**
+     * @brief Clear the schedule of events, removing all scheduled events from the integrator.
+     */
+    void clear();
+
+    /**
+     * @brief Add an event to the integrator's event detector.
+     *
+     * @param event The Event object to be added to the integrator's event detector.
+     */
+    void add_event(const Event& event);
+
+    /**
+     * @brief Add multiple events to the integrator's event detector.
+     *
+     * @param events A vector of Event objects to be added to the integrator's event detector.
+     */
+    void add_events(const std::vector<Event>& events);
+
+    /**
+     * @brief Clear all events from the integrator's event detector.
+     */
+    void clear_events();
+
+    /**
+     * @brief Set the equations of motion to be used for propagation.
+     *
+     * @param eom The EquationsOfMotion object to be used for propagation.
+     */
+    template <typename T>
+        requires(std::derived_from<T, EquationsOfMotion>)
+    void set_equations_of_motion(const T& eom)
+    {
+        _eom = std::make_unique<T>(eom);
+    }
+
+    /**
+     * @brief Add a step watcher function to be called at each step of the integration.
+     *
+     * @param watcher The StepWatcher function to be added.
+     *
+     * @note: beware - callbacks are slow
+     */
+    void add_step_watcher(const StepWatcher& watcher);
+
+    /**
+     * @brief Clear all step watchers from the integrator.
+     */
+    void clear_watchers();
 
     /**
      * @brief Set the absolute tolerance for the integrator.
@@ -128,20 +208,6 @@ class Integrator {
      * @param itMax The maximum number of iterations to set.
      */
     void set_max_iter(const int& itMax);
-
-    /**
-     * @brief Switch the printing of integration details on or off.
-     *
-     * @param onOff Boolean flag to turn printing on (true) or off (false).
-     */
-    void switch_print(const bool& onOff);
-
-    /**
-     * @brief Switch the timer for measuring integration performance on or off.
-     *
-     * @param onOff Boolean flag to turn the timer on (true) or off (false).
-     */
-    void switch_timer(const bool& onOff);
 
     /**
      * @brief Set the step method for the integrator.
@@ -186,6 +252,10 @@ class Integrator {
     int n_func_evals() { return _functionEvaluations; }
 
   private:
+    // Tolerances
+    Unitless _ABS_TOL = 1.0e-13; //!< Absolute tolerance for the integrator
+    Unitless _REL_TOL = 1.0e-13; //!< Relative tolerance for the integrator
+
     // Integrator constants
     const Unitless _EPSILON               = 0.8;    //!< Relative local step error tolerance usually 0.8 or 0.9.
     const Unitless _MIN_ERROR_TO_CATCH    = 2.0e-4; //!< If maximum error is less than this,
@@ -223,19 +293,15 @@ class Integrator {
     State _statePlusKi;                           //!< State vector plus the ith order step
     StatePartial _YFinalPrevious;                 //!< Previous final state vector for the Dormand-Prince method
 
-    // Tolerances
-    Unitless _ABS_TOL = 1.0e-13; //!< Absolute tolerance for the integrator
-    Unitless _REL_TOL = 1.0e-13; //!< Relative tolerance for the integrator
-
     // Initial step size
     Time _timeStepInitial = 60.0 * astrea::detail::time_unit; //!< Initial time step for the integrator
 
     // Run options
     bool _printOn = false; //!< Flag to control printing of integration details
-    bool _store   = false; //!< Flag to control whether to store the state history during propagation
+    bool _store   = true;  //!< Flag to control whether to store the state history during propagation
 
     StepMethod _stepMethod = StepMethod::DOP45; //!< Step method to use for the integration (default is Dormand-Prince RK4(5))
-    const EquationsOfMotion* _eom;              //!< Equations of motion to use for the integration
+    std::unique_ptr<EquationsOfMotion> _eom; //!< Equations of motion to use for the integration
 
     // Fixed step
     bool _useFixedStep  = false;                           //!< Flag to indicate if a fixed step size should be used
@@ -243,6 +309,8 @@ class Integrator {
 
     // Events
     EventDetector _eventDetector;
+    Schedule _schedule;
+    std::vector<StepWatcher> _stepWatchers;
 
     /**
      * @brief Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion.
@@ -266,12 +334,8 @@ class Integrator {
 
     /**
      * @brief Set up the main integration loop
-     *
-     * @param store Whether to store the state history during propagation.
-     * @param eom The equations of motion to use for the integration.
-     * @param events The events to be tracked during propagation.
      */
-    void setup(const bool store, const EquationsOfMotion& eom, const std::vector<Event>& events);
+    void setup();
 
     /**
      * @brief Set up the stepper method based on the selected step method.
@@ -365,6 +429,15 @@ class Integrator {
      * @return false If the state or time are invalid (NaN or infinite).
      */
     bool validate_state_and_time(const Time& time, const State& state) const;
+
+    /**
+     * @brief Watch the state of the integrator at each step, calling any registered step watcher functions.
+     *
+     * @param time The current time in the integration.
+     * @param state The current state of the vehicle represented as orbital elements.
+     * @param vehicle The vehicle whose state is being integrated.
+     */
+    void watch_step(const Time& time, const State& state, const Vehicle& vehicle) const;
 };
 
 } // namespace astro

@@ -14,16 +14,6 @@ Key safety mechanisms:
 - **Immutable data structures** where possible to prevent accidental modification
 - **Explicit conversions** requiring user intent for potentially lossy operations
 
-### Performance Without Compromise
-
-While safety is the top priority, Astrea is designed to achieve zero-overhead abstractions that compile to performance equivalent to hand-optimized C code.
-
-Performance strategies:
-- **Compile-time evaluation** of unit conversions and coordinate transformations where possible
-- **Template metaprogramming** to move calculations from runtime to compile-time
-- **Memory-efficient data structures** optimized for cache performance
-- **SIMD-friendly algorithms** that can leverage modern CPU vector instructions
-
 ### Domain-Driven Design
 
 Astrea's APIs and abstractions directly reflect the conceptual model that aerospace engineers use when thinking about orbital mechanics and mission analysis.
@@ -36,57 +26,7 @@ Domain alignment:
 
 ## Architectural Overview
 
-Astrea follows a layered architecture where each layer builds upon lower-level foundations while maintaining clear separation of concerns:
-
-```mermaid
-flowchart TB
-    subgraph "Application Layer"
-        mission["Mission Analysis"]
-        tools["Analysis Tools"]
-        viz["Visualization"]
-    end
-    
-    subgraph "Astrodynamics Core (astro/)"
-        frames["Coordinate Frames"]
-        propagation["Propagation"]
-        elements["Orbital Elements"]
-        time["Time Systems"]
-        systems["Celestial Bodies"]
-    end
-    
-    subgraph "Specialized Libraries"
-        trace["Access Analysis (trace/)"]
-        snapshot["Data Management (snapshot/)"]
-    end
-    
-    subgraph "Foundation Layer"
-        math["Mathematics (math/)"]
-        units["Unit System (units/)"]
-        utils["Utilities"]
-    end
-    
-    subgraph "External Dependencies"
-        mpunits["mp-units"]
-        spice["SPICE"]
-        sqlite["SQLite"]
-        json["JSON"]
-    end
-    
-    mission --- frames
-    mission --- propagation
-    tools --- trace
-    tools --- snapshot
-    
-    frames --- math
-    propagation --- math
-    trace --- frames
-    trace --- propagation
-    
-    math --- units
-    units --- mpunits
-    systems --- spice
-    snapshot --- sqlite
-```
+Astrea follows a layered architecture where each layer builds upon lower-level foundations while maintaining clear separation of concerns. See the [Project Structure](../getting_started/project_structure.md) and [Architecture](architecture.md) for details on the organization of source code and modules.
 
 ## Design Principles
 
@@ -95,30 +35,32 @@ flowchart TB
 Astrea favors explicit operations that make user intent clear over convenient but potentially ambiguous shortcuts.
 
 **Example**: Coordinate frame transformations require explicit specification of source and target frames rather than assuming a "default" frame.
+```cpp
+auto transformed_state = transform(state, from_frame, to_frame);             // implicit, unclear
+auto state2<to_frame> = transform<from_frame, to_frame>(state1<from_frame>); // explicit, clear
+```
 
 ### 2. Fail Fast and Loud
 
 When errors occur, they should be detected as early as possible (preferably at compile-time) and provide clear, actionable diagnostic information.
 
 **Example**: Unit mismatches in calculations are caught at compile-time with detailed error messages indicating the expected and actual units.
+```cpp
+double velocityMpS = 7.8;            // implicit, error prone, harder to read
+quantity<m/s> velocity = 7.8 * km/s; // explicit, safe, self-documenting
+```
 
-### 3. Composition Over Inheritance
+### 3. Composition and Type-Erasure Over Inheritance
 
-Astrea uses composition and template-based design patterns rather than deep inheritance hierarchies to achieve flexibility and performance.
+Astrea uses composition and template-based design patterns rather than deep inheritance hierarchies to achieve flexibility and extensibility.
 
-**Example**: Different propagation methods are composed from separate force models, integrators, and event handlers rather than derived from a common base class.
+**Example**: Propagation, event detection, and step watchers, all common classes for users to specialize, are all designed around type-erased containers instead of traditional inheritance.
 
 ### 4. Immutability by Default
 
 Data structures are immutable unless mutation is explicitly necessary, reducing the chance of accidental modification and enabling optimization.
 
-**Example**: Orbital state objects return new instances rather than modifying themselves during propagation.
-
-### 5. Resource Acquisition Is Initialization (RAII)
-
-All resources (memory, files, database connections) are managed through RAII to ensure proper cleanup and exception safety.
-
-**Example**: Database connections and SPICE kernels are automatically cleaned up when objects go out of scope.
+**Example**: Functions are set to const by default, and all values are passed-by-reference unless explicitly required. 
 
 ## Detailed Design Documents
 

@@ -41,7 +41,7 @@ class ThrusterParameters : public PayloadParameters {
      * @param attachmentPoint Attachment point in RIC coordinates (default is Center).
      */
     ThrusterParameters(
-        const Thrust& thrust,
+        const Force& thrust,
         const CartesianVector<Distance, frames::dynamic::ric>& boresight       = NADIR_RIC,
         const CartesianVector<Distance, frames::dynamic::ric>& attachmentPoint = CENTER
     ) :
@@ -58,14 +58,14 @@ class ThrusterParameters : public PayloadParameters {
     /**
      * @brief Get the thrust magnitude.
      *
-     * @return Thrust magnitude.
+     * @return Force magnitude.
      */
-    Thrust get_thrust() const { return _thrust; }
+    Force get_thrust() const { return _thrust; }
 
     /**
      * @brief Set the thrust magnitude.
      *
-     * @param thrust Thrust magnitude to set.
+     * @param thrust Force magnitude to set.
      */
     bool is_on() const { return _isOn; }
 
@@ -80,7 +80,7 @@ class ThrusterParameters : public PayloadParameters {
     void switch_off() { _isOn = false; }
 
   protected:
-    Thrust _thrust;     //!< Thrust magnitude
+    Force _thrust;      //!< Force magnitude
     bool _isOn = false; //!< Thruster state (on/off)
 };
 
@@ -131,9 +131,9 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
      * @brief Get the thrust of the thruster for a given state.
      *
      * @param state The state of the vehicle for which to get the thrust.
-     * @return Thrust The thrust of the thruster.
+     * @return Force The thrust of the thruster.
      */
-    Thrust get_thrust() const;
+    Force get_thrust() const;
 
     /**
      * @brief Switch the thruster on.

@@ -36,16 +36,16 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES USE_HELPER_HDRS HELPER
         target_sources(${TEST_EXE} PRIVATE ${HELPER_HDRS} ${HELPER_SRCS})
 
         # Includes
-        target_include_directories(${TEST_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include ${CMAKE_INSTALL_PREFIX}/lib)
+        target_include_directories(${TEST_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include ${CMAKE_INSTALL_PREFIX}/lib ${CMAKE_INSTALL_PREFIX}/bin)
 
         # Dependencies
         target_link_libraries(${TEST_EXE} PRIVATE ${CURRENT_PROJECT}_shared GTest::gtest_main)
 
         # Install
         if (${TEST_TYPE} STREQUAL "UNIT")
-            set_target_properties(${TEST_EXE} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/unit)
+            install(TARGETS ${TEST_EXE} RUNTIME DESTINATION bin/unit)
         else()
-            set_target_properties(${TEST_EXE} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/regression)
+            install(TARGETS ${TEST_EXE} RUNTIME DESTINATION bin/regression)
         endif()
 
         # Send to gtest
@@ -162,11 +162,16 @@ function(generate_ephemeris_files PROJECT_SOURCE_DIRECTORY)
     message(" -- Compiled Ephemeride SOURCES: \n\t" ${PRINTABLE_SOURCES})
 
     string(REPLACE ";"  " " PYTHONIC_BODIES "${ALL_BODIES}")
+    find_package(Python3 COMPONENTS Interpreter)
+    if(NOT Python3_FOUND)
+        message(FATAL_ERROR "Python 3 is required for ephemeris generation but was not found")
+    endif()
+
     add_custom_command(
         OUTPUT
             ${BODY_EPHEMERIS_HEADERS}
             ${BODY_EPHEMERIS_SOURCES}
-        COMMAND ${PROJECT_SOURCE_DIRECTORY}/../../.venv/bin/python ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides --bodies ${PYTHONIC_BODIES}
+        COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides --bodies ${PYTHONIC_BODIES}
         DEPENDS
             ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIRECTORY}

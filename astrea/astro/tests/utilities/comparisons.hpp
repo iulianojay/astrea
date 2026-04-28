@@ -77,5 +77,34 @@ bool nearly_equal(
     return true;
 }
 
+/**
+ * @brief Asserts that two DirectionCosineMatrix objects are equal within specified tolerances.
+ *
+ * This function checks if two DirectionCosineMatrix objects are equal within the given relative and absolute
+ * tolerances. If they are not equal, it triggers a test failure.
+ *
+ * @tparam In_Frame_T The input frame type of the DirectionCosineMatrix.
+ * @tparam Out_Frame_T The output frame type of the DirectionCosineMatrix.
+ * @param dcm1 The first DirectionCosineMatrix to compare.
+ * @param dcm2 The second DirectionCosineMatrix to compare.
+ * @param relTol Relative tolerance for the comparison.
+ * @param absTol Absolute tolerance for the comparison.
+ */
+template <typename In_Frame_T, typename Out_Frame_T>
+bool nearly_equal(
+    const DirectionCosineMatrix<In_Frame_T, Out_Frame_T>& dcm1,
+    const DirectionCosineMatrix<In_Frame_T, Out_Frame_T>& dcm2,
+    const Unitless& relTol = 0.0 * mp_units::one,
+    const Unitless& absTol = 0.0 * mp_units::one
+) noexcept
+{
+    for (std::size_t ii = 0; ii < 3; ++ii) {
+        for (std::size_t jj = 0; jj < 3; ++jj) {
+            if (!math::nearly_equal(dcm1[ii, jj], dcm2[ii, jj], relTol, absTol)) { return false; }
+        }
+    }
+    return true;
+}
+
 } // namespace astro
 } // namespace astrea

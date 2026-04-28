@@ -96,7 +96,7 @@ void Plotter::plot_number_of_folds(
     }
 
     // Save
-    save(_outputDir / "number_of_folds.png");
+    save((_outputDir / "number_of_folds.png").string());
 }
 
 } // namespace plotting

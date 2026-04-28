@@ -31,33 +31,17 @@ namespace astro {
 /**
  * @brief Base class for all state/frames.
  */
-template <CelestialBodyId origin, FrameAxis axis>
+template <CelestialBodyId _origin, FrameAxis _axis>
 struct Frame {
+
+    static constexpr CelestialBodyId origin = _origin; //!< The central body associated with the inertial frame.
+    static constexpr FrameAxis axis         = _axis;   //!< The axis type of the inertial frame.
 
   protected:
     /**
      * @brief Default destructor for Frame.
      */
     virtual ~Frame() = default;
-
-  public:
-    /**
-     * @brief Get the origin of the frame.
-     *
-     * @return The origin of the frame.
-     */
-    static constexpr CelestialBodyId get_origin() { return _origin; }
-
-    /**
-     * @brief Get the origin of the frame.
-     *
-     * @return The origin of the frame.
-     */
-    static constexpr FrameAxis get_axis() { return _axis; }
-
-  protected:
-    static constexpr CelestialBodyId _origin = origin; //!< The central body associated with the inertial frame.
-    static constexpr FrameAxis _axis         = axis;   //!< The axis type of the inertial frame.
 };
 
 

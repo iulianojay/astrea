@@ -15,18 +15,9 @@
 #include <fstream>
 #include <iostream>
 #include <ranges>
+#include <sqlite3.h>
 #include <stdio.h>
 
-// #include <arrow/api.h>
-// #include <arrow/csv/api.h>
-// #include <arrow/io/api.h>
-// #include <arrow/ipc/api.h>
-// #include <parquet/arrow/reader.h>
-// #include <parquet/arrow/writer.h>
-
-#include <sqlite3.h>
-
-#include <csv.hpp>
 #include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>
@@ -74,7 +65,6 @@ class SimpleGeoAccessTest : public testing::Test {
 
     AstrodynamicsSystem sys;
     const Distance semimajorGeo;
-    TwoBody eom;
     ForceModel forces;
     Integrator integrator;
     Time propTime;
@@ -118,7 +108,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
     }
 
     // Propagate
-    twoBallGeo.propagate(propTime, eom, integrator);
+    twoBallGeo.propagate(propTime, integrator);
 
     // Find access
     AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
@@ -162,7 +152,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
     }
 
     // Propagate
-    twoBallGeo.propagate(propTime, eom, integrator);
+    twoBallGeo.propagate(propTime, integrator);
 
     // Find access
     AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
@@ -209,7 +199,7 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
     }
 
     // Propagate
-    fourBallGeo.propagate(propTime, eom, integrator);
+    fourBallGeo.propagate(propTime, integrator);
 
     // Find access
     AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);

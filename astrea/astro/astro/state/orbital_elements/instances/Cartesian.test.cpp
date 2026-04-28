@@ -51,7 +51,7 @@ class CartesianTest : public testing::Test {
     Velocity vx = 0.0 * km / s;
     Velocity vy = 7.546 * km / s;
     Velocity vz = 0.0 * km / s;
-    Cartesian state{ x, y, z, vx, vy, vz };
+    Cartesian<frames::earth::icrf> state{ x, y, z, vx, vy, vz };
 };
 
 int main(int argc, char** argv)
@@ -71,7 +71,7 @@ TEST_F(CartesianTest, Stream)
 
 TEST_F(CartesianTest, DefaultConstructor)
 {
-    Cartesian defaultState;
+    Cartesian<frames::earth::icrf> defaultState;
     ASSERT_TRUE(math::nearly_equal(defaultState.get_x(), Distance(0.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(defaultState.get_y(), Distance(0.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(defaultState.get_z(), Distance(0.0 * km), REL_TOL));
@@ -82,7 +82,7 @@ TEST_F(CartesianTest, DefaultConstructor)
 
 TEST_F(CartesianTest, UnitlessConstructor)
 {
-    Cartesian scaledState(2.0 * one);
+    Cartesian<frames::earth::icrf> scaledState(2.0 * one);
     ASSERT_TRUE(math::nearly_equal(scaledState.get_x(), Distance(2.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(scaledState.get_y(), Distance(2.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(scaledState.get_z(), Distance(2.0 * km), REL_TOL));
@@ -95,75 +95,37 @@ TEST_F(CartesianTest, VectorConstructor)
 {
     RadiusVector<frames::earth::icrf> r{ x, y, z };
     VelocityVector<frames::earth::icrf> v{ vx, vy, vz };
-    ASSERT_NO_THROW(Cartesian(r, v));
+    ASSERT_NO_THROW(Cartesian<frames::earth::icrf>(r, v));
 }
 
-TEST_F(CartesianTest, ParameterizedConstructor) { ASSERT_NO_THROW(Cartesian(x, y, z, vx, vy, vz)); }
+TEST_F(CartesianTest, ParameterizedConstructor)
+{
+    ASSERT_NO_THROW(Cartesian<frames::earth::icrf>(x, y, z, vx, vy, vz));
+}
 
 TEST_F(CartesianTest, CartesianConstructor)
 {
-    Cartesian other{ 5000.0 * km, 1000.0 * km, 2000.0 * km, 1.0 * km / s, 2.0 * km / s, 3.0 * km / s };
-    ASSERT_NO_THROW(Cartesian(other, sys.get_mu()));
+    Cartesian<frames::earth::icrf> other{ 5000.0 * km,  1000.0 * km,  2000.0 * km,
+                                          1.0 * km / s, 2.0 * km / s, 3.0 * km / s };
+    ASSERT_NO_THROW(Cartesian<frames::earth::icrf>(other, sys.get_mu()));
 }
 
 TEST_F(CartesianTest, KeplerianConstructor)
 {
     Keplerian kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
-    ASSERT_NO_THROW(Cartesian(kep, sys.get_mu()));
+    ASSERT_NO_THROW(Cartesian<frames::earth::icrf>(kep, sys.get_mu()));
 }
 
 TEST_F(CartesianTest, EquinoctialConstructor)
 {
     Equinoctial equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
-    ASSERT_NO_THROW(Cartesian(equi, sys.get_mu()));
-}
-
-TEST_F(CartesianTest, OrbitalElementsConstructor)
-{
-    Keplerian kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
-    OrbitalElements elements(kep);
-    ASSERT_NO_THROW(Cartesian(elements, sys.get_mu()));
-}
-
-TEST_F(CartesianTest, LEOStaticMethod)
-{
-    ASSERT_NO_THROW(Cartesian::LEO(sys.get_mu()));
-    auto leo = Cartesian::LEO(sys.get_mu());
-    ASSERT_GT(leo.get_x().numerical_value_in(km), 0.0);
-}
-
-TEST_F(CartesianTest, LMEOStaticMethod)
-{
-    ASSERT_NO_THROW(Cartesian::LMEO(sys.get_mu()));
-    auto lmeo = Cartesian::LMEO(sys.get_mu());
-    ASSERT_GT(lmeo.get_x().numerical_value_in(km), 0.0);
-}
-
-TEST_F(CartesianTest, GPSStaticMethod)
-{
-    ASSERT_NO_THROW(Cartesian::GPS(sys.get_mu()));
-    auto gps = Cartesian::GPS(sys.get_mu());
-    ASSERT_GT(gps.get_x().numerical_value_in(km), 0.0);
-}
-
-TEST_F(CartesianTest, HMEOStaticMethod)
-{
-    ASSERT_NO_THROW(Cartesian::HMEO(sys.get_mu()));
-    auto hmeo = Cartesian::HMEO(sys.get_mu());
-    ASSERT_GT(hmeo.get_x().numerical_value_in(km), 0.0);
-}
-
-TEST_F(CartesianTest, GEOStaticMethod)
-{
-    ASSERT_NO_THROW(Cartesian::GEO(sys.get_mu()));
-    auto geo = Cartesian::GEO(sys.get_mu());
-    ASSERT_GT(geo.get_x().numerical_value_in(km), 0.0);
+    ASSERT_NO_THROW(Cartesian<frames::earth::icrf>(equi, sys.get_mu()));
 }
 
 TEST_F(CartesianTest, CopyConstructor)
 {
-    ASSERT_NO_THROW(Cartesian newCart(state));
-    Cartesian newCart(state);
+    ASSERT_NO_THROW(Cartesian<frames::earth::icrf> newCart(state));
+    Cartesian<frames::earth::icrf> newCart(state);
     ASSERT_TRUE(math::nearly_equal(newCart.get_x(), x, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(newCart.get_y(), y, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(newCart.get_z(), z, REL_TOL));
@@ -174,14 +136,14 @@ TEST_F(CartesianTest, CopyConstructor)
 
 TEST_F(CartesianTest, MoveConstructor)
 {
-    Cartesian temp{ x, y, z, vx, vy, vz };
-    ASSERT_NO_THROW(Cartesian newCart(std::move(temp)));
+    Cartesian<frames::earth::icrf> temp{ x, y, z, vx, vy, vz };
+    ASSERT_NO_THROW(Cartesian<frames::earth::icrf> newCart(std::move(temp)));
 }
 
 TEST_F(CartesianTest, CopyAssignment)
 {
-    ASSERT_NO_THROW(Cartesian newCart = state);
-    Cartesian newCart = state;
+    ASSERT_NO_THROW(Cartesian<frames::earth::icrf> newCart = state);
+    Cartesian<frames::earth::icrf> newCart = state;
     ASSERT_TRUE(math::nearly_equal(newCart.get_x(), x, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(newCart.get_y(), y, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(newCart.get_z(), z, REL_TOL));
@@ -192,14 +154,14 @@ TEST_F(CartesianTest, CopyAssignment)
 
 TEST_F(CartesianTest, MoveAssignment)
 {
-    Cartesian temp{ x, y, z, vx, vy, vz };
-    ASSERT_NO_THROW(Cartesian newCart = std::move(temp));
+    Cartesian<frames::earth::icrf> temp{ x, y, z, vx, vy, vz };
+    ASSERT_NO_THROW(Cartesian<frames::earth::icrf> newCart = std::move(temp));
 }
 
 TEST_F(CartesianTest, EqualityOperator)
 {
-    Cartesian sameState{ x, y, z, vx, vy, vz };
-    Cartesian diffState{ x + 1.0 * km, y, z, vx, vy, vz };
+    Cartesian<frames::earth::icrf> sameState{ x, y, z, vx, vy, vz };
+    Cartesian<frames::earth::icrf> diffState{ x + 1.0 * km, y, z, vx, vy, vz };
     ASSERT_TRUE(state == sameState);
     ASSERT_FALSE(state == diffState);
     ASSERT_FALSE(state != sameState);
@@ -208,8 +170,8 @@ TEST_F(CartesianTest, EqualityOperator)
 
 TEST_F(CartesianTest, AdditionOperator)
 {
-    Cartesian other{ 1000.0 * km, 500.0 * km, 250.0 * km, 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
-    Cartesian result = state + other;
+    Cartesian<frames::earth::icrf> other{ 1000.0 * km, 500.0 * km, 250.0 * km, 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
+    Cartesian<frames::earth::icrf> result = state + other;
     ASSERT_TRUE(math::nearly_equal(result.get_x(), x + 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_y(), y + 500.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_z(), z + 250.0 * km, REL_TOL));
@@ -221,7 +183,7 @@ TEST_F(CartesianTest, AdditionOperator)
 TEST_F(CartesianTest, AdditionOperatorRadiusVector)
 {
     RadiusVector<frames::earth::icrf> r{ 1000.0 * km, 500.0 * km, 250.0 * km };
-    Cartesian result = state + r;
+    Cartesian<frames::earth::icrf> result = state + r;
     ASSERT_TRUE(math::nearly_equal(result.get_x(), x + 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_y(), y + 500.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_z(), z + 250.0 * km, REL_TOL));
@@ -233,7 +195,7 @@ TEST_F(CartesianTest, AdditionOperatorRadiusVector)
 TEST_F(CartesianTest, AdditionOperatorVelocityVector)
 {
     VelocityVector<frames::earth::icrf> v{ 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
-    Cartesian result = state + v;
+    Cartesian<frames::earth::icrf> result = state + v;
     ASSERT_TRUE(math::nearly_equal(result.get_x(), x, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_y(), y, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_z(), z, REL_TOL));
@@ -244,7 +206,7 @@ TEST_F(CartesianTest, AdditionOperatorVelocityVector)
 
 TEST_F(CartesianTest, AdditionAssignmentOperator)
 {
-    Cartesian other{ 1000.0 * km, 500.0 * km, 250.0 * km, 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
+    Cartesian<frames::earth::icrf> other{ 1000.0 * km, 500.0 * km, 250.0 * km, 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
     state += other;
     ASSERT_TRUE(math::nearly_equal(state.get_x(), x + 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(state.get_y(), y + 500.0 * km, REL_TOL));
@@ -280,8 +242,8 @@ TEST_F(CartesianTest, AdditionAssignmentOperatorVelocityVector)
 
 TEST_F(CartesianTest, SubtractionOperator)
 {
-    Cartesian other{ 1000.0 * km, 500.0 * km, 250.0 * km, 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
-    Cartesian result = state - other;
+    Cartesian<frames::earth::icrf> other{ 1000.0 * km, 500.0 * km, 250.0 * km, 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
+    Cartesian<frames::earth::icrf> result = state - other;
     ASSERT_TRUE(math::nearly_equal(result.get_x(), x - 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_y(), y - 500.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_z(), z - 250.0 * km, REL_TOL));
@@ -293,7 +255,7 @@ TEST_F(CartesianTest, SubtractionOperator)
 TEST_F(CartesianTest, SubtractionOperatorRadiusVector)
 {
     RadiusVector<frames::earth::icrf> r{ 1000.0 * km, 500.0 * km, 250.0 * km };
-    Cartesian result = state - r;
+    Cartesian<frames::earth::icrf> result = state - r;
     ASSERT_TRUE(math::nearly_equal(result.get_x(), x - 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_y(), y - 500.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_z(), z - 250.0 * km, REL_TOL));
@@ -305,7 +267,7 @@ TEST_F(CartesianTest, SubtractionOperatorRadiusVector)
 TEST_F(CartesianTest, SubtractionOperatorVelocityVector)
 {
     VelocityVector<frames::earth::icrf> v{ 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
-    Cartesian result = state - v;
+    Cartesian<frames::earth::icrf> result = state - v;
     ASSERT_TRUE(math::nearly_equal(result.get_x(), x, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_y(), y, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_z(), z, REL_TOL));
@@ -316,7 +278,7 @@ TEST_F(CartesianTest, SubtractionOperatorVelocityVector)
 
 TEST_F(CartesianTest, SubtractionAssignmentOperator)
 {
-    Cartesian other{ 1000.0 * km, 500.0 * km, 250.0 * km, 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
+    Cartesian<frames::earth::icrf> other{ 1000.0 * km, 500.0 * km, 250.0 * km, 0.1 * km / s, 0.2 * km / s, 0.3 * km / s };
     state -= other;
     ASSERT_TRUE(math::nearly_equal(state.get_x(), x - 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(state.get_y(), y - 500.0 * km, REL_TOL));
@@ -352,8 +314,8 @@ TEST_F(CartesianTest, SubtractionAssignmentOperatorVelocityVector)
 
 TEST_F(CartesianTest, MultiplicationOperator)
 {
-    Unitless multiplier = 2.0 * one;
-    Cartesian result    = state * multiplier;
+    Unitless multiplier                   = 2.0 * one;
+    Cartesian<frames::earth::icrf> result = state * multiplier;
     ASSERT_TRUE(math::nearly_equal(result.get_x(), x * multiplier, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_y(), y * multiplier, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_z(), z * multiplier, REL_TOL));
@@ -385,8 +347,8 @@ TEST_F(CartesianTest, DivisionByTimeOperator)
 
 TEST_F(CartesianTest, DivisionByScalarOperator)
 {
-    Unitless divisor = 2.0 * one;
-    Cartesian result = state / divisor;
+    Unitless divisor                      = 2.0 * one;
+    Cartesian<frames::earth::icrf> result = state / divisor;
     ASSERT_TRUE(math::nearly_equal(result.get_x(), x / divisor, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_y(), y / divisor, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_z(), z / divisor, REL_TOL));
@@ -449,11 +411,12 @@ TEST_F(CartesianTest, ToVector)
 
 TEST_F(CartesianTest, Interpolate)
 {
-    Cartesian other{ 14000.0 * km, 2000.0 * km, 500.0 * km, 1.0 * km / s, 5.0 * km / s, 1.0 * km / s };
-    Time thisTime    = 0.0 * s;
-    Time otherTime   = 10.0 * s;
-    Time targetTime  = 5.0 * s;
-    Cartesian result = state.interpolate(thisTime, otherTime, other, sys.get_mu(), targetTime);
+    Cartesian<frames::earth::icrf> other{ 14000.0 * km, 2000.0 * km,  500.0 * km,
+                                          1.0 * km / s, 5.0 * km / s, 1.0 * km / s };
+    Time thisTime                         = 0.0 * s;
+    Time otherTime                        = 10.0 * s;
+    Time targetTime                       = 5.0 * s;
+    Cartesian<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other, sys.get_mu(), targetTime);
 
     // At t=5s (midpoint), expect average of start and end values
     ASSERT_TRUE(math::nearly_equal(result.get_x(), (x + 14000.0 * km) / 2.0, REL_TOL));
@@ -468,7 +431,7 @@ TEST_F(CartesianTest, FromKeplerianConversion)
 {
     // Test conversion from Keplerian to Cartesian and back
     Keplerian kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
-    Cartesian cart(kep, sys.get_mu());
+    Cartesian<frames::earth::icrf> cart(kep, sys.get_mu());
 
     // Verify the Cartesian state is non-zero
     Distance r_mag = sqrt(cart.get_x() * cart.get_x() + cart.get_y() * cart.get_y() + cart.get_z() * cart.get_z());
@@ -482,7 +445,7 @@ TEST_F(CartesianTest, FromEquinoctialConversion)
 {
     // Test conversion from Equinoctial to Cartesian
     Equinoctial equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
-    Cartesian cart(equi, sys.get_mu());
+    Cartesian<frames::earth::icrf> cart(equi, sys.get_mu());
 
     // Verify the Cartesian state is non-zero
     Distance r_mag = sqrt(cart.get_x() * cart.get_x() + cart.get_y() * cart.get_y() + cart.get_z() * cart.get_z());
@@ -493,7 +456,7 @@ TEST_F(CartesianTest, ZeroSemimajorKeplerianConversion)
 {
     // Test edge case with zero semimajor axis
     Keplerian kep{ 0.0 * km, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg };
-    Cartesian cart(kep, sys.get_mu());
+    Cartesian<frames::earth::icrf> cart(kep, sys.get_mu());
 
     ASSERT_TRUE(math::nearly_equal(cart.get_x(), Distance(0.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(cart.get_y(), Distance(0.0 * km), REL_TOL));
@@ -507,7 +470,7 @@ TEST_F(CartesianTest, ZeroSemilatusEquinoctialConversion)
 {
     // Test edge case with zero semilatus
     Equinoctial equi{ 0.0 * km, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
-    Cartesian cart(equi, sys.get_mu());
+    Cartesian<frames::earth::icrf> cart(equi, sys.get_mu());
 
     ASSERT_TRUE(math::nearly_equal(cart.get_x(), Distance(0.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(cart.get_y(), Distance(0.0 * km), REL_TOL));
@@ -522,10 +485,10 @@ TEST_F(CartesianTest, CartesianPartialMultiplicationByTime)
     // Test CartesianPartial operator* with Time
     VelocityVector<frames::earth::icrf> vel{ 1.0 * km / s, 2.0 * km / s, 3.0 * km / s };
     AccelerationVector<frames::earth::icrf> acc{ 0.1 * km / s / s, 0.2 * km / s / s, 0.3 * km / s / s };
-    CartesianPartial partial(vel, acc);
+    CartesianPartial<frames::earth::icrf> partial(vel, acc);
 
-    Time dt          = 2.0 * s;
-    Cartesian result = partial * dt;
+    Time dt                               = 2.0 * s;
+    Cartesian<frames::earth::icrf> result = partial * dt;
 
     // Verify the result is a Cartesian state
     ASSERT_TRUE(math::nearly_equal(result.get_x(), vel.get_x() * dt, REL_TOL));
@@ -541,7 +504,7 @@ TEST_F(CartesianTest, CartesianPartialStream)
     // Test CartesianPartial stream operator
     VelocityVector<frames::earth::icrf> vel{ 1.0 * km / s, 2.0 * km / s, 3.0 * km / s };
     AccelerationVector<frames::earth::icrf> acc{ 0.1 * km / s / s, 0.2 * km / s / s, 0.3 * km / s / s };
-    CartesianPartial partial(vel, acc);
+    CartesianPartial<frames::earth::icrf> partial(vel, acc);
 
     std::stringstream ss;
     ss << partial;

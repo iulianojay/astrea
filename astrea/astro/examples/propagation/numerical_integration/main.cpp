@@ -39,6 +39,15 @@ int main()
     const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
     const State state0(elements, epoch, sys);
 
+    // Including attitude will automatically trigger kinematic eoms during propagation. This is meant to be used with a
+    // control model to propagate attitude states, but can be used without one if you just want the kinematic effects.
+    // If you simple want to model a local orbital frame, you don't need to include attitude dyanmics! You can just
+    // model the effects in your custom forces, eoms, or in your vehicle model.
+    /*
+    const BodyQuaternion attitude{ 1.0, 0.0, 0.0, 0.0 }; // Identity quaternion - no rotation
+    const State state0(elements, epoch, sys, attitude);
+    */
+
     // Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing
     // for more flexibility and extensibility for users.
     Spacecraft sat;
@@ -63,26 +72,30 @@ int main()
     integrator.set_abs_tol(1.0e-10);
     integrator.set_rel_tol(1.0e-10);
 
-    bool store    = true;       // Users can choose to store the state history during propagation, or not
+    // Propagation is done with the element representation that the equations of motion expect. This is to avoid
+    // unnecessary conversions during the integration process.
+
     Time propTime = minutes(1); // A propagation interval relative to the epoch. Intervals
                                 // can also be negative for backwards propagation.
 
-    // Propagation is done with the element representation that the equations of motion expect. This is to avoid
-    // unnecessary conversions during the integration process.
     std::cout << "Propagating...";
-    const StateHistory twoBodyHistory = integrator.propagate(state0, propTime, twoBodyEom, vehicle, store);
+    integrator.set_equations_of_motion(twoBodyEom);
+    const StateHistory twoBodyHistory = integrator.propagate(state0, propTime, vehicle);
     std::cout << " Two Body Propagation Complete." << std::endl << "Propagating...";
     vehicle = Vehicle(sat); // reset the vehicle in case the propagation updates it
 
-    const StateHistory j2MeanHistory = integrator.propagate(state0, propTime, j2MeanEom, vehicle, store);
+    integrator.set_equations_of_motion(j2MeanEom);
+    const StateHistory j2MeanHistory = integrator.propagate(state0, propTime, vehicle);
     std::cout << " J2 Mean Propagation Complete." << std::endl << "Propagating...";
     vehicle = Vehicle(sat);
 
-    const StateHistory cowellsHistory = integrator.propagate(state0, propTime, cowellsEom, vehicle, store);
+    integrator.set_equations_of_motion(cowellsEom);
+    const StateHistory cowellsHistory = integrator.propagate(state0, propTime, vehicle);
     std::cout << " Cowell's Method Propagation Complete." << std::endl << "Propagating...";
     vehicle = Vehicle(sat);
 
-    const StateHistory keplerianHistory = integrator.propagate(state0, propTime, keplerianEom, vehicle, store);
+    integrator.set_equations_of_motion(keplerianEom);
+    const StateHistory keplerianHistory = integrator.propagate(state0, propTime, vehicle);
     std::cout << " Keplerian VoP Propagation Complete." << std::endl << std::endl;
 
     std::cout << "Func Evals: " << integrator.n_func_evals() << std::endl;
@@ -92,11 +105,12 @@ int main()
     std::cout << "Keplerian VOP Final State: " << keplerianHistory.last() << std::endl;
 
     // And if you want, you can propagate to a specific end epoch instead of for an amount of time
-    Date endEpoch              = epoch + propTime;
-    const StateHistory history = integrator.propagate(state0, endEpoch, twoBodyEom, vehicle, store);
+    Date endEpoch = epoch + propTime;
+    integrator.set_equations_of_motion(twoBodyEom);
+    const StateHistory history = integrator.propagate(state0, endEpoch, vehicle);
 
     // And if you don't care about storing the history, you can skip that too
-    const State statef = integrator.propagate(state0, propTime, twoBodyEom, vehicle);
+    const State statef = integrator.propagate_no_storage(state0, propTime, vehicle);
 
     return 0;
 }

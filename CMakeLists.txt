@@ -21,7 +21,7 @@ project(
     astrea
     VERSION ${ASTREA_VERSION}
     DESCRIPTION "Astrea: Nebula Back-End Simulation Library"
-    LANGUAGES CXX
+    LANGUAGES CXX C
 )
 
 set(CMAKE_CXX_STANDARD 23)

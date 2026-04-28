@@ -18,9 +18,7 @@ These examples:
 - ✅ Include validation against known aerospace benchmark data
 - ✅ Use modern C++23 features with compile-time safety checks
 
-**Prerequisites**: Basic familiarity with **Astrea** from the [Getting Started](../getting_started/introduction.md) guide.
-Beginner examples include detailed explanations of astrodynamics concepts; intermediate and
-advanced examples assume fundamental knowledge of orbital mechanics and aerospace engineering.
+**Prerequisites**: Basic familiarity with **Astrea** from the [Getting Started](../getting_started/index.md) guide.
 
 ## How to Use This Section?
 
@@ -65,6 +63,5 @@ Use Examples when you:
 ## Other Resources
 
 - **[Getting Started](../getting_started/index.md)** - Installation and first steps with Astrea
-- **[User's Guide](../users_guide/index.md)** - Comprehensive understanding of astrodynamics concepts
-- **[API Reference](../api_reference/index.md)** - Detailed technical documentation
 - **[Project Structure](../getting_started/project_structure.md)** - Understanding Astrea's architecture
+- **[Design](../design/index.md)** - Architectural principles and design patterns

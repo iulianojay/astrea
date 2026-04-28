@@ -17,11 +17,9 @@
 #include <iostream>
 #include <ranges>
 #include <set>
+#include <sqlite3.h>
 #include <stdio.h>
 
-#include <sqlite3.h>
-
-#include <csv.hpp>
 #include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>
 
@@ -166,13 +164,14 @@ AccessArray propagate_and_run_access_analysis(
     // Setup integrator
     J2MeanVop eom;
     Integrator integrator;
+    integrator.set_equations_of_motion(eom);
     integrator.switch_fixed_timestep(true, accessResolution);
 
     // Propagate
     auto start = std::chrono::steady_clock::now();
 
     const Date endDate = startDate + propTime;
-    constellation.propagate(endDate, eom, integrator);
+    constellation.propagate(endDate, integrator);
 
     auto end  = std::chrono::steady_clock::now();
     auto diff = std::chrono::duration_cast<nanoseconds>(end - start);

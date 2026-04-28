@@ -35,7 +35,7 @@ namespace astro {
  * @return DirectionCosineMatrix<Frame_T, Frame_U> The DCM from Frame_U to Frame_T.
  */
 template <typename Frame_T, typename Frame_U>
-    requires(Frame_T::get_axis() == FrameAxis::J2000 && Frame_U::get_axis() == FrameAxis::ICRF && HasSameOrigin<Frame_T, Frame_U>)
+    requires(Frame_T::axis == FrameAxis::J2000 && Frame_U::axis == FrameAxis::ICRF && HasSameOrigin<Frame_T, Frame_U>)
 inline DCM<Frame_T, Frame_U> get_dcm(const Date& date)
 {
     // using mp_units::angular::unit_symbols::deg;

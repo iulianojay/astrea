@@ -27,7 +27,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/platforms/thrusters/Thruster.cpp
 
     ${ASTRO_BASE}/propagation/numerical/Integrator.cpp
-    
+
     ${ASTRO_BASE}/propagation/analytic/LambertSolver.cpp
 
     ${ASTRO_BASE}/propagation/event_detection/Event.cpp
@@ -39,29 +39,31 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOn.cpp
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOff.cpp
 
-    ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.cpp
     ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
-    ${ASTRO_BASE}/propagation/force_models/NBodyForce.cpp
-    ${ASTRO_BASE}/propagation/force_models/OblatenessForce.cpp
-    ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressure.cpp
+    ${ASTRO_BASE}/propagation/force_models/instances/AtmosphericForce.cpp
+    ${ASTRO_BASE}/propagation/force_models/instances/NBodyForce.cpp
+    ${ASTRO_BASE}/propagation/force_models/instances/OblatenessForce.cpp
+    ${ASTRO_BASE}/propagation/force_models/instances/SolarRadiationPressure.cpp
 
-    ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.cpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/CowellsMethod.cpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/J2MeanVop.cpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/EquinoctialVop.cpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/KeplerianVop.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/CowellsMethod.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/EquationsOfMotion.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/EquinoctialVop.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/J2MeanVop.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/TwoBody.cpp
 
-    ${ASTRO_BASE}/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/StateTransitionMatrix.cpp
 
     ${ASTRO_BASE}/state/State.cpp
     ${ASTRO_BASE}/state/StateHistory.cpp
+
+    ${ASTRO_BASE}/state/attitude/Attitude.cpp
 
     ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.cpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.cpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geocentric.cpp
     ${ASTRO_BASE}/state/angular_elements/instances/Spherical.cpp
 
-    ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.cpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.cpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.cpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.cpp
@@ -128,6 +130,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/platforms/Vehicle.hpp
 
     ${ASTRO_BASE}/propagation/numerical/Integrator.hpp
+    ${ASTRO_BASE}/propagation/numerical/StepWatcher.hpp
     ${ASTRO_BASE}/propagation/numerical/butcher_tableau.hpp
 
     ${ASTRO_BASE}/propagation/analytic/LambertSolver.hpp
@@ -142,35 +145,45 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOn.hpp
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOff.hpp
 
-    ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.hpp
-    ${ASTRO_BASE}/propagation/force_models/Force.hpp
+    ${ASTRO_BASE}/propagation/force_models/instances/AtmosphericForce.hpp
+    ${ASTRO_BASE}/propagation/force_models/PerturbingForce.hpp
     ${ASTRO_BASE}/propagation/force_models/ForceModel.hpp
-    ${ASTRO_BASE}/propagation/force_models/NBodyForce.hpp
-    ${ASTRO_BASE}/propagation/force_models/OblatenessForce.hpp
-    ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressure.hpp
+    ${ASTRO_BASE}/propagation/force_models/instances/NBodyForce.hpp
+    ${ASTRO_BASE}/propagation/force_models/instances/OblatenessForce.hpp
+    ${ASTRO_BASE}/propagation/force_models/instances/SolarRadiationPressure.hpp
 
-    ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.hpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/CowellsMethod.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/KeplerianVop.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/CowellsMethod.hpp
     ${ASTRO_BASE}/propagation/equations_of_motion/EquationsOfMotion.hpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/J2MeanVop.hpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/EquinoctialVop.hpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/J2MeanVop.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/EquinoctialVop.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/instances/TwoBody.hpp
 
-    ${ASTRO_BASE}/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/StateTransitionMatrix.hpp
 
     ${ASTRO_BASE}/state/State.hpp
     ${ASTRO_BASE}/state/StateHistory.hpp
+
+    ${ASTRO_BASE}/state/attitude/Attitude.hpp
+    ${ASTRO_BASE}/state/attitude/instances/Quaternion.hpp
+    ${ASTRO_BASE}/state/attitude/instances/AngularVelocities.hpp
+    ${ASTRO_BASE}/state/attitude/instances/EulerAngles.hpp
+
     ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geocentric.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.hpp
     ${ASTRO_BASE}/state/angular_elements/instances/Spherical.hpp
     ${ASTRO_BASE}/state/angular_elements/AngularElements.hpp
+
     ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.hpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.hpp
     ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.hpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.hpp
+
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.hpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.hpp
+
+    ${ASTRO_BASE}/state/attitude/instances/Quaternion.hpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
@@ -204,7 +217,6 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/types/variant_util.hpp
 
     ${ASTRO_BASE}/utilities/conversions.hpp
-    ${ASTRO_BASE}/utilities/plotting.hpp
 )
 
 # Build ephemeris files
@@ -251,7 +263,19 @@ endif()
 set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared ${ASTRO_LIBS})
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
-target_compile_definitions (${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_ASTRO_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+
+if(WIN32)
+    target_compile_definitions (${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_ASTRO_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"" WIN32_LEAN_AND_MEAN NOMINMAX)
+else()
+    target_compile_definitions (${PROJECT_NAME}_shared PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_ASTRO_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+endif()
+
+# Install shared library (DLL)
+install(TARGETS ${PROJECT_NAME}_shared
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
 
 # Static library
 if(${BUILD_STATIC})
@@ -265,7 +289,16 @@ if(${BUILD_STATIC})
     target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static utilities_static ${ASTRO_LIBS})
     target_include_directories (${PROJECT_NAME}_static PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
     target_compile_definitions (${PROJECT_NAME}_static PUBLIC ${EPHEMERIS_COMPILE_DEFINES} "_ASTRO_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+
+    # Install static library (A)
+    install(TARGETS ${PROJECT_NAME}_static
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+    )
 endif()
+
+file(MAKE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/include)
 
 # Install headers
 install(

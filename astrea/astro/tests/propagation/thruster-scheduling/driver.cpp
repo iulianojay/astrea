@@ -18,7 +18,7 @@
 
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/propagation/equations_of_motion/TwoBody.hpp>
+#include <astro/propagation/equations_of_motion/instances/TwoBody.hpp>
 #include <astro/propagation/event_detection/Event.hpp>
 #include <astro/propagation/event_detection/Schedule.hpp>
 #include <astro/propagation/event_detection/events/TurnThrustersOff.hpp>
@@ -73,7 +73,7 @@ class ThrusterSchedulingRegressionTest : public testing::Test {
 
     AstrodynamicsSystem sys;
     GravParam mu;
-    Thrust thrusterForce;
+    Force thrusterForce;
     Date epoch;
     Integrator integrator;
     TwoBody eom;
@@ -155,7 +155,9 @@ TEST_F(ThrusterSchedulingRegressionTest, ScheduledThrusterBurnIncreasesSemimajor
         }
 
         // Propagate one time step
-        const auto stateHistory = integrator.propagate(currentState, timeStep, eom, vehicle, false, {});
+        integrator.set_equations_of_motion(eom);
+        integrator.clear_events();
+        const auto stateHistory = integrator.propagate(currentState, timeStep, vehicle);
         if (!stateHistory.empty()) {
             currentState = stateHistory.last(); // Get final state
 
@@ -191,7 +193,9 @@ TEST_F(ThrusterSchedulingRegressionTest, NoThrusterSemimajorAxisUnchanged)
     const Distance initialSemimajorAxis = initialElements.get_semimajor();
 
     // Propagate without any thruster activation
-    const auto stateHistory = integrator.propagate(initialState, totalPropTime, eom, vehicle, false, {});
+    integrator.set_equations_of_motion(eom);
+    integrator.clear_events();
+    const auto stateHistory = integrator.propagate(initialState, totalPropTime, vehicle);
 
     // Get final orbital elements
     const State finalState            = stateHistory.last();
@@ -256,7 +260,9 @@ TEST_F(ThrusterSchedulingRegressionTest, MultipleScheduledBurnsCumulativeEffect)
             }
 
             // Propagate one time step
-            const auto stateHistory = integrator.propagate(currentState, timeStep, eom, vehicle, false, {});
+            integrator.set_equations_of_motion(eom);
+            integrator.clear_events();
+            const auto stateHistory = integrator.propagate(currentState, timeStep, vehicle);
             if (!stateHistory.empty()) { currentState = stateHistory.last(); }
         }
 

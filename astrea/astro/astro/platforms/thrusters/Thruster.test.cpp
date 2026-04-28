@@ -33,7 +33,7 @@ class ThrusterTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
-    Thrust thrust{ 1.0 * N };
+    Force thrust{ 1.0 * N };
     ThrusterParameters params{ thrust };
     Spacecraft sat;
     Thruster thruster{ sat, params };

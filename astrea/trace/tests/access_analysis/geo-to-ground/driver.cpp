@@ -15,18 +15,9 @@
 #include <fstream>
 #include <iostream>
 #include <ranges>
+#include <sqlite3.h>
 #include <stdio.h>
 
-// #include <arrow/api.h>
-// #include <arrow/csv/api.h>
-// #include <arrow/io/api.h>
-// #include <arrow/ipc/api.h>
-// #include <parquet/arrow/reader.h>
-// #include <parquet/arrow/writer.h>
-
-#include <sqlite3.h>
-
-#include <csv.hpp>
 #include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
 #include <sqlite_orm/sqlite_orm.h>
@@ -75,7 +66,6 @@ class GeoToGroundAccessTest : public testing::Test {
     AstrodynamicsSystem sys;
     GravParam mu;
     const Distance semimajorGeo;
-    TwoBody eom;
     ForceModel forces;
     Integrator integrator;
     Time propTime;
@@ -94,14 +84,14 @@ int main(int argc, char** argv)
 TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
 {
     // Build constellation
-    const Cartesian elem0(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
+    const Cartesian<frames::earth::icrf> elem0(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
     const State state0(elem0, epoch, sys);
 
     const auto rEcef           = elem0.get_position().in_frame<frames::earth::earth_fixed>(epoch);
     const auto& centralBody    = sys.get_central_body();
     const auto rEq             = centralBody->get_equitorial_radius();
     const auto rPolar          = centralBody->get_polar_radius();
-    const auto [lat, lon, alt] = astro::convert_earth_fixed_to_geodetic(rEcef, rEq, rPolar);
+    const auto [lat, lon, alt] = astro::convert_body_fixed_to_geodetic(rEcef, rEq, rPolar);
 
     Viewer geo;
     geo.store_state(state0);
@@ -127,7 +117,7 @@ TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
     GroundArchitecture grounds({ ground });
 
     // Propagate
-    constel.propagate(propTime, eom, integrator);
+    constel.propagate(propTime, integrator);
 
     // Find access
     AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
@@ -166,7 +156,7 @@ TEST_F(GeoToGroundAccessTest, TwoBallGeoNeverConnected)
     }
 
     // Propagate
-    twoBallGeo.propagate(propTime, eom, integrator);
+    twoBallGeo.propagate(propTime, integrator);
 
     // Find access
     AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
@@ -213,7 +203,7 @@ TEST_F(GeoToGroundAccessTest, FourBallGeo)
     }
 
     // Propagate
-    fourBallGeo.propagate(propTime, eom, integrator);
+    fourBallGeo.propagate(propTime, integrator);
 
     // Find access
     AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);

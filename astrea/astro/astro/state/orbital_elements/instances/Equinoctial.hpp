@@ -101,15 +101,11 @@ class Equinoctial {
      * @param elements The Cartesian elements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    Equinoctial(const Cartesian& elements, const GravParam& mu);
-
-    /**
-     * @brief Constructs an Equinoctial object from OrbitalElements.
-     *
-     * @param elements The OrbitalElements to convert.
-     * @param sys The astrodynamics system context for conversion.
-     */
-    Equinoctial(const OrbitalElements& elements, const GravParam& mu);
+    template <typename Frame_T>
+    Equinoctial(const Cartesian<Frame_T>& elements, const GravParam& mu) :
+        Equinoctial(Keplerian(elements, mu), mu)
+    {
+    }
 
     /**
      * @brief A static method to create Equinoctial state vectors for a LEO orbit.
@@ -393,7 +389,7 @@ class EquinoctialPartial {
         const UnitlessPerTime& gPartial,
         const UnitlessPerTime& hPartial,
         const UnitlessPerTime& kPartial,
-        const AngularRate& trueLongitudePartial
+        const AngularVelocity& trueLongitudePartial
     ) :
         _semilatusPartial(semilatusPartial),
         _fPartial(fPartial),
@@ -420,12 +416,12 @@ class EquinoctialPartial {
     std::vector<Unitless> force_to_vector() const;
 
   private:
-    Velocity _semilatusPartial;        //!< Semilatus rectum partial derivative
-    UnitlessPerTime _fPartial;         //!< First component of the eccentricity vector partial derivative
-    UnitlessPerTime _gPartial;         //!< Second component of the eccentricity vector partial derivative
-    UnitlessPerTime _hPartial;         //!< First component of the planar vector partial derivative
-    UnitlessPerTime _kPartial;         //!< Second component of the planar vector partial derivative
-    AngularRate _trueLongitudePartial; //!< True longitude partial derivative
+    Velocity _semilatusPartial;            //!< Semilatus rectum partial derivative
+    UnitlessPerTime _fPartial;             //!< First component of the eccentricity vector partial derivative
+    UnitlessPerTime _gPartial;             //!< Second component of the eccentricity vector partial derivative
+    UnitlessPerTime _hPartial;             //!< First component of the planar vector partial derivative
+    UnitlessPerTime _kPartial;             //!< Second component of the planar vector partial derivative
+    AngularVelocity _trueLongitudePartial; //!< True longitude partial derivative
 };
 
 } // namespace astro

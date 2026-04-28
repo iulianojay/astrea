@@ -77,7 +77,7 @@ class EastNorthUp : public DynamicFrame<EastNorthUp, FrameAxis::ENU> {
         // eci -> ecef -> lat/lon -> n/e/u
         const RadiusVector<frames::earth::icrf> r            = get_inertial_position(date);
         const RadiusVector<frames::earth::earth_fixed> rEcef = r.in_frame<frames::earth::earth_fixed>(date);
-        const auto [lat, lon, alt] = convert_earth_fixed_to_geodetic(rEcef, rEquitorial, rPolar);
+        const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef, rEquitorial, rPolar);
 
         using mp_units::one;
         using mp_units::angular::cos;
@@ -88,9 +88,7 @@ class EastNorthUp : public DynamicFrame<EastNorthUp, FrameAxis::ENU> {
         const Unitless cosLon = cos(lon);
 
         return DirectionCosineMatrix<frames::earth::icrf, EastNorthUp>(
-            { std::array<Unitless, 3>{ -sinLat, cosLat, 0.0 * one },
-              std::array<Unitless, 3>{ -cosLat * sinLon, -sinLat * sinLon, cosLon },
-              std::array<Unitless, 3>{ cosLat * cosLon, sinLat * cosLon, sinLon } }
+            { -sinLat, cosLat, 0.0 * one }, { -cosLat * sinLon, -sinLat * sinLon, cosLon }, { cosLat * cosLon, sinLat * cosLon, sinLon }
         );
     }
 

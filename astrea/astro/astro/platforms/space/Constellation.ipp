@@ -264,19 +264,19 @@ const Spacecraft_T& Constellation<Spacecraft_T>::get_spacecraft(const size_t& sp
 
 
 template <class Spacecraft_T>
-void Constellation<Spacecraft_T>::propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator)
+void Constellation<Spacecraft_T>::propagate(const Time& propTime, Integrator& integrator)
 {
     for (auto& shell : shells) {
-        shell.propagate(propTime, eom, integrator);
+        shell.propagate(propTime, integrator);
     }
 }
 
 
 template <class Spacecraft_T>
-void Constellation<Spacecraft_T>::propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator)
+void Constellation<Spacecraft_T>::propagate(const Date& endEpoch, Integrator& integrator)
 {
     for (auto& shell : shells) {
-        shell.propagate(endEpoch, eom, integrator);
+        shell.propagate(endEpoch, integrator);
     }
 }
 

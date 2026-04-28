@@ -28,8 +28,13 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/FrameReference.hpp>
 #include <astro/frames/frames.hpp>
+#include <astro/frames/instances/dynamic_body_frame.hpp>
+#include <astro/platforms/InertiaTensor.hpp>
+#include <astro/propagation/force_models/Perturbation.hpp>
 #include <astro/time/Date.hpp>
+#include <astro/types/concepts.hpp>
 #include <astro/types/type_traits.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
@@ -40,8 +45,18 @@ namespace astro {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetMass = requires(T vehicle) {
+concept HasGetMass = requires(const T vehicle) {
     { vehicle.get_mass() } -> std::same_as<Mass>;
+};
+
+/**
+ * @brief Concept to check if a type has a method to get the inertia tensor.
+ *
+ * @tparam T The type to check.
+ */
+template <typename T>
+concept HasGetInertiaTensor = requires(const T vehicle) {
+    { vehicle.get_inertia_tensor() } -> std::same_as<InertiaTensor<frames::dynamic::body>>;
 };
 
 /**
@@ -50,7 +65,7 @@ concept HasGetMass = requires(T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetRamArea = requires(T vehicle) {
+concept HasGetRamArea = requires(const T vehicle) {
     { vehicle.get_ram_area() } -> std::same_as<SurfaceArea>;
 };
 
@@ -60,7 +75,7 @@ concept HasGetRamArea = requires(T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetCoefficientOfDrag = requires(T vehicle) {
+concept HasGetCoefficientOfDrag = requires(const T vehicle) {
     { vehicle.get_coefficient_of_drag() } -> std::same_as<Unitless>;
 };
 
@@ -70,7 +85,7 @@ concept HasGetCoefficientOfDrag = requires(T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetLiftArea = requires(T vehicle) {
+concept HasGetLiftArea = requires(const T vehicle) {
     { vehicle.get_lift_area() } -> std::same_as<SurfaceArea>;
 };
 
@@ -80,7 +95,7 @@ concept HasGetLiftArea = requires(T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetCoefficientOfLift = requires(T vehicle) {
+concept HasGetCoefficientOfLift = requires(const T vehicle) {
     { vehicle.get_coefficient_of_lift() } -> std::same_as<Unitless>;
 };
 
@@ -90,7 +105,7 @@ concept HasGetCoefficientOfLift = requires(T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetSolarArea = requires(T vehicle) {
+concept HasGetSolarArea = requires(const T vehicle) {
     { vehicle.get_solar_area() } -> std::same_as<SurfaceArea>;
 };
 
@@ -100,7 +115,7 @@ concept HasGetSolarArea = requires(T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetCoefficientOfReflectivity = requires(T vehicle) {
+concept HasGetCoefficientOfReflectivity = requires(const T vehicle) {
     { vehicle.get_coefficient_of_reflectivity() } -> std::same_as<Unitless>;
 };
 
@@ -110,8 +125,38 @@ concept HasGetCoefficientOfReflectivity = requires(T vehicle) {
  * @tparam T The type to check.
  */
 template <typename T>
-concept HasGetCommandAcceleration = requires(const T& vehicle, const State& state) {
-    { vehicle.get_command_acceleration(state) } -> std::same_as<CartesianVector<Acceleration, frames::earth::icrf>>;
+concept HasGetControlAuthority = requires(const T& vehicle, const State& state) {
+    { vehicle.get_control_authority(state) } -> std::same_as<Perturbation>;
+};
+
+/**
+ * @brief Concept to check if a type has a method to get the inertial position.
+ *
+ * @tparam T The type to check.
+ */
+template <typename T>
+concept HasGetInertialPosition = requires(const T vehicle) {
+    { vehicle.get_inertial_position() } -> std::same_as<RadiusVector<frames::earth::icrf>>;
+};
+
+/**
+ * @brief Concept to check if a type has a method to get the inertial velocity.
+ *
+ * @tparam T The type to check.
+ */
+template <typename T>
+concept HasGetInertialVelocity = requires(const T vehicle) {
+    { vehicle.get_inertial_velocity() } -> std::same_as<VelocityVector<frames::earth::icrf>>;
+};
+
+/**
+ * @brief Concept to check if a type has a method to get the inertial acceleration.
+ *
+ * @tparam T The type to check.
+ */
+template <typename T>
+concept HasGetInertialAcceleration = requires(const T vehicle) {
+    { vehicle.get_inertial_acceleration() } -> std::same_as<AccelerationVector<frames::earth::icrf>>;
 };
 
 /**
@@ -147,6 +192,16 @@ struct VehicleInnerBase : public virtual FrameReference {
      * @return Mass The mass of the vehicle.
      */
     virtual Mass get_mass() const = 0;
+
+    /**
+     * @brief Gets the inertia tensor of the vehicle.
+     *
+     * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
+     */
+    virtual InertiaTensor<frames::dynamic::body> get_inertia_tensor() const
+    {
+        return InertiaTensor<frames::dynamic::body>();
+    }
 
     /**
      * @brief Gets the ram area of the vehicle.
@@ -191,12 +246,12 @@ struct VehicleInnerBase : public virtual FrameReference {
     virtual Unitless get_coefficient_of_reflectivity() const = 0;
 
     /**
-     * @brief Gets the command acceleration of the vehicle.
+     * @brief Gets the control authority of the vehicle.
      *
-     * @param state The state of the vehicle for which to get the command acceleration.
-     * @return CartesianVector<Acceleration, frames::earth::icrf> The command acceleration of the vehicle.
+     * @param state The state of the vehicle for which to get the control authority.
+     * @return Perturbation The control force and torque of the vehicle.
      */
-    virtual CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration(const State& state) const = 0;
+    virtual Perturbation get_control_authority(const State& state) const = 0;
 
     /**
      * @brief Clones the vehicle inner implementation.
@@ -288,86 +343,46 @@ struct VehicleInner final : public VehicleInnerBase {
     Mass get_mass() const final { return _value.get_mass(); }
 
     /**
+     * @brief Gets the inertia tensor of the vehicle.
+     *
+     * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
+     */
+    InertiaTensor<frames::dynamic::body> get_inertia_tensor() const final { return get_inertia_tensor_impl(_value); }
+
+    /**
+     * @brief Gets the default inertia tensor of the vehicle.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the inertia tensor from.
+     * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
+     */
+    template <typename U>
+        requires(!HasGetInertiaTensor<U>)
+    static InertiaTensor<frames::dynamic::body> get_inertia_tensor_impl(const U&)
+    {
+        return InertiaTensor<frames::dynamic::body>();
+    }
+
+    /**
+     * @brief Gets the inertia tensor of the vehicle.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the inertia tensor from.
+     * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
+     */
+    template <typename U>
+        requires(HasGetInertiaTensor<U>)
+    static InertiaTensor<frames::dynamic::body> get_inertia_tensor_impl(const U& value)
+    {
+        return value.get_inertia_tensor();
+    }
+
+    /**
      * @brief Gets the ram area of the vehicle or a default value.
      *
      * @return SurfaceArea The ram area of the vehicle.
      */
     SurfaceArea get_ram_area() const final { return get_ram_area_impl(_value); }
-
-    /**
-     * @brief Gets the lift area of the vehicle or a default value.
-     *
-     * @return SurfaceArea The lift area of the vehicle.
-     */
-    SurfaceArea get_lift_area() const final { return get_lift_area_impl(_value); }
-
-    /**
-     * @brief Gets the solar area of the vehicle or a default value.
-     *
-     * @return SurfaceArea The solar area of the vehicle.
-     */
-    SurfaceArea get_solar_area() const final { return get_solar_area_impl(_value); }
-
-    /**
-     * @brief Gets the coefficient of drag of the vehicle or a default value.
-     *
-     * @return Unitless The coefficient of drag of the vehicle.
-     */
-    Unitless get_coefficient_of_drag() const final { return get_coefficient_of_drag_impl(_value); }
-
-    /**
-     * @brief Gets the coefficient of lift of the vehicle or a default value.
-     *
-     * @return Unitless The coefficient of lift of the vehicle.
-     */
-    Unitless get_coefficient_of_lift() const final { return get_coefficient_of_lift_impl(_value); }
-
-    /**
-     * @brief Gets the coefficient of reflectivity of the vehicle or a default value.
-     *
-     * @return Unitless The coefficient of reflectivity of the vehicle.
-     */
-    Unitless get_coefficient_of_reflectivity() const final { return get_coefficient_of_reflectivity_impl(_value); }
-
-    /**
-     * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
-     *
-     * @param date The date for which to get the position.
-     * @return RadiusVector<frames::earth::icrf>
-     */
-    RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const override final
-    {
-        return _value.get_inertial_position(date);
-    }
-
-    /**
-     * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
-     *
-     * @param date The date for which to get the velocity.
-     * @return VelocityVector<frames::earth::icrf>
-     */
-    VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const override final
-    {
-        return _value.get_inertial_velocity(date);
-    }
-
-    /**
-     * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
-     *
-     * @param date The date for which to get the acceleration.
-     * @return AccelerationVector<frames::earth::icrf>
-     */
-    AccelerationVector<frames::earth::icrf> get_inertial_acceleration(const Date& date) const override final
-    {
-        return _value.get_inertial_acceleration(date);
-    }
-
-    /**
-     * @brief Gets the name of the vehicle.
-     *
-     * @return std::string The name of the vehicle.
-     */
-    std::string get_name() const override final { return _value.get_name(); }
 
     /**
      * @brief Gets the default ram area of the vehicle.
@@ -380,7 +395,7 @@ struct VehicleInner final : public VehicleInnerBase {
         requires(!HasGetRamArea<U>)
     static SurfaceArea get_ram_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit);
+        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
     }
 
     /**
@@ -397,6 +412,12 @@ struct VehicleInner final : public VehicleInnerBase {
         return value.get_ram_area();
     }
 
+    /**
+     * @brief Gets the lift area of the vehicle or a default value.
+     *
+     * @return SurfaceArea The lift area of the vehicle.
+     */
+    SurfaceArea get_lift_area() const final { return get_lift_area_impl(_value); }
 
     /**
      * @brief Gets the default lift area of the vehicle.
@@ -409,7 +430,7 @@ struct VehicleInner final : public VehicleInnerBase {
         requires(!HasGetLiftArea<U>)
     static SurfaceArea get_lift_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit);
+        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
     }
 
     /**
@@ -427,6 +448,13 @@ struct VehicleInner final : public VehicleInnerBase {
     }
 
     /**
+     * @brief Gets the solar area of the vehicle or a default value.
+     *
+     * @return SurfaceArea The solar area of the vehicle.
+     */
+    SurfaceArea get_solar_area() const final { return get_solar_area_impl(_value); }
+
+    /**
      * @brief Gets the default solar area of the vehicle.
      *
      * @tparam U The type of the vehicle implementation.
@@ -437,7 +465,7 @@ struct VehicleInner final : public VehicleInnerBase {
         requires(!HasGetSolarArea<U>)
     static SurfaceArea get_solar_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit);
+        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
     }
 
     /**
@@ -453,6 +481,13 @@ struct VehicleInner final : public VehicleInnerBase {
     {
         return value.get_solar_area();
     }
+
+    /**
+     * @brief Gets the coefficient of drag of the vehicle or a default value.
+     *
+     * @return Unitless The coefficient of drag of the vehicle.
+     */
+    Unitless get_coefficient_of_drag() const final { return get_coefficient_of_drag_impl(_value); }
 
     /**
      * @brief Gets the default coefficient of drag of the vehicle.
@@ -483,6 +518,13 @@ struct VehicleInner final : public VehicleInnerBase {
     }
 
     /**
+     * @brief Gets the coefficient of lift of the vehicle or a default value.
+     *
+     * @return Unitless The coefficient of lift of the vehicle.
+     */
+    Unitless get_coefficient_of_lift() const final { return get_coefficient_of_lift_impl(_value); }
+
+    /**
      * @brief Gets the default coefficient of lift of the vehicle.
      *
      * @tparam U The type of the vehicle implementation.
@@ -509,6 +551,13 @@ struct VehicleInner final : public VehicleInnerBase {
     {
         return value.get_coefficient_of_lift();
     }
+
+    /**
+     * @brief Gets the coefficient of reflectivity of the vehicle or a default value.
+     *
+     * @return Unitless The coefficient of reflectivity of the vehicle.
+     */
+    Unitless get_coefficient_of_reflectivity() const final { return get_coefficient_of_reflectivity_impl(_value); }
 
     /**
      * @brief Gets the default coefficient of reflectivity of the vehicle.
@@ -539,46 +588,202 @@ struct VehicleInner final : public VehicleInnerBase {
     }
 
     /**
-     * @brief Gets the thrust of the vehicle or a default value.
+     * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
      *
-     * @param state The state of the vehicle for which to get the thrust.
-     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
+     * @param date The date for which to get the position.
+     * @return RadiusVector<frames::earth::icrf>
      */
-    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration(const State& state) const final
+    RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const override final
     {
-        return get_command_acceleration_impl(_value, state);
+        return get_inertial_position_impl(_value, date);
+    }
+
+    /**
+     * @brief Get the default position of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the position from.
+     * @param date The date for which to get the position.
+     * @return RadiusVector<frames::earth::icrf> The position of the frame in Earth-Centered Inertial coordinates.
+     */
+    template <typename U>
+        requires(HasGetInertialPosition<U>)
+    RadiusVector<frames::earth::icrf> get_inertial_position_impl(const U& value, const Date& date) const
+    {
+        return value.get_inertial_position(date);
+    }
+
+    /**
+     * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the inertial position from.
+     * @param date The date for which to get the position.
+     * @return RadiusVector<frames::earth::icrf> The position of the frame in Earth-Centered Inertial coordinates.
+     */
+    template <typename U>
+        requires(!HasGetInertialPosition<U>)
+    RadiusVector<frames::earth::icrf> get_inertial_position_impl(const U&, const Date&) const
+    {
+        return RadiusVector<frames::earth::icrf>{};
+    }
+
+    /**
+     * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the velocity.
+     * @return VelocityVector<frames::earth::icrf>
+     */
+    VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const override final
+    {
+        return get_inertial_velocity_impl(_value, date);
+    }
+
+    /**
+     * @brief Get the default velocity of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the velocity from.
+     * @param date The date for which to get the velocity.
+     * @return VelocityVector<frames::earth::icrf> The velocity of the frame in Earth-Centered Inertial coordinates.
+     */
+    template <typename U>
+        requires(HasGetInertialVelocity<U>)
+    VelocityVector<frames::earth::icrf> get_inertial_velocity_impl(const U& value, const Date& date) const
+    {
+        return value.get_inertial_velocity(date);
+    }
+
+    /**
+     * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the inertial velocity from.
+     * @param date The date for which to get the velocity.
+     * @return VelocityVector<frames::earth::icrf> The velocity of the frame in Earth-Centered Inertial coordinates.
+     */
+    template <typename U>
+        requires(!HasGetInertialVelocity<U>)
+    VelocityVector<frames::earth::icrf> get_inertial_velocity_impl(const U&, const Date&) const
+    {
+        return VelocityVector<frames::earth::icrf>{};
+    }
+
+    /**
+     * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @param date The date for which to get the acceleration.
+     * @return AccelerationVector<frames::earth::icrf>
+     */
+    AccelerationVector<frames::earth::icrf> get_inertial_acceleration(const Date& date) const override final
+    {
+        return get_inertial_acceleration_impl(_value, date);
+    }
+
+    /**
+     * @brief Get the default acceleration of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the acceleration from.
+     * @param date The date for which to get the acceleration.
+     * @return AccelerationVector<frames::earth::icrf> The acceleration of the frame in Earth-Centered Inertial coordinates.
+     */
+    template <typename U>
+        requires(HasGetInertialAcceleration<U>)
+    AccelerationVector<frames::earth::icrf> get_inertial_acceleration_impl(const U& value, const Date& date) const
+    {
+        return value.get_inertial_acceleration(date);
+    }
+
+    /**
+     * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the inertial acceleration from.
+     * @param date The date for which to get the acceleration.
+     * @return AccelerationVector<frames::earth::icrf> The acceleration of the frame in Earth-Centered Inertial coordinates.
+     */
+    template <typename U>
+        requires(!HasGetInertialAcceleration<U>)
+    AccelerationVector<frames::earth::icrf> get_inertial_acceleration_impl(const U&, const Date&) const
+    {
+        return AccelerationVector<frames::earth::icrf>{};
+    }
+
+    /**
+     * @brief Gets the name of the vehicle.
+     *
+     * @return std::string The name of the vehicle.
+     */
+    std::string get_name() const override final { return get_name_impl(_value); }
+
+    /**
+     * @brief Gets the default name of the vehicle.
+     *
+     * @return std::string The name of the vehicle.
+     */
+    template <typename U>
+        requires(!HasGetName<U>)
+    std::string get_name_impl(const U&) const
+    {
+        return "Vehicle";
+    }
+
+    /**
+     * @brief Gets the name of the vehicle.
+     *
+     * @tparam U The type of the vehicle implementation.
+     * @param value The vehicle instance to get the name from.
+     * @return std::string The name of the vehicle.
+     */
+    template <typename U>
+        requires(HasGetName<U>)
+    std::string get_name_impl(const U& value) const
+    {
+        return value.get_name();
+    }
+
+    /**
+     * @brief Gets the control authority of the vehicle or a default value.
+     *
+     * @param state The state of the vehicle for which to get the control authority.
+     * @return Perturbation The control authority of the vehicle.
+     */
+    Perturbation get_control_authority(const State& state) const final
+    {
+        return get_control_authority_impl(_value, state);
     }
 
     /**
      * @brief Gets the default thrust of the vehicle.
      *
      * @tparam U The type of the vehicle implementation.
-     * @param value The vehicle instance to get the thrust from.
-     * @param state The state of the vehicle for which to get the thrust.
-     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
+     * @param value The vehicle instance to get the control authority from.
+     * @param state The state of the vehicle for which to get the control authority.
+     * @return Perturbation The control authority of the vehicle.
      */
     template <typename U>
-        requires(!HasGetCommandAcceleration<U>)
-    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration_impl(const U&, const State&) const
+        requires(!HasGetControlAuthority<U>)
+    Perturbation get_control_authority_impl(const U&, const State&) const
     {
-        using mp_units::si::unit_symbols::km;
-        using mp_units::si::unit_symbols::s;
-        return { 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) };
+        using mp_units::si::unit_symbols::m;
+        using mp_units::si::unit_symbols::N;
+        return { .force = { 0.0 * N, 0.0 * N, 0.0 * N }, .torque = { 0.0 * N * m, 0.0 * N * m, 0.0 * N * m } };
     }
 
     /**
-     * @brief Gets the thrust of the vehicle.
+     * @brief Gets the thrust and torque of the vehicle.
      *
      * @tparam U The type of the vehicle implementation.
      * @param value The vehicle instance to get the thrust from.
      * @param state The state of the vehicle for which to get the thrust.
-     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
+     * @return Perturbation The thrust and torque of the vehicle.
      */
     template <typename U>
-        requires(HasGetCommandAcceleration<U>)
-    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration_impl(const U& value, const State& state) const
+        requires(HasGetControlAuthority<U>)
+    Perturbation get_control_authority_impl(const U& value, const State& state) const
     {
-        return value.get_command_acceleration(state);
+        return value.get_control_authority(state);
     }
 
     /**
@@ -623,8 +828,8 @@ class Vehicle; // Forward declaration of the Vehicle class
  */
 template <typename T>
 concept IsGenericallyConstructableVehicle = requires(T) {
+    requires !std::is_same<Vehicle, remove_cv_ref<T>>::value;
     requires IsUserDefinedVehicle<T>;
-    std::negation<std::is_same<Vehicle, remove_cv_ref<T>>>::value;
 };
 
 
@@ -736,6 +941,13 @@ class Vehicle : public FrameReference {
     Mass get_mass() const { return ptr()->get_mass(); }
 
     /**
+     * @brief Gets the inertia tensor of the vehicle.
+     *
+     * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the vehicle.
+     */
+    InertiaTensor<frames::dynamic::body> get_inertia_tensor() const { return ptr()->get_inertia_tensor(); }
+
+    /**
      * @brief Get the ram area of the vehicle.
      *
      * @return SurfaceArea The ram area of the vehicle.
@@ -778,15 +990,12 @@ class Vehicle : public FrameReference {
     Unitless get_coefficient_of_reflectivity() const { return ptr()->get_coefficient_of_reflectivity(); }
 
     /**
-     * @brief Gets the thrust of the vehicle.
+     * @brief Gets the control authority of the vehicle.
      *
-     * @param state The state of the vehicle for which to get the thrust.
-     * @return CartesianVector<Acceleration, frames::earth::icrf> The thrust of the vehicle.
+     * @param state The state of the vehicle for which to get the control authority.
+     * @return Perturbation The control authority of the vehicle.
      */
-    CartesianVector<Acceleration, frames::earth::icrf> get_command_acceleration(const State& state) const
-    {
-        return ptr()->get_command_acceleration(state);
-    }
+    Perturbation get_control_authority(const State& state) const { return ptr()->get_control_authority(state); }
 
     /**
      * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
@@ -845,13 +1054,14 @@ class Vehicle : public FrameReference {
   private:
     std::unique_ptr<detail::VehicleInnerBase> _ptr; //!< Pointer to the internal vehicle implementation, which can be a user-defined type
 
-    Mass _mass;                          //!< Mass of the vehicle
-    SurfaceArea _ramArea;                //!< Ram area of the vehicle
-    SurfaceArea _liftArea;               //!< Lift area of the vehicle
-    SurfaceArea _solarArea;              //!< Solar area of the vehicle
-    Unitless _coefficientOfDrag;         //!< Coefficient of drag of the vehicle
-    Unitless _coefficientOfLift;         //!< Coefficient of lift of the vehicle
-    Unitless _coefficientOfReflectivity; //!< Coefficient of reflectivity of the vehicle
+    Mass _mass;                                          //!< Mass of the vehicle
+    InertiaTensor<frames::dynamic::body> _inertiaTensor; //!< Inertia tensor of the vehicle
+    SurfaceArea _ramArea;                                //!< Ram area of the vehicle
+    SurfaceArea _liftArea;                               //!< Lift area of the vehicle
+    SurfaceArea _solarArea;                              //!< Solar area of the vehicle
+    Unitless _coefficientOfDrag;                         //!< Coefficient of drag of the vehicle
+    Unitless _coefficientOfLift;                         //!< Coefficient of lift of the vehicle
+    Unitless _coefficientOfReflectivity;                 //!< Coefficient of reflectivity of the vehicle
 
     /**
      * @brief Gets a pointer to the internal vehicle instance.

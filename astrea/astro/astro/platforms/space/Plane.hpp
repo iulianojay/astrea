@@ -108,19 +108,17 @@ class Plane {
      * @brief Propagate the Plane using the provided epoch and Equations of Motion.
      *
      * @param propTime The total propagation time after the initial state epoch.
-     * @param eom The Equations of Motion to use for propagation.
      * @param integrator The Integrator to use for propagation.
      */
-    void propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Time& propTime, Integrator& integrator);
 
     /**
      * @brief Propagate the Plane using the provided epoch and Equations of Motion.
      *
      * @param endEpoch The end epoch for propagation.
-     * @param eom The Equations of Motion to use for propagation.
      * @param integrator The Integrator to use for propagation.
      */
-    void propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Date& endEpoch, Integrator& integrator);
 
     /**
      * @brief Iterator for iterating over all Spacecraft in the Plane.
