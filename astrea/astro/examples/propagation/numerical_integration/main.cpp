@@ -72,12 +72,12 @@ int main()
     integrator.set_abs_tol(1.0e-10);
     integrator.set_rel_tol(1.0e-10);
 
-    bool store    = true;       // Users can choose to store the state history during propagation, or not
+    // Propagation is done with the element representation that the equations of motion expect. This is to avoid
+    // unnecessary conversions during the integration process.
+
     Time propTime = minutes(1); // A propagation interval relative to the epoch. Intervals
                                 // can also be negative for backwards propagation.
 
-    // Propagation is done with the element representation that the equations of motion expect. This is to avoid
-    // unnecessary conversions during the integration process.
     std::cout << "Propagating...";
     integrator.set_equations_of_motion(twoBodyEom);
     const StateHistory twoBodyHistory = integrator.propagate(state0, propTime, vehicle);
@@ -110,7 +110,7 @@ int main()
     const StateHistory history = integrator.propagate(state0, endEpoch, vehicle);
 
     // And if you don't care about storing the history, you can skip that too
-    const State statef = integrator.propagate(state0, propTime, vehicle);
+    const State statef = integrator.propagate_no_storage(state0, propTime, vehicle);
 
     return 0;
 }
