@@ -1,6 +1,6 @@
 # Astrodynamic Systems
 
-Astrea provides a comprehensive astrodynamics system architecture that manages celestial bodies and their gravitational interactions. The system supports both central body dynamics and multi-body perturbations.
+Astrea provides an astrodynamics system architecture that manages celestial bodies and their interactions. The system supports both central body dynamics and multi-body perturbations. The `AstrodynamicsSystem` class serves as a factory for celestial bodies and does some simple calculations for relative position and velocity, namely for n-body perturbations. 
 
 ## AstrodynamicsSystem Class
 
@@ -18,9 +18,23 @@ The `AstrodynamicsSystem` class serves as the primary interface for managing ast
 AstrodynamicsSystem earthSystem(CelestialBodyId::EARTH);
 
 // Access central body properties
-auto earthGravParam = earthSystem.get_central_body().get_gravitational_parameter();
-auto earthRadius = earthSystem.get_central_body().get_radius();
+auto earthGravParam = earthSystem.get_central_body().get_mu();  // get the central body's gravitational parameter
+auto mu = earthSystem.get_mu();                                 // shorcut to get the central body's gravitational parameter
+
+const auto& center = earthSystem.get_central_body().get_center(); // rip out a pointer to the central body
+auto earthEqRadius = center.get_equitorial_radius();              // and get lots of useful properties
+auto earthPolarRadius = center.get_polar_radius();
+
+// You can add secondary bodies for perturbation calculations
+earthSystem.add(CelestialBodyId::MOON);   // You can reference predefined bodies by their ID
+earthSystem.add(planetary_bodies::Sun()); // Or you can create your own body and add it
+
+// And you can perform some simple calculations with the system
+auto rEarth2Moon = earthSystem.get_relative_position(CelestialBodyId::MOON, CelestialBodyId::EARTH, J2000);
+auto rootObject = earthSystem.get_system_root(); // Returns CelestialBodyId::SUN_BARYCENTER in this case since Earth, Moon, and Sun are all in the system
 ```
+
+The current version relies on maps, but future iterations will be completely constexpr to allow for huge compile-time savings when using default systems. Future iterations will also support defining systems around a barycenter instead of central body.
 
 ## Celestial Bodies
 
@@ -38,8 +52,8 @@ Individual celestial bodies are represented using the `CelestialBody` class:
 
 // Access body properties
 CelestialBody earth = earthSystem.get_central_body();
-GravParam mu = earth.get_gravitational_parameter();
-Length radius = earth.get_radius();
+GravParam mu = earth.get_mu();
+Distance radius = earth.get_equitorial_radius();
 ```
 
 ### Predefined Bodies
@@ -65,17 +79,7 @@ AstrodynamicsSystem earthMoonSunSystem(
 // Access secondary bodies for perturbation calculations
 auto secondaryBodies = earthMoonSunSystem.get_secondary_bodies();
 for (const auto& body : secondaryBodies) {
-    auto gravParam = body.get_gravitational_parameter();
+    auto gravParam = body.get_mu();
     // Compute perturbation effects
 }
 ```
-
-## Integration with State Propagation
-
-The astrodynamics system works seamlessly with state representation and propagation modules:
-
-- Provides gravitational field definitions for numerical integrators
-- Supplies reference frame origins for coordinate transformations
-- Enables accurate modeling of complex space environments
-
-The system architecture ensures that gravitational parameters and celestial body properties are consistently available throughout trajectory analysis workflows.
