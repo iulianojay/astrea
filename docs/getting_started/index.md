@@ -233,10 +233,6 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
 
 Ready to start using Astrea for your aerospace engineering projects? Explore the [Examples](../examples/index.md) to see Astrea in action with real-world scenarios.
 
-For detailed API documentation and advanced usage patterns, visit the
-[User's Guide](../users_guide/index.md) which covers everything from basic orbital mechanics
-to custom force model development.
-
 !!! tip "New to Astrodynamics?"
 
     If you're new to orbital mechanics or astrodynamics programming, start with our

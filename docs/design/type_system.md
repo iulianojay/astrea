@@ -273,7 +273,13 @@ where the CelestialBodyId is an enum of the most common bodies in the solar syst
 
 An inertial frame, for example, is constrained by templates to use an inertially-defined axis, such as the ICRF axis, or the J2000 axis. A body-fixed frame, similarly, must be centered on a celestial body and is expected to rotate with that body. This common-sense approach makes the frame system easier to understand intuitively without sacrificing extensibility and without requiring heavy runtime checks or passing frame infrormation around at runtime.
 
+Here's a list of the frames currently defined in Astrea:
+- `frames::<any celestial body or barycenter>::icrf`: Inertial frame centered on the specified celestial body or barycenter, aligned with the ICRF axis
+- `frames::<any celestial body or barycenter>::j2000`: Inertial frame centered on the specified celestial body or barycenter, aligned with the J2000 axis
+- `frames::earth::earth_fixed`: Earth-centered, Earth-fixed frame aligned with the Earth's rotation axis
+- `frames::dynamic::ric`: Radial-Intrack-Crosstrack frame defined by the position and velocity of a dynamic object
+- `frames::dynamic::lvlh`: Local-Vertical Local-Horizontal frame defined by the position and velocity of a dynamic object
+- `frames::dynamic::vnb`: Velocity-Normal-Binormal frame defined by the position and velocity of a dynamic object
+- `frames::dynamic::enu`: East-North-Up frame defined by the position and velocity of a dynamic object
 
-
-
-*Astrea's type system provides practical dimensional safety for astrodynamics while maintaining the performance characteristics required for mission-critical applications.*
+The list is sparse for now because a representation of eci and ecef covers most use-cases, but a much more complete set of frame transformations is planned for the near future. Users can also define their own frames as well. 
