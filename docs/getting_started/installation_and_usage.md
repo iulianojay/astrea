@@ -161,7 +161,7 @@ cd <path_to_example> && . ./bin/example_name
 Create a simple test program to verify integration:
 
 ```cpp
-#include <astrea/astro/astro.hpp>
+#include <astro/astro.hpp>
 #include <iostream>
 
 using namespace astrea::astro;
@@ -261,7 +261,7 @@ make debug install
 After successful installation:
 
 1. Explore the [Examples](../examples/index.md) to understand common usage patterns
-2. Review the [API Documentation](../api_reference/index.md) for detailed interface descriptions
+2. Review the [API Documentation](../api/index.md) for detailed interface descriptions
 3. Join the community discussions on [GitHub](https://github.com/iulianojay/astrea)
 
 ## Shrinking the size of Astrea
