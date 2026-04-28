@@ -27,6 +27,7 @@
 #include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>
 #include <astro/propagation/event_detection/Schedule.hpp>
+#include <astro/propagation/numerical/StepWatcher.hpp>
 #include <astro/state/State.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/types/typedefs.hpp>
@@ -116,8 +117,9 @@ class Integrator {
      * @param state0 The initial state from which to start propagation.
      * @param propTime The total propagation time after the initial state epoch.
      * @param vehicle The vehicle whose state is to be propagated.
+     * @return State The final state of the vehicle at the end of the propagation interval.
      */
-    void propagate_no_storage(const State& state0, const Time& propTime, Vehicle vehicle);
+    State propagate_no_storage(const State& state0, const Time& propTime, Vehicle vehicle);
 
     /**
      * @brief Propagate the state of a vehicle from its current epoch to a specified end epoch without storing the state history.
@@ -125,8 +127,9 @@ class Integrator {
      * @param state0 The initial state from which to start propagation.
      * @param endEpoch The final epoch (end time) for the propagation.
      * @param vehicle The vehicle whose state is to be propagated.
+     * @return State The final state of the vehicle at the end of the propagation interval.
      */
-    void propagate_no_storage(const State& state0, const Date& endEpoch, Vehicle vehicle);
+    State propagate_no_storage(const State& state0, const Date& endEpoch, Vehicle vehicle);
 
     /**
      * @brief Set the schedule of events to be tracked during propagation.
@@ -170,6 +173,20 @@ class Integrator {
     {
         _eom = std::make_unique<T>(eom);
     }
+
+    /**
+     * @brief Add a step watcher function to be called at each step of the integration.
+     *
+     * @param watcher The StepWatcher function to be added.
+     *
+     * @note: beware - callbacks are slow
+     */
+    void add_step_watcher(const StepWatcher& watcher);
+
+    /**
+     * @brief Clear all step watchers from the integrator.
+     */
+    void clear_watchers();
 
     /**
      * @brief Set the absolute tolerance for the integrator.
@@ -293,6 +310,7 @@ class Integrator {
     // Events
     EventDetector _eventDetector;
     Schedule _schedule;
+    std::vector<StepWatcher> _stepWatchers;
 
     /**
      * @brief Propagate the state of a vehicle from its current epoch to a specified end epoch using the given equations of motion.
@@ -411,6 +429,15 @@ class Integrator {
      * @return false If the state or time are invalid (NaN or infinite).
      */
     bool validate_state_and_time(const Time& time, const State& state) const;
+
+    /**
+     * @brief Watch the state of the integrator at each step, calling any registered step watcher functions.
+     *
+     * @param time The current time in the integration.
+     * @param state The current state of the vehicle represented as orbital elements.
+     * @param vehicle The vehicle whose state is being integrated.
+     */
+    void watch_step(const Time& time, const State& state, const Vehicle& vehicle) const;
 };
 
 } // namespace astro
