@@ -28,6 +28,19 @@ AstrodynamicsSystem::AstrodynamicsSystem(const CelestialBodyId& centralBody, con
         add_body(body);
     }
 }
+AstrodynamicsSystem::AstrodynamicsSystem(const AstrodynamicsSystem& other)
+{
+    _centerType  = other._centerType;
+    _centralBody = other._centralBody;
+    for (const auto& [id, body] : other._bodies) {
+        add_body(id);
+    }
+}
+
+AstrodynamicsSystem& AstrodynamicsSystem::operator=(const AstrodynamicsSystem& other)
+{
+    return *this = std::move(AstrodynamicsSystem(other));
+}
 
 const SystemCenter& AstrodynamicsSystem::get_center_type() const { return _centerType; }
 
@@ -42,24 +55,18 @@ const CelestialBodyUniquePtr& AstrodynamicsSystem::get_central_body() const
     }
 }
 
-const CelestialBodyUniquePtr& AstrodynamicsSystem::get_body(const CelestialBodyId& id) const
-{
-    if (_bodies.count(id) > 0) { return _bodies.at(id); }
-    throw std::out_of_range("Input gravitational body not found.");
-}
+const CelestialBodyUniquePtr& AstrodynamicsSystem::get_body(const CelestialBodyId& id) const { return _bodies.at(id); }
 
 const CelestialBodyUniquePtr& AstrodynamicsSystem::add_body(const CelestialBodyId& id)
 {
     if (_bodies.count(id) == 0) {
         _bodies.emplace(id, create_impl(id));
-        _activeBodies.insert(id);
-        _root = find_common_root(_activeBodies);
+        _root = find_common_ancestor({ std::from_range, std::views::keys(_bodies) });
     }
-
     return get_body(id);
 }
 
-CelestialBodyUniquePtr AstrodynamicsSystem::add_body(const CelestialBodyId& id) const { return create_impl(id); }
+CelestialBodyUniquePtr AstrodynamicsSystem::create_body(const CelestialBodyId& id) const { return create_impl(id); }
 
 const std::unordered_map<CelestialBodyId, CelestialBodyUniquePtr>& AstrodynamicsSystem::get_all_bodies() const
 {
@@ -85,17 +92,17 @@ RadiusVector<frames::solar_system_barycenter::icrf>
     AstrodynamicsSystem::get_relative_position(const Date& date, const CelestialBodyId id1, const CelestialBodyId id2) const
 {
     // If one is the parent of the other, easy
-    const auto parent1 = get_body(id1)->get_parent();
-    const auto parent2 = get_body(id2)->get_parent();
+    const auto parent1 = create_body(id1)->get_parent();
+    const auto parent2 = create_body(id2)->get_parent();
 
-    if (parent1 == id2) { return get_body(id1)->get_position_at(date); }
-    if (parent2 == id1) { return -get_body(id2)->get_position_at(date); }
+    if (parent1 == id2) { return create_body(id1)->get_position_at(date); }
+    if (parent2 == id1) { return -create_body(id2)->get_position_at(date); }
 
     // Find the position using the root but it's fine to represent in ssb since it's just a relative position vector
-    const CelestialBodyId root = find_common_root({ id1, id2 });
+    const CelestialBodyId root = find_common_ancestor({ id1, id2 });
 
-    const RadiusVector<frames::solar_system_barycenter::icrf> pos1 = get_position_relative_to_root(date, id1, root);
-    const RadiusVector<frames::solar_system_barycenter::icrf> pos2 = get_position_relative_to_root(date, id2, root);
+    const RadiusVector<frames::solar_system_barycenter::icrf> pos1 = get_position_relative_to_ancestor(date, id1, root);
+    const RadiusVector<frames::solar_system_barycenter::icrf> pos2 = get_position_relative_to_ancestor(date, id2, root);
 
     return pos1 - pos2;
 }
@@ -104,92 +111,91 @@ VelocityVector<frames::solar_system_barycenter::icrf>
     AstrodynamicsSystem::get_relative_velocity(const Date& date, const CelestialBodyId id1, const CelestialBodyId id2) const
 {
     // If one is the parent of the other, easy
-    const auto parent1 = get_body(id1)->get_parent();
-    const auto parent2 = get_body(id2)->get_parent();
+    const auto parent1 = create_body(id1)->get_parent();
+    const auto parent2 = create_body(id2)->get_parent();
 
-    if (parent1 == id2) { return get_body(id1)->get_velocity_at(date); }
-    if (parent2 == id1) { return -get_body(id2)->get_velocity_at(date); }
+    if (parent1 == id2) { return create_body(id1)->get_velocity_at(date); }
+    if (parent2 == id1) { return -create_body(id2)->get_velocity_at(date); }
 
     // Find the position using the root but it's fine to represent in ssb since it's just a relative position vector
-    const CelestialBodyId root = find_common_root({ id1, id2 });
+    const CelestialBodyId root = find_common_ancestor({ id1, id2 });
 
-    const VelocityVector<frames::solar_system_barycenter::icrf> vel1 = get_velocity_relative_to_root(date, id1, root);
-    const VelocityVector<frames::solar_system_barycenter::icrf> vel2 = get_velocity_relative_to_root(date, id2, root);
+    const VelocityVector<frames::solar_system_barycenter::icrf> vel1 = get_velocity_relative_to_ancestor(date, id1, root);
+    const VelocityVector<frames::solar_system_barycenter::icrf> vel2 = get_velocity_relative_to_ancestor(date, id2, root);
 
     return vel1 - vel2;
 }
 
 RadiusVector<frames::solar_system_barycenter::icrf>
-    AstrodynamicsSystem::get_position_relative_to_root(const Date& date, const CelestialBodyId id, const CelestialBodyId root) const
+    AstrodynamicsSystem::get_position_relative_to_ancestor(const Date& date, const CelestialBodyId id, const CelestialBodyId ancestor) const
 {
     auto object = id;
-    auto parent = get_body(object)->get_parent();
+    auto parent = create_body(object)->get_parent();
 
-    RadiusVector<frames::solar_system_barycenter::icrf> pos = get_body(object)->get_position_at(date);
-    while (parent != root) {
+    RadiusVector<frames::solar_system_barycenter::icrf> pos = create_body(object)->get_position_at(date);
+    while (parent != ancestor) {
         object = parent;
-        parent = get_body(parent)->get_parent();
-        pos += get_body(object)->get_position_at(date);
+        parent = create_body(parent)->get_parent();
+        pos += create_body(object)->get_position_at(date);
     }
     return pos;
 }
 
 
 CartesianVector<Velocity, frames::solar_system_barycenter::icrf>
-    AstrodynamicsSystem::get_velocity_relative_to_root(const Date& date, const CelestialBodyId id, const CelestialBodyId root) const
+    AstrodynamicsSystem::get_velocity_relative_to_ancestor(const Date& date, const CelestialBodyId id, const CelestialBodyId ancestor) const
 {
     auto object = id;
-    auto parent = get_body(object)->get_parent();
+    auto parent = create_body(object)->get_parent();
 
-    CartesianVector<Velocity, frames::solar_system_barycenter::icrf> vel = get_body(object)->get_velocity_at(date);
-    while (parent != root) {
+    CartesianVector<Velocity, frames::solar_system_barycenter::icrf> vel = create_body(object)->get_velocity_at(date);
+    while (parent != ancestor) {
         object = parent;
-        parent = get_body(parent)->get_parent();
-        vel += get_body(object)->get_velocity_at(date);
+        parent = create_body(parent)->get_parent();
+        vel += create_body(object)->get_velocity_at(date);
     }
     return vel;
 }
 
-CelestialBodyId AstrodynamicsSystem::find_common_root(const std::unordered_set<CelestialBodyId>& bodies) const
+CelestialBodyId AstrodynamicsSystem::find_common_ancestor(const std::unordered_set<CelestialBodyId>& bodies) const
 {
     // If there's only one body, it is the root
     if (bodies.size() == 1) { return *(bodies.begin()); }
 
     // Count total planets
-    CelestialBodyId root;
+    CelestialBodyId ancestor;
     std::size_t planetCount = 0;
     for (const auto& id : bodies) {
-        const auto& body = get_body(id);
+        const auto& body = create_body(id);
         if (body->get_type() == CelestialBodyType::PLANET) {
             planetCount++;
-            root = id;
+            ancestor = id;
         }
     }
 
-    // Check if other bodies are children of only planet -
-    // assumes the common root cannot be a satellite
     if (planetCount == 1) {
+        // Check if other bodies are children of only planet -
+        // assumes the common ancestor cannot be a satellite
         for (const auto& id : bodies) {
             CelestialBodyId parentId = id;
-            while (parentId != CelestialBodyId::SUN && parentId != _root) {
+            while (parentId != CelestialBodyId::SUN && parentId != ancestor) {
                 // Don't add parent to active bodies if it's not already there
-                parentId = add_body(parentId)->get_parent();
+                parentId = create_body(parentId)->get_parent();
             }
 
-            // If any object not in same planetary system, the common root
-            // must be the Sun
+            // If any object not in same planetary system, the common ancestor must be the Sun
             if (parentId == CelestialBodyId::SUN) {
-                root = CelestialBodyId::SUN;
+                ancestor = CelestialBodyId::SUN;
                 break;
             }
         }
     }
     else {
-        // The only common root for multiple planets is the Sun
-        root = CelestialBodyId::SUN;
+        // The only common ancestor for multiple planets is the Sun
+        ancestor = CelestialBodyId::SUN;
     }
 
-    return root;
+    return ancestor;
 }
 
 CelestialBodyUniquePtr AstrodynamicsSystem::create_impl(const CelestialBodyId& id) const
