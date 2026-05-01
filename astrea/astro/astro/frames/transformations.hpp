@@ -130,9 +130,6 @@ concept HasValidFrameTransformation = requires(Date date) {
  * @param vec The vector to rotate.
  * @param date The date at which to perform the rotation.
  * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
- * @throws std::runtime_error If the frames do not share the same origin or if the DCM cannot be obtained.
- * @note This function multiplies the vector by the DCM and does NOT return a vector with respect to the new frame.
- * It is the user's responsibility to understand if this makes sense or not.
  */
 template <typename Value_T, typename Frame_T, typename Frame_U>
 CartesianVector<Value_T, Frame_U> rotate_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
@@ -152,17 +149,44 @@ CartesianVector<Value_T, Frame_U> rotate_vector_into_frame(const CartesianVector
  * @param vec The vector to translate.
  * @param date The date at which to perform the translation.
  * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
- * @throws std::runtime_error If the frames do not share the same axis or if the center offset cannot be obtained.
- * @note This function returns a vector with respect to the new frame, but specializations currently only exist for
- * inertial frames directly provided by this library. It will not work for custom or dynamic frames.
+ *
+ * @note: This overload doesn't change in the input frame to avoid unnecessary frame conversions when the frames share the same origin but different axes.
  */
-template <typename Frame_T, typename Frame_U>
-    requires(HasSameAxis<Frame_T, Frame_U>)
+template <typename Value_T, typename Frame_T, typename Frame_U>
+    requires(HasSameOrigin<Frame_T, Frame_U>)
+CartesianVector<Value_T, Frame_T> translate_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
+{
+    return vec;
+}
+
+/**
+ * @brief Translate a vector from one frame to another at a given date by accounting for the center offset between the frames.
+ *
+ * This function calculates the center offset between Frame_T and Frame_U at the specified date and translates the input vector accordingly.
+ *
+ * @tparam Value_T The type of the vector components (e.g., Distance, Velocity).
+ * @tparam Frame_T The source frame type.
+ * @tparam Frame_U The target frame type.
+ * @param vec The vector to translate.
+ * @param date The date at which to perform the translation.
+ * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
+ */
+template <typename Value_T, typename Frame_T, typename Frame_U>
+    requires(!HasSameOrigin<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U>)
 CartesianVector<Distance, Frame_U> translate_vector_into_frame(const CartesianVector<Distance, Frame_T>& vec, const Date& date)
 {
     static const AstrodynamicsSystem system(Frame_T::origin, { Frame_U::origin });
-    const auto& posRel = system.get_relative_position(date, Frame_U::origin, Frame_T::origin); // Frame_T -> Frame_U
-    return vec - posRel;
+    if constexpr (std::is_same_v<Value_T, Distance>) {
+        const auto& posRel = system.get_relative_position(date, Frame_U::origin, Frame_T::origin); // Frame_T -> Frame_U
+        return vec.template force_frame_conversion<Frame_U>() + posRel.template force_frame_conversion<Frame_U>();
+    }
+    else if constexpr (std::is_same_v<Value_T, Velocity>) {
+        const auto& velRel = system.get_relative_velocity(date, Frame_U::origin, Frame_T::origin); // Frame_T -> Frame_U
+        return vec.template force_frame_conversion<Frame_U>() - velRel.template force_frame_conversion<Frame_U>();
+    }
+    else {
+        throw std::logic_error("Unsupported vector type for translation. Only Distance and Velocity are supported.");
+    }
 }
 
 /**
@@ -175,20 +199,28 @@ CartesianVector<Distance, Frame_U> translate_vector_into_frame(const CartesianVe
  * @tparam Frame_U The target frame type.
  * @param vec The vector to transform.
  * @param date The date at which to perform the transformation.
- * @return CartesianVector<Distance, Frame_U> A new CartesianVector in the target frame.
- * @throws std::runtime_error If the frames do not have a known transformation or if the DCM cannot be obtained.
- * @note This function returns a vector with respect to the new frame, but specializations currently only exist for
- * inertial frames directly provided by this library. It will not work for custom or dynamic frames.
+ * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
  */
 template <typename Value_T, typename Frame_T, typename Frame_U>
+    requires(IsStaticFrame<Frame_T> && IsStaticFrame<Frame_U>)
 CartesianVector<Value_T, Frame_U> transform_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
 {
-    static_assert(std::is_same_v<Value_T, Distance>, "Transformations with respect to a frame are only implemented for Distance vectors at this time.");
-
-    struct IntermediateFrame : Frame<Frame_U::origin, Frame_T::axis> {};
-    const auto vecInIntermediate = translate_vector_into_frame<Frame_T, IntermediateFrame>(vec, date);
-
-    return rotate_vector_into_frame(vecInIntermediate, date);
+    if constexpr (HasSameOrigin<Frame_T, Frame_U>) {
+        // Same origin: rotation only
+        return rotate_vector_into_frame<Value_T, Frame_T, Frame_U>(vec, date);
+    }
+    else if constexpr (HasSameAxis<Frame_T, Frame_U>) {
+        // Same axis: translation only
+        return translate_vector_into_frame<Value_T, Frame_T, Frame_U>(vec, date);
+    }
+    else {
+        // Different origin and axis: translate to the intermediate frame that shares Frame_T's axis
+        // but Frame_U's origin (e.g. ssb::icrf -> earth::icrf), then rotate to Frame_U.
+        // Using InertialFrame<> ensures DCMs registered for canonical named frame types are found.
+        using IntermediateFrame      = InertialFrame<Frame_U::origin, Frame_T::axis>;
+        const auto vecInIntermediate = translate_vector_into_frame<Value_T, Frame_T, IntermediateFrame>(vec, date);
+        return rotate_vector_into_frame<Value_T, IntermediateFrame, Frame_U>(vecInIntermediate, date);
+    }
 }
 
 

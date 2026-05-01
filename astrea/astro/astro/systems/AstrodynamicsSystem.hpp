@@ -244,6 +244,17 @@ class AstrodynamicsSystem {
         get_relative_position(const Date& date, const CelestialBodyId id1, const CelestialBodyId id2) const;
 
     /**
+     * @brief Get the relative position between two celestial bodies at a specific date.
+     *
+     * @param date The date at which to get the relative position.
+     * @param id1 The ID of the first celestial body.
+     * @param id2 The ID of the second celestial body.
+     * @return CartesianVector<Velocity, frames::solar_system_barycenter::icrf> The relative velocity vector from id2 to id1.
+     */
+    CartesianVector<Velocity, frames::solar_system_barycenter::icrf>
+        get_relative_velocity(const Date& date, const CelestialBodyId id1, const CelestialBodyId id2) const;
+
+    /**
      * @brief Iterator type for iterating over celestial bodies.
      */
     using iterator = BodyMap::iterator;

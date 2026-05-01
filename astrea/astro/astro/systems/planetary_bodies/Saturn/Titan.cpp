@@ -16,6 +16,7 @@
 #include <map>
 
 #include <astro/state/State.hpp>
+#include <astro/state/angular_elements/instances/Geodetic.hpp>
 
 namespace astrea {
 namespace astro {

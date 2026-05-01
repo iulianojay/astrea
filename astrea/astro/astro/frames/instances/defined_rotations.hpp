@@ -80,7 +80,7 @@ inline DirectionCosineMatrix<In_Frame_T, Out_Frame_T> get_dcm(const Date& date)
 {
     static const AstrodynamicsSystem system(Out_Frame_T::origin);
     static const auto& body = system.get_body(Out_Frame_T::origin);
-    const Angle gst         = date.body_sidereal_time(body.get());
+    const Angle gst         = date.body_sidereal_time(*body.get());
     return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::Z(-gst);
 }
 
