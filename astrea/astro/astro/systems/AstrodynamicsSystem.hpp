@@ -244,16 +244,6 @@ class AstrodynamicsSystem {
         get_relative_position(const Date& date, const CelestialBodyId id1, const CelestialBodyId id2) const;
 
     /**
-     * @brief Get the position of a celestial body relative to the root at a specific date.
-     *
-     * @param date The date at which to get the position.
-     * @param id The ID of the celestial body.
-     * @return CartesianVector<Distance, frames::solar_system_barycenter::icrf> The position vector of the celestial body relative to the root.
-     */
-    CartesianVector<Distance, frames::solar_system_barycenter::icrf>
-        get_position_relative_to_root(const Date& date, const CelestialBodyId id, const CelestialBodyId root) const;
-
-    /**
      * @brief Iterator type for iterating over celestial bodies.
      */
     using iterator = BodyMap::iterator;
@@ -301,6 +291,26 @@ class AstrodynamicsSystem {
      * @note Dont judge me.
      */
     CelestialBodyUniquePtr create_impl(const CelestialBodyId& id) const;
+
+    /**
+     * @brief Get the position of a celestial body relative to the root at a specific date.
+     *
+     * @param date The date at which to get the position.
+     * @param id The ID of the celestial body.
+     * @return CartesianVector<Distance, frames::solar_system_barycenter::icrf> The position vector of the celestial body relative to the root.
+     */
+    CartesianVector<Distance, frames::solar_system_barycenter::icrf>
+        get_position_relative_to_root(const Date& date, const CelestialBodyId id, const CelestialBodyId root) const;
+
+    /**
+     * @brief Get the velocity of a celestial body relative to the root at a specific date.
+     *
+     * @param date The date at which to get the velocity.
+     * @param id The ID of the celestial body.
+     * @return CartesianVector<Velocity, frames::solar_system_barycenter::icrf> The velocity vector of the celestial body relative to the root.
+     */
+    CartesianVector<Velocity, frames::solar_system_barycenter::icrf>
+        get_velocity_relative_to_root(const Date& date, const CelestialBodyId id, const CelestialBodyId root) const;
 };
 
 } // namespace astro

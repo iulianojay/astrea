@@ -35,6 +35,12 @@ RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& 
     return positionUbFromSsb; // TODO: Add correction for Uranus' position from Uranus barycenter
 }
 
+VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at(const Date& date) const
+{
+    const auto velocityUbFromSsb = get_velocity_at_impl<UranusEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    return velocityUbFromSsb; // TODO: Add correction for Uranus' velocity from Uranus barycenter
+}
+
 #endif // ASTREA_BUILD_URANUS_EPHEMERIS
 
 } // namespace planetary_bodies

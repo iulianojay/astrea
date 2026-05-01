@@ -99,7 +99,7 @@ class Mars : public CelestialBody {
      * @param altitude The altitude above the surface of Mars in kilometers.
      * @return Density The estimated atmospheric density in kg/m^3.
      */
-    Density find_atmospheric_density(const Date& date, const Distance& altitude) const override;
+    Density find_atmospheric_density(const State& state) const override;
 
     /**
      * @brief Get the unique identifier for the Mars celestial body.
@@ -117,6 +117,14 @@ class Mars : public CelestialBody {
      * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Mars at the given date.
      */
     RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
+
+    /**
+     * @brief Get the velocity of the Mars at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+     *
+     * @param date The date for which to find the velocity of the Mars.
+     * @return VelocityVector<frames::solar_system_barycenter::icrf> The velocity of the Mars at the given date.
+     */
+    VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at(const Date& date) const;
 
 #endif // ASTREA_BUILD_MARS_EPHEMERIS
 };

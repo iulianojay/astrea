@@ -55,16 +55,6 @@ class AtmosphericForce : public PerturbingForce {
      * @return Perturbation The computed force and torque due to atmospheric force.
      */
     Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override;
-
-  private:
-    /**
-     * @brief Finds the atmospheric density at a given altitude.
-     *
-     * @param state Cartesian<frames::primary> state vector of the vehicle
-     * @param center Celestial body around which the vehicle is orbiting
-     * @return Density The atmospheric density at the given altitude.
-     */
-    const Density find_atmospheric_density(const State& state, const std::unique_ptr<CelestialBody>& center) const;
 };
 
 } // namespace astro

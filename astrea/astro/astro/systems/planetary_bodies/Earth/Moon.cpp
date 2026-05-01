@@ -35,6 +35,12 @@ RadiusVector<frames::solar_system_barycenter::icrf> Moon::get_position_at(const 
     return positionMoonFromEarth.force_frame_conversion<frames::solar_system_barycenter::icrf>();
 }
 
+VelocityVector<frames::solar_system_barycenter::icrf> Moon::get_velocity_at(const Date& date) const
+{
+    const auto velocityMoonFromEarth = get_velocity_at_impl<MoonEphemerisTable, frames::earth::icrf>(date);
+    return velocityMoonFromEarth.force_frame_conversion<frames::solar_system_barycenter::icrf>();
+}
+
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 } // namespace planetary_bodies

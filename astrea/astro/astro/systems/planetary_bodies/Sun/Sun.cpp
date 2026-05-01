@@ -34,6 +34,11 @@ RadiusVector<frames::solar_system_barycenter::icrf> Sun::get_position_at(const D
     return get_position_at_impl<SunEphemerisTable, frames::solar_system_barycenter::icrf>(date);
 }
 
+VelocityVector<frames::solar_system_barycenter::icrf> Sun::get_velocity_at(const Date& date) const
+{
+    return get_velocity_at_impl<SunEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+}
+
 #endif // ASTREA_BUILD_SUN_EPHEMERIS
 
 } // namespace planetary_bodies

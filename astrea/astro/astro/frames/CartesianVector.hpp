@@ -161,7 +161,7 @@ class CartesianVector {
      * @return false If the two vectors are equal.
      */
     template <typename Frame_U>
-        requires(!std::is_same<Frame_T, Frame_U>::value)
+        requires(!IsSameFrame<Frame_T, Frame_U>)
     bool operator==(const CartesianVector<Value_T, Frame_U>& other) const
     {
         return false;
@@ -435,7 +435,7 @@ class CartesianVector {
         requires(!IsSameFrame<Frame_T, Frame_U> && IsStaticFrame<Frame_U>)
     CartesianVector<Value_T, Frame_U> in_frame(const Date& date) const
     {
-        return frames::rotate_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
+        return frames::transform_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
     }
 
     // /**

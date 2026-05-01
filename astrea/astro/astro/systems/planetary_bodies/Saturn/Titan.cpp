@@ -15,6 +15,8 @@
 
 #include <map>
 
+#include <astro/state/State.hpp>
+
 namespace astrea {
 namespace astro {
 namespace planetary_bodies {
@@ -59,8 +61,12 @@ static const std::map<Altitude, TitanDensity> titanicAtmosphere = { // km, g/cm^
     { 1300.0 * km, 1.00e-14 * g / (pow<3>(cm)) }
 };
 
-Density Titan::find_atmospheric_density(const Date& date, const Distance& altitude) const
+Density Titan::find_atmospheric_density(const State& state) const
 {
+    const auto& position = state.get_position_in_frame<frames::titan::titan_fixed>();
+    const auto [latitude, longitude, altitude] =
+        convert_body_fixed_to_geodetic(position, get_equitorial_radius(), get_polar_radius());
+
     const auto iter = titanicAtmosphere.upper_bound(altitude);
     return (iter != titanicAtmosphere.end()) ? iter->second : 0.0 * g / (cm * cm * cm);
 }

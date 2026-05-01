@@ -192,9 +192,9 @@ class State {
      * @return RadiusVector<Frame_T> The position vector of the state in the specified frame.
      */
     template <typename Frame_T>
-    RadiusVector<Frame_T> get_position_in_frame(const Date& date) const
+    RadiusVector<Frame_T> get_position_in_frame() const
     {
-        return get_position().template in_frame<Frame_T>(date);
+        return get_position().template in_frame<Frame_T>(get_epoch());
     }
 
     /**
@@ -264,10 +264,7 @@ class State {
      *
      * @return GravParam The gravitational parameter (mu) of the central body, or zero if no system is associated.
      */
-    GravParam get_mu() const
-    {
-        return _system ? _system->get_mu() : GravParam::zero();
-    }
+    GravParam get_mu() const { return _system ? _system->get_mu() : GravParam::zero(); }
 
     /**
      * @brief Converts the State to a vector of Unitless values.

@@ -100,6 +100,25 @@ RadiusVector<frames::solar_system_barycenter::icrf>
     return pos1 - pos2;
 }
 
+VelocityVector<frames::solar_system_barycenter::icrf>
+    AstrodynamicsSystem::get_relative_velocity(const Date& date, const CelestialBodyId id1, const CelestialBodyId id2) const
+{
+    // If one is the parent of the other, easy
+    const auto parent1 = get_body(id1)->get_parent();
+    const auto parent2 = get_body(id2)->get_parent();
+
+    if (parent1 == id2) { return get_body(id1)->get_velocity_at(date); }
+    if (parent2 == id1) { return -get_body(id2)->get_velocity_at(date); }
+
+    // Find the position using the root but it's fine to represent in ssb since it's just a relative position vector
+    const CelestialBodyId root = find_common_root({ id1, id2 });
+
+    const VelocityVector<frames::solar_system_barycenter::icrf> vel1 = get_velocity_relative_to_root(date, id1, root);
+    const VelocityVector<frames::solar_system_barycenter::icrf> vel2 = get_velocity_relative_to_root(date, id2, root);
+
+    return vel1 - vel2;
+}
+
 RadiusVector<frames::solar_system_barycenter::icrf>
     AstrodynamicsSystem::get_position_relative_to_root(const Date& date, const CelestialBodyId id, const CelestialBodyId root) const
 {
@@ -113,6 +132,22 @@ RadiusVector<frames::solar_system_barycenter::icrf>
         pos += get_body(object)->get_position_at(date);
     }
     return pos;
+}
+
+
+CartesianVector<Velocity, frames::solar_system_barycenter::icrf>
+    AstrodynamicsSystem::get_velocity_relative_to_root(const Date& date, const CelestialBodyId id, const CelestialBodyId root) const
+{
+    auto object = id;
+    auto parent = get_body(object)->get_parent();
+
+    CartesianVector<Velocity, frames::solar_system_barycenter::icrf> vel = get_body(object)->get_velocity_at(date);
+    while (parent != root) {
+        object = parent;
+        parent = get_body(parent)->get_parent();
+        vel += get_body(object)->get_velocity_at(date);
+    }
+    return vel;
 }
 
 CelestialBodyId AstrodynamicsSystem::find_common_root(const std::unordered_set<CelestialBodyId>& bodies) const

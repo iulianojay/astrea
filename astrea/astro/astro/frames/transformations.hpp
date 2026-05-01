@@ -142,6 +142,30 @@ CartesianVector<Value_T, Frame_U> rotate_vector_into_frame(const CartesianVector
 }
 
 /**
+ * @brief Translate a vector from one frame to another at a given date by accounting for the center offset between the frames.
+ *
+ * This function calculates the center offset between Frame_T and Frame_U at the specified date and translates the input vector accordingly.
+ *
+ * @tparam Value_T The type of the vector components (e.g., Distance, Velocity).
+ * @tparam Frame_T The source frame type.
+ * @tparam Frame_U The target frame type.
+ * @param vec The vector to translate.
+ * @param date The date at which to perform the translation.
+ * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
+ * @throws std::runtime_error If the frames do not share the same axis or if the center offset cannot be obtained.
+ * @note This function returns a vector with respect to the new frame, but specializations currently only exist for
+ * inertial frames directly provided by this library. It will not work for custom or dynamic frames.
+ */
+template <typename Frame_T, typename Frame_U>
+    requires(HasSameAxis<Frame_T, Frame_U>)
+CartesianVector<Distance, Frame_U> translate_vector_into_frame(const CartesianVector<Distance, Frame_T>& vec, const Date& date)
+{
+    static const AstrodynamicsSystem system(Frame_T::origin, { Frame_U::origin });
+    const auto& posRel = system.get_relative_position(date, Frame_U::origin, Frame_T::origin); // Frame_T -> Frame_U
+    return vec - posRel;
+}
+
+/**
  * @brief Transform a vector from one frame to another at a given date, accounting for both rotation and translation.
  *
  * This function first translates the vector by the center offset between the two frames, then rotates it using the
@@ -156,15 +180,16 @@ CartesianVector<Value_T, Frame_U> rotate_vector_into_frame(const CartesianVector
  * @note This function returns a vector with respect to the new frame, but specializations currently only exist for
  * inertial frames directly provided by this library. It will not work for custom or dynamic frames.
  */
-// template <typename Value_T, typename Frame_T, typename Frame_U>
-// CartesianVector<Value_T, Frame_U> transform_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
-// {
-//     static_assert(std::is_same_v<Value_T, Distance>, "Transformations with respect to a frame are only implemented for Distance vectors at this time.");
+template <typename Value_T, typename Frame_T, typename Frame_U>
+CartesianVector<Value_T, Frame_U> transform_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
+{
+    static_assert(std::is_same_v<Value_T, Distance>, "Transformations with respect to a frame are only implemented for Distance vectors at this time.");
 
-//     const auto offset = get_center_offset<Frame_T, Frame_U>(date);
-//     const auto dcm    = DcmManager::get_dcm<Frame_T, Frame_U>(date);
-//     return CartesianVector<Value_T, Frame_U>(dcm * vec + offset);
-// }
+    struct IntermediateFrame : Frame<Frame_U::origin, Frame_T::axis> {};
+    const auto vecInIntermediate = translate_vector_into_frame<Frame_T, IntermediateFrame>(vec, date);
+
+    return rotate_vector_into_frame(vecInIntermediate, date);
+}
 
 
 } // namespace frames

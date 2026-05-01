@@ -319,7 +319,7 @@ class CelestialBody {
      * outside of their equitorial radius, they have no noticible atmosphere
      * and inside that radius, the object will crash.
      */
-    virtual Density find_atmospheric_density(const Date& date, const Distance& altitude) const;
+    virtual Density find_atmospheric_density(const State& state) const;
 
     /**
      * @brief Get the keplerian elements of the celestial body at a specific date using a linear approximation.
@@ -339,6 +339,17 @@ class CelestialBody {
      *      how to make dynamic centers work with frames.
      */
     virtual CartesianVector<Distance, frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
+
+    /**
+     * @brief Get the velocity of the celestial body at a specific date in the ICRF frame.
+     *
+     * @param date The date at which to get the velocity of the celestial body.
+     * @return CartesianVector<Velocity,  frames::solar_system_barycenter::icrf> The velocity of the celestial body at the specified date.
+     *
+     * @note This function is wrong. It actually returns the velocity in the ICRF frame, centered on the object's parent. Need to figure out
+     *      how to make dynamic centers work with frames.
+     */
+    virtual CartesianVector<Velocity, frames::solar_system_barycenter::icrf> get_velocity_at(const Date& date) const;
 
   protected:
     std::string _name;           //!< Name of the celestial body

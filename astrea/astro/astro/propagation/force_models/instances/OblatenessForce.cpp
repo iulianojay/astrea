@@ -254,7 +254,7 @@ AccelerationVector<frames::primary>
     // Find lat and lon
     const RadiusVector<frames::primary> rEci = state.get_position();
     const RadiusVector<frames::primary_fixed> rEcef = state.get_position().in_frame<frames::primary_fixed>(date);
-    const auto [latitude, longitude, altitude] = convert_earth_fixed_to_geocentric(rEcef, equitorialR, polarR);
+    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geocentric(rEcef, equitorialR, polarR);
 
     // Precomput common terms
     const Distance& xEcef = rEcef[0];

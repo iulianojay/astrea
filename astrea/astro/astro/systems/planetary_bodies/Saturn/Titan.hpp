@@ -97,7 +97,7 @@ class Titan : public CelestialBody {
      * @param altitude The altitude above the surface of Titan.
      * @return Density The atmospheric density at the specified altitude and date.
      */
-    Density find_atmospheric_density(const Date& date, const Distance& altitude) const override;
+    Density find_atmospheric_density(const State& state) const override;
 
     /**
      * @brief Get the unique identifier for the Titan celestial body.

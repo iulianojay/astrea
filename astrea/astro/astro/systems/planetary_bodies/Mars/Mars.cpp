@@ -20,6 +20,8 @@
 #include <ephemerides/Mars/MarsEphemerisTable.hpp>
 #endif // ASTREA_BUILD_MARS_EPHEMERIS
 
+#include <astro/state/State.hpp>
+
 namespace astrea {
 namespace astro {
 namespace planetary_bodies {
@@ -47,10 +49,14 @@ static const std::map<Altitude, Density> martianAtmosphere = { // km, kg/m^3
     { 75.0 * km, 6.05e-4 * kg / (pow<3>(m)) }, { 80.0 * km, 4.02e-4 * kg / (pow<3>(m)) }
 };
 
-Density Mars::find_atmospheric_density(const Date& date, const Distance& altitude) const
+Density Mars::find_atmospheric_density(const State& state) const
 {
+    const auto& position = state.get_position_in_frame<frames::mars::mars_fixed>();
+    const auto [latitude, longitude, altitude] =
+        convert_body_fixed_to_geodetic(position, get_equitorial_radius(), get_polar_radius());
+
     // The values up to 80 km are almost definitely wrong.I can't find any
-    // sources that contradict them though.Please fix them(and the
+    // sources that contradict them though. Please fix them (and the
     // associated crash radius of Mars) if you can find better numbers.
     Unitless altitudeValue = altitude / astrea::detail::distance_unit;
     if (altitude <= 80.0 * km) {
@@ -78,6 +84,12 @@ RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& 
 {
     const auto positionJbFromSsb = get_position_at_impl<MarsEphemerisTable, frames::solar_system_barycenter::icrf>(date);
     return positionJbFromSsb; // TODO: Add correction for Mars' position from Mars barycenter
+}
+
+VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at(const Date& date) const
+{
+    const auto velocityJbFromSsb = get_velocity_at_impl<MarsEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    return velocityJbFromSsb; // TODO: Add correction for Mars' velocity from Mars barycenter
 }
 
 #endif // ASTREA_BUILD_MARS_EPHEMERIS
