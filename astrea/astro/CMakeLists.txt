@@ -77,6 +77,8 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/systems/CelestialBody.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/JplEphemerisTable.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Earth.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Earth/atmosphere/JacciaRoberts.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Earth/atmosphere/HarrisPriester.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Moon.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Mars/Mars.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Mercury/Mercury.cpp
@@ -191,6 +193,8 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/systems/planetary_bodies/planetary_bodies.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/JplEphemerisTable.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Earth.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Earth/atmosphere/JacciaRoberts.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Earth/atmosphere/HarrisPriester.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Moon.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/Mars/Deimos.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/Mars/Mars.hpp
