@@ -11,7 +11,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/systems/planetary_bodies/Earth/Earth.hpp>
+#include <astro/systems/planetary_bodies/Earth/atmosphere/JacciaRoberts.hpp>
 
 namespace astrea {
 namespace astro {

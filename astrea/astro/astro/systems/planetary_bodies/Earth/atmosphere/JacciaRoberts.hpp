@@ -18,14 +18,28 @@
  */
 #pragma once
 
+#include <units/units.hpp>
+
+#include <astro/astro.fwd.hpp>
+
 namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
+/**
+ * @brief The Jaccia-Roberts atmospheric model for Earth.
+ */
 class JacciaRobertsAtmosphere {
   public:
+    /**
+     * @brief Deleted constructor
+     */
     JacciaRobertsAtmosphere() = delete;
 
+    /**
+     * @brief Find the atmospheric density at a given state using the Jaccia-Roberts atmospheric model.
+     * @return Density The atmospheric density at the given state.
+     */
     static Density find_atmospheric_density(const State& state);
 };
 

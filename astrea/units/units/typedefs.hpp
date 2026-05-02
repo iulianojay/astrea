@@ -203,4 +203,9 @@ using Moment = mp_units::quantity<detail::force_unit * detail::distance_unit>;
  */
 using MomentOfInertia = mp_units::quantity<detail::mass_unit * mp_units::pow<2>(detail::distance_unit)>;
 
+/**
+ * @brief Definition for a solar flux quantity.
+ */
+using SolarFlux = mp_units::quantity<SolarFluxUnits>;
+
 } // namespace astrea

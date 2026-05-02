@@ -18,14 +18,28 @@
  */
 #pragma once
 
+#include <units/units.hpp>
+
+#include <astro/astro.fwd.hpp>
+
 namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
+/**
+ * @brief The Harris-Priester atmospheric model for Earth.
+ */
 class HarrisPriesterAtmosphere {
   public:
+    /**
+     * @brief Deleted constructor
+     */
     HarrisPriesterAtmosphere() = delete;
 
+    /**
+     * @brief Find the atmospheric density at a given state using the Harris-Priester atmospheric model.
+     * @return Density The atmospheric density at the given state.
+     */
     static Density find_atmospheric_density(const State& state);
 };
 
