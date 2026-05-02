@@ -68,11 +68,9 @@ void LegendreCache::size_vectors(const std::size_t& degree, const std::size_t& o
 {
     _C.resize(degree + 1);
     _S.resize(degree + 1);
-    _normalizingCoefficients.resize(degree + 1);
     for (std::size_t n = 0; n < degree + 1; ++n) {
         _C[n].resize(order + 1);
         _S[n].resize(order + 1);
-        _normalizingCoefficients[n].resize(order + 1);
     }
 }
 
@@ -147,6 +145,9 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
     file.close();
 
     // Calculate normalization coefficients after reading all coefficients
+    if (centerId == CelestialBodyId::MARS) {
+        return;
+    } // The Mars file is already normalized, so skip this step for Mars
     for (std::size_t n = 0; n <= degree; ++n) {
         for (std::size_t m = 0; m <= std::min(n, order); ++m) {
             // Calculate (n + m)!/(n - m)! = (n - m + 1)(n - m + 2)...(n + m)
@@ -160,13 +161,11 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
             // sqrt( (2 - delta_m0) * (2n + 1) * (n - m)! / (n + m)! )
             // delta = 1 if m = 0, else 0
             const unsigned int delta = (m == 0) ? 1 : 0;
-            _normalizingCoefficients[n][m] = sqrt(static_cast<double>((2 - delta) * (2 * n + 1)) / factorialCoefficient);
+            const Unitless Nnm       = sqrt(static_cast<double>((2 - delta) * (2 * n + 1)) / factorialCoefficient);
 
-            // Normalize coefficients if needed
-            if (centerId == CelestialBodyId::MARS) {
-                _C[n][m] /= _normalizingCoefficients[n][m];
-                _S[n][m] /= _normalizingCoefficients[n][m];
-            }
+            // Pre-normalize coefficients
+            _C[n][m] *= Nnm;
+            _S[n][m] *= Nnm;
         }
     }
 }
@@ -217,12 +216,6 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
 
 //     return P;
 // }
-
-
-Unitless LegendreCache::get_normalizing_coefficient(const std::size_t& n, const std::size_t& m) const
-{
-    return _normalizingCoefficients[n][m];
-}
 
 
 Unitless LegendreCache::get_cosine_coefficient(const std::size_t& n, const std::size_t& m) const { return _C[n][m]; }
@@ -450,9 +443,8 @@ Perturbation OblatenessForce::compute_perturbation(const State& state, const Veh
         for (std::size_t n = m; n <= _degree; ++n) {
             const Unitless nn = static_cast<double>(n) * one;
 
-            const Unitless Nnm = _legendreCache.get_normalizing_coefficient(n, m);
-            const Unitless Cnm = _legendreCache.get_cosine_coefficient(n, m) * Nnm;
-            const Unitless Snm = _legendreCache.get_sine_coefficient(n, m) * Nnm;
+            const Unitless Cnm = _legendreCache.get_cosine_coefficient(n, m);
+            const Unitless Snm = _legendreCache.get_sine_coefficient(n, m);
 
             if (m == 0) {
                 // Special case for m = 0 (zonal harmonics)
