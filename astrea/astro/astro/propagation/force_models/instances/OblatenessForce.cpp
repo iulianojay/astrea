@@ -401,25 +401,22 @@ Perturbation OblatenessForce::compute_perturbation(const State& state, const Veh
 
     // Combined recursion for V[n][m] and W[n][m]
     for (std::size_t m = 0; m <= _order + 1; ++m) {
-        const Unitless mm = static_cast<double>(m) * one;
-
         for (std::size_t n = (m == 0 ? 1 : m); n <= _degree + 1; ++n) {
-            const Unitless nn = static_cast<double>(n) * one;
 
             if (m == 0) {
                 // First column recursion: V[n][0] and W[n][0]
-                V[n][0] = ((2.0 * nn - 1.0) / nn) * zOverR * rEqOverR * V[n - 1][0];
-                if (n > 1) { V[n][0] -= ((nn - 1.0) / nn) * rEqOverRSq * V[n - 2][0]; }
+                V[n][0] = ((2.0 * n - 1.0) / n) * zOverR * rEqOverR * V[n - 1][0];
+                if (n > 1) { V[n][0] -= ((n - 1.0) / n) * rEqOverRSq * V[n - 2][0]; }
             }
             else if (n == m) {
                 // Diagonal recursion: V[m][m] and W[m][m]
-                V[m][m] = (2.0 * mm - 1.0) * rEqOverR * (xOverR * V[m - 1][m - 1] - yOverR * W[m - 1][m - 1]);
-                W[m][m] = (2.0 * mm - 1.0) * rEqOverR * (xOverR * W[m - 1][m - 1] + yOverR * V[m - 1][m - 1]);
+                V[m][m] = (2.0 * m - 1.0) * rEqOverR * (xOverR * V[m - 1][m - 1] - yOverR * W[m - 1][m - 1]);
+                W[m][m] = (2.0 * m - 1.0) * rEqOverR * (xOverR * W[m - 1][m - 1] + yOverR * V[m - 1][m - 1]);
             }
             else {
                 // General recursion for n > m
-                const Unitless factor1 = rEqOverR * zOverR * (2.0 * nn - 1.0) / (nn - mm);
-                const Unitless factor2 = rEqOverRSq * (nn + mm - 1.0) / (nn - mm);
+                const Unitless factor1 = rEqOverR * zOverR * (2.0 * n - 1.0) / (n - m);
+                const Unitless factor2 = rEqOverRSq * (n + m - 1.0) / (n - m);
 
                 V[n][m] = factor1 * V[n - 1][m];
                 W[n][m] = factor1 * W[n - 1][m];
@@ -438,10 +435,7 @@ Perturbation OblatenessForce::compute_perturbation(const State& state, const Veh
     Unitless ay = 0.0 * one;
     Unitless az = 0.0 * one;
     for (std::size_t m = 0; m <= _order; ++m) {
-        const Unitless mm = static_cast<double>(m) * one;
-
         for (std::size_t n = m; n <= _degree; ++n) {
-            const Unitless nn = static_cast<double>(n) * one;
 
             const Unitless Cnm = _legendreCache.get_cosine_coefficient(n, m);
             const Unitless Snm = _legendreCache.get_sine_coefficient(n, m);
@@ -453,7 +447,7 @@ Perturbation OblatenessForce::compute_perturbation(const State& state, const Veh
             }
             else {
                 // Sectoral and tesseral harmonics (m > 0)
-                const Unitless nmFactor = (nn - mm + 2.0) * (nn - mm + 1.0);
+                const Unitless nmFactor = (n - m + 2.0) * (n - m + 1.0);
 
                 // ax component
                 ax += 0.5 * ((-Cnm * V[n + 1][m + 1] - Snm * W[n + 1][m + 1]) +
@@ -465,7 +459,7 @@ Perturbation OblatenessForce::compute_perturbation(const State& state, const Veh
             }
 
             // az component
-            az += (nn - mm + 1.0) * (-Cnm * V[n + 1][m] - Snm * W[n + 1][m]);
+            az += (n - m + 1.0) * (-Cnm * V[n + 1][m] - Snm * W[n + 1][m]);
         }
     }
 
