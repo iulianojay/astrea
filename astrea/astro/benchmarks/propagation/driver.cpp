@@ -31,15 +31,22 @@ using mp_units::si::unit_symbols::km;
 // 3 = EquinoctialVop (OblatenessForce with degree/order from range)
 // 4 = CowellsMethod  (OblatenessForce with degree/order from range)
 
+// Perturbation bit-flags for range(3) — combine with bitwise OR
+// Ignored for EOM types 0 (TwoBody) and 1 (J2MeanVop)
+static constexpr int kDrag  = 1 << 0; // 1
+static constexpr int kNBody = 1 << 1; // 2
+static constexpr int kSRP   = 1 << 2; // 4
+
 static constexpr const char* kEomNames[] = { "TwoBody", "J2MeanVop", "KeplerianVop", "EquinoctialVop", "CowellsMethod" };
 
 // Single benchmark — ranges:
 //   range(0) : EOM type index (0–4)
 //   range(1) : propagation time in minutes
-//   range(2) : OblatenessForce degree/order (ignored for TwoBody and J2MeanVop)
+//   range(2) : OblatenessForce degree/order  (ignored for TwoBody and J2MeanVop)
+//   range(3) : perturbation flags kDrag|kNBody|kSRP (ignored for TwoBody and J2MeanVop)
 static void BM_Propagation(benchmark::State& state)
 {
-    AstrodynamicsSystem sys{};
+    AstrodynamicsSystem sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN });
     const Date epoch{};
     const State state0{ Keplerian::LEO(), epoch, sys };
     Spacecraft sat{};
@@ -52,9 +59,15 @@ static void BM_Propagation(benchmark::State& state)
     const int eom_idx = static_cast<int>(state.range(0));
     const Time dt     = minutes(static_cast<double>(state.range(1)));
     const int gravity = static_cast<int>(state.range(2));
+    const int perturb = static_cast<int>(state.range(3));
 
     ForceModel forces;
-    if (eom_idx >= 2 && gravity > 0) forces.add<OblatenessForce>(sys, gravity, gravity);
+    if (eom_idx >= 2) {
+        if (gravity > 0) { forces.add<OblatenessForce>(sys, gravity, gravity); }
+        if (perturb & kDrag) { forces.add<AtmosphericForce>(); }
+        if (perturb & kNBody) { forces.add<NBodyForce>(); }
+        if (perturb & kSRP) { forces.add<SolarRadiationPressure>(); }
+    }
 
     switch (eom_idx) {
         case 0: {
@@ -94,31 +107,37 @@ static void BM_Propagation(benchmark::State& state)
 
 // -----------------------------------------------------------------------
 // Registration
-//   Prop times : ~1 orbit (97 min), 1 day (1440 min), 1 week (10080 min)
+//   Prop times  : 1 day (1440 min)
 //
-//   No-force EOM (TwoBody, J2MeanVop): gravity arg unused, registered as 0
-//   Force-based EOM: gravity sweeps 2, 20, 70
+//   No-force EOM (TwoBody, J2MeanVop):
+//     gravity = 0, perturb = 0 (flags ignored)
+//
+//   Force-based EOM (KeplerianVop, EquinoctialVop, CowellsMethod):
+//     gravity sweeps : 2, 20, 70
+//     perturb sweeps : 0 (none), 1 (drag), 2 (n-body), 4 (srp), 7 (all)
 // -----------------------------------------------------------------------
 BENCHMARK(BM_Propagation)
     ->ArgsProduct(
         {
             { 0, 1 },
-            { 97, 1440, 10080 },
+            { 1440 },
+            { 0 },
             { 0 },
         }
     )
-    ->ArgNames({ "eom", "prop_time_min", "gravity" })
+    ->ArgNames({ "eom", "prop_time_min", "gravity", "perturb" })
     ->Unit(benchmark::kMillisecond);
 
 BENCHMARK(BM_Propagation)
     ->ArgsProduct(
         {
             { 2, 3, 4 },
-            { 97, 1440, 10080 },
+            { 1440 },
             { 2, 20, 70 },
+            { 0, 1, 2, 4, 7 },
         }
     )
-    ->ArgNames({ "eom", "prop_time_min", "gravity" })
+    ->ArgNames({ "eom", "prop_time_min", "gravity", "perturb" })
     ->Unit(benchmark::kMillisecond);
 
 BENCHMARK_MAIN();
