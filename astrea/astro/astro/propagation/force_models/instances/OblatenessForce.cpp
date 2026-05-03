@@ -146,22 +146,21 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
 
     // Calculate normalization coefficients after reading all coefficients
     if (centerId == CelestialBodyId::MARS) {
+        // The Mars file is already normalized, so skip this step for Mars
         return;
-    } // The Mars file is already normalized, so skip this step for Mars
+    }
+
     for (std::size_t n = 0; n <= degree; ++n) {
+        Unitless previousRatio = 0.0 * one;
         for (std::size_t m = 0; m <= std::min(n, order); ++m) {
             // Calculate (n + m)!/(n - m)! = (n - m + 1)(n - m + 2)...(n + m)
-            Unitless factorialCoefficient = 1.0 * one;
-            for (std::size_t ii = n - m + 1; ii <= n + m; ++ii) {
-                factorialCoefficient *= ii;
-            }
-            // TODO: This will cause big slowdowns for m ~ n >> 1. need a smarter way to do these factorials.
-            // Should be a way to do this recursively using previous values from earlier n and m calculations.
+            const Unitless ratio = (m == 0) ? 1.0 * one : previousRatio * (n + m) * (n - m + 1);
+            previousRatio        = ratio;
 
             // sqrt( (2 - delta_m0) * (2n + 1) * (n - m)! / (n + m)! )
             // delta = 1 if m = 0, else 0
             const unsigned int delta = (m == 0) ? 1 : 0;
-            const Unitless Nnm       = sqrt(static_cast<double>((2 - delta) * (2 * n + 1)) / factorialCoefficient);
+            const Unitless Nnm       = sqrt((2 - delta) * (2 * n + 1) / ratio);
 
             // Pre-normalize coefficients
             _C[n][m] *= Nnm;
