@@ -57,6 +57,42 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES USE_HELPER_HDRS HELPER
 
 endfunction()
 
+# Benchmark build function
+function(build_benchmarks CURRENT_PROJECT BENCHMARK_FILES HELPER_HDRS HELPER_SRCS)
+
+    foreach(BENCHMARK_FILE ${BENCHMARK_FILES})
+
+        message(" -- Building Benchmark: ${BENCHMARK_FILE}")
+
+        # Get executable name and build target
+        cmake_path(GET BENCHMARK_FILE PARENT_PATH full_parent_path)
+        get_filename_component(BENCHMARK_EXE ${full_parent_path} NAME)
+        set(BENCHMARK_EXE ${BENCHMARK_EXE}.benchmark)
+        add_executable(${BENCHMARK_EXE} ${BENCHMARK_FILE})
+
+        # Set properties
+        target_compile_options(${BENCHMARK_EXE} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+        set_target_properties(${BENCHMARK_EXE} PROPERTIES OUTPUT_NAME ${BENCHMARK_EXE})
+
+        # Helper files
+        target_sources(${BENCHMARK_EXE} PRIVATE ${HELPER_HDRS} ${HELPER_SRCS})
+
+        # Includes
+        target_include_directories(${BENCHMARK_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include ${CMAKE_INSTALL_PREFIX}/lib ${CMAKE_INSTALL_PREFIX}/bin)
+
+        # Dependencies
+        target_link_libraries(${BENCHMARK_EXE} PRIVATE ${CURRENT_PROJECT}_shared benchmark::benchmark)
+
+        # Install
+        install(TARGETS ${BENCHMARK_EXE} RUNTIME DESTINATION bin/benchmarks)
+
+        # Send to gtest
+        add_dependencies(${CURRENT_PROJECT}_benchmarks ${BENCHMARK_EXE})
+
+    endforeach(BENCHMARK_FILE ${BENCHMARK_FILES})
+
+endfunction()
+
 # Example build function
 function(build_examples CURRENT_PROJECT EXAMPLE_FILES)
 

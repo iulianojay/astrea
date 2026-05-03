@@ -277,6 +277,11 @@ install(TARGETS ${PROJECT_NAME}_shared
     ARCHIVE DESTINATION lib
 )
 
+# Install matplot shared library so dependents (benchmarks, tests) can find it at runtime
+install(TARGETS matplot
+    LIBRARY DESTINATION lib
+)
+
 # Static library
 if(${BUILD_STATIC})
     add_library(${PROJECT_NAME}_static STATIC ${ASTRO_SOURCES} ${ASTRO_HEADERS})
@@ -316,4 +321,8 @@ endif()
 
 if(${BUILD_TESTS})
     add_subdirectory(tests)
+endif()
+
+if (${BUILD_BENCHMARKS})
+    add_subdirectory(benchmarks)
 endif()
