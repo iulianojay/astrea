@@ -44,7 +44,7 @@ static constexpr const char* kEomNames[] = { "TwoBody", "J2MeanVop", "KeplerianV
 //   range(1) : propagation time in minutes
 //   range(2) : OblatenessForce degree/order  (ignored for TwoBody and J2MeanVop)
 //   range(3) : perturbation flags kDrag|kNBody|kSRP (ignored for TwoBody and J2MeanVop)
-static void BM_Propagation(benchmark::State& state)
+static void BenchmarkPropagation(benchmark::State& state)
 {
     AstrodynamicsSystem sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN });
     const Date epoch{};
@@ -56,20 +56,20 @@ static void BM_Propagation(benchmark::State& state)
     integrator.set_abs_tol(1.0e-10);
     integrator.set_rel_tol(1.0e-10);
 
-    const int eom_idx = static_cast<int>(state.range(0));
+    const int eomIdx  = static_cast<int>(state.range(0));
     const Time dt     = minutes(static_cast<double>(state.range(1)));
     const int gravity = static_cast<int>(state.range(2));
     const int perturb = static_cast<int>(state.range(3));
 
     ForceModel forces;
-    if (eom_idx >= 2) {
+    if (eomIdx >= 2) {
         if (gravity > 0) { forces.add<OblatenessForce>(sys, gravity, gravity); }
         if (perturb & kDrag) { forces.add<AtmosphericForce>(); }
         if (perturb & kNBody) { forces.add<NBodyForce>(); }
         if (perturb & kSRP) { forces.add<SolarRadiationPressure>(); }
     }
 
-    switch (eom_idx) {
+    switch (eomIdx) {
         case 0: {
             TwoBody eom;
             integrator.set_equations_of_motion(eom);
@@ -97,7 +97,7 @@ static void BM_Propagation(benchmark::State& state)
         }
     }
 
-    state.SetLabel(kEomNames[eom_idx]);
+    state.SetLabel(kEomNames[eomIdx]);
 
     for (auto _ : state) {
         auto result = integrator.propagate_no_storage(state0, dt, vehicle);
@@ -116,11 +116,11 @@ static void BM_Propagation(benchmark::State& state)
 //     gravity sweeps : 2, 20, 70
 //     perturb sweeps : 0 (none), 1 (drag), 2 (n-body), 4 (srp), 7 (all)
 // -----------------------------------------------------------------------
-BENCHMARK(BM_Propagation)
+BENCHMARK(BenchmarkPropagation)
     ->ArgsProduct(
         {
             { 0, 1 },
-            { 1440 },
+            { 97, 1440 },
             { 0 },
             { 0 },
         }
@@ -128,11 +128,11 @@ BENCHMARK(BM_Propagation)
     ->ArgNames({ "eom", "prop_time_min", "gravity", "perturb" })
     ->Unit(benchmark::kMillisecond);
 
-BENCHMARK(BM_Propagation)
+BENCHMARK(BenchmarkPropagation)
     ->ArgsProduct(
         {
             { 2, 3, 4 },
-            { 1440 },
+            { 97, 1440 },
             { 2, 20, 70 },
             { 0, 1, 2, 4, 7 },
         }
