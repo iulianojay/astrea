@@ -38,7 +38,7 @@ from typing import Dict, List, Optional
 
 _SCRIPT_DIR       = Path(__file__).parent
 _REPO_ROOT        = _SCRIPT_DIR.parent
-DEFAULT_RESULTS_DIR = _REPO_ROOT / "install"
+DEFAULT_RESULTS_DIR = _REPO_ROOT
 DEFAULT_OUTPUT      = _REPO_ROOT / "docs" / "design" / "benchmarks" / "propagation.md"
 DEFAULT_NOTES_FILE  = _SCRIPT_DIR / "benchmark_notes.json"
 
@@ -81,7 +81,7 @@ def _perturb_label(pf: int) -> str:
 
 
 def load_records(results_dir: Path) -> List[Dict]:
-    """Discover and parse all BM_Propagation entries from benchmark JSON files."""
+    """Discover and parse all BenchmarkPropagation entries from benchmark JSON files."""
     pattern = str(results_dir / "**" / "benchmarks" / "benchmark_results" / "*.json")
     records = []
     for fpath in sorted(glob.glob(pattern, recursive=True)):
@@ -96,7 +96,7 @@ def load_records(results_dir: Path) -> List[Dict]:
         for bm in data.get("benchmarks", []):
             if bm.get("run_type") == "aggregate":
                 continue
-            if "BM_Propagation" not in bm.get("name", ""):
+            if "BenchmarkPropagation" not in bm.get("name", ""):
                 continue
             p = _parse_name_params(bm["name"])
             records.append(dict(
@@ -113,7 +113,7 @@ def load_records(results_dir: Path) -> List[Dict]:
                 num_cpus = ctx.get("num_cpus", 0),
                 mhz      = ctx.get("mhz_per_cpu", 0),
             ))
-    records.sort(key=lambda r: (r["eom"], r["g"], r["pf"], r["t"]))
+    records.sort(key=lambda r: (r["eom"], r["t"], r["g"], r["pf"]))
     return records
 
 # ---------------------------------------------------------------------------
@@ -212,12 +212,12 @@ class BenchmarkReportGenerator:
             for r in sorted(records, key=lambda r: r["t"]):
                 md += f"| {r['t']} | {r['real']:.4f} | {r['cpu']:.4f} | {r['iters']:,} |\n"
         else:
-            md += "| Gravity | Perturbations | Prop Time (min) | Real Time (ms) | CPU Time (ms) | Iterations |\n"
+            md += "| Prop Time (min) | Gravity | Perturbations | Real Time (ms) | CPU Time (ms) | Iterations |\n"
             md += "|---|---|---|---|---|---|\n"
             for r in records:
                 md += (
-                    f"| {r['g']} | {_perturb_label(r['pf'])} "
-                    f"| {r['t']} | {r['real']:.4f} | {r['cpu']:.4f} | {r['iters']:,} |\n"
+                    f"| {r['t']} | {r['g']} | {_perturb_label(r['pf'])} "
+                    f"| {r['real']:.4f} | {r['cpu']:.4f} | {r['iters']:,} |\n"
                 )
         md += "\n"
         return md
