@@ -316,13 +316,6 @@ install(
 )
 
 if(${BUILD_EXAMPLES})
-
-    add_executable(${PROJECT_NAME}_exe ${ASTRO_BASE}/drivers/stress_test.cpp)
-    set_target_properties(${PROJECT_NAME}_exe PROPERTIES OUTPUT_NAME stress_test CLEAN_DIRECT_OUTPUT 1 RUNTIME_OUTPUT_DIRECTORY ${ASTRO_BASE}/drivers/bin)
-    target_include_directories(${PROJECT_NAME}_exe PUBLIC ${ASTRO_DIRS})
-    target_link_libraries(${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
-    target_compile_options(${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs -Wno-uninitialized -Wno-maybe-uninitialized)
-
     add_subdirectory(examples)
 endif()
 
