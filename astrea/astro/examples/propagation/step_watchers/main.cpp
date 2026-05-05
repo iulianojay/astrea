@@ -58,7 +58,7 @@ int main()
         counter++;
     });
     std::cout << "Propagating again..." << std::endl;
-    integrator.propagate_no_storage(state0, months(1), vehicle);
+    integrator.propagate_no_storage(state0, days(1), vehicle);
     std::cout << std::endl << "Number of steps taken: " << counter << std::endl;
 
     return 0;

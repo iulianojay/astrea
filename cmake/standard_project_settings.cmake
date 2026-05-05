@@ -24,7 +24,7 @@ elseif(MINGW)
     # MinGW (Windows GCC) flags
     set(COMMON_FLAGS "-DWL=64 -m64 -fPIC")
     set(DEBUG_FLAGS "${COMMON_FLAGS} -g -fno-inline -fno-inline-small-functions -fno-default-inline -O0")
-    set(RELEASE_FLAGS "${COMMON_FLAGS} -O3 -ffast-math")
+    set(RELEASE_FLAGS "${COMMON_FLAGS} -O3 -ffinite-loops")
     set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
 
     set(C_FLAGS "-Wall -Wl,--kill-at")
@@ -33,7 +33,7 @@ elseif(UNIX AND NOT APPLE)
     # Linux GCC flags
     set(COMMON_FLAGS "-DWL=64 -m64 -fPIC -mfpmath=387 -DLINUX")
     set(DEBUG_FLAGS "${COMMON_FLAGS} -g -fno-inline -fno-inline-small-functions -fno-default-inline --coverage -O0")
-    set(RELEASE_FLAGS "${COMMON_FLAGS} -O3 -ffast-math")
+    set(RELEASE_FLAGS "${COMMON_FLAGS} -O3 -ffinite-loops")
     set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
 
     set(C_FLAGS "-Wall")
@@ -48,3 +48,10 @@ else()
     set(C_FLAGS "-Wall")
     set(CXX_FLAGS "-Wall")
 endif()
+
+set(CMAKE_C_FLAGS_DEBUG            "${C_FLAGS} ${DEBUG_FLAGS}")
+set(CMAKE_C_FLAGS_RELEASE          "${C_FLAGS} ${RELEASE_FLAGS}")
+set(CMAKE_C_FLAGS_RELWITHDEBINFO   "${C_FLAGS} ${RELWITHHDEBINFO_FLAGS}")
+set(CMAKE_CXX_FLAGS_DEBUG          "${CXX_FLAGS} ${DEBUG_FLAGS}")
+set(CMAKE_CXX_FLAGS_RELEASE        "${CXX_FLAGS} ${RELEASE_FLAGS}")
+set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CXX_FLAGS} ${RELWITHHDEBINFO_FLAGS}")

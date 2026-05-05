@@ -79,18 +79,9 @@ class LegendreCache {
     // std::vector<std::vector<Unitless>>
     //     get_legendre_coefficients(const std::size_t& degree, const std::size_t& order, const Unitless& x) const;
 
-    /**
-     * @brief Gets the normalizing coefficient for given n and m.
-     * @param n Degree of the polynomial
-     * @param m Order of the polynomial
-     * @return Unitless The value of the normalizing coefficient Nnm
-     */
-    Unitless get_normalizing_coefficient(const std::size_t& n, const std::size_t& m) const;
-
   private:
-    std::vector<std::vector<Unitless>> _normalizingCoefficients{}; //!< Normalizing coefficients for the Legendre polynomials
-    std::vector<std::vector<Unitless>> _C{};                       //!< Cosine coefficients for the spherical harmonics
-    std::vector<std::vector<Unitless>> _S{};                       //!< Sine coefficients for the spherical harmonics
+    std::vector<std::vector<Unitless>> _C{}; //!< Cosine coefficients for the spherical harmonics
+    std::vector<std::vector<Unitless>> _S{}; //!< Sine coefficients for the spherical harmonics
 
     /**
      * @brief Sets the size of the vectors used for storing oblateness coefficients.
