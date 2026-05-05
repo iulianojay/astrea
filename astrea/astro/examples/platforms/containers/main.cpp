@@ -34,7 +34,7 @@ int main()
     Date epoch("2024-01-01T00:00:00Z");
     const Distance sma  = 7000.0 * km;
     const Angle inc     = 45.0 * deg;
-    const std::size_t T = 100; // Total number of spacecraft
+    const std::size_t T = 20;  // Total number of spacecraft
     const std::size_t P = 5;   // Number of planes
     const double F      = 1.0; // Phasing parameters
     Constellation<Spacecraft> constellation(sys, epoch, sma, inc, T, P, F);

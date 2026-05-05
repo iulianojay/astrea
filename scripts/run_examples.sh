@@ -1,6 +1,6 @@
 #!/bin/bash
 
-example_files=$(find ./astrea -type f -path "**/bin/*")
+example_files=$(find ./astrea -type f -path "**/examples/**/bin/*")
 
 for filepath in $example_files; do
     file=$(basename "$filepath")
