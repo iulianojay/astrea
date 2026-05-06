@@ -239,7 +239,7 @@ CartesianVector<Value_T, Frame_U> transform_vector_into_frame(const CartesianVec
         // Different origin and axis: translate to the intermediate frame that shares Frame_T's axis
         // but Frame_U's origin (e.g. ssb::icrf -> earth::icrf), then rotate to Frame_U.
         // Using InertialFrame<> ensures DCMs registered for canonical named frame types are found.
-        using IntermediateFrame      = InertialFrame<Frame_U::origin, Frame_T::axis>;
+        using IntermediateFrame      = Frame<Frame_U::origin, Frame_T::axis>;
         const auto vecInIntermediate = translate_vector_into_frame<Value_T, Frame_T, IntermediateFrame>(vec, date);
         return rotate_vector_into_frame<Value_T, IntermediateFrame, Frame_U>(vecInIntermediate, date);
     }

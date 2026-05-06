@@ -26,6 +26,7 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
@@ -296,7 +297,7 @@ Distance calculate_geocentric_radius(const Angle& lat, const Distance& rEquitori
  * @return The latitude, longitude, and altitude as a tuple.
  */
 template <typename Frame_T>
-    requires(IsBodyFixedFrame<Frame_T>)
+    requires(IsFixedRotatingFrame<Frame_T>)
 std::tuple<Angle, Angle, Distance>
     convert_body_fixed_to_geocentric(const RadiusVector<Frame_T>& rEcef, const Distance& rEquitorial, const Distance& rPolar)
 {
@@ -328,7 +329,7 @@ std::tuple<Angle, Angle, Distance>
  * @return The radius vector in ECEF coordinates.
  */
 template <typename Frame_T>
-    requires(IsBodyFixedFrame<Frame_T>)
+    requires(IsFixedRotatingFrame<Frame_T>)
 RadiusVector<Frame_T>
     convert_geocentric_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar)
 {

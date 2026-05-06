@@ -516,8 +516,14 @@ class CartesianVector {
 template <class Value_T, class Frame_T>
 std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, Frame_T>& state)
 {
-    // static const std::string name = utilities::get_type_name<Frame_T>();
+    static const auto name = []() {
+        if constexpr (requires { Frame_T::name; }) { return std::string_view(Frame_T::name); }
+        else {
+            return "";
+        }
+    }();
     os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "]";
+    if (!name.empty()) { os << " (" << name << ")"; }
     return os;
 }
 

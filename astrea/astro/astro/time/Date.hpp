@@ -20,6 +20,7 @@
  */
 #pragma once
 
+#include <chrono>
 #include <iosfwd>
 #include <string>
 
@@ -183,23 +184,20 @@ class Date {
      */
     double jdn() const { return std::chrono::floor<std::chrono::days>(_julianDate).time_since_epoch().count(); }
 
-    int day_of_year() const
-    {
-        using namespace std::chrono;
-        const duration<int, days::period> doy = _julianDate - sys_days{ year_month_day() }.year() / 1 / 1;
-        return doy.count() + 1; // +1 because day of year starts at 1
-    };
-
-    Time seconds_in_local_day() const
-    {
-        using namespace std::chrono;
-        return { _julianDate - floor<days>(_julianDate) };
-    }
+    Time seconds_in_local_day() const { return { _julianDate - std::chrono::floor<std::chrono::days>(_julianDate) }; }
 
     std::chrono::year_month_day year_month_day() const
     {
-        return ymd{ std::chrono::floor<std::chrono::days>(_julianDate) };
+        return std::chrono::year_month_day(std::chrono::sys_days(std::chrono::floor<std::chrono::days>(sys())));
     }
+
+    int day_of_year() const
+    {
+        using namespace std::chrono;
+        const duration<int, days::period> doy =
+            duration_cast<duration<int, days::period>>(floor<days>(sys()) - sys_days{ year_month_day().year() / 1 / 1 });
+        return doy.count() + 1; // +1 because day of year starts at 1
+    };
 
     /**
      * @brief Get the Modified Julian Date (MJD) representation of this Date object.

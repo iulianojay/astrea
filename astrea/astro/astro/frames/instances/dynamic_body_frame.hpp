@@ -25,7 +25,6 @@
 namespace astrea {
 namespace astro {
 namespace frames {
-
 namespace dynamic {
 
 using body = NamedFrame<"body", CelestialBodyId::CUSTOM, FrameAxis::UNSET>;
