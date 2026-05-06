@@ -260,7 +260,7 @@ if(${BUILD_EPHEMERIDES})
     add_dependencies(${PROJECT_NAME}_shared generated_ephemerides)
 endif()
 
-set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 INSTALL_RPATH "$ORIGIN")
 target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared utilities_shared ${ASTRO_LIBS})
 target_include_directories (${PROJECT_NAME}_shared PUBLIC ${ASTRO_DIRS} ${CMAKE_CURRENT_BINARY_DIR}/include)
 
@@ -275,6 +275,11 @@ install(TARGETS ${PROJECT_NAME}_shared
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
+)
+
+# Install matplot shared library so dependents (benchmarks, tests) can find it at runtime
+install(TARGETS matplot
+    LIBRARY DESTINATION lib
 )
 
 # Static library
@@ -311,16 +316,13 @@ install(
 )
 
 if(${BUILD_EXAMPLES})
-
-    add_executable(${PROJECT_NAME}_exe ${ASTRO_BASE}/drivers/stress_test.cpp)
-    set_target_properties(${PROJECT_NAME}_exe PROPERTIES OUTPUT_NAME stress_test CLEAN_DIRECT_OUTPUT 1 RUNTIME_OUTPUT_DIRECTORY ${ASTRO_BASE}/drivers/bin)
-    target_include_directories(${PROJECT_NAME}_exe PUBLIC ${ASTRO_DIRS})
-    target_link_libraries(${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared)
-    target_compile_options(${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs -Wno-uninitialized -Wno-maybe-uninitialized)
-
     add_subdirectory(examples)
 endif()
 
 if(${BUILD_TESTS})
     add_subdirectory(tests)
+endif()
+
+if (${BUILD_BENCHMARKS})
+    add_subdirectory(benchmarks)
 endif()
