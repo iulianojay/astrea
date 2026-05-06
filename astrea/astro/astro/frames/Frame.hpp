@@ -20,9 +20,8 @@
 
 #include <type_traits>
 
-#include <mp-units/framework/symbol_text.h>
-
 #include <units/units.hpp>
+#include <utilities/string_util.hpp>
 
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/types/enums.hpp>
@@ -53,9 +52,9 @@ struct Frame<_origin, _axis, _parent> : detail::FrameInterface<_origin, _axis> {
 template <CelestialBodyId _origin, FrameAxis _axis>
 struct Frame<_origin, _axis, void> : detail::FrameInterface<_origin, _axis> {};
 
-template <mp_units::symbol_text _name, CelestialBodyId _origin, FrameAxis _axis, typename _parent = void>
+template <utilities::fixed_string _name, CelestialBodyId _origin, FrameAxis _axis, typename _parent = void>
 struct NamedFrame : Frame<_origin, _axis, _parent> {
-    static constexpr mp_units::symbol_text name = _name; //!< The name of the frame.
+    static constexpr utilities::fixed_string name = _name; //!< The name of the frame.
 };
 
 

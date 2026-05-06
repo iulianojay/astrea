@@ -31,7 +31,7 @@ namespace detail {
 struct FrameBase;
 
 template <typename T>
-concept SymbolicConstant = (!std::is_const_v<T>) && (!std::is_reference_v<T>) && std::is_empty_v<T> && std::is_final_v<T> &&
+concept SymbolicConstant = (!std::is_const_v<T>) && (!std::is_reference_v<T>) && std::is_empty_v<T> &&
                            std::is_trivially_default_constructible_v<T> && std::is_trivially_copy_constructible_v<T> &&
                            std::is_trivially_move_constructible_v<T> && std::is_trivially_destructible_v<T>;
 

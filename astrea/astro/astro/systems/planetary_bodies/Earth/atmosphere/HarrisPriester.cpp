@@ -13,11 +13,21 @@
 
 #include <astro/systems/planetary_bodies/Earth/atmosphere/HarrisPriester.hpp>
 
+#include <map>
+
+#include <math/operations.hpp>
+
+#include <astro/frames/frames.hpp>
+#include <astro/state/State.hpp>
+#include <astro/state/angular_elements/instances/Geodetic.hpp>
+
 namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
 using namespace mp_units;
+using mp_units::angular::unit_symbols::deg;
+using mp_units::angular::unit_symbols::rad;
 using mp_units::non_si::day;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
@@ -87,15 +97,16 @@ static const std::map<Altitude, std::tuple<Density, Density>> HARRIS_PRIESTER_AT
 };
 
 
-Density HarrisPriesterAtmosphere::find_atmospheric_density(const State& state)
+Density HarrisPriesterAtmosphere::find_atmospheric_density(const State& state, const Distance equitorialRadius, const Distance polarRadius)
 {
     const auto& position     = state.get_position();
     const auto& positionEcef = state.get_position_in_frame<frames::earth::earth_fixed>();
-    const auto [latitude, longitude, altitude] =
-        convert_body_fixed_to_geodetic(positionEcef, get_equitorial_radius(), get_polar_radius());
+    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(positionEcef, equitorialRadius, polarRadius);
 
     // Diurnal bulge apex direction
-    const RadiusVector<frames::solar_system_barycenter::icrf> sun2Earth = get_position_at(state.get_epoch());
+    static const AstrodynamicsSystem earthSunSystem(CelestialBodyId::EARTH, { CelestialBodyId::SUN });
+    const RadiusVector<frames::solar_system_barycenter::icrf> sun2Earth =
+        earthSunSystem.get_relative_position(state.get_epoch(), CelestialBodyId::EARTH, CelestialBodyId::SUN);
     const UnitVector<frames::earth::icrf> sunDirection = -sun2Earth.unit().force_frame_conversion<frames::earth::icrf>();
     const UnitVector<frames::earth::icrf> bulgeDirection = DCM<frames::earth::icrf, frames::earth::icrf>::Z(LAG) * sunDirection;
 
