@@ -73,7 +73,6 @@ class EquinoctialVop : public EquationsOfMotion {
 
   private:
     const Unitless checkTol = 1e-10 * mp_units::one; //!< Tolerance for checking conditions.
-    const ForceModel* forces;                        //!< The force model used in the equations of motion.
 };
 
 } // namespace astro

@@ -211,6 +211,14 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
 - **NASA validation** using published 6DoF test datasets
 - **Mathematical utilities** optimized for dimensional analysis
 
+### Recent Additions
+- **Event Detection and Scheduling**: User-defined events during propagation with callback support
+- **Automatic Frame Translations**: Time-varying coordinate systems with automatic transformations
+- **Custom Step Watchers**: User-defined callbacks for monitoring and modifying propagation steps
+- **Improved Installation**: CMake packaging and cross-platform deployment
+- **6-DoF Simulation**: Complete attitude dynamics with control system modeling
+- **Performance Benchmarks**: Google Benchmark integration with speed guarantees
+
 ## Installation
 
 Astrea requires C++23 and uses CMake for building. Detailed installation instructions are available in our [Getting Started Guide](https://iulianojay.github.io/astrea/getting_started/installation_and_usage/).
@@ -226,15 +234,12 @@ Documentation is available online at <https://iulianojay.github.io/astrea/>, but
 
 ## Roadmap
 
-- **Improved Installation**: CMake packaging and cross-platform deployment
-- **6-DoF Simulation**: Complete attitude dynamics with control system modeling
 - **Environmental Models**: High-fidelity atmospheric and solar models
 - **Advanced Propagators**: SGP4/SGP8 and specialized cislunar dynamics (CR3BP, BC4BP)
 - **Mission Planning**: Trajectory optimization and automated scheduling tools
 - **Extended Element Sets**: Additional orbital representations and optimized transformations
 - **Validation**: Real-world comparisons using GPS and tracking data
 - **Visualization**: GUI interface for analysis and mission visualization
-- **Performance Benchmarks**: Google Benchmark integration with speed guarantees
 
 ## Contributing
 
