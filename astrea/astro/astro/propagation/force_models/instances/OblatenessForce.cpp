@@ -68,11 +68,9 @@ void LegendreCache::size_vectors(const std::size_t& degree, const std::size_t& o
 {
     _C.resize(degree + 1);
     _S.resize(degree + 1);
-    _normalizingCoefficients.resize(degree + 1);
     for (std::size_t n = 0; n < degree + 1; ++n) {
         _C[n].resize(order + 1);
         _S[n].resize(order + 1);
-        _normalizingCoefficients[n].resize(order + 1);
     }
 }
 
@@ -147,26 +145,26 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
     file.close();
 
     // Calculate normalization coefficients after reading all coefficients
+    if (centerId == CelestialBodyId::MARS) {
+        // The Mars file is already normalized, so skip this step for Mars
+        return;
+    }
+
     for (std::size_t n = 0; n <= degree; ++n) {
+        Unitless previousRatio = 0.0 * one;
         for (std::size_t m = 0; m <= std::min(n, order); ++m) {
             // Calculate (n + m)!/(n - m)! = (n - m + 1)(n - m + 2)...(n + m)
-            Unitless factorialCoefficient = 1.0 * one;
-            for (std::size_t ii = n - m + 1; ii <= n + m; ++ii) {
-                factorialCoefficient *= ii;
-            }
-            // TODO: This will cause big slowdowns for m ~ n >> 1. need a smarter way to do these factorials.
-            // Should be a way to do this recursively using previous values from earlier n and m calculations.
+            const Unitless ratio = (m == 0) ? 1.0 * one : previousRatio * (n + m) * (n - m + 1);
+            previousRatio        = ratio;
 
             // sqrt( (2 - delta_m0) * (2n + 1) * (n - m)! / (n + m)! )
             // delta = 1 if m = 0, else 0
             const unsigned int delta = (m == 0) ? 1 : 0;
-            _normalizingCoefficients[n][m] = sqrt(static_cast<double>((2 - delta) * (2 * n + 1)) / factorialCoefficient);
+            const Unitless Nnm       = sqrt((2 - delta) * (2 * n + 1) / ratio);
 
-            // Normalize coefficients if needed
-            if (centerId == CelestialBodyId::MARS) {
-                _C[n][m] /= _normalizingCoefficients[n][m];
-                _S[n][m] /= _normalizingCoefficients[n][m];
-            }
+            // Pre-normalize coefficients
+            _C[n][m] *= Nnm;
+            _S[n][m] *= Nnm;
         }
     }
 }
@@ -217,12 +215,6 @@ void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& 
 
 //     return P;
 // }
-
-
-Unitless LegendreCache::get_normalizing_coefficient(const std::size_t& n, const std::size_t& m) const
-{
-    return _normalizingCoefficients[n][m];
-}
 
 
 Unitless LegendreCache::get_cosine_coefficient(const std::size_t& n, const std::size_t& m) const { return _C[n][m]; }
@@ -392,48 +384,43 @@ Perturbation OblatenessForce::compute_perturbation(const State& state, const Veh
     const Unitless rEqOverR   = equitorialR / r;
     const Unitless rEqOverRSq = pow<2>(rEqOverR);
 
-    // Initialize V and W matrices
-    // V[n][m] and W[n][m] for n=0 to degree, m=0 to order
-    std::vector<std::vector<Unitless>> V(_degree + 2);
-    std::vector<std::vector<Unitless>> W(_degree + 2);
-
-    for (std::size_t n = 0; n <= _degree + 1; ++n) {
-        V[n].resize(_order + 2, 0.0 * one);
-        W[n].resize(_order + 2, 0.0 * one);
-    }
+    // Initialize V and W as flat 1D arrays (row-major, stride = _order + 2)
+    // Access element [n][m] as V[n * stride + m], W[n * stride + m]
+    const std::size_t stride = _order + 2;
+    std::vector<Unitless> V((_degree + 2) * stride, 0.0 * one);
+    std::vector<Unitless> W((_degree + 2) * stride, 0.0 * one);
 
     // Compute V and W using recurrence relations (Montenbruck & Gill Eq. 3.33)
     // Base case: V[0][0] = Re/r, W[0][0] = 0
-    V[0][0] = rEqOverR;
+    V[0] = rEqOverR;
 
     // Combined recursion for V[n][m] and W[n][m]
     for (std::size_t m = 0; m <= _order + 1; ++m) {
-        const Unitless mm = static_cast<double>(m) * one;
-
         for (std::size_t n = (m == 0 ? 1 : m); n <= _degree + 1; ++n) {
-            const Unitless nn = static_cast<double>(n) * one;
 
             if (m == 0) {
                 // First column recursion: V[n][0] and W[n][0]
-                V[n][0] = ((2.0 * nn - 1.0) / nn) * zOverR * rEqOverR * V[n - 1][0];
-                if (n > 1) { V[n][0] -= ((nn - 1.0) / nn) * rEqOverRSq * V[n - 2][0]; }
+                V[n * stride] = ((2.0 * n - 1.0) / n) * zOverR * rEqOverR * V[(n - 1) * stride];
+                if (n > 1) { V[n * stride] -= ((n - 1.0) / n) * rEqOverRSq * V[(n - 2) * stride]; }
             }
             else if (n == m) {
                 // Diagonal recursion: V[m][m] and W[m][m]
-                V[m][m] = (2.0 * mm - 1.0) * rEqOverR * (xOverR * V[m - 1][m - 1] - yOverR * W[m - 1][m - 1]);
-                W[m][m] = (2.0 * mm - 1.0) * rEqOverR * (xOverR * W[m - 1][m - 1] + yOverR * V[m - 1][m - 1]);
+                V[m * stride + m] = (2.0 * m - 1.0) * rEqOverR *
+                                    (xOverR * V[(m - 1) * stride + (m - 1)] - yOverR * W[(m - 1) * stride + (m - 1)]);
+                W[m * stride + m] = (2.0 * m - 1.0) * rEqOverR *
+                                    (xOverR * W[(m - 1) * stride + (m - 1)] + yOverR * V[(m - 1) * stride + (m - 1)]);
             }
             else {
                 // General recursion for n > m
-                const Unitless factor1 = rEqOverR * zOverR * (2.0 * nn - 1.0) / (nn - mm);
-                const Unitless factor2 = rEqOverRSq * (nn + mm - 1.0) / (nn - mm);
+                const Unitless factor1 = rEqOverR * zOverR * (2.0 * n - 1.0) / (n - m);
+                const Unitless factor2 = rEqOverRSq * (n + m - 1.0) / (n - m);
 
-                V[n][m] = factor1 * V[n - 1][m];
-                W[n][m] = factor1 * W[n - 1][m];
+                V[n * stride + m] = factor1 * V[(n - 1) * stride + m];
+                W[n * stride + m] = factor1 * W[(n - 1) * stride + m];
 
                 if (n > 2) {
-                    V[n][m] -= factor2 * V[n - 2][m];
-                    W[n][m] -= factor2 * W[n - 2][m];
+                    V[n * stride + m] -= factor2 * V[(n - 2) * stride + m];
+                    W[n * stride + m] -= factor2 * W[(n - 2) * stride + m];
                 }
             }
         }
@@ -445,35 +432,31 @@ Perturbation OblatenessForce::compute_perturbation(const State& state, const Veh
     Unitless ay = 0.0 * one;
     Unitless az = 0.0 * one;
     for (std::size_t m = 0; m <= _order; ++m) {
-        const Unitless mm = static_cast<double>(m) * one;
-
         for (std::size_t n = m; n <= _degree; ++n) {
-            const Unitless nn = static_cast<double>(n) * one;
 
-            const Unitless Nnm = _legendreCache.get_normalizing_coefficient(n, m);
-            const Unitless Cnm = _legendreCache.get_cosine_coefficient(n, m) * Nnm;
-            const Unitless Snm = _legendreCache.get_sine_coefficient(n, m) * Nnm;
+            const Unitless Cnm = _legendreCache.get_cosine_coefficient(n, m);
+            const Unitless Snm = _legendreCache.get_sine_coefficient(n, m);
 
             if (m == 0) {
                 // Special case for m = 0 (zonal harmonics)
-                ax += -Cnm * V[n + 1][1];
-                ay += -Cnm * W[n + 1][1];
+                ax += -Cnm * V[(n + 1) * stride + 1];
+                ay += -Cnm * W[(n + 1) * stride + 1];
             }
             else {
                 // Sectoral and tesseral harmonics (m > 0)
-                const Unitless nmFactor = (nn - mm + 2.0) * (nn - mm + 1.0);
+                const Unitless nmFactor = (n - m + 2.0) * (n - m + 1.0);
 
                 // ax component
-                ax += 0.5 * ((-Cnm * V[n + 1][m + 1] - Snm * W[n + 1][m + 1]) +
-                             nmFactor * (Cnm * V[n + 1][m - 1] + Snm * W[n + 1][m - 1]));
+                ax += 0.5 * ((-Cnm * V[(n + 1) * stride + (m + 1)] - Snm * W[(n + 1) * stride + (m + 1)]) +
+                             nmFactor * (Cnm * V[(n + 1) * stride + (m - 1)] + Snm * W[(n + 1) * stride + (m - 1)]));
 
                 // ay component
-                ay += 0.5 * ((-Cnm * W[n + 1][m + 1] + Snm * V[n + 1][m + 1]) +
-                             nmFactor * (-Cnm * W[n + 1][m - 1] + Snm * V[n + 1][m - 1]));
+                ay += 0.5 * ((-Cnm * W[(n + 1) * stride + (m + 1)] + Snm * V[(n + 1) * stride + (m + 1)]) +
+                             nmFactor * (-Cnm * W[(n + 1) * stride + (m - 1)] + Snm * V[(n + 1) * stride + (m - 1)]));
             }
 
             // az component
-            az += (nn - mm + 1.0) * (-Cnm * V[n + 1][m] - Snm * W[n + 1][m]);
+            az += (n - m + 1.0) * (-Cnm * V[(n + 1) * stride + m] - Snm * W[(n + 1) * stride + m]);
         }
     }
 
