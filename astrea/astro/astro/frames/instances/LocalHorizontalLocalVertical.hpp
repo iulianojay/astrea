@@ -20,9 +20,9 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/DirectionCosineMatrix.hpp>
+#include <astro/frames/DynamicFrame.hpp>
 #include <astro/frames/instances/body_centered_inertial_frames.hpp>
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/frames/types/DynamicFrame.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {

@@ -21,6 +21,7 @@
 
 #include <units/units.hpp>
 
+#include <astro/frames/DirectionCosineMatrix.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/frames/types/DirectionCosineMatrix.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>

@@ -88,12 +88,13 @@ enum class SystemCenter : EnumType { CENTRAL_BODY, BARYCENTER };
  * @brief Reference frames axes.
  */
 enum class FrameAxis : EnumType {
+    UNSET,
     /** International Celestial Reference Frame */
     ICRF,
     /** Mean equinox of standard epoch J2000 */
     J2000,
     /** Body-fixed frame */
-    BODY_FIXED,
+    FIXED_ROTATING,
     /** Local vertical/local horizontal frame */
     LVLH,
     /** Radial/Along-track/Cross-track frame */

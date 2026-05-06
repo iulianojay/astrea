@@ -23,8 +23,8 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/DirectionCosineMatrix.hpp>
 #include <astro/frames/frame_concepts.hpp>
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
 #include <astro/types/enums.hpp>
 #include <astro/utilities/conversions.hpp>
 

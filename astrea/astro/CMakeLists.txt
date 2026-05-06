@@ -109,9 +109,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/instances/RadialInTrackCrossTrack.hpp
     ${ASTRO_BASE}/frames/instances/VelocityNormalBinormal.hpp
 
-    ${ASTRO_BASE}/frames/types/DirectionCosineMatrix.hpp
-    ${ASTRO_BASE}/frames/types/InertialFrame.hpp
-    ${ASTRO_BASE}/frames/types/BodyFixedFrame.hpp
+    ${ASTRO_BASE}/frames/DirectionCosineMatrix.hpp
 
     ${ASTRO_BASE}/frames/CartesianVector.hpp
     ${ASTRO_BASE}/frames/dynamic_frames.hpp

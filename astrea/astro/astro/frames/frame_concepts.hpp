@@ -20,35 +20,93 @@
 
 #include <concepts>
 
-#include <astro/astro.fwd.hpp>
-#include <astro/types/concepts.hpp>
+#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
 
+
+namespace detail {
+
+struct FrameBase;
+
+template <typename T>
+concept SymbolicConstant = (!std::is_const_v<T>) && (!std::is_reference_v<T>) && std::is_empty_v<T> && std::is_final_v<T> &&
+                           std::is_trivially_default_constructible_v<T> && std::is_trivially_copy_constructible_v<T> &&
+                           std::is_trivially_move_constructible_v<T> && std::is_trivially_destructible_v<T>;
+
+} // namespace detail
+
+template <typename T>
+concept IsFrame = std::derived_from<T, detail::FrameBase> && detail::SymbolicConstant<T>;
+
 /**
- * @brief Concept to determine if a Direction Cosine Matrix (DCM) can be obtained between two frames at a given date.
+ * @brief Concept to determine if a frame is inertial.
+ *
+ * @tparam Frame_T The frame type to check.
+ * @return true if the frame is inertial (ICRF or J2000), false otherwise.
+ */
+template <typename Frame_T>
+concept IsInertialFrame = (Frame_T::axis == FrameAxis::ICRF || Frame_T::axis == FrameAxis::J2000);
+
+/**
+ * @brief Concept to determine if a frame is body-fixed.
+ *
+ * @tparam Frame_T The frame type to check.
+ * @return true if the frame is body-fixed, false otherwise.
+ */
+template <typename Frame_T>
+concept IsFixedRotatingFrame = (Frame_T::axis == FrameAxis::FIXED_ROTATING);
+
+/**
+ * @brief Concept to determine if a frame is static (inertial or body-fixed).
+ *
+ * @tparam Frame_T The frame type to check.
+ * @return true if the frame is static, false otherwise.
+ */
+template <typename Frame_T>
+concept IsStaticFrame =
+    (Frame_T::axis == FrameAxis::ICRF || Frame_T::axis == FrameAxis::J2000 || Frame_T::axis == FrameAxis::FIXED_ROTATING);
+
+/**
+ * @brief Concept to determine if a frame is dynamic (LVLH, RIC, VNB).
+ *
+ * @tparam Frame_T The frame type to check.
+ * @return true if the frame is dynamic, false otherwise.
+ */
+template <typename Frame_T>
+concept IsDynamicFrame =
+    (Frame_T::axis == FrameAxis::LVLH || Frame_T::axis == FrameAxis::RIC || Frame_T::axis == FrameAxis::VNB);
+
+/**
+ * @brief Concept to determine if two frames share the same origin.
  *
  * @tparam Frame_T The first frame type to check.
  * @tparam Frame_U The second frame type to check.
- * @param date The date at which to obtain the DCM.
- * @return true if the specialization of get_dcm has been defined, false otherwise.
+ * @return true if both frames share the same origin, false otherwise.
  */
 template <typename Frame_T, typename Frame_U>
-concept HasDcm = requires(const Date& date) { get_dcm<Frame_T, Frame_U>(date); };
+concept HasSameOrigin = (Frame_T::origin == Frame_U::origin);
 
 /**
- * @brief Concept to determine if a frame class has a member function to obtain the Direction Cosine Matrix (DCM) to another frame at a given date.
+ * @brief Concept to determine if two frames share the same axis.
  *
- * @tparam Frame_T The frame type to check.
- * @tparam Frame_U The target frame type to check.
- * @param frame An instance of the frame type.
- * @param date The date at which to obtain the DCM.
- * @return true if the frame class has a member function get_dcm for the target frame, false otherwise.
+ * @tparam Frame_T The first frame type to check.
+ * @tparam Frame_U The second frame type to check.
+ * @return true if both frames share the same axis, false otherwise.
  */
 template <typename Frame_T, typename Frame_U>
-concept HasDcmMethod =
-    requires(const Frame_T& frame, const Date& date) { frame.template get_dcm<Frame_T, Frame_U>(date); };
+concept HasSameAxis = (Frame_T::axis == Frame_U::axis);
+
+/**
+ * @brief Concept to determine if two frames are the same (same origin and same axis).
+ *
+ * @tparam Frame_T The first frame type to check.
+ * @tparam Frame_U The second frame type to check.
+ * @return true if both frames are the same, false otherwise.
+ */
+template <typename Frame_T, typename Frame_U>
+concept IsSameFrame = HasSameOrigin<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U>;
 
 } // namespace astro
 } // namespace astrea

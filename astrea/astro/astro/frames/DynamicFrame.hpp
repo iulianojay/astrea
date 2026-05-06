@@ -34,7 +34,7 @@ namespace astro {
  * @brief Base class for all dynamic state/frames.
  */
 template <class Frame_T, FrameAxis _axis>
-    requires(_axis != FrameAxis::ICRF && _axis != FrameAxis::J2000 && _axis != FrameAxis::BODY_FIXED)
+    requires(_axis != FrameAxis::ICRF && _axis != FrameAxis::J2000 && _axis != FrameAxis::FIXED_ROTATING)
 struct DynamicFrame : public Frame<CelestialBodyId::CUSTOM, _axis> {
 
     static constexpr CelestialBodyId origin =
@@ -54,8 +54,10 @@ struct DynamicFrame : public Frame<CelestialBodyId::CUSTOM, _axis> {
         _isInstantaneous(false)
     {
         if (parent == nullptr) {
-            throw std::invalid_argument("Parent of a dynamic frame cannot be null. Use Frame_T::instantaneous(r, v) "
-                                        "for instantaneous dynamic state/frames.");
+            throw std::invalid_argument(
+                "Parent of a dynamic frame cannot be null. Use Frame_T::instantaneous(r, v) "
+                "for instantaneous dynamic state/frames."
+            );
         }
     }
 

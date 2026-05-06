@@ -18,7 +18,7 @@
  */
 #pragma once
 
-#include <astro/astro.fwd.hpp>
+#include <astro/frames/Frame.hpp>
 
 namespace astrea {
 namespace astro {
@@ -33,7 +33,9 @@ using venus_fixed = BodyFixedFrame<CelestialBodyId::VENUS>;
 } // namespace venus
 
 namespace earth {
-using earth_fixed = BodyFixedFrame<CelestialBodyId::EARTH>;
+
+using earth_fixed = NamedFrame<"ecef", CelestialBodyId::EARTH, FrameAxis::FIXED_ROTATING>;
+
 } // namespace earth
 
 namespace moon {

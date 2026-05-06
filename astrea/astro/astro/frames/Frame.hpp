@@ -18,30 +18,44 @@
  */
 #pragma once
 
-#include <string>
+#include <type_traits>
+
+#include <mp-units/framework/symbol_text.h>
 
 #include <units/units.hpp>
 
-#include <astro/astro.fwd.hpp>
 #include <astro/frames/frame_concepts.hpp>
+#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
 
-/**
- * @brief Base class for all state/frames.
- */
+namespace detail {
+
+struct FrameBase {};
+
 template <CelestialBodyId _origin, FrameAxis _axis>
-struct Frame {
+struct FrameInterface : FrameBase {
+    static constexpr CelestialBodyId origin = _origin; //!< The central body associated with the frame.
+    static constexpr FrameAxis axis         = _axis;   //!< The axis type of the frame.
+};
 
-    static constexpr CelestialBodyId origin = _origin; //!< The central body associated with the inertial frame.
-    static constexpr FrameAxis axis         = _axis;   //!< The axis type of the inertial frame.
+} // namespace detail
 
-  protected:
-    /**
-     * @brief Default destructor for Frame.
-     */
-    virtual ~Frame() = default;
+template <CelestialBodyId _origin, FrameAxis _axis, typename _parent = void>
+struct Frame;
+
+template <CelestialBodyId _origin, FrameAxis _axis, IsFrame _parent>
+struct Frame<_origin, _axis, _parent> : detail::FrameInterface<_origin, _axis> {
+    using parent = _parent; //!< The parent frame of this frame.
+};
+
+template <CelestialBodyId _origin, FrameAxis _axis>
+struct Frame<_origin, _axis, void> : detail::FrameInterface<_origin, _axis> {};
+
+template <mp_units::symbol_text _name, CelestialBodyId _origin, FrameAxis _axis, typename _parent = void>
+struct NamedFrame : Frame<_origin, _axis, _parent> {
+    static constexpr mp_units::symbol_text name = _name; //!< The name of the frame.
 };
 
 
