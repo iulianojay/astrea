@@ -21,17 +21,12 @@
 #include <array>
 #include <typeinfo>
 
-#include <mp-units/framework.h>
-#include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/angular.h>
 
-#include <units/typedefs.hpp>
-#include <utilities/string_util.hpp>
+#include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/Frame.hpp>
 #include <astro/frames/frame_concepts.hpp>
-#include <astro/frames/transformations.hpp>
 
 namespace astrea {
 namespace astro {
@@ -58,9 +53,6 @@ template <class Value_T, class Frame_T>
 class CartesianVector {
 
   public:
-    using value_type = Value_T;
-    using frame_type = Frame_T;
-
     /**
      * @brief Default constructor for CartesianVector.
      *
@@ -69,7 +61,7 @@ class CartesianVector {
      * @param y The y component of the vector (default is 0).
      * @param z The z component of the vector (default is 0).
      */
-    CartesianVector(const Value_T& x = Value_T(), const Value_T& y = Value_T(), const Value_T& z = Value_T()) :
+    CartesianVector(const Value_T& x = Value_T::zero(), const Value_T& y = Value_T::zero(), const Value_T& z = Value_T::zero()) :
         _vector{ x, y, z }
     {
     }
@@ -433,25 +425,7 @@ class CartesianVector {
      */
     template <typename Frame_U>
         requires(!IsSameFrame<Frame_T, Frame_U> && IsStaticFrame<Frame_U>)
-    CartesianVector<Value_T, Frame_U> in_frame(const Date& date) const
-    {
-        return frames::transform_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
-    }
-
-    // /**
-    //  * @brief Transform this vector into another frame at a given date, accounting for both rotation and translation.
-    //  *
-    //  * @tparam Frame_U The target frame type to transform into.
-    //  * @param date The date at which to perform the transformation.
-    //  * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
-    //  * @throws std::runtime_error If the frames do not have a known transformation or if the DCM cannot be obtained.
-    //  */
-    // template <typename Frame_U>
-    //     requires(!IsSameFrame<Frame_T, Frame_U> && IsStaticFrame<Frame_U>)
-    // CartesianVector<Value_T, Frame_U> with_respect_to_frame(const Date& date) const
-    // {
-    //     return frames::transform_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
-    // }
+    CartesianVector<Value_T, Frame_U> in_frame(const Date& date) const;
 
     /**
      * @brief Translate this vector by another vector in a different frame, resulting in a vector in a third frame.
@@ -557,3 +531,5 @@ CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>
 
 } // namespace astro
 } // namespace astrea
+
+#include <astro/frames/transformations.hpp>

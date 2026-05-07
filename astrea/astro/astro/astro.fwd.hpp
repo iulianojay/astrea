@@ -73,13 +73,6 @@ class AttitudePartials;
 template <class Value_T, class Frame_T>
 class CartesianVector;
 
-template <CelestialBodyId _origin, FrameAxis _axis, typename _parent>
-struct Frame;
-
-template <class Frame_T, FrameAxis axis>
-    requires(axis != FrameAxis::ICRF && axis != FrameAxis::J2000 && axis != FrameAxis::FIXED_ROTATING)
-class DynamicFrame;
-
 struct LocalHorizontalLocalVertical;
 struct RadialInTrackCrossTrack;
 struct VelocityNormalBinormal;

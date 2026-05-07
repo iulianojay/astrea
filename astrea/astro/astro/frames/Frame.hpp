@@ -20,8 +20,9 @@
 
 #include <type_traits>
 
+#include <mp-units/ext/fixed_string.h>
+
 #include <units/units.hpp>
-#include <utilities/string_util.hpp>
 
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/types/enums.hpp>
@@ -33,28 +34,15 @@ namespace detail {
 
 struct FrameBase {};
 
-template <CelestialBodyId _origin, FrameAxis _axis>
-struct FrameInterface : FrameBase {
-    static constexpr CelestialBodyId origin = _origin; //!< The central body associated with the frame.
-    static constexpr FrameAxis axis         = _axis;   //!< The axis type of the frame.
-};
 
 } // namespace detail
 
-template <CelestialBodyId _origin, FrameAxis _axis, typename _parent = void>
-struct Frame;
-
-template <CelestialBodyId _origin, FrameAxis _axis, IsFrame _parent>
-struct Frame<_origin, _axis, _parent> : detail::FrameInterface<_origin, _axis> {
-    using parent = _parent; //!< The parent frame of this frame.
-};
-
-template <CelestialBodyId _origin, FrameAxis _axis>
-struct Frame<_origin, _axis, void> : detail::FrameInterface<_origin, _axis> {};
-
-template <utilities::fixed_string _name, CelestialBodyId _origin, FrameAxis _axis, typename _parent = void>
-struct NamedFrame : Frame<_origin, _axis, _parent> {
-    static constexpr utilities::fixed_string name = _name; //!< The name of the frame.
+template <mp_units::basic_fixed_string _name, CelestialBodyId _origin, FrameAxis _axis, typename _parent = void>
+struct Frame : detail::FrameBase {
+    static constexpr auto origin = _origin; //!< The central body associated with the frame.
+    static constexpr auto axis   = _axis;   //!< The axis type of the frame.
+    static constexpr auto name   = _name;   //!< The name of the frame.
+    using parent                 = _parent; //!< The parent frame of this frame.
 };
 
 

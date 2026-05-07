@@ -23,7 +23,9 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/Frame.hpp>
 #include <astro/frames/FrameReference.hpp>
+#include <astro/frames/frame_registry.hpp>
 #include <astro/frames/frames.hpp>
+#include <astro/frames/transformations.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -35,11 +37,11 @@ namespace astro {
  */
 template <class Frame_T, FrameAxis _axis>
     requires(_axis != FrameAxis::ICRF && _axis != FrameAxis::J2000 && _axis != FrameAxis::FIXED_ROTATING)
-struct DynamicFrame : public Frame<CelestialBodyId::CUSTOM, _axis> {
+struct DynamicFrame : public Frame<"", CelestialBodyId::CUSTOM, _axis> {
 
     static constexpr CelestialBodyId origin =
-        Frame<CelestialBodyId::CUSTOM, _axis>::origin; //!< The central body associated with the inertial frame.
-    static constexpr FrameAxis axis = Frame<CelestialBodyId::CUSTOM, _axis>::axis; //!< The axis type of the inertial frame.
+        Frame<"", CelestialBodyId::CUSTOM, _axis>::origin; //!< The central body associated with the inertial frame.
+    static constexpr FrameAxis axis = Frame<"", CelestialBodyId::CUSTOM, _axis>::axis; //!< The axis type of the inertial frame.
 
   protected:
     /**
@@ -55,7 +57,7 @@ struct DynamicFrame : public Frame<CelestialBodyId::CUSTOM, _axis> {
     {
         if (parent == nullptr) {
             throw std::invalid_argument(
-                "Parent of a dynamic frame cannot be null. Use Frame_T::instantaneous(r, v) "
+                "Parent of a dynamic frame cannot be null. Use frame::instantaneous(r, v) "
                 "for instantaneous dynamic state/frames."
             );
         }
@@ -68,7 +70,7 @@ struct DynamicFrame : public Frame<CelestialBodyId::CUSTOM, _axis> {
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.
      */
-    DynamicFrame(const RadiusVector<frames::earth::icrf>& position, const VelocityVector<frames::earth::icrf>& velocity) :
+    DynamicFrame(const RadiusVector<frames::primary>& position, const VelocityVector<frames::primary>& velocity) :
         _position(position),
         _velocity(velocity),
         _isInstantaneous(true)

@@ -24,11 +24,9 @@ namespace astrea {
 namespace astro {
 
 
-AccelerationVector<frames::earth::icrf> FrameReference::get_inertial_acceleration(const Date& date) const
+AccelerationVector<frames::primary> FrameReference::get_inertial_acceleration(const Date& date) const
 {
-    using mp_units::si::unit_symbols::km;
-    using mp_units::si::unit_symbols::s;
-    return AccelerationVector<frames::earth::icrf>{ 0.0 * km / s / s, 0.0 * km / s / s, 0.0 * km / s / s };
+    return AccelerationVector<frames::primary>{ Acceleration::zero(), Acceleration::zero(), Acceleration::zero() };
 };
 
 

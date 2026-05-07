@@ -27,7 +27,7 @@ namespace astro {
 namespace frames {
 namespace dynamic {
 
-using body = NamedFrame<"body", CelestialBodyId::CUSTOM, FrameAxis::UNSET>;
+using body = Frame<"body", CelestialBodyId::CUSTOM, FrameAxis::UNSET>;
 
 } // namespace dynamic
 } // namespace frames

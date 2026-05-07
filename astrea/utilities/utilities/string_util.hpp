@@ -89,22 +89,5 @@ std::string get_type_name()
  */
 std::vector<std::string> split(std::string s, const std::string& delimiter);
 
-/**
- * @brief A constexpr class to handle const char* as template parameters
- *
- * @tparam N The size of the string (including null terminator)
- */
-template <std::size_t N>
-struct fixed_string {
-    char data[N]{};
-    static constexpr std::size_t size = N - 1;
-    constexpr fixed_string(const char (&s)[N]) { std::copy_n(s, N, data); }
-    constexpr operator std::string_view() const { return { data, N - 1 }; }
-    auto operator<=>(const fixed_string&) const = default;
-};
-
-template <std::size_t N>
-fixed_string(const char (&)[N]) -> fixed_string<N>;
-
 } // namespace utilities
 } // namespace astrea

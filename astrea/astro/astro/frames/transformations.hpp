@@ -22,6 +22,7 @@
 #include <utilities/string_util.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/DirectionCosineMatrix.hpp>
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/frames.hpp>
@@ -239,7 +240,7 @@ CartesianVector<Value_T, Frame_U> transform_vector_into_frame(const CartesianVec
         // Different origin and axis: translate to the intermediate frame that shares Frame_T's axis
         // but Frame_U's origin (e.g. ssb::icrf -> earth::icrf), then rotate to Frame_U.
         // Using InertialFrame<> ensures DCMs registered for canonical named frame types are found.
-        using IntermediateFrame      = Frame<Frame_U::origin, Frame_T::axis>;
+        using IntermediateFrame      = Frame<Frame_T::name + " / " + Frame_U::name, Frame_U::origin, Frame_T::axis>;
         const auto vecInIntermediate = translate_vector_into_frame<Value_T, Frame_T, IntermediateFrame>(vec, date);
         return rotate_vector_into_frame<Value_T, IntermediateFrame, Frame_U>(vecInIntermediate, date);
     }
@@ -247,5 +248,14 @@ CartesianVector<Value_T, Frame_U> transform_vector_into_frame(const CartesianVec
 
 
 } // namespace frames
+
+template <typename Value_T, typename Frame_T>
+template <typename Frame_U>
+    requires(!IsSameFrame<Frame_T, Frame_U> && IsStaticFrame<Frame_U>)
+CartesianVector<Value_T, Frame_U> CartesianVector<Value_T, Frame_T>::in_frame(const Date& date) const
+{
+    return frames::transform_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
+}
+
 } // namespace astro
 } // namespace astrea

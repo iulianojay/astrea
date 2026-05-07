@@ -58,15 +58,15 @@ class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVer
      * @brief Gets the Direction Cosine Matrix (DCM) for the Local Horizontal, Local Vertical frame at a given date.
      *
      * @param date The date for which the DCM is computed.
-     * @return DirectionCosineMatrix<frames::earth::icrf, LocalHorizontalLocalVertical> The DCM from ECI to LVLH.
+     * @return DirectionCosineMatrix<frames::primary, LocalHorizontalLocalVertical> The DCM from ECI to LVLH.
      */
-    DirectionCosineMatrix<frames::earth::icrf, LocalHorizontalLocalVertical> get_dcm(const Date& date) const
+    DirectionCosineMatrix<frames::primary, LocalHorizontalLocalVertical> get_dcm(const Date& date) const
     {
         const auto r               = get_inertial_position(date).unit();
         const auto v               = get_inertial_velocity(date).unit();
         const auto h               = r.cross(v).unit();
         const auto localHorizontal = ((-h).cross(-r)).unit();
-        return DirectionCosineMatrix<frames::earth::icrf, LocalHorizontalLocalVertical>::from_vectors(localHorizontal, -h, -r);
+        return DirectionCosineMatrix<frames::primary, LocalHorizontalLocalVertical>::from_vectors(localHorizontal, -h, -r);
     }
 
   private:
@@ -76,7 +76,7 @@ class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVer
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.
      */
-    LocalHorizontalLocalVertical(const RadiusVector<frames::earth::icrf>& position, const VelocityVector<frames::earth::icrf>& velocity) :
+    LocalHorizontalLocalVertical(const RadiusVector<frames::primary>& position, const VelocityVector<frames::primary>& velocity) :
         DynamicFrame<LocalHorizontalLocalVertical, FrameAxis::LVLH>(position, velocity)
     {
     }
