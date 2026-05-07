@@ -98,6 +98,18 @@ concept HasSameOrigin = (Frame_T::origin == Frame_U::origin);
 template <typename Frame_T, typename Frame_U>
 concept HasSameAxis = (Frame_T::axis == Frame_U::axis);
 
+template <typename Frame_T>
+concept IsDerivedFrame = IsFrame<Frame_T> && !std::is_same_v<typename Frame_T::parent, void>;
+
+template <typename Frame_T>
+concept HasSpatialOffset = requires { Frame_T::offset; };
+
+template <typename Frame_T>
+concept HasAngularOffset = requires { Frame_T::misalignment; };
+
+template <typename Frame_T>
+concept IsFixedOffsetFrame = IsDerivedFrame<Frame_T> && (HasSpatialOffset<Frame_T> || HasAngularOffset<Frame_T>);
+
 /**
  * @brief Concept to determine if two frames are the same (same origin and same axis).
  *
@@ -106,9 +118,8 @@ concept HasSameAxis = (Frame_T::axis == Frame_U::axis);
  * @return true if both frames are the same, false otherwise.
  */
 template <typename Frame_T, typename Frame_U>
-concept IsSameFrame =
-    HasSameOrigin<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U> &&
-    std::is_same_v<typename Frame_T::parent, typename Frame_U::parent>; // TODO: This isn't a proper frame comparison
+concept IsSameFrame = HasSameOrigin<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U> &&
+                      std::is_same_v<typename Frame_T::parent, typename Frame_U::parent>;
 
 } // namespace astro
 } // namespace astrea

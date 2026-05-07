@@ -29,6 +29,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/frame_concepts.hpp>
+#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
@@ -398,6 +399,48 @@ class DirectionCosineMatrix {
         return DirectionCosineMatrix<Out_Frame_T, In_Frame_T>{ { _matrix[0][0], _matrix[1][0], _matrix[2][0] },
                                                                { _matrix[0][1], _matrix[1][1], _matrix[2][1] },
                                                                { _matrix[0][2], _matrix[1][2], _matrix[2][2] } };
+    }
+
+    template <RotationSequence sequence>
+    static inline constexpr DirectionCosineMatrix<In_Frame_T, Out_Frame_T>
+        from_euler_angles(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    {
+        if constexpr (sequence == RotationSequence::ZXZ) {
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZXZ(alpha, beta, gamma);
+        }
+        else if constexpr (sequence == RotationSequence::XYX) {
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XYX(alpha, beta, gamma);
+        }
+        else if constexpr (sequence == RotationSequence::YZY) {
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YZY(alpha, beta, gamma);
+        }
+        else if constexpr (sequence == RotationSequence::ZYZ) {
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZYZ(alpha, beta, gamma);
+        }
+        else if constexpr (sequence == RotationSequence::XZX) {
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XZX(alpha, beta, gamma);
+        }
+        else if constexpr (sequence == RotationSequence::YXY) {
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YXY(alpha, beta, gamma);
+        }
+        else if constexpr (sequence == RotationSequence::XYZ) {
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XYZ(alpha, beta, gamma);
+        }
+        else if constexpr (sequence == RotationSequence::YZX) {
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YZX(alpha, beta, gamma);
+        }
+        else if constexpr (sequence == RotationSequence::ZXY) {
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZXY(alpha, beta, gamma);
+        }
+        else if constexpr (sequence == RotationSequence::XZY) {
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::XZY(alpha, beta, gamma);
+        }
+        else if constexpr (sequence == RotationSequence::ZYX) {
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::ZYX(alpha, beta, gamma);
+        }
+        else if constexpr (sequence == RotationSequence::YXZ) {
+            return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::YXZ(alpha, beta, gamma);
+        }
     }
 
     /**

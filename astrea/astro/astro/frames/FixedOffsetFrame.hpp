@@ -28,6 +28,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/Frame.hpp>
 #include <astro/frames/frame_concepts.hpp>
+#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
@@ -43,14 +44,53 @@ consteval auto f_to_fixed_string()
 template <mp_units::basic_fixed_string ParentName, Distance x, Distance y, Distance z>
 inline consteval auto compose_name()
 {
-    return ParentName + " + [" + f_to_fixed_string<x.numerical_value_in(x.unit)>() + ", " +
-           f_to_fixed_string<y.numerical_value_in(y.unit)>() + ", " + f_to_fixed_string<z.numerical_value_in(z.unit)>() + "]";
+    return ParentName + " + [" + f_to_fixed_string<x.numerical_value_in(x.unit)>() + " km, " +
+           f_to_fixed_string<y.numerical_value_in(y.unit)>() + " km, " + f_to_fixed_string<z.numerical_value_in(z.unit)>() + " km]";
 }
 
-template <typename Frame_T, Distance x = Distance::zero(), Distance y = Distance::zero(), Distance z = Distance::zero()>
-struct FixedOffsetFrame : Frame<compose_name<Frame_T::name, x, y, z>(), CelestialBodyId::FIXED_OFFSET, Frame_T::axis, Frame_T> {
-    static constexpr CartesianVector<Distance, Frame_T> offset = { x, y, z }; //!< The fixed offset vector from the parent frame to this frame.
+template <mp_units::basic_fixed_string ParentName, Angle phi, Angle theta, Angle psi>
+inline consteval auto compose_name()
+{
+    return ParentName + " + [" + f_to_fixed_string<phi.numerical_value_in(phi.unit)>() + " rad, " +
+           f_to_fixed_string<theta.numerical_value_in(theta.unit)>() + " rad, " +
+           f_to_fixed_string<psi.numerical_value_in(psi.unit)>() + " rad]";
+}
+
+template <typename, auto...>
+struct FixedOffsetFrame;
+
+template <typename _parent, Distance _x, Distance _y, Distance _z, auto... Args>
+struct FixedOffsetFrame<_parent, _x, _y, _z, Args...>
+    : Frame<compose_name<_parent::name, _x, _y, _z>(), CelestialBodyId::FIXED_OFFSET, _parent::axis, _parent> {
+    static constexpr CartesianVector<Distance, _parent> offset = { _x, _y, _z }; //!< The fixed offset vector from the parent frame to this frame.
 };
+
+template <typename _parent, CartesianVector<Distance, _parent> _offset, auto... Args>
+struct FixedOffsetFrame<_parent, _offset, Args...>
+    : Frame<compose_name<_parent::name, _offset[0], _offset[1], _offset[2]>(), CelestialBodyId::FIXED_OFFSET, _parent::axis, _parent> {
+    static constexpr CartesianVector<Distance, _parent> offset =
+        _offset; //!< The fixed offset vector from the parent frame to this frame.
+};
+
+template <typename _parent, Angle _phi, Angle _theta, Angle _psi, RotationSequence _sequence, auto... Args>
+struct FixedOffsetFrame<_parent, _phi, _theta, _psi, _sequence, Args...>
+    : Frame<compose_name<_parent::name, _phi, _theta, _psi>(), CelestialBodyId::FIXED_OFFSET, _parent::axis, _parent> {
+    static constexpr auto sequence = _sequence; //!< The rotation sequence for the angular offset.
+    static constexpr CartesianVector<Angle, _parent> misalignment = { _phi, _theta, _psi }; //!< The fixed angular offset dcm from the parent frame to this frame.
+};
+
+template <typename Frame_T>
+    requires requires {
+        Frame_T::sequence;
+        Frame_T::misalignment;
+        typename Frame_T::parent;
+    }
+inline constexpr DirectionCosineMatrix<typename Frame_T::parent, Frame_T> get_dcm_from_frame()
+{
+    return DirectionCosineMatrix<typename Frame_T::parent, Frame_T>::template from_euler_angles<Frame_T::sequence>(
+        Frame_T::misalignment[0], Frame_T::misalignment[1], Frame_T::misalignment[2]
+    );
+}
 
 } // namespace astro
 } // namespace astrea
