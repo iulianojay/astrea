@@ -71,7 +71,8 @@ enum class CelestialBodyId : EnumType {
     NEPTUNE_BARYCENTER,
 
     // Other
-    CUSTOM
+    CUSTOM,
+    FIXED_OFFSET
 };
 
 /**

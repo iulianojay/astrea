@@ -106,7 +106,9 @@ concept HasSameAxis = (Frame_T::axis == Frame_U::axis);
  * @return true if both frames are the same, false otherwise.
  */
 template <typename Frame_T, typename Frame_U>
-concept IsSameFrame = HasSameOrigin<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U>;
+concept IsSameFrame =
+    HasSameOrigin<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U> &&
+    std::is_same_v<typename Frame_T::parent, typename Frame_U::parent>; // TODO: This isn't a proper frame comparison
 
 } // namespace astro
 } // namespace astrea

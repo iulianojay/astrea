@@ -50,9 +50,7 @@ struct is_specialization<Template<Args...>, Template> : std::true_type {};
  * @tparam T The type of the vector components (e.g., Distance, Velocity).
  */
 template <class Value_T, class Frame_T>
-class CartesianVector {
-
-  public:
+struct CartesianVector {
     /**
      * @brief Default constructor for CartesianVector.
      *
@@ -478,7 +476,6 @@ class CartesianVector {
         );
     }
 
-  protected:
     std::array<Value_T, 3> _vector; //!< Array to hold the x, y, and z components of the vector.
 };
 

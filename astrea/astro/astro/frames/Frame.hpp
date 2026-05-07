@@ -34,7 +34,6 @@ namespace detail {
 
 struct FrameBase {};
 
-
 } // namespace detail
 
 template <mp_units::basic_fixed_string _name, CelestialBodyId _origin, FrameAxis _axis, typename _parent = void>
