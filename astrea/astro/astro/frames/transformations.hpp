@@ -71,7 +71,7 @@ concept HasDcmMethod =
  */
 template <typename Frame_T, typename Frame_U>
     requires(HasSameOrigin<Frame_T, Frame_U>)
-CartesianVector<Distance, Frame_T> get_center_offset(const Date& date)
+inline constexpr CartesianVector<Distance, Frame_T> get_center_offset(const Date& date)
 {
     return CartesianVector<Distance, Frame_T>(
         0.0 * mp_units::si::unit_symbols::m, 0.0 * mp_units::si::unit_symbols::m, 0.0 * mp_units::si::unit_symbols::m
@@ -92,7 +92,7 @@ CartesianVector<Distance, Frame_T> get_center_offset(const Date& date)
  */
 template <typename Frame_T, typename Frame_U>
     requires(!HasSameOrigin<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U>)
-CartesianVector<Distance, Frame_T> get_center_offset(const Date& date)
+inline constexpr CartesianVector<Distance, Frame_T> get_center_offset(const Date& date)
 {
     // Build a system out of these bodies
     static const AstrodynamicsSystem sys(CelestialBodyId::SUN, { Frame_T::origin, Frame_U::origin });
@@ -117,7 +117,7 @@ namespace {
  * @throws std::runtime_error If no DCM is defined between the two frames.
  */
 template <typename Frame_T, typename Frame_U>
-DCM<Frame_T, Frame_U> get_dcm_impl(const Date& date)
+inline constexpr DCM<Frame_T, Frame_U> get_dcm_impl(const Date& date)
 {
     static_assert(!(HasDcm<Frame_T, Frame_U> && HasDcm<Frame_U, Frame_T>), "DCM defined in both directions, please define only one to avoid symmetry issues.");
     static_assert(IsStaticFrame<Frame_T> && IsStaticFrame<Frame_U>, "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference.");
@@ -155,7 +155,8 @@ concept HasValidFrameTransformation = requires(Date date) {
  * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
  */
 template <typename Value_T, typename Frame_T, typename Frame_U>
-CartesianVector<Value_T, Frame_U> rotate_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
+inline constexpr CartesianVector<Value_T, Frame_U>
+    rotate_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
 {
     const auto dcm = get_dcm_impl<Frame_T, Frame_U>(date);
     return dcm * vec;
@@ -177,7 +178,8 @@ CartesianVector<Value_T, Frame_U> rotate_vector_into_frame(const CartesianVector
  */
 template <typename Value_T, typename Frame_T, typename Frame_U>
     requires(HasSameOrigin<Frame_T, Frame_U>)
-CartesianVector<Value_T, Frame_T> translate_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
+inline constexpr CartesianVector<Value_T, Frame_T>
+    translate_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
 {
     return vec;
 }
@@ -196,7 +198,8 @@ CartesianVector<Value_T, Frame_T> translate_vector_into_frame(const CartesianVec
  */
 template <typename Value_T, typename Frame_T, typename Frame_U>
     requires(!HasSameOrigin<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U>)
-CartesianVector<Distance, Frame_U> translate_vector_into_frame(const CartesianVector<Distance, Frame_T>& vec, const Date& date)
+inline constexpr CartesianVector<Distance, Frame_U>
+    translate_vector_into_frame(const CartesianVector<Distance, Frame_T>& vec, const Date& date)
 {
     static const AstrodynamicsSystem system(Frame_T::origin, { Frame_U::origin });
     if constexpr (std::is_same_v<Value_T, Distance>) {
@@ -226,7 +229,8 @@ CartesianVector<Distance, Frame_U> translate_vector_into_frame(const CartesianVe
  */
 template <typename Value_T, typename Frame_T, typename Frame_U>
     requires(IsStaticFrame<Frame_T> && IsStaticFrame<Frame_U>)
-CartesianVector<Value_T, Frame_U> transform_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
+inline constexpr CartesianVector<Value_T, Frame_U>
+    transform_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
 {
     if constexpr (HasSameOrigin<Frame_T, Frame_U>) {
         // Same origin: rotation only
@@ -252,7 +256,7 @@ CartesianVector<Value_T, Frame_U> transform_vector_into_frame(const CartesianVec
 template <typename Value_T, typename Frame_T>
 template <typename Frame_U>
     requires(!IsSameFrame<Frame_T, Frame_U> && IsStaticFrame<Frame_U>)
-CartesianVector<Value_T, Frame_U> CartesianVector<Value_T, Frame_T>::in_frame(const Date& date) const
+inline constexpr CartesianVector<Value_T, Frame_U> CartesianVector<Value_T, Frame_T>::in_frame(const Date& date) const
 {
     return frames::transform_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
 }
