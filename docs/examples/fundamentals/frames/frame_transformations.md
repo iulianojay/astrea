@@ -88,7 +88,7 @@ CartesianVector<Distance, moon::body_fixed> moonBodyPos =
 Rotation transformations use direction cosine matrices (DCM):
 
 ```cpp
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/frames/DirectionCosineMatrix.hpp>
 
 // Create rotation matrix
 DirectionCosineMatrix dcm = compute_rotation_matrix<ECEF, ECI>(epoch);

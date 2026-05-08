@@ -160,7 +160,9 @@ Geodetic Geodetic::interpolate(const Time& thisTime, const Time& otherTime, cons
 
 RadiusVector<frames::earth::earth_fixed> Geodetic::get_position(const CelestialBody* parent) const
 {
-    return convert_geodetic_to_earth_fixed(_latitude, _longitude, _altitude, parent->get_equitorial_radius(), parent->get_polar_radius());
+    return convert_geodetic_to_body_fixed<frames::earth::earth_fixed>(
+        _latitude, _longitude, _altitude, parent->get_equitorial_radius(), parent->get_polar_radius()
+    );
 }
 
 RadiusVector<frames::earth::icrf> Geodetic::get_position(const Date& date, const CelestialBody* parent) const
@@ -176,57 +178,6 @@ std::ostream& operator<<(std::ostream& os, Geodetic const& elements)
     if (elements.get_altitude() != 0.0 * km) { os << ", " << elements.get_altitude(); }
     os << "] (Geodetic)";
     return os;
-}
-
-std::tuple<Angle, Angle, Distance>
-    convert_body_fixed_to_geodetic(const RadiusVector<frames::earth::earth_fixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar)
-{
-    static const unsigned MAX_ITER  = 1e4;
-    static const Distance MAX_ERROR = 1 * mm;
-
-    const Distance& xEcef = rEcef[0];
-    const Distance& yEcef = rEcef[1];
-    const Distance& zEcef = rEcef[2];
-
-    const Unitless f   = (rEquitorial - rPolar) / rEquitorial;
-    const Unitless eSq = (2.0 - f) * f;
-
-    const auto xSqYSq = xEcef * xEcef + yEcef * yEcef;
-
-    Distance dz  = eSq * zEcef;
-    Distance err = 1.0 * km;
-    Distance N   = 0.0 * km;
-    unsigned ii  = 0;
-    while (err > MAX_ERROR && ii < MAX_ITER) {
-        const Unitless s = (zEcef + dz) / sqrt(xSqYSq + (zEcef + dz) * (zEcef + dz));
-        N                = rEquitorial / sqrt(1 - eSq * s * s);
-        err              = abs(dz - N * eSq * s);
-        dz               = N * eSq * s;
-        ++ii;
-    }
-
-    if (ii >= MAX_ITER - 1) { throw std::runtime_error("Conversion from ECEF to LLA failed to converge."); }
-
-    const Angle longitude = atan2(yEcef, xEcef);
-    const Angle latitude  = atan2(zEcef + dz, sqrt(xSqYSq));
-    Distance altitude     = sqrt(xSqYSq + (zEcef + dz) * (zEcef + dz)) - N;
-    if (altitude < 0.0 * km) { altitude = 0.0 * km; }
-
-    return { latitude, longitude, altitude };
-}
-
-RadiusVector<frames::earth::earth_fixed>
-    convert_geodetic_to_earth_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar)
-{
-    const Unitless sinLat = sin(lat);
-    const Unitless cosLat = cos(lat);
-
-    const Unitless f   = (rEquitorial - rPolar) / rEquitorial;
-    const Unitless eSq = (2.0 - f) * f;
-    const Distance N   = rEquitorial / sqrt(1.0 - eSq * sinLat * sinLat);
-
-    // Ecef coordinates
-    return { (N + alt) * cosLat * cos(lon), (N + alt) * cosLat * sin(lon), ((1.0 - eSq) * N + alt) * sinLat };
 }
 
 } // namespace astro

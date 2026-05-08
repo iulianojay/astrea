@@ -35,6 +35,12 @@ RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& 
     return positionNbFromSsb; // TODO: Add correction for Neptune's position from Neptune barycenter
 }
 
+VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at(const Date& date) const
+{
+    const auto velocityNbFromSsb = get_velocity_at_impl<NeptuneEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    return velocityNbFromSsb; // TODO: Add correction for Neptune's velocity from Neptune barycenter
+}
+
 #endif // ASTREA_BUILD_NEPTUNE_EPHEMERIS
 
 } // namespace planetary_bodies

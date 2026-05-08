@@ -95,7 +95,7 @@ class Venus : public CelestialBody {
      * @param altitude The altitude at which to find the atmospheric density.
      * @return Density The atmospheric density at the given date and altitude.
      */
-    Density find_atmospheric_density(const Date& date, const Distance& altitude) const override;
+    Density find_atmospheric_density(const State& state) const override;
 
     /**
      * @brief Get the unique identifier for the Venus celestial body.
@@ -113,6 +113,14 @@ class Venus : public CelestialBody {
      * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Venus at the given date.
      */
     RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
+
+    /**
+     * @brief Get the velocity of the Venus at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+     *
+     * @param date The date for which to find the velocity of the Venus.
+     * @return VelocityVector<frames::solar_system_barycenter::icrf> The velocity of the Venus at the given date.
+     */
+    VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at(const
 
 #endif // ASTREA_BUILD_VENUS_EPHEMERIS
 };

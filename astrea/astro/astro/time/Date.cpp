@@ -75,6 +75,11 @@ std::string Date::epoch() const
 
 Angle Date::gmst() const { return julian_date_to_sidereal_time(_julianDate); }
 
+Angle Date::body_sidereal_time(const CelestialBody& body) const
+{
+    return julian_date_to_body_sidereal_time(_julianDate, body);
+}
+
 // General conversions
 JulianDate epoch_to_julian_date(const std::string& epoch, const std::string format)
 {
@@ -93,12 +98,12 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
 const Date Date::now() noexcept { return JulianDateClock::now(); }
 
 
-Angle julian_date_to_sidereal_time(const JulianDate& _julianDate)
+Angle julian_date_to_sidereal_time(const JulianDate& julianDate)
 {
     using mp_units::angular::unit_symbols::deg;
     using mp_units::non_si::day;
 
-    const Time julianDay = _julianDate.time_since_epoch().count() * day;
+    const Time julianDay = julianDate.time_since_epoch().count() * day;
 
     // UT = (fraction of current Julian Day since 00:00:00 in days) / (body rotation rate in deg/day ratioed to Earth's)
     static const Time halfDay = 0.5 * day;
@@ -119,6 +124,17 @@ Angle julian_date_to_sidereal_time(const JulianDate& _julianDate)
     const Angle greenwichSiderealTime         = wrap_angle(greenwichUniversalTime + earthRotRate * universalTime);
 
     return greenwichSiderealTime;
+}
+
+Angle julian_date_to_body_sidereal_time(const JulianDate& date, const CelestialBody& body)
+{
+    using mp_units::non_si::day;
+
+    // Elapsed time since J2000 in seconds
+    const Time elapsed = (date.time_since_epoch().count() - J2000.time_since_epoch().count()) * day;
+
+    // Accumulated rotation of the body's prime meridian since J2000
+    return wrap_angle(body.get_rotation_rate() * elapsed);
 }
 
 } // namespace astro

@@ -1,10 +1,10 @@
 /**
- * @file InertialFrame.hpp
+ * @file HarrisPriester.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the InertialFrame class in the astro namespace
- * @date 2025-08-05
+ * @brief Header file for the HarrisPriester class.
+ * @date 2026-05-01
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -18,26 +18,31 @@
  */
 #pragma once
 
-#include <string>
+#include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/Frame.hpp>
-#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
+namespace planetary_bodies {
 
 /**
- * @brief Base class for all inertial state/frames.
+ * @brief The Harris-Priester atmospheric model for Earth.
  */
-template <CelestialBodyId _origin, FrameAxis _axis = FrameAxis::ICRF>
-    requires(_origin != CelestialBodyId::UNSET && _origin != CelestialBodyId::CUSTOM)
-struct InertialFrame : Frame<_origin, _axis> {
-    virtual ~InertialFrame() = default;
+class HarrisPriesterAtmosphere {
+  public:
+    /**
+     * @brief Deleted constructor
+     */
+    HarrisPriesterAtmosphere() = delete;
 
-    static constexpr CelestialBodyId origin = Frame<_origin, _axis>::origin; //!< The central body associated with the inertial frame.
-    static constexpr FrameAxis axis = Frame<_origin, _axis>::axis; //!< The axis type of the inertial frame.
+    /**
+     * @brief Find the atmospheric density at a given state using the Harris-Priester atmospheric model.
+     * @return Density The atmospheric density at the given state.
+     */
+    static Density find_atmospheric_density(const State& state, const Distance equitorialRadius, const Distance polarRadius);
 };
 
+} // namespace planetary_bodies
 } // namespace astro
 } // namespace astrea

@@ -26,6 +26,7 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
@@ -295,8 +296,26 @@ Distance calculate_geocentric_radius(const Angle& lat, const Distance& rEquitori
  * @param rPolar The polar radius of the Earth.
  * @return The latitude, longitude, and altitude as a tuple.
  */
+template <typename Frame_T>
+    requires(IsFixedRotatingFrame<Frame_T>)
 std::tuple<Angle, Angle, Distance>
-    convert_earth_fixed_to_geocentric(const RadiusVector<frames::earth::earth_fixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar);
+    convert_body_fixed_to_geocentric(const RadiusVector<Frame_T>& rEcef, const Distance& rEquitorial, const Distance& rPolar)
+{
+    const Distance& x = rEcef[0];
+    const Distance& y = rEcef[1];
+    const Distance& z = rEcef[2];
+    const Distance R  = rEcef.norm();
+
+    const Distance rho = sqrt(x * x + y * y);
+
+    const Angle longitude = atan2(y, x);
+    const Angle latitude  = atan2(z, rho);
+
+    const Distance rGeocentric = calculate_geocentric_radius(latitude, rEquitorial, rPolar);
+    const Distance altitude    = R - rGeocentric;
+
+    return { latitude, longitude, altitude };
+}
 
 
 /**
@@ -309,8 +328,17 @@ std::tuple<Angle, Angle, Distance>
  * @param rPolar The polar radius of the Earth.
  * @return The radius vector in ECEF coordinates.
  */
-RadiusVector<frames::earth::earth_fixed>
-    convert_geocentric_to_earth_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar);
+template <typename Frame_T>
+    requires(IsFixedRotatingFrame<Frame_T>)
+RadiusVector<Frame_T>
+    convert_geocentric_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar)
+{
+    const Distance rGeocentric = calculate_geocentric_radius(lat, rEquitorial, rPolar);
+    const Distance R           = rGeocentric + alt;
+
+    // Ecef coordinates
+    return { R * cos(lat) * cos(lon), R * cos(lat) * sin(lon), R * sin(lat) };
+}
 
 } // namespace astro
 } // namespace astrea

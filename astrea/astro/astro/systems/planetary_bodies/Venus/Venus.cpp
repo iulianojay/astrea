@@ -20,6 +20,9 @@
 #include <ephemerides/Venus/VenusEphemerisTable.hpp>
 #endif // ASTREA_BUILD_VENUS_EPHEMERIS
 
+#include <astro/state/State.hpp>
+#include <astro/state/angular_elements/instances/Geodetic.hpp>
+
 namespace astrea {
 namespace astro {
 namespace planetary_bodies {
@@ -55,8 +58,12 @@ static const std::map<Altitude, Density> venutianAtmosphere = { // km, kg/m^3
     { 290.0 * km, 6.5e-12 * kg / (pow<3>(m)) }, { 300.0 * km, 3.5e-12 * kg / (pow<3>(m)) }
 };
 
-Density Venus::find_atmospheric_density(const Date& date, const Distance& altitude) const
+Density Venus::find_atmospheric_density(const State& state) const
 {
+    const auto& position = state.get_position_in_frame<frames::venus::venus_fixed>();
+    const auto [latitude, longitude, altitude] =
+        convert_body_fixed_to_geodetic(position, get_equitorial_radius(), get_polar_radius());
+
     const auto iter = venutianAtmosphere.upper_bound(altitude);
     return (iter != venutianAtmosphere.end()) ? iter->second : 0.0 * kg / pow<3>(km);
 }
@@ -67,6 +74,12 @@ RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& 
 {
     const auto positionVbFromSsb = get_position_at_impl<VenusEphemerisTable, frames::solar_system_barycenter::icrf>(date);
     return positionVbFromSsb; // TODO: Add correction for Venus' position from Venus barycenter
+}
+
+VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at(const Date& date) const
+{
+    const auto velocityVbFromSsb = get_velocity_at_impl<VenusEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    return velocityVbFromSsb; // TODO: Add correction for Venus' velocity from Venus barycenter
 }
 
 #endif // ASTREA_BUILD_VENUS_EPHEMERIS

@@ -77,6 +77,8 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/systems/CelestialBody.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/JplEphemerisTable.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Earth.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Earth/atmosphere/JacciaRoberts.cpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Earth/atmosphere/HarrisPriester.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Moon.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Mars/Mars.cpp
     ${ASTRO_BASE}/systems/planetary_bodies/Mercury/Mercury.cpp
@@ -107,14 +109,12 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/instances/RadialInTrackCrossTrack.hpp
     ${ASTRO_BASE}/frames/instances/VelocityNormalBinormal.hpp
 
-    ${ASTRO_BASE}/frames/types/DirectionCosineMatrix.hpp
-    ${ASTRO_BASE}/frames/types/InertialFrame.hpp
-    ${ASTRO_BASE}/frames/types/BodyFixedFrame.hpp
-
+    ${ASTRO_BASE}/frames/DirectionCosineMatrix.hpp
     ${ASTRO_BASE}/frames/CartesianVector.hpp
     ${ASTRO_BASE}/frames/dynamic_frames.hpp
     ${ASTRO_BASE}/frames/frame_concepts.hpp
     ${ASTRO_BASE}/frames/Frame.hpp
+    ${ASTRO_BASE}/frames/FixedOffsetFrame.hpp
     ${ASTRO_BASE}/frames/FrameReference.hpp
     ${ASTRO_BASE}/frames/frames.hpp
     ${ASTRO_BASE}/frames/transformations.hpp
@@ -191,6 +191,8 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/systems/planetary_bodies/planetary_bodies.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/JplEphemerisTable.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Earth.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Earth/atmosphere/JacciaRoberts.hpp
+    ${ASTRO_BASE}/systems/planetary_bodies/Earth/atmosphere/HarrisPriester.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/Earth/Moon.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/Mars/Deimos.hpp
     ${ASTRO_BASE}/systems/planetary_bodies/Mars/Mars.hpp

@@ -35,6 +35,12 @@ RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& 
     return positionSbFromSsb; // TODO: Add correction for Saturn's position from Saturn barycenter
 }
 
+VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at(const Date& date) const
+{
+    const auto velocitySbFromSsb = get_velocity_at_impl<SaturnEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    return velocitySbFromSsb; // TODO: Add correction for Saturn's velocity from Saturn barycenter
+}
+
 #endif // ASTREA_BUILD_SATURN_EPHEMERIS
 
 } // namespace planetary_bodies

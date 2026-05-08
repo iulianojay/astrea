@@ -222,7 +222,7 @@ TEST_F(ConversionTest, LlaToEcef)
     const Angle lon    = 46.4464 * deg;
     const Distance alt = 5085.22 * km;
 
-    const RadiusVector<frames::earth::earth_fixed> rEcef = convert_geodetic_to_earth_fixed(lat, lon, alt, rEquitorial, rPolar);
+    const auto rEcef = convert_geodetic_to_body_fixed<frames::earth::earth_fixed>(lat, lon, alt, rEquitorial, rPolar);
 
     // I have no idea why these are not the same
     ASSERT_TRUE(math::nearly_equal(rEcef[0], Distance(6524.834 * km), REL_TOL));

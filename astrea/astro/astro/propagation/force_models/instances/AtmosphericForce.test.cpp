@@ -110,7 +110,7 @@ TEST_F(AtmosphericForceTest, VenutianAtmosphere)
 
 TEST_F(AtmosphericForceTest, TitanAtmosphere)
 {
-    AstrodynamicsSystem titanSys(CelestialBodyId::TITAN, { CelestialBodyId::TITAN, CelestialBodyId::SATURN });
+    AstrodynamicsSystem titanSys(CelestialBodyId::TITAN, { CelestialBodyId::SATURN });
     AtmosphericForce titanAtmosphere;
     State state(Cartesian<frames::earth::icrf>::LEO(titanSys.get_mu()), epoch, titanSys);
     ASSERT_NO_THROW(titanAtmosphere.compute_perturbation(state, Vehicle(sat)));

@@ -263,10 +263,10 @@ TEST_F(CartesianVectorTest, TestOutputStream)
 {
     std::ostringstream oss;
     oss << vec1;
-    EXPECT_EQ(oss.str(), "[1, 0, 0]");
+    EXPECT_EQ(oss.str(), "[1, 0, 0] (gcrf)");
 
     CartesianVector<Unitless, frames::earth::j2000> vecOtherFrame(1.0 * one, 2.0 * one, 3.0 * one);
     std::ostringstream ossOther;
     ossOther << vecOtherFrame;
-    EXPECT_EQ(ossOther.str(), "[1, 2, 3]");
+    EXPECT_EQ(ossOther.str(), "[1, 2, 3] (eme2000)");
 }

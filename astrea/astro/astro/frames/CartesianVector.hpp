@@ -21,17 +21,12 @@
 #include <array>
 #include <typeinfo>
 
-#include <mp-units/framework.h>
-#include <mp-units/math.h>
-#include <mp-units/systems/angular/math.h>
+#include <mp-units/systems/angular.h>
 
-#include <units/typedefs.hpp>
-#include <utilities/string_util.hpp>
+#include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/Frame.hpp>
 #include <astro/frames/frame_concepts.hpp>
-#include <astro/frames/transformations.hpp>
 
 namespace astrea {
 namespace astro {
@@ -55,12 +50,7 @@ struct is_specialization<Template<Args...>, Template> : std::true_type {};
  * @tparam T The type of the vector components (e.g., Distance, Velocity).
  */
 template <class Value_T, class Frame_T>
-class CartesianVector {
-
-  public:
-    using value_type = Value_T;
-    using frame_type = Frame_T;
-
+struct CartesianVector {
     /**
      * @brief Default constructor for CartesianVector.
      *
@@ -69,7 +59,7 @@ class CartesianVector {
      * @param y The y component of the vector (default is 0).
      * @param z The z component of the vector (default is 0).
      */
-    CartesianVector(const Value_T& x = Value_T(), const Value_T& y = Value_T(), const Value_T& z = Value_T()) :
+    inline constexpr CartesianVector(const Value_T& x = Value_T::zero(), const Value_T& y = Value_T::zero(), const Value_T& z = Value_T::zero()) :
         _vector{ x, y, z }
     {
     }
@@ -77,29 +67,29 @@ class CartesianVector {
     /**
      * @brief Return the reverse of the vector, which switches the x and z components. This is useful for converting between different rotation sequences.
      */
-    CartesianVector reverse() const { return { _vector[2], _vector[1], _vector[0] }; }
+    inline constexpr CartesianVector reverse() const { return { _vector[2], _vector[1], _vector[0] }; }
 
     /**
-     * @brief Virtual destructor for CartesianVector.
+     * @brief Destructor for CartesianVector.
      */
-    virtual ~CartesianVector() = default;
+    inline constexpr ~CartesianVector() = default;
 
     // Explicitly deleted copy/move assignment/constructor to prevent implicit frame switches.
     template <typename Frame_U>
         requires(!IsSameFrame<Frame_T, Frame_U>)
-    CartesianVector(const CartesianVector<Value_T, Frame_U>& other) = delete;
+    inline constexpr CartesianVector(const CartesianVector<Value_T, Frame_U>& other) = delete;
 
     template <typename Frame_U>
         requires(!IsSameFrame<Frame_T, Frame_U>)
-    CartesianVector(CartesianVector<Value_T, Frame_U>&& other) = delete;
+    inline constexpr CartesianVector(CartesianVector<Value_T, Frame_U>&& other) = delete;
 
     template <typename Frame_U>
         requires(!IsSameFrame<Frame_T, Frame_U>)
-    CartesianVector<Value_T, Frame_T> operator=(const CartesianVector<Value_T, Frame_U>& other) = delete;
+    inline constexpr CartesianVector<Value_T, Frame_T> operator=(const CartesianVector<Value_T, Frame_U>& other) = delete;
 
     template <typename Frame_U>
         requires(!IsSameFrame<Frame_T, Frame_U>)
-    CartesianVector<Value_T, Frame_T> operator=(CartesianVector<Value_T, Frame_U>&& other) = delete;
+    inline constexpr CartesianVector<Value_T, Frame_T> operator=(CartesianVector<Value_T, Frame_U>&& other) = delete;
 
     /**
      * @brief Copy constructor for CartesianVector that implicitly converts the unit.
@@ -108,7 +98,7 @@ class CartesianVector {
      */
     template <typename Value_U>
         requires(!is_specialization<Value_U, CartesianVector>::value && std::constructible_from<Value_T, Value_U>)
-    CartesianVector<Value_T, Frame_T> operator=(const CartesianVector<Value_U, Frame_T>& other) const
+    inline constexpr CartesianVector<Value_T, Frame_T> operator=(const CartesianVector<Value_U, Frame_T>& other) const
     {
         return CartesianVector<Value_T, Frame_T>(other[0], other[1], other[2]);
     }
@@ -119,7 +109,7 @@ class CartesianVector {
      * @param other The other CartesianVector to copy from.
      */
     template <typename Frame_U>
-    constexpr CartesianVector<Value_T, Frame_U> force_frame_conversion() const
+    inline constexpr CartesianVector<Value_T, Frame_U> force_frame_conversion() const
     {
         return CartesianVector<Value_T, Frame_U>(_vector[0], _vector[1], _vector[2]);
     }
@@ -130,7 +120,7 @@ class CartesianVector {
      * @param index The index of the component to access (0 for x, 1 for y, 2 for z).
      * @return Value_T& Reference to the component at the specified index.
      */
-    Value_T& operator[](size_t index) { return _vector[index]; }
+    inline constexpr Value_T& operator[](size_t index) { return _vector[index]; }
 
     /**
      * @brief Const access operator for vector components.
@@ -138,7 +128,7 @@ class CartesianVector {
      * @param index The index of the component to access (0 for x, 1 for y, 2 for z).
      * @return const Value_T& Reference to the component at the specified index.
      */
-    const Value_T& operator[](size_t index) const { return _vector[index]; }
+    inline constexpr const Value_T& operator[](size_t index) const { return _vector[index]; }
 
     /**
      * @brief Equality operator for CartesianVector.
@@ -148,7 +138,7 @@ class CartesianVector {
      * @return false If the two vectors are not equal.
      */
     template <typename Value_U>
-    bool operator==(const CartesianVector<Value_U, Frame_T>& other) const
+    inline constexpr bool operator==(const CartesianVector<Value_U, Frame_T>& other) const
     {
         return _vector[0] == other._vector[0] && _vector[1] == other._vector[1] && _vector[2] == other._vector[2];
     }
@@ -161,8 +151,8 @@ class CartesianVector {
      * @return false If the two vectors are equal.
      */
     template <typename Frame_U>
-        requires(!std::is_same<Frame_T, Frame_U>::value)
-    bool operator==(const CartesianVector<Value_T, Frame_U>& other) const
+        requires(!IsSameFrame<Frame_T, Frame_U>)
+    inline constexpr bool operator==(const CartesianVector<Value_T, Frame_U>& other) const
     {
         return false;
     }
@@ -173,7 +163,7 @@ class CartesianVector {
      * @param other The other CartesianVector to add.
      * @return CartesianVector<Value_T, Frame_T> A new CartesianVector that is the sum of this vector and the other.
      */
-    CartesianVector<Value_T, Frame_T> operator+(const CartesianVector<Value_T, Frame_T>& other) const
+    inline constexpr CartesianVector<Value_T, Frame_T> operator+(const CartesianVector<Value_T, Frame_T>& other) const
     {
         return CartesianVector<Value_T, Frame_T>(
             _vector[0] + other.get_x(), _vector[1] + other.get_y(), _vector[2] + other.get_z()
@@ -186,7 +176,7 @@ class CartesianVector {
      * @param other The other CartesianVector to add.
      * @return CartesianVector<Value_T, Frame_T>& Reference to the current object after addition.
      */
-    CartesianVector<Value_T, Frame_T>& operator+=(const CartesianVector<Value_T, Frame_T>& other)
+    inline constexpr CartesianVector<Value_T, Frame_T>& operator+=(const CartesianVector<Value_T, Frame_T>& other)
     {
         _vector[0] += other.get_x();
         _vector[1] += other.get_y();
@@ -200,7 +190,7 @@ class CartesianVector {
      * @param other The other CartesianVector to subtract.
      * @return CartesianVector<Value_T, Frame_T> A new CartesianVector that is the difference of this vector and the other.
      */
-    CartesianVector<Value_T, Frame_T> operator-(const CartesianVector<Value_T, Frame_T>& other) const
+    inline constexpr CartesianVector<Value_T, Frame_T> operator-(const CartesianVector<Value_T, Frame_T>& other) const
     {
         return CartesianVector<Value_T, Frame_T>(
             _vector[0] - other.get_x(), _vector[1] - other.get_y(), _vector[2] - other.get_z()
@@ -212,7 +202,7 @@ class CartesianVector {
      *
      * @return CartesianVector<T> A new CartesianVector that is the negation of this vector.
      */
-    CartesianVector<Value_T, Frame_T> operator-() const
+    inline constexpr CartesianVector<Value_T, Frame_T> operator-() const
     {
         return CartesianVector<Value_T, Frame_T>(-_vector[0], -_vector[1], -_vector[2]);
     }
@@ -223,7 +213,7 @@ class CartesianVector {
      * @param other The other CartesianVector to subtract.
      * @return CartesianVector<Value_T, Frame_T>& Reference to the current object after subtraction.
      */
-    CartesianVector<Value_T, Frame_T>& operator-=(const CartesianVector<Value_T, Frame_T>& other)
+    inline constexpr CartesianVector<Value_T, Frame_T>& operator-=(const CartesianVector<Value_T, Frame_T>& other)
     {
         _vector[0] -= other.get_x();
         _vector[1] -= other.get_y();
@@ -240,7 +230,7 @@ class CartesianVector {
      */
     template <typename Value_U>
         requires(!is_specialization<Value_U, CartesianVector>::value)
-    CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T> operator*(const Value_U& scalar) const
+    inline constexpr CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T> operator*(const Value_U& scalar) const
     {
         return CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>(_vector[0] * scalar, _vector[1] * scalar, _vector[2] * scalar);
     }
@@ -251,7 +241,7 @@ class CartesianVector {
      * @param scalar The scalar value to multiply with.
      * @return CartesianVector<Value_T, Frame_T>& Reference to the current object after multiplication.
      */
-    CartesianVector<Value_T, Frame_T>& operator*=(const Unitless& scalar)
+    inline constexpr CartesianVector<Value_T, Frame_T>& operator*=(const Unitless& scalar)
     {
         _vector[0] *= scalar;
         _vector[1] *= scalar;
@@ -268,7 +258,7 @@ class CartesianVector {
      */
     template <typename Value_U>
         requires(!is_specialization<Value_U, CartesianVector>::value)
-    CartesianVector<decltype(Value_T{} / Value_U{}), Frame_T> operator/(const Value_U& scalar) const
+    inline constexpr CartesianVector<decltype(Value_T{} / Value_U{}), Frame_T> operator/(const Value_U& scalar) const
     {
         return CartesianVector<decltype(Value_T{} / Value_U{}), Frame_T>(_vector[0] / scalar, _vector[1] / scalar, _vector[2] / scalar);
     }
@@ -279,7 +269,7 @@ class CartesianVector {
      * @param scalar The scalar value to divide by.
      * @return CartesianVector<Value_T, Frame_T>& Reference to the current object after division.
      */
-    CartesianVector<Value_T, Frame_T>& operator/=(const Unitless& scalar)
+    inline constexpr CartesianVector<Value_T, Frame_T>& operator/=(const Unitless& scalar)
     {
         _vector[0] /= scalar;
         _vector[1] /= scalar;
@@ -292,42 +282,42 @@ class CartesianVector {
      *
      * @return Value_T& Reference to the x component of the Cartesian vector.
      */
-    Value_T& get_x() { return _vector[0]; }
+    inline constexpr Value_T& get_x() { return _vector[0]; }
 
     /**
      * @brief Get the x value of the Cartesian vector.
      *
      * @return const Value_T& Reference to the x component of the Cartesian vector.
      */
-    const Value_T& get_x() const { return _vector[0]; }
+    inline constexpr const Value_T& get_x() const { return _vector[0]; }
 
     /**
      * @brief Get the y value of the Cartesian vector.
      *
      * @return Value_T& Reference to the y component of the Cartesian vector.
      */
-    Value_T& get_y() { return _vector[1]; }
+    inline constexpr Value_T& get_y() { return _vector[1]; }
 
     /**
      * @brief Get the y value of the Cartesian vector.
      *
      * @return const Value_T& Reference to the y component of the Cartesian vector.
      */
-    const Value_T& get_y() const { return _vector[1]; }
+    inline constexpr const Value_T& get_y() const { return _vector[1]; }
 
     /**
      * @brief Get the z value of the Cartesian vector.
      *
      * @return Value_T& Reference to the z component of the Cartesian vector.
      */
-    Value_T& get_z() { return _vector[2]; }
+    inline constexpr Value_T& get_z() { return _vector[2]; }
 
     /**
      * @brief Get the z value of the Cartesian vector.
      *
      * @return const Value_T& Reference to the z component of the Cartesian vector.
      */
-    const Value_T& get_z() const { return _vector[2]; }
+    inline constexpr const Value_T& get_z() const { return _vector[2]; }
 
     /**
      * @brief Dot product of this vector with another CartesianVector.
@@ -337,7 +327,7 @@ class CartesianVector {
      * @return decltype(Value_T{} * Value_U{}) The result of the dot product.
      */
     template <typename Value_U>
-    decltype(Value_T{} * Value_U{}) dot(const CartesianVector<Value_U, Frame_T>& other) const
+    inline constexpr decltype(Value_T{} * Value_U{}) dot(const CartesianVector<Value_U, Frame_T>& other) const
     {
         return _vector[0] * other.get_x() + _vector[1] * other.get_y() + _vector[2] * other.get_z();
     }
@@ -350,7 +340,8 @@ class CartesianVector {
      * @return CartesianVector<decltype(Value_T{} * Value_U{})> The result of the cross product.
      */
     template <typename Value_U>
-    CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T> cross(const CartesianVector<Value_U, Frame_T>& other) const
+    inline constexpr CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>
+        cross(const CartesianVector<Value_U, Frame_T>& other) const
     {
         return { _vector[1] * other.get_z() - _vector[2] * other.get_y(),
                  _vector[2] * other.get_x() - _vector[0] * other.get_z(),
@@ -362,7 +353,10 @@ class CartesianVector {
      *
      * @return T The norm of the vector.
      */
-    Value_T norm() const { return sqrt(_vector[0] * _vector[0] + _vector[1] * _vector[1] + _vector[2] * _vector[2]); }
+    inline constexpr Value_T norm() const
+    {
+        return sqrt(_vector[0] * _vector[0] + _vector[1] * _vector[1] + _vector[2] * _vector[2]);
+    }
 
     /**
      * @brief Normalize the vector to create a unit vector.
@@ -370,7 +364,7 @@ class CartesianVector {
      * @return CartesianVector<Unitless> A unit vector in the same direction as this vector.
      * @note If the norm is zero, returns a zero vector.
      */
-    CartesianVector<Unitless, Frame_T> unit() const
+    inline constexpr CartesianVector<Unitless, Frame_T> unit() const
     {
         const Value_T n = norm();
         if (n.numerical_value_in(n.unit) == 0) {
@@ -389,7 +383,7 @@ class CartesianVector {
      * @throws std::runtime_error If either vector has zero magnitude.
      */
     template <typename Value_U>
-    Angle offset_angle(const CartesianVector<Value_U, Frame_T>& other) const
+    inline constexpr Angle offset_angle(const CartesianVector<Value_U, Frame_T>& other) const
     {
         using namespace mp_units;
         using namespace mp_units::angular;
@@ -418,7 +412,7 @@ class CartesianVector {
      */
     template <typename Frame_U>
         requires(IsSameFrame<Frame_T, Frame_U>)
-    CartesianVector<Value_T, Frame_U> in_frame(const Date&) const
+    inline constexpr CartesianVector<Value_T, Frame_U> in_frame(const Date&) const
     {
         return *this;
     }
@@ -433,25 +427,7 @@ class CartesianVector {
      */
     template <typename Frame_U>
         requires(!IsSameFrame<Frame_T, Frame_U> && IsStaticFrame<Frame_U>)
-    CartesianVector<Value_T, Frame_U> in_frame(const Date& date) const
-    {
-        return frames::rotate_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
-    }
-
-    // /**
-    //  * @brief Transform this vector into another frame at a given date, accounting for both rotation and translation.
-    //  *
-    //  * @tparam Frame_U The target frame type to transform into.
-    //  * @param date The date at which to perform the transformation.
-    //  * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
-    //  * @throws std::runtime_error If the frames do not have a known transformation or if the DCM cannot be obtained.
-    //  */
-    // template <typename Frame_U>
-    //     requires(!IsSameFrame<Frame_T, Frame_U> && IsStaticFrame<Frame_U>)
-    // CartesianVector<Value_T, Frame_U> with_respect_to_frame(const Date& date) const
-    // {
-    //     return frames::transform_vector_into_frame<Value_T, Frame_T, Frame_U>(*this, date);
-    // }
+    inline constexpr CartesianVector<Value_T, Frame_U> in_frame(const Date& date) const;
 
     /**
      * @brief Translate this vector by another vector in a different frame, resulting in a vector in a third frame.
@@ -475,7 +451,7 @@ class CartesianVector {
      */
     template <typename Frame_U, typename Frame_V>
         requires(!IsSameFrame<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U> && !HasSameOrigin<Frame_T, Frame_U>)
-    CartesianVector<Value_T, Frame_V> translate(const CartesianVector<Value_T, Frame_U>& other) const
+    inline constexpr CartesianVector<Value_T, Frame_V> translate(const CartesianVector<Value_T, Frame_U>& other) const
     {
         return CartesianVector<Value_T, Frame_V>(
             _vector[0] + other.get_x(), _vector[1] + other.get_y(), _vector[2] + other.get_z()
@@ -493,14 +469,13 @@ class CartesianVector {
      */
     template <typename Frame_U, typename Frame_V>
         requires(!IsSameFrame<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U> && !HasSameOrigin<Frame_T, Frame_U>)
-    CartesianVector<Value_T, Frame_V> offset(const CartesianVector<Value_T, Frame_U>& other) const
+    inline constexpr CartesianVector<Value_T, Frame_V> offset(const CartesianVector<Value_T, Frame_U>& other) const
     {
         return CartesianVector<Value_T, Frame_V>(
             _vector[0] - other.get_x(), _vector[1] - other.get_y(), _vector[2] - other.get_z()
         );
     }
 
-  protected:
     std::array<Value_T, 3> _vector; //!< Array to hold the x, y, and z components of the vector.
 };
 
@@ -516,8 +491,8 @@ class CartesianVector {
 template <class Value_T, class Frame_T>
 std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, Frame_T>& state)
 {
-    // static const std::string name = utilities::get_type_name<Frame_T>();
     os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "]";
+    if constexpr (requires { Frame_T::name; }) { os << " (" << std::string_view(Frame_T::name) << ")"; }
     return os;
 }
 
@@ -532,7 +507,7 @@ std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, Frame_
  */
 template <typename Value_T, typename Value_U, typename Frame_T>
     requires(!is_specialization<Value_U, CartesianVector>::value)
-CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>
+inline constexpr CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>
     operator*(const Value_U& scalar, const CartesianVector<Value_T, Frame_T>& vec)
 {
     return vec * scalar;
@@ -549,7 +524,7 @@ CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>
  */
 template <typename Value_T, typename Value_U, typename Frame_T>
     requires(!is_specialization<Value_U, CartesianVector>::value)
-CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>
+inline constexpr CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>
     operator/(const Value_U& scalar, const CartesianVector<Value_T, Frame_T>& vec)
 {
     return vec / scalar;
@@ -557,3 +532,5 @@ CartesianVector<decltype(Value_T{} * Value_U{}), Frame_T>
 
 } // namespace astro
 } // namespace astrea
+
+#include <astro/frames/transformations.hpp>

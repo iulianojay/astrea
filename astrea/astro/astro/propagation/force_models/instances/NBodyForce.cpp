@@ -57,7 +57,7 @@ Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle&
         if (id == center) { continue; }
 
         // Find center to nth body and spacecraft to nth body
-        // NOTE: The forced frame conversion here is fine since it's just a translation, no rotation or velocity
+        // NOTE: The forced frame conversion here is fine since it's just a relative translation, no rotation or velocity
         const RadiusVector<frames::primary> rCenterToNbody =
             sys.get_relative_position(date, id, center).force_frame_conversion<frames::primary>();
         const RadiusVector<frames::primary> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
@@ -74,7 +74,7 @@ Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle&
         accelNBody += directCoefficient * rVehicleToNbody - indirectCoefficient * rCenterToNbody;
     }
 
-    return { .force = accelNBody.force_frame_conversion<frames::primary>() * vehicle.get_mass() };
+    return { .force = accelNBody * vehicle.get_mass() };
 }
 
 } // namespace astro
