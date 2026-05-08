@@ -76,9 +76,8 @@ static_assert(HasSameAxis<ZeroEarthIcrf::parent, frames::earth::icrf>);
 static_assert(!IsSameFrame<ZeroEarthIcrf, frames::earth::icrf>);
 static_assert(IsSameFrame<ZeroEarthIcrf::parent, frames::earth::icrf>);
 
-static constexpr CartesianVector<Distance, frames::earth::icrf> offset_vec{ Distance::zero(), Distance::zero(), Distance::zero() };
-using Also = FixedOffsetFrame<frames::earth::icrf, offset_vec>;
-static_assert(!std::is_same_v<ZeroEarthIcrf, Also>);
+using Also = FixedOffsetFrame<frames::earth::icrf, Distance::zero(), Distance::zero(), Distance::zero()>;
+static_assert(std::is_same_v<ZeroEarthIcrf, Also>);
 static_assert(IsSameFrame<ZeroEarthIcrf, Also>);
 static_assert(!IsSameFrame<ZeroEarthIcrf, ZeroMarsIcrf>);
 
