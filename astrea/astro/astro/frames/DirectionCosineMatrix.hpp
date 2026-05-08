@@ -401,6 +401,15 @@ class DirectionCosineMatrix {
                                                                { _matrix[0][2], _matrix[1][2], _matrix[2][2] } };
     }
 
+    /**
+     * @brief Creates a direction cosine matrix from Euler angles based on a specified rotation sequence.
+     *
+     * @tparam sequence The rotation sequence to use for the Euler angles (e.g., XYZ, ZYX, etc.).
+     * @param alpha The first Euler angle (rotation around the first axis in the sequence).
+     * @param beta The second Euler angle (rotation around the second axis in the sequence).
+     * @param gamma The third Euler angle (rotation around the third axis in the sequence).
+     * @return DirectionCosineMatrix<Out_Frame_T> The resulting direction cosine matrix.
+     */
     template <RotationSequence sequence>
     static inline constexpr DirectionCosineMatrix<In_Frame_T, Out_Frame_T>
         from_euler_angles(const Angle& alpha, const Angle& beta, const Angle& gamma)

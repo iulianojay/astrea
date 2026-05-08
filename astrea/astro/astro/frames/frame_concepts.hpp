@@ -98,15 +98,49 @@ concept HasSameOrigin = (Frame_T::origin == Frame_U::origin);
 template <typename Frame_T, typename Frame_U>
 concept HasSameAxis = (Frame_T::axis == Frame_U::axis);
 
+/**
+ * @brief Concept to determine if a frame is derived from another frame (i.e., it has a parent frame that is not void).
+ *
+ * @tparam Frame_T The frame type to check.
+ * @return true if the frame is derived from another frame, false otherwise.
+ */
 template <typename Frame_T>
 concept IsDerivedFrame = IsFrame<Frame_T> && !std::is_same_v<typename Frame_T::parent, void>;
 
+/**
+ * @brief Concept to determine if a frame is a root frame (i.e., it has no parent frame).
+ *
+ * @tparam Frame_T The frame type to check.
+ * @return true if the frame is a root frame, false otherwise.
+ */
+template <typename Frame_T>
+concept IsRootFrame = IsFrame<Frame_T> && std::is_same_v<typename Frame_T::parent, void>;
+
+/**
+ * @brief Concept to determine if a frame has a fixed spatial offset from its parent frame.
+ *
+ * @tparam Frame_T The frame type to check.
+ * @return true if the frame has a fixed spatial offset, false otherwise.
+ */
 template <typename Frame_T>
 concept HasSpatialOffset = requires { Frame_T::offset; };
 
+/**
+ * @brief Concept to determine if a frame has a fixed angular offset from its parent frame.
+ *
+ * @tparam Frame_T The frame type to check.
+ * @return true if the frame has a fixed angular offset, false otherwise.
+ */
 template <typename Frame_T>
 concept HasAngularOffset = requires { Frame_T::misalignment; };
 
+/**
+ * @brief Concept to determine if a frame is a FixedOffsetFrame, which is defined as a frame that is derived from
+ * another frame and has either a spatial offset, an angular offset, or both.
+ *
+ * @tparam Frame_T The frame type to check.
+ * @return true if the frame is a FixedOffsetFrame, false otherwise.
+ */
 template <typename Frame_T>
 concept IsFixedOffsetFrame = IsDerivedFrame<Frame_T> && (HasSpatialOffset<Frame_T> || HasAngularOffset<Frame_T>);
 

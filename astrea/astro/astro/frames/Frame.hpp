@@ -32,10 +32,21 @@ namespace astro {
 
 namespace detail {
 
+/**
+ * @brief Empty base class for all frames in astrea. This allows us to use std::derived_from to check if a type is a frame.
+ */
 struct FrameBase {};
 
 } // namespace detail
 
+/**
+ * @brief Base class for all frames in astrea. Frames are defined by their name, origin celestial body, axis type, and parent frame.
+ *
+ * @tparam _name_ The name of the frame as a compile-time fixed string.
+ * @tparam _origin_ The celestial body associated with the frame (e.g., Earth, Mars).
+ * @tparam _axis_ The axis type of the frame (e.g., ICRF, J2000, FIXED_ROTATING).
+ * @tparam _parent_ The parent frame from which this frame is derived. Defaults to void for root frames.
+ */
 template <mp_units::basic_fixed_string _name_, CelestialBodyId _origin_, FrameAxis _axis_, typename _parent_ = void>
 struct Frame : detail::FrameBase {
     static constexpr auto origin = _origin_; //!< The central body associated with the frame.
