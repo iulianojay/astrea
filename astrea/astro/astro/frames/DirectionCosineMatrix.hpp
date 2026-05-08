@@ -474,6 +474,34 @@ class DirectionCosineMatrix {
     {
         return CartesianVector<Value_T, Out_Frame_T>(row(0).dot(vec), row(1).dot(vec), row(2).dot(vec));
     }
+
+    /**
+     * @brief Compose two direction cosine matrices (matrix multiplication).
+     *
+     * Produces DCM<In_Frame_T, New_Out_Frame_T> = this * rhs, where this is
+     * DCM<In_Frame_T, Out_Frame_T> and rhs is DCM<Out_Frame_T, New_Out_Frame_T>.
+     *
+     * @tparam New_Out_Frame_T The output frame of the right-hand-side DCM.
+     * @param other The right-hand-side DCM to compose with.
+     * @return DirectionCosineMatrix<In_Frame_T, New_Out_Frame_T> The composed DCM.
+     */
+    template <typename New_Out_Frame_T>
+    inline constexpr DirectionCosineMatrix<In_Frame_T, New_Out_Frame_T>
+        operator*(const DirectionCosineMatrix<Out_Frame_T, New_Out_Frame_T>& other) const
+    {
+        return DirectionCosineMatrix<In_Frame_T, New_Out_Frame_T>{
+            { _matrix[0][0] * other[0, 0] + _matrix[0][1] * other[1, 0] + _matrix[0][2] * other[2, 0],
+              _matrix[0][0] * other[0, 1] + _matrix[0][1] * other[1, 1] + _matrix[0][2] * other[2, 1],
+              _matrix[0][0] * other[0, 2] + _matrix[0][1] * other[1, 2] + _matrix[0][2] * other[2, 2] },
+            { _matrix[1][0] * other[0, 0] + _matrix[1][1] * other[1, 0] + _matrix[1][2] * other[2, 0],
+              _matrix[1][0] * other[0, 1] + _matrix[1][1] * other[1, 1] + _matrix[1][2] * other[2, 1],
+              _matrix[1][0] * other[0, 2] + _matrix[1][1] * other[1, 2] + _matrix[1][2] * other[2, 2] },
+            { _matrix[2][0] * other[0, 0] + _matrix[2][1] * other[1, 0] + _matrix[2][2] * other[2, 0],
+              _matrix[2][0] * other[0, 1] + _matrix[2][1] * other[1, 1] + _matrix[2][2] * other[2, 1],
+              _matrix[2][0] * other[0, 2] + _matrix[2][1] * other[1, 2] + _matrix[2][2] * other[2, 2] }
+        };
+    }
+
     /**
      * @brief Get a specific row of the direction cosine matrix.
      *

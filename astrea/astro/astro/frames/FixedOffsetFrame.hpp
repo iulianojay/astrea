@@ -100,11 +100,66 @@ struct FixedOffsetFrame<Parent, _x_, _y_, _z_, _phi_, _theta_, _psi_, _sequence_
 };
 
 template <IsFixedOffsetFrame T>
+inline constexpr auto get_offset_from_frame()
+{
+    if constexpr (HasSpatialOffset<T>) { return T::offset; }
+    else {
+        return CartesianVector<Distance, typename T::parent>{};
+    }
+}
+
+
+template <IsFixedOffsetFrame T>
+inline constexpr auto get_offset_from_root_frame()
+{
+    if constexpr (HasSpatialOffset<T>) {
+        if constexpr (IsDerivedFrame<typename T::parent>) {
+            // r_grandparent->parent + r_parent->child = r_grandparent->child
+            // Force-convert the accumulated parent offset into T::parent's frame type so
+            // both operands of operator+ share the same CartesianVector frame parameter.
+            return get_offset_from_root_frame<typename T::parent>().template force_frame_conversion<typename T::parent>() +
+                   get_offset_from_frame<T>();
+        }
+        else {
+            return get_offset_from_frame<T>();
+        }
+    }
+    else {
+        return CartesianVector<Distance, typename T::parent>{};
+    }
+}
+
+template <IsFixedOffsetFrame T>
 inline constexpr DirectionCosineMatrix<typename T::parent, T> get_dcm_from_frame()
 {
-    return DirectionCosineMatrix<typename T::parent, T>::template from_euler_angles<T::sequence>(
-        T::misalignment[0], T::misalignment[1], T::misalignment[2]
-    );
+    if constexpr (HasAngularOffset<T>) {
+        return DirectionCosineMatrix<typename T::parent, T>::template from_euler_angles<T::sequence>(
+            T::misalignment[0], T::misalignment[1], T::misalignment[2]
+        );
+    }
+    else {
+        return DirectionCosineMatrix<typename T::parent, T>::identity();
+    }
+}
+
+template <IsFixedOffsetFrame T>
+inline constexpr auto get_dcm_from_root_frame()
+{
+    if constexpr (HasAngularOffset<T>) {
+        if constexpr (IsDerivedFrame<typename T::parent>) {
+            // DCM<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
+            return get_dcm_from_root_frame<typename T::parent>() * get_dcm_from_frame<T>();
+        }
+        else {
+            return get_dcm_from_frame<T>();
+        }
+    }
+    else {
+        if constexpr (IsDerivedFrame<typename T::parent>) { return get_dcm_from_root_frame<typename T::parent>(); }
+        else {
+            return DirectionCosineMatrix<typename T::parent, T>::identity();
+        }
+    }
 }
 
 } // namespace astro
