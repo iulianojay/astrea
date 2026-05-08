@@ -36,12 +36,12 @@ struct FrameBase {};
 
 } // namespace detail
 
-template <mp_units::basic_fixed_string _name, CelestialBodyId _origin, FrameAxis _axis, typename _parent = void>
+template <mp_units::basic_fixed_string _name_, CelestialBodyId _origin_, FrameAxis _axis_, typename _parent_ = void>
 struct Frame : detail::FrameBase {
-    static constexpr auto origin = _origin; //!< The central body associated with the frame.
-    static constexpr auto axis   = _axis;   //!< The axis type of the frame.
-    static constexpr auto name   = _name;   //!< The name of the frame.
-    using parent                 = _parent; //!< The parent frame of this frame.
+    static constexpr auto origin = _origin_; //!< The central body associated with the frame.
+    static constexpr auto axis   = _axis_;   //!< The axis type of the frame.
+    static constexpr auto name   = _name_;   //!< The name of the frame.
+    using parent                 = _parent_; //!< The parent frame of this frame.
 };
 
 

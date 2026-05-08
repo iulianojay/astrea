@@ -33,82 +33,77 @@
 namespace astrea {
 namespace astro {
 
-template <utilities::double_wrapper N>
+template <utilities::double_wrapper _N_>
 consteval auto f_to_fixed_string()
 {
-    constexpr auto s          = utilities::f_to_string<N>;
+    constexpr auto s          = utilities::f_to_string<_N_>;
     constexpr std::size_t len = s.size() - 1; // exclude null terminator
     return mp_units::basic_fixed_string<char, len>(s.begin(), s.end() - 1);
 }
 
-template <auto q>
+template <auto _q_>
 inline consteval auto quantity_to_fixed_string()
 {
-    return f_to_fixed_string<q.numerical_value_in(q.unit)>() + " " + q.unit._symbol_.portable();
+    return f_to_fixed_string<_q_.numerical_value_in(_q_.unit)>() + " " + _q_.unit._symbol_.portable();
 }
 
-template <auto First, auto... Rest>
+template <auto _first_, auto... _rest_>
 inline consteval auto quantity_list_to_fixed_string()
 {
-    if constexpr (sizeof...(Rest) == 0)
-        return quantity_to_fixed_string<First>();
+    if constexpr (sizeof...(_rest_) == 0)
+        return quantity_to_fixed_string<_first_>();
     else
-        return quantity_to_fixed_string<First>() + ", " + quantity_list_to_fixed_string<Rest...>();
+        return quantity_to_fixed_string<_first_>() + ", " + quantity_list_to_fixed_string<_rest_...>();
 }
 
-template <mp_units::basic_fixed_string ParentName, Distance x, Distance y, Distance z>
+template <mp_units::basic_fixed_string _parent_name_, Distance _x_, Distance _y_, Distance _z_>
 inline consteval auto compose_name()
 {
-    return ParentName + " + [" + quantity_list_to_fixed_string<x, y, z>() + "]";
+    return _parent_name_ + " + [" + quantity_list_to_fixed_string<_x_, _y_, _z_>() + "]";
 }
 
-template <mp_units::basic_fixed_string ParentName, Angle phi, Angle theta, Angle psi>
+template <mp_units::basic_fixed_string _parent_name_, Angle _phi_, Angle _theta_, Angle _psi_>
 inline consteval auto compose_name()
 {
-    return ParentName + " + [" + quantity_list_to_fixed_string<phi, theta, psi>() + "]";
+    return _parent_name_ + " + [" + quantity_list_to_fixed_string<_phi_, _theta_, _psi_>() + "]";
 }
 
-template <mp_units::basic_fixed_string ParentName, Distance x, Distance y, Distance z, Angle phi, Angle theta, Angle psi>
+template <mp_units::basic_fixed_string _parent_name_, Distance _x_, Distance _y_, Distance _z_, Angle _phi_, Angle _theta_, Angle _psi_>
 inline consteval auto compose_name()
 {
-    return ParentName + " + [" + quantity_list_to_fixed_string<x, y, z>() + "; " +
-           quantity_list_to_fixed_string<phi, theta, psi>() + "]";
+    return _parent_name_ + " + [" + quantity_list_to_fixed_string<_x_, _y_, _z_>() + "; " +
+           quantity_list_to_fixed_string<_phi_, _theta_, _psi_>() + "]";
 }
 
 template <typename, auto...>
 struct FixedOffsetFrame;
 
-template <typename _parent, Distance _x, Distance _y, Distance _z, auto... Args>
-struct FixedOffsetFrame<_parent, _x, _y, _z, Args...>
-    : Frame<compose_name<_parent::name, _x, _y, _z>(), CelestialBodyId::FIXED_OFFSET, _parent::axis, _parent> {
-    static constexpr CartesianVector<Distance, _parent> offset = { _x, _y, _z }; //!< The fixed offset vector from the parent frame to this frame.
+template <IsFrame Parent, Distance _x_, Distance _y_, Distance _z_, auto... Args>
+struct FixedOffsetFrame<Parent, _x_, _y_, _z_, Args...>
+    : Frame<compose_name<Parent::name, _x_, _y_, _z_>(), CelestialBodyId::FIXED_OFFSET, Parent::axis, Parent> {
+    static constexpr CartesianVector<Distance, Parent> offset = { _x_, _y_, _z_ }; //!< The fixed offset vector from the parent frame to this frame.
 };
 
-template <typename _parent, Angle _phi, Angle _theta, Angle _psi, RotationSequence _sequence, auto... Args>
-struct FixedOffsetFrame<_parent, _phi, _theta, _psi, _sequence, Args...>
-    : Frame<compose_name<_parent::name, _phi, _theta, _psi>(), CelestialBodyId::FIXED_OFFSET, _parent::axis, _parent> {
-    static constexpr auto sequence = _sequence; //!< The rotation sequence for the angular offset.
-    static constexpr CartesianVector<Angle, _parent> misalignment = { _phi, _theta, _psi }; //!< The fixed angular offset dcm from the parent frame to this frame.
+template <IsFrame Parent, Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_, auto... Args>
+struct FixedOffsetFrame<Parent, _phi_, _theta_, _psi_, _sequence_, Args...>
+    : Frame<compose_name<Parent::name, _phi_, _theta_, _psi_>(), CelestialBodyId::FIXED_OFFSET, Parent::axis, Parent> {
+    static constexpr auto sequence = _sequence_; //!< The rotation sequence for the angular offset.
+    static constexpr CartesianVector<Angle, Parent> misalignment = { _phi_, _theta_, _psi_ }; //!< The fixed angular offset dcm from the parent frame to this frame.
 };
 
-template <typename _parent, Distance _x, Distance _y, Distance _z, Angle _phi, Angle _theta, Angle _psi, RotationSequence _sequence, auto... Args>
-struct FixedOffsetFrame<_parent, _x, _y, _z, _phi, _theta, _psi, _sequence, Args...>
-    : Frame<compose_name<_parent::name, _x, _y, _z, _phi, _theta, _psi>(), CelestialBodyId::FIXED_OFFSET, _parent::axis, _parent> {
-    static constexpr CartesianVector<Distance, _parent> offset = { _x, _y, _z }; //!< The fixed offset vector from the parent frame to this frame.
-    static constexpr auto sequence = _sequence; //!< The rotation sequence for the angular offset.
-    static constexpr CartesianVector<Angle, _parent> misalignment = { _phi, _theta, _psi }; //!< The fixed angular offset dcm from the parent frame to this frame.
+template <IsFrame Parent, Distance _x_, Distance _y_, Distance _z_, Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_, auto... Args>
+struct FixedOffsetFrame<Parent, _x_, _y_, _z_, _phi_, _theta_, _psi_, _sequence_, Args...>
+    : Frame<compose_name<Parent::name, _x_, _y_, _z_, _phi_, _theta_, _psi_>(), CelestialBodyId::FIXED_OFFSET, Parent::axis, Parent> {
+    static constexpr CartesianVector<Distance, Parent> offset = { _x_, _y_, _z_ }; //!< The fixed offset vector from the parent frame to this frame.
+    static constexpr auto sequence = _sequence_; //!< The rotation sequence for the angular offset.
+    static constexpr CartesianVector<Angle, Parent> misalignment = { _phi_, _theta_, _psi_ }; //!< The fixed angular offset dcm from the parent frame to this frame.
 };
 
-template <typename Frame_T>
-    requires requires {
-        Frame_T::sequence;
-        Frame_T::misalignment;
-        typename Frame_T::parent;
-    }
-inline constexpr DirectionCosineMatrix<typename Frame_T::parent, Frame_T> get_dcm_from_frame()
+template <IsFixedOffsetFrame T>
+inline constexpr DirectionCosineMatrix<typename T::parent, T> get_dcm_from_frame()
 {
-    return DirectionCosineMatrix<typename Frame_T::parent, Frame_T>::template from_euler_angles<Frame_T::sequence>(
-        Frame_T::misalignment[0], Frame_T::misalignment[1], Frame_T::misalignment[2]
+    return DirectionCosineMatrix<typename T::parent, T>::template from_euler_angles<T::sequence>(
+        T::misalignment[0], T::misalignment[1], T::misalignment[2]
     );
 }
 
