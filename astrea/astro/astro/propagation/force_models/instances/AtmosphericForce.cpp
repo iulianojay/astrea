@@ -73,7 +73,7 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
                                                           vz };
 
     // Exponential Drag Model
-    const Density atmosphericDensity = find_atmospheric_density(state, center);
+    const Density atmosphericDensity = center->find_atmospheric_density(state);
 
     // Accel due to drag
     const Velocity relVelMag         = relVelocity.norm();
@@ -91,18 +91,6 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
     const ForceVector<frames::primary> forceLift = liftForceMag * (r / R); // just assume radial lift for now
 
     return { .force = { forceDrag[0] + forceLift[0], forceDrag[1] + forceLift[1], forceDrag[2] + forceLift[2] } };
-}
-
-
-const Density AtmosphericForce::find_atmospheric_density(const State& state, const CelestialBodyUniquePtr& center) const
-{
-    // Find altitude
-    const RadiusVector<frames::primary> r                = state.get_position();
-    const RadiusVector<frames::primary_fixed> rBodyFixed = r.in_frame<frames::primary_fixed>(state.get_epoch());
-    const auto [latitude, longitude, altitude] =
-        convert_body_fixed_to_geodetic(rBodyFixed, center->get_equitorial_radius(), center->get_polar_radius());
-
-    return center->find_atmospheric_density(state.get_epoch(), altitude);
 }
 
 

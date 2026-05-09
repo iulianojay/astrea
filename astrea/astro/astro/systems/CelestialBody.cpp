@@ -108,10 +108,47 @@ RadiusVector<frames::solar_system_barycenter::icrf> CelestialBody::get_position_
     return rICRF;
 }
 
-Density CelestialBody::find_atmospheric_density(const Date& date, const Distance& altitude) const
+VelocityVector<frames::solar_system_barycenter::icrf> CelestialBody::get_velocity_at(const Date& date) const
 {
-    return 0.0 * kg / (m * m * m);
+    // This approximation is in the perifocal frame
+    const Keplerian coes         = get_keplerian_elements_at(date);
+    const Distance a             = coes.get_semimajor();
+    const Unitless ecc           = coes.get_eccentricity();
+    const Angle inc              = coes.get_inclination();
+    const Angle raan             = coes.get_right_ascension();
+    const Angle argPer           = coes.get_argument_of_perigee();
+    const Angle theta            = coes.get_true_anomaly();
+    const Angle Me               = convert_true_anomaly_to_mean_anomaly(theta, ecc);
+    const Angle eccentricAnomaly = convert_mean_anomaly_to_eccentric_anomaly(Me, ecc);
+
+    // Velocity in perifocal frame
+    class perifocal;
+    const VelocityVector<perifocal> vPerifocal{ -sqrt(_mu / (a * (1 - ecc * ecc))) * sin(eccentricAnomaly),
+                                                sqrt(_mu / (a * (1 - ecc * ecc))) * sqrt(1 - ecc * ecc) * cos(eccentricAnomaly),
+                                                0.0 * m / s };
+
+    // Perifocal to J2000 transformation: R3(-RAAN) * R1(-inc) * R3(-argPer)
+    const DCM<perifocal, frames::solar_system_barycenter::j2000> dcmPeri2J2000(
+        { { cos(argPer) * cos(raan) - sin(argPer) * sin(raan) * cos(inc),
+            -sin(argPer) * cos(raan) - cos(argPer) * sin(raan) * cos(inc),
+            sin(inc) * sin(raan) },
+          { cos(argPer) * sin(raan) + sin(argPer) * cos(raan) * cos(inc),
+            -sin(argPer) * sin(raan) + cos(argPer) * cos(raan) * cos(inc),
+            -sin(inc) * cos(raan) },
+          { sin(argPer) * sin(inc), cos(argPer) * sin(inc), cos(inc) } }
+    );
+    const VelocityVector<frames::solar_system_barycenter::j2000> vJ2000 = dcmPeri2J2000 * vPerifocal;
+
+    // Rotate to the ICRF frame
+    static const Angle obliquity = Angle(23.43928 * deg); // obliquity at J2000
+    static const auto dcmJ2000ToICRF =
+        DCM<frames::solar_system_barycenter::j2000, frames::solar_system_barycenter::icrf>::X(obliquity);
+
+    const VelocityVector<frames::solar_system_barycenter::icrf> vICRF = dcmJ2000ToICRF * vJ2000;
+    return vICRF;
 }
+
+Density CelestialBody::find_atmospheric_density(const State& state) const { return 0.0 * kg / (m * m * m); }
 
 } // namespace astro
 } // namespace astrea

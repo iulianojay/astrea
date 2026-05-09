@@ -1,10 +1,10 @@
 /**
- * @file BodyFixedFrame.hpp
+ * @file JacciaRoberts.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the BodyFixedFrame class in the astro namespace
- * @date 2025-08-05
+ * @brief Header file for the JacciaRoberts class.
+ * @date 2026-05-01
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -18,25 +18,31 @@
  */
 #pragma once
 
-#include <string>
+#include <units/units.hpp>
 
-#include <astro/frames/Frame.hpp>
+#include <astro/astro.fwd.hpp>
 
 namespace astrea {
 namespace astro {
+namespace planetary_bodies {
 
 /**
- * @brief Base class for all body fixed frames.
+ * @brief The Jaccia-Roberts atmospheric model for Earth.
  */
-template <CelestialBodyId _origin>
-    requires(_origin != CelestialBodyId::UNSET)
-struct BodyFixedFrame : public Frame<_origin, FrameAxis::BODY_FIXED> {
-    virtual ~BodyFixedFrame() = default;
+class JacciaRobertsAtmosphere {
+  public:
+    /**
+     * @brief Deleted constructor
+     */
+    JacciaRobertsAtmosphere() = delete;
 
-    static constexpr CelestialBodyId origin =
-        Frame<_origin, FrameAxis::BODY_FIXED>::origin; //!< The central body associated with the inertial frame.
-    static constexpr FrameAxis axis = Frame<_origin, FrameAxis::BODY_FIXED>::axis; //!< The axis type of the inertial frame.
+    /**
+     * @brief Find the atmospheric density at a given state using the Jaccia-Roberts atmospheric model.
+     * @return Density The atmospheric density at the given state.
+     */
+    static Density find_atmospheric_density(const State& state, const Distance equitorialRadius, const Distance polarRadius);
 };
 
+} // namespace planetary_bodies
 } // namespace astro
 } // namespace astrea

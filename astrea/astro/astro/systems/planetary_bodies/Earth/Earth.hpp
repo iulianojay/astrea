@@ -32,6 +32,12 @@ namespace astrea {
 namespace astro {
 namespace planetary_bodies {
 
+enum class EarthAtmosphereModel { JACHIA_ROBERTS, NRLMSISE00, DTM2000, HARRIS_PRIESTER };
+
+struct EarthParameters {
+    EarthAtmosphereModel atmosphereModel = EarthAtmosphereModel::JACHIA_ROBERTS; //!< The atmospheric model to use for Earth.
+};
+
 static const CelestialBodyParameters DEFAULT_EARTH_PARAMS{
     .name          = "Earth",
     .parent        = CelestialBodyId::SUN,
@@ -79,7 +85,18 @@ class Earth : public CelestialBody {
      * Initializes the Earth object with predefined physical and orbital parameters.
      */
     constexpr Earth() :
-        CelestialBody(DEFAULT_EARTH_PARAMS)
+        CelestialBody(DEFAULT_EARTH_PARAMS),
+        _atmosphereModel(EarthAtmosphereModel::JACHIA_ROBERTS)
+    {
+    }
+
+    /**
+     * @brief Constructor for the Earth class with custom parameters.
+     * @param params The EarthParameters struct containing custom parameters for the Earth object.
+     */
+    constexpr Earth(const CelestialBodyParameters& params, const EarthParameters& earthParams) :
+        CelestialBody(params),
+        _atmosphereModel(earthParams.atmosphereModel)
     {
     }
 
@@ -96,7 +113,7 @@ class Earth : public CelestialBody {
      * @return Density The atmospheric density at the given date and altitude.
      * @note Numbers for this model are pulled from Vallado, 5th ed.
      */
-    Density find_atmospheric_density(const Date& date, const Distance& altitude) const override;
+    Density find_atmospheric_density(const State& state) const override;
 
     /**
      * @brief Get the unique identifier for the Earth celestial body.
@@ -115,7 +132,34 @@ class Earth : public CelestialBody {
      */
     RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
 
+    /**
+     * @brief Get the velocity of the Earth at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+     *
+     * @param date The date for which to find the velocity of the Earth.
+     * @return VelocityVector<frames::solar_system_barycenter::icrf> The velocity of the Earth at the given date.
+     */
+    VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at(const Date& date) const;
+
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
+
+    /**
+     * @brief Find the atmospheric density at a given state using the Jachia-Roberts atmospheric model.
+     *
+     * @param state The state for which to find the atmospheric density.
+     * @return Density The atmospheric density at the given state.
+     */
+    Density find_jachia_roberts_atmospheric_density(const State& state) const;
+
+    /**
+     * @brief Find the atmospheric density at a given state using the Harris-Priester atmospheric model.
+     *
+     * @param state The state for which to find the atmospheric density.
+     * @return Density The atmospheric density at the given state.
+     */
+    Density find_harris_priester_atmospheric_density(const State& state) const;
+
+  private:
+    EarthAtmosphereModel _atmosphereModel; //!< The atmospheric model to use for Earth.
 };
 
 } // namespace planetary_bodies

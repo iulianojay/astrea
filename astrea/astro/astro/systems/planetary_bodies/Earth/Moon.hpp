@@ -104,6 +104,14 @@ class Moon : public CelestialBody {
      */
     RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
 
+    /**
+     * @brief Get the velocity of the Moon at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+     *
+     * @param date The date for which to find the velocity of the Moon.
+     * @return VelocityVector<frames::solar_system_barycenter::icrf> The velocity of the Moon at the given date.
+     */
+    VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at(const Date& date) const;
+
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 };
 

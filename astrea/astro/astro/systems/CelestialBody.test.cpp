@@ -17,6 +17,7 @@
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/systems/CelestialBody.hpp>
@@ -347,12 +348,15 @@ TEST_F(CelestialBodyTest, FindAtmosphericDensity)
     );
 
     // Test Earth (has atmosphere in derived class)
-    ASSERT_NO_THROW(dummyBody.find_atmospheric_density(date, 0.0 * km));
-    ASSERT_NO_THROW(dummyBody.find_atmospheric_density(date, 100.0 * km));
-    ASSERT_NO_THROW(dummyBody.find_atmospheric_density(date, 500.0 * km));
+    const State state0(Keplerian{ 6378.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date, sys);
+    const State state1(Keplerian{ 6478.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date, sys);
+    const State state2(Keplerian{ 6878.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date, sys);
+    ASSERT_NO_THROW(dummyBody.find_atmospheric_density(state0));
+    ASSERT_NO_THROW(dummyBody.find_atmospheric_density(state1));
+    ASSERT_NO_THROW(dummyBody.find_atmospheric_density(state2));
 
     // Base class returns zero density for most bodies
-    const auto densityAtAltitude = dummyBody.find_atmospheric_density(date, 0.0 * km);
+    const auto densityAtAltitude = dummyBody.find_atmospheric_density(state0);
     ASSERT_EQ(densityAtAltitude.numerical_value_in(kg / (mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m)), 0.0);
 }
 

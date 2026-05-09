@@ -32,6 +32,12 @@ RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& 
     return positionJbFromSsb; // TODO: Add correction for Jupiter's position from Jupiter barycenter
 }
 
+VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at(const Date& date) const
+{
+    const auto velocityJbFromSsb = get_velocity_at_impl<JupiterEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    return velocityJbFromSsb; // TODO: Add correction for Jupiter's velocity from Jupiter barycenter
+}
+
 #endif // ASTREA_BUILD_JUPITER_EPHEMERIS
 
 } // namespace planetary_bodies

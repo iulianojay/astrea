@@ -25,14 +25,9 @@
 namespace astrea {
 namespace astro {
 namespace frames {
-
-// Declare a body frame without fully defining it. Functionally, this will never need a strict definition since
-// conversions to and from this frame will always be handled by the euler angles or quaternion classes.
-struct BodyFrame : public Frame<CelestialBodyId::CUSTOM, FrameAxis::BODY_FIXED> {};
-
 namespace dynamic {
 
-using body = BodyFrame;
+using body = Frame<"body", CelestialBodyId::CUSTOM, FrameAxis::UNSET>;
 
 } // namespace dynamic
 } // namespace frames

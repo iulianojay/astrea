@@ -226,7 +226,7 @@ Equinoctial Equinoctial::from_vector(const std::vector<Unitless>& vec)
     if (vec.size() != 6) {
         throw std::runtime_error("Input vector must have exactly 6 elements to convert to Equinoctial.");
     }
-    return Equinoctial(vec[0] * detail::distance_unit, vec[1], vec[2], vec[3], vec[4], vec[5] * detail::angle_unit);
+    return Equinoctial(vec[0] * km, vec[1], vec[2], vec[3], vec[4], vec[5] * rad);
 }
 
 Equinoctial EquinoctialPartial::operator*(const Time& time) const

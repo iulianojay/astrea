@@ -47,7 +47,7 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
     const AstrodynamicsSystem& sys       = state.get_system();
     const Date date                      = state.get_epoch();
     const CelestialBodyUniquePtr& center = sys.get_central_body();
-    const CelestialBodyUniquePtr& sun    = sys.add_body(CelestialBodyId::SUN);
+    const CelestialBodyUniquePtr& sun    = sys.create_body(CelestialBodyId::SUN);
 
     const RadiusVector<frames::primary> rCenterToVehicle = state.get_position();
     const Distance rMagCenterToVehicle                   = rCenterToVehicle.norm();
@@ -60,7 +60,7 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
     const RadiusVector<frames::solar_system_barycenter::icrf> rSsbToSun    = sun->get_position_at(date);
 
     // Radius from central body to sun
-    const RadiusVector<frames::primary> rCenterToSun = (rSsbToSun - rSsbToCenter).force_frame_conversion<frames::primary>(); // TODO: Should this use the translate function? I hate that function.
+    const RadiusVector<frames::primary> rCenterToSun = (rSsbToSun - rSsbToCenter).force_frame_conversion<frames::primary>();
     const Distance rMagCenterToSun = rCenterToSun.norm();
 
     const RadiusVector<frames::primary> rVehicleToSun = rCenterToSun - rCenterToVehicle;

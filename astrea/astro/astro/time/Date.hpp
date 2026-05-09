@@ -20,6 +20,7 @@
  */
 #pragma once
 
+#include <chrono>
 #include <iosfwd>
 #include <string>
 
@@ -52,6 +53,21 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
  * @note: This function uses an expantion that only works for Earth-centric sideral times.
  */
 Angle julian_date_to_sidereal_time(const JulianDate& date);
+
+// Forward declaration to avoid circular dependency (CelestialBodyParameters.hpp includes Date.hpp)
+class CelestialBody;
+
+/**
+ * @brief Compute the equivalent of Greenwich Sidereal Time for an arbitrary celestial body.
+ *
+ * Computes the accumulated rotation angle of the body's prime meridian relative to its
+ * inertial reference direction since J2000, using the body's rotation rate.
+ *
+ * @param date The Julian date at which to evaluate the angle.
+ * @param body The celestial body whose prime meridian angle is desired.
+ * @return Angle The body's prime meridian rotation angle, wrapped to [0, 2π).
+ */
+Angle julian_date_to_body_sidereal_time(const JulianDate& date, const CelestialBody& body);
 
 /**
  * @brief Class representing a date in the astrea astro library.
@@ -168,12 +184,27 @@ class Date {
      */
     double jdn() const { return std::chrono::floor<std::chrono::days>(_julianDate).time_since_epoch().count(); }
 
+    Time seconds_in_local_day() const { return { _julianDate - std::chrono::floor<std::chrono::days>(_julianDate) }; }
+
+    std::chrono::year_month_day year_month_day() const
+    {
+        return std::chrono::year_month_day(std::chrono::sys_days(std::chrono::floor<std::chrono::days>(sys())));
+    }
+
+    int day_of_year() const
+    {
+        using namespace std::chrono;
+        const duration<int, days::period> doy =
+            duration_cast<duration<int, days::period>>(floor<days>(sys()) - sys_days{ year_month_day().year() / 1 / 1 });
+        return doy.count() + 1; // +1 because day of year starts at 1
+    };
+
     /**
      * @brief Get the Modified Julian Date (MJD) representation of this Date object.
      *
-     * @return std::chrono::duration<double, std::ratio<86400>> The Modified Julian Date representation of this Date object.
+     * @return std::chrono::duration<double, std::chrono::days::period> The Modified Julian Date representation of this Date object.
      */
-    std::chrono::duration<double, std::ratio<86400>> mjd() const { return _julianDate - MJD0; }
+    std::chrono::duration<double, std::chrono::days::period> mjd() const { return _julianDate - MJD0; }
 
     /**
      * @brief Get the Date in UTC clock format.
@@ -231,11 +262,22 @@ class Date {
     }
 
     /**
-     * @brief Get the Greenwich Mean Sidereal Time (GMST) for this Date object.
+     * @brief Get the Greenwich Mean Sidereal Time (GMST) for this Date around Earth.
      *
-     * @return Angle The Greenwich Mean Sidereal Time for this Date object.
+     * @return Angle The Greenwich Mean Sidereal Time for this Date around Earth.
      */
     Angle gmst() const;
+
+    /**
+     * @brief Get the equivalent of GMST for an arbitrary celestial body.
+     *
+     * Computes the accumulated rotation angle of the body's prime meridian relative to its
+     * inertial reference direction since J2000, using the body's rotation rate.
+     *
+     * @param body The celestial body whose prime meridian angle is desired.
+     * @return Angle The body's prime meridian rotation angle, wrapped to [0, 2π).
+     */
+    Angle body_sidereal_time(const CelestialBody& body) const;
 
   private:
     JulianDate _julianDate; //!< Julian date representation of the Date object

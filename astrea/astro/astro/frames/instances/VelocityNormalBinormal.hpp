@@ -20,9 +20,9 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/DirectionCosineMatrix.hpp>
+#include <astro/frames/DynamicFrame.hpp>
 #include <astro/frames/instances/body_centered_inertial_frames.hpp>
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/frames/types/DynamicFrame.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
@@ -56,15 +56,15 @@ class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal, Frame
      * @brief Gets the Direction Cosine Matrix (DCM) for the VNB frame at a given date.
      *
      * @param date The date for which the DCM is requested.
-     * @return DirectionCosineMatrix<frames::earth::icrf, VelocityNormalBinormal> The DCM from ECI to VNB.
+     * @return DirectionCosineMatrix<frames::primary, VelocityNormalBinormal> The DCM from ECI to VNB.
      */
-    DirectionCosineMatrix<frames::earth::icrf, VelocityNormalBinormal> get_dcm(const Date& date) const
+    DirectionCosineMatrix<frames::primary, VelocityNormalBinormal> get_dcm(const Date& date) const
     {
         const auto r        = get_inertial_position(date).unit();
         const auto v        = get_inertial_velocity(date).unit();
         const auto h        = r.cross(v).unit();
         const auto binormal = (v.cross(h)).unit();
-        return DirectionCosineMatrix<frames::earth::icrf, VelocityNormalBinormal>::from_vectors(v, h, binormal);
+        return DirectionCosineMatrix<frames::primary, VelocityNormalBinormal>::from_vectors(v, h, binormal);
     }
 
   private:
@@ -74,7 +74,7 @@ class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal, Frame
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.
      */
-    VelocityNormalBinormal(const RadiusVector<frames::earth::icrf>& position, const VelocityVector<frames::earth::icrf>& velocity) :
+    VelocityNormalBinormal(const RadiusVector<frames::primary>& position, const VelocityVector<frames::primary>& velocity) :
         DynamicFrame<VelocityNormalBinormal, FrameAxis::VNB>(position, velocity)
     {
     }

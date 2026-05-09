@@ -25,10 +25,11 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/DirectionCosineMatrix.hpp>
+#include <astro/frames/DynamicFrame.hpp>
+#include <astro/frames/Frame.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/frames/transformations.hpp>
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/frames/types/DynamicFrame.hpp>
 #include <astro/state/angular_elements/instances/Geodetic.hpp>
 #include <astro/systems/planetary_bodies/planetary_bodies.hpp>
 #include <astro/time/Date.hpp>
@@ -64,9 +65,9 @@ class EastNorthUp : public DynamicFrame<EastNorthUp, FrameAxis::ENU> {
      * @brief Gets the Direction Cosine Matrix (DCM) for the ENU frame at a given date.
      *
      * @param date The date for which the DCM is requested.
-     * @return DirectionCosineMatrix<frames::earth::icrf, EastNorthUp> The DCM from ECI to ENU.
+     * @return DirectionCosineMatrix<frames::primary, EastNorthUp> The DCM from ECI to ENU.
      */
-    DirectionCosineMatrix<frames::earth::icrf, EastNorthUp> get_dcm(const Date& date) const
+    DirectionCosineMatrix<frames::primary, EastNorthUp> get_dcm(const Date& date) const
     {
         // TODO: This assumes we're using "default" Earth. REALLY don't want to pass a system
         // to this object
@@ -75,9 +76,9 @@ class EastNorthUp : public DynamicFrame<EastNorthUp, FrameAxis::ENU> {
         static const Distance& rPolar      = earth.get_polar_radius();
 
         // eci -> ecef -> lat/lon -> n/e/u
-        const RadiusVector<frames::earth::icrf> r            = get_inertial_position(date);
-        const RadiusVector<frames::earth::earth_fixed> rEcef = r.in_frame<frames::earth::earth_fixed>(date);
-        const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef, rEquitorial, rPolar);
+        const RadiusVector<frames::primary> r            = get_inertial_position(date);
+        const RadiusVector<frames::primary_fixed> rFixed = r.in_frame<frames::primary_fixed>(date);
+        const auto [lat, lon, alt]                       = convert_body_fixed_to_geodetic(rFixed, rEquitorial, rPolar);
 
         using mp_units::one;
         using mp_units::angular::cos;
@@ -87,7 +88,7 @@ class EastNorthUp : public DynamicFrame<EastNorthUp, FrameAxis::ENU> {
         const Unitless sinLon = sin(lon);
         const Unitless cosLon = cos(lon);
 
-        return DirectionCosineMatrix<frames::earth::icrf, EastNorthUp>(
+        return DirectionCosineMatrix<frames::primary, EastNorthUp>(
             { -sinLat, cosLat, 0.0 * one }, { -cosLat * sinLon, -sinLat * sinLon, cosLon }, { cosLat * cosLon, sinLat * cosLon, sinLon }
         );
     }
@@ -99,7 +100,7 @@ class EastNorthUp : public DynamicFrame<EastNorthUp, FrameAxis::ENU> {
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.
      */
-    EastNorthUp(const RadiusVector<frames::earth::icrf>& position, const VelocityVector<frames::earth::icrf>& velocity) :
+    EastNorthUp(const RadiusVector<frames::primary>& position, const VelocityVector<frames::primary>& velocity) :
         DynamicFrame<EastNorthUp, FrameAxis::ENU>(position, velocity)
     {
     }

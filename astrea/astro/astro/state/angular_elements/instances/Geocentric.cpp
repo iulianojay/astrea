@@ -51,7 +51,7 @@ Geocentric::Geocentric(const RadiusVector<frames::earth::icrf>& rEci, const Date
 Geocentric::Geocentric(const RadiusVector<frames::earth::earth_fixed>& rEcef, const CelestialBody* parent)
 {
     std::tie(_latitude, _longitude, _altitude) =
-        convert_earth_fixed_to_geocentric(rEcef, parent->get_equitorial_radius(), parent->get_polar_radius());
+        convert_body_fixed_to_geocentric(rEcef, parent->get_equitorial_radius(), parent->get_polar_radius());
 }
 
 // Copy constructor
@@ -160,7 +160,9 @@ Geocentric Geocentric::interpolate(const Time& thisTime, const Time& otherTime, 
 
 RadiusVector<frames::earth::earth_fixed> Geocentric::get_position(const CelestialBody* parent) const
 {
-    return convert_geocentric_to_earth_fixed(_latitude, _longitude, _altitude, parent->get_equitorial_radius(), parent->get_polar_radius());
+    return convert_geocentric_to_body_fixed<frames::earth::earth_fixed>(
+        _latitude, _longitude, _altitude, parent->get_equitorial_radius(), parent->get_polar_radius()
+    );
 }
 
 RadiusVector<frames::earth::icrf> Geocentric::get_position(const Date& date, const CelestialBody* parent) const
@@ -185,35 +187,6 @@ Distance calculate_geocentric_radius(const Angle& lat, const Distance& rEquitori
     const Unitless cosLatSq = pow<2>(cos(lat));
     const Unitless sinLatSq = pow<2>(sin(lat));
     return sqrt((pow<4>(a) * cosLatSq + pow<4>(b) * sinLatSq) / (pow<2>(a) * cosLatSq + pow<2>(b) * sinLatSq));
-}
-
-std::tuple<Angle, Angle, Distance>
-    convert_earth_fixed_to_geocentric(const RadiusVector<frames::earth::earth_fixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar)
-{
-    const Distance& x = rEcef[0];
-    const Distance& y = rEcef[1];
-    const Distance& z = rEcef[2];
-    const Distance R  = rEcef.norm();
-
-    const Distance rho = sqrt(x * x + y * y);
-
-    const Angle longitude = atan2(y, x);
-    const Angle latitude  = atan2(z, rho);
-
-    const Distance rGeocentric = calculate_geocentric_radius(latitude, rEquitorial, rPolar);
-    const Distance altitude    = R - rGeocentric;
-
-    return { latitude, longitude, altitude };
-}
-
-RadiusVector<frames::earth::earth_fixed>
-    convert_geocentric_to_earth_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar)
-{
-    const Distance rGeocentric = calculate_geocentric_radius(lat, rEquitorial, rPolar);
-    const Distance R           = rGeocentric + alt;
-
-    // Ecef coordinates
-    return { R * cos(lat) * cos(lon), R * cos(lat) * sin(lon), R * sin(lat) };
 }
 
 } // namespace astro

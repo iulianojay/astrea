@@ -38,4 +38,11 @@ inline constexpr struct EarthRadii final
     : mp_units::named_unit<"EarthRadii", mp_units::mag<6378> * mp_units::si::unit_symbols::km> {
 } EarthRadii;
 
+/**
+ * @brief Definition for Solar Flux Units as 1e-22 W / (m^2 * Hz).
+ */
+inline constexpr struct SolarFluxUnits final
+    : mp_units::named_unit<"SolarFluxUnits", mp_units::mag_power<10, -22> * mp_units::si::unit_symbols::W / (pow<2>(mp_units::si::unit_symbols::m) * mp_units::si::unit_symbols::Hz)> {
+} SolarFluxUnits;
+
 } // namespace astrea

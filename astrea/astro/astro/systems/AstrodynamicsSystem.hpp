@@ -19,6 +19,7 @@
 #pragma once
 
 #include <memory>
+#include <ranges>
 #include <unordered_set>
 #include <vector>
 
@@ -80,14 +81,14 @@ class AstrodynamicsSystem {
     ~AstrodynamicsSystem() = default;
 
     /**
-     * @brief Deleted copy constructor for the AstrodynamicsSystem class.
+     * @brief Copy constructor for the AstrodynamicsSystem class.
      */
-    AstrodynamicsSystem(const AstrodynamicsSystem&) = delete;
+    AstrodynamicsSystem(const AstrodynamicsSystem&);
 
     /**
-     * @brief Deleted assignment operator for the AstrodynamicsSystem class.
+     * @brief Assignment operator for the AstrodynamicsSystem class.
      */
-    AstrodynamicsSystem& operator=(const AstrodynamicsSystem&) = delete;
+    AstrodynamicsSystem& operator=(const AstrodynamicsSystem&);
 
     /**
      * @brief Default move constructor for the AstrodynamicsSystem class.
@@ -139,6 +140,11 @@ class AstrodynamicsSystem {
     const CelestialBodyUniquePtr& get_body(const CelestialBodyId& id) const;
 
     /**
+     * @brief Build a celestial body by ID without storing it
+     */
+    CelestialBodyUniquePtr create_body(const CelestialBodyId& id) const;
+
+    /**
      * @brief Creates a celestial body of a specific type.
      *
      * This method allows for the creation of celestial bodies of derived types, such as specific planets or moons.
@@ -157,8 +163,7 @@ class AstrodynamicsSystem {
         if (_bodies.count(id) == 0) {
             CelestialBodyUniquePtr body = std::make_unique<T>(std::forward<Args>(args)...);
             _bodies.emplace(id, std::move(body));
-            _activeBodies.insert(id);
-            _root = find_common_root(_activeBodies);
+            _root = find_common_ancestor({ std::from_range, std::views::keys(_bodies) });
         }
         return get_body(id);
     }
@@ -185,19 +190,10 @@ class AstrodynamicsSystem {
         const CelestialBodyId id = body.get_id();
         if (_bodies.count(id) == 0) {
             _bodies.emplace(id, std::make_unique<CelestialBody>(T(body)));
-            _activeBodies.insert(id);
-            _root = find_common_root(_activeBodies);
+            _root = find_common_ancestor({ std::from_range, std::views::keys(_bodies) });
         }
         return get_body(id);
     }
-
-    /**
-     * @brief Create a celestial body by id (const version).
-     *
-     * @param id The id of the celestial body to create.
-     * @return const CelestialBodyUniquePtr& A pointer to the created celestial body.
-     */
-    CelestialBodyUniquePtr add_body(const CelestialBodyId& id) const;
 
     /**
      * @brief Returns a vector of all celestial bodies in the system.
@@ -244,14 +240,15 @@ class AstrodynamicsSystem {
         get_relative_position(const Date& date, const CelestialBodyId id1, const CelestialBodyId id2) const;
 
     /**
-     * @brief Get the position of a celestial body relative to the root at a specific date.
+     * @brief Get the relative position between two celestial bodies at a specific date.
      *
-     * @param date The date at which to get the position.
-     * @param id The ID of the celestial body.
-     * @return CartesianVector<Distance, frames::solar_system_barycenter::icrf> The position vector of the celestial body relative to the root.
+     * @param date The date at which to get the relative position.
+     * @param id1 The ID of the first celestial body.
+     * @param id2 The ID of the second celestial body.
+     * @return CartesianVector<Velocity, frames::solar_system_barycenter::icrf> The relative velocity vector from id2 to id1.
      */
-    CartesianVector<Distance, frames::solar_system_barycenter::icrf>
-        get_position_relative_to_root(const Date& date, const CelestialBodyId id, const CelestialBodyId root) const;
+    CartesianVector<Velocity, frames::solar_system_barycenter::icrf>
+        get_relative_velocity(const Date& date, const CelestialBodyId id1, const CelestialBodyId id2) const;
 
     /**
      * @brief Iterator type for iterating over celestial bodies.
@@ -278,11 +275,10 @@ class AstrodynamicsSystem {
     const_iterator end() const { return _bodies.end(); }
 
   private:
-    SystemCenter _centerType;                          //!< System center type, either "CENTRAL_BODY" or "BARYCENTER".
-    CelestialBodyId _centralBody;                      //!< The id of the central body.
-    std::unordered_set<CelestialBodyId> _activeBodies; //!< Set of names of all celestial bodies in the system.
-    CelestialBodyId _root;                             //!< The root celestial body (first common lineage).
-    BodyMap _bodies;                                   //!< Map of celestial bodies by enum.
+    SystemCenter _centerType;     //!< System center type, either "CENTRAL_BODY" or "BARYCENTER".
+    CelestialBodyId _centralBody; //!< The id of the central body.
+    CelestialBodyId _root;        //!< The root celestial body (first common lineage).
+    BodyMap _bodies;              //!< Map of celestial bodies by enum.
 
     /**
      * @brief Finds the root celestial body in the hierarchy.
@@ -290,7 +286,7 @@ class AstrodynamicsSystem {
      * @param bodies A set of celestial body IDs to consider.
      * @return CelestialBodyId The ID of the root celestial body.
      */
-    CelestialBodyId find_common_root(const std::unordered_set<CelestialBodyId>& bodies) const;
+    CelestialBodyId find_common_ancestor(const std::unordered_set<CelestialBodyId>& bodies) const;
 
     /**
      * @brief Implementation function to create a celestial body by id.
@@ -301,6 +297,26 @@ class AstrodynamicsSystem {
      * @note Dont judge me.
      */
     CelestialBodyUniquePtr create_impl(const CelestialBodyId& id) const;
+
+    /**
+     * @brief Get the position of a celestial body relative to the root at a specific date.
+     *
+     * @param date The date at which to get the position.
+     * @param id The ID of the celestial body.
+     * @return CartesianVector<Distance, frames::solar_system_barycenter::icrf> The position vector of the celestial body relative to the root.
+     */
+    CartesianVector<Distance, frames::solar_system_barycenter::icrf>
+        get_position_relative_to_ancestor(const Date& date, const CelestialBodyId id, const CelestialBodyId ancestor) const;
+
+    /**
+     * @brief Get the velocity of a celestial body relative to the root at a specific date.
+     *
+     * @param date The date at which to get the velocity.
+     * @param id The ID of the celestial body.
+     * @return CartesianVector<Velocity, frames::solar_system_barycenter::icrf> The velocity vector of the celestial body relative to the root.
+     */
+    CartesianVector<Velocity, frames::solar_system_barycenter::icrf>
+        get_velocity_relative_to_ancestor(const Date& date, const CelestialBodyId id, const CelestialBodyId ancestor) const;
 };
 
 } // namespace astro

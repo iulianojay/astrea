@@ -23,7 +23,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/instances/body_centered_inertial_frames.hpp>
+#include <astro/frames/frame_registry.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -61,25 +61,25 @@ class FrameReference {
      * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the position.
-     * @return CartesianVector<Distance, frames::earth::icrf>
+     * @return CartesianVector<Distance, frames::primary>
      */
-    virtual CartesianVector<Distance, frames::earth::icrf> get_inertial_position(const Date& date) const = 0;
+    virtual CartesianVector<Distance, frames::primary> get_inertial_position(const Date& date) const = 0;
 
     /**
      * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the velocity.
-     * @return CartesianVector<Velocity, frames::earth::icrf>
+     * @return CartesianVector<Velocity, frames::primary>
      */
-    virtual CartesianVector<Velocity, frames::earth::icrf> get_inertial_velocity(const Date& date) const = 0;
+    virtual CartesianVector<Velocity, frames::primary> get_inertial_velocity(const Date& date) const = 0;
 
     /**
      * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
      *
      * @param date The date for which to get the acceleration.
-     * @return CartesianVector<Acceleration, frames::earth::icrf>
+     * @return CartesianVector<Acceleration, frames::primary>
      */
-    virtual CartesianVector<Acceleration, frames::earth::icrf> get_inertial_acceleration(const Date& date) const;
+    virtual CartesianVector<Acceleration, frames::primary> get_inertial_acceleration(const Date& date) const;
 };
 
 } // namespace astro
