@@ -21,7 +21,7 @@
 #include <memory>
 #include <vector>
 
-#include <gtl/btree.hpp>
+#include <gtl/phmap.hpp>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>

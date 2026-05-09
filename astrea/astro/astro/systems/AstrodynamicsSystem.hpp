@@ -23,6 +23,8 @@
 #include <unordered_set>
 #include <vector>
 
+#include <gtl/phmap.hpp>
+
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/planetary_bodies/planetary_bodies.hpp>
 #include <astro/time/Date.hpp>
@@ -47,7 +49,7 @@ concept IsDerivedCelestialBody = requires(T) {
  */
 class AstrodynamicsSystem {
 
-    using BodyMap = std::unordered_map<CelestialBodyId, CelestialBodyUniquePtr>;
+    using BodyMap = gtl::flat_hash_map<CelestialBodyId, CelestialBodyUniquePtr>;
 
   public:
     /**

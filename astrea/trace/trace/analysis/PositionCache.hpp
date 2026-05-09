@@ -20,7 +20,7 @@
 
 #include <vector>
 
-#include <gtl/btree.hpp>
+#include <gtl/phmap.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
@@ -122,9 +122,9 @@ class PositionCache {
     void clear();
 
   private:
-    std::vector<std::size_t> _platformIds;               //!< Platform IDs in order
-    std::vector<std::vector<EcefRadiusVec>> _positions;  //!< [platformIdx][timeIdx]
-    gtl::btree_map<std::size_t, std::size_t> _idToIndex; //!< Map from platform ID to index
+    std::vector<std::size_t> _platformIds;                   //!< Platform IDs in order
+    std::vector<std::vector<EcefRadiusVec>> _positions;      //!< [platformIdx][timeIdx]
+    gtl::flat_hash_map<std::size_t, std::size_t> _idToIndex; //!< Map from platform ID to index
 };
 
 } // namespace trace

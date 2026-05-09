@@ -68,7 +68,7 @@ const CelestialBodyUniquePtr& AstrodynamicsSystem::add_body(const CelestialBodyI
 
 CelestialBodyUniquePtr AstrodynamicsSystem::create_body(const CelestialBodyId& id) const { return create_impl(id); }
 
-const std::unordered_map<CelestialBodyId, CelestialBodyUniquePtr>& AstrodynamicsSystem::get_all_bodies() const
+const gtl::flat_hash_map<CelestialBodyId, CelestialBodyUniquePtr>& AstrodynamicsSystem::get_all_bodies() const
 {
     return _bodies;
 }
