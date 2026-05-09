@@ -40,7 +40,7 @@ class JacciaRobertsAtmosphere {
      * @brief Find the atmospheric density at a given state using the Jaccia-Roberts atmospheric model.
      * @return Density The atmospheric density at the given state.
      */
-    static Density find_atmospheric_density(const State& state);
+    static Density find_atmospheric_density(const State& state, const Distance equitorialRadius, const Distance polarRadius);
 };
 
 } // namespace planetary_bodies

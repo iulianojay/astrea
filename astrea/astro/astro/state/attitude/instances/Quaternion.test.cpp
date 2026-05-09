@@ -25,7 +25,7 @@
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
+#include <astro/frames/DirectionCosineMatrix.hpp>
 #include <astro/state/attitude/instances/EulerAngles.hpp>
 #include <astro/state/attitude/instances/Quaternion.hpp>
 #include <tests/utilities/comparisons.hpp>

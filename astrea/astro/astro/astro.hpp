@@ -33,16 +33,14 @@
 #include <astro/frames/frames.hpp>
 #include <astro/frames/transformations.hpp>
 
+#include <astro/frames/DirectionCosineMatrix.hpp>
+#include <astro/frames/DynamicFrame.hpp>
 #include <astro/frames/instances/LocalHorizontalLocalVertical.hpp>
 #include <astro/frames/instances/RadialInTrackCrossTrack.hpp>
 #include <astro/frames/instances/VelocityNormalBinormal.hpp>
 #include <astro/frames/instances/body_centered_inertial_frames.hpp>
 #include <astro/frames/instances/body_fixed_frames.hpp>
 #include <astro/frames/instances/defined_rotations.hpp>
-#include <astro/frames/types/BodyFixedFrame.hpp>
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/frames/types/DynamicFrame.hpp>
-#include <astro/frames/types/InertialFrame.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/space/Constellation.hpp>

@@ -20,9 +20,9 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/DirectionCosineMatrix.hpp>
+#include <astro/frames/DynamicFrame.hpp>
 #include <astro/frames/instances/body_centered_inertial_frames.hpp>
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/frames/types/DynamicFrame.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
@@ -58,15 +58,15 @@ class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack, Fra
      * @brief Gets the Direction Cosine Matrix (DCM) for the RIC frame at a given date.
      *
      * @param date The date for which the DCM is requested.
-     * @return DirectionCosineMatrix<frames::earth::icrf, frames::dynamic::ric> The DCM from ECI to RIC.
+     * @return DirectionCosineMatrix<frames::primary, frames::dynamic::ric> The DCM from ECI to RIC.
      */
-    DirectionCosineMatrix<frames::earth::icrf, RadialInTrackCrossTrack> get_dcm(const Date& date) const
+    DirectionCosineMatrix<frames::primary, RadialInTrackCrossTrack> get_dcm(const Date& date) const
     {
         const auto r       = get_inertial_position(date).unit();
         const auto v       = get_inertial_velocity(date).unit();
         const auto h       = r.cross(v).unit();
         const auto inTrack = (-r.cross(h)).unit();
-        return DirectionCosineMatrix<frames::earth::icrf, RadialInTrackCrossTrack>::from_vectors(r, inTrack, h);
+        return DirectionCosineMatrix<frames::primary, RadialInTrackCrossTrack>::from_vectors(r, inTrack, h);
     }
 
   private:
@@ -76,7 +76,7 @@ class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack, Fra
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.
      */
-    RadialInTrackCrossTrack(const RadiusVector<frames::earth::icrf>& position, const VelocityVector<frames::earth::icrf>& velocity) :
+    RadialInTrackCrossTrack(const RadiusVector<frames::primary>& position, const VelocityVector<frames::primary>& velocity) :
         DynamicFrame<RadialInTrackCrossTrack, FrameAxis::RIC>(position, velocity)
     {
     }

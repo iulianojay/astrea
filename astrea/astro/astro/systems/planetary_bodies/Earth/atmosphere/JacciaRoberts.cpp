@@ -13,6 +13,12 @@
 
 #include <astro/systems/planetary_bodies/Earth/atmosphere/JacciaRoberts.hpp>
 
+#include <map>
+
+#include <astro/frames/frames.hpp>
+#include <astro/state/State.hpp>
+#include <astro/state/angular_elements/instances/Geodetic.hpp>
+
 namespace astrea {
 namespace astro {
 namespace planetary_bodies {
@@ -56,11 +62,10 @@ static const std::map<Altitude, std::tuple<Altitude, Density, Altitude>> JACHIA_
     { 1100.0 * km, { 1000.0 * km, 2.019e-15 * kg / (pow<3>(m)), 268.00 * km } }
 };
 
-Density JacciaRobertsAtmosphere::find_atmospheric_density(const State& state)
+Density JacciaRobertsAtmosphere::find_atmospheric_density(const State& state, const Distance equitorialRadius, const Distance polarRadius)
 {
     const auto& position = state.get_position_in_frame<frames::earth::earth_fixed>();
-    const auto [latitude, longitude, altitude] =
-        convert_body_fixed_to_geodetic(position, get_equitorial_radius(), get_polar_radius());
+    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position, equitorialRadius, polarRadius);
 
     Distance referenceAltitude;
     Density referenceDensity;

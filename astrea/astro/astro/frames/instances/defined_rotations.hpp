@@ -21,8 +21,8 @@
 
 #include <units/units.hpp>
 
+#include <astro/frames/DirectionCosineMatrix.hpp>
 #include <astro/frames/frames.hpp>
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/time/Date.hpp>
 
@@ -67,13 +67,13 @@ inline DirectionCosineMatrix<frames::earth::icrf, frames::earth::earth_fixed>
  * @brief Get the Direction Cosine Matrix (DCM) for the body-fixed frame at a given date.
  *
  * @tparam In_Frame_T The input frame type, must be ICRF and share the same origin as Out_Frame_T.
- * @tparam Out_Frame_T The output frame type, must be BODY_FIXED and share the same origin as In_Frame_T.
+ * @tparam Out_Frame_T The output frame type, must be FIXED_ROTATING and share the same origin as In_Frame_T.
  * @param date The date for which to get the DCM.
  * @return DirectionCosineMatrix<In_Frame_T, Out_Frame_T> The DCM from In_Frame_T to Out_Frame_T.
  */
 template <typename In_Frame_T, typename Out_Frame_T>
     requires(
-        HasSameOrigin<In_Frame_T, Out_Frame_T> && In_Frame_T::axis == FrameAxis::ICRF && Out_Frame_T::axis == FrameAxis::BODY_FIXED &&
+        HasSameOrigin<In_Frame_T, Out_Frame_T> && In_Frame_T::axis == FrameAxis::ICRF && Out_Frame_T::axis == FrameAxis::FIXED_ROTATING &&
         In_Frame_T::origin != CelestialBodyId::SUN && Out_Frame_T::origin != CelestialBodyId::EARTH
     )
 inline DirectionCosineMatrix<In_Frame_T, Out_Frame_T> get_dcm(const Date& date)

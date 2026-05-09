@@ -28,8 +28,8 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/DirectionCosineMatrix.hpp>
 #include <astro/frames/frame_concepts.hpp>
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
 #include <astro/state/attitude/instances/EulerAngles.hpp>
 #include <astro/types/enums.hpp>
 
@@ -480,10 +480,7 @@ class Quaternion {
      * @brief Computes the norm of the quaternion.
      * @return The norm of the quaternion as a unitless quantity.
      */
-    Unitless norm() const
-    {
-        return mp_units::sqrt(norm_squared());
-    }
+    Unitless norm() const { return mp_units::sqrt(norm_squared()); }
 
     /**
      * @brief Computes the square of the magnitude of the quaternion (s^2 + u^2).

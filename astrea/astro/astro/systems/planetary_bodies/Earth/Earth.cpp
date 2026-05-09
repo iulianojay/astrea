@@ -27,7 +27,8 @@
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 #include <astro/state/State.hpp>
-#include <astro/state/angular_elements/instances/Geodetic.hpp>
+#include <astro/systems/planetary_bodies/Earth/atmosphere/HarrisPriester.hpp>
+#include <astro/systems/planetary_bodies/Earth/atmosphere/JacciaRoberts.hpp>
 
 namespace astrea {
 namespace astro {
@@ -36,8 +37,10 @@ namespace planetary_bodies {
 Density Earth::find_atmospheric_density(const State& state) const
 {
     switch (_atmosphereModel) {
-        case EarthAtmosphereModel::JACHIA_ROBERTS: return JacciaRobertsAtmosphere::find_atmospheric_density(state);
-        case EarthAtmosphereModel::HARRIS_PRIESTER: return HarrisPriesterAtmosphere::find_atmospheric_density(state);
+        case EarthAtmosphereModel::JACHIA_ROBERTS:
+            return JacciaRobertsAtmosphere::find_atmospheric_density(state, get_equitorial_radius(), get_polar_radius());
+        case EarthAtmosphereModel::HARRIS_PRIESTER:
+            return HarrisPriesterAtmosphere::find_atmospheric_density(state, get_equitorial_radius(), get_polar_radius());
         case EarthAtmosphereModel::NRLMSISE00:
         case EarthAtmosphereModel::DTM2000:
         default: throw std::runtime_error("Selected atmospheric model not implemented yet");

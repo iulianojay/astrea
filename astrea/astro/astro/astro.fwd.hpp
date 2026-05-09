@@ -20,6 +20,7 @@
 
 #include <concepts>
 
+#include <astro/frames/frame_concepts.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {
@@ -71,21 +72,6 @@ class AttitudePartials;
 // Frames
 template <class Value_T, class Frame_T>
 class CartesianVector;
-
-template <CelestialBodyId origin, FrameAxis axis>
-struct Frame;
-
-template <CelestialBodyId origin, FrameAxis axis>
-    requires(origin != CelestialBodyId::UNSET && origin != CelestialBodyId::CUSTOM)
-struct InertialFrame;
-
-template <CelestialBodyId origin>
-    requires(origin != CelestialBodyId::UNSET)
-struct BodyFixedFrame;
-
-template <class Frame_T, FrameAxis axis>
-    requires(axis != FrameAxis::ICRF && axis != FrameAxis::J2000 && axis != FrameAxis::BODY_FIXED)
-class DynamicFrame;
 
 struct LocalHorizontalLocalVertical;
 struct RadialInTrackCrossTrack;
