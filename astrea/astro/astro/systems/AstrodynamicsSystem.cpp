@@ -19,19 +19,20 @@
 namespace astrea {
 namespace astro {
 
-AstrodynamicsSystem::AstrodynamicsSystem(const CelestialBodyId& centralBody, const std::unordered_set<CelestialBodyId>& secondaryBodies) :
+AstrodynamicsSystem::AstrodynamicsSystem(const CelestialBodyId& centralBody, const gtl::flat_hash_set<CelestialBodyId>& secondaryBodies) :
     _centerType(SystemCenter::CENTRAL_BODY),
-    _centralBody(centralBody)
+    _centralBodies(centralBody)
 {
     add_body(centralBody);
     for (const auto& body : secondaryBodies) {
         add_body(body);
     }
 }
+
 AstrodynamicsSystem::AstrodynamicsSystem(const AstrodynamicsSystem& other)
 {
-    _centerType  = other._centerType;
-    _centralBody = other._centralBody;
+    _centerType    = other._centerType;
+    _centralBodies = other._centralBodies;
     for (const auto& [id, body] : other._bodies) {
         add_body(id);
     }
@@ -44,12 +45,12 @@ AstrodynamicsSystem& AstrodynamicsSystem::operator=(const AstrodynamicsSystem& o
 
 const SystemCenter& AstrodynamicsSystem::get_center_type() const { return _centerType; }
 
-const CelestialBodyId& AstrodynamicsSystem::get_central_body_id() const { return _centralBody; }
+const CelestialBodyId& AstrodynamicsSystem::get_central_body_id() const { return _centralBodies; }
 
 const CelestialBodyUniquePtr& AstrodynamicsSystem::get_central_body() const
 {
     switch (_centerType) {
-        case SystemCenter::CENTRAL_BODY: return get_body(_centralBody);
+        case SystemCenter::CENTRAL_BODY: return get_body(_centralBodies);
         case SystemCenter::BARYCENTER:
         default: throw std::runtime_error("Barycenteric systems have no central body.");
     }
@@ -157,7 +158,7 @@ CartesianVector<Velocity, frames::solar_system_barycenter::icrf>
     return vel;
 }
 
-CelestialBodyId AstrodynamicsSystem::find_common_ancestor(const std::unordered_set<CelestialBodyId>& bodies) const
+CelestialBodyId AstrodynamicsSystem::find_common_ancestor(const gtl::flat_hash_set<CelestialBodyId>& bodies) const
 {
     // If there's only one body, it is the root
     if (bodies.size() == 1) { return *(bodies.begin()); }

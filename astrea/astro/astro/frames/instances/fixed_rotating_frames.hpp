@@ -1,5 +1,5 @@
 /**
- * @file body_fixed_frames.hpp
+ * @file fixed_rotating_frames.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for body-fixed frames. Just ECEF right now.
  * @date 2025-08-05

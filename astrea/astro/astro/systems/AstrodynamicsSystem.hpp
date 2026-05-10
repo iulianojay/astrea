@@ -50,6 +50,7 @@ concept IsDerivedCelestialBody = requires(T) {
 class AstrodynamicsSystem {
 
     using BodyMap = gtl::flat_hash_map<CelestialBodyId, CelestialBodyUniquePtr>;
+    using BodySet = gtl::flat_hash_set<CelestialBodyId>;
 
   public:
     /**
@@ -58,7 +59,7 @@ class AstrodynamicsSystem {
      * @param centralBody The name of the central celestial body (default is "Earth").
      * @param allBodies A set of names of all secondary celestial bodies in the system (default is none).
      */
-    AstrodynamicsSystem(const CelestialBodyId& centralBody = CelestialBodyId::EARTH, const std::unordered_set<CelestialBodyId>& secondaryBodies = {});
+    AstrodynamicsSystem(const CelestialBodyId& centralBody = CelestialBodyId::EARTH, const BodySet& secondaryBodies = {});
 
     /**
      * @brief Constructs an AstrodynamicsSystem with a specified central body, and the set of all other bodies.
@@ -67,9 +68,9 @@ class AstrodynamicsSystem {
      * @param allBodies A set of all secondary celestial bodies in the system (default is none).
      */
     template <IsDerivedCelestialBody T>
-    AstrodynamicsSystem(const T& centralBody, const std::unordered_set<CelestialBodyId>& secondaryBodies = {}) :
+    AstrodynamicsSystem(const T& centralBody, const BodySet& secondaryBodies = {}) :
         _centerType(SystemCenter::CENTRAL_BODY),
-        _centralBody(centralBody.get_id())
+        _centralBodies(centralBody.get_id())
     {
         add_body(centralBody);
         for (const auto& body : secondaryBodies) {
@@ -277,10 +278,10 @@ class AstrodynamicsSystem {
     const_iterator end() const { return _bodies.end(); }
 
   private:
-    SystemCenter _centerType;     //!< System center type, either "CENTRAL_BODY" or "BARYCENTER".
-    CelestialBodyId _centralBody; //!< The id of the central body.
-    CelestialBodyId _root;        //!< The root celestial body (first common lineage).
-    BodyMap _bodies;              //!< Map of celestial bodies by enum.
+    SystemCenter _centerType; //!< System center type, either "CENTRAL_BODY" or "BARYCENTER".
+    BodySet _centralBodies;   //!< The id of the central body.
+    CelestialBodyId _root;    //!< The root celestial body (first common lineage).
+    BodyMap _bodies;          //!< Map of celestial bodies by enum.
 
     /**
      * @brief Finds the root celestial body in the hierarchy.
@@ -288,7 +289,7 @@ class AstrodynamicsSystem {
      * @param bodies A set of celestial body IDs to consider.
      * @return CelestialBodyId The ID of the root celestial body.
      */
-    CelestialBodyId find_common_ancestor(const std::unordered_set<CelestialBodyId>& bodies) const;
+    CelestialBodyId find_common_ancestor(const BodySet& bodies) const;
 
     /**
      * @brief Implementation function to create a celestial body by id.
