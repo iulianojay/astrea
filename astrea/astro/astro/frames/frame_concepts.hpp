@@ -29,6 +29,9 @@ namespace astro {
 namespace detail {
 
 struct FrameBase;
+struct OriginBase;
+struct AxisBase;
+struct CoordinateLineBase;
 
 template <typename T>
 concept SymbolicConstant = (!std::is_const_v<T>) && (!std::is_reference_v<T>) && std::is_empty_v<T> &&
@@ -39,6 +42,15 @@ concept SymbolicConstant = (!std::is_const_v<T>) && (!std::is_reference_v<T>) &&
 
 template <typename T>
 concept IsFrame = std::derived_from<T, detail::FrameBase> && detail::SymbolicConstant<T>;
+
+template <typename T>
+concept IsOrigin = std::derived_from<T, detail::OriginBase> && detail::SymbolicConstant<T>;
+
+template <typename T>
+concept IsAxis = std::derived_from<T, detail::AxisBase> && detail::SymbolicConstant<T>;
+
+template <typename T>
+concept IsCoordinateLine = std::derived_from<T, detail::CoordinateLineBase> && detail::SymbolicConstant<T>;
 
 /**
  * @brief Concept to determine if a frame is inertial.

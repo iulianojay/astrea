@@ -24,6 +24,8 @@
 
 #include <units/units.hpp>
 
+#include <astro/frames/Axis.hpp>
+#include <astro/frames/Origin.hpp>
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/types/enums.hpp>
 
@@ -39,22 +41,19 @@ struct FrameBase {};
 
 } // namespace detail
 
-/**
- * @brief Base class for all frames in astrea. Frames are defined by their name, origin celestial body, axis type, and parent frame.
- *
- * @tparam _name_ The name of the frame as a compile-time fixed string.
- * @tparam _origin_ The celestial body associated with the frame (e.g., Earth, Mars).
- * @tparam _axis_ The axis type of the frame (e.g., ICRF, J2000, FIXED_ROTATING).
- * @tparam _parent_ The parent frame from which this frame is derived. Defaults to void for root frames.
- */
-template <mp_units::basic_fixed_string _name_, CelestialBodyId _origin_, FrameAxis _axis_, typename _parent_ = void>
-struct Frame : detail::FrameBase {
+template <mp_units::basic_fixed_string _name_, IsOrigin auto _origin_, IsAxis auto _axis_, IsFrame auto _parent_ = void>
+struct Frame<_name_, _origin_, _axis_, _parent_> : detail::FrameBase {
     static constexpr auto origin = _origin_; //!< The central body associated with the frame.
     static constexpr auto axis   = _axis_;   //!< The axis type of the frame.
     static constexpr auto name   = _name_;   //!< The name of the frame.
-    using parent                 = _parent_; //!< The parent frame of this frame.
+    static constexpr auto parent = _parent_; //!< The parent frame of this frame.
 };
 
+
+template <mp_units::basic_fixed_string _name_, IsOrigin auto _origin_, IsAxis auto _axis_, Coordinate _coordinate_, AngularRate _rotation_rate_, IsFrame auto _parent_ = void>
+struct FixedRotatingFrame : Frame<_name_, _origin_, FixedRotatingAxis<_axis_, _coordinate_>, _parent_> {
+    static constexpr auto rotation_rate = _rotation_rate_; //!< The rotation rate of the frame.
+};
 
 } // namespace astro
 } // namespace astrea
