@@ -36,6 +36,7 @@ using venus_fixed = Frame<"venus_fixed", CelestialBodyId::VENUS, FrameAxis::FIXE
 namespace earth {
 
 using earth_fixed = Frame<"ecef", CelestialBodyId::EARTH, FrameAxis::FIXED_ROTATING, earth::icrf>;
+using ems = Frame<"earth-moon synodic", CelestialBodyId::EARTH_BARYCENTER, FrameAxis::FIXED_ROTATING, earth::icrf>; // Earth-Moon Synodic frame, with x-axis pointing towards the Moon
 
 } // namespace earth
 
