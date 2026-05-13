@@ -18,11 +18,11 @@
 
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/systems/planetary_bodies/planetary_bodies.hpp>
+#include <astro/systems/planets.hpp>
 
 using namespace astrea;
 using namespace astro;
-using namespace planetary_bodies;
+using namespace planets;
 using mp_units::si::unit_symbols::km;
 
 class AstrodynamicsSystemTest : public testing::Test {

@@ -27,7 +27,7 @@ auto earthPolarRadius = center.get_polar_radius();
 
 // You can add secondary bodies for perturbation calculations
 earthSystem.add(CelestialBodyId::MOON);   // You can reference predefined bodies by their ID
-earthSystem.add(planetary_bodies::Sun()); // Or you can create your own body and add it
+earthSystem.add(planets::Sun()); // Or you can create your own body and add it
 
 // And you can perform some simple calculations with the system
 auto rEarth2Moon = earthSystem.get_relative_position(CelestialBodyId::MOON, CelestialBodyId::EARTH, J2000);
@@ -63,7 +63,7 @@ Astrea includes predefined celestial bodies with accurate physical constants:
 - **Earth**: Standard gravitational parameter and radius
 - **Moon**: Lunar gravitational parameter and orbital characteristics
 - **Sun**: Solar gravitational parameter for interplanetary dynamics
-- Additional planetary bodies available in the `planetary_bodies` module
+- Additional planetary bodies available in the `planets` module
 
 ## Multi-Body Dynamics
 

@@ -201,7 +201,7 @@ CelestialBodyId AstrodynamicsSystem::find_common_ancestor(const gtl::flat_hash_s
 
 CelestialBodyUniquePtr AstrodynamicsSystem::create_impl(const CelestialBodyId& id) const
 {
-    using namespace planetary_bodies;
+    using namespace planets;
     switch (id) {
         case (CelestialBodyId::SUN): {
             return std::make_unique<Sun>();

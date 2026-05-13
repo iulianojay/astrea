@@ -45,7 +45,7 @@
 #include <astro/astro.macros.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/systems/planetary_bodies/Earth/Earth.hpp>
+#include <astro/systems/planets/Earth/Earth.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/utilities/plotting.hpp>
@@ -75,7 +75,7 @@ inline constexpr auto slug = lbf * pow<2>(s) / ft;
 namespace astrea {
 namespace astro {
 
-using namespace planetary_bodies;
+using namespace planets;
 
 namespace tests {
 
@@ -108,7 +108,7 @@ class Orbital6DofTest : public testing::Test {
         ),
         propTime(28800.0 * s)
     {
-        CelestialBodyParameters nasaEarthData = planetary_bodies::DEFAULT_EARTH_PARAMS;
+        CelestialBodyParameters nasaEarthData = planets::DEFAULT_EARTH_PARAMS;
         nasaEarthData.mu                      = 398600.436 * pow<3>(km) / pow<2>(s); // different mu value
 
         sys = AstrodynamicsSystem(Earth(nasaEarthData), { CelestialBodyId::SUN });
@@ -150,17 +150,19 @@ class Orbital6DofTest : public testing::Test {
         switch (vehicleType) {
             case ISS: {
                 sat.set_mass(400'000.0 * kg);
-                sat.set_inertia_tensor(InertiaTensor<frames::dynamic::body>(
-                    1.02e8 * kg * pow<2>(m),  // xx
-                    6.96e6 * kg * pow<2>(m),  // xy
-                    5.48e6 * kg * pow<2>(m),  // xz
-                    6.96e6 * kg * pow<2>(m),  // yx
-                    0.91e8 * kg * pow<2>(m),  // yy
-                    -5.90e5 * kg * pow<2>(m), // yz
-                    5.48e6 * kg * pow<2>(m),  // zx
-                    -5.90e5 * kg * pow<2>(m), // zy
-                    5.48e6 * kg * pow<2>(m)   // zz
-                ));
+                sat.set_inertia_tensor(
+                    InertiaTensor<frames::dynamic::body>(
+                        1.02e8 * kg * pow<2>(m),  // xx
+                        6.96e6 * kg * pow<2>(m),  // xy
+                        5.48e6 * kg * pow<2>(m),  // xz
+                        6.96e6 * kg * pow<2>(m),  // yx
+                        0.91e8 * kg * pow<2>(m),  // yy
+                        -5.90e5 * kg * pow<2>(m), // yz
+                        5.48e6 * kg * pow<2>(m),  // zx
+                        -5.90e5 * kg * pow<2>(m), // zy
+                        5.48e6 * kg * pow<2>(m)   // zz
+                    )
+                );
                 sat.set_ram_area(2.5e3 * m * m);
                 sat.set_lift_area(2.5e3 * m * m);
                 sat.set_solar_area(2.5e3 * m * m);

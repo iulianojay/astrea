@@ -1,10 +1,10 @@
 /**
- * @file Origin.hpp
+ * @file HarrisPriester.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Definition for a Origin in astrea.
- * @date 2025-10-02
+ * @brief Header file for the HarrisPriester class.
+ * @date 2026-05-01
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -18,29 +18,31 @@
  */
 #pragma once
 
-#include <type_traits>
-
-#include <mp-units/ext/fixed_string.h>
-
 #include <units/units.hpp>
 
-#include <astro/frames/frame_concepts.hpp>
-#include <astro/types/enums.hpp>
+#include <astro/astro.fwd.hpp>
 
 namespace astrea {
 namespace astro {
+namespace planets {
 
-namespace detail {
+/**
+ * @brief The Harris-Priester atmospheric model for Earth.
+ */
+class HarrisPriesterAtmosphere {
+  public:
+    /**
+     * @brief Deleted constructor
+     */
+    HarrisPriesterAtmosphere() = delete;
 
-struct OriginBase {};
+    /**
+     * @brief Find the atmospheric density at a given state using the Harris-Priester atmospheric model.
+     * @return Density The atmospheric density at the given state.
+     */
+    static Density find_atmospheric_density(const State& state, const Distance equitorialRadius, const Distance polarRadius);
+};
 
-} // namespace detail
-
-template <mp_units::basic_fixed_string _name_, IsOrigin auto _parent_ = void>
-inline constexpr struct Origin : detail::OriginBase {
-    static constexpr auto name   = _name_;   //!< The name of the origin.
-    static constexpr auto parent = _parent_; //!< The parent origin of this origin, if any.
-} Origin;
-
+} // namespace planets
 } // namespace astro
 } // namespace astrea

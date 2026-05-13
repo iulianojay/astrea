@@ -31,7 +31,7 @@
 #include <astro/frames/frames.hpp>
 #include <astro/frames/transformations.hpp>
 #include <astro/state/angular_elements/instances/Geodetic.hpp>
-#include <astro/systems/planetary_bodies/planetary_bodies.hpp>
+#include <astro/systems/planets.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
@@ -71,7 +71,7 @@ class EastNorthUp : public DynamicFrame<EastNorthUp, FrameAxis::ENU> {
     {
         // TODO: This assumes we're using "default" Earth. REALLY don't want to pass a system
         // to this object
-        static const planetary_bodies::Earth earth;
+        static const planets::Earth earth;
         static const Distance& rEquitorial = earth.get_equitorial_radius();
         static const Distance& rPolar      = earth.get_polar_radius();
 

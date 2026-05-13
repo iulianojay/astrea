@@ -21,13 +21,13 @@
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/systems/CelestialBody.hpp>
-#include <astro/systems/planetary_bodies/planetary_bodies.hpp>
+#include <astro/systems/planets.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
 using namespace astro;
-using namespace planetary_bodies;
+using namespace planets;
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
 using mp_units::angular::unit_symbols::rad;

@@ -21,7 +21,7 @@
 
 #include <mp-units/math.h>
 
-#include <astro/systems/planetary_bodies/Earth/Earth.hpp>
+#include <astro/systems/planets/Earth/Earth.hpp>
 #include <astro/utilities/conversions.hpp>
 
 using namespace mp_units;
@@ -120,7 +120,7 @@ Angle julian_date_to_sidereal_time(const JulianDate& julianDate)
         (100.4606184 * one + 36000.77005361 * T0 + 0.00038793 * T0 * T0 - 2.583e-8 * T0 * T0 * T0) * deg;
 
     // GST
-    static const AngularVelocity earthRotRate = planetary_bodies::Earth().get_rotation_rate(); // in rad/s
+    static const AngularVelocity earthRotRate = planets::Earth().get_rotation_rate(); // in rad/s
     const Angle greenwichSiderealTime         = wrap_angle(greenwichUniversalTime + earthRotRate * universalTime);
 
     return greenwichSiderealTime;
