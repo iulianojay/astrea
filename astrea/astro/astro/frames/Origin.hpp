@@ -36,11 +36,19 @@ struct OriginBase {};
 
 } // namespace detail
 
-template <mp_units::basic_fixed_string _name_, IsOrigin auto _parent_ = void>
-inline constexpr struct Origin : detail::OriginBase {
+template <auto...>
+struct Origin;
+
+template <mp_units::basic_fixed_string _name_, auto... Args>
+struct Origin<_name_, Args...> : detail::OriginBase {
+    static constexpr auto name = _name_; //!< The name of the origin.
+};
+
+template <mp_units::basic_fixed_string _name_, IsOrigin auto _parent_, auto... Args>
+struct Origin<_name_, _parent_, Args...> : detail::OriginBase {
     static constexpr auto name   = _name_;   //!< The name of the origin.
     static constexpr auto parent = _parent_; //!< The parent origin of this origin, if any.
-} Origin;
+};
 
 } // namespace astro
 } // namespace astrea

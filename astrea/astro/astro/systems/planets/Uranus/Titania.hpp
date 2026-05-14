@@ -63,9 +63,16 @@ static CelestialBodyParameters DEFAULT_TITANIA_PARAMS{
  *
  * This class provides properties and methods specific to Titania, including its physical and orbital parameters.
  */
-inline constexpr struct Titania : CelestialBody<"Titania", Uranus, DEFAULT_TITANIA_PARAMS> {
+inline constexpr struct Titania : CelestialBody<"Titania", Uranus> {
 } Titania;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Titania>()
+{
+    return planets::DEFAULT_TITANIA_PARAMS;
+}
+
 } // namespace astro
 } // namespace astrea

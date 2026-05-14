@@ -7,7 +7,7 @@ The `CartesianVector` class is the fundamental vector type in Astrea, providing 
 Cartesian vectors are templated on both value type and frame:
 
 ```cpp
-template <class Value_T, class Frame_T>
+template <class Value_T, IsFrame auto _frame_>
 class CartesianVector;
 ```
 

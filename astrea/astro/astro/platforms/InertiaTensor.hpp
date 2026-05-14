@@ -34,7 +34,7 @@ namespace astro {
  *
  * @tparam Frame_T The frame in which the inertia tensor is defined. Defaults to `frames::dynamic::body`.
  */
-template <class Frame_T = frames::dynamic::body>
+template <IsFrame auto _frame_ = frames::dynamic::body>
 class InertiaTensor {
 
     static constexpr MomentOfInertia zero =

@@ -182,10 +182,16 @@ static const std::map<Altitude, TitanDensity> titanicAtmosphere = { // km, g/cm^
  *
  * This class provides properties and methods specific to Titan, including its physical and orbital parameters.
  */
-inline constexpr struct Titan : CelestialBody<"Titan", Saturn, DEFAULT_TITAN_PARAMS> {
+inline constexpr struct Titan : CelestialBody<"Titan", Saturn> {
 } Titan;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Titan>()
+{
+    return planets::DEFAULT_TITAN_PARAMS;
+}
 
 /**
  * @brief Find the atmospheric density at a given altitude and date.
@@ -197,7 +203,7 @@ inline constexpr struct Titan : CelestialBody<"Titan", Saturn, DEFAULT_TITAN_PAR
  * @return Density The atmospheric density at the specified altitude and date.
  */
 template <>
-inline constexpr Density find_atmospheric_density<Titan>(const State& state)
+inline constexpr Density find_atmospheric_density<planets::Titan>(const State& state)
 {
     using mp_units::si::unit_symbols::cm;
     using mp_units::si::unit_symbols::g;

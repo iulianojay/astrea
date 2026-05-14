@@ -24,8 +24,10 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/Axis.hpp>
+#include <astro/frames/Frame.hpp>
 #include <astro/frames/Origin.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/CelestialBodyParameters.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/enums.hpp>
@@ -34,257 +36,330 @@
 namespace astrea {
 namespace astro {
 
-template <mp_units::basic_fixed_string _name_, IsOrigin auto _parent_ = void>
-struct Barycenter : detail::Origin<_name_, _parent_> {};
+template <auto...>
+struct Barycenter;
+
+template <mp_units::basic_fixed_string _name_>
+struct Barycenter<_name_> : Origin<_name_> {};
+
+template <mp_units::basic_fixed_string _name_, IsOrigin auto _parent_>
+struct Barycenter<_name_, _parent_> : Origin<_name_, _parent_> {
+    using ParentIcrf = Frame<_name_ + "_icrf", _parent_, axes::icrf>; //!< The inertial frame centered on the parent body, used for ephemeris data.
+    using ParentJ2000 = Frame<_name_ + "_j2000", _parent_, axes::j2000>; //!< The inertial frame centered on the parent body, used for ephemeris data.
+};
 
 
 /**
  * @brief CelestialBody class represents a celestial body in an astrodynamics system.
  */
-template <mp_units::basic_fixed_string _name_, IsOrigin auto _parent_, auto _parameters_>
-struct CelestialBody : detail::Origin<_name_, _parent_> {
-    static constexpr auto parameters = _parameters_; //!< The physical and orbital parameters of the celestial body.
+template <mp_units::basic_fixed_string _name_, IsOrigin auto _parent_>
+struct CelestialBody : Origin<_name_, _parent_> {
+    using ParentIcrf = Frame<_name_ + "_icrf", _parent_, axes::icrf>; //!< The inertial frame centered on the parent body, used for ephemeris data.
+    using ParentJ2000 = Frame<_name_ + "_j2000", _parent_, axes::j2000>; //!< The inertial frame centered on the parent body, used for ephemeris data.
+};
 
-    using ParentIcrf = frames::Frame<_name_ + "icrf", _parent_, frames::axes::icrf>; //!< The inertial frame centered on the parent body, used for ephemeris data.
-    using ParentJ2000 = frames::Frame<_name_ + "j2000", _parent_, frames::axes::j2000>; //!< The inertial frame centered on the parent body, used for ephemeris data.
+template <CelestialBody _body_>
+constexpr auto get_celestial_body_parameters() = delete; // Force specialization for each body
 
-    /**
-     * @brief Equality operator for CelestialBody.
-     *
-     * @param other The CelestialBody to compare with.
-     * @return true if the celestial bodies are equal, false otherwise.
-     */
-    constexpr bool operator==(const CelestialBody& other) const
-    {
-        return parameters.mu == other.parameters.mu; // Probably good enough
-    }
-
-    /**
-     * @brief Get the type of the celestial body.
-     *
-     * @return const CelestialBodyType& Reference to the type of the celestial body.
-     */
-    constexpr const CelestialBodyType& get_type() const { return parameters.type; };
-
-    /**
-     * @brief Get the gravitational parameter (mu) of the celestial body.
-     *
-     * @return const GravParam& Reference to the gravitational parameter of the celestial body.
-     */
-    constexpr const GravParam& get_mu() const { return parameters.mu; };
-
-    /**
-     * @brief Get the mass of the celestial body.
-     *
-     * @return const Mass& Reference to the mass of the celestial body.
-     */
-    constexpr const Mass& get_mass() const { return parameters.mass; };
-
-    /**
-     * @brief Get the equatorial radius of the celestial body.
-     *
-     * @return const Distance& Reference to the equatorial radius of the celestial body.
-     */
-    constexpr const Distance& get_equitorial_radius() const { return parameters.equitorialRadius; };
-
-    /**
-     * @brief Get the polar radius of the celestial body.
-     *
-     * @return const Distance& Reference to the polar radius of the celestial body.
-     */
-    constexpr const Distance& get_polar_radius() const { return parameters.polarRadius; };
-
-    /**
-     * @brief Get the crash radius of the celestial body.
-     *
-     * @return const Distance& Reference to the crash radius of the celestial body.
-     */
-    constexpr const Distance& get_crash_radius() const { return parameters.crashRadius; };
-
-    /**
-     * @brief Get the sphere of influence of the celestial body.
-     *
-     * @return const Distance& Reference to the sphere of influence of the celestial body.
-     */
-    constexpr const Distance& get_sphere_of_influence() const { return parameters.sphereOfInfluence; };
-
-    /**
-     * @brief Get the J2 gravitational coefficient of the celestial body.
-     *
-     * @return const Unitless& Reference to the J2 coefficient of the celestial body.
-     */
-    constexpr const Unitless& get_j2() const { return parameters.j2; };
-
-    /**
-     * @brief Get the J3 gravitational coefficient of the celestial body.
-     *
-     * @return const Unitless& Reference to the J3 coefficient of the celestial body.
-     */
-    constexpr const Unitless& get_j3() const { return parameters.j3; };
-
-    /**
-     * @brief Get the axial tilt of the celestial body.
-     *
-     * @return const Angle& Reference to the axial tilt of the celestial body.
-     */
-    constexpr const Angle& get_axial_tilt() const { return parameters.axialTilt; };
-
-    /**
-     * @brief Get the rotation rate of the celestial body.
-     *
-     * @return const AngularVelocity& Reference to the rotation rate of the celestial body.
-     */
-    constexpr const AngularVelocity& get_rotation_rate() const { return parameters.rotationRate; };
-
-    /**
-     * @brief Get the sidereal period of the celestial body.
-     *
-     * @return const Time& Reference to the sidereal period of the celestial body.
-     */
-    constexpr const Time& get_sidereal_period() const { return parameters.siderealPeriod; };
-
-    /**
-     * @brief Get the semimajor axis of the celestial body.
-     *
-     * @return const Distance& Reference to the semimajor axis of the celestial body.
-     */
-    constexpr const Distance& get_semimajor(const Date& date) const
-    {
-        const quantity<JulianCentury> T = _body_.get_time_since_reference_epoch(date);
-        return parameters.semimajorAxis + parameters.semimajorAxisRate * T;
-    };
-
-    /**
-     * @brief Get the eccentricity of the celestial body.
-     *
-     * @return const Unitless& Reference to the eccentricity of the celestial body.
-     */
-    constexpr const Unitless& get_eccentricity(const Date& date) const
-    {
-        const quantity<JulianCentury> T = _body_.get_time_since_reference_epoch(date);
-        return parameters.eccentricity + parameters.eccentricityRate * T;
-    };
-
-    /**
-     * @brief Get the inclination of the celestial body.
-     *
-     * @return const Angle& Reference to the inclination of the celestial body.
-     */
-    constexpr const Angle& get_inclination(const Date& date) const
-    {
-        const quantity<JulianCentury> T = _body_.get_time_since_reference_epoch(date);
-        return parameters.inclination + parameters.inclinationRate * T;
-    };
-
-    /**
-     * @brief Get the right ascension of the celestial body.
-     *
-     * @return const Angle& Reference to the right ascension of the celestial body.
-     */
-    constexpr const Angle& get_right_ascension(const Date& date) const
-    {
-        const quantity<JulianCentury> T = _body_.get_time_since_reference_epoch(date);
-        return parameters.rightAscension + parameters.rightAscensionRate * T;
-    };
-
-    /**
-     * @brief Get the longitude of perigee of the celestial body.
-     *
-     * @return const Angle& Reference to the longitude of perigee of the celestial body.
-     */
-    constexpr const Angle& get_longitude_of_perigee(const Date& date) const
-    {
-        const quantity<JulianCentury> T = _body_.get_time_since_reference_epoch(date);
-        return parameters.longitudeOfPerigee + parameters.longitudeOfPerigeeRate * T;
-    };
-
-    /**
-     * @brief Get the mean longitude of the celestial body.
-     *
-     * @return const Angle& Reference to the mean longitude of the celestial body.
-     */
-    constexpr const Angle& get_mean_longitude(const Date& date) const
-    {
-        const quantity<JulianCentury> T = _body_.get_time_since_reference_epoch(date);
-        return parameters.meanLongitude + parameters.meanLongitudeRate * T;
-    };
-
-    /**
-     * @brief Get the true anomaly of the celestial body.
-     *
-     * @return const Angle& Reference to the true anomaly of the celestial body.
-     */
-    Angle get_true_anomaly(const Date& date) const
-    {
-        return wrap_angle(convert_mean_anomaly_to_true_anomaly(get_mean_anomaly(date), get_eccentricity(date)));
-    };
-
-    /**
-     * @brief Get the mean anomaly of the celestial body.
-     *
-     * @return const Angle& Reference to the mean anomaly of the celestial body.
-     */
-    constexpr const Angle& get_mean_anomaly(const Date& date) const
-    {
-        const quantity<JulianCentury> T = _body_.get_time_since_reference_epoch(date);
-        return parameters.meanAnomaly + parameters.meanAnomalyRate * T;
-    };
-
-    /**
-     * @brief Get the semimajor axis rate of the celestial body.
-     *
-     * @return const InterplanetaryVelocity& Reference to the semimajor axis rate of the celestial body.
-     */
-    constexpr const InterplanetaryVelocity& get_semimajor_rate() const { return parameters.semimajorAxisRate; };
-
-    /**
-     * @brief Get the eccentricity rate of the celestial body.
-     *
-     * @return const BodyUnitlessPerTime& Reference to the eccentricity rate of the celestial body.
-     */
-    constexpr const BodyUnitlessPerTime& get_eccentricity_rate() const { return parameters.eccentricityRate; };
-
-    /**
-     * @brief Get the inclination rate of the celestial body.
-     *
-     * @return const BodyAngularVelocity& Reference to the inclination rate of the celestial body.
-     */
-    constexpr const BodyAngularVelocity& get_inclination_rate() const { return parameters.inclinationRate; };
-
-    /**
-     * @brief Get the right ascension rate of the celestial body.
-     *
-     * @return const BodyAngularVelocity& Reference to the right ascension rate of the celestial body.
-     */
-    constexpr const BodyAngularVelocity& get_right_ascension_rate() const { return parameters.rightAscensionRate; };
-
-    constexpr const auto get_time_since_reference_epoch(const Date& date) const
-    {
-        return date - parameters.referenceDate;
-    };
-
-    /**
-     * @brief Get the longitude of perigee rate of the celestial body.
-     *
-     * @return const BodyAngularVelocity& Reference to the longitude of perigee rate of the celestial body.
-     */
-    constexpr const BodyAngularVelocity& get_longitude_of_perigee_rate() const
-    {
-        return parameters.longitudeOfPerigeeRate;
-    };
-
-    /**
-     * @brief Get the mean longitude rate of the celestial body.
-     *
-     * @return const BodyAngularVelocity& Reference to the mean longitude rate of the celestial body.
-     */
-    constexpr const BodyAngularVelocity& get_mean_longitude_rate() const { return parameters.meanLongitudeRate; };
+/**
+ * @brief Get the type of the celestial body.
+ *
+ * @return const CelestialBodyType& Reference to the type of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const CelestialBodyType& get_type()
+{
+    return get_celestial_body_parameters<_body_>().type;
 };
 
 /**
- * @brief Unique pointer type for CelestialBody.
+ * @brief Get the gravitational parameter (mu) of the celestial body.
+ *
+ * @return const GravParam& Reference to the gravitational parameter of the celestial body.
  */
-using CelestialBodyUniquePtr = std::unique_ptr<CelestialBody>;
+template <CelestialBody _body_>
+constexpr const GravParam& get_mu()
+{
+    return get_celestial_body_parameters<_body_>().mu;
+};
+
+/**
+ * @brief Get the mass of the celestial body.
+ *
+ * @return const Mass& Reference to the mass of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const Mass& get_mass()
+{
+    return get_celestial_body_parameters<_body_>().mass;
+};
+
+/**
+ * @brief Get the equatorial radius of the celestial body.
+ *
+ * @return const Distance& Reference to the equatorial radius of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const Distance& get_equitorial_radius()
+{
+    return get_celestial_body_parameters<_body_>().equitorialRadius;
+};
+
+/**
+ * @brief Get the polar radius of the celestial body.
+ *
+ * @return const Distance& Reference to the polar radius of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const Distance& get_polar_radius()
+{
+    return get_celestial_body_parameters<_body_>().polarRadius;
+};
+
+/**
+ * @brief Get the crash radius of the celestial body.
+ *
+ * @return const Distance& Reference to the crash radius of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const Distance& get_crash_radius()
+{
+    return get_celestial_body_parameters<_body_>().crashRadius;
+};
+
+/**
+ * @brief Get the sphere of influence of the celestial body.
+ *
+ * @return const Distance& Reference to the sphere of influence of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const Distance& get_sphere_of_influence()
+{
+    return get_celestial_body_parameters<_body_>().sphereOfInfluence;
+};
+
+/**
+ * @brief Get the J2 gravitational coefficient of the celestial body.
+ *
+ * @return const Unitless& Reference to the J2 coefficient of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const Unitless& get_j2()
+{
+    return get_celestial_body_parameters<_body_>().j2;
+};
+
+/**
+ * @brief Get the J3 gravitational coefficient of the celestial body.
+ *
+ * @return const Unitless& Reference to the J3 coefficient of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const Unitless& get_j3()
+{
+    return get_celestial_body_parameters<_body_>().j3;
+};
+
+/**
+ * @brief Get the axial tilt of the celestial body.
+ *
+ * @return const Angle& Reference to the axial tilt of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const Angle& get_axial_tilt()
+{
+    return get_celestial_body_parameters<_body_>().axialTilt;
+};
+
+/**
+ * @brief Get the rotation rate of the celestial body.
+ *
+ * @return const AngularVelocity& Reference to the rotation rate of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const AngularVelocity& get_rotation_rate()
+{
+    return get_celestial_body_parameters<_body_>().rotationRate;
+};
+
+/**
+ * @brief Get the sidereal period of the celestial body.
+ *
+ * @return const Time& Reference to the sidereal period of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const Time& get_sidereal_period()
+{
+    return get_celestial_body_parameters<_body_>().siderealPeriod;
+};
+
+/**
+ * @brief Get the semimajor axis of the celestial body.
+ *
+ * @return const Distance& Reference to the semimajor axis of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr Distance get_semimajor(const Date& date)
+{
+    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<_body_>(date);
+    return get_celestial_body_parameters<_body_>().semimajorAxis + get_celestial_body_parameters<_body_>().semimajorAxisRate * T;
+};
+
+/**
+ * @brief Get the eccentricity of the celestial body.
+ *
+ * @return const Unitless& Reference to the eccentricity of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr Unitless get_eccentricity(const Date& date)
+{
+    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<_body_>(date);
+    return get_celestial_body_parameters<_body_>().eccentricity + get_celestial_body_parameters<_body_>().eccentricityRate * T;
+};
+
+/**
+ * @brief Get the inclination of the celestial body.
+ *
+ * @return const Angle& Reference to the inclination of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr Angle get_inclination(const Date& date)
+{
+    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<_body_>(date);
+    return get_celestial_body_parameters<_body_>().inclination + get_celestial_body_parameters<_body_>().inclinationRate * T;
+};
+
+/**
+ * @brief Get the right ascension of the celestial body.
+ *
+ * @return const Angle& Reference to the right ascension of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr Angle get_right_ascension(const Date& date)
+{
+    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<_body_>(date);
+    return get_celestial_body_parameters<_body_>().rightAscension + get_celestial_body_parameters<_body_>().rightAscensionRate * T;
+};
+
+/**
+ * @brief Get the longitude of perigee of the celestial body.
+ *
+ * @return const Angle& Reference to the longitude of perigee of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr Angle get_longitude_of_perigee(const Date& date)
+{
+    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<_body_>(date);
+    return get_celestial_body_parameters<_body_>().longitudeOfPerigee +
+           get_celestial_body_parameters<_body_>().longitudeOfPerigeeRate * T;
+};
+
+/**
+ * @brief Get the mean longitude of the celestial body.
+ *
+ * @return const Angle& Reference to the mean longitude of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr Angle get_mean_longitude(const Date& date)
+{
+    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<_body_>(date);
+    return get_celestial_body_parameters<_body_>().meanLongitude + get_celestial_body_parameters<_body_>().meanLongitudeRate * T;
+};
+
+/**
+ * @brief Get the true anomaly of the celestial body.
+ *
+ * @return const Angle& Reference to the true anomaly of the celestial body.
+ */
+template <CelestialBody _body_>
+Angle get_true_anomaly(const Date& date)
+{
+    return wrap_angle(convert_mean_anomaly_to_true_anomaly(get_mean_anomaly<_body_>(date), get_eccentricity<_body_>(date)));
+};
+
+/**
+ * @brief Get the mean anomaly of the celestial body.
+ *
+ * @return const Angle& Reference to the mean anomaly of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr Angle get_mean_anomaly(const Date& date)
+{
+    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<_body_>(date);
+    return get_celestial_body_parameters<_body_>().meanAnomaly + get_celestial_body_parameters<_body_>().meanAnomalyRate * T;
+};
+
+/**
+ * @brief Get the semimajor axis rate of the celestial body.
+ *
+ * @return const InterplanetaryVelocity& Reference to the semimajor axis rate of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const InterplanetaryVelocity& get_semimajor_rate()
+{
+    return get_celestial_body_parameters<_body_>().semimajorAxisRate;
+};
+
+/**
+ * @brief Get the eccentricity rate of the celestial body.
+ *
+ * @return const BodyUnitlessPerTime& Reference to the eccentricity rate of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const BodyUnitlessPerTime& get_eccentricity_rate()
+{
+    return get_celestial_body_parameters<_body_>().eccentricityRate;
+};
+
+/**
+ * @brief Get the inclination rate of the celestial body.
+ *
+ * @return const BodyAngularVelocity& Reference to the inclination rate of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const BodyAngularVelocity& get_inclination_rate()
+{
+    return get_celestial_body_parameters<_body_>().inclinationRate;
+};
+
+/**
+ * @brief Get the right ascension rate of the celestial body.
+ *
+ * @return const BodyAngularVelocity& Reference to the right ascension rate of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const BodyAngularVelocity& get_right_ascension_rate()
+{
+    return get_celestial_body_parameters<_body_>().rightAscensionRate;
+};
+
+template <CelestialBody _body_>
+constexpr auto get_time_since_reference_epoch(const Date& date)
+{
+    return date - get_celestial_body_parameters<_body_>().referenceDate;
+};
+
+/**
+ * @brief Get the longitude of perigee rate of the celestial body.
+ *
+ * @return const BodyAngularVelocity& Reference to the longitude of perigee rate of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const BodyAngularVelocity& get_longitude_of_perigee_rate()
+{
+    return get_celestial_body_parameters<_body_>().longitudeOfPerigeeRate;
+};
+
+/**
+ * @brief Get the mean longitude rate of the celestial body.
+ *
+ * @return const BodyAngularVelocity& Reference to the mean longitude rate of the celestial body.
+ */
+template <CelestialBody _body_>
+constexpr const BodyAngularVelocity& get_mean_longitude_rate()
+{
+    return get_celestial_body_parameters<_body_>().meanLongitudeRate;
+};
 
 
 /**
@@ -300,7 +375,7 @@ using CelestialBodyUniquePtr = std::unique_ptr<CelestialBody>;
  * and inside that radius, the object will crash.
  */
 template <CelestialBody _body_>
-inline constexpr Density find_atmospheric_density(const State& state) const
+inline constexpr Density find_atmospheric_density(const State& state)
 {
     return Density::zero();
 }
@@ -312,27 +387,39 @@ inline constexpr Density find_atmospheric_density(const State& state) const
  * @return Keplerian The approximate Keplerian elements of the celestial body at the specified date.
  */
 template <CelestialBody _body_>
-inline constexpr Keplerian get_keplerian_elements_at(const Date& date) const
+inline constexpr Keplerian get_keplerian_elements_at(const Date& date)
 {
     // Keplerian element approximation pulled from here: https://ssd.jpl.nasa.gov/planets/approx_pos.html
-    const Distance a   = _body_.get_semimajor_axis(date);
-    const Unitless ecc = _body_.get_eccentricity(date);
-    const Angle inc    = _body_.get_inclination(date);
-    const Angle raan   = _body_.get_right_ascension(date);
-    const Angle w      = _body_.get_longitude_of_perigee(date);
-    const Angle L      = _body_.get_mean_longitude(date);
+    const Distance a   = get_semimajor<_body_>(date);
+    const Unitless ecc = get_eccentricity<_body_>(date);
+    const Angle inc    = get_inclination<_body_>(date);
+    const Angle raan   = get_right_ascension<_body_>(date);
+    const Angle w      = get_longitude_of_perigee<_body_>(date);
+    const Angle L      = get_mean_longitude<_body_>(date);
 
     // Time since reference epoch in Julian centuries
-    const quantity<JulianCentury> T = _body_.get_time_since_reference_epoch(date);
-    const auto [B, C, S, F]         = get_linear_expansion_coefficients<_body_>();
-    const Angle Me                  = wrap_angle(L - w + B * T * T + C * cos(F * T) + S * sin(F * T));
-    const Angle argPer              = wrap_angle(w - raan);
+    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<_body_>(date);
+    const auto [B, C, S, F]                   = get_linear_expansion_coefficients<_body_>();
+    const Angle Me                            = wrap_angle(L - w + B * T * T + C * cos(F * T) + S * sin(F * T));
+    const Angle argPer                        = wrap_angle(w - raan);
 
     // This approximation has error on the order of ecc^6
     const Angle thetat = convert_mean_anomaly_to_true_anomaly(Me, ecc);
 
     return Keplerian(a, ecc, inc, raan, argPer, thetat);
 }
+
+/**
+ * @brief Get the position of a barycenter at a specific date in its parent ICRF frame. Must be specialized.
+ */
+template <Barycenter _body_>
+inline constexpr CartesianVector<Distance, _body_::ParentIcrf> get_position_at(const Date& date) = delete;
+
+/**
+ * @brief Get the velocity of a barycenter at a specific date in its parent ICRF frame. Must be specialized.
+ */
+template <Barycenter _body_>
+inline constexpr CartesianVector<Velocity, _body_::ParentIcrf> get_velocity_at(const Date& date) = delete;
 
 /**
  * @brief Get the position of the celestial body at a specific date in the ICRF frame.
@@ -344,7 +431,7 @@ inline constexpr Keplerian get_keplerian_elements_at(const Date& date) const
  * parent. Need to figure out how to make dynamic centers work with frames.
  */
 template <CelestialBody _body_>
-inline constexpr CartesianVector<Distance, typename _body_::ParentIcrf> get_position_at(const Date& date) const
+inline constexpr CartesianVector<Distance, _body_::ParentIcrf> get_position_at(const Date& date)
 {
     // This approximation is in the perifocal frame
     const Keplerian coes         = get_keplerian_elements_at<_body_>(date);
@@ -364,7 +451,7 @@ inline constexpr CartesianVector<Distance, typename _body_::ParentIcrf> get_posi
                                               0.0 * m };
 
     // Perifocal to J2000 transformation: R3(-RAAN) * R1(-inc) * R3(-argPer)
-    const DCM<perifocal, typename _body_::ParentJ2000> dcmPeriToJ2000(
+    const DCM<perifocal, ParentJ2000> dcmPeriToJ2000(
         { { cos(argPer) * cos(raan) - sin(argPer) * sin(raan) * cos(inc),
             -sin(argPer) * cos(raan) - cos(argPer) * sin(raan) * cos(inc),
             sin(inc) * sin(raan) },
@@ -373,10 +460,10 @@ inline constexpr CartesianVector<Distance, typename _body_::ParentIcrf> get_posi
             -sin(inc) * cos(raan) },
           { sin(argPer) * sin(inc), cos(argPer) * sin(inc), cos(inc) } }
     );
-    const RadiusVector<typename _body_::ParentJ2000> rJ2000 = dcmPeriToJ2000 * rPerifocal;
+    const RadiusVector<ParentJ2000> rJ2000 = dcmPeriToJ2000 * rPerifocal;
 
     // Rotate to the ICRF frame
-    return rJ2000.in_frame<typename _body_::ParentIcrf>();
+    return rJ2000.in_frame<ParentIcrf>();
 }
 
 /**
@@ -389,7 +476,7 @@ inline constexpr CartesianVector<Distance, typename _body_::ParentIcrf> get_posi
  * parent. Need to figure out how to make dynamic centers work with frames.
  */
 template <CelestialBody _body_>
-inline constexpr CartesianVector<Velocity, typename _body_::ParentIcrf> get_velocity_at(const Date& date) const
+inline constexpr CartesianVector<Velocity, _body_::ParentIcrf> get_velocity_at(const Date& date)
 {
     // This approximation is in the perifocal frame
     const Keplerian coes         = get_keplerian_elements_at<_body_>(date);
@@ -404,13 +491,13 @@ inline constexpr CartesianVector<Velocity, typename _body_::ParentIcrf> get_velo
 
     // Velocity in perifocal frame
     class perifocal;
-    const VelocityVector<perifocal> vPerifocal{ -sqrt(_body_::parent::get_mu() / (a * (1 - ecc * ecc))) * sin(eccentricAnomaly),
-                                                sqrt(_body_::parent::get_mu() / (a * (1 - ecc * ecc))) *
+    const VelocityVector<perifocal> vPerifocal{ -sqrt(get_mu<_body_::Parent>() / (a * (1 - ecc * ecc))) * sin(eccentricAnomaly),
+                                                sqrt(get_mu<_body_::Parent>() / (a * (1 - ecc * ecc))) *
                                                     sqrt(1 - ecc * ecc) * cos(eccentricAnomaly),
                                                 0.0 * m / s };
 
     // Perifocal to J2000 transformation: R3(-RAAN) * R1(-inc) * R3(-argPer)
-    const DCM<perifocal, typename _body_::ParentJ2000> dcmPeriToJ2000(
+    const DCM<perifocal, _body_::ParentJ2000> dcmPeriToJ2000(
         { { cos(argPer) * cos(raan) - sin(argPer) * sin(raan) * cos(inc),
             -sin(argPer) * cos(raan) - cos(argPer) * sin(raan) * cos(inc),
             sin(inc) * sin(raan) },
@@ -419,22 +506,22 @@ inline constexpr CartesianVector<Velocity, typename _body_::ParentIcrf> get_velo
             -sin(inc) * cos(raan) },
           { sin(argPer) * sin(inc), cos(argPer) * sin(inc), cos(inc) } }
     );
-    const VelocityVector<typename _body_::ParentJ2000> vJ2000 = dcmPeriToJ2000 * vPerifocal;
+    const VelocityVector<_body_::ParentJ2000> vJ2000 = dcmPeriToJ2000 * vPerifocal;
 
     // Rotate to the ICRF frame
-    return vJ2000.in_frame<typename _body_::ParentIcrf>();
+    return vJ2000.in_frame<_body_::ParentIcrf>();
 }
 
 /**
  * @brief Get the position of the celestial body at a specific date in a specified frame using Chebyshev polynomials.
  *
  * @tparam Table_T The Chebyshev table type to use for interpolation.
- * @tparam Frame_T The frame type in which to return the position.
+ * @tparam frame The frame type in which to return the position.
  * @param date The date at which to get the position of the celestial body.
- * @return CartesianVector<Distance, Frame_T> The position of the celestial body at the specified date in the specified frame.
+ * @return CartesianVector<Distance, frame> The position of the celestial body at the specified date in the specified frame.
  */
-template <typename Table_T, typename Frame_T>
-inline constexpr CartesianVector<Distance, Frame_T> get_position_at_impl(const Date& date) const
+template <typename Table_T, IsFrame auto frame>
+inline constexpr CartesianVector<Distance, frame> get_position_at_impl(const Date& date)
 {
     using mp_units::si::unit_symbols::km;
 
@@ -448,19 +535,19 @@ inline constexpr CartesianVector<Distance, Frame_T> get_position_at_impl(const D
     const Distance y = math::evaluate_chebyshev_polynomial(mjd, yInterp, _COEFF_ZERO_FACTOR) * km;
     const Distance z = math::evaluate_chebyshev_polynomial(mjd, zInterp, _COEFF_ZERO_FACTOR) * km;
 
-    return CartesianVector<Distance, Frame_T>(x, y, z);
+    return CartesianVector<Distance, frame>(x, y, z);
 }
 
 /**
  * @brief Get the velocity of the celestial body at a specific date in a specified frame using Chebyshev polynomials.
  *
  * @tparam Table_T The Chebyshev table type to use for interpolation.
- * @tparam Frame_T The frame type in which to return the velocity.
+ * @tparam frame The frame type in which to return the velocity.
  * @param date The date at which to get the velocity of the celestial body.
- * @return CartesianVector<Velocity, Frame_T> The velocity of the celestial body at the specified date in the specified frame.
+ * @return CartesianVector<Velocity, frame> The velocity of the celestial body at the specified date in the specified frame.
  */
-template <typename Table_T, typename Frame_T>
-inline constexpr CartesianVector<Velocity, Frame_T> get_velocity_at_impl(const Date& date) const
+template <typename Table_T, IsFrame auto frame>
+inline constexpr CartesianVector<Velocity, frame> get_velocity_at_impl(const Date& date)
 {
     using mp_units::non_si::day;
     using mp_units::si::unit_symbols::km;
@@ -475,7 +562,7 @@ inline constexpr CartesianVector<Velocity, Frame_T> get_velocity_at_impl(const D
     const Velocity vy = math::evaluate_chebyshev_derivative(mjd, yInterp, _COEFF_ZERO_FACTOR) * km / day;
     const Velocity vz = math::evaluate_chebyshev_derivative(mjd, zInterp, _COEFF_ZERO_FACTOR) * km / day;
 
-    return CartesianVector<Velocity, Frame_T>(vx, vy, vz);
+    return CartesianVector<Velocity, frame>(vx, vy, vz);
 }
 
 /**
@@ -486,7 +573,7 @@ inline constexpr CartesianVector<Velocity, Frame_T> get_velocity_at_impl(const D
  * @return A tuple containing references to the x, y, and z Chebyshev coefficient vectors.
  */
 template <typename Table_T>
-inline constexpr auto get_chebyshev_table_coefficients(const Date& date) const
+inline constexpr auto get_chebyshev_table_coefficients(const Date& date)
 {
     //! Number of days covered by each set of polynomial coefficients
     static constexpr Time timePerCoefficient = Table_T::TIME_PER_COEFFICIENT;
@@ -518,11 +605,7 @@ using CoefficientPack = std::tuple<
  *       Derived classes should override this method to provide actual coefficients.
  */
 template <CelestialBody _body_>
-inline constexpr CoefficientPack get_linear_expansion_coefficients() const
-{
-    using mp_units::angular::unit_symbols::rad;
-    return std::make_tuple(0.0 * rad / (JulianCentury * JulianCentury), 0.0 * rad, 0.0 * rad, 0.0 * rad / JulianCentury);
-}
+inline constexpr CoefficientPack get_linear_expansion_coefficients() = delete; // Force specialization for each body
 
 } // namespace astro
 } // namespace astrea

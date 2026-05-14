@@ -35,6 +35,10 @@
 
 namespace astrea {
 namespace astro {
+
+    // Forward-declare frame types to avoid circular include with frames.hpp
+    namespace frames { namespace solar_system_barycenter { struct icrf; } }
+
 namespace planets {
 
 static CelestialBodyParameters DEFAULT_VENUS_PARAMS{
@@ -71,10 +75,16 @@ static CelestialBodyParameters DEFAULT_VENUS_PARAMS{
  *
  * This class provides properties and methods specific to Venus, including its physical and orbital parameters.
  */
-inline constexpr struct Venus : CelestialBody<"Venus", barycenters::SolarSystemBarycenter, DEFAULT_VENUS_PARAMS> {
+inline constexpr struct Venus : CelestialBody<"Venus", barycenters::SolarSystemBarycenter{}> {
 } Venus;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Venus>()
+{
+    return planets::DEFAULT_VENUS_PARAMS;
+}
 
 // Altitude Conditions(TABLE 7-4, Vallado)
 static const std::map<Altitude, Density> venutianAtmosphere = { // km, kg/m^3
@@ -176,7 +186,7 @@ static const std::map<Altitude, Density> venutianAtmosphere = { // km, kg/m^3
  * @return Density The atmospheric density at the given date and altitude.
  */
 template <>
-inline constexpr Density find_atmospheric_density<Venus>(const State& state)
+inline constexpr Density find_atmospheric_density<planets::Venus>(const State& state)
 {
     const auto& position = state.get_position_in_frame<frames::venus::venus_fixed>();
     const auto [latitude, longitude, altitude] =
@@ -195,7 +205,7 @@ inline constexpr Density find_atmospheric_density<Venus>(const State& state)
  * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Venus at the given date.
  */
 template <>
-inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_position_at<Venus>(const Date& date)
+inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_position_at<planets::Venus>(const Date& date)
 {
     return get_position_at_impl<VenusEphemerisTable, frames::solar_system_barycenter::icrf>(date);
 }
@@ -207,7 +217,7 @@ inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_positio
  * @return VelocityVector<frames::solar_system_barycenter::icrf> The velocity of the Venus at the given date.
  */
 template <>
-inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at<Venus>(const Date& date)
+inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at<planets::Venus>(const Date& date)
 {
     return get_velocity_at_impl<VenusEphemerisTable, frames::solar_system_barycenter::icrf>(date);
 }

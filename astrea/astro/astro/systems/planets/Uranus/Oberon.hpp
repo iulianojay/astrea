@@ -54,9 +54,16 @@ static CelestialBodyParameters DEFAULT_OBERON_PARAMS{
  *
  * This class provides properties and methods specific to Oberon, including its physical and orbital parameters.
  */
-inline constexpr struct Oberon : CelestialBody<"Oberon", Uranus, DEFAULT_OBERON_PARAMS> {
+inline constexpr struct Oberon : CelestialBody<"Oberon", Uranus> {
 } Oberon;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Oberon>()
+{
+    return planets::DEFAULT_OBERON_PARAMS;
+}
+
 } // namespace astro
 } // namespace astrea

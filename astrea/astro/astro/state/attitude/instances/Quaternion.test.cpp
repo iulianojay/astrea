@@ -78,8 +78,8 @@ class QuaternionTest : public ::testing::Test {
     const Unitless ABS_TOL = 1.0e-15 * one;
 
     // Helper function to compare quaternions with tolerance
-    template <typename In_Frame_T, typename Out_Frame_T>
-    void ExpectQuaternionNearlyEqual(const Quaternion<In_Frame_T, Out_Frame_T>& actual, const Quaternion<In_Frame_T, Out_Frame_T>& expected)
+    template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
+    void ExpectQuaternionNearlyEqual(const Quaternion<_in_frame_, _out_frame_>& actual, const Quaternion<_in_frame_, _out_frame_>& expected)
     {
         // Compare scalar parts
         EXPECT_TRUE(math::nearly_equal(actual.get_scalar_part(), expected.get_scalar_part(), REL_TOL, ABS_TOL));
@@ -321,8 +321,8 @@ TEST_F(QuaternionTest, ConjugateMethod)
     EXPECT_TRUE(math::nearly_equal(conjVec.get_y(), -y1));
     EXPECT_TRUE(math::nearly_equal(conjVec.get_z(), -z1));
 
-    // Note: conjugate returns Quaternion<Out_Frame_T, In_Frame_T>, so double conjugate
-    // will return Quaternion<In_Frame_T, Out_Frame_T> which matches original
+    // Note: conjugate returns Quaternion<_out_frame_, _in_frame_>, so double conjugate
+    // will return Quaternion<_in_frame_, _out_frame_> which matches original
     auto conjConj = conj.conjugate();
     ExpectQuaternionNearlyEqual(conjConj, q);
 }
@@ -358,7 +358,7 @@ TEST_F(QuaternionTest, InverseMethod)
     TestQuaternion q(scalar1, x1, y1, z1);
     auto inv = q.inverse();
 
-    // Note: inverse returns Quaternion<Out_Frame_T, In_Frame_T>
+    // Note: inverse returns Quaternion<_out_frame_, _in_frame_>
     // Since quaternions are unit quaternions, inverse should also have unit norm
     EXPECT_TRUE(math::nearly_equal(inv.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 

@@ -63,7 +63,7 @@ bool nearly_equal(
  * @param relTol Relative tolerance for the comparison.
  * @param absTol Absolute tolerance for the comparison.
  */
-template <typename Value_T, typename Frame_T, typename Value_U>
+template <typename Value_T, IsFrame auto _frame_, typename Value_U>
 bool nearly_equal(
     const CartesianVector<Value_T, Frame_T>& vec,
     const CartesianVector<Value_U, Frame_T>& expected,
@@ -83,17 +83,17 @@ bool nearly_equal(
  * This function checks if two DirectionCosineMatrix objects are equal within the given relative and absolute
  * tolerances. If they are not equal, it triggers a test failure.
  *
- * @tparam In_Frame_T The input frame type of the DirectionCosineMatrix.
- * @tparam Out_Frame_T The output frame type of the DirectionCosineMatrix.
+ * @tparam _in_frame_ The input frame type of the DirectionCosineMatrix.
+ * @tparam _out_frame_ The output frame type of the DirectionCosineMatrix.
  * @param dcm1 The first DirectionCosineMatrix to compare.
  * @param dcm2 The second DirectionCosineMatrix to compare.
  * @param relTol Relative tolerance for the comparison.
  * @param absTol Absolute tolerance for the comparison.
  */
-template <typename In_Frame_T, typename Out_Frame_T>
+template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
 bool nearly_equal(
-    const DirectionCosineMatrix<In_Frame_T, Out_Frame_T>& dcm1,
-    const DirectionCosineMatrix<In_Frame_T, Out_Frame_T>& dcm2,
+    const DirectionCosineMatrix<_in_frame_, _out_frame_>& dcm1,
+    const DirectionCosineMatrix<_in_frame_, _out_frame_>& dcm2,
     const Unitless& relTol = 0.0 * mp_units::one,
     const Unitless& absTol = 0.0 * mp_units::one
 ) noexcept

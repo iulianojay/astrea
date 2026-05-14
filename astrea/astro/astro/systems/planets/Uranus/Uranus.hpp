@@ -31,6 +31,10 @@
 
 namespace astrea {
 namespace astro {
+
+    // Forward-declare frame types to avoid circular include with frames.hpp
+    namespace frames { namespace solar_system_barycenter { struct icrf; } }
+
 namespace planets {
 
 static CelestialBodyParameters DEFAULT_URANUS_PARAMS{
@@ -67,10 +71,16 @@ static CelestialBodyParameters DEFAULT_URANUS_PARAMS{
  *
  * This class provides properties and methods specific to Uranus, including its physical and orbital parameters.
  */
-inline constexpr struct Uranus : CelestialBody<"Uranus", barycenters::SolarSystemBarycenter, DEFAULT_URANUS_PARAMS> {
+inline constexpr struct Uranus : CelestialBody<"Uranus", barycenters::SolarSystemBarycenter{}> {
 } Uranus;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Uranus>()
+{
+    return planets::DEFAULT_URANUS_PARAMS;
+}
 
 #ifdef ASTREA_BUILD_URANUS_EPHEMERIS
 
@@ -81,7 +91,7 @@ inline constexpr struct Uranus : CelestialBody<"Uranus", barycenters::SolarSyste
  * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Uranus at the given date.
  */
 template <>
-inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_position_at<Uranus>(const Date& date)
+inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_position_at<planets::Uranus>(const Date& date)
 {
     return get_position_at_impl<UranusEphemerisTable, frames::solar_system_barycenter::icrf>(date);
 }
@@ -93,7 +103,7 @@ inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_positio
  * @return VelocityVector<frames::solar_system_barycenter::icrf> The velocity of the Uranus at the given date.
  */
 template <>
-inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at<Uranus>(const Date& date)
+inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at<planets::Uranus>(const Date& date)
 {
     return get_velocity_at_impl<UranusEphemerisTable, frames::solar_system_barycenter::icrf>(date);
 }
@@ -110,7 +120,7 @@ inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_veloc
  * @return CoefficientPack A tuple containing the coefficients for the linear expansion.
  */
 template <>
-inline constexpr CoefficientPack get_linear_expansion_coefficients<Uranus>()
+inline constexpr CoefficientPack get_linear_expansion_coefficients<planets::Uranus>()
 {
     using mp_units::angular::unit_symbols::rad;
     return std::make_tuple(0.00058331 * rad / (JulianCentury * JulianCentury), -0.97731848 * rad, 0.17689245 * rad, 7.67025000 * rad / JulianCentury);

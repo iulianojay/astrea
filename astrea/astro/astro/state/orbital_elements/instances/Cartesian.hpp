@@ -42,7 +42,7 @@ namespace astro {
  *
  * This class encapsulates the position and velocity of a vehicle in Cartesian coordinates.
  */
-template <typename Frame_T = frames::primary>
+template <IsFrame auto _frame_ = frames::primary>
 class Cartesian {
 
     template <typename F>
@@ -406,7 +406,7 @@ class Cartesian {
  *
  * This class encapsulates the velocity and acceleration components of a vehicle in Cartesian coordinates.
  */
-template <typename Frame_T = frames::primary>
+template <IsFrame auto _frame_ = frames::primary>
 class CartesianPartial {
 
     template <typename F>

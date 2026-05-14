@@ -63,9 +63,16 @@ static CelestialBodyParameters DEFAULT_EUROPA_PARAMS{
  *
  * This class provides properties and methods specific to Europa, including its physical and orbital parameters.
  */
-inline constexpr struct Europa : CelestialBody<"Europa", Jupiter, DEFAULT_EUROPA_PARAMS> {
+inline constexpr struct Europa : CelestialBody<"Europa", Jupiter> {
 } Europa;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Europa>()
+{
+    return planets::DEFAULT_EUROPA_PARAMS;
+}
+
 } // namespace astro
 } // namespace astrea

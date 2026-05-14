@@ -63,9 +63,16 @@ static CelestialBodyParameters DEFAULT_IAPETUS_PARAMS{
  *
  * This class provides properties and methods specific to Iapetus, including its physical and orbital parameters.
  */
-inline constexpr struct Iapetus : CelestialBody<"Iapetus", Saturn, DEFAULT_IAPETUS_PARAMS> {
+inline constexpr struct Iapetus : CelestialBody<"Iapetus", Saturn> {
 } Iapetus;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Iapetus>()
+{
+    return planets::DEFAULT_IAPETUS_PARAMS;
+}
+
 } // namespace astro
 } // namespace astrea

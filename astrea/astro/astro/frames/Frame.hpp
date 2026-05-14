@@ -41,17 +41,52 @@ struct FrameBase {};
 
 } // namespace detail
 
-template <mp_units::basic_fixed_string _name_, IsOrigin auto _origin_, IsAxis auto _axis_, IsFrame auto _parent_ = void>
-struct Frame<_name_, _origin_, _axis_, _parent_> : detail::FrameBase {
+template <auto...>
+struct Frame;
+
+/**
+ * @brief Frame with origin and axis only (no name, no parent).
+ */
+template <IsOrigin auto _origin_, IsAxis auto _axis_>
+struct Frame<_origin_, _axis_> : detail::FrameBase {
     static constexpr auto origin = _origin_; //!< The central body associated with the frame.
     static constexpr auto axis   = _axis_;   //!< The axis type of the frame.
+};
+
+/**
+ * @brief Frame with name, origin, and axis (no parent).
+ */
+template <mp_units::basic_fixed_string _name_, IsOrigin auto _origin_, IsAxis auto _axis_>
+struct Frame<_name_, _origin_, _axis_> : detail::FrameBase {
     static constexpr auto name   = _name_;   //!< The name of the frame.
+    static constexpr auto origin = _origin_; //!< The central body associated with the frame.
+    static constexpr auto axis   = _axis_;   //!< The axis type of the frame.
+};
+
+/**
+ * @brief Frame with origin, axis, and parent (no name).
+ */
+template <IsOrigin auto _origin_, IsAxis auto _axis_, IsFrame auto _parent_>
+struct Frame<_origin_, _axis_, _parent_> : detail::FrameBase {
+    static constexpr auto origin = _origin_; //!< The central body associated with the frame.
+    static constexpr auto axis   = _axis_;   //!< The axis type of the frame.
+    static constexpr auto parent = _parent_; //!< The parent frame of this frame.
+};
+
+/**
+ * @brief Frame with name, origin, axis, and parent.
+ */
+template <mp_units::basic_fixed_string _name_, IsOrigin auto _origin_, IsAxis auto _axis_, IsFrame auto _parent_>
+struct Frame<_name_, _origin_, _axis_, _parent_> : detail::FrameBase {
+    static constexpr auto name   = _name_;   //!< The name of the frame.
+    static constexpr auto origin = _origin_; //!< The central body associated with the frame.
+    static constexpr auto axis   = _axis_;   //!< The axis type of the frame.
     static constexpr auto parent = _parent_; //!< The parent frame of this frame.
 };
 
 
-template <mp_units::basic_fixed_string _name_, IsOrigin auto _origin_, IsAxis auto _axis_, Coordinate _coordinate_, AngularRate _rotation_rate_, IsFrame auto _parent_ = void>
-struct FixedRotatingFrame : Frame<_name_, _origin_, FixedRotatingAxis<_axis_, _coordinate_>, _parent_> {
+template <mp_units::basic_fixed_string _name_, IsOrigin auto _origin_, IsAxis auto _axis_, Coordinate _rotation_coordinate_, AngularVelocity _rotation_rate_, IsFrame auto _parent_>
+struct FixedRotatingFrame : Frame<_name_, _origin_, FixedRotatingAxis<_axis_, _rotation_coordinate_>{}, _parent_> {
     static constexpr auto rotation_rate = _rotation_rate_; //!< The rotation rate of the frame.
 };
 

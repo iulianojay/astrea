@@ -26,31 +26,31 @@ namespace astrea {
 namespace astro {
 
 struct CelestialBodyParameters {
-    static constexpr CelestialBodyType type;                   //!< Type of the celestial body.
-    static constexpr Date referenceDate;                       //!< Reference date for the celestial body data.
-    static constexpr GravParam mu;                             //!< Gravitational parameter (mu) of the celestial body.
-    static constexpr Mass mass;                                //!< Mass of the celestial body.
-    static constexpr Distance equitorialRadius;                //!< Equatorial radius of the celestial body.
-    static constexpr Distance polarRadius;                     //!< Polar radius of the celestial body.
-    static constexpr Distance crashRadius;                     //!< Crash radius of the celestial body.
-    static constexpr Distance sphereOfInfluence;               //!< Sphere of influence of the celestial body.
-    static constexpr Unitless j2;                              //!< J2 gravitational coefficient of the celestial body.
-    static constexpr Unitless j3;                              //!< J3 gravitational coefficient of the celestial body.
-    static constexpr Angle axialTilt;                          //!< Axial tilt of the celestial body.
-    static constexpr AngularVelocity rotationRate;             //!< Rotation rate of the celestial body.
-    static constexpr Time siderealPeriod;                      //!< Sidereal period of the celestial body.
-    static constexpr Distance semimajorAxis;                   //!< Semimajor axis.
-    static constexpr Unitless eccentricity;                    //!< Eccentricity.
-    static constexpr Angle inclination;                        //!< Inclination.
-    static constexpr Angle rightAscension;                     //!< Right ascension.
-    static constexpr Angle longitudeOfPerigee;                 //!< Longitude of perigee.
-    static constexpr Angle meanLongitude;                      //!< Mean longitude.
-    static constexpr InterplanetaryVelocity semimajorAxisRate; //!< Rate of change of the semimajor axis.
-    static constexpr BodyUnitlessPerTime eccentricityRate;     //!< Rate of change of the eccentricity.
-    static constexpr BodyAngularVelocity inclinationRate;      //!< Rate of change of the inclination.
-    static constexpr BodyAngularVelocity rightAscensionRate;   //!< Rate of change of the right ascension.
-    static constexpr BodyAngularVelocity longitudeOfPerigeeRate; //!< Rate of change of the longitude of perigee.
-    static constexpr BodyAngularVelocity meanLongitudeRate;      //!< Rate of change of the mean longitude.
+    CelestialBodyType type;                     //!< Type of the celestial body.
+    Date referenceDate;                         //!< Reference date for the celestial body data.
+    GravParam mu;                               //!< Gravitational parameter (mu) of the celestial body.
+    Mass mass;                                  //!< Mass of the celestial body.
+    Distance equitorialRadius;                  //!< Equatorial radius of the celestial body.
+    Distance polarRadius;                       //!< Polar radius of the celestial body.
+    Distance crashRadius;                       //!< Crash radius of the celestial body.
+    Distance sphereOfInfluence;                 //!< Sphere of influence of the celestial body.
+    Unitless j2;                                //!< J2 gravitational coefficient of the celestial body.
+    Unitless j3;                                //!< J3 gravitational coefficient of the celestial body.
+    Angle axialTilt;                            //!< Axial tilt of the celestial body.
+    AngularVelocity rotationRate;               //!< Rotation rate of the celestial body.
+    Time siderealPeriod;                        //!< Sidereal period of the celestial body.
+    Distance semimajorAxis;                     //!< Semimajor axis.
+    Unitless eccentricity;                      //!< Eccentricity.
+    Angle inclination;                          //!< Inclination.
+    Angle rightAscension;                       //!< Right ascension.
+    Angle longitudeOfPerigee;                   //!< Longitude of perigee.
+    Angle meanLongitude;                        //!< Mean longitude.
+    InterplanetaryVelocity semimajorAxisRate;   //!< Rate of change of the semimajor axis.
+    BodyUnitlessPerTime eccentricityRate;       //!< Rate of change of the eccentricity.
+    BodyAngularVelocity inclinationRate;        //!< Rate of change of the inclination.
+    BodyAngularVelocity rightAscensionRate;     //!< Rate of change of the right ascension.
+    BodyAngularVelocity longitudeOfPerigeeRate; //!< Rate of change of the longitude of perigee.
+    BodyAngularVelocity meanLongitudeRate;      //!< Rate of change of the mean longitude.
 };
 
 } // namespace astro

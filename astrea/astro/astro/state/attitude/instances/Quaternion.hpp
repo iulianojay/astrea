@@ -39,15 +39,15 @@ namespace astro {
 /**
  * @brief Class representing a quaternion for attitude rotations between frames.
  *
- * @tparam In_Frame_T The input frame type (e.g., ECI, ECEF).
- * @tparam Out_Frame_T The output frame type (e.g., ECI, ECEF).
+ * @tparam _in_frame_ The input frame type (e.g., ECI, ECEF).
+ * @tparam _out_frame_ The output frame type (e.g., ECI, ECEF).
  *
  * @note: These are not real quaternions and are not setup to behave properly as quaternions might.
  * These Quaternions are specifically meant to represent frame rotations and are not meant to be used for general
  * quaternion math. They are automatically normalized on construction to avoid tracking the magnitude and to
  * avoid expensive sqrt as much as possible.
  */
-template <typename In_Frame_T, typename Out_Frame_T>
+template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
 class Quaternion {
 
     friend class Attitude;
@@ -58,15 +58,15 @@ class Quaternion {
     }
 
   public:
-    using in_frame  = In_Frame_T;
-    using out_frame = Out_Frame_T;
+    using in_frame  = _in_frame_;
+    using out_frame = _out_frame_;
 
     /**
      * @brief Default constructor for the Quaternion class. Initializes to the identity quaternion (no rotation).
      */
     Quaternion() :
         _s(1.0 * mp_units::one),
-        _u(CartesianVector<Unitless, In_Frame_T>())
+        _u(CartesianVector<Unitless, _in_frame_>())
     {
         normalize();
     }
@@ -76,7 +76,7 @@ class Quaternion {
      *
      * @param vec The CartesianVector representing the vector part of the quaternion. The scalar part is set to 0.
      */
-    Quaternion(const CartesianVector<Unitless, In_Frame_T>& vec) :
+    Quaternion(const CartesianVector<Unitless, _in_frame_>& vec) :
         _s(0.0 * mp_units::one),
         _u(vec)
     {
@@ -89,7 +89,7 @@ class Quaternion {
      * @param s The scalar part of the quaternion.
      * @param vec The CartesianVector representing the vector part of the quaternion.
      */
-    Quaternion(const Unitless& s, const CartesianVector<Unitless, In_Frame_T>& vec) :
+    Quaternion(const Unitless& s, const CartesianVector<Unitless, _in_frame_>& vec) :
         _s(s),
         _u(vec)
     {
@@ -154,7 +154,7 @@ class Quaternion {
      * @cite Wertz, J.R. (ed.), "Spacecraft Attitude Determination and Control,"
      *       Kluwer Academic Publishers, 1978, pp. 414-416.
      */
-    Quaternion(const DirectionCosineMatrix<In_Frame_T, Out_Frame_T>& dcm)
+    Quaternion(const DirectionCosineMatrix<_in_frame_, _out_frame_>& dcm)
     {
         // Convert the DCM to a quaternion using Shepperd's numerically stable algorithm
         const auto trace = dcm.trace();
@@ -217,7 +217,7 @@ class Quaternion {
      * @note This constructor converts the Euler angles to a DCM and { uses the DCM constructor to create the quaternion.
      */
     template <RotationSequence sequence, RotationType rotation_type>
-    Quaternion(const EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>& angleSequence) :
+    Quaternion(const EulerAngles<sequence, rotation_type, _in_frame_, _out_frame_>& angleSequence) :
         Quaternion(angleSequence.to_dcm())
     {
     }
@@ -231,7 +231,7 @@ class Quaternion {
      * @note This constructor creates a quaternion representing a rotation of "angle" around the "axis" using the
      * formula: q = [cos(angle/2), axis * sin(angle/2)]
      */
-    Quaternion(const Angle& angle, const CartesianVector<Unitless, In_Frame_T>& axis) :
+    Quaternion(const Angle& angle, const CartesianVector<Unitless, _in_frame_>& axis) :
         _s(mp_units::angular::cos(angle / 2.0)),
         _u(axis * mp_units::angular::sin(angle / 2.0))
     {
@@ -242,14 +242,14 @@ class Quaternion {
      *
      * @return Unitless The scalar part of the quaternion.
      */
-    DirectionCosineMatrix<In_Frame_T, Out_Frame_T> to_dcm() const
+    DirectionCosineMatrix<_in_frame_, _out_frame_> to_dcm() const
     {
         const auto& x = _u.get_x();
         const auto& y = _u.get_y();
         const auto& z = _u.get_z();
         const auto& s = _s;
 
-        return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>{
+        return DirectionCosineMatrix<_in_frame_, _out_frame_>{
             { std::array<Unitless, 3>{ s * s + x * x - y * y - z * z, 2.0 * (x * y - s * z), 2.0 * (x * z + s * y) },
               std::array<Unitless, 3>{ 2.0 * (x * y + s * z), s * s - x * x + y * y - z * z, 2.0 * (y * z - s * x) },
               std::array<Unitless, 3>{ 2.0 * (x * z - s * y), 2.0 * (y * z + s * x), s * s - x * x - y * y + z * z } }
@@ -261,13 +261,13 @@ class Quaternion {
      *
      * @tparam sequence The rotation sequence of the Euler angles (e.g., XYZ, ZYX).
      * @tparam rotationType The type of rotation (extrinsic or intrinsic).
-     * @return EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> The resulting Euler angle sequence.
+     * @return EulerAngles<sequence, rotation_type, _in_frame_, _out_frame_> The resulting Euler angle sequence.
      *
      * @note This method converts the quaternion to a DCM and then extracts the Euler angles based on the specified
      * sequence and rotation type. It uses this method: https://pmc.ncbi.nlm.nih.gov/articles/PMC9648712/
      */
     template <RotationSequence sequence, RotationType rotation_type>
-    EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T> to_euler_angles() const
+    EulerAngles<sequence, rotation_type, _in_frame_, _out_frame_> to_euler_angles() const
     {
         using namespace mp_units;
         using namespace mp_units::angular;
@@ -319,7 +319,7 @@ class Quaternion {
      * @param other The quaternion to add to this quaternion.
      * @return A new quaternion that is the sum of this quaternion and the other quaternion.
      */
-    Quaternion<In_Frame_T, Out_Frame_T> operator+(const Quaternion<In_Frame_T, Out_Frame_T>& other) const
+    Quaternion<_in_frame_, _out_frame_> operator+(const Quaternion<_in_frame_, _out_frame_>& other) const
     {
         return { _s + other._s, _u + other._u };
     }
@@ -330,7 +330,7 @@ class Quaternion {
      * @param other The quaternion to add to this quaternion.
      * @return Quaternion& A reference to this quaternion after addition.
      */
-    Quaternion<In_Frame_T, Out_Frame_T>& operator+=(const Quaternion<In_Frame_T, Out_Frame_T>& other)
+    Quaternion<_in_frame_, _out_frame_>& operator+=(const Quaternion<_in_frame_, _out_frame_>& other)
     {
         *this = *this + other;
         normalize();
@@ -342,7 +342,7 @@ class Quaternion {
      *
      * @return A new quaternion that is the negation of this quaternion.
      */
-    Quaternion<In_Frame_T, Out_Frame_T> operator-() const { return { -_s, -_u }; }
+    Quaternion<_in_frame_, _out_frame_> operator-() const { return { -_s, -_u }; }
 
     /**
      * @brief Subtraction operator for the Quaternion class.
@@ -350,7 +350,7 @@ class Quaternion {
      * @param other The quaternion to subtract from this quaternion.
      * @return A new quaternion that is the difference between this quaternion and the other quaternion.
      */
-    Quaternion<In_Frame_T, Out_Frame_T> operator-(const Quaternion<In_Frame_T, Out_Frame_T>& other) const
+    Quaternion<_in_frame_, _out_frame_> operator-(const Quaternion<_in_frame_, _out_frame_>& other) const
     {
         return *this + (-other);
     }
@@ -361,7 +361,7 @@ class Quaternion {
      * @param other The quaternion to subtract from this quaternion.
      * @return Quaternion& A reference to this quaternion after subtraction.
      */
-    Quaternion<In_Frame_T, Out_Frame_T>& operator-=(const Quaternion<In_Frame_T, Out_Frame_T>& other)
+    Quaternion<_in_frame_, _out_frame_>& operator-=(const Quaternion<_in_frame_, _out_frame_>& other)
     {
         *this = *this - other;
         normalize();
@@ -374,7 +374,7 @@ class Quaternion {
      * @param scalar The scalar unitless quantity to multiply the quaternion by.
      * @return The original quaternion. NO scaling is applied to the quaternion.
      */
-    Quaternion<In_Frame_T, Out_Frame_T> operator*(const Unitless& scalar) const { return *this; }
+    Quaternion<_in_frame_, _out_frame_> operator*(const Unitless& scalar) const { return *this; }
 
     /**
      * @brief Multiplication operator for the Quaternion class by a scalar unitless quantity.
@@ -382,7 +382,7 @@ class Quaternion {
      * @param scalar The scalar unitless quantity to multiply the quaternion by.
      * @return The original quaternion. NO scaling is applied to the quaternion.
      */
-    Quaternion<In_Frame_T, Out_Frame_T>& operator*=(const Unitless& scalar) { return *this; }
+    Quaternion<_in_frame_, _out_frame_>& operator*=(const Unitless& scalar) { return *this; }
 
     /**
      * @brief Division operator for the Quaternion class by a scalar unitless quantity.
@@ -390,7 +390,7 @@ class Quaternion {
      * @param scalar The scalar unitless quantity to divide the quaternion by.
      * @return The original quaternion. NO scaling is applied to the quaternion.
      */
-    Quaternion<In_Frame_T, Out_Frame_T> operator/(const Unitless& scalar) const { return *this; }
+    Quaternion<_in_frame_, _out_frame_> operator/(const Unitless& scalar) const { return *this; }
 
     /**
      * @brief Division operator for the Quaternion class by a scalar unitless quantity.
@@ -398,7 +398,7 @@ class Quaternion {
      * @param scalar The scalar unitless quantity to divide the quaternion by.
      * @return The original quaternion. NO scaling is applied to the quaternion.
      */
-    Quaternion<In_Frame_T, Out_Frame_T>& operator/=(const Unitless& scalar) { return *this; }
+    Quaternion<_in_frame_, _out_frame_>& operator/=(const Unitless& scalar) { return *this; }
 
     /**
      * @brief Multiplication operator for the Quaternion class.
@@ -408,8 +408,8 @@ class Quaternion {
      * @return A new quaternion that is the product of this quaternion and the other quaternion.
      */
     template <typename Out_Frame_U>
-        requires(!IsSameFrame<In_Frame_T, Out_Frame_U>)
-    Quaternion<In_Frame_T, Out_Frame_U> operator*(const Quaternion<Out_Frame_T, Out_Frame_U>& other) const
+        requires(!IsSameFrame<_in_frame_, Out_Frame_U>)
+    Quaternion<_in_frame_, Out_Frame_U> operator*(const Quaternion<_out_frame_, Out_Frame_U>& other) const
     {
         const auto& x1 = _u.get_x();
         const auto& y1 = _u.get_y();
@@ -432,9 +432,9 @@ class Quaternion {
      * @param dt The time quantity to divide the quaternion by, representing the rate of change of the quaternion.
      * @return A new QuaternionPartial that represents the rate of change of the quaternion with respect to time.
      */
-    QuaternionPartial<In_Frame_T, Out_Frame_T> operator/(const Time& dt) const
+    QuaternionPartial<_in_frame_, _out_frame_> operator/(const Time& dt) const
     {
-        return QuaternionPartial<In_Frame_T, Out_Frame_T>{ _s / dt, _u / dt };
+        return QuaternionPartial<_in_frame_, _out_frame_>{ _s / dt, _u / dt };
     }
 
     /**
@@ -445,23 +445,23 @@ class Quaternion {
      * @return A new vector that is the result of rotating the input vector by this quaternion, expressed in the output frame.
      */
     template <typename Value_T>
-    CartesianVector<Value_T, Out_Frame_T> rotate_vector(const CartesianVector<Value_T, In_Frame_T>& vec) const
+    CartesianVector<Value_T, _out_frame_> rotate_vector(const CartesianVector<Value_T, _in_frame_>& vec) const
     {
         // Rotate the vector using the quaternion: v' = q * v * q^-1
         // results in a quaternion with vector part 2(u ⋅ v)u + (s2 - u ⋅ u)v + 2s(u * v)
         // This forces a frame conversion because there is no coherent way to keep the strong typing through the
         // intermediate operations and still result in a meaningful rotation. This means we can't have a nice interface
         // where users rotate by calling q * v * q.conjugate() but it's fine for now.
-        return (2.0 * _u.dot(vec) * _u + (_s * _s - _u.dot(_u)) * vec + 2.0 * _s * _u.cross(vec)).template force_frame_conversion<Out_Frame_T>();
+        return (2.0 * _u.dot(vec) * _u + (_s * _s - _u.dot(_u)) * vec + 2.0 * _s * _u.cross(vec)).template force_frame_conversion<_out_frame_>();
     }
 
     /**
      * @brief Computes the conjugate of the quaternion.
      * @return The conjugate of the quaternion.
      */
-    Quaternion<Out_Frame_T, In_Frame_T> conjugate() const
+    Quaternion<_out_frame_, _in_frame_> conjugate() const
     {
-        return { _s, -_u.template force_frame_conversion<Out_Frame_T>() };
+        return { _s, -_u.template force_frame_conversion<_out_frame_>() };
     }
 
     /**
@@ -470,10 +470,10 @@ class Quaternion {
      *
      * @throws std::runtime_error if the norm of the quaternion is zero (cannot compute inverse of a zero quaternion).
      */
-    Quaternion<Out_Frame_T, In_Frame_T> inverse() const
+    Quaternion<_out_frame_, _in_frame_> inverse() const
     {
         const Unitless scale = 1.0 / norm_squared();
-        return { _s * scale, -_u.template force_frame_conversion<Out_Frame_T>() * scale };
+        return { _s * scale, -_u.template force_frame_conversion<_out_frame_>() * scale };
     }
 
     /**
@@ -518,9 +518,9 @@ class Quaternion {
     /**
      * @brief Gets the vector part of the quaternion as a CartesianVector.
      *
-     * @return const CartesianVector<Unitless, In_Frame_T>& The vector part of the quaternion.
+     * @return const CartesianVector<Unitless, _in_frame_>& The vector part of the quaternion.
      */
-    const CartesianVector<Unitless, In_Frame_T>& get_vector_part() const { return _u; }
+    const CartesianVector<Unitless, _in_frame_>& get_vector_part() const { return _u; }
 
     /**
      * @brief Converts the quaternion to a vector form for use in numerical integration.
@@ -535,7 +535,7 @@ class Quaternion {
      * @param other The other quaternion to compute the dot product with.
      * @return Unitless The dot product of this quaternion and the other quaternion, computed as s1*s2 + u1 ⋅ u2.
      */
-    Unitless dot(const Quaternion<In_Frame_T, Out_Frame_T>& other) const { return _s * other._s + _u.dot(other._u); }
+    Unitless dot(const Quaternion<_in_frame_, _out_frame_>& other) const { return _s * other._s + _u.dot(other._u); }
 
     /**
      * @brief Interpolates between this quaternion and another quaternion at a target time using SLERP.
@@ -544,13 +544,13 @@ class Quaternion {
      * @param otherTime The time corresponding to the other quaternion.
      * @param other The other quaternion to interpolate with.
      * @param targetTime The time at which to interpolate the quaternion.
-     * @return Quaternion<In_Frame_T, Out_Frame_T> A new
+     * @return Quaternion<_in_frame_, _out_frame_> A new
      * Quaternion that is the interpolation of this quaternion and the other at the target time.
      *
      * @note: https://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/index.htm
      */
-    Quaternion<In_Frame_T, Out_Frame_T>
-        interpolate(const Time& thisTime, const Time& otherTime, const Quaternion<In_Frame_T, Out_Frame_T>& other, const Time& targetTime) const
+    Quaternion<_in_frame_, _out_frame_>
+        interpolate(const Time& thisTime, const Time& otherTime, const Quaternion<_in_frame_, _out_frame_>& other, const Time& targetTime) const
     {
         using namespace mp_units;
         using namespace mp_units::angular;
@@ -592,7 +592,7 @@ class Quaternion {
 
   private:
     Unitless _s;                              //!< Scalar part of the quaternion
-    CartesianVector<Unitless, In_Frame_T> _u; //!< Vector part of the quaternion
+    CartesianVector<Unitless, _in_frame_> _u; //!< Vector part of the quaternion
 
     /**
      * @brief Normalizes the quaternion by scaling its components with the given factor.
@@ -615,7 +615,7 @@ class Quaternion {
      *
      * @throws std::invalid_argument if the input vector does not have exactly 4 components.
      */
-    static Quaternion<In_Frame_T, Out_Frame_T> from_vector(const std::vector<Unitless>& vec)
+    static Quaternion<_in_frame_, _out_frame_> from_vector(const std::vector<Unitless>& vec)
     {
         if (vec.size() != 4) {
             throw std::invalid_argument("Input vector must have exactly 4 components to convert to a Quaternion.");
@@ -627,10 +627,10 @@ class Quaternion {
 /**
  * @brief Class representing the partial derivative of a quaternion with respect to time, used for integration.
  *
- * @tparam In_Frame_T The input frame type (e.g., ECI, ECEF).
- * @tparam Out_Frame_T The output frame type (e.g., ECI, ECEF).
+ * @tparam _in_frame_ The input frame type (e.g., ECI, ECEF).
+ * @tparam _out_frame_ The output frame type (e.g., ECI, ECEF).
  */
-template <typename In_Frame_T, typename Out_Frame_T>
+template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
 class QuaternionPartial {
 
     friend class AttitudePartial;
@@ -647,7 +647,7 @@ class QuaternionPartial {
      * @param sDot The scalar part of the quaternion derivative.
      * @param uDot The vector part of the quaternion derivative, representing the rate of change of the vector part of the quaternion.
      */
-    QuaternionPartial(const UnitlessPerTime& sDot, const CartesianVector<UnitlessPerTime, In_Frame_T>& uDot) :
+    QuaternionPartial(const UnitlessPerTime& sDot, const CartesianVector<UnitlessPerTime, _in_frame_>& uDot) :
         _sDot(sDot),
         _uDot(uDot)
     {
@@ -663,9 +663,9 @@ class QuaternionPartial {
     /**
      * @brief Gets the vector part of the quaternion as a CartesianVector.
      *
-     * @return const CartesianVector<UnitlessPerTime, In_Frame_T>& The vector part of the quaternion.
+     * @return const CartesianVector<UnitlessPerTime, _in_frame_>& The vector part of the quaternion.
      */
-    const CartesianVector<UnitlessPerTime, In_Frame_T>& get_vector_part() const { return _uDot; }
+    const CartesianVector<UnitlessPerTime, _in_frame_>& get_vector_part() const { return _uDot; }
 
     /**
      * @brief Multiplies the quaternion derivative by a time quantity to get a quaternion representing the change in attitude over that time interval.
@@ -673,9 +673,9 @@ class QuaternionPartial {
      * @param dt The time quantity to multiply the quaternion derivative by, representing the time interval over which to apply the change in attitude.
      * @return A new Quaternion that represents the change in attitude over the given time interval.
      */
-    Quaternion<In_Frame_T, Out_Frame_T> operator*(const Time& dt) const
+    Quaternion<_in_frame_, _out_frame_> operator*(const Time& dt) const
     {
-        return Quaternion<In_Frame_T, Out_Frame_T>{ _sDot * dt, _uDot * dt };
+        return Quaternion<_in_frame_, _out_frame_>{ _sDot * dt, _uDot * dt };
     }
 
     /**
@@ -690,20 +690,20 @@ class QuaternionPartial {
 
   private:
     UnitlessPerTime _sDot;                              //!< Scalar part of the quaternion derivative
-    CartesianVector<UnitlessPerTime, In_Frame_T> _uDot; //!< Vector part of the quaternion derivative with no frame association
+    CartesianVector<UnitlessPerTime, _in_frame_> _uDot; //!< Vector part of the quaternion derivative with no frame association
 };
 
 /**
  * @brief Stream insertion operator for the Quaternion class, allowing for easy printing of quaternion components.
  *
- * @tparam In_Frame_T The input frame type of the quaternion.
- * @tparam Out_Frame_T The output frame type of the quaternion.
+ * @tparam _in_frame_ The input frame type of the quaternion.
+ * @tparam _out_frame_ The output frame type of the quaternion.
  * @param os The output stream to insert the quaternion into.
  * @param quaternion The quaternion to be inserted into the stream.
  * @return A reference to the output stream after inserting the quaternion.
  */
-template <typename In_Frame_T, typename Out_Frame_T>
-std::ostream& operator<<(std::ostream& os, const Quaternion<In_Frame_T, Out_Frame_T>& quaternion)
+template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
+std::ostream& operator<<(std::ostream& os, const Quaternion<_in_frame_, _out_frame_>& quaternion)
 {
     const auto& s = quaternion.get_scalar_part();
     const auto& u = quaternion.get_vector_part();
@@ -714,14 +714,14 @@ std::ostream& operator<<(std::ostream& os, const Quaternion<In_Frame_T, Out_Fram
 /**
  * @brief Stream insertion operator for the QuaternionPartial class, allowing for easy printing of quaternion derivative components.
  *
- * @tparam In_Frame_T The input frame type of the quaternion derivative.
- * @tparam Out_Frame_T The output frame type of the quaternion derivative.
+ * @tparam _in_frame_ The input frame type of the quaternion derivative.
+ * @tparam _out_frame_ The output frame type of the quaternion derivative.
  * @param os The output stream to insert the quaternion derivative into.
  * @param quaternion The quaternion derivative to be inserted into the stream.
  * @return A reference to the output stream after inserting the quaternion derivative.
  */
-template <typename In_Frame_T, typename Out_Frame_T>
-std::ostream& operator<<(std::ostream& os, const QuaternionPartial<In_Frame_T, Out_Frame_T>& quaternion)
+template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
+std::ostream& operator<<(std::ostream& os, const QuaternionPartial<_in_frame_, _out_frame_>& quaternion)
 {
     const auto& sDot = quaternion.get_scalar_part();
     const auto& uDot = quaternion.get_vector_part();

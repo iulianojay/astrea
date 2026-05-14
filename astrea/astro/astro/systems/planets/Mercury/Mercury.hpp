@@ -31,6 +31,10 @@
 
 namespace astrea {
 namespace astro {
+
+    // Forward-declare frame types to avoid circular include with frames.hpp
+    namespace frames { namespace solar_system_barycenter { struct icrf; } }
+
 namespace planets {
 
 static CelestialBodyParameters DEFAULT_MERCURY_PARAMS{
@@ -67,10 +71,16 @@ static CelestialBodyParameters DEFAULT_MERCURY_PARAMS{
  *
  * This class provides properties and methods specific to Mercury, including its physical and orbital parameters.
  */
-inline constexpr struct Mercury : CelestialBody<"Mercury", barycenters::SolarSystemBarycenter, DEFAULT_MERCURY_PARAMS> {
+inline constexpr struct Mercury : CelestialBody<"Mercury", barycenters::SolarSystemBarycenter{}> {
 } Mercury;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Mercury>()
+{
+    return planets::DEFAULT_MERCURY_PARAMS;
+}
 
 #ifdef ASTREA_BUILD_MERCURY_EPHEMERIS
 
@@ -81,7 +91,7 @@ inline constexpr struct Mercury : CelestialBody<"Mercury", barycenters::SolarSys
  * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Mercury at the given date.
  */
 template <>
-inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_position_at<Mercury>(const Date& date)
+inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_position_at<planets::Mercury>(const Date& date)
 {
     return get_position_at_impl<MercuryEphemerisTable, frames::solar_system_barycenter::icrf>(date);
 }
@@ -93,7 +103,7 @@ inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_positio
  * @return VelocityVector<frames::solar_system_barycenter::icrf> The velocity of the Mercury at the given date.
  */
 template <>
-inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at<Mercury>(const Date& date)
+inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at<planets::Mercury>(const Date& date)
 {
     return get_velocity_at_impl<MercuryEphemerisTable, frames::solar_system_barycenter::icrf>(date);
 }

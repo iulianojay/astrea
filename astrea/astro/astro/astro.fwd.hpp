@@ -31,12 +31,12 @@ class StatePartial;
 class StateHistory;
 
 // ELement sets
-template <typename Frame_T>
+template <IsFrame auto _frame_>
 class Cartesian;
 class Keplerian;
 class Equinoctial;
 class TwoLineElements;
-template <typename Frame_T>
+template <IsFrame auto _frame_>
 class CartesianPartial;
 class KeplerianPartial;
 class EquinoctialPartial;
@@ -51,34 +51,34 @@ class EquinoctialStm;
 class StateTransitionMatrix;
 
 // Quaternions
-template <typename In_Frame_T, typename Out_Frame_T>
+template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
 class Quaternion;
 
-template <typename In_Frame_T, typename Out_Frame_T>
+template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
 class QuaternionPartial;
 
-template <RotationSequence sequence, RotationType rotationType, typename In_Frame_T, typename Out_Frame_T>
+template <RotationSequence sequence, RotationType rotationType, IsFrame auto _in_frame_, IsFrame auto _out_frame_>
 class EulerAngles;
 
-template <typename In_Frame_T, typename Ref_Frame_T>
+template <IsFrame auto _in_frame_, IsFrame auto _ref_frame_>
 class AngularVelocities;
 
-template <typename In_Frame_T, typename Ref_Frame_T>
+template <IsFrame auto _in_frame_, IsFrame auto _ref_frame_>
 class AngularAccels;
 
 class Attitude;
 class AttitudePartials;
 
 // Frames
-template <class Value_T, class Frame_T>
-class CartesianVector;
+template <typename Value_T, IsFrame auto Frame_T>
+struct CartesianVector;
 
 struct LocalHorizontalLocalVertical;
 struct RadialInTrackCrossTrack;
 struct VelocityNormalBinormal;
 struct Perifocal;
 
-template <typename In_Frame_T, typename Out_Frame_T>
+template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
 class DirectionCosineMatrix;
 
 // Platforms
@@ -96,7 +96,7 @@ template <class Payload_T>
 class PayloadPlatform;
 class Vehicle;
 
-template <class Frame_T>
+template <IsFrame auto _frame_>
 class InertiaTensor;
 
 // Propagation
@@ -110,11 +110,6 @@ class Schedule;
 class Perturbation;
 class ForceModel;
 class PerturbingForce;
-
-// Systems
-class AstrodynamicsSystem;
-class CelestialBody;
-struct CelestialBodyParameters;
 
 // Time
 class Date;

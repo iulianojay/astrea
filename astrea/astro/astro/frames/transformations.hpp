@@ -41,7 +41,7 @@ namespace frames {
  * @param date The date at which to obtain the DCM.
  * @return true if the specialization of get_dcm has been defined, false otherwise.
  */
-template <typename Frame_T, typename Frame_U>
+template <IsFrame auto _frame_, IsFrame auto _frame_u_>
 concept HasDcm = requires(const Date& date) { get_dcm<Frame_T, Frame_U>(date); };
 
 /**
@@ -53,7 +53,7 @@ concept HasDcm = requires(const Date& date) { get_dcm<Frame_T, Frame_U>(date); }
  * @param date The date at which to obtain the DCM.
  * @return true if the frame class has a member function get_dcm for the target frame, false otherwise.
  */
-template <typename Frame_T, typename Frame_U>
+template <IsFrame auto _frame_, IsFrame auto _frame_u_>
 concept HasDcmMethod =
     requires(const Frame_T& frame, const Date& date) { frame.template get_dcm<Frame_T, Frame_U>(date); };
 
@@ -69,7 +69,7 @@ concept HasDcmMethod =
  * @param date The date at which to calculate the offset.
  * @return CartesianVector<Distance, Frame_T> The offset vector from Frame_T to Frame_U expressed in Frame_T.
  */
-template <typename Frame_T, typename Frame_U>
+template <IsFrame auto _frame_, IsFrame auto _frame_u_>
     requires(HasSameOrigin<Frame_T, Frame_U>)
 inline constexpr CartesianVector<Distance, Frame_T> get_center_offset(const Date& date)
 {
@@ -90,7 +90,7 @@ inline constexpr CartesianVector<Distance, Frame_T> get_center_offset(const Date
  * @param date The date at which to calculate the offset.
  * @return CartesianVector<Distance, Frame_T> The offset vector from Frame_T to Frame_U expressed in Frame_T.
  */
-template <typename Frame_T, typename Frame_U>
+template <IsFrame auto _frame_, IsFrame auto _frame_u_>
     requires(!HasSameOrigin<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U>)
 inline constexpr CartesianVector<Distance, Frame_T> get_center_offset(const Date& date)
 {
@@ -116,7 +116,7 @@ namespace {
  * @return DCM<Frame_T, Frame_U> The Direction Cosine Matrix from Frame_T to Frame_U.
  * @throws std::runtime_error If no DCM is defined between the two frames.
  */
-template <typename Frame_T, typename Frame_U>
+template <IsFrame auto _frame_, IsFrame auto _frame_u_>
 inline constexpr DCM<Frame_T, Frame_U> get_dcm_impl(const Date& date)
 {
     static_assert(!(HasDcm<Frame_T, Frame_U> && HasDcm<Frame_U, Frame_T>), "DCM defined in both directions, please define only one to avoid symmetry issues.");
@@ -137,7 +137,7 @@ inline constexpr DCM<Frame_T, Frame_U> get_dcm_impl(const Date& date)
 
 } // namespace
 
-template <typename Frame_T, typename Frame_U>
+template <IsFrame auto _frame_, IsFrame auto _frame_u_>
 concept HasValidFrameTransformation = requires(Date date) {
     { get_dcm_impl<Frame_T, Frame_U>(date) } -> std::same_as<DCM<Frame_T, Frame_U>>;
 } || requires(Date date) {
@@ -154,7 +154,7 @@ concept HasValidFrameTransformation = requires(Date date) {
  * @param date The date at which to perform the rotation.
  * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
  */
-template <typename Value_T, typename Frame_T, typename Frame_U>
+template <typename Value_T, IsFrame auto _frame_, IsFrame auto _frame_u_>
 inline constexpr CartesianVector<Value_T, Frame_U>
     rotate_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
 {
@@ -176,7 +176,7 @@ inline constexpr CartesianVector<Value_T, Frame_U>
  *
  * @note: This overload doesn't change in the input frame to avoid unnecessary frame conversions when the frames share the same origin but different axes.
  */
-template <typename Value_T, typename Frame_T, typename Frame_U>
+template <typename Value_T, IsFrame auto _frame_, IsFrame auto _frame_u_>
     requires(HasSameOrigin<Frame_T, Frame_U>)
 inline constexpr CartesianVector<Value_T, Frame_T>
     translate_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
@@ -196,7 +196,7 @@ inline constexpr CartesianVector<Value_T, Frame_T>
  * @param date The date at which to perform the translation.
  * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
  */
-template <typename Value_T, typename Frame_T, typename Frame_U>
+template <typename Value_T, IsFrame auto _frame_, IsFrame auto _frame_u_>
     requires(!HasSameOrigin<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U>)
 inline constexpr CartesianVector<Distance, Frame_U>
     translate_vector_into_frame(const CartesianVector<Distance, Frame_T>& vec, const Date& date)
@@ -227,7 +227,7 @@ inline constexpr CartesianVector<Distance, Frame_U>
  * @param date The date at which to perform the transformation.
  * @return CartesianVector<Value_T, Frame_U> A new CartesianVector in the target frame.
  */
-template <typename Value_T, typename Frame_T, typename Frame_U>
+template <typename Value_T, IsFrame auto _frame_, IsFrame auto _frame_u_>
     requires(IsStaticFrame<Frame_T> && IsStaticFrame<Frame_U>)
 inline constexpr CartesianVector<Value_T, Frame_U>
     transform_vector_into_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date)
@@ -252,8 +252,8 @@ inline constexpr CartesianVector<Value_T, Frame_U>
 
 } // namespace frames
 
-template <typename Value_T, typename Frame_T>
-template <typename Frame_U>
+template <typename Value_T, IsFrame auto _frame_>
+template <IsFrame auto _frame_u_>
     requires(!IsSameFrame<Frame_T, Frame_U> && IsStaticFrame<Frame_U>)
 inline constexpr CartesianVector<Value_T, Frame_U> CartesianVector<Value_T, Frame_T>::in_frame(const Date& date) const
 {

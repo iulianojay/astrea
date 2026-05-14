@@ -191,7 +191,7 @@ class State {
      * @tparam Frame_T The frame to get the position vector in.
      * @return RadiusVector<Frame_T> The position vector of the state in the specified frame.
      */
-    template <typename Frame_T>
+    template <IsFrame auto Frame_T>
     RadiusVector<Frame_T> get_position_in_frame() const
     {
         return get_position().template in_frame<Frame_T>(get_epoch());
@@ -213,7 +213,7 @@ class State {
      * @tparam Frame_T The frame to get the velocity vector in.
      * @return VelocityVector<Frame_T> The velocity vector of the state in the specified frame.
      */
-    template <typename Frame_T>
+    template <IsFrame auto Frame_T>
     VelocityVector<Frame_T> get_velocity_in_frame(const Date& date) const
     {
         return get_velocity().template in_frame<Frame_T>(date);

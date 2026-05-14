@@ -63,9 +63,16 @@ static CelestialBodyParameters DEFAULT_CALLISTO_PARAMS{
  *
  * This class provides properties and methods specific to Callisto, including its physical and orbital parameters.
  */
-inline constexpr struct Callisto : CelestialBody<"Callisto", Jupiter, DEFAULT_CALLISTO_PARAMS> {
+inline constexpr struct Callisto : CelestialBody<"Callisto", Jupiter> {
 } Callisto;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Callisto>()
+{
+    return planets::DEFAULT_CALLISTO_PARAMS;
+}
+
 } // namespace astro
 } // namespace astrea

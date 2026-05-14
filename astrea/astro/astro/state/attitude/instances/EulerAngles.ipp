@@ -23,12 +23,12 @@
 namespace astrea {
 namespace astro {
 
-template <RotationSequence sequence, RotationType rotation_type, typename In_Frame_T, typename Out_Frame_T>
+template <RotationSequence sequence, RotationType rotation_type, IsFrame auto _in_frame_, IsFrame auto _out_frame_>
 template <RotationSequence sequence_u, RotationType rotation_type_u>
-    requires(!IsCompatibleEulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T, sequence_u, rotation_type_u, In_Frame_T, Out_Frame_T>)
-EulerAngles<sequence, rotation_type, In_Frame_T, Out_Frame_T>::EulerAngles(const EulerAngles<sequence_u, rotation_type_u, In_Frame_T, Out_Frame_T>& other)
+    requires(!IsCompatibleEulerAngles<sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_, _out_frame_>)
+EulerAngles<sequence, rotation_type, _in_frame_, _out_frame_>::EulerAngles(const EulerAngles<sequence_u, rotation_type_u, _in_frame_, _out_frame_>& other)
 {
-    *this = Quaternion<In_Frame_T, Out_Frame_T>(other).template to_euler_angles<sequence, rotation_type>();
+    *this = Quaternion<_in_frame_, _out_frame_>(other).template to_euler_angles<sequence, rotation_type>();
 }
 
 } // namespace astro

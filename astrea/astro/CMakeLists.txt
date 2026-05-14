@@ -74,21 +74,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/frames/FrameReference.cpp
 
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.cpp
-    ${ASTRO_BASE}/systems/CelestialBody.cpp
     ${ASTRO_BASE}/systems/planets/JplEphemerisTable.cpp
-    ${ASTRO_BASE}/systems/planets/Earth/Earth.cpp
-    ${ASTRO_BASE}/systems/planets/Earth/atmosphere/JacciaRoberts.cpp
-    ${ASTRO_BASE}/systems/planets/Earth/atmosphere/HarrisPriester.cpp
-    ${ASTRO_BASE}/systems/planets/Earth/Moon.cpp
-    ${ASTRO_BASE}/systems/planets/Mars/Mars.cpp
-    ${ASTRO_BASE}/systems/planets/Mercury/Mercury.cpp
-    ${ASTRO_BASE}/systems/planets/Neptune/Neptune.cpp
-    ${ASTRO_BASE}/systems/planets/Jupiter/Jupiter.cpp
-    ${ASTRO_BASE}/systems/planets/Saturn/Saturn.cpp
-    ${ASTRO_BASE}/systems/planets/Saturn/Titan.cpp
-    ${ASTRO_BASE}/systems/planets/Sun/Sun.cpp
-    ${ASTRO_BASE}/systems/planets/Uranus/Uranus.cpp
-    ${ASTRO_BASE}/systems/planets/Venus/Venus.cpp
 
     ${ASTRO_BASE}/time/Date.cpp
 

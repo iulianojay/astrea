@@ -34,9 +34,9 @@ using ZeroEarthIcrf = FixedOffsetFrame<frames::earth::icrf, Distance::zero(), Di
 using ZeroMarsIcrf  = FixedOffsetFrame<frames::mars::icrf, Distance::zero(), Distance::zero(), Distance::zero()>;
 
 static_assert(ZeroEarthIcrf::origin == CelestialBodyId::FIXED_OFFSET);
-static_assert(ZeroEarthIcrf::parent::origin == CelestialBodyId::EARTH);
+static_assert(ZeroEarthIcrf::parent::origin == planets::Earth);
 static_assert(ZeroMarsIcrf::origin == CelestialBodyId::FIXED_OFFSET);
-static_assert(ZeroMarsIcrf::parent::origin == CelestialBodyId::MARS);
+static_assert(ZeroMarsIcrf::parent::origin == planets::Mars);
 static_assert(HasSameOrigin<ZeroEarthIcrf, ZeroMarsIcrf>);
 static_assert(!HasSameOrigin<ZeroEarthIcrf::parent, ZeroMarsIcrf::parent>);
 
@@ -96,9 +96,9 @@ using RotZHalfPiXYZ = FixedOffsetFrame<frames::earth::icrf, Angle::zero(), Angle
 using RotXHalfPiZYX = FixedOffsetFrame<frames::earth::icrf, HALF_PI_RAD, Angle::zero(), Angle::zero(), RotationSequence::ZYX>;
 
 static_assert(ZeroAngularEarthIcrf::origin == CelestialBodyId::FIXED_OFFSET);
-static_assert(ZeroAngularEarthIcrf::parent::origin == CelestialBodyId::EARTH);
+static_assert(ZeroAngularEarthIcrf::parent::origin == planets::Earth);
 static_assert(RotXHalfPiXYZ::origin == CelestialBodyId::FIXED_OFFSET);
-static_assert(RotXHalfPiXYZ::parent::origin == CelestialBodyId::EARTH);
+static_assert(RotXHalfPiXYZ::parent::origin == planets::Earth);
 
 static_assert(IsFrame<ZeroAngularEarthIcrf>);
 static_assert(IsStaticFrame<ZeroAngularEarthIcrf>);

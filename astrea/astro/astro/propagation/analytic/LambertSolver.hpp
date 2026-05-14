@@ -82,7 +82,7 @@ class LambertSolver {
     /**
      * @brief Result structure for optimal Lambert solutions.
      */
-    template <typename Frame_T>
+    template <IsFrame auto _frame_>
 
     struct Solution {
         Time tof;                   //!< Time of flight for the transfer
@@ -98,7 +98,7 @@ class LambertSolver {
      * @param mu The gravitational parameter of the central body.
      * @return The final state (position and velocity) of the spacecraft.
      */
-    template <typename Frame_T>
+    template <IsFrame auto _frame_>
     static Cartesian<Frame_T> solve(const Cartesian<Frame_T>& state0, const Time& dt, const GravParam& mu)
     {
 
@@ -177,7 +177,7 @@ class LambertSolver {
      * @param direction The direction of the orbit (prograde or retrograde).
      * @return A pair of velocity vectors (initial and final) for the spacecraft.
      */
-    template <typename Frame_T>
+    template <IsFrame auto _frame_>
     static std::pair<VelocityVector<Frame_T>, VelocityVector<Frame_T>>
         solve(const RadiusVector<Frame_T>& r0, const RadiusVector<Frame_T>& rf, const Time& dt, const GravParam& mu, const OrbitDirection& direction)
     {
@@ -261,7 +261,7 @@ class LambertSolver {
      *                     MINIMUM_TIME returns the minimum time of flight (parabolic) transfer.
      * @return A Solution containing the time of flight and the initial/final velocity vectors.
      */
-    template <typename Frame_T>
+    template <IsFrame auto _frame_>
     static Solution<Frame_T>
         solve(const RadiusVector<Frame_T>& r0, const RadiusVector<Frame_T>& rf, const GravParam& mu, const OrbitDirection& direction, const SolutionType& solutionType)
     {
@@ -294,9 +294,11 @@ class LambertSolver {
             const Distance y = R0 + Rf - A * sqrt(2.0 * one);
 
             if (y <= 0.0 * km) {
-                throw std::runtime_error("LambertSolver: parabolic (minimum-time) trajectory is geometrically "
-                                         "impossible "
-                                         "for these endpoints");
+                throw std::runtime_error(
+                    "LambertSolver: parabolic (minimum-time) trajectory is geometrically "
+                    "impossible "
+                    "for these endpoints"
+                );
             }
 
             const Time tof      = (pow<3, 2>(y / (0.5 * one)) * (1.0 / 6.0 * one) + A * sqrt(y)) / sqMU;
@@ -372,7 +374,7 @@ class LambertSolver {
      *   p = n · (1−λ²) · (1−x²) / σ²
      * and the f-and-g functions give the velocities.
      */
-    template <typename Frame_T>
+    template <IsFrame auto _frame_>
     static std::pair<VelocityVector<Frame_T>, VelocityVector<Frame_T>> solve(
         const RadiusVector<Frame_T>& r0,
         const RadiusVector<Frame_T>& rf,

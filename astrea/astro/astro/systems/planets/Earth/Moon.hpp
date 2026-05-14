@@ -32,6 +32,10 @@
 namespace astrea {
 namespace astro {
 
+    // Forward-declare frame types to avoid circular include with frames.hpp
+    namespace frames { namespace earth { struct icrf; } }
+
+
 namespace planets {
 
 static CelestialBodyParameters DEFAULT_MOON_PARAMS{
@@ -68,10 +72,16 @@ static CelestialBodyParameters DEFAULT_MOON_PARAMS{
  *
  * This class provides properties and methods specific to the Moon, including its physical and orbital parameters.
  */
-inline constexpr struct Moon : CelestialBody<"Moon", Earth, DEFAULT_MOON_PARAMS> {
+inline constexpr struct Moon : CelestialBody<"Moon", Earth> {
 } Moon;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Moon>()
+{
+    return planets::DEFAULT_MOON_PARAMS;
+}
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 
@@ -82,7 +92,7 @@ inline constexpr struct Moon : CelestialBody<"Moon", Earth, DEFAULT_MOON_PARAMS>
  * @return RadiusVector<frames::earth::icrf> The position of the Moon at the given date.
  */
 template <>
-inline constexpr RadiusVector<frames::earth::icrf> get_position_at<Moon>(const Date& date)
+inline constexpr RadiusVector<frames::earth::icrf> get_position_at<planets::Moon>(const Date& date)
 {
     return get_position_at_impl<MoonEphemerisTable, frames::earth::icrf>(date);
 }
@@ -94,7 +104,7 @@ inline constexpr RadiusVector<frames::earth::icrf> get_position_at<Moon>(const D
  * @return VelocityVector<frames::earth::icrf> The velocity of the Moon at the given date.
  */
 template <>
-inline constexpr VelocityVector<frames::earth::icrf> get_velocity_at<Moon>(const Date& date)
+inline constexpr VelocityVector<frames::earth::icrf> get_velocity_at<planets::Moon>(const Date& date)
 {
     return get_velocity_at_impl<MoonEphemerisTable, frames::earth::icrf>(date);
 }

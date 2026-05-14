@@ -35,7 +35,7 @@ namespace astro {
 /**
  * @brief Base class for all dynamic state/frames.
  */
-template <class Frame_T, FrameAxis _axis>
+template <IsFrame auto _frame_, FrameAxis _axis>
     requires(_axis != FrameAxis::ICRF && _axis != FrameAxis::J2000 && _axis != FrameAxis::FIXED_ROTATING)
 struct DynamicFrame : public Frame<"", CelestialBodyId::CUSTOM, _axis> {
 

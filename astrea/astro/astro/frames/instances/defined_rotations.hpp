@@ -37,7 +37,7 @@ namespace astro {
  *
  * @ref https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA%20TP%2020220014814%20final.pdf
  */
-template <typename Frame_T, typename Frame_U>
+template <IsFrame auto _frame_, IsFrame auto _frame_u_>
     requires(Frame_T::axis == FrameAxis::ICRF && Frame_U::axis == FrameAxis::J2000 && HasSameOrigin<Frame_T, Frame_U>)
 inline constexpr DirectionCosineMatrix<Frame_T, Frame_U> get_dcm(const Date& date)
 {
@@ -65,22 +65,22 @@ inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::earth
 /**
  * @brief Get the Direction Cosine Matrix (DCM) for the body-fixed frame at a given date.
  *
- * @tparam In_Frame_T The input frame type, must be ICRF and share the same origin as Out_Frame_T.
- * @tparam Out_Frame_T The output frame type, must be FIXED_ROTATING and share the same origin as In_Frame_T.
+ * @tparam _in_frame_ The input frame type, must be ICRF and share the same origin as _out_frame_.
+ * @tparam _out_frame_ The output frame type, must be FIXED_ROTATING and share the same origin as _in_frame_.
  * @param date The date for which to get the DCM.
- * @return DirectionCosineMatrix<In_Frame_T, Out_Frame_T> The DCM from In_Frame_T to Out_Frame_T.
+ * @return DirectionCosineMatrix<_in_frame_, _out_frame_> The DCM from _in_frame_ to _out_frame_.
  */
-template <typename In_Frame_T, typename Out_Frame_T>
+template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
     requires(
-        HasSameOrigin<In_Frame_T, Out_Frame_T> && In_Frame_T::axis == FrameAxis::ICRF && Out_Frame_T::axis == FrameAxis::FIXED_ROTATING &&
-        In_Frame_T::origin != CelestialBodyId::SUN && Out_Frame_T::origin != CelestialBodyId::EARTH
+        HasSameOrigin<_in_frame_, _out_frame_> && _in_frame_::axis == FrameAxis::ICRF && _out_frame_::axis == FrameAxis::FIXED_ROTATING &&
+        _in_frame_::origin != CelestialBodyId::SUN && _out_frame_::origin != CelestialBodyId::EARTH
     )
-inline constexpr DirectionCosineMatrix<In_Frame_T, Out_Frame_T> get_dcm(const Date& date)
+inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> get_dcm(const Date& date)
 {
-    static const AstrodynamicsSystem system(Out_Frame_T::origin);
-    static const auto& body = system.get_body(Out_Frame_T::origin);
+    static const AstrodynamicsSystem system(_out_frame_::origin);
+    static const auto& body = system.get_body(_out_frame_::origin);
     const Angle gst         = date.body_sidereal_time(*body.get());
-    return DirectionCosineMatrix<In_Frame_T, Out_Frame_T>::Z(-gst);
+    return DirectionCosineMatrix<_in_frame_, _out_frame_>::Z(-gst);
 }
 
 /**

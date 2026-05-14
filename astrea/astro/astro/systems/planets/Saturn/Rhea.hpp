@@ -63,9 +63,16 @@ static CelestialBodyParameters DEFAULT_RHEA_PARAMS{
  *
  * This class provides properties and methods specific to Rhea, including its physical and orbital parameters.
  */
-inline constexpr struct Rhea : CelestialBody<"Rhea", Saturn, DEFAULT_RHEA_PARAMS> {
+inline constexpr struct Rhea : CelestialBody<"Rhea", Saturn> {
 } Rhea;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Rhea>()
+{
+    return planets::DEFAULT_RHEA_PARAMS;
+}
+
 } // namespace astro
 } // namespace astrea

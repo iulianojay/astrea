@@ -99,7 +99,7 @@ class Keplerian {
      * @param elements The Cartesian elements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    template <typename Frame_T>
+    template <IsFrame auto _frame_>
     Keplerian(const Cartesian<Frame_T>& elements, const GravParam& mu)
     {
 

@@ -63,9 +63,16 @@ static CelestialBodyParameters DEFAULT_IO_PARAMS{
  *
  * This class provides properties and methods specific to Io, including its physical and orbital parameters.
  */
-inline constexpr struct Io : CelestialBody<"Io", Jupiter, DEFAULT_IO_PARAMS> {
+inline constexpr struct Io : CelestialBody<"Io", Jupiter> {
 } Io;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Io>()
+{
+    return planets::DEFAULT_IO_PARAMS;
+}
+
 } // namespace astro
 } // namespace astrea

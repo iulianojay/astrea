@@ -35,6 +35,10 @@
 
 namespace astrea {
 namespace astro {
+
+    // Forward-declare frame types to avoid circular include with frames.hpp
+    namespace frames { namespace solar_system_barycenter { struct icrf; } }
+
 namespace planets {
 
 static CelestialBodyParameters DEFAULT_MARS_PARAMS{
@@ -71,10 +75,16 @@ static CelestialBodyParameters DEFAULT_MARS_PARAMS{
  *
  * This class provides properties and methods specific to Mars, including its physical and orbital parameters.
  */
-inline constexpr struct Mars : CelestialBody<"Mars", barycenters::SolarSystemBarycenter, DEFAULT_MARS_PARAMS> {
+inline constexpr struct Mars : CelestialBody<"Mars", barycenters::SolarSystemBarycenter{}> {
 } Mars;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Mars>()
+{
+    return planets::DEFAULT_MARS_PARAMS;
+}
 
 // Altitude Conditions(TABLE 7-4, Vallado)
 static const std::map<Altitude, Density> martianAtmosphere = { // km, kg/m^3
@@ -148,7 +158,7 @@ static const std::map<Altitude, Density> martianAtmosphere = { // km, kg/m^3
  * @return Density The estimated atmospheric density in kg/m^3.
  */
 template <>
-inline constexpr Density find_atmospheric_density<Mars>(const State& state)
+inline constexpr Density find_atmospheric_density<planets::Mars>(const State& state)
 {
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
@@ -191,7 +201,7 @@ inline constexpr Density find_atmospheric_density<Mars>(const State& state)
  * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Mars at the given date.
  */
 template <>
-inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_position_at<Mars>(const Date& date)
+inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_position_at<planets::Mars>(const Date& date)
 {
     return get_position_at_impl<MarsEphemerisTable, frames::solar_system_barycenter::icrf>(date);
 }
@@ -203,7 +213,7 @@ inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_positio
  * @return VelocityVector<frames::solar_system_barycenter::icrf> The velocity of the Mars at the given date.
  */
 template <>
-inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at<Mars>(const Date& date)
+inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at<planets::Mars>(const Date& date)
 {
     return get_velocity_at_impl<MarsEphemerisTable, frames::solar_system_barycenter::icrf>(date);
 }

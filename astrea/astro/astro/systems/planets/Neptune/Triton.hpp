@@ -67,9 +67,16 @@ static CelestialBodyParameters DEFAULT_TRITON_PARAMS{
  *
  * This class provides properties and methods specific to Triton, including its physical and orbital parameters.
  */
-inline constexpr struct Triton : CelestialBody<"Triton", Neptune, DEFAULT_TRITON_PARAMS> {
+inline constexpr struct Triton : CelestialBody<"Triton", Neptune> {
 } Triton;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Triton>()
+{
+    return planets::DEFAULT_TRITON_PARAMS;
+}
+
 } // namespace astro
 } // namespace astrea

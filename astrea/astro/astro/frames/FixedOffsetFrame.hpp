@@ -143,6 +143,37 @@ inline consteval auto compose_name()
 template <typename, auto...>
 struct FixedOffsetFrame;
 
+namespace detail {
+
+template <Distance _x_, Distance _y_, Distance _z_>
+struct FixedOffsetOrigin : Origin<"fixed offset"> {
+    struct Offset {
+        decltype(_x_) x;
+        decltype(_y_) y;
+        decltype(_z_) z;
+    };
+    static constexpr Offset offset{ _x_, _y_, _z_ }; //!< The fixed offset vector from the parent frame to this frame.
+};
+
+template <Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_>
+struct FixedOffsetAxis : Axis<"fixed offset"> {
+    static constexpr auto sequence = _sequence_; //!< The rotation sequence for the angular offset.
+    struct Misalignment {
+        decltype(_phi_) phi;
+        decltype(_theta_) theta;
+        decltype(_psi_) psi;
+    };
+    static constexpr Misalignment misalignment{ _phi_, _theta_, _psi_ }; //!< The fixed angular offset from the parent frame to this frame.
+};
+
+} // namespace detail
+
+template <Distance _x_, Distance _y_, Distance _z_>
+inline constexpr detail::FixedOffsetOrigin<_x_, _y_, _z_> FixedOffsetOrigin{};
+
+template <Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_>
+inline constexpr detail::FixedOffsetAxis<_phi_, _theta_, _psi_, _sequence_> FixedOffsetAxis{};
+
 /**
  * @brief Specialization of FixedOffsetFrame for a pure spatial offset (no angular misalignment).
  *
@@ -154,9 +185,7 @@ struct FixedOffsetFrame;
  */
 template <IsFrame Parent, Distance _x_, Distance _y_, Distance _z_, auto... Args>
 struct FixedOffsetFrame<Parent, _x_, _y_, _z_, Args...>
-    : Frame<compose_name<Parent::name, _x_, _y_, _z_>(), CelestialBodyId::FIXED_OFFSET, Parent::axis, Parent> {
-    static constexpr CartesianVector<Distance, Parent> offset = { _x_, _y_, _z_ }; //!< The fixed offset vector from the parent frame to this frame.
-};
+    : Frame<compose_name<Parent::name, _x_, _y_, _z_>(), FixedOffsetOrigin<_x_, _y_, _z_>, Parent::axis, Parent{}> {};
 
 /**
  * @brief Specialization of FixedOffsetFrame for a pure angular offset (no spatial offset).
@@ -170,9 +199,7 @@ struct FixedOffsetFrame<Parent, _x_, _y_, _z_, Args...>
  */
 template <IsFrame Parent, Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_, auto... Args>
 struct FixedOffsetFrame<Parent, _phi_, _theta_, _psi_, _sequence_, Args...>
-    : Frame<compose_name<Parent::name, _phi_, _theta_, _psi_>(), CelestialBodyId::FIXED_OFFSET, Parent::axis, Parent> {
-    static constexpr auto sequence = _sequence_; //!< The rotation sequence for the angular offset.
-    static constexpr CartesianVector<Angle, Parent> misalignment = { _phi_, _theta_, _psi_ }; //!< The fixed angular offset dcm from the parent frame to this frame.
+    : Frame<compose_name<Parent::name, _phi_, _theta_, _psi_>(), Parent::origin, FixedOffsetAxis<_phi_, _theta_, _psi_, _sequence_>, Parent{}> {
 };
 
 /**
@@ -189,10 +216,7 @@ struct FixedOffsetFrame<Parent, _phi_, _theta_, _psi_, _sequence_, Args...>
  */
 template <IsFrame Parent, Distance _x_, Distance _y_, Distance _z_, Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_, auto... Args>
 struct FixedOffsetFrame<Parent, _x_, _y_, _z_, _phi_, _theta_, _psi_, _sequence_, Args...>
-    : Frame<compose_name<Parent::name, _x_, _y_, _z_, _phi_, _theta_, _psi_>(), CelestialBodyId::FIXED_OFFSET, Parent::axis, Parent> {
-    static constexpr CartesianVector<Distance, Parent> offset = { _x_, _y_, _z_ }; //!< The fixed offset vector from the parent frame to this frame.
-    static constexpr auto sequence = _sequence_; //!< The rotation sequence for the angular offset.
-    static constexpr CartesianVector<Angle, Parent> misalignment = { _phi_, _theta_, _psi_ }; //!< The fixed angular offset dcm from the parent frame to this frame.
+    : Frame<compose_name<Parent::name, _x_, _y_, _z_, _phi_, _theta_, _psi_>(), FixedOffsetOrigin<_x_, _y_, _z_>, FixedOffsetAxis<_phi_, _theta_, _psi_, _sequence_>, Parent{}> {
 };
 
 /**
@@ -201,7 +225,7 @@ struct FixedOffsetFrame<Parent, _x_, _y_, _z_, _phi_, _theta_, _psi_, _sequence_
 template <IsFixedOffsetFrame T>
 inline constexpr auto get_offset_from_frame()
 {
-    if constexpr (HasSpatialOffset<T>) { return T::offset; }
+    if constexpr (HasSpatialOffset<T>) { return T::origin::offset; }
     else {
         return CartesianVector<Distance, typename T::parent>{};
     }
@@ -237,9 +261,7 @@ template <IsFixedOffsetFrame T>
 inline constexpr DirectionCosineMatrix<typename T::parent, T> get_dcm_from_frame()
 {
     if constexpr (HasAngularOffset<T>) {
-        return DirectionCosineMatrix<typename T::parent, T>::template from_euler_angles<T::sequence>(
-            T::misalignment[0], T::misalignment[1], T::misalignment[2]
-        );
+        return DirectionCosineMatrix<typename T::parent, T>::template from_euler_angles<T::axis::sequence>(T::axis::misalignment);
     }
     else {
         return DirectionCosineMatrix<typename T::parent, T>::identity();

@@ -296,7 +296,7 @@ Distance calculate_geocentric_radius(const Angle& lat, const Distance& rEquitori
  * @param rPolar The polar radius of the Earth.
  * @return The latitude, longitude, and altitude as a tuple.
  */
-template <typename Frame_T>
+template <IsFrame auto _frame_>
     requires(IsFixedRotatingFrame<Frame_T>)
 std::tuple<Angle, Angle, Distance>
     convert_body_fixed_to_geocentric(const RadiusVector<Frame_T>& rEcef, const Distance& rEquitorial, const Distance& rPolar)
@@ -328,7 +328,7 @@ std::tuple<Angle, Angle, Distance>
  * @param rPolar The polar radius of the Earth.
  * @return The radius vector in ECEF coordinates.
  */
-template <typename Frame_T>
+template <IsFrame auto _frame_>
     requires(IsFixedRotatingFrame<Frame_T>)
 RadiusVector<Frame_T>
     convert_geocentric_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar)

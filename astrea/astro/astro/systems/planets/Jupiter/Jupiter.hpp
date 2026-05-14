@@ -31,6 +31,10 @@
 
 namespace astrea {
 namespace astro {
+
+    // Forward-declare frame types to avoid circular include with frames.hpp
+    namespace frames { namespace solar_system_barycenter { struct icrf; } }
+
 namespace planets {
 
 static CelestialBodyParameters DEFAULT_JUPITER_PARAMS{
@@ -67,10 +71,16 @@ static CelestialBodyParameters DEFAULT_JUPITER_PARAMS{
  *
  * This class provides properties and methods specific to Jupiter, including its physical and orbital parameters.
  */
-inline constexpr struct Jupiter : CelestialBody<"Jupiter", barycenters::SolarSystemBarycenter, DEFAULT_JUPITER_PARAMS> {
+inline constexpr struct Jupiter : CelestialBody<"Jupiter", barycenters::SolarSystemBarycenter{}> {
 } Jupiter;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Jupiter>()
+{
+    return planets::DEFAULT_JUPITER_PARAMS;
+}
 
 #ifdef ASTREA_BUILD_JUPITER_EPHEMERIS
 
@@ -81,7 +91,7 @@ inline constexpr struct Jupiter : CelestialBody<"Jupiter", barycenters::SolarSys
  * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Jupiter at the given date.
  */
 template <>
-inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_position_at<Jupiter>(const Date& date)
+inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_position_at<planets::Jupiter>(const Date& date)
 {
     return get_position_at_impl<JupiterEphemerisTable, frames::solar_system_barycenter::icrf>(date);
 }
@@ -93,7 +103,7 @@ inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_positio
  * @return VelocityVector<frames::solar_system_barycenter::icrf> The velocity of the Jupiter at the given date.
  */
 template <>
-inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at<Jupiter>(const Date& date)
+inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at<planets::Jupiter>(const Date& date)
 {
     return get_velocity_at_impl<JupiterEphemerisTable, frames::solar_system_barycenter::icrf>(date);
 }
@@ -109,7 +119,7 @@ inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_veloc
  * @return CoefficientPack A tuple containing the linear expansion coefficients.
  */
 template <>
-inline constexpr CoefficientPack get_linear_expansion_coefficients<Jupiter>()
+inline constexpr CoefficientPack get_linear_expansion_coefficients<planets::Jupiter>()
 {
     using mp_units::angular::unit_symbols::rad;
     return std::make_tuple(-0.00012452 * rad / (JulianCentury * JulianCentury), 0.06064060 * rad, -0.35635438 * rad, 38.35125000 * rad / JulianCentury);

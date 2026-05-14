@@ -33,6 +33,10 @@
 namespace astrea {
 namespace astro {
 
+    // Forward-declare frame types to avoid circular include with frames.hpp
+    namespace frames { namespace earth_barycenter { struct icrf; } }
+
+
 namespace planets {
 
 enum class EarthAtmosphereModel { JACHIA_ROBERTS, NRLMSISE00, DTM2000, HARRIS_PRIESTER };
@@ -41,7 +45,7 @@ struct EarthParameters {
     EarthAtmosphereModel atmosphereModel = EarthAtmosphereModel::JACHIA_ROBERTS; //!< The atmospheric model to use for Earth.
 };
 
-static CelestialBodyParameters DEFAULT_EARTH_PARAMS{
+static const CelestialBodyParameters DEFAULT_EARTH_PARAMS{
     .type          = CelestialBodyType::PLANET,
     .referenceDate = Date("2000-01-01 12:00:00"),
     .mu = GravParam(398600.44189 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
@@ -75,10 +79,16 @@ static CelestialBodyParameters DEFAULT_EARTH_PARAMS{
  *
  * This class provides properties and methods specific to Earth, including its physical and orbital parameters.
  */
-inline constexpr struct Earth : CelestialBody<"Earth", barycenters::EarthMoonBarycenter, DEFAULT_EARTH_PARAMS> {
+inline constexpr struct Earth : CelestialBody<"Earth", barycenters::EarthMoonBarycenter{}> {
 } Earth;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Earth>()
+{
+    return planets::DEFAULT_EARTH_PARAMS;
+}
 
 /**
  * @brief Find the atmospheric density at a given date and altitude using the US Standard Atmosphere 1976 model.
@@ -89,7 +99,7 @@ inline constexpr struct Earth : CelestialBody<"Earth", barycenters::EarthMoonBar
  * @note Numbers for this model are pulled from Vallado, 5th ed.
  */
 template <>
-inline constexpr Density find_atmospheric_density<Earth>(const State& state)
+inline constexpr Density find_atmospheric_density<planets::Earth>(const State& state)
 {
     switch (_atmosphereModel) {
         case EarthAtmosphereModel::JACHIA_ROBERTS:
@@ -108,24 +118,24 @@ inline constexpr Density find_atmospheric_density<Earth>(const State& state)
  * @brief Get the position of the Earth at a specific date in the ICRF frame using JPL DE430 ephemeris data.
  *
  * @param date The date for which to find the position of the Earth.
- * @return RadiusVector<frames::emb::icrf> The position of the Earth at the given date.
+ * @return RadiusVector<frames::earth_barycenter::icrf> The position of the Earth at the given date.
  */
 template <>
-inline constexpr RadiusVector<frames::emb::icrf> get_position_at<Earth>(const Date& date)
+inline constexpr RadiusVector<frames::earth_barycenter::icrf> get_position_at<planets::Earth>(const Date& date)
 {
-    return get_position_at_impl<EarthFromEmbEphemerisTable, frames::emb::icrf>(date);
+    return get_position_at_impl<EarthFromEmbEphemerisTable, frames::earth_barycenter::icrf>(date);
 }
 
 /**
  * @brief Get the velocity of the Earth at a specific date in the ICRF frame using JPL DE430 ephemeris data.
  *
  * @param date The date for which to find the velocity of the Earth.
- * @return VelocityVector<frames::emb::icrf> The velocity of the Earth at the given date.
+ * @return VelocityVector<frames::earth_barycenter::icrf> The velocity of the Earth at the given date.
  */
 template <>
-inline constexpr VelocityVector<frames::emb::icrf> get_velocity_at<Earth>(const Date& date)
+inline constexpr VelocityVector<frames::earth_barycenter::icrf> get_velocity_at<planets::Earth>(const Date& date)
 {
-    return get_velocity_at_impl<EarthFromEmbEphemerisTable, frames::emb::icrf>(date);
+    return get_velocity_at_impl<EarthFromEmbEphemerisTable, frames::earth_barycenter::icrf>(date);
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS

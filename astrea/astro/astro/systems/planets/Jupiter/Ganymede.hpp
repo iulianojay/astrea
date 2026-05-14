@@ -63,9 +63,16 @@ static CelestialBodyParameters DEFAULT_GANYMEDE_PARAMS{
  *
  * This class provides properties and methods specific to Ganymede, including its physical and orbital parameters.
  */
-inline constexpr struct Ganymede : CelestialBody<"Ganymede", Jupiter, DEFAULT_GANYMEDE_PARAMS> {
+inline constexpr struct Ganymede : CelestialBody<"Ganymede", Jupiter> {
 } Ganymede;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Ganymede>()
+{
+    return planets::DEFAULT_GANYMEDE_PARAMS;
+}
+
 } // namespace astro
 } // namespace astrea

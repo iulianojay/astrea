@@ -112,7 +112,7 @@ class OrbitalElements {
      *
      * @param elements The orbital elements to initialize with.
      */
-    template <typename Frame_T>
+    template <IsFrame auto _frame_>
         requires(IsRegisteredFrame<Frame_T>)
     OrbitalElements(Cartesian<Frame_T> elements) :
         _elements(elements)
@@ -385,7 +385,7 @@ class OrbitalElementPartials {
      *
      * @param elements The orbital element partials to initialize with.
      */
-    template <typename Frame_T>
+    template <IsFrame auto _frame_>
         requires(IsRegisteredFrame<Frame_T>)
     OrbitalElementPartials(CartesianPartial<Frame_T> elements) :
         _elements(elements)

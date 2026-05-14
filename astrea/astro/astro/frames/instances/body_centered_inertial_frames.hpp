@@ -19,6 +19,7 @@
 #pragma once
 
 #include <astro/frames/Frame.hpp>
+#include <astro/systems/planets.hpp>
 
 namespace astrea {
 namespace astro {

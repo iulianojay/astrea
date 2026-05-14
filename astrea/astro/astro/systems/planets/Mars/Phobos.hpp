@@ -63,9 +63,16 @@ static CelestialBodyParameters DEFAULT_PHOBOS_PARAMS{
  *
  * This class provides properties and methods specific to Phobos, including its physical and orbital parameters.
  */
-inline constexpr struct Phobos : CelestialBody<"Phobos", Mars, DEFAULT_PHOBOS_PARAMS> {
+inline constexpr struct Phobos : CelestialBody<"Phobos", Mars> {
 } Phobos;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Phobos>()
+{
+    return planets::DEFAULT_PHOBOS_PARAMS;
+}
+
 } // namespace astro
 } // namespace astrea

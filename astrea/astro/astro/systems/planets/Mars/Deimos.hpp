@@ -63,9 +63,16 @@ static CelestialBodyParameters DEFAULT_DEIMOS_PARAMS{
  *
  * This class provides properties and methods specific to Deimos, including its physical and orbital parameters.
  */
-inline constexpr struct Deimos : CelestialBody<"Deimos", Mars, DEFAULT_DEIMOS_PARAMS> {
+inline constexpr struct Deimos : CelestialBody<"Deimos", Mars> {
 } Deimos;
 
 } // namespace planets
+
+template <>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Deimos>()
+{
+    return planets::DEFAULT_DEIMOS_PARAMS;
+}
+
 } // namespace astro
 } // namespace astrea
