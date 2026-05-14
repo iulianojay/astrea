@@ -12,7 +12,7 @@ class CartesianVector;
 ```
 
 - **Value_T**: The physical quantity type (e.g., `Distance`, `Velocity`, `Acceleration`)
-- **Frame_T**: The coordinate frame (e.g., `ECI`, `ECEF`, `RIC`)
+- **_frame_**: The coordinate frame (e.g., `ECI`, `ECEF`, `RIC`)
 
 ## Basic Usage
 

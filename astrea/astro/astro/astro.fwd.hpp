@@ -70,7 +70,7 @@ class Attitude;
 class AttitudePartials;
 
 // Frames
-template <typename Value_T, IsFrame auto Frame_T>
+template <typename Value_T, IsFrame auto _frame_>
 struct CartesianVector;
 
 struct LocalHorizontalLocalVertical;

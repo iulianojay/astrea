@@ -79,83 +79,83 @@ struct DynamicFrame : public Frame<"", CelestialBodyId::CUSTOM, _axis> {
 
   public:
     /**
-     * @brief Creates an instantaneous Frame_T frame.
+     * @brief Creates an instantaneous _frame_ frame.
      *
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.
-     * @return Frame_T The instantaneous frame.
+     * @return _frame_ The instantaneous frame.
      */
-    static Frame_T instantaneous(const RadiusVector<frames::earth::icrf>& position, const VelocityVector<frames::earth::icrf>& velocity)
+    static _frame_ instantaneous(const RadiusVector<frames::earth::icrf>& position, const VelocityVector<frames::earth::icrf>& velocity)
     {
-        return Frame_T(position, velocity);
+        return _frame_(position, velocity);
     }
 
     /**
-     * @brief Rotates a CartesianVector from Earth-Centered Inertial (ECI) to Frame_T coordinates.
+     * @brief Rotates a CartesianVector from Earth-Centered Inertial (ECI) to _frame_ coordinates.
      *
      * @tparam Value_T The type of the vector components.
      * @param vec The CartesianVector in ECI coordinates.
      * @param date The date for which the conversion is performed.
-     * @return CartesianVector<Value_T, Frame_T> The rotated CartesianVector in Frame_T coordinates.
+     * @return CartesianVector<Value_T, _frame_> The rotated CartesianVector in _frame_ coordinates.
      */
     template <typename Value_T>
-    CartesianVector<Value_T, Frame_T>
+    CartesianVector<Value_T, _frame_>
         rotate_into_this_frame(const CartesianVector<Value_T, frames::earth::icrf>& vec, const Date& date) const
     {
         return get_dcm_impl(date) * vec;
     }
 
     /**
-     * @brief Rotates a CartesianVector from Frame_T coordinates to Earth-Centered Inertial (ECI) coordinates.
+     * @brief Rotates a CartesianVector from _frame_ coordinates to Earth-Centered Inertial (ECI) coordinates.
      *
      * @tparam Value_T The type of the vector components.
-     * @param vec The CartesianVector in Frame_T coordinates.
+     * @param vec The CartesianVector in _frame_ coordinates.
      * @param date The date for which the conversion is performed.
      * @return CartesianVector<Value_T, frames::earth::icrf> The rotated CartesianVector in ECI coordinates.
      */
     template <typename Value_T>
     CartesianVector<Value_T, frames::earth::icrf>
-        rotate_out_of_this_frame(const CartesianVector<Value_T, Frame_T>& vec, const Date& date) const
+        rotate_out_of_this_frame(const CartesianVector<Value_T, _frame_>& vec, const Date& date) const
     {
         return get_dcm_impl(date).transpose() * vec;
     }
 
     /**
-     * @brief Converts a CartesianVector from Earth-Centered Inertial (ECI) to Frame_T coordinates.
+     * @brief Converts a CartesianVector from Earth-Centered Inertial (ECI) to _frame_ coordinates.
      *
      * @tparam Value_T The type of the vector components.
      * @param vec The CartesianVector in ECI coordinates.
      * @param date The date for which the conversion is performed.
-     * @return RadiusVector<Frame_T> The converted CartesianVector in Frame_T coordinates.
+     * @return RadiusVector<_frame_> The converted CartesianVector in _frame_ coordinates.
      */
-    RadiusVector<Frame_T> convert_to_this_frame(const RadiusVector<frames::earth::icrf>& vec, const Date& date) const
+    RadiusVector<_frame_> convert_to_this_frame(const RadiusVector<frames::earth::icrf>& vec, const Date& date) const
     {
         return get_dcm_impl(date) * (vec - get_inertial_position(date));
     }
 
     /**
-     * @brief Converts a CartesianVector from Frame_T coordinates to Earth-Centered Inertial (ECI) coordinates.
+     * @brief Converts a CartesianVector from _frame_ coordinates to Earth-Centered Inertial (ECI) coordinates.
      *
      * @tparam Value_T The type of the vector components.
-     * @param vec The CartesianVector in Frame_T coordinates.
+     * @param vec The CartesianVector in _frame_ coordinates.
      * @param date The date for which the conversion is performed.
      * @return RadiusVector<frames::earth::icrf> The converted CartesianVector in ECI coordinates.
      */
-    RadiusVector<frames::earth::icrf> convert_from_this_frame(const RadiusVector<Frame_T>& vec, const Date& date) const
+    RadiusVector<frames::earth::icrf> convert_from_this_frame(const RadiusVector<_frame_>& vec, const Date& date) const
     {
         return get_dcm_impl(date).transpose() * vec + get_inertial_position(date);
     }
 
   private:
     /**
-     * @brief Get the direction cosine matrix (DCM) from Earth-Centered Inertial (ECI) to Frame_T coordinates.
+     * @brief Get the direction cosine matrix (DCM) from Earth-Centered Inertial (ECI) to _frame_ coordinates.
      *
      * @param date The date for which the DCM is requested.
-     * @return DCM<frames::earth::icrf, Frame_T> The DCM from ECI to Frame_T coordinates.
+     * @return DCM<frames::earth::icrf, _frame_> The DCM from ECI to _frame_ coordinates.
      */
-    DCM<frames::earth::icrf, Frame_T> get_dcm_impl(const Date& date) const
+    DCM<frames::earth::icrf, _frame_> get_dcm_impl(const Date& date) const
     {
-        return static_cast<const Frame_T*>(this)->get_dcm(date);
+        return static_cast<const _frame_*>(this)->get_dcm(date);
     }
 
     RadiusVector<frames::earth::icrf> get_center_offset(const Date& date) const { return get_inertial_position(date); }

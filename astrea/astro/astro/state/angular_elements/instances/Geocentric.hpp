@@ -297,9 +297,9 @@ Distance calculate_geocentric_radius(const Angle& lat, const Distance& rEquitori
  * @return The latitude, longitude, and altitude as a tuple.
  */
 template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<Frame_T>)
+    requires(IsFixedRotatingFrame<_frame_>)
 std::tuple<Angle, Angle, Distance>
-    convert_body_fixed_to_geocentric(const RadiusVector<Frame_T>& rEcef, const Distance& rEquitorial, const Distance& rPolar)
+    convert_body_fixed_to_geocentric(const RadiusVector<_frame_>& rEcef, const Distance& rEquitorial, const Distance& rPolar)
 {
     const Distance& x = rEcef[0];
     const Distance& y = rEcef[1];
@@ -329,8 +329,8 @@ std::tuple<Angle, Angle, Distance>
  * @return The radius vector in ECEF coordinates.
  */
 template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<Frame_T>)
-RadiusVector<Frame_T>
+    requires(IsFixedRotatingFrame<_frame_>)
+RadiusVector<_frame_>
     convert_geocentric_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar)
 {
     const Distance rGeocentric = calculate_geocentric_radius(lat, rEquitorial, rPolar);

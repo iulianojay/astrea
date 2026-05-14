@@ -403,13 +403,13 @@ class Quaternion {
     /**
      * @brief Multiplication operator for the Quaternion class.
      *
-     * @tparam Out_Frame_U The output frame type of the other quaternion.
+     * @tparam _out_frame_u_ The output frame type of the other quaternion.
      * @param other The quaternion to multiply with this quaternion.
      * @return A new quaternion that is the product of this quaternion and the other quaternion.
      */
-    template <typename Out_Frame_U>
-        requires(!IsSameFrame<_in_frame_, Out_Frame_U>)
-    Quaternion<_in_frame_, Out_Frame_U> operator*(const Quaternion<_out_frame_, Out_Frame_U>& other) const
+    template <typename _out_frame_u_>
+        requires(!is_same_frame(_in_frame_, _out_frame_u_))
+    Quaternion<_in_frame_, _out_frame_u_> operator*(const Quaternion<_out_frame_, _out_frame_u_>& other) const
     {
         const auto& x1 = _u.get_x();
         const auto& y1 = _u.get_y();

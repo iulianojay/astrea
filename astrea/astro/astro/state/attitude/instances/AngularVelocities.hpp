@@ -116,21 +116,21 @@ class AngularVelocities {
     const CartesianVector<AngularVelocity, _in_frame_>& get_angular_velocities() const { return _angularVelocities; }
 
     // Explicitly deleted copy/move assignment/constructor to prevent implicit frame switches, rotation type conversions, and sequence conversions.
-    template <typename In_Frame_U, typename Ref_Frame_U>
-        requires(!IsSameFrame<_in_frame_, In_Frame_U> || !IsSameFrame<_ref_frame_, Ref_Frame_U>)
-    AngularVelocities(const AngularVelocities<In_Frame_U, Ref_Frame_U>& other) = delete;
+    template <typename _in_frame_u_, typename Ref__frame_u_>
+        requires(!is_same_frame(_in_frame_, _in_frame_u_ > || !IsSameFrame < _ref_frame_, Ref__frame_u_))
+    AngularVelocities(const AngularVelocities<_in_frame_u_, Ref__frame_u_>& other) = delete;
 
-    template <typename In_Frame_U, typename Ref_Frame_U>
-        requires(!IsSameFrame<_in_frame_, In_Frame_U> || !IsSameFrame<_ref_frame_, Ref_Frame_U>)
-    AngularVelocities(AngularVelocities<In_Frame_U, Ref_Frame_U>&& other) = delete;
+    template <typename _in_frame_u_, typename Ref__frame_u_>
+        requires(!is_same_frame(_in_frame_, _in_frame_u_ > || !IsSameFrame < _ref_frame_, Ref__frame_u_))
+    AngularVelocities(AngularVelocities<_in_frame_u_, Ref__frame_u_>&& other) = delete;
 
-    template <typename In_Frame_U, typename Ref_Frame_U>
-        requires(!IsSameFrame<_in_frame_, In_Frame_U> || !IsSameFrame<_ref_frame_, Ref_Frame_U>)
-    AngularVelocities<_in_frame_, _ref_frame_>& operator=(const AngularVelocities<In_Frame_U, Ref_Frame_U>& other) = delete;
+    template <typename _in_frame_u_, typename Ref__frame_u_>
+        requires(!is_same_frame(_in_frame_, _in_frame_u_ > || !IsSameFrame < _ref_frame_, Ref__frame_u_))
+    AngularVelocities<_in_frame_, _ref_frame_>& operator=(const AngularVelocities<_in_frame_u_, Ref__frame_u_>& other) = delete;
 
-    template <typename In_Frame_U, typename Ref_Frame_U>
-        requires(!IsSameFrame<_in_frame_, In_Frame_U> || !IsSameFrame<_ref_frame_, Ref_Frame_U>)
-    AngularVelocities<_in_frame_, _ref_frame_>& operator=(AngularVelocities<In_Frame_U, Ref_Frame_U>&& other) = delete;
+    template <typename _in_frame_u_, typename Ref__frame_u_>
+        requires(!is_same_frame(_in_frame_, _in_frame_u_ > || !IsSameFrame < _ref_frame_, Ref__frame_u_))
+    AngularVelocities<_in_frame_, _ref_frame_>& operator=(AngularVelocities<_in_frame_u_, Ref__frame_u_>&& other) = delete;
 
     /**
      * @brief Equality operator for CartesianVector.
@@ -153,9 +153,9 @@ class AngularVelocities {
      * @return true If the two vectors are not equal.
      * @return false If the two vectors are equal.
      */
-    template <typename In_Frame_U, typename Ref_Frame_U>
-        requires(!IsSameFrame<_in_frame_, In_Frame_U> || !IsSameFrame<_ref_frame_, Ref_Frame_U>)
-    bool operator==(const AngularVelocities<In_Frame_U, Ref_Frame_U>& other) const
+    template <typename _in_frame_u_, typename Ref__frame_u_>
+        requires(!is_same_frame(_in_frame_, _in_frame_u_ > || !IsSameFrame < _ref_frame_, Ref__frame_u_))
+    bool operator==(const AngularVelocities<_in_frame_u_, Ref__frame_u_>& other) const
     {
         return false;
     }

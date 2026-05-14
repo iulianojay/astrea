@@ -69,7 +69,7 @@ class Cartesian {
      * @param r Radius vector (position)
      * @param v Velocity vector
      */
-    Cartesian(const RadiusVector<Frame_T>& r, const VelocityVector<Frame_T>& v) :
+    Cartesian(const RadiusVector<_frame_>& r, const VelocityVector<_frame_>& v) :
         _r(r),
         _v(v)
     {
@@ -173,14 +173,14 @@ class Cartesian {
      *
      * @param other Another Cartesian object
      */
-    Cartesian(const Cartesian<Frame_T>&);
+    Cartesian(const Cartesian<_frame_>&);
 
     /**
      * @brief Move constructor for Cartesian.
      *
      * @param other Another Cartesian object
      */
-    Cartesian(Cartesian<Frame_T>&&) noexcept;
+    Cartesian(Cartesian<_frame_>&&) noexcept;
 
     /**
      * @brief Move assignment operator for Cartesian.
@@ -188,7 +188,7 @@ class Cartesian {
      * @param other Another Cartesian object
      * @return Cartesian& Reference to the current object
      */
-    Cartesian& operator=(Cartesian<Frame_T>&&) noexcept;
+    Cartesian& operator=(Cartesian<_frame_>&&) noexcept;
 
     /**
      * @brief Copy assignment operator for Cartesian.
@@ -196,7 +196,7 @@ class Cartesian {
      * @param other Another Cartesian object
      * @return Cartesian& Reference to the current object
      */
-    Cartesian& operator=(const Cartesian<Frame_T>&);
+    Cartesian& operator=(const Cartesian<_frame_>&);
 
     /**
      * @brief Default destructor for Cartesian.
@@ -210,7 +210,7 @@ class Cartesian {
      * @return true if the two Cartesian objects are equal
      * @return false if the two Cartesian objects are not equal
      */
-    bool operator==(const Cartesian<Frame_T>& other) const;
+    bool operator==(const Cartesian<_frame_>& other) const;
 
     /**
      * @brief Compares two Cartesian objects for inequality.
@@ -219,7 +219,7 @@ class Cartesian {
      * @return true if the two Cartesian objects are not equal
      * @return false if the two Cartesian objects are equal
      */
-    bool operator!=(const Cartesian<Frame_T>& other) const;
+    bool operator!=(const Cartesian<_frame_>& other) const;
 
     /**
      * @brief Adds two Cartesian objects.
@@ -227,10 +227,10 @@ class Cartesian {
      * @param other Another Cartesian object
      * @return Resultant Cartesian sum.
      */
-    Cartesian operator+(const Cartesian<Frame_T>& other) const;
+    Cartesian operator+(const Cartesian<_frame_>& other) const;
 
-    Cartesian operator+(const RadiusVector<Frame_T>& r) const;
-    Cartesian operator+(const VelocityVector<Frame_T>& v) const;
+    Cartesian operator+(const RadiusVector<_frame_>& r) const;
+    Cartesian operator+(const VelocityVector<_frame_>& v) const;
 
     /**
      * @brief Adds another Cartesian object to the current one.
@@ -238,10 +238,10 @@ class Cartesian {
      * @param other Another Cartesian object
      * @return Reference to the current Cartesian object after addition.
      */
-    Cartesian& operator+=(const Cartesian<Frame_T>& other);
+    Cartesian& operator+=(const Cartesian<_frame_>& other);
 
-    Cartesian& operator+=(const RadiusVector<Frame_T>& r);
-    Cartesian& operator+=(const VelocityVector<Frame_T>& v);
+    Cartesian& operator+=(const RadiusVector<_frame_>& r);
+    Cartesian& operator+=(const VelocityVector<_frame_>& v);
 
     /**
      * @brief Subtracts another Cartesian object from the current one.
@@ -249,10 +249,10 @@ class Cartesian {
      * @param other Another Cartesian object
      * @return Resultant Cartesian difference.
      */
-    Cartesian operator-(const Cartesian<Frame_T>& other) const;
+    Cartesian operator-(const Cartesian<_frame_>& other) const;
 
-    Cartesian operator-(const RadiusVector<Frame_T>& r) const;
-    Cartesian operator-(const VelocityVector<Frame_T>& v) const;
+    Cartesian operator-(const RadiusVector<_frame_>& r) const;
+    Cartesian operator-(const VelocityVector<_frame_>& v) const;
 
     /**
      * @brief Subtracts another Cartesian object from the current one.
@@ -260,10 +260,10 @@ class Cartesian {
      * @param other Another Cartesian object
      * @return Reference to the current Cartesian object after subtraction.
      */
-    Cartesian& operator-=(const Cartesian<Frame_T>& other);
+    Cartesian& operator-=(const Cartesian<_frame_>& other);
 
-    Cartesian& operator-=(const RadiusVector<Frame_T>& r);
-    Cartesian& operator-=(const VelocityVector<Frame_T>& v);
+    Cartesian& operator-=(const RadiusVector<_frame_>& r);
+    Cartesian& operator-=(const VelocityVector<_frame_>& v);
 
     /**
      * @brief Multiplies the Cartesian state vector by a scalar.
@@ -287,7 +287,7 @@ class Cartesian {
      * @param time Time value to divide by
      * @return Resultant CartesianPartial after division.
      */
-    CartesianPartial<Frame_T> operator/(const Time& time) const;
+    CartesianPartial<_frame_> operator/(const Time& time) const;
 
     /**
      * @brief Divides the Cartesian state vector by another Cartesian object.
@@ -295,7 +295,7 @@ class Cartesian {
      * @param other Another Cartesian object
      * @return Resultant vector of unitless values after division.
      */
-    std::vector<Unitless> operator/(const Cartesian<Frame_T>& other) const;
+    std::vector<Unitless> operator/(const Cartesian<_frame_>& other) const;
 
     /**
      * @brief Divides the Cartesian state vector by a scalar.
@@ -314,18 +314,18 @@ class Cartesian {
     Cartesian& operator/=(const Unitless& divisor);
 
     /**
-     * @brief Converts the Cartesian state vector to a RadiusVector<Frame_T>.
+     * @brief Converts the Cartesian state vector to a RadiusVector<_frame_>.
      *
-     * @return RadiusVector<Frame_T> The position vector in Cartesian coordinates.
+     * @return RadiusVector<_frame_> The position vector in Cartesian coordinates.
      */
-    const RadiusVector<Frame_T>& get_position() const { return _r; }
+    const RadiusVector<_frame_>& get_position() const { return _r; }
 
     /**
-     * @brief Converts the Cartesian state vector to a VelocityVector<Frame_T>.
+     * @brief Converts the Cartesian state vector to a VelocityVector<_frame_>.
      *
-     * @return VelocityVector<Frame_T> The velocity vector in Cartesian coordinates.
+     * @return VelocityVector<_frame_> The velocity vector in Cartesian coordinates.
      */
-    const VelocityVector<Frame_T>& get_velocity() const { return _v; }
+    const VelocityVector<_frame_>& get_velocity() const { return _v; }
 
     /**
      * @brief Get the x value of the Cartesian state vector.
@@ -389,8 +389,8 @@ class Cartesian {
     Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const GravParam& mu, const Time& targetTime) const;
 
   private:
-    RadiusVector<Frame_T> _r;   //!< Position vector
-    VelocityVector<Frame_T> _v; //!< Velocity vector
+    RadiusVector<_frame_> _r;   //!< Position vector
+    VelocityVector<_frame_> _v; //!< Velocity vector
 
     /**
      * @brief Creates a Cartesian object from a vector of unitless values.
@@ -440,7 +440,7 @@ class CartesianPartial {
      * @param v Velocity vector
      * @param a Acceleration vector
      */
-    CartesianPartial(const VelocityVector<Frame_T>& v, const AccelerationVector<Frame_T>& a) :
+    CartesianPartial(const VelocityVector<_frame_>& v, const AccelerationVector<_frame_>& a) :
         _v(v),
         _a(a)
     {
@@ -494,7 +494,7 @@ class CartesianPartial {
      * @param time Time to multiply the CartesianPartial by
      * @return Cartesian Resulting Cartesian state vector after multiplication.
      */
-    Cartesian<Frame_T> operator*(const Time& time) const;
+    Cartesian<_frame_> operator*(const Time& time) const;
 
     /**
      * @brief Converts the CartesianPartial state vector to a vector of unitless values.
@@ -504,8 +504,8 @@ class CartesianPartial {
     std::vector<Unitless> force_to_vector() const;
 
   private:
-    VelocityVector<Frame_T> _v;     //!< Velocity vector
-    AccelerationVector<Frame_T> _a; //!< Acceleration vector
+    VelocityVector<_frame_> _v;     //!< Velocity vector
+    AccelerationVector<_frame_> _a; //!< Acceleration vector
 };
 
 } // namespace astro

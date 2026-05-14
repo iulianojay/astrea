@@ -102,7 +102,7 @@ class Equinoctial {
      * @param sys The astrodynamics system context for conversion.
      */
     template <IsFrame auto _frame_>
-    Equinoctial(const Cartesian<Frame_T>& elements, const GravParam& mu) :
+    Equinoctial(const Cartesian<_frame_>& elements, const GravParam& mu) :
         Equinoctial(Keplerian(elements, mu), mu)
     {
     }

@@ -86,8 +86,8 @@ class LambertSolver {
 
     struct Solution {
         Time tof;                   //!< Time of flight for the transfer
-        VelocityVector<Frame_T> v0; //!< Initial velocity vector at r0
-        VelocityVector<Frame_T> vf; //!< Final velocity vector at rf
+        VelocityVector<_frame_> v0; //!< Initial velocity vector at r0
+        VelocityVector<_frame_> vf; //!< Final velocity vector at rf
     };
 
     /**
@@ -99,7 +99,7 @@ class LambertSolver {
      * @return The final state (position and velocity) of the spacecraft.
      */
     template <IsFrame auto _frame_>
-    static Cartesian<Frame_T> solve(const Cartesian<Frame_T>& state0, const Time& dt, const GravParam& mu)
+    static Cartesian<_frame_> solve(const Cartesian<_frame_>& state0, const Time& dt, const GravParam& mu)
     {
 
         using namespace mp_units;
@@ -107,8 +107,8 @@ class LambertSolver {
         using mp_units::angular::unit_symbols::rad;
 
         // Parse initial state
-        const RadiusVector<Frame_T> r0   = state0.get_position();
-        const VelocityVector<Frame_T> v0 = state0.get_velocity();
+        const RadiusVector<_frame_> r0   = state0.get_position();
+        const VelocityVector<_frame_> v0 = state0.get_velocity();
 
         // Constants
         const Distance R0 = r0.norm();
@@ -151,15 +151,15 @@ class LambertSolver {
                 const quantity g = dt - 1.0 * one / sqMU * Xsq * X * Sz;
 
                 // Find r
-                const RadiusVector<Frame_T> rf = f * r0 + g * v0;
+                const RadiusVector<_frame_> rf = f * r0 + g * v0;
                 const Distance Rf              = rf.norm();
 
                 // Find v
                 const quantity fdot              = sqMU / (Rf * R0) * X * (z * Sz - 1.0 * one);
                 const quantity gdot              = 1.0 * one - Xsq / Rf * Cz;
-                const VelocityVector<Frame_T> vf = fdot * r0 + gdot * v0;
+                const VelocityVector<_frame_> vf = fdot * r0 + gdot * v0;
 
-                return Cartesian<Frame_T>(rf, vf);
+                return Cartesian<_frame_>(rf, vf);
             }
             else if (it >= ITER_MAX) {
                 throw std::runtime_error("LambertSolver: Maximum iterations reached");
@@ -178,8 +178,8 @@ class LambertSolver {
      * @return A pair of velocity vectors (initial and final) for the spacecraft.
      */
     template <IsFrame auto _frame_>
-    static std::pair<VelocityVector<Frame_T>, VelocityVector<Frame_T>>
-        solve(const RadiusVector<Frame_T>& r0, const RadiusVector<Frame_T>& rf, const Time& dt, const GravParam& mu, const OrbitDirection& direction)
+    static std::pair<VelocityVector<_frame_>, VelocityVector<_frame_>>
+        solve(const RadiusVector<_frame_>& r0, const RadiusVector<_frame_>& rf, const Time& dt, const GravParam& mu, const OrbitDirection& direction)
     {
 
         using namespace mp_units;
@@ -239,8 +239,8 @@ class LambertSolver {
                 const quantity divG = 1.0 / g;
 
                 // v1 and v2
-                const VelocityVector<Frame_T> v0 = divG * (rf - f * r0);
-                const VelocityVector<Frame_T> vf = divG * (gdot * rf - r0);
+                const VelocityVector<_frame_> v0 = divG * (rf - f * r0);
+                const VelocityVector<_frame_> vf = divG * (gdot * rf - r0);
 
                 return { v0, vf };
             }
@@ -262,8 +262,8 @@ class LambertSolver {
      * @return A Solution containing the time of flight and the initial/final velocity vectors.
      */
     template <IsFrame auto _frame_>
-    static Solution<Frame_T>
-        solve(const RadiusVector<Frame_T>& r0, const RadiusVector<Frame_T>& rf, const GravParam& mu, const OrbitDirection& direction, const SolutionType& solutionType)
+    static Solution<_frame_>
+        solve(const RadiusVector<_frame_>& r0, const RadiusVector<_frame_>& rf, const GravParam& mu, const OrbitDirection& direction, const SolutionType& solutionType)
     {
 
         using namespace mp_units;
@@ -307,8 +307,8 @@ class LambertSolver {
             const quantity gdot = 1.0 * one - y / Rf;
             const quantity divG = 1.0 / g;
 
-            const VelocityVector<Frame_T> v0Result = divG * (rf - f * r0);
-            const VelocityVector<Frame_T> vfResult = divG * (gdot * rf - r0);
+            const VelocityVector<_frame_> v0Result = divG * (rf - f * r0);
+            const VelocityVector<_frame_> vfResult = divG * (gdot * rf - r0);
 
             return { tof, v0Result, vfResult };
         }
@@ -375,9 +375,9 @@ class LambertSolver {
      * and the f-and-g functions give the velocities.
      */
     template <IsFrame auto _frame_>
-    static std::pair<VelocityVector<Frame_T>, VelocityVector<Frame_T>> solve(
-        const RadiusVector<Frame_T>& r0,
-        const RadiusVector<Frame_T>& rf,
+    static std::pair<VelocityVector<_frame_>, VelocityVector<_frame_>> solve(
+        const RadiusVector<_frame_>& r0,
+        const RadiusVector<_frame_>& rf,
         const Time& dt,
         const GravParam& mu,
         const OrbitDirection& direction,
@@ -483,8 +483,8 @@ class LambertSolver {
         const Unitless gdot = 1.0 * one - p / Rf;
         const Time g        = R0 * Rf * sin(dtheta) / sqrt(mu * p);
 
-        const VelocityVector<Frame_T> v0Ret = (rf - f * r0) / g;
-        const VelocityVector<Frame_T> vfRet = (gdot * rf - r0) / g;
+        const VelocityVector<_frame_> v0Ret = (rf - f * r0) / g;
+        const VelocityVector<_frame_> vfRet = (gdot * rf - r0) / g;
 
         return { v0Ret, vfRet };
     }

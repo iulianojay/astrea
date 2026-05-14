@@ -56,7 +56,7 @@ bool nearly_equal(
  * If they are not equal, it triggers a test failure.
  *
  * @tparam Value_T The value type of the first CartesianVector.
- * @tparam Frame_T The frame type of the CartesianVectors.
+ * @tparam _frame_ The frame type of the CartesianVectors.
  * @tparam Value_U The value type of the second CartesianVector.
  * @param vec The first CartesianVector to compare.
  * @param expected The second CartesianVector to compare.
@@ -65,8 +65,8 @@ bool nearly_equal(
  */
 template <typename Value_T, IsFrame auto _frame_, typename Value_U>
 bool nearly_equal(
-    const CartesianVector<Value_T, Frame_T>& vec,
-    const CartesianVector<Value_U, Frame_T>& expected,
+    const CartesianVector<Value_T, _frame_>& vec,
+    const CartesianVector<Value_U, _frame_>& expected,
     const Unitless& relTol = 0.0 * mp_units::one,
     const Unitless& absTol = 0.0 * mp_units::one
 ) noexcept

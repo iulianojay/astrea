@@ -41,7 +41,7 @@ namespace astrea {
 namespace astro {
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>::Cartesian(const Keplerian& elements, const GravParam& mu)
+Cartesian<_frame_>::Cartesian(const Keplerian& elements, const GravParam& mu)
 {
     // Extract elements
     const auto& a     = elements.get_semimajor();
@@ -102,7 +102,7 @@ Cartesian<Frame_T>::Cartesian(const Keplerian& elements, const GravParam& mu)
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>::Cartesian(const Equinoctial& elements, const GravParam& mu)
+Cartesian<_frame_>::Cartesian(const Equinoctial& elements, const GravParam& mu)
 {
     // Extract
     const auto& semilatus     = elements.get_semilatus();
@@ -149,44 +149,44 @@ Cartesian<Frame_T>::Cartesian(const Equinoctial& elements, const GravParam& mu)
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> Cartesian<Frame_T>::LEO(const GravParam& mu)
+Cartesian<_frame_> Cartesian<_frame_>::LEO(const GravParam& mu)
 {
-    return Cartesian<Frame_T>(Keplerian::LEO(), mu);
+    return Cartesian<_frame_>(Keplerian::LEO(), mu);
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> Cartesian<Frame_T>::LMEO(const GravParam& mu)
+Cartesian<_frame_> Cartesian<_frame_>::LMEO(const GravParam& mu)
 {
-    return Cartesian<Frame_T>(Keplerian::LMEO(), mu);
+    return Cartesian<_frame_>(Keplerian::LMEO(), mu);
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> Cartesian<Frame_T>::GPS(const GravParam& mu)
+Cartesian<_frame_> Cartesian<_frame_>::GPS(const GravParam& mu)
 {
-    return Cartesian<Frame_T>(Keplerian::GPS(), mu);
+    return Cartesian<_frame_>(Keplerian::GPS(), mu);
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> Cartesian<Frame_T>::HMEO(const GravParam& mu)
+Cartesian<_frame_> Cartesian<_frame_>::HMEO(const GravParam& mu)
 {
-    return Cartesian<Frame_T>(Keplerian::HMEO(), mu);
+    return Cartesian<_frame_>(Keplerian::HMEO(), mu);
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> Cartesian<Frame_T>::GEO(const GravParam& mu)
+Cartesian<_frame_> Cartesian<_frame_>::GEO(const GravParam& mu)
 {
-    return Cartesian<Frame_T>(Keplerian::GEO(), mu);
+    return Cartesian<_frame_>(Keplerian::GEO(), mu);
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>::Cartesian(Cartesian<Frame_T>&& other) noexcept :
+Cartesian<_frame_>::Cartesian(Cartesian<_frame_>&& other) noexcept :
     _r(std::move(other._r)),
     _v(std::move(other._v))
 {
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>::Cartesian(const Cartesian<Frame_T>& other) :
+Cartesian<_frame_>::Cartesian(const Cartesian<_frame_>& other) :
     _r(other._r),
     _v(other._v)
 {
@@ -195,7 +195,7 @@ Cartesian<Frame_T>::Cartesian(const Cartesian<Frame_T>& other) :
 
 // Move assignment operator
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>& Cartesian<Frame_T>::operator=(Cartesian<Frame_T>&& other) noexcept
+Cartesian<_frame_>& Cartesian<_frame_>::operator=(Cartesian<_frame_>&& other) noexcept
 {
     if (this != &other) {
         _r = std::move(other._r);
@@ -206,20 +206,20 @@ Cartesian<Frame_T>& Cartesian<Frame_T>::operator=(Cartesian<Frame_T>&& other) no
 
 // Copy assignment operator
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>& Cartesian<Frame_T>::operator=(const Cartesian<Frame_T>& other)
+Cartesian<_frame_>& Cartesian<_frame_>::operator=(const Cartesian<_frame_>& other)
 {
     return *this = Cartesian(other);
 }
 
 // Comparitor operators
 template <IsFrame auto _frame_>
-bool Cartesian<Frame_T>::operator==(const Cartesian<Frame_T>& other) const
+bool Cartesian<_frame_>::operator==(const Cartesian<_frame_>& other) const
 {
     return (_r == other._r && _v == other._v);
 }
 
 template <IsFrame auto _frame_>
-bool Cartesian<Frame_T>::operator!=(const Cartesian<Frame_T>& other) const
+bool Cartesian<_frame_>::operator!=(const Cartesian<_frame_>& other) const
 {
     return !(*this == other);
 }
@@ -227,13 +227,13 @@ bool Cartesian<Frame_T>::operator!=(const Cartesian<Frame_T>& other) const
 
 // Mathematical operators
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> Cartesian<Frame_T>::operator+(const Cartesian<Frame_T>& other) const
+Cartesian<_frame_> Cartesian<_frame_>::operator+(const Cartesian<_frame_>& other) const
 {
     return Cartesian(_r + other._r, _v + other._v);
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>& Cartesian<Frame_T>::operator+=(const Cartesian<Frame_T>& other)
+Cartesian<_frame_>& Cartesian<_frame_>::operator+=(const Cartesian<_frame_>& other)
 {
     _r += other._r;
     _v += other._v;
@@ -241,39 +241,39 @@ Cartesian<Frame_T>& Cartesian<Frame_T>::operator+=(const Cartesian<Frame_T>& oth
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> Cartesian<Frame_T>::operator+(const RadiusVector<Frame_T>& r) const
+Cartesian<_frame_> Cartesian<_frame_>::operator+(const RadiusVector<_frame_>& r) const
 {
     return Cartesian(_r + r, _v);
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>& Cartesian<Frame_T>::operator+=(const RadiusVector<Frame_T>& r)
+Cartesian<_frame_>& Cartesian<_frame_>::operator+=(const RadiusVector<_frame_>& r)
 {
     _r += r;
     return *this;
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> Cartesian<Frame_T>::operator+(const VelocityVector<Frame_T>& v) const
+Cartesian<_frame_> Cartesian<_frame_>::operator+(const VelocityVector<_frame_>& v) const
 {
     return Cartesian(_r, _v + v);
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>& Cartesian<Frame_T>::operator+=(const VelocityVector<Frame_T>& v)
+Cartesian<_frame_>& Cartesian<_frame_>::operator+=(const VelocityVector<_frame_>& v)
 {
     _v += v;
     return *this;
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> Cartesian<Frame_T>::operator-(const Cartesian<Frame_T>& other) const
+Cartesian<_frame_> Cartesian<_frame_>::operator-(const Cartesian<_frame_>& other) const
 {
     return Cartesian(_r - other._r, _v - other._v);
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>& Cartesian<Frame_T>::operator-=(const Cartesian<Frame_T>& other)
+Cartesian<_frame_>& Cartesian<_frame_>::operator-=(const Cartesian<_frame_>& other)
 {
     _r -= other._r;
     _v -= other._v;
@@ -281,39 +281,39 @@ Cartesian<Frame_T>& Cartesian<Frame_T>::operator-=(const Cartesian<Frame_T>& oth
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> Cartesian<Frame_T>::operator-(const RadiusVector<Frame_T>& r) const
+Cartesian<_frame_> Cartesian<_frame_>::operator-(const RadiusVector<_frame_>& r) const
 {
     return Cartesian(_r - r, _v);
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>& Cartesian<Frame_T>::operator-=(const RadiusVector<Frame_T>& r)
+Cartesian<_frame_>& Cartesian<_frame_>::operator-=(const RadiusVector<_frame_>& r)
 {
     _r -= r;
     return *this;
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> Cartesian<Frame_T>::operator-(const VelocityVector<Frame_T>& v) const
+Cartesian<_frame_> Cartesian<_frame_>::operator-(const VelocityVector<_frame_>& v) const
 {
     return Cartesian(_r, _v - v);
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>& Cartesian<Frame_T>::operator-=(const VelocityVector<Frame_T>& v)
+Cartesian<_frame_>& Cartesian<_frame_>::operator-=(const VelocityVector<_frame_>& v)
 {
     _v -= v;
     return *this;
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> Cartesian<Frame_T>::operator*(const Unitless& multiplier) const
+Cartesian<_frame_> Cartesian<_frame_>::operator*(const Unitless& multiplier) const
 {
     return Cartesian(_r * multiplier, _v * multiplier);
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>& Cartesian<Frame_T>::operator*=(const Unitless& multiplier)
+Cartesian<_frame_>& Cartesian<_frame_>::operator*=(const Unitless& multiplier)
 {
     _r *= multiplier;
     _v *= multiplier;
@@ -321,19 +321,19 @@ Cartesian<Frame_T>& Cartesian<Frame_T>::operator*=(const Unitless& multiplier)
 }
 
 template <IsFrame auto _frame_>
-CartesianPartial<Frame_T> Cartesian<Frame_T>::operator/(const Time& time) const
+CartesianPartial<_frame_> Cartesian<_frame_>::operator/(const Time& time) const
 {
-    return CartesianPartial<Frame_T>(_r / time, _v / time);
+    return CartesianPartial<_frame_>(_r / time, _v / time);
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> Cartesian<Frame_T>::operator/(const Unitless& divisor) const
+Cartesian<_frame_> Cartesian<_frame_>::operator/(const Unitless& divisor) const
 {
-    return Cartesian<Frame_T>(_r / divisor, _v / divisor);
+    return Cartesian<_frame_>(_r / divisor, _v / divisor);
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>& Cartesian<Frame_T>::operator/=(const Unitless& divisor)
+Cartesian<_frame_>& Cartesian<_frame_>::operator/=(const Unitless& divisor)
 {
     _r /= divisor;
     _v /= divisor;
@@ -341,8 +341,8 @@ Cartesian<Frame_T>& Cartesian<Frame_T>::operator/=(const Unitless& divisor)
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T>
-    Cartesian<Frame_T>::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<Frame_T>& other, const GravParam& mu, const Time& targetTime) const
+Cartesian<_frame_>
+    Cartesian<_frame_>::interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const GravParam& mu, const Time& targetTime) const
 {
     const std::array<Time, 2> times = { thisTime, otherTime };
     const Distance interpX          = math::fast_interpolate<Time, Distance>(times, { _r[0], other._r[0] }, targetTime);
@@ -352,18 +352,18 @@ Cartesian<Frame_T>
     const Velocity interpVy         = math::fast_interpolate<Time, Velocity>(times, { _v[1], other._v[1] }, targetTime);
     const Velocity interpVz         = math::fast_interpolate<Time, Velocity>(times, { _v[2], other._v[2] }, targetTime);
 
-    return Cartesian<Frame_T>(interpX, interpY, interpZ, interpVx, interpVy, interpVz);
+    return Cartesian<_frame_>(interpX, interpY, interpZ, interpVx, interpVy, interpVz);
 }
 
 template <IsFrame auto _frame_>
-std::vector<Unitless> Cartesian<Frame_T>::force_to_vector() const
+std::vector<Unitless> Cartesian<_frame_>::force_to_vector() const
 {
     return { _r[0] / _r[0].unit, _r[1] / _r[1].unit, _r[2] / _r[2].unit,
              _v[0] / _v[0].unit, _v[1] / _v[1].unit, _v[2] / _v[2].unit };
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> Cartesian<Frame_T>::from_vector(const std::vector<Unitless>& vec)
+Cartesian<_frame_> Cartesian<_frame_>::from_vector(const std::vector<Unitless>& vec)
 {
     if (vec.size() != 6) {
         throw std::runtime_error("Input vector must have exactly 6 elements to convert to Cartesian.");
@@ -380,20 +380,20 @@ Cartesian<Frame_T> Cartesian<Frame_T>::from_vector(const std::vector<Unitless>& 
 }
 
 template <IsFrame auto _frame_>
-Cartesian<Frame_T> CartesianPartial<Frame_T>::operator*(const Time& time) const
+Cartesian<_frame_> CartesianPartial<_frame_>::operator*(const Time& time) const
 {
-    return Cartesian<Frame_T>(_v * time, _a * time);
+    return Cartesian<_frame_>(_v * time, _a * time);
 }
 
 template <IsFrame auto _frame_>
-std::vector<Unitless> CartesianPartial<Frame_T>::force_to_vector() const
+std::vector<Unitless> CartesianPartial<_frame_>::force_to_vector() const
 {
     return { _v[0] / _v[0].unit, _v[1] / _v[1].unit, _v[2] / _v[2].unit,
              _a[0] / _a[0].unit, _a[1] / _a[1].unit, _a[2] / _a[2].unit };
 }
 
 template <IsFrame auto _frame_>
-std::ostream& operator<<(std::ostream& os, Cartesian<Frame_T> const& elements)
+std::ostream& operator<<(std::ostream& os, Cartesian<_frame_> const& elements)
 {
     os << "[";
     os << elements.get_x() << ", ";
@@ -407,7 +407,7 @@ std::ostream& operator<<(std::ostream& os, Cartesian<Frame_T> const& elements)
 }
 
 template <IsFrame auto _frame_>
-std::ostream& operator<<(std::ostream& os, CartesianPartial<Frame_T> const& elements)
+std::ostream& operator<<(std::ostream& os, CartesianPartial<_frame_> const& elements)
 {
     os << "[";
     os << elements._v[0] << ", ";

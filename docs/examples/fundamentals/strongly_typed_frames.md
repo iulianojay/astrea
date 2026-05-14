@@ -73,7 +73,7 @@ For complex, time-dependent frames, such as those attached to a payload, or vehi
 Dynamic frames can either be attached to a FrameReference object (such as a spacecraft), or defined instantaneously at a specific state.
 
 ```cpp
-// RadiusVector<Frame_T> = CartesianVector<Distance, Frame_T>
+// RadiusVector<_frame_> = CartesianVector<Distance, _frame_>
 RadiusVector<RIC> rRic = { 1.0 * km, 2.0 * km, 3.0 * km };
 
 Spacecraft frameParent;

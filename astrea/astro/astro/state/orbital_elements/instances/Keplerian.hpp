@@ -100,7 +100,7 @@ class Keplerian {
      * @param sys The astrodynamics system context for conversion.
      */
     template <IsFrame auto _frame_>
-    Keplerian(const Cartesian<Frame_T>& elements, const GravParam& mu)
+    Keplerian(const Cartesian<_frame_>& elements, const GravParam& mu)
     {
 
         using namespace mp_units;

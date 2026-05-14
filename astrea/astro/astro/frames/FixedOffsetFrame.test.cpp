@@ -37,8 +37,8 @@ static_assert(ZeroEarthIcrf::origin == CelestialBodyId::FIXED_OFFSET);
 static_assert(ZeroEarthIcrf::parent::origin == planets::Earth);
 static_assert(ZeroMarsIcrf::origin == CelestialBodyId::FIXED_OFFSET);
 static_assert(ZeroMarsIcrf::parent::origin == planets::Mars);
-static_assert(HasSameOrigin<ZeroEarthIcrf, ZeroMarsIcrf>);
-static_assert(!HasSameOrigin<ZeroEarthIcrf::parent, ZeroMarsIcrf::parent>);
+static_assert(has_same_origin(ZeroEarthIcrf, ZeroMarsIcrf));
+static_assert(!has_same_origin(ZeroEarthIcrf::parent, ZeroMarsIcrf::parent));
 
 TEST(FixedOffsetFrameOffset, DefaultOffsetXIsZero)
 {
@@ -67,19 +67,19 @@ static_assert(IsFrame<ZeroEarthIcrf>);
 static_assert(IsStaticFrame<ZeroEarthIcrf>);
 static_assert(IsInertialFrame<ZeroEarthIcrf>);
 
-static_assert(!HasSameOrigin<ZeroEarthIcrf, frames::earth::icrf>);
-static_assert(HasSameOrigin<ZeroEarthIcrf::parent, frames::earth::icrf>);
+static_assert(!has_same_origin(ZeroEarthIcrf, frames::earth::icrf));
+static_assert(has_same_origin(ZeroEarthIcrf::parent, frames::earth::icrf));
 
-static_assert(HasSameAxis<ZeroEarthIcrf, frames::earth::icrf>);
-static_assert(HasSameAxis<ZeroEarthIcrf::parent, frames::earth::icrf>);
+static_assert(has_same_axis(ZeroEarthIcrf, frames::earth::icrf));
+static_assert(has_same_axis(ZeroEarthIcrf::parent, frames::earth::icrf));
 
-static_assert(!IsSameFrame<ZeroEarthIcrf, frames::earth::icrf>);
-static_assert(IsSameFrame<ZeroEarthIcrf::parent, frames::earth::icrf>);
+static_assert(!is_same_frame(ZeroEarthIcrf, frames::earth::icrf));
+static_assert(is_same_frame(ZeroEarthIcrf::parent, frames::earth::icrf));
 
 using Also = FixedOffsetFrame<frames::earth::icrf, Distance::zero(), Distance::zero(), Distance::zero()>;
 static_assert(std::is_same_v<ZeroEarthIcrf, Also>);
-static_assert(IsSameFrame<ZeroEarthIcrf, Also>);
-static_assert(!IsSameFrame<ZeroEarthIcrf, ZeroMarsIcrf>);
+static_assert(is_same_frame(ZeroEarthIcrf, Also));
+static_assert(!is_same_frame(ZeroEarthIcrf, ZeroMarsIcrf));
 
 
 constexpr Angle HALF_PI_RAD = std::numbers::pi / 2.0 * rad;

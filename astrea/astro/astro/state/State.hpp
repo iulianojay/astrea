@@ -188,13 +188,13 @@ class State {
     /**
      * @brief Gets the position vector in a specified frame from the state.
      *
-     * @tparam Frame_T The frame to get the position vector in.
-     * @return RadiusVector<Frame_T> The position vector of the state in the specified frame.
+     * @tparam _frame_ The frame to get the position vector in.
+     * @return RadiusVector<_frame_> The position vector of the state in the specified frame.
      */
-    template <IsFrame auto Frame_T>
-    RadiusVector<Frame_T> get_position_in_frame() const
+    template <IsFrame auto _frame_>
+    RadiusVector<_frame_> get_position_in_frame() const
     {
-        return get_position().template in_frame<Frame_T>(get_epoch());
+        return get_position().template in_frame<_frame_>(get_epoch());
     }
 
     /**
@@ -210,13 +210,13 @@ class State {
     /**
      * @brief Gets the velocity vector in a specified frame from the state.
      *
-     * @tparam Frame_T The frame to get the velocity vector in.
-     * @return VelocityVector<Frame_T> The velocity vector of the state in the specified frame.
+     * @tparam _frame_ The frame to get the velocity vector in.
+     * @return VelocityVector<_frame_> The velocity vector of the state in the specified frame.
      */
-    template <IsFrame auto Frame_T>
-    VelocityVector<Frame_T> get_velocity_in_frame(const Date& date) const
+    template <IsFrame auto _frame_>
+    VelocityVector<_frame_> get_velocity_in_frame(const Date& date) const
     {
-        return get_velocity().template in_frame<Frame_T>(date);
+        return get_velocity().template in_frame<_frame_>(date);
     }
 
     /**

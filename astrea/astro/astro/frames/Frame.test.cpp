@@ -52,18 +52,18 @@ static_assert(IsStaticFrame<frames::earth::icrf>);
 static_assert(IsStaticFrame<frames::earth::j2000>);
 static_assert(IsStaticFrame<frames::earth::earth_fixed>);
 
-static_assert(HasSameOrigin<frames::earth::icrf, frames::earth::j2000>);
-static_assert(HasSameOrigin<frames::earth::icrf, frames::earth::earth_fixed>);
-static_assert(!HasSameOrigin<frames::earth::icrf, frames::mars::icrf>);
-static_assert(!HasSameOrigin<frames::earth::icrf, frames::sun::icrf>);
+static_assert(has_same_origin(frames::earth::icrf, frames::earth::j2000));
+static_assert(has_same_origin(frames::earth::icrf, frames::earth::earth_fixed));
+static_assert(!has_same_origin(frames::earth::icrf, frames::mars::icrf));
+static_assert(!has_same_origin(frames::earth::icrf, frames::sun::icrf));
 
-static_assert(HasSameAxis<frames::earth::icrf, frames::mars::icrf>);
-static_assert(HasSameAxis<frames::earth::j2000, frames::mars::j2000>);
-static_assert(!HasSameAxis<frames::earth::icrf, frames::earth::j2000>);
-static_assert(!HasSameAxis<frames::earth::icrf, frames::earth::earth_fixed>);
+static_assert(has_same_axis(frames::earth::icrf, frames::mars::icrf));
+static_assert(has_same_axis(frames::earth::j2000, frames::mars::j2000));
+static_assert(!has_same_axis(frames::earth::icrf, frames::earth::j2000));
+static_assert(!has_same_axis(frames::earth::icrf, frames::earth::earth_fixed));
 
-static_assert(IsSameFrame<frames::earth::icrf, frames::earth::icrf>);
-static_assert(IsSameFrame<frames::mars::icrf, frames::mars::icrf>);
-static_assert(!IsSameFrame<frames::earth::icrf, frames::earth::j2000>);
-static_assert(!IsSameFrame<frames::earth::icrf, frames::mars::icrf>);
-static_assert(!IsSameFrame<frames::earth::icrf, frames::earth::earth_fixed>);
+static_assert(is_same_frame(frames::earth::icrf, frames::earth::icrf));
+static_assert(is_same_frame(frames::mars::icrf, frames::mars::icrf));
+static_assert(!is_same_frame(frames::earth::icrf, frames::earth::j2000));
+static_assert(!is_same_frame(frames::earth::icrf, frames::mars::icrf));
+static_assert(!is_same_frame(frames::earth::icrf, frames::earth::earth_fixed));

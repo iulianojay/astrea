@@ -54,7 +54,7 @@ inline constexpr auto sin_cos_pack(const Angle& angle)
  *
  * This class provides methods to create DCMs for various rotations and to apply them to vectors.
  *
- * @tparam _out_frame_ The frame type to which the DCM applies.
+ * @tparam out_frame The frame type to which the DCM applies.
  */
 template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
 class DirectionCosineMatrix {
@@ -72,6 +72,9 @@ class DirectionCosineMatrix {
     }
 
   public:
+    static constexpr auto in_frame  = _in_frame_;  //!< The input frame of the DCM.
+    static constexpr auto out_frame = _out_frame_; //!< The output frame of the DCM
+
     /**
      * @brief Constructor for DirectionCosineMatrix from an array of CartesianVectors.
      *
@@ -100,42 +103,42 @@ class DirectionCosineMatrix {
      * @brief Creates a direction cosine matrix for a rotation around the X-axis.
      *
      * @param theta The angle of rotation around the X-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> X(const Angle& theta)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> X(const Angle& theta)
     {
         const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>{ { 1.0 * one, 0.0 * one, 0.0 * one },
-                                                               { 0.0 * one, cosTheta, -sinTheta },
-                                                               { 0.0 * one, sinTheta, cosTheta } };
+        return DirectionCosineMatrix<in_frame, out_frame>{ { 1.0 * one, 0.0 * one, 0.0 * one },
+                                                           { 0.0 * one, cosTheta, -sinTheta },
+                                                           { 0.0 * one, sinTheta, cosTheta } };
     }
 
     /**
      * @brief Creates a direction cosine matrix for a rotation around the Y-axis.
      *
      * @param theta The angle of rotation around the Y-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> Y(const Angle& theta)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> Y(const Angle& theta)
     {
         const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>{ { cosTheta, 0.0 * one, sinTheta },
-                                                               { 0.0 * one, 1.0 * one, 0.0 * one },
-                                                               { -sinTheta, 0.0 * one, cosTheta } };
+        return DirectionCosineMatrix<in_frame, out_frame>{ { cosTheta, 0.0 * one, sinTheta },
+                                                           { 0.0 * one, 1.0 * one, 0.0 * one },
+                                                           { -sinTheta, 0.0 * one, cosTheta } };
     }
 
     /**
      * @brief Creates a direction cosine matrix for a rotation around the Z-axis.
      *
      * @param theta The angle of rotation around the Z-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> Z(const Angle& theta)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> Z(const Angle& theta)
     {
         const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>{ { cosTheta, -sinTheta, 0.0 * one },
-                                                               { sinTheta, cosTheta, 0.0 * one },
-                                                               { 0.0 * one, 0.0 * one, 1.0 * one } };
+        return DirectionCosineMatrix<in_frame, out_frame>{ { cosTheta, -sinTheta, 0.0 * one },
+                                                           { sinTheta, cosTheta, 0.0 * one },
+                                                           { 0.0 * one, 0.0 * one, 1.0 * one } };
     }
 
     /**
@@ -144,14 +147,14 @@ class DirectionCosineMatrix {
      * @param alpha The angle of rotation around the X-axis.
      * @param beta The angle of rotation around the Z-axis.
      * @param gamma The angle of rotation around the X-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> XZX(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> XZX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
         const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
         const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
         const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>{
+        return DirectionCosineMatrix<in_frame, out_frame>{
             { cosBeta, -cosGamma * sinBeta, sinBeta * sinGamma },
             { cosAlpha * sinBeta, cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma, -cosGamma * sinAlpha - cosAlpha * cosBeta * sinGamma },
             { sinAlpha * sinBeta, cosAlpha * sinBeta + cosBeta * cosGamma * sinAlpha, cosAlpha * cosGamma - cosBeta * sinGamma * sinAlpha }
@@ -164,14 +167,14 @@ class DirectionCosineMatrix {
      * @param alpha The angle of rotation around the X-axis.
      * @param beta The angle of rotation around the Y-axis.
      * @param gamma The angle of rotation around the X-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> XYX(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> XYX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
         const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
         const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
         const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>{
+        return DirectionCosineMatrix<in_frame, out_frame>{
             { cosBeta, sinBeta * sinGamma, cosGamma * sinBeta },
             { sinAlpha * sinBeta, cosAlpha * cosBeta - cosGamma * sinAlpha * sinBeta, -cosAlpha * sinGamma - cosBeta * cosGamma * sinAlpha },
             { -cosAlpha * sinBeta, cosGamma * cosAlpha * sinBeta + cosBeta * sinAlpha, cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma }
@@ -184,14 +187,14 @@ class DirectionCosineMatrix {
      * @param alpha The angle of rotation around the Y-axis.
      * @param beta The angle of rotation around the Z-axis.
      * @param gamma The angle of rotation around the Y-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> YZY(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> YZY(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
         const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
         const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
         const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>{
+        return DirectionCosineMatrix<in_frame, out_frame>{
             { cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma, cosGamma * sinAlpha + cosAlpha * cosBeta * sinGamma, -cosAlpha * sinBeta },
             { -cosGamma * sinBeta, sinBeta * sinGamma, cosBeta },
             { cosBeta * cosGamma * sinAlpha + cosAlpha * sinGamma, cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma, sinAlpha * sinBeta }
@@ -204,20 +207,20 @@ class DirectionCosineMatrix {
      * @param alpha The angle of rotation around the Z-axis.
      * @param beta The angle of rotation around the X-axis.
      * @param gamma The angle of rotation around the Z-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> ZXZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> ZXZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
         const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
         const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
         const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>{ { cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma,
-                                                                 -cosAlpha * sinGamma - cosBeta * cosGamma * sinAlpha,
-                                                                 sinAlpha * sinBeta },
-                                                               { cosGamma * sinAlpha + cosAlpha * cosBeta * sinGamma,
-                                                                 cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma,
-                                                                 -cosAlpha * sinBeta },
-                                                               { sinBeta * sinGamma, cosGamma * sinBeta, cosBeta } };
+        return DirectionCosineMatrix<in_frame, out_frame>{ { cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma,
+                                                             -cosAlpha * sinGamma - cosBeta * cosGamma * sinAlpha,
+                                                             sinAlpha * sinBeta },
+                                                           { cosGamma * sinAlpha + cosAlpha * cosBeta * sinGamma,
+                                                             cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma,
+                                                             -cosAlpha * sinBeta },
+                                                           { sinBeta * sinGamma, cosGamma * sinBeta, cosBeta } };
     }
 
     /**
@@ -226,14 +229,14 @@ class DirectionCosineMatrix {
      * @param alpha The angle of rotation around the Z-axis.
      * @param beta The angle of rotation around the Y-axis.
      * @param gamma The angle of rotation around the Z-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> ZYZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> ZYZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
         const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
         const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
         const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>{
+        return DirectionCosineMatrix<in_frame, out_frame>{
             { cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma, -cosGamma * sinAlpha - cosAlpha * cosBeta * sinGamma, cosAlpha * sinBeta },
             { cosAlpha * sinGamma + cosBeta * cosGamma * sinAlpha, cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma, sinAlpha * sinBeta },
             { -cosGamma * sinBeta, sinBeta * sinGamma, cosBeta }
@@ -247,14 +250,14 @@ class DirectionCosineMatrix {
      * @param alpha The angle of rotation around the Y-axis.
      * @param beta The angle of rotation around the X-axis.
      * @param gamma The angle of rotation around the Y-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> YXY(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> YXY(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
         const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
         const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
         const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>{
+        return DirectionCosineMatrix<in_frame, out_frame>{
             { cosAlpha * cosGamma - cosBeta * sinAlpha * sinGamma, sinBeta * sinGamma, cosGamma * sinAlpha + cosAlpha * cosBeta * sinGamma },
             { sinAlpha * sinBeta, cosBeta, -cosAlpha * sinBeta },
             { -cosBeta * cosGamma * sinAlpha - cosAlpha * sinGamma, cosGamma * sinBeta, cosAlpha * cosBeta * cosGamma - sinAlpha * sinGamma }
@@ -267,14 +270,14 @@ class DirectionCosineMatrix {
      * @param alpha The angle of rotation around the X-axis.
      * @param beta The angle of rotation around the Y-axis.
      * @param gamma The angle of rotation around the Z-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> XYZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> XYZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
         const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
         const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
         const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>{
+        return DirectionCosineMatrix<in_frame, out_frame>{
             { cosBeta * cosGamma, -cosBeta * sinGamma, sinBeta },
             { cosAlpha * sinGamma + cosGamma * sinAlpha * sinBeta, cosAlpha * cosGamma - sinAlpha * sinBeta * sinGamma, -cosBeta * sinAlpha },
             { sinAlpha * sinGamma - cosAlpha * cosGamma * sinBeta, cosGamma * sinAlpha + cosAlpha * sinBeta * sinGamma, cosAlpha * cosBeta }
@@ -287,14 +290,14 @@ class DirectionCosineMatrix {
      * @param alpha The angle of rotation around the Y-axis.
      * @param beta The angle of rotation around the Z-axis.
      * @param gamma The angle of rotation around the X-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> YZX(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> YZX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
         const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
         const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
         const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>{
+        return DirectionCosineMatrix<in_frame, out_frame>{
             { cosAlpha * cosBeta, -sinBeta, cosBeta * sinAlpha },
             { cosGamma * sinAlpha + cosAlpha * sinBeta * sinGamma, cosBeta * cosGamma, sinAlpha * sinBeta * sinGamma - cosAlpha * cosGamma },
             { sinAlpha * sinGamma - cosAlpha * cosGamma * sinBeta, cosGamma * sinBeta, cosAlpha * sinGamma + cosGamma * sinAlpha * sinBeta }
@@ -307,14 +310,14 @@ class DirectionCosineMatrix {
      * @param alpha The angle of rotation around the Z-axis.
      * @param beta The angle of rotation around the X-axis.
      * @param gamma The angle of rotation around the Y-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> ZXY(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> ZXY(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
         const auto [sinAlpha, cosAlpha] = sin_cos_pack(alpha);
         const auto [sinBeta, cosBeta]   = sin_cos_pack(beta);
         const auto [sinGamma, cosGamma] = sin_cos_pack(gamma);
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>{
+        return DirectionCosineMatrix<in_frame, out_frame>{
             { cosAlpha * cosGamma - sinAlpha * sinBeta * sinGamma, -cosBeta * sinAlpha, cosAlpha * sinGamma + cosGamma * sinAlpha * sinBeta },
             { cosGamma * sinAlpha + cosAlpha * sinBeta * sinGamma, cosAlpha * cosBeta, sinAlpha * sinGamma - cosAlpha * cosGamma * sinBeta },
             { -cosGamma * sinBeta, sinBeta, cosBeta * cosGamma }
@@ -327,11 +330,11 @@ class DirectionCosineMatrix {
      * @param alpha The angle of rotation around the X-axis.
      * @param beta The angle of rotation around the Z-axis.
      * @param gamma The angle of rotation around the Y-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> XZY(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> XZY(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>::YZX(gamma, beta, alpha);
+        return DirectionCosineMatrix<in_frame, out_frame>::YZX(gamma, beta, alpha);
     }
 
     /**
@@ -340,11 +343,11 @@ class DirectionCosineMatrix {
      * @param alpha The angle of rotation around the Z-axis.
      * @param beta The angle of rotation around the Y-axis.
      * @param gamma The angle of rotation around the X-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> ZYX(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> ZYX(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>::XYZ(gamma, beta, alpha);
+        return DirectionCosineMatrix<in_frame, out_frame>::XYZ(gamma, beta, alpha);
     }
 
     /**
@@ -353,11 +356,11 @@ class DirectionCosineMatrix {
      * @param alpha The angle of rotation around the Y-axis.
      * @param beta The angle of rotation around the X-axis.
      * @param gamma The angle of rotation around the Z-axis.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> YXZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> YXZ(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>::ZXY(gamma, beta, alpha);
+        return DirectionCosineMatrix<in_frame, out_frame>::ZXY(gamma, beta, alpha);
     }
 
     /**
@@ -366,39 +369,39 @@ class DirectionCosineMatrix {
      * @param x The unit vector in the X direction.
      * @param y The unit vector in the Y direction.
      * @param z The unit vector in the Z direction.
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> from_vectors(
-        const CartesianVector<Unitless, _in_frame_>& x,
-        const CartesianVector<Unitless, _in_frame_>& y,
-        const CartesianVector<Unitless, _in_frame_>& z
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> from_vectors(
+        const CartesianVector<Unitless, in_frame>& x,
+        const CartesianVector<Unitless, in_frame>& y,
+        const CartesianVector<Unitless, in_frame>& z
     )
     {
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>{ { x[0], x[1], x[2] }, { y[0], y[1], y[2] }, { z[0], z[1], z[2] } };
+        return DirectionCosineMatrix<in_frame, out_frame>{ { x[0], x[1], x[2] }, { y[0], y[1], y[2] }, { z[0], z[1], z[2] } };
     }
 
     /**
      * @brief Creates an identity direction cosine matrix (no rotation).
      *
-     * @return DirectionCosineMatrix<_out_frame_> The identity direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The identity direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> identity()
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> identity()
     {
-        return DirectionCosineMatrix<_in_frame_, _out_frame_>{ { 1.0 * one, 0.0 * one, 0.0 * one },
-                                                               { 0.0 * one, 1.0 * one, 0.0 * one },
-                                                               { 0.0 * one, 0.0 * one, 1.0 * one } };
+        return DirectionCosineMatrix<in_frame, out_frame>{ { 1.0 * one, 0.0 * one, 0.0 * one },
+                                                           { 0.0 * one, 1.0 * one, 0.0 * one },
+                                                           { 0.0 * one, 0.0 * one, 1.0 * one } };
     }
 
     /**
      * @brief Transposes the direction cosine matrix, effectively inverting the transformation.
      *
-     * @return DirectionCosineMatrix<_out_frame_, _in_frame_> The transposed direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame, in_frame> The transposed direction cosine matrix.
      */
-    inline constexpr DirectionCosineMatrix<_out_frame_, _in_frame_> transpose() const
+    inline constexpr DirectionCosineMatrix<out_frame, in_frame> transpose() const
     {
-        return DirectionCosineMatrix<_out_frame_, _in_frame_>{ { _matrix[0][0], _matrix[1][0], _matrix[2][0] },
-                                                               { _matrix[0][1], _matrix[1][1], _matrix[2][1] },
-                                                               { _matrix[0][2], _matrix[1][2], _matrix[2][2] } };
+        return DirectionCosineMatrix<out_frame, in_frame>{ { _matrix[0][0], _matrix[1][0], _matrix[2][0] },
+                                                           { _matrix[0][1], _matrix[1][1], _matrix[2][1] },
+                                                           { _matrix[0][2], _matrix[1][2], _matrix[2][2] } };
     }
 
     /**
@@ -408,47 +411,47 @@ class DirectionCosineMatrix {
      * @param alpha The first Euler angle (rotation around the first axis in the sequence).
      * @param beta The second Euler angle (rotation around the second axis in the sequence).
      * @param gamma The third Euler angle (rotation around the third axis in the sequence).
-     * @return DirectionCosineMatrix<_out_frame_> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrix<out_frame> The resulting direction cosine matrix.
      */
     template <RotationSequence sequence>
-    static inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_>
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame>
         from_euler_angles(const Angle& alpha, const Angle& beta, const Angle& gamma)
     {
         if constexpr (sequence == RotationSequence::ZXZ) {
-            return DirectionCosineMatrix<_in_frame_, _out_frame_>::ZXZ(alpha, beta, gamma);
+            return DirectionCosineMatrix<in_frame, out_frame>::ZXZ(alpha, beta, gamma);
         }
         else if constexpr (sequence == RotationSequence::XYX) {
-            return DirectionCosineMatrix<_in_frame_, _out_frame_>::XYX(alpha, beta, gamma);
+            return DirectionCosineMatrix<in_frame, out_frame>::XYX(alpha, beta, gamma);
         }
         else if constexpr (sequence == RotationSequence::YZY) {
-            return DirectionCosineMatrix<_in_frame_, _out_frame_>::YZY(alpha, beta, gamma);
+            return DirectionCosineMatrix<in_frame, out_frame>::YZY(alpha, beta, gamma);
         }
         else if constexpr (sequence == RotationSequence::ZYZ) {
-            return DirectionCosineMatrix<_in_frame_, _out_frame_>::ZYZ(alpha, beta, gamma);
+            return DirectionCosineMatrix<in_frame, out_frame>::ZYZ(alpha, beta, gamma);
         }
         else if constexpr (sequence == RotationSequence::XZX) {
-            return DirectionCosineMatrix<_in_frame_, _out_frame_>::XZX(alpha, beta, gamma);
+            return DirectionCosineMatrix<in_frame, out_frame>::XZX(alpha, beta, gamma);
         }
         else if constexpr (sequence == RotationSequence::YXY) {
-            return DirectionCosineMatrix<_in_frame_, _out_frame_>::YXY(alpha, beta, gamma);
+            return DirectionCosineMatrix<in_frame, out_frame>::YXY(alpha, beta, gamma);
         }
         else if constexpr (sequence == RotationSequence::XYZ) {
-            return DirectionCosineMatrix<_in_frame_, _out_frame_>::XYZ(alpha, beta, gamma);
+            return DirectionCosineMatrix<in_frame, out_frame>::XYZ(alpha, beta, gamma);
         }
         else if constexpr (sequence == RotationSequence::YZX) {
-            return DirectionCosineMatrix<_in_frame_, _out_frame_>::YZX(alpha, beta, gamma);
+            return DirectionCosineMatrix<in_frame, out_frame>::YZX(alpha, beta, gamma);
         }
         else if constexpr (sequence == RotationSequence::ZXY) {
-            return DirectionCosineMatrix<_in_frame_, _out_frame_>::ZXY(alpha, beta, gamma);
+            return DirectionCosineMatrix<in_frame, out_frame>::ZXY(alpha, beta, gamma);
         }
         else if constexpr (sequence == RotationSequence::XZY) {
-            return DirectionCosineMatrix<_in_frame_, _out_frame_>::XZY(alpha, beta, gamma);
+            return DirectionCosineMatrix<in_frame, out_frame>::XZY(alpha, beta, gamma);
         }
         else if constexpr (sequence == RotationSequence::ZYX) {
-            return DirectionCosineMatrix<_in_frame_, _out_frame_>::ZYX(alpha, beta, gamma);
+            return DirectionCosineMatrix<in_frame, out_frame>::ZYX(alpha, beta, gamma);
         }
         else if constexpr (sequence == RotationSequence::YXZ) {
-            return DirectionCosineMatrix<_in_frame_, _out_frame_>::YXZ(alpha, beta, gamma);
+            return DirectionCosineMatrix<in_frame, out_frame>::YXZ(alpha, beta, gamma);
         }
     }
 
@@ -474,31 +477,30 @@ class DirectionCosineMatrix {
      * @brief Apply the direction cosine matrix to a CartesianVector.
      *
      * @tparam Value_T The type of the vector components.
-     * @tparam Frame_T The frame of the CartesianVector.
      * @param vec The CartesianVector to which the DCM will be applied.
-     * @return CartesianVector<Value_T, _out_frame_> The transformed CartesianVector in the output frame.
+     * @return CartesianVector<Value_T, out_frame> The transformed CartesianVector in the output frame.
      */
     template <typename Value_T>
-    inline constexpr CartesianVector<Value_T, _out_frame_> operator*(const CartesianVector<Value_T, _in_frame_>& vec) const
+    inline constexpr CartesianVector<Value_T, out_frame> operator*(const CartesianVector<Value_T, in_frame>& vec) const
     {
-        return CartesianVector<Value_T, _out_frame_>(row(0).dot(vec), row(1).dot(vec), row(2).dot(vec));
+        return CartesianVector<Value_T, out_frame>(row(0).dot(vec), row(1).dot(vec), row(2).dot(vec));
     }
 
     /**
      * @brief Compose two direction cosine matrices (matrix multiplication).
      *
-     * Produces DCM<_in_frame_, New__out_frame_> = this * rhs, where this is
-     * DCM<_in_frame_, _out_frame_> and rhs is DCM<_out_frame_, New__out_frame_>.
+     * Produces DCM<in_frame, _newout_frame> = this * rhs, where this is
+     * DCM<in_frame, out_frame> and rhs is DCM<out_frame, _newout_frame>.
      *
-     * @tparam New__out_frame_ The output frame of the right-hand-side DCM.
+     * @tparam _newout_frame The output frame of the right-hand-side DCM.
      * @param other The right-hand-side DCM to compose with.
-     * @return DirectionCosineMatrix<_in_frame_, New__out_frame_> The composed DCM.
+     * @return DirectionCosineMatrix<in_frame, _newout_frame> The composed DCM.
      */
-    template <typename New__out_frame_>
-    inline constexpr DirectionCosineMatrix<_in_frame_, New__out_frame_>
-        operator*(const DirectionCosineMatrix<_out_frame_, New__out_frame_>& other) const
+    template <IsFrame auto _newout_frame>
+    inline constexpr DirectionCosineMatrix<in_frame, _newout_frame>
+        operator*(const DirectionCosineMatrix<out_frame, _newout_frame>& other) const
     {
-        return DirectionCosineMatrix<_in_frame_, New__out_frame_>{
+        return DirectionCosineMatrix<in_frame, _newout_frame>{
             { _matrix[0][0] * other[0, 0] + _matrix[0][1] * other[1, 0] + _matrix[0][2] * other[2, 0],
               _matrix[0][0] * other[0, 1] + _matrix[0][1] * other[1, 1] + _matrix[0][2] * other[2, 1],
               _matrix[0][0] * other[0, 2] + _matrix[0][1] * other[1, 2] + _matrix[0][2] * other[2, 2] },
@@ -515,9 +517,9 @@ class DirectionCosineMatrix {
      * @brief Get a specific row of the direction cosine matrix.
      *
      * @param idx The index of the row to retrieve (0, 1, or 2).
-     * @return const CartesianVector<Value_T, _in_frame_>& The requested row as a CartesianVector.
+     * @return const CartesianVector<Value_T, in_frame>& The requested row as a CartesianVector.
      */
-    inline constexpr CartesianVector<Unitless, _in_frame_> row(const std::size_t& idx) const
+    inline constexpr CartesianVector<Unitless, in_frame> row(const std::size_t& idx) const
     {
         return { _matrix[idx][0], _matrix[idx][1], _matrix[idx][2] };
     }
@@ -592,14 +594,14 @@ class DirectionCosineMatrix {
  *
  * This alias simplifies the usage of DirectionCosineMatrix by allowing the user to specify the output frame type.
  *
- * @tparam _out_frame_ The frame type to which the DCM applies.
+ * @tparam out_frame The frame type to which the DCM applies.
  */
-template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
-using DCM = DirectionCosineMatrix<_in_frame_, _out_frame_>;
+template <IsFrame auto in_frame, IsFrame auto out_frame>
+using DCM = DirectionCosineMatrix<in_frame, out_frame>;
 
-// Defined template function and then delete it so we cosAlphan enforce lookup restrictions
-template <IsFrame auto _frame_, IsFrame auto _frame_u_>
-inline constexpr DCM<Frame_T, Frame_U> get_dcm(const Date& date) = delete;
+// Defined template function and then delete it so we can enforce lookup restrictions
+template <IsFrame auto frame, IsFrame auto frame_u>
+inline constexpr DCM<frame, frame_u> get_dcm(const Date& date) = delete;
 
 } // namespace astro
 } // namespace astrea

@@ -428,7 +428,7 @@ struct CartesianVector {
      * @throws std::runtime_error If the frames do not share the same origin or if the DCM cannot be obtained.
      */
     template <IsFrame auto frame_u>
-        requires(!IsSameFrame<frame, frame_u> && IsStaticFrame<frame_u>)
+        requires(!is_same_frame(frame, frame_u) && IsStaticFrame<decltype(frame_u)>)
     inline constexpr CartesianVector<Value_T, frame_u> in_frame(const Date& date) const;
 
     /**
@@ -452,8 +452,9 @@ struct CartesianVector {
      *      and end, so it has to be left to the user to use it correctly
      */
     template <IsFrame auto frame_u, IsFrame auto frame_v>
-        requires(!IsSameFrame<frame, frame_u> && HasSameAxis<frame, frame_u> && !HasSameOrigin<frame, frame_u>)
-    inline constexpr CartesianVector<Value_T, frame_v> translate(const CartesianVector<Value_T, frame_u>& other) const
+        requires(!is_same_frame(frame, frame_u)) && has_same_axis
+    (frame, frame_u) &&
+        !has_same_origin(frame, frame_u) inline constexpr CartesianVector<Value_T, frame_v> translate(const CartesianVector<Value_T, frame_u>& other) const
     {
         return CartesianVector<Value_T, frame_v>(
             _vector[0] + other.get_x(), _vector[1] + other.get_y(), _vector[2] + other.get_z()
@@ -470,8 +471,9 @@ struct CartesianVector {
      * @note It is the user's responsibility to ensure that this operation makes sense in the context of the frames involved.
      */
     template <IsFrame auto frame_u, IsFrame auto frame_v>
-        requires(!IsSameFrame<frame, frame_u> && HasSameAxis<frame, frame_u> && !HasSameOrigin<frame, frame_u>)
-    inline constexpr CartesianVector<Value_T, frame_v> offset(const CartesianVector<Value_T, frame_u>& other) const
+        requires(!is_same_frame(frame, frame_u)) && has_same_axis
+    (frame, frame_u) &&
+        !has_same_origin(frame, frame_u) inline constexpr CartesianVector<Value_T, frame_v> offset(const CartesianVector<Value_T, frame_u>& other) const
     {
         return CartesianVector<Value_T, frame_v>(
             _vector[0] - other.get_x(), _vector[1] - other.get_y(), _vector[2] - other.get_z()
@@ -491,10 +493,10 @@ struct CartesianVector {
  * @return The output stream.
  */
 template <class Value_T, IsFrame auto frame>
-std::ostream& operator<<(std::ostream& os, const CartesianVector& state)
+std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, frame>& state)
 {
     os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "]";
-    if constexpr (requires { frame::name; }) { os << " (" << std::string_view(frame::name) << ")"; }
+    if constexpr (requires { decltype(frame)::name; }) { os << " (" << std::string_view(decltype(frame)::name) << ")"; }
     return os;
 }
 
@@ -509,7 +511,8 @@ std::ostream& operator<<(std::ostream& os, const CartesianVector& state)
  */
 template <typename Value_T, typename Value_U, IsFrame auto frame>
     requires(!is_cartesian_vector_v<Value_U>)
-inline constexpr CartesianVector<decltype(Value_T{} * Value_U{}), frame> operator*(const Value_U& scalar, const CartesianVector& vec)
+inline constexpr CartesianVector<decltype(Value_T{} * Value_U{}), frame>
+    operator*(const Value_U& scalar, const CartesianVector<Value_T, frame>& vec)
 {
     return vec * scalar;
 }
@@ -525,7 +528,8 @@ inline constexpr CartesianVector<decltype(Value_T{} * Value_U{}), frame> operato
  */
 template <typename Value_T, typename Value_U, IsFrame auto frame>
     requires(!is_cartesian_vector_v<Value_U>)
-inline constexpr CartesianVector<decltype(Value_T{} * Value_U{}), frame> operator/(const Value_U& scalar, const CartesianVector& vec)
+inline constexpr CartesianVector<decltype(Value_T{} * Value_U{}), frame>
+    operator/(const Value_U& scalar, const CartesianVector<Value_T, frame>& vec)
 {
     return vec / scalar;
 }

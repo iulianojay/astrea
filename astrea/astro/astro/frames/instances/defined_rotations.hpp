@@ -33,19 +33,19 @@ namespace astro {
  * @brief Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.
  *
  * @param date The date for which to get the DCM.
- * @return DirectionCosineMatrix<Frame_T, Frame_U> The DCM from Frame_U to Frame_T.
+ * @return DirectionCosineMatrix<_frame_, _frame_u_> The DCM from _frame_u_ to _frame_.
  *
  * @ref https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA%20TP%2020220014814%20final.pdf
  */
 template <IsFrame auto _frame_, IsFrame auto _frame_u_>
-    requires(Frame_T::axis == FrameAxis::ICRF && Frame_U::axis == FrameAxis::J2000 && HasSameOrigin<Frame_T, Frame_U>)
-inline constexpr DirectionCosineMatrix<Frame_T, Frame_U> get_dcm(const Date& date)
+    requires(_frame_::axis == FrameAxis::ICRF && _frame_u_::axis == FrameAxis::J2000 && has_same_origin(_frame_, _frame_u_))
+inline constexpr DirectionCosineMatrix<_frame_, _frame_u_> get_dcm(const Date& date)
 {
     using mp_units::angular::unit_symbols::rad;
     static const Angle zeta0   = -8.0561e-8 * rad;
     static const Angle eta0    = -3.3060e-8 * rad;
     static const Angle dalpha0 = 7.0783e-8 * rad;
-    return DirectionCosineMatrix<Frame_T, Frame_U>::XYZ(-eta0, zeta0, dalpha0);
+    return DirectionCosineMatrix<_frame_, _frame_u_>::XYZ(-eta0, zeta0, dalpha0);
 }
 
 /**
@@ -72,7 +72,7 @@ inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::earth
  */
 template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
     requires(
-        HasSameOrigin<_in_frame_, _out_frame_> && _in_frame_::axis == FrameAxis::ICRF && _out_frame_::axis == FrameAxis::FIXED_ROTATING &&
+        has_same_origin(_in_frame_, _out_frame_) && _in_frame_::axis == FrameAxis::ICRF && _out_frame_::axis == FrameAxis::FIXED_ROTATING &&
         _in_frame_::origin != CelestialBodyId::SUN && _out_frame_::origin != CelestialBodyId::EARTH
     )
 inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> get_dcm(const Date& date)

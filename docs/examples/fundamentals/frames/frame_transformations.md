@@ -35,11 +35,11 @@ The system uses C++20 concepts to enforce transformation rules:
 
 ```cpp
 // Frames with same origin
-template<IsFrame auto Frame_T, IsFrame auto Frame_U>
+template<IsFrame auto _frame_, IsFrame auto _frame_u_>
 concept HasSameOrigin = /* implementation */;
 
 // Frames with same axis orientation
-template<IsFrame auto Frame_T, IsFrame auto Frame_U> 
+template<IsFrame auto _frame_, IsFrame auto _frame_u_> 
 concept HasSameAxis = /* implementation */;
 ```
 
