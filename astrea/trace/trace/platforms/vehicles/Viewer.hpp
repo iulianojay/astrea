@@ -47,12 +47,11 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
     Viewer() = default;
 
     /**
-     * @brief Constructor for Viewer with GeneralPerturbations and AstrodynamicsSystem.
+     * @brief Constructor for Viewer with GeneralPerturbations.
      * @param gp The GeneralPerturbations object containing spacecraft data.
-     * @param system The AstrodynamicsSystem object for astrodynamics calculations.
      */
-    Viewer(const astro::GeneralPerturbations& gp, const astro::AstrodynamicsSystem& system) :
-        Spacecraft(gp, system),
+    Viewer(const astro::GeneralPerturbations& gp) :
+        Spacecraft(gp),
         AccessObject()
     {
     }

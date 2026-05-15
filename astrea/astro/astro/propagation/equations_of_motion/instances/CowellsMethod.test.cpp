@@ -21,7 +21,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
@@ -43,7 +43,6 @@ class CowellsMethodTest : public testing::Test {
 
     ForceVector<frames::earth::icrf> noForce;
     Vehicle sat;
-    AstrodynamicsSystem sys;
     Date epoch;
     ForceModel forces;
     CowellsMethod eom;
@@ -64,11 +63,11 @@ TEST_F(CowellsMethodTest, GetExpectedSet)
 
 TEST_F(CowellsMethodTest, Derivative)
 {
-    Cartesian<frames::earth::icrf> cart0           = Cartesian<frames::earth::icrf>::LEO(sys.get_mu());
+    Cartesian<frames::earth::icrf> cart0           = Cartesian<frames::earth::icrf>::LEO(get_mu<planets::Earth>());
     CartesianPartial<frames::earth::icrf> expected = CartesianPartial(
         cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), -0.0081347028957142863 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
     );
-    State state0(cart0, epoch, sys);
+    State state0(cart0, epoch);
 
     OrbitalElementPartials dstate = eom.compute_dynamics(state0, sat, noForce, noForce);
     ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
@@ -82,7 +81,7 @@ TEST_F(CowellsMethodTest, DerivativeValladoEx85)
     CartesianPartial<frames::earth::icrf> expected = CartesianPartial(
         cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), 0.00074873079 * km / (s * s), 0.00725534667 * km / (s * s), -0.00431725847 * km / (s * s)
     );
-    State state0(cart0, epoch, sys);
+    State state0(cart0, epoch);
 
     OrbitalElementPartials dstate = eom.compute_dynamics(state0, sat, noForce, noForce);
     ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));

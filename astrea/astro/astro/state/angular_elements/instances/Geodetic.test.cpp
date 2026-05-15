@@ -19,7 +19,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/state/angular_elements/instances/Geodetic.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -40,7 +40,6 @@ class GeodeticTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
 
     Date epoch;
-    AstrodynamicsSystem sys;
 
     Angle latitude    = 0.0 * astrea::detail::angle_unit;
     Angle longitude   = 0.0 * astrea::detail::angle_unit;
@@ -83,19 +82,19 @@ TEST_F(GeodeticTest, ParameterizedConstructor) { ASSERT_NO_THROW(Geodetic(latitu
 TEST_F(GeodeticTest, EciVectorConstructor)
 {
     RadiusVector<frames::earth::icrf> rEci{ 7000.0 * km, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Geodetic(rEci, epoch, sys.get_central_body().get()));
+    ASSERT_NO_THROW(Geodetic(rEci, epoch.get_central_body().get()));
 }
 
 TEST_F(GeodeticTest, EcefVectorConstructor)
 {
     RadiusVector<frames::earth::earth_fixed> rEcef{ 7000.0 * km, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Geodetic(rEcef, sys.get_central_body().get()));
+    ASSERT_NO_THROW(Geodetic(rEcef.get_central_body().get()));
 }
 
 TEST_F(GeodeticTest, OrbitalElementsConstructor)
 {
     Keplerian kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
-    ASSERT_NO_THROW(Geodetic(kep, sys, epoch));
+    ASSERT_NO_THROW(Geodetic(kep, epoch));
 }
 
 TEST_F(GeodeticTest, CopyConstructor) { ASSERT_NO_THROW(Geodetic newGeo(state)); }

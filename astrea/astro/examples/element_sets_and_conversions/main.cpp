@@ -40,8 +40,7 @@ int main()
     std::cout << "Cartesian: " << cartesian << std::endl;
 
     // Conversions at the instance level are done through constructors
-    AstrodynamicsSystem sys; // Default system is Earth-Moon system
-    const auto& mu = sys.get_mu();
+    const auto& mu = get_mu<Earth>();
     Keplerian keplerian{ cartesian, mu };
     Equinoctial equinoctial{ keplerian, mu };
     std::cout << "Converted to Keplerian: " << keplerian << std::endl;

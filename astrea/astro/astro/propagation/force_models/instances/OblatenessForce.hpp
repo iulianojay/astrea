@@ -45,11 +45,10 @@ class LegendreCache {
     /**
      * @brief Builds the cache for Legendre polynomials and coefficients.
      *
-     * @param sys Astrodynamics system containing celestial body data
      * @param degree Degree of the spherical harmonics
      * @param order Order of the spherical harmonics
      */
-    LegendreCache(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order);
+    LegendreCache(const std::size_t& degree, const std::size_t& order);
 
     /**
      * @brief Gets the cosine coefficient for given n and m.
@@ -94,11 +93,10 @@ class LegendreCache {
     /**
      * @brief Ingests the Legendre coefficient file to populate the coefficients.
      *
-     * @param sys Astrodynamics system containing celestial body data
      * @param degree Degree of the spherical harmonics
      * @param order Order of the spherical harmonics
      */
-    void ingest_legendre_coefficient_file(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order);
+    void ingest_legendre_coefficient_file(const std::size_t& degree, const std::size_t& order);
 };
 
 /**
@@ -114,13 +112,12 @@ class OblatenessForce : public PerturbingForce {
 
     /**
      * @brief Constructor for OblatenessForce.
-     * @param sys Astrodynamics system containing celestial body data
      * @param N Degree of the spherical harmonics (default is 2)
      * @param M Order of the spherical harmonics (default is 0)
      * @param findExactLegendre Whether to find exact Legendre values (default is false)
      * @param useFastLegendre Whether to use fast lookup for Legendre polynomials without interpolation (default is true)
      */
-    OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& N = 2, const std::size_t& M = 0);
+    OblatenessForce(const std::size_t& N = 2, const std::size_t& M = 0);
 
     /**
      * @brief Computes the gravitational force using Montenbruck & Gill (2000) V and W recurrence relations.
@@ -138,7 +135,6 @@ class OblatenessForce : public PerturbingForce {
   private:
     const std::size_t _degree;          //!< Degree of the spherical harmonics
     const std::size_t _order;           //!< Order of the spherical harmonics
-    const AstrodynamicsSystem* _sys;    //!< Pointer to the astrodynamics system
     const LegendreCache _legendreCache; //!< Cache for Legendre polynomials and coefficients
 };
 

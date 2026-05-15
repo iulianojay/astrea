@@ -46,9 +46,8 @@ static constexpr const char* kEomNames[] = { "TwoBody", "J2MeanVop", "KeplerianV
 //   range(3) : perturbation flags kDrag|kNBody|kSRP (ignored for TwoBody and J2MeanVop)
 static void BenchmarkPropagation(benchmark::State& state)
 {
-    AstrodynamicsSystem sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN });
     const Date epoch{};
-    const State state0{ Keplerian::LEO(), epoch, sys };
+    const State state0{ Keplerian::LEO(), epoch };
     Spacecraft sat{};
     Vehicle vehicle{ sat };
 

@@ -21,7 +21,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <tests/utilities/comparisons.hpp>
 
 using mp_units::angular::unit_symbols::rad;
@@ -44,7 +44,6 @@ class EquinoctialTest : public testing::Test {
 
     ForceVector<frames::earth::icrf> noForce;
     Vehicle sat;
-    AstrodynamicsSystem sys;
     Date epoch;
     ForceModel forces;
     EquinoctialVop eom;

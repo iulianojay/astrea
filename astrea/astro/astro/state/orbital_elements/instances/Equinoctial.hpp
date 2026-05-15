@@ -23,6 +23,8 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/frame_registry.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -35,12 +37,16 @@ namespace astro {
  * describing orbits in a way that avoids singularities, especially for near-circular orbits.
  * They are defined in terms of the semilatus rectum and the components of the eccentricity vector.
  */
+template <IsFrame auto _frame_ = frames::primary>
 class Equinoctial {
 
-    friend std::ostream& operator<<(std::ostream&, Equinoctial const&);
+    template <IsFrame auto F>
+    friend std::ostream& operator<<(std::ostream&, Equinoctial<F> const&);
     friend class OrbitalElements;
 
   public:
+    static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.
+
     /**
      * @brief Constructs an Equinoctial object with default values.
      *
@@ -93,7 +99,7 @@ class Equinoctial {
      * @param elements The Keplerian elements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    Equinoctial(const Keplerian& elements, const GravParam& mu);
+    Equinoctial(const Keplerian<frame>& elements, const GravParam& mu);
 
     /**
      * @brief Constructs an Equinoctial object from Cartesian elements.
@@ -101,9 +107,8 @@ class Equinoctial {
      * @param elements The Cartesian elements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    template <IsFrame auto _frame_>
-    Equinoctial(const Cartesian<_frame_>& elements, const GravParam& mu) :
-        Equinoctial(Keplerian(elements, mu), mu)
+    Equinoctial(const Cartesian<frame>& elements, const GravParam& mu) :
+        Equinoctial(Keplerian<frame>(elements, mu), mu)
     {
     }
 
@@ -361,11 +366,14 @@ class Equinoctial {
  * @brief Class representing a partial derivative of an Equinoctial state vector.
  *
  */
+template <IsFrame auto _frame_ = frames::primary>
 class EquinoctialPartial {
 
     friend std::ostream& operator<<(std::ostream&, EquinoctialPartial const&);
 
   public:
+    static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.
+
     /**
      * @brief Default constructor for EquinoctialPartial.
      *
@@ -406,7 +414,7 @@ class EquinoctialPartial {
      * @param time Time to multiply the EquinoctialPartial by
      * @return Equinoctial Resulting Equinoctial state vector after multiplication.
      */
-    Equinoctial operator*(const Time& time) const;
+    Equinoctial<frame> operator/(const Time& time) const;
 
     /**
      * @brief Converts the EquinoctialPartial state vector to a vector of unitless values.
@@ -426,3 +434,5 @@ class EquinoctialPartial {
 
 } // namespace astro
 } // namespace astrea
+
+#include <astro/state/orbital_elements/instances/Equinoctial.ipp>

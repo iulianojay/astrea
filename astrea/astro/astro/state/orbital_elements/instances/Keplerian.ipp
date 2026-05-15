@@ -11,8 +11,6 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
-
 #include <iomanip>
 #include <iostream>
 
@@ -33,14 +31,35 @@ using si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-Keplerian Keplerian::LEO() { return Keplerian(7000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad); }
-Keplerian Keplerian::LMEO() { return Keplerian(10000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad); }
-Keplerian Keplerian::GPS() { return Keplerian(22000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad); }
-Keplerian Keplerian::HMEO() { return Keplerian(30000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad); }
-Keplerian Keplerian::GEO() { return Keplerian(42164.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad); }
+template <IsFrame auto frame>
+Keplerian<frame> Keplerian<frame>::LEO()
+{
+    return Keplerian(7000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
+}
+template <IsFrame auto frame>
+Keplerian<frame> Keplerian<frame>::LMEO()
+{
+    return Keplerian(10000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
+}
+template <IsFrame auto frame>
+Keplerian<frame> Keplerian<frame>::GPS()
+{
+    return Keplerian(22000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
+}
+template <IsFrame auto frame>
+Keplerian<frame> Keplerian<frame>::HMEO()
+{
+    return Keplerian(30000.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
+}
+template <IsFrame auto frame>
+Keplerian<frame> Keplerian<frame>::GEO()
+{
+    return Keplerian(42164.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
+}
 
 
-Keplerian::Keplerian(const Equinoctial& elements, const GravParam& mu)
+template <IsFrame auto frame>
+Keplerian<frame>::Keplerian(const Equinoctial& elements, const GravParam& mu)
 {
 
     const auto& semilatus     = elements.get_semilatus();
@@ -74,7 +93,8 @@ Keplerian::Keplerian(const Equinoctial& elements, const GravParam& mu)
 }
 
 // Copy constructor
-Keplerian::Keplerian(const Keplerian& other) :
+template <IsFrame auto frame>
+Keplerian<frame>::Keplerian(const Keplerian<frame>& other) :
     _semimajor(other._semimajor),
     _eccentricity(other._eccentricity),
     _inclination(other._inclination),
@@ -85,7 +105,8 @@ Keplerian::Keplerian(const Keplerian& other) :
 }
 
 // Move constructor
-Keplerian::Keplerian(Keplerian&& other) noexcept :
+template <IsFrame auto frame>
+Keplerian<frame>::Keplerian(Keplerian<frame>&& other) noexcept :
     _semimajor(std::move(other._semimajor)),
     _eccentricity(std::move(other._eccentricity)),
     _inclination(std::move(other._inclination)),
@@ -96,7 +117,8 @@ Keplerian::Keplerian(Keplerian&& other) noexcept :
 }
 
 // Move assignment operator
-Keplerian& Keplerian::operator=(Keplerian&& other) noexcept
+template <IsFrame auto frame>
+Keplerian<frame>& Keplerian<frame>::operator=(Keplerian<frame>&& other) noexcept
 {
     if (this != &other) {
         _semimajor      = std::move(other._semimajor);
@@ -109,24 +131,35 @@ Keplerian& Keplerian::operator=(Keplerian&& other) noexcept
     return *this;
 }
 
-Angle Keplerian::get_mean_anomaly() const { return convert_true_anomaly_to_mean_anomaly(_trueAnomaly, _eccentricity); }
+template <IsFrame auto frame>
+Angle Keplerian<frame>::get_mean_anomaly() const
+{
+    return convert_true_anomaly_to_mean_anomaly(_trueAnomaly, _eccentricity);
+}
 
-MeanMotion Keplerian::get_mean_motion(const GravParam& mu) const
+template <IsFrame auto frame>
+MeanMotion Keplerian<frame>::get_mean_motion(const GravParam& mu) const
 {
     return sqrt(mu / (_semimajor * _semimajor * _semimajor));
 }
 
-Time Keplerian::get_orbital_period(const GravParam& mu) const
+template <IsFrame auto frame>
+Time Keplerian<frame>::get_orbital_period(const GravParam& mu) const
 {
     const auto meanMotion = get_mean_motion(mu);
     return (2.0 * std::numbers::pi) / meanMotion;
 }
 
 // Copy assignment operator
-Keplerian& Keplerian::operator=(const Keplerian& other) { return *this = Keplerian(other); }
+template <IsFrame auto frame>
+Keplerian<frame>& Keplerian<frame>::operator=(const Keplerian<frame>& other)
+{
+    return *this = Keplerian(other);
+}
 
 // Comparitors operators
-bool Keplerian::operator==(const Keplerian& other) const
+template <IsFrame auto frame>
+bool Keplerian<frame>::operator==(const Keplerian<frame>& other) const
 {
     return (
         _semimajor == other._semimajor && _eccentricity == other._eccentricity && _inclination == other._inclination &&
@@ -134,11 +167,16 @@ bool Keplerian::operator==(const Keplerian& other) const
     );
 }
 
-bool Keplerian::operator!=(const Keplerian& other) const { return !(*this == other); }
+template <IsFrame auto frame>
+bool Keplerian<frame>::operator!=(const Keplerian<frame>& other) const
+{
+    return !(*this == other);
+}
 
 
 // Mathmatical operators
-Keplerian Keplerian::operator+(const Keplerian& other) const
+template <IsFrame auto frame>
+Keplerian<frame> Keplerian<frame>::operator+(const Keplerian<frame>& other) const
 {
     return Keplerian(
         _semimajor + other._semimajor,
@@ -149,7 +187,8 @@ Keplerian Keplerian::operator+(const Keplerian& other) const
         _trueAnomaly + other._trueAnomaly
     );
 }
-Keplerian& Keplerian::operator+=(const Keplerian& other)
+template <IsFrame auto frame>
+Keplerian<frame>& Keplerian<frame>::operator+=(const Keplerian<frame>& other)
 {
     _semimajor += other._semimajor;
     _eccentricity += other._eccentricity;
@@ -160,7 +199,8 @@ Keplerian& Keplerian::operator+=(const Keplerian& other)
     return *this;
 }
 
-Keplerian Keplerian::operator-(const Keplerian& other) const
+template <IsFrame auto frame>
+Keplerian<frame> Keplerian<frame>::operator-(const Keplerian<frame>& other) const
 {
     return Keplerian(
         _semimajor - other._semimajor,
@@ -171,7 +211,8 @@ Keplerian Keplerian::operator-(const Keplerian& other) const
         _trueAnomaly - other._trueAnomaly
     );
 }
-Keplerian& Keplerian::operator-=(const Keplerian& other)
+template <IsFrame auto frame>
+Keplerian<frame>& Keplerian<frame>::operator-=(const Keplerian<frame>& other)
 {
     _semimajor -= other._semimajor;
     _eccentricity -= other._eccentricity;
@@ -182,13 +223,15 @@ Keplerian& Keplerian::operator-=(const Keplerian& other)
     return *this;
 }
 
-Keplerian Keplerian::operator*(const Unitless& multiplier) const
+template <IsFrame auto frame>
+Keplerian<frame> Keplerian<frame>::operator*(const Unitless& multiplier) const
 {
     return Keplerian(
         _semimajor * multiplier, _eccentricity * multiplier, _inclination * multiplier, _rightAscension * multiplier, _argPerigee * multiplier, _trueAnomaly * multiplier
     );
 }
-Keplerian& Keplerian::operator*=(const Unitless& multiplier)
+template <IsFrame auto frame>
+Keplerian<frame>& Keplerian<frame>::operator*=(const Unitless& multiplier)
 {
     _semimajor *= multiplier;
     _eccentricity *= multiplier;
@@ -199,16 +242,19 @@ Keplerian& Keplerian::operator*=(const Unitless& multiplier)
     return *this;
 }
 
-KeplerianPartial Keplerian::operator/(const Time& time) const
+template <IsFrame auto frame>
+KeplerianPartial Keplerian<frame>::operator/(const Time& time) const
 {
     return KeplerianPartial(_semimajor / time, _eccentricity / time, _inclination / time, _rightAscension / time, _argPerigee / time, _trueAnomaly / time);
 }
 
-Keplerian Keplerian::operator/(const Unitless& divisor) const
+template <IsFrame auto frame>
+Keplerian<frame> Keplerian<frame>::operator/(const Unitless& divisor) const
 {
     return Keplerian(_semimajor / divisor, _eccentricity / divisor, _inclination / divisor, _rightAscension / divisor, _argPerigee / divisor, _trueAnomaly / divisor);
 }
-Keplerian& Keplerian::operator/=(const Unitless& divisor)
+template <IsFrame auto frame>
+Keplerian<frame>& Keplerian<frame>::operator/=(const Unitless& divisor)
 {
     _semimajor /= divisor;
     _eccentricity /= divisor;
@@ -219,7 +265,9 @@ Keplerian& Keplerian::operator/=(const Unitless& divisor)
     return *this;
 }
 
-Keplerian Keplerian::interpolate(const Time& thisTime, const Time& otherTime, const Keplerian& other, const GravParam& mu, const Time& targetTime) const
+template <IsFrame auto frame>
+Keplerian<frame>
+    Keplerian<frame>::interpolate(const Time& thisTime, const Time& otherTime, const Keplerian<frame>& other, const GravParam& mu, const Time& targetTime) const
 {
     const std::array<Time, 2> times = { thisTime, otherTime };
     const Distance interpSemimajor =
@@ -234,7 +282,8 @@ Keplerian Keplerian::interpolate(const Time& thisTime, const Time& otherTime, co
     return Keplerian(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }
 
-Angle Keplerian::interpolate_angle(const std::array<Time, 2>& times, const std::array<Angle, 2>& angles, const Time& targetTime) const
+template <IsFrame auto frame>
+Angle Keplerian<frame>::interpolate_angle(const std::array<Time, 2>& times, const std::array<Angle, 2>& angles, const Time& targetTime) const
 {
     // These is an assumption on the size of the diff. If the time step is too big, this will cause errors
     // TODO: Catch large interpolation steps
@@ -247,14 +296,16 @@ Angle Keplerian::interpolate_angle(const std::array<Time, 2>& times, const std::
     return math::fast_interpolate<Time, Angle>(times, { angles[0], angles[1] }, targetTime);
 }
 
-std::vector<Unitless> Keplerian::force_to_vector() const
+template <IsFrame auto frame>
+std::vector<Unitless> Keplerian<frame>::force_to_vector() const
 {
     return { _semimajor / _semimajor.unit,     _eccentricity,
              _inclination / _inclination.unit, _rightAscension / _rightAscension.unit,
              _argPerigee / _argPerigee.unit,   _trueAnomaly / _trueAnomaly.unit };
 }
 
-void Keplerian::wrap_angles()
+template <IsFrame auto frame>
+void Keplerian<frame>::wrap_angles()
 {
     _inclination    = wrap_angle(_inclination);
     _rightAscension = wrap_angle(_rightAscension);
@@ -262,7 +313,8 @@ void Keplerian::wrap_angles()
     _trueAnomaly    = wrap_angle(_trueAnomaly);
 }
 
-Keplerian Keplerian::from_vector(const std::vector<Unitless>& vec)
+template <IsFrame auto frame>
+Keplerian<frame> Keplerian<frame>::from_vector(const std::vector<Unitless>& vec)
 {
     if (vec.size() != 6) {
         throw std::runtime_error("Input vector must have exactly 6 elements to convert to Keplerian.");
@@ -270,10 +322,10 @@ Keplerian Keplerian::from_vector(const std::vector<Unitless>& vec)
     return Keplerian(vec[0] * km, vec[1], vec[2] * rad, vec[3] * rad, vec[4] * rad, vec[5] * rad);
 }
 
-
-Keplerian KeplerianPartial::operator*(const Time& time) const
+template <IsFrame auto frame>
+Keplerian<frame> KeplerianPartial<frame>::operator*(const Time& time) const
 {
-    return Keplerian(
+    return Keplerian<frame>(
         _semimajorPartial * time,
         _eccentricityPartial * time,
         _inclinationPartial * time,
@@ -283,14 +335,16 @@ Keplerian KeplerianPartial::operator*(const Time& time) const
     );
 }
 
-std::vector<Unitless> KeplerianPartial::force_to_vector() const
+template <IsFrame auto frame>
+std::vector<Unitless> KeplerianPartial<frame>::force_to_vector() const
 {
     return { _semimajorPartial / _semimajorPartial.unit,     _eccentricityPartial / _eccentricityPartial.unit,
              _inclinationPartial / _inclinationPartial.unit, _rightAscensionPartial / _rightAscensionPartial.unit,
              _argPerigeePartial / _argPerigeePartial.unit,   _trueAnomalyPartial / _trueAnomalyPartial.unit };
 }
 
-std::ostream& operator<<(std::ostream& os, Keplerian const& elements)
+template <IsFrame auto frame>
+std::ostream& operator<<(std::ostream& os, Keplerian<frame> const& elements)
 {
     os << "[";
     os << elements.get_semimajor() << ", ";
@@ -303,7 +357,8 @@ std::ostream& operator<<(std::ostream& os, Keplerian const& elements)
     return os;
 }
 
-std::ostream& operator<<(std::ostream& os, KeplerianPartial const& elements)
+template <IsFrame auto frame>
+std::ostream& operator<<(std::ostream& os, KeplerianPartial<frame> const& elements)
 {
     os << "[";
     os << elements._semimajorPartial << ", ";

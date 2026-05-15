@@ -20,7 +20,7 @@
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/force_models/instances/SolarRadiationPressure.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -56,7 +56,6 @@ class SolarRadiationPressureTest : public testing::Test {
 
     Spacecraft sat;
     Date epoch;
-    AstrodynamicsSystem sys;
     SolarRadiationPressure srpForce;
 };
 
@@ -81,7 +80,7 @@ TEST_F(SolarRadiationPressureTest, ComputeForceValladoEx85)
 
     Cartesian<frames::earth::icrf> cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                                          -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
-    State state(cart, epoch, sys);
+    State state(cart, epoch);
     const auto [force, torque]                          = srpForce.compute_perturbation(state, Vehicle(sat));
     const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
 

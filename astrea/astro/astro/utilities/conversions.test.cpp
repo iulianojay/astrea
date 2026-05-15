@@ -21,7 +21,7 @@
 
 #include <astro/state/angular_elements/instances/Geodetic.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/utilities/conversions.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -81,7 +81,6 @@ class ConversionTest : public testing::Test {
     OrbitalElements _ecefExp;
 
     // Setup
-    AstrodynamicsSystem sys;
     GravParam mu;
     Distance rEquitorial;
     Distance rPolar;
@@ -99,7 +98,7 @@ class ConversionTest : public testing::Test {
     OrbitalElements random_elements()
     {
         Keplerian elements(semimajorDist(rng), eccDist(rng), incDist(rng), raanDist(rng), wDist(rng), thetaDist(rng));
-        return OrbitalElements(T(elements, sys.get_mu()));
+        return OrbitalElements(T(elements.get_mu()));
     }
 };
 

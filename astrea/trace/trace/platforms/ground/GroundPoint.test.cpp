@@ -34,7 +34,6 @@ class GroundPointTest : public testing::Test {
         point     = GroundPoint(parent, latitude, longitude, altitude);
     }
 
-    AstrodynamicsSystem sys;
     const CelestialBody* parent;
     Angle latitude;
     Angle longitude;
@@ -61,7 +60,7 @@ TEST_F(GroundPointTest, GetLongitude) { ASSERT_EQ(point.get_longitude(), longitu
 
 TEST_F(GroundPointTest, GetAltitude) { ASSERT_EQ(point.get_altitude(), altitude); }
 
-TEST_F(GroundPointTest, GetParent) { ASSERT_EQ(point.get_parent(), sys.get_body(CelestialBodyId::EARTH).get()); }
+TEST_F(GroundPointTest, GetParent) { ASSERT_EQ(point.get_parent().get_body(CelestialBodyId::EARTH).get()); }
 
 TEST_F(GroundPointTest, GetId)
 {

@@ -23,7 +23,7 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/types/enums.hpp>
 
 namespace astrea {
@@ -43,7 +43,6 @@ Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle&
     }
 
     // Extract
-    const AstrodynamicsSystem& sys                        = state.get_system();
     const Date date                                       = state.get_epoch();
     const RadiusVector<frames::primary>& rCenterToVehicle = state.get_position();
 
@@ -59,7 +58,7 @@ Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle&
         // Find center to nth body and spacecraft to nth body
         // NOTE: The forced frame conversion here is fine since it's just a relative translation, no rotation or velocity
         const RadiusVector<frames::primary> rCenterToNbody =
-            sys.get_relative_position(date, id, center).force_frame_conversion<frames::primary>();
+            sys.get_relative_position<body, frames::primary::origin>(date).force_frame_conversion<frames::primary>();
         const RadiusVector<frames::primary> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
 
         // Normalize

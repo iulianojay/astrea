@@ -27,7 +27,7 @@
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/frames/instances/defined_rotations.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 
 namespace astrea {
 namespace astro {
@@ -90,15 +90,12 @@ inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& 
  * @return CartesianVector<Distance, frame> The offset vector from frame to frame_u expressed in frame.
  */
 template <IsFrame auto frame, IsFrame auto frame_u>
-    requires(!has_same_origin(frame, frame_u > && HasSameAxis < frame, frame_u))
+    requires(!has_same_origin(frame, frame_u) && has_same_axis(frame, frame_u))
 inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& date)
 {
-    // Build a system out of these bodies
-    static const AstrodynamicsSystem sys(CelestialBodyId::SUN, { frame::origin, frame_u::origin });
-
     // Forcing the frame change here doesn't matter since the offset is just a difference and it's already implied that
     // these two frames share an axis.
-    return sys.get_relative_position(date, frame::origin, frame_u::origin).template forceframeconversion<frame>();
+    return sys.get_relative_position<planets::Sun, frame::origin, frame_u::origin>(date).template force_frame_conversion<frame>();
 }
 
 namespace {
@@ -196,18 +193,17 @@ inline constexpr CartesianVector<Value_T, frame>
  * @return CartesianVector<Value_T, frame_u> A new CartesianVector in the target frame.
  */
 template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
-    requires(!has_same_origin(frame, frame_u > && HasSameAxis < frame, frame_u))
+    requires(!has_same_origin(frame, frame_u) && has_same_axis(frame, frame_u))
 inline constexpr CartesianVector<Distance, frame_u>
     translate_vector_into_frame(const CartesianVector<Distance, frame>& vec, const Date& date)
 {
-    static const AstrodynamicsSystem system(frame::origin, { frame_u::origin });
     if constexpr (std::is_same_v<Value_T, Distance>) {
-        const auto& posRel = system.get_relative_position(date, frame_u::origin, frame::origin); // frame -> frame_u
-        return vec.template forceframeconversion<frame_u>() + posRel.template forceframeconversion<frame_u>();
+        const auto& posRel = system.get_relative_position<frame_u::origin, frame::origin>(date); // frame -> frame_u
+        return vec.template force_frame_conversion<frame_u>() + posRel.template force_frame_conversion<frame_u>();
     }
     else if constexpr (std::is_same_v<Value_T, Velocity>) {
-        const auto& velRel = system.get_relative_velocity(date, frame_u::origin, frame::origin); // frame -> frame_u
-        return vec.template forceframeconversion<frame_u>() - velRel.template forceframeconversion<frame_u>();
+        const auto& velRel = system.get_relative_velocity<frame_u::origin, frame::origin>(date); // frame -> frame_u
+        return vec.template force_frame_conversion<frame_u>() - velRel.template force_frame_conversion<frame_u>();
     }
     else {
         throw std::logic_error("Unsupported vector type for translation. Only Distance and Velocity are supported.");

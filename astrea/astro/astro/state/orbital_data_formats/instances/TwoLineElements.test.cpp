@@ -19,7 +19,7 @@
 #include <units/units.hpp>
 
 #include <astro/state/orbital_data_formats/instances/TwoLineElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 
 using namespace astrea;
 using namespace astro;
@@ -41,11 +41,10 @@ class TwoLineElementsTest : public testing::Test {
         issRawTle = { "ISS (ZARYA)",
                       "1 25544U 98067A   08264.51782528 -.00002182  00000-0 -11606-4 0  2927",
                       "2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.72125391563537" };
-        issTle    = TwoLineElements(issRawTle, sys);
+        issTle    = TwoLineElements(issRawTle);
     }
 
     const Unitless REL_TOL = 1.0e-6;
-    AstrodynamicsSystem sys;
 
     std::array<std::string, 3> issRawTle;
     TwoLineElements issTle;
@@ -59,10 +58,7 @@ int main(int argc, char** argv)
 
 TEST_F(TwoLineElementsTest, DefaultConstructor) { ASSERT_NO_THROW(TwoLineElements()); }
 
-TEST_F(TwoLineElementsTest, StringConstructorEmpty)
-{
-    ASSERT_ANY_THROW(TwoLineElements(std::array<std::string, 2>{}, sys));
-}
+TEST_F(TwoLineElementsTest, StringConstructorEmpty) { ASSERT_ANY_THROW(TwoLineElements(std::array<std::string, 2>{})); }
 
 TEST_F(TwoLineElementsTest, StringConstructorLinesWrongSize)
 {
@@ -70,18 +66,18 @@ TEST_F(TwoLineElementsTest, StringConstructorLinesWrongSize)
         "1 25544U 98067A   08264.51782528 -.00002182  00000-0 -11606-4 0  2927 blahblahblah",
         "2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.72125391563537 blahblahblah"
     };
-    ASSERT_ANY_THROW(TwoLineElements(longTle, sys));
+    ASSERT_ANY_THROW(TwoLineElements(longTle));
 
     std::array<std::string, 2> shortTle = { "1 25544U 98067A   08264.51782528 -.00002182  00000-0 -11606-4 0  ",
                                             "2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.7212539156" };
-    ASSERT_ANY_THROW(TwoLineElements(shortTle, sys));
+    ASSERT_ANY_THROW(TwoLineElements(shortTle));
 }
 
 TEST_F(TwoLineElementsTest, StringConstructor)
 {
     std::array<std::string, 2> rawTle = { issRawTle[1], issRawTle[2] };
 
-    TwoLineElements tle(rawTle, sys);
+    TwoLineElements tle(rawTle);
 
     ASSERT_EQ(tle.get_raw_tle()[0], rawTle[0]);
     ASSERT_EQ(tle.get_raw_tle()[1], rawTle[1]);
@@ -118,7 +114,7 @@ TEST_F(TwoLineElementsTest, StringConstructor)
 TEST_F(TwoLineElementsTest, StringConstructor3Line)
 {
     const auto rawTle = issRawTle;
-    TwoLineElements tle(rawTle, sys);
+    TwoLineElements tle(rawTle);
 
     ASSERT_EQ(tle.get_name(), rawTle[0]);
 
@@ -157,7 +153,7 @@ TEST_F(TwoLineElementsTest, StringConstructor3Line)
 TEST_F(TwoLineElementsTest, CopyConstructor)
 {
     const auto rawTle = issRawTle;
-    TwoLineElements tle1(rawTle, sys);
+    TwoLineElements tle1(rawTle);
     TwoLineElements tle2(tle1);
     ASSERT_EQ(tle1, tle2);
 }
@@ -165,7 +161,7 @@ TEST_F(TwoLineElementsTest, CopyConstructor)
 TEST_F(TwoLineElementsTest, MoveConstructor)
 {
     const auto rawTle = issRawTle;
-    TwoLineElements tle1(rawTle, sys);
+    TwoLineElements tle1(rawTle);
     TwoLineElements tle2(std::move(tle1));
 
     ASSERT_EQ(tle2, issTle);
@@ -174,7 +170,7 @@ TEST_F(TwoLineElementsTest, MoveConstructor)
 TEST_F(TwoLineElementsTest, CopyAssignment)
 {
     const auto rawTle = issRawTle;
-    TwoLineElements tle1(rawTle, sys);
+    TwoLineElements tle1(rawTle);
     TwoLineElements tle2;
     tle2 = tle1;
     ASSERT_EQ(tle1, tle2);
@@ -183,7 +179,7 @@ TEST_F(TwoLineElementsTest, CopyAssignment)
 TEST_F(TwoLineElementsTest, MoveAssignment)
 {
     const auto rawTle = issRawTle;
-    TwoLineElements tle1(rawTle, sys);
+    TwoLineElements tle1(rawTle);
     TwoLineElements tle2;
     tle2 = std::move(tle1);
     ASSERT_EQ(tle2, issTle);
@@ -192,14 +188,14 @@ TEST_F(TwoLineElementsTest, MoveAssignment)
 TEST_F(TwoLineElementsTest, EqualityOperator)
 {
     const auto rawTle = issRawTle;
-    TwoLineElements tle1(rawTle, sys);
-    TwoLineElements tle2(rawTle, sys);
+    TwoLineElements tle1(rawTle);
+    TwoLineElements tle2(rawTle);
     ASSERT_TRUE(tle1 == tle2);
     ASSERT_FALSE(tle1 != tle2);
 
     std::array<std::string, 2> rawTleDiff = { "1 25544U 98067A   08264.51782528 -.00002182  00000-0 -11606-4 0  2927",
                                               "2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.72125391563538" }; // Changed last digit
-    TwoLineElements tle3(rawTleDiff, sys);
+    TwoLineElements tle3(rawTleDiff);
     ASSERT_FALSE(tle1 == tle3);
     ASSERT_TRUE(tle1 != tle3);
 }
@@ -207,7 +203,7 @@ TEST_F(TwoLineElementsTest, EqualityOperator)
 TEST_F(TwoLineElementsTest, Stream)
 {
     const auto rawTle = issRawTle;
-    TwoLineElements tle(rawTle, sys);
+    TwoLineElements tle(rawTle);
     std::stringstream ss;
     ss << tle;
     std::stringstream expected;

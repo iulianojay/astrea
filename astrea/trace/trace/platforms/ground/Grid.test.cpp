@@ -44,7 +44,6 @@ class GridTest : public testing::Test {
                            GroundPoint(parent, lat4, lon4, 0.0 * mp_units::si::unit_symbols::km) };
     }
 
-    AstrodynamicsSystem sys;
     const CelestialBody* parent;
 
     Angle spacing;

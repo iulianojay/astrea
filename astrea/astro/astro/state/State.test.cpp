@@ -21,7 +21,7 @@
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 
 using namespace astrea;
@@ -31,11 +31,10 @@ class StateTest : public testing::Test {
   public:
     StateTest() {}
 
-    void SetUp() override { state = State(elements, epoch, sys); }
+    void SetUp() override { state = State(elements, epoch); }
 
     State state;
     Date epoch;
-    AstrodynamicsSystem sys;
     OrbitalElements elements;
 };
 

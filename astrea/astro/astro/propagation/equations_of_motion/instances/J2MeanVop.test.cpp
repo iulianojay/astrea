@@ -21,7 +21,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <tests/utilities/comparisons.hpp>
 
 using mp_units::angular::unit_symbols::rad;
@@ -41,7 +41,6 @@ class J2MeanTest : public testing::Test {
 
     ForceVector<frames::earth::icrf> noForce;
     Vehicle sat;
-    AstrodynamicsSystem sys;
     Date epoch;
     J2MeanVop eom;
 };
@@ -62,7 +61,7 @@ TEST_F(J2MeanTest, Derivative)
     KeplerianPartial expected =
         KeplerianPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * rad / s, 0.0 * rad / s, 0.0 * rad / s, 0.0010780076129942077 * rad / s);
 
-    State state(kep0, epoch, sys);
+    State state(kep0, epoch);
 
     OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
     ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));

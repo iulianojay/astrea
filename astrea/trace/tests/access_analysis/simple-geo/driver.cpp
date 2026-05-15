@@ -63,7 +63,6 @@ class SimpleGeoAccessTest : public testing::Test {
 
     void SetUp() override {}
 
-    AstrodynamicsSystem sys;
     const Distance semimajorGeo;
     ForceModel forces;
     Integrator integrator;
@@ -83,11 +82,11 @@ int main(int argc, char** argv)
 TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
 {
     // Build constellation
-    State state1(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys.get_mu()), epoch, sys);
+    State state1(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), get_mu<Earth>()), epoch);
     Viewer geo1;
     geo1.store_state(state1);
 
-    State state2(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), sys.get_mu()), epoch, sys);
+    State state2(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), get_mu<Earth>()), epoch);
     Viewer geo2;
     geo2.store_state(state2);
 
@@ -111,7 +110,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
     twoBallGeo.propagate(propTime, integrator);
 
     // Find access
-    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
+    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime);
     const auto accesses = analyzer.find_internal_accesses(twoBallGeo);
 
     // Assert that there is 100% access
@@ -127,11 +126,11 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoAlwaysConnected)
 TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
 {
     // Build constellation
-    State state1(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), sys.get_mu()), epoch, sys);
+    State state1(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg).get_mu()), epoch);
     Viewer geo1;
     geo1.store_state(state1);
 
-    State state2(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), sys.get_mu()), epoch, sys);
+    State state2(Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg).get_mu()), epoch);
     Viewer geo2;
     geo2.store_state(state2);
 
@@ -155,7 +154,7 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
     twoBallGeo.propagate(propTime, integrator);
 
     // Find access
-    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
+    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime);
     const auto accesses = analyzer.find_internal_accesses(twoBallGeo);
 
     // Assert that there is never access
@@ -166,10 +165,10 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
 TEST_F(SimpleGeoAccessTest, FourBallGeo)
 {
     // Build constellation
-    State state1({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), epoch, sys });
-    State state2({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), epoch, sys });
-    State state3({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), epoch, sys });
-    State state4({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg), epoch, sys });
+    State state1({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), epoch });
+    State state2({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), epoch });
+    State state3({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), epoch });
+    State state4({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg), epoch });
 
     Viewer geo1;
     geo1.store_state(state1);
@@ -202,7 +201,7 @@ TEST_F(SimpleGeoAccessTest, FourBallGeo)
     fourBallGeo.propagate(propTime, integrator);
 
     // Find access
-    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
+    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime);
     auto accesses = analyzer.find_internal_accesses(fourBallGeo);
 
     // Assert that there is 100% access for non-apposing sats, 0% for apposing sats

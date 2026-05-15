@@ -26,8 +26,8 @@
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/systems/planets/Earth/Earth.hpp>
+#include <astro/systems/system_utilities>
 
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
@@ -55,7 +55,7 @@ class ImpulsiveBurnTest : public testing::Test {
         const Angle trueAnomaly      = 0.0 * rad;
 
         Keplerian keplerian(semiMajorAxis, eccentricity, inclination, raan, argPe, trueAnomaly);
-        state   = State(keplerian, Date(), sys);
+        state   = State(keplerian, Date());
         vehicle = Vehicle(spacecraft);
 
         // Set up a standard burn direction (radial)
@@ -64,7 +64,6 @@ class ImpulsiveBurnTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6 * one;
 
-    AstrodynamicsSystem sys;
     Time time;
     State state;
     Vehicle vehicle;

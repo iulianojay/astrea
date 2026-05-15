@@ -36,12 +36,11 @@ int main()
     // modifying the current vehicle or state.
 
     // Setup initial state
-    AstrodynamicsSystem sys; // Defaults to Earth-Moon
-    const auto mu = sys.get_mu();
+    const auto mu = get_mu<Earth>();
 
     const Date epoch; // Defaults to J2000
     const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
-    const State state0(elements, epoch, sys);
+    const State state0(elements, epoch);
 
     // Build the vehicle
     Spacecraft sat;

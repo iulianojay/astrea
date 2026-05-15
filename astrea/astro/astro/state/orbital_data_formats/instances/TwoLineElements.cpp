@@ -28,7 +28,7 @@
 
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/types/typedefs.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -44,21 +44,21 @@ using si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-TwoLineElements::TwoLineElements(const std::array<std::string, 3> rawTle, const AstrodynamicsSystem& sys) :
+TwoLineElements::TwoLineElements(const std::array<std::string, 3> rawTle) :
     _rawTLE({ rawTle[1], rawTle[2] })
 {
-    ctor_impl({ rawTle[1], rawTle[2] }, sys);
+    ctor_impl({ rawTle[1], rawTle[2] });
     _name = utilities::trim(rawTle[0]);
 }
 
-TwoLineElements::TwoLineElements(const std::array<std::string, 2> rawTle, const AstrodynamicsSystem& sys) :
+TwoLineElements::TwoLineElements(const std::array<std::string, 2> rawTle) :
     _rawTLE(rawTle)
 {
-    ctor_impl(rawTle, sys);
+    ctor_impl(rawTle);
     _name = "Unnamed";
 }
 
-void TwoLineElements::ctor_impl(const std::array<std::string, 2> rawTle, const AstrodynamicsSystem& sys)
+void TwoLineElements::ctor_impl(const std::array<std::string, 2> rawTle)
 {
     // Parse the TLE lines
     if (rawTle[0].size() != 69) {

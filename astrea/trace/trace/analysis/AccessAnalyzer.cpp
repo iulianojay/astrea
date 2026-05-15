@@ -23,7 +23,7 @@
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -39,7 +39,6 @@
 namespace astrea {
 
 using namespace astro::frames;
-using astro::AstrodynamicsSystem;
 using astro::Cartesian;
 using astro::CelestialBodyId;
 using astro::Date;

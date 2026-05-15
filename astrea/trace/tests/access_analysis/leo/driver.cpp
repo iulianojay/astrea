@@ -63,7 +63,6 @@ class LeoToGroundAccessTest : public testing::Test {
 
     void SetUp() override {}
 
-    AstrodynamicsSystem sys;
     GravParam mu;
     const Distance semimajorLeo;
     ForceModel forces;
@@ -85,7 +84,7 @@ TEST_F(LeoToGroundAccessTest, LeoThinCone)
 {
     // Build constellation
     const Cartesian<frames::earth::icrf> elem0(Keplerian(semimajorLeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
-    const State state0(elem0, epoch, sys);
+    const State state0(elem0, epoch);
 
     const auto& centralBody = sys.get_central_body();
 
@@ -131,7 +130,7 @@ TEST_F(LeoToGroundAccessTest, LeoThinCone)
     GroundArchitecture grounds(groundsVec);
 
     // Find access
-    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
+    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime);
     const auto accesses = analyzer.find_accesses(constel, grounds);
 
     // Should access every ground at least once

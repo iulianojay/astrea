@@ -28,7 +28,7 @@
 #include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -52,7 +52,6 @@ using mp_units::si::unit_symbols::s;
 Perturbation AtmosphericForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    const AstrodynamicsSystem& sys          = state.get_system();
     const CelestialBodyUniquePtr& center    = sys.get_central_body();
     const AngularVelocity& bodyRotationRate = center->get_rotation_rate();
 

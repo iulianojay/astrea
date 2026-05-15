@@ -37,7 +37,6 @@ int main()
     auto start = std::chrono::steady_clock::now();
 
     // Setup system
-    AstrodynamicsSystem sys;
     Date epoch = Date::now();
 
     // Build constellation
@@ -45,7 +44,7 @@ int main()
     initialElements.set_eccentricity(0.001 * one);
     initialElements.set_inclination(25.0 * deg);
 
-    State state0(initialElements, epoch, sys);
+    State state0(initialElements, epoch);
     Spacecraft sat;
 
     // Force model

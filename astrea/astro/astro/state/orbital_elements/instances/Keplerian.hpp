@@ -29,6 +29,8 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/frame_registry.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -41,12 +43,16 @@ namespace astro {
  * They include the semimajor axis, eccentricity, inclination, right ascension of the ascending node,
  * argument of perigee, and true anomaly.
  */
+template <IsFrame auto _frame_ = frames::primary>
 class Keplerian {
 
-    friend std::ostream& operator<<(std::ostream&, Keplerian const&);
+    template <IsFrame auto F>
+    friend std::ostream& operator<<(std::ostream&, Keplerian<F> const&);
     friend class OrbitalElements;
 
   public:
+    static constexpr auto frame = _frame_; //!< The reference frame of the Keplerian elements.
+
     /**
      * @brief Constructs a Keplerian object with default values.
      *
@@ -99,8 +105,7 @@ class Keplerian {
      * @param elements The Cartesian elements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    template <IsFrame auto _frame_>
-    Keplerian(const Cartesian<_frame_>& elements, const GravParam& mu)
+    Keplerian(const Cartesian<frame>& elements, const GravParam& mu)
     {
 
         using namespace mp_units;
@@ -591,11 +596,14 @@ class Keplerian {
  *
  * @note The KeplerianPartial class is typically used in astrodynamics calculations involving orbital mechanics.
  */
+template <IsFrame auto _frame_ = frames::primary>
 class KeplerianPartial {
 
     friend std::ostream& operator<<(std::ostream&, KeplerianPartial const&);
 
   public:
+    static constexpr auto frame = _frame_; //!< The reference frame of the Keplerian partial derivatives.
+
     /**
      * @brief Default constructor for KeplerianPartial.
      *
@@ -638,7 +646,7 @@ class KeplerianPartial {
      * @param time Time to multiply the KeplerianPartial by
      * @return Keplerian Resulting Keplerian state vector after multiplication.
      */
-    Keplerian operator*(const Time& time) const;
+    Keplerian<frame> operator*(const Time& time) const;
 
     /**
      * @brief Converts the KeplerianPartial state vector to a vector of unitless values.
@@ -658,3 +666,5 @@ class KeplerianPartial {
 
 } // namespace astro
 } // namespace astrea
+
+#include <astro/state/orbital_elements/instances/Keplerian.ipp>

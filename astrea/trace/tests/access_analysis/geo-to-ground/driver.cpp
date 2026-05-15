@@ -63,7 +63,6 @@ class GeoToGroundAccessTest : public testing::Test {
 
     void SetUp() override {}
 
-    AstrodynamicsSystem sys;
     GravParam mu;
     const Distance semimajorGeo;
     ForceModel forces;
@@ -85,7 +84,7 @@ TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
 {
     // Build constellation
     const Cartesian<frames::earth::icrf> elem0(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
-    const State state0(elem0, epoch, sys);
+    const State state0(elem0, epoch);
 
     const auto rEcef           = elem0.get_position().in_frame<frames::earth::earth_fixed>(epoch);
     const auto& centralBody    = sys.get_central_body();
@@ -120,7 +119,7 @@ TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
     constel.propagate(propTime, integrator);
 
     // Find access
-    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
+    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime);
     const auto accesses = analyzer.find_accesses(constel, grounds);
 
     // Assert that there is access
@@ -131,11 +130,11 @@ TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
 TEST_F(GeoToGroundAccessTest, TwoBallGeoNeverConnected)
 {
     // Build constellation
-    State state1({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu), epoch, sys });
+    State state1({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu), epoch });
     Viewer geo1;
     geo1.store_state(state1);
 
-    State state2({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), mu), epoch, sys });
+    State state2({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), mu), epoch });
     Viewer geo2;
     geo2.store_state(state2);
 
@@ -159,7 +158,7 @@ TEST_F(GeoToGroundAccessTest, TwoBallGeoNeverConnected)
     twoBallGeo.propagate(propTime, integrator);
 
     // Find access
-    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
+    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime);
     const auto accesses = analyzer.find_internal_accesses(twoBallGeo);
 
     // Assert that there is never access
@@ -170,10 +169,10 @@ TEST_F(GeoToGroundAccessTest, TwoBallGeoNeverConnected)
 TEST_F(GeoToGroundAccessTest, FourBallGeo)
 {
     // Build constellation
-    State state1({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), epoch, sys });
-    State state2({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), epoch, sys });
-    State state3({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), epoch, sys });
-    State state4({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg), epoch, sys });
+    State state1({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), epoch });
+    State state2({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), epoch });
+    State state3({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), epoch });
+    State state4({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg), epoch });
 
     Viewer geo1;
     geo1.store_state(state1);
@@ -206,7 +205,7 @@ TEST_F(GeoToGroundAccessTest, FourBallGeo)
     fourBallGeo.propagate(propTime, integrator);
 
     // Find access
-    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
+    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime);
     auto accesses = analyzer.find_internal_accesses(fourBallGeo);
 
     // Assert that there is 100% access for non-apposing sats, 0% for apposing sats

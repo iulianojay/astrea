@@ -17,7 +17,7 @@
 #include <units/units.hpp>
 
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
@@ -42,7 +42,6 @@ class OrbitalElementsTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
-    AstrodynamicsSystem _sys;
     GravParam _mu;
     OrbitalElements _cartElements;
     OrbitalElements _keplElements;
@@ -102,8 +101,7 @@ TEST_F(OrbitalElementsTest, ConvertToSetCartesian)
     newElements = _cartElements.convert_to_set(OrbitalElements::get_set_id<Equinoctial>(), _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Equinoctial>());
 
-    ASSERT_NO_THROW(OrbitalElements newElements =
-                        static_cast<const OrbitalElements&>(_cartElements).convert_to_set<Keplerian>(_mu););
+    ASSERT_NO_THROW(OrbitalElements newElements = static_cast<const OrbitalElements&>(_cartElements).convert_to_set<Keplerian>(_mu););
     ASSERT_NO_THROW(
         newElements = static_cast<const OrbitalElements&>(_cartElements).convert_to_set(OrbitalElements::get_set_id<Keplerian>(), _mu)
     );
@@ -140,8 +138,10 @@ TEST_F(OrbitalElementsTest, ConvertToSetEquinoctial)
     newElements = _equiElements.convert_to_set(OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>(), _mu);
     ASSERT_EQ(newElements.index(), OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>());
 
-    ASSERT_NO_THROW(OrbitalElements newElements =
-                        static_cast<const OrbitalElements&>(_equiElements).convert_to_set<Cartesian<frames::earth::icrf>>(_mu););
+    ASSERT_NO_THROW(
+        OrbitalElements newElements =
+            static_cast<const OrbitalElements&>(_equiElements).convert_to_set<Cartesian<frames::earth::icrf>>(_mu);
+    );
     ASSERT_NO_THROW(
         newElements = static_cast<const OrbitalElements&>(_equiElements)
                           .convert_to_set(OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>(), _mu)

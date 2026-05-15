@@ -23,7 +23,7 @@
 
 #include <astro/frames/DirectionCosineMatrix.hpp>
 #include <astro/frames/frames.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
@@ -77,9 +77,7 @@ template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
     )
 inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> get_dcm(const Date& date)
 {
-    static const AstrodynamicsSystem system(_out_frame_::origin);
-    static const auto& body = system.get_body(_out_frame_::origin);
-    const Angle gst         = date.body_sidereal_time(*body.get());
+    const Angle gst = date.body_sidereal_time<_out_frame_::origin>();
     return DirectionCosineMatrix<_in_frame_, _out_frame_>::Z(-gst);
 }
 
@@ -94,8 +92,7 @@ inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> get_dcm(const Da
 template <>
 inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems> get_dcm(const Date& date)
 {
-    static const AstrodynamicsSystem system(CelestialBodyId::EARTH_BARYCENTER, { CelestialBodyId::EARTH, CelestialBodyId::MOON });
-    const auto rEarth2Moon = system.get_relative_position(date, CelestialBodyId::EARTH, CelestialBodyId::MOON);
+    const auto rEarth2Moon = system.get_relative_position<planets::Earth, planets::Moon>(date);
     const Angle lambda     = atan2(rEarth2Moon[1], rEarth2Moon[0]);
     return DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems>::Z(-lambda);
 }

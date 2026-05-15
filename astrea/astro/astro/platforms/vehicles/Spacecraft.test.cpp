@@ -19,7 +19,7 @@
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 
 using namespace astrea;
 using namespace astro;
@@ -43,7 +43,7 @@ class SpacecraftTest : public testing::Test {
         spacecraftWithHistory.set_state_history(history);
     }
 
-    AstrodynamicsSystem sys;
+    CelestialBody sys;
     Spacecraft spacecraft;
     Spacecraft spacecraftWithHistory;
 };

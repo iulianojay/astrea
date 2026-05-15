@@ -53,7 +53,6 @@ AccessArray propagate_and_run_access_analysis(
     astro::Constellation<T>& constellation,
     U& grounds,
     const Date& startDate,
-    const AstrodynamicsSystem& sys,
     const Time propTime,
     const Time accessResolution,
     const bool printProgress
@@ -72,7 +71,6 @@ int main()
 int trace_analysis(const Time propTime, const Time accessResolution, const bool printProgress, const Angle gridSpacing)
 {
     // Setup system
-    AstrodynamicsSystem sys;
     Date startDate = Date::now();
 
     // Query database
@@ -110,7 +108,7 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
                 // const auto state = sat.get_state_history().first();
                 // std::cout << "\t" << state;
                 // const auto rEci = state.in_element_set<Cartesian>().get_position();
-                // const auto lla  = Geodetic(rEci, startDate, sys.get_central_body().get());
+                // const auto lla  = Geodetic(rEci, startDate.get_central_body().get());
                 // std::cout << "-> Lon: " << lla.get_longitude().in(deg) << std::endl;
                 sat.attach_payload(leoCone);
                 sat.set_name("Sat " + std::to_string(sat.get_id()) + "(Cluster " + std::to_string(sat.get_id() % 3 + 1) + ")");
@@ -130,7 +128,7 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
 
     // Propagate and find access
     const AccessArray accesses =
-        propagate_and_run_access_analysis(constellation, grid, startDate, sys, propTime, accessResolution, printProgress);
+        propagate_and_run_access_analysis(constellation, grid, startDate, propTime, accessResolution, printProgress);
     const AccessStats stats(accesses);
     const FoldsOfCoverage folds(accesses, accessResolution, propTime);
 
@@ -155,7 +153,6 @@ AccessArray propagate_and_run_access_analysis(
     astro::Constellation<T>& constellation,
     U& grounds,
     const Date& startDate,
-    const AstrodynamicsSystem& sys,
     const Time propTime,
     const Time accessResolution,
     const bool printProgress
@@ -206,7 +203,7 @@ AccessArray propagate_and_run_access_analysis(
     }
 
     // Find access
-    AccessAnalyzer analyzer(accessResolution, startDate, endDate, sys, true);
+    AccessAnalyzer analyzer(accessResolution, startDate, endDate, true);
     const auto accesses = analyzer.find_accesses(constellation, grounds, true);
 
     end  = std::chrono::steady_clock::now();

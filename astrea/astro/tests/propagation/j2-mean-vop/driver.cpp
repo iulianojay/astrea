@@ -21,7 +21,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -52,7 +52,6 @@ class J2MeanVopPropagationTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
     const Unitless ABS_TOL = 1.0e-2;
 
-    AstrodynamicsSystem sys;
     J2MeanVop eom;
     ForceModel forces;
     Integrator integrator;
@@ -72,7 +71,7 @@ TEST_F(J2MeanVopPropagationTest, GEONoForces)
 {
     // Build constellation
     Keplerian kep0 = Keplerian::GEO();
-    State state{ kep0, epoch, sys };
+    State state{ kep0, epoch };
     Spacecraft geo;
     Vehicle vehicle{ geo };
 
@@ -91,7 +90,7 @@ TEST_F(J2MeanVopPropagationTest, GPSNoForces)
 {
     // Build constellation
     Keplerian kep0 = Keplerian::GPS();
-    State state{ kep0, epoch, sys };
+    State state{ kep0, epoch };
     Spacecraft meo;
     Vehicle vehicle{ meo };
 
@@ -110,7 +109,7 @@ TEST_F(J2MeanVopPropagationTest, LEONoForces)
 {
     // Build constellation
     Keplerian kep0 = Keplerian::LEO();
-    State state{ kep0, epoch, sys };
+    State state{ kep0, epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };
 

@@ -11,8 +11,6 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/state/orbital_elements/instances/Equinoctial.hpp>
-
 #include <iomanip>
 #include <iostream>
 
@@ -24,7 +22,7 @@
 #include <math/interpolation.hpp>
 
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/types/typedefs.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -39,13 +37,34 @@ using si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-Equinoctial Equinoctial::LEO(const GravParam& mu) { return Equinoctial(Keplerian::LEO(), mu); }
-Equinoctial Equinoctial::LMEO(const GravParam& mu) { return Equinoctial(Keplerian::LMEO(), mu); }
-Equinoctial Equinoctial::GPS(const GravParam& mu) { return Equinoctial(Keplerian::GPS(), mu); }
-Equinoctial Equinoctial::HMEO(const GravParam& mu) { return Equinoctial(Keplerian::HMEO(), mu); }
-Equinoctial Equinoctial::GEO(const GravParam& mu) { return Equinoctial(Keplerian::GEO(), mu); }
+template <IsFrame auto frame>
+Equinoctial<frame> Equinoctial<frame>::LEO(const GravParam& mu)
+{
+    return Equinoctial(Keplerian<frame>::LEO(), mu);
+}
+template <IsFrame auto frame>
+Equinoctial<frame> Equinoctial<frame>::LMEO(const GravParam& mu)
+{
+    return Equinoctial(Keplerian<frame>::LMEO(), mu);
+}
+template <IsFrame auto frame>
+Equinoctial<frame> Equinoctial<frame>::GPS(const GravParam& mu)
+{
+    return Equinoctial(Keplerian<frame>::GPS(), mu);
+}
+template <IsFrame auto frame>
+Equinoctial<frame> Equinoctial<frame>::HMEO(const GravParam& mu)
+{
+    return Equinoctial(Keplerian<frame>::HMEO(), mu);
+}
+template <IsFrame auto frame>
+Equinoctial<frame> Equinoctial<frame>::GEO(const GravParam& mu)
+{
+    return Equinoctial(Keplerian<frame>::GEO(), mu);
+}
 
-Equinoctial::Equinoctial(const Keplerian& elements, const GravParam& mu)
+template <IsFrame auto frame>
+Equinoctial<frame>::Equinoctial(const Keplerian<frame>& elements, const GravParam& mu)
 {
     // Get r and v
     const auto& a      = elements.get_semimajor();
@@ -69,7 +88,8 @@ Equinoctial::Equinoctial(const Keplerian& elements, const GravParam& mu)
 }
 
 // Copy constructor
-Equinoctial::Equinoctial(const Equinoctial& other) :
+template <IsFrame auto frame>
+Equinoctial<frame>::Equinoctial(const Equinoctial<frame>& other) :
     _semilatus(other._semilatus),
     _f(other._f),
     _g(other._g),
@@ -80,7 +100,8 @@ Equinoctial::Equinoctial(const Equinoctial& other) :
 }
 
 // Move constructor
-Equinoctial::Equinoctial(Equinoctial&& other) noexcept :
+template <IsFrame auto frame>
+Equinoctial<frame>::Equinoctial(Equinoctial<frame>&& other) noexcept :
     _semilatus(std::move(other._semilatus)),
     _f(std::move(other._f)),
     _g(std::move(other._g)),
@@ -91,7 +112,8 @@ Equinoctial::Equinoctial(Equinoctial&& other) noexcept :
 }
 
 // Move assignment operator
-Equinoctial& Equinoctial::operator=(Equinoctial&& other) noexcept
+template <IsFrame auto frame>
+Equinoctial<frame>& Equinoctial<frame>::operator=(Equinoctial<frame>&& other) noexcept
 {
     if (this != &other) {
         _semilatus     = std::move(other._semilatus);
@@ -105,10 +127,15 @@ Equinoctial& Equinoctial::operator=(Equinoctial&& other) noexcept
 }
 
 // Copy assignment operator
-Equinoctial& Equinoctial::operator=(const Equinoctial& other) { return *this = Equinoctial(other); }
+template <IsFrame auto frame>
+Equinoctial<frame>& Equinoctial<frame>::operator=(const Equinoctial<frame>& other)
+{
+    return *this = Equinoctial(other);
+}
 
 // Comparitors operators
-bool Equinoctial::operator==(const Equinoctial& other) const
+template <IsFrame auto frame>
+bool Equinoctial<frame>::operator==(const Equinoctial<frame>& other) const
 {
     return (
         _semilatus == other._semilatus && _f == other._f && _g == other._g && _h == other._h && _k == other._k &&
@@ -116,11 +143,16 @@ bool Equinoctial::operator==(const Equinoctial& other) const
     );
 }
 
-bool Equinoctial::operator!=(const Equinoctial& other) const { return !(*this == other); }
+template <IsFrame auto frame>
+bool Equinoctial<frame>::operator!=(const Equinoctial<frame>& other) const
+{
+    return !(*this == other);
+}
 
 
 // Mathmatical operators
-Equinoctial Equinoctial::operator+(const Equinoctial& other) const
+template <IsFrame auto frame>
+Equinoctial<frame> Equinoctial<frame>::operator+(const Equinoctial<frame>& other) const
 {
     return Equinoctial(
         _semilatus + other._semilatus,
@@ -131,7 +163,8 @@ Equinoctial Equinoctial::operator+(const Equinoctial& other) const
         _trueLongitude + other._trueLongitude
     );
 }
-Equinoctial& Equinoctial::operator+=(const Equinoctial& other)
+template <IsFrame auto frame>
+Equinoctial<frame>& Equinoctial<frame>::operator+=(const Equinoctial<frame>& other)
 {
     _semilatus += other._semilatus;
     _f += other._f;
@@ -142,7 +175,8 @@ Equinoctial& Equinoctial::operator+=(const Equinoctial& other)
     return *this;
 }
 
-Equinoctial Equinoctial::operator-(const Equinoctial& other) const
+template <IsFrame auto frame>
+Equinoctial<frame> Equinoctial<frame>::operator-(const Equinoctial<frame>& other) const
 {
     return Equinoctial(
         _semilatus - other._semilatus,
@@ -153,7 +187,8 @@ Equinoctial Equinoctial::operator-(const Equinoctial& other) const
         _trueLongitude - other._trueLongitude
     );
 }
-Equinoctial& Equinoctial::operator-=(const Equinoctial& other)
+template <IsFrame auto frame>
+Equinoctial<frame>& Equinoctial<frame>::operator-=(const Equinoctial<frame>& other)
 {
     _semilatus -= other._semilatus;
     _f -= other._f;
@@ -164,11 +199,13 @@ Equinoctial& Equinoctial::operator-=(const Equinoctial& other)
     return *this;
 }
 
-Equinoctial Equinoctial::operator*(const Unitless& multiplier) const
+template <IsFrame auto frame>
+Equinoctial<frame> Equinoctial<frame>::operator*(const Unitless& multiplier) const
 {
     return Equinoctial(_semilatus * multiplier, _f * multiplier, _g * multiplier, _h * multiplier, _k * multiplier, _trueLongitude * multiplier);
 }
-Equinoctial& Equinoctial::operator*=(const Unitless& multiplier)
+template <IsFrame auto frame>
+Equinoctial<frame>& Equinoctial<frame>::operator*=(const Unitless& multiplier)
 {
     _semilatus *= multiplier;
     _f *= multiplier;
@@ -179,17 +216,20 @@ Equinoctial& Equinoctial::operator*=(const Unitless& multiplier)
     return *this;
 }
 
-EquinoctialPartial Equinoctial::operator/(const Time& time) const
+template <IsFrame auto frame>
+EquinoctialPartial Equinoctial<frame>::operator/(const Time& time) const
 {
     return EquinoctialPartial(_semilatus / time, _f / time, _g / time, _h / time, _k / time, _trueLongitude / time);
 }
 
-Equinoctial Equinoctial::operator/(const Unitless& divisor) const
+template <IsFrame auto frame>
+Equinoctial<frame> Equinoctial<frame>::operator/(const Unitless& divisor) const
 {
     return Equinoctial(_semilatus / divisor, _f / divisor, _g / divisor, _h / divisor, _k / divisor, _trueLongitude / divisor);
 }
 
-Equinoctial& Equinoctial::operator/=(const Unitless& divisor)
+template <IsFrame auto frame>
+Equinoctial<frame>& Equinoctial<frame>::operator/=(const Unitless& divisor)
 {
     _semilatus /= divisor;
     _f /= divisor;
@@ -201,8 +241,9 @@ Equinoctial& Equinoctial::operator/=(const Unitless& divisor)
 }
 
 
-Equinoctial
-    Equinoctial::interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const GravParam& mu, const Time& targetTime) const
+template <IsFrame auto frame>
+Equinoctial<frame>
+    Equinoctial<frame>::interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial<frame>& other, const GravParam& mu, const Time& targetTime) const
 {
     const std::array<Time, 2> times = { thisTime, otherTime };
     const Distance interpSemimajor =
@@ -216,12 +257,14 @@ Equinoctial
     return Equinoctial(interpSemimajor, interpEcc, interpInc, interpRaan, interpArgPer, interpTheta);
 }
 
-std::vector<Unitless> Equinoctial::force_to_vector() const
+template <IsFrame auto frame>
+std::vector<Unitless> Equinoctial<frame>::force_to_vector() const
 {
     return { _semilatus / _semilatus.unit, _f, _g, _h, _k, _trueLongitude / _trueLongitude.unit };
 }
 
-Equinoctial Equinoctial::from_vector(const std::vector<Unitless>& vec)
+template <IsFrame auto frame>
+Equinoctial<frame> Equinoctial<frame>::from_vector(const std::vector<Unitless>& vec)
 {
     if (vec.size() != 6) {
         throw std::runtime_error("Input vector must have exactly 6 elements to convert to Equinoctial.");
@@ -229,12 +272,14 @@ Equinoctial Equinoctial::from_vector(const std::vector<Unitless>& vec)
     return Equinoctial(vec[0] * km, vec[1], vec[2], vec[3], vec[4], vec[5] * rad);
 }
 
-Equinoctial EquinoctialPartial::operator*(const Time& time) const
+template <IsFrame auto frame>
+Equinoctial<frame> EquinoctialPartial<frame>::operator*(const Time& time) const
 {
-    return Equinoctial(_semilatusPartial * time, _fPartial * time, _gPartial * time, _hPartial * time, _kPartial * time, _trueLongitudePartial * time);
+    return Equinoctial<frame>(_semilatusPartial * time, _fPartial * time, _gPartial * time, _hPartial * time, _kPartial * time, _trueLongitudePartial * time);
 }
 
-std::vector<Unitless> EquinoctialPartial::force_to_vector() const
+template <IsFrame auto frame>
+std::vector<Unitless> EquinoctialPartial<frame>::force_to_vector() const
 {
     return { _semilatusPartial / _semilatusPartial.unit,
              _fPartial / _fPartial.unit,
@@ -244,7 +289,8 @@ std::vector<Unitless> EquinoctialPartial::force_to_vector() const
              _trueLongitudePartial / _trueLongitudePartial.unit };
 }
 
-std::ostream& operator<<(std::ostream& os, Equinoctial const& elements)
+template <IsFrame auto frame>
+std::ostream& operator<<(std::ostream& os, Equinoctial<frame> const& elements)
 {
     os << "[";
     os << elements.get_semilatus() << ", ";
@@ -257,7 +303,8 @@ std::ostream& operator<<(std::ostream& os, Equinoctial const& elements)
     return os;
 }
 
-std::ostream& operator<<(std::ostream& os, EquinoctialPartial const& elements)
+template <IsFrame auto frame>
+std::ostream& operator<<(std::ostream& os, EquinoctialPartial<frame> const& elements)
 {
     os << "[";
     os << elements._semilatusPartial << ", ";

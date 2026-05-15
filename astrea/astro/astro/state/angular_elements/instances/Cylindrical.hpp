@@ -28,7 +28,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -91,10 +91,10 @@ class Cylindrical {
      * @param sys Astrodynamics system containing celestial body data
      */
     template <IsOrbitalElements T>
-    Cylindrical(const T& elements, const AstrodynamicsSystem& sys, const Date& date)
+    Cylindrical(const T& elements, const Date& date)
     {
         *this = Cylindrical(
-            Cartesian(elements, sys.get_mu()).get_position().template in_frame<frames::earth::earth_fixed>(date),
+            Cartesian(elements).get_position().template in_frame<frames::earth::earth_fixed>(date),
             sys.get_central_body().get()
         );
     }

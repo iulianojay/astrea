@@ -19,9 +19,9 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/planets.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -46,7 +46,6 @@ class CelestialBodyTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
 
     Earth earth;
-    AstrodynamicsSystem sys;
 };
 
 
@@ -227,18 +226,13 @@ TEST_F(CelestialBodyTest, GetMeanLongitudeRate)
 TEST_F(CelestialBodyTest, GetStateAtValldoEx)
 {
     const Date date("2020-02-18 15:08:47.23847");
-    const AstrodynamicsSystem earthMoonSunSys(CelestialBodyId::EARTH, { CelestialBodyId::SUN, CelestialBodyId::MOON });
-    const auto& earth = earthMoonSunSys.get_body(CelestialBodyId::EARTH);
-    const auto& moon  = earthMoonSunSys.get_body(CelestialBodyId::MOON);
-    const auto& sun   = earthMoonSunSys.get_body(CelestialBodyId::SUN);
-
-    const auto& earthMu = earth->get_mu();
-    const auto& sunMu   = sun->get_mu();
+    const auto& earthMu = get_mu<Earth>();
+    const auto& sunMu   = get_mu<Sun>();
 
     // Pull out states
-    const RadiusVector<frames::solar_system_barycenter::icrf> sunPosition   = sun->get_position_at(date);
-    const RadiusVector<frames::solar_system_barycenter::icrf> earthPosition = earth->get_position_at(date);
-    const RadiusVector<frames::solar_system_barycenter::icrf> moonPosition  = moon->get_position_at(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> sunPosition   = get_position_at<Sun>(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> earthPosition = get_position_at<Earth>(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> moonPosition  = get_position_at<Moon>(date);
 
     // Expected results
     const RadiusVector<frames::solar_system_barycenter::icrf> expEarth2SunPosition(126921698.413 * km, -69561377.707 * km, -30155074.470 * km); // Vallado lists a negative x value, likely in error
@@ -272,19 +266,13 @@ TEST_F(CelestialBodyTest, GetStateAtValldoEx)
 TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
 {
     const Date date("2000-01-01 12:00:00");
-    const AstrodynamicsSystem earthMoonSunSys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN });
-    const auto& earth = earthMoonSunSys.get_body(CelestialBodyId::EARTH);
-    const auto& moon  = earthMoonSunSys.get_body(CelestialBodyId::MOON);
-    const auto& sun   = earthMoonSunSys.get_body(CelestialBodyId::SUN);
-
-    const auto& earthMu = earth->get_mu();
-    const auto& sunMu   = sun->get_mu();
+    const auto& earthMu = get_mu<Earth>();
+    const auto& sunMu   = get_mu<Sun>();
 
     // Pull out states
-    const RadiusVector<frames::solar_system_barycenter::icrf> sunPosition   = sun->get_position_at(date);
-    const RadiusVector<frames::solar_system_barycenter::icrf> earthPosition = earth->get_position_at(date);
-    const RadiusVector<frames::solar_system_barycenter::icrf> moonPosition =
-        moon->get_position_at(date); // currently outputs relative to Earth position
+    const RadiusVector<frames::solar_system_barycenter::icrf> sunPosition   = get_position_at<Sun>(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> earthPosition = get_position_at<Earth>(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> moonPosition  = get_position_at<Moon>(date);
 
     // Expected results
     const RadiusVector<frames::solar_system_barycenter::icrf> expSunToMoonPosition(-26790642.141607 * km, 132490700.52134 * km, 57480615.9131708 * km);
@@ -302,11 +290,9 @@ TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
 TEST_F(CelestialBodyTest, GetKeplerianElementsAt)
 {
     const Date date("2020-02-18 15:08:47.23847");
-    const AstrodynamicsSystem earthMoonSunSys(CelestialBodyId::EARTH, { CelestialBodyId::SUN, CelestialBodyId::MOON });
-    const auto& earth = earthMoonSunSys.get_body(CelestialBodyId::EARTH);
 
-    ASSERT_NO_THROW(earth->get_keplerian_elements_at(date));
-    const auto kep = earth->get_keplerian_elements_at(date);
+    ASSERT_NO_THROW(get_keplerian_elements_at<Earth>(date));
+    const auto kep = get_keplerian_elements_at<Earth>(date);
 
     // Should return the orbital elements with linear approximation
     ASSERT_GT(kep.get_semimajor().numerical_value_in(km), 0.0);
@@ -348,9 +334,9 @@ TEST_F(CelestialBodyTest, FindAtmosphericDensity)
     );
 
     // Test Earth (has atmosphere in derived class)
-    const State state0(Keplerian{ 6378.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date, sys);
-    const State state1(Keplerian{ 6478.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date, sys);
-    const State state2(Keplerian{ 6878.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date, sys);
+    const State state0(Keplerian{ 6378.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
+    const State state1(Keplerian{ 6478.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
+    const State state2(Keplerian{ 6878.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
     ASSERT_NO_THROW(dummyBody.find_atmospheric_density(state0));
     ASSERT_NO_THROW(dummyBody.find_atmospheric_density(state1));
     ASSERT_NO_THROW(dummyBody.find_atmospheric_density(state2));
@@ -363,16 +349,14 @@ TEST_F(CelestialBodyTest, FindAtmosphericDensity)
 TEST_F(CelestialBodyTest, GetPositionAt)
 {
     const Date date("2020-02-18 15:08:47.23847");
-    const AstrodynamicsSystem marsSys(CelestialBodyId::MARS, { CelestialBodyId::PHOBOS, CelestialBodyId::DEIMOS });
-    const auto& phobos = marsSys.get_body(CelestialBodyId::PHOBOS);
 
-    ASSERT_NO_THROW(phobos->get_position_at(date));
-    const auto phobosPosition = phobos->get_position_at(date);
+    ASSERT_NO_THROW(get_position_at<Phobos>(date));
+    const auto phobosPosition = get_position_at<Phobos>(date);
 
     // Position should have reasonable magnitude (thousands of km for Phobos)
     const auto xComponent = phobosPosition[0];
-    ASSERT_GT(xComponent.numerical_value_in(km), -phobos->get_semimajor().numerical_value_in(km) * 1.1);
-    ASSERT_LT(xComponent.numerical_value_in(km), phobos->get_semimajor().numerical_value_in(km) * 1.1);
+    ASSERT_GT(xComponent.numerical_value_in(km), -get_semimajor<Phobos>().numerical_value_in(km) * 1.1);
+    ASSERT_LT(xComponent.numerical_value_in(km), get_semimajor<Phobos>().numerical_value_in(km) * 1.1);
 }
 
 TEST_F(CelestialBodyTest, CopyConstructor)

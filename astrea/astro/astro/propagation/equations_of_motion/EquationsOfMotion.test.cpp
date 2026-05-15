@@ -25,7 +25,7 @@
 #include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 
 using mp_units::angular::unit_symbols::rad;
@@ -83,7 +83,7 @@ class EquationsOfMotionTest : public testing::Test {
     ForceVector<frames::primary> noForce;
     TorqueVector<frames::primary> noTorque;
     Vehicle vehicle;
-    AstrodynamicsSystem sys;
+    CelestialBody sys;
     Date epoch;
     Cartesian<frames::primary> cart;
     State state;

@@ -25,7 +25,7 @@
 #include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/attitude/instances/Quaternion.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -54,13 +54,11 @@ class State {
      *
      * @param elements The orbital elements of the state.
      * @param epoch The epoch of the state.
-     * @param sys The astrodynamics system associated with the state.
      * @param attitude The attitude of the state, represented as a quaternion.
      */
-    State(const OrbitalElements& elements, const Date& epoch, const AstrodynamicsSystem& sys, const std::optional<Attitude>& attitude = std::nullopt) :
+    State(const OrbitalElements& elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
         _elements(elements),
         _epoch(epoch),
-        _system(&sys),
         _attitude(attitude)
     {
     }
@@ -73,11 +71,6 @@ class State {
      * @note This only works if the StateHistory contains exactly one state.
      */
     State(const StateHistory& history);
-
-    /**
-     * @brief Deleted constructor for State to prevent constructing a reference to an AstrodynamicsSystem rvalue
-     */
-    State(const OrbitalElements&, const Date&, AstrodynamicsSystem&&, const std::optional<Attitude>&) = delete;
 
     /**
      * @brief Checks if two State objects are equal.
@@ -108,13 +101,6 @@ class State {
      * @return const Date& Reference to the epoch of the state.
      */
     const Date& get_epoch() const { return _epoch; }
-
-    /**
-     * @brief Gets the astrodynamics system associated with the state.
-     *
-     * @return const AstrodynamicsSystem& Reference to the astrodynamics system.
-     */
-    const AstrodynamicsSystem& get_system() const { return *_system; }
 
     /**
      * @brief Converts the orbital elements to a different type.
@@ -246,25 +232,10 @@ class State {
      */
     void set_epoch(const Date& epoch) { _epoch = epoch; }
 
-    /**
-     * @brief Sets the astrodynamics system associated with the state.
-     *
-     * @param sys The new astrodynamics system to set.
-     */
-    void set_system(const AstrodynamicsSystem& sys) { _system = &sys; }
-
   private:
     OrbitalElements _elements; //!< The orbital elements of the state, defining the shape and attitude of the orbit.
     Date _epoch; //!< The epoch of the state, representing the time at which the orbital elements are defined.
-    const AstrodynamicsSystem* _system; //!< Pointer to the astrodynamics system associated with the state, providing context for the orbital elements.
     std::optional<Attitude> _attitude; //!< The attitude of the state, represented as a quaternion.
-
-    /**
-     * @brief Gets the gravitational parameter (mu) of the central body in the astrodynamics system.
-     *
-     * @return GravParam The gravitational parameter (mu) of the central body, or zero if no system is associated.
-     */
-    GravParam get_mu() const { return _system ? _system->get_mu() : GravParam::zero(); }
 
     /**
      * @brief Converts the State to a vector of Unitless values.
@@ -286,10 +257,9 @@ class State {
      *
      * @param vec The vector of Unitless values.
      * @param idx The index of the orbital element type to create.
-     * @param sys The astrodynamics system associated with the state.
      * @return State The created State object.
      */
-    static State from_vector(const std::vector<Unitless>& vec, const std::size_t idx, const AstrodynamicsSystem& sys);
+    static State from_vector(const std::vector<Unitless>& vec, const std::size_t idx);
 
     /**
      * @brief Adds two State objects together.
@@ -387,14 +357,8 @@ class StatePartial {
      * @param elementPartials The orbital element partials of the state.
      * @param attitudePartial The attitude partial of the state, represented as a quaternion derivative.
      */
-    StatePartial(
-        const Date& epoch,
-        const AstrodynamicsSystem& sys,
-        const OrbitalElementPartials& elementPartials,
-        const std::optional<AttitudePartials>& attitudePartial = std::nullopt
-    ) :
+    StatePartial(const Date& epoch, const OrbitalElementPartials& elementPartials, const std::optional<AttitudePartials>& attitudePartial = std::nullopt) :
         _epoch(epoch),
-        _system(&sys),
         _elementPartials(elementPartials),
         _attitudePartial(attitudePartial)
     {
@@ -407,13 +371,6 @@ class StatePartial {
      * @return State The resulting State after multiplication.
      */
     State operator*(const Time& time) const;
-
-    /**
-     * @brief Gets the astrodynamics system associated with the state.
-     *
-     * @return const AstrodynamicsSystem& Reference to the astrodynamics system.
-     */
-    const AstrodynamicsSystem& get_system() const;
 
     /**
      * @brief Gets the epoch of the state partial.
@@ -439,7 +396,6 @@ class StatePartial {
 
   private:
     Date _epoch; //!< The epoch of the state partial, representing the time at which the orbital elements are defined.
-    const AstrodynamicsSystem* _system; //!< Pointer to the astrodynamics system associated with the state, providing context for the orbital elements.
     OrbitalElementPartials _elementPartials; //!< The orbital element partials of the state, defining the shape and attitude of the orbit.
     std::optional<AttitudePartials> _attitudePartial; //!< The attitude partial of the state, represented as a quaternion derivative.
 };

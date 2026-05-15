@@ -29,7 +29,7 @@
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -92,11 +92,11 @@ class Geocentric {
      * @param sys Astrodynamics system containing celestial body data
      */
     template <IsOrbitalElements T>
-    Geocentric(const T& elements, const AstrodynamicsSystem& sys, const Date& date)
+    Geocentric(const T& elements, const Date& date)
     {
         *this = Geocentric(
-            Cartesian(elements, sys.get_mu()).get_position().template in_frame<frames::earth::earth_fixed>(date),
-            sys.get_central_body().get()
+            Cartesian(elements).get_position().template in_frame<frames::earth::earth_fixed>(date),
+            date.get_central_body().get()
         );
     }
 

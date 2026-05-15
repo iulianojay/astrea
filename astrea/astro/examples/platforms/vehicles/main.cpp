@@ -27,8 +27,8 @@ using mp_units::si::unit_symbols::m;
 int main()
 {
     // Propagation is centered around a State and a Vehicle. The general idea being that the State represents the 6
-    // location and the 6 orientation elements of the spacecraft, and the AstrodynamicsSystem in which they're defined,
-    // while the Vehicle represents the physical object existing at that State.
+    // location and the 6 orientation elements of the spacecraft, while the Vehicle represents the physical object
+    // existing at that State.
     //
     // The Vehicle class is designed as a type-erased container to keep this relationship as generic and flexible as
     // possible without making it diificult for developers to understand it's behavior. Type-erasure also keeps
@@ -63,9 +63,8 @@ int main()
     Vehicle spacecraft(sat);
 
     // All of these can be safely propagated
-    AstrodynamicsSystem sys;
     Date epoch = Date::now();
-    State state0(Keplerian::LEO(), epoch, sys);
+    State state0(Keplerian::LEO(), epoch);
     Time propTime = hours(1.0);
 
     Integrator integrator; // default to two-body

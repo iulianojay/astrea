@@ -88,14 +88,12 @@ class AccessAnalyzer {
      * @param resolution The time resolution for access calculations.
      * @param startDate The start date for the analysis.
      * @param endDate The end date for the analysis.
-     * @param sys The astrodynamics system used for calculations.
      * @param printProgress Flag indicating whether to print progress during calculations.
      */
-    AccessAnalyzer(const Time& resolution, const astro::Date& startDate, const astro::Date& endDate, const astro::AstrodynamicsSystem& sys, const bool printProgress = false) :
+    AccessAnalyzer(const Time& resolution, const astro::Date& startDate, const astro::Date& endDate, const bool printProgress = false) :
         _resolution(resolution),
         _startDate(startDate),
         _endDate(endDate),
-        _sys(&sys),
         _printProgress(printProgress)
     {
         create_date_vector();
@@ -138,13 +136,12 @@ class AccessAnalyzer {
     AccessArray find_accesses(ViewerConstellation& constel, Grid& grid, const bool includeInternalAccesses = false);
 
   private:
-    Time _resolution;                       //!< Time resolution for access calculations
-    astro::Date _startDate;                 //!< Start date for access analysis
-    astro::Date _endDate;                   //!< End date for access analysis
-    const astro::AstrodynamicsSystem* _sys; //!< Pointer to the astrodynamics system used for calculations
-    DateVector _dates;                      //!< Vector of dates, created from startDate, endDate, and resolution
-    PositionCache _positionCache;           //!< Optimized contiguous cache for platform positions
-    bool _printProgress;                    //!< Flag to indicate whether to print progress during calculations
+    Time _resolution;             //!< Time resolution for access calculations
+    astro::Date _startDate;       //!< Start date for access analysis
+    astro::Date _endDate;         //!< End date for access analysis
+    DateVector _dates;            //!< Vector of dates, created from startDate, endDate, and resolution
+    PositionCache _positionCache; //!< Optimized contiguous cache for platform positions
+    bool _printProgress;          //!< Flag to indicate whether to print progress during calculations
 
     // This isn't doing anything currently, but I'm not convinced it's a terrible idea to speed up the pre-checks by
     // binning the ground points using the spatial index and only checking the corners for very dense grids.

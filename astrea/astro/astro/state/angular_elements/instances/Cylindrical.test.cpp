@@ -20,7 +20,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/state/angular_elements/instances/Cylindrical.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -44,7 +44,6 @@ class CylindricalTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
 
     Date epoch;
-    AstrodynamicsSystem sys;
 
     Distance range     = 10000.0 * km;
     Angle azimuth      = 0.0 * rad;
@@ -87,19 +86,19 @@ TEST_F(CylindricalTest, ParameterizedConstructor) { ASSERT_NO_THROW(Cylindrical(
 TEST_F(CylindricalTest, EciVectorConstructor)
 {
     RadiusVector<frames::earth::icrf> rEci{ range, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Cylindrical(rEci, epoch, sys.get_central_body().get()));
+    ASSERT_NO_THROW(Cylindrical(rEci, epoch.get_central_body().get()));
 }
 
 TEST_F(CylindricalTest, EcefVectorConstructor)
 {
     RadiusVector<frames::earth::earth_fixed> rEcef{ range, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Cylindrical(rEcef, sys.get_central_body().get()));
+    ASSERT_NO_THROW(Cylindrical(rEcef.get_central_body().get()));
 }
 
 TEST_F(CylindricalTest, OrbitalElementsConstructor)
 {
     Keplerian kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
-    ASSERT_NO_THROW(Cylindrical(kep, sys, epoch));
+    ASSERT_NO_THROW(Cylindrical(kep, epoch));
 }
 
 TEST_F(CylindricalTest, CopyConstructor) { ASSERT_NO_THROW(Cylindrical newCyl(state)); }
@@ -270,7 +269,7 @@ TEST_F(CylindricalTest, GetPositionEci)
     Date testEpoch;
 
     // Get position in ECI frame
-    auto posEci = cyl.get_position(testEpoch, sys.get_central_body().get());
+    auto posEci = cyl.get_position(testEpoch.get_central_body().get());
 
     // Should return a valid RadiusVector in ICRF frame
     // The actual values depend on the frame transformation, but we can verify it's non-null
@@ -281,7 +280,7 @@ TEST_F(CylindricalTest, GetPositionEci)
 
     // Test with non-zero elevation
     Cylindrical cyl2{ 8000.0 * km, 45.0 * deg, 1500.0 * km };
-    auto posEci2 = cyl2.get_position(testEpoch, sys.get_central_body().get());
+    auto posEci2 = cyl2.get_position(testEpoch.get_central_body().get());
     Distance magnitude2 =
         sqrt(posEci2.get_x() * posEci2.get_x() + posEci2.get_y() * posEci2.get_y() + posEci2.get_z() * posEci2.get_z());
     ASSERT_GT(magnitude2.numerical_value_in(km), 0.0);

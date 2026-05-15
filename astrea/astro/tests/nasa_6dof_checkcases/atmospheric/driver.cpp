@@ -21,7 +21,7 @@
 // #include <astro/propagation/force_models/ForceModel.hpp>
 // #include <astro/propagation/numerical/Integrator.hpp>
 // #include <astro/state/orbital_elements/OrbitalElements.hpp>
-// #include <astro/systems/AstrodynamicsSystem.hpp>
+// #include <astro/systems/system_utilities>
 // #include <astro/time/Date.hpp>
 // #include <astro/time/Interval.hpp>
 // #include <tests/utilities/comparisons.hpp>
@@ -53,7 +53,6 @@
 //     const Unitless REL_TOL = 1.0e-6;
 //     const Unitless ABS_TOL = 1.0e-2;
 
-//     AstrodynamicsSystem sys;
 //     GravParam mu;
 //     TwoBody eom;
 //     ForceModel forces;
@@ -74,7 +73,7 @@
 // {
 //     // Build constellation
 //     Keplerian state0 = Keplerian::GEO();
-//     Spacecraft geo({ Cartesian(state0, mu), epoch, sys });
+//     Spacecraft geo({ Cartesian(state0, mu), epoch });
 //     Vehicle vehicle{ geo };
 
 //     // Propagate
@@ -92,7 +91,7 @@
 // {
 //     // Build constellation
 //     Keplerian state0 = Keplerian::GPS();
-//     Spacecraft meo({ Cartesian(state0, mu), epoch, sys });
+//     Spacecraft meo({ Cartesian(state0, mu), epoch });
 //     Vehicle vehicle{ meo };
 
 //     // Propagate
@@ -110,7 +109,7 @@
 // {
 //     // Build constellation
 //     Keplerian state0 = Keplerian::LEO();
-//     Spacecraft leo({ Cartesian(state0, mu), epoch, sys });
+//     Spacecraft leo({ Cartesian(state0, mu), epoch });
 //     Vehicle vehicle{ leo };
 
 //     // Propagate

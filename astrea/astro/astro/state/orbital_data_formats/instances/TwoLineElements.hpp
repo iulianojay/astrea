@@ -54,7 +54,7 @@ class TwoLineElements {
      * @param rawTle The raw TLE data.
      * @param sys The astrodynamics system.
      */
-    TwoLineElements(const std::array<std::string, 3> rawTle, const AstrodynamicsSystem& sys);
+    TwoLineElements(const std::array<std::string, 3> rawTle);
 
     /**
      * @brief Construct a new Two Line Elements object from classic TLEs
@@ -62,7 +62,7 @@ class TwoLineElements {
      * @param rawTle The raw TLE data.
      * @param sys The astrodynamics system.
      */
-    TwoLineElements(const std::array<std::string, 2> rawTle, const AstrodynamicsSystem& sys);
+    TwoLineElements(const std::array<std::string, 2> rawTle);
 
     /**
      * @brief Copy constructor.
@@ -327,7 +327,7 @@ class TwoLineElements {
      * @param rawTle The raw TLE data.
      * @param sys The astrodynamics system.
      */
-    void ctor_impl(const std::array<std::string, 2> rawTle, const AstrodynamicsSystem& sys);
+    void ctor_impl(const std::array<std::string, 2> rawTle);
 };
 
 } // namespace astro

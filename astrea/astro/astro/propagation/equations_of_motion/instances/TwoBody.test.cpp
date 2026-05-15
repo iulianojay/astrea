@@ -20,7 +20,7 @@
 #include <astro/propagation/equations_of_motion/instances/TwoBody.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <tests/utilities/comparisons.hpp>
 
 using mp_units::si::unit_symbols::km;
@@ -39,7 +39,6 @@ class TwoBodyTest : public testing::Test {
 
     ForceVector<frames::earth::icrf> noForce;
     Vehicle sat;
-    AstrodynamicsSystem sys;
     Date epoch;
     TwoBody eom;
 };
@@ -64,7 +63,7 @@ TEST_F(TwoBodyTest, Derivative)
         cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), -0.0081347028957142863 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
     );
 
-    State state(cart0, epoch, sys);
+    State state(cart0, epoch);
 
     OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
     ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
@@ -79,7 +78,7 @@ TEST_F(TwoBodyTest, DerivativeValladoEx85)
         cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), 0.00074873079 * km / (s * s), 0.00725534667 * km / (s * s), -0.00431725847 * km / (s * s)
     );
 
-    State state(cart0, epoch, sys);
+    State state(cart0, epoch);
 
     OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
     ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));

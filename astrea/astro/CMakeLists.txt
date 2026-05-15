@@ -64,14 +64,11 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/state/angular_elements/instances/Geocentric.cpp
     ${ASTRO_BASE}/state/angular_elements/instances/Spherical.cpp
 
-    ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.cpp
-    ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.cpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.cpp
 
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.cpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.cpp
 
-    ${ASTRO_BASE}/systems/AstrodynamicsSystem.cpp
     ${ASTRO_BASE}/systems/planets/JplEphemerisTable.cpp
 
     ${ASTRO_BASE}/time/Date.cpp
@@ -168,7 +165,7 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/state/attitude/instances/Quaternion.hpp
 
-    ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
+    ${ASTRO_BASE}/systems/system_utilities
     ${ASTRO_BASE}/systems/CelestialBody.hpp
     ${ASTRO_BASE}/systems/CelestialBodyParameters.hpp
     ${ASTRO_BASE}/systems/planets.hpp

@@ -81,13 +81,42 @@ struct tuple_cat_types<std::tuple<As...>, std::tuple<Bs...>> {
     using type = std::tuple<As..., Bs...>;
 };
 
-// Apply a class template T<> to every element of a tuple
+// Apply a class template T<> to every element of a tuple (type-parameter version)
 template <template <typename> class T, typename Tuple>
 struct apply_template;
 
 template <template <typename> class T, typename... Frames>
 struct apply_template<T, std::tuple<Frames...>> {
     using type = std::tuple<T<Frames>...>;
+};
+
+// Apply a non-type-parameter template T<val> to every frame type in a tuple,
+// constructing values via T<Frame{}> (usable with IsFrame auto templates).
+template <template <auto> class T, typename Tuple>
+struct apply_nttp_template;
+
+template <template <auto> class T, typename... Frames>
+struct apply_nttp_template<T, std::tuple<Frames...>> {
+    using type = std::tuple<T<Frames{}>...>;
+};
+
+// Concatenate an arbitrary number of std::tuple types into one.
+template <typename... Tuples>
+struct multi_tuple_cat;
+
+template <>
+struct multi_tuple_cat<> {
+    using type = std::tuple<>;
+};
+
+template <typename Only>
+struct multi_tuple_cat<Only> {
+    using type = Only;
+};
+
+template <typename First, typename... Rest>
+struct multi_tuple_cat<First, Rest...> {
+    using type = typename tuple_cat_types<First, typename multi_tuple_cat<Rest...>::type>::type;
 };
 
 // Convert a tuple of types + extra types into a std::variant

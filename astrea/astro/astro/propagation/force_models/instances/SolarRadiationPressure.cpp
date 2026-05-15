@@ -21,7 +21,7 @@
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/types/enums.hpp>
 
 namespace astrea {
@@ -44,7 +44,6 @@ using mp_units::si::unit_symbols::s;
 Perturbation SolarRadiationPressure::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    const AstrodynamicsSystem& sys       = state.get_system();
     const Date date                      = state.get_epoch();
     const CelestialBodyUniquePtr& center = sys.get_central_body();
     const CelestialBodyUniquePtr& sun    = sys.create_body(CelestialBodyId::SUN);
@@ -55,12 +54,9 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
     // Central body properties
     const bool isSun = (center->get_id() == CelestialBodyId::SUN);
 
-    // Find day nearest to current time
-    const RadiusVector<frames::solar_system_barycenter::icrf> rSsbToCenter = center->get_position_at(date);
-    const RadiusVector<frames::solar_system_barycenter::icrf> rSsbToSun    = sun->get_position_at(date);
-
     // Radius from central body to sun
-    const RadiusVector<frames::primary> rCenterToSun = (rSsbToSun - rSsbToCenter).force_frame_conversion<frames::primary>();
+    const RadiusVector<frames::primary> rCenterToSun =
+        get_relative_position<frames::primary, Sun>(date).force_frame_conversion<frames::primary>();
     const Distance rMagCenterToSun = rCenterToSun.norm();
 
     const RadiusVector<frames::primary> rVehicleToSun = rCenterToSun - rCenterToVehicle;

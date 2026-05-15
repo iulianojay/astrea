@@ -35,7 +35,7 @@
 #include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/utilities/conversions.hpp>
 
 namespace astrea {
@@ -54,13 +54,13 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
 
-LegendreCache::LegendreCache(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order)
+LegendreCache::LegendreCache(const std::size_t& degree, const std::size_t& order)
 {
     // Size arrays (size Legendre array now so it only happens once)
     size_vectors(degree, order);
 
     // Read coefficients from file
-    ingest_legendre_coefficient_file(sys, degree, order);
+    ingest_legendre_coefficient_file(degree, order);
 }
 
 
@@ -75,7 +75,7 @@ void LegendreCache::size_vectors(const std::size_t& degree, const std::size_t& o
 }
 
 
-void LegendreCache::ingest_legendre_coefficient_file(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order)
+void LegendreCache::ingest_legendre_coefficient_file(const std::size_t& degree, const std::size_t& order)
 {
     // Open coefficients file
     // TODO: Attach these files to the CelestialBody class
@@ -223,10 +223,9 @@ Unitless LegendreCache::get_cosine_coefficient(const std::size_t& n, const std::
 Unitless LegendreCache::get_sine_coefficient(const std::size_t& n, const std::size_t& m) const { return _S[n][m]; }
 
 
-OblatenessForce::OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order) :
+OblatenessForce::OblatenessForce(const std::size_t& degree, const std::size_t& order) :
     _degree(degree),
     _order(order),
-    _sys(&sys),
     _legendreCache(sys, degree, order)
 {
 }

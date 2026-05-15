@@ -35,21 +35,26 @@
 namespace astrea {
 namespace astro {
 /**
- * @brief Variant of all registered Cartesian<Frame> types plus any extra element types.
+ * @brief Variant of all frame-indexed element types expanded over every registered frame.
  *
- * Driven entirely by frame_registry.hpp — adding frames there automatically
- * extends this variant. Typically used as:
+ * The first element type (Cartesian) is always included. Any additional
+ * frame-indexed templates passed as FrameIndexedTypes are also expanded over
+ * all registered frames. Typically used as:
  *
  * @code
  *   using ElementVariant = OrbitalElementVariant<Keplerian, Equinoctial>;
  * @endcode
  *
+ * Adding a frame to ExtraRegisteredFrames automatically adds a new
+ * instantiation of every listed template to this variant.
+ *
  * To register frames from user code, see ExtraRegisteredFrames in
  * astro/frames/frame_registry.hpp.
  */
-template <typename... ExtraElementTypes>
-using OrbitalElementVariant =
-    typename detail::tuple_to_variant<typename detail::apply_template<Cartesian, detail::AllRegisteredFrames>::type, ExtraElementTypes...>::type;
+template <template <auto> class... FrameIndexedTypes>
+using OrbitalElementVariant = typename detail::tuple_to_variant<typename detail::multi_tuple_cat<
+    typename detail::apply_nttp_template<Cartesian, detail::AllRegisteredFrames>::type,
+    typename detail::apply_nttp_template<FrameIndexedTypes, detail::AllRegisteredFrames>::type...>::type>::type;
 
 
 /**
@@ -120,21 +125,25 @@ class OrbitalElements {
     }
 
     /**
-     * @brief Constructor initializing with Keplerian elements.
+     * @brief Constructor initializing with Keplerian<frame> elements.
      *
      * @param elements The orbital elements to initialize with.
      */
-    OrbitalElements(Keplerian elements) :
+    template <IsFrame auto _frame_>
+        requires(IsRegisteredFrame<_frame_>)
+    OrbitalElements(Keplerian<_frame_> elements) :
         _elements(elements)
     {
     }
 
     /**
-     * @brief Constructor initializing with Equinoctial elements.
+     * @brief Constructor initializing with Equinoctial<frame> elements.
      *
      * @param elements The orbital elements to initialize with.
      */
-    OrbitalElements(Equinoctial elements) :
+    template <IsFrame auto _frame_>
+        requires(IsRegisteredFrame<_frame_>)
+    OrbitalElements(Equinoctial<_frame_> elements) :
         _elements(elements)
     {
     }
@@ -354,7 +363,7 @@ class OrbitalElements {
 
 template <typename... ExtraElementTypes>
 using OrbitalElementPartialVariant =
-    typename detail::tuple_to_variant<typename detail::apply_template<CartesianPartial, detail::AllRegisteredFrames>::type, ExtraElementTypes...>::type;
+    typename detail::tuple_to_variant<typename detail::apply_nttp_template<CartesianPartial, detail::AllRegisteredFrames>::type, ExtraElementTypes...>::type;
 
 /**
  * @brief Class representing partial derivatives of orbital elements.

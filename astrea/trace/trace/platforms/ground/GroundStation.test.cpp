@@ -37,7 +37,6 @@ class GroundStationTest : public testing::Test {
 
     void TearDown() override { delete station; }
 
-    AstrodynamicsSystem sys;
     Angle latitude;
     Angle longitude;
     Distance altitude;

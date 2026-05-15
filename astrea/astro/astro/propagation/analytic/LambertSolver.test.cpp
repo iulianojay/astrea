@@ -19,7 +19,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/propagation/analytic/LambertSolver.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
@@ -37,7 +37,7 @@ class LambertSolverTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
-    AstrodynamicsSystem sys;
+    CelestialBody sys;
 
     // Numbers from Vallado, 5th Ed., Ex. 7-5
     RadiusVector<frames::earth::icrf> r0{ 15945.34 * km, 0.0 * km, 0.0 * km }, rf{ 12214.83899 * km, 10249.46731 * km, 0.0 * km };
@@ -117,7 +117,7 @@ class LambertSolverMultiRevTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
-    AstrodynamicsSystem sys;
+    CelestialBody sys;
     GravParam mu;
 
     // ISS-like LEO endpoints separated by ~90° in the orbit plane

@@ -26,8 +26,8 @@
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/systems/CelestialBody.hpp>
+#include <astro/systems/system_utilities>
 
 
 namespace astrea {

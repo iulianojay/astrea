@@ -23,7 +23,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -54,7 +54,6 @@ class EventDetectionTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
     const Unitless ABS_TOL = 1.0e-2;
 
-    AstrodynamicsSystem sys;
     GravParam mu;
     ForceModel forces;
     Integrator integrator;
@@ -74,7 +73,7 @@ TEST_F(EventDetectionTest, NoThrust)
 {
     // Build constellation
     Keplerian kep0 = Keplerian::LEO();
-    State state{ kep0, epoch, sys };
+    State state{ kep0, epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };
 
@@ -98,7 +97,7 @@ TEST_F(EventDetectionTest, ImpulsiveBurn)
     // Build constellation
     const Keplerian kep0 = Keplerian::LEO();
     const ThrusterParameters thrusterParams(1.0e3 * mp_units::si::unit_symbols::kN);
-    const State state{ kep0, epoch, sys };
+    const State state{ kep0, epoch };
 
     Spacecraft leo;
     leo.attach_payload(thrusterParams);

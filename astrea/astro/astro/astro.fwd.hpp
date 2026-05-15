@@ -33,7 +33,9 @@ class StateHistory;
 // ELement sets
 template <IsFrame auto _frame_>
 class Cartesian;
+template <IsFrame auto _frame_>
 class Keplerian;
+template <IsFrame auto _frame_>
 class Equinoctial;
 class TwoLineElements;
 template <IsFrame auto _frame_>

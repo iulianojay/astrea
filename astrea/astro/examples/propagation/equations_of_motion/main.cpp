@@ -34,10 +34,9 @@ int main()
     // extensible. For most users, integration will be no more difficult than that when using a more sophisticated integration library.
 
     // Setup initial state
-    AstrodynamicsSystem sys; // Defaults to Earth-Moon
-    const Date epoch;        // Defaults to J2000
+    const Date epoch; // Defaults to J2000
     const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
-    const State state0(elements, epoch, sys);
+    const State state0(elements, epoch);
 
     // Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing
     // for more flexibility and extensibility for users.
@@ -67,8 +66,7 @@ int main()
         ) const override
         {
             // Extracting into the desired set can be convenient
-            const AstrodynamicsSystem& system              = state.get_system();
-            const auto mu                                  = system.get_mu();
+            const auto mu                                  = get_mu<Earth>();
             const Cartesian<frames::earth::icrf> cartesian = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
             // Pull out the pieces for simple two-body gravity

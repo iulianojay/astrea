@@ -21,7 +21,7 @@
 #include <astro/propagation/force_models/PerturbingForce.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -50,7 +50,6 @@ class ForceTest : public testing::Test {
     Date date;
     Cartesian<frames::earth::icrf> cart;
     Vehicle vehicle;
-    AstrodynamicsSystem sys;
 };
 
 int main(int argc, char** argv)
@@ -63,7 +62,7 @@ TEST_F(ForceTest, DefaultConstructor) { ASSERT_NO_THROW(DummyForce()); }
 
 TEST_F(ForceTest, ComputeForce)
 {
-    const State state(cart, date, sys);
+    const State state(cart, date);
     auto [force, torque] = dummyForce.compute_perturbation(state, vehicle);
     ASSERT_EQ(force.get_x(), 0.0 * N);
     ASSERT_EQ(force.get_y(), 0.0 * N);

@@ -25,8 +25,8 @@
 #include <astro/state/angular_elements/instances/Geodetic.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/systems/planets/Earth/Earth.hpp>
+#include <astro/systems/system_utilities>
 
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
@@ -51,10 +51,9 @@ class DeorbitTest : public testing::Test {
         const VelocityVector<frames::earth::icrf> velocity{ 0.0 * km / s, 7.8 * km / s, 0.0 * km / s };
 
         cartesian = Cartesian(position, velocity);
-        state     = State(cartesian, epoch, sys);
+        state     = State(cartesian, epoch);
     }
 
-    AstrodynamicsSystem sys;
     Time time;
     Date epoch;
     Cartesian<frames::earth::icrf> cartesian;

@@ -26,7 +26,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -59,7 +59,7 @@ class ThrusterSchedulingRegressionTest : public testing::Test {
 
         // Setup initial LEO orbit
         initialElements = Keplerian::LEO(); // ~500 km circular orbit
-        initialState    = State(initialElements, epoch, sys);
+        initialState    = State(initialElements, epoch);
 
         // Calculate orbital period for scheduling
         orbitalPeriod = initialElements.get_orbital_period(mu);
@@ -71,7 +71,6 @@ class ThrusterSchedulingRegressionTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
     const Unitless ABS_TOL = 1.0e-10;
 
-    AstrodynamicsSystem sys;
     GravParam mu;
     Force thrusterForce;
     Date epoch;

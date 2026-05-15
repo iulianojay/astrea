@@ -74,10 +74,10 @@
 #include <astro/propagation/numerical/StepWatcher.hpp>
 #include <astro/propagation/numerical/butcher_tableau.hpp>
 
-#include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/CelestialBodyParameters.hpp>
 #include <astro/systems/planets.hpp>
+#include <astro/systems/system_utilities>
 
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>

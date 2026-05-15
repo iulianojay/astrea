@@ -21,7 +21,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -51,7 +51,6 @@ class CowellsMethodPropagationTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
     const Unitless ABS_TOL = 1.0e-2;
 
-    AstrodynamicsSystem sys;
     GravParam mu;
     CowellsMethod eom;
     ForceModel forces;
@@ -72,7 +71,7 @@ TEST_F(CowellsMethodPropagationTest, GEONoForces)
 {
     // Build constellation
     Keplerian kep0 = Keplerian::GEO();
-    State state{ Cartesian(kep0, mu), epoch, sys };
+    State state{ Cartesian(kep0, mu), epoch };
     Spacecraft geo;
     Vehicle vehicle{ geo };
 
@@ -91,7 +90,7 @@ TEST_F(CowellsMethodPropagationTest, GPSNoForces)
 {
     // Build constellation
     Keplerian kep0 = Keplerian::GPS();
-    State state{ Cartesian(kep0, mu), epoch, sys };
+    State state{ Cartesian(kep0, mu), epoch };
     Spacecraft meo;
     Vehicle vehicle{ meo };
 
@@ -110,7 +109,7 @@ TEST_F(CowellsMethodPropagationTest, LEONoForces)
 {
     // Build constellation
     Keplerian kep0 = Keplerian::LEO();
-    State state{ Cartesian(kep0, mu), epoch, sys };
+    State state{ Cartesian(kep0, mu), epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };
 

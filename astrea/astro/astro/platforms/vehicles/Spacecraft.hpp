@@ -47,12 +47,12 @@ class Spacecraft : public ThrusterPlatform {
     Spacecraft() { _id = utilities::IdProvider::get_next_id<"Platform">(); };
 
     /**
-     * @brief Constructs a Spacecraft with a GeneralPerturbations object and an AstrodynamicsSystem.
+     * @brief Constructs a Spacecraft with a GeneralPerturbations object and an CelestialBody.
      *
      * @param gp The GeneralPerturbations object containing initial parameters.
-     * @param sys The AstrodynamicsSystem to which this spacecraft belongs.
+     * @param sys The CelestialBody to which this spacecraft belongs.
      */
-    Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem& sys);
+    Spacecraft(const GeneralPerturbations& gp, const CelestialBody& sys);
 
     /**
      * @brief Virtual destructor for Spacecraft.

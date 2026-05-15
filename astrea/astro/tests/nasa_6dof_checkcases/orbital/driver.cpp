@@ -44,8 +44,8 @@
 
 #include <astro/astro.macros.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
 #include <astro/systems/planets/Earth/Earth.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/utilities/plotting.hpp>
@@ -110,8 +110,6 @@ class Orbital6DofTest : public testing::Test {
     {
         CelestialBodyParameters nasaEarthData = planets::DEFAULT_EARTH_PARAMS;
         nasaEarthData.mu                      = 398600.436 * pow<3>(km) / pow<2>(s); // different mu value
-
-        sys = AstrodynamicsSystem(Earth(nasaEarthData), { CelestialBodyId::SUN });
 
         integrator.switch_fixed_timestep(true);
         integrator.set_timestep(1.0 * s);
@@ -224,7 +222,7 @@ class Orbital6DofTest : public testing::Test {
     StateHistory run_propagation(const EomType eomId, const ForceModel& forces, const InitialOrbitType& orbitType, const VehicleType vehicleType)
     {
         OrbitalElements initialElements = (orbitType == CIRCULAR) ? Keplerian(circular, mu) : Keplerian(elliptic, mu);
-        State state0(initialElements, epoch, sys);
+        State state0(initialElements, epoch);
 
         Spacecraft sat = build_spacecraft(orbitType, vehicleType);
         Vehicle vehicle{ sat };
@@ -291,7 +289,7 @@ class Orbital6DofTest : public testing::Test {
                 );
         }
         else {
-            return State({ Cartesian(position, velocity) }, epoch + time, sys);
+            return State({ Cartesian(position, velocity) }, epoch + time);
         }
 
         AngularVelocities<frames::dynamic::body, frames::earth::icrf> angularVelocity(0.0 * rad / s, 0.0 * rad / s, 0.0 * rad / s);
@@ -302,7 +300,7 @@ class Orbital6DofTest : public testing::Test {
                 row.bodyAngularVelocityWrtEi_rad_s_Yaw.value() * rad / s
             );
         }
-        return State({ Cartesian(position, velocity) }, epoch + time, sys, Attitude(attitudeAngles, angularVelocity));
+        return State({ Cartesian(position, velocity) }, epoch + time, Attitude(attitudeAngles, angularVelocity));
     }
 
     std::vector<std::pair<StateHistory, std::string>> get_checkcase_histories(const std::string& pattern) const
@@ -658,7 +656,6 @@ class Orbital6DofTest : public testing::Test {
 
     std::filesystem::path outputDir;
 
-    AstrodynamicsSystem sys;
     GravParam mu;
     Date epoch;
     Cartesian<frames::earth::icrf> circular;

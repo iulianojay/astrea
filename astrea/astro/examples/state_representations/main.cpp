@@ -30,12 +30,11 @@ int main()
     // The Astrea State is a fully-defined state representation that can hold any supported
     // orbital element set, an epoch, and the system the set is defined in. Currently, it does not
     // support angular (kinematic) states, but this will be added in a future release.
-    AstrodynamicsSystem sys; // Default system is Earth-Moon
     Cartesian<frames::earth::icrf> cartesian{
         7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s,
     };
     Date epoch = Date::now();
-    State state(cartesian, epoch, sys);
+    State state(cartesian, epoch);
     std::cout << "State: " << state << std::endl;
 
     // The state can currently support conversions between any supported element set
@@ -50,7 +49,7 @@ int main()
     const BodyQuaternion orientation{ 1.0, 0.0, 0.0, 0.0 }; // Identity quaternion - no rotation
     const BodyAngleVelocities angularVelocity{ 0.0 * deg / s, 0.0 * deg / s, 0.0 * deg / s };
     const Attitude attitude(orientation, angularVelocity);
-    State stateWithAttitude(cartesian, epoch, sys, attitude);
+    State stateWithAttitude(cartesian, epoch, attitude);
     std::cout << "State with Attitude: " << stateWithAttitude << std::endl;
     std::cout << "State Attitude: " << stateWithAttitude.get_attitude().value() << std::endl << std::endl;
 

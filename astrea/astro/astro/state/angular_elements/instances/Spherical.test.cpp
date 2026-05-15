@@ -19,7 +19,7 @@
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/state/angular_elements/instances/Spherical.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -40,7 +40,6 @@ class SphericalTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
 
     Date epoch;
-    AstrodynamicsSystem sys;
 
     Angle azimuth     = 0.0 * astrea::detail::angle_unit;
     Angle inclination = 0.0 * astrea::detail::angle_unit;
@@ -85,19 +84,19 @@ TEST_F(SphericalTest, ParameterizedConstructor) { ASSERT_NO_THROW(Spherical(rang
 TEST_F(SphericalTest, EciVectorConstructor)
 {
     RadiusVector<frames::earth::icrf> rEci{ range, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Spherical(rEci, epoch, sys.get_central_body().get()));
+    ASSERT_NO_THROW(Spherical(rEci, epoch.get_central_body().get()));
 }
 
 TEST_F(SphericalTest, EcefVectorConstructor)
 {
     RadiusVector<frames::earth::earth_fixed> rEcef{ range, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Spherical(rEcef, sys.get_central_body().get()));
+    ASSERT_NO_THROW(Spherical(rEcef.get_central_body().get()));
 }
 
 TEST_F(SphericalTest, OrbitalElementsConstructor)
 {
     Keplerian kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
-    ASSERT_NO_THROW(Spherical(kep, sys, epoch));
+    ASSERT_NO_THROW(Spherical(kep, epoch));
 }
 
 TEST_F(SphericalTest, CopyConstructor) { ASSERT_NO_THROW(Spherical newSph(state)); }
@@ -211,7 +210,7 @@ TEST_F(SphericalTest, GetPositionEcef)
 
 TEST_F(SphericalTest, GetPositionEci)
 {
-    RadiusVector<frames::earth::icrf> rEci = state.get_position(epoch, sys.get_central_body().get());
+    RadiusVector<frames::earth::icrf> rEci = state.get_position(epoch.get_central_body().get());
     auto [convRange, convInc, convAzimuth] = convert_earth_fixed_to_spherical(rEci.in_frame<frames::earth::earth_fixed>(epoch));
     ASSERT_TRUE(math::nearly_equal(convRange, range, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(convInc, inclination, REL_TOL));
