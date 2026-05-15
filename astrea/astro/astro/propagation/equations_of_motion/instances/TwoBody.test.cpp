@@ -37,6 +37,7 @@ class TwoBodyTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
+    const auto mu = get_mu<frames::primary::origin>();
     ForceVector<frames::earth::icrf> noForce;
     Vehicle sat;
     Date epoch;
@@ -58,7 +59,7 @@ TEST_F(TwoBodyTest, GetExpectedSet)
 
 TEST_F(TwoBodyTest, Derivative)
 {
-    Cartesian<frames::earth::icrf> cart0           = Cartesian<frames::earth::icrf>::LEO(sys.get_mu());
+    Cartesian<frames::earth::icrf> cart0           = Cartesian<frames::earth::icrf>::LEO(mu);
     CartesianPartial<frames::earth::icrf> expected = CartesianPartial<frames::earth::icrf>(
         cart0.get_vx(), cart0.get_vy(), cart0.get_vz(), -0.0081347028957142863 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
     );

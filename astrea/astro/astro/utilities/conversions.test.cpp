@@ -41,7 +41,6 @@ class ConversionTest : public testing::Test {
     const Unitless REL_TOL = 1e-4 * one;
 
     ConversionTest() :
-        mu(sys.get_mu()),
         rng(rd()),
         semimajorDist(6380.0 * km, 40000.0 * km),
         eccDist(0.0 * one, 0.99 * one),
@@ -55,7 +54,7 @@ class ConversionTest : public testing::Test {
     void SetUp() override
     {
         const Distance R   = 10000.0 * km;
-        const GravParam mu = sys.get_mu();
+        const GravParam mu = get_mu<frames::primary::origin>();
         const Velocity V   = sqrt(mu / R);
 
         _keplExp = Keplerian(R, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);

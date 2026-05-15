@@ -72,9 +72,8 @@ class Constellation {
      * @brief Construct a Constellation from a vector of GeneralPerturbations objects.
      *
      * @param gp A vector of GeneralPerturbations objects to initialize the Constellation.
-     * @param system The AstrodynamicsSystem to use for the Constellation.
      */
-    Constellation(const std::vector<GeneralPerturbations>& gp, const AstrodynamicsSystem& system);
+    Constellation(const std::vector<GeneralPerturbations>& gp);
 
     /**
      * @brief Construct a Constellation with a specific configuration.

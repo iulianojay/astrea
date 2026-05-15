@@ -43,7 +43,7 @@ using mp_units::si::unit_symbols::W;
 class EventDetectionTest : public testing::Test {
   public:
     EventDetectionTest() :
-        mu(sys.get_mu()),
+        mu(get_mu<frames::primary::origin>()),
         propTime(weeks(1)),
         epoch(J2000)
     {

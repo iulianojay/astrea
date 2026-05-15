@@ -34,7 +34,7 @@ class OrbitalElementsTest : public testing::Test {
 
     void SetUp() override
     {
-        _mu           = _sys.get_mu();
+        _mu           = get_mu<Earth>();
         _cartElements = Cartesian<frames::earth::icrf>::LEO(_mu);
         _keplElements = Keplerian::LEO();
         _equiElements = Equinoctial::LEO(_mu);

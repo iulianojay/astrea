@@ -36,8 +36,7 @@ class LambertSolverTest : public testing::Test {
     void SetUp() override {}
 
     const Unitless REL_TOL = 1.0e-6;
-
-    CelestialBody sys;
+    const auto mu          = get_mu<frames::primary::origin>();
 
     // Numbers from Vallado, 5th Ed., Ex. 7-5
     RadiusVector<frames::earth::icrf> r0{ 15945.34 * km, 0.0 * km, 0.0 * km }, rf{ 12214.83899 * km, 10249.46731 * km, 0.0 * km };
@@ -55,28 +54,26 @@ int main(int argc, char** argv)
 
 TEST_F(LambertSolverTest, SolveRV)
 {
-    const Cartesian<frames::earth::icrf> result = LambertSolver::solve<frames::earth::icrf>({ r0, v0 }, dt, sys.get_mu());
+    const Cartesian<frames::earth::icrf> result = LambertSolver::solve<frames::earth::icrf>({ r0, v0 }, dt, mu);
     ASSERT_TRUE(nearly_equal(result.get_position(), rf, REL_TOL));
     ASSERT_TRUE(nearly_equal(result.get_velocity(), vf, REL_TOL));
 }
 
 TEST_F(LambertSolverTest, SolveRR)
 {
-    const auto [res0, resf] =
-        LambertSolver::solve<frames::earth::icrf>(r0, rf, dt, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
+    const auto [res0, resf] = LambertSolver::solve<frames::earth::icrf>(r0, rf, dt, mu, LambertSolver::OrbitDirection::PROGRADE);
     ASSERT_TRUE(nearly_equal(res0, v0, REL_TOL));
     ASSERT_TRUE(nearly_equal(resf, vf, REL_TOL));
 }
 
 TEST_F(LambertSolverTest, SolveOptimalMinimumEnergy)
 {
-    const auto sol = LambertSolver::solve<frames::earth::icrf>(
-        r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_ENERGY
-    );
+    const auto sol =
+        LambertSolver::solve<frames::earth::icrf>(r0, rf, mu, LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_ENERGY);
 
     // Round-trip: feeding the returned tof back into the r&r solver must reproduce the same velocities
     const auto [v0Check, vfCheck] =
-        LambertSolver::solve<frames::earth::icrf>(r0, rf, sol.tof, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
+        LambertSolver::solve<frames::earth::icrf>(r0, rf, sol.tof, mu, LambertSolver::OrbitDirection::PROGRADE);
     ASSERT_TRUE(nearly_equal(v0Check, sol.v0, REL_TOL));
     ASSERT_TRUE(nearly_equal(vfCheck, sol.vf, REL_TOL));
 }
@@ -84,22 +81,21 @@ TEST_F(LambertSolverTest, SolveOptimalMinimumEnergy)
 TEST_F(LambertSolverTest, SolveOptimalMinimumTime)
 {
     const auto sol =
-        LambertSolver::solve<frames::earth::icrf>(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_TIME);
+        LambertSolver::solve<frames::earth::icrf>(r0, rf, mu, LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_TIME);
 
     // Round-trip: feeding the returned tof back into the r&r solver must reproduce the same velocities
     const auto [v0Check, vfCheck] =
-        LambertSolver::solve<frames::earth::icrf>(r0, rf, sol.tof, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE);
+        LambertSolver::solve<frames::earth::icrf>(r0, rf, sol.tof, mu, LambertSolver::OrbitDirection::PROGRADE);
     ASSERT_TRUE(nearly_equal(v0Check, sol.v0, REL_TOL));
     ASSERT_TRUE(nearly_equal(vfCheck, sol.vf, REL_TOL));
 }
 
 TEST_F(LambertSolverTest, MinimumTimeHasShorterTOFThanMinimumEnergy)
 {
-    const auto minEnergy = LambertSolver::solve<frames::earth::icrf>(
-        r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_ENERGY
-    );
+    const auto minEnergy =
+        LambertSolver::solve<frames::earth::icrf>(r0, rf, mu, LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_ENERGY);
     const auto minTime =
-        LambertSolver::solve<frames::earth::icrf>(r0, rf, sys.get_mu(), LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_TIME);
+        LambertSolver::solve<frames::earth::icrf>(r0, rf, mu, LambertSolver::OrbitDirection::PROGRADE, LambertSolver::SolutionType::MINIMUM_TIME);
 
     EXPECT_LT(minTime.tof.numerical_value_in(s), minEnergy.tof.numerical_value_in(s));
 }
@@ -109,7 +105,7 @@ TEST_F(LambertSolverTest, MinimumTimeHasShorterTOFThanMinimumEnergy)
 class LambertSolverMultiRevTest : public testing::Test {
   public:
     LambertSolverMultiRevTest() :
-        mu(sys.get_mu())
+        mu(mu)
     {
     }
 
@@ -117,7 +113,7 @@ class LambertSolverMultiRevTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
-    CelestialBody sys;
+    const auto mu = get_mu<frames::primary::origin>();
     GravParam mu;
 
     // ISS-like LEO endpoints separated by ~90° in the orbit plane

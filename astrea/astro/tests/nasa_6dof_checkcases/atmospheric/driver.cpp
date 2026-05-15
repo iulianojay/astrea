@@ -41,7 +41,7 @@
 // class Atmospheric6DofTest : public testing::Test {
 //   public:
 //     Atmospheric6DofTest() :
-//         mu(sys.get_mu()),
+//         mu(get_mu<frames::primary::origin>()),
 //         propTime(weeks(1)),
 //         propInterval({ start, end }),
 //         epoch(J2000)

@@ -37,11 +37,11 @@ Constellation<Spacecraft_T>::Constellation(std::vector<Spacecraft_T> satellites)
 }
 
 template <class Spacecraft_T>
-Constellation<Spacecraft_T>::Constellation(const std::vector<GeneralPerturbations>& gps, const AstrodynamicsSystem& system)
+Constellation<Spacecraft_T>::Constellation(const std::vector<GeneralPerturbations>& gps)
 {
     std::vector<Spacecraft_T> satellites;
     for (const auto& gp : gps) {
-        satellites.push_back(Spacecraft_T(gp, system));
+        satellites.push_back(Spacecraft_T(gp));
     }
     *this = Constellation(satellites);
 }

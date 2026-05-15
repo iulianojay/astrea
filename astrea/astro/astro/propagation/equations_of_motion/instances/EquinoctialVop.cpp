@@ -50,7 +50,7 @@ OrbitalElementPartials EquinoctialVop::compute_dynamics(
 ) const
 {
     // Get need representations
-    const auto mu                 = state.get_system().get_mu();
+    const auto mu                 = get_mu<frames::primary::origin>();
     const Date& date              = state.get_epoch();
     const Equinoctial equinoctial = state.in_element_set<Equinoctial>();
 

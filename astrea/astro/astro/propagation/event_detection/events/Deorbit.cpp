@@ -30,13 +30,12 @@ std::string Deorbit::get_name() const { return "Deorbit"; }
 
 Unitless Deorbit::measure_event(const Time& time, const State& state, const Vehicle& vehicle) const
 {
-    const Cartesian<frames::earth::icrf> elements = state.in_element_set<Cartesian<frames::earth::icrf>>();
+    const Cartesian<frames::primary> elements = state.in_element_set<Cartesian<frames::primary>>();
 
-    const CelestialBodyUniquePtr& center = state.get_system().get_central_body();
-    const Distance altitude = Geodetic(elements.get_position(), state.get_epoch(), center.get()).get_altitude();
+    const Distance altitude = Geodetic(elements.get_position(), state.get_epoch(), frames::primary::origin).get_altitude();
 
     if (_triggerAltitude != 0.0 * km) { return (altitude - _triggerAltitude) / (1.0 * km); }
-    return (altitude - center->get_crash_radius()) / (1.0 * km);
+    return (altitude - get_crash_radius<frames::primary::origin>()) / (1.0 * km);
 }
 
 bool Deorbit::is_terminal() const { return true; }

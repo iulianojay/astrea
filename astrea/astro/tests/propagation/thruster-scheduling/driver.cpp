@@ -44,8 +44,7 @@ using mp_units::si::unit_symbols::s;
 class ThrusterSchedulingRegressionTest : public testing::Test {
   public:
     ThrusterSchedulingRegressionTest() :
-        sys(),
-        mu(sys.get_mu()),
+        mu(get_mu<frames::primary::origin>()),
         thrusterForce(2.0 * N),
         epoch(J2000),
         integrator(),

@@ -51,7 +51,7 @@ OrbitalElementPartials KeplerianVop::compute_dynamics(
 ) const
 {
     // Extract
-    const auto mu    = state.get_system().get_mu();
+    const auto mu    = get_mu<frames::primary::origin>();
     const Date& date = state.get_epoch();
 
     const Keplerian elements = state.in_element_set<Keplerian>();

@@ -92,7 +92,7 @@ inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> get_dcm(const Da
 template <>
 inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems> get_dcm(const Date& date)
 {
-    const auto rEarth2Moon = system.get_relative_position<planets::Earth, planets::Moon>(date);
+    const auto rEarth2Moon = get_relative_position<planets::Earth, planets::Moon>(date);
     const Angle lambda     = atan2(rEarth2Moon[1], rEarth2Moon[0]);
     return DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems>::Z(-lambda);
 }

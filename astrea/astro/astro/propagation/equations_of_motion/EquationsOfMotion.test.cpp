@@ -73,7 +73,7 @@ class EquationsOfMotionTest : public testing::Test {
     void SetUp() override
     {
         // Set up test state with basic Cartesian<frames::primary> elements
-        cart  = Cartesian<frames::primary>::LEO(sys.get_mu());
+        cart  = Cartesian<frames::primary>::LEO(get_mu<frames::primary::origin>());
         state = State(cart, epoch, sys);
     }
 
@@ -117,7 +117,6 @@ TEST_F(EquationsOfMotionTest, OperatorCall)
     ASSERT_NO_THROW(result1 = eomDefault(state, vehicle));
 
     // Verify the result has proper structure
-    ASSERT_EQ(&result1.get_system(), &sys);
     ASSERT_EQ(result1.get_epoch(), epoch);
 
     // Test with force model
@@ -125,7 +124,6 @@ TEST_F(EquationsOfMotionTest, OperatorCall)
     ASSERT_NO_THROW(result2 = eomWithForces(state, vehicle));
 
     // Verify the result has proper structure
-    ASSERT_EQ(&result2.get_system(), &sys);
     ASSERT_EQ(result2.get_epoch(), epoch);
 }
 
@@ -171,7 +169,6 @@ TEST_F(EquationsOfMotionTest, OperatorCallWithForces)
     ASSERT_NO_THROW(result = eomDefault(state, vehicle));
 
     // Verify basic structure
-    ASSERT_EQ(&result.get_system(), &sys);
     ASSERT_EQ(result.get_epoch(), epoch);
 }
 
@@ -187,7 +184,6 @@ TEST_F(EquationsOfMotionTest, OperatorCallWithAttitude)
     ASSERT_NO_THROW(result = eomDefault(stateWithAttitude, vehicle));
 
     // Verify the result has proper structure and includes attitude partials
-    ASSERT_EQ(&result.get_system(), &sys);
     ASSERT_EQ(result.get_epoch(), epoch);
 
     // The result should include attitude partials when attitude is present
@@ -203,7 +199,6 @@ TEST_F(EquationsOfMotionTest, OperatorCallWithoutAttitude)
     ASSERT_NO_THROW(result = eomDefault(state, vehicle));
 
     // Verify the result has proper structure
-    ASSERT_EQ(&result.get_system(), &sys);
     ASSERT_EQ(result.get_epoch(), epoch);
 
     // The result should only have orbital elements (6 components)
@@ -220,10 +215,6 @@ TEST_F(EquationsOfMotionTest, MultipleInstances)
     StatePartial result1, result2;
     ASSERT_NO_THROW(result1 = eom1(state, vehicle));
     ASSERT_NO_THROW(result2 = eom2(state, vehicle));
-
-    // Both should produce valid results
-    ASSERT_EQ(&result1.get_system(), &sys);
-    ASSERT_EQ(&result2.get_system(), &sys);
 }
 
 // Test virtual destructor functionality

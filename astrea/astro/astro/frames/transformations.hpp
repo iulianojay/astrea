@@ -27,7 +27,7 @@
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/frames/instances/defined_rotations.hpp>
-#include <astro/systems/system_utilities>
+#include <astro/systems/system_utilities.hpp>
 
 namespace astrea {
 namespace astro {
@@ -95,7 +95,7 @@ inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& 
 {
     // Forcing the frame change here doesn't matter since the offset is just a difference and it's already implied that
     // these two frames share an axis.
-    return sys.get_relative_position<planets::Sun, frame::origin, frame_u::origin>(date).template force_frame_conversion<frame>();
+    return get_relative_position<planets::Sun, frame::origin, frame_u::origin>(date).template force_frame_conversion<frame>();
 }
 
 namespace {
@@ -198,11 +198,11 @@ inline constexpr CartesianVector<Distance, frame_u>
     translate_vector_into_frame(const CartesianVector<Distance, frame>& vec, const Date& date)
 {
     if constexpr (std::is_same_v<Value_T, Distance>) {
-        const auto& posRel = system.get_relative_position<frame_u::origin, frame::origin>(date); // frame -> frame_u
+        const auto& posRel = get_relative_position<frame_u::origin, frame::origin>(date); // frame -> frame_u
         return vec.template force_frame_conversion<frame_u>() + posRel.template force_frame_conversion<frame_u>();
     }
     else if constexpr (std::is_same_v<Value_T, Velocity>) {
-        const auto& velRel = system.get_relative_velocity<frame_u::origin, frame::origin>(date); // frame -> frame_u
+        const auto& velRel = get_relative_velocity<frame_u::origin, frame::origin>(date); // frame -> frame_u
         return vec.template force_frame_conversion<frame_u>() - velRel.template force_frame_conversion<frame_u>();
     }
     else {

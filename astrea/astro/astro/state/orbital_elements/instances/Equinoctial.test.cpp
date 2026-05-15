@@ -43,12 +43,13 @@ class EquinoctialTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
 
     Date epoch;
-    Distance p = 7000.0 * km;
-    Unitless f = 0.01 * one;
-    Unitless g = 0.0 * one;
-    Unitless h = 0.0 * one;
-    Unitless k = 0.0 * one;
-    Angle L    = 0.0 * rad;
+    const auto mu = get_mu<frames::primary::origin>();
+    Distance p    = 7000.0 * km;
+    Unitless f    = 0.01 * one;
+    Unitless g    = 0.0 * one;
+    Unitless h    = 0.0 * one;
+    Unitless k    = 0.0 * one;
+    Angle L       = 0.0 * rad;
     Equinoctial state{ p, f, g, h, k, L };
 };
 
@@ -111,36 +112,36 @@ TEST_F(EquinoctialTest, CartesianConstructor)
 
 TEST_F(EquinoctialTest, LEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial::LEO(sys.get_mu()));
-    auto leo = Equinoctial::LEO(sys.get_mu());
+    ASSERT_NO_THROW(Equinoctial::LEO(mu));
+    auto leo = Equinoctial::LEO(mu);
     ASSERT_GT(leo.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, LMEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial::LMEO(sys.get_mu()));
-    auto lmeo = Equinoctial::LMEO(sys.get_mu());
+    ASSERT_NO_THROW(Equinoctial::LMEO(mu));
+    auto lmeo = Equinoctial::LMEO(mu);
     ASSERT_GT(lmeo.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, GPSStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial::GPS(sys.get_mu()));
-    auto gps = Equinoctial::GPS(sys.get_mu());
+    ASSERT_NO_THROW(Equinoctial::GPS(mu));
+    auto gps = Equinoctial::GPS(mu);
     ASSERT_GT(gps.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, HMEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial::HMEO(sys.get_mu()));
-    auto hmeo = Equinoctial::HMEO(sys.get_mu());
+    ASSERT_NO_THROW(Equinoctial::HMEO(mu));
+    auto hmeo = Equinoctial::HMEO(mu);
     ASSERT_GT(hmeo.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, GEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial::GEO(sys.get_mu()));
-    auto geo = Equinoctial::GEO(sys.get_mu());
+    ASSERT_NO_THROW(Equinoctial::GEO(mu));
+    auto geo = Equinoctial::GEO(mu);
     ASSERT_GT(geo.get_semilatus().numerical_value_in(km), 0.0);
 }
 

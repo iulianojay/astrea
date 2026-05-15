@@ -113,13 +113,6 @@ StatePartial State::operator/(const Time& divisor) const
              _attitude.has_value() ? std::optional<AttitudePartials>(_attitude.value() / divisor) : std::nullopt };
 }
 
-void State::validate_system(const State& other) const
-{
-    if (&get_system() != &other.get_system()) {
-        throw std::runtime_error("States belong to different astrodynamics systems.");
-    }
-}
-
 State StatePartial::operator*(const Time& time) const
 {
     return { _elementPartials * time,

@@ -36,7 +36,6 @@ class OblatenessForceTest : public testing::Test {
   public:
     OblatenessForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
-        sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN }),
         oblatenessForce(sys, 2, 2)
     {
     }

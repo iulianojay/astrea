@@ -146,7 +146,7 @@ class State {
     template <IsOrbitalElements T>
     State convert_to_set() const
     {
-        return { in_element_set<T>(), _epoch, get_system() };
+        return { in_element_set<T>(), _epoch };
     }
 
     /**

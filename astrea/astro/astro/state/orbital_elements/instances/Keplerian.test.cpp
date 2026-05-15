@@ -43,12 +43,13 @@ class KeplerianTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
 
     Date epoch;
-    Distance a   = 7000.0 * km;
-    Unitless ecc = 0.01 * one;
-    Angle inc    = 98.0 * deg;
-    Angle raan   = 40.0 * deg;
-    Angle w      = 80.0 * deg;
-    Angle theta  = 0.0 * deg;
+    const auto mu = get_mu<frames::primary::origin>();
+    Distance a    = 7000.0 * km;
+    Unitless ecc  = 0.01 * one;
+    Angle inc     = 98.0 * deg;
+    Angle raan    = 40.0 * deg;
+    Angle w       = 80.0 * deg;
+    Angle theta   = 0.0 * deg;
     Keplerian state{ a, ecc, inc, raan, w, theta };
 };
 
@@ -323,7 +324,7 @@ TEST_F(KeplerianTest, GetMeanAnomaly)
 
 TEST_F(KeplerianTest, GetMeanMotion)
 {
-    auto n = state.get_mean_motion(sys.get_mu());
+    auto n = state.get_mean_motion(mu);
     ASSERT_GT(n.numerical_value_in(one / s), 0.0);
 }
 

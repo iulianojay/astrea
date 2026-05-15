@@ -58,7 +58,7 @@ StatePartial EquationsOfMotion::operator()(const State& state, const Vehicle& ve
             std::optional<AttitudePartials>(compute_kinematics(state, vehicle, perts.torque, control.torque)) :
             std::nullopt;
 
-    return StatePartial(state.get_epoch(), state.get_system(), dynamics, kinematics);
+    return StatePartial(state.get_epoch(), dynamics, kinematics);
 }
 
 AttitudePartials EquationsOfMotion::compute_kinematics(

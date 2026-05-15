@@ -36,7 +36,6 @@ class NBodyForceTest : public testing::Test {
   public:
     NBodyForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
-        sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN }),
         nBodyForce()
     {
     }

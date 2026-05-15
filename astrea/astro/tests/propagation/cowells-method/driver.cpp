@@ -38,7 +38,7 @@ using mp_units::si::unit_symbols::W;
 class CowellsMethodPropagationTest : public testing::Test {
   public:
     CowellsMethodPropagationTest() :
-        mu(sys.get_mu()),
+        mu(get_mu<frames::primary::origin>()),
         eom(forces),
         propTime(weeks(1)),
         epoch(J2000)
