@@ -70,7 +70,7 @@ CartesianVector<Length, MyFrame> rCustom{ 1.0 * m, 2.0 * m, 3.0 * m };
 ```
 
 For complex, time-dependent frames, such as those attached to a payload, or vehicle, the frames must be explicitly instantiated to call any vector transformations. They are not required to declare the vector type, however, transformation to/from dynamic frames are not allowed without an instance of the dynamic frame.
-Dynamic frames can either be attached to a FrameReference object (such as a spacecraft), or defined instantaneously at a specific state.
+Dynamic frames can either be attached to an object (such as a spacecraft), or defined instantaneously at a specific state.
 
 ```cpp
 // RadiusVector<_frame_> = CartesianVector<Distance, _frame_>

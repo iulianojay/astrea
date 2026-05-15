@@ -32,58 +32,43 @@ namespace frames {
 /**
  * @brief Class representing the Radial, In-Track, Cross-Track (RIC) frame.
  */
-class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack, FrameAxis::RIC> {
+template <IsFrame auto _parent_>
+struct RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack, _parent_> {
 
-    friend DynamicFrame<RadialInTrackCrossTrack, FrameAxis::RIC>;
+    static constexpr auto parent = _parent_; //!< The reference frame of the RIC frame.
 
-  public:
-    RadialInTrackCrossTrack() = delete; //!< Default constructor is deleted to prevent instantiation without a parent frame
-
-    /**
-     * @brief Default constructor for RadialInTrackCrossTrack.
-     *
-     * Initializes the ECEF frame with a name and origin.
-     */
-    RadialInTrackCrossTrack(const FrameReference* parent) :
-        DynamicFrame<RadialInTrackCrossTrack, FrameAxis::RIC>(parent)
-    {
-    }
-
-    /**
-     * @brief Default destructor for RadialInTrackCrossTrack.
-     */
-    ~RadialInTrackCrossTrack() = default;
-
-    /**
-     * @brief Gets the Direction Cosine Matrix (DCM) for the RIC frame at a given date.
-     *
-     * @param date The date for which the DCM is requested.
-     * @return DirectionCosineMatrix<frames::primary, frames::dynamic::ric> The DCM from ECI to RIC.
-     */
-    DirectionCosineMatrix<frames::primary, RadialInTrackCrossTrack> get_dcm(const Date& date) const
-    {
-        const auto r       = get_inertial_position(date).unit();
-        const auto v       = get_inertial_velocity(date).unit();
-        const auto h       = r.cross(v).unit();
-        const auto inTrack = (-r.cross(h)).unit();
-        return DirectionCosineMatrix<frames::primary, RadialInTrackCrossTrack>::from_vectors(r, inTrack, h);
-    }
-
-  private:
     /**
      * @brief Constructor for instantaneous dynamic state/frames.
      *
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.
      */
-    RadialInTrackCrossTrack(const RadiusVector<frames::primary>& position, const VelocityVector<frames::primary>& velocity) :
-        DynamicFrame<RadialInTrackCrossTrack, FrameAxis::RIC>(position, velocity)
+    RadialInTrackCrossTrack(const RadiusVector<parent>& position, const VelocityVector<parent>& velocity) :
+        DynamicFrame<RadialInTrackCrossTrack, parent>(position, velocity)
     {
+    }
+
+    RadialInTrackCrossTrack() = delete; //!< Default constructor is deleted to prevent instantiation without a parent frame
+
+    /**
+     * @brief Gets the Direction Cosine Matrix (DCM) for the RIC frame at a given date.
+     *
+     * @param date The date for which the DCM is requested.
+     * @return DirectionCosineMatrix<parent, RadialInTrackCrossTrack> The DCM from ECI to RIC.
+     */
+    DirectionCosineMatrix<parent, RadialInTrackCrossTrack> get_dcm(const Date& date) const
+    {
+        const auto r       = get_inertial_position(date).unit();
+        const auto v       = get_inertial_velocity(date).unit();
+        const auto h       = r.cross(v).unit();
+        const auto inTrack = (-r.cross(h)).unit();
+        return DirectionCosineMatrix<parent, RadialInTrackCrossTrack>::from_vectors(r, inTrack, h);
     }
 };
 
 namespace dynamic {
-using ric = RadialInTrackCrossTrack;
+template <IsFrame auto parent>
+using ric = RadialInTrackCrossTrack<parent>;
 } // namespace dynamic
 
 } // namespace frames

@@ -87,7 +87,7 @@ class PolygonalFieldOfView : public FieldOfView {
 
   private:
     // TODO: These angle are actually defined w.r.t a frame so we need to figure out what that
-    // is and how to define it meaningfully. It might have to come from a FrameReference object
+    // is and how to define it meaningfully.
     // Probably will be some body-fixed frame aligned with the sensor boresight
     // The key angle is the azimuthal angle around the boresight, and the value angle is the
     // off-boresight angle at that azimuth

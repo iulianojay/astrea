@@ -20,8 +20,6 @@
 
 #include <concepts>
 
-#include <astro/types/enums.hpp>
-
 namespace astrea {
 namespace astro {
 

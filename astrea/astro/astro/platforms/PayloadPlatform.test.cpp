@@ -39,7 +39,7 @@ class MinimalTestPlatform : public PayloadPlatform<Thruster> {
     // Required pure virtual function from PayloadPlatform
     std::size_t get_id() const override { return _id; }
 
-    // Required pure virtual function from FrameReference
+    // Required pure virtual function from
     std::string get_name() const override { return "MinimalTestPlatform"; }
     CartesianVector<Distance, frames::earth::icrf> get_inertial_position(const Date& date) const override
     {

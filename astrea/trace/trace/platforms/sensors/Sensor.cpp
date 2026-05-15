@@ -14,7 +14,6 @@
 #include <trace/platforms/sensors/Sensor.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/FrameReference.hpp>
 #include <astro/frames/dynamic_frames.hpp>
 #include <astro/frames/frames.hpp>
 

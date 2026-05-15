@@ -18,16 +18,16 @@
  */
 #pragma once
 
+#include <astro/frames/DynamicFrame.hpp>
 #include <astro/frames/Frame.hpp>
-#include <astro/frames/frames.hpp>
-#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
 namespace frames {
 namespace dynamic {
 
-using body = Frame<"body", CelestialBodyId::CUSTOM, FrameAxis::UNSET>;
+inline constexpr struct body final : Frame<"body", DynamicOrigin<"body">{}, DynamicAxis<"body">{}> {
+} body;
 
 } // namespace dynamic
 } // namespace frames

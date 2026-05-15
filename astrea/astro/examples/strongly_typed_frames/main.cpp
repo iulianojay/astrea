@@ -87,7 +87,7 @@ int main()
     // to call any vector transformations. They are not required to declare the vector type, however.
     RadiusVector<RIC> rRic = { 1.0 * km, 2.0 * km, 3.0 * km };
 
-    // Dynamic frames can either be attached to a FrameReference object (such as a spacecraft), or defined instantaneously at a specific state.
+    // Dynamic frames can either be attached to an object (such as a spacecraft), or defined instantaneously at a specific state.
     Spacecraft frameParent;
     RIC dynamicRicFrame(&frameParent); // RIC frame attached to a spacecraft. As long as the spacecraft has a state
                                        // history, the frame can be used to transform vectors.

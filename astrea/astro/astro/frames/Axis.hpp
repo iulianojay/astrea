@@ -25,7 +25,6 @@
 #include <units/units.hpp>
 
 #include <astro/frames/frame_concepts.hpp>
-#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {

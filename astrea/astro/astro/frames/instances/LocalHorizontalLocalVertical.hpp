@@ -32,58 +32,43 @@ namespace frames {
 /**
  * @brief Class representing the Local Horizontal, Local Vertical (LVLH) frame.
  */
-class LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVertical, FrameAxis::LVLH> {
+template <IsFrame auto _parent_>
+struct LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVertical, _parent_> {
 
-    friend DynamicFrame<LocalHorizontalLocalVertical, FrameAxis::LVLH>;
+    static constexpr auto parent = _parent_; //!< The reference frame of the LVLH frame.
 
-  public:
-    LocalHorizontalLocalVertical() = delete; //!< Default constructor is deleted to prevent instantiation without a parent frame
-
-    /**
-     * @brief Default constructor for LocalHorizontalLocalVertical.
-     *
-     * Initializes the ECEF frame with a name and origin.
-     */
-    LocalHorizontalLocalVertical(const FrameReference* parent) :
-        DynamicFrame<LocalHorizontalLocalVertical, FrameAxis::LVLH>(parent)
-    {
-    }
-
-    /**
-     * @brief Default destructor for LocalHorizontalLocalVertical.
-     */
-    ~LocalHorizontalLocalVertical() = default;
-
-    /**
-     * @brief Gets the Direction Cosine Matrix (DCM) for the Local Horizontal, Local Vertical frame at a given date.
-     *
-     * @param date The date for which the DCM is computed.
-     * @return DirectionCosineMatrix<frames::primary, LocalHorizontalLocalVertical> The DCM from ECI to LVLH.
-     */
-    DirectionCosineMatrix<frames::primary, LocalHorizontalLocalVertical> get_dcm(const Date& date) const
-    {
-        const auto r               = get_inertial_position(date).unit();
-        const auto v               = get_inertial_velocity(date).unit();
-        const auto h               = r.cross(v).unit();
-        const auto localHorizontal = ((-h).cross(-r)).unit();
-        return DirectionCosineMatrix<frames::primary, LocalHorizontalLocalVertical>::from_vectors(localHorizontal, -h, -r);
-    }
-
-  private:
     /**
      * @brief Constructor for instantaneous dynamic state/frames.
      *
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.
      */
-    LocalHorizontalLocalVertical(const RadiusVector<frames::primary>& position, const VelocityVector<frames::primary>& velocity) :
-        DynamicFrame<LocalHorizontalLocalVertical, FrameAxis::LVLH>(position, velocity)
+    LocalHorizontalLocalVertical(const RadiusVector<parent>& position, const VelocityVector<parent>& velocity) :
+        DynamicFrame<LocalHorizontalLocalVertical, parent>(position, velocity)
     {
+    }
+
+    LocalHorizontalLocalVertical() = delete; //!< Default constructor is deleted to prevent instantiation without a parent frame
+
+    /**
+     * @brief Gets the Direction Cosine Matrix (DCM) for the Local Horizontal, Local Vertical frame at a given date.
+     *
+     * @param date The date for which the DCM is computed.
+     * @return DirectionCosineMatrix<parent, LocalHorizontalLocalVertical> The DCM from ECI to LVLH.
+     */
+    DirectionCosineMatrix<parent, LocalHorizontalLocalVertical> get_dcm(const Date& date) const
+    {
+        const auto r               = get_inertial_position(date).unit();
+        const auto v               = get_inertial_velocity(date).unit();
+        const auto h               = r.cross(v).unit();
+        const auto localHorizontal = ((-h).cross(-r)).unit();
+        return DirectionCosineMatrix<parent, LocalHorizontalLocalVertical>::from_vectors(localHorizontal, -h, -r);
     }
 };
 
 namespace dynamic {
-using lvlh = LocalHorizontalLocalVertical;
+template <IsFrame auto parent>
+using lvlh = LocalHorizontalLocalVertical<parent>;
 } // namespace dynamic
 
 } // namespace frames

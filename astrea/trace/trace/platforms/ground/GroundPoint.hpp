@@ -21,7 +21,6 @@
 #include <string>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/FrameReference.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
 #include <units/units.hpp>
 
@@ -39,7 +38,7 @@ namespace trace {
  * and altitude above sea level. It can be extended to include additional properties
  * or methods as needed for specific applications.
  */
-class GroundPoint : virtual public AccessObject, virtual astro::FrameReference {
+class GroundPoint : virtual public AccessObject {
   public:
     /**
      * @brief Constructs a GroundPoint with specified latitude, longitude, and altitude.

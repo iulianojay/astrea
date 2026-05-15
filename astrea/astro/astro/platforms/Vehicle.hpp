@@ -26,7 +26,6 @@
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/FrameReference.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/frames/instances/dynamic_body_frame.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
@@ -179,7 +178,7 @@ namespace detail {
 /**
  * @brief Pure virtual base class for vehicle inner implementations.
  */
-struct VehicleInnerBase : public virtual FrameReference {
+struct VehicleInnerBase {
 
     /**
      * @brief Destructor for VehicleInnerBase.
@@ -837,7 +836,7 @@ concept IsGenericallyConstructableVehicle = requires(T) {
  * @brief A class representing a vehicle in the astrea astro platform.
  * This class serves as a base for user-defined vehicles and provides a common interface.
  */
-class Vehicle : public FrameReference {
+class Vehicle {
 
   public:
     /**

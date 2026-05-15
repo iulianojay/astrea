@@ -71,8 +71,6 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.cpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.cpp
 
-    ${ASTRO_BASE}/frames/FrameReference.cpp
-
     ${ASTRO_BASE}/systems/AstrodynamicsSystem.cpp
     ${ASTRO_BASE}/systems/planets/JplEphemerisTable.cpp
 
@@ -101,7 +99,6 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/frame_concepts.hpp
     ${ASTRO_BASE}/frames/Frame.hpp
     ${ASTRO_BASE}/frames/FixedOffsetFrame.hpp
-    ${ASTRO_BASE}/frames/FrameReference.hpp
     ${ASTRO_BASE}/frames/frames.hpp
     ${ASTRO_BASE}/frames/transformations.hpp
 

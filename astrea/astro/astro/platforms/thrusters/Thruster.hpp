@@ -102,7 +102,6 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
      * @param parameters Thruster parameters.
      */
     template <typename Parent_T>
-        requires(std::is_base_of_v<FrameReference, Parent_T>)
     Thruster(const Parent_T& parent, const ThrusterParameters& parameters) :
         Payload<Thruster, ThrusterParameters>(parent, parameters)
     {

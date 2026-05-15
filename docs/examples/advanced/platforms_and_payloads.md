@@ -148,10 +148,8 @@ Platforms inherit frame reference capabilities:
 
 ```cpp
 // Platform with pointing capability
-class PointingPlatform : 
-    public PayloadPlatform<Instrument>,
-    public FrameReference {
-    
+class PointingPlatform : public PayloadPlatform<Instrument>,
+{
 public:
     void point_payload_at_target(const CartesianVector<ECI>& target) {
         // Calculate required attitude for payload pointing

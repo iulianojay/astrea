@@ -31,6 +31,13 @@
 namespace astrea {
 namespace astro {
 
+namespace detail {
+
+struct BarycenterBase {};
+struct CelestialBodyBase {};
+
+} // namespace detail
+
 template <auto...>
 struct Barycenter;
 

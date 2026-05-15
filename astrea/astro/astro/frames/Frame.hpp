@@ -27,7 +27,6 @@
 #include <astro/frames/Axis.hpp>
 #include <astro/frames/Origin.hpp>
 #include <astro/frames/frame_concepts.hpp>
-#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
@@ -89,6 +88,13 @@ template <mp_units::basic_fixed_string _name_, IsOrigin auto _origin_, IsAxis au
 struct FixedRotatingFrame : Frame<_name_, _origin_, FixedRotatingAxis<_axis_, _rotation_coordinate_>{}, _parent_> {
     static constexpr auto rotation_rate = _rotation_rate_; //!< The rotation rate of the frame.
 };
+
+
+template <mp_units::basic_fixed_string _name_>
+struct DynamicOrigin : Origin<_name_> {};
+
+template <mp_units::basic_fixed_string _name_>
+struct DynamicAxis : Axis<_name_> {};
 
 } // namespace astro
 } // namespace astrea

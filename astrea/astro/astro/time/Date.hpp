@@ -28,6 +28,7 @@
 
 #include <units/units.hpp>
 
+#include <astro/systems/system_concepts.hpp>
 #include <astro/time/JulianDateClock.hpp>
 #include <astro/time/TerrestrialTimeClock.hpp>
 
@@ -262,7 +263,7 @@ class Date {
      * @param body The celestial body whose prime meridian angle is desired.
      * @return Angle The body's prime meridian rotation angle, wrapped to [0, 2π).
      */
-    template <CelestialBody _body_>
+    template <IsCelestialBody auto _body_>
     Angle body_sidereal_time() const
     {
         return julian_date_to_body_sidereal_time<_body_>(_julianDate);

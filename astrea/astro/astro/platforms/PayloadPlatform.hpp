@@ -20,7 +20,6 @@
 
 #include <vector>
 
-#include <astro/frames/FrameReference.hpp>
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -33,7 +32,7 @@ namespace astro {
  * It provides methods to attach payloads and retrieve the list of attached payloads.
  */
 template <class Payload_T>
-class PayloadPlatform : virtual public FrameReference {
+class PayloadPlatform {
 
     // This is cursed
     using PayloadParameters_T = remove_cv_ref<decltype(std::declval<Payload_T>().get_parameters())>;

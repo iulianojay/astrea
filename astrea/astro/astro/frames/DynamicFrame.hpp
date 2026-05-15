@@ -21,11 +21,8 @@
 #include <string>
 
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/DirectionCosineMatrix.hpp>
 #include <astro/frames/Frame.hpp>
-#include <astro/frames/FrameReference.hpp>
-#include <astro/frames/frame_registry.hpp>
-#include <astro/frames/frames.hpp>
-#include <astro/frames/transformations.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -35,33 +32,10 @@ namespace astro {
 /**
  * @brief Base class for all dynamic state/frames.
  */
-template <IsFrame auto _frame_, FrameAxis _axis>
-    requires(_axis != FrameAxis::ICRF && _axis != FrameAxis::J2000 && _axis != FrameAxis::FIXED_ROTATING)
-struct DynamicFrame : public Frame<"", CelestialBodyId::CUSTOM, _axis> {
-
-    static constexpr CelestialBodyId origin =
-        Frame<"", CelestialBodyId::CUSTOM, _axis>::origin; //!< The central body associated with the inertial frame.
-    static constexpr FrameAxis axis = Frame<"", CelestialBodyId::CUSTOM, _axis>::axis; //!< The axis type of the inertial frame.
-
+template <typename Self, IsFrame auto _parent_>
+struct DynamicFrame : Frame<DynamicOrigin<"Dynamic Origin">{}, DynamicAxis<"Dynamic Axis">{}> {
   protected:
-    /**
-     * @brief Constructor for DynamicFrame.
-     *
-     * @param name The name of the dynamic frame.
-     * @param origin The origin of the dynamic frame.
-     * @param parent The parent inertial frame that this dynamic frame is based on.
-     */
-    DynamicFrame(const FrameReference* parent) :
-        _parent(parent),
-        _isInstantaneous(false)
-    {
-        if (parent == nullptr) {
-            throw std::invalid_argument(
-                "Parent of a dynamic frame cannot be null. Use frame::instantaneous(r, v) "
-                "for instantaneous dynamic state/frames."
-            );
-        }
-    }
+    static constexpr auto self = Self{}; //!< The dynamic frame itself.
 
     /**
      * @brief Constructor for instantaneous dynamic state/frames.
@@ -70,123 +44,102 @@ struct DynamicFrame : public Frame<"", CelestialBodyId::CUSTOM, _axis> {
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.
      */
-    DynamicFrame(const RadiusVector<frames::primary>& position, const VelocityVector<frames::primary>& velocity) :
+    DynamicFrame(const RadiusVector<_parent_>& position, const VelocityVector<_parent_>& velocity) :
         _position(position),
-        _velocity(velocity),
-        _isInstantaneous(true)
+        _velocity(velocity)
     {
     }
 
   public:
-    /**
-     * @brief Creates an instantaneous _frame_ frame.
-     *
-     * @param position The position vector in the ECI frame.
-     * @param velocity The velocity vector in the ECI frame.
-     * @return _frame_ The instantaneous frame.
-     */
-    static _frame_ instantaneous(const RadiusVector<frames::earth::icrf>& position, const VelocityVector<frames::earth::icrf>& velocity)
-    {
-        return _frame_(position, velocity);
-    }
+    static constexpr auto parent = _parent_; //!< The reference frame of the dynamic frame.
 
     /**
-     * @brief Rotates a CartesianVector from Earth-Centered Inertial (ECI) to _frame_ coordinates.
+     * @brief Rotates a CartesianVector from Earth-Centered Inertial (ECI) to _parent_ coordinates.
      *
      * @tparam Value_T The type of the vector components.
      * @param vec The CartesianVector in ECI coordinates.
      * @param date The date for which the conversion is performed.
-     * @return CartesianVector<Value_T, _frame_> The rotated CartesianVector in _frame_ coordinates.
+     * @return CartesianVector<Value_T, _parent_> The rotated CartesianVector in _parent_ coordinates.
      */
     template <typename Value_T>
-    CartesianVector<Value_T, _frame_>
-        rotate_into_this_frame(const CartesianVector<Value_T, frames::earth::icrf>& vec, const Date& date) const
+    CartesianVector<Value_T, self> rotate_into_this_frame(const CartesianVector<Value_T, parent>& vec, const Date& date) const
     {
         return get_dcm_impl(date) * vec;
     }
 
     /**
-     * @brief Rotates a CartesianVector from _frame_ coordinates to Earth-Centered Inertial (ECI) coordinates.
+     * @brief Rotates a CartesianVector from _parent_ coordinates to Earth-Centered Inertial (ECI) coordinates.
      *
      * @tparam Value_T The type of the vector components.
-     * @param vec The CartesianVector in _frame_ coordinates.
+     * @param vec The CartesianVector in _parent_ coordinates.
      * @param date The date for which the conversion is performed.
-     * @return CartesianVector<Value_T, frames::earth::icrf> The rotated CartesianVector in ECI coordinates.
+     * @return CartesianVector<Value_T, self> The rotated CartesianVector in ECI coordinates.
      */
     template <typename Value_T>
-    CartesianVector<Value_T, frames::earth::icrf>
-        rotate_out_of_this_frame(const CartesianVector<Value_T, _frame_>& vec, const Date& date) const
+    CartesianVector<Value_T, parent> rotate_out_of_this_frame(const CartesianVector<Value_T, self>& vec, const Date& date) const
     {
         return get_dcm_impl(date).transpose() * vec;
     }
 
     /**
-     * @brief Converts a CartesianVector from Earth-Centered Inertial (ECI) to _frame_ coordinates.
+     * @brief Converts a CartesianVector from Earth-Centered Inertial (ECI) to _parent_ coordinates.
      *
      * @tparam Value_T The type of the vector components.
      * @param vec The CartesianVector in ECI coordinates.
      * @param date The date for which the conversion is performed.
-     * @return RadiusVector<_frame_> The converted CartesianVector in _frame_ coordinates.
+     * @return RadiusVector<self> The converted CartesianVector in _parent_ coordinates.
      */
-    RadiusVector<_frame_> convert_to_this_frame(const RadiusVector<frames::earth::icrf>& vec, const Date& date) const
+    RadiusVector<self> transform_to_this_frame(const RadiusVector<parent>& vec, const Date& date) const
     {
         return get_dcm_impl(date) * (vec - get_inertial_position(date));
     }
 
     /**
-     * @brief Converts a CartesianVector from _frame_ coordinates to Earth-Centered Inertial (ECI) coordinates.
+     * @brief Converts a CartesianVector from _parent_ coordinates to Earth-Centered Inertial (ECI) coordinates.
      *
      * @tparam Value_T The type of the vector components.
-     * @param vec The CartesianVector in _frame_ coordinates.
+     * @param vec The CartesianVector in _parent_ coordinates.
      * @param date The date for which the conversion is performed.
-     * @return RadiusVector<frames::earth::icrf> The converted CartesianVector in ECI coordinates.
+     * @return RadiusVector<parent> The converted CartesianVector in ECI coordinates.
      */
-    RadiusVector<frames::earth::icrf> convert_from_this_frame(const RadiusVector<_frame_>& vec, const Date& date) const
+    RadiusVector<parent> transform_from_this_frame(const RadiusVector<self>& vec, const Date& date) const
     {
         return get_dcm_impl(date).transpose() * vec + get_inertial_position(date);
     }
 
   private:
     /**
-     * @brief Get the direction cosine matrix (DCM) from Earth-Centered Inertial (ECI) to _frame_ coordinates.
+     * @brief Get the direction cosine matrix (DCM) from Earth-Centered Inertial (ECI) to _parent_ coordinates.
      *
      * @param date The date for which the DCM is requested.
-     * @return DCM<frames::earth::icrf, _frame_> The DCM from ECI to _frame_ coordinates.
+     * @return DirectionCosineMatrix<parent, Self> The DCM from ECI to _parent_ coordinates.
      */
-    DCM<frames::earth::icrf, _frame_> get_dcm_impl(const Date& date) const
+    DirectionCosineMatrix<parent, self> get_dcm_impl(const Date& date) const
     {
-        return static_cast<const _frame_*>(this)->get_dcm(date);
+        return static_cast<const Self*>(this)->get_dcm(date);
     }
 
-    RadiusVector<frames::earth::icrf> get_center_offset(const Date& date) const { return get_inertial_position(date); }
+    RadiusVector<parent> get_center_offset(const Date& date) const { return get_inertial_position(date); }
 
   protected:
-    const FrameReference* _parent;                 //!< The parent object this frame is attached to.
-    RadiusVector<frames::earth::icrf> _position;   //!< The position vector in the ECI frame.
-    VelocityVector<frames::earth::icrf> _velocity; //!< The velocity vector in the ECI frame.
-    bool _isInstantaneous;                         //!< Flag indicating if the frame is instantaneous.
+    RadiusVector<parent> _position;   //!< The position vector
+    VelocityVector<parent> _velocity; //!< The velocity vector
 
     /**
      * @brief Gets the inertial position vector at a given date.
      *
      * @param date The date for which the position is requested.
-     * @return RadiusVector<frames::earth::icrf> The inertial position vector.
+     * @return RadiusVector<parent> The inertial position vector.
      */
-    RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const
-    {
-        return _isInstantaneous ? _position : _parent->get_inertial_position(date); // TODO: maybe store date for instantaneous and throw here if it doesn't match
-    }
+    RadiusVector<parent> get_inertial_position(const Date& date) const { return _position; }
 
     /**
      * @brief Gets the inertial velocity vector at a given date.
      *
      * @param date The date for which the velocity is requested.
-     * @return VelocityVector<frames::earth::icrf> The inertial velocity vector.
+     * @return VelocityVector<parent> The inertial velocity vector.
      */
-    VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const
-    {
-        return _isInstantaneous ? _velocity : _parent->get_inertial_velocity(date);
-    }
+    VelocityVector<parent> get_inertial_velocity(const Date& date) const { return _velocity; }
 };
 
 } // namespace astro

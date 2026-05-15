@@ -22,8 +22,8 @@
 using namespace astrea::astro;
 
 static_assert(frames::earth::icrf::origin == CelestialBodyId::EARTH);
-static_assert(frames::earth::icrf::axis == FrameAxis::ICRF);
-static_assert(frames::earth::j2000::axis == FrameAxis::J2000);
+static_assert(frames::earth::icrf::axis == axes::icrf);
+static_assert(frames::earth::j2000::axis == axes::j200);
 static_assert(frames::earth::earth_fixed::axis == FrameAxis::FIXED_ROTATING);
 static_assert(frames::earth::earth_fixed::origin == CelestialBodyId::EARTH);
 static_assert(frames::mars::icrf::origin == CelestialBodyId::MARS);

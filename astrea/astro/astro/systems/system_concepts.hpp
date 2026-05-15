@@ -1,7 +1,12 @@
-/*
- * The GNU Lesser General Public License (LGPL)
+/**
+ * @file system_concepts.hpp
+ * @author Jay Iuliano (iuliano.jay@gmail.com)
+ * @brief Definitions for system concepts and other compile-time utilities.
+ * @date 2025-10-02
  *
- * Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2025 Jay Iuliano
+ *
+ * The GNU Lesser General Public License (LGPL)
  *
  * This file is part of Astrea.
  * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -9,26 +14,27 @@
  * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
  * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ *
  */
+#pragma once
 
-#include <astro/frames/FrameReference.hpp>
-
-#include <mp-units/systems/si.h>
-
-#include <units/typedefs.hpp>
-
-#include <astro/frames/CartesianVector.hpp>
-
+#include <concepts>
 
 namespace astrea {
 namespace astro {
 
+namespace detail {
 
-AccelerationVector<frames::primary> FrameReference::get_inertial_acceleration(const Date& date) const
-{
-    return AccelerationVector<frames::primary>{ Acceleration::zero(), Acceleration::zero(), Acceleration::zero() };
-};
+struct CelestialBodyBase;
+struct BarycenterBase;
 
+} // namespace detail
+
+template <typename T>
+concept IsCelestialBody = std::derived_from<T, detail::CelestialBodyBase>;
+
+template <typename T>
+concept IsBarycenter = std::derived_from<T, detail::BarycenterBase>;
 
 } // namespace astro
 } // namespace astrea

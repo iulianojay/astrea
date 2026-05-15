@@ -41,33 +41,31 @@ namespace frames {
 /**
  * @brief Class representing the East, North, Up (ENU) frame.
  */
-class EastNorthUp : public DynamicFrame<EastNorthUp, FrameAxis::ENU> {
+template <IsFrame auto _frame_>
+struct EastNorthUp : public DynamicFrame<EastNorthUp, _frame_> {
 
-    friend DynamicFrame<EastNorthUp, FrameAxis::ENU>;
+    static constexpr auto frame = _frame_; //!< The reference frame of the ENU frame.
 
-  public:
     /**
-     * @brief Default constructor for EastNorthUp.
+     * @brief Constructor for instantaneous dynamic state/frames.
      *
-     * Initializes the ENU frame with a name and origin.
+     * @param position The position vector in the ECI frame.
+     * @param velocity The velocity vector in the ECI frame.
      */
-    EastNorthUp(const FrameReference* parent) :
-        DynamicFrame<EastNorthUp, FrameAxis::ENU>(parent)
+    EastNorthUp(const RadiusVector<frame>& position, const VelocityVector<frame>& velocity) :
+        DynamicFrame<EastNorthUp, frame>(position, velocity)
     {
     }
 
-    /**
-     * @brief Default destructor for EastNorthUp.
-     */
-    ~EastNorthUp() = default;
+    EastNorthUp() = delete; //!< Default constructor is deleted to prevent instantiation without a parent
 
     /**
      * @brief Gets the Direction Cosine Matrix (DCM) for the ENU frame at a given date.
      *
      * @param date The date for which the DCM is requested.
-     * @return DirectionCosineMatrix<frames::primary, EastNorthUp> The DCM from ECI to ENU.
+     * @return DirectionCosineMatrix<frame, EastNorthUp> The DCM from ECI to ENU.
      */
-    DirectionCosineMatrix<frames::primary, EastNorthUp> get_dcm(const Date& date) const
+    DirectionCosineMatrix<frame, EastNorthUp> get_dcm(const Date& date) const
     {
         // TODO: This assumes we're using "default" Earth. REALLY don't want to pass a system
         // to this object
@@ -76,9 +74,9 @@ class EastNorthUp : public DynamicFrame<EastNorthUp, FrameAxis::ENU> {
         static const Distance& rPolar      = earth.get_polar_radius();
 
         // eci -> ecef -> lat/lon -> n/e/u
-        const RadiusVector<frames::primary> r            = get_inertial_position(date);
-        const RadiusVector<frames::primary_fixed> rFixed = r.in_frame<frames::primary_fixed>(date);
-        const auto [lat, lon, alt]                       = convert_body_fixed_to_geodetic(rFixed, rEquitorial, rPolar);
+        const RadiusVector<frame> r            = get_inertial_position(date);
+        const RadiusVector<frame_fixed> rFixed = r.in_frame<frame_fixed>(date);
+        const auto [lat, lon, alt]             = convert_body_fixed_to_geodetic(rFixed, rEquitorial, rPolar);
 
         using mp_units::one;
         using mp_units::angular::cos;
@@ -88,21 +86,9 @@ class EastNorthUp : public DynamicFrame<EastNorthUp, FrameAxis::ENU> {
         const Unitless sinLon = sin(lon);
         const Unitless cosLon = cos(lon);
 
-        return DirectionCosineMatrix<frames::primary, EastNorthUp>(
+        return DirectionCosineMatrix<frame, EastNorthUp>(
             { -sinLat, cosLat, 0.0 * one }, { -cosLat * sinLon, -sinLat * sinLon, cosLon }, { cosLat * cosLon, sinLat * cosLon, sinLon }
         );
-    }
-
-  private:
-    /**
-     * @brief Constructor for instantaneous dynamic state/frames.
-     *
-     * @param position The position vector in the ECI frame.
-     * @param velocity The velocity vector in the ECI frame.
-     */
-    EastNorthUp(const RadiusVector<frames::primary>& position, const VelocityVector<frames::primary>& velocity) :
-        DynamicFrame<EastNorthUp, FrameAxis::ENU>(position, velocity)
-    {
     }
 };
 

@@ -25,7 +25,8 @@
 
 // Astro
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/instances/dynamic_body_frame.hpp>
+#include <astro/frames/dynamic_frames.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/state/attitude/instances/AngularVelocities.hpp>
 #include <astro/state/attitude/instances/EulerAngles.hpp>
 #include <astro/state/attitude/instances/Quaternion.hpp>

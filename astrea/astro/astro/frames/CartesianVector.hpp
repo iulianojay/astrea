@@ -26,6 +26,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/Frame.hpp>
 #include <astro/frames/frame_concepts.hpp>
 
 namespace astrea {
@@ -452,9 +453,8 @@ struct CartesianVector {
      *      and end, so it has to be left to the user to use it correctly
      */
     template <IsFrame auto frame_u, IsFrame auto frame_v>
-        requires(!is_same_frame(frame, frame_u)) && has_same_axis
-    (frame, frame_u) &&
-        !has_same_origin(frame, frame_u) inline constexpr CartesianVector<Value_T, frame_v> translate(const CartesianVector<Value_T, frame_u>& other) const
+        requires(!is_same_frame(frame, frame_u) && has_same_axis(frame, frame_u) && !has_same_origin(frame, frame_u))
+    inline constexpr CartesianVector<Value_T, frame_v> translate(const CartesianVector<Value_T, frame_u>& other) const
     {
         return CartesianVector<Value_T, frame_v>(
             _vector[0] + other.get_x(), _vector[1] + other.get_y(), _vector[2] + other.get_z()
@@ -471,9 +471,8 @@ struct CartesianVector {
      * @note It is the user's responsibility to ensure that this operation makes sense in the context of the frames involved.
      */
     template <IsFrame auto frame_u, IsFrame auto frame_v>
-        requires(!is_same_frame(frame, frame_u)) && has_same_axis
-    (frame, frame_u) &&
-        !has_same_origin(frame, frame_u) inline constexpr CartesianVector<Value_T, frame_v> offset(const CartesianVector<Value_T, frame_u>& other) const
+        requires(!is_same_frame(frame, frame_u) && has_same_axis(frame, frame_u) && !has_same_origin(frame, frame_u))
+    inline constexpr CartesianVector<Value_T, frame_v> offset(const CartesianVector<Value_T, frame_u>& other) const
     {
         return CartesianVector<Value_T, frame_v>(
             _vector[0] - other.get_x(), _vector[1] - other.get_y(), _vector[2] - other.get_z()
@@ -536,5 +535,3 @@ inline constexpr CartesianVector<decltype(Value_T{} * Value_U{}), frame>
 
 } // namespace astro
 } // namespace astrea
-
-#include <astro/frames/transformations.hpp>

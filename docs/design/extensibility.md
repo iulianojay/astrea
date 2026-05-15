@@ -11,8 +11,6 @@ In general, carrying the weight of a 3rd party library is already a burden. Requ
 
 In cases where polymorphism makes sense, and extensibility is less common, Astrea will use minimal inheritance. A key example of this is the `PerturbingForce`. Generally, users won't be writing many of their own forces, they'll just use the ones available in the library. This class also only has a single virtual method, so the runtime overhead is minimal. If many users started writing their own forces, would consider switching to a type-erased version of the `PerturbingForce` interface as well. A similar case was made for the `EquationsOfMotion`.
 
-A key class that violates this principle is the `FrameReference`. It's a classic example of the pain points that can come about from over-using polymorphism and is set to be redesigned.
-
 ### **Compile-time is king**
 Extensibility mechanisms should introduce minimal runtime overhead, ensuring that performance-critical applications are not adversely affected. It's easy to design systems of functions that check for properties at runtime and throw errors or try to handle the behavior smoothly. While this tends to be easier for developers, the authors believe that compile-time checks are considerably safer mechanisms for handling bad-behavior. Wherever possible, Astrea tries to lean on concepts, and static type checking mechanisms to ensure performance and accuracy. This makes it easier to avoid throwing errors, safely declare function and class behavior, and make use of the powerful C++ compile-time optimizations.
 

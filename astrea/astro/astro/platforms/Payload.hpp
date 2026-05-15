@@ -23,7 +23,6 @@
 #include <utilities/IdProvider.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/FrameReference.hpp>
 #include <astro/frames/dynamic_frames.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/platforms/PayloadPlatform.hpp>
@@ -113,7 +112,7 @@ class PayloadParameters {
  * including field of view and access management.
  */
 template <class Payload_T, class PayloadParameters_T>
-class Payload : public virtual FrameReference {
+class Payload {
 
     friend PayloadPlatform<Payload_T>;
 

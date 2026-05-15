@@ -32,56 +32,43 @@ namespace frames {
 /**
  * @brief Class representing the Velocity, Normal, Binormal (VNB) frame.
  */
-class VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal, FrameAxis::VNB> {
+template <IsFrame auto _parent_>
+struct VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal, _parent_> {
 
-    friend DynamicFrame<VelocityNormalBinormal, FrameAxis::VNB>;
+    static constexpr auto parent = _parent_; //!< The reference frame of the VNB frame.
 
-  public:
-    /**
-     * @brief Default constructor for VelocityNormalBinormal.
-     *
-     * Initializes the ECEF frame with a name and origin.
-     */
-    VelocityNormalBinormal(const FrameReference* parent) :
-        DynamicFrame<VelocityNormalBinormal, FrameAxis::VNB>(parent)
-    {
-    }
-
-    /**
-     * @brief Default destructor for VelocityNormalBinormal.
-     */
-    ~VelocityNormalBinormal() = default;
-
-    /**
-     * @brief Gets the Direction Cosine Matrix (DCM) for the VNB frame at a given date.
-     *
-     * @param date The date for which the DCM is requested.
-     * @return DirectionCosineMatrix<frames::primary, VelocityNormalBinormal> The DCM from ECI to VNB.
-     */
-    DirectionCosineMatrix<frames::primary, VelocityNormalBinormal> get_dcm(const Date& date) const
-    {
-        const auto r        = get_inertial_position(date).unit();
-        const auto v        = get_inertial_velocity(date).unit();
-        const auto h        = r.cross(v).unit();
-        const auto binormal = (v.cross(h)).unit();
-        return DirectionCosineMatrix<frames::primary, VelocityNormalBinormal>::from_vectors(v, h, binormal);
-    }
-
-  private:
     /**
      * @brief Constructor for instantaneous dynamic state/frames.
      *
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.
      */
-    VelocityNormalBinormal(const RadiusVector<frames::primary>& position, const VelocityVector<frames::primary>& velocity) :
-        DynamicFrame<VelocityNormalBinormal, FrameAxis::VNB>(position, velocity)
+    VelocityNormalBinormal(const RadiusVector<parent>& position, const VelocityVector<parent>& velocity) :
+        DynamicFrame<VelocityNormalBinormal, parent>(position, velocity)
     {
+    }
+
+    VelocityNormalBinormal() = delete; //!< Default constructor is deleted to prevent instantiation without a parent frame
+
+    /**
+     * @brief Gets the Direction Cosine Matrix (DCM) for the VNB frame at a given date.
+     *
+     * @param date The date for which the DCM is requested.
+     * @return DirectionCosineMatrix<parent, VelocityNormalBinormal> The DCM from ECI to VNB.
+     */
+    DirectionCosineMatrix<parent, VelocityNormalBinormal> get_dcm(const Date& date) const
+    {
+        const auto r        = get_inertial_position(date).unit();
+        const auto v        = get_inertial_velocity(date).unit();
+        const auto h        = r.cross(v).unit();
+        const auto binormal = (v.cross(h)).unit();
+        return DirectionCosineMatrix<parent, VelocityNormalBinormal>::from_vectors(v, h, binormal);
     }
 };
 
 namespace dynamic {
-using vnb = VelocityNormalBinormal;
+template <IsFrame auto parent>
+using vnb = VelocityNormalBinormal<parent>;
 } // namespace dynamic
 
 } // namespace frames

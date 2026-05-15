@@ -38,7 +38,7 @@ using mp_units::si::unit_symbols::s;
 
 Perturbation NBodyForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
-    if (frames::primary::axis != FrameAxis::ICRF) {
+    if (frames::primary::axis != axes::icrf) {
         throw std::runtime_error("NBodyForce only works in ICRF frames right now.");
     }
 

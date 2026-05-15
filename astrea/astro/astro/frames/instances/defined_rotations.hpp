@@ -38,7 +38,7 @@ namespace astro {
  * @ref https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA%20TP%2020220014814%20final.pdf
  */
 template <IsFrame auto _frame_, IsFrame auto _frame_u_>
-    requires(_frame_::axis == FrameAxis::ICRF && _frame_u_::axis == FrameAxis::J2000 && has_same_origin(_frame_, _frame_u_))
+    requires(_frame_::axis == axes::icrf && _frame_u_::axis == axes::j200 && has_same_origin(_frame_, _frame_u_))
 inline constexpr DirectionCosineMatrix<_frame_, _frame_u_> get_dcm(const Date& date)
 {
     using mp_units::angular::unit_symbols::rad;
@@ -72,7 +72,7 @@ inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::earth
  */
 template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
     requires(
-        has_same_origin(_in_frame_, _out_frame_) && _in_frame_::axis == FrameAxis::ICRF && _out_frame_::axis == FrameAxis::FIXED_ROTATING &&
+        has_same_origin(_in_frame_, _out_frame_) && _in_frame_::axis == axes::icrf && _out_frame_::axis == FrameAxis::FIXED_ROTATING &&
         _in_frame_::origin != CelestialBodyId::SUN && _out_frame_::origin != CelestialBodyId::EARTH
     )
 inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> get_dcm(const Date& date)
