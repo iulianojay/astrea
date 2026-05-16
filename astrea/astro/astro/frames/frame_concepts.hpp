@@ -66,7 +66,7 @@ concept IsInertialFrame = true; // TODO: Figure this out
  * @return true if the frame is body-fixed, false otherwise.
  */
 template <typename T>
-concept IsFixedRotatingFrame = requires { T::rotation_rate; };
+concept IsFixedRotatingFrame = std::derived_from<T, detail::FixedRotatingFrame> && detail::SymbolicConstant<T>;
 
 /**
  * @brief Concept to determine if a frame is static (inertial or body-fixed).

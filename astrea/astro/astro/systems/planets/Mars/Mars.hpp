@@ -23,8 +23,6 @@
 #include <map>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/State.hpp>
-#include <astro/state/angular_elements/instances/Geodetic.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/barycenters.hpp>
 #include <astro/types/typedefs.hpp>
@@ -36,8 +34,12 @@
 namespace astrea {
 namespace astro {
 
-    // Forward-declare frame types to avoid circular include with frames.hpp
-    namespace frames { namespace solar_system_barycenter { struct icrf; } }
+// Forward-declare frame types to avoid circular include with frames.hpp
+namespace frames {
+namespace solar_system_barycenter {
+struct icrf;
+}
+} // namespace frames
 
 namespace planets {
 
@@ -45,20 +47,20 @@ static CelestialBodyParameters DEFAULT_MARS_PARAMS{
     .type          = CelestialBodyType::PLANET,
     .referenceDate = Date("2000-01-01 12:00:00"),
     .mu = GravParam(42828.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
-    .mass              = Mass(0.642 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
-    .equitorialRadius  = Distance(3396.2 * mp_units::si::unit_symbols::km),
-    .polarRadius       = Distance(3376.2 * mp_units::si::unit_symbols::km),
-    .crashRadius       = Distance(3496.2 * mp_units::si::unit_symbols::km),
-    .sphereOfInfluence = Distance(0.057732173855358 * mp_units::iau::unit_symbols::au),
-    .j2                = Unitless(1960.45e-6 * mp_units::one),
-    .j3                = Unitless(0.000036 * mp_units::one),
-    .axialTilt         = Angle(25.19 * mp_units::angular::unit_symbols::deg),
-    .rotationRate   = AngularVelocity(350.8928680212322 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
-    .siderealPeriod = Time(686.980 * mp_units::non_si::day),
-    .semimajorAxis  = Distance(1.52371034 * mp_units::iau::unit_symbols::au),
-    .eccentricity   = Unitless(0.09339410 * mp_units::one),
-    .inclination    = Angle(1.84969142 * mp_units::angular::unit_symbols::deg),
-    .rightAscension = Angle(49.55953891 * mp_units::angular::unit_symbols::deg),
+    .mass                   = Mass(0.642 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
+    .equitorialRadius       = Distance(3396.2 * mp_units::si::unit_symbols::km),
+    .polarRadius            = Distance(3376.2 * mp_units::si::unit_symbols::km),
+    .crashRadius            = Distance(3496.2 * mp_units::si::unit_symbols::km),
+    .sphereOfInfluence      = Distance(0.057732173855358 * mp_units::iau::unit_symbols::au),
+    .j2                     = Unitless(1960.45e-6 * mp_units::one),
+    .j3                     = Unitless(0.000036 * mp_units::one),
+    .axialTilt              = Angle(25.19 * mp_units::angular::unit_symbols::deg),
+    .rotationRate           = AngularVelocity(350.8928680212322 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
+    .siderealPeriod         = Time(686.980 * mp_units::non_si::day),
+    .semimajorAxis          = Distance(1.52371034 * mp_units::iau::unit_symbols::au),
+    .eccentricity           = Unitless(0.09339410 * mp_units::one),
+    .inclination            = Angle(1.84969142 * mp_units::angular::unit_symbols::deg),
+    .rightAscension         = Angle(49.55953891 * mp_units::angular::unit_symbols::deg),
     .longitudeOfPerigee     = Angle(-23.94362959 * mp_units::angular::unit_symbols::deg),
     .meanLongitude          = Angle(-4.55343205 * mp_units::angular::unit_symbols::deg),
     .semimajorAxisRate      = InterplanetaryVelocity(0.00001847 * mp_units::iau::unit_symbols::au / JulianCentury),
@@ -157,40 +159,6 @@ static const std::map<Altitude, Density> martianAtmosphere = { // km, kg/m^3
  * @param altitude The altitude above the surface of Mars in kilometers.
  * @return Density The estimated atmospheric density in kg/m^3.
  */
-template <>
-inline constexpr Density find_atmospheric_density<planets::Mars>(const State& state)
-{
-    using mp_units::si::unit_symbols::kg;
-    using mp_units::si::unit_symbols::km;
-
-    const auto& position = state.get_position_in_frame<frames::mars::mars_fixed>();
-    const auto [latitude, longitude, altitude] =
-        convert_body_fixed_to_geodetic(position, get_equitorial_radius(), get_polar_radius());
-
-    // The values up to 80 km are almost definitely wrong.I can't find any
-    // sources that contradict them though. Please fix them (and the
-    // associated crash radius of Mars) if you can find better numbers.
-    Unitless altitudeValue = altitude / astrea::detail::distance_unit;
-    if (altitude <= 80.0 * km) {
-        const auto iter = martianAtmosphere.upper_bound(altitude);
-        return (iter != martianAtmosphere.end()) ? iter->second : Density::zero();
-    }
-    else if (altitude < 200.0 * km) {
-        return exp(-2.55314e-10 * mp_units::pow<5>(altitudeValue) + 2.31927e-7 * mp_units::pow<4>(altitudeValue) -
-                   8.33206e-5 * mp_units::pow<3>(altitudeValue) + 0.0151947 * mp_units::pow<2>(altitudeValue) -
-                   1.52799 * altitudeValue + 48.69659) *
-               kg / mp_units::pow<3>(km);
-    }
-    else if (altitude < 300.0 * km) {
-        return exp(2.65472e-11 * mp_units::pow<5>(altitudeValue) - 2.45558e-8 * mp_units::pow<4>(altitudeValue) +
-                   6.31410e-6 * mp_units::pow<3>(altitudeValue) + 4.73359e-4 * mp_units::pow<2>(altitudeValue) -
-                   0.443712 * altitudeValue + 23.79408) *
-               kg / mp_units::pow<3>(km);
-    }
-    else {
-        return Density::zero();
-    }
-}
 
 #ifdef ASTREA_BUILD_MARS_EPHEMERIS
 

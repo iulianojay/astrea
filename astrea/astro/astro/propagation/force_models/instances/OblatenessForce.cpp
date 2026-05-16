@@ -35,7 +35,7 @@
 #include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/system_utilities>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/utilities/conversions.hpp>
 
 namespace astrea {

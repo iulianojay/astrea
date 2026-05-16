@@ -84,10 +84,22 @@ struct Frame<_name_, _origin_, _axis_, _parent_> : detail::FrameBase {
 };
 
 
-template <mp_units::basic_fixed_string _name_, IsOrigin auto _origin_, IsAxis auto _axis_, Coordinate _rotation_coordinate_, AngularVelocity _rotation_rate_, IsFrame auto _parent_>
-struct FixedRotatingFrame : Frame<_name_, _origin_, FixedRotatingAxis<_axis_, _rotation_coordinate_>{}, _parent_> {
-    static constexpr auto rotation_rate = _rotation_rate_; //!< The rotation rate of the frame.
-};
+template <auto...>
+struct FixedRotatingFrame;
+
+/**
+ * @brief Fixed rotating frame without a parent frame (root body-fixed frame).
+ */
+template <mp_units::basic_fixed_string _name_, IsOrigin auto _origin_, IsAxis auto _axis_, Coordinate _rotation_coordinate_>
+struct FixedRotatingFrame<_name_, _origin_, _axis_, _rotation_coordinate_>
+    : Frame<_name_, _origin_, FixedRotatingAxis<_axis_, _rotation_coordinate_>{}> {};
+
+/**
+ * @brief Fixed rotating frame with a parent frame.
+ */
+template <mp_units::basic_fixed_string _name_, IsOrigin auto _origin_, IsAxis auto _axis_, Coordinate _rotation_coordinate_, IsFrame auto _parent_>
+struct FixedRotatingFrame<_name_, _origin_, _axis_, _rotation_coordinate_, _parent_>
+    : Frame<_name_, _origin_, FixedRotatingAxis<_axis_, _rotation_coordinate_>{}, _parent_> {};
 
 
 template <mp_units::basic_fixed_string _name_>

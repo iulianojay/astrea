@@ -45,7 +45,7 @@
 #include <astro/astro.macros.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/planets/Earth/Earth.hpp>
-#include <astro/systems/system_utilities>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/utilities/plotting.hpp>

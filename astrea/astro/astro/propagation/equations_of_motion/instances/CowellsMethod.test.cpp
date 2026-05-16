@@ -21,7 +21,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/system_utilities>
+#include <astro/systems/system_utilities.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;

@@ -20,7 +20,7 @@
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/force_models/instances/SolarRadiationPressure.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/system_utilities>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -35,8 +35,7 @@ using mp_units::si::unit_symbols::s;
 class SolarRadiationPressureTest : public testing::Test {
   public:
     SolarRadiationPressureTest() :
-        epoch("2020-02-18 15:08:47.23847"),
-        sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN })
+        epoch("2020-02-18 15:08:47.23847")
     {
     }
 

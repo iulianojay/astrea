@@ -32,8 +32,12 @@
 namespace astrea {
 namespace astro {
 
-    // Forward-declare frame types to avoid circular include with frames.hpp
-    namespace frames { namespace solar_system_barycenter { struct icrf; } }
+// Forward-declare frame types to avoid circular include with frames.hpp
+namespace frames {
+namespace solar_system_barycenter {
+struct icrf;
+}
+} // namespace frames
 
 namespace planets {
 
@@ -41,20 +45,20 @@ static CelestialBodyParameters DEFAULT_MERCURY_PARAMS{
     .type          = CelestialBodyType::PLANET,
     .referenceDate = Date("2000-01-01 12:00:00"),
     .mu = GravParam(22032.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
-    .mass              = Mass(0.330 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
-    .equitorialRadius  = Distance(2439.7 * mp_units::si::unit_symbols::km),
-    .polarRadius       = Distance(2439.7 * mp_units::si::unit_symbols::km),
-    .crashRadius       = Distance(2464.7 * mp_units::si::unit_symbols::km),
-    .sphereOfInfluence = Distance(0.011239389492058 * mp_units::iau::unit_symbols::au),
-    .j2                = Unitless(60.0e-6 * mp_units::one),
-    .j3                = Unitless(0.0 * mp_units::one),
-    .axialTilt         = Angle(0.034 * mp_units::angular::unit_symbols::deg),
-    .rotationRate   = AngularVelocity(6.138107416879796 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
-    .siderealPeriod = Time(87.969 * mp_units::non_si::day),
-    .semimajorAxis  = Distance(0.38709927 * mp_units::iau::unit_symbols::au),
-    .eccentricity   = Unitless(0.20563593 * mp_units::one),
-    .inclination    = Angle(7.00497902 * mp_units::angular::unit_symbols::deg),
-    .rightAscension = Angle(48.33076593 * mp_units::angular::unit_symbols::deg),
+    .mass                   = Mass(0.330 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
+    .equitorialRadius       = Distance(2439.7 * mp_units::si::unit_symbols::km),
+    .polarRadius            = Distance(2439.7 * mp_units::si::unit_symbols::km),
+    .crashRadius            = Distance(2464.7 * mp_units::si::unit_symbols::km),
+    .sphereOfInfluence      = Distance(0.011239389492058 * mp_units::iau::unit_symbols::au),
+    .j2                     = Unitless(60.0e-6 * mp_units::one),
+    .j3                     = Unitless(0.0 * mp_units::one),
+    .axialTilt              = Angle(0.034 * mp_units::angular::unit_symbols::deg),
+    .rotationRate           = AngularVelocity(6.138107416879796 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
+    .siderealPeriod         = Time(87.969 * mp_units::non_si::day),
+    .semimajorAxis          = Distance(0.38709927 * mp_units::iau::unit_symbols::au),
+    .eccentricity           = Unitless(0.20563593 * mp_units::one),
+    .inclination            = Angle(7.00497902 * mp_units::angular::unit_symbols::deg),
+    .rightAscension         = Angle(48.33076593 * mp_units::angular::unit_symbols::deg),
     .longitudeOfPerigee     = Angle(77.45779628 * mp_units::angular::unit_symbols::deg),
     .meanLongitude          = Angle(252.25032350 * mp_units::angular::unit_symbols::deg),
     .semimajorAxisRate      = InterplanetaryVelocity(0.00000037 * mp_units::iau::unit_symbols::au / JulianCentury),

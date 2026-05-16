@@ -41,10 +41,10 @@ inline constexpr struct venus_fixed
 namespace earth {
 
 inline constexpr struct earth_fixed
-    : FixedRotatingFrame<"ecef", planets::Earth, axes::icrf, Coordinate::Z, planets::Earth::rotation_rate> {
+    : FixedRotatingFrame<"ecef", planets::Earth, axes::icrf, Coordinate::Z> {
 } earth_fixed;
 inline constexpr struct ems_fixed
-    : FixedRotatingFrame<"ems_fixed", barycenters::Earth, axes::icrf, Coordinate::Z, planets::Earth::rotation_rate> {
+    : FixedRotatingFrame<"ems_fixed", barycenters::EarthMoonBarycenter, axes::icrf, Coordinate::Z> {
 } ems_fixed;
 } // namespace earth
 

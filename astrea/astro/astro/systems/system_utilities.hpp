@@ -26,6 +26,8 @@
 #include <gtl/phmap.hpp>
 
 #include <astro/systems/CelestialBody.hpp>
+#include <astro/systems/barycenters.hpp>
+#include <astro/systems/celestial_body_utilities.hpp>
 #include <astro/systems/planets.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/enums.hpp>
@@ -34,6 +36,7 @@
 
 namespace astrea {
 namespace astro {
+
 /**
  * @brief Returns true if Ancestor is Body itself or appears anywhere in Body's parent chain.
  */
@@ -52,13 +55,13 @@ consteval bool is_ancestor_of()
 /**
  * @brief Returns the single PLANET in the pack (assumes exactly one exists).
  */
-template <IsCelestialBody auto First, IsCelestialBody auto... Rest>
+template <IsCelestialBody auto first, IsCelestialBody auto... rest>
 consteval auto get_planet_from_pack()
 {
-    if constexpr (get_type<First>() == CelestialBodyType::PLANET) { return First; }
+    if constexpr (get_body_type<first>() == CelestialBodyType::PLANET) { return first; }
     else {
-        static_assert(sizeof...(Rest) > 0, "no PLANET found in body pack");
-        return get_planet_from_pack<Rest...>();
+        static_assert(sizeof...(rest) > 0, "no PLANET found in body pack");
+        return get_planet_from_pack<rest...>();
     }
 }
 
@@ -73,17 +76,17 @@ consteval auto get_planet_from_pack()
  * @tparam Bodies The celestial bodies to consider.
  * @return The common ancestor body value.
  */
-template <IsCelestialBody auto... Bodies>
+template <IsCelestialBody auto... bodies>
 consteval auto find_common_ancestor()
 {
-    if constexpr (sizeof...(Bodies) == 1) { return (Bodies, ...); }
+    if constexpr (sizeof...(bodies) == 1) { return (bodies, ...); }
     else {
-        constexpr std::size_t planet_count = ((get_type<Bodies>() == CelestialBodyType::PLANET ? 1 : 0) + ...);
+        constexpr std::size_t planet_count = ((get_body_type<bodies>() == CelestialBodyType::PLANET ? 1 : 0) + ...);
 
         if constexpr (planet_count >= 2) { return barycenters::SolarSystemBarycenter; }
         else if constexpr (planet_count == 1) {
-            constexpr auto planet = get_planet_from_pack<Bodies...>();
-            if constexpr ((is_ancestor_of<planet, Bodies>() && ...)) { return planet; }
+            constexpr auto planet = get_planet_from_pack<bodies...>();
+            if constexpr ((is_ancestor_of<planet, bodies>() && ...)) { return planet; }
             else {
                 return barycenters::SolarSystemBarycenter;
             }
@@ -103,7 +106,7 @@ consteval auto find_common_ancestor()
  * @return CartesianVector<Distance, frames::solar_system_barycenter::icrf> The relative position vector from id2 to id1.
  */
 template <IsCelestialBody auto body1, IsCelestialBody auto body2>
-constexpr auto get_relative_position(const Date& date) const
+constexpr auto get_relative_position(const Date& date)
 {
     static constexpr auto parent1 = decltype(body1)::parent;
     static constexpr auto parent2 = decltype(body2)::parent;
@@ -129,7 +132,7 @@ constexpr auto get_relative_position(const Date& date) const
  * @return CartesianVector<Velocity, frames::solar_system_barycenter::icrf> The relative velocity vector from id2 to id1.
  */
 template <IsCelestialBody auto body1, IsCelestialBody auto body2>
-constexpr auto get_relative_velocity(const Date& date) const
+constexpr auto get_relative_velocity(const Date& date)
 {
     static constexpr auto parent1 = decltype(body1)::parent;
     static constexpr auto parent2 = decltype(body2)::parent;
@@ -155,7 +158,7 @@ constexpr auto get_relative_velocity(const Date& date) const
  * @return CartesianVector<Distance, frames::solar_system_barycenter::icrf> The position vector of the celestial body relative to the root.
  */
 template <IsCelestialBody auto body, IsCelestialBody auto ancestor>
-constexpr auto get_position_relative_to_ancestor(const Date& date) const
+constexpr auto get_position_relative_to_ancestor(const Date& date)
 {
     static constexpr auto parent = decltype(body)::parent;
     if constexpr (std::is_same_v<decltype(parent), decltype(ancestor)>) { return get_position_at<body>(date); }
@@ -172,7 +175,7 @@ constexpr auto get_position_relative_to_ancestor(const Date& date) const
  * @return CartesianVector<Velocity, frames::solar_system_barycenter::icrf> The velocity vector of the celestial body relative to the root.
  */
 template <IsCelestialBody auto body, IsCelestialBody auto ancestor>
-constexpr auto get_velocity_relative_to_ancestor(const Date& date) const
+constexpr auto get_velocity_relative_to_ancestor(const Date& date)
 {
     static constexpr auto parent = decltype(body)::parent;
     if constexpr (std::is_same_v<decltype(parent), decltype(ancestor)>) { return get_velocity_at<body>(date); }

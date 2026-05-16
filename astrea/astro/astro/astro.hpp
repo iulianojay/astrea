@@ -77,7 +77,7 @@
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/CelestialBodyParameters.hpp>
 #include <astro/systems/planets.hpp>
-#include <astro/systems/system_utilities>
+#include <astro/systems/system_utilities.hpp>
 
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
@@ -88,3 +88,7 @@
 #include <astro/types/typedefs.hpp>
 
 #include <astro/utilities/conversions.hpp>
+
+// atmospheric_density_specializations.hpp requires State.hpp + frames.hpp to be complete.
+// Include it here, at the very end, after all other headers.
+#include <astro/systems/atmospheric_density_specializations.hpp>

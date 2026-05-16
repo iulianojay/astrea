@@ -25,7 +25,7 @@
 #include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/system_utilities>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 
 using mp_units::angular::unit_symbols::rad;

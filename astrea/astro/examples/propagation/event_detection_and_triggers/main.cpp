@@ -36,7 +36,7 @@ int main()
     // modifying the current vehicle or state.
 
     // Setup initial state
-    const auto mu = get_mu<Earth>();
+    const auto mu = get_mu<planets::Earth>();
 
     const Date epoch; // Defaults to J2000
     const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);

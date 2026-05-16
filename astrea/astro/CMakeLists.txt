@@ -165,7 +165,7 @@ set(ASTRO_HEADERS
 
     ${ASTRO_BASE}/state/attitude/instances/Quaternion.hpp
 
-    ${ASTRO_BASE}/systems/system_utilities
+    ${ASTRO_BASE}/systems/system_utilities.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
     ${ASTRO_BASE}/systems/CelestialBodyParameters.hpp
     ${ASTRO_BASE}/systems/planets.hpp

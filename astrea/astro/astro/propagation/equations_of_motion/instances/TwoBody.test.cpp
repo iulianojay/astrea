@@ -20,7 +20,7 @@
 #include <astro/propagation/equations_of_motion/instances/TwoBody.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/system_utilities>
+#include <astro/systems/system_utilities.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using mp_units::si::unit_symbols::km;

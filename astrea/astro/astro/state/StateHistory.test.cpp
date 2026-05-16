@@ -18,7 +18,7 @@
 
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
-#include <astro/systems/system_utilities>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 
 using namespace astrea;

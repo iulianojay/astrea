@@ -23,8 +23,6 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/State.hpp>
-#include <astro/state/angular_elements/instances/Geodetic.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/barycenters.hpp>
 #include <astro/types/typedefs.hpp>
@@ -36,8 +34,12 @@
 namespace astrea {
 namespace astro {
 
-    // Forward-declare frame types to avoid circular include with frames.hpp
-    namespace frames { namespace solar_system_barycenter { struct icrf; } }
+// Forward-declare frame types to avoid circular include with frames.hpp
+namespace frames {
+namespace solar_system_barycenter {
+struct icrf;
+}
+} // namespace frames
 
 namespace planets {
 
@@ -177,24 +179,6 @@ static const std::map<Altitude, Density> venutianAtmosphere = { // km, kg/m^3
     { 300.0 * mp_units::si::unit_symbols::km,
       3.5e-12 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) }
 };
-
-/**
- * @brief Find the atmospheric density at a given date and altitude.
- *
- * @param date The date for which to find the atmospheric density.
- * @param altitude The altitude at which to find the atmospheric density.
- * @return Density The atmospheric density at the given date and altitude.
- */
-template <>
-inline constexpr Density find_atmospheric_density<planets::Venus>(const State& state)
-{
-    const auto& position = state.get_position_in_frame<frames::venus::venus_fixed>();
-    const auto [latitude, longitude, altitude] =
-        convert_body_fixed_to_geodetic(position, get_equitorial_radius(), get_polar_radius());
-
-    const auto iter = venutianAtmosphere.upper_bound(altitude);
-    return (iter != venutianAtmosphere.end()) ? iter->second : Density::zero();
-}
 
 #ifdef ASTREA_BUILD_VENUS_EPHEMERIS
 

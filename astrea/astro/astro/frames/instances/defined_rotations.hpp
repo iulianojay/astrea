@@ -21,9 +21,9 @@
 
 #include <units/units.hpp>
 
+#include <astro/frames/Axis.hpp>
 #include <astro/frames/DirectionCosineMatrix.hpp>
-#include <astro/frames/frames.hpp>
-#include <astro/systems/system_utilities>
+#include <astro/frames/frame_concepts.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
@@ -33,68 +33,39 @@ namespace astro {
  * @brief Get the Direction Cosine Matrix (DCM) for the J2000 to ICRF at a given date.
  *
  * @param date The date for which to get the DCM.
- * @return DirectionCosineMatrix<_frame_, _frame_u_> The DCM from _frame_u_ to _frame_.
+ * @return DirectionCosineMatrix<frame, frame_u> The DCM from frame_u to frame.
  *
  * @ref https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA%20TP%2020220014814%20final.pdf
  */
-template <IsFrame auto _frame_, IsFrame auto _frame_u_>
-    requires(_frame_::axis == axes::icrf && _frame_u_::axis == axes::j200 && has_same_origin(_frame_, _frame_u_))
-inline constexpr DirectionCosineMatrix<_frame_, _frame_u_> get_dcm(const Date& date)
+template <IsFrame auto frame, IsFrame auto frame_u>
+    requires(decltype(frame)::axis == axes::icrf && decltype(frame_u)::axis == axes::j2000 && has_same_origin(frame, frame_u))
+inline constexpr DirectionCosineMatrix<frame, frame_u> get_dcm(const Date& date)
 {
     using mp_units::angular::unit_symbols::rad;
     static const Angle zeta0   = -8.0561e-8 * rad;
     static const Angle eta0    = -3.3060e-8 * rad;
     static const Angle dalpha0 = 7.0783e-8 * rad;
-    return DirectionCosineMatrix<_frame_, _frame_u_>::XYZ(-eta0, zeta0, dalpha0);
-}
-
-/**
- * @brief Get the Direction Cosine Matrix (DCM) for the ECEF frame at a given date.
- *
- * @param date The date for which to get the DCM.
- * @return DirectionCosineMatrix<frames::earth::icrf, frames::earth::earth_fixed> The DCM from ECI to ECEF.
- */
-template <>
-inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::earth_fixed>
-    get_dcm<frames::earth::icrf, frames::earth::earth_fixed>(const Date& date)
-{
-    const Angle gst = julian_date_to_sidereal_time(date.jd());
-    return DirectionCosineMatrix<frames::earth::icrf, frames::earth::earth_fixed>::Z(-gst);
+    return DirectionCosineMatrix<frame, frame_u>::XYZ(-eta0, zeta0, dalpha0);
 }
 
 /**
  * @brief Get the Direction Cosine Matrix (DCM) for the body-fixed frame at a given date.
  *
- * @tparam _in_frame_ The input frame type, must be ICRF and share the same origin as _out_frame_.
- * @tparam _out_frame_ The output frame type, must be FIXED_ROTATING and share the same origin as _in_frame_.
+ * @tparam in_frame The input frame type, must be ICRF and share the same origin as out_frame.
+ * @tparam out_frame The output frame type, must be FIXED_ROTATING and share the same origin as in_frame.
  * @param date The date for which to get the DCM.
- * @return DirectionCosineMatrix<_in_frame_, _out_frame_> The DCM from _in_frame_ to _out_frame_.
+ * @return DirectionCosineMatrix<in_frame, out_frame> The DCM from in_frame to out_frame.
  */
-template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
+template <IsFrame auto in_frame, IsFrame auto out_frame>
     requires(
-        has_same_origin(_in_frame_, _out_frame_) && _in_frame_::axis == axes::icrf && _out_frame_::axis == FrameAxis::FIXED_ROTATING &&
-        _in_frame_::origin != CelestialBodyId::SUN && _out_frame_::origin != CelestialBodyId::EARTH
+        has_same_origin(in_frame, out_frame) && decltype(in_frame)::axis == axes::icrf &&
+        decltype(out_frame)::axis == FrameAxis::FIXED_ROTATING && decltype(in_frame)::origin != CelestialBodyId::SUN &&
+        decltype(out_frame)::origin != CelestialBodyId::EARTH
     )
-inline constexpr DirectionCosineMatrix<_in_frame_, _out_frame_> get_dcm(const Date& date)
+inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
 {
-    const Angle gst = date.body_sidereal_time<_out_frame_::origin>();
-    return DirectionCosineMatrix<_in_frame_, _out_frame_>::Z(-gst);
-}
-
-/**
- * @brief Get the Direction Cosine Matrix (DCM) for the Earth-Moon Synodic frame at a given date.
- *
- * The Earth-Moon Synodic frame is a fixed-rotating frame centered at the Earth-Moon barycenter, with the x-axis pointing towards the Moon.
- *
- * @param date The date for which to get the DCM.
- * @return DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems> The DCM from Earth ICRF to Earth-Moon Synodic frame.
- */
-template <>
-inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems> get_dcm(const Date& date)
-{
-    const auto rEarth2Moon = get_relative_position<planets::Earth, planets::Moon>(date);
-    const Angle lambda     = atan2(rEarth2Moon[1], rEarth2Moon[0]);
-    return DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems>::Z(-lambda);
+    const Angle gst = date.body_sidereal_time<decltype(out_frame)::origin>();
+    return DirectionCosineMatrix<in_frame, out_frame>::Z(-gst);
 }
 
 } // namespace astro

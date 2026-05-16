@@ -40,7 +40,7 @@ int main()
     std::cout << "Cartesian: " << cartesian << std::endl;
 
     // Conversions at the instance level are done through constructors
-    const auto& mu = get_mu<Earth>();
+    const auto& mu = get_mu<planets::Earth>();
     Keplerian keplerian{ cartesian, mu };
     Equinoctial equinoctial{ keplerian, mu };
     std::cout << "Converted to Keplerian: " << keplerian << std::endl;

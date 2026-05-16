@@ -32,8 +32,12 @@
 namespace astrea {
 namespace astro {
 
-    // Forward-declare frame types to avoid circular include with frames.hpp
-    namespace frames { namespace solar_system_barycenter { struct icrf; } }
+// Forward-declare frame types to avoid circular include with frames.hpp
+namespace frames {
+namespace solar_system_barycenter {
+struct icrf;
+}
+} // namespace frames
 
 namespace planets {
 
@@ -93,7 +97,7 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
 template <>
 inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_position_at<planets::Sun>(const Date& date)
 {
-    return get_position_at_impl<SunEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    return get_position_at_impl<planets::SunEphemerisTable, frames::solar_system_barycenter::icrf>(date);
 }
 
 /**
@@ -105,7 +109,7 @@ inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_positio
 template <>
 inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at<planets::Sun>(const Date& date)
 {
-    return get_velocity_at_impl<SunEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    return get_velocity_at_impl<planets::SunEphemerisTable, frames::solar_system_barycenter::icrf>(date);
 }
 
 #endif // ASTREA_BUILD_SUN_EPHEMERIS

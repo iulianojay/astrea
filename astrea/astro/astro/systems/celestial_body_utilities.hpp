@@ -25,23 +25,21 @@
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
+#include <astro/utilities/conversions.hpp>
 #include <math/chebyshev_util.hpp>
 #include <units/units.hpp>
 
-#include <astro/state/State.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
+// CelestialBody.hpp provides the primary template declarations AND includes this file.
+// Include it again here to be self-contained; the guard will prevent re-processing.
+#include <astro/frames/CartesianVector.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/CelestialBodyParameters.hpp>
 #include <astro/systems/system_concepts.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/enums.hpp>
-#include <astro/utilities/conversions.hpp>
 
 namespace astrea {
 namespace astro {
-
-template <IsCelestialBody auto _body_>
-constexpr auto get_celestial_body_parameters() = delete; // Force specialization for each body
 
 /**
  * @brief Get the type of the celestial body.
@@ -49,7 +47,7 @@ constexpr auto get_celestial_body_parameters() = delete; // Force specialization
  * @return CelestialBodyType Reference to the type of the celestial body.
  */
 template <IsCelestialBody auto _body_>
-constexpr CelestialBodyType get_type()
+constexpr CelestialBodyType get_body_type()
 {
     return get_celestial_body_parameters<_body_>().type;
 };
@@ -342,189 +340,6 @@ constexpr BodyAngularVelocity get_mean_longitude_rate()
 {
     return get_celestial_body_parameters<_body_>().meanLongitudeRate;
 };
-
-
-/**
- * @brief Finds the atmospheric density at a given date and state.
- *
- * @param date The date at which to find the atmospheric density.
- * @param state The Cartesian state vector at which to find the atmospheric density.
- * @return Density The atmospheric density at the specified date and state.
- *
- * @note Assume that most bodies have no significant atmosphere. Assume that
- * the atmosphere of the gas giants is defined by their radii, e.g.
- * outside of their equitorial radius, they have no noticible atmosphere
- * and inside that radius, the object will crash.
- */
-template <IsCelestialBody auto _body_>
-inline constexpr Density find_atmospheric_density(State state)
-{
-    return Density::zero();
-}
-
-/**
- * @brief Type alias for a tuple of linear expansion coefficients.
- */
-using CoefficientPack = std::tuple<
-    mp_units::quantity<mp_units::angular::unit_symbols::rad / (JulianCentury * JulianCentury)>,
-    mp_units::quantity<mp_units::angular::unit_symbols::rad>,
-    mp_units::quantity<mp_units::angular::unit_symbols::rad>,
-    mp_units::quantity<mp_units::angular::unit_symbols::rad / JulianCentury>>;
-
-/**
- * @brief Get the linear expansion coefficients for the celestial body's orbital elements.
- *
- * @return CoefficientPack A tuple containing the linear expansion coefficients.
- *
- * @note The default implementation returns zero coefficients, indicating no perturbations.
- *       Derived classes should override this method to provide actual coefficients.
- */
-template <IsCelestialBody auto _body_>
-inline constexpr CoefficientPack get_linear_expansion_coefficients() = delete; // Force specialization for each body
-
-/**
- * @brief Get the keplerian elements of the celestial body at a specific date using a linear approximation.
- *
- * @param date The date at which to get the state of the celestial body.
- * @return Keplerian The approximate Keplerian elements of the celestial body at the specified date.
- */
-template <IsCelestialBody auto _body_>
-inline constexpr Keplerian get_keplerian_elements_at(Date date)
-{
-    using namespace mp_units;
-    using namespace mp_units::angular;
-
-    // Keplerian element approximation pulled from here: https://ssd.jpl.nasa.gov/planets/approx_pos.html
-    const Distance a   = get_semimajor<_body_>(date);
-    const Unitless ecc = get_eccentricity<_body_>(date);
-    const Angle inc    = get_inclination<_body_>(date);
-    const Angle raan   = get_right_ascension<_body_>(date);
-    const Angle w      = get_longitude_of_perigee<_body_>(date);
-    const Angle L      = get_mean_longitude<_body_>(date);
-
-    // Time since reference epoch in Julian centuries
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<_body_>(date);
-    const auto [B, C, S, F]                   = get_linear_expansion_coefficients<_body_>();
-    const Angle Me                            = wrap_angle(L - w + B * T * T + C * cos(F * T) + S * sin(F * T));
-    const Angle argPer                        = wrap_angle(w - raan);
-
-    // This approximation has error on the order of ecc^6
-    const Angle thetat = convert_mean_anomaly_to_true_anomaly(Me, ecc);
-
-    return Keplerian(a, ecc, inc, raan, argPer, thetat);
-}
-
-/**
- * @brief Get the position of a barycenter at a specific date in its parent ICRF frame. Must be specialized.
- */
-template <Barycenter _body_>
-inline constexpr CartesianVector<Distance, _body_::ParentIcrf> get_position_at(Date date) = delete;
-
-/**
- * @brief Get the velocity of a barycenter at a specific date in its parent ICRF frame. Must be specialized.
- */
-template <Barycenter _body_>
-inline constexpr CartesianVector<Velocity, _body_::ParentIcrf> get_velocity_at(Date date) = delete;
-
-/**
- * @brief Get the position of the celestial body at a specific date in the ICRF frame.
- *
- * @param date The date at which to get the position of the celestial body.
- * @return CartesianVector<Distance, ParentFrame> The position of the celestial body at the specified date.
- *
- * @note This function is wrong. It actually returns the position in the ICRF frame, centered on the object's
- * parent. Need to figure out how to make dynamic centers work with frames.
- */
-template <IsCelestialBody auto _body_>
-inline constexpr CartesianVector<Distance, _body_::ParentIcrf> get_position_at(Date date)
-{
-    using namespace mp_units;
-    using namespace mp_units::angular;
-    using mp_units::si::unit_symbols::m;
-
-    // This approximation is in the perifocal frame
-    const Keplerian coes         = get_keplerian_elements_at<_body_>(date);
-    const Distance a             = coes.get_semimajor();
-    const Unitless ecc           = coes.get_eccentricity();
-    const Angle inc              = coes.get_inclination();
-    const Angle raan             = coes.get_right_ascension();
-    const Angle argPer           = coes.get_argument_of_perigee();
-    const Angle theta            = coes.get_true_anomaly();
-    const Angle Me               = convert_true_anomaly_to_mean_anomaly(theta, ecc);
-    const Angle eccentricAnomaly = convert_mean_anomaly_to_eccentric_anomaly(Me, ecc);
-
-    // Position in perifocal frame
-    class perifocal;
-    const RadiusVector<perifocal> rPerifocal{ a * (cos(eccentricAnomaly) - ecc),
-                                              a * sqrt(1 - ecc * ecc) * sin(eccentricAnomaly),
-                                              0.0 * m };
-
-    // Perifocal to J2000 transformation: R3(-RAAN) * R1(-inc) * R3(-argPer)
-    const DCM<perifocal, ParentJ2000> dcmPeriToJ2000(
-        { { cos(argPer) * cos(raan) - sin(argPer) * sin(raan) * cos(inc),
-            -sin(argPer) * cos(raan) - cos(argPer) * sin(raan) * cos(inc),
-            sin(inc) * sin(raan) },
-          { cos(argPer) * sin(raan) + sin(argPer) * cos(raan) * cos(inc),
-            -sin(argPer) * sin(raan) + cos(argPer) * cos(raan) * cos(inc),
-            -sin(inc) * cos(raan) },
-          { sin(argPer) * sin(inc), cos(argPer) * sin(inc), cos(inc) } }
-    );
-    const RadiusVector<ParentJ2000> rJ2000 = dcmPeriToJ2000 * rPerifocal;
-
-    // Rotate to the ICRF frame
-    return rJ2000.in_frame<ParentIcrf>();
-}
-
-/**
- * @brief Get the velocity of the celestial body at a specific date in the ICRF frame.
- *
- * @param date The date at which to get the velocity of the celestial body.
- * @return CartesianVector<Velocity, ParentFrame> The velocity of the celestial body at the specified date.
- *
- * @note This function is wrong. It actually returns the velocity in the ICRF frame, centered on the object's
- * parent. Need to figure out how to make dynamic centers work with frames.
- */
-template <IsCelestialBody auto _body_>
-inline constexpr CartesianVector<Velocity, _body_::ParentIcrf> get_velocity_at(Date date)
-{
-    using namespace mp_units;
-    using namespace mp_units::angular;
-    using mp_units::si::unit_symbols::m;
-    using mp_units::si::unit_symbols::s;
-
-    // This approximation is in the perifocal frame
-    const Keplerian coes         = get_keplerian_elements_at<_body_>(date);
-    const Distance a             = coes.get_semimajor();
-    const Unitless ecc           = coes.get_eccentricity();
-    const Angle inc              = coes.get_inclination();
-    const Angle raan             = coes.get_right_ascension();
-    const Angle argPer           = coes.get_argument_of_perigee();
-    const Angle theta            = coes.get_true_anomaly();
-    const Angle Me               = convert_true_anomaly_to_mean_anomaly(theta, ecc);
-    const Angle eccentricAnomaly = convert_mean_anomaly_to_eccentric_anomaly(Me, ecc);
-
-    // Velocity in perifocal frame
-    class perifocal;
-    const VelocityVector<perifocal> vPerifocal{ -sqrt(get_mu<_body_::Parent>() / (a * (1 - ecc * ecc))) * sin(eccentricAnomaly),
-                                                sqrt(get_mu<_body_::Parent>() / (a * (1 - ecc * ecc))) *
-                                                    sqrt(1 - ecc * ecc) * cos(eccentricAnomaly),
-                                                0.0 * m / s };
-
-    // Perifocal to J2000 transformation: R3(-RAAN) * R1(-inc) * R3(-argPer)
-    const DCM<perifocal, _body_::ParentJ2000> dcmPeriToJ2000(
-        { { cos(argPer) * cos(raan) - sin(argPer) * sin(raan) * cos(inc),
-            -sin(argPer) * cos(raan) - cos(argPer) * sin(raan) * cos(inc),
-            sin(inc) * sin(raan) },
-          { cos(argPer) * sin(raan) + sin(argPer) * cos(raan) * cos(inc),
-            -sin(argPer) * sin(raan) + cos(argPer) * cos(raan) * cos(inc),
-            -sin(inc) * cos(raan) },
-          { sin(argPer) * sin(inc), cos(argPer) * sin(inc), cos(inc) } }
-    );
-    const VelocityVector<_body_::ParentJ2000> vJ2000 = dcmPeriToJ2000 * vPerifocal;
-
-    // Rotate to the ICRF frame
-    return vJ2000.in_frame<_body_::ParentIcrf>();
-}
 
 /**
  * @brief Get the position of the celestial body at a specific date in a specified frame using Chebyshev polynomials.

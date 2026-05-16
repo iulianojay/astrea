@@ -104,7 +104,8 @@ Density HarrisPriesterAtmosphere::find_atmospheric_density(const State& state, c
     const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(positionEcef, equitorialRadius, polarRadius);
 
     // Diurnal bulge apex direction
-    const RadiusVector<frames::solar_system_barycenter::icrf> sun2Earth = get_relative_position<Earth, Sun>(state.get_epoch());
+    const RadiusVector<frames::solar_system_barycenter::icrf> sun2Earth =
+        get_relative_position<planets::Earth, Sun>(state.get_epoch());
     const UnitVector<frames::earth::icrf> sunDirection = -sun2Earth.unit().force_frame_conversion<frames::earth::icrf>();
     const UnitVector<frames::earth::icrf> bulgeDirection = DCM<frames::earth::icrf, frames::earth::icrf>::Z(LAG) * sunDirection;
 

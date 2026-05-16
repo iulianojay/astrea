@@ -25,7 +25,7 @@
 #include <astro/frames/transformations.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/systems/system_utilities>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/types/typedefs.hpp>
 #include <math/interpolation.hpp>
 

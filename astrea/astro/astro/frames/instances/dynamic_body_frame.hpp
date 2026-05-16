@@ -26,7 +26,8 @@ namespace astro {
 namespace frames {
 namespace dynamic {
 
-inline constexpr struct body final : Frame<"body", DynamicOrigin<"body">{}, DynamicAxis<"body">{}> {
+inline constexpr struct body final
+    : Frame<mp_units::basic_fixed_string{ "body" }, DynamicOrigin<mp_units::basic_fixed_string{ "body" }>{}, DynamicAxis<mp_units::basic_fixed_string{ "body" }>{}> {
 } body;
 
 } // namespace dynamic

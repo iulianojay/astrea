@@ -46,14 +46,15 @@ int main()
     std::cout << "  Velocity: " << vf << std::endl << std::endl;
 
     // Solve from position and velocity
-    const Cartesian<frames::earth::icrf> result = LambertSolver::solve<frames::earth::icrf>({ r0, v0 }, dt, get_mu<Earth>());
+    const Cartesian<frames::earth::icrf> result =
+        LambertSolver::solve<frames::earth::icrf>({ r0, v0 }, dt, get_mu<planets::Earth>());
     std::cout << "Final state from r0, v0" << std::endl;
     std::cout << "  Position: " << result.get_position() << std::endl;
     std::cout << "  Velocity: " << result.get_velocity() << std::endl << std::endl;
 
     // Solve from position and position
     const auto [res0, resf] =
-        LambertSolver::solve<frames::earth::icrf>(r0, rf, dt, get_mu<Earth>(), LambertSolver::OrbitDirection::PROGRADE);
+        LambertSolver::solve<frames::earth::icrf>(r0, rf, dt, get_mu<planets::Earth>(), LambertSolver::OrbitDirection::PROGRADE);
     std::cout << "Initial and final velocity from r0, rf" << std::endl;
     std::cout << "  Initial Velocity: " << res0 << std::endl;
     std::cout << "  Final Velocity: " << resf << std::endl;

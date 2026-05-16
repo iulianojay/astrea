@@ -17,7 +17,7 @@
 #include <units/units.hpp>
 
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/system_utilities>
+#include <astro/systems/system_utilities.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
@@ -34,7 +34,7 @@ class OrbitalElementsTest : public testing::Test {
 
     void SetUp() override
     {
-        _mu           = get_mu<Earth>();
+        _mu           = get_mu<planets::Earth>();
         _cartElements = Cartesian<frames::earth::icrf>::LEO(_mu);
         _keplElements = Keplerian::LEO();
         _equiElements = Equinoctial::LEO(_mu);

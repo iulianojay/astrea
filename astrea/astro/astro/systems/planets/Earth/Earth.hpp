@@ -33,8 +33,12 @@
 namespace astrea {
 namespace astro {
 
-    // Forward-declare frame types to avoid circular include with frames.hpp
-    namespace frames { namespace earth_barycenter { struct icrf; } }
+// Forward-declare frame types to avoid circular include with frames.hpp
+namespace frames {
+namespace earth_barycenter {
+struct icrf;
+}
+} // namespace frames
 
 
 namespace planets {
@@ -57,12 +61,12 @@ static const CelestialBodyParameters DEFAULT_EARTH_PARAMS{
     .j2                = Unitless(0.00108262982 * mp_units::one),
     .j3                = Unitless(-0.0000025323 * mp_units::one),
     .axialTilt         = Angle(23.439292 * mp_units::angular::unit_symbols::deg),
-    .rotationRate = AngularVelocity(7.29211514670638e-5 * mp_units::angular::unit_symbols::rad / mp_units::si::unit_symbols::s),
-    .siderealPeriod         = Time(365.256 * mp_units::non_si::day),
-    .semimajorAxis          = Distance(1.00000261 * mp_units::iau::unit_symbols::au),
-    .eccentricity           = Unitless(0.01671123 * mp_units::one),
-    .inclination            = Angle(-0.00001531 * mp_units::angular::unit_symbols::deg),
-    .rightAscension         = Angle(0.0 * mp_units::angular::unit_symbols::deg),
+    .rotationRate   = AngularVelocity(360.98564736629 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
+    .siderealPeriod = Time(365.256 * mp_units::non_si::day),
+    .semimajorAxis  = Distance(1.00000261 * mp_units::iau::unit_symbols::au),
+    .eccentricity   = Unitless(0.01671123 * mp_units::one),
+    .inclination    = Angle(-0.00001531 * mp_units::angular::unit_symbols::deg),
+    .rightAscension = Angle(0.0 * mp_units::angular::unit_symbols::deg),
     .longitudeOfPerigee     = Angle(102.93768193 * mp_units::angular::unit_symbols::deg),
     .meanLongitude          = Angle(100.46457166 * mp_units::angular::unit_symbols::deg),
     .semimajorAxisRate      = InterplanetaryVelocity(0.00000562 * mp_units::iau::unit_symbols::au / JulianCentury),
@@ -97,20 +101,8 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
  * @param altitude The altitude at which to find the atmospheric density.
  * @return Density The atmospheric density at the given date and altitude.
  * @note Numbers for this model are pulled from Vallado, 5th ed.
+ * @note Full specialisation (with atmosphere model dispatch) is in atmospheric_density_specializations.hpp.
  */
-template <>
-inline constexpr Density find_atmospheric_density<planets::Earth>(const State& state)
-{
-    switch (_atmosphereModel) {
-        case EarthAtmosphereModel::JACHIA_ROBERTS:
-            return JacciaRobertsAtmosphere::find_atmospheric_density(state, get_equitorial_radius(), get_polar_radius());
-        case EarthAtmosphereModel::HARRIS_PRIESTER:
-            return HarrisPriesterAtmosphere::find_atmospheric_density(state, get_equitorial_radius(), get_polar_radius());
-        case EarthAtmosphereModel::NRLMSISE00:
-        case EarthAtmosphereModel::DTM2000:
-        default: throw std::runtime_error("Selected atmospheric model not implemented yet");
-    }
-}
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 
@@ -123,7 +115,7 @@ inline constexpr Density find_atmospheric_density<planets::Earth>(const State& s
 template <>
 inline constexpr RadiusVector<frames::earth_barycenter::icrf> get_position_at<planets::Earth>(const Date& date)
 {
-    return get_position_at_impl<EarthFromEmbEphemerisTable, frames::earth_barycenter::icrf>(date);
+    return get_position_at_impl<planets::EarthFromEmbEphemerisTable, frames::earth_barycenter::icrf>(date);
 }
 
 /**
@@ -135,7 +127,7 @@ inline constexpr RadiusVector<frames::earth_barycenter::icrf> get_position_at<pl
 template <>
 inline constexpr VelocityVector<frames::earth_barycenter::icrf> get_velocity_at<planets::Earth>(const Date& date)
 {
-    return get_velocity_at_impl<EarthFromEmbEphemerisTable, frames::earth_barycenter::icrf>(date);
+    return get_velocity_at_impl<planets::EarthFromEmbEphemerisTable, frames::earth_barycenter::icrf>(date);
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS

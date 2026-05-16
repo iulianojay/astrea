@@ -32,8 +32,12 @@
 namespace astrea {
 namespace astro {
 
-    // Forward-declare frame types to avoid circular include with frames.hpp
-    namespace frames { namespace earth { struct icrf; } }
+// Forward-declare frame types to avoid circular include with frames.hpp
+namespace frames {
+namespace earth {
+struct icrf;
+}
+} // namespace frames
 
 
 namespace planets {
@@ -94,7 +98,7 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
 template <>
 inline constexpr RadiusVector<frames::earth::icrf> get_position_at<planets::Moon>(const Date& date)
 {
-    return get_position_at_impl<MoonEphemerisTable, frames::earth::icrf>(date);
+    return get_position_at_impl<planets::MoonEphemerisTable, frames::earth::icrf>(date);
 }
 
 /**
@@ -106,7 +110,7 @@ inline constexpr RadiusVector<frames::earth::icrf> get_position_at<planets::Moon
 template <>
 inline constexpr VelocityVector<frames::earth::icrf> get_velocity_at<planets::Moon>(const Date& date)
 {
-    return get_velocity_at_impl<MoonEphemerisTable, frames::earth::icrf>(date);
+    return get_velocity_at_impl<planets::MoonEphemerisTable, frames::earth::icrf>(date);
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS

@@ -28,7 +28,7 @@
 
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/systems/system_utilities>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -110,7 +110,7 @@ void TwoLineElements::ctor_impl(const std::array<std::string, 2> rawTle)
     _revNumber  = std::stoi(rawTle[1].substr(63, 5));
     _checkSum2  = std::stoi(rawTle[1].substr(68, 1));
 
-    const Distance semimajor      = pow<1, 3>(get_mu<Earth>() / (_meanMotion.in(one / s) * _meanMotion.in(one / s)));
+    const Distance semimajor = pow<1, 3>(get_mu<planets::Earth>() / (_meanMotion.in(one / s) * _meanMotion.in(one / s)));
     const Angle inclination       = std::stod(rawTle[1].substr(8, 8)) * deg;
     const Angle rightAscension    = std::stod(rawTle[1].substr(17, 8)) * deg;
     const Unitless eccentricity   = std::stod("." + rawTle[1].substr(26, 7)) * one;

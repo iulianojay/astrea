@@ -23,8 +23,6 @@
 #include <map>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/state/State.hpp>
-#include <astro/state/angular_elements/instances/Geodetic.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/planets/Saturn/Saturn.hpp>
 #include <astro/types/typedefs.hpp>
@@ -37,15 +35,15 @@ static CelestialBodyParameters DEFAULT_TITAN_PARAMS{
     .type          = CelestialBodyType::MOON,
     .referenceDate = Date("2000-01-01 12:00:00"),
     .mu = GravParam(8978.1 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
-    .mass              = Mass(0.13455 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
-    .equitorialRadius  = Distance(2575.0 * mp_units::si::unit_symbols::km),
-    .polarRadius       = Distance(2575.0 * mp_units::si::unit_symbols::km),
-    .crashRadius       = Distance(2575.0 * mp_units::si::unit_symbols::km),
-    .sphereOfInfluence = Distance(0.004333361603448 * mp_units::iau::unit_symbols::au),
-    .j2                = Unitless(0.0 * mp_units::one),
-    .j3                = Unitless(0.0 * mp_units::one),
-    .axialTilt         = Angle(27.359 * mp_units::angular::unit_symbols::deg),
-    .rotationRate = AngularVelocity(22.577014429408919 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
+    .mass                   = Mass(0.13455 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
+    .equitorialRadius       = Distance(2575.0 * mp_units::si::unit_symbols::km),
+    .polarRadius            = Distance(2575.0 * mp_units::si::unit_symbols::km),
+    .crashRadius            = Distance(2575.0 * mp_units::si::unit_symbols::km),
+    .sphereOfInfluence      = Distance(0.004333361603448 * mp_units::iau::unit_symbols::au),
+    .j2                     = Unitless(0.0 * mp_units::one),
+    .j3                     = Unitless(0.0 * mp_units::one),
+    .axialTilt              = Angle(27.359 * mp_units::angular::unit_symbols::deg),
+    .rotationRate           = AngularVelocity(22.577014429408919 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
     .siderealPeriod         = Time(15.94542 * mp_units::non_si::day),
     .semimajorAxis          = Distance(1221.83e3 * mp_units::si::unit_symbols::km),
     .eccentricity           = Unitless(0.0292 * mp_units::one),
@@ -202,19 +200,6 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
  * @param altitude The altitude above the surface of Titan.
  * @return Density The atmospheric density at the specified altitude and date.
  */
-template <>
-inline constexpr Density find_atmospheric_density<planets::Titan>(const State& state)
-{
-    using mp_units::si::unit_symbols::cm;
-    using mp_units::si::unit_symbols::g;
-
-    const auto& position = state.get_position_in_frame<frames::titan::titan_fixed>();
-    const auto [latitude, longitude, altitude] =
-        convert_body_fixed_to_geodetic(position, get_equitorial_radius(), get_polar_radius());
-
-    const auto iter = planets::titanicAtmosphere.upper_bound(altitude);
-    return (iter != planets::titanicAtmosphere.end()) ? iter->second : 0.0 * g / (cm * cm * cm);
-}
 
 } // namespace astro
 } // namespace astrea

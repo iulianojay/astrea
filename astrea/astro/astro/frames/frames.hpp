@@ -20,3 +20,4 @@
 
 #include <astro/frames/instances/body_centered_inertial_frames.hpp>
 #include <astro/frames/instances/fixed_rotating_frames.hpp>
+#include <astro/frames/instances/defined_rotations_earth.hpp>

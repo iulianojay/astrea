@@ -66,7 +66,7 @@ int main()
         ) const override
         {
             // Extracting into the desired set can be convenient
-            const auto mu                                  = get_mu<Earth>();
+            const auto mu                                  = get_mu<planets::Earth>();
             const Cartesian<frames::earth::icrf> cartesian = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
             // Pull out the pieces for simple two-body gravity

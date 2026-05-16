@@ -21,7 +21,7 @@
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/planets.hpp>
-#include <astro/systems/system_utilities>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -101,7 +101,7 @@ TEST_F(CelestialBodyTest, GetName) { ASSERT_EQ(earth.get_name(), "Earth"); }
 
 TEST_F(CelestialBodyTest, GetParent) { ASSERT_EQ(earth.get_parent(), CelestialBodyId::SUN); }
 
-TEST_F(CelestialBodyTest, GetType) { ASSERT_EQ(earth.get_type(), CelestialBodyType::PLANET); }
+TEST_F(CelestialBodyTest, GetType) { ASSERT_EQ(earth.get_body_type(), CelestialBodyType::PLANET); }
 
 TEST_F(CelestialBodyTest, GetMu)
 {
@@ -226,13 +226,13 @@ TEST_F(CelestialBodyTest, GetMeanLongitudeRate)
 TEST_F(CelestialBodyTest, GetStateAtValldoEx)
 {
     const Date date("2020-02-18 15:08:47.23847");
-    const auto& earthMu = get_mu<Earth>();
-    const auto& sunMu   = get_mu<Sun>();
+    const auto& earthMu = get_mu<planets::Earth>();
+    const auto& sunMu   = get_mu<planets::Sun>();
 
     // Pull out states
-    const RadiusVector<frames::solar_system_barycenter::icrf> sunPosition   = get_position_at<Sun>(date);
-    const RadiusVector<frames::solar_system_barycenter::icrf> earthPosition = get_position_at<Earth>(date);
-    const RadiusVector<frames::solar_system_barycenter::icrf> moonPosition  = get_position_at<Moon>(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> sunPosition   = get_position_at<planets::Sun>(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> earthPosition = get_position_at<planets::Earth>(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> moonPosition  = get_position_at<planets::Moon>(date);
 
     // Expected results
     const RadiusVector<frames::solar_system_barycenter::icrf> expEarth2SunPosition(126921698.413 * km, -69561377.707 * km, -30155074.470 * km); // Vallado lists a negative x value, likely in error
@@ -266,13 +266,13 @@ TEST_F(CelestialBodyTest, GetStateAtValldoEx)
 TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
 {
     const Date date("2000-01-01 12:00:00");
-    const auto& earthMu = get_mu<Earth>();
-    const auto& sunMu   = get_mu<Sun>();
+    const auto& earthMu = get_mu<planets::Earth>();
+    const auto& sunMu   = get_mu<planets::Sun>();
 
     // Pull out states
-    const RadiusVector<frames::solar_system_barycenter::icrf> sunPosition   = get_position_at<Sun>(date);
-    const RadiusVector<frames::solar_system_barycenter::icrf> earthPosition = get_position_at<Earth>(date);
-    const RadiusVector<frames::solar_system_barycenter::icrf> moonPosition  = get_position_at<Moon>(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> sunPosition   = get_position_at<planets::Sun>(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> earthPosition = get_position_at<planets::Earth>(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> moonPosition  = get_position_at<planets::Moon>(date);
 
     // Expected results
     const RadiusVector<frames::solar_system_barycenter::icrf> expSunToMoonPosition(-26790642.141607 * km, 132490700.52134 * km, 57480615.9131708 * km);
@@ -291,8 +291,8 @@ TEST_F(CelestialBodyTest, GetKeplerianElementsAt)
 {
     const Date date("2020-02-18 15:08:47.23847");
 
-    ASSERT_NO_THROW(get_keplerian_elements_at<Earth>(date));
-    const auto kep = get_keplerian_elements_at<Earth>(date);
+    ASSERT_NO_THROW(get_keplerian_elements_at<planets::Earth>(date));
+    const auto kep = get_keplerian_elements_at<planets::Earth>(date);
 
     // Should return the orbital elements with linear approximation
     ASSERT_GT(kep.get_semimajor().numerical_value_in(km), 0.0);
@@ -364,7 +364,7 @@ TEST_F(CelestialBodyTest, CopyConstructor)
     const auto earthCopy = earth;
     ASSERT_EQ(earthCopy.get_name(), earth.get_name());
     ASSERT_EQ(earthCopy.get_parent(), earth.get_parent());
-    ASSERT_EQ(earthCopy.get_type(), earth.get_type());
+    ASSERT_EQ(earthCopy.get_body_type(), earth.get_body_type());
     ASSERT_TRUE(math::nearly_equal(earthCopy.get_mu(), earth.get_mu(), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(earthCopy.get_mass(), earth.get_mass(), REL_TOL));
 }
@@ -409,7 +409,7 @@ TEST_F(CelestialBodyTest, GetAllProperties)
     // Test all getters for Earth
     ASSERT_NO_THROW(earth.get_name());
     ASSERT_NO_THROW(earth.get_parent());
-    ASSERT_NO_THROW(earth.get_type());
+    ASSERT_NO_THROW(earth.get_body_type());
     ASSERT_NO_THROW(earth.get_mu());
     ASSERT_NO_THROW(earth.get_mass());
     ASSERT_NO_THROW(earth.get_equitorial_radius());

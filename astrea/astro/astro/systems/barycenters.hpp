@@ -1,6 +1,7 @@
 #pragma once
 
 #include <astro/systems/CelestialBody.hpp>
+#include <astro/types/typedefs.hpp>
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 #include <ephemerides/Earth/EmbEphemerisTable.hpp>
@@ -10,37 +11,47 @@ namespace astrea {
 namespace astro {
 namespace barycenters {
 
-struct SolarSystemBarycenter : Barycenter<mp_units::basic_fixed_string{ "Solar System Barycenter" }> {};
+inline constexpr struct SolarSystemBarycenter final
+    : Barycenter<mp_units::basic_fixed_string{ "Solar System Barycenter" }> {
+} SolarSystemBarycenter;
 
-struct MercuryBarycenter : Barycenter<mp_units::basic_fixed_string{ "Mercury Barycenter" }, SolarSystemBarycenter{}> {};
-struct VenusBarycenter : Barycenter<mp_units::basic_fixed_string{ "Venus Barycenter" }, SolarSystemBarycenter{}> {};
-struct EarthBarycenter : Barycenter<mp_units::basic_fixed_string{ "Earth Barycenter" }, SolarSystemBarycenter{}> {};
-struct MarsBarycenter : Barycenter<mp_units::basic_fixed_string{ "Mars Barycenter" }, SolarSystemBarycenter{}> {};
-struct JupiterBarycenter : Barycenter<mp_units::basic_fixed_string{ "Jupiter Barycenter" }, SolarSystemBarycenter{}> {};
-struct SaturnBarycenter : Barycenter<mp_units::basic_fixed_string{ "Saturn Barycenter" }, SolarSystemBarycenter{}> {};
-struct UranusBarycenter : Barycenter<mp_units::basic_fixed_string{ "Uranus Barycenter" }, SolarSystemBarycenter{}> {};
-struct NeptuneBarycenter : Barycenter<mp_units::basic_fixed_string{ "Neptune Barycenter" }, SolarSystemBarycenter{}> {};
+inline constexpr struct MercuryBarycenter final
+    : Barycenter<mp_units::basic_fixed_string{ "Mercury Barycenter" }, SolarSystemBarycenter> {
+} MercuryBarycenter;
 
-struct EarthMoonBarycenter : Barycenter<mp_units::basic_fixed_string{ "Earth-Moon Barycenter" }, SolarSystemBarycenter{}> {
-    using ParentIcrf = frames::solar_system_barycenter::icrf; //!< The SSB-centric ICRF frame in which EMB position is expressed.
-    using ParentJ2000 = frames::solar_system_barycenter::j2000; //!< The SSB-centric J2000 frame.
-};
+inline constexpr struct VenusBarycenter final
+    : Barycenter<mp_units::basic_fixed_string{ "Venus Barycenter" }, SolarSystemBarycenter> {
+} VenusBarycenter;
+
+inline constexpr struct EarthBarycenter final
+    : Barycenter<mp_units::basic_fixed_string{ "Earth Barycenter" }, SolarSystemBarycenter> {
+} EarthBarycenter;
+
+inline constexpr struct MarsBarycenter final : Barycenter<mp_units::basic_fixed_string{ "Mars Barycenter" }, SolarSystemBarycenter> {
+} MarsBarycenter;
+
+inline constexpr struct JupiterBarycenter final
+    : Barycenter<mp_units::basic_fixed_string{ "Jupiter Barycenter" }, SolarSystemBarycenter> {
+} JupiterBarycenter;
+
+inline constexpr struct SaturnBarycenter final
+    : Barycenter<mp_units::basic_fixed_string{ "Saturn Barycenter" }, SolarSystemBarycenter> {
+} SaturnBarycenter;
+
+inline constexpr struct UranusBarycenter final
+    : Barycenter<mp_units::basic_fixed_string{ "Uranus Barycenter" }, SolarSystemBarycenter> {
+} UranusBarycenter;
+
+inline constexpr struct NeptuneBarycenter final
+    : Barycenter<mp_units::basic_fixed_string{ "Neptune Barycenter" }, SolarSystemBarycenter> {
+} NeptuneBarycenter;
+
+inline constexpr struct EarthMoonBarycenter final
+    : Barycenter<mp_units::basic_fixed_string{ "Earth-Moon Barycenter" }, SolarSystemBarycenter> {
+} EarthMoonBarycenter;
+
 
 } // namespace barycenters
-
-// Forward-declare the frame types to avoid circular include with frames.hpp
-namespace frames {
-namespace solar_system_barycenter {
-struct icrf;
-struct j2000;
-} // namespace solar_system_barycenter
-namespace earth_barycenter {
-struct icrf;
-} // namespace earth_barycenter
-namespace earth {
-struct icrf;
-} // namespace earth
-} // namespace frames
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 
@@ -48,20 +59,20 @@ struct icrf;
  * @brief Get the position of the Earth-Moon Barycenter at a specific date in the ICRF frame using JPL DE430 ephemeris data.
  */
 template <>
-inline constexpr RadiusVector<frames::solar_system_barycenter::icrf>
-    get_position_at<barycenters::EarthMoonBarycenter{}>(const Date& date)
+inline constexpr RadiusVector<barycenters::EarthMoonBarycenter::parent_icrf>
+    get_position_at<barycenters::EarthMoonBarycenter>(const Date& date)
 {
-    return get_position_at_impl<EmbEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    return get_position_at_impl<EmbEphemerisTable, barycenters::EarthMoonBarycenter::parent_icrf>(date);
 }
 
 /**
  * @brief Get the velocity of the Earth-Moon Barycenter at a specific date in the ICRF frame using JPL DE430 ephemeris data.
  */
 template <>
-inline constexpr VelocityVector<frames::solar_system_barycenter::icrf>
-    get_velocity_at<barycenters::EarthMoonBarycenter{}>(const Date& date)
+inline constexpr VelocityVector<barycenters::EarthMoonBarycenter::parent_icrf>
+    get_velocity_at<barycenters::EarthMoonBarycenter>(const Date& date)
 {
-    return get_velocity_at_impl<EmbEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    return get_velocity_at_impl<EmbEphemerisTable, barycenters::EarthMoonBarycenter::parent_icrf>(date);
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
