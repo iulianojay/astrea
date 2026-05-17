@@ -27,7 +27,7 @@
 
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/barycenters.hpp>
-#include <astro/systems/celestial_body_utilities.hpp>
+#include <astro/systems/celestial_reference_getters.hpp>
 #include <astro/systems/planets.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/enums.hpp>

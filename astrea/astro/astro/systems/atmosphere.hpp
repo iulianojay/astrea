@@ -29,7 +29,7 @@
 
 #include <astro/state/State.hpp>
 #include <astro/state/angular_elements/instances/Geodetic.hpp>
-#include <astro/systems/celestial_body_utilities.hpp>
+#include <astro/systems/celestial_reference_getters.hpp>
 #include <astro/systems/planets/Earth/Earth.hpp>
 #include <astro/systems/planets/Earth/atmosphere/HarrisPriester.hpp>
 #include <astro/systems/planets/Earth/atmosphere/JacciaRoberts.hpp>

@@ -30,8 +30,8 @@
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frame_registry.hpp>
 #include <astro/frames/frames.hpp>
+#include <astro/frames/primary_frame.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {

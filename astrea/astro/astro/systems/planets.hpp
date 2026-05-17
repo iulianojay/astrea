@@ -44,4 +44,4 @@
 // Keplerian-approximation fallback for get_position_at / get_velocity_at.
 // Included AFTER all planet specialisations so the fallback primary-template
 // definition does not shadow any explicit specialisation.
-#include <astro/systems/celestial_body_keplerian.hpp>
+#include <astro/systems/celestial_reference_default_getters.hpp>

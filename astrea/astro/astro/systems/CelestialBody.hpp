@@ -60,9 +60,9 @@ struct CelestialBody : Origin<_name_, _parent_>, detail::CelestialBodyBase {};
 
 // ---------------------------------------------------------------------------
 // Primary template declarations.
-// These live here (not in celestial_body_utilities.hpp) so that planet headers
+// These live here (not in celestial_reference_getters.hpp) so that planet headers
 // can specialise them without triggering the heavy State/Keplerian/frames include
-// chain that celestial_body_utilities.hpp used to pull in.
+// chain that celestial_reference_getters.hpp used to pull in.
 // ---------------------------------------------------------------------------
 
 /// Primary template — must be specialised for each body.
@@ -84,6 +84,12 @@ inline consteval auto get_parent_name(Origin_T origin)
     return decltype(Origin_T::parent)::name;
 }
 
+template <IsOrigin Origin_T>
+inline consteval auto get_parent(Origin_T origin)
+{
+    return Origin_T::parent;
+}
+
 template <IsOrigin Origin_T, IsAxis Axis_T>
 inline consteval auto get_parent_frame(Origin_T origin, Axis_T axis)
 {
@@ -93,7 +99,7 @@ inline consteval auto get_parent_frame(Origin_T origin, Axis_T axis)
 /// Primary template declarations for ephemeris position/velocity (NTTP-based).
 /// Explicit specialisations are provided in planet headers (Chebyshev ephemeris).
 /// The primary template definition (Keplerian fallback) is provided by
-/// celestial_body_keplerian.hpp, which planets.hpp includes after all planet headers.
+/// celestial_reference_default_getters.hpp, which planets.hpp includes after all planet headers.
 template <auto _body_>
 auto get_position_at(const Date& date);
 
@@ -103,6 +109,6 @@ auto get_velocity_at(const Date& date);
 } // namespace astro
 } // namespace astrea
 
-// celestial_body_utilities.hpp provides lightweight inline helpers (get_mu, get_mass, etc.)
+// celestial_reference_getters.hpp provides lightweight inline helpers (get_mu, get_mass, etc.)
 // and get_position_at_impl / get_velocity_at_impl.  It is lightweight — no State.hpp dependency.
-#include <astro/systems/celestial_body_utilities.hpp>
+#include <astro/systems/celestial_reference_getters.hpp>

@@ -1,5 +1,5 @@
 /**
- * @file celestial_body_keplerian.hpp
+ * @file celestial_reference_default_getters.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Keplerian-approximation fallback implementations for get_position_at / get_velocity_at.
  *
@@ -37,7 +37,7 @@
 
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/systems/celestial_body_utilities.hpp>
+#include <astro/systems/celestial_reference_getters.hpp>
 
 namespace astrea {
 namespace astro {
@@ -91,10 +91,10 @@ inline Keplerian get_keplerian_elements_at(Date date)
 template <auto _body_>
 inline auto get_position_at(const Date& date)
 {
-    constexpr auto frame = get_parent_frame(_body_, axes::icrf);
-    using Parent_T       = std::remove_cvref_t<decltype(_body_.parent)>;
-    const Keplerian coes = get_keplerian_elements_at<_body_>(date);
-    const GravParam mu   = get_mu<Parent_T>();
+    constexpr auto frame  = get_parent_frame(_body_, axes::icrf);
+    const Keplerian coes  = get_keplerian_elements_at<_body_>(date);
+    constexpr auto parent = get_parent(_body_);
+    const GravParam mu    = get_mu<decltype(parent)>();
     return Cartesian<frame>(coes, mu).get_position();
 }
 
@@ -106,10 +106,10 @@ inline auto get_position_at(const Date& date)
 template <auto _body_>
 inline auto get_velocity_at(const Date& date)
 {
-    constexpr auto frame = get_parent_frame(_body_, axes::icrf);
-    using Parent_T       = std::remove_cvref_t<decltype(_body_.parent)>;
-    const Keplerian coes = get_keplerian_elements_at<_body_>(date);
-    const GravParam mu   = get_mu<Parent_T>();
+    constexpr auto frame  = get_parent_frame(_body_, axes::icrf);
+    const Keplerian coes  = get_keplerian_elements_at<_body_>(date);
+    constexpr auto parent = get_parent(_body_);
+    const GravParam mu    = get_mu<decltype(parent)>();
     return Cartesian<frame>(coes, mu).get_velocity();
 }
 

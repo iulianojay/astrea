@@ -72,13 +72,6 @@ inline constexpr CoefficientPack get_linear_expansion_coefficients()
     return std::make_tuple(0.0 * rad / (JulianCentury * JulianCentury), 0.0 * rad, 0.0 * rad, 0.0 * rad / JulianCentury);
 }
 
-} // namespace astro
-} // namespace astrea
-
-
-namespace astrea {
-namespace astro {
-
 /**
  * @brief Get the type of the celestial body.
  *
