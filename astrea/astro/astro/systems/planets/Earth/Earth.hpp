@@ -33,14 +33,6 @@
 namespace astrea {
 namespace astro {
 
-// Forward-declare frame types to avoid circular include with frames.hpp
-namespace frames {
-namespace earth_barycenter {
-struct icrf;
-}
-} // namespace frames
-
-
 namespace planets {
 
 enum class EarthAtmosphereModel { JACHIA_ROBERTS, NRLMSISE00, DTM2000, HARRIS_PRIESTER };
@@ -55,8 +47,14 @@ struct EarthParameters {
  *
  * This class provides properties and methods specific to Earth, including its physical and orbital parameters.
  */
+#ifdef ASTREA_BUILD_EARTH_EPHEMERIS
+// SPICE ephemeris data for Earth is relative to the Earth-Moon barycenter, so we set the parent frame accordingly.
 inline constexpr struct Earth : CelestialBody<"Earth", barycenters::EarthMoonBarycenter> {
 } Earth;
+#else
+inline constexpr struct Earth : CelestialBody<"Earth", barycenters::SolarSystemBarycenter> {
+} Earth;
+#endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 } // namespace planets
 
@@ -66,9 +64,10 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
     using mp_units::iau::unit_symbols::au;
-    using mp_units::non_si::unit_symbols::day;
+    using mp_units::non_si::day;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::s;
 
     return { .type                   = CelestialBodyType::PLANET,
              .referenceDate          = Date("2000-01-01 12:00:00"),
@@ -104,7 +103,7 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
  * @param altitude The altitude at which to find the atmospheric density.
  * @return Density The atmospheric density at the given date and altitude.
  * @note Numbers for this model are pulled from Vallado, 5th ed.
- * @note Full specialisation (with atmosphere model dispatch) is in atmospheric_density_specializations.hpp.
+ * @note Full specialisation (with atmosphere model dispatch) is in atmosphere.hpp.
  */
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
@@ -116,9 +115,10 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
  * @return RadiusVector<frames::earth_barycenter::icrf> The position of the Earth at the given date.
  */
 template <>
-inline constexpr RadiusVector<frames::earth_barycenter::icrf> get_position_at<planets::Earth>(const Date& date)
+inline constexpr auto get_position_at<planets::Earth>(const Date& date)
 {
-    return get_position_at_impl<planets::EarthFromEmbEphemerisTable, frames::earth_barycenter::icrf>(date);
+    constexpr auto frame = get_parent_frame(planets::Earth, axes::icrf);
+    return get_position_at_impl<planets::EarthFromEmbEphemerisTable, frame>(date);
 }
 
 /**
@@ -128,9 +128,10 @@ inline constexpr RadiusVector<frames::earth_barycenter::icrf> get_position_at<pl
  * @return VelocityVector<frames::earth_barycenter::icrf> The velocity of the Earth at the given date.
  */
 template <>
-inline constexpr VelocityVector<frames::earth_barycenter::icrf> get_velocity_at<planets::Earth>(const Date& date)
+inline constexpr auto get_velocity_at<planets::Earth>(const Date& date)
 {
-    return get_velocity_at_impl<planets::EarthFromEmbEphemerisTable, frames::earth_barycenter::icrf>(date);
+    constexpr auto frame = get_parent_frame(planets::Earth, axes::icrf);
+    return get_velocity_at_impl<planets::EarthFromEmbEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS

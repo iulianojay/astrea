@@ -40,3 +40,8 @@
 #include <astro/systems/planets/Uranus/Titania.hpp>
 #include <astro/systems/planets/Uranus/Uranus.hpp>
 #include <astro/systems/planets/Venus/Venus.hpp>
+
+// Keplerian-approximation fallback for get_position_at / get_velocity_at.
+// Included AFTER all planet specialisations so the fallback primary-template
+// definition does not shadow any explicit specialisation.
+#include <astro/systems/celestial_body_keplerian.hpp>

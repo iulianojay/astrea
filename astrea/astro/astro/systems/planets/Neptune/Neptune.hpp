@@ -58,9 +58,10 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
     using mp_units::iau::unit_symbols::au;
-    using mp_units::non_si::unit_symbols::day;
+    using mp_units::non_si::day;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::s;
 
     return { .type                   = CelestialBodyType::PLANET,
              .referenceDate          = Date("1950-01-01 00:00:00"),
@@ -98,9 +99,10 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
  * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Neptune at the given date.
  */
 template <>
-inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_position_at<planets::Neptune>(const Date& date)
+inline constexpr auto get_position_at<planets::Neptune>(const Date& date)
 {
-    return get_position_at_impl<NeptuneEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    constexpr auto frame = get_parent_frame(planets::Neptune, axes::icrf);
+    return get_position_at_impl<NeptuneEphemerisTable, frame>(date);
 }
 
 /**
@@ -110,9 +112,10 @@ inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_positio
  * @return VelocityVector<frames::solar_system_barycenter::icrf> The velocity of the Neptune at the given date.
  */
 template <>
-inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at<planets::Neptune>(const Date& date)
+inline constexpr auto get_velocity_at<planets::Neptune>(const Date& date)
 {
-    return get_velocity_at_impl<NeptuneEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    constexpr auto frame = get_parent_frame(planets::Neptune, axes::icrf);
+    return get_velocity_at_impl<NeptuneEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_NEPTUNE_EPHEMERIS

@@ -59,9 +59,10 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
     using mp_units::iau::unit_symbols::au;
-    using mp_units::non_si::unit_symbols::day;
+    using mp_units::non_si::day;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::s;
 
     return { .type                   = CelestialBodyType::MOON,
              .referenceDate          = Date("2000-01-01 12:00:00"),
@@ -99,9 +100,10 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
  * @return RadiusVector<frames::earth::icrf> The position of the Moon at the given date.
  */
 template <>
-inline constexpr RadiusVector<frames::earth::icrf> get_position_at<planets::Moon>(const Date& date)
+inline constexpr auto get_position_at<planets::Moon>(const Date& date)
 {
-    return get_position_at_impl<planets::MoonEphemerisTable, frames::earth::icrf>(date);
+    constexpr auto frame = get_parent_frame(planets::Moon, axes::icrf);
+    return get_position_at_impl<planets::MoonEphemerisTable, frame>(date);
 }
 
 /**
@@ -111,9 +113,10 @@ inline constexpr RadiusVector<frames::earth::icrf> get_position_at<planets::Moon
  * @return VelocityVector<frames::earth::icrf> The velocity of the Moon at the given date.
  */
 template <>
-inline constexpr VelocityVector<frames::earth::icrf> get_velocity_at<planets::Moon>(const Date& date)
+inline constexpr auto get_velocity_at<planets::Moon>(const Date& date)
 {
-    return get_velocity_at_impl<planets::MoonEphemerisTable, frames::earth::icrf>(date);
+    constexpr auto frame = get_parent_frame(planets::Moon, axes::icrf);
+    return get_velocity_at_impl<planets::MoonEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS

@@ -72,7 +72,7 @@ class Date {
      *
      * @param jdate The JulianDate to initialize the Date object.
      */
-    Date(const JulianDate& jdate = J2000) :
+    constexpr Date(const JulianDate& jdate = J2000) :
         _julianDate(jdate)
     {
     }

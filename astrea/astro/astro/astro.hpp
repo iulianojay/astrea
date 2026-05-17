@@ -89,6 +89,6 @@
 
 #include <astro/utilities/conversions.hpp>
 
-// atmospheric_density_specializations.hpp requires State.hpp + frames.hpp to be complete.
+// atmosphere.hpp requires State.hpp + frames.hpp to be complete.
 // Include it here, at the very end, after all other headers.
-#include <astro/systems/atmospheric_density_specializations.hpp>
+#include <astro/systems/atmosphere.hpp>

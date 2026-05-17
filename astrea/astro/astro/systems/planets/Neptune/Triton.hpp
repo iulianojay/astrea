@@ -50,9 +50,10 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
     using mp_units::iau::unit_symbols::au;
-    using mp_units::non_si::unit_symbols::day;
+    using mp_units::non_si::day;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::s;
 
     return { .type                   = CelestialBodyType::MOON,
              .referenceDate          = Date("2000-01-01 12:00:00"),

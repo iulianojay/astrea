@@ -36,5 +36,8 @@ concept IsCelestialBody = std::derived_from<T, detail::CelestialBodyBase>;
 template <typename T>
 concept IsBarycenter = std::derived_from<T, detail::BarycenterBase>;
 
+template <typename T>
+concept IsCelestialReference = IsCelestialBody<T> || IsBarycenter<T>;
+
 } // namespace astro
 } // namespace astrea

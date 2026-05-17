@@ -60,9 +60,10 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
     using mp_units::iau::unit_symbols::au;
-    using mp_units::non_si::unit_symbols::day;
+    using mp_units::non_si::day;
     using mp_units::si::unit_symbols::kg;
     using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::s;
 
     return { .type                   = CelestialBodyType::PLANET,
              .referenceDate          = Date("2000-01-01 12:00:00"),
@@ -91,66 +92,6 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
              .meanLongitudeRate      = BodyAngularVelocity(19140.30268499 * deg / JulianCentury) };
 }
 
-// Altitude Conditions(TABLE 7-4, Vallado)
-static const std::map<Altitude, Density> martianAtmosphere = { // km, kg/m^3
-    { 2.0 * mp_units::si::unit_symbols::km,
-      1.19e-1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 4.0 * mp_units::si::unit_symbols::km,
-      1.10e-1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 6.0 * mp_units::si::unit_symbols::km,
-      1.02e-1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 8.0 * mp_units::si::unit_symbols::km,
-      9.39e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 10.0 * mp_units::si::unit_symbols::km,
-      8.64e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 12.0 * mp_units::si::unit_symbols::km,
-      7.93e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 14.0 * mp_units::si::unit_symbols::km,
-      7.25e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 16.0 * mp_units::si::unit_symbols::km,
-      6.61e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 18.0 * mp_units::si::unit_symbols::km,
-      6.00e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 20.0 * mp_units::si::unit_symbols::km,
-      5.43e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 22.0 * mp_units::si::unit_symbols::km,
-      4.89e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 24.0 * mp_units::si::unit_symbols::km,
-      3.91e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 26.0 * mp_units::si::unit_symbols::km,
-      3.32e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 28.0 * mp_units::si::unit_symbols::km,
-      2.82e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 30.0 * mp_units::si::unit_symbols::km,
-      2.40e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 32.0 * mp_units::si::unit_symbols::km,
-      2.04e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 34.0 * mp_units::si::unit_symbols::km,
-      1.73e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 36.0 * mp_units::si::unit_symbols::km,
-      1.47e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 38.0 * mp_units::si::unit_symbols::km,
-      1.25e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 40.0 * mp_units::si::unit_symbols::km,
-      1.06e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 45.0 * mp_units::si::unit_symbols::km,
-      7.03e-3 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 50.0 * mp_units::si::unit_symbols::km,
-      4.67e-3 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 55.0 * mp_units::si::unit_symbols::km,
-      3.10e-3 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 60.0 * mp_units::si::unit_symbols::km,
-      2.06e-3 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 65.0 * mp_units::si::unit_symbols::km,
-      1.36e-3 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 70.0 * mp_units::si::unit_symbols::km,
-      9.11e-4 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 75.0 * mp_units::si::unit_symbols::km,
-      6.05e-4 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 80.0 * mp_units::si::unit_symbols::km,
-      4.02e-4 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) }
-};
-
 /**
  * @brief Calculate the atmospheric density at a given altitude and date.
  *
@@ -172,9 +113,10 @@ static const std::map<Altitude, Density> martianAtmosphere = { // km, kg/m^3
  * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Mars at the given date.
  */
 template <>
-inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_position_at<planets::Mars>(const Date& date)
+inline constexpr auto get_position_at<planets::Mars>(const Date& date)
 {
-    return get_position_at_impl<MarsEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    constexpr auto frame = get_parent_frame(planets::Mars, axes::icrf);
+    return get_position_at_impl<MarsEphemerisTable, frame>(date);
 }
 
 /**
@@ -184,9 +126,10 @@ inline constexpr RadiusVector<frames::solar_system_barycenter::icrf> get_positio
  * @return VelocityVector<frames::solar_system_barycenter::icrf> The velocity of the Mars at the given date.
  */
 template <>
-inline constexpr VelocityVector<frames::solar_system_barycenter::icrf> get_velocity_at<planets::Mars>(const Date& date)
+inline constexpr auto get_velocity_at<planets::Mars>(const Date& date)
 {
-    return get_velocity_at_impl<MarsEphemerisTable, frames::solar_system_barycenter::icrf>(date);
+    constexpr auto frame = get_parent_frame(planets::Mars, axes::icrf);
+    return get_velocity_at_impl<MarsEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_MARS_EPHEMERIS

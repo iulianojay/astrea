@@ -37,8 +37,8 @@ namespace astro {
 
 namespace detail {
 
-struct BarycenterBase {};
 struct CelestialBodyBase {};
+struct BarycenterBase {};
 
 } // namespace detail
 
@@ -46,27 +46,17 @@ template <auto...>
 struct Barycenter;
 
 template <mp_units::basic_fixed_string _name_>
-struct Barycenter<_name_> : Origin<_name_> {};
+struct Barycenter<_name_> : Origin<_name_>, detail::BarycenterBase {};
 
 template <mp_units::basic_fixed_string _name_, IsOrigin auto _parent_>
-struct Barycenter<_name_, _parent_> : Origin<_name_, _parent_> {
-    static constexpr auto parent_icrf =
-        Frame<_name_ + "_icrf", _parent_, axes::icrf>{}; //!< The inertial frame centered on the parent body, used for ephemeris data.
-    static constexpr auto parent_j2000 =
-        Frame<_name_ + "_j2000", _parent_, axes::j2000>{}; //!< The inertial frame centered on the parent body, used for ephemeris data.
-};
+struct Barycenter<_name_, _parent_> : Origin<_name_, _parent_>, detail::BarycenterBase {};
 
 
 /**
  * @brief CelestialBody class represents a celestial body in an astrodynamics system.
  */
 template <mp_units::basic_fixed_string _name_, IsOrigin auto _parent_>
-struct CelestialBody : Origin<_name_, _parent_> {
-    static constexpr auto parent_icrf =
-        Frame<_name_ + "_icrf", _parent_, axes::icrf>{}; //!< The inertial frame centered on the parent body, used for ephemeris data.
-    static constexpr auto parent_j2000 =
-        Frame<_name_ + "_j2000", _parent_, axes::j2000>{}; //!< The inertial frame centered on the parent body, used for ephemeris data.
-};
+struct CelestialBody : Origin<_name_, _parent_>, detail::CelestialBodyBase {};
 
 // ---------------------------------------------------------------------------
 // Primary template declarations.
@@ -76,25 +66,39 @@ struct CelestialBody : Origin<_name_, _parent_> {
 // ---------------------------------------------------------------------------
 
 /// Primary template — must be specialised for each body.
-template <IsCelestialBody auto _body_>
-constexpr CelestialBodyParameters get_celestial_body_parameters() = delete;
+/// Uses unconstrained auto _body_ so GCC can match explicit specialisations
+/// of the form get_celestial_body_parameters<planets::Earth>().
+template <auto _body_>
+inline constexpr CelestialBodyParameters get_celestial_body_parameters() = delete;
 
 /// Primary template for atmospheric density — returns zero by default.
-/// State is only forward-declared here; specialisations with bodies live in
-/// atmospheric_density_specializations.hpp which can safely include State.hpp.
-template <IsCelestialBody auto _body_>
+template <auto _body_>
 inline Density find_atmospheric_density(const State& state)
 {
     return Density::zero();
 }
 
-/// Primary templates for ephemeris position/velocity (NTTP-based, auto return).
-/// Specialisations are defined in ephemeris_specializations.hpp.
-template <IsOrigin auto _body_>
-constexpr auto get_position_at(const Date& date) = delete;
+template <IsOrigin Origin_T>
+inline consteval auto get_parent_name(Origin_T origin)
+{
+    return decltype(Origin_T::parent)::name;
+}
 
-template <IsOrigin auto _body_>
-constexpr auto get_velocity_at(const Date& date) = delete;
+template <IsOrigin Origin_T, IsAxis Axis_T>
+inline consteval auto get_parent_frame(Origin_T origin, Axis_T axis)
+{
+    return Frame<get_parent_name(origin) + "_" + Axis_T::name, origin, axis>{};
+}
+
+/// Primary template declarations for ephemeris position/velocity (NTTP-based).
+/// Explicit specialisations are provided in planet headers (Chebyshev ephemeris).
+/// The primary template definition (Keplerian fallback) is provided by
+/// celestial_body_keplerian.hpp, which planets.hpp includes after all planet headers.
+template <auto _body_>
+auto get_position_at(const Date& date);
+
+template <auto _body_>
+auto get_velocity_at(const Date& date);
 
 } // namespace astro
 } // namespace astrea

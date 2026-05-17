@@ -59,20 +59,20 @@ inline constexpr struct EarthMoonBarycenter final
  * @brief Get the position of the Earth-Moon Barycenter at a specific date in the ICRF frame using JPL DE430 ephemeris data.
  */
 template <>
-inline constexpr RadiusVector<barycenters::EarthMoonBarycenter::parent_icrf>
-    get_position_at<barycenters::EarthMoonBarycenter>(const Date& date)
+inline constexpr auto get_position_at<barycenters::EarthMoonBarycenter>(const Date& date)
 {
-    return get_position_at_impl<EmbEphemerisTable, barycenters::EarthMoonBarycenter::parent_icrf>(date);
+    constexpr auto frame = get_parent_frame(barycenters::EarthMoonBarycenter, axes::icrf);
+    return get_position_at_impl<planets::EmbEphemerisTable, frame>(date);
 }
 
 /**
  * @brief Get the velocity of the Earth-Moon Barycenter at a specific date in the ICRF frame using JPL DE430 ephemeris data.
  */
 template <>
-inline constexpr VelocityVector<barycenters::EarthMoonBarycenter::parent_icrf>
-    get_velocity_at<barycenters::EarthMoonBarycenter>(const Date& date)
+inline constexpr auto get_velocity_at<barycenters::EarthMoonBarycenter>(const Date& date)
 {
-    return get_velocity_at_impl<EmbEphemerisTable, barycenters::EarthMoonBarycenter::parent_icrf>(date);
+    constexpr auto frame = get_parent_frame(barycenters::EarthMoonBarycenter, axes::icrf);
+    return get_velocity_at_impl<planets::EmbEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
