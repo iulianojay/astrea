@@ -42,34 +42,6 @@ struct icrf;
 
 namespace planets {
 
-static CelestialBodyParameters DEFAULT_MOON_PARAMS{
-    .type          = CelestialBodyType::MOON,
-    .referenceDate = Date("2000-01-01 12:00:00"),
-    .mu = GravParam(4902.8 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
-    .mass              = Mass(0.073 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
-    .equitorialRadius  = Distance(1737.5 * mp_units::si::unit_symbols::km),
-    .polarRadius       = Distance(1736.0 * mp_units::si::unit_symbols::km),
-    .crashRadius       = Distance(1737.5 * mp_units::si::unit_symbols::km),
-    .sphereOfInfluence = Distance(0.006602718630998 * mp_units::iau::unit_symbols::au),
-    .j2                = Unitless(0.0 * mp_units::one),
-    .j3                = Unitless(0.0 * mp_units::one),
-    .axialTilt         = Angle(1.543 * mp_units::angular::unit_symbols::deg),
-    .rotationRate = AngularVelocity(13.176195007686115 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
-    .siderealPeriod         = Time(27.3220 * mp_units::non_si::day),
-    .semimajorAxis          = Distance(380318 * mp_units::si::unit_symbols::km),
-    .eccentricity           = Unitless(0.063843 * mp_units::one),
-    .inclination            = Angle(5.28619 * mp_units::angular::unit_symbols::deg),
-    .rightAscension         = Angle(98.13908 * mp_units::angular::unit_symbols::deg),
-    .longitudeOfPerigee     = Angle(179.16058 * mp_units::angular::unit_symbols::deg),
-    .meanLongitude          = Angle(135.89122 * mp_units::angular::unit_symbols::deg),
-    .semimajorAxisRate      = InterplanetaryVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury),
-    .eccentricityRate       = BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),
-    .inclinationRate        = BodyAngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .rightAscensionRate     = BodyAngularVelocity(6967741.9 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .longitudeOfPerigeeRate = BodyAngularVelocity(28578547 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .meanLongitudeRate      = BodyAngularVelocity(1761137860.75 * mp_units::angular::unit_symbols::deg / JulianCentury)
-};
-
 /**
  * @class Moon
  * @brief Represents the Moon celestial body.
@@ -84,7 +56,38 @@ inline constexpr struct Moon : CelestialBody<"Moon", Earth> {
 template <>
 inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Moon>()
 {
-    return planets::DEFAULT_MOON_PARAMS;
+    using namespace mp_units;
+    using mp_units::angular::unit_symbols::deg;
+    using mp_units::iau::unit_symbols::au;
+    using mp_units::non_si::unit_symbols::day;
+    using mp_units::si::unit_symbols::kg;
+    using mp_units::si::unit_symbols::km;
+
+    return { .type                   = CelestialBodyType::MOON,
+             .referenceDate          = Date("2000-01-01 12:00:00"),
+             .mu                     = GravParam(4902.8 * pow<3>(km) / pow<2>(s)),
+             .mass                   = Mass(0.073 * (mag_power<10, 24> * kg)),
+             .equitorialRadius       = Distance(1737.5 * km),
+             .polarRadius            = Distance(1736.0 * km),
+             .crashRadius            = Distance(1737.5 * km),
+             .sphereOfInfluence      = Distance(0.006602718630998 * au),
+             .j2                     = Unitless(0.0 * one),
+             .j3                     = Unitless(0.0 * one),
+             .axialTilt              = Angle(1.543 * deg),
+             .rotationRate           = AngularVelocity(13.176195007686115 * deg / day),
+             .siderealPeriod         = Time(27.3220 * day),
+             .semimajorAxis          = Distance(380318 * km),
+             .eccentricity           = Unitless(0.063843 * one),
+             .inclination            = Angle(5.28619 * deg),
+             .rightAscension         = Angle(98.13908 * deg),
+             .longitudeOfPerigee     = Angle(179.16058 * deg),
+             .meanLongitude          = Angle(135.89122 * deg),
+             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / JulianCentury),
+             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / JulianCentury),
+             .inclinationRate        = BodyAngularVelocity(0.0 * deg / JulianCentury),
+             .rightAscensionRate     = BodyAngularVelocity(6967741.9 * deg / JulianCentury),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(28578547 * deg / JulianCentury),
+             .meanLongitudeRate      = BodyAngularVelocity(1761137860.75 * deg / JulianCentury) };
 }
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS

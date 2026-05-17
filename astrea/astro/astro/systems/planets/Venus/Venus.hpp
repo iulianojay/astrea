@@ -43,41 +43,13 @@ struct icrf;
 
 namespace planets {
 
-static CelestialBodyParameters DEFAULT_VENUS_PARAMS{
-    .type          = CelestialBodyType::PLANET,
-    .referenceDate = Date("2000-01-01 12:00:00"),
-    .mu = GravParam(324860.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
-    .mass              = Mass(4.87 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
-    .equitorialRadius  = Distance(6051.8 * mp_units::si::unit_symbols::km),
-    .polarRadius       = Distance(6051.8 * mp_units::si::unit_symbols::km),
-    .crashRadius       = Distance(6301.8 * mp_units::si::unit_symbols::km),
-    .sphereOfInfluence = Distance(0.061640255733634 * mp_units::iau::unit_symbols::au),
-    .j2                = Unitless(4.458e-6 * mp_units::one),
-    .j3                = Unitless(-0.0000025323e-6 * mp_units::one),
-    .axialTilt         = Angle(2.64 * mp_units::angular::unit_symbols::deg),
-    .rotationRate = AngularVelocity(-1.481329081370229 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
-    .siderealPeriod         = Time(224.701 * mp_units::non_si::day),
-    .semimajorAxis          = Distance(0.72333566 * mp_units::iau::unit_symbols::au),
-    .eccentricity           = Unitless(0.00677672 * mp_units::one),
-    .inclination            = Angle(3.39467605 * mp_units::angular::unit_symbols::deg),
-    .rightAscension         = Angle(76.67984255 * mp_units::angular::unit_symbols::deg),
-    .longitudeOfPerigee     = Angle(131.60246718 * mp_units::angular::unit_symbols::deg),
-    .meanLongitude          = Angle(181.97909950 * mp_units::angular::unit_symbols::deg),
-    .semimajorAxisRate      = InterplanetaryVelocity(0.00000390 * mp_units::iau::unit_symbols::au / JulianCentury),
-    .eccentricityRate       = BodyUnitlessPerTime(-0.00004107 * mp_units::one / JulianCentury),
-    .inclinationRate        = BodyAngularVelocity(-0.00078890 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .rightAscensionRate     = BodyAngularVelocity(-0.27769418 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .longitudeOfPerigeeRate = BodyAngularVelocity(0.00268329 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .meanLongitudeRate      = BodyAngularVelocity(58517.81538729 * mp_units::angular::unit_symbols::deg / JulianCentury)
-};
-
 /**
  * @class Venus
  * @brief Represents the Venus celestial body.
  *
  * This class provides properties and methods specific to Venus, including its physical and orbital parameters.
  */
-inline constexpr struct Venus : CelestialBody<"Venus", barycenters::SolarSystemBarycenter{}> {
+inline constexpr struct Venus : CelestialBody<"Venus", barycenters::SolarSystemBarycenter> {
 } Venus;
 
 } // namespace planets
@@ -85,100 +57,86 @@ inline constexpr struct Venus : CelestialBody<"Venus", barycenters::SolarSystemB
 template <>
 inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Venus>()
 {
-    return planets::DEFAULT_VENUS_PARAMS;
+    using namespace mp_units;
+    using mp_units::angular::unit_symbols::deg;
+    using mp_units::iau::unit_symbols::au;
+    using mp_units::non_si::unit_symbols::day;
+    using mp_units::si::unit_symbols::kg;
+    using mp_units::si::unit_symbols::km;
+
+    return { .type                   = CelestialBodyType::PLANET,
+             .referenceDate          = Date("2000-01-01 12:00:00"),
+             .mu                     = GravParam(324860.0 * pow<3>(km) / pow<2>(s)),
+             .mass                   = Mass(4.87 * (mag_power<10, 24> * kg)),
+             .equitorialRadius       = Distance(6051.8 * km),
+             .polarRadius            = Distance(6051.8 * km),
+             .crashRadius            = Distance(6301.8 * km),
+             .sphereOfInfluence      = Distance(0.061640255733634 * au),
+             .j2                     = Unitless(4.458e-6 * one),
+             .j3                     = Unitless(-0.0000025323e-6 * one),
+             .axialTilt              = Angle(2.64 * deg),
+             .rotationRate           = AngularVelocity(-1.481329081370229 * deg / day),
+             .siderealPeriod         = Time(224.701 * day),
+             .semimajorAxis          = Distance(0.72333566 * au),
+             .eccentricity           = Unitless(0.00677672 * one),
+             .inclination            = Angle(3.39467605 * deg),
+             .rightAscension         = Angle(76.67984255 * deg),
+             .longitudeOfPerigee     = Angle(131.60246718 * deg),
+             .meanLongitude          = Angle(181.97909950 * deg),
+             .semimajorAxisRate      = InterplanetaryVelocity(0.00000390 * au / JulianCentury),
+             .eccentricityRate       = BodyUnitlessPerTime(-0.00004107 * one / JulianCentury),
+             .inclinationRate        = BodyAngularVelocity(-0.00078890 * deg / JulianCentury),
+             .rightAscensionRate     = BodyAngularVelocity(-0.27769418 * deg / JulianCentury),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(0.00268329 * deg / JulianCentury),
+             .meanLongitudeRate      = BodyAngularVelocity(58517.81538729 * deg / JulianCentury) };
 }
 
-// Altitude Conditions(TABLE 7-4, Vallado)
-static const std::map<Altitude, Density> venutianAtmosphere = { // km, kg/m^3
-    { 3.0 * mp_units::si::unit_symbols::km,
-      5.53e1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 6.0 * mp_units::si::unit_symbols::km,
-      4.75e1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 9.0 * mp_units::si::unit_symbols::km,
-      4.02e1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 12.0 * mp_units::si::unit_symbols::km,
-      3.44e1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 15.0 * mp_units::si::unit_symbols::km,
-      2.91e1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 18.0 * mp_units::si::unit_symbols::km,
-      2.46e1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 21.0 * mp_units::si::unit_symbols::km,
-      2.06e1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 24.0 * mp_units::si::unit_symbols::km,
-      1.70e1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 27.0 * mp_units::si::unit_symbols::km,
-      1.405e1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 30.0 * mp_units::si::unit_symbols::km,
-      1.115e1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 33.0 * mp_units::si::unit_symbols::km,
-      9.0 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 36.0 * mp_units::si::unit_symbols::km,
-      7.15 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 39.0 * mp_units::si::unit_symbols::km,
-      5.15 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 42.0 * mp_units::si::unit_symbols::km,
-      4.34 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 45.0 * mp_units::si::unit_symbols::km,
-      3.30 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 48.0 * mp_units::si::unit_symbols::km,
-      2.39 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 51.0 * mp_units::si::unit_symbols::km,
-      1.88 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 54.0 * mp_units::si::unit_symbols::km,
-      1.38 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 57.0 * mp_units::si::unit_symbols::km,
-      9.6e-1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 60.0 * mp_units::si::unit_symbols::km,
-      6.2e-1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 70.0 * mp_units::si::unit_symbols::km,
-      1.2e-1 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 80.0 * mp_units::si::unit_symbols::km,
-      1.8e-2 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 90.0 * mp_units::si::unit_symbols::km,
-      2.3e-3 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 100.0 * mp_units::si::unit_symbols::km,
-      3.1e-4 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 110.0 * mp_units::si::unit_symbols::km,
-      4.4e-5 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 120.0 * mp_units::si::unit_symbols::km,
-      7.2e-6 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 130.0 * mp_units::si::unit_symbols::km,
-      1.4e-6 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 140.0 * mp_units::si::unit_symbols::km,
-      3.0e-7 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 150.0 * mp_units::si::unit_symbols::km,
-      8.0e-8 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 160.0 * mp_units::si::unit_symbols::km,
-      2.6e-8 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 170.0 * mp_units::si::unit_symbols::km,
-      9.5e-9 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 180.0 * mp_units::si::unit_symbols::km,
-      4.0e-9 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 190.0 * mp_units::si::unit_symbols::km,
-      1.9e-9 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 200.0 * mp_units::si::unit_symbols::km,
-      9.4e-10 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 210.0 * mp_units::si::unit_symbols::km,
-      4.9e-10 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 220.0 * mp_units::si::unit_symbols::km,
-      2.6e-10 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 230.0 * mp_units::si::unit_symbols::km,
-      1.4e-10 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 240.0 * mp_units::si::unit_symbols::km,
-      7.5e-11 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 250.0 * mp_units::si::unit_symbols::km,
-      5.5e-11 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 260.0 * mp_units::si::unit_symbols::km,
-      4.1e-11 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 270.0 * mp_units::si::unit_symbols::km,
-      2.2e-11 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 280.0 * mp_units::si::unit_symbols::km,
-      1.2e-11 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 290.0 * mp_units::si::unit_symbols::km,
-      6.5e-12 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) },
-    { 300.0 * mp_units::si::unit_symbols::km,
-      3.5e-12 * mp_units::si::unit_symbols::kg / (mp_units::pow<3>(mp_units::si::unit_symbols::m)) }
-};
+/**
+ * @brief Find the atmospheric density at a given altitude and date.
+ *
+ * This function overrides the base class method to provide atmospheric density specific to Venus.
+ *
+ * @param date The date for which to find the atmospheric density.
+ * @param altitude The altitude above the surface of Venus.
+ * @return Density The atmospheric density at the specified altitude and date.
+ */
+Density find_atmospheric_density<planets::Venus>(const Date& date, const Distance& altitude) const
+{
+    using namespace mp_units;
+    using mp_units::si::unit_symbols::kg;
+    using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::m;
+
+    // Altitude Conditions(TABLE 7-4, Vallado)
+    static const std::map<Altitude, Density> venutianAtmosphere = {
+        // km, kg/m^3
+        { 3.0 * km, 5.53e1 * kg / (pow<3>(m)) },    { 6.0 * km, 4.75e1 * kg / (pow<3>(m)) },
+        { 9.0 * km, 4.02e1 * kg / (pow<3>(m)) },    { 12.0 * km, 3.44e1 * kg / (pow<3>(m)) },
+        { 15.0 * km, 2.91e1 * kg / (pow<3>(m)) },   { 18.0 * km, 2.46e1 * kg / (pow<3>(m)) },
+        { 21.0 * km, 2.06e1 * kg / (pow<3>(m)) },   { 24.0 * km, 1.70e1 * kg / (pow<3>(m)) },
+        { 27.0 * km, 1.405e1 * kg / (pow<3>(m)) },  { 30.0 * km, 1.115e1 * kg / (pow<3>(m)) },
+        { 33.0 * km, 9.0 * kg / (pow<3>(m)) },      { 36.0 * km, 7.15 * kg / (pow<3>(m)) },
+        { 39.0 * km, 5.15 * kg / (pow<3>(m)) },     { 42.0 * km, 4.34 * kg / (pow<3>(m)) },
+        { 45.0 * km, 3.30 * kg / (pow<3>(m)) },     { 48.0 * km, 2.39 * kg / (pow<3>(m)) },
+        { 51.0 * km, 1.88 * kg / (pow<3>(m)) },     { 54.0 * km, 1.38 * kg / (pow<3>(m)) },
+        { 57.0 * km, 9.6e-1 * kg / (pow<3>(m)) },   { 60.0 * km, 6.2e-1 * kg / (pow<3>(m)) },
+        { 70.0 * km, 1.2e-1 * kg / (pow<3>(m)) },   { 80.0 * km, 1.8e-2 * kg / (pow<3>(m)) },
+        { 90.0 * km, 2.3e-3 * kg / (pow<3>(m)) },   { 100.0 * km, 3.1e-4 * kg / (pow<3>(m)) },
+        { 110.0 * km, 4.4e-5 * kg / (pow<3>(m)) },  { 120.0 * km, 7.2e-6 * kg / (pow<3>(m)) },
+        { 130.0 * km, 1.4e-6 * kg / (pow<3>(m)) },  { 140.0 * km, 3.0e-7 * kg / (pow<3>(m)) },
+        { 150.0 * km, 8.0e-8 * kg / (pow<3>(m)) },  { 160.0 * km, 2.6e-8 * kg / (pow<3>(m)) },
+        { 170.0 * km, 9.5e-9 * kg / (pow<3>(m)) },  { 180.0 * km, 4.0e-9 * kg / (pow<3>(m)) },
+        { 190.0 * km, 1.9e-9 * kg / (pow<3>(m)) },  { 200.0 * km, 9.4e-10 * kg / (pow<3>(m)) },
+        { 210.0 * km, 4.9e-10 * kg / (pow<3>(m)) }, { 220.0 * km, 2.6e-10 * kg / (pow<3>(m)) },
+        { 230.0 * km, 1.4e-10 * kg / (pow<3>(m)) }, { 240.0 * km, 7.5e-11 * kg / (pow<3>(m)) },
+        { 250.0 * km, 5.5e-11 * kg / (pow<3>(m)) }, { 260.0 * km, 4.1e-11 * kg / (pow<3>(m)) },
+        { 270.0 * km, 2.2e-11 * kg / (pow<3>(m)) }, { 280.0 * km, 1.2e-11 * kg / (pow<3>(m)) },
+        { 290.0 * km, 6.5e-12 * kg / (pow<3>(m)) }, { 300.0 * km, 3.5e-12 * kg / (pow<3>(m)) }
+    };
+
+    const auto iter = venutianAtmosphere.upper_bound(altitude);
+    return (iter != venutianAtmosphere.end()) ? iter->second : Density::zero();
+}
 
 #ifdef ASTREA_BUILD_VENUS_EPHEMERIS
 

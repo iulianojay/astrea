@@ -49,41 +49,13 @@ struct EarthParameters {
     EarthAtmosphereModel atmosphereModel = EarthAtmosphereModel::JACHIA_ROBERTS; //!< The atmospheric model to use for Earth.
 };
 
-static const CelestialBodyParameters DEFAULT_EARTH_PARAMS{
-    .type          = CelestialBodyType::PLANET,
-    .referenceDate = Date("2000-01-01 12:00:00"),
-    .mu = GravParam(398600.44189 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
-    .mass              = Mass(5.97 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
-    .equitorialRadius  = Distance(6378.137 * mp_units::si::unit_symbols::km),
-    .polarRadius       = Distance(6356.75538082 * mp_units::si::unit_symbols::km),
-    .crashRadius       = Distance(6478.1 * mp_units::si::unit_symbols::km),
-    .sphereOfInfluence = Distance(0.092449582665046 * mp_units::iau::unit_symbols::au),
-    .j2                = Unitless(0.00108262982 * mp_units::one),
-    .j3                = Unitless(-0.0000025323 * mp_units::one),
-    .axialTilt         = Angle(23.439292 * mp_units::angular::unit_symbols::deg),
-    .rotationRate   = AngularVelocity(360.98564736629 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
-    .siderealPeriod = Time(365.256 * mp_units::non_si::day),
-    .semimajorAxis  = Distance(1.00000261 * mp_units::iau::unit_symbols::au),
-    .eccentricity   = Unitless(0.01671123 * mp_units::one),
-    .inclination    = Angle(-0.00001531 * mp_units::angular::unit_symbols::deg),
-    .rightAscension = Angle(0.0 * mp_units::angular::unit_symbols::deg),
-    .longitudeOfPerigee     = Angle(102.93768193 * mp_units::angular::unit_symbols::deg),
-    .meanLongitude          = Angle(100.46457166 * mp_units::angular::unit_symbols::deg),
-    .semimajorAxisRate      = InterplanetaryVelocity(0.00000562 * mp_units::iau::unit_symbols::au / JulianCentury),
-    .eccentricityRate       = BodyUnitlessPerTime(-0.00004392 * mp_units::one / JulianCentury),
-    .inclinationRate        = BodyAngularVelocity(-0.01294668 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .rightAscensionRate     = BodyAngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .longitudeOfPerigeeRate = BodyAngularVelocity(0.32327364 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .meanLongitudeRate      = BodyAngularVelocity(35999.37244981 * mp_units::angular::unit_symbols::deg / JulianCentury)
-};
-
 /**
  * @class Earth
  * @brief Represents the Earth celestial body.
  *
  * This class provides properties and methods specific to Earth, including its physical and orbital parameters.
  */
-inline constexpr struct Earth : CelestialBody<"Earth", barycenters::EarthMoonBarycenter{}> {
+inline constexpr struct Earth : CelestialBody<"Earth", barycenters::EarthMoonBarycenter> {
 } Earth;
 
 } // namespace planets
@@ -91,7 +63,38 @@ inline constexpr struct Earth : CelestialBody<"Earth", barycenters::EarthMoonBar
 template <>
 inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Earth>()
 {
-    return planets::DEFAULT_EARTH_PARAMS;
+    using namespace mp_units;
+    using mp_units::angular::unit_symbols::deg;
+    using mp_units::iau::unit_symbols::au;
+    using mp_units::non_si::unit_symbols::day;
+    using mp_units::si::unit_symbols::kg;
+    using mp_units::si::unit_symbols::km;
+
+    return { .type                   = CelestialBodyType::PLANET,
+             .referenceDate          = Date("2000-01-01 12:00:00"),
+             .mu                     = GravParam(398600.44189 * pow<3>(km) / pow<2>(s)),
+             .mass                   = Mass(5.97 * (mag_power<10, 24> * kg)),
+             .equitorialRadius       = Distance(6378.137 * km),
+             .polarRadius            = Distance(6356.75538082 * km),
+             .crashRadius            = Distance(6478.1 * km),
+             .sphereOfInfluence      = Distance(0.092449582665046 * au),
+             .j2                     = Unitless(0.00108262982 * one),
+             .j3                     = Unitless(-0.0000025323 * one),
+             .axialTilt              = Angle(23.439292 * deg),
+             .rotationRate           = AngularVelocity(360.98564736629 * deg / day),
+             .siderealPeriod         = Time(365.256 * day),
+             .semimajorAxis          = Distance(1.00000261 * au),
+             .eccentricity           = Unitless(0.01671123 * one),
+             .inclination            = Angle(-0.00001531 * deg),
+             .rightAscension         = Angle(0.0 * deg),
+             .longitudeOfPerigee     = Angle(102.93768193 * deg),
+             .meanLongitude          = Angle(100.46457166 * deg),
+             .semimajorAxisRate      = InterplanetaryVelocity(0.00000562 * au / JulianCentury),
+             .eccentricityRate       = BodyUnitlessPerTime(-0.00004392 * one / JulianCentury),
+             .inclinationRate        = BodyAngularVelocity(-0.01294668 * deg / JulianCentury),
+             .rightAscensionRate     = BodyAngularVelocity(0.0 * deg / JulianCentury),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(0.32327364 * deg / JulianCentury),
+             .meanLongitudeRate      = BodyAngularVelocity(35999.37244981 * deg / JulianCentury) };
 }
 
 /**

@@ -41,41 +41,13 @@ struct icrf;
 
 namespace planets {
 
-static CelestialBodyParameters DEFAULT_SUN_PARAMS{
-    .type          = CelestialBodyType::STAR,
-    .referenceDate = Date("2000-01-01 00:00:00"),
-    .mu = GravParam(1.32712e11 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
-    .mass                   = Mass(1988500.0 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
-    .equitorialRadius       = Distance(695700.0 * mp_units::si::unit_symbols::km),
-    .polarRadius            = Distance(695700.0 * mp_units::si::unit_symbols::km),
-    .crashRadius            = Distance(795700.0 * mp_units::si::unit_symbols::km),
-    .sphereOfInfluence      = Distance(1.0e18 * mp_units::si::unit_symbols::km),
-    .j2                     = Unitless(0.2e-6 * mp_units::one),
-    .j3                     = Unitless(0.0 * mp_units::one),
-    .axialTilt              = Angle(0.0 * mp_units::angular::unit_symbols::deg),
-    .rotationRate           = AngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
-    .siderealPeriod         = Time(0.0 * mp_units::non_si::day),
-    .semimajorAxis          = Distance(0.0 * mp_units::si::unit_symbols::km),
-    .eccentricity           = Unitless(0.0 * mp_units::one),
-    .inclination            = Angle(0.0 * mp_units::angular::unit_symbols::deg),
-    .rightAscension         = Angle(0.0 * mp_units::angular::unit_symbols::deg),
-    .longitudeOfPerigee     = Angle(0.0 * mp_units::angular::unit_symbols::deg),
-    .meanLongitude          = Angle(0.0 * mp_units::angular::unit_symbols::deg),
-    .semimajorAxisRate      = InterplanetaryVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury),
-    .eccentricityRate       = BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),
-    .inclinationRate        = BodyAngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .rightAscensionRate     = BodyAngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .longitudeOfPerigeeRate = BodyAngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .meanLongitudeRate      = BodyAngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury)
-};
-
 /**
  * @class Sun
  * @brief Represents the Sun celestial body.
  *
  * This class provides properties and methods specific to the Sun, including its physical and orbital parameters.
  */
-inline constexpr struct Sun : CelestialBody<"Sun", barycenters::SolarSystemBarycenter{}> {
+inline constexpr struct Sun : CelestialBody<"Sun", barycenters::SolarSystemBarycenter> {
 } Sun;
 
 } // namespace planets
@@ -83,7 +55,38 @@ inline constexpr struct Sun : CelestialBody<"Sun", barycenters::SolarSystemBaryc
 template <>
 inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Sun>()
 {
-    return planets::DEFAULT_SUN_PARAMS;
+    using namespace mp_units;
+    using mp_units::angular::unit_symbols::deg;
+    using mp_units::iau::unit_symbols::au;
+    using mp_units::non_si::unit_symbols::day;
+    using mp_units::si::unit_symbols::kg;
+    using mp_units::si::unit_symbols::km;
+
+    return { .type                   = CelestialBodyType::STAR,
+             .referenceDate          = Date("2000-01-01 00:00:00"),
+             .mu                     = GravParam(1.32712e11 * pow<3>(km) / pow<2>(s)),
+             .mass                   = Mass(1988500.0 * (mag_power<10, 24> * kg)),
+             .equitorialRadius       = Distance(695700.0 * km),
+             .polarRadius            = Distance(695700.0 * km),
+             .crashRadius            = Distance(795700.0 * km),
+             .sphereOfInfluence      = Distance(1.0e18 * km),
+             .j2                     = Unitless(0.2e-6 * one),
+             .j3                     = Unitless(0.0 * one),
+             .axialTilt              = Angle(0.0 * deg),
+             .rotationRate           = AngularVelocity(0.0 * deg / day),
+             .siderealPeriod         = Time(0.0 * day),
+             .semimajorAxis          = Distance(0.0 * km),
+             .eccentricity           = Unitless(0.0 * one),
+             .inclination            = Angle(0.0 * deg),
+             .rightAscension         = Angle(0.0 * deg),
+             .longitudeOfPerigee     = Angle(0.0 * deg),
+             .meanLongitude          = Angle(0.0 * deg),
+             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / JulianCentury),
+             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / JulianCentury),
+             .inclinationRate        = BodyAngularVelocity(0.0 * deg / JulianCentury),
+             .rightAscensionRate     = BodyAngularVelocity(0.0 * deg / JulianCentury),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(0.0 * deg / JulianCentury),
+             .meanLongitudeRate      = BodyAngularVelocity(0.0 * deg / JulianCentury) };
 }
 
 #ifdef ASTREA_BUILD_SUN_EPHEMERIS

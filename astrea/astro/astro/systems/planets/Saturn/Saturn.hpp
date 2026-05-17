@@ -41,41 +41,13 @@ struct icrf;
 
 namespace planets {
 
-static CelestialBodyParameters DEFAULT_SATURN_PARAMS{
-    .type          = CelestialBodyType::PLANET,
-    .referenceDate = Date("2000-01-01 12:00:00"),
-    .mu = GravParam(37931187.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
-    .mass                   = Mass(568.0 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
-    .equitorialRadius       = Distance(60268.0 * mp_units::si::unit_symbols::km),
-    .polarRadius            = Distance(54364.0 * mp_units::si::unit_symbols::km),
-    .crashRadius            = Distance(60268.0 * mp_units::si::unit_symbols::km),
-    .sphereOfInfluence      = Distance(5.453426873248700 * mp_units::iau::unit_symbols::au),
-    .j2                     = Unitless(16298e-6 * mp_units::one),
-    .j3                     = Unitless(26.73 * mp_units::one),
-    .axialTilt              = Angle(0.0 * mp_units::angular::unit_symbols::deg),
-    .rotationRate           = AngularVelocity(810.8108108108107 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
-    .siderealPeriod         = Time(10759.22 * mp_units::non_si::day),
-    .semimajorAxis          = Distance(9.53667594 * mp_units::iau::unit_symbols::au),
-    .eccentricity           = Unitless(0.05386179 * mp_units::one),
-    .inclination            = Angle(2.48599187 * mp_units::angular::unit_symbols::deg),
-    .rightAscension         = Angle(113.66242448 * mp_units::angular::unit_symbols::deg),
-    .longitudeOfPerigee     = Angle(92.59887831 * mp_units::angular::unit_symbols::deg),
-    .meanLongitude          = Angle(49.95424423 * mp_units::angular::unit_symbols::deg),
-    .semimajorAxisRate      = InterplanetaryVelocity(-0.00125060 * mp_units::iau::unit_symbols::au / JulianCentury),
-    .eccentricityRate       = BodyUnitlessPerTime(-0.00050991 * mp_units::one / JulianCentury),
-    .inclinationRate        = BodyAngularVelocity(0.00193609 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .rightAscensionRate     = BodyAngularVelocity(-0.28867794 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .longitudeOfPerigeeRate = BodyAngularVelocity(-0.41897216 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .meanLongitudeRate      = BodyAngularVelocity(1222.49362201 * mp_units::angular::unit_symbols::deg / JulianCentury)
-};
-
 /**
  * @class Saturn
  * @brief Represents the Saturn celestial body.
  *
  * This class provides properties and methods specific to Saturn, including its physical and orbital parameters.
  */
-inline constexpr struct Saturn : CelestialBody<"Saturn", barycenters::SolarSystemBarycenter{}> {
+inline constexpr struct Saturn : CelestialBody<"Saturn", barycenters::SolarSystemBarycenter> {
 } Saturn;
 
 } // namespace planets
@@ -83,7 +55,38 @@ inline constexpr struct Saturn : CelestialBody<"Saturn", barycenters::SolarSyste
 template <>
 inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Saturn>()
 {
-    return planets::DEFAULT_SATURN_PARAMS;
+    using namespace mp_units;
+    using mp_units::angular::unit_symbols::deg;
+    using mp_units::iau::unit_symbols::au;
+    using mp_units::non_si::unit_symbols::day;
+    using mp_units::si::unit_symbols::kg;
+    using mp_units::si::unit_symbols::km;
+
+    return { .type                   = CelestialBodyType::PLANET,
+             .referenceDate          = Date("2000-01-01 12:00:00"),
+             .mu                     = GravParam(37931187.0 * pow<3>(km) / pow<2>(s)),
+             .mass                   = Mass(568.0 * (mag_power<10, 24> * kg)),
+             .equitorialRadius       = Distance(60268.0 * km),
+             .polarRadius            = Distance(54364.0 * km),
+             .crashRadius            = Distance(60268.0 * km),
+             .sphereOfInfluence      = Distance(5.453426873248700 * au),
+             .j2                     = Unitless(16298e-6 * one),
+             .j3                     = Unitless(26.73 * one),
+             .axialTilt              = Angle(0.0 * deg),
+             .rotationRate           = AngularVelocity(810.8108108108107 * deg / day),
+             .siderealPeriod         = Time(10759.22 * day),
+             .semimajorAxis          = Distance(9.53667594 * au),
+             .eccentricity           = Unitless(0.05386179 * one),
+             .inclination            = Angle(2.48599187 * deg),
+             .rightAscension         = Angle(113.66242448 * deg),
+             .longitudeOfPerigee     = Angle(92.59887831 * deg),
+             .meanLongitude          = Angle(49.95424423 * deg),
+             .semimajorAxisRate      = InterplanetaryVelocity(-0.00125060 * au / JulianCentury),
+             .eccentricityRate       = BodyUnitlessPerTime(-0.00050991 * one / JulianCentury),
+             .inclinationRate        = BodyAngularVelocity(0.00193609 * deg / JulianCentury),
+             .rightAscensionRate     = BodyAngularVelocity(-0.28867794 * deg / JulianCentury),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(-0.41897216 * deg / JulianCentury),
+             .meanLongitudeRate      = BodyAngularVelocity(1222.49362201 * deg / JulianCentury) };
 }
 
 #ifdef ASTREA_BUILD_SATURN_EPHEMERIS

@@ -29,34 +29,6 @@ namespace astrea {
 namespace astro {
 namespace planets {
 
-static CelestialBodyParameters DEFAULT_IO_PARAMS{
-    .type          = CelestialBodyType::MOON,
-    .referenceDate = Date("1997-01-16 00:00:00"),
-    .mu = GravParam(5959.9 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
-    .mass              = Mass(0.08932 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
-    .equitorialRadius  = Distance(1821.5 * mp_units::si::unit_symbols::km),
-    .polarRadius       = Distance(1821.5 * mp_units::si::unit_symbols::km),
-    .crashRadius       = Distance(1841.5 * mp_units::si::unit_symbols::km),
-    .sphereOfInfluence = Distance(7.83731997166e-04 * mp_units::iau::unit_symbols::au),
-    .j2                = Unitless(0.0 * mp_units::one),
-    .j3                = Unitless(0.0 * mp_units::one),
-    .axialTilt         = Angle(3.13 * mp_units::angular::unit_symbols::deg),
-    .rotationRate   = AngularVelocity(203.4889307674133 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
-    .siderealPeriod = Time(1.769138 * mp_units::non_si::day),
-    .semimajorAxis  = Distance(421.8e3 * mp_units::si::unit_symbols::km),
-    .eccentricity   = Unitless(0.004 * mp_units::one),
-    .inclination    = Angle(0.04 * mp_units::angular::unit_symbols::deg),
-    .rightAscension = Angle(43.977 * mp_units::angular::unit_symbols::deg),
-    .longitudeOfPerigee     = Angle(128.106 * mp_units::angular::unit_symbols::deg),
-    .meanLongitude          = Angle(470.127 * mp_units::angular::unit_symbols::deg),
-    .semimajorAxisRate      = InterplanetaryVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury),
-    .eccentricityRate       = BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),
-    .inclinationRate        = BodyAngularVelocity(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .rightAscensionRate     = BodyAngularVelocity(17466307.28 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .longitudeOfPerigeeRate = BodyAngularVelocity(97220153.4 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .meanLongitudeRate      = BodyAngularVelocity(26853983280.3 * mp_units::angular::unit_symbols::deg / JulianCentury)
-};
-
 /**
  * @class Io
  * @brief Represents the Io celestial body.
@@ -71,7 +43,38 @@ inline constexpr struct Io : CelestialBody<"Io", Jupiter> {
 template <>
 inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Io>()
 {
-    return planets::DEFAULT_IO_PARAMS;
+    using namespace mp_units;
+    using mp_units::angular::unit_symbols::deg;
+    using mp_units::iau::unit_symbols::au;
+    using mp_units::non_si::unit_symbols::day;
+    using mp_units::si::unit_symbols::kg;
+    using mp_units::si::unit_symbols::km;
+
+    return { .type                   = CelestialBodyType::MOON,
+             .referenceDate          = Date("1997-01-16 00:00:00"),
+             .mu                     = GravParam(5959.9 * pow<3>(km) / pow<2>(s)),
+             .mass                   = Mass(0.08932 * (mag_power<10, 24> * kg)),
+             .equitorialRadius       = Distance(1821.5 * km),
+             .polarRadius            = Distance(1821.5 * km),
+             .crashRadius            = Distance(1841.5 * km),
+             .sphereOfInfluence      = Distance(7.83731997166e-04 * au),
+             .j2                     = Unitless(0.0 * one),
+             .j3                     = Unitless(0.0 * one),
+             .axialTilt              = Angle(3.13 * deg),
+             .rotationRate           = AngularVelocity(203.4889307674133 * deg / day),
+             .siderealPeriod         = Time(1.769138 * day),
+             .semimajorAxis          = Distance(421.8e3 * km),
+             .eccentricity           = Unitless(0.004 * one),
+             .inclination            = Angle(0.04 * deg),
+             .rightAscension         = Angle(43.977 * deg),
+             .longitudeOfPerigee     = Angle(128.106 * deg),
+             .meanLongitude          = Angle(470.127 * deg),
+             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / JulianCentury),
+             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / JulianCentury),
+             .inclinationRate        = BodyAngularVelocity(0.0 * deg / JulianCentury),
+             .rightAscensionRate     = BodyAngularVelocity(17466307.28 * deg / JulianCentury),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(97220153.4 * deg / JulianCentury),
+             .meanLongitudeRate      = BodyAngularVelocity(26853983280.3 * deg / JulianCentury) };
 }
 
 } // namespace astro

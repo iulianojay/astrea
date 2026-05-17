@@ -41,41 +41,13 @@ struct icrf;
 
 namespace planets {
 
-static CelestialBodyParameters DEFAULT_JUPITER_PARAMS{
-    .type          = CelestialBodyType::PLANET,
-    .referenceDate = Date("2000-01-01 12:00:00"),
-    .mu = GravParam(126686535.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
-    .mass              = Mass(1898.0 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
-    .equitorialRadius  = Distance(71492.0 * mp_units::si::unit_symbols::km),
-    .polarRadius       = Distance(66854.0 * mp_units::si::unit_symbols::km),
-    .crashRadius       = Distance(71492.0 * mp_units::si::unit_symbols::km),
-    .sphereOfInfluence = Distance(0.057732173855358 * mp_units::iau::unit_symbols::au),
-    .j2                = Unitless(14736e-6 * mp_units::one),
-    .j3                = Unitless(0.0 * mp_units::one),
-    .axialTilt         = Angle(3.13 * mp_units::angular::unit_symbols::deg),
-    .rotationRate   = AngularVelocity(350.8928680212322 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
-    .siderealPeriod = Time(4332.589 * mp_units::non_si::day),
-    .semimajorAxis  = Distance(5.20288700 * mp_units::iau::unit_symbols::au),
-    .eccentricity   = Unitless(0.04838624 * mp_units::one),
-    .inclination    = Angle(1.30439695 * mp_units::angular::unit_symbols::deg),
-    .rightAscension = Angle(100.47390909 * mp_units::angular::unit_symbols::deg),
-    .longitudeOfPerigee     = Angle(14.72847983 * mp_units::angular::unit_symbols::deg),
-    .meanLongitude          = Angle(34.39644051 * mp_units::angular::unit_symbols::deg),
-    .semimajorAxisRate      = InterplanetaryVelocity(-0.00011607 * mp_units::iau::unit_symbols::au / JulianCentury),
-    .eccentricityRate       = BodyUnitlessPerTime(-0.00013253 * mp_units::one / JulianCentury),
-    .inclinationRate        = BodyAngularVelocity(-0.00183714 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .rightAscensionRate     = BodyAngularVelocity(0.20469106 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .longitudeOfPerigeeRate = BodyAngularVelocity(0.21252668 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .meanLongitudeRate      = BodyAngularVelocity(3034.74612775 * mp_units::angular::unit_symbols::deg / JulianCentury)
-};
-
 /**
  * @class Jupiter
  * @brief Represents the Jupiter celestial body.
  *
  * This class provides properties and methods specific to Jupiter, including its physical and orbital parameters.
  */
-inline constexpr struct Jupiter : CelestialBody<"Jupiter", barycenters::SolarSystemBarycenter{}> {
+inline constexpr struct Jupiter : CelestialBody<"Jupiter", barycenters::SolarSystemBarycenter> {
 } Jupiter;
 
 } // namespace planets
@@ -83,7 +55,38 @@ inline constexpr struct Jupiter : CelestialBody<"Jupiter", barycenters::SolarSys
 template <>
 inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Jupiter>()
 {
-    return planets::DEFAULT_JUPITER_PARAMS;
+    using namespace mp_units;
+    using mp_units::angular::unit_symbols::deg;
+    using mp_units::iau::unit_symbols::au;
+    using mp_units::non_si::unit_symbols::day;
+    using mp_units::si::unit_symbols::kg;
+    using mp_units::si::unit_symbols::km;
+
+    return { .type                   = CelestialBodyType::PLANET,
+             .referenceDate          = Date("2000-01-01 12:00:00"),
+             .mu                     = GravParam(126686535.0 * pow<3>(km) / pow<2>(s)),
+             .mass                   = Mass(1898.0 * (mag_power<10, 24> * kg)),
+             .equitorialRadius       = Distance(71492.0 * km),
+             .polarRadius            = Distance(66854.0 * km),
+             .crashRadius            = Distance(71492.0 * km),
+             .sphereOfInfluence      = Distance(0.057732173855358 * au),
+             .j2                     = Unitless(14736e-6 * one),
+             .j3                     = Unitless(0.0 * one),
+             .axialTilt              = Angle(3.13 * deg),
+             .rotationRate           = AngularVelocity(350.8928680212322 * deg / day),
+             .siderealPeriod         = Time(4332.589 * day),
+             .semimajorAxis          = Distance(5.20288700 * au),
+             .eccentricity           = Unitless(0.04838624 * one),
+             .inclination            = Angle(1.30439695 * deg),
+             .rightAscension         = Angle(100.47390909 * deg),
+             .longitudeOfPerigee     = Angle(14.72847983 * deg),
+             .meanLongitude          = Angle(34.39644051 * deg),
+             .semimajorAxisRate      = InterplanetaryVelocity(-0.00011607 * au / JulianCentury),
+             .eccentricityRate       = BodyUnitlessPerTime(-0.00013253 * one / JulianCentury),
+             .inclinationRate        = BodyAngularVelocity(-0.00183714 * deg / JulianCentury),
+             .rightAscensionRate     = BodyAngularVelocity(0.20469106 * deg / JulianCentury),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(0.21252668 * deg / JulianCentury),
+             .meanLongitudeRate      = BodyAngularVelocity(3034.74612775 * deg / JulianCentury) };
 }
 
 #ifdef ASTREA_BUILD_JUPITER_EPHEMERIS
