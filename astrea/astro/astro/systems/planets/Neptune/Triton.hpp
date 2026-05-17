@@ -27,7 +27,6 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/planets/Neptune/Neptune.hpp>
-#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {

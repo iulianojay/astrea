@@ -14,7 +14,6 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/planets/Uranus/Uranus.hpp>
-#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {

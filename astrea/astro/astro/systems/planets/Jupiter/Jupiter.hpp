@@ -32,13 +32,6 @@
 namespace astrea {
 namespace astro {
 
-// Forward-declare frame types to avoid circular include with frames.hpp
-namespace frames {
-namespace solar_system_barycenter {
-struct icrf;
-}
-} // namespace frames
-
 namespace planets {
 
 /**

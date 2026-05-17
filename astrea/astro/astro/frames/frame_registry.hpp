@@ -22,21 +22,11 @@
 #include <variant>
 
 #include <astro/frames/frame_concepts.hpp>
-#include <astro/frames/frames.hpp>
 #include <astro/frames/primary_frame.hpp>
 #include <astro/frames/transformations.hpp>
 
 namespace astrea {
 namespace astro {
-
-namespace frames {
-
-using primary       = earth::icrf;
-using primary_fixed = earth::earth_fixed;
-
-} // namespace frames
-
-static_assert(IsInertialFrame<frames::primary>, "The primary frame must be inertial.");
 
 /**
  * @brief The built-in set of Cartesian frames known to astrea.

@@ -30,7 +30,6 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/frames.hpp>
-#include <astro/frames/primary_frame.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -43,11 +42,11 @@ namespace astro {
  * They include the semimajor axis, eccentricity, inclination, right ascension of the ascending node,
  * argument of perigee, and true anomaly.
  */
-template <IsFrame auto _frame_ = frames::primary>
+template <IsFrame auto _frame_>
 class Keplerian {
 
-    template <IsFrame auto F>
-    friend std::ostream& operator<<(std::ostream&, Keplerian<F> const&);
+    template <IsFrame auto frame>
+    friend std::ostream& operator<<(std::ostream&, Keplerian<frame> const&);
     friend class OrbitalElements;
 
   public:
@@ -94,7 +93,7 @@ class Keplerian {
      * @param elements The Keplerian elements to copy.
      * @param sys The astrodynamics system context for conversion.
      */
-    Keplerian(const Keplerian& elements, const GravParam& mu) :
+    Keplerian(const Keplerian<frame>& elements, const GravParam& mu) :
         Keplerian(elements)
     {
     }
@@ -105,153 +104,7 @@ class Keplerian {
      * @param elements The Cartesian elements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    Keplerian(const Cartesian<frame>& elements, const GravParam& mu)
-    {
-
-        using namespace mp_units;
-        using namespace mp_units::angular;
-        using mp_units::angular::unit_symbols::rad;
-        using mp_units::si::unit_symbols::km;
-        using mp_units::si::unit_symbols::s;
-
-        /*
-            Force rounding errors to assume zero values for angles. Assume complex
-            results are the result of rounding errors. Flip values near their antipode
-            to zero for simplicity. Assume NaN results are from singularities and force
-            values to be 0.
-
-            No idea how much of this is just wrong.
-        */
-        static const Unitless tol     = 1.0e-10 * one;
-        static const Angle angularTol = 1.0e-10 * rad;
-        static const Angle piRad      = 1.0 * (mag<pi> * rad);
-        static const Angle twoPiRad   = 2.0 * (mag<pi> * rad);
-
-        // Get r and v
-        const Distance& x  = elements.get_x();
-        const Distance& y  = elements.get_y();
-        const Distance& z  = elements.get_z();
-        const Velocity& vx = elements.get_vx();
-        const Velocity& vy = elements.get_vy();
-        const Velocity& vz = elements.get_vz();
-
-        const Distance R = sqrt(x * x + y * y + z * z);
-        const Velocity V = sqrt(vx * vx + vy * vy + vz * vz);
-
-        // Catch default/nonsense case
-        if (R == 0.0 * km) {
-            _semimajor      = 0.0 * km;
-            _eccentricity   = 0.0 * one;
-            _inclination    = 0.0 * rad;
-            _rightAscension = 0.0 * rad;
-            _argPerigee     = 0.0 * rad;
-            _trueAnomaly    = 0.0 * rad;
-            return;
-        }
-
-        // Specific Relative Angular Momentum
-        const SpecificAngularMomentum hx = y * vz - z * vy; // h = cross(r, v)
-        const SpecificAngularMomentum hy = z * vx - x * vz;
-        const SpecificAngularMomentum hz = x * vy - y * vx;
-
-        const SpecificAngularMomentum normH = sqrt(hx * hx + hy * hy + hz * hz);
-
-        // Setup
-        const quantity Nx    = -hy; // N = cross([0 0 1], h)
-        const quantity Ny    = hx;
-        const quantity normN = sqrt(Nx * Nx + Ny * Ny);
-
-        // Semimajor Axis
-        _semimajor = 1.0 / (2.0 / R - V * V / mu);
-
-        // Eccentricity
-        const quantity<pow<2>(km) / s> dotRV                = x * vx + y * vy + z * vz;
-        const quantity<pow<2>(s) / pow<3>(km)> oneOverMu    = (1.0 / mu);
-        const quantity<pow<2>(km / s)> vSquaredMinuMuTimesR = (V * V - mu / R);
-
-        const Unitless eccX = oneOverMu * (vSquaredMinuMuTimesR * x - dotRV * vx);
-        const Unitless eccY = oneOverMu * (vSquaredMinuMuTimesR * y - dotRV * vy);
-        const Unitless eccZ = oneOverMu * (vSquaredMinuMuTimesR * z - dotRV * vz);
-
-        _eccentricity = sqrt(eccX * eccX + eccY * eccY + eccZ * eccZ);
-
-        /*
-            If the orbit has an _inclination of exactly 0, w is ill-defined, the
-            _eccentricity vector is ill-defined, and true anomaly is ill defined. Force
-            _eccentricity very close to 0 be exactly 0 to avoid issues where w and
-            anomaly flail around wildly as ecc fluctuates.
-        */
-        if (_eccentricity < tol) { _eccentricity = 0.0 * one; }
-
-        // Inclination (rad)
-        _inclination = acos(hz / normH);
-        if (abs(_inclination - piRad) < angularTol) { _inclination = 0.0 * rad; }
-
-        // Right Ascension of Ascending Node (rad)
-        if (_inclination == 0.0 * rad) { // No nodal line
-            _rightAscension = 0.0 * rad;
-        }
-        else {
-            if (Ny > 0.0 * (km * km / s)) { _rightAscension = acos(Nx / normN); }
-            else {
-                _rightAscension = twoPiRad - acos(Nx / normN);
-            }
-
-            if (abs(_rightAscension - twoPiRad) < angularTol) { _rightAscension = 0.0 * rad; }
-        }
-
-        // True Anomaly (rad)
-        if (_eccentricity == 0.0 * one) {    // No argument of perigee, use nodal line
-            if (_inclination == 0.0 * rad) { // No nodal line, use true longitude
-                if (vx <= 0.0 * km / s) { _trueAnomaly = acos(x / R); }
-                else {
-                    _trueAnomaly = 2 * piRad - acos(x / R);
-                }
-            }
-            else { // Use argument of latitude
-                const quantity nDotR = Nx * x + Ny * y;
-                if (z >= 0.0 * km) { _trueAnomaly = acos(nDotR / (normN * R)); }
-                else {
-                    _trueAnomaly = 2 * piRad - acos(nDotR / (normN * R));
-                }
-            }
-        }
-        else {
-            const quantity eccDotR = eccX * x + eccY * y + eccZ * z;
-            if (dotRV >= 0.0 * (km * km / s)) { _trueAnomaly = acos(eccDotR / (_eccentricity * R)); }
-            else {
-                _trueAnomaly = twoPiRad - acos(eccDotR / (_eccentricity * R));
-            }
-        }
-
-        // Argument of Parigee (rad)
-        if (_eccentricity == 0.0 * one) { // Ill-defined. Assume zero
-            _argPerigee = 0.0 * rad;
-        }
-        else if (_inclination == 0.0 * rad) { // No nodal line, use ecc vec
-            if (hz > 0.0 * (km * km / s)) { _argPerigee = atan2(eccY, eccX); }
-            else {
-                _argPerigee = 2 * piRad - atan2(eccY, eccX);
-            }
-        }
-        else {
-            const quantity eccDotN = eccX * Nx + eccY * Ny;
-            if (eccZ < 0.0 * one) { _argPerigee = twoPiRad - acos(eccDotN / (_eccentricity * normN)); }
-            else {
-                _argPerigee = acos(eccDotN / (_eccentricity * normN));
-            }
-        }
-
-        // Catch garbage
-        if (normN == 0.0 * (km * km / s) || abs(_argPerigee - twoPiRad) < angularTol) {
-            _trueAnomaly += _argPerigee;
-            _argPerigee = 0.0 * rad;
-        }
-
-        if (abs(_trueAnomaly - twoPiRad) < angularTol) { _trueAnomaly = 0.0 * rad; }
-
-        wrap_angles();
-    }
+    Keplerian(const Cartesian<frame>& elements, const GravParam& mu);
 
     /**
      * @brief Constructs a Keplerian object from Equinoctial elements.
@@ -259,7 +112,7 @@ class Keplerian {
      * @param elements The Equinoctial elements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    Keplerian(const Equinoctial& elements, const GravParam& mu);
+    Keplerian(const Equinoctial<frame>& elements, const GravParam& mu);
 
     /**
      * @brief A static method to create Keplerian state vectors for a LEO orbit.
@@ -316,14 +169,14 @@ class Keplerian {
      *
      * @param other Another Keplerian object
      */
-    Keplerian(const Keplerian&);
+    Keplerian(const Keplerian<frame>&);
 
     /**
      * @brief Move constructor for Keplerian.
      *
      * @param other Another Keplerian object
      */
-    Keplerian(Keplerian&&) noexcept;
+    Keplerian(Keplerian<frame>&&) noexcept;
 
     /**
      * @brief Move assignment operator for Keplerian.
@@ -331,7 +184,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return Keplerian& Reference to the current object
      */
-    Keplerian& operator=(Keplerian&&) noexcept;
+    Keplerian& operator=(Keplerian<frame>&&) noexcept;
 
     /**
      * @brief Copy assignment operator for Keplerian.
@@ -339,7 +192,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return Keplerian& Reference to the current object
      */
-    Keplerian& operator=(const Keplerian&);
+    Keplerian& operator=(const Keplerian<frame>&);
 
     /**
      * @brief Destructor for Keplerian.
@@ -354,7 +207,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return true if the two Keplerian objects are equal, false otherwise.
      */
-    bool operator==(const Keplerian& other) const;
+    bool operator==(const Keplerian<frame>& other) const;
 
     /**
      * @brief Checks if two Keplerian objects are not equal.
@@ -362,7 +215,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return true if the two Keplerian objects are not equal, false otherwise.
      */
-    bool operator!=(const Keplerian& other) const;
+    bool operator!=(const Keplerian<frame>& other) const;
 
     /**
      * @brief Adds two Keplerian objects.
@@ -370,7 +223,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return Resultant Keplerian sum.
      */
-    Keplerian operator+(const Keplerian& other) const;
+    Keplerian operator+(const Keplerian<frame>& other) const;
 
     /**
      * @brief Adds another Keplerian object to the current one.
@@ -378,7 +231,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return Reference to the current Keplerian object after addition.
      */
-    Keplerian& operator+=(const Keplerian& other);
+    Keplerian& operator+=(const Keplerian<frame>& other);
 
     /**
      * @brief Subtracts another Keplerian object from the current one.
@@ -386,7 +239,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return Resultant Keplerian after subtraction.
      */
-    Keplerian operator-(const Keplerian& other) const;
+    Keplerian operator-(const Keplerian<frame>& other) const;
 
     /**
      * @brief Subtracts another Keplerian object from the current one.
@@ -394,7 +247,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return Reference to the current Keplerian object after subtraction.
      */
-    Keplerian& operator-=(const Keplerian& other);
+    Keplerian& operator-=(const Keplerian<frame>& other);
 
     /**
      * @brief Multiplies the Keplerian state vector by a scalar.
@@ -418,7 +271,7 @@ class Keplerian {
      * @param time Time value to divide by
      * @return Resultant KeplerianPartial after division.
      */
-    KeplerianPartial operator/(const Time& time) const;
+    KeplerianPartial<_frame_> operator/(const Time& time) const;
 
     /**
      * @brief Divides the Keplerian state vector by another Keplerian object.
@@ -543,7 +396,7 @@ class Keplerian {
      * @param targetTime The target time for interpolation.
      * @return Keplerian Interpolated Keplerian state vector at the target time.
      */
-    Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian& other, const GravParam& mu, const Time& targetTime) const;
+    Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian<frame>& other, const GravParam& mu, const Time& targetTime) const;
 
     /**
      * @brief Converts the Keplerian state vector to a vector of unitless values.
@@ -596,10 +449,11 @@ class Keplerian {
  *
  * @note The KeplerianPartial class is typically used in astrodynamics calculations involving orbital mechanics.
  */
-template <IsFrame auto _frame_ = frames::primary>
+template <IsFrame auto _frame_>
 class KeplerianPartial {
 
-    friend std::ostream& operator<<(std::ostream&, KeplerianPartial const&);
+    template <IsFrame auto frame>
+    friend std::ostream& operator<<(std::ostream&, KeplerianPartial<frame> const&);
 
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Keplerian partial derivatives.
@@ -646,7 +500,7 @@ class KeplerianPartial {
      * @param time Time to multiply the KeplerianPartial by
      * @return Keplerian Resulting Keplerian state vector after multiplication.
      */
-    Keplerian<frame> operator*(const Time& time) const;
+    Keplerian<_frame_> operator*(const Time& time) const;
 
     /**
      * @brief Converts the KeplerianPartial state vector to a vector of unitless values.

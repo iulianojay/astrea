@@ -26,6 +26,7 @@
 // Astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/frame_registry.hpp>
+#include <astro/frames/primary_frame.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>

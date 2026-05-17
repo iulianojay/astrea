@@ -217,9 +217,9 @@ Equinoctial<frame>& Equinoctial<frame>::operator*=(const Unitless& multiplier)
 }
 
 template <IsFrame auto frame>
-EquinoctialPartial Equinoctial<frame>::operator/(const Time& time) const
+EquinoctialPartial<frame> Equinoctial<frame>::operator/(const Time& time) const
 {
-    return EquinoctialPartial(_semilatus / time, _f / time, _g / time, _h / time, _k / time, _trueLongitude / time);
+    return EquinoctialPartial<frame>(_semilatus / time, _f / time, _g / time, _h / time, _k / time, _trueLongitude / time);
 }
 
 template <IsFrame auto frame>

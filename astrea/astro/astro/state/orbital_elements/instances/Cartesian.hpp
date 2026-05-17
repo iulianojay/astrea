@@ -31,7 +31,6 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
-#include <astro/frames/primary_frame.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -42,11 +41,11 @@ namespace astro {
  *
  * This class encapsulates the position and velocity of a vehicle in Cartesian coordinates.
  */
-template <IsFrame auto _frame_ = frames::primary>
+template <IsFrame auto _frame_>
 class Cartesian {
 
-    template <typename F>
-    friend std::ostream& operator<<(std::ostream&, Cartesian<F> const&);
+    template <IsFrame auto frame>
+    friend std::ostream& operator<<(std::ostream&, Cartesian<frame> const&);
     friend class OrbitalElements;
 
   public:
@@ -110,7 +109,7 @@ class Cartesian {
      * @param elements Keplerian elements
      * @param sys Astrodynamics system containing celestial body data
      */
-    Cartesian(const Keplerian& elements, const GravParam& mu);
+    Cartesian(const Keplerian<frame>& elements, const GravParam& mu);
 
     /**
      * @brief Constructor for Cartesian from Equinoctial elements.
@@ -118,7 +117,7 @@ class Cartesian {
      * @param elements Equinoctial elements
      * @param sys Astrodynamics system containing celestial body data
      */
-    Cartesian(const Equinoctial& elements, const GravParam& mu);
+    Cartesian(const Equinoctial<frame>& elements, const GravParam& mu);
 
     /**
      * @brief A static method to create Cartesian state vectors for a LEO orbit.
@@ -289,7 +288,7 @@ class Cartesian {
      * @param time Time value to divide by
      * @return Resultant CartesianPartial after division.
      */
-    CartesianPartial<frame> operator/(const Time& time) const;
+    CartesianPartial<_frame_> operator/(const Time& time) const;
 
     /**
      * @brief Divides the Cartesian state vector by another Cartesian object.
@@ -388,7 +387,7 @@ class Cartesian {
      * @param targetTime Target time for interpolation
      * @return Cartesian Interpolated Cartesian state at the target time.
      */
-    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const GravParam& mu, const Time& targetTime) const;
+    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<frame>& other, const GravParam& mu, const Time& targetTime) const;
 
   private:
     RadiusVector<frame> _r;   //!< Position vector
@@ -408,11 +407,11 @@ class Cartesian {
  *
  * This class encapsulates the velocity and acceleration components of a vehicle in Cartesian coordinates.
  */
-template <IsFrame auto _frame_ = frames::primary>
+template <IsFrame auto _frame_>
 class CartesianPartial {
 
-    template <typename F>
-    friend std::ostream& operator<<(std::ostream&, CartesianPartial<F> const&);
+    template <IsFrame auto frame>
+    friend std::ostream& operator<<(std::ostream&, CartesianPartial<frame> const&);
 
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.
@@ -498,7 +497,7 @@ class CartesianPartial {
      * @param time Time to multiply the CartesianPartial by
      * @return Cartesian Resulting Cartesian state vector after multiplication.
      */
-    Cartesian<frame> operator*(const Time& time) const;
+    Cartesian<_frame_> operator*(const Time& time) const;
 
     /**
      * @brief Converts the CartesianPartial state vector to a vector of unitless values.

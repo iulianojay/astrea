@@ -24,7 +24,6 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/frames.hpp>
-#include <astro/frames/primary_frame.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -37,15 +36,15 @@ namespace astro {
  * describing orbits in a way that avoids singularities, especially for near-circular orbits.
  * They are defined in terms of the semilatus rectum and the components of the eccentricity vector.
  */
-template <IsFrame auto _frame_ = frames::primary>
+template <IsFrame auto _frame_>
 class Equinoctial {
 
-    template <IsFrame auto F>
-    friend std::ostream& operator<<(std::ostream&, Equinoctial<F> const&);
+    template <IsFrame auto frame>
+    friend std::ostream& operator<<(std::ostream&, Equinoctial<frame> const&);
     friend class OrbitalElements;
 
   public:
-    static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.
+    static constexpr auto frame = _frame_; //!< The reference frame of the Equinoctial state vector.
 
     /**
      * @brief Constructs an Equinoctial object with default values.
@@ -88,7 +87,7 @@ class Equinoctial {
      * @param elements The Equinoctial object to copy.
      * @param sys The astrodynamics system context for conversion.
      */
-    Equinoctial(const Equinoctial& elements, const GravParam& mu) :
+    Equinoctial(const Equinoctial<frame>& elements, const GravParam& mu) :
         Equinoctial(elements)
     {
     }
@@ -166,22 +165,22 @@ class Equinoctial {
      * @brief Copy constructor for Equinoctial.
      *
      */
-    Equinoctial(const Equinoctial&);
+    Equinoctial(const Equinoctial<frame>&);
 
     /**
      * @brief Move constructor for Equinoctial.
      *
      * @param other Another Equinoctial object
      */
-    Equinoctial(Equinoctial&& other) noexcept;
+    Equinoctial(Equinoctial<frame>&& other) noexcept;
 
     /**
      * @brief Move assignment operator for Equinoctial.
      *
      * @param other Another Equinoctial object
-     * @return Equinoctial& Reference to the current object
+     * @return Equinoctial<frame>& Reference to the current object
      */
-    Equinoctial& operator=(Equinoctial&& other) noexcept;
+    Equinoctial& operator=(Equinoctial<frame>&& other) noexcept;
 
     /**
      * @brief Copy assignment operator for Equinoctial.
@@ -189,7 +188,7 @@ class Equinoctial {
      * @param other Another Equinoctial object
      * @return Equinoctial& Reference to the current object
      */
-    Equinoctial& operator=(const Equinoctial& other);
+    Equinoctial& operator=(const Equinoctial<frame>& other);
 
     /**
      * @brief Default destructor for Equinoctial.
@@ -202,7 +201,7 @@ class Equinoctial {
      * @param other Another Equinoctial object
      * @return true if the two Equinoctial objects are equal, false otherwise.
      */
-    bool operator==(const Equinoctial& other) const;
+    bool operator==(const Equinoctial<frame>& other) const;
 
     /**
      * @brief Checks if two Equinoctial objects are not equal.
@@ -210,7 +209,7 @@ class Equinoctial {
      * @param other Another Equinoctial object
      * @return true if the two Equinoctial objects are not equal, false otherwise.
      */
-    bool operator!=(const Equinoctial& other) const;
+    bool operator!=(const Equinoctial<frame>& other) const;
 
     /**
      * @brief Adds two Equinoctial objects.
@@ -218,7 +217,7 @@ class Equinoctial {
      * @param other Another Equinoctial object
      * @return Resultant Equinoctial sum.
      */
-    Equinoctial operator+(const Equinoctial& other) const;
+    Equinoctial operator+(const Equinoctial<frame>& other) const;
 
     /**
      * @brief Adds another Equinoctial object to the current one.
@@ -226,7 +225,7 @@ class Equinoctial {
      * @param other Another Equinoctial object
      * @return Reference to the current Equinoctial object after addition.
      */
-    Equinoctial& operator+=(const Equinoctial& other);
+    Equinoctial& operator+=(const Equinoctial<frame>& other);
 
     /**
      * @brief Subtracts another Equinoctial object from the current one.
@@ -234,7 +233,7 @@ class Equinoctial {
      * @param other Another Equinoctial object
      * @return Resultant Equinoctial after subtraction.
      */
-    Equinoctial operator-(const Equinoctial& other) const;
+    Equinoctial operator-(const Equinoctial<frame>& other) const;
 
     /**
      * @brief Subtracts another Equinoctial object from the current one.
@@ -242,7 +241,7 @@ class Equinoctial {
      * @param other Another Equinoctial object
      * @return Reference to the current Equinoctial object after subtraction.
      */
-    Equinoctial& operator-=(const Equinoctial& other);
+    Equinoctial& operator-=(const Equinoctial<frame>& other);
 
     /**
      * @brief Multiplies the Equinoctial state vector by a scalar.
@@ -266,7 +265,7 @@ class Equinoctial {
      * @param time Time value to divide by
      * @return Resultant EquinoctialPartial after division.
      */
-    EquinoctialPartial operator/(const Time& time) const;
+    EquinoctialPartial<_frame_> operator/(const Time& time) const;
 
     /**
      * @brief Divides the Equinoctial state vector by a scalar.
@@ -343,7 +342,8 @@ class Equinoctial {
      * @param targetTime Time of the target state
      * @return Equinoctial Interpolated Equinoctial state vector.
      */
-    Equinoctial interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial& other, const GravParam& mu, const Time& targetTime) const;
+    Equinoctial
+        interpolate(const Time& thisTime, const Time& otherTime, const Equinoctial<frame>& other, const GravParam& mu, const Time& targetTime) const;
 
   private:
     Distance _semilatus;  //!< Semilatus rectum of the orbit
@@ -366,10 +366,11 @@ class Equinoctial {
  * @brief Class representing a partial derivative of an Equinoctial state vector.
  *
  */
-template <IsFrame auto _frame_ = frames::primary>
+template <IsFrame auto _frame_>
 class EquinoctialPartial {
 
-    friend std::ostream& operator<<(std::ostream&, EquinoctialPartial const&);
+    template <IsFrame auto frame>
+    friend std::ostream& operator<<(std::ostream&, EquinoctialPartial<frame> const&);
 
   public:
     static constexpr auto frame = _frame_; //!< The reference frame of the Cartesian state vector.
@@ -414,7 +415,7 @@ class EquinoctialPartial {
      * @param time Time to multiply the EquinoctialPartial by
      * @return Equinoctial Resulting Equinoctial state vector after multiplication.
      */
-    Equinoctial<frame> operator/(const Time& time) const;
+    Equinoctial<_frame_> operator*(const Time& time) const;
 
     /**
      * @brief Converts the EquinoctialPartial state vector to a vector of unitless values.

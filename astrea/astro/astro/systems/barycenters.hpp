@@ -1,7 +1,6 @@
 #pragma once
 
 #include <astro/systems/CelestialBody.hpp>
-#include <astro/types/typedefs.hpp>
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 #include <ephemerides/Earth/EmbEphemerisTable.hpp>

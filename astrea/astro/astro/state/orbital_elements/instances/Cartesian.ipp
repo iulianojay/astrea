@@ -41,7 +41,7 @@ namespace astrea {
 namespace astro {
 
 template <IsFrame auto frame>
-Cartesian<frame>::Cartesian(const Keplerian& elements, const GravParam& mu)
+Cartesian<frame>::Cartesian(const Keplerian<frame>& elements, const GravParam& mu)
 {
     // Extract elements
     const auto& a     = elements.get_semimajor();
@@ -102,7 +102,7 @@ Cartesian<frame>::Cartesian(const Keplerian& elements, const GravParam& mu)
 }
 
 template <IsFrame auto frame>
-Cartesian<frame>::Cartesian(const Equinoctial& elements, const GravParam& mu)
+Cartesian<frame>::Cartesian(const Equinoctial<frame>& elements, const GravParam& mu)
 {
     // Extract
     const auto& semilatus     = elements.get_semilatus();
@@ -151,31 +151,31 @@ Cartesian<frame>::Cartesian(const Equinoctial& elements, const GravParam& mu)
 template <IsFrame auto frame>
 Cartesian<frame> Cartesian<frame>::LEO(const GravParam& mu)
 {
-    return Cartesian<frame>(Keplerian::LEO(), mu);
+    return Cartesian<frame>(Keplerian<frame>::LEO(), mu);
 }
 
 template <IsFrame auto frame>
 Cartesian<frame> Cartesian<frame>::LMEO(const GravParam& mu)
 {
-    return Cartesian<frame>(Keplerian::LMEO(), mu);
+    return Cartesian<frame>(Keplerian<frame>::LMEO(), mu);
 }
 
 template <IsFrame auto frame>
 Cartesian<frame> Cartesian<frame>::GPS(const GravParam& mu)
 {
-    return Cartesian<frame>(Keplerian::GPS(), mu);
+    return Cartesian<frame>(Keplerian<frame>::GPS(), mu);
 }
 
 template <IsFrame auto frame>
 Cartesian<frame> Cartesian<frame>::HMEO(const GravParam& mu)
 {
-    return Cartesian<frame>(Keplerian::HMEO(), mu);
+    return Cartesian<frame>(Keplerian<frame>::HMEO(), mu);
 }
 
 template <IsFrame auto frame>
 Cartesian<frame> Cartesian<frame>::GEO(const GravParam& mu)
 {
-    return Cartesian<frame>(Keplerian::GEO(), mu);
+    return Cartesian<frame>(Keplerian<frame>::GEO(), mu);
 }
 
 template <IsFrame auto frame>

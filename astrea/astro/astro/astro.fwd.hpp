@@ -37,11 +37,14 @@ template <IsFrame auto _frame_>
 class Keplerian;
 template <IsFrame auto _frame_>
 class Equinoctial;
-class TwoLineElements;
 template <IsFrame auto _frame_>
 class CartesianPartial;
+template <IsFrame auto _frame_>
 class KeplerianPartial;
+template <IsFrame auto _frame_>
 class EquinoctialPartial;
+
+class TwoLineElements;
 class TwoLineElementsPartial;
 class GeneralPerturbations;
 class OrbitalElements;

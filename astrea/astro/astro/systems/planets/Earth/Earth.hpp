@@ -23,7 +23,6 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/barycenters.hpp>
-#include <astro/types/typedefs.hpp>
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 #include <ephemerides/Earth/EarthFromEmbEphemerisTable.hpp>

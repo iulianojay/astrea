@@ -1,7 +1,7 @@
 /**
- * @file frame_registry.hpp
+ * @file primary_frame.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Registration point for Cartesian frames used across astrea.
+ * @brief Registration point for the primary frame used across astrea.
  * @date 2025-04-22
  *
  * @copyright Copyright (c) 2025 Jay Iuliano
@@ -25,9 +25,9 @@ namespace astro {
 
 namespace frames {
 
-inline constexpr struct primary : earth::icrf {
+inline constexpr struct primary : frames::earth::icrf {
 } primary;
-inline constexpr struct primary_fixed : earth::earth_fixed {
+inline constexpr struct primary_fixed : frames::earth::earth_fixed {
 } primary_fixed;
 
 } // namespace frames

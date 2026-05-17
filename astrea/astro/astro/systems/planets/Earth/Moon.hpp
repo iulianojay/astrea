@@ -23,7 +23,6 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/planets/Earth/Earth.hpp>
-#include <astro/types/typedefs.hpp>
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 #include <ephemerides/Earth/MoonEphemerisTable.hpp>
@@ -31,14 +30,6 @@
 
 namespace astrea {
 namespace astro {
-
-// Forward-declare frame types to avoid circular include with frames.hpp
-namespace frames {
-namespace earth {
-struct icrf;
-}
-} // namespace frames
-
 
 namespace planets {
 

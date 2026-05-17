@@ -25,7 +25,6 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/barycenters.hpp>
-#include <astro/types/typedefs.hpp>
 
 #ifdef ASTREA_BUILD_VENUS_EPHEMERIS
 #include <ephemerides/Venus/VenusEphemerisTable.hpp>
@@ -33,13 +32,6 @@
 
 namespace astrea {
 namespace astro {
-
-// Forward-declare frame types to avoid circular include with frames.hpp
-namespace frames {
-namespace solar_system_barycenter {
-struct icrf;
-}
-} // namespace frames
 
 namespace planets {
 
