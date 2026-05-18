@@ -26,8 +26,8 @@
 #include <units/units.hpp>
 
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/dynamic/dynamic_body_frame.hpp>
 #include <astro/frames/frames.hpp>
-#include <astro/frames/instances/dynamic_body_frame.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/propagation/force_models/Perturbation.hpp>
 #include <astro/time/Date.hpp>

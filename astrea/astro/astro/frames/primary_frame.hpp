@@ -25,10 +25,8 @@ namespace astro {
 
 namespace frames {
 
-inline constexpr struct primary : frames::earth::icrf {
-} primary;
-inline constexpr struct primary_fixed : frames::earth::earth_fixed {
-} primary_fixed;
+inline constexpr auto primary       = frames::earth::icrf;
+inline constexpr auto primary_fixed = frames::earth::earth_fixed;
 
 } // namespace frames
 

@@ -19,8 +19,8 @@
 #pragma once
 
 #include <astro/frames/DynamicFrame.hpp>
-#include <astro/frames/instances/EastNorthUp.hpp>
-#include <astro/frames/instances/LocalHorizontalLocalVertical.hpp>
-#include <astro/frames/instances/RadialInTrackCrossTrack.hpp>
-#include <astro/frames/instances/VelocityNormalBinormal.hpp>
-#include <astro/frames/instances/dynamic_body_frame.hpp>
+#include <astro/frames/dynamic/EastNorthUp.hpp>
+#include <astro/frames/dynamic/LocalHorizontalLocalVertical.hpp>
+#include <astro/frames/dynamic/RadialInTrackCrossTrack.hpp>
+#include <astro/frames/dynamic/VelocityNormalBinormal.hpp>
+#include <astro/frames/dynamic/dynamic_body_frame.hpp>

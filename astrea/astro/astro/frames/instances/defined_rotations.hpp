@@ -21,8 +21,8 @@
 
 #include <units/units.hpp>
 
-#include <astro/frames/Axis.hpp>
 #include <astro/frames/DirectionCosineMatrix.hpp>
+#include <astro/frames/Frame.hpp>
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/time/Date.hpp>
 
@@ -38,7 +38,7 @@ namespace astro {
  * @ref https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA%20TP%2020220014814%20final.pdf
  */
 template <IsFrame auto frame, IsFrame auto frame_u>
-    requires(decltype(frame)::axis == axes::icrf && decltype(frame_u)::axis == axes::j2000 && has_same_origin(frame, frame_u))
+    requires(has_axis(frame, axes::icrf) && has_axis(frame_u, axes::j2000) && has_same_origin(frame, frame_u))
 inline constexpr DirectionCosineMatrix<frame, frame_u> get_dcm(const Date& date)
 {
     using mp_units::angular::unit_symbols::rad;
@@ -58,9 +58,8 @@ inline constexpr DirectionCosineMatrix<frame, frame_u> get_dcm(const Date& date)
  */
 template <IsFrame auto in_frame, IsFrame auto out_frame>
     requires(
-        has_same_origin(in_frame, out_frame) && decltype(in_frame)::axis == axes::icrf &&
-        decltype(out_frame)::axis == FrameAxis::FIXED_ROTATING && decltype(in_frame)::origin != CelestialBodyId::SUN &&
-        decltype(out_frame)::origin != CelestialBodyId::EARTH
+        has_same_origin(in_frame, out_frame) && has_axis(in_frame, axes::icrf) && IsFixedRotatingFrame<decltype(out_frame)> &&
+        !has_origin(in_frame, planets::Sun) && !has_origin(out_frame, planets::Earth)
     )
 inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
 {

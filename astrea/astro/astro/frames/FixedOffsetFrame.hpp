@@ -20,7 +20,7 @@
 
 #include <type_traits>
 
-#include <mp-units/ext/fixed_string.h>
+#include <mp-units/framework/symbol_text.h>
 
 #include <units/units.hpp>
 #include <utilities/string_util.hpp>
@@ -42,11 +42,11 @@ namespace astro {
  * will include the numerical value with a specified precision, and will be null-terminated.
  */
 template <utilities::double_wrapper _N_>
-consteval auto f_to_fixed_string()
+inline consteval auto f_to_fixed_string()
 {
     constexpr auto s          = utilities::f_to_string<_N_>;
     constexpr std::size_t len = s.size() - 1; // exclude null terminator
-    return mp_units::basic_fixed_string<char, len>(s.begin(), s.end() - 1);
+    return mp_units::symbol_text<char, len>(s.begin(), s.end() - 1);
 }
 
 /**
@@ -90,7 +90,7 @@ inline consteval auto quantity_list_to_fixed_string()
  * @tparam _z_ The fixed offset in the z direction.
  * @return A basic_fixed_string representing the composed name of the FixedOffsetFrame, including the parent frame's name and the offset values.
  */
-template <mp_units::basic_fixed_string _parent_name_, Distance _x_, Distance _y_, Distance _z_>
+template <mp_units::symbol_text _parent_name_, Distance _x_, Distance _y_, Distance _z_>
 inline consteval auto compose_name()
 {
     return _parent_name_ + " + [" + quantity_list_to_fixed_string<_x_, _y_, _z_>() + "]";
@@ -105,7 +105,7 @@ inline consteval auto compose_name()
  * @tparam _theta_ The fixed offset angle around the y-axis.
  * @return A basic_fixed_string representing the composed name of the FixedOffsetFrame, including the parent frame's name and the angular offset values.
  */
-template <mp_units::basic_fixed_string _parent_name_, Angle _phi_, Angle _theta_, Angle _psi_>
+template <mp_units::symbol_text _parent_name_, Angle _phi_, Angle _theta_, Angle _psi_>
 inline consteval auto compose_name()
 {
     return _parent_name_ + " + [" + quantity_list_to_fixed_string<_phi_, _theta_, _psi_>() + "]";
@@ -124,7 +124,7 @@ inline consteval auto compose_name()
  * @tparam _psi_ The fixed offset angle around the z-axis.
  * @return A basic_fixed_string representing the composed name of the FixedOffsetFrame, including the parent frame's name and the spatial and angular offset values.
  */
-template <mp_units::basic_fixed_string _parent_name_, Distance _x_, Distance _y_, Distance _z_, Angle _phi_, Angle _theta_, Angle _psi_>
+template <mp_units::symbol_text _parent_name_, Distance _x_, Distance _y_, Distance _z_, Angle _phi_, Angle _theta_, Angle _psi_>
 inline consteval auto compose_name()
 {
     return _parent_name_ + " + [" + quantity_list_to_fixed_string<_x_, _y_, _z_>() + "; " +

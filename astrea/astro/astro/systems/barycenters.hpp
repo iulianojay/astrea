@@ -10,43 +10,34 @@ namespace astrea {
 namespace astro {
 namespace barycenters {
 
-inline constexpr struct SolarSystemBarycenter final
-    : Barycenter<mp_units::basic_fixed_string{ "Solar System Barycenter" }> {
+inline constexpr struct SolarSystemBarycenter final : Barycenter<"Solar System Barycenter"> {
 } SolarSystemBarycenter;
 
-inline constexpr struct MercuryBarycenter final
-    : Barycenter<mp_units::basic_fixed_string{ "Mercury Barycenter" }, SolarSystemBarycenter> {
+inline constexpr struct MercuryBarycenter final : Barycenter<"Mercury Barycenter", SolarSystemBarycenter> {
 } MercuryBarycenter;
 
-inline constexpr struct VenusBarycenter final
-    : Barycenter<mp_units::basic_fixed_string{ "Venus Barycenter" }, SolarSystemBarycenter> {
+inline constexpr struct VenusBarycenter final : Barycenter<"Venus Barycenter", SolarSystemBarycenter> {
 } VenusBarycenter;
 
-inline constexpr struct EarthBarycenter final
-    : Barycenter<mp_units::basic_fixed_string{ "Earth Barycenter" }, SolarSystemBarycenter> {
+inline constexpr struct EarthBarycenter final : Barycenter<"Earth Barycenter", SolarSystemBarycenter> {
 } EarthBarycenter;
 
-inline constexpr struct MarsBarycenter final : Barycenter<mp_units::basic_fixed_string{ "Mars Barycenter" }, SolarSystemBarycenter> {
+inline constexpr struct MarsBarycenter final : Barycenter<"Mars Barycenter", SolarSystemBarycenter> {
 } MarsBarycenter;
 
-inline constexpr struct JupiterBarycenter final
-    : Barycenter<mp_units::basic_fixed_string{ "Jupiter Barycenter" }, SolarSystemBarycenter> {
+inline constexpr struct JupiterBarycenter final : Barycenter<"Jupiter Barycenter", SolarSystemBarycenter> {
 } JupiterBarycenter;
 
-inline constexpr struct SaturnBarycenter final
-    : Barycenter<mp_units::basic_fixed_string{ "Saturn Barycenter" }, SolarSystemBarycenter> {
+inline constexpr struct SaturnBarycenter final : Barycenter<"Saturn Barycenter", SolarSystemBarycenter> {
 } SaturnBarycenter;
 
-inline constexpr struct UranusBarycenter final
-    : Barycenter<mp_units::basic_fixed_string{ "Uranus Barycenter" }, SolarSystemBarycenter> {
+inline constexpr struct UranusBarycenter final : Barycenter<"Uranus Barycenter", SolarSystemBarycenter> {
 } UranusBarycenter;
 
-inline constexpr struct NeptuneBarycenter final
-    : Barycenter<mp_units::basic_fixed_string{ "Neptune Barycenter" }, SolarSystemBarycenter> {
+inline constexpr struct NeptuneBarycenter final : Barycenter<"Neptune Barycenter", SolarSystemBarycenter> {
 } NeptuneBarycenter;
 
-inline constexpr struct EarthMoonBarycenter final
-    : Barycenter<mp_units::basic_fixed_string{ "Earth-Moon Barycenter" }, SolarSystemBarycenter> {
+inline constexpr struct EarthMoonBarycenter final : Barycenter<"Earth-Moon Barycenter", SolarSystemBarycenter> {
 } EarthMoonBarycenter;
 
 

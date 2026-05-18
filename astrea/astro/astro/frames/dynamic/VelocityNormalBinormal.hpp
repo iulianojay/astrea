@@ -58,8 +58,8 @@ struct VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal, _par
      */
     DirectionCosineMatrix<parent, VelocityNormalBinormal> get_dcm(const Date& date) const
     {
-        const auto r        = get_inertial_position(date).unit();
-        const auto v        = get_inertial_velocity(date).unit();
+        const auto r        = get_position(date).unit();
+        const auto v        = get_velocity(date).unit();
         const auto h        = r.cross(v).unit();
         const auto binormal = (v.cross(h)).unit();
         return DirectionCosineMatrix<parent, VelocityNormalBinormal>::from_vectors(v, h, binormal);

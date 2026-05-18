@@ -24,7 +24,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/instances/dynamic_body_frame.hpp>
+#include <astro/frames/dynamic/dynamic_body_frame.hpp>
 
 namespace astrea {
 namespace astro {

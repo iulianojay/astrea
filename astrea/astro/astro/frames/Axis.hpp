@@ -20,7 +20,7 @@
 
 #include <type_traits>
 
-#include <mp-units/ext/fixed_string.h>
+#include <mp-units/framework/symbol_text.h>
 
 #include <units/units.hpp>
 
@@ -42,18 +42,25 @@ concept IsAxisProperty = (!IsAxis<T>);
 enum class Coordinate { X, Y, Z };
 
 
-template <mp_units::basic_fixed_string _name_>
+template <mp_units::symbol_text _name_>
 struct Axis : detail::AxisBase {
     static constexpr auto name = _name_; //!< The name of the axis.
 };
 
 
 template <IsAxis auto _reference_axis_, Coordinate _rotation_coordinate_>
-struct FixedRotatingAxis : Axis<decltype(_reference_axis_)::name + "_fixed_rotating"> {
+struct FixedRotatingAxis : Axis<decltype(_reference_axis_)::name + mp_units::symbol_text{ "_fixed_rotating" }> {
     static constexpr auto reference_axis      = _reference_axis_;      //!< The reference axis of the frame.
     static constexpr auto rotation_coordinate = _rotation_coordinate_; //!< The coordinate the axis rotates about.
 };
 
+struct DynamicAxis : Axis<"dynamic"> {};
+
+template <IsFrame Frame_T, IsAxis Axis_T>
+inline consteval auto has_axis(Frame_T, Axis_T)
+{
+    return std::is_same_v<decltype(Frame_T::axis), Axis_T>;
+}
 
 namespace axes {
 

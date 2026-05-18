@@ -20,6 +20,7 @@
  */
 #pragma once
 
+#include <astro/frames/frames.hpp>
 #include <astro/frames/instances/defined_rotations.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
@@ -49,12 +50,12 @@ inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::earth
  * pointing towards the Moon.
  */
 template <>
-inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems>
-    get_dcm<frames::earth::icrf, frames::earth::ems>(const Date& date)
+inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems_fixed>
+    get_dcm<frames::earth::icrf, frames::earth::ems_fixed>(const Date& date)
 {
     const auto rEarth2Moon = get_relative_position<planets::Earth, planets::Moon>(date);
     const Angle lambda     = atan2(rEarth2Moon[1], rEarth2Moon[0]);
-    return DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems>::Z(-lambda);
+    return DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems_fixed>::Z(-lambda);
 }
 
 } // namespace astro

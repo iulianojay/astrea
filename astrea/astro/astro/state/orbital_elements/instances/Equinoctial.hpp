@@ -23,7 +23,6 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {

@@ -33,7 +33,7 @@ namespace astro {
  * @brief Base class for all dynamic state/frames.
  */
 template <typename Self, IsFrame auto _parent_>
-struct DynamicFrame : Frame<DynamicOrigin<"Dynamic Origin">{}, DynamicAxis<"Dynamic Axis">{}> {
+struct DynamicFrame : Frame<"Base Dynamic Frame", DynamicOrigin{}, DynamicAxis{}, _parent_> {
   protected:
     static constexpr auto self = Self{}; //!< The dynamic frame itself.
 
@@ -91,7 +91,7 @@ struct DynamicFrame : Frame<DynamicOrigin<"Dynamic Origin">{}, DynamicAxis<"Dyna
      */
     RadiusVector<self> transform_to_this_frame(const RadiusVector<parent>& vec, const Date& date) const
     {
-        return get_dcm_impl(date) * (vec - get_inertial_position(date));
+        return get_dcm_impl(date) * (vec - get_position(date));
     }
 
     /**
@@ -104,7 +104,7 @@ struct DynamicFrame : Frame<DynamicOrigin<"Dynamic Origin">{}, DynamicAxis<"Dyna
      */
     RadiusVector<parent> transform_from_this_frame(const RadiusVector<self>& vec, const Date& date) const
     {
-        return get_dcm_impl(date).transpose() * vec + get_inertial_position(date);
+        return get_dcm_impl(date).transpose() * vec + get_position(date);
     }
 
   private:
@@ -119,7 +119,7 @@ struct DynamicFrame : Frame<DynamicOrigin<"Dynamic Origin">{}, DynamicAxis<"Dyna
         return static_cast<const Self*>(this)->get_dcm(date);
     }
 
-    RadiusVector<parent> get_center_offset(const Date& date) const { return get_inertial_position(date); }
+    RadiusVector<parent> get_center_offset(const Date& date) const { return get_position(date); }
 
   protected:
     RadiusVector<parent> _position;   //!< The position vector
@@ -131,7 +131,7 @@ struct DynamicFrame : Frame<DynamicOrigin<"Dynamic Origin">{}, DynamicAxis<"Dyna
      * @param date The date for which the position is requested.
      * @return RadiusVector<parent> The inertial position vector.
      */
-    RadiusVector<parent> get_inertial_position(const Date& date) const { return _position; }
+    RadiusVector<parent> get_position(const Date& date) const { return _position; }
 
     /**
      * @brief Gets the inertial velocity vector at a given date.
@@ -139,7 +139,7 @@ struct DynamicFrame : Frame<DynamicOrigin<"Dynamic Origin">{}, DynamicAxis<"Dyna
      * @param date The date for which the velocity is requested.
      * @return VelocityVector<parent> The inertial velocity vector.
      */
-    VelocityVector<parent> get_inertial_velocity(const Date& date) const { return _velocity; }
+    VelocityVector<parent> get_velocity(const Date& date) const { return _velocity; }
 };
 
 } // namespace astro

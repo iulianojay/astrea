@@ -22,14 +22,11 @@
 
 #include <mp-units/math.h>
 #include <mp-units/systems/angular.h>
-#include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si.h>
-#include <mp-units/systems/si/math.h>
 
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {

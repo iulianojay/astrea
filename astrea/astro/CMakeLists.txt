@@ -85,10 +85,11 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/instances/body_centered_inertial_frames.hpp
     ${ASTRO_BASE}/frames/instances/fixed_rotating_frames.hpp
     ${ASTRO_BASE}/frames/instances/defined_rotations.hpp
-    ${ASTRO_BASE}/frames/instances/EastNorthUp.hpp
-    ${ASTRO_BASE}/frames/instances/LocalHorizontalLocalVertical.hpp
-    ${ASTRO_BASE}/frames/instances/RadialInTrackCrossTrack.hpp
-    ${ASTRO_BASE}/frames/instances/VelocityNormalBinormal.hpp
+    
+    ${ASTRO_BASE}/frames/dynamic/EastNorthUp.hpp
+    ${ASTRO_BASE}/frames/dynamic/LocalHorizontalLocalVertical.hpp
+    ${ASTRO_BASE}/frames/dynamic/RadialInTrackCrossTrack.hpp
+    ${ASTRO_BASE}/frames/dynamic/VelocityNormalBinormal.hpp
 
     ${ASTRO_BASE}/frames/DirectionCosineMatrix.hpp
     ${ASTRO_BASE}/frames/CartesianVector.hpp

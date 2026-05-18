@@ -1,7 +1,7 @@
 /**
- * @file LocalHorizontalLocalVertical.hpp
+ * @file RadialInTrackCrossTrack.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the LocalHorizontalLocalVertical class in the astro namespace
+ * @brief Header file for the RadialInTrackCrossTrack class in the astro namespace
  * @date 2025-08-05
  *
  * @copyright Copyright (c) 2025 Jay Iuliano
@@ -30,12 +30,12 @@ namespace astro {
 namespace frames {
 
 /**
- * @brief Class representing the Local Horizontal, Local Vertical (LVLH) frame.
+ * @brief Class representing the Radial, In-Track, Cross-Track (RIC) frame.
  */
 template <IsFrame auto _parent_>
-struct LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVertical, _parent_> {
+struct RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack, _parent_> {
 
-    static constexpr auto parent = _parent_; //!< The reference frame of the LVLH frame.
+    static constexpr auto parent = _parent_; //!< The reference frame of the RIC frame.
 
     /**
      * @brief Constructor for instantaneous dynamic state/frames.
@@ -43,32 +43,32 @@ struct LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVe
      * @param position The position vector in the ECI frame.
      * @param velocity The velocity vector in the ECI frame.
      */
-    LocalHorizontalLocalVertical(const RadiusVector<parent>& position, const VelocityVector<parent>& velocity) :
-        DynamicFrame<LocalHorizontalLocalVertical, parent>(position, velocity)
+    RadialInTrackCrossTrack(const RadiusVector<parent>& position, const VelocityVector<parent>& velocity) :
+        DynamicFrame<RadialInTrackCrossTrack, parent>(position, velocity)
     {
     }
 
-    LocalHorizontalLocalVertical() = delete; //!< Default constructor is deleted to prevent instantiation without a parent frame
+    RadialInTrackCrossTrack() = delete; //!< Default constructor is deleted to prevent instantiation without a parent frame
 
     /**
-     * @brief Gets the Direction Cosine Matrix (DCM) for the Local Horizontal, Local Vertical frame at a given date.
+     * @brief Gets the Direction Cosine Matrix (DCM) for the RIC frame at a given date.
      *
-     * @param date The date for which the DCM is computed.
-     * @return DirectionCosineMatrix<parent, LocalHorizontalLocalVertical> The DCM from ECI to LVLH.
+     * @param date The date for which the DCM is requested.
+     * @return DirectionCosineMatrix<parent, RadialInTrackCrossTrack> The DCM from ECI to RIC.
      */
-    DirectionCosineMatrix<parent, LocalHorizontalLocalVertical> get_dcm(const Date& date) const
+    DirectionCosineMatrix<parent, RadialInTrackCrossTrack> get_dcm(const Date& date) const
     {
-        const auto r               = get_inertial_position(date).unit();
-        const auto v               = get_inertial_velocity(date).unit();
-        const auto h               = r.cross(v).unit();
-        const auto localHorizontal = ((-h).cross(-r)).unit();
-        return DirectionCosineMatrix<parent, LocalHorizontalLocalVertical>::from_vectors(localHorizontal, -h, -r);
+        const auto r       = get_position(date).unit();
+        const auto v       = get_velocity(date).unit();
+        const auto h       = r.cross(v).unit();
+        const auto inTrack = (-r.cross(h)).unit();
+        return DirectionCosineMatrix<parent, RadialInTrackCrossTrack>::from_vectors(r, inTrack, h);
     }
 };
 
 namespace dynamic {
 template <IsFrame auto parent>
-using lvlh = LocalHorizontalLocalVertical<parent>;
+using ric = RadialInTrackCrossTrack<parent>;
 } // namespace dynamic
 
 } // namespace frames

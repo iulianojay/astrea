@@ -18,6 +18,7 @@
  */
 #pragma once
 
+#include <mp-units/framework/symbol_text.h>
 #include <mp-units/systems/angular.h>
 #include <mp-units/systems/si.h>
 
@@ -42,20 +43,20 @@ struct BarycenterBase {};
 
 } // namespace detail
 
-template <auto...>
+template <mp_units::symbol_text, auto...>
 struct Barycenter;
 
-template <mp_units::basic_fixed_string _name_>
+template <mp_units::symbol_text _name_>
 struct Barycenter<_name_> : Origin<_name_>, detail::BarycenterBase {};
 
-template <mp_units::basic_fixed_string _name_, IsOrigin auto _parent_>
+template <mp_units::symbol_text _name_, IsOrigin auto _parent_>
 struct Barycenter<_name_, _parent_> : Origin<_name_, _parent_>, detail::BarycenterBase {};
 
 
 /**
  * @brief CelestialBody class represents a celestial body in an astrodynamics system.
  */
-template <mp_units::basic_fixed_string _name_, IsOrigin auto _parent_>
+template <mp_units::symbol_text _name_, IsOrigin auto _parent_>
 struct CelestialBody : Origin<_name_, _parent_>, detail::CelestialBodyBase {};
 
 // ---------------------------------------------------------------------------
@@ -93,7 +94,7 @@ inline consteval auto get_parent(Origin_T origin)
 template <IsOrigin Origin_T, IsAxis Axis_T>
 inline consteval auto get_parent_frame(Origin_T origin, Axis_T axis)
 {
-    return Frame<get_parent_name(origin) + "_" + Axis_T::name, origin, axis>{};
+    return Frame<get_parent_name(origin) + mp_units::symbol_text{ "_" } + Axis_T::name, origin, axis>{};
 }
 
 /// Primary template declarations for ephemeris position/velocity (NTTP-based).

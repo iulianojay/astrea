@@ -20,7 +20,7 @@
 
 #include <type_traits>
 
-#include <mp-units/ext/fixed_string.h>
+#include <mp-units/framework/symbol_text.h>
 
 #include <units/units.hpp>
 
@@ -35,19 +35,28 @@ struct OriginBase {};
 
 } // namespace detail
 
-template <auto...>
+template <mp_units::symbol_text, auto...>
 struct Origin;
 
-template <mp_units::basic_fixed_string _name_, auto... Args>
-struct Origin<_name_, Args...> : detail::OriginBase {
+template <mp_units::symbol_text _name_>
+struct Origin<_name_> : detail::OriginBase {
     static constexpr auto name = _name_; //!< The name of the origin.
 };
 
-template <mp_units::basic_fixed_string _name_, IsOrigin auto _parent_, auto... Args>
-struct Origin<_name_, _parent_, Args...> : detail::OriginBase {
+template <mp_units::symbol_text _name_, IsOrigin auto _parent_>
+struct Origin<_name_, _parent_> : detail::OriginBase {
     static constexpr auto name   = _name_;   //!< The name of the origin.
     static constexpr auto parent = _parent_; //!< The parent origin of this origin, if any.
 };
+
+struct DynamicOrigin : Origin<"dynamic"> {};
+
+
+template <IsFrame Frame_T, IsOrigin Origin_T>
+inline consteval auto has_origin(Frame_T, Origin_T)
+{
+    return std::is_same_v<decltype(Frame_T::origin), Origin_T>;
+}
 
 } // namespace astro
 } // namespace astrea

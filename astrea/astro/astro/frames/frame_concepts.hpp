@@ -96,7 +96,7 @@ concept IsDynamicFrame = !IsStaticFrame<T>;
 template <IsFrame T, IsFrame U>
 consteval bool has_same_origin(T t, U u)
 {
-    return T::origin == U::origin;
+    return std::is_same_v<decltype(T::origin), decltype(U::origin)>;
 }
 
 /**
@@ -109,7 +109,7 @@ consteval bool has_same_origin(T t, U u)
 template <IsFrame T, IsFrame U>
 consteval bool has_same_axis(T t, U u)
 {
-    return T::axis == U::axis;
+    return std::is_same_v<decltype(T::axis), decltype(U::axis)>;
 }
 
 /**
@@ -168,7 +168,7 @@ template <IsFrame T, IsFrame U>
     requires(IsDerivedFrame<T> && IsDerivedFrame<U>)
 consteval bool has_same_parent(T t, U u)
 {
-    return T::parent == U::parent;
+    return std::is_same_v<decltype(T::parent), decltype(U::parent)>;
 }
 
 template <IsFrame T, IsFrame U>

@@ -73,7 +73,7 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp, _frame_> {
         static const Distance& rPolar      = earth.get_polar_radius();
 
         // eci -> ecef -> lat/lon -> n/e/u
-        const RadiusVector<frame> r            = get_inertial_position(date);
+        const RadiusVector<frame> r            = get_position(date);
         const RadiusVector<frame_fixed> rFixed = r.in_frame<frame_fixed>(date);
         const auto [lat, lon, alt]             = convert_body_fixed_to_geodetic(rFixed, rEquitorial, rPolar);
 
