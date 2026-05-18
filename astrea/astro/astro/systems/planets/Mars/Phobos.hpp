@@ -40,7 +40,7 @@ inline constexpr struct Phobos : CelestialBody<"Phobos", Mars> {
 } // namespace planets
 
 template <>
-inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Phobos>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Phobos>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
@@ -51,7 +51,7 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
     using mp_units::si::unit_symbols::s;
 
     return { .type                   = CelestialBodyType::MOON,
-             .referenceDate          = Date("1950-01-01 00:00:00"),
+             .referenceDate          = Date(JulianDate(JulianDateClock::duration{ 2433282.5 })),
              .mu                     = GravParam(9.85e-5 * pow<3>(km) / pow<2>(s)),
              .mass                   = Mass(2.4e-9 * (mag_power<10, 24> * kg)),
              .equitorialRadius       = Distance(6.2 * km),

@@ -40,7 +40,7 @@ inline constexpr struct Deimos : CelestialBody<"Deimos", Mars> {
 } // namespace planets
 
 template <>
-inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Deimos>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Deimos>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
@@ -51,7 +51,7 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
     using mp_units::si::unit_symbols::s;
 
     return { .type                   = CelestialBodyType::MOON,
-             .referenceDate          = Date("1950-01-01 00:00:00"),
+             .referenceDate          = Date(JulianDate(JulianDateClock::duration{ 2433282.5 })),
              .mu                     = GravParam(7.112e-4 * pow<3>(km) / pow<2>(s)),
              .mass                   = Mass(10.6e-9 * (mag_power<10, 24> * kg)),
              .equitorialRadius       = Distance(11.1 * km),

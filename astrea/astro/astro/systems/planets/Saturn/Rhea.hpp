@@ -40,7 +40,7 @@ inline constexpr struct Rhea : CelestialBody<"Rhea", Saturn> {
 } // namespace planets
 
 template <>
-inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Rhea>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Rhea>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
@@ -51,7 +51,7 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
     using mp_units::si::unit_symbols::s;
 
     return { .type                   = CelestialBodyType::MOON,
-             .referenceDate          = Date("2000-01-01 12:00:00"),
+             .referenceDate          = Date(J2000),
              .mu                     = GravParam(120.50 * pow<3>(km) / pow<2>(s)),
              .mass                   = Mass(0.00181 * (mag_power<10, 24> * kg)),
              .equitorialRadius       = Distance(746.0 * km),

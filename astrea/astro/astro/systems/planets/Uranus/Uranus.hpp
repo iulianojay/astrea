@@ -45,7 +45,7 @@ inline constexpr struct Uranus : CelestialBody<"Uranus", barycenters::SolarSyste
 } // namespace planets
 
 template <>
-inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Uranus>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Uranus>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
@@ -56,7 +56,7 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
     using mp_units::si::unit_symbols::s;
 
     return { .type                   = CelestialBodyType::PLANET,
-             .referenceDate          = Date("2000-01-01 12:00:00"),
+             .referenceDate          = Date(J2000),
              .mu                     = GravParam(5793939.0 * pow<3>(km) / pow<2>(s)),
              .mass                   = Mass(86.8 * (mag_power<10, 24> * kg)),
              .equitorialRadius       = Distance(25559.0 * km),

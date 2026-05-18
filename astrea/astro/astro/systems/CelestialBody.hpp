@@ -70,7 +70,7 @@ struct CelestialBody : Origin<_name_, _parent_>, detail::CelestialBodyBase {};
 /// Uses unconstrained auto _body_ so GCC can match explicit specialisations
 /// of the form get_celestial_body_parameters<planets::Earth>().
 template <auto _body_>
-inline constexpr CelestialBodyParameters get_celestial_body_parameters() = delete;
+inline consteval CelestialBodyParameters get_celestial_body_parameters() = delete;
 
 /// Primary template for atmospheric density — returns zero by default.
 template <auto _body_>

@@ -46,7 +46,7 @@ inline constexpr struct Jupiter : CelestialBody<"Jupiter", barycenters::SolarSys
 } // namespace planets
 
 template <>
-inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Jupiter>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Jupiter>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
@@ -57,7 +57,7 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
     using mp_units::si::unit_symbols::s;
 
     return { .type                   = CelestialBodyType::PLANET,
-             .referenceDate          = Date("2000-01-01 12:00:00"),
+             .referenceDate          = Date(J2000),
              .mu                     = GravParam(126686535.0 * pow<3>(km) / pow<2>(s)),
              .mass                   = Mass(1898.0 * (mag_power<10, 24> * kg)),
              .equitorialRadius       = Distance(71492.0 * km),

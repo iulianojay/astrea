@@ -31,7 +31,7 @@ inline constexpr struct Oberon : CelestialBody<"Oberon", Uranus> {
 } // namespace planets
 
 template <>
-inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Oberon>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Oberon>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
@@ -42,7 +42,7 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
     using mp_units::si::unit_symbols::s;
 
     return { .type                   = CelestialBodyType::MOON,
-             .referenceDate          = Date("1980-01-01 00:00:00"),
+             .referenceDate          = Date(JulianDate(JulianDateClock::duration{ 2444239.5 })),
              .mu                     = GravParam(192.4 * pow<3>(km) / pow<2>(s)),
              .mass                   = Mass(0.00288 * (mag_power<10, 24> * kg)),
              .equitorialRadius       = Distance(761.4 * km),

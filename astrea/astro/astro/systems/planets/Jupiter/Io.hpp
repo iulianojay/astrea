@@ -40,7 +40,7 @@ inline constexpr struct Io : CelestialBody<"Io", Jupiter> {
 } // namespace planets
 
 template <>
-inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Io>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Io>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
@@ -51,7 +51,7 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
     using mp_units::si::unit_symbols::s;
 
     return { .type                   = CelestialBodyType::MOON,
-             .referenceDate          = Date("1997-01-16 00:00:00"),
+             .referenceDate          = Date(JulianDate(JulianDateClock::duration{ 2450464.5 })),
              .mu                     = GravParam(5959.9 * pow<3>(km) / pow<2>(s)),
              .mass                   = Mass(0.08932 * (mag_power<10, 24> * kg)),
              .equitorialRadius       = Distance(1821.5 * km),

@@ -58,7 +58,7 @@ inline constexpr struct Earth : CelestialBody<"Earth", barycenters::SolarSystemB
 } // namespace planets
 
 template <>
-inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::Earth>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Earth>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
@@ -69,7 +69,7 @@ inline constexpr CelestialBodyParameters get_celestial_body_parameters<planets::
     using mp_units::si::unit_symbols::s;
 
     return { .type                   = CelestialBodyType::PLANET,
-             .referenceDate          = Date("2000-01-01 12:00:00"),
+             .referenceDate          = Date(J2000),
              .mu                     = GravParam(398600.44189 * pow<3>(km) / pow<2>(s)),
              .mass                   = Mass(5.97 * (mag_power<10, 24> * kg)),
              .equitorialRadius       = Distance(6378.137 * km),

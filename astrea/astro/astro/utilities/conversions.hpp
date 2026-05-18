@@ -71,7 +71,7 @@ Angle convert_mean_anomaly_to_eccentric_anomaly(const Angle& ma, const Unitless 
  * @param ang The angle to sanitize.
  * @return The sanitized angle.
  */
-constexpr Angle wrap_angle(const Angle& angle) noexcept
+inline constexpr Angle wrap_angle(const Angle& angle) noexcept
 {
     using mp_units::angular::unit_symbols::rad;
     static constexpr Angle twoPi = 2.0 * (std::numbers::pi * rad);
@@ -89,7 +89,7 @@ constexpr Angle wrap_angle(const Angle& angle) noexcept
  * @param ang The angle to sanitize.
  * @return The sanitized angle.
  */
-constexpr Angle wrap_angle_to_pi(const Angle& angle) noexcept
+inline constexpr Angle wrap_angle_to_pi(const Angle& angle) noexcept
 {
     using mp_units::angular::unit_symbols::rad;
     static constexpr Angle onePi = std::numbers::pi * rad;
