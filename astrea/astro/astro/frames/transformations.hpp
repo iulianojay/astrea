@@ -54,8 +54,7 @@ concept HasDcm = requires(const Date& date) { get_dcm<frame, frame_u>(date); };
  * @return true if the frame class has a member function get_dcm for the target frame, false otherwise.
  */
 template <IsFrame auto frame, IsFrame auto frame_u>
-concept HasDcmMethod =
-    requires(const decltype(frame)& frame, const Date& date) { frame.template get_dcm<frame, frame_u>(date); };
+concept HasDcmMethod = requires(const Date& date) { frame.template get_dcm<frame, frame_u>(date); };
 
 /**
  * @brief Get the center offset between two frames at a given date.
@@ -73,9 +72,25 @@ template <IsFrame auto frame, IsFrame auto frame_u>
     requires(has_same_origin(frame, frame_u))
 inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& date)
 {
-    return CartesianVector<Distance, frame>(
-        0.0 * mp_units::si::unit_symbols::m, 0.0 * mp_units::si::unit_symbols::m, 0.0 * mp_units::si::unit_symbols::m
-    );
+    return CartesianVector<Distance, frame>(Distance::zero(), Distance::zero(), Distance::zero());
+}
+
+template <IsFrame auto frame>
+inline consteval auto get_origin()
+{
+    return decltype(frame)::origin;
+}
+
+template <IsFrame auto frame>
+inline consteval auto get_axis()
+{
+    return decltype(frame)::axis;
+}
+
+template <IsFrame auto frame>
+inline consteval auto get_name()
+{
+    return decltype(frame)::name;
 }
 
 /**
@@ -96,7 +111,7 @@ inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& 
 {
     // Forcing the frame change here doesn't matter since the offset is just a difference and it's already implied that
     // these two frames share an axis.
-    return get_relative_position<frame::origin, frame_u::origin>(date).template force_frame_conversion<frame>();
+    return get_relative_position<get_origin<frame>(), get_origin<frame_u>()>(date).template force_frame_conversion<frame>();
 }
 
 namespace {
@@ -117,7 +132,9 @@ template <IsFrame auto frame, IsFrame auto frame_u>
 inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date)
 {
     static_assert(!(HasDcm<frame, frame_u> && HasDcm<frame_u, frame>), "DCM defined in both directions, please define only one to avoid symmetry issues.");
-    static_assert(IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>, "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference.");
+    static_assert(
+        IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>, "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference."
+    );
     static_assert(HasDcm<frame, frame_u> || HasDcm<frame_u, frame> || is_same_frame(frame, frame_u), "No DCM (get_dcm method) defined between these two frames.");
 
     if constexpr (is_same_frame(frame, frame_u)) {
@@ -199,11 +216,11 @@ inline constexpr CartesianVector<Distance, frame_u>
     translate_vector_into_frame(const CartesianVector<Distance, frame>& vec, const Date& date)
 {
     if constexpr (std::is_same_v<Value_T, Distance>) {
-        const auto& posRel = get_relative_position<frame_u::origin, frame::origin>(date); // frame -> frame_u
+        const auto& posRel = get_relative_position<get_origin<frame_u>(), get_origin<frame>()>(date); // frame -> frame_u
         return vec.template force_frame_conversion<frame_u>() + posRel.template force_frame_conversion<frame_u>();
     }
     else if constexpr (std::is_same_v<Value_T, Velocity>) {
-        const auto& velRel = get_relative_velocity<frame_u::origin, frame::origin>(date); // frame -> frame_u
+        const auto& velRel = get_relative_velocity<get_origin<frame_u>(), get_origin<frame>()>(date); // frame -> frame_u
         return vec.template force_frame_conversion<frame_u>() - velRel.template force_frame_conversion<frame_u>();
     }
     else {
@@ -239,7 +256,8 @@ inline constexpr CartesianVector<Value_T, frame_u>
     else {
         // Different origin and axis: translate to the intermediate frame that shares frame's axis
         // but frame_u's origin (e.g. ssb::icrf -> earth::icrf), then rotate to frame_u.
-        using IntermediateFrame      = Frame<frame::name + " / " + frame_u::name, frame_u::origin, frame::axis>;
+        using IntermediateFrame =
+            Frame<get_name<frame>() + mp_units::symbol_text{ " / " } + get_name<frame_u>(), get_origin<frame_u>(), get_axis<frame>()>;
         const auto vecInIntermediate = translate_vector_into_frame<Value_T, frame, IntermediateFrame>(vec, date);
         return rotate_vector_into_frame<Value_T, IntermediateFrame, frame_u>(vecInIntermediate, date);
     }

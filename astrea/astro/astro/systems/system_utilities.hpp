@@ -37,15 +37,41 @@
 namespace astrea {
 namespace astro {
 
+
+template <IsCelestialReference auto ancestor, IsCelestialReference auto body>
+consteval bool is_same_body()
+{
+    if constexpr (std::is_same_v<decltype(ancestor), decltype(body)>) { return true; }
+    else {
+        return false;
+    }
+}
+
+template <IsCelestialReference auto body>
+consteval bool has_parent()
+{
+    if constexpr (requires { decltype(body)::parent; }) { return true; }
+    else {
+        return false;
+    }
+}
+
+template <IsCelestialReference auto body>
+    requires(has_parent<body>())
+consteval auto get_parent()
+{
+    return decltype(body)::parent;
+}
+
 /**
  * @brief Returns true if Ancestor is Body itself or appears anywhere in Body's parent chain.
  */
 template <IsCelestialReference auto ancestor, IsCelestialReference auto body>
 consteval bool is_ancestor_of()
 {
-    if constexpr (std::is_same_v<decltype(ancestor), decltype(body)>) { return true; }
-    else if constexpr (requires { decltype(body)::parent; }) {
-        return is_ancestor_of<ancestor, decltype(body)::parent>();
+    if constexpr (is_same_body<ancestor, body>()) { return true; }
+    else if constexpr (has_parent<body>()) {
+        return is_ancestor_of<ancestor, get_parent<body>()>();
     }
     else {
         return false;
@@ -108,11 +134,14 @@ consteval auto find_common_ancestor()
 template <IsCelestialReference auto body1, IsCelestialReference auto body2>
 constexpr auto get_relative_position(const Date& date)
 {
-    static constexpr auto parent1 = decltype(body1)::parent;
-    static constexpr auto parent2 = decltype(body2)::parent;
+    if constexpr (is_same_body<body1, body2>()) {
+        return decltype(get_position_at<body1>(date))()(0.0 * km, 0.0 * km, 0.0 * km);
+    }
 
-    if constexpr (std::is_same_v<decltype(parent1), decltype(body2)>) { return get_position_at<body1>(date); }
-    else if constexpr (std::is_same_v<decltype(parent2), decltype(body1)>) {
+    if constexpr (has_parent<body1>() && is_same_body<get_parent<body1>(), body2>()) {
+        return get_position_at<body1>(date);
+    }
+    else if constexpr (has_parent<body2>() && is_same_body<get_parent<body2>(), body1>()) {
         return -get_position_at<body2>(date);
     }
     else {
@@ -134,11 +163,14 @@ constexpr auto get_relative_position(const Date& date)
 template <IsCelestialReference auto body1, IsCelestialReference auto body2>
 constexpr auto get_relative_velocity(const Date& date)
 {
-    static constexpr auto parent1 = decltype(body1)::parent;
-    static constexpr auto parent2 = decltype(body2)::parent;
+    if constexpr (is_same_body<body1, body2>()) {
+        return decltype(get_velocity_at<body1>(date))()(0.0 * km / s, 0.0 * km / s, 0.0 * km / s);
+    }
 
-    if constexpr (std::is_same_v<decltype(parent1), decltype(body2)>) { return get_velocity_at<body1>(date); }
-    else if constexpr (std::is_same_v<decltype(parent2), decltype(body1)>) {
+    if constexpr (has_parent<body1>() && is_same_body<get_parent<body1>(), body2>()) {
+        return get_velocity_at<body1>(date);
+    }
+    else if constexpr (has_parent<body2>() && is_same_body<get_parent<body2>(), body1>()) {
         return -get_velocity_at<body2>(date);
     }
     else {
@@ -160,8 +192,8 @@ constexpr auto get_relative_velocity(const Date& date)
 template <IsCelestialReference auto body, IsCelestialReference auto ancestor>
 constexpr auto get_position_relative_to_ancestor(const Date& date)
 {
-    static constexpr auto parent = decltype(body)::parent;
-    if constexpr (std::is_same_v<decltype(parent), decltype(ancestor)>) { return get_position_at<body>(date); }
+    static constexpr auto parent = get_parent<body>();
+    if constexpr (is_same_body<parent, ancestor>()) { return get_position_at<body>(date); }
     else {
         return get_position_at<body>(date) + get_position_relative_to_ancestor<parent, ancestor>(date);
     }
@@ -177,8 +209,8 @@ constexpr auto get_position_relative_to_ancestor(const Date& date)
 template <IsCelestialReference auto body, IsCelestialReference auto ancestor>
 constexpr auto get_velocity_relative_to_ancestor(const Date& date)
 {
-    static constexpr auto parent = decltype(body)::parent;
-    if constexpr (std::is_same_v<decltype(parent), decltype(ancestor)>) { return get_velocity_at<body>(date); }
+    static constexpr auto parent = get_parent<body>();
+    if constexpr (is_same_body<parent, ancestor>()) { return get_velocity_at<body>(date); }
     else {
         return get_velocity_at<body>(date) + get_velocity_relative_to_ancestor<parent, ancestor>(date);
     }
