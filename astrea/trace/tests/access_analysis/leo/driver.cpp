@@ -120,7 +120,7 @@ TEST_F(LeoToGroundAccessTest, LeoThinCone)
     for (Date date = epoch; date <= epoch + propTime; date += minutes(1.0)) {
         const auto state = stateHistory.get_state_at(date);
         const auto rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
-        const auto lla   = astro::Geodetic(rEcef, centralBody.get());
+        const auto lla   = astro::Geodetic<astro::planets::Earth>(rEcef);
         const auto lat   = lla.get_latitude();
         const auto lon   = lla.get_longitude();
 

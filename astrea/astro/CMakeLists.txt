@@ -59,11 +59,6 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/state/attitude/Attitude.cpp
 
-    ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.cpp
-    ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.cpp
-    ${ASTRO_BASE}/state/angular_elements/instances/Geocentric.cpp
-    ${ASTRO_BASE}/state/angular_elements/instances/Spherical.cpp
-
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.cpp
 
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.cpp

@@ -29,6 +29,7 @@
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/systems/system_concepts.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -39,12 +40,20 @@ namespace astro {
  * @brief Class representing a Geocentric state vector in astrodynamics.
  *
  * This class encapsulates the position and velocity of a vehicle in Geocentric coordinates.
+ *
+ * @tparam _body_ The celestial body NTTP that defines the reference ellipsoid and frames.
  */
+template <IsCelestialBody auto _body_>
 class Geocentric {
 
-    friend std::ostream& operator<<(std::ostream&, Geocentric const&);
+    template <IsCelestialBody auto body>
+    friend std::ostream& operator<<(std::ostream&, Geocentric<body> const&);
 
   public:
+    static constexpr auto body          = _body_; //!< The celestial body of this Geocentric state.
+    static constexpr auto _icrf_frame_  = get_body_icrf_frame<_body_>();  //!< Inertial frame for the body.
+    static constexpr auto _fixed_frame_ = get_body_fixed_frame<_body_>(); //!< Body-fixed rotating frame.
+
     /**
      * @brief Default constructor for Geocentric.
      *
@@ -72,32 +81,30 @@ class Geocentric {
     }
 
     /**
-     * @brief Constructor for Geocentric with position and velocity vectors.
+     * @brief Constructor for Geocentric from an inertial radius vector.
      *
-     * @param r Radius vector in ECI (position)
+     * @param r Radius vector in the body's inertial frame (position)
+     * @param date Date for the frame transformation
      */
-    Geocentric(const RadiusVector<frames::earth::icrf>& r, const Date& date, const CelestialBody* parent);
+    Geocentric(const RadiusVector<_icrf_frame_>& r, const Date& date);
 
     /**
-     * @brief Constructor for Geocentric with position and velocity vectors.
+     * @brief Constructor for Geocentric from a body-fixed radius vector.
      *
-     * @param r Radius vector in ECEF (position)
+     * @param r Radius vector in the body-fixed frame (position)
      */
-    Geocentric(const RadiusVector<frames::earth::earth_fixed>& r, const CelestialBody* parent);
+    Geocentric(const RadiusVector<_fixed_frame_>& r);
 
     /**
      * @brief Constructor for Geocentric from orbital elements.
      *
      * @param elements Orbital elements
-     * @param sys Astrodynamics system containing celestial body data
+     * @param date Date for the frame transformation
      */
     template <IsOrbitalElements T>
     Geocentric(const T& elements, const Date& date)
     {
-        *this = Geocentric(
-            Cartesian(elements).get_position().template in_frame<frames::earth::earth_fixed>(date),
-            date.get_central_body().get()
-        );
+        *this = Geocentric<_body_>(Cartesian<_icrf_frame_>(elements).get_position().template in_frame<_fixed_frame_>(date));
     }
 
     /**
@@ -105,14 +112,14 @@ class Geocentric {
      *
      * @param other Another Geocentric object
      */
-    Geocentric(const Geocentric&);
+    Geocentric(const Geocentric<_body_>&);
 
     /**
      * @brief Move constructor for Geocentric.
      *
      * @param other Another Geocentric object
      */
-    Geocentric(Geocentric&&) noexcept;
+    Geocentric(Geocentric<_body_>&&) noexcept;
 
     /**
      * @brief Move assignment operator for Geocentric.
@@ -120,7 +127,7 @@ class Geocentric {
      * @param other Another Geocentric object
      * @return Geocentric& Reference to the current object
      */
-    Geocentric& operator=(Geocentric&&) noexcept;
+    Geocentric<_body_>& operator=(Geocentric<_body_>&&) noexcept;
 
     /**
      * @brief Copy assignment operator for Geocentric.
@@ -128,7 +135,7 @@ class Geocentric {
      * @param other Another Geocentric object
      * @return Geocentric& Reference to the current object
      */
-    Geocentric& operator=(const Geocentric&);
+    Geocentric<_body_>& operator=(const Geocentric<_body_>&);
 
     /**
      * @brief Default destructor for Geocentric.
@@ -142,7 +149,7 @@ class Geocentric {
      * @return true if the two Geocentric objects are equal
      * @return false if the two Geocentric objects are not equal
      */
-    bool operator==(const Geocentric& other) const;
+    bool operator==(const Geocentric<_body_>& other) const;
 
     /**
      * @brief Compares two Geocentric objects for inequality.
@@ -151,7 +158,7 @@ class Geocentric {
      * @return true if the two Geocentric objects are not equal
      * @return false if the two Geocentric objects are equal
      */
-    bool operator!=(const Geocentric& other) const;
+    bool operator!=(const Geocentric<_body_>& other) const;
 
     /**
      * @brief Adds two Geocentric objects.
@@ -159,7 +166,7 @@ class Geocentric {
      * @param other Another Geocentric object
      * @return Resultant Geocentric sum.
      */
-    Geocentric operator+(const Geocentric& other) const;
+    Geocentric<_body_> operator+(const Geocentric<_body_>& other) const;
 
     /**
      * @brief Adds another Geocentric object to the current one.
@@ -167,7 +174,7 @@ class Geocentric {
      * @param other Another Geocentric object
      * @return Reference to the current Geocentric object after addition.
      */
-    Geocentric& operator+=(const Geocentric& other);
+    Geocentric<_body_>& operator+=(const Geocentric<_body_>& other);
 
     /**
      * @brief Subtracts another Geocentric object from the current one.
@@ -175,7 +182,7 @@ class Geocentric {
      * @param other Another Geocentric object
      * @return Resultant Geocentric difference.
      */
-    Geocentric operator-(const Geocentric& other) const;
+    Geocentric<_body_> operator-(const Geocentric<_body_>& other) const;
 
     /**
      * @brief Subtracts another Geocentric object from the current one.
@@ -183,7 +190,7 @@ class Geocentric {
      * @param other Another Geocentric object
      * @return Reference to the current Geocentric object after subtraction.
      */
-    Geocentric& operator-=(const Geocentric& other);
+    Geocentric<_body_>& operator-=(const Geocentric<_body_>& other);
 
     /**
      * @brief Multiplies the Geocentric state vector by a scalar.
@@ -191,7 +198,7 @@ class Geocentric {
      * @param multiplier Scalar value to multiply with
      * @return Resultant Geocentric after multiplication.
      */
-    Geocentric operator*(const Unitless& multiplier) const;
+    Geocentric<_body_> operator*(const Unitless& multiplier) const;
 
     /**
      * @brief Multiplies the Geocentric state vector by a scalar.
@@ -199,7 +206,7 @@ class Geocentric {
      * @param multiplier Scalar value to multiply with
      * @return Reference to the current Geocentric object after multiplication.
      */
-    Geocentric& operator*=(const Unitless& multiplier);
+    Geocentric<_body_>& operator*=(const Unitless& multiplier);
 
     /**
      * @brief Divides the Geocentric state vector by another Geocentric object.
@@ -207,7 +214,7 @@ class Geocentric {
      * @param other Another Geocentric object
      * @return Resultant vector of unitless values after division.
      */
-    std::vector<Unitless> operator/(const Geocentric& other) const;
+    std::vector<Unitless> operator/(const Geocentric<_body_>& other) const;
 
     /**
      * @brief Divides the Geocentric state vector by a scalar.
@@ -215,7 +222,7 @@ class Geocentric {
      * @param divisor Scalar value to divide with
      * @return Resultant Geocentric after division.
      */
-    Geocentric operator/(const Unitless& divisor) const;
+    Geocentric<_body_> operator/(const Unitless& divisor) const;
 
     /**
      * @brief Divides the Geocentric state vector by a scalar.
@@ -223,21 +230,22 @@ class Geocentric {
      * @param divisor Scalar value to divide with
      * @return Reference to the current Geocentric object after division.
      */
-    Geocentric& operator/=(const Unitless& divisor);
+    Geocentric<_body_>& operator/=(const Unitless& divisor);
 
     /**
-     * @brief Converts the Geocentric state vector to a RadiusVector<frames::earth::earth_fixed>.
+     * @brief Converts the Geocentric state vector to a body-fixed radius vector.
      *
-     * @return RadiusVector<frames::earth::earth_fixed> The position vector in Geocentric coordinates.
+     * @return RadiusVector in the body-fixed frame.
      */
-    RadiusVector<frames::earth::earth_fixed> get_position(const CelestialBody* parent) const;
+    RadiusVector<_fixed_frame_> get_position() const;
 
     /**
-     * @brief Converts the Geocentric state vector to a RadiusVector<frames::earth::icrf>.
+     * @brief Converts the Geocentric state vector to an inertial radius vector.
      *
-     * @return RadiusVector<frames::earth::icrf> The position vector in Geocentric coordinates.
+     * @param date Date for the frame transformation
+     * @return RadiusVector in the body's inertial frame.
      */
-    RadiusVector<frames::earth::icrf> get_position(const Date& date, const CelestialBody* parent) const;
+    RadiusVector<_icrf_frame_> get_position(const Date& date) const;
 
     /**
      * @brief Get the latitude of the Geocentric state vector.
@@ -266,11 +274,11 @@ class Geocentric {
      * @param thisTime Time of the current state
      * @param otherTime Time of the other state
      * @param other Other Geocentric state to interpolate with
-     * @param sys Astrodynamics system containing celestial body data
      * @param targetTime Target time for interpolation
      * @return Geocentric Interpolated Geocentric state at the target time.
      */
-    Geocentric interpolate(const Time& thisTime, const Time& otherTime, const Geocentric& other, const Time& targetTime) const;
+    Geocentric<_body_>
+        interpolate(const Time& thisTime, const Time& otherTime, const Geocentric<_body_>& other, const Time& targetTime) const;
 
   private:
     Angle _latitude;    //!< Geocentric Latitude
@@ -342,3 +350,5 @@ RadiusVector<_frame_>
 
 } // namespace astro
 } // namespace astrea
+
+#include <astro/state/angular_elements/instances/Geocentric.ipp>

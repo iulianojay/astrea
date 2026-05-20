@@ -20,14 +20,19 @@
 
 #include <iosfwd>
 
+#include <mp-units/math.h>
+#include <mp-units/systems/angular/math.h>
+
 // units
 #include <units/units.hpp>
 
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/systems/system_concepts.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -38,12 +43,20 @@ namespace astro {
  * @brief Class representing a Cylindrical state vector in astrodynamics.
  *
  * This class encapsulates the position and velocity of a vehicle in Cylindrical coordinates.
+ *
+ * @tparam _body_ The celestial body NTTP that defines the reference frames.
  */
+template <IsCelestialBody auto _body_>
 class Cylindrical {
 
-    friend std::ostream& operator<<(std::ostream&, Cylindrical const&);
+    template <IsCelestialBody auto body>
+    friend std::ostream& operator<<(std::ostream&, Cylindrical<body> const&);
 
   public:
+    static constexpr auto body          = _body_; //!< The celestial body of this Cylindrical state.
+    static constexpr auto _icrf_frame_  = get_body_icrf_frame<_body_>();  //!< Inertial frame for the body.
+    static constexpr auto _fixed_frame_ = get_body_fixed_frame<_body_>(); //!< Body-fixed rotating frame.
+
     /**
      * @brief Default constructor for Cylindrical.
      *
@@ -57,11 +70,11 @@ class Cylindrical {
     }
 
     /**
-     * @brief Constructor for Cylindrical with azimuth, elevation, and range.
+     * @brief Constructor for Cylindrical with range, azimuth, and elevation.
      *
+     * @param range Range
      * @param azimuth Cylindrical azimuth
      * @param elevation Elevation
-     * @param range Range
      */
     Cylindrical(const Distance& range, const Angle& azimuth, const Distance& elevation) :
         _range(range),
@@ -71,205 +84,88 @@ class Cylindrical {
     }
 
     /**
-     * @brief Constructor for Cylindrical with position and velocity vectors.
+     * @brief Constructor for Cylindrical from an inertial radius vector.
      *
-     * @param r Radius vector in ECI (position)
+     * @param r Radius vector in the body's inertial frame
+     * @param date Date for the frame transformation
      */
-    Cylindrical(const RadiusVector<frames::earth::icrf>& r, const Date& date, const CelestialBody* parent);
+    Cylindrical(const RadiusVector<_icrf_frame_>& r, const Date& date);
 
     /**
-     * @brief Constructor for Cylindrical with position and velocity vectors.
+     * @brief Constructor for Cylindrical from a body-fixed radius vector.
      *
-     * @param r Radius vector in ECEF (position)
+     * @param r Radius vector in the body-fixed frame
      */
-    Cylindrical(const RadiusVector<frames::earth::earth_fixed>& r, const CelestialBody* parent);
+    Cylindrical(const RadiusVector<_fixed_frame_>& r);
 
     /**
      * @brief Constructor for Cylindrical from orbital elements.
      *
      * @param elements Orbital elements
-     * @param sys Astrodynamics system containing celestial body data
+     * @param date Date for the frame transformation
      */
     template <IsOrbitalElements T>
     Cylindrical(const T& elements, const Date& date)
     {
-        *this = Cylindrical(
-            Cartesian(elements).get_position().template in_frame<frames::earth::earth_fixed>(date),
-            sys.get_central_body().get()
-        );
+        *this = Cylindrical<_body_>(Cartesian(elements).get_position().template in_frame<_fixed_frame_>(date));
     }
 
     /**
      * @brief Copy constructor for Cylindrical.
-     *
-     * @param other Another Cylindrical object
      */
-    Cylindrical(const Cylindrical&);
+    Cylindrical(const Cylindrical<_body_>&);
 
     /**
      * @brief Move constructor for Cylindrical.
-     *
-     * @param other Another Cylindrical object
      */
-    Cylindrical(Cylindrical&&) noexcept;
+    Cylindrical(Cylindrical<_body_>&&) noexcept;
 
     /**
      * @brief Move assignment operator for Cylindrical.
-     *
-     * @param other Another Cylindrical object
-     * @return Cylindrical& Reference to the current object
      */
-    Cylindrical& operator=(Cylindrical&&) noexcept;
+    Cylindrical<_body_>& operator=(Cylindrical<_body_>&&) noexcept;
 
     /**
      * @brief Copy assignment operator for Cylindrical.
-     *
-     * @param other Another Cylindrical object
-     * @return Cylindrical& Reference to the current object
      */
-    Cylindrical& operator=(const Cylindrical&);
+    Cylindrical<_body_>& operator=(const Cylindrical<_body_>&);
 
     /**
      * @brief Default destructor for Cylindrical.
      */
     ~Cylindrical() = default;
 
-    /**
-     * @brief Compares two Cylindrical objects for equality.
-     *
-     * @param other Another Cylindrical object
-     * @return true if the two Cylindrical objects are equal
-     * @return false if the two Cylindrical objects are not equal
-     */
-    bool operator==(const Cylindrical& other) const;
+    bool operator==(const Cylindrical<_body_>& other) const;
+    bool operator!=(const Cylindrical<_body_>& other) const;
+
+    Cylindrical<_body_> operator+(const Cylindrical<_body_>& other) const;
+    Cylindrical<_body_>& operator+=(const Cylindrical<_body_>& other);
+    Cylindrical<_body_> operator-(const Cylindrical<_body_>& other) const;
+    Cylindrical<_body_>& operator-=(const Cylindrical<_body_>& other);
+    Cylindrical<_body_> operator*(const Unitless& multiplier) const;
+    Cylindrical<_body_>& operator*=(const Unitless& multiplier);
+    std::vector<Unitless> operator/(const Cylindrical<_body_>& other) const;
+    Cylindrical<_body_> operator/(const Unitless& divisor) const;
+    Cylindrical<_body_>& operator/=(const Unitless& divisor);
 
     /**
-     * @brief Compares two Cylindrical objects for inequality.
-     *
-     * @param other Another Cylindrical object
-     * @return true if the two Cylindrical objects are not equal
-     * @return false if the two Cylindrical objects are equal
+     * @brief Converts the Cylindrical state to a body-fixed radius vector.
      */
-    bool operator!=(const Cylindrical& other) const;
+    RadiusVector<_fixed_frame_> get_position() const;
 
     /**
-     * @brief Adds two Cylindrical objects.
+     * @brief Converts the Cylindrical state to an inertial radius vector.
      *
-     * @param other Another Cylindrical object
-     * @return Resultant Cylindrical sum.
+     * @param date Date for the frame transformation
      */
-    Cylindrical operator+(const Cylindrical& other) const;
+    RadiusVector<_icrf_frame_> get_position(const Date& date) const;
 
-    /**
-     * @brief Adds another Cylindrical object to the current one.
-     *
-     * @param other Another Cylindrical object
-     * @return Reference to the current Cylindrical object after addition.
-     */
-    Cylindrical& operator+=(const Cylindrical& other);
-
-    /**
-     * @brief Subtracts another Cylindrical object from the current one.
-     *
-     * @param other Another Cylindrical object
-     * @return Resultant Cylindrical difference.
-     */
-    Cylindrical operator-(const Cylindrical& other) const;
-
-    /**
-     * @brief Subtracts another Cylindrical object from the current one.
-     *
-     * @param other Another Cylindrical object
-     * @return Reference to the current Cylindrical object after subtraction.
-     */
-    Cylindrical& operator-=(const Cylindrical& other);
-
-    /**
-     * @brief Multiplies the Cylindrical state vector by a scalar.
-     *
-     * @param multiplier Scalar value to multiply with
-     * @return Resultant Cylindrical after multiplication.
-     */
-    Cylindrical operator*(const Unitless& multiplier) const;
-
-    /**
-     * @brief Multiplies the Cylindrical state vector by a scalar.
-     *
-     * @param multiplier Scalar value to multiply with
-     * @return Reference to the current Cylindrical object after multiplication.
-     */
-    Cylindrical& operator*=(const Unitless& multiplier);
-
-    /**
-     * @brief Divides the Cylindrical state vector by another Cylindrical object.
-     *
-     * @param other Another Cylindrical object
-     * @return Resultant vector of unitless values after division.
-     */
-    std::vector<Unitless> operator/(const Cylindrical& other) const;
-
-    /**
-     * @brief Divides the Cylindrical state vector by a scalar.
-     *
-     * @param divisor Scalar value to divide with
-     * @return Resultant Cylindrical after division.
-     */
-    Cylindrical operator/(const Unitless& divisor) const;
-
-    /**
-     * @brief Divides the Cylindrical state vector by a scalar.
-     *
-     * @param divisor Scalar value to divide with
-     * @return Reference to the current Cylindrical object after division.
-     */
-    Cylindrical& operator/=(const Unitless& divisor);
-
-    /**
-     * @brief Converts the Cylindrical state vector to a RadiusVector<frames::earth::earth_fixed>.
-     *
-     * @return RadiusVector<frames::earth::earth_fixed> The position vector in Cylindrical coordinates.
-     */
-    RadiusVector<frames::earth::earth_fixed> get_position(const CelestialBody* parent) const;
-
-    /**
-     * @brief Converts the Cylindrical state vector to a RadiusVector<frames::earth::icrf>.
-     *
-     * @return RadiusVector<frames::earth::icrf> The position vector in Cylindrical coordinates.
-     */
-    RadiusVector<frames::earth::icrf> get_position(const Date& date, const CelestialBody* parent) const;
-
-    /**
-     * @brief Get the azimuth of the Cylindrical state vector.
-     *
-     * @return const Angle& Reference to the azimuth component of the Cylindrical state vector.
-     */
     const Angle& get_azimuth() const { return _azimuth; }
-
-    /**
-     * @brief Get the elevation of the Cylindrical state vector.
-     *
-     * @return const Distance& Reference to the elevation component of the Cylindrical state vector.
-     */
     const Distance& get_elevation() const { return _elevation; }
-
-    /**
-     * @brief Get the range of the Cylindrical state vector.
-     *
-     * @return const Distance& Reference to the range component of the Cylindrical state vector.
-     */
     const Distance& get_range() const { return _range; }
 
-    /**
-     * @brief Interpolates between two Cylindrical states at a given time.
-     *
-     * @param thisTime Time of the current state
-     * @param otherTime Time of the other state
-     * @param other Other Cylindrical state to interpolate with
-     * @param sys Astrodynamics system containing celestial body data
-     * @param targetTime Target time for interpolation
-     * @return Cylindrical Interpolated Cylindrical state at the target time.
-     */
-    Cylindrical interpolate(const Time& thisTime, const Time& otherTime, const Cylindrical& other, const Time& targetTime) const;
+    Cylindrical<_body_>
+        interpolate(const Time& thisTime, const Time& otherTime, const Cylindrical<_body_>& other, const Time& targetTime) const;
 
   private:
     Distance _range;     //!< Range
@@ -279,24 +175,41 @@ class Cylindrical {
 
 
 /**
- * @brief Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates.
+ * @brief Convert a body-fixed radius vector to cylindrical coordinates.
  *
- * @param rEcef The radius vector in ECEF coordinates.
+ * @param rFixed The radius vector in the body-fixed frame.
  * @return The range, azimuth, and elevation as a tuple.
  */
-std::tuple<Distance, Angle, Distance> convert_earth_fixed_to_cylindrical(const RadiusVector<frames::earth::earth_fixed>& rEcef);
+template <IsFrame auto _frame_>
+    requires(IsFixedRotatingFrame<_frame_>)
+std::tuple<Distance, Angle, Distance> convert_body_fixed_to_cylindrical(const RadiusVector<_frame_>& rFixed)
+{
+    using mp_units::si::unit_symbols::km;
+    const Distance range     = rFixed.norm();
+    const Distance elevation = rFixed.get_z();
+    Angle azimuth = acos(rFixed.get_x() / sqrt(rFixed.get_x() * rFixed.get_x() + rFixed.get_y() * rFixed.get_y()));
+    if (rFixed.get_y() < 0.0 * km) { azimuth = -azimuth; }
+    return { range, azimuth, elevation };
+}
 
 
 /**
- * @brief Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates.
+ * @brief Convert cylindrical coordinates to a body-fixed radius vector.
  *
- * @param range The range in meters.
+ * @param range The range.
  * @param azimuth The azimuth in radians.
- * @param elevation The elevation in meters.
- * @return The radius vector in ECEF coordinates.
+ * @param elevation The elevation.
+ * @return The radius vector in the body-fixed frame.
  */
-RadiusVector<frames::earth::earth_fixed>
-    convert_cylindrical_to_earth_fixed(const Distance& range, const Angle& azimuth, const Distance& elevation);
+template <IsFrame auto _frame_>
+    requires(IsFixedRotatingFrame<_frame_>)
+RadiusVector<_frame_> convert_cylindrical_to_body_fixed(const Distance& range, const Angle& azimuth, const Distance& elevation)
+{
+    return RadiusVector<_frame_>(range * cos(azimuth), range * sin(azimuth), elevation);
+}
 
 } // namespace astro
 } // namespace astrea
+
+
+#include <astro/state/angular_elements/instances/Cylindrical.ipp>

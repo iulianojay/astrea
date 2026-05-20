@@ -22,6 +22,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
+#include <astro/systems/planets.hpp>
 #include <units/units.hpp>
 
 #include <trace/platforms/AccessObject.hpp>
@@ -72,7 +73,7 @@ class GroundPoint : virtual public AccessObject {
      *
      * @return const Geodetic& The geodetic coordinates (latitude, longitude, altitude) of the ground point.
      */
-    const astro::Geodetic& get_lla() const;
+    const astro::Geodetic<astro::planets::Earth>& get_lla() const;
 
     /**
      * @brief Gets the latitude of the ground point.
@@ -142,9 +143,9 @@ class GroundPoint : virtual public AccessObject {
     std::string get_name() const;
 
   protected:
-    const astro::CelestialBody* _parent; //!< Pointer to the parent celestial body
-    astro::Geodetic _lla;                //!< Geodetic coordinates of the ground point
-    std::size_t _id;                     //!< Unique identifier for the ground station, generated from its properties.
+    const astro::CelestialBody* _parent;         //!< Pointer to the parent celestial body
+    astro::Geodetic<astro::planets::Earth> _lla; //!< Geodetic coordinates of the ground point
+    std::size_t _id; //!< Unique identifier for the ground station, generated from its properties.
 };
 
 } // namespace trace

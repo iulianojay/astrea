@@ -20,14 +20,19 @@
 
 #include <iosfwd>
 
+#include <mp-units/math.h>
+#include <mp-units/systems/angular/math.h>
+
 // units
 #include <units/units.hpp>
 
 // astro
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/systems/system_concepts.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -38,12 +43,20 @@ namespace astro {
  * @brief Class representing a Spherical state vector in astrodynamics.
  *
  * This class encapsulates the position and velocity of a vehicle in Spherical coordinates.
+ *
+ * @tparam _body_ The celestial body NTTP that defines the reference frames.
  */
+template <IsCelestialBody auto _body_>
 class Spherical {
 
-    friend std::ostream& operator<<(std::ostream&, Spherical const&);
+    template <IsCelestialBody auto body>
+    friend std::ostream& operator<<(std::ostream&, Spherical<body> const&);
 
   public:
+    static constexpr auto body          = _body_; //!< The celestial body of this Spherical state.
+    static constexpr auto _icrf_frame_  = get_body_icrf_frame<_body_>();  //!< Inertial frame for the body.
+    static constexpr auto _fixed_frame_ = get_body_fixed_frame<_body_>(); //!< Body-fixed rotating frame.
+
     /**
      * @brief Default constructor for Spherical.
      *
@@ -57,11 +70,11 @@ class Spherical {
     }
 
     /**
-     * @brief Constructor for Spherical with azimuth, inclination, and range.
+     * @brief Constructor for Spherical with range, inclination, and azimuth.
      *
-     * @param azimuth Spherical azimuth
-     * @param inclination Inclination
      * @param range Range
+     * @param inclination Inclination
+     * @param azimuth Azimuth
      */
     Spherical(const Distance& range, const Angle& inclination, const Angle& azimuth) :
         _range(range),
@@ -71,205 +84,88 @@ class Spherical {
     }
 
     /**
-     * @brief Constructor for Spherical with position and velocity vectors.
+     * @brief Constructor for Spherical from an inertial radius vector.
      *
-     * @param r Radius vector in ECI (position)
+     * @param r Radius vector in the body's inertial frame
+     * @param date Date for the frame transformation
      */
-    Spherical(const RadiusVector<frames::earth::icrf>& r, const Date& date, const CelestialBody* parent);
+    Spherical(const RadiusVector<_icrf_frame_>& r, const Date& date);
 
     /**
-     * @brief Constructor for Spherical with position and velocity vectors.
+     * @brief Constructor for Spherical from a body-fixed radius vector.
      *
-     * @param r Radius vector in ECEF (position)
+     * @param r Radius vector in the body-fixed frame
      */
-    Spherical(const RadiusVector<frames::earth::earth_fixed>& r, const CelestialBody* parent);
+    Spherical(const RadiusVector<_fixed_frame_>& r);
 
     /**
      * @brief Constructor for Spherical from orbital elements.
      *
      * @param elements Orbital elements
-     * @param sys Astrodynamics system containing celestial body data
+     * @param date Date for the frame transformation
      */
     template <IsOrbitalElements T>
     Spherical(const T& elements, const Date& date)
     {
-        *this = Spherical(
-            Cartesian(elements).get_position().template in_frame<frames::earth::earth_fixed>(date),
-            date.get_central_body().get()
-        );
+        *this = Spherical<_body_>(Cartesian(elements).get_position().template in_frame<_fixed_frame_>(date));
     }
 
     /**
      * @brief Copy constructor for Spherical.
-     *
-     * @param other Another Spherical object
      */
-    Spherical(const Spherical&);
+    Spherical(const Spherical<_body_>&);
 
     /**
      * @brief Move constructor for Spherical.
-     *
-     * @param other Another Spherical object
      */
-    Spherical(Spherical&&) noexcept;
+    Spherical(Spherical<_body_>&&) noexcept;
 
     /**
      * @brief Move assignment operator for Spherical.
-     *
-     * @param other Another Spherical object
-     * @return Spherical& Reference to the current object
      */
-    Spherical& operator=(Spherical&&) noexcept;
+    Spherical<_body_>& operator=(Spherical<_body_>&&) noexcept;
 
     /**
      * @brief Copy assignment operator for Spherical.
-     *
-     * @param other Another Spherical object
-     * @return Spherical& Reference to the current object
      */
-    Spherical& operator=(const Spherical&);
+    Spherical<_body_>& operator=(const Spherical<_body_>&);
 
     /**
      * @brief Default destructor for Spherical.
      */
     ~Spherical() = default;
 
-    /**
-     * @brief Compares two Spherical objects for equality.
-     *
-     * @param other Another Spherical object
-     * @return true if the two Spherical objects are equal
-     * @return false if the two Spherical objects are not equal
-     */
-    bool operator==(const Spherical& other) const;
+    bool operator==(const Spherical<_body_>& other) const;
+    bool operator!=(const Spherical<_body_>& other) const;
+
+    Spherical<_body_> operator+(const Spherical<_body_>& other) const;
+    Spherical<_body_>& operator+=(const Spherical<_body_>& other);
+    Spherical<_body_> operator-(const Spherical<_body_>& other) const;
+    Spherical<_body_>& operator-=(const Spherical<_body_>& other);
+    Spherical<_body_> operator*(const Unitless& multiplier) const;
+    Spherical<_body_>& operator*=(const Unitless& multiplier);
+    std::vector<Unitless> operator/(const Spherical<_body_>& other) const;
+    Spherical<_body_> operator/(const Unitless& divisor) const;
+    Spherical<_body_>& operator/=(const Unitless& divisor);
 
     /**
-     * @brief Compares two Spherical objects for inequality.
-     *
-     * @param other Another Spherical object
-     * @return true if the two Spherical objects are not equal
-     * @return false if the two Spherical objects are equal
+     * @brief Converts the Spherical state to a body-fixed radius vector.
      */
-    bool operator!=(const Spherical& other) const;
+    RadiusVector<_fixed_frame_> get_position() const;
 
     /**
-     * @brief Adds two Spherical objects.
+     * @brief Converts the Spherical state to an inertial radius vector.
      *
-     * @param other Another Spherical object
-     * @return Resultant Spherical sum.
+     * @param date Date for the frame transformation
      */
-    Spherical operator+(const Spherical& other) const;
+    RadiusVector<_icrf_frame_> get_position(const Date& date) const;
 
-    /**
-     * @brief Adds another Spherical object to the current one.
-     *
-     * @param other Another Spherical object
-     * @return Reference to the current Spherical object after addition.
-     */
-    Spherical& operator+=(const Spherical& other);
-
-    /**
-     * @brief Subtracts another Spherical object from the current one.
-     *
-     * @param other Another Spherical object
-     * @return Resultant Spherical difference.
-     */
-    Spherical operator-(const Spherical& other) const;
-
-    /**
-     * @brief Subtracts another Spherical object from the current one.
-     *
-     * @param other Another Spherical object
-     * @return Reference to the current Spherical object after subtraction.
-     */
-    Spherical& operator-=(const Spherical& other);
-
-    /**
-     * @brief Multiplies the Spherical state vector by a scalar.
-     *
-     * @param multiplier Scalar value to multiply with
-     * @return Resultant Spherical after multiplication.
-     */
-    Spherical operator*(const Unitless& multiplier) const;
-
-    /**
-     * @brief Multiplies the Spherical state vector by a scalar.
-     *
-     * @param multiplier Scalar value to multiply with
-     * @return Reference to the current Spherical object after multiplication.
-     */
-    Spherical& operator*=(const Unitless& multiplier);
-
-    /**
-     * @brief Divides the Spherical state vector by another Spherical object.
-     *
-     * @param other Another Spherical object
-     * @return Resultant vector of unitless values after division.
-     */
-    std::vector<Unitless> operator/(const Spherical& other) const;
-
-    /**
-     * @brief Divides the Spherical state vector by a scalar.
-     *
-     * @param divisor Scalar value to divide with
-     * @return Resultant Spherical after division.
-     */
-    Spherical operator/(const Unitless& divisor) const;
-
-    /**
-     * @brief Divides the Spherical state vector by a scalar.
-     *
-     * @param divisor Scalar value to divide with
-     * @return Reference to the current Spherical object after division.
-     */
-    Spherical& operator/=(const Unitless& divisor);
-
-    /**
-     * @brief Converts the Spherical state vector to a RadiusVector<frames::earth::earth_fixed>.
-     *
-     * @return RadiusVector<frames::earth::earth_fixed> The position vector in Spherical coordinates.
-     */
-    RadiusVector<frames::earth::earth_fixed> get_position(const CelestialBody* parent) const;
-
-    /**
-     * @brief Converts the Spherical state vector to a RadiusVector<frames::earth::icrf>.
-     *
-     * @return RadiusVector<frames::earth::icrf> The position vector in Spherical coordinates.
-     */
-    RadiusVector<frames::earth::icrf> get_position(const Date& date, const CelestialBody* parent) const;
-
-    /**
-     * @brief Get the azimuth of the Spherical state vector.
-     *
-     * @return const Angle& Reference to the azimuth component of the Spherical state vector.
-     */
     const Angle& get_azimuth() const { return _azimuth; }
-
-    /**
-     * @brief Get the inclination of the Spherical state vector.
-     *
-     * @return const Angle& Reference to the inclination component of the Spherical state vector.
-     */
     const Angle& get_inclination() const { return _inclination; }
-
-    /**
-     * @brief Get the range of the Spherical state vector.
-     *
-     * @return const Distance& Reference to the range component of the Spherical state vector.
-     */
     const Distance& get_range() const { return _range; }
 
-    /**
-     * @brief Interpolates between two Spherical states at a given time.
-     *
-     * @param thisTime Time of the current state
-     * @param otherTime Time of the other state
-     * @param other Other Spherical state to interpolate with
-     * @param sys Astrodynamics system containing celestial body data
-     * @param targetTime Target time for interpolation
-     * @return Spherical Interpolated Spherical state at the target time.
-     */
-    Spherical interpolate(const Time& thisTime, const Time& otherTime, const Spherical& other, const Time& targetTime) const;
+    Spherical<_body_>
+        interpolate(const Time& thisTime, const Time& otherTime, const Spherical<_body_>& other, const Time& targetTime) const;
 
   private:
     Distance _range;    //!< Range
@@ -279,24 +175,49 @@ class Spherical {
 
 
 /**
- * @brief Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates.
+ * @brief Convert a body-fixed radius vector to spherical coordinates.
  *
- * @param rEcef The radius vector in ECEF coordinates.
+ * @param rFixed The radius vector in the body-fixed frame.
  * @return The range, inclination, and azimuth as a tuple.
  */
-std::tuple<Distance, Angle, Angle> convert_earth_fixed_to_spherical(const RadiusVector<frames::earth::earth_fixed>& rEcef);
+template <IsFrame auto _frame_>
+    requires(IsFixedRotatingFrame<_frame_>)
+std::tuple<Distance, Angle, Angle> convert_body_fixed_to_spherical(const RadiusVector<_frame_>& rFixed)
+{
+    using mp_units::angular::unit_symbols::rad;
+    using mp_units::si::unit_symbols::km;
+    const Distance range    = rFixed.norm();
+    const Angle inclination = acos(rFixed.get_z() / range);
+
+    const Distance& x = rFixed.get_x();
+    const Distance& y = rFixed.get_y();
+
+    Angle azimuth;
+    if (x == 0.0 * km && y == 0.0 * km) { azimuth = 0.0 * rad; }
+    else {
+        azimuth = acos(x / sqrt(x * x + y * y));
+        if (y < 0.0 * km) { azimuth = -azimuth; }
+    }
+    return std::make_tuple(range, inclination, azimuth);
+}
 
 
 /**
- * @brief Convert a vector from LLA (Latitude, Longitude, Altitude) to ECEF (Earth-Centered Earth-Fixed) coordinates.
+ * @brief Convert spherical coordinates to a body-fixed radius vector.
  *
- * @param azimuth The azimuth in radians.
+ * @param range The range.
  * @param inclination The inclination in radians.
- * @param range The range in meters.
- * @return The radius vector in ECEF coordinates.
+ * @param azimuth The azimuth in radians.
+ * @return The radius vector in the body-fixed frame.
  */
-RadiusVector<frames::earth::earth_fixed>
-    convert_spherical_to_earth_fixed(const Distance& range, const Angle& inclination, const Angle& azimuth);
+template <IsFrame auto _frame_>
+    requires(IsFixedRotatingFrame<_frame_>)
+RadiusVector<_frame_> convert_spherical_to_body_fixed(const Distance& range, const Angle& inclination, const Angle& azimuth)
+{
+    return RadiusVector<_frame_>(range * sin(inclination) * cos(azimuth), range * sin(inclination) * sin(azimuth), range * cos(inclination));
+}
 
 } // namespace astro
 } // namespace astrea
+
+#include <astro/state/angular_elements/instances/Spherical.ipp>

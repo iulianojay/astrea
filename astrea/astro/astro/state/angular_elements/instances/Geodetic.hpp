@@ -29,6 +29,7 @@
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/systems/system_concepts.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -38,13 +39,22 @@ namespace astro {
 /**
  * @brief Class representing a Geodetic state vector in astrodynamics.
  *
- * This class encapsulates the position and velocity of a vehicle in Geodetic coordinates.
+ * This class encapsulates the latitude, longitude, and altitude of a position
+ * in geodetic coordinates relative to the surface of a celestial body.
+ *
+ * @tparam _body_ The celestial body NTTP that defines the reference ellipsoid and frames.
  */
+template <IsCelestialBody auto _body_>
 class Geodetic {
 
-    friend std::ostream& operator<<(std::ostream&, Geodetic const&);
+    template <IsCelestialBody auto body>
+    friend std::ostream& operator<<(std::ostream&, Geodetic<body> const&);
 
   public:
+    static constexpr auto body          = _body_;                        //!< The celestial body of this Geodetic state.
+    static constexpr auto _icrf_frame_  = get_body_icrf_frame<_body_>(); //!< Inertial frame for the body.
+    static constexpr auto _fixed_frame_ = get_body_fixed_frame<_body_>(); //!< Body-fixed rotating frame.
+
     /**
      * @brief Default constructor for Geodetic.
      *
@@ -72,32 +82,30 @@ class Geodetic {
     }
 
     /**
-     * @brief Constructor for Geodetic with position and velocity vectors.
+     * @brief Constructor for Geodetic from a radius vector in the body's inertial frame.
      *
-     * @param r Radius vector in ECI (position)
+     * @param r Radius vector in the body's ICRF frame.
+     * @param date Epoch date used to convert inertial to body-fixed.
      */
-    Geodetic(const RadiusVector<frames::earth::icrf>& r, const Date& date, const CelestialBody* parent);
+    Geodetic(const RadiusVector<_icrf_frame_>& r, const Date& date);
 
     /**
-     * @brief Constructor for Geodetic with position and velocity vectors.
+     * @brief Constructor for Geodetic from a radius vector in the body-fixed frame.
      *
-     * @param r Radius vector in ECEF (position)
+     * @param r Radius vector in the body-fixed frame.
      */
-    Geodetic(const RadiusVector<frames::earth::earth_fixed>& r, const CelestialBody* parent);
+    Geodetic(const RadiusVector<_fixed_frame_>& r);
 
     /**
      * @brief Constructor for Geodetic from orbital elements.
      *
      * @param elements Orbital elements
-     * @param sys Astrodynamics system containing celestial body data
+     * @param date Epoch date
      */
     template <IsOrbitalElements T>
     Geodetic(const T& elements, const Date& date)
     {
-        *this = Geodetic(
-            Cartesian(elements).get_position().template in_frame<frames::earth::earth_fixed>(date),
-            date.get_central_body().get()
-        );
+        *this = Geodetic(Cartesian<_icrf_frame_>(elements).get_position().template in_frame<_fixed_frame_>(date));
     }
 
     /**
@@ -105,14 +113,14 @@ class Geodetic {
      *
      * @param other Another Geodetic object
      */
-    Geodetic(const Geodetic&);
+    Geodetic(const Geodetic<_body_>&);
 
     /**
      * @brief Move constructor for Geodetic.
      *
      * @param other Another Geodetic object
      */
-    Geodetic(Geodetic&&) noexcept;
+    Geodetic(Geodetic<_body_>&&) noexcept;
 
     /**
      * @brief Move assignment operator for Geodetic.
@@ -120,7 +128,7 @@ class Geodetic {
      * @param other Another Geodetic object
      * @return Geodetic& Reference to the current object
      */
-    Geodetic& operator=(Geodetic&&) noexcept;
+    Geodetic& operator=(Geodetic<_body_>&&) noexcept;
 
     /**
      * @brief Copy assignment operator for Geodetic.
@@ -128,7 +136,7 @@ class Geodetic {
      * @param other Another Geodetic object
      * @return Geodetic& Reference to the current object
      */
-    Geodetic& operator=(const Geodetic&);
+    Geodetic& operator=(const Geodetic<_body_>&);
 
     /**
      * @brief Default destructor for Geodetic.
@@ -142,7 +150,7 @@ class Geodetic {
      * @return true if the two Geodetic objects are equal
      * @return false if the two Geodetic objects are not equal
      */
-    bool operator==(const Geodetic& other) const;
+    bool operator==(const Geodetic<_body_>& other) const;
 
     /**
      * @brief Compares two Geodetic objects for inequality.
@@ -151,7 +159,7 @@ class Geodetic {
      * @return true if the two Geodetic objects are not equal
      * @return false if the two Geodetic objects are equal
      */
-    bool operator!=(const Geodetic& other) const;
+    bool operator!=(const Geodetic<_body_>& other) const;
 
     /**
      * @brief Adds two Geodetic objects.
@@ -159,7 +167,7 @@ class Geodetic {
      * @param other Another Geodetic object
      * @return Resultant Geodetic sum.
      */
-    Geodetic operator+(const Geodetic& other) const;
+    Geodetic operator+(const Geodetic<_body_>& other) const;
 
     /**
      * @brief Adds another Geodetic object to the current one.
@@ -167,7 +175,7 @@ class Geodetic {
      * @param other Another Geodetic object
      * @return Reference to the current Geodetic object after addition.
      */
-    Geodetic& operator+=(const Geodetic& other);
+    Geodetic& operator+=(const Geodetic<_body_>& other);
 
     /**
      * @brief Subtracts another Geodetic object from the current one.
@@ -175,7 +183,7 @@ class Geodetic {
      * @param other Another Geodetic object
      * @return Resultant Geodetic difference.
      */
-    Geodetic operator-(const Geodetic& other) const;
+    Geodetic operator-(const Geodetic<_body_>& other) const;
 
     /**
      * @brief Subtracts another Geodetic object from the current one.
@@ -183,7 +191,7 @@ class Geodetic {
      * @param other Another Geodetic object
      * @return Reference to the current Geodetic object after subtraction.
      */
-    Geodetic& operator-=(const Geodetic& other);
+    Geodetic& operator-=(const Geodetic<_body_>& other);
 
     /**
      * @brief Multiplies the Geodetic state vector by a scalar.
@@ -207,7 +215,7 @@ class Geodetic {
      * @param other Another Geodetic object
      * @return Resultant vector of unitless values after division.
      */
-    std::vector<Unitless> operator/(const Geodetic& other) const;
+    std::vector<Unitless> operator/(const Geodetic<_body_>& other) const;
 
     /**
      * @brief Divides the Geodetic state vector by a scalar.
@@ -226,18 +234,19 @@ class Geodetic {
     Geodetic& operator/=(const Unitless& divisor);
 
     /**
-     * @brief Converts the Geodetic state vector to a RadiusVector<frames::earth::earth_fixed>.
+     * @brief Converts the Geodetic state vector to a position in the body-fixed frame.
      *
-     * @return RadiusVector<frames::earth::earth_fixed> The position vector in Geodetic coordinates.
+     * @return RadiusVector in the body-fixed frame.
      */
-    RadiusVector<frames::earth::earth_fixed> get_position(const CelestialBody* parent) const;
+    RadiusVector<_fixed_frame_> get_position() const;
 
     /**
-     * @brief Converts the Geodetic state vector to a RadiusVector<frames::earth::icrf>.
+     * @brief Converts the Geodetic state vector to a position in the body's inertial frame.
      *
-     * @return RadiusVector<frames::earth::icrf> The position vector in Geodetic coordinates.
+     * @param date Epoch date used to convert body-fixed to inertial.
+     * @return RadiusVector in the body's inertial frame.
      */
-    RadiusVector<frames::earth::icrf> get_position(const Date& date, const CelestialBody* parent) const;
+    RadiusVector<_icrf_frame_> get_position(const Date& date) const;
 
     /**
      * @brief Get the latitude of the Geodetic state vector.
@@ -266,11 +275,10 @@ class Geodetic {
      * @param thisTime Time of the current state
      * @param otherTime Time of the other state
      * @param other Other Geodetic state to interpolate with
-     * @param sys Astrodynamics system containing celestial body data
      * @param targetTime Target time for interpolation
      * @return Geodetic Interpolated Geodetic state at the target time.
      */
-    Geodetic interpolate(const Time& thisTime, const Time& otherTime, const Geodetic& other, const Time& targetTime) const;
+    Geodetic interpolate(const Time& thisTime, const Time& otherTime, const Geodetic<_body_>& other, const Time& targetTime) const;
 
   private:
     Angle _latitude;    //!< Geodetic Latitude
@@ -358,3 +366,5 @@ RadiusVector<_frame_>
 
 } // namespace astro
 } // namespace astrea
+
+#include <astro/state/angular_elements/instances/Geodetic.ipp>

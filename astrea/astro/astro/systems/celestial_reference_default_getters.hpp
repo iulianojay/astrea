@@ -35,6 +35,7 @@
  */
 #pragma once
 
+#include <astro/frames/frame_utilities.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/celestial_reference_getters.hpp>

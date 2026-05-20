@@ -47,7 +47,7 @@ GroundPoint::GroundPoint(const CelestialBody* parent, const Angle& latitutde, co
 
 bool GroundPoint::operator==(const GroundPoint& other) const { return _lla == other._lla; }
 
-const Geodetic& GroundPoint::get_lla() const { return _lla; }
+const Geodetic<planets::Earth>& GroundPoint::get_lla() const { return _lla; }
 
 const Angle& GroundPoint::get_latitude() const { return _lla.get_latitude(); }
 
@@ -61,17 +61,17 @@ std::size_t GroundPoint::get_id() const { return _id; }
 
 astro::CartesianVector<Distance, astro::frames::earth::earth_fixed> GroundPoint::get_position() const
 {
-    return _lla.get_position(_parent);
+    return _lla.get_position();
 }
 
 RadiusVector<frames::earth::icrf> GroundPoint::get_inertial_position(const Date& date) const
 {
-    return _lla.get_position(date, _parent);
+    return _lla.get_position(date);
 }
 
 VelocityVector<frames::earth::icrf> GroundPoint::get_inertial_velocity(const Date& date) const
 {
-    const RadiusVector<frames::earth::earth_fixed> rEcef = _lla.get_position(_parent);
+    const RadiusVector<frames::earth::earth_fixed> rEcef = _lla.get_position();
 
     const RadiusVector<frames::earth::earth_fixed> rEcefPlanar = { rEcef.get_x(), rEcef.get_y(), 0.0 * km };
     const Distance rEcefPlanarNorm                             = rEcefPlanar.norm();

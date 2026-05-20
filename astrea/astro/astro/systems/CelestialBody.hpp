@@ -79,24 +79,6 @@ inline Density find_atmospheric_density(const State& state)
     return Density::zero();
 }
 
-template <IsOrigin Origin_T>
-inline consteval auto get_parent_name(Origin_T origin)
-{
-    return decltype(Origin_T::parent)::name;
-}
-
-template <IsOrigin Origin_T>
-inline consteval auto get_parent(Origin_T origin)
-{
-    return Origin_T::parent;
-}
-
-template <IsOrigin Origin_T, IsAxis Axis_T>
-inline consteval auto get_parent_frame(Origin_T origin, Axis_T axis)
-{
-    return Frame<get_parent_name(origin) + mp_units::symbol_text{ "_" } + Axis_T::name, origin, axis>{};
-}
-
 /// Primary template declarations for ephemeris position/velocity (NTTP-based).
 /// Explicit specialisations are provided in planet headers (Chebyshev ephemeris).
 /// The primary template definition (Keplerian fallback) is provided by
