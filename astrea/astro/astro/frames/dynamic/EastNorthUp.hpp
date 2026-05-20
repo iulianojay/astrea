@@ -68,16 +68,10 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp<_frame_>, _frame_> {
      */
     DirectionCosineMatrix<frame, SelfTag{}> get_dcm(const Date& date) const
     {
-        // TODO: This assumes we're using "default" Earth. REALLY don't want to pass a system
-        // to this object
-        static const planets::Earth earth;
-        static const Distance& rEquitorial = earth.get_equitorial_radius();
-        static const Distance& rPolar      = earth.get_polar_radius();
-
         // eci -> ecef -> lat/lon -> n/e/u
         const RadiusVector<frame> r            = this->get_position(date);
         const RadiusVector<frame_fixed> rFixed = r.in_frame<frame_fixed>(date);
-        const auto [lat, lon, alt]             = convert_body_fixed_to_geodetic(rFixed, rEquitorial, rPolar);
+        const auto [lat, lon, alt]             = convert_body_fixed_to_geodetic(rFixed);
 
         using mp_units::one;
         using mp_units::angular::cos;

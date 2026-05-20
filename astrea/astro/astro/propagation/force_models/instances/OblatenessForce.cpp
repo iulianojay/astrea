@@ -239,13 +239,11 @@ AccelerationVector<frames::primary>
 {
     // Central body properties
     const GravParam& mu         = _sys->get_mu();
-    const Distance& equitorialR = _sys->get_central_body()->get_equitorial_radius();
-    const Distance& polarR      = _sys->get_central_body()->get_polar_radius();
 
     // Find lat and lon
     const RadiusVector<frames::primary> rEci = state.get_position();
     const RadiusVector<frames::primary_fixed> rEcef = state.get_position().in_frame<frames::primary_fixed>(date);
-    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geocentric(rEcef, equitorialR, polarR);
+    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geocentric(rEcef);
 
     // Precomput common terms
     const Distance& xEcef = rEcef[0];

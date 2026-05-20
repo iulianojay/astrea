@@ -42,7 +42,7 @@ template <IsCelestialBody auto body>
 Geocentric<body>::Geocentric(const RadiusVector<_fixed_frame_>& rFixed)
 {
     std::tie(_latitude, _longitude, _altitude) =
-        convertbodyfixed_to_geocentric(rFixed, get_equitorial_radius<body>(), get_polar_radius<body>());
+        convert_body_fixed_to_geocentric(rFixed, get_equitorial_radius<body>(), get_polar_radius<body>());
 }
 
 // Copy constructor
@@ -178,7 +178,7 @@ Geocentric<body>
 template <IsCelestialBody auto body>
 RadiusVector<Geocentric<body>::_fixed_frame_> Geocentric<body>::get_position() const
 {
-    return convert_geocentric_tobodyfixed<_fixed_frame_>(
+    return convert_geocentric_to_body_fixed<_fixed_frame_>(
         _latitude, _longitude, _altitude, get_equitorial_radius<body>(), get_polar_radius<body>()
     );
 }

@@ -97,11 +97,11 @@ static const std::map<Altitude, std::tuple<Density, Density>> HARRIS_PRIESTER_AT
 };
 
 
-Density HarrisPriesterAtmosphere::find_atmospheric_density(const State& state, const Distance equitorialRadius, const Distance polarRadius)
+Density HarrisPriesterAtmosphere::find_atmospheric_density(const State& state)
 {
-    const auto& position     = state.get_position();
-    const auto& positionEcef = state.get_position_in_frame<frames::earth::earth_fixed>();
-    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(positionEcef, equitorialRadius, polarRadius);
+    const auto& position                       = state.get_position();
+    const auto& positionEcef                   = state.get_position_in_frame<frames::earth::earth_fixed>();
+    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(positionEcef);
 
     // Diurnal bulge apex direction
     const RadiusVector<frames::solar_system_barycenter::icrf> sun2Earth =

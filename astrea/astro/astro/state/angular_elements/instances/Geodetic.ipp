@@ -178,7 +178,7 @@ Geodetic<body>
 template <IsCelestialBody auto body>
 RadiusVector<Geodetic<body>::_fixed_frame_> Geodetic<body>::get_position() const
 {
-    return convert_geodetic_tobodyfixed<_fixed_frame_>(_latitude, _longitude, _altitude, get_equitorial_radius<body>(), get_polar_radius<body>());
+    return convert_geodetic_to_body_fixed<_fixed_frame_>(_latitude, _longitude, _altitude, get_equitorial_radius<body>(), get_polar_radius<body>());
 }
 
 template <IsCelestialBody auto body>

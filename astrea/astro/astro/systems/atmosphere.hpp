@@ -95,9 +95,8 @@ inline Density find_atmospheric_density<planets::Venus>(const State& state)
         { 290.0 * km, 6.5e-12 * kg / (pow<3>(m)) }, { 300.0 * km, 3.5e-12 * kg / (pow<3>(m)) }
     };
 
-    const auto& position = state.get_position_in_frame<frames::venus::venus_fixed>();
-    const auto [latitude, longitude, altitude] =
-        convert_body_fixed_to_geodetic(position, get_equitorial_radius<planets::Venus>(), get_polar_radius<planets::Venus>());
+    const auto& position                       = state.get_position_in_frame<frames::venus::venus_fixed>();
+    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position);
 
     const auto iter = planets::venutianAtmosphere.upper_bound(altitude);
     return (iter != planets::venutianAtmosphere.end()) ? iter->second : Density::zero();
@@ -134,9 +133,8 @@ inline Density find_atmospheric_density<planets::Mars>(const State& state)
         { 75.0 * km, 6.05e-4 * kg / (pow<3>(m)) }, { 80.0 * km, 4.02e-4 * kg / (pow<3>(m)) }
     };
 
-    const auto& position = state.get_position_in_frame<frames::mars::mars_fixed>();
-    const auto [latitude, longitude, altitude] =
-        convert_body_fixed_to_geodetic(position, get_equitorial_radius<planets::Mars>(), get_polar_radius<planets::Mars>());
+    const auto& position                       = state.get_position_in_frame<frames::mars::mars_fixed>();
+    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position);
 
     Unitless altitudeValue = altitude / astrea::detail::distance_unit;
     if (altitude <= 80.0 * km) {
@@ -209,9 +207,8 @@ inline Density find_atmospheric_density<planets::Titan>(const State& state)
         { 1300.0 * km, 1.00e-14 * g / (pow<3>(cm)) }
     };
 
-    const auto& position = state.get_position_in_frame<frames::titan::titan_fixed>();
-    const auto [latitude, longitude, altitude] =
-        convert_body_fixed_to_geodetic(position, get_equitorial_radius<planets::Titan>(), get_polar_radius<planets::Titan>());
+    const auto& position                       = state.get_position_in_frame<frames::titan::titan_fixed>();
+    const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position);
 
     const auto iter = titanicAtmosphere.upper_bound(altitude);
     return (iter != titanicAtmosphere.end()) ? iter->second : 0.0 * g / (cm * cm * cm);

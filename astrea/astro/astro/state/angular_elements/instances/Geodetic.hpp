@@ -295,10 +295,9 @@ class Geodetic {
  * @param rPolar The polar radius of the Earth.
  * @return The latitude, longitude, and altitude as a tuple.
  */
-template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<_frame_>)
-std::tuple<Angle, Angle, Distance>
-    convert_body_fixed_to_geodetic(const RadiusVector<_frame_>& rBodyFixed, const Distance& rEquitorial, const Distance& rPolar)
+template <IsFrame auto frame>
+    requires(IsFixedRotatingFrame<frame>)
+std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geodetic(const RadiusVector<frame>& rBodyFixed)
 {
     using mp_units::si::unit_symbols::km;
     using mp_units::si::unit_symbols::mm;
@@ -310,8 +309,10 @@ std::tuple<Angle, Angle, Distance>
     const Distance& yEcef = rBodyFixed[1];
     const Distance& zEcef = rBodyFixed[2];
 
-    const Unitless f   = (rEquitorial - rPolar) / rEquitorial;
-    const Unitless eSq = (2.0 - f) * f;
+    static const Distance rEquitorial = get_equitorial_radius<decltype(frame)::origin>();
+    static const Distance rPolar      = get_polar_radius<decltype(frame)::origin>();
+    static const Unitless f           = (rEquitorial - rPolar) / rEquitorial;
+    static const Unitless eSq         = (2.0 - f) * f;
 
     const auto xSqYSq = xEcef * xEcef + yEcef * yEcef;
 
@@ -348,17 +349,19 @@ std::tuple<Angle, Angle, Distance>
  * @param rPolar The polar radius of the Earth.
  * @return The radius vector in ECEF coordinates.
  */
-template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<_frame_>)
-RadiusVector<_frame_>
-    convert_geodetic_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar)
+template <IsFrame auto frame>
+    requires(IsFixedRotatingFrame<frame>)
+RadiusVector<frame> convert_geodetic_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt)
 {
     const Unitless sinLat = sin(lat);
     const Unitless cosLat = cos(lat);
 
-    const Unitless f   = (rEquitorial - rPolar) / rEquitorial;
-    const Unitless eSq = (2.0 - f) * f;
-    const Distance N   = rEquitorial / sqrt(1.0 - eSq * sinLat * sinLat);
+    static const Distance rEquitorial = get_equitorial_radius<decltype(frame)::origin>();
+    static const Distance rPolar      = get_polar_radius<decltype(frame)::origin>();
+    static const Unitless f           = (rEquitorial - rPolar) / rEquitorial;
+    static const Unitless eSq         = (2.0 - f) * f;
+
+    const Distance N = rEquitorial / sqrt(1.0 - eSq * sinLat * sinLat);
 
     // Ecef coordinates
     return { (N + alt) * cosLat * cos(lon), (N + alt) * cosLat * sin(lon), ((1.0 - eSq) * N + alt) * sinLat };

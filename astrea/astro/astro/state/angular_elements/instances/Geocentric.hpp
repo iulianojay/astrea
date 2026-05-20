@@ -294,7 +294,15 @@ class Geocentric {
  * @param rPolar The polar radius of the Earth.
  * @return The geocentric radius.
  */
-Distance calculate_geocentric_radius(const Angle& lat, const Distance& rEquitorial, const Distance& rPolar);
+template <IsCelestialBody auto body>
+Distance calculate_geocentric_radius(const Angle& lat);
+{
+    const Distance& a       = get_equitorial_radius<body>();
+    const Distance& b       = get_polar_radius<body>();
+    const Unitless cosLatSq = pow<2>(cos(lat));
+    const Unitless sinLatSq = pow<2>(sin(lat));
+    return sqrt((pow<4>(a) * cosLatSq + pow<4>(b) * sinLatSq) / (pow<2>(a) * cosLatSq + pow<2>(b) * sinLatSq));
+}
 
 /**
  * @brief Convert a vector from ECEF (Earth-Centered Earth-Fixed) to LLA (Latitude, Longitude, Altitude) coordinates.
@@ -304,10 +312,9 @@ Distance calculate_geocentric_radius(const Angle& lat, const Distance& rEquitori
  * @param rPolar The polar radius of the Earth.
  * @return The latitude, longitude, and altitude as a tuple.
  */
-template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<_frame_>)
-std::tuple<Angle, Angle, Distance>
-    convert_body_fixed_to_geocentric(const RadiusVector<_frame_>& rEcef, const Distance& rEquitorial, const Distance& rPolar)
+template <IsFrame auto frame>
+    requires(IsFixedRotatingFrame<frame>)
+std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geocentric(const RadiusVector<frame>& rEcef)
 {
     const Distance& x = rEcef[0];
     const Distance& y = rEcef[1];
@@ -319,7 +326,7 @@ std::tuple<Angle, Angle, Distance>
     const Angle longitude = atan2(y, x);
     const Angle latitude  = atan2(z, rho);
 
-    const Distance rGeocentric = calculate_geocentric_radius(latitude, rEquitorial, rPolar);
+    const Distance rGeocentric = calculate_geocentric_radius<decltype(frame)::origin>(latitude);
     const Distance altitude    = R - rGeocentric;
 
     return { latitude, longitude, altitude };
@@ -332,16 +339,13 @@ std::tuple<Angle, Angle, Distance>
  * @param lat The latitude in radians.
  * @param lon The longitude in radians.
  * @param alt The altitude in meters.
- * @param rEquitorial The equatorial radius of the Earth.
- * @param rPolar The polar radius of the Earth.
  * @return The radius vector in ECEF coordinates.
  */
 template <IsFrame auto _frame_>
     requires(IsFixedRotatingFrame<_frame_>)
-RadiusVector<_frame_>
-    convert_geocentric_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar)
+RadiusVector<_frame_> convert_geocentric_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt)
 {
-    const Distance rGeocentric = calculate_geocentric_radius(lat, rEquitorial, rPolar);
+    const Distance rGeocentric = calculate_geocentric_radius<decltype(_frame_)::origin>(lat);
     const Distance R           = rGeocentric + alt;
 
     // Ecef coordinates

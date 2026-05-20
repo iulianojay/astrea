@@ -41,7 +41,7 @@ Cylindrical<body>::Cylindrical(const RadiusVector<_icrf_frame_>& rIcrf, const Da
 template <IsCelestialBody auto body>
 Cylindrical<body>::Cylindrical(const RadiusVector<_fixed_frame_>& rFixed)
 {
-    std::tie(_range, _azimuth, _elevation) = convertbodyfixed_to_cylindrical(rFixed);
+    std::tie(_range, _azimuth, _elevation) = convert_body_fixed_to_cylindrical(rFixed);
 }
 
 // Copy constructor
@@ -178,7 +178,7 @@ Cylindrical<body>
 template <IsCelestialBody auto body>
 RadiusVector<Cylindrical<body>::_fixed_frame_> Cylindrical<body>::get_position() const
 {
-    return convert_cylindrical_tobodyfixed<_fixed_frame_>(_range, _azimuth, _elevation);
+    return convert_cylindrical_to_body_fixed<_fixed_frame_>(_range, _azimuth, _elevation);
 }
 
 template <IsCelestialBody auto body>
