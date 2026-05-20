@@ -18,6 +18,8 @@
  */
 #pragma once
 
+#include <type_traits>
+
 #include <astro/frames/frames.hpp>
 
 namespace astrea {
@@ -30,7 +32,7 @@ inline constexpr auto primary_fixed = frames::earth::earth_fixed;
 
 } // namespace frames
 
-static_assert(IsInertialFrame<frames::primary>, "The primary frame must be inertial.");
+static_assert(IsInertialFrame<std::decay_t<decltype(frames::primary)>>, "The primary frame must be inertial.");
 
 } // namespace astro
 } // namespace astrea

@@ -33,9 +33,9 @@ namespace astro {
  * @brief Base class for all dynamic state/frames.
  */
 template <typename Self, IsFrame auto _parent_>
-struct DynamicFrame : Frame<"Base Dynamic Frame", DynamicOrigin{}, DynamicAxis{}, _parent_> {
+struct DynamicFrame {
   protected:
-    static constexpr auto self = Self{}; //!< The dynamic frame itself.
+    static constexpr auto self = typename Self::SelfTag{}; //!< The dynamic frame itself (empty tag satisfying IsFrame).
 
     /**
      * @brief Constructor for instantaneous dynamic state/frames.

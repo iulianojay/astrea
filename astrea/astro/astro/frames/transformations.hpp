@@ -268,7 +268,7 @@ inline constexpr CartesianVector<Value_T, frame_u>
 
 template <typename Value_T, IsFrame auto frame>
 template <IsFrame auto frame_u>
-    requires(!is_same_frame(frame, frame_u) && IsStaticFrame<decltype(frame_u)>)
+    requires(!is_same_frame(frame, frame_u) && IsStaticFrame<std::decay_t<decltype(frame_u)>>)
 inline constexpr CartesianVector<Value_T, frame_u> CartesianVector<Value_T, frame>::in_frame(const Date& date) const
 {
     return frames::transform_vector_into_frame<Value_T, frame, frame_u>(*this, date);

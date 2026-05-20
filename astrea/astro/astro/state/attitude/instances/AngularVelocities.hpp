@@ -23,7 +23,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/DirectionCosineMatrix.hpp>
-#include <astro/frames/dynamic/dynamic_body_frame.hpp>
+#include <astro/frames/dynamic/dynamic_frames.hpp>
 #include <astro/frames/frame_concepts.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/state/attitude/instances/EulerAngles.hpp>

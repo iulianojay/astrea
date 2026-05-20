@@ -19,6 +19,7 @@
 #pragma once
 
 #include <tuple>
+#include <type_traits>
 #include <variant>
 
 #include <astro/frames/frame_concepts.hpp>
@@ -33,7 +34,7 @@ namespace astro {
  *
  * Add new built-in frames here as additional tuple elements.
  */
-using AutomaticallyRegisteredFrames = std::tuple<frames::primary>;
+using AutomaticallyRegisteredFrames = std::tuple<std::decay_t<decltype(frames::primary)>>;
 
 /**
  * @brief Trait that users specialize to register additional Cartesian frames.
@@ -145,7 +146,10 @@ constexpr bool all_have_valid_transformation()
     return all_have_valid_transformation_impl<Tuple, Primary>(std::make_index_sequence<std::tuple_size_v<Tuple>>{});
 }
 
-static_assert(all_have_valid_transformation<ExtraRegisteredFrames<>::type, frames::primary>(), "All ExtraRegisteredFrames must be transformable into frames::primary (HasValidFrameTransformation).");
+static_assert(
+    all_have_valid_transformation<ExtraRegisteredFrames<>::type, std::decay_t<decltype(frames::primary)>>(),
+    "All ExtraRegisteredFrames must be transformable into frames::primary (HasValidFrameTransformation)."
+);
 
 } // namespace astro
 } // namespace astrea

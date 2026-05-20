@@ -33,7 +33,9 @@ namespace frames {
  * @brief Class representing the Local Horizontal, Local Vertical (LVLH) frame.
  */
 template <IsFrame auto _parent_>
-struct LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVertical, _parent_> {
+struct LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVertical<_parent_>, _parent_> {
+
+    struct SelfTag : Frame<"lvlh", DynamicOrigin{}, DynamicAxis{}, _parent_> {}; //!< Empty frame tag satisfying IsFrame.
 
     static constexpr auto parent = _parent_; //!< The reference frame of the LVLH frame.
 
@@ -44,7 +46,7 @@ struct LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVe
      * @param velocity The velocity vector in the ECI frame.
      */
     LocalHorizontalLocalVertical(const RadiusVector<parent>& position, const VelocityVector<parent>& velocity) :
-        DynamicFrame<LocalHorizontalLocalVertical, parent>(position, velocity)
+        DynamicFrame<LocalHorizontalLocalVertical<_parent_>, parent>(position, velocity)
     {
     }
 
@@ -56,20 +58,15 @@ struct LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVe
      * @param date The date for which the DCM is computed.
      * @return DirectionCosineMatrix<parent, LocalHorizontalLocalVertical> The DCM from ECI to LVLH.
      */
-    DirectionCosineMatrix<parent, LocalHorizontalLocalVertical> get_dcm(const Date& date) const
+    DirectionCosineMatrix<parent, SelfTag{}> get_dcm(const Date& date) const
     {
-        const auto r               = get_position(date).unit();
-        const auto v               = get_velocity(date).unit();
+        const auto r               = this->get_position(date).unit();
+        const auto v               = this->get_velocity(date).unit();
         const auto h               = r.cross(v).unit();
         const auto localHorizontal = ((-h).cross(-r)).unit();
-        return DirectionCosineMatrix<parent, LocalHorizontalLocalVertical>::from_vectors(localHorizontal, -h, -r);
+        return DirectionCosineMatrix<parent, SelfTag{}>::from_vectors(localHorizontal, -h, -r);
     }
 };
-
-namespace dynamic {
-template <IsFrame auto parent>
-using lvlh = LocalHorizontalLocalVertical<parent>;
-} // namespace dynamic
 
 } // namespace frames
 } // namespace astro

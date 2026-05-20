@@ -1,5 +1,5 @@
 /**
- * @file dynamic_body_frame.hpp
+ * @file dynamic_frames.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
  * @brief Header file for dynamic body frames.
  * @date 2025-08-05
@@ -20,6 +20,11 @@
 
 #include <astro/frames/DynamicFrame.hpp>
 #include <astro/frames/Frame.hpp>
+#include <astro/frames/dynamic/EastNorthUp.hpp>
+#include <astro/frames/dynamic/LocalHorizontalLocalVertical.hpp>
+#include <astro/frames/dynamic/RadialInTrackCrossTrack.hpp>
+#include <astro/frames/dynamic/VelocityNormalBinormal.hpp>
+#include <astro/frames/frame_registry.hpp>
 
 namespace astrea {
 namespace astro {
@@ -28,6 +33,18 @@ namespace dynamic {
 
 inline constexpr struct body final : Frame<"body", DynamicOrigin{}, DynamicAxis{}> {
 } body;
+
+inline constexpr struct enu final : EastNorthUp<frames::primary> {
+} enu;
+
+inline constexpr struct lvlh final : LocalHorizontalLocalVertical<frames::primary> {
+} lvlh;
+
+inline constexpr struct ric final : RadialInTrackCrossTrack<frames::primary> {
+} ric;
+
+inline constexpr struct vnb final : VelocityNormalBinormal<frames::primary> {
+} vnb;
 
 } // namespace dynamic
 } // namespace frames

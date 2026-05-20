@@ -21,7 +21,7 @@
 #include <iosfwd>
 #include <optional>
 
-#include <astro/frames/dynamic/dynamic_body_frame.hpp>
+#include <astro/frames/dynamic/dynamic_frames.hpp>
 #include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/attitude/instances/Quaternion.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>

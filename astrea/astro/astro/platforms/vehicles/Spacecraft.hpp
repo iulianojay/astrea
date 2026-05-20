@@ -24,7 +24,7 @@
 #include <utilities/IdProvider.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/dynamic/dynamic_body_frame.hpp>
+#include <astro/frames/dynamic/dynamic_frames.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>

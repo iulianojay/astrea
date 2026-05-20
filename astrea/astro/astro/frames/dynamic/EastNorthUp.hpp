@@ -41,7 +41,9 @@ namespace frames {
  * @brief Class representing the East, North, Up (ENU) frame.
  */
 template <IsFrame auto _frame_>
-struct EastNorthUp : public DynamicFrame<EastNorthUp, _frame_> {
+struct EastNorthUp : public DynamicFrame<EastNorthUp<_frame_>, _frame_> {
+
+    struct SelfTag : Frame<"enu", DynamicOrigin{}, DynamicAxis{}, _frame_> {}; //!< Empty frame tag satisfying IsFrame.
 
     static constexpr auto frame = _frame_; //!< The reference frame of the ENU frame.
 
@@ -52,7 +54,7 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp, _frame_> {
      * @param velocity The velocity vector in the ECI frame.
      */
     EastNorthUp(const RadiusVector<frame>& position, const VelocityVector<frame>& velocity) :
-        DynamicFrame<EastNorthUp, frame>(position, velocity)
+        DynamicFrame<EastNorthUp<_frame_>, frame>(position, velocity)
     {
     }
 
@@ -64,7 +66,7 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp, _frame_> {
      * @param date The date for which the DCM is requested.
      * @return DirectionCosineMatrix<frame, EastNorthUp> The DCM from ECI to ENU.
      */
-    DirectionCosineMatrix<frame, EastNorthUp> get_dcm(const Date& date) const
+    DirectionCosineMatrix<frame, SelfTag{}> get_dcm(const Date& date) const
     {
         // TODO: This assumes we're using "default" Earth. REALLY don't want to pass a system
         // to this object
@@ -73,7 +75,7 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp, _frame_> {
         static const Distance& rPolar      = earth.get_polar_radius();
 
         // eci -> ecef -> lat/lon -> n/e/u
-        const RadiusVector<frame> r            = get_position(date);
+        const RadiusVector<frame> r            = this->get_position(date);
         const RadiusVector<frame_fixed> rFixed = r.in_frame<frame_fixed>(date);
         const auto [lat, lon, alt]             = convert_body_fixed_to_geodetic(rFixed, rEquitorial, rPolar);
 
@@ -85,15 +87,11 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp, _frame_> {
         const Unitless sinLon = sin(lon);
         const Unitless cosLon = cos(lon);
 
-        return DirectionCosineMatrix<frame, EastNorthUp>(
+        return DirectionCosineMatrix<frame, SelfTag{}>(
             { -sinLat, cosLat, 0.0 * one }, { -cosLat * sinLon, -sinLat * sinLon, cosLon }, { cosLat * cosLon, sinLat * cosLon, sinLon }
         );
     }
 };
-
-namespace dynamic {
-using enu = EastNorthUp;
-} // namespace dynamic
 
 } // namespace frames
 } // namespace astro
