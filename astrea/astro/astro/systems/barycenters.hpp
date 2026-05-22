@@ -1,5 +1,6 @@
 #pragma once
 
+#include <astro/frames/frame_utilities.hpp>
 #include <astro/systems/CelestialBody.hpp>
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS

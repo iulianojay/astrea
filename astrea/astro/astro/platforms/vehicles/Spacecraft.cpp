@@ -42,7 +42,7 @@ using mp_units::si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-Spacecraft::Spacecraft(const GeneralPerturbations& gp, const CelestialBody& sys)
+Spacecraft::Spacecraft(const GeneralPerturbations& gp)
 {
     // TODO: Add catch/warning for missing values
     _id   = gp.NORAD_CAT_ID;
@@ -51,7 +51,7 @@ Spacecraft::Spacecraft(const GeneralPerturbations& gp, const CelestialBody& sys)
         !gp.RA_OF_ASC_NODE.has_value() || !gp.ARG_OF_PERICENTER.has_value() || !gp.MEAN_ANOMALY.has_value()) {
         std::cerr << "Missing GP info. Sad." << std::endl;
     }
-    Keplerian coes(
+    Keplerian<frames::primary> coes(
         gp.SEMIMAJOR_AXIS.value() * km,
         gp.ECCENTRICITY.value() * one,
         gp.INCLINATION.value() * deg,
@@ -61,7 +61,7 @@ Spacecraft::Spacecraft(const GeneralPerturbations& gp, const CelestialBody& sys)
     );
     Date epoch = gp.EPOCH.has_value() ? Date(gp.EPOCH.value(), "%Y-%m-%dT%H:%M:%S") : J2000;
 
-    store_state(State(coes, epoch, sys));
+    store_state(State(coes, epoch));
 
     _id = utilities::IdProvider::get_next_id<"Platform">();
 
@@ -108,7 +108,7 @@ Perturbation Spacecraft::get_control_authority(const State& state) const
     }
 
     const Cartesian<frames::earth::icrf> elements = state.in_element_set<Cartesian<frames::earth::icrf>>();
-    const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(elements.get_position(), elements.get_velocity());
+    const auto ricFrame = frames::dynamic::ric.instantaneous(elements.get_position(), elements.get_velocity());
     return {
         .force = ricFrame.rotate_out_of_this_frame(totalThrust, state.get_epoch()), .torque = {} // first cut
     };

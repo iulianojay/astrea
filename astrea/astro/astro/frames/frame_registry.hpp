@@ -130,14 +130,14 @@ using AllRegisteredFrames = typename tuple_cat_types<AutomaticallyRegisteredFram
 // Concept: true if frame is one of the types in AllRegisteredFrames
 template <IsFrame auto frame>
 concept IsRegisteredFrame = []<std::size_t... I>(std::index_sequence<I...>) {
-    return (std::same_as<frame, std::tuple_element_t<I, detail::AllRegisteredFrames>> || ...);
+    return (std::same_as<decltype(frame), std::tuple_element_t<I, detail::AllRegisteredFrames>> || ...);
 }(std::make_index_sequence<std::tuple_size_v<detail::AllRegisteredFrames>>{});
 
 // Enforce: all ExtraRegisteredFrames can be transformed into frames::primary
 template <typename Tuple, typename Primary, std::size_t... I>
 constexpr bool all_have_valid_transformation_impl(std::index_sequence<I...>)
 {
-    return (frames::HasValidFrameTransformation<std::tuple_element_t<I, Tuple>, Primary> && ...);
+    return (frames::HasValidFrameTransformation<std::tuple_element_t<I, Tuple>{}, Primary{}> && ...);
 }
 
 template <typename Tuple, typename Primary>

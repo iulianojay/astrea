@@ -76,7 +76,7 @@ concept IsOrbitalElements = requires(T) {
     std::is_destructible<T>::value;
     requires !std::is_same<T, OrbitalElements>::value;
     requires std::is_same<T, Cartesian<frames::primary>>::value || IsConstructableTo<T, Cartesian<frames::primary>> ||
-                 HasDirectCartesianConversion<T, Cartesian<frames::primary>>;
+                 HasDirectCartesianConversion<T, frames::primary>;
     requires HasToVector<T>;
     requires HasMathOperators<T>;
     requires HasInPlaceMathOperators<T>;

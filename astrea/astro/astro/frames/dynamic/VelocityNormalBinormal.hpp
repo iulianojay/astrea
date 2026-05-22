@@ -30,13 +30,26 @@ namespace astro {
 namespace frames {
 
 /**
+ * @brief Frame tag type for VelocityNormalBinormal, defined outside the class to allow use as a DynamicFrame NTTP.
+ */
+template <IsFrame auto _parent_>
+struct VnbTag : Frame<"vnb", DynamicOrigin{}, DynamicAxis{}, _parent_> {
+    VelocityNormalBinormal<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const {
+        return VelocityNormalBinormal<_parent_>(r, v);
+    }
+};
+
+template <IsFrame auto _parent_>
+inline constexpr VnbTag<_parent_> vnb_tag{};
+
+/**
  * @brief Class representing the Velocity, Normal, Binormal (VNB) frame.
  */
 template <IsFrame auto _parent_>
-struct VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal<_parent_>, _parent_> {
+struct VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal<_parent_>, _parent_, vnb_tag<_parent_>> {
 
-    struct SelfTag : Frame<"vnb", DynamicOrigin{}, DynamicAxis{}, _parent_> {}; //!< Empty frame tag satisfying IsFrame.
-
+    using tag_type = VnbTag<_parent_>;       //!< Tag type for this frame.
+    static inline constexpr tag_type tag{};  //!< Empty frame tag satisfying IsFrame.
     static constexpr auto parent = _parent_; //!< The reference frame of the VNB frame.
 
     /**
@@ -46,7 +59,7 @@ struct VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal<_pare
      * @param velocity The velocity vector in the ECI frame.
      */
     VelocityNormalBinormal(const RadiusVector<parent>& position, const VelocityVector<parent>& velocity) :
-        DynamicFrame<VelocityNormalBinormal<_parent_>, parent>(position, velocity)
+        DynamicFrame<VelocityNormalBinormal<_parent_>, parent, vnb_tag<_parent_>>(position, velocity)
     {
     }
 
@@ -58,15 +71,17 @@ struct VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal<_pare
      * @param date The date for which the DCM is requested.
      * @return DirectionCosineMatrix<parent, VelocityNormalBinormal> The DCM from ECI to VNB.
      */
-    DirectionCosineMatrix<parent, SelfTag{}> get_dcm(const Date& date) const
+    DirectionCosineMatrix<parent, tag> get_dcm(const Date& date) const
     {
         const auto r        = this->get_position(date).unit();
         const auto v        = this->get_velocity(date).unit();
         const auto h        = r.cross(v).unit();
         const auto binormal = (v.cross(h)).unit();
-        return DirectionCosineMatrix<parent, SelfTag{}>::from_vectors(v, h, binormal);
+        return DirectionCosineMatrix<parent, tag>::from_vectors(v, h, binormal);
     }
 };
+
+
 
 } // namespace frames
 } // namespace astro

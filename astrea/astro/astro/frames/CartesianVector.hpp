@@ -429,7 +429,7 @@ struct CartesianVector {
      * @throws std::runtime_error If the frames do not share the same origin or if the DCM cannot be obtained.
      */
     template <IsFrame auto frame_u>
-        requires(!is_same_frame(frame, frame_u) && IsStaticFrame<decltype(frame_u)>)
+        requires(!is_same_frame(_frame_, frame_u) && IsStaticFrame<decltype(frame_u)>)
     inline constexpr CartesianVector<Value_T, frame_u> in_frame(const Date& date) const;
 
     /**

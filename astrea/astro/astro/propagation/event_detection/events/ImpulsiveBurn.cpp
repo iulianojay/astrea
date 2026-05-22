@@ -44,7 +44,7 @@ Unitless ImpulsiveBurn::measure_event(const Time& time, const State& state, cons
 
 Unitless ImpulsiveBurn::measure_anomaly_event(const Time& time, const State& state, const Vehicle& vehicle) const
 {
-    const Keplerian elements = state.in_element_set<Keplerian>();
+    const Keplerian<frames::primary> elements = state.in_element_set<Keplerian<frames::primary>>();
 
     const Angle anomaly = (_trigger == BurnTrigger::TRUE_ANOMALY) ? elements.get_true_anomaly() - _triggerAnomaly :
                                                                     elements.get_mean_anomaly() - _triggerAnomaly;
@@ -65,7 +65,8 @@ Unitless ImpulsiveBurn::measure_altitude_event(const Time& time, const State& st
 {
     const Cartesian<frames::primary> elements = state.in_element_set<Cartesian<frames::primary>>();
 
-    const Distance altitude = Geodetic(elements.get_position(), state.get_epoch(), frames::primary::origin).get_altitude();
+    const Distance altitude =
+        Geodetic<decltype(frames::primary)::origin>(elements.get_position(), state.get_epoch()).get_altitude();
 
     return (altitude - _triggerAltitude) / (1.0 * km);
 }
@@ -97,7 +98,7 @@ void ImpulsiveBurn::trigger_action(const Time& time, State& state, Vehicle& vehi
     }
 
     // Rotate out of RIC
-    const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(elements.get_position(), elements.get_velocity());
+    const auto ricFrame = frames::dynamic::ric.instantaneous(elements.get_position(), elements.get_velocity());
     const UnitVector<frames::earth::icrf> burnDirection = ricFrame.rotate_out_of_this_frame(_burnDirection, state.get_epoch());
 
     const auto dv = deltaV * burnDirection;

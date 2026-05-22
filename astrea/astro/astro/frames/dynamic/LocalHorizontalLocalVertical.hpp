@@ -30,13 +30,27 @@ namespace astro {
 namespace frames {
 
 /**
+ * @brief Frame tag type for LocalHorizontalLocalVertical, defined outside the class to allow use as a DynamicFrame NTTP.
+ */
+template <IsFrame auto _parent_>
+struct LvlhTag : Frame<"lvlh", DynamicOrigin{}, DynamicAxis{}, _parent_> {
+    LocalHorizontalLocalVertical<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const {
+        return LocalHorizontalLocalVertical<_parent_>(r, v);
+    }
+};
+
+template <IsFrame auto _parent_>
+inline constexpr LvlhTag<_parent_> lvlh_tag{};
+
+/**
  * @brief Class representing the Local Horizontal, Local Vertical (LVLH) frame.
  */
 template <IsFrame auto _parent_>
-struct LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVertical<_parent_>, _parent_> {
+struct LocalHorizontalLocalVertical
+    : public DynamicFrame<LocalHorizontalLocalVertical<_parent_>, _parent_, lvlh_tag<_parent_>> {
 
-    struct SelfTag : Frame<"lvlh", DynamicOrigin{}, DynamicAxis{}, _parent_> {}; //!< Empty frame tag satisfying IsFrame.
-
+    using tag_type = LvlhTag<_parent_>;      //!< Tag type for this frame.
+    static inline constexpr tag_type tag{};  //!< Empty frame tag satisfying IsFrame.
     static constexpr auto parent = _parent_; //!< The reference frame of the LVLH frame.
 
     /**
@@ -46,7 +60,7 @@ struct LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVe
      * @param velocity The velocity vector in the ECI frame.
      */
     LocalHorizontalLocalVertical(const RadiusVector<parent>& position, const VelocityVector<parent>& velocity) :
-        DynamicFrame<LocalHorizontalLocalVertical<_parent_>, parent>(position, velocity)
+        DynamicFrame<LocalHorizontalLocalVertical<_parent_>, parent, lvlh_tag<_parent_>>(position, velocity)
     {
     }
 
@@ -58,15 +72,17 @@ struct LocalHorizontalLocalVertical : public DynamicFrame<LocalHorizontalLocalVe
      * @param date The date for which the DCM is computed.
      * @return DirectionCosineMatrix<parent, LocalHorizontalLocalVertical> The DCM from ECI to LVLH.
      */
-    DirectionCosineMatrix<parent, SelfTag{}> get_dcm(const Date& date) const
+    DirectionCosineMatrix<parent, tag> get_dcm(const Date& date) const
     {
         const auto r               = this->get_position(date).unit();
         const auto v               = this->get_velocity(date).unit();
         const auto h               = r.cross(v).unit();
         const auto localHorizontal = ((-h).cross(-r)).unit();
-        return DirectionCosineMatrix<parent, SelfTag{}>::from_vectors(localHorizontal, -h, -r);
+        return DirectionCosineMatrix<parent, tag>::from_vectors(localHorizontal, -h, -r);
     }
 };
+
+
 
 } // namespace frames
 } // namespace astro

@@ -111,7 +111,7 @@ inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& 
 {
     // Forcing the frame change here doesn't matter since the offset is just a difference and it's already implied that
     // these two frames share an axis.
-    return get_relative_position<get_origin<frame>(), get_origin<frame_u>()>(date).template force_frame_conversion<frame>();
+    return get_relative_position<get_origin<frame>(), get_origin<frame_u>()>(date).template forceframeconversion<frame>();
 }
 
 namespace {
@@ -217,11 +217,11 @@ inline constexpr CartesianVector<Distance, frame_u>
 {
     if constexpr (std::is_same_v<Value_T, Distance>) {
         const auto& posRel = get_relative_position<get_origin<frame_u>(), get_origin<frame>()>(date); // frame -> frame_u
-        return vec.template force_frame_conversion<frame_u>() + posRel.template force_frame_conversion<frame_u>();
+        return vec.template forceframeconversion<frame_u>() + posRel.template forceframeconversion<frame_u>();
     }
     else if constexpr (std::is_same_v<Value_T, Velocity>) {
         const auto& velRel = get_relative_velocity<get_origin<frame_u>(), get_origin<frame>()>(date); // frame -> frame_u
-        return vec.template force_frame_conversion<frame_u>() - velRel.template force_frame_conversion<frame_u>();
+        return vec.template forceframeconversion<frame_u>() - velRel.template forceframeconversion<frame_u>();
     }
     else {
         throw std::logic_error("Unsupported vector type for translation. Only Distance and Velocity are supported.");
@@ -266,12 +266,12 @@ inline constexpr CartesianVector<Value_T, frame_u>
 
 } // namespace frames
 
-template <typename Value_T, IsFrame auto frame>
+template <typename Value_T, IsFrame auto _frame_>
 template <IsFrame auto frame_u>
-    requires(!is_same_frame(frame, frame_u) && IsStaticFrame<std::decay_t<decltype(frame_u)>>)
-inline constexpr CartesianVector<Value_T, frame_u> CartesianVector<Value_T, frame>::in_frame(const Date& date) const
+    requires(!is_same_frame(_frame_, frame_u) && IsStaticFrame<decltype(frame_u)>)
+inline constexpr CartesianVector<Value_T, frame_u> CartesianVector<Value_T, _frame_>::in_frame(const Date& date) const
 {
-    return frames::transform_vector_into_frame<Value_T, frame, frame_u>(*this, date);
+    return frames::transform_vector_into_frame<Value_T, _frame_, frame_u>(*this, date);
 }
 
 } // namespace astro

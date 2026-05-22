@@ -34,17 +34,13 @@ namespace dynamic {
 inline constexpr struct body final : Frame<"body", DynamicOrigin{}, DynamicAxis{}> {
 } body;
 
-inline constexpr struct enu final : EastNorthUp<frames::primary> {
-} enu;
+inline constexpr EastNorthUpTag<frames::primary> enu{};
 
-inline constexpr struct lvlh final : LocalHorizontalLocalVertical<frames::primary> {
-} lvlh;
+inline constexpr LvlhTag<frames::primary> lvlh{};
 
-inline constexpr struct ric final : RadialInTrackCrossTrack<frames::primary> {
-} ric;
+inline constexpr RicTag<frames::primary> ric{};
 
-inline constexpr struct vnb final : VelocityNormalBinormal<frames::primary> {
-} vnb;
+inline constexpr VnbTag<frames::primary> vnb{};
 
 } // namespace dynamic
 } // namespace frames

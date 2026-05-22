@@ -103,6 +103,21 @@ class State {
     const Date& get_epoch() const { return _epoch; }
 
     /**
+     * @brief Gets the gravitational parameter (mu) derived from the origin of the current elements' frame.
+     *
+     * @return GravParam The gravitational parameter of the central body.
+     */
+    GravParam get_mu() const
+    {
+        return std::visit(
+            []<typename ElemT>(const ElemT&) -> GravParam {
+                return astrea::astro::get_mu<decltype(ElemT::frame)::origin>();
+            },
+            _elements.extract()
+        );
+    }
+
+    /**
      * @brief Converts the orbital elements to a different type.
      *
      * @tparam T The type to convert the orbital elements to.

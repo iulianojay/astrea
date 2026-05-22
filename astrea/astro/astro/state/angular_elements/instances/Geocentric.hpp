@@ -295,7 +295,7 @@ class Geocentric {
  * @return The geocentric radius.
  */
 template <IsCelestialBody auto body>
-Distance calculate_geocentric_radius(const Angle& lat);
+Distance calculate_geocentric_radius(const Angle& lat)
 {
     const Distance& a       = get_equitorial_radius<body>();
     const Distance& b       = get_polar_radius<body>();
@@ -313,7 +313,7 @@ Distance calculate_geocentric_radius(const Angle& lat);
  * @return The latitude, longitude, and altitude as a tuple.
  */
 template <IsFrame auto frame>
-    requires(IsFixedRotatingFrame<frame>)
+    requires(IsFixedRotatingFrame<decltype(frame)>)
 std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geocentric(const RadiusVector<frame>& rEcef)
 {
     const Distance& x = rEcef[0];
@@ -342,7 +342,7 @@ std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geocentric(const Radius
  * @return The radius vector in ECEF coordinates.
  */
 template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<_frame_>)
+    requires(IsFixedRotatingFrame<decltype(_frame_)>)
 RadiusVector<_frame_> convert_geocentric_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt)
 {
     const Distance rGeocentric = calculate_geocentric_radius<decltype(_frame_)::origin>(lat);

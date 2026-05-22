@@ -48,7 +48,7 @@ OrbitalElementPartials CowellsMethod::compute_dynamics(
 ) const
 {
     // Extract
-    const auto mu = get_mu<frames::primary::origin>();
+    const auto mu = get_mu<decltype(frames::primary)::origin>();
 
     const RadiusVector<frames::primary> r   = state.get_position();
     const VelocityVector<frames::primary> v = state.get_velocity();

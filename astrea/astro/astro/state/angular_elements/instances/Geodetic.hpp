@@ -296,7 +296,7 @@ class Geodetic {
  * @return The latitude, longitude, and altitude as a tuple.
  */
 template <IsFrame auto frame>
-    requires(IsFixedRotatingFrame<frame>)
+    requires(IsFixedRotatingFrame<decltype(frame)>)
 std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geodetic(const RadiusVector<frame>& rBodyFixed)
 {
     using mp_units::si::unit_symbols::km;
@@ -350,7 +350,7 @@ std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geodetic(const RadiusVe
  * @return The radius vector in ECEF coordinates.
  */
 template <IsFrame auto frame>
-    requires(IsFixedRotatingFrame<frame>)
+    requires(IsFixedRotatingFrame<decltype(frame)>)
 RadiusVector<frame> convert_geodetic_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt)
 {
     const Unitless sinLat = sin(lat);

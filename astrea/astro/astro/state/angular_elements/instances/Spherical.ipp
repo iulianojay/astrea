@@ -32,21 +32,21 @@
 namespace astrea {
 namespace astro {
 
-template <IsCelestialBody auto body>
-Spherical<body>::Spherical(const RadiusVector<_icrf_frame_>& rIcrf, const Date& date)
+template <IsCelestialBody auto _body_>
+Spherical<_body_>::Spherical(const RadiusVector<_icrf_frame_>& rIcrf, const Date& date)
 {
-    *this = Spherical<body>(rIcrf.template in_frame<_fixed_frame_>(date));
+    *this = Spherical<_body_>(rIcrf.template in_frame<_fixed_frame_>(date));
 }
 
-template <IsCelestialBody auto body>
-Spherical<body>::Spherical(const RadiusVector<_fixed_frame_>& rFixed)
+template <IsCelestialBody auto _body_>
+Spherical<_body_>::Spherical(const RadiusVector<_fixed_frame_>& rFixed)
 {
     std::tie(_range, _inclination, _azimuth) = convertbodyfixed_to_spherical(rFixed);
 }
 
 // Copy constructor
-template <IsCelestialBody auto body>
-Spherical<body>::Spherical(const Spherical<body>& other) :
+template <IsCelestialBody auto _body_>
+Spherical<_body_>::Spherical(const Spherical<_body_>& other) :
     _range(other._range),
     _inclination(other._inclination),
     _azimuth(other._azimuth)
@@ -54,8 +54,8 @@ Spherical<body>::Spherical(const Spherical<body>& other) :
 }
 
 // Move constructor
-template <IsCelestialBody auto body>
-Spherical<body>::Spherical(Spherical<body>&& other) noexcept :
+template <IsCelestialBody auto _body_>
+Spherical<_body_>::Spherical(Spherical<_body_>&& other) noexcept :
     _range(std::move(other._range)),
     _inclination(std::move(other._inclination)),
     _azimuth(std::move(other._azimuth))
@@ -63,8 +63,8 @@ Spherical<body>::Spherical(Spherical<body>&& other) noexcept :
 }
 
 // Move assignment operator
-template <IsCelestialBody auto body>
-Spherical<body>& Spherical<body>::operator=(Spherical<body>&& other) noexcept
+template <IsCelestialBody auto _body_>
+Spherical<_body_>& Spherical<_body_>::operator=(Spherical<_body_>&& other) noexcept
 {
     if (this != &other) {
         _range       = std::move(other._range);
@@ -75,34 +75,34 @@ Spherical<body>& Spherical<body>::operator=(Spherical<body>&& other) noexcept
 }
 
 // Copy assignment operator
-template <IsCelestialBody auto body>
-Spherical<body>& Spherical<body>::operator=(const Spherical<body>& other)
+template <IsCelestialBody auto _body_>
+Spherical<_body_>& Spherical<_body_>::operator=(const Spherical<_body_>& other)
 {
-    return *this = Spherical<body>(other);
+    return *this = Spherical<_body_>(other);
 }
 
 // Comparison operators
-template <IsCelestialBody auto body>
-bool Spherical<body>::operator==(const Spherical<body>& other) const
+template <IsCelestialBody auto _body_>
+bool Spherical<_body_>::operator==(const Spherical<_body_>& other) const
 {
     return (_range == other._range && _inclination == other._inclination && _azimuth == other._azimuth);
 }
 
-template <IsCelestialBody auto body>
-bool Spherical<body>::operator!=(const Spherical<body>& other) const
+template <IsCelestialBody auto _body_>
+bool Spherical<_body_>::operator!=(const Spherical<_body_>& other) const
 {
     return !(*this == other);
 }
 
 // Mathematical operators
-template <IsCelestialBody auto body>
-Spherical<body> Spherical<body>::operator+(const Spherical<body>& other) const
+template <IsCelestialBody auto _body_>
+Spherical<_body_> Spherical<_body_>::operator+(const Spherical<_body_>& other) const
 {
-    return Spherical<body>(_range + other._range, _inclination + other._inclination, _azimuth + other._azimuth);
+    return Spherical<_body_>(_range + other._range, _inclination + other._inclination, _azimuth + other._azimuth);
 }
 
-template <IsCelestialBody auto body>
-Spherical<body>& Spherical<body>::operator+=(const Spherical<body>& other)
+template <IsCelestialBody auto _body_>
+Spherical<_body_>& Spherical<_body_>::operator+=(const Spherical<_body_>& other)
 {
     _range += other._range;
     _inclination += other._inclination;
@@ -110,14 +110,14 @@ Spherical<body>& Spherical<body>::operator+=(const Spherical<body>& other)
     return *this;
 }
 
-template <IsCelestialBody auto body>
-Spherical<body> Spherical<body>::operator-(const Spherical<body>& other) const
+template <IsCelestialBody auto _body_>
+Spherical<_body_> Spherical<_body_>::operator-(const Spherical<_body_>& other) const
 {
-    return Spherical<body>(_range - other._range, _inclination - other._inclination, _azimuth - other._azimuth);
+    return Spherical<_body_>(_range - other._range, _inclination - other._inclination, _azimuth - other._azimuth);
 }
 
-template <IsCelestialBody auto body>
-Spherical<body>& Spherical<body>::operator-=(const Spherical<body>& other)
+template <IsCelestialBody auto _body_>
+Spherical<_body_>& Spherical<_body_>::operator-=(const Spherical<_body_>& other)
 {
     _range -= other._range;
     _inclination -= other._inclination;
@@ -125,14 +125,14 @@ Spherical<body>& Spherical<body>::operator-=(const Spherical<body>& other)
     return *this;
 }
 
-template <IsCelestialBody auto body>
-Spherical<body> Spherical<body>::operator*(const Unitless& multiplier) const
+template <IsCelestialBody auto _body_>
+Spherical<_body_> Spherical<_body_>::operator*(const Unitless& multiplier) const
 {
-    return Spherical<body>(_range * multiplier, _inclination * multiplier, _azimuth * multiplier);
+    return Spherical<_body_>(_range * multiplier, _inclination * multiplier, _azimuth * multiplier);
 }
 
-template <IsCelestialBody auto body>
-Spherical<body>& Spherical<body>::operator*=(const Unitless& multiplier)
+template <IsCelestialBody auto _body_>
+Spherical<_body_>& Spherical<_body_>::operator*=(const Unitless& multiplier)
 {
     _range *= multiplier;
     _inclination *= multiplier;
@@ -140,20 +140,20 @@ Spherical<body>& Spherical<body>::operator*=(const Unitless& multiplier)
     return *this;
 }
 
-template <IsCelestialBody auto body>
-std::vector<Unitless> Spherical<body>::operator/(const Spherical<body>& other) const
+template <IsCelestialBody auto _body_>
+std::vector<Unitless> Spherical<_body_>::operator/(const Spherical<_body_>& other) const
 {
     return { _range / other._range, _inclination / other._inclination, _azimuth / other._azimuth };
 }
 
-template <IsCelestialBody auto body>
-Spherical<body> Spherical<body>::operator/(const Unitless& divisor) const
+template <IsCelestialBody auto _body_>
+Spherical<_body_> Spherical<_body_>::operator/(const Unitless& divisor) const
 {
-    return Spherical<body>(_range / divisor, _inclination / divisor, _azimuth / divisor);
+    return Spherical<_body_>(_range / divisor, _inclination / divisor, _azimuth / divisor);
 }
 
-template <IsCelestialBody auto body>
-Spherical<body>& Spherical<body>::operator/=(const Unitless& divisor)
+template <IsCelestialBody auto _body_>
+Spherical<_body_>& Spherical<_body_>::operator/=(const Unitless& divisor)
 {
     _range /= divisor;
     _inclination /= divisor;
@@ -161,9 +161,9 @@ Spherical<body>& Spherical<body>::operator/=(const Unitless& divisor)
     return *this;
 }
 
-template <IsCelestialBody auto body>
-Spherical<body>
-    Spherical<body>::interpolate(const Time& thisTime, const Time& otherTime, const Spherical<body>& other, const Time& targetTime) const
+template <IsCelestialBody auto _body_>
+Spherical<_body_>
+    Spherical<_body_>::interpolate(const Time& thisTime, const Time& otherTime, const Spherical<_body_>& other, const Time& targetTime) const
 {
     const Distance interpRange =
         math::interpolate<Time, Distance>({ thisTime, otherTime }, { _range, other.get_range() }, targetTime);
@@ -172,23 +172,23 @@ Spherical<body>
     const Angle interpAzimuth =
         math::interpolate<Time, Angle>({ thisTime, otherTime }, { _azimuth, other.get_azimuth() }, targetTime);
 
-    return Spherical<body>(interpRange, interpInc, interpAzimuth);
+    return Spherical<_body_>(interpRange, interpInc, interpAzimuth);
 }
 
-template <IsCelestialBody auto body>
-RadiusVector<Spherical<body>::_fixed_frame_> Spherical<body>::get_position() const
+template <IsCelestialBody auto _body_>
+RadiusVector<Spherical<_body_>::_fixed_frame_> Spherical<_body_>::get_position() const
 {
     return convert_spherical_tobodyfixed<_fixed_frame_>(_range, _inclination, _azimuth);
 }
 
-template <IsCelestialBody auto body>
-RadiusVector<Spherical<body>::_icrf_frame_> Spherical<body>::get_position(const Date& date) const
+template <IsCelestialBody auto _body_>
+RadiusVector<Spherical<_body_>::_icrf_frame_> Spherical<_body_>::get_position(const Date& date) const
 {
     return get_position().template in_frame<_icrf_frame_>(date);
 }
 
-template <IsCelestialBody auto body>
-std::ostream& operator<<(std::ostream& os, Spherical<body> const& elements)
+template <IsCelestialBody auto _body_>
+std::ostream& operator<<(std::ostream& os, Spherical<_body_> const& elements)
 {
     os << "[";
     os << elements.get_range() << ", ";

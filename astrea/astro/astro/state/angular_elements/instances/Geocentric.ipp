@@ -32,22 +32,22 @@
 namespace astrea {
 namespace astro {
 
-template <IsCelestialBody auto body>
-Geocentric<body>::Geocentric(const RadiusVector<_icrf_frame_>& rIcrf, const Date& date)
+template <IsCelestialBody auto _body_>
+Geocentric<_body_>::Geocentric(const RadiusVector<_icrf_frame_>& rIcrf, const Date& date)
 {
-    *this = Geocentric<body>(rIcrf.template in_frame<_fixed_frame_>(date));
+    *this = Geocentric<_body_>(rIcrf.template in_frame<_fixed_frame_>(date));
 }
 
-template <IsCelestialBody auto body>
-Geocentric<body>::Geocentric(const RadiusVector<_fixed_frame_>& rFixed)
+template <IsCelestialBody auto _body_>
+Geocentric<_body_>::Geocentric(const RadiusVector<_fixed_frame_>& rFixed)
 {
     std::tie(_latitude, _longitude, _altitude) =
-        convert_body_fixed_to_geocentric(rFixed, get_equitorial_radius<body>(), get_polar_radius<body>());
+        convert_body_fixed_to_geocentric(rFixed, get_equitorial_radius<_body_>(), get_polar_radius<_body_>());
 }
 
 // Copy constructor
-template <IsCelestialBody auto body>
-Geocentric<body>::Geocentric(const Geocentric<body>& other) :
+template <IsCelestialBody auto _body_>
+Geocentric<_body_>::Geocentric(const Geocentric<_body_>& other) :
     _latitude(other._latitude),
     _longitude(other._longitude),
     _altitude(other._altitude)
@@ -55,8 +55,8 @@ Geocentric<body>::Geocentric(const Geocentric<body>& other) :
 }
 
 // Move constructor
-template <IsCelestialBody auto body>
-Geocentric<body>::Geocentric(Geocentric<body>&& other) noexcept :
+template <IsCelestialBody auto _body_>
+Geocentric<_body_>::Geocentric(Geocentric<_body_>&& other) noexcept :
     _latitude(std::move(other._latitude)),
     _longitude(std::move(other._longitude)),
     _altitude(std::move(other._altitude))
@@ -64,8 +64,8 @@ Geocentric<body>::Geocentric(Geocentric<body>&& other) noexcept :
 }
 
 // Move assignment operator
-template <IsCelestialBody auto body>
-Geocentric<body>& Geocentric<body>::operator=(Geocentric<body>&& other) noexcept
+template <IsCelestialBody auto _body_>
+Geocentric<_body_>& Geocentric<_body_>::operator=(Geocentric<_body_>&& other) noexcept
 {
     if (this != &other) {
         _latitude  = std::move(other._latitude);
@@ -76,34 +76,34 @@ Geocentric<body>& Geocentric<body>::operator=(Geocentric<body>&& other) noexcept
 }
 
 // Copy assignment operator
-template <IsCelestialBody auto body>
-Geocentric<body>& Geocentric<body>::operator=(const Geocentric<body>& other)
+template <IsCelestialBody auto _body_>
+Geocentric<_body_>& Geocentric<_body_>::operator=(const Geocentric<_body_>& other)
 {
-    return *this = Geocentric<body>(other);
+    return *this = Geocentric<_body_>(other);
 }
 
 // Comparison operators
-template <IsCelestialBody auto body>
-bool Geocentric<body>::operator==(const Geocentric<body>& other) const
+template <IsCelestialBody auto _body_>
+bool Geocentric<_body_>::operator==(const Geocentric<_body_>& other) const
 {
     return (_latitude == other._latitude && _longitude == other._longitude && _altitude == other._altitude);
 }
 
-template <IsCelestialBody auto body>
-bool Geocentric<body>::operator!=(const Geocentric<body>& other) const
+template <IsCelestialBody auto _body_>
+bool Geocentric<_body_>::operator!=(const Geocentric<_body_>& other) const
 {
     return !(*this == other);
 }
 
 // Mathematical operators
-template <IsCelestialBody auto body>
-Geocentric<body> Geocentric<body>::operator+(const Geocentric<body>& other) const
+template <IsCelestialBody auto _body_>
+Geocentric<_body_> Geocentric<_body_>::operator+(const Geocentric<_body_>& other) const
 {
-    return Geocentric<body>(_latitude + other._latitude, _longitude + other._longitude, _altitude + other._altitude);
+    return Geocentric<_body_>(_latitude + other._latitude, _longitude + other._longitude, _altitude + other._altitude);
 }
 
-template <IsCelestialBody auto body>
-Geocentric<body>& Geocentric<body>::operator+=(const Geocentric<body>& other)
+template <IsCelestialBody auto _body_>
+Geocentric<_body_>& Geocentric<_body_>::operator+=(const Geocentric<_body_>& other)
 {
     _latitude += other._latitude;
     _longitude += other._longitude;
@@ -111,14 +111,14 @@ Geocentric<body>& Geocentric<body>::operator+=(const Geocentric<body>& other)
     return *this;
 }
 
-template <IsCelestialBody auto body>
-Geocentric<body> Geocentric<body>::operator-(const Geocentric<body>& other) const
+template <IsCelestialBody auto _body_>
+Geocentric<_body_> Geocentric<_body_>::operator-(const Geocentric<_body_>& other) const
 {
-    return Geocentric<body>(_latitude - other._latitude, _longitude - other._longitude, _altitude - other._altitude);
+    return Geocentric<_body_>(_latitude - other._latitude, _longitude - other._longitude, _altitude - other._altitude);
 }
 
-template <IsCelestialBody auto body>
-Geocentric<body>& Geocentric<body>::operator-=(const Geocentric<body>& other)
+template <IsCelestialBody auto _body_>
+Geocentric<_body_>& Geocentric<_body_>::operator-=(const Geocentric<_body_>& other)
 {
     _latitude -= other._latitude;
     _longitude -= other._longitude;
@@ -126,14 +126,14 @@ Geocentric<body>& Geocentric<body>::operator-=(const Geocentric<body>& other)
     return *this;
 }
 
-template <IsCelestialBody auto body>
-Geocentric<body> Geocentric<body>::operator*(const Unitless& multiplier) const
+template <IsCelestialBody auto _body_>
+Geocentric<_body_> Geocentric<_body_>::operator*(const Unitless& multiplier) const
 {
-    return Geocentric<body>(_latitude * multiplier, _longitude * multiplier, _altitude * multiplier);
+    return Geocentric<_body_>(_latitude * multiplier, _longitude * multiplier, _altitude * multiplier);
 }
 
-template <IsCelestialBody auto body>
-Geocentric<body>& Geocentric<body>::operator*=(const Unitless& multiplier)
+template <IsCelestialBody auto _body_>
+Geocentric<_body_>& Geocentric<_body_>::operator*=(const Unitless& multiplier)
 {
     _latitude *= multiplier;
     _longitude *= multiplier;
@@ -141,20 +141,20 @@ Geocentric<body>& Geocentric<body>::operator*=(const Unitless& multiplier)
     return *this;
 }
 
-template <IsCelestialBody auto body>
-std::vector<Unitless> Geocentric<body>::operator/(const Geocentric<body>& other) const
+template <IsCelestialBody auto _body_>
+std::vector<Unitless> Geocentric<_body_>::operator/(const Geocentric<_body_>& other) const
 {
     return { _latitude / other._latitude, _longitude / other._longitude, _altitude / other._altitude };
 }
 
-template <IsCelestialBody auto body>
-Geocentric<body> Geocentric<body>::operator/(const Unitless& divisor) const
+template <IsCelestialBody auto _body_>
+Geocentric<_body_> Geocentric<_body_>::operator/(const Unitless& divisor) const
 {
-    return Geocentric<body>(_latitude / divisor, _longitude / divisor, _altitude / divisor);
+    return Geocentric<_body_>(_latitude / divisor, _longitude / divisor, _altitude / divisor);
 }
 
-template <IsCelestialBody auto body>
-Geocentric<body>& Geocentric<body>::operator/=(const Unitless& divisor)
+template <IsCelestialBody auto _body_>
+Geocentric<_body_>& Geocentric<_body_>::operator/=(const Unitless& divisor)
 {
     _latitude /= divisor;
     _longitude /= divisor;
@@ -162,9 +162,9 @@ Geocentric<body>& Geocentric<body>::operator/=(const Unitless& divisor)
     return *this;
 }
 
-template <IsCelestialBody auto body>
-Geocentric<body>
-    Geocentric<body>::interpolate(const Time& thisTime, const Time& otherTime, const Geocentric<body>& other, const Time& targetTime) const
+template <IsCelestialBody auto _body_>
+Geocentric<_body_>
+    Geocentric<_body_>::interpolate(const Time& thisTime, const Time& otherTime, const Geocentric<_body_>& other, const Time& targetTime) const
 {
     const Angle interpLat = math::interpolate<Time, Angle>({ thisTime, otherTime }, { _latitude, other.get_latitude() }, targetTime);
     const Angle interpLon =
@@ -172,25 +172,25 @@ Geocentric<body>
     const Distance interpAlt =
         math::interpolate<Time, Distance>({ thisTime, otherTime }, { _altitude, other.get_altitude() }, targetTime);
 
-    return Geocentric<body>(interpLat, interpLon, interpAlt);
+    return Geocentric<_body_>(interpLat, interpLon, interpAlt);
 }
 
-template <IsCelestialBody auto body>
-RadiusVector<Geocentric<body>::_fixed_frame_> Geocentric<body>::get_position() const
+template <IsCelestialBody auto _body_>
+RadiusVector<Geocentric<_body_>::_fixed_frame_> Geocentric<_body_>::get_position() const
 {
     return convert_geocentric_to_body_fixed<_fixed_frame_>(
-        _latitude, _longitude, _altitude, get_equitorial_radius<body>(), get_polar_radius<body>()
+        _latitude, _longitude, _altitude, get_equitorial_radius<_body_>(), get_polar_radius<_body_>()
     );
 }
 
-template <IsCelestialBody auto body>
-RadiusVector<Geocentric<body>::_icrf_frame_> Geocentric<body>::get_position(const Date& date) const
+template <IsCelestialBody auto _body_>
+RadiusVector<Geocentric<_body_>::_icrf_frame_> Geocentric<_body_>::get_position(const Date& date) const
 {
     return get_position().template in_frame<_icrf_frame_>(date);
 }
 
-template <IsCelestialBody auto body>
-std::ostream& operator<<(std::ostream& os, Geocentric<body> const& elements)
+template <IsCelestialBody auto _body_>
+std::ostream& operator<<(std::ostream& os, Geocentric<_body_> const& elements)
 {
     using mp_units::angular::unit_symbols::deg;
     using mp_units::si::unit_symbols::km;

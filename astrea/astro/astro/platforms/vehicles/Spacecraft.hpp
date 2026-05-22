@@ -47,12 +47,11 @@ class Spacecraft : public ThrusterPlatform {
     Spacecraft() { _id = utilities::IdProvider::get_next_id<"Platform">(); };
 
     /**
-     * @brief Constructs a Spacecraft with a GeneralPerturbations object and an CelestialBody.
+     * @brief Constructs a Spacecraft with a GeneralPerturbations object.
      *
      * @param gp The GeneralPerturbations object containing initial parameters.
-     * @param sys The CelestialBody to which this spacecraft belongs.
      */
-    Spacecraft(const GeneralPerturbations& gp, const CelestialBody& sys);
+    Spacecraft(const GeneralPerturbations& gp);
 
     /**
      * @brief Virtual destructor for Spacecraft.
@@ -73,7 +72,7 @@ class Spacecraft : public ThrusterPlatform {
      * @param date The date at which to retrieve the position.
      * @return RadiusVector<frames::earth::icrf> The inertial position of the spacecraft.
      */
-    RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const override;
+    RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const;
 
     /**
      * @brief Gets the inertial velocity of the spacecraft at a specific date.
@@ -81,7 +80,7 @@ class Spacecraft : public ThrusterPlatform {
      * @param date The date at which to retrieve the velocity.
      * @return VelocityVector<frames::earth::icrf> The inertial velocity of the spacecraft.
      */
-    VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const override;
+    VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const;
 
     /**
      * @brief Stores the state history of the spacecraft.

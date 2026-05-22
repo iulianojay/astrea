@@ -49,11 +49,11 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
 ) const
 {
     // Extract
-    const auto mu          = get_mu<frames::primary::origin>();
-    const auto J2          = get_j2<frames::primary::origin>();
-    const auto equitorialR = get_equitorial_radius<frames::primary::origin>();
+    const auto mu          = get_mu<decltype(frames::primary)::origin>();
+    const auto J2          = get_j2<decltype(frames::primary)::origin>();
+    const auto equitorialR = get_equitorial_radius<decltype(frames::primary)::origin>();
 
-    const Keplerian elements = state.in_element_set<Keplerian>();
+    const Keplerian<frames::primary> elements = state.in_element_set<Keplerian<frames::primary>>();
     const Distance& a        = elements.get_semimajor();
     // const Angle& raan = elements.get_right_ascension();
     const Angle& w     = elements.get_argument_of_perigee();
@@ -105,7 +105,7 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
     AngularVelocity dincdt = _dincdt;
     if (inc == incTol && dincdt <= incTol * one / s) { dincdt = 0.0 * rad / s; }
 
-    return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
+    return KeplerianPartial<frames::primary>(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
 
 } // namespace astro

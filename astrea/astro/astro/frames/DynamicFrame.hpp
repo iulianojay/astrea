@@ -32,11 +32,9 @@ namespace astro {
 /**
  * @brief Base class for all dynamic state/frames.
  */
-template <typename Self, IsFrame auto _parent_>
+template <typename Self, IsFrame auto _parent_, IsFrame auto _self_>
 struct DynamicFrame {
   protected:
-    static constexpr auto self = typename Self::SelfTag{}; //!< The dynamic frame itself (empty tag satisfying IsFrame).
-
     /**
      * @brief Constructor for instantaneous dynamic state/frames.
      *
@@ -62,7 +60,7 @@ struct DynamicFrame {
      * @return CartesianVector<Value_T, _parent_> The rotated CartesianVector in _parent_ coordinates.
      */
     template <typename Value_T>
-    CartesianVector<Value_T, self> rotate_into_this_frame(const CartesianVector<Value_T, parent>& vec, const Date& date) const
+    CartesianVector<Value_T, _self_> rotate_into_this_frame(const CartesianVector<Value_T, parent>& vec, const Date& date) const
     {
         return get_dcm_impl(date) * vec;
     }
@@ -76,7 +74,7 @@ struct DynamicFrame {
      * @return CartesianVector<Value_T, self> The rotated CartesianVector in ECI coordinates.
      */
     template <typename Value_T>
-    CartesianVector<Value_T, parent> rotate_out_of_this_frame(const CartesianVector<Value_T, self>& vec, const Date& date) const
+    CartesianVector<Value_T, parent> rotate_out_of_this_frame(const CartesianVector<Value_T, _self_>& vec, const Date& date) const
     {
         return get_dcm_impl(date).transpose() * vec;
     }
@@ -89,7 +87,7 @@ struct DynamicFrame {
      * @param date The date for which the conversion is performed.
      * @return RadiusVector<self> The converted CartesianVector in _parent_ coordinates.
      */
-    RadiusVector<self> transform_to_this_frame(const RadiusVector<parent>& vec, const Date& date) const
+    RadiusVector<_self_> transform_to_this_frame(const RadiusVector<parent>& vec, const Date& date) const
     {
         return get_dcm_impl(date) * (vec - get_position(date));
     }
@@ -102,7 +100,7 @@ struct DynamicFrame {
      * @param date The date for which the conversion is performed.
      * @return RadiusVector<parent> The converted CartesianVector in ECI coordinates.
      */
-    RadiusVector<parent> transform_from_this_frame(const RadiusVector<self>& vec, const Date& date) const
+    RadiusVector<parent> transform_from_this_frame(const RadiusVector<_self_>& vec, const Date& date) const
     {
         return get_dcm_impl(date).transpose() * vec + get_position(date);
     }
@@ -114,7 +112,7 @@ struct DynamicFrame {
      * @param date The date for which the DCM is requested.
      * @return DirectionCosineMatrix<parent, Self> The DCM from ECI to _parent_ coordinates.
      */
-    DirectionCosineMatrix<parent, self> get_dcm_impl(const Date& date) const
+    DirectionCosineMatrix<parent, _self_> get_dcm_impl(const Date& date) const
     {
         return static_cast<const Self*>(this)->get_dcm(date);
     }

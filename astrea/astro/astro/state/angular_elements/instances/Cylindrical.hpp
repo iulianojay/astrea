@@ -181,7 +181,7 @@ class Cylindrical {
  * @return The range, azimuth, and elevation as a tuple.
  */
 template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<_frame_>)
+    requires(IsFixedRotatingFrame<decltype(_frame_)>)
 std::tuple<Distance, Angle, Distance> convert_body_fixed_to_cylindrical(const RadiusVector<_frame_>& rFixed)
 {
     using mp_units::si::unit_symbols::km;
@@ -202,7 +202,7 @@ std::tuple<Distance, Angle, Distance> convert_body_fixed_to_cylindrical(const Ra
  * @return The radius vector in the body-fixed frame.
  */
 template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<_frame_>)
+    requires(IsFixedRotatingFrame<decltype(_frame_)>)
 RadiusVector<_frame_> convert_cylindrical_to_body_fixed(const Distance& range, const Angle& azimuth, const Distance& elevation)
 {
     return RadiusVector<_frame_>(range * cos(azimuth), range * sin(azimuth), elevation);

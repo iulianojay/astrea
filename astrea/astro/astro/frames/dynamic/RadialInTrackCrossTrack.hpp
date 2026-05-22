@@ -30,13 +30,26 @@ namespace astro {
 namespace frames {
 
 /**
+ * @brief Frame tag type for RadialInTrackCrossTrack, defined outside the class to allow use as a DynamicFrame NTTP.
+ */
+template <IsFrame auto _parent_>
+struct RicTag : Frame<"ric", DynamicOrigin{}, DynamicAxis{}, _parent_> {
+    RadialInTrackCrossTrack<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const {
+        return RadialInTrackCrossTrack<_parent_>(r, v);
+    }
+};
+
+template <IsFrame auto _parent_>
+inline constexpr RicTag<_parent_> ric_tag{};
+
+/**
  * @brief Class representing the Radial, In-Track, Cross-Track (RIC) frame.
  */
 template <IsFrame auto _parent_>
-struct RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack<_parent_>, _parent_> {
+struct RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack<_parent_>, _parent_, ric_tag<_parent_>> {
 
-    struct SelfTag : Frame<"ric", DynamicOrigin{}, DynamicAxis{}, _parent_> {}; //!< Empty frame tag satisfying IsFrame.
-
+    using tag_type = RicTag<_parent_>;       //!< Tag type for this frame.
+    static inline constexpr tag_type tag{};  //!< Empty frame tag satisfying IsFrame.
     static constexpr auto parent = _parent_; //!< The reference frame of the RIC frame.
 
     /**
@@ -46,7 +59,7 @@ struct RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack<_pa
      * @param velocity The velocity vector in the ECI frame.
      */
     RadialInTrackCrossTrack(const RadiusVector<parent>& position, const VelocityVector<parent>& velocity) :
-        DynamicFrame<RadialInTrackCrossTrack<_parent_>, parent>(position, velocity)
+        DynamicFrame<RadialInTrackCrossTrack<_parent_>, parent, ric_tag<_parent_>>(position, velocity)
     {
     }
 
@@ -58,15 +71,17 @@ struct RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack<_pa
      * @param date The date for which the DCM is requested.
      * @return DirectionCosineMatrix<parent, RadialInTrackCrossTrack> The DCM from ECI to RIC.
      */
-    DirectionCosineMatrix<parent, SelfTag{}> get_dcm(const Date& date) const
+    DirectionCosineMatrix<parent, tag> get_dcm(const Date& date) const
     {
         const auto r       = this->get_position(date).unit();
         const auto v       = this->get_velocity(date).unit();
         const auto h       = r.cross(v).unit();
         const auto inTrack = (-r.cross(h)).unit();
-        return DirectionCosineMatrix<parent, SelfTag{}>::from_vectors(r, inTrack, h);
+        return DirectionCosineMatrix<parent, tag>::from_vectors(r, inTrack, h);
     }
 };
+
+
 
 } // namespace frames
 } // namespace astro

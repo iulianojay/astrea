@@ -46,9 +46,9 @@ int main()
             const Cartesian<frames::earth::icrf> cartesian = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
             // Build out a burn in the RIC frame, pointing in the nadir direction
-            using RIC       = astro::frames::dynamic::ric;
-            const RIC frame = frames::dynamic::ric::instantaneous(cartesian.get_position(), cartesian.get_velocity());
-            const ForceVector<RIC> nadirThrust{ -1.0 * N, 0.0 * N, 0.0 * N };
+            using RIC        = decltype(astro::frames::dynamic::ric);
+            const auto frame = frames::dynamic::ric.instantaneous(cartesian.get_position(), cartesian.get_velocity());
+            const ForceVector<astro::frames::dynamic::ric> nadirThrust{ -1.0 * N, 0.0 * N, 0.0 * N };
 
             std::cout << "Applying continuous thrust force: " << _name << " at time " << date << std::endl;
             std::cout << nadirThrust << std::endl;

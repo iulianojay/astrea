@@ -181,7 +181,7 @@ class Spherical {
  * @return The range, inclination, and azimuth as a tuple.
  */
 template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<_frame_>)
+    requires(IsFixedRotatingFrame<decltype(_frame_)>)
 std::tuple<Distance, Angle, Angle> convert_body_fixed_to_spherical(const RadiusVector<_frame_>& rFixed)
 {
     using mp_units::angular::unit_symbols::rad;
@@ -211,7 +211,7 @@ std::tuple<Distance, Angle, Angle> convert_body_fixed_to_spherical(const RadiusV
  * @return The radius vector in the body-fixed frame.
  */
 template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<_frame_>)
+    requires(IsFixedRotatingFrame<decltype(_frame_)>)
 RadiusVector<_frame_> convert_spherical_to_body_fixed(const Distance& range, const Angle& inclination, const Angle& azimuth)
 {
     return RadiusVector<_frame_>(range * sin(inclination) * cos(azimuth), range * sin(inclination) * sin(azimuth), range * cos(inclination));

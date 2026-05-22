@@ -65,7 +65,7 @@ class J2MeanVop : public EquationsOfMotion {
      *
      * @return std::size_t The expected set id of orbital elements.
      */
-    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Keplerian>(); };
+    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Keplerian<frames::primary>>(); };
 
   private:
     const Unitless eccTol = 1e-10 * mp_units::one;                        //!< Tolerance for checking eccentricity.

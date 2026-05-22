@@ -38,14 +38,27 @@ namespace astro {
 namespace frames {
 
 /**
+ * @brief Frame tag type for EastNorthUp, defined outside the class to allow use as a DynamicFrame NTTP.
+ */
+template <IsFrame auto _parent_>
+struct EastNorthUpTag : Frame<"enu", DynamicOrigin{}, DynamicAxis{}, _parent_> {
+    EastNorthUp<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const {
+        return EastNorthUp<_parent_>(r, v);
+    }
+};
+
+template <IsFrame auto _parent_>
+inline constexpr EastNorthUpTag<_parent_> enu_tag{};
+
+/**
  * @brief Class representing the East, North, Up (ENU) frame.
  */
 template <IsFrame auto _frame_>
-struct EastNorthUp : public DynamicFrame<EastNorthUp<_frame_>, _frame_> {
+struct EastNorthUp : public DynamicFrame<EastNorthUp<_frame_>, _frame_, enu_tag<_frame_>> {
 
-    struct SelfTag : Frame<"enu", DynamicOrigin{}, DynamicAxis{}, _frame_> {}; //!< Empty frame tag satisfying IsFrame.
-
-    static constexpr auto frame = _frame_; //!< The reference frame of the ENU frame.
+    using tag_type = EastNorthUpTag<_frame_>; //!< Tag type for this frame.
+    static inline constexpr tag_type tag{};   //!< Empty frame tag satisfying IsFrame.
+    static constexpr auto frame = _frame_;    //!< The reference frame of the ENU frame.
 
     /**
      * @brief Constructor for instantaneous dynamic state/frames.
@@ -54,7 +67,7 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp<_frame_>, _frame_> {
      * @param velocity The velocity vector in the ECI frame.
      */
     EastNorthUp(const RadiusVector<frame>& position, const VelocityVector<frame>& velocity) :
-        DynamicFrame<EastNorthUp<_frame_>, frame>(position, velocity)
+        DynamicFrame<EastNorthUp<_frame_>, frame, enu_tag<_frame_>>(position, velocity)
     {
     }
 
@@ -66,12 +79,12 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp<_frame_>, _frame_> {
      * @param date The date for which the DCM is requested.
      * @return DirectionCosineMatrix<frame, EastNorthUp> The DCM from ECI to ENU.
      */
-    DirectionCosineMatrix<frame, SelfTag{}> get_dcm(const Date& date) const
+    DirectionCosineMatrix<frame, tag> get_dcm(const Date& date) const
     {
         // eci -> ecef -> lat/lon -> n/e/u
-        const RadiusVector<frame> r            = this->get_position(date);
-        const RadiusVector<frame_fixed> rFixed = r.in_frame<frame_fixed>(date);
-        const auto [lat, lon, alt]             = convert_body_fixed_to_geodetic(rFixed);
+        const RadiusVector<frame> r              = this->get_position(date);
+        const RadiusVector<primary_fixed> rFixed = r.template in_frame<primary_fixed>(date);
+        const auto [lat, lon, alt]               = convert_body_fixed_to_geodetic(rFixed);
 
         using mp_units::one;
         using mp_units::angular::cos;
@@ -81,11 +94,13 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp<_frame_>, _frame_> {
         const Unitless sinLon = sin(lon);
         const Unitless cosLon = cos(lon);
 
-        return DirectionCosineMatrix<frame, SelfTag{}>(
+        return DirectionCosineMatrix<frame, tag>(
             { -sinLat, cosLat, 0.0 * one }, { -cosLat * sinLon, -sinLat * sinLon, cosLon }, { cosLat * cosLon, sinLat * cosLon, sinLon }
         );
     }
 };
+
+
 
 } // namespace frames
 } // namespace astro

@@ -32,21 +32,21 @@
 namespace astrea {
 namespace astro {
 
-template <IsCelestialBody auto body>
-Cylindrical<body>::Cylindrical(const RadiusVector<_icrf_frame_>& rIcrf, const Date& date)
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_>::Cylindrical(const RadiusVector<_icrf_frame_>& rIcrf, const Date& date)
 {
-    *this = Cylindrical<body>(rIcrf.template in_frame<_fixed_frame_>(date));
+    *this = Cylindrical<_body_>(rIcrf.template in_frame<_fixed_frame_>(date));
 }
 
-template <IsCelestialBody auto body>
-Cylindrical<body>::Cylindrical(const RadiusVector<_fixed_frame_>& rFixed)
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_>::Cylindrical(const RadiusVector<_fixed_frame_>& rFixed)
 {
     std::tie(_range, _azimuth, _elevation) = convert_body_fixed_to_cylindrical(rFixed);
 }
 
 // Copy constructor
-template <IsCelestialBody auto body>
-Cylindrical<body>::Cylindrical(const Cylindrical<body>& other) :
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_>::Cylindrical(const Cylindrical<_body_>& other) :
     _range(other._range),
     _azimuth(other._azimuth),
     _elevation(other._elevation)
@@ -54,8 +54,8 @@ Cylindrical<body>::Cylindrical(const Cylindrical<body>& other) :
 }
 
 // Move constructor
-template <IsCelestialBody auto body>
-Cylindrical<body>::Cylindrical(Cylindrical<body>&& other) noexcept :
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_>::Cylindrical(Cylindrical<_body_>&& other) noexcept :
     _range(std::move(other._range)),
     _azimuth(std::move(other._azimuth)),
     _elevation(std::move(other._elevation))
@@ -63,8 +63,8 @@ Cylindrical<body>::Cylindrical(Cylindrical<body>&& other) noexcept :
 }
 
 // Move assignment operator
-template <IsCelestialBody auto body>
-Cylindrical<body>& Cylindrical<body>::operator=(Cylindrical<body>&& other) noexcept
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_>& Cylindrical<_body_>::operator=(Cylindrical<_body_>&& other) noexcept
 {
     if (this != &other) {
         _range     = std::move(other._range);
@@ -75,34 +75,34 @@ Cylindrical<body>& Cylindrical<body>::operator=(Cylindrical<body>&& other) noexc
 }
 
 // Copy assignment operator
-template <IsCelestialBody auto body>
-Cylindrical<body>& Cylindrical<body>::operator=(const Cylindrical<body>& other)
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_>& Cylindrical<_body_>::operator=(const Cylindrical<_body_>& other)
 {
-    return *this = Cylindrical<body>(other);
+    return *this = Cylindrical<_body_>(other);
 }
 
 // Comparison operators
-template <IsCelestialBody auto body>
-bool Cylindrical<body>::operator==(const Cylindrical<body>& other) const
+template <IsCelestialBody auto _body_>
+bool Cylindrical<_body_>::operator==(const Cylindrical<_body_>& other) const
 {
     return (_range == other._range && _azimuth == other._azimuth && _elevation == other._elevation);
 }
 
-template <IsCelestialBody auto body>
-bool Cylindrical<body>::operator!=(const Cylindrical<body>& other) const
+template <IsCelestialBody auto _body_>
+bool Cylindrical<_body_>::operator!=(const Cylindrical<_body_>& other) const
 {
     return !(*this == other);
 }
 
 // Mathematical operators
-template <IsCelestialBody auto body>
-Cylindrical<body> Cylindrical<body>::operator+(const Cylindrical<body>& other) const
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_> Cylindrical<_body_>::operator+(const Cylindrical<_body_>& other) const
 {
-    return Cylindrical<body>(_range + other._range, _azimuth + other._azimuth, _elevation + other._elevation);
+    return Cylindrical<_body_>(_range + other._range, _azimuth + other._azimuth, _elevation + other._elevation);
 }
 
-template <IsCelestialBody auto body>
-Cylindrical<body>& Cylindrical<body>::operator+=(const Cylindrical<body>& other)
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_>& Cylindrical<_body_>::operator+=(const Cylindrical<_body_>& other)
 {
     _range += other._range;
     _azimuth += other._azimuth;
@@ -110,14 +110,14 @@ Cylindrical<body>& Cylindrical<body>::operator+=(const Cylindrical<body>& other)
     return *this;
 }
 
-template <IsCelestialBody auto body>
-Cylindrical<body> Cylindrical<body>::operator-(const Cylindrical<body>& other) const
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_> Cylindrical<_body_>::operator-(const Cylindrical<_body_>& other) const
 {
-    return Cylindrical<body>(_range - other._range, _azimuth - other._azimuth, _elevation - other._elevation);
+    return Cylindrical<_body_>(_range - other._range, _azimuth - other._azimuth, _elevation - other._elevation);
 }
 
-template <IsCelestialBody auto body>
-Cylindrical<body>& Cylindrical<body>::operator-=(const Cylindrical<body>& other)
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_>& Cylindrical<_body_>::operator-=(const Cylindrical<_body_>& other)
 {
     _range -= other._range;
     _azimuth -= other._azimuth;
@@ -125,14 +125,14 @@ Cylindrical<body>& Cylindrical<body>::operator-=(const Cylindrical<body>& other)
     return *this;
 }
 
-template <IsCelestialBody auto body>
-Cylindrical<body> Cylindrical<body>::operator*(const Unitless& multiplier) const
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_> Cylindrical<_body_>::operator*(const Unitless& multiplier) const
 {
-    return Cylindrical<body>(_range * multiplier, _azimuth * multiplier, _elevation * multiplier);
+    return Cylindrical<_body_>(_range * multiplier, _azimuth * multiplier, _elevation * multiplier);
 }
 
-template <IsCelestialBody auto body>
-Cylindrical<body>& Cylindrical<body>::operator*=(const Unitless& multiplier)
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_>& Cylindrical<_body_>::operator*=(const Unitless& multiplier)
 {
     _range *= multiplier;
     _azimuth *= multiplier;
@@ -140,20 +140,20 @@ Cylindrical<body>& Cylindrical<body>::operator*=(const Unitless& multiplier)
     return *this;
 }
 
-template <IsCelestialBody auto body>
-std::vector<Unitless> Cylindrical<body>::operator/(const Cylindrical<body>& other) const
+template <IsCelestialBody auto _body_>
+std::vector<Unitless> Cylindrical<_body_>::operator/(const Cylindrical<_body_>& other) const
 {
     return { _range / other._range, _azimuth / other._azimuth, _elevation / other._elevation };
 }
 
-template <IsCelestialBody auto body>
-Cylindrical<body> Cylindrical<body>::operator/(const Unitless& divisor) const
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_> Cylindrical<_body_>::operator/(const Unitless& divisor) const
 {
-    return Cylindrical<body>(_range / divisor, _azimuth / divisor, _elevation / divisor);
+    return Cylindrical<_body_>(_range / divisor, _azimuth / divisor, _elevation / divisor);
 }
 
-template <IsCelestialBody auto body>
-Cylindrical<body>& Cylindrical<body>::operator/=(const Unitless& divisor)
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_>& Cylindrical<_body_>::operator/=(const Unitless& divisor)
 {
     _range /= divisor;
     _azimuth /= divisor;
@@ -161,9 +161,9 @@ Cylindrical<body>& Cylindrical<body>::operator/=(const Unitless& divisor)
     return *this;
 }
 
-template <IsCelestialBody auto body>
-Cylindrical<body>
-    Cylindrical<body>::interpolate(const Time& thisTime, const Time& otherTime, const Cylindrical<body>& other, const Time& targetTime) const
+template <IsCelestialBody auto _body_>
+Cylindrical<_body_>
+    Cylindrical<_body_>::interpolate(const Time& thisTime, const Time& otherTime, const Cylindrical<_body_>& other, const Time& targetTime) const
 {
     const Distance interpRange =
         math::interpolate<Time, Distance>({ thisTime, otherTime }, { _range, other.get_range() }, targetTime);
@@ -172,23 +172,23 @@ Cylindrical<body>
     const Distance interpElev =
         math::interpolate<Time, Distance>({ thisTime, otherTime }, { _elevation, other.get_elevation() }, targetTime);
 
-    return Cylindrical<body>(interpRange, interpAzimuth, interpElev);
+    return Cylindrical<_body_>(interpRange, interpAzimuth, interpElev);
 }
 
-template <IsCelestialBody auto body>
-RadiusVector<Cylindrical<body>::_fixed_frame_> Cylindrical<body>::get_position() const
+template <IsCelestialBody auto _body_>
+RadiusVector<Cylindrical<_body_>::_fixed_frame_> Cylindrical<_body_>::get_position() const
 {
     return convert_cylindrical_to_body_fixed<_fixed_frame_>(_range, _azimuth, _elevation);
 }
 
-template <IsCelestialBody auto body>
-RadiusVector<Cylindrical<body>::_icrf_frame_> Cylindrical<body>::get_position(const Date& date) const
+template <IsCelestialBody auto _body_>
+RadiusVector<Cylindrical<_body_>::_icrf_frame_> Cylindrical<_body_>::get_position(const Date& date) const
 {
     return get_position().template in_frame<_icrf_frame_>(date);
 }
 
-template <IsCelestialBody auto body>
-std::ostream& operator<<(std::ostream& os, Cylindrical<body> const& elements)
+template <IsCelestialBody auto _body_>
+std::ostream& operator<<(std::ostream& os, Cylindrical<_body_> const& elements)
 {
     os << "[";
     os << elements.get_range() << ", ";

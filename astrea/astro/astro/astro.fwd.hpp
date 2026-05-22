@@ -78,9 +78,19 @@ class AttitudePartials;
 template <typename Value_T, IsFrame auto _frame_>
 struct CartesianVector;
 
+namespace frames {
+
+template <IsFrame auto _parent_>
+struct EastNorthUp;
+template <IsFrame auto _parent_>
 struct LocalHorizontalLocalVertical;
+template <IsFrame auto _parent_>
 struct RadialInTrackCrossTrack;
+template <IsFrame auto _parent_>
 struct VelocityNormalBinormal;
+
+} // namespace frames
+
 struct Perifocal;
 
 template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
