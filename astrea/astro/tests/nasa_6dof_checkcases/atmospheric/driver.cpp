@@ -72,7 +72,7 @@
 // TEST_F(Atmospheric6DofTest, GEO)
 // {
 //     // Build constellation
-//     Keplerian state0 = Keplerian::GEO();
+//     Keplerian state0 = Keplerian<frames::earth::icrf>::GEO();
 //     Spacecraft geo({ Cartesian(state0, mu), epoch });
 //     Vehicle vehicle{ geo };
 
@@ -90,7 +90,7 @@
 // TEST_F(Atmospheric6DofTest, GPS)
 // {
 //     // Build constellation
-//     Keplerian state0 = Keplerian::GPS();
+//     Keplerian state0 = Keplerian<frames::earth::icrf>::GPS();
 //     Spacecraft meo({ Cartesian(state0, mu), epoch });
 //     Vehicle vehicle{ meo };
 
@@ -105,10 +105,10 @@
 // }
 
 
-// TEST_F(Atmospheric6DofTest, LEO)
+// TEST_F(Atmospheric6DofTest, GEO)
 // {
 //     // Build constellation
-//     Keplerian state0 = Keplerian::LEO();
+//     Keplerian state0 = Keplerian<frames::earth::icrf>::GEO();
 //     Spacecraft leo({ Cartesian(state0, mu), epoch });
 //     Vehicle vehicle{ leo };
 

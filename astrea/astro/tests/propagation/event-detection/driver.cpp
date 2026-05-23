@@ -72,7 +72,7 @@ int main(int argc, char** argv)
 TEST_F(EventDetectionTest, NoThrust)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::LEO();
+    Keplerian kep0 = Keplerian<frames::earth::icrf>::LEO();
     State state{ kep0, epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };
@@ -95,7 +95,7 @@ TEST_F(EventDetectionTest, NoThrust)
 TEST_F(EventDetectionTest, ImpulsiveBurn)
 {
     // Build constellation
-    const Keplerian kep0 = Keplerian::LEO();
+    const Keplerian kep0 = Keplerian<frames::earth::icrf>::LEO();
     const ThrusterParameters thrusterParams(1.0e3 * mp_units::si::unit_symbols::kN);
     const State state{ kep0, epoch };
 

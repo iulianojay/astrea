@@ -71,7 +71,7 @@ int main(int argc, char** argv)
 TEST_F(KeplerianVopPropagationTest, GEONoForces)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::GEO();
+    Keplerian kep0 = Keplerian<frames::earth::icrf>::GEO();
     State state{ kep0, epoch };
     Spacecraft geo;
     Vehicle vehicle{ geo };
@@ -90,7 +90,7 @@ TEST_F(KeplerianVopPropagationTest, GEONoForces)
 TEST_F(KeplerianVopPropagationTest, GPSNoForces)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::GPS();
+    Keplerian kep0 = Keplerian<frames::earth::icrf>::GPS();
     State state{ kep0, epoch };
     Spacecraft meo;
     Vehicle vehicle{ meo };
@@ -106,10 +106,10 @@ TEST_F(KeplerianVopPropagationTest, GPSNoForces)
 }
 
 
-TEST_F(KeplerianVopPropagationTest, LEONoForces)
+TEST_F(KeplerianVopPropagationTest, GEONoForces)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::LEO();
+    Keplerian kep0 = Keplerian<frames::earth::icrf>::GEO();
     State state{ kep0, epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };

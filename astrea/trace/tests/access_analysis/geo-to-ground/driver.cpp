@@ -109,8 +109,8 @@ TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
 
     // Build out grounds
     SensorParameters groundCone(&fov180deg, { 1.0 * m, 0.0 * m, 0.0 * m });
-    GroundStation ground(centralBody.get(), lat, lon, 0.0 * km, "Test site", { groundCone });
-    GroundArchitecture grounds({ ground });
+    GroundStation<astro::planets::Earth> ground(lat, lon, 0.0 * km, "Test site", { groundCone });
+    GroundArchitecture<astro::planets::Earth> grounds({ ground });
 
     // Propagate
     constel.propagate(propTime, integrator);

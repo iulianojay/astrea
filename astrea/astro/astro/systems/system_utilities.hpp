@@ -92,12 +92,25 @@ consteval auto get_planet_from_pack()
 }
 
 /**
+ * @brief Checks if all bodies in the pack share the same parent.
+ */
+template <IsCelestialReference auto first, IsCelestialReference auto... rest>
+consteval bool check_all_bodies_share_a_parent()
+{
+    if constexpr (sizeof...(rest) == 0) { return true; }
+
+    static_assert(has_parent<first>(), "body must have a parent to check if all bodies share a parent");
+    constexpr auto parent = get_parent<first>();
+    return ((is_same_body<parent, rest>() || (has_parent<rest>() && is_same_body<parent, get_parent<rest>()>())) && ...);
+}
+
+/**
  * @brief Finds the closest common ancestor of the given celestial bodies.
  *
  * - 1 body      → that body itself.
  * - ≥ 2 planets → SolarSystemBarycenter (the only common ancestor of independent planets).
- * - 1 planet    → that planet if all other bodies are in its sub-hierarchy, else SolarSystemBarycenter.
- * - 0 planets   → SolarSystemBarycenter (conservative fall-back for pure-satellite sets).
+ * - 1 planet    → that planet if all other bodies are in its system, else SolarSystemBarycenter.
+ * - 0 planets   → only moons, check if they share a parent, else SolarSystemBarycenter.
  *
  * @tparam Bodies The celestial bodies to consider.
  * @return The common ancestor body value.
@@ -106,21 +119,24 @@ template <IsCelestialReference auto... bodies>
 consteval auto find_common_ancestor()
 {
     if constexpr (sizeof...(bodies) == 1) { return (bodies, ...); }
-    else {
-        constexpr std::size_t planet_count = ((get_body_type<bodies>() == CelestialBodyType::PLANET ? 1 : 0) + ...);
 
-        if constexpr (planet_count >= 2) { return barycenters::SolarSystemBarycenter; }
-        else if constexpr (planet_count == 1) {
-            constexpr auto planet = get_planet_from_pack<bodies...>();
-            if constexpr ((is_ancestor_of<planet, bodies>() && ...)) { return planet; }
-            else {
-                return barycenters::SolarSystemBarycenter;
-            }
-        }
-        else {
-            return barycenters::SolarSystemBarycenter;
+    constexpr std::size_t planet_count = ((get_body_type<bodies>() == CelestialBodyType::PLANET ? 1 : 0) + ...);
+
+    // 2 or more planets means the common ancestor is the Solar System Barycenter
+    if constexpr (planet_count >= 2) { return barycenters::SolarSystemBarycenter; }
+    else if constexpr (planet_count == 1) {
+        // Exactly 1 planet, check if all other bodies are in its system
+        constexpr auto planet = get_planet_from_pack<bodies...>();
+        if constexpr ((is_ancestor_of<planet, bodies>() && ...)) { return planet; }
+    }
+    else if constexpr (planet_count == 0) {
+        // No planets, check if all bodies share the same parent
+        if constexpr (check_all_bodies_share_a_parent<bodies...>()) {
+            constexpr auto first = (bodies, ...);
+            return get_parent<first>();
         }
     }
+    return barycenters::SolarSystemBarycenter;
 }
 
 /**
@@ -195,7 +211,10 @@ constexpr auto get_position_relative_to_ancestor(const Date& date)
     static constexpr auto parent = get_parent<body>();
     if constexpr (is_same_body<parent, ancestor>()) { return get_position_at<body>(date); }
     else {
-        return get_position_at<body>(date) + get_position_relative_to_ancestor<parent, ancestor>(date);
+        // r_body/ancestor = r_body/parent + r_parent/ancestor
+        return get_position_at<body>(date)
+                   .template force_frame_conversion<decltype(get_position_relative_to_ancestor<parent, ancestor>(date))::frame>() +
+               get_position_relative_to_ancestor<parent, ancestor>(date);
     }
 }
 
@@ -212,7 +231,9 @@ constexpr auto get_velocity_relative_to_ancestor(const Date& date)
     static constexpr auto parent = get_parent<body>();
     if constexpr (is_same_body<parent, ancestor>()) { return get_velocity_at<body>(date); }
     else {
-        return get_velocity_at<body>(date) + get_velocity_relative_to_ancestor<parent, ancestor>(date);
+        return get_velocity_at<body>(date)
+                   .template force_frame_conversion<decltype(get_velocity_relative_to_ancestor<parent, ancestor>(date))::frame>() +
+               get_velocity_relative_to_ancestor<parent, ancestor>(date);
     }
 }
 

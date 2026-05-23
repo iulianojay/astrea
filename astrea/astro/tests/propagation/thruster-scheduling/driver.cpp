@@ -57,7 +57,7 @@ class ThrusterSchedulingRegressionTest : public testing::Test {
         vehicle = Vehicle(spacecraft);
 
         // Setup initial LEO orbit
-        initialElements = Keplerian::LEO(); // ~500 km circular orbit
+        initialElements = Keplerian<frames::earth::icrf>::LEO(); // ~500 km circular orbit
         initialState    = State(initialElements, epoch);
 
         // Calculate orbital period for scheduling

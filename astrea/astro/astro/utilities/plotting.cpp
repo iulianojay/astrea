@@ -12,7 +12,6 @@
  */
 
 
-
 #include <astro/utilities/plotting.hpp>
 
 #include <array>
@@ -175,7 +174,7 @@ std::array<std::vector<double>, 6> extract_raw_orbital_elements(const StateHisto
 {
     std::array<std::vector<double>, 6> data;
     for (const auto& state : trajectory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+        const Keplerian<frames::primary> kep = state.in_element_set<Keplerian<frames::primary>>();
 
         const auto a  = kep.get_semimajor();
         const auto e  = kep.get_eccentricity();
@@ -200,13 +199,14 @@ std::array<std::vector<double>, 6> extract_raw_orbital_elements_at_times(const s
     std::array<std::vector<double>, 6> data;
     const Date epoch = trajectory.epoch();
     for (const auto& time : times) {
-        const Keplerian kep = trajectory.get_state_at(epoch + time * day).in_element_set<Keplerian>();
-        const auto a        = kep.get_semimajor();
-        const auto e        = kep.get_eccentricity();
-        const auto i        = wrap_angle(kep.get_inclination());
-        const auto r        = wrap_angle(kep.get_right_ascension());
-        const auto w        = wrap_angle(kep.get_argument_of_perigee());
-        const auto th       = wrap_angle(kep.get_true_anomaly());
+        const Keplerian<frames::primary> kep =
+            trajectory.get_state_at(epoch + time * day).in_element_set<Keplerian<frames::primary>>();
+        const auto a  = kep.get_semimajor();
+        const auto e  = kep.get_eccentricity();
+        const auto i  = wrap_angle(kep.get_inclination());
+        const auto r  = wrap_angle(kep.get_right_ascension());
+        const auto w  = wrap_angle(kep.get_argument_of_perigee());
+        const auto th = wrap_angle(kep.get_true_anomaly());
 
         data[0].push_back(a.numerical_value_in(km));
         data[1].push_back(e.numerical_value_in(one));

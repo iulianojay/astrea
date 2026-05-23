@@ -61,7 +61,7 @@ LegendreCache<_body_, _degree_, _order_>::LegendreCache()
     // TODO: Change to binary files cause boy are these big
     static const std::filesystem::path path = std::string(_ASTRO_ROOT_) + "/data/gravity_models";
     std::filesystem::path filename;
-    if constexpr (_body_ == planets::_order_ercury) {
+    if constexpr (_body_ == planets::Mercury) {
         // https://pds-geosciences.wustl.edu/messenger/mess-h-rss_mla-5-sdp-v1/messrs_1001/data/shadr/
         filename = path / "_order_ercury" / "jgmess_160a_sha.tab"; // _degree_ormalized
     }
@@ -74,16 +74,16 @@ LegendreCache<_body_, _degree_, _order_>::LegendreCache()
         // filename = path / "Earth" / "WGS84"; // _degree_ormalized
         // filename = path / "Earth" / "_degree_ASA_6DoF"; // _degree_ormalized - only goes to 8x8
     }
-    else if constexpr (_body_ == planets::_order_oon) {
+    else if constexpr (_body_ == planets::Moon) {
         // https://pds-geosciences.wustl.edu/grail/grail-l-lgrs-5-rdr-v1/grail_1001/shadr/
         filename = path / "_order_oon" / "jggrx_0420a_sha.tab"; // _degree_ormalized?
     }
-    else if constexpr (_body_ == planets::_order_ars) {
+    else if constexpr (_body_ == planets::Mars) {
         // https://pds-geosciences.wustl.edu/mro/mro-m-rss-5-sdp-v1/mrors_1xxx/data/shadr/
         filename = path / "_order_ars" / "jgmro_120f_sha.tab"; // _degree_ormalized?
     }
     else {
-        throw std::runtime_error("Legendre coefficient file for central body, " + get_name<_body_>() + ", not found.");
+        throw std::runtime_error("Legendre coefficient file for central body, " + decltype(_body_)::name.portable() + ", not found.");
     }
 
     std::ifstream file(filename);
@@ -147,14 +147,14 @@ LegendreCache<_body_, _degree_, _order_>::LegendreCache()
 //         P[n].resize(order + 1, 0.0 * one);
 //     }
 
-//     const Unitless sqrtOne_order_inusX2 = sqrt(1.0 * one - x * x);
+//     const Unitless sqrtOneMinusX2 = sqrt(1.0 * one - x * x);
 
 //     // Compute diagonal terms P_m^m using recursion
 //     Unitless Pmm = 1.0 * one; // P_0^0 = 1
 //     for (std::size_t m = 0; m <= std::min(degree, order); ++m) {
 //         if (m > 0) {
 //             // P_m^m = (2m-1) * sqrt(1-x^2) * P_{m-1}^{m-1}
-//             Pmm *= (2.0 * m - 1.0) * sqrtOne_order_inusX2;
+//             Pmm *= (2.0 * m - 1.0) * sqrtOneMinusX2;
 //         }
 
 //         if (m >= 2) { P[m][m] = _normalizingCoefficients[m][m] * Pmm; }
@@ -398,8 +398,8 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
     Unitless ax = 0.0 * one;
     Unitless ay = 0.0 * one;
     Unitless az = 0.0 * one;
-    for (std::size_t m = 0; m <= _order; ++m) {
-        for (std::size_t n = m; n <= _degree; ++n) {
+    for (std::size_t m = 0; m <= _order_; ++m) {
+        for (std::size_t n = m; n <= _degree_; ++n) {
 
             const Unitless Cnm = _legendreCache.get_cosine_coefficient(n, m);
             const Unitless Snm = _legendreCache.get_sine_coefficient(n, m);

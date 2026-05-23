@@ -64,7 +64,7 @@ int main()
 
     // All of these can be safely propagated
     Date epoch = Date::now();
-    State state0(Keplerian::LEO(), epoch);
+    State state0(Keplerian<frames::earth::icrf>::LEO(), epoch);
     Time propTime = hours(1.0);
 
     Integrator integrator; // default to two-body

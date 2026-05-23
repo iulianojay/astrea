@@ -40,7 +40,6 @@ namespace astrea {
 
 using namespace astro::frames;
 using astro::Cartesian;
-using astro::CelestialBodyId;
 using astro::Date;
 using astro::Keplerian;
 using astro::RadiusVector;
@@ -101,25 +100,25 @@ ViewerRefVec AccessAnalyzer::cache_viewers(ViewerConstellation& constel)
     return viewers;
 }
 
-GroundStationRefVec AccessAnalyzer::cache_ground_points(GroundArchitecture& grounds)
+GroundStationRefVec AccessAnalyzer::cache_ground_points(GroundArchitecture<astro::planets::Earth>& grounds)
 {
     GroundStationRefVec groundStations;
     groundStations.reserve(grounds.size());
     for (auto& ground : grounds) {
-        groundStations.push_back(std::make_shared<GroundStation>(ground));
+        groundStations.push_back(std::make_shared<GroundStation<astro::planets::Earth>>(ground));
         const std::size_t platformIdx = _positionCache.add_platform(ground.get_id(), 1);
         _positionCache.set_position(platformIdx, 0, ground.get_position());
     }
     return groundStations;
 }
 
-GroundPointRefVec AccessAnalyzer::cache_ground_points(Grid& grid)
+GroundPointRefVec AccessAnalyzer::cache_ground_points(Grid<astro::planets::Earth>& grid)
 {
     GroundPointRefVec groundPoints;
     groundPoints.reserve(grid.size());
     std::size_t gpIdx = 0;
     for (auto& groundPoint : grid) {
-        groundPoints.push_back(std::make_shared<GroundPoint>(groundPoint));
+        groundPoints.push_back(std::make_shared<GroundPoint<astro::planets::Earth>>(groundPoint));
         const std::size_t platformIdx = _positionCache.add_platform(groundPoint.get_id(), 1);
         _positionCache.set_position(platformIdx, 0, groundPoint.get_position());
         gpIdx++;
@@ -169,7 +168,7 @@ AccessArray AccessAnalyzer::find_internal_accesses(ViewerConstellation& constel,
     return allAccesses;
 }
 
-AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, GroundArchitecture& grounds, const bool includeInternalAccesses)
+AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, GroundArchitecture<astro::planets::Earth>& grounds, const bool includeInternalAccesses)
 {
     const std::size_t nViewers = constel.size();
     const std::size_t nGrounds = grounds.size();
@@ -214,7 +213,7 @@ AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, GroundAr
     return allAccesses;
 }
 
-AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, Grid& grid, const bool includeInternalAccesses)
+AccessArray AccessAnalyzer::find_accesses(ViewerConstellation& constel, Grid<astro::planets::Earth>& grid, const bool includeInternalAccesses)
 {
     const std::size_t nViewers = constel.size();
     const std::size_t nGrounds = grid.size();
@@ -296,8 +295,10 @@ RiseSetArray
     return platformToPlatformAccesses;
 }
 
-RiseSetArray
-    AccessAnalyzer::find_platform_to_ground_point_accesses(std::shared_ptr<SensorPlatform> platform, const std::shared_ptr<GroundPoint> groundPoint) const
+RiseSetArray AccessAnalyzer::find_platform_to_ground_point_accesses(
+    std::shared_ptr<SensorPlatform> platform,
+    const std::shared_ptr<GroundPoint<astro::planets::Earth>> groundPoint
+) const
 {
     // Build access info
     const std::vector<AccessInfo> accessInfo = build_access_info(platform->get_id(), groundPoint->get_id());

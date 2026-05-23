@@ -114,7 +114,7 @@ TEST_F(LeoToGroundAccessTest, LeoThinCone)
     SensorParameters groundCone(&groundFov, astro::RADIAL_RIC);
 
     const auto stateHistory = constel.get_spacecraft(leo.get_id()).get_state_history();
-    std::vector<GroundStation> groundsVec;
+    std::vector<GroundStation<astro::planets::Earth>> groundsVec;
 
     // use a coarser resolution for the ground points so the analysis doesn't skip over them
     for (Date date = epoch; date <= epoch + propTime; date += minutes(1.0)) {
@@ -124,10 +124,10 @@ TEST_F(LeoToGroundAccessTest, LeoThinCone)
         const auto lat   = lla.get_latitude();
         const auto lon   = lla.get_longitude();
 
-        GroundStation ground(centralBody.get(), lat, lon, 0.0 * km, "Test site", { groundCone });
+        GroundStation<astro::planets::Earth> ground(lat, lon, 0.0 * km, "Test site", { groundCone });
         groundsVec.push_back(ground);
     }
-    GroundArchitecture grounds(groundsVec);
+    GroundArchitecture<astro::planets::Earth> grounds(groundsVec);
 
     // Find access
     AccessAnalyzer analyzer(resolution, epoch, epoch + propTime);

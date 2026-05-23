@@ -53,7 +53,7 @@ TEST_F(AccessAnalyzerTest, FindAccessesWithEmptyGroundArchitectureReturnsEmpty)
     ViewerConstellation constellation = make_constellation();
     ASSERT_EQ(constellation.size(), 1);
 
-    GroundArchitecture grounds(std::vector<GroundStation>{});
+    GroundArchitecture<astro::planets::Earth> grounds(std::vector<GroundStation<astro::planets::Earth>>{});
 
     const AccessArray accesses = analyzer.find_accesses(constellation, grounds, false);
     ASSERT_EQ(accesses.size(), 0);
@@ -65,7 +65,7 @@ TEST_F(AccessAnalyzerTest, FindAccessesWithEmptyGridReturnsEmpty)
     ViewerConstellation constellation = make_constellation();
     ASSERT_EQ(constellation.size(), 1);
 
-    Grid grid;
+    Grid<astro::planets::Earth> grid;
 
     const AccessArray accesses = analyzer.find_accesses(constellation, grid, false);
     ASSERT_EQ(accesses.size(), 0);
@@ -77,7 +77,7 @@ TEST_F(AccessAnalyzerTest, IncludeInternalAccessesWithEmptyGridForPropagatedMult
     ViewerConstellation constellation = make_constellation();
     ASSERT_EQ(constellation.size(), 1);
 
-    Grid grid;
+    Grid<astro::planets::Earth> grid;
 
     const AccessArray accesses = analyzer.find_accesses(constellation, grid, true);
     ASSERT_GE(accesses.size(), 0);

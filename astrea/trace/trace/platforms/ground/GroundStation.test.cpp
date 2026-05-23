@@ -32,7 +32,7 @@ class GroundStationTest : public testing::Test {
         altitude  = 0.1 * mp_units::si::unit_symbols::km;
         name      = "TestStation";
         sensors   = {};
-        station = new GroundStation(sys.get_body(CelestialBodyId::EARTH).get(), latitude, longitude, altitude, name, sensors);
+        station   = new GroundStation<astro::planets::Earth>(latitude, longitude, altitude, name, sensors);
     }
 
     void TearDown() override { delete station; }
@@ -42,7 +42,7 @@ class GroundStationTest : public testing::Test {
     Distance altitude;
     std::string name;
     std::vector<SensorParameters> sensors;
-    GroundStation* station;
+    GroundStation<astro::planets::Earth>* station;
 };
 
 int main(int argc, char** argv)
@@ -54,10 +54,7 @@ int main(int argc, char** argv)
 TEST_F(GroundStationTest, Constructor)
 {
     ASSERT_EQ(station->get_name(), name);
-    ASSERT_EQ(
-        station->get_id() + 1,
-        GroundStation(sys.get_body(CelestialBodyId::EARTH).get(), latitude, longitude, altitude, name, sensors).get_id()
-    );
+    ASSERT_EQ(station->get_id() + 1, GroundStation<astro::planets::Earth>(latitude, longitude, altitude, name, sensors).get_id());
 }
 
 TEST_F(GroundStationTest, GetName) { ASSERT_EQ(station->get_name(), name); }

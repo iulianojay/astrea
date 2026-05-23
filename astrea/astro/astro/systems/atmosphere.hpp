@@ -53,7 +53,7 @@ namespace astro {
 template <>
 inline Density find_atmospheric_density<planets::Earth>(const State& state)
 {
-    return HarrisPriesterAtmosphere::find_atmospheric_density(state, get_equitorial_radius<planets::Earth>(), get_polar_radius<planets::Earth>());
+    return planets::HarrisPriesterAtmosphere::find_atmospheric_density(state);
 }
 
 // ---------------------------------------------------------------------------
@@ -98,8 +98,8 @@ inline Density find_atmospheric_density<planets::Venus>(const State& state)
     const auto& position                       = state.get_position_in_frame<frames::venus::venus_fixed>();
     const auto [latitude, longitude, altitude] = convert_body_fixed_to_geodetic(position);
 
-    const auto iter = planets::venutianAtmosphere.upper_bound(altitude);
-    return (iter != planets::venutianAtmosphere.end()) ? iter->second : Density::zero();
+    const auto iter = venutianAtmosphere.upper_bound(altitude);
+    return (iter != venutianAtmosphere.end()) ? iter->second : Density::zero();
 }
 
 // ---------------------------------------------------------------------------

@@ -162,25 +162,25 @@ OrbitalElements OrbitalElements::convert_to_set(const std::size_t idx, const Gra
 
 OrbitalElements OrbitalElements::convert_to_set_impl(const std::size_t idx, const GravParam& mu) const
 {
-    // TODO: Surely, there's a better way to do this
-    switch (idx) { // ooh boy we're fragile
-        case (OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>()):
-            return in_element_set<Cartesian<frames::earth::icrf>>(mu);
-        case (OrbitalElements::get_set_id<Keplerian>()): return in_element_set<Keplerian>(mu);
-        case (OrbitalElements::get_set_id<Equinoctial>()): return in_element_set<Equinoctial>(mu);
-        default: throw std::runtime_error("Unrecognized element set requested.");
-    }
+    return [&]<std::size_t... Is>(std::index_sequence<Is...>) -> OrbitalElements {
+        OrbitalElements result;
+        bool found =
+            ((Is == idx ? (result = in_element_set<std::variant_alternative_t<Is, ElementVariant>>(mu), true) : false) || ...);
+        if (!found) throw std::runtime_error("Unrecognized element set requested.");
+        return result;
+    }(std::make_index_sequence<std::variant_size_v<ElementVariant>>{});
 }
 
 OrbitalElements OrbitalElements::from_vector(const std::vector<Unitless>& vec, const std::size_t idx)
 {
-    switch (idx) {
-        case OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>():
-            return OrbitalElements(Cartesian<frames::earth::icrf>::from_vector(vec));
-        case OrbitalElements::get_set_id<Keplerian>(): return OrbitalElements(Keplerian::from_vector(vec));
-        case OrbitalElements::get_set_id<Equinoctial>(): return OrbitalElements(Equinoctial::from_vector(vec));
-        default: throw std::runtime_error("Invalid orbital element set index for from_vector.");
-    }
+    return [&]<std::size_t... Is>(std::index_sequence<Is...>) -> OrbitalElements {
+        OrbitalElements result;
+        bool found =
+            ((Is == idx ? (result = OrbitalElements(std::variant_alternative_t<Is, ElementVariant>::from_vector(vec)), true) : false) ||
+             ...);
+        if (!found) throw std::runtime_error("Invalid orbital element set index for from_vector.");
+        return result;
+    }(std::make_index_sequence<std::variant_size_v<ElementVariant>>{});
 }
 
 
@@ -206,8 +206,10 @@ std::vector<Unitless> OrbitalElementPartials::force_to_vector() const
 
 void throw_mismatched_types()
 {
-    throw std::runtime_error("Cannot perform operations on orbital elements from different "
-                             "element sets.");
+    throw std::runtime_error(
+        "Cannot perform operations on orbital elements from different "
+        "element sets."
+    );
 }
 
 } // namespace astro

@@ -24,6 +24,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/time/Date.hpp>
 

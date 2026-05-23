@@ -47,7 +47,7 @@ static constexpr const char* kEomNames[] = { "TwoBody", "J2MeanVop", "KeplerianV
 static void BenchmarkPropagation(benchmark::State& state)
 {
     const Date epoch{};
-    const State state0{ Keplerian::LEO(), epoch };
+    const State state0{ Keplerian<frames::earth::icrf>::LEO(), epoch };
     Spacecraft sat{};
     Vehicle vehicle{ sat };
 

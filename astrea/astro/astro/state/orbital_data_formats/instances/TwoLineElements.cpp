@@ -118,7 +118,7 @@ void TwoLineElements::ctor_impl(const std::array<std::string, 2> rawTle)
 
     const Angle trueAnomaly = convert_mean_anomaly_to_true_anomaly(meanAnomaly, eccentricity);
 
-    _elements = Kepleriann<frames::earth::icrf>(semimajor, eccentricity, inclination, rightAscension, argumentOfPerigee, trueAnomaly);
+    _elements = Keplerian<frames::earth::icrf>(semimajor, eccentricity, inclination, rightAscension, argumentOfPerigee, trueAnomaly);
 }
 
 // Copy constructor

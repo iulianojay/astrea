@@ -70,7 +70,7 @@ int main(int argc, char** argv)
 TEST_F(CowellsMethodPropagationTest, GEONoForces)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::GEO();
+    Keplerian kep0 = Keplerian<frames::earth::icrf>::LEO();
     State state{ Cartesian(kep0, mu), epoch };
     Spacecraft geo;
     Vehicle vehicle{ geo };
@@ -89,7 +89,7 @@ TEST_F(CowellsMethodPropagationTest, GEONoForces)
 TEST_F(CowellsMethodPropagationTest, GPSNoForces)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::GPS();
+    Keplerian kep0 = Keplerian<frames::earth::icrf>::GPS();
     State state{ Cartesian(kep0, mu), epoch };
     Spacecraft meo;
     Vehicle vehicle{ meo };
@@ -108,7 +108,7 @@ TEST_F(CowellsMethodPropagationTest, GPSNoForces)
 TEST_F(CowellsMethodPropagationTest, LEONoForces)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::LEO();
+    Keplerian kep0 = Keplerian<frames::earth::icrf>::LEO();
     State state{ Cartesian(kep0, mu), epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };

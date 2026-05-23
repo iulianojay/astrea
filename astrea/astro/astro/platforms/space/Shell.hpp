@@ -67,7 +67,6 @@ class Shell {
 
     /**
      * @brief Constructor for Shell with a Walker parameters.
-     * @param sys The astrodynamics system to which the shell belongs.
      * @param epoch The epoch date for the shell's orbit.
      * @param semimajor The semimajor axis of the shell's orbit.
      * @param inclination The inclination of the shell's orbit.
@@ -78,7 +77,6 @@ class Shell {
      * @param anchorAnomaly The argument of perigee for the shell's orbit (default is 0).
      */
     Shell(
-        const AstrodynamicsSystem& sys,
         const Date& epoch,
         const Distance& semimajor,
         const Angle& inclination,

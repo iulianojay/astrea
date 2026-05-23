@@ -70,7 +70,7 @@ int main(int argc, char** argv)
 TEST_F(TwoBodyPropagationTest, GEO)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::GEO();
+    Keplerian kep0 = Keplerian<frames::earth::icrf>::GEO();
     State state{ kep0, epoch };
     Spacecraft geo;
     Vehicle vehicle{ geo };
@@ -89,7 +89,7 @@ TEST_F(TwoBodyPropagationTest, GEO)
 TEST_F(TwoBodyPropagationTest, GPS)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::GPS();
+    Keplerian kep0 = Keplerian<frames::earth::icrf>::GPS();
     State state{ kep0, epoch };
     Spacecraft meo;
     Vehicle vehicle{ meo };
@@ -105,10 +105,10 @@ TEST_F(TwoBodyPropagationTest, GPS)
 }
 
 
-TEST_F(TwoBodyPropagationTest, LEO)
+TEST_F(TwoBodyPropagationTest, GEO)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::LEO();
+    Keplerian kep0 = Keplerian<frames::earth::icrf>::GEO();
     State state{ kep0, epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };

@@ -495,7 +495,7 @@ template <class Value_T, IsFrame auto frame>
 std::ostream& operator<<(std::ostream& os, const CartesianVector<Value_T, frame>& state)
 {
     os << "[" << state.get_x() << ", " << state.get_y() << ", " << state.get_z() << "]";
-    if constexpr (requires { decltype(frame)::name; }) { os << " (" << std::string_view(decltype(frame)::name) << ")"; }
+    if constexpr (requires { decltype(frame)::name; }) { os << " (" << decltype(frame)::name.portable() << ")"; }
     return os;
 }
 

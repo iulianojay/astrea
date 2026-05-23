@@ -124,7 +124,7 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
     // Polandish
     LatLon corner1{ 48.0 * deg, 14.0 * deg };
     LatLon corner4{ 55.0 * deg, 25.0 * deg };
-    Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, gridSpacing);
+    Grid<astro::planets::Earth> grid(corner1, corner4, GridType::UNIFORM, gridSpacing);
 
     // Propagate and find access
     const AccessArray accesses =

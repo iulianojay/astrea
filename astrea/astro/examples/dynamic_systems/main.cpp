@@ -23,29 +23,4 @@ using namespace mp_units;
 using mp_units::non_si::day;
 using mp_units::si::unit_symbols::s;
 
-int main()
-{
-    // The AstrodynamicsSystem is Astrea's attempt to capture definitions and utilities around celestial bodies in a
-    // dynamic system. The intention is that users can define a system with either a given body or a barycenter as the
-    // center, and then add arbitrarily many or unique celestial bodies. Currently, the system is limited to only using
-    // predefined bodies from the CelestialBody class, and it can only use a single body as the system center.
-
-    // Create a system with Earth as the center (and only) body
-    AstrodynamicsSystem earthSystem(CelestialBodyId::EARTH);
-    const auto& earth = earthSystem.get_central_body();
-    std::cout << "Center Body: " << earth->get_name() << std::endl;
-
-    // Systems can also have secondary bodies
-    AstrodynamicsSystem earthMoonSystem(CelestialBodyId::EARTH, { CelestialBodyId::MOON });
-    std::cout << "Bodies in Earth-Moon System: ";
-    for (const auto& [id, body] : earthMoonSystem.get_all_bodies()) {
-        std::cout << body->get_name() << " ";
-    }
-    std::cout << std::endl;
-
-    // Bodies can be accessed directly from the system
-    const auto& moon = earthMoonSystem.get_body(CelestialBodyId::MOON);
-    std::cout << "Secondary Body: " << moon->get_name() << std::endl;
-
-    return 0;
-}
+int main() {}

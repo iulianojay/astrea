@@ -71,7 +71,7 @@ class NBodyForce : public PerturbingForce {
             // Find center to nth body and spacecraft to nth body
             // NOTE: The forced frame conversion here is fine since it's just a relative translation, no rotation or velocity
             const RadiusVector<frames::primary> rCenterToNbody =
-                get_relative_position<body, center>(date).force_frame_conversion<frames::primary>();
+                get_relative_position<body, center>(date).template force_frame_conversion<frames::primary>();
             const RadiusVector<frames::primary> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
 
             // Normalize
@@ -79,11 +79,11 @@ class NBodyForce : public PerturbingForce {
             const Distance rMagCenterToNbody  = rCenterToNbody.norm();
 
             // Perturbational force from nth body
-            const GravParam mu            = get_mu<body>();
-            const quantity directEffect   = mu / pow<3>(rMagVehicleToNbody) * rVehicleToNbody;
-            const quantity indirectEffect = mu / pow<3>(rMagCenterToNbody) * rCenterToNbody;
+            const GravParam mu          = get_mu<body>();
+            const quantity directTerm   = mu / pow<3>(rMagVehicleToNbody);
+            const quantity indirectTerm = mu / pow<3>(rMagCenterToNbody);
 
-            accelNBody += directEffect - indirectEffect;
+            accelNBody += directTerm * rVehicleToNbody - indirectTerm * rCenterToNbody;
         }
 
         return { .force = accelNBody * vehicle.get_mass() };
