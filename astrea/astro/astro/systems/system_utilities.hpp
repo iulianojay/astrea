@@ -135,7 +135,7 @@ template <IsCelestialReference auto body1, IsCelestialReference auto body2>
 constexpr auto get_relative_position(const Date& date)
 {
     if constexpr (is_same_body<body1, body2>()) {
-        return decltype(get_position_at<body1>(date))()(0.0 * km, 0.0 * km, 0.0 * km);
+        return decltype(get_position_at<body1>(date))()(Distance::zero(), Distance::zero(), Distance::zero());
     }
 
     if constexpr (has_parent<body1>() && is_same_body<get_parent<body1>(), body2>()) {
@@ -164,7 +164,7 @@ template <IsCelestialReference auto body1, IsCelestialReference auto body2>
 constexpr auto get_relative_velocity(const Date& date)
 {
     if constexpr (is_same_body<body1, body2>()) {
-        return decltype(get_velocity_at<body1>(date))()(0.0 * km / s, 0.0 * km / s, 0.0 * km / s);
+        return decltype(get_velocity_at<body1>(date))()(Velocity::zero(), Velocity::zero(), Velocity::zero());
     }
 
     if constexpr (has_parent<body1>() && is_same_body<get_parent<body1>(), body2>()) {

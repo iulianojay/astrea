@@ -26,7 +26,6 @@
 #include <math/interpolation.hpp>
 #include <utilities/string_util.hpp>
 
-#include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/types/typedefs.hpp>
@@ -119,7 +118,7 @@ void TwoLineElements::ctor_impl(const std::array<std::string, 2> rawTle)
 
     const Angle trueAnomaly = convert_mean_anomaly_to_true_anomaly(meanAnomaly, eccentricity);
 
-    _elements = Keplerian(semimajor, eccentricity, inclination, rightAscension, argumentOfPerigee, trueAnomaly);
+    _elements = Kepleriann<frames::earth::icrf>(semimajor, eccentricity, inclination, rightAscension, argumentOfPerigee, trueAnomaly);
 }
 
 // Copy constructor

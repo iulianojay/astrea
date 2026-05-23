@@ -90,7 +90,7 @@ class Keplerian {
      * @param elements The Keplerian elements to copy.
      * @param sys The astrodynamics system context for conversion.
      */
-    Keplerian(const Keplerian<frame>& elements, const GravParam& mu) :
+    Keplerian(const Keplerian<_frame_>& elements, const GravParam& mu) :
         Keplerian(elements)
     {
     }
@@ -101,7 +101,7 @@ class Keplerian {
      * @param elements The Cartesian elements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    Keplerian(const Cartesian<frame>& elements, const GravParam& mu);
+    Keplerian(const Cartesian<_frame_>& elements, const GravParam& mu);
 
     /**
      * @brief Constructs a Keplerian object from Equinoctial elements.
@@ -109,7 +109,7 @@ class Keplerian {
      * @param elements The Equinoctial elements to convert.
      * @param sys The astrodynamics system context for conversion.
      */
-    Keplerian(const Equinoctial<frame>& elements, const GravParam& mu);
+    Keplerian(const Equinoctial<_frame_>& elements, const GravParam& mu);
 
     /**
      * @brief A static method to create Keplerian state vectors for a LEO orbit.
@@ -166,14 +166,14 @@ class Keplerian {
      *
      * @param other Another Keplerian object
      */
-    Keplerian(const Keplerian<frame>&);
+    Keplerian(const Keplerian<_frame_>&);
 
     /**
      * @brief Move constructor for Keplerian.
      *
      * @param other Another Keplerian object
      */
-    Keplerian(Keplerian<frame>&&) noexcept;
+    Keplerian(Keplerian<_frame_>&&) noexcept;
 
     /**
      * @brief Move assignment operator for Keplerian.
@@ -181,7 +181,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return Keplerian& Reference to the current object
      */
-    Keplerian& operator=(Keplerian<frame>&&) noexcept;
+    Keplerian& operator=(Keplerian<_frame_>&&) noexcept;
 
     /**
      * @brief Copy assignment operator for Keplerian.
@@ -189,7 +189,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return Keplerian& Reference to the current object
      */
-    Keplerian& operator=(const Keplerian<frame>&);
+    Keplerian& operator=(const Keplerian<_frame_>&);
 
     /**
      * @brief Destructor for Keplerian.
@@ -204,7 +204,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return true if the two Keplerian objects are equal, false otherwise.
      */
-    bool operator==(const Keplerian<frame>& other) const;
+    bool operator==(const Keplerian<_frame_>& other) const;
 
     /**
      * @brief Checks if two Keplerian objects are not equal.
@@ -212,7 +212,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return true if the two Keplerian objects are not equal, false otherwise.
      */
-    bool operator!=(const Keplerian<frame>& other) const;
+    bool operator!=(const Keplerian<_frame_>& other) const;
 
     /**
      * @brief Adds two Keplerian objects.
@@ -220,7 +220,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return Resultant Keplerian sum.
      */
-    Keplerian operator+(const Keplerian<frame>& other) const;
+    Keplerian operator+(const Keplerian<_frame_>& other) const;
 
     /**
      * @brief Adds another Keplerian object to the current one.
@@ -228,7 +228,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return Reference to the current Keplerian object after addition.
      */
-    Keplerian& operator+=(const Keplerian<frame>& other);
+    Keplerian& operator+=(const Keplerian<_frame_>& other);
 
     /**
      * @brief Subtracts another Keplerian object from the current one.
@@ -236,7 +236,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return Resultant Keplerian after subtraction.
      */
-    Keplerian operator-(const Keplerian<frame>& other) const;
+    Keplerian operator-(const Keplerian<_frame_>& other) const;
 
     /**
      * @brief Subtracts another Keplerian object from the current one.
@@ -244,7 +244,7 @@ class Keplerian {
      * @param other Another Keplerian object
      * @return Reference to the current Keplerian object after subtraction.
      */
-    Keplerian& operator-=(const Keplerian<frame>& other);
+    Keplerian& operator-=(const Keplerian<_frame_>& other);
 
     /**
      * @brief Multiplies the Keplerian state vector by a scalar.
@@ -393,7 +393,7 @@ class Keplerian {
      * @param targetTime The target time for interpolation.
      * @return Keplerian Interpolated Keplerian state vector at the target time.
      */
-    Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian<frame>& other, const GravParam& mu, const Time& targetTime) const;
+    Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
 
     /**
      * @brief Converts the Keplerian state vector to a vector of unitless values.

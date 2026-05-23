@@ -41,7 +41,7 @@ using mp_units::si::unit_symbols::W;
 class EquinoctialVopPropagationTest : public testing::Test {
   public:
     EquinoctialVopPropagationTest() :
-        mu(get_mu<frames::primary::origin>()),
+        mu(get_mu<decltype(frames::primary)::origin>()),
         eom(forces),
         propTime(weeks(1)),
         epoch(J2000)

@@ -187,7 +187,7 @@ class Payload {
         // Get current RIC
         const auto parentPosition = get_parent()->get_inertial_position(date);
         const auto parentVelocity = get_parent()->get_inertial_velocity(date);
-        const auto ricFrame       = frames::dynamic::ric::instantaneous(parentPosition, parentVelocity);
+        const auto ricFrame       = frames::dynamic::ric.instantaneous(parentPosition, parentVelocity);
 
         // Rotate to inertial
         const auto parentToPayloadInInertial = ricFrame.rotate_out_of_this_frame(parentToPayload, date);

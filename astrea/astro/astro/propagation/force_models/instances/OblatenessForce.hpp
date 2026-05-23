@@ -1,19 +1,19 @@
 /**
  * @file OblatenessForce.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the OblatenessForce class, which computes the gravitational force due to the oblateness of a celestial body.
+ * @brief Header file for the OblatenessForce class, which computes the gravitational force due to the oblateness of a celestial _body_.
  * @date 2025-08-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano
  *
- * The GNU Lesser General Public License (LGPL)
+ * The G_degree_U Lesser General Public License (LGPL)
  *
  * This file is part of Astrea.
- * Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+ * Astrea is free software: you can redistribute it and/or modify it under the terms of the G_degree_U Lesser General Public License
  * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- * Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
- * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+ * Astrea is distributed in the hope that it will be useful, but WITHOUT A_degree_Y WARRA_degree_TY; without even the implied warranty
+ * of _order_ERCHA_degree_TABILITY or FIT_degree_ESS FOR A PARTICULAR PURPOSE. See the G_degree_U Lesser General Public License for more details. You should
+ * have received a copy of the G_degree_U General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -30,25 +30,21 @@
 namespace astrea {
 namespace astro {
 
+template <IsCelestialBody auto _body_, std::size_t _degree_ = 2, std::size_t _order_ = 0>
 class LegendreCache {
   public:
-    /**
-     * @brief Default constructor for LegendreCache.
-     */
-    LegendreCache() = default;
-
-    /**
-     * @brief Default destructor for LegendreCache.
-     */
-    ~LegendreCache() = default;
-
     /**
      * @brief Builds the cache for Legendre polynomials and coefficients.
      *
      * @param degree Degree of the spherical harmonics
      * @param order Order of the spherical harmonics
      */
-    LegendreCache(const std::size_t& degree, const std::size_t& order);
+    LegendreCache();
+
+    /**
+     * @brief Default destructor for LegendreCache.
+     */
+    ~LegendreCache() = default;
 
     /**
      * @brief Gets the cosine coefficient for given n and m.
@@ -79,51 +75,32 @@ class LegendreCache {
     //     get_legendre_coefficients(const std::size_t& degree, const std::size_t& order, const Unitless& x) const;
 
   private:
-    std::vector<std::vector<Unitless>> _C{}; //!< Cosine coefficients for the spherical harmonics
-    std::vector<std::vector<Unitless>> _S{}; //!< Sine coefficients for the spherical harmonics
-
-    /**
-     * @brief Sets the size of the vectors used for storing oblateness coefficients.
-     *
-     * @param degree Degree of the spherical harmonics
-     * @param order Order of the spherical harmonics
-     */
-    void size_vectors(const std::size_t& degree, const std::size_t& order);
-
-    /**
-     * @brief Ingests the Legendre coefficient file to populate the coefficients.
-     *
-     * @param degree Degree of the spherical harmonics
-     * @param order Order of the spherical harmonics
-     */
-    void ingest_legendre_coefficient_file(const std::size_t& degree, const std::size_t& order);
+    std::array<std::array<Unitless, _order_ + 1>, _degree_ + 1> _C{}; //!< Cosine coefficients for the spherical harmonics
+    std::array<std::array<Unitless, _order_ + 1>, _degree_ + 1> _S{}; //!< Sine coefficients for the spherical harmonics
 };
 
 /**
- * @brief Class to compute the gravitational force due to the oblateness of a celestial body.
+ * @brief Class to compute the gravitational force due to the oblateness of a celestial _body_.
  *
  */
+template <IsCelestialBody auto _body_, std::size_t _degree_ = 2, std::size_t _order_ = 0>
 class OblatenessForce : public PerturbingForce {
   public:
+    /**
+     * @brief Constructor for OblatenessForce.
+     */
+    OblatenessForce() = default;
+
     /**
      * @brief Default destructor for OblatenessForce.
      */
     ~OblatenessForce() = default;
 
     /**
-     * @brief Constructor for OblatenessForce.
-     * @param N Degree of the spherical harmonics (default is 2)
-     * @param M Order of the spherical harmonics (default is 0)
-     * @param findExactLegendre Whether to find exact Legendre values (default is false)
-     * @param useFastLegendre Whether to use fast lookup for Legendre polynomials without interpolation (default is true)
-     */
-    OblatenessForce(const std::size_t& N = 2, const std::size_t& M = 0);
-
-    /**
-     * @brief Computes the gravitational force using Montenbruck & Gill (2000) V and W recurrence relations.
+     * @brief Computes the gravitational force using _order_ontenbruck & Gill (2000) V and W recurrence relations.
      *
-     * This method implements the algorithm from "Satellite Orbits: Models, Methods and Applications"
-     * by O. Montenbruck and E. Gill (Springer, 2000), which uses V and W auxiliary functions
+     * This method implements the algorithm from "Satellite Orbits: _order_odels, _order_ethods and Applications"
+     * by O. _order_ontenbruck and E. Gill (Springer, 2000), which uses V and W auxiliary functions
      * with recurrence relations for more efficient and numerically stable computation.
      *
      * @param state Cartesian<frames::primary> state vector of the vehicle
@@ -133,10 +110,10 @@ class OblatenessForce : public PerturbingForce {
     Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const;
 
   private:
-    const std::size_t _degree;          //!< Degree of the spherical harmonics
-    const std::size_t _order;           //!< Order of the spherical harmonics
-    const LegendreCache _legendreCache; //!< Cache for Legendre polynomials and coefficients
+    const LegendreCache<_body_, _degree_, _order_> _legendreCache; //!< Cache for Legendre polynomials and coefficients
 };
 
 } // namespace astro
 } // namespace astrea
+
+#include <astro/propagation/force_models/instances/OblatenessForce.ipp>

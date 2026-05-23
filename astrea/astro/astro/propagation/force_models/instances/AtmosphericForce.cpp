@@ -52,8 +52,8 @@ using mp_units::si::unit_symbols::s;
 Perturbation AtmosphericForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    const CelestialBodyUniquePtr& center    = sys.get_central_body();
-    const AngularVelocity& bodyRotationRate = center->get_rotation_rate();
+    static constexpr auto center            = decltype(frames::primary)::origin;
+    const AngularVelocity& bodyRotationRate = get_rotation_rate<center>();
 
     const RadiusVector<frames::primary>& r   = state.get_position();
     const VelocityVector<frames::primary>& v = state.get_velocity();
@@ -72,7 +72,7 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
                                                           vz };
 
     // Exponential Drag Model
-    const Density atmosphericDensity = center->find_atmospheric_density(state);
+    const Density atmosphericDensity = find_atmospheric_density<center>(state);
 
     // Accel due to drag
     const Velocity relVelMag         = relVelocity.norm();
@@ -89,8 +89,8 @@ Perturbation AtmosphericForce::compute_perturbation(const State& state, const Ve
     const Force liftForceMag = 0.5 * coefficientOfLift * areaLift * atmosphericDensity * pow<2>(relVelMag) * sin(angleOfAttack);
     const ForceVector<frames::primary> forceLift = liftForceMag * (r / R); // just assume radial lift for now
 
-    return { .force = { forceDrag[0] + forceLift[0], forceDrag[1] + forceLift[1], forceDrag[2] + forceLift[2] } };
-}
+    return { .force = forceDrag + forceLift };
+};
 
 
 } // namespace astro

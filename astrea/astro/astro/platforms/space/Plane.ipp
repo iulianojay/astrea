@@ -21,7 +21,7 @@ Plane<Spacecraft_T>::Plane(std::vector<Spacecraft_T> _satellites) :
     satellites(_satellites)
 {
     // Grab first element set as plane set
-    const auto mu = get_mu<frames::primary::origin>();
+    const auto mu = get_mu<decltype(frames::primary)::origin>();
     elements      = satellites[0].get_initial_state().get_elements().template in_element_set<Keplerian>(mu);
 
     // Check if other satellites are actually in-plane

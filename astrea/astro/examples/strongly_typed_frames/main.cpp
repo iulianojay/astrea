@@ -93,8 +93,8 @@ int main()
                                        // history, the frame can be used to transform vectors.
 
     RIC instRicFrame =
-        RIC::instantaneous(posECI, velEci); // RIC frame defined at a specific time and state. Transformations to/from
-                                            // instantaneous frames are only valid at the time they are defined.
+        RIC.instantaneous(posECI, velEci); // RIC frame defined at a specific time and state. Transformations to/from
+                                           // instantaneous frames are only valid at the time they are defined.
 
     // Convert from RIC to ECI using the instantaneous dynamic frame
     // Note: here we use the convert_from_this_frame method, as we are converting from RIC to ECI.

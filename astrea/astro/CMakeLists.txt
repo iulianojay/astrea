@@ -41,8 +41,6 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
     ${ASTRO_BASE}/propagation/force_models/instances/AtmosphericForce.cpp
-    ${ASTRO_BASE}/propagation/force_models/instances/NBodyForce.cpp
-    ${ASTRO_BASE}/propagation/force_models/instances/OblatenessForce.cpp
     ${ASTRO_BASE}/propagation/force_models/instances/SolarRadiationPressure.cpp
 
     ${ASTRO_BASE}/propagation/equations_of_motion/instances/KeplerianVop.cpp
@@ -126,6 +124,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/force_models/ForceModel.hpp
     ${ASTRO_BASE}/propagation/force_models/instances/NBodyForce.hpp
     ${ASTRO_BASE}/propagation/force_models/instances/OblatenessForce.hpp
+    ${ASTRO_BASE}/propagation/force_models/instances/OblatenessForce.ipp
     ${ASTRO_BASE}/propagation/force_models/instances/SolarRadiationPressure.hpp
 
     ${ASTRO_BASE}/propagation/equations_of_motion/instances/KeplerianVop.hpp

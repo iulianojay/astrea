@@ -21,7 +21,13 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/PerturbingForce.hpp>
+#include <astro/state/State.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/systems/system_concepts.hpp>
+#include <astro/systems/system_utilities.hpp>
+#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
@@ -30,6 +36,7 @@ namespace astro {
  * @brief Class to compute the gravitational force due to multiple celestial bodies.
  *
  */
+template <IsCelestialBody auto... bodies>
 class NBodyForce : public PerturbingForce {
   public:
     /**
@@ -49,7 +56,38 @@ class NBodyForce : public PerturbingForce {
      * @param vehicle Vehicle object representing the spacecraft
      * @return Perturbation The computed force and torque due to multiple bodies.
      */
-    Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override;
+    Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override
+    {
+        // Extract
+        const Date date                                       = state.get_epoch();
+        const RadiusVector<frames::primary>& rCenterToVehicle = state.get_position();
+
+        // Center body properties
+        constexpr static auto center = decltype(frames::primary)::origin;
+
+        // Reset perturbation
+        AccelerationVector<frames::primary> accelNBody{ Acceleration::zero() };
+        for (const auto& body : { bodies... }) {
+            // Find center to nth body and spacecraft to nth body
+            // NOTE: The forced frame conversion here is fine since it's just a relative translation, no rotation or velocity
+            const RadiusVector<frames::primary> rCenterToNbody =
+                get_relative_position<body, center>(date).force_frame_conversion<frames::primary>();
+            const RadiusVector<frames::primary> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
+
+            // Normalize
+            const Distance rMagVehicleToNbody = rVehicleToNbody.norm();
+            const Distance rMagCenterToNbody  = rCenterToNbody.norm();
+
+            // Perturbational force from nth body
+            const GravParam mu            = get_mu<body>();
+            const quantity directEffect   = mu / pow<3>(rMagVehicleToNbody) * rVehicleToNbody;
+            const quantity indirectEffect = mu / pow<3>(rMagCenterToNbody) * rCenterToNbody;
+
+            accelNBody += directEffect - indirectEffect;
+        }
+
+        return { .force = accelNBody * vehicle.get_mass() };
+    }
 };
 
 } // namespace astro

@@ -319,7 +319,7 @@ class TwoLineElements {
     size_t _checkSum2;     //!< The 2nd checksum of the satellite.
 
     // Bundle elements into Keplerian set
-    Keplerian _elements; //!< The Keplerian elements of the satellite.
+    Keplerian<frames::earth::icrf> _elements; //!< The Keplerian elements of the satellite.
 
     /**
      * @brief Implicit constructor implementation for TwoLineElements.

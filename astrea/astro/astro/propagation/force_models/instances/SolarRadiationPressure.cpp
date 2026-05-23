@@ -44,19 +44,18 @@ using mp_units::si::unit_symbols::s;
 Perturbation SolarRadiationPressure::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    const Date date                      = state.get_epoch();
-    const CelestialBodyUniquePtr& center = sys.get_central_body();
-    const CelestialBodyUniquePtr& sun    = sys.create_body(CelestialBodyId::SUN);
+    const Date date              = state.get_epoch();
+    static constexpr auto center = decltype(frames::primary)::origin;
 
     const RadiusVector<frames::primary> rCenterToVehicle = state.get_position();
     const Distance rMagCenterToVehicle                   = rCenterToVehicle.norm();
 
     // Central body properties
-    const bool isSun = (center->get_id() == CelestialBodyId::SUN);
+    constexpr bool isSun = (center == planets::Sun);
 
     // Radius from central body to sun
     const RadiusVector<frames::primary> rCenterToSun =
-        get_relative_position<frames::primary, Sun>(date).force_frame_conversion<frames::primary>();
+        get_relative_position<center, planets::Sun>(date).force_frame_conversion<frames::primary>();
     const Distance rMagCenterToSun = rCenterToSun.norm();
 
     const RadiusVector<frames::primary> rVehicleToSun = rCenterToSun - rCenterToVehicle;
@@ -70,7 +69,7 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
     // Scale by umbria/penumbra
     Unitless fractionOfRecievedSunlight = 1.0 * one;
     if (!isSun) {
-        static const Distance& equitorialR = center->get_equitorial_radius();
+        static const Distance& equitorialR = get_equitorial_radius<center>();
 
         //  This part calculates the angle between the occulating body and the Sun, the body and the satellite, and the Sun and the
         //  satellite. It then compares them to decide if the s/c is lit, in umbra, or in penumbra. See Vallado for details.
@@ -79,8 +78,8 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
         const Angle refAngle2 = acos(equitorialR / rMagCenterToSun);
 
         if (refAngle1 + refAngle2 <= refAngle) { // In shadow
-            static const Distance diamSun = 696000.0 * km;
-            const Distance Xu             = equitorialR * rMagCenterToSun / (diamSun - equitorialR);
+            static constexpr Distance diamSun = get_equitorial_radius<planets::Sun>() * 2;
+            const Distance Xu                 = equitorialR * rMagCenterToSun / (diamSun - equitorialR);
 
             const RadiusVector<frames::primary> rP = -Xu * rCenterToSun / rMagCenterToSun;
             const Distance normRP                  = rP.norm();
