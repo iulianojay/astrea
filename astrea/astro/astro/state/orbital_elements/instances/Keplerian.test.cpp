@@ -50,7 +50,7 @@ class KeplerianTest : public testing::Test {
     Angle raan    = 40.0 * deg;
     Angle w       = 80.0 * deg;
     Angle theta   = 0.0 * deg;
-    Keplerian state{ a, ecc, inc, raan, w, theta };
+    Keplerian<frames::earth::icrf> state{ a, ecc, inc, raan, w, theta };
 };
 
 int main(int argc, char** argv)
@@ -70,7 +70,7 @@ TEST_F(KeplerianTest, Stream)
 
 TEST_F(KeplerianTest, DefaultConstructor)
 {
-    Keplerian defaultState;
+    Keplerian<frames::earth::icrf> defaultState;
     ASSERT_TRUE(math::nearly_equal(defaultState.get_semimajor(), Distance(0.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(defaultState.get_eccentricity(), Unitless(0.0 * one), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(defaultState.get_inclination(), Angle(0.0 * rad), REL_TOL));
@@ -81,7 +81,7 @@ TEST_F(KeplerianTest, DefaultConstructor)
 
 TEST_F(KeplerianTest, UnitlessConstructor)
 {
-    Keplerian scaledState(2.0 * one);
+    Keplerian<frames::earth::icrf> scaledState(2.0 * one);
     ASSERT_TRUE(math::nearly_equal(scaledState.get_semimajor(), Distance(2.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(scaledState.get_eccentricity(), Unitless(2.0 * one), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(scaledState.get_inclination(), Angle(2.0 * rad), REL_TOL));
@@ -94,7 +94,7 @@ TEST_F(KeplerianTest, ParameterizedConstructor) { ASSERT_NO_THROW(Keplerian(a, e
 
 TEST_F(KeplerianTest, KeplerianConstructor)
 {
-    Keplerian other{ 8000.0 * km, 0.02 * one, 45.0 * deg, 30.0 * deg, 60.0 * deg, 90.0 * deg };
+    Keplerian<frames::earth::icrf> other{ 8000.0 * km, 0.02 * one, 45.0 * deg, 30.0 * deg, 60.0 * deg, 90.0 * deg };
     ASSERT_NO_THROW(Keplerian(other.get_mu()));
 }
 
@@ -106,7 +106,7 @@ TEST_F(KeplerianTest, CartesianConstructor)
 
 TEST_F(KeplerianTest, EquinoctialConstructor)
 {
-    Equinoctial equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
+    Equinoctial<frames::earth::icrf> equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
     ASSERT_NO_THROW(Keplerian(equi.get_mu()));
 }
 
@@ -147,8 +147,8 @@ TEST_F(KeplerianTest, GEOStaticMethod)
 
 TEST_F(KeplerianTest, CopyConstructor)
 {
-    ASSERT_NO_THROW(Keplerian newKep(state));
-    Keplerian newKep(state);
+    ASSERT_NO_THROW(Keplerian<frames::earth::icrf> newKep(state));
+    Keplerian<frames::earth::icrf> newKep(state);
     ASSERT_TRUE(math::nearly_equal(newKep.get_semimajor(), a, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(newKep.get_eccentricity(), ecc, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(newKep.get_inclination(), inc, REL_TOL));
@@ -159,14 +159,14 @@ TEST_F(KeplerianTest, CopyConstructor)
 
 TEST_F(KeplerianTest, MoveConstructor)
 {
-    Keplerian temp{ a, ecc, inc, raan, w, theta };
-    ASSERT_NO_THROW(Keplerian newKep(std::move(temp)));
+    Keplerian<frames::earth::icrf> temp{ a, ecc, inc, raan, w, theta };
+    ASSERT_NO_THROW(Keplerian<frames::earth::icrf> newKep(std::move(temp)));
 }
 
 TEST_F(KeplerianTest, CopyAssignment)
 {
-    ASSERT_NO_THROW(Keplerian newKep = state);
-    Keplerian newKep = state;
+    ASSERT_NO_THROW(Keplerian<frames::earth::icrf> newKep = state);
+    Keplerian<frames::earth::icrf> newKep = state;
     ASSERT_TRUE(math::nearly_equal(newKep.get_semimajor(), a, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(newKep.get_eccentricity(), ecc, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(newKep.get_inclination(), inc, REL_TOL));
@@ -177,14 +177,15 @@ TEST_F(KeplerianTest, CopyAssignment)
 
 TEST_F(KeplerianTest, MoveAssignment)
 {
-    Keplerian temp{ a, ecc, inc, raan, w, theta };
-    ASSERT_NO_THROW(Keplerian newKep = std::move(temp));
+    Keplerian<frames::earth::icrf> frames::earth::icrf > temp{ a, ecc, inc, raan, w, theta };
+    ASSERT_NO_THROW(Keplerian<frames::earth::icrf> newKep = std::move(temp));
 }
 
 TEST_F(KeplerianTest, EqualityOperator)
 {
-    Keplerian sameState{ a, ecc, inc, raan, w, theta };
-    Keplerian diffState{ a + 1000.0 * km, ecc, inc, raan, w, theta };
+    Keplerian<frames::earth::icrf> frames::earth::icrf > sameState{ a, ecc, inc, raan, w, theta };
+    Keplerian<frames::earth::icrf> frames::earth::icrf > frames::earth::icrf >
+        diffState{ a + 1000.0 * km, ecc, inc, raan, w, theta };
     ASSERT_TRUE(state == sameState);
     ASSERT_FALSE(state == diffState);
     ASSERT_FALSE(state != sameState);
@@ -193,8 +194,9 @@ TEST_F(KeplerianTest, EqualityOperator)
 
 TEST_F(KeplerianTest, AdditionOperator)
 {
-    Keplerian other{ 1000.0 * km, 0.005 * one, 10.0 * deg, 5.0 * deg, 10.0 * deg, 15.0 * deg };
-    Keplerian result = state + other;
+    Keplerian<frames::earth::icrf> Keplerian<frames::earth::icrf> other{ 1000.0 * km, 0.005 * one, 10.0 * deg,
+                                                                         5.0 * deg,   10.0 * deg,  15.0 * deg };
+    Keplerian<frames::earth::icrf> result = state + other;
     ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), a + 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_eccentricity(), ecc + 0.005 * one, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_inclination(), inc + 10.0 * deg, REL_TOL));
@@ -205,7 +207,7 @@ TEST_F(KeplerianTest, AdditionOperator)
 
 TEST_F(KeplerianTest, AdditionAssignmentOperator)
 {
-    Keplerian other{ 1000.0 * km, 0.005 * one, 10.0 * deg, 5.0 * deg, 10.0 * deg, 15.0 * deg };
+    Keplerian<frames::earth::icrf> other{ 1000.0 * km, 0.005 * one, 10.0 * deg, 5.0 * deg, 10.0 * deg, 15.0 * deg };
     state += other;
     ASSERT_TRUE(math::nearly_equal(state.get_semimajor(), a + 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(state.get_eccentricity(), ecc + 0.005 * one, REL_TOL));
@@ -217,8 +219,8 @@ TEST_F(KeplerianTest, AdditionAssignmentOperator)
 
 TEST_F(KeplerianTest, SubtractionOperator)
 {
-    Keplerian other{ 1000.0 * km, 0.005 * one, 10.0 * deg, 5.0 * deg, 10.0 * deg, 15.0 * deg };
-    Keplerian result = state - other;
+    Keplerian<frames::earth::icrf> other{ 1000.0 * km, 0.005 * one, 10.0 * deg, 5.0 * deg, 10.0 * deg, 15.0 * deg };
+    Keplerian<frames::earth::icrf> result = state - other;
     ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), a - 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_eccentricity(), ecc - 0.005 * one, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_inclination(), inc - 10.0 * deg, REL_TOL));
@@ -229,7 +231,7 @@ TEST_F(KeplerianTest, SubtractionOperator)
 
 TEST_F(KeplerianTest, SubtractionAssignmentOperator)
 {
-    Keplerian other{ 1000.0 * km, 0.005 * one, 10.0 * deg, 5.0 * deg, 10.0 * deg, 15.0 * deg };
+    Keplerian<frames::earth::icrf> other{ 1000.0 * km, 0.005 * one, 10.0 * deg, 5.0 * deg, 10.0 * deg, 15.0 * deg };
     state -= other;
     ASSERT_TRUE(math::nearly_equal(state.get_semimajor(), a - 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(state.get_eccentricity(), ecc - 0.005 * one, REL_TOL));
@@ -241,8 +243,8 @@ TEST_F(KeplerianTest, SubtractionAssignmentOperator)
 
 TEST_F(KeplerianTest, MultiplicationOperator)
 {
-    Unitless multiplier = 2.0 * one;
-    Keplerian result    = state * multiplier;
+    Unitless multiplier                   = 2.0 * one;
+    Keplerian<frames::earth::icrf> result = state * multiplier;
     ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), a * multiplier, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_eccentricity(), ecc * multiplier, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_inclination(), inc * multiplier, REL_TOL));
@@ -274,8 +276,8 @@ TEST_F(KeplerianTest, DivisionByTimeOperator)
 
 TEST_F(KeplerianTest, DivisionByScalarOperator)
 {
-    Unitless divisor = 2.0 * one;
-    Keplerian result = state / divisor;
+    Unitless divisor                      = 2.0 * one;
+    Keplerian<frames::earth::icrf> result = state / divisor;
     ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), a / divisor, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_eccentricity(), ecc / divisor, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_inclination(), inc / divisor, REL_TOL));
@@ -298,7 +300,7 @@ TEST_F(KeplerianTest, DivisionAssignmentOperator)
 
 TEST_F(KeplerianTest, SettersAndGetters)
 {
-    Keplerian testState;
+    Keplerian<frames::earth::icrf> testState;
 
     testState.set_semimajor(a);
     testState.set_eccentricity(ecc);
@@ -342,11 +344,11 @@ TEST_F(KeplerianTest, ToVector)
 
 TEST_F(KeplerianTest, Interpolate)
 {
-    Keplerian other{ 14000.0 * km, 0.02 * one, 100.0 * deg, 45.0 * deg, 85.0 * deg, 10.0 * deg };
-    Time thisTime    = 0.0 * s;
-    Time otherTime   = 10.0 * s;
-    Time targetTime  = 5.0 * s;
-    Keplerian result = state.interpolate(thisTime, otherTime, other.get_mu(), targetTime);
+    Keplerian<frames::earth::icrf> other{ 14000.0 * km, 0.02 * one, 100.0 * deg, 45.0 * deg, 85.0 * deg, 10.0 * deg };
+    Time thisTime                         = 0.0 * s;
+    Time otherTime                        = 10.0 * s;
+    Time targetTime                       = 5.0 * s;
+    Keplerian<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other.get_mu(), targetTime);
 
     // At t=5s (midpoint), expect average of start and end values
     ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), (a + 14000.0 * km) / 2.0, REL_TOL));
@@ -357,7 +359,7 @@ TEST_F(KeplerianTest, FromCartesianConversion)
 {
     // Test conversion from Cartesian to Keplerian
     Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
-    Keplerian kep(cart.get_mu());
+    Keplerian<frames::earth::icrf> kep(cart.get_mu());
 
     // Verify the Keplerian state has reasonable values
     ASSERT_GT(kep.get_semimajor().numerical_value_in(km), 0.0);
@@ -368,8 +370,8 @@ TEST_F(KeplerianTest, FromCartesianConversion)
 TEST_F(KeplerianTest, FromEquinoctialConversion)
 {
     // Test conversion from Equinoctial to Keplerian
-    Equinoctial equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
-    Keplerian kep(equi.get_mu());
+    Equinoctial<frames::earth::icrf> equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
+    Keplerian<frames::earth::icrf> kep(equi.get_mu());
 
     // Verify the Keplerian state has reasonable values
     ASSERT_GT(kep.get_semimajor().numerical_value_in(km), 0.0);
@@ -384,10 +386,10 @@ TEST_F(KeplerianTest, KeplerianPartialMultiplicationByTime)
     AngularVelocity raanDot  = 0.2 * deg / s;
     AngularVelocity wDot     = 0.3 * deg / s;
     AngularVelocity thetaDot = 0.5 * deg / s;
-    KeplerianPartial partial(aDot, eDot, incDot, raanDot, wDot, thetaDot);
+    KeplerianPartial<frames::earth::icrf> partial(aDot, eDot, incDot, raanDot, wDot, thetaDot);
 
-    Time dt          = 2.0 * s;
-    Keplerian result = partial * dt;
+    Time dt                               = 2.0 * s;
+    Keplerian<frames::earth::icrf> result = partial * dt;
 
     // Verify the result is a Keplerian state
     ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), aDot * dt, REL_TOL));
@@ -407,7 +409,7 @@ TEST_F(KeplerianTest, KeplerianPartialStream)
     AngularVelocity raanDot  = 0.2 * deg / s;
     AngularVelocity wDot     = 0.3 * deg / s;
     AngularVelocity thetaDot = 0.5 * deg / s;
-    KeplerianPartial partial(aDot, eDot, incDot, raanDot, wDot, thetaDot);
+    KeplerianPartial<frames::earth::icrf> partial(aDot, eDot, incDot, raanDot, wDot, thetaDot);
 
     std::stringstream ss;
     ss << partial;

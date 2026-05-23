@@ -103,7 +103,8 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
     for (auto& shell : constellation.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             // const auto elements = plane.get_elements();
-            // std::cout << "RAAN: " << elements.in_element_set<Keplerian>(get_mu<decltype(frames::primary)::origin>()).get_right_ascension().in(deg) << std::endl;
+            // std::cout << "RAAN: " << elements.in_element_set<Keplerian<frames::earth::icrf>>
+            // (get_mu<decltype(frames::primary)::origin>()).get_right_ascension().in(deg) << std::endl;
             for (auto& sat : plane.get_all_spacecraft()) {
                 // const auto state = sat.get_state_history().first();
                 // std::cout << "\t" << state;

@@ -60,13 +60,13 @@ int main(int argc, char** argv)
 
 TEST_F(EquinoctialTest, GetExpectedSet)
 {
-    ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Equinoctial>());
+    ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Equinoctial<frames::earth::icrf>>());
 }
 
 TEST_F(EquinoctialTest, Derivative)
 {
-    Equinoctial equi0 = Equinoctial::LEO(mu);
-    EquinoctialPartial expected =
+    Equinoctial<frames::earth::icrf> equi0 = Equinoctial::LEO(mu);
+    EquinoctialPartial<frames::earth::icrf> expected =
         EquinoctialPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0010780076129942077 * rad / s);
     State state(equi0, epoch, sys);
 

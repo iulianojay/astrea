@@ -54,7 +54,7 @@ class ImpulsiveBurnTest : public testing::Test {
         const Angle argPe            = 0.0 * rad;
         const Angle trueAnomaly      = 0.0 * rad;
 
-        Keplerian keplerian(semiMajorAxis, eccentricity, inclination, raan, argPe, trueAnomaly);
+        Keplerian<frames::earth::icrf> keplerian(semiMajorAxis, eccentricity, inclination, raan, argPe, trueAnomaly);
         state   = State(keplerian, Date());
         vehicle = Vehicle(spacecraft);
 

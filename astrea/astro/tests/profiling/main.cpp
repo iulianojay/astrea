@@ -40,7 +40,7 @@ int main()
     Date epoch = Date::now();
 
     // Build constellation
-    Keplerian initialElements = Keplerian<frames::earth::icrf>::LEO();
+    Keplerian<frames::earth::icrf> initialElements = Keplerian<frames::earth::icrf>::LEO();
     initialElements.set_eccentricity(0.001 * one);
     initialElements.set_inclination(25.0 * deg);
 

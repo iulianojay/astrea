@@ -207,7 +207,7 @@ AccelerationVector<frames::primary>
     OblatenessForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Central body properties
-    const GravParam& mu         = _sys->get_mu();
+    const GravParam& mu         = get_mu<decltype(frames::primary)::origin>();
 
     // Find lat and lon
     const RadiusVector<frames::primary> rEci = state.get_position();

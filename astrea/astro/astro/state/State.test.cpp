@@ -52,16 +52,16 @@ TEST_F(StateTest, Constructor) { ASSERT_NO_THROW(State(elements)); }
 
 TEST_F(StateTest, ConvertInPlace)
 {
-    state.convert_to_set<Keplerian>();
-    state.convert_to_set<Equinoctial>();
+    state.convert_to_set<Keplerian<frames::earth::icrf>>();
+    state.convert_to_set<Equinoctial<frames::earth::icrf>>();
     state.convert_to_set<Cartesian<frames::earth::icrf>>();
 }
 
 TEST_F(StateTest, Convert)
 {
     const State constState = state;
-    const State state1     = constState.convert_to_set<Keplerian>();
-    const State state2     = constState.convert_to_set<Equinoctial>();
+    const State state1     = constState.convert_to_set<Keplerian<frames::earth::icrf>>();
+    const State state2     = constState.convert_to_set<Equinoctial<frames::earth::icrf>>();
     const State state3     = constState.convert_to_set<Cartesian<frames::earth::icrf>>();
 }
 

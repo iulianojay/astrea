@@ -79,7 +79,7 @@ class ThrusterSchedulingRegressionTest : public testing::Test {
 
     Spacecraft spacecraft;
     Vehicle vehicle;
-    Keplerian initialElements;
+    Keplerian<frames::earth::icrf> initialElements;
     State initialState;
     Time orbitalPeriod;
     Schedule schedule;
@@ -160,7 +160,8 @@ TEST_F(ThrusterSchedulingRegressionTest, ScheduledThrusterBurnIncreasesSemimajor
             currentState = stateHistory.last(); // Get final state
 
             // Track maximum semimajor axis reached
-            const Keplerian currentElements     = currentState.in_element_set<Keplerian>();
+            const Keplerian<frames::earth::icrf> currentElements =
+                currentState.in_element_set<Keplerian<frames::earth::icrf>>();
             const Distance currentSemimajorAxis = currentElements.get_semimajor();
 
             if (currentSemimajorAxis > maxSemimajorAxis) { maxSemimajorAxis = currentSemimajorAxis; }
@@ -168,8 +169,8 @@ TEST_F(ThrusterSchedulingRegressionTest, ScheduledThrusterBurnIncreasesSemimajor
     }
 
     // Get final orbital elements
-    const Keplerian finalElements     = currentState.in_element_set<Keplerian>();
-    const Distance finalSemimajorAxis = finalElements.get_semimajor();
+    const Keplerian<frames::earth::icrf> finalElements = currentState.in_element_set<Keplerian<frames::earth::icrf>>();
+    const Distance finalSemimajorAxis                  = finalElements.get_semimajor();
 
     // Verify that thruster was actually activated during the test
     ASSERT_TRUE(thrusterWasActivated) << "Thruster should have been activated during the test";
@@ -196,9 +197,9 @@ TEST_F(ThrusterSchedulingRegressionTest, NoThrusterSemimajorAxisUnchanged)
     const auto stateHistory = integrator.propagate(initialState, totalPropTime, vehicle);
 
     // Get final orbital elements
-    const State finalState            = stateHistory.last();
-    const Keplerian finalElements     = finalState.in_element_set<Keplerian>();
-    const Distance finalSemimajorAxis = finalElements.get_semimajor();
+    const State finalState                             = stateHistory.last();
+    const Keplerian<frames::earth::icrf> finalElements = finalState.in_element_set<Keplerian<frames::earth::icrf>>();
+    const Distance finalSemimajorAxis                  = finalElements.get_semimajor();
 
     // Verify semimajor axis remains essentially unchanged (within numerical precision)
     const Distance semiMajorAxisChange = finalSemimajorAxis - initialSemimajorAxis;
@@ -265,7 +266,7 @@ TEST_F(ThrusterSchedulingRegressionTest, MultipleScheduledBurnsCumulativeEffect)
         }
 
         // Get final orbital elements
-        const Keplerian finalElements     = currentState.in_element_set<Keplerian>();
+        const Keplerian<frames::earth::icrf> finalElements = currentState.in_element_set<Keplerian<frames::earth::icrf>>();
         const Distance finalSemimajorAxis = finalElements.get_semimajor();
 
         // Verify cumulative positive effect

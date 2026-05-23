@@ -97,7 +97,7 @@ TEST_F(SphericalTest, EcefVectorConstructor)
 
 TEST_F(SphericalTest, OrbitalElementsConstructor)
 {
-    Keplerian kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
+    Keplerian<frames::earth::icrf> kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
     ASSERT_NO_THROW(Spherical<Earth>(kep, epoch));
 }
 

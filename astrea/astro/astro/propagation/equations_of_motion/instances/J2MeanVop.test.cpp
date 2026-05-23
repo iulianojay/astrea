@@ -53,12 +53,15 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(J2MeanTest, GetExpectedSet) { ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Keplerian>()); }
+TEST_F(J2MeanTest, GetExpectedSet)
+{
+    ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Keplerian<frames::earth::icrf>>());
+}
 
 TEST_F(J2MeanTest, Derivative)
 {
-    Keplerian kep0 = Keplerian::LEO();
-    KeplerianPartial expected =
+    Keplerian<frames::earth::icrf> kep0 = Keplerian::LEO();
+    KeplerianPartial<frames::earth::icrf> expected =
         KeplerianPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * rad / s, 0.0 * rad / s, 0.0 * rad / s, 0.0010780076129942077 * rad / s);
 
     State state(kep0, epoch);

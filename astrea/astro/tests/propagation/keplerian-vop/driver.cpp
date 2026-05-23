@@ -71,7 +71,7 @@ int main(int argc, char** argv)
 TEST_F(KeplerianVopPropagationTest, GEONoForces)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian<frames::earth::icrf>::GEO();
+    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::GEO();
     State state{ kep0, epoch };
     Spacecraft geo;
     Vehicle vehicle{ geo };
@@ -81,7 +81,7 @@ TEST_F(KeplerianVopPropagationTest, GEONoForces)
 
     // Validate
     for (const auto& state : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+        const Keplerian<frames::earth::icrf> kep = state.in_element_set<Keplerian<frames::earth::icrf>>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }
@@ -90,7 +90,7 @@ TEST_F(KeplerianVopPropagationTest, GEONoForces)
 TEST_F(KeplerianVopPropagationTest, GPSNoForces)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian<frames::earth::icrf>::GPS();
+    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::GPS();
     State state{ kep0, epoch };
     Spacecraft meo;
     Vehicle vehicle{ meo };
@@ -100,7 +100,7 @@ TEST_F(KeplerianVopPropagationTest, GPSNoForces)
 
     // Validate
     for (const auto& state : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+        const Keplerian<frames::earth::icrf> kep = state.in_element_set<Keplerian<frames::earth::icrf>>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }
@@ -109,7 +109,7 @@ TEST_F(KeplerianVopPropagationTest, GPSNoForces)
 TEST_F(KeplerianVopPropagationTest, GEONoForces)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian<frames::earth::icrf>::GEO();
+    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::GEO();
     State state{ kep0, epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };
@@ -119,7 +119,7 @@ TEST_F(KeplerianVopPropagationTest, GEONoForces)
 
     // Validate
     for (const auto& state : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+        const Keplerian<frames::earth::icrf> kep = state.in_element_set<Keplerian<frames::earth::icrf>>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }

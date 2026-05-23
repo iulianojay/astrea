@@ -46,7 +46,6 @@ int main()
             const Cartesian<frames::earth::icrf> cartesian = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
             // Build out a burn in the RIC frame, pointing in the nadir direction
-            using RIC        = decltype(astro::frames::dynamic::ric);
             const auto frame = frames::dynamic::ric.instantaneous(cartesian.get_position(), cartesian.get_velocity());
             const ForceVector<astro::frames::dynamic::ric> nadirThrust{ -1.0 * N, 0.0 * N, 0.0 * N };
 
@@ -58,7 +57,7 @@ int main()
             const auto thrustForce = frame.rotate_out_of_this_frame(nadirThrust, date);
             std::cout << "Thrust force in inertial frame: " << thrustForce << std::endl;
 
-            const CartesianVector<Length, RIC> thrusterOffset{ 0.0 * m, 1.0 * m, 0.0 * m };
+            const CartesianVector<Length, astro::frames::dynamic::ric> thrusterOffset{ 0.0 * m, 1.0 * m, 0.0 * m };
             const auto thrustTorque = frame.rotate_out_of_this_frame(nadirThrust.cross(thrusterOffset), date);
 
             return { .force = thrustForce, .torque = thrustTorque };

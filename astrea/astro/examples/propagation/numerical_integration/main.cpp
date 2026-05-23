@@ -35,7 +35,7 @@ int main()
 
     // Setup initial state
     const Date epoch; // Defaults to J2000
-    const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
+    const Keplerian<frames::earth::icrf> elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
     const State state0(elements, epoch);
 
     // Including attitude will automatically trigger kinematic eoms during propagation. This is meant to be used with a

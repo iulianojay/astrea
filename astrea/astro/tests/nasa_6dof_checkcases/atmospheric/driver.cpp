@@ -81,7 +81,7 @@
 
 //     // Validate
 //     for (const auto& state : stateHistory) {
-//         const Keplerian kep = state.in_element_set<Keplerian>();
+//         const Keplerian kep = state.in_element_set<Keplerian<frames::earth::icrf>> ();
 //         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, state0, true, REL_TOL));
 //     }
 // }
@@ -99,7 +99,7 @@
 
 //     // Validate
 //     for (const auto& state : stateHistory) {
-//         const Keplerian kep = state.in_element_set<Keplerian>();
+//         const Keplerian kep = state.in_element_set<Keplerian<frames::earth::icrf>> ();
 //         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, state0, true, REL_TOL));
 //     }
 // }
@@ -117,7 +117,7 @@
 
 //     // Validate
 //     for (const auto& state : stateHistory) {
-//         const Keplerian kep = state.in_element_set<Keplerian>();
+//         const Keplerian kep = state.in_element_set<Keplerian<frames::earth::icrf>> ();
 //         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, state0, true, REL_TOL));
 //     }
 // }

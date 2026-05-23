@@ -50,7 +50,7 @@ class EquinoctialTest : public testing::Test {
     Unitless h    = 0.0 * one;
     Unitless k    = 0.0 * one;
     Angle L       = 0.0 * rad;
-    Equinoctial state{ p, f, g, h, k, L };
+    Equinoctial<frames::earth::icrf> state{ p, f, g, h, k, L };
 };
 
 int main(int argc, char** argv)
@@ -70,7 +70,7 @@ TEST_F(EquinoctialTest, Stream)
 
 TEST_F(EquinoctialTest, DefaultConstructor)
 {
-    Equinoctial defaultState;
+    Equinoctial<frames::earth::icrf> defaultState;
     ASSERT_TRUE(math::nearly_equal(defaultState.get_semilatus(), Distance(0.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(defaultState.get_f(), Unitless(0.0 * one), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(defaultState.get_g(), Unitless(0.0 * one), REL_TOL));
@@ -81,7 +81,7 @@ TEST_F(EquinoctialTest, DefaultConstructor)
 
 TEST_F(EquinoctialTest, UnitlessConstructor)
 {
-    Equinoctial scaledState(2.0 * one);
+    Equinoctial<frames::earth::icrf> scaledState(2.0 * one);
     ASSERT_TRUE(math::nearly_equal(scaledState.get_semilatus(), Distance(2.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(scaledState.get_f(), Unitless(2.0 * one), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(scaledState.get_g(), Unitless(2.0 * one), REL_TOL));
@@ -94,7 +94,7 @@ TEST_F(EquinoctialTest, ParameterizedConstructor) { ASSERT_NO_THROW(Equinoctial(
 
 TEST_F(EquinoctialTest, EquinoctialConstructor)
 {
-    Equinoctial other{ 8000.0 * km, 0.02 * one, 0.01 * one, 0.005 * one, 0.003 * one, 0.5 * rad };
+    Equinoctial<frames::earth::icrf> other{ 8000.0 * km, 0.02 * one, 0.01 * one, 0.005 * one, 0.003 * one, 0.5 * rad };
     ASSERT_NO_THROW(Equinoctial(other.get_mu()));
 }
 
@@ -147,8 +147,8 @@ TEST_F(EquinoctialTest, GEOStaticMethod)
 
 TEST_F(EquinoctialTest, CopyConstructor)
 {
-    ASSERT_NO_THROW(Equinoctial newEqui(state));
-    Equinoctial newEqui(state);
+    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf> newEqui(state));
+    Equinoctial<frames::earth::icrf> newEqui(state);
     ASSERT_TRUE(math::nearly_equal(newEqui.get_semilatus(), p, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(newEqui.get_f(), f, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(newEqui.get_g(), g, REL_TOL));
@@ -159,14 +159,14 @@ TEST_F(EquinoctialTest, CopyConstructor)
 
 TEST_F(EquinoctialTest, MoveConstructor)
 {
-    Equinoctial temp{ p, f, g, h, k, L };
-    ASSERT_NO_THROW(Equinoctial newEqui(std::move(temp)));
+    Equinoctial<frames::earth::icrf> temp{ p, f, g, h, k, L };
+    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf> newEqui(std::move(temp)));
 }
 
 TEST_F(EquinoctialTest, CopyAssignment)
 {
-    ASSERT_NO_THROW(Equinoctial newEqui = state);
-    Equinoctial newEqui = state;
+    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf> newEqui = state);
+    Equinoctial<frames::earth::icrf> frames::earth::icrf > newEqui = state;
     ASSERT_TRUE(math::nearly_equal(newEqui.get_semilatus(), p, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(newEqui.get_f(), f, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(newEqui.get_g(), g, REL_TOL));
@@ -177,14 +177,14 @@ TEST_F(EquinoctialTest, CopyAssignment)
 
 TEST_F(EquinoctialTest, MoveAssignment)
 {
-    Equinoctial temp{ p, f, g, h, k, L };
-    ASSERT_NO_THROW(Equinoctial newEqui = std::move(temp));
+    Equinoctial<frames::earth::icrf> temp{ p, f, g, h, k, L };
+    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf> newEqui = std::move(temp));
 }
 
 TEST_F(EquinoctialTest, EqualityOperator)
 {
-    Equinoctial sameState{ p, f, g, h, k, L };
-    Equinoctial diffState{ p + 1000.0 * km, f, g, h, k, L };
+    Equinoctial<frames::earth::icrf> sameState{ p, f, g, h, k, L };
+    Equinoctial<frames::earth::icrf> diffState{ p + 1000.0 * km, f, g, h, k, L };
     ASSERT_TRUE(state == sameState);
     ASSERT_FALSE(state == diffState);
     ASSERT_FALSE(state != sameState);
@@ -193,8 +193,8 @@ TEST_F(EquinoctialTest, EqualityOperator)
 
 TEST_F(EquinoctialTest, AdditionOperator)
 {
-    Equinoctial other{ 1000.0 * km, 0.005 * one, 0.003 * one, 0.002 * one, 0.001 * one, 0.1 * rad };
-    Equinoctial result = state + other;
+    Equinoctial<frames::earth::icrf> other{ 1000.0 * km, 0.005 * one, 0.003 * one, 0.002 * one, 0.001 * one, 0.1 * rad };
+    Equinoctial<frames::earth::icrf> result = state + other;
     ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), p + 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_f(), f + 0.005 * one, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_g(), g + 0.003 * one, REL_TOL));
@@ -205,7 +205,7 @@ TEST_F(EquinoctialTest, AdditionOperator)
 
 TEST_F(EquinoctialTest, AdditionAssignmentOperator)
 {
-    Equinoctial other{ 1000.0 * km, 0.005 * one, 0.003 * one, 0.002 * one, 0.001 * one, 0.1 * rad };
+    Equinoctial<frames::earth::icrf> other{ 1000.0 * km, 0.005 * one, 0.003 * one, 0.002 * one, 0.001 * one, 0.1 * rad };
     state += other;
     ASSERT_TRUE(math::nearly_equal(state.get_semilatus(), p + 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(state.get_f(), f + 0.005 * one, REL_TOL));
@@ -217,8 +217,8 @@ TEST_F(EquinoctialTest, AdditionAssignmentOperator)
 
 TEST_F(EquinoctialTest, SubtractionOperator)
 {
-    Equinoctial other{ 1000.0 * km, 0.005 * one, 0.003 * one, 0.002 * one, 0.001 * one, 0.1 * rad };
-    Equinoctial result = state - other;
+    Equinoctial<frames::earth::icrf> other{ 1000.0 * km, 0.005 * one, 0.003 * one, 0.002 * one, 0.001 * one, 0.1 * rad };
+    Equinoctial<frames::earth::icrf> result = state - other;
     ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), p - 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_f(), f - 0.005 * one, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_g(), g - 0.003 * one, REL_TOL));
@@ -229,7 +229,7 @@ TEST_F(EquinoctialTest, SubtractionOperator)
 
 TEST_F(EquinoctialTest, SubtractionAssignmentOperator)
 {
-    Equinoctial other{ 1000.0 * km, 0.005 * one, 0.003 * one, 0.002 * one, 0.001 * one, 0.1 * rad };
+    Equinoctial<frames::earth::icrf> other{ 1000.0 * km, 0.005 * one, 0.003 * one, 0.002 * one, 0.001 * one, 0.1 * rad };
     state -= other;
     ASSERT_TRUE(math::nearly_equal(state.get_semilatus(), p - 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(state.get_f(), f - 0.005 * one, REL_TOL));
@@ -241,8 +241,8 @@ TEST_F(EquinoctialTest, SubtractionAssignmentOperator)
 
 TEST_F(EquinoctialTest, MultiplicationOperator)
 {
-    Unitless multiplier = 2.0 * one;
-    Equinoctial result  = state * multiplier;
+    Unitless multiplier                     = 2.0 * one;
+    Equinoctial<frames::earth::icrf> result = state * multiplier;
     ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), p * multiplier, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_f(), f * multiplier, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_g(), g * multiplier, REL_TOL));
@@ -274,8 +274,8 @@ TEST_F(EquinoctialTest, DivisionByTimeOperator)
 
 TEST_F(EquinoctialTest, DivisionByScalarOperator)
 {
-    Unitless divisor   = 2.0 * one;
-    Equinoctial result = state / divisor;
+    Unitless divisor                        = 2.0 * one;
+    Equinoctial<frames::earth::icrf> result = state / divisor;
     ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), p / divisor, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_f(), f / divisor, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_g(), g / divisor, REL_TOL));
@@ -320,11 +320,11 @@ TEST_F(EquinoctialTest, ToVector)
 
 TEST_F(EquinoctialTest, Interpolate)
 {
-    Equinoctial other{ 14000.0 * km, 0.02 * one, 0.01 * one, 0.005 * one, 0.003 * one, 0.5 * rad };
-    Time thisTime      = 0.0 * s;
-    Time otherTime     = 10.0 * s;
-    Time targetTime    = 5.0 * s;
-    Equinoctial result = state.interpolate(thisTime, otherTime, other.get_mu(), targetTime);
+    Equinoctial<frames::earth::icrf> other{ 14000.0 * km, 0.02 * one, 0.01 * one, 0.005 * one, 0.003 * one, 0.5 * rad };
+    Time thisTime                           = 0.0 * s;
+    Time otherTime                          = 10.0 * s;
+    Time targetTime                         = 5.0 * s;
+    Equinoctial<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other.get_mu(), targetTime);
 
     // At t=5s (midpoint), expect average of start and end values
     ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), (p + 14000.0 * km) / 2.0, REL_TOL));
@@ -335,8 +335,8 @@ TEST_F(EquinoctialTest, Interpolate)
 TEST_F(EquinoctialTest, FromKeplerianConversion)
 {
     // Test conversion from Keplerian to Equinoctial
-    Keplerian kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
-    Equinoctial equi(kep.get_mu());
+    Keplerian<frames::earth::icrf> kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
+    Equinoctial<frames::earth::icrf> equi(kep.get_mu());
 
     // Verify the Equinoctial state has reasonable values
     ASSERT_GT(equi.get_semilatus().numerical_value_in(km), 0.0);
@@ -346,7 +346,7 @@ TEST_F(EquinoctialTest, FromCartesianConversion)
 {
     // Test conversion from Cartesian to Equinoctial
     Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
-    Equinoctial equi(cart.get_mu());
+    Equinoctial<frames::earth::icrf> equi(cart.get_mu());
 
     // Verify the Equinoctial state has reasonable values
     ASSERT_GT(equi.get_semilatus().numerical_value_in(km), 0.0);
@@ -361,10 +361,10 @@ TEST_F(EquinoctialTest, EquinoctialPartialMultiplicationByTime)
     UnitlessPerTime hDot = 0.003 / s;
     UnitlessPerTime kDot = 0.004 / s;
     AngularVelocity LDot = 0.5 * rad / s;
-    EquinoctialPartial partial(pDot, fDot, gDot, hDot, kDot, LDot);
+    EquinoctialPartial<frames::earth::icrf> partial(pDot, fDot, gDot, hDot, kDot, LDot);
 
-    Time dt            = 2.0 * s;
-    Equinoctial result = partial * dt;
+    Time dt                                 = 2.0 * s;
+    Equinoctial<frames::earth::icrf> result = partial * dt;
 
     // Verify the result is an Equinoctial state
     ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), pDot * dt, REL_TOL));
@@ -384,7 +384,7 @@ TEST_F(EquinoctialTest, EquinoctialPartialStream)
     UnitlessPerTime hDot = 0.003 / s;
     UnitlessPerTime kDot = 0.004 / s;
     AngularVelocity LDot = 0.5 * rad / s;
-    EquinoctialPartial partial(pDot, fDot, gDot, hDot, kDot, LDot);
+    EquinoctialPartial<frames::earth::icrf> partial(pDot, fDot, gDot, hDot, kDot, LDot);
 
     std::stringstream ss;
     ss << partial;

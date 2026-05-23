@@ -29,7 +29,7 @@ int main()
 {
     // First we get the basic setup for a propagation
     const Date epoch;
-    const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
+    const Keplerian<frames::earth::icrf> elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
     const State state0(elements, epoch);
 
     Spacecraft sat;

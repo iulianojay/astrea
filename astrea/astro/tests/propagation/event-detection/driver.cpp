@@ -72,7 +72,7 @@ int main(int argc, char** argv)
 TEST_F(EventDetectionTest, NoThrust)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian<frames::earth::icrf>::LEO();
+    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::LEO();
     State state{ kep0, epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };
@@ -86,7 +86,7 @@ TEST_F(EventDetectionTest, NoThrust)
 
     // Validate
     for (const auto& state : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+        const Keplerian<frames::earth::icrf> kep = state.in_element_set<Keplerian<frames::earth::icrf>>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }
@@ -95,7 +95,7 @@ TEST_F(EventDetectionTest, NoThrust)
 TEST_F(EventDetectionTest, ImpulsiveBurn)
 {
     // Build constellation
-    const Keplerian kep0 = Keplerian<frames::earth::icrf>::LEO();
+    const Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::LEO();
     const ThrusterParameters thrusterParams(1.0e3 * mp_units::si::unit_symbols::kN);
     const State state{ kep0, epoch };
 
@@ -114,7 +114,7 @@ TEST_F(EventDetectionTest, ImpulsiveBurn)
     std::cout << "state0: " << kep0 << std::endl;
     bool elementsChanged = false;
     for (const auto& state : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+        const Keplerian<frames::earth::icrf> kep = state.in_element_set<Keplerian<frames::earth::icrf>>();
         std::cout << "\t" << state.get_epoch() << ": " << kep << std::endl;
         if (!nearly_equal(kep, kep0, true, REL_TOL)) {
             elementsChanged = true;

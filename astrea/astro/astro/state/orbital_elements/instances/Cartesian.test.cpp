@@ -110,13 +110,13 @@ TEST_F(CartesianTest, CartesianConstructor)
 
 TEST_F(CartesianTest, KeplerianConstructor)
 {
-    Keplerian kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
+    Keplerian<frames::earth::icrf> kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
     ASSERT_NO_THROW(Cartesian<frames::earth::icrf>(kep.get_mu()));
 }
 
 TEST_F(CartesianTest, EquinoctialConstructor)
 {
-    Equinoctial equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
+    Equinoctial<frames::earth::icrf> equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
     ASSERT_NO_THROW(Cartesian<frames::earth::icrf>(equi.get_mu()));
 }
 
@@ -428,7 +428,7 @@ TEST_F(CartesianTest, Interpolate)
 TEST_F(CartesianTest, FromKeplerianConversion)
 {
     // Test conversion from Keplerian to Cartesian and back
-    Keplerian kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
+    Keplerian<frames::earth::icrf> kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
     Cartesian<frames::earth::icrf> cart(kep.get_mu());
 
     // Verify the Cartesian state is non-zero
@@ -442,7 +442,7 @@ TEST_F(CartesianTest, FromKeplerianConversion)
 TEST_F(CartesianTest, FromEquinoctialConversion)
 {
     // Test conversion from Equinoctial to Cartesian
-    Equinoctial equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
+    Equinoctial<frames::earth::icrf> equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
     Cartesian<frames::earth::icrf> cart(equi.get_mu());
 
     // Verify the Cartesian state is non-zero
@@ -453,7 +453,7 @@ TEST_F(CartesianTest, FromEquinoctialConversion)
 TEST_F(CartesianTest, ZeroSemimajorKeplerianConversion)
 {
     // Test edge case with zero semimajor axis
-    Keplerian kep{ 0.0 * km, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg };
+    Keplerian<frames::earth::icrf> kep{ 0.0 * km, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg };
     Cartesian<frames::earth::icrf> cart(kep.get_mu());
 
     ASSERT_TRUE(math::nearly_equal(cart.get_x(), Distance(0.0 * km), REL_TOL));
@@ -467,7 +467,7 @@ TEST_F(CartesianTest, ZeroSemimajorKeplerianConversion)
 TEST_F(CartesianTest, ZeroSemilatusEquinoctialConversion)
 {
     // Test edge case with zero semilatus
-    Equinoctial equi{ 0.0 * km, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
+    Equinoctial<frames::earth::icrf> equi{ 0.0 * km, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
     Cartesian<frames::earth::icrf> cart(equi.get_mu());
 
     ASSERT_TRUE(math::nearly_equal(cart.get_x(), Distance(0.0 * km), REL_TOL));

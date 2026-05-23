@@ -35,7 +35,7 @@ int main()
 
     // Setup initial state
     const Date epoch; // Defaults to J2000
-    const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
+    const Keplerian<frames::earth::icrf> elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
     const State state0(elements, epoch);
 
     // Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing

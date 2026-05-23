@@ -415,8 +415,9 @@ bool AccessAnalyzer::is_central_body_occulting(const EcefRadiusVec& position1, c
     const EcefRadiusVec radius1to2 = position2 - position1;
 
     // Get edge angle of Earth
-    const Distance atmosphereHeight = atmosphereBlocks ? _sys->get_central_body()->get_crash_radius() : 0.0 * km;
-    const Distance radiusEarthMag   = _sys->get_central_body()->get_equitorial_radius() + atmosphereHeight;
+    const Distance atmosphereHeight =
+        atmosphereBlocks ? astrea::astro::get_crash_radius<astro::planets::Earth>() : Distance::zero();
+    const Distance radiusEarthMag = astrea::astro::get_equitorial_radius<astro::planets::Earth>() + atmosphereHeight;
     const Angle earthLimbAngle = asin(radiusEarthMag / nadir1Mag); // Assume this is good for all angles (circular Earth) - TODO: Fix
 
     // Get angle from boresight and sat to nadir
