@@ -41,8 +41,7 @@ Geodetic<_body_>::Geodetic(const RadiusVector<_icrf_frame_>& rIcrf, const Date& 
 template <IsCelestialBody auto _body_>
 Geodetic<_body_>::Geodetic(const RadiusVector<_fixed_frame_>& rFixed)
 {
-    std::tie(_latitude, _longitude, _altitude) =
-        convert_body_fixed_to_geodetic(rFixed);
+    std::tie(_latitude, _longitude, _altitude) = convert_body_fixed_to_geodetic(rFixed);
 }
 
 // Copy constructor
@@ -178,7 +177,7 @@ Geodetic<_body_>
 template <IsCelestialBody auto _body_>
 RadiusVector<Geodetic<_body_>::_fixed_frame_> Geodetic<_body_>::get_position() const
 {
-    return convert_geodetic_to_body_fixed<_fixed_frame_>(_latitude, _longitude, _altitude, get_equitorial_radius<_body_>(), get_polar_radius<_body_>());
+    return convert_geodetic_to_body_fixed<_fixed_frame_>(_latitude, _longitude, _altitude);
 }
 
 template <IsCelestialBody auto _body_>

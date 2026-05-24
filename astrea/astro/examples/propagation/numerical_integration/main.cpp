@@ -56,7 +56,7 @@ int main()
     // give users more flexibility.
     ForceModel forces;
     forces.add<AtmosphericForce>();
-    forces.add<OblatenessForce>(sys, 10, 10);
+    forces.add<OblatenessForce, 10, 10>();
 
     // Build EoMs - these can be selected from pre-built options, or users can create their own by inheriting from the
     // base EquationsOfMotion class. Note that a force or perturbation model is not required.

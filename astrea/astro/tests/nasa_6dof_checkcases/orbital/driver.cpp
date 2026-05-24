@@ -685,7 +685,7 @@ TEST_F(Orbital6DofTest, Checkcase2_Propagation)
 TEST_F(Orbital6DofTest, Checkcase3A_4x4Oblateness)
 {
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 4, 4);
+    forces.add<OblatenessForce, 4, 4>();
 
     const auto propagations = run_all_propagations(forces, CIRCULAR, ISS);
 
@@ -696,7 +696,7 @@ TEST_F(Orbital6DofTest, Checkcase3A_4x4Oblateness)
 TEST_F(Orbital6DofTest, Checkcase3B_8x8Oblateness)
 {
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 8, 8);
+    forces.add<OblatenessForce, 8, 8>();
 
     const auto propagations = run_all_propagations(forces, CIRCULAR, ISS);
 
@@ -800,7 +800,7 @@ TEST_F(Orbital6DofTest, Checkcase7A_4x4Oblateness_NBody)
     sys.add_body(CelestialBodyId::MOON);
 
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 4, 4);
+    forces.add<OblatenessForce, 4, 4>();
     forces.add<NBodyForce>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
@@ -814,7 +814,7 @@ TEST_F(Orbital6DofTest, Checkcase7B_8x8Oblateness_NBody)
     sys.add_body(CelestialBodyId::MOON);
 
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 8, 8);
+    forces.add<OblatenessForce, 8, 8>();
     forces.add<NBodyForce>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
@@ -828,7 +828,7 @@ TEST_F(Orbital6DofTest, Checkcase7C_4x4Oblateness_NBody_Drag)
     sys.add_body(CelestialBodyId::MOON);
 
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 4, 4);
+    forces.add<OblatenessForce, 4, 4>();
     forces.add<NBodyForce>();
     forces.add<AtmosphericForce>();
 
@@ -843,7 +843,7 @@ TEST_F(Orbital6DofTest, Checkcase7D_8x8Oblateness_NBody_Drag)
     sys.add_body(CelestialBodyId::MOON);
 
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 8, 8);
+    forces.add<OblatenessForce, 8, 8>();
     forces.add<NBodyForce>();
     forces.add<AtmosphericForce>();
 

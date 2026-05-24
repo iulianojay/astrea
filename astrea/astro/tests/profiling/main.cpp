@@ -49,7 +49,7 @@ int main()
 
     // Force model
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 100, 100);
+    forces.add<OblatenessForce, 100, 100>();
     forces.add<SolarRadiationPressure>();
     forces.add<AtmosphericForce>();
     forces.add<NBodyForce>();

@@ -62,7 +62,7 @@ static void BenchmarkPropagation(benchmark::State& state)
 
     ForceModel forces;
     if (eomIdx >= 2) {
-        if (gravity > 0) { forces.add<OblatenessForce>(sys, gravity, gravity); }
+        if (gravity > 0) { forces.add<OblatenessForce, gravity, gravity>(); }
         if (perturb & kDrag) { forces.add<AtmosphericForce>(); }
         if (perturb & kNBody) { forces.add<NBodyForce>(); }
         if (perturb & kSRP) { forces.add<SolarRadiationPressure>(); }

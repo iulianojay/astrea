@@ -57,16 +57,37 @@ class ForceModel {
     std::size_t size() const { return forces.size(); }
 
     /**
-     * @brief Adds a force model of type T with the given arguments.
+     * @brief Adds a force model of type T with the given constructor arguments.
      *
-     * @tparam T Type of the force model to add
-     * @tparam Args Types of the arguments for the constructor of T
+     * @tparam T Type of the force model to add (no template parameters)
+     * @tparam Args Types of the constructor arguments
      * @param args Arguments to pass to the constructor of T
      * @return const std::unique_ptr<PerturbingForce>& Reference to the added force model
      */
     template <typename T, typename... Args>
     const std::unique_ptr<PerturbingForce>& add(Args&&... args)
     {
+        static const std::string name = typeid(T).name();
+        if (forces.count(name) == 0) { forces.emplace(name, std::make_unique<T>(std::forward<Args>(args)...)); }
+        return forces.at(name);
+    }
+
+    /**
+     * @brief Adds a force model of the form Force<Params...> with the given constructor arguments.
+     *
+     * Enables the syntax: model.add<Force, param1, param2>(ctor_arg1, ctor_arg2)
+     * which constructs Force<param1, param2>(ctor_arg1, ctor_arg2).
+     *
+     * @tparam Force Template template parameter taking auto... NTTPs
+     * @tparam Params Non-type template arguments forwarded to Force
+     * @tparam Args Types of the constructor arguments
+     * @param args Arguments to pass to the constructor of Force<Params...>
+     * @return const std::unique_ptr<PerturbingForce>& Reference to the added force model
+     */
+    template <template <auto...> class Force, auto... Params, typename... Args>
+    const std::unique_ptr<PerturbingForce>& add(Args&&... args)
+    {
+        using T                       = Force<Params...>;
         static const std::string name = typeid(T).name();
         if (forces.count(name) == 0) { forces.emplace(name, std::make_unique<T>(std::forward<Args>(args)...)); }
         return forces.at(name);

@@ -67,8 +67,6 @@ class ConversionTest : public testing::Test {
         // Hard code vallado values to ensure tests pass
         rEquitorial = 6378.1363 * km;
         rPolar      = 6356.751 * km;
-        // rEquitorial = sys.get_central_body()->get_equitorial_radius();
-        // rPolar      = sys.get_central_body()->get_polar_radius();
     }
 
     // Expected values
@@ -207,7 +205,7 @@ TEST_F(ConversionTest, EcefToLla)
     // Vallado ex. 3-3
     const RadiusVector<frames::earth::earth_fixed> rEcef = { 6524.834 * km, 6862.875 * km, 6448.296 * km };
 
-    const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef, rEquitorial, rPolar);
+    const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef);
 
     ASSERT_TRUE(math::nearly_equal(lat, Angle(34.3529 * deg), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(lon, Angle(46.4464 * deg), REL_TOL));
@@ -220,7 +218,7 @@ TEST_F(ConversionTest, LlaToEcef)
     const Angle lon    = 46.4464 * deg;
     const Distance alt = 5085.22 * km;
 
-    const auto rEcef = convert_geodetic_to_body_fixed<frames::earth::earth_fixed>(lat, lon, alt, rEquitorial, rPolar);
+    const auto rEcef = convert_geodetic_to_body_fixed<frames::earth::earth_fixed>(lat, lon, alt);
 
     // I have no idea why these are not the same
     ASSERT_TRUE(math::nearly_equal(rEcef[0], Distance(6524.834 * km), REL_TOL));

@@ -116,6 +116,19 @@ inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& 
 
 namespace {
 
+// Diagnostic tag types — intentionally left undefined.
+// When used as a template argument to always_false<>, the compiler prints the
+// frame names (embedded in the mp_units::symbol_text NTTPs) in the error note,
+// e.g.:  'always_false<NoDcmBetween<"gcrf", "eci">> evaluates to false'
+template <mp_units::symbol_text, mp_units::symbol_text>
+struct NoDcmBetween;
+
+template <mp_units::symbol_text, mp_units::symbol_text>
+struct DcmDefinedBothWays;
+
+template <typename>
+inline constexpr bool always_false = false;
+
 /**
  * @brief Get the Direction Cosine Matrix (DCM) between two frames at a given date.
  *
@@ -131,11 +144,20 @@ namespace {
 template <IsFrame auto frame, IsFrame auto frame_u>
 inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date)
 {
-    static_assert(!(HasDcm<frame, frame_u> && HasDcm<frame_u, frame>), "DCM defined in both directions, please define only one to avoid symmetry issues.");
     static_assert(
-        IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>, "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference."
+        !always_false<DcmDefinedBothWays<get_name<frame>(), get_name<frame_u>()>> ||
+            !(HasDcm<frame, frame_u> && HasDcm<frame_u, frame>),
+        "DCM defined in both directions between these two frames; define only one to avoid symmetry issues."
     );
-    static_assert(HasDcm<frame, frame_u> || HasDcm<frame_u, frame> || is_same_frame(frame, frame_u), "No DCM (get_dcm method) defined between these two frames.");
+    static_assert(
+        IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>,
+        "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference."
+    );
+    static_assert(
+        !always_false<NoDcmBetween<get_name<frame>(), get_name<frame_u>()>> ||
+            HasDcm<frame, frame_u> || HasDcm<frame_u, frame> || is_same_frame(frame, frame_u),
+        "No DCM (get_dcm method) defined between these two frames."
+    );
 
     if constexpr (is_same_frame(frame, frame_u)) {
         return DCM<frame, frame_u>::identity(); // TODO: Figure out how to do this earlier to avoid unnecessary matrix math
