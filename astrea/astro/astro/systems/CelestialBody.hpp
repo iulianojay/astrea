@@ -39,19 +39,8 @@ namespace astro {
 namespace detail {
 
 struct CelestialBodyBase {};
-struct BarycenterBase {};
 
 } // namespace detail
-
-template <mp_units::symbol_text, auto...>
-struct Barycenter;
-
-template <mp_units::symbol_text _name_>
-struct Barycenter<_name_> : Origin<_name_>, detail::BarycenterBase {};
-
-template <mp_units::symbol_text _name_, IsOrigin auto _parent_>
-struct Barycenter<_name_, _parent_> : Origin<_name_, _parent_>, detail::BarycenterBase {};
-
 
 /**
  * @brief CelestialBody class represents a celestial body in an astrodynamics system.

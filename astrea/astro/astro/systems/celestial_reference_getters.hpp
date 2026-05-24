@@ -32,6 +32,7 @@
 // CelestialBody.hpp provides the primary template declarations AND includes this file.
 // Include it again here to be self-contained; the guard will prevent re-processing.
 #include <astro/frames/CartesianVector.hpp>
+#include <astro/systems/Barycenter.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/CelestialBodyParameters.hpp>
 #include <astro/systems/system_concepts.hpp>
@@ -65,7 +66,7 @@ using CoefficientPack = std::tuple<
  *
  * @return CoefficientPack A tuple containing (B, C, S, F) coefficients.
  */
-template <auto body>
+template <IsCelestialReference auto body>
 inline constexpr CoefficientPack get_linear_expansion_coefficients()
 {
     using namespace mp_units::angular::unit_symbols;
@@ -84,14 +85,22 @@ inline consteval CelestialBodyType get_body_type()
 };
 
 /**
- * @brief Get the gravitational parameter (mu) of the celestial body.
+ * @brief Get the gravitational parameter (mu) of the celestial body or barycenter.
  *
- * @return GravParam Reference to the gravitational parameter of the celestial body.
+ * For a CelestialBody, returns its intrinsic mu from CelestialBodyParameters.
+ * For a Barycenter, returns the sum of mu over all member bodies.
+ *
+ * @return GravParam The gravitational parameter.
  */
-template <IsCelestialBody auto body>
+template <IsCelestialReference auto body>
 inline constexpr GravParam get_mu()
 {
-    return get_celestial_body_parameters<body>().mu;
+    if constexpr (IsBarycenter<decltype(body)>) {
+        return [&]<typename... Bs>(const CelestialBodyTypePack<Bs...>&) { return (get_mu<Bs{}>() + ...); }(body);
+    }
+    else {
+        return get_celestial_body_parameters<body>().mu;
+    }
 };
 
 /**

@@ -111,7 +111,7 @@ inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& 
 {
     // Forcing the frame change here doesn't matter since the offset is just a difference and it's already implied that
     // these two frames share an axis.
-    return get_relative_position<get_origin<frame>(), get_origin<frame_u>()>(date).template forceframeconversion<frame>();
+    return get_relative_position<get_origin<frame>(), get_origin<frame_u>()>(date).template force_frame_conversion<frame>();
 }
 
 namespace {
@@ -217,11 +217,11 @@ inline constexpr CartesianVector<Distance, frame_u>
 {
     if constexpr (std::is_same_v<Value_T, Distance>) {
         const auto& posRel = get_relative_position<get_origin<frame_u>(), get_origin<frame>()>(date); // frame -> frame_u
-        return vec.template forceframeconversion<frame_u>() + posRel.template forceframeconversion<frame_u>();
+        return vec.template force_frame_conversion<frame_u>() + posRel.template force_frame_conversion<frame_u>();
     }
     else if constexpr (std::is_same_v<Value_T, Velocity>) {
         const auto& velRel = get_relative_velocity<get_origin<frame_u>(), get_origin<frame>()>(date); // frame -> frame_u
-        return vec.template forceframeconversion<frame_u>() - velRel.template forceframeconversion<frame_u>();
+        return vec.template force_frame_conversion<frame_u>() - velRel.template force_frame_conversion<frame_u>();
     }
     else {
         throw std::logic_error("Unsupported vector type for translation. Only Distance and Velocity are supported.");
@@ -256,8 +256,9 @@ inline constexpr CartesianVector<Value_T, frame_u>
     else {
         // Different origin and axis: translate to the intermediate frame that shares frame's axis
         // but frame_u's origin (e.g. ssb::icrf -> earth::icrf), then rotate to frame_u.
-        using IntermediateFrame =
-            Frame<get_name<frame>() + mp_units::symbol_text{ " / " } + get_name<frame_u>(), get_origin<frame_u>(), get_axis<frame>()>;
+        constexpr struct IntermediateFrame
+            : Frame<get_name<frame>() + mp_units::symbol_text{ " / " } + get_name<frame_u>(), get_origin<frame_u>(), get_axis<frame>()> {
+        } IntermediateFrame{};
         const auto vecInIntermediate = translate_vector_into_frame<Value_T, frame, IntermediateFrame>(vec, date);
         return rotate_vector_into_frame<Value_T, IntermediateFrame, frame_u>(vecInIntermediate, date);
     }

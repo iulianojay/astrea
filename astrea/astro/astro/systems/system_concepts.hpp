@@ -31,10 +31,10 @@ struct BarycenterBase;
 } // namespace detail
 
 template <typename T>
-concept IsCelestialBody = std::derived_from<T, detail::CelestialBodyBase>;
+concept IsCelestialBody = std::derived_from<T, detail::CelestialBodyBase> && !std::derived_from<T, detail::BarycenterBase>;
 
 template <typename T>
-concept IsBarycenter = std::derived_from<T, detail::BarycenterBase>;
+concept IsBarycenter = std::derived_from<T, detail::BarycenterBase> && !std::derived_from<T, detail::CelestialBodyBase>;
 
 template <typename T>
 concept IsCelestialReference = IsCelestialBody<T> || IsBarycenter<T>;

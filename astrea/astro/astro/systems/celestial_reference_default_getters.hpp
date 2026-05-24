@@ -61,16 +61,15 @@ inline Keplerian<_frame_> get_keplerian_elements_at(Date date)
 {
     using namespace mp_units;
     using namespace mp_units::angular;
-    using Body_T = std::remove_cvref_t<decltype(_body_)>;
 
-    const Distance a   = get_semimajor<Body_T>(date);
-    const Unitless ecc = get_eccentricity<Body_T>(date);
-    const Angle inc    = get_inclination<Body_T>(date);
-    const Angle raan   = get_right_ascension<Body_T>(date);
-    const Angle w      = get_longitude_of_perigee<Body_T>(date);
-    const Angle L      = get_mean_longitude<Body_T>(date);
+    const Distance a   = get_semimajor<_body_>(date);
+    const Unitless ecc = get_eccentricity<_body_>(date);
+    const Angle inc    = get_inclination<_body_>(date);
+    const Angle raan   = get_right_ascension<_body_>(date);
+    const Angle w      = get_longitude_of_perigee<_body_>(date);
+    const Angle L      = get_mean_longitude<_body_>(date);
 
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<Body_T>(date);
+    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<_body_>(date);
     const auto [B, C, S, F]                   = get_linear_expansion_coefficients<_body_>();
     const Angle Me                            = wrap_angle(L - w + B * T * T + C * cos(F * T) + S * sin(F * T));
     const Angle argPer                        = wrap_angle(w - raan);
@@ -95,7 +94,7 @@ inline auto get_position_at(const Date& date)
     constexpr auto frame        = get_parent_frame(_body_, axes::icrf);
     const Keplerian<frame> coes = get_keplerian_elements_at<_body_, frame>(date);
     constexpr auto parent       = get_parent(_body_);
-    const GravParam mu          = get_mu<decltype(parent)>();
+    const GravParam mu          = get_mu<parent>();
     return Cartesian<frame>(coes, mu).get_position();
 }
 
