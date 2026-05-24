@@ -41,13 +41,13 @@ inline consteval auto get_parent(Origin_T origin)
 template <IsOrigin Origin_T, IsAxis Axis_T>
 inline consteval auto get_parent_frame(Origin_T origin, Axis_T axis)
 {
-    return Frame<get_parent_name(origin) + mp_units::symbol_text{ "_" } + Axis_T::name, get_parent(origin), axis>{};
+    return Frame<origin.parent.name + mp_units::symbol_text{ "_" } + axis.name, origin.parent, axis>{};
 }
 
 template <IsOrigin Origin_T, IsAxis Axis_T>
-inline consteval auto get_frame(Origin_T origin, Axis_T axis)
+inline consteval auto make_frame(Origin_T origin, Axis_T axis)
 {
-    return Frame<Origin_T::name + mp_units::symbol_text{ "_" } + Axis_T::name, origin, axis>{};
+    return Frame<origin.name + mp_units::symbol_text{ "_" } + axis.name, origin, axis>{};
 }
 
 } // namespace astro

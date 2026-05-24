@@ -32,7 +32,13 @@ namespace astro {
 namespace detail {
 
 struct CoordinateLineBase {};
-struct AxisBase {};
+struct AxisBase { 
+  template<IsAxis Lhs, IsAxis Rhs>
+  [[nodiscard]] friend consteval bool operator==(Lhs, Rhs)
+  {
+    return std::is_same_v<Lhs, Rhs>;
+  }
+};
 
 template <typename T>
 concept IsAxisProperty = (!IsAxis<T>);
@@ -60,6 +66,19 @@ template <IsFrame Frame_T, IsAxis Axis_T>
 inline consteval auto has_axis(Frame_T, Axis_T)
 {
     return std::is_same_v<decltype(Frame_T::axis), Axis_T>;
+}
+
+/**
+ * @brief Concept to determine if two frames share the same axis.
+ *
+ * @tparam T The first frame type to check.
+ * @tparam U The second frame type to check.
+ * @return true if both frames share the same axis, false otherwise.
+ */
+template <IsFrame T, IsFrame U>
+consteval bool has_same_axis(T t, U u)
+{
+    return T::axis == U::axis;
 }
 
 namespace axes {

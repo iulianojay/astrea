@@ -82,22 +82,17 @@ struct CartesianVector {
      */
     inline constexpr ~CartesianVector() = default;
 
+    inline constexpr CartesianVector(const CartesianVector&)            = default;
+    inline constexpr CartesianVector(CartesianVector&&)                 = default;
+    inline constexpr CartesianVector& operator=(const CartesianVector&) = default;
+    inline constexpr CartesianVector& operator=(CartesianVector&&)      = default;
+
     // Explicitly deleted copy/move assignment/constructor to prevent implicit frame switches.
     template <IsFrame auto frame_u>
-        requires(!(frame == frame_u))
     inline constexpr CartesianVector(const CartesianVector<Value_T, frame_u>& other) = delete;
 
     template <IsFrame auto frame_u>
-        requires(!(frame == frame_u))
     inline constexpr CartesianVector(CartesianVector<Value_T, frame_u>&& other) = delete;
-
-    template <IsFrame auto frame_u>
-        requires(!(frame == frame_u))
-    inline constexpr CartesianVector operator=(const CartesianVector<Value_T, frame_u>& other) = delete;
-
-    template <IsFrame auto frame_u>
-        requires(!(frame == frame_u))
-    inline constexpr CartesianVector operator=(CartesianVector<Value_T, frame_u>&& other) = delete;
 
     /**
      * @brief Copy constructor for CartesianVector that implicitly converts the unit.
@@ -429,7 +424,7 @@ struct CartesianVector {
      * @throws std::runtime_error If the frames do not share the same origin or if the DCM cannot be obtained.
      */
     template <IsFrame auto frame_u>
-        requires(!is_same_frame(_frame_, frame_u) && IsStaticFrame<decltype(frame_u)>)
+        requires(_frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
     inline constexpr CartesianVector<Value_T, frame_u> in_frame(const Date& date) const;
 
     /**
@@ -453,7 +448,7 @@ struct CartesianVector {
      *      and end, so it has to be left to the user to use it correctly
      */
     template <IsFrame auto frame_u, IsFrame auto frame_v>
-        requires(!is_same_frame(frame, frame_u) && has_same_axis(frame, frame_u) && !has_same_origin(frame, frame_u))
+        requires(frame != frame_u && frame.axis == frame_u.axis && frame.origin != frame_u.origin)
     inline constexpr CartesianVector<Value_T, frame_v> translate(const CartesianVector<Value_T, frame_u>& other) const
     {
         return CartesianVector<Value_T, frame_v>(
@@ -471,7 +466,7 @@ struct CartesianVector {
      * @note It is the user's responsibility to ensure that this operation makes sense in the context of the frames involved.
      */
     template <IsFrame auto frame_u, IsFrame auto frame_v>
-        requires(!is_same_frame(frame, frame_u) && has_same_axis(frame, frame_u) && !has_same_origin(frame, frame_u))
+        requires(frame != frame_u && frame.axis == frame_u.axis && frame.origin != frame_u.origin)
     inline constexpr CartesianVector<Value_T, frame_v> offset(const CartesianVector<Value_T, frame_u>& other) const
     {
         return CartesianVector<Value_T, frame_v>(

@@ -36,7 +36,19 @@ namespace detail {
 /**
  * @brief Empty base class for all frames in astrea. This allows us to use std::derived_from to check if a type is a frame.
  */
-struct FrameBase {};
+struct FrameBase {
+    template <IsFrame Lhs, IsFrame Rhs>
+    [[nodiscard]] friend consteval bool operator==(Lhs, Rhs)
+    {
+        return std::is_same_v<Lhs, Rhs>;
+    }
+
+    template <IsFrame Lhs, IsFrame Rhs>
+    [[nodiscard]] friend consteval bool equivalent(Lhs t, Rhs u)
+    {
+        return t.origin == u.origin && t.axis == u.axis && has_same_parent(t, u);
+    }
+};
 
 } // namespace detail
 

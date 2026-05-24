@@ -84,10 +84,11 @@ constexpr std::array<int, 3> get_sequence_numbers(RotationSequence sequence)
  * @brief Concept to check if two EulerAngless are the same (same sequence type, same specific sequence, same rotation type, and same frames).
  */
 template <RotationSequence sequence_t, RotationType rotation_t, IsFrame auto _in_frame_, IsFrame auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
-concept IsSameEulerAngles = (sequence_t == sequence_u) && // Must both be the same specific sequence (e.g., ZXZ)
-                            (rotation_t == rotation_u) && // Must both be the same rotation type (intrinsic or extrinsic)
-                            is_same_frame(_in_frame_, _in_frame_u_) && // Must have the same input frame
-                            is_same_frame(_out_frame_, _out_frame_u_); // Must have the same output frame
+concept IsSameEulerAngles =
+    (sequence_t == sequence_u) && // Must both be the same specific sequence (e.g., ZXZ)
+    (rotation_t == rotation_u) && // Must both be the same rotation type (intrinsic or extrinsic)
+    std::is_same_v<decltype(_in_frame_), decltype(_in_frame_u_)> && // Must have the same input frame
+    std::is_same_v<decltype(_out_frame_), decltype(_out_frame_u_)>; // Must have the same output frame
 
 /**
  * @brief Concept to check if two EulerAngless are equivalent (same sequence type, reverse specific sequence, opposite rotation type, and same frames).
@@ -96,8 +97,8 @@ template <RotationSequence sequence_t, RotationType rotation_t, IsFrame auto _in
 concept IsEquivalentEulerAngles =
     (get_reverse_sequence(sequence_t) == sequence_u) && // Must be the reverse sequence (e.g., ZXZ vs ZXZ with reversed angles)
     (rotation_t != rotation_u) &&                       // Must be opposite rotation types (intrinsic vs extrinsic)
-    is_same_frame(_in_frame_, _in_frame_u_) &&          // Must have the same input frame
-    is_same_frame(_out_frame_, _out_frame_u_);          // Must have the same output frame
+    std::is_same_v<decltype(_in_frame_), decltype(_in_frame_u_)> && // Must have the same input frame
+    std::is_same_v<decltype(_out_frame_), decltype(_out_frame_u_)>; // Must have the same output frame
 
 /**
  * @brief Concept to check if two EulerAngless are compatible (either the same or equivalent).

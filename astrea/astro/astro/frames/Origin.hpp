@@ -31,7 +31,13 @@ namespace astro {
 
 namespace detail {
 
-struct OriginBase {};
+struct OriginBase {
+  template<IsOrigin Lhs, IsOrigin Rhs>
+  [[nodiscard]] friend consteval bool operator==(Lhs, Rhs)
+  {
+    return std::is_same_v<Lhs, Rhs>;
+  }
+};
 
 } // namespace detail
 
@@ -51,11 +57,23 @@ struct Origin<_name_, _parent_> : detail::OriginBase {
 
 struct DynamicOrigin : Origin<"dynamic"> {};
 
-
 template <IsFrame Frame_T, IsOrigin Origin_T>
 inline consteval auto has_origin(Frame_T, Origin_T)
 {
     return std::is_same_v<decltype(Frame_T::origin), Origin_T>;
+}
+
+/**
+ * @brief Concept to determine if two frames share the same origin.
+ *
+ * @tparam T The first frame type to check.
+ * @tparam U The second frame type to check.
+ * @return true if both frames share the same origin, false otherwise.
+ */
+template <IsFrame T, IsFrame U>
+consteval bool has_same_origin(T t, U u)
+{
+    return T::origin == U::origin;
 }
 
 } // namespace astro

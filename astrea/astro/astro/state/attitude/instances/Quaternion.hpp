@@ -408,7 +408,6 @@ class Quaternion {
      * @return A new quaternion that is the product of this quaternion and the other quaternion.
      */
     template <IsFrame auto out_frameu_>
-        requires(!is_same_frame(in_frame, out_frameu_))
     Quaternion<in_frame, out_frameu_> operator*(const Quaternion<out_frame, out_frameu_>& other) const
     {
         const auto& x1 = _u.get_x();

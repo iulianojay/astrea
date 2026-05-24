@@ -48,12 +48,6 @@ struct CelestialBodyBase {};
 template <mp_units::symbol_text _name_, IsOrigin auto _parent_>
 struct CelestialBody : Origin<_name_, _parent_>, detail::CelestialBodyBase {};
 
-template <IsCelestialBody Lhs, IsCelestialBody Rhs>
-[[nodiscard]] consteval bool operator==(Lhs, Rhs)
-{
-    return std::is_same_v<Lhs, Rhs>;
-}
-
 // ---------------------------------------------------------------------------
 // Primary template declarations.
 // These live here (not in celestial_reference_getters.hpp) so that planet headers

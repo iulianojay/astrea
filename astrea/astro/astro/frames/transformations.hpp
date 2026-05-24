@@ -75,24 +75,6 @@ inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& 
     return CartesianVector<Distance, frame>(Distance::zero(), Distance::zero(), Distance::zero());
 }
 
-template <IsFrame auto frame>
-inline consteval auto get_origin()
-{
-    return decltype(frame)::origin;
-}
-
-template <IsFrame auto frame>
-inline consteval auto get_axis()
-{
-    return decltype(frame)::axis;
-}
-
-template <IsFrame auto frame>
-inline consteval auto get_name()
-{
-    return decltype(frame)::name;
-}
-
 /**
  * @brief Get the center offset between two frames at a given date.
  *
@@ -111,7 +93,7 @@ inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& 
 {
     // Forcing the frame change here doesn't matter since the offset is just a difference and it's already implied that
     // these two frames share an axis.
-    return get_relative_position<get_origin<frame>(), get_origin<frame_u>()>(date).template force_frame_conversion<frame>();
+    return get_relative_position<frame.origin, frame_u.origin>(date).template force_frame_conversion<frame>();
 }
 
 namespace {
@@ -145,21 +127,18 @@ template <IsFrame auto frame, IsFrame auto frame_u>
 inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date)
 {
     static_assert(
-        !always_false<DcmDefinedBothWays<get_name<frame>(), get_name<frame_u>()>> ||
-            !(HasDcm<frame, frame_u> && HasDcm<frame_u, frame>),
+        !always_false<DcmDefinedBothWays<frame.name, frame_u.name>> || !(HasDcm<frame, frame_u> && HasDcm<frame_u, frame>),
         "DCM defined in both directions between these two frames; define only one to avoid symmetry issues."
     );
     static_assert(
-        IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>,
-        "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference."
+        IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>, "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference."
     );
     static_assert(
-        !always_false<NoDcmBetween<get_name<frame>(), get_name<frame_u>()>> ||
-            HasDcm<frame, frame_u> || HasDcm<frame_u, frame> || is_same_frame(frame, frame_u),
+        !always_false<NoDcmBetween<frame.name, frame_u.name>> || HasDcm<frame, frame_u> || HasDcm<frame_u, frame> || frame == frame_u,
         "No DCM (get_dcm method) defined between these two frames."
     );
 
-    if constexpr (is_same_frame(frame, frame_u)) {
+    if constexpr (frame == frame_u) {
         return DCM<frame, frame_u>::identity(); // TODO: Figure out how to do this earlier to avoid unnecessary matrix math
     }
     else if constexpr (HasDcm<frame, frame_u>) {
@@ -178,7 +157,7 @@ concept HasValidFrameTransformation = requires(Date date) {
     { get_dcm_impl<frame, frame_u>(date) } -> std::same_as<DCM<frame, frame_u>>;
 } || requires(Date date) {
     { get_dcm_impl<frame_u, frame>(date) } -> std::same_as<DCM<frame_u, frame>>;
-} || is_same_frame(frame, frame_u);
+} || frame == frame_u;
 
 /**
  * @brief Rotate a vector from one frame to another at a given date using the Direction Cosine Matrix (DCM).
@@ -238,11 +217,11 @@ inline constexpr CartesianVector<Distance, frame_u>
     translate_vector_into_frame(const CartesianVector<Distance, frame>& vec, const Date& date)
 {
     if constexpr (std::is_same_v<Value_T, Distance>) {
-        const auto& posRel = get_relative_position<get_origin<frame_u>(), get_origin<frame>()>(date); // frame -> frame_u
+        const auto& posRel = get_relative_position<frame_u.origin, frame.origin>(date); // frame -> frame_u
         return vec.template force_frame_conversion<frame_u>() + posRel.template force_frame_conversion<frame_u>();
     }
     else if constexpr (std::is_same_v<Value_T, Velocity>) {
-        const auto& velRel = get_relative_velocity<get_origin<frame_u>(), get_origin<frame>()>(date); // frame -> frame_u
+        const auto& velRel = get_relative_velocity<frame_u.origin, frame.origin>(date); // frame -> frame_u
         return vec.template force_frame_conversion<frame_u>() - velRel.template force_frame_conversion<frame_u>();
     }
     else {
@@ -279,7 +258,7 @@ inline constexpr CartesianVector<Value_T, frame_u>
         // Different origin and axis: translate to the intermediate frame that shares frame's axis
         // but frame_u's origin (e.g. ssb::icrf -> earth::icrf), then rotate to frame_u.
         constexpr struct IntermediateFrame
-            : Frame<get_name<frame>() + mp_units::symbol_text{ " / " } + get_name<frame_u>(), get_origin<frame_u>(), get_axis<frame>()> {
+            : Frame<frame.name + mp_units::symbol_text{ " / " } + frame_u.name, frame_u.origin, frame.axis> {
         } IntermediateFrame{};
         const auto vecInIntermediate = translate_vector_into_frame<Value_T, frame, IntermediateFrame>(vec, date);
         return rotate_vector_into_frame<Value_T, IntermediateFrame, frame_u>(vecInIntermediate, date);
@@ -291,7 +270,7 @@ inline constexpr CartesianVector<Value_T, frame_u>
 
 template <typename Value_T, IsFrame auto _frame_>
 template <IsFrame auto frame_u>
-    requires(!is_same_frame(_frame_, frame_u) && IsStaticFrame<decltype(frame_u)>)
+    requires(_frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
 inline constexpr CartesianVector<Value_T, frame_u> CartesianVector<Value_T, _frame_>::in_frame(const Date& date) const
 {
     return frames::transform_vector_into_frame<Value_T, _frame_, frame_u>(*this, date);

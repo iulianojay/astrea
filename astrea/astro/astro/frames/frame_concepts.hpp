@@ -66,7 +66,8 @@ concept IsInertialFrame = true; // TODO: Figure this out
  * @return true if the frame is body-fixed, false otherwise.
  */
 template <typename T>
-concept IsFixedRotatingFrame = requires { decltype(T::axis)::reference_axis; } && requires { decltype(T::axis)::rotation_coordinate; };
+concept IsFixedRotatingFrame =
+    requires { decltype(T::axis)::reference_axis; } && requires { decltype(T::axis)::rotation_coordinate; };
 
 /**
  * @brief Concept to determine if a frame is static (inertial or body-fixed).
@@ -85,32 +86,6 @@ concept IsStaticFrame = (IsInertialFrame<T> || IsFixedRotatingFrame<T>);
  */
 template <typename T>
 concept IsDynamicFrame = !IsStaticFrame<T>;
-
-/**
- * @brief Concept to determine if two frames share the same origin.
- *
- * @tparam T The first frame type to check.
- * @tparam U The second frame type to check.
- * @return true if both frames share the same origin, false otherwise.
- */
-template <IsFrame T, IsFrame U>
-consteval bool has_same_origin(T t, U u)
-{
-    return std::is_same_v<decltype(T::origin), decltype(U::origin)>;
-}
-
-/**
- * @brief Concept to determine if two frames share the same axis.
- *
- * @tparam T The first frame type to check.
- * @tparam U The second frame type to check.
- * @return true if both frames share the same axis, false otherwise.
- */
-template <IsFrame T, IsFrame U>
-consteval bool has_same_axis(T t, U u)
-{
-    return std::is_same_v<decltype(T::axis), decltype(U::axis)>;
-}
 
 /**
  * @brief Concept to determine if a frame is derived from another frame (i.e., it has a parent member).
@@ -137,7 +112,7 @@ concept IsRootFrame = IsFrame<T> && !IsDerivedFrame<T>;
  * @return true if the frame has a fixed spatial offset, false otherwise.
  */
 template <typename T>
-concept HasSpatialOffset = requires { T::origin::offset; };
+concept HasSpatialOffset = requires { T::origin.offset; };
 
 /**
  * @brief Concept to determine if a frame has a fixed angular offset from its parent frame.
@@ -146,7 +121,7 @@ concept HasSpatialOffset = requires { T::origin::offset; };
  * @return true if the frame has a fixed angular offset, false otherwise.
  */
 template <typename T>
-concept HasAngularOffset = requires { T::axis::misalignment; };
+concept HasAngularOffset = requires { T::axis.misalignment; };
 
 /**
  * @brief Concept to determine if a frame is a FixedOffsetFrame, which is defined as a frame that is derived from
@@ -157,6 +132,7 @@ concept HasAngularOffset = requires { T::axis::misalignment; };
  */
 template <typename T>
 concept IsFixedOffsetFrame = IsDerivedFrame<T> && (HasSpatialOffset<T> || HasAngularOffset<T>);
+
 
 template <IsFrame T, IsFrame U>
 consteval bool has_same_parent(T t, U u)
@@ -176,19 +152,6 @@ template <IsFrame T, IsFrame U>
 consteval bool has_same_parent(T t, U u)
 {
     return true;
-}
-
-/**
- * @brief Concept to determine if two frames are the same (same origin and same axis).
- *
- * @tparam T The first frame type to check.
- * @tparam U The second frame type to check.
- * @return true if both frames are the same, false otherwise.
- */
-template <typename T, typename U>
-consteval bool is_same_frame(T t, U u)
-{
-    return has_same_origin(t, u) && has_same_axis(t, u) && has_same_parent(t, u);
 }
 
 } // namespace astro

@@ -21,17 +21,22 @@
 
 using namespace astrea::astro;
 
-static_assert(frames::earth::icrf::origin == CelestialBodyId::EARTH);
-static_assert(frames::earth::icrf::axis == axes::icrf);
-static_assert(frames::earth::j2000::axis == axes::j200);
-static_assert(frames::earth::earth_fixed::axis == FrameAxis::FIXED_ROTATING);
-static_assert(frames::earth::earth_fixed::origin == CelestialBodyId::EARTH);
-static_assert(frames::mars::icrf::origin == CelestialBodyId::MARS);
-static_assert(frames::sun::icrf::origin == CelestialBodyId::SUN);
+// Origin checks: origin member is a typed struct value — compare types.
+static_assert(frames::earth::icrf.origin == planets::Earth);
+static_assert(frames::earth::earth_fixed.origin == planets::Earth);
+static_assert(frames::mars::icrf.origin == planets::Mars);
+static_assert(frames::sun::icrf.origin == planets::Sun);
 
-static_assert(std::is_same_v<frames::earth::earth_fixed::parent, frames::earth::icrf>);
-static_assert(std::is_same_v<frames::earth::icrf::parent, void>);
-static_assert(std::is_same_v<frames::earth::j2000::parent, void>);
+// Axis checks: axis member is a typed struct value — compare types.
+static_assert(frames::earth::icrf.axis == axes::icrf);
+static_assert(frames::earth::j2000.axis == axes::j2000);
+static_assert(IsFixedRotatingFrame<frames::earth::earth_fixed>);
+
+// Parent checks: parent member is a constexpr value — compare decltype.
+static_assert(frames::earth::earth_fixed.parent == frames::earth::icrf);
+static_assert(!IsDerivedFrame<frames::earth::icrf>);
+static_assert(!IsDerivedFrame<frames::earth::j2000>);
+static_assert(IsDerivedFrame<frames::earth::earth_fixed>);
 
 static_assert(IsFrame<frames::earth::icrf>);
 static_assert(IsFrame<frames::earth::j2000>);
@@ -52,18 +57,18 @@ static_assert(IsStaticFrame<frames::earth::icrf>);
 static_assert(IsStaticFrame<frames::earth::j2000>);
 static_assert(IsStaticFrame<frames::earth::earth_fixed>);
 
-static_assert(has_same_origin(frames::earth::icrf, frames::earth::j2000));
-static_assert(has_same_origin(frames::earth::icrf, frames::earth::earth_fixed));
-static_assert(!has_same_origin(frames::earth::icrf, frames::mars::icrf));
-static_assert(!has_same_origin(frames::earth::icrf, frames::sun::icrf));
+static_assert(frames::earth::icrf.origin == frames::earth::j2000.origin);
+static_assert(frames::earth::icrf.origin == frames::earth::earth_fixed.origin);
+static_assert(frames::earth::icrf.origin != frames::mars::icrf.origin);
+static_assert(frames::earth::icrf.origin != frames::sun::icrf.origin);
 
-static_assert(has_same_axis(frames::earth::icrf, frames::mars::icrf));
-static_assert(has_same_axis(frames::earth::j2000, frames::mars::j2000));
-static_assert(!has_same_axis(frames::earth::icrf, frames::earth::j2000));
-static_assert(!has_same_axis(frames::earth::icrf, frames::earth::earth_fixed));
+static_assert(frames::earth::icrf.axis == frames::mars::icrf.axis);
+static_assert(frames::earth::j2000.axis == frames::mars::j2000.axis);
+static_assert(frames::earth::icrf.axis != frames::earth::j2000.axis);
+static_assert(frames::earth::icrf.axis != frames::earth::earth_fixed.axis);
 
-static_assert(is_same_frame(frames::earth::icrf, frames::earth::icrf));
-static_assert(is_same_frame(frames::mars::icrf, frames::mars::icrf));
-static_assert(!is_same_frame(frames::earth::icrf, frames::earth::j2000));
-static_assert(!is_same_frame(frames::earth::icrf, frames::mars::icrf));
-static_assert(!is_same_frame(frames::earth::icrf, frames::earth::earth_fixed));
+static_assert(frames::earth::icrf == frames::earth::icrf);
+static_assert(frames::mars::icrf == frames::mars::icrf);
+static_assert(frames::earth::icrf != frames::earth::j2000);
+static_assert(frames::earth::icrf != frames::mars::icrf);
+static_assert(frames::earth::icrf != frames::earth::earth_fixed);

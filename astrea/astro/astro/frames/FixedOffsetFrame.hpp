@@ -46,7 +46,7 @@ inline consteval auto f_to_fixed_string()
 {
     constexpr auto s          = utilities::f_to_string<_N_>;
     constexpr std::size_t len = s.size() - 1; // exclude null terminator
-    return mp_units::symbol_text<char, len>(s.begin(), s.end() - 1);
+    return mp_units::symbol_text(mp_units::fixed_string<len>(s.begin(), s.end() - 1));
 }
 
 /**
@@ -60,7 +60,8 @@ inline consteval auto f_to_fixed_string()
 template <auto _q_>
 inline consteval auto quantity_to_fixed_string()
 {
-    return f_to_fixed_string<_q_.numerical_value_in(_q_.unit)>() + " " + _q_.unit._symbol_.portable();
+    return f_to_fixed_string<_q_.numerical_value_in(_q_.unit)>() + mp_units::symbol_text{ " " } +
+           mp_units::symbol_text(_q_.unit._symbol_.portable());
 }
 
 /**
@@ -77,7 +78,7 @@ inline consteval auto quantity_list_to_fixed_string()
     if constexpr (sizeof...(_rest_) == 0)
         return quantity_to_fixed_string<_first_>();
     else
-        return quantity_to_fixed_string<_first_>() + ", " + quantity_list_to_fixed_string<_rest_...>();
+        return quantity_to_fixed_string<_first_>() + mp_units::symbol_text{ ", " } + quantity_list_to_fixed_string<_rest_...>();
 }
 
 /**
@@ -93,7 +94,8 @@ inline consteval auto quantity_list_to_fixed_string()
 template <mp_units::symbol_text _parent_name_, Distance _x_, Distance _y_, Distance _z_>
 inline consteval auto compose_name()
 {
-    return _parent_name_ + " + [" + quantity_list_to_fixed_string<_x_, _y_, _z_>() + "]";
+    return _parent_name_ + mp_units::symbol_text{ " + [" } + quantity_list_to_fixed_string<_x_, _y_, _z_>() +
+           mp_units::symbol_text{ "]" };
 }
 
 /**
@@ -108,7 +110,8 @@ inline consteval auto compose_name()
 template <mp_units::symbol_text _parent_name_, Angle _phi_, Angle _theta_, Angle _psi_>
 inline consteval auto compose_name()
 {
-    return _parent_name_ + " + [" + quantity_list_to_fixed_string<_phi_, _theta_, _psi_>() + "]";
+    return _parent_name_ + mp_units::symbol_text{ " + [" } + quantity_list_to_fixed_string<_phi_, _theta_, _psi_>() +
+           mp_units::symbol_text{ "]" };
 }
 
 /**
@@ -127,8 +130,8 @@ inline consteval auto compose_name()
 template <mp_units::symbol_text _parent_name_, Distance _x_, Distance _y_, Distance _z_, Angle _phi_, Angle _theta_, Angle _psi_>
 inline consteval auto compose_name()
 {
-    return _parent_name_ + " + [" + quantity_list_to_fixed_string<_x_, _y_, _z_>() + "; " +
-           quantity_list_to_fixed_string<_phi_, _theta_, _psi_>() + "]";
+    return _parent_name_ + mp_units::symbol_text{ " + [" } + quantity_list_to_fixed_string<_x_, _y_, _z_>() +
+           mp_units::symbol_text{ "; " } + quantity_list_to_fixed_string<_phi_, _theta_, _psi_>() + mp_units::symbol_text{ "]" };
 }
 
 /**
@@ -136,11 +139,11 @@ inline consteval auto compose_name()
  *
  * This class allows for the definition of frames that are not aligned with their parent frame, such as a spacecraft body frame that is offset from an inertial frame.
  *
- * @tparam Parent The parent frame from which this frame is derived. Must satisfy the IsFrame concept.
+ * @tparam _parent_ The parent frame from which this frame is derived. Must satisfy the IsFrame concept.
  * @tparam Args A variadic list of template parameters that define the spatial and/or angular offsets. These can be distances
  * for spatial offsets or angles for angular offsets, along with an optional rotation sequence for the angular offsets.
  */
-template <typename, auto...>
+template <auto...>
 struct FixedOffsetFrame;
 
 namespace detail {
@@ -177,35 +180,35 @@ inline constexpr detail::FixedOffsetAxis<_phi_, _theta_, _psi_, _sequence_> Fixe
 /**
  * @brief Specialization of FixedOffsetFrame for a pure spatial offset (no angular misalignment).
  *
- * @tparam Parent The parent frame from which this frame is derived. Must satisfy the IsFrame concept.
+ * @tparam _parent_ The parent frame from which this frame is derived. Must satisfy the IsFrame concept.
  * @tparam _x_ The fixed offset in the x direction from the parent frame.
  * @tparam _y_ The fixed offset in the y direction from the parent frame.
  * @tparam _z_ The fixed offset in the z direction from the parent frame.
  * @tparam Args Additional template parameters (not used in this specialization).
  */
-template <IsFrame Parent, Distance _x_, Distance _y_, Distance _z_, auto... Args>
-struct FixedOffsetFrame<Parent, _x_, _y_, _z_, Args...>
-    : Frame<compose_name<Parent::name, _x_, _y_, _z_>(), FixedOffsetOrigin<_x_, _y_, _z_>, Parent::axis, Parent{}> {};
+template <IsFrame auto _parent_, Distance _x_, Distance _y_, Distance _z_, auto... Args>
+struct FixedOffsetFrame<_parent_, _x_, _y_, _z_, Args...>
+    : Frame<compose_name<_parent_.name, _x_, _y_, _z_>(), FixedOffsetOrigin<_x_, _y_, _z_>, _parent_.axis, _parent_> {};
 
 /**
  * @brief Specialization of FixedOffsetFrame for a pure angular offset (no spatial offset).
  *
- * @tparam Parent The parent frame from which this frame is derived. Must satisfy the IsFrame concept.
+ * @tparam _parent_ The parent frame from which this frame is derived. Must satisfy the IsFrame concept.
  * @tparam _phi_ The fixed offset angle around the x-axis from the parent frame.
  * @tparam _theta_ The fixed offset angle around the y-axis from the parent frame.
  * @tparam _psi_ The fixed offset angle around the z-axis from the parent frame.
  * @tparam _sequence_ The rotation sequence for applying the angular offsets.
  * @tparam Args Additional template parameters (not used in this specialization).
  */
-template <IsFrame Parent, Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_, auto... Args>
-struct FixedOffsetFrame<Parent, _phi_, _theta_, _psi_, _sequence_, Args...>
-    : Frame<compose_name<Parent::name, _phi_, _theta_, _psi_>(), Parent::origin, FixedOffsetAxis<_phi_, _theta_, _psi_, _sequence_>, Parent{}> {
+template <IsFrame auto _parent_, Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_, auto... Args>
+struct FixedOffsetFrame<_parent_, _phi_, _theta_, _psi_, _sequence_, Args...>
+    : Frame<compose_name<_parent_.name, _phi_, _theta_, _psi_>(), _parent_.origin, FixedOffsetAxis<_phi_, _theta_, _psi_, _sequence_>, _parent_> {
 };
 
 /**
  * @brief Specialization of FixedOffsetFrame for a combined spatial and angular offset.
  *
- * @tparam Parent The parent frame from which this frame is derived. Must satisfy the IsFrame concept.
+ * @tparam _parent_ The parent frame from which this frame is derived. Must satisfy the IsFrame concept.
  * @tparam _x_ The fixed offset in the x direction from the parent frame.
  * @tparam _y_ The fixed offset in the y direction from the parent frame.
  * @tparam _z_ The fixed offset in the z direction from the parent frame.
@@ -214,79 +217,84 @@ struct FixedOffsetFrame<Parent, _phi_, _theta_, _psi_, _sequence_, Args...>
  * @tparam _psi_ The fixed offset angle around the z-axis from the parent frame.
  * @tparam _sequence_ The rotation sequence for applying the angular offsets.
  */
-template <IsFrame Parent, Distance _x_, Distance _y_, Distance _z_, Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_, auto... Args>
-struct FixedOffsetFrame<Parent, _x_, _y_, _z_, _phi_, _theta_, _psi_, _sequence_, Args...>
-    : Frame<compose_name<Parent::name, _x_, _y_, _z_, _phi_, _theta_, _psi_>(), FixedOffsetOrigin<_x_, _y_, _z_>, FixedOffsetAxis<_phi_, _theta_, _psi_, _sequence_>, Parent{}> {
+template <IsFrame auto _parent_, Distance _x_, Distance _y_, Distance _z_, Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_, auto... Args>
+struct FixedOffsetFrame<_parent_, _x_, _y_, _z_, _phi_, _theta_, _psi_, _sequence_, Args...>
+    : Frame<compose_name<_parent_.name, _x_, _y_, _z_, _phi_, _theta_, _psi_>(), FixedOffsetOrigin<_x_, _y_, _z_>, FixedOffsetAxis<_phi_, _theta_, _psi_, _sequence_>, _parent_> {
 };
 
 /**
  * @brief Retrieves the fixed spatial offset from the parent frame to the given FixedOffsetFrame.
  */
-template <IsFixedOffsetFrame T>
+template <IsFixedOffsetFrame auto frame>
 inline constexpr auto get_offset_from_frame()
 {
-    if constexpr (HasSpatialOffset<T>) { return T::origin::offset; }
+    if constexpr (HasSpatialOffset<decltype(frame)>) {
+        constexpr auto& off = frame.origin.offset;
+        return CartesianVector<Distance, frame.parent>(off.x, off.y, off.z);
+    }
     else {
-        return CartesianVector<Distance, typename T::parent>{};
+        return CartesianVector<Distance, frame.parent>{};
     }
 }
 
 /**
  * @brief Retrieves the accumulated fixed spatial offset from the root frame to the given FixedOffsetFrame by recursively summing the offsets along the parent chain.
  */
-template <IsFixedOffsetFrame T>
+template <IsFixedOffsetFrame auto frame>
 inline constexpr auto get_offset_from_root_frame()
 {
-    if constexpr (HasSpatialOffset<T>) {
-        if constexpr (IsDerivedFrame<typename T::parent>) {
+    if constexpr (HasSpatialOffset<decltype(frame)>) {
+        if constexpr (IsDerivedFrame<decltype(frame.parent)>) {
             // r_grandparent->parent + r_parent->child = r_grandparent->child
-            // Force-convert the accumulated parent offset into T::parent's frame type so
+            // Force-convert the accumulated parent offset into frame::parent's frame type so
             // both operands of operator+ share the same CartesianVector frame parameter.
-            return get_offset_from_root_frame<typename T::parent>().template force_frame_conversion<typename T::parent>() +
-                   get_offset_from_frame<T>();
+            return get_offset_from_root_frame<frame.parent>().template force_frame_conversion<frame.parent>() +
+                   get_offset_from_frame<frame>();
         }
         else {
-            return get_offset_from_frame<T>();
+            return get_offset_from_frame<frame>();
         }
     }
     else {
-        return CartesianVector<Distance, typename T::parent>{};
+        return CartesianVector<Distance, frame.parent>{};
     }
 }
 
 /**
  * @brief Retrieves the direction cosine matrix representing the fixed angular offset from the parent frame to the given FixedOffsetFrame.
  */
-template <IsFixedOffsetFrame T>
-inline constexpr DirectionCosineMatrix<typename T::parent, T> get_dcm_from_frame()
+template <IsFixedOffsetFrame auto frame>
+inline constexpr DirectionCosineMatrix<frame.parent, frame> get_dcm_from_frame()
 {
-    if constexpr (HasAngularOffset<T>) {
-        return DirectionCosineMatrix<typename T::parent, T>::template from_euler_angles<T::axis::sequence>(T::axis::misalignment);
+    if constexpr (HasAngularOffset<decltype(frame)>) {
+        return DirectionCosineMatrix<frame.parent, frame>::template from_euler_angles<decltype(frame.axis)::sequence>(
+            decltype(frame.axis)::misalignment
+        );
     }
     else {
-        return DirectionCosineMatrix<typename T::parent, T>::identity();
+        return DirectionCosineMatrix<frame.parent, frame>::identity();
     }
 }
 
 /**
  * @brief Retrieves the accumulated direction cosine matrix from the root frame to the given FixedOffsetFrame by recursively composing the DCMs along the parent chain.
  */
-template <IsFixedOffsetFrame T>
+template <IsFixedOffsetFrame auto frame>
 inline constexpr auto get_dcm_from_root_frame()
 {
-    if constexpr (HasAngularOffset<T>) {
-        if constexpr (IsDerivedFrame<typename T::parent>) {
+    if constexpr (HasAngularOffset<decltype(frame)>) {
+        if constexpr (IsDerivedFrame<decltype(frame.parent)>) {
             // DCM<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
-            return get_dcm_from_root_frame<typename T::parent>() * get_dcm_from_frame<T>();
+            return get_dcm_from_root_frame<frame.parent>() * get_dcm_from_frame<frame>();
         }
         else {
-            return get_dcm_from_frame<T>();
+            return get_dcm_from_frame<frame>();
         }
     }
     else {
-        if constexpr (IsDerivedFrame<typename T::parent>) { return get_dcm_from_root_frame<typename T::parent>(); }
+        if constexpr (IsDerivedFrame<decltype(frame.parent)>) { return get_dcm_from_root_frame<frame.parent>(); }
         else {
-            return DirectionCosineMatrix<typename T::parent, T>::identity();
+            return DirectionCosineMatrix<frame.parent, frame>::identity();
         }
     }
 }

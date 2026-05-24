@@ -115,44 +115,10 @@ class AngularVelocities {
      */
     const CartesianVector<AngularVelocity, in_frame>& get_angular_velocities() const { return _angularVelocities; }
 
-    // Explicitly deleted copy/move assignment/constructor to prevent implicit frame switches, rotation type conversions, and sequence conversions.
-    template <IsFrame auto in_frame_u, IsFrame auto ref_frame_u>
-        requires(!is_same_frame(in_frame, in_frame_u) || !is_same_frame(ref_frame, ref_frame_u))
-    AngularVelocities(const AngularVelocities<in_frame_u, ref_frame_u>& other) = delete;
-
-    template <IsFrame auto in_frame_u, IsFrame auto ref_frame_u>
-        requires(!is_same_frame(in_frame, in_frame_u) || !is_same_frame(ref_frame, ref_frame_u))
-    AngularVelocities(AngularVelocities<in_frame_u, ref_frame_u>&& other) = delete;
-
-    template <IsFrame auto in_frame_u, IsFrame auto ref_frame_u>
-        requires(!is_same_frame(in_frame, in_frame_u) || !is_same_frame(ref_frame, ref_frame_u))
-    AngularVelocities& operator=(const AngularVelocities<in_frame_u, ref_frame_u>& other) = delete;
-
-    template <IsFrame auto in_frame_u, IsFrame auto ref_frame_u>
-        requires(!is_same_frame(in_frame, in_frame_u) || !is_same_frame(ref_frame, ref_frame_u))
-    AngularVelocities& operator=(AngularVelocities<in_frame_u, ref_frame_u>&& other) = delete;
-
-    /**
-     * @brief Equality operator for CartesianVector.
-     *
-     * @param other The other CartesianVector to compare with.
-     * @return true If the two vectors are equal.
-     * @return false If the two vectors are not equal.
-     *
-     * @note Equivalent sequences aren't allowed here because it would imply that their derivatives are the same, which is not true.
-     */
     bool operator==(const AngularVelocities& other) const { return _angularVelocities == other._angularVelocities; }
 
-    /**
-     * @brief Inequality operator for CartesianVector in a different frame. Always false.
-     *
-     * @param other The other CartesianVector to compare with.
-     * @return true If the two vectors are not equal.
-     * @return false If the two vectors are equal.
-     */
-    template <IsFrame auto in_frame_u, IsFrame auto ref_frame_u>
-        requires(!is_same_frame(in_frame, in_frame_u) || !is_same_frame(ref_frame, ref_frame_u))
-    bool operator==(const AngularVelocities<in_frame_u, ref_frame_u>& other) const
+    template <auto in_frame_u, auto ref_frame_u>
+    bool operator==(const AngularVelocities<in_frame_u, ref_frame_u>&) const
     {
         return false;
     }

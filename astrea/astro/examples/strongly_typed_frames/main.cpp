@@ -37,9 +37,9 @@ int main()
     // fixed), and a series of pre-defined axes. Future releases may allow for completely customized origins and axes.
 
     // Astrea provides definitions for many commonly used frames
-    using ECI  = frames::earth::icrf;        // static
-    using ECEF = frames::earth::earth_fixed; // static
-    using RIC  = frames::dynamic::ric;       // dynamic
+    static constexpr auto ECI  = frames::earth::icrf;        // static
+    static constexpr auto ECEF = frames::earth::earth_fixed; // static
+    static constexpr auto RIC  = frames::dynamic::ric;       // dynamic
 
     // The CartesianVector class is a simple wrapper around a 3D vector, templated by the united-type and the frame the vector is defined in (or with respect to, depending).
     CartesianVector<Length, ECI> rEci{ 1.0 * m, 2.0 * m, 3.0 * m }; // Position in ECI frame
