@@ -29,33 +29,48 @@ using namespace mp_units;
 using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
 
+class FixedOffsetFrameTest : public testing::Test {
+  public:
+    FixedOffsetFrameTest() {}
+
+    void SetUp() override {}
+};
+
+
+int main(int argc, char** argv)
+{
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+
+
 // Default (zero-offset) instantiation
 using ZeroEarthIcrf = FixedOffsetFrame<frames::earth::icrf, Distance::zero(), Distance::zero(), Distance::zero()>;
 using ZeroMarsIcrf  = FixedOffsetFrame<frames::mars::icrf, Distance::zero(), Distance::zero(), Distance::zero()>;
 
 static_assert(HasSpatialOffset<ZeroEarthIcrf>);
-static_assert(std::is_same_v<decltype(ZeroEarthIcrf::parent.origin), struct planets::Earth>);
+static_assert(ZeroEarthIcrf::parent.origin == planets::Earth);
 static_assert(HasSpatialOffset<ZeroMarsIcrf>);
-static_assert(std::is_same_v<decltype(ZeroMarsIcrf::parent.origin), struct planets::Mars>);
+static_assert(ZeroMarsIcrf::parent.origin == planets::Mars);
 static_assert(has_same_origin(ZeroEarthIcrf{}, ZeroMarsIcrf{}));
 static_assert(!has_same_origin(ZeroEarthIcrf::parent, ZeroMarsIcrf::parent));
 
-TEST(FixedOffsetFrameOffset, DefaultOffsetXIsZero)
+TEST_F(FixedOffsetFrameTest, DefaultOffsetXIsZero)
 {
     EXPECT_DOUBLE_EQ(get_offset_from_frame<ZeroEarthIcrf{}>().get_x().numerical_value_in(km), 0.0);
 }
 
-TEST(FixedOffsetFrameOffset, DefaultOffsetYIsZero)
+TEST_F(FixedOffsetFrameTest, DefaultOffsetYIsZero)
 {
     EXPECT_DOUBLE_EQ(get_offset_from_frame<ZeroEarthIcrf{}>().get_y().numerical_value_in(km), 0.0);
 }
 
-TEST(FixedOffsetFrameOffset, DefaultOffsetZIsZero)
+TEST_F(FixedOffsetFrameTest, DefaultOffsetZIsZero)
 {
     EXPECT_DOUBLE_EQ(get_offset_from_frame<ZeroEarthIcrf{}>().get_z().numerical_value_in(km), 0.0);
 }
 
-TEST(FixedOffsetFrameOffset, OffsetIsConstexprAccessible)
+TEST_F(FixedOffsetFrameTest, OffsetIsConstexprAccessible)
 {
     // Verifies offset is a constexpr static member
     constexpr auto off = get_offset_from_frame<ZeroEarthIcrf{}>();
@@ -70,7 +85,7 @@ static_assert(IsInertialFrame<ZeroEarthIcrf>);
 static_assert(ZeroEarthIcrf{}.origin != frames::earth::icrf.origin);
 static_assert(ZeroEarthIcrf::parent.origin == frames::earth::icrf.origin);
 
-static_assert(ZeroEarthIcrf{}.axis != frames::earth::icrf.axis);
+static_assert(ZeroEarthIcrf{}.axis == frames::earth::icrf.axis);
 static_assert(ZeroEarthIcrf::parent.axis == frames::earth::icrf.axis);
 
 static_assert(ZeroEarthIcrf{} != frames::earth::icrf);
@@ -96,9 +111,9 @@ using RotZHalfPiXYZ = FixedOffsetFrame<frames::earth::icrf, Angle::zero(), Angle
 using RotXHalfPiZYX = FixedOffsetFrame<frames::earth::icrf, HALF_PI_RAD, Angle::zero(), Angle::zero(), RotationSequence::ZYX>;
 
 static_assert(HasAngularOffset<ZeroAngularEarthIcrf>);
-static_assert(std::is_same_v<decltype(ZeroAngularEarthIcrf::parent.origin), struct planets::Earth>);
+static_assert(ZeroAngularEarthIcrf::parent.origin == planets::Earth);
 static_assert(HasAngularOffset<RotXHalfPiXYZ>);
-static_assert(std::is_same_v<decltype(RotXHalfPiXYZ::parent.origin), struct planets::Earth>);
+static_assert(RotXHalfPiXYZ::parent.origin == planets::Earth);
 
 static_assert(IsFrame<ZeroAngularEarthIcrf>);
 static_assert(IsStaticFrame<ZeroAngularEarthIcrf>);
@@ -115,7 +130,7 @@ static constexpr Unitless ANGULAR_TOL = 1.0e-10 * one;
 
 // Zero-angle angular offset → identity misalignment
 
-TEST(FixedOffsetFrameAngular, ZeroAnglesGivesIdentityMisalignment_Diagonal)
+TEST_F(FixedOffsetFrameTest, ZeroAnglesGivesIdentityMisalignment_Diagonal)
 {
     const auto& dcm = get_dcm_from_frame<ZeroAngularEarthIcrf{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 1.0 * one, ANGULAR_TOL));
@@ -123,7 +138,7 @@ TEST(FixedOffsetFrameAngular, ZeroAnglesGivesIdentityMisalignment_Diagonal)
     EXPECT_TRUE(math::nearly_equal(dcm[2, 2], 1.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameAngular, ZeroAnglesGivesIdentityMisalignment_OffDiagonal)
+TEST_F(FixedOffsetFrameTest, ZeroAnglesGivesIdentityMisalignment_OffDiagonal)
 {
     const auto& dcm = get_dcm_from_frame<ZeroAngularEarthIcrf{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 1], 0.0 * one, ANGULAR_TOL));
@@ -139,7 +154,7 @@ TEST(FixedOffsetFrameAngular, ZeroAnglesGivesIdentityMisalignment_OffDiagonal)
 //    [0,  0, -1],
 //    [0,  1,  0]]
 
-TEST(FixedOffsetFrameAngular, XYZHalfPiPhiGivesXRotation_FirstRow)
+TEST_F(FixedOffsetFrameTest, XYZHalfPiPhiGivesXRotation_FirstRow)
 {
     const auto& dcm = get_dcm_from_frame<RotXHalfPiXYZ{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 1.0 * one, ANGULAR_TOL));
@@ -147,7 +162,7 @@ TEST(FixedOffsetFrameAngular, XYZHalfPiPhiGivesXRotation_FirstRow)
     EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameAngular, XYZHalfPiPhiGivesXRotation_SecondRow)
+TEST_F(FixedOffsetFrameTest, XYZHalfPiPhiGivesXRotation_SecondRow)
 {
     const auto& dcm = get_dcm_from_frame<RotXHalfPiXYZ{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 0.0 * one, ANGULAR_TOL));
@@ -155,7 +170,7 @@ TEST(FixedOffsetFrameAngular, XYZHalfPiPhiGivesXRotation_SecondRow)
     EXPECT_TRUE(math::nearly_equal(dcm[1, 2], -1.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameAngular, XYZHalfPiPhiGivesXRotation_ThirdRow)
+TEST_F(FixedOffsetFrameTest, XYZHalfPiPhiGivesXRotation_ThirdRow)
 {
     const auto& dcm = get_dcm_from_frame<RotXHalfPiXYZ{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 0.0 * one, ANGULAR_TOL));
@@ -168,7 +183,7 @@ TEST(FixedOffsetFrameAngular, XYZHalfPiPhiGivesXRotation_ThirdRow)
 //    [ 0, 1, 0],
 //    [-1, 0, 0]]
 
-TEST(FixedOffsetFrameAngular, XYZHalfPiThetaGivesYRotation_FirstRow)
+TEST_F(FixedOffsetFrameTest, XYZHalfPiThetaGivesYRotation_FirstRow)
 {
     const auto& dcm = get_dcm_from_frame<RotYHalfPiXYZ{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 0.0 * one, ANGULAR_TOL));
@@ -176,7 +191,7 @@ TEST(FixedOffsetFrameAngular, XYZHalfPiThetaGivesYRotation_FirstRow)
     EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 1.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameAngular, XYZHalfPiThetaGivesYRotation_SecondRow)
+TEST_F(FixedOffsetFrameTest, XYZHalfPiThetaGivesYRotation_SecondRow)
 {
     const auto& dcm = get_dcm_from_frame<RotYHalfPiXYZ{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 0.0 * one, ANGULAR_TOL));
@@ -184,7 +199,7 @@ TEST(FixedOffsetFrameAngular, XYZHalfPiThetaGivesYRotation_SecondRow)
     EXPECT_TRUE(math::nearly_equal(dcm[1, 2], 0.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameAngular, XYZHalfPiThetaGivesYRotation_ThirdRow)
+TEST_F(FixedOffsetFrameTest, XYZHalfPiThetaGivesYRotation_ThirdRow)
 {
     const auto& dcm = get_dcm_from_frame<RotYHalfPiXYZ{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[2, 0], -1.0 * one, ANGULAR_TOL));
@@ -197,7 +212,7 @@ TEST(FixedOffsetFrameAngular, XYZHalfPiThetaGivesYRotation_ThirdRow)
 //    [ 1,  0, 0],
 //    [ 0,  0, 1]]
 
-TEST(FixedOffsetFrameAngular, XYZHalfPiPsiGivesZRotation_FirstRow)
+TEST_F(FixedOffsetFrameTest, XYZHalfPiPsiGivesZRotation_FirstRow)
 {
     const auto& dcm = get_dcm_from_frame<RotZHalfPiXYZ{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 0.0 * one, ANGULAR_TOL));
@@ -205,7 +220,7 @@ TEST(FixedOffsetFrameAngular, XYZHalfPiPsiGivesZRotation_FirstRow)
     EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameAngular, XYZHalfPiPsiGivesZRotation_SecondRow)
+TEST_F(FixedOffsetFrameTest, XYZHalfPiPsiGivesZRotation_SecondRow)
 {
     const auto& dcm = get_dcm_from_frame<RotZHalfPiXYZ{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 1.0 * one, ANGULAR_TOL));
@@ -213,7 +228,7 @@ TEST(FixedOffsetFrameAngular, XYZHalfPiPsiGivesZRotation_SecondRow)
     EXPECT_TRUE(math::nearly_equal(dcm[1, 2], 0.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameAngular, XYZHalfPiPsiGivesZRotation_ThirdRow)
+TEST_F(FixedOffsetFrameTest, XYZHalfPiPsiGivesZRotation_ThirdRow)
 {
     const auto& dcm = get_dcm_from_frame<RotZHalfPiXYZ{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 0.0 * one, ANGULAR_TOL));
@@ -224,7 +239,7 @@ TEST(FixedOffsetFrameAngular, XYZHalfPiPsiGivesZRotation_ThirdRow)
 // ZYX(pi/2, 0, 0) = XYZ(0, 0, pi/2) → Z-axis rotation, confirming rotation sequence is applied.
 // This differs from XYZ(pi/2, 0, 0) which is an X-rotation.
 
-TEST(FixedOffsetFrameAngular, ZYXHalfPiPhiGivesZRotation_FirstRow)
+TEST_F(FixedOffsetFrameTest, ZYXHalfPiPhiGivesZRotation_FirstRow)
 {
     const auto& dcm = get_dcm_from_frame<RotXHalfPiZYX{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 0.0 * one, ANGULAR_TOL));
@@ -232,7 +247,7 @@ TEST(FixedOffsetFrameAngular, ZYXHalfPiPhiGivesZRotation_FirstRow)
     EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameAngular, ZYXHalfPiPhiGivesZRotation_SecondRow)
+TEST_F(FixedOffsetFrameTest, ZYXHalfPiPhiGivesZRotation_SecondRow)
 {
     const auto& dcm = get_dcm_from_frame<RotXHalfPiZYX{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 1.0 * one, ANGULAR_TOL));
@@ -240,7 +255,7 @@ TEST(FixedOffsetFrameAngular, ZYXHalfPiPhiGivesZRotation_SecondRow)
     EXPECT_TRUE(math::nearly_equal(dcm[1, 2], 0.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameAngular, ZYXHalfPiPhiGivesZRotation_ThirdRow)
+TEST_F(FixedOffsetFrameTest, ZYXHalfPiPhiGivesZRotation_ThirdRow)
 {
     const auto& dcm = get_dcm_from_frame<RotXHalfPiZYX{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 0.0 * one, ANGULAR_TOL));
@@ -248,7 +263,7 @@ TEST(FixedOffsetFrameAngular, ZYXHalfPiPhiGivesZRotation_ThirdRow)
     EXPECT_TRUE(math::nearly_equal(dcm[2, 2], 1.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameAngular, MisalignmentIsConstexprAccessible)
+TEST_F(FixedOffsetFrameTest, MisalignmentIsConstexprAccessible)
 {
     constexpr auto& m = RotXHalfPiXYZ::axis.misalignment;
     (void)m;
@@ -271,19 +286,19 @@ static_assert(HasAngularOffset<CombinedEarthIcrf>);
 static_assert(IsFixedOffsetFrame<CombinedEarthIcrf>);
 
 // get_offset_from_frame returns the declared translational offset
-TEST(FixedOffsetFrameCombined, GetOffsetFromFrameReturnsCorrectX)
+TEST_F(FixedOffsetFrameTest, GetOffsetFromFrameReturnsCorrectX)
 {
     const auto off = get_offset_from_frame<CombinedEarthIcrf{}>();
     EXPECT_DOUBLE_EQ(off.get_x().numerical_value_in(km), 1.0);
 }
 
-TEST(FixedOffsetFrameCombined, GetOffsetFromFrameReturnsCorrectY)
+TEST_F(FixedOffsetFrameTest, GetOffsetFromFrameReturnsCorrectY)
 {
     const auto off = get_offset_from_frame<CombinedEarthIcrf{}>();
     EXPECT_DOUBLE_EQ(off.get_y().numerical_value_in(km), 2.0);
 }
 
-TEST(FixedOffsetFrameCombined, GetOffsetFromFrameReturnsCorrectZ)
+TEST_F(FixedOffsetFrameTest, GetOffsetFromFrameReturnsCorrectZ)
 {
     const auto off = get_offset_from_frame<CombinedEarthIcrf{}>();
     EXPECT_DOUBLE_EQ(off.get_z().numerical_value_in(km), 3.0);
@@ -293,7 +308,7 @@ TEST(FixedOffsetFrameCombined, GetOffsetFromFrameReturnsCorrectZ)
 // [[1, 0,  0],
 //  [0, 0, -1],
 //  [0, 1,  0]]
-TEST(FixedOffsetFrameCombined, GetDcmFromFrameFirstRow)
+TEST_F(FixedOffsetFrameTest, GetDcmFromFrameFirstRow)
 {
     const auto dcm = get_dcm_from_frame<CombinedEarthIcrf{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 1.0 * one, ANGULAR_TOL));
@@ -301,7 +316,7 @@ TEST(FixedOffsetFrameCombined, GetDcmFromFrameFirstRow)
     EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameCombined, GetDcmFromFrameSecondRow)
+TEST_F(FixedOffsetFrameTest, GetDcmFromFrameSecondRow)
 {
     const auto dcm = get_dcm_from_frame<CombinedEarthIcrf{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 0.0 * one, ANGULAR_TOL));
@@ -309,7 +324,7 @@ TEST(FixedOffsetFrameCombined, GetDcmFromFrameSecondRow)
     EXPECT_TRUE(math::nearly_equal(dcm[1, 2], -1.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameCombined, GetDcmFromFrameThirdRow)
+TEST_F(FixedOffsetFrameTest, GetDcmFromFrameThirdRow)
 {
     const auto dcm = get_dcm_from_frame<CombinedEarthIcrf{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 0.0 * one, ANGULAR_TOL));
@@ -318,26 +333,26 @@ TEST(FixedOffsetFrameCombined, GetDcmFromFrameThirdRow)
 }
 
 // get_offset_from_root_frame for a non-derived parent is identical to get_offset_from_frame
-TEST(FixedOffsetFrameCombined, GetOffsetFromRootFrameMatchesFromFrameX)
+TEST_F(FixedOffsetFrameTest, GetOffsetFromRootFrameMatchesFromFrameX)
 {
     const auto off = get_offset_from_root_frame<CombinedEarthIcrf{}>();
     EXPECT_DOUBLE_EQ(off.get_x().numerical_value_in(km), 1.0);
 }
 
-TEST(FixedOffsetFrameCombined, GetOffsetFromRootFrameMatchesFromFrameY)
+TEST_F(FixedOffsetFrameTest, GetOffsetFromRootFrameMatchesFromFrameY)
 {
     const auto off = get_offset_from_root_frame<CombinedEarthIcrf{}>();
     EXPECT_DOUBLE_EQ(off.get_y().numerical_value_in(km), 2.0);
 }
 
-TEST(FixedOffsetFrameCombined, GetOffsetFromRootFrameMatchesFromFrameZ)
+TEST_F(FixedOffsetFrameTest, GetOffsetFromRootFrameMatchesFromFrameZ)
 {
     const auto off = get_offset_from_root_frame<CombinedEarthIcrf{}>();
     EXPECT_DOUBLE_EQ(off.get_z().numerical_value_in(km), 3.0);
 }
 
 // get_dcm_from_root_frame for a non-derived parent is identical to get_dcm_from_frame
-TEST(FixedOffsetFrameCombined, GetDcmFromRootFrameMatchesFromFrameFirstRow)
+TEST_F(FixedOffsetFrameTest, GetDcmFromRootFrameMatchesFromFrameFirstRow)
 {
     const auto dcm = get_dcm_from_root_frame<CombinedEarthIcrf{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 1.0 * one, ANGULAR_TOL));
@@ -345,7 +360,7 @@ TEST(FixedOffsetFrameCombined, GetDcmFromRootFrameMatchesFromFrameFirstRow)
     EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameCombined, GetDcmFromRootFrameMatchesFromFrameSecondRow)
+TEST_F(FixedOffsetFrameTest, GetDcmFromRootFrameMatchesFromFrameSecondRow)
 {
     const auto dcm = get_dcm_from_root_frame<CombinedEarthIcrf{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 0.0 * one, ANGULAR_TOL));
@@ -353,7 +368,7 @@ TEST(FixedOffsetFrameCombined, GetDcmFromRootFrameMatchesFromFrameSecondRow)
     EXPECT_TRUE(math::nearly_equal(dcm[1, 2], -1.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameCombined, GetDcmFromRootFrameMatchesFromFrameThirdRow)
+TEST_F(FixedOffsetFrameTest, GetDcmFromRootFrameMatchesFromFrameThirdRow)
 {
     const auto dcm = get_dcm_from_root_frame<CombinedEarthIcrf{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 0.0 * one, ANGULAR_TOL));
@@ -365,26 +380,26 @@ TEST(FixedOffsetFrameCombined, GetDcmFromRootFrameMatchesFromFrameThirdRow)
 
 // Pure spatial offset chain: 1 km in X, then 2 km in Y from that child frame.
 using ChainOffset1 = FixedOffsetFrame<frames::earth::icrf, ONE_KM, Distance::zero(), Distance::zero()>;
-using ChainOffset2 = FixedOffsetFrame<ChainOffset1, Distance::zero(), TWO_KM, Distance::zero()>;
+using ChainOffset2 = FixedOffsetFrame<ChainOffset1{}, Distance::zero(), TWO_KM, Distance::zero()>;
 
 static_assert(IsFixedOffsetFrame<ChainOffset1>);
 static_assert(IsFixedOffsetFrame<ChainOffset2>);
 static_assert(IsDerivedFrame<ChainOffset1>);
 
 // get_offset_from_root_frame accumulates both offsets
-TEST(FixedOffsetFrameChained, SpatialChainRootOffsetAccumulatesX)
+TEST_F(FixedOffsetFrameTest, SpatialChainRootOffsetAccumulatesX)
 {
     const auto off = get_offset_from_root_frame<ChainOffset2{}>();
     EXPECT_DOUBLE_EQ(off.get_x().numerical_value_in(km), 1.0);
 }
 
-TEST(FixedOffsetFrameChained, SpatialChainRootOffsetAccumulatesY)
+TEST_F(FixedOffsetFrameTest, SpatialChainRootOffsetAccumulatesY)
 {
     const auto off = get_offset_from_root_frame<ChainOffset2{}>();
     EXPECT_DOUBLE_EQ(off.get_y().numerical_value_in(km), 2.0);
 }
 
-TEST(FixedOffsetFrameChained, SpatialChainRootOffsetZIsZero)
+TEST_F(FixedOffsetFrameTest, SpatialChainRootOffsetZIsZero)
 {
     const auto off = get_offset_from_root_frame<ChainOffset2{}>();
     EXPECT_DOUBLE_EQ(off.get_z().numerical_value_in(km), 0.0);
@@ -396,12 +411,12 @@ TEST(FixedOffsetFrameChained, SpatialChainRootOffsetZIsZero)
 //    [0,  0, -1],
 //    [1,  0,  0]]
 using ChainAngular1 = FixedOffsetFrame<frames::earth::icrf, HALF_PI_RAD, Angle::zero(), Angle::zero(), RotationSequence::XYZ>;
-using ChainAngular2 = FixedOffsetFrame<ChainAngular1, Angle::zero(), Angle::zero(), HALF_PI_RAD, RotationSequence::XYZ>;
+using ChainAngular2 = FixedOffsetFrame<ChainAngular1{}, Angle::zero(), Angle::zero(), HALF_PI_RAD, RotationSequence::XYZ>;
 
 static_assert(IsFixedOffsetFrame<ChainAngular1>);
 static_assert(IsFixedOffsetFrame<ChainAngular2>);
 
-TEST(FixedOffsetFrameChained, AngularChainRootDcmComposesFirstRow)
+TEST_F(FixedOffsetFrameTest, AngularChainRootDcmComposesFirstRow)
 {
     const auto dcm = get_dcm_from_root_frame<ChainAngular2{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 0.0 * one, ANGULAR_TOL));
@@ -409,7 +424,7 @@ TEST(FixedOffsetFrameChained, AngularChainRootDcmComposesFirstRow)
     EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameChained, AngularChainRootDcmComposesSecondRow)
+TEST_F(FixedOffsetFrameTest, AngularChainRootDcmComposesSecondRow)
 {
     const auto dcm = get_dcm_from_root_frame<ChainAngular2{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 0.0 * one, ANGULAR_TOL));
@@ -417,7 +432,7 @@ TEST(FixedOffsetFrameChained, AngularChainRootDcmComposesSecondRow)
     EXPECT_TRUE(math::nearly_equal(dcm[1, 2], -1.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameChained, AngularChainRootDcmComposesThirdRow)
+TEST_F(FixedOffsetFrameTest, AngularChainRootDcmComposesThirdRow)
 {
     const auto dcm = get_dcm_from_root_frame<ChainAngular2{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 1.0 * one, ANGULAR_TOL));
@@ -427,13 +442,13 @@ TEST(FixedOffsetFrameChained, AngularChainRootDcmComposesThirdRow)
 
 // A pure-offset child of a rotated parent has no angular contribution of its own —
 // get_dcm_from_root_frame should propagate the parent's DCM unchanged.
-TEST(FixedOffsetFrameChained, SpatialChildOfAngularParentPreserversParentDcmFirstRow)
+TEST_F(FixedOffsetFrameTest, SpatialChildOfAngularParentPreserversParentDcmFirstRow)
 {
     // ChainOffset2 has no angular misalignment; its parent ChainAngular1 is Rx(pi/2).
     // get_dcm_from_root_frame<ChainOffset2 derived from ChainAngular1> is not defined
     // because ChainOffset2 must be derived from ChainAngular1 to test this.
     // Use an explicit type: spatial offset child of ChainAngular1.
-    using OffsetChildOfAngular = FixedOffsetFrame<ChainAngular1, Distance::zero(), TWO_KM, Distance::zero()>;
+    using OffsetChildOfAngular = FixedOffsetFrame<ChainAngular1{}, Distance::zero(), TWO_KM, Distance::zero()>;
     const auto dcm             = get_dcm_from_root_frame<OffsetChildOfAngular{}>();
     // No own rotation → DCM is that of ChainAngular1 = Rx(pi/2)
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 1.0 * one, ANGULAR_TOL));
@@ -450,7 +465,7 @@ TEST(FixedOffsetFrameChained, SpatialChildOfAngularParentPreserversParentDcmFirs
 using ChainCombined1 =
     FixedOffsetFrame<frames::earth::icrf, ONE_KM, Distance::zero(), Distance::zero(), HALF_PI_RAD, Angle::zero(), Angle::zero(), RotationSequence::XYZ>;
 using ChainCombined2 =
-    FixedOffsetFrame<ChainCombined1, Distance::zero(), TWO_KM, Distance::zero(), Angle::zero(), Angle::zero(), HALF_PI_RAD, RotationSequence::XYZ>;
+    FixedOffsetFrame<ChainCombined1{}, Distance::zero(), TWO_KM, Distance::zero(), Angle::zero(), Angle::zero(), HALF_PI_RAD, RotationSequence::XYZ>;
 
 static_assert(IsFixedOffsetFrame<ChainCombined1>);
 static_assert(IsFixedOffsetFrame<ChainCombined2>);
@@ -459,25 +474,25 @@ static_assert(HasAngularOffset<ChainCombined1>);
 static_assert(HasSpatialOffset<ChainCombined2>);
 static_assert(HasAngularOffset<ChainCombined2>);
 
-TEST(FixedOffsetFrameChained, CombinedChainRootOffsetAccumulatesX)
+TEST_F(FixedOffsetFrameTest, CombinedChainRootOffsetAccumulatesX)
 {
     const auto off = get_offset_from_root_frame<ChainCombined2{}>();
     EXPECT_DOUBLE_EQ(off.get_x().numerical_value_in(km), 1.0);
 }
 
-TEST(FixedOffsetFrameChained, CombinedChainRootOffsetAccumulatesY)
+TEST_F(FixedOffsetFrameTest, CombinedChainRootOffsetAccumulatesY)
 {
     const auto off = get_offset_from_root_frame<ChainCombined2{}>();
     EXPECT_DOUBLE_EQ(off.get_y().numerical_value_in(km), 2.0);
 }
 
-TEST(FixedOffsetFrameChained, CombinedChainRootOffsetZIsZero)
+TEST_F(FixedOffsetFrameTest, CombinedChainRootOffsetZIsZero)
 {
     const auto off = get_offset_from_root_frame<ChainCombined2{}>();
     EXPECT_DOUBLE_EQ(off.get_z().numerical_value_in(km), 0.0);
 }
 
-TEST(FixedOffsetFrameChained, CombinedChainRootDcmComposesFirstRow)
+TEST_F(FixedOffsetFrameTest, CombinedChainRootDcmComposesFirstRow)
 {
     const auto dcm = get_dcm_from_root_frame<ChainCombined2{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 0.0 * one, ANGULAR_TOL));
@@ -485,7 +500,7 @@ TEST(FixedOffsetFrameChained, CombinedChainRootDcmComposesFirstRow)
     EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameChained, CombinedChainRootDcmComposesSecondRow)
+TEST_F(FixedOffsetFrameTest, CombinedChainRootDcmComposesSecondRow)
 {
     const auto dcm = get_dcm_from_root_frame<ChainCombined2{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 0.0 * one, ANGULAR_TOL));
@@ -493,16 +508,10 @@ TEST(FixedOffsetFrameChained, CombinedChainRootDcmComposesSecondRow)
     EXPECT_TRUE(math::nearly_equal(dcm[1, 2], -1.0 * one, ANGULAR_TOL));
 }
 
-TEST(FixedOffsetFrameChained, CombinedChainRootDcmComposesThirdRow)
+TEST_F(FixedOffsetFrameTest, CombinedChainRootDcmComposesThirdRow)
 {
     const auto dcm = get_dcm_from_root_frame<ChainCombined2{}>();
     EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 2], 0.0 * one, ANGULAR_TOL));
-}
-
-int main(int argc, char** argv)
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }

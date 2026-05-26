@@ -58,11 +58,5 @@ struct Barycenter<_name_> : Origin<_name_>, detail::BarycenterBase {};
 template <mp_units::symbol_text _name_, IsOrigin auto _parent_>
 struct Barycenter<_name_, _parent_> : Origin<_name_, _parent_>, detail::BarycenterBase {};
 
-template <IsBarycenter Lhs, IsBarycenter Rhs>
-[[nodiscard]] consteval bool operator==(Lhs, Rhs)
-{
-    return std::is_same_v<Lhs, Rhs>;
-}
-
 } // namespace astro
 } // namespace astrea

@@ -134,28 +134,30 @@ struct CartesianVector {
     inline constexpr const Value_T& operator[](size_t index) const { return _vector[index]; }
 
     /**
-     * @brief Equality operator for CartesianVector.
+     * @brief Equality operator for CartesianVector (same type and frame).
      *
      * @param other The other CartesianVector to compare with.
      * @return true If the two vectors are equal.
      * @return false If the two vectors are not equal.
      */
-    template <typename Value_U>
-    inline constexpr bool operator==(const CartesianVector<Value_U, frame>& other) const
+    inline constexpr bool operator==(const CartesianVector& other) const
     {
         return _vector[0] == other._vector[0] && _vector[1] == other._vector[1] && _vector[2] == other._vector[2];
     }
 
     /**
-     * @brief Inequality operator for CartesianVector in a different frame. Always false.
+     * @brief Equality operator for CartesianVector in a different frame or with an incompatible value type. Always returns false.
+     *
+     * Uses a type-parameter approach to avoid GCC 15's constrained auto NTTP deduction bug
+     * (which incorrectly deduces `frame_u = Value_U` for `IsFrame auto frame_u` in both
+     * direct and reversed lookup).
      *
      * @param other The other CartesianVector to compare with.
-     * @return true If the two vectors are not equal.
-     * @return false If the two vectors are equal.
+     * @return false Always, since vectors in different frames or with incompatible types cannot be equal.
      */
-    template <IsFrame auto frame_u>
-        requires(!(frame == frame_u))
-    inline constexpr bool operator==(const CartesianVector<Value_T, frame_u>& other) const
+    template <class OtherCart>
+        requires(is_cartesian_vector_v<OtherCart> && (OtherCart::frame != frame))
+    inline constexpr bool operator==(const OtherCart& other) const
     {
         return false;
     }

@@ -31,10 +31,10 @@ using namespace astrea::astro;
 using namespace mp_units;
 using mp_units::angular::unit_symbols::rad;
 
-using InFrame  = frames::earth::icrf;
-using OutFrame = frames::earth::j2000;
-using TestDcm  = DCM<InFrame, OutFrame>;
-using TestVec  = CartesianVector<Unitless, InFrame>;
+inline constexpr auto InFrame  = frames::earth::icrf;
+inline constexpr auto OutFrame = frames::earth::j2000;
+using TestDcm                  = DCM<InFrame, OutFrame>;
+using TestVec                  = CartesianVector<Unitless, InFrame>;
 
 class DirectionCosineMatrixTest : public testing::Test {
   public:

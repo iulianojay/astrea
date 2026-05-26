@@ -33,27 +33,21 @@ namespace astrea {
 namespace astro {
 
 /**
- * @brief DCM from Earth ICRF (GCRF) to Earth-fixed (ECEF) frame.
- */
-template <>
-inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::earth_fixed>
-    get_dcm<frames::earth::icrf, frames::earth::earth_fixed>(const Date& date)
-{
-    const Angle gst = julian_date_to_sidereal_time(date.jd());
-    return DirectionCosineMatrix<frames::earth::icrf, frames::earth::earth_fixed>::Z(-gst);
-}
-
-/**
- * @brief Generic DCM from any Earth-centred ICRF frame to any Earth-centred body-fixed frame.
+ * @brief DCM from any Earth-centred ICRF frame (including the canonical frames::earth::icrf)
+ * to any Earth-centred body-fixed frame.
  *
- * This covers synthetic frame types produced by get_body_icrf_frame<planets::Earth>() and
- * get_body_fixed_frame<planets::Earth>() so that Geodetic<planets::Earth> works correctly
- * without requiring the exact frames::earth::icrf / frames::earth::earth_fixed types.
+ * The explicit template<> specialisation was replaced with this constrained template so that
+ * HasDcm<earth::icrf, earth::earth_fixed> (and similar requires-expressions) can find this
+ * overload.  GCC 15 does not locate explicit template<> specialisations when checking
+ * concept requires-expressions with constrained-auto NTTP arguments.
+ *
+ * This covers both the canonical frames::earth::icrf and any synthetic frame types produced
+ * by get_body_icrf_frame<planets::Earth>() so that Geodetic<planets::Earth> works correctly.
  */
 template <IsFrame auto in_frame, IsFrame auto out_frame>
     requires(
         has_same_origin(in_frame, out_frame) && has_axis(in_frame, axes::icrf) &&
-        IsFixedRotatingFrame<decltype(out_frame)> && has_origin(in_frame, planets::Earth) && in_frame != frames::earth::icrf
+        IsFixedRotatingFrame<decltype(out_frame)> && has_origin(in_frame, planets::Earth)
     )
 inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
 {

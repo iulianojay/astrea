@@ -268,7 +268,9 @@ inline constexpr DirectionCosineMatrix<frame.parent, frame> get_dcm_from_frame()
 {
     if constexpr (HasAngularOffset<decltype(frame)>) {
         return DirectionCosineMatrix<frame.parent, frame>::template from_euler_angles<decltype(frame.axis)::sequence>(
-            decltype(frame.axis)::misalignment
+            decltype(frame.axis)::misalignment.phi,
+            decltype(frame.axis)::misalignment.theta,
+            decltype(frame.axis)::misalignment.psi
         );
     }
     else {

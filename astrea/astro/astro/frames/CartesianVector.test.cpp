@@ -28,8 +28,8 @@ using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-using TestFrame  = frames::earth::icrf;
-using TestVector = CartesianVector<Unitless, TestFrame>;
+inline constexpr auto TestFrame = frames::earth::icrf;
+using TestVector                = CartesianVector<Unitless, TestFrame>;
 
 class CartesianVectorTest : public testing::Test {
   public:

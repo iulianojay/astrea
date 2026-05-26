@@ -37,8 +37,7 @@ inline constexpr struct venus_fixed : FixedRotatingFrame<"venus_fixed", planets:
 } // namespace venus
 
 namespace earth {
-
-inline constexpr struct earth_fixed : FixedRotatingFrame<"ecef", planets::Earth, axes::icrf, Coordinate::Z> {
+inline constexpr struct earth_fixed : FixedRotatingFrame<"ecef", planets::Earth, axes::icrf, Coordinate::Z, icrf> {
 } earth_fixed;
 inline constexpr struct ems_fixed : FixedRotatingFrame<"ems_fixed", barycenters::EarthMoonBarycenter, axes::icrf, Coordinate::Z> {
 } ems_fixed;

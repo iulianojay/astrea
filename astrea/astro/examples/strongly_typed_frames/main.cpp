@@ -76,34 +76,26 @@ int main()
     // Implicit transformation to/from dynamic frames are not allowed
     // CartesianVector<Length, RIC> rRic = rEci.in_frame<RIC>(J2000); // Compiler will fail!
 
-    // Frames do not necessarily need to be fully defined to be used
-    class MyFrame;
-    CartesianVector<Length, MyFrame> rCustom{ 1.0 * m, 2.0 * m, 3.0 * m };
-
-    // But the definition needs to be complete to use frame transformations
-    // CartesianVector<Length, ECI> rEci = rCustom.in_frame<ECI>(date); // Compiler will fail!
+    // Note: custom frames must be defined as complete frame values (not just forward-declared types) to be used
+    // with CartesianVector's NTTP frame parameter.
 
     // For complex, time-dependent frames, such as those attached to a payload, or vehicle, the frames must be explicitly instantiated
     // to call any vector transformations. They are not required to declare the vector type, however.
     RadiusVector<RIC> rRic = { 1.0 * km, 2.0 * km, 3.0 * km };
 
-    // Dynamic frames can either be attached to an object (such as a spacecraft), or defined instantaneously at a specific state.
-    Spacecraft frameParent;
-    RIC dynamicRicFrame(&frameParent); // RIC frame attached to a spacecraft. As long as the spacecraft has a state
-                                       // history, the frame can be used to transform vectors.
-
-    RIC instRicFrame =
-        RIC.instantaneous(posECI, velEci); // RIC frame defined at a specific time and state. Transformations to/from
-                                           // instantaneous frames are only valid at the time they are defined.
+    // Dynamic frames are defined instantaneously at a specific state.
+    auto instRicFrame =
+        RIC.instantaneous(posECI, velEci); // RIC frame defined at a specific position and velocity. Transformations
+                                           // to/from instantaneous frames are only valid at the state they are defined.
 
     // Convert from RIC to ECI using the instantaneous dynamic frame
-    // Note: here we use the convert_from_this_frame method, as we are converting from RIC to ECI.
+    // Note: here we use the transform_from_this_frame method, as we are converting from RIC to ECI.
     // While static frames handle the direction of conversion automatically, dynamic frames do not and
     // require the user to specify the direction by calling the appropriate method.
-    RadiusVector<ECI> rotatedrRic   = instRicFrame.rotate_out_of_this_frame(rRic, date);       // DCM * r
-    RadiusVector<ECI> convertedrRic = instRicFrame.convert_from_this_frame(rRic, date);        // DCM * r + framePos
-    RadiusVector<RIC> rRic2         = instRicFrame.rotate_into_this_frame(rotatedrRic, date);  // DCM^T * r
-    RadiusVector<RIC> rRic3         = instRicFrame.convert_to_this_frame(convertedrRic, date); // DCM_T * (r - framePos)
+    RadiusVector<ECI> rotatedrRic   = instRicFrame.rotate_out_of_this_frame(rRic, date);         // DCM^T * r
+    RadiusVector<ECI> convertedrRic = instRicFrame.transform_from_this_frame(rRic, date);        // DCM^T * r + framePos
+    RadiusVector<RIC> rRic2         = instRicFrame.rotate_into_this_frame(rotatedrRic, date);    // DCM * r
+    RadiusVector<RIC> rRic3         = instRicFrame.transform_to_this_frame(convertedrRic, date); // DCM * (r - framePos)
 
     std::cout << "RIC frame parent position: " << posECI << std::endl;
     std::cout << "RIC frame parent velocity: " << velEci << std::endl;
