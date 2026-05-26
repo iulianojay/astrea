@@ -39,7 +39,7 @@ namespace planets {
  *
  * This class provides properties and methods specific to Uranus, including its physical and orbital parameters.
  */
-inline constexpr struct Uranus : CelestialBody<"Uranus", barycenters::SolarSystemBarycenter> {
+inline constexpr struct Uranus final : CelestialBody<"Uranus", barycenters::SolarSystemBarycenter> {
 } Uranus;
 
 } // namespace planets
@@ -94,7 +94,7 @@ template <>
 inline constexpr auto get_position_at<planets::Uranus>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Uranus, axes::icrf);
-    return get_position_at_impl<UranusEphemerisTable, frame>(date);
+    return get_position_at_impl<ephemerides::UranusEphemerisTable, frame>(date);
 }
 
 /**
@@ -107,7 +107,7 @@ template <>
 inline constexpr auto get_velocity_at<planets::Uranus>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Uranus, axes::icrf);
-    return get_velocity_at_impl<UranusEphemerisTable, frame>(date);
+    return get_velocity_at_impl<ephemerides::UranusEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_URANUS_EPHEMERIS

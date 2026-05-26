@@ -163,7 +163,7 @@ inline Density find_atmospheric_density<planets::Mars>(const State& state)
 // ---------------------------------------------------------------------------
 
 template <>
-inline Density find_atmospheric_density<planets::Titan>(const State& state)
+inline Density find_atmospheric_density<moons::Titan>(const State& state)
 {
     using namespace mp_units;
     using mp_units::si::unit_symbols::cm;

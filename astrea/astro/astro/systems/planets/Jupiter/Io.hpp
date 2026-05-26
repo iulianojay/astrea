@@ -26,7 +26,8 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
+
+namespace moons {
 
 /**
  * @class Io
@@ -34,13 +35,13 @@ namespace planets {
  *
  * This class provides properties and methods specific to Io, including its physical and orbital parameters.
  */
-inline constexpr struct Io : CelestialBody<"Io", Jupiter> {
+inline constexpr struct Io final : CelestialBody<"Io", planets::Jupiter> {
 } Io;
 
-} // namespace planets
+} // namespace moons
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Io>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Io>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;

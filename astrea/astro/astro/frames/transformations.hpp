@@ -69,7 +69,7 @@ concept HasDcmMethod = requires(const Date& date) { frame.template get_dcm<frame
  * @return CartesianVector<Distance, frame> The offset vector from frame to frame_u expressed in frame.
  */
 template <IsFrame auto frame, IsFrame auto frame_u>
-    requires(has_same_origin(frame, frame_u))
+    requires(frame.origin == frame_u.origin)
 inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& date)
 {
     return CartesianVector<Distance, frame>(Distance::zero(), Distance::zero(), Distance::zero());
@@ -88,7 +88,7 @@ inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& 
  * @return CartesianVector<Distance, frame> The offset vector from frame to frame_u expressed in frame.
  */
 template <IsFrame auto frame, IsFrame auto frame_u>
-    requires(!has_same_origin(frame, frame_u) && has_same_axis(frame, frame_u))
+    requires(frame.origin != frame_u.origin && frame.axis == frame_u.axis)
 inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& date)
 {
     // Forcing the frame change here doesn't matter since the offset is just a difference and it's already implied that
@@ -192,7 +192,7 @@ inline constexpr CartesianVector<Value_T, frame_u>
  * @note: This overload doesn't change in the input frame to avoid unnecessary frame conversions when the frames share the same origin but different axes.
  */
 template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
-    requires(has_same_origin(frame, frame_u))
+    requires(frame.origin == frame_u.origin)
 inline constexpr CartesianVector<Value_T, frame>
     translate_vector_into_frame(const CartesianVector<Value_T, frame>& vec, const Date& date)
 {
@@ -212,7 +212,7 @@ inline constexpr CartesianVector<Value_T, frame>
  * @return CartesianVector<Value_T, frame_u> A new CartesianVector in the target frame.
  */
 template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
-    requires(!has_same_origin(frame, frame_u) && has_same_axis(frame, frame_u))
+    requires(frame.origin != frame_u.origin && frame.axis == frame_u.axis)
 inline constexpr CartesianVector<Distance, frame_u>
     translate_vector_into_frame(const CartesianVector<Distance, frame>& vec, const Date& date)
 {
@@ -246,11 +246,11 @@ template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
 inline constexpr CartesianVector<Value_T, frame_u>
     transform_vector_into_frame(const CartesianVector<Value_T, frame>& vec, const Date& date)
 {
-    if constexpr (has_same_origin(frame, frame_u)) {
+    if constexpr (frame.origin == frame_u.origin) {
         // Same origin: rotation only
         return rotate_vector_into_frame<Value_T, frame, frame_u>(vec, date);
     }
-    else if constexpr (has_same_axis(frame, frame_u)) {
+    else if constexpr (frame.axis == frame_u.axis) {
         // Same axis: translation only
         return translate_vector_into_frame<Value_T, frame, frame_u>(vec, date);
     }

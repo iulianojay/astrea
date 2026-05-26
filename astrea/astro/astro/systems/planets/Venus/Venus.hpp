@@ -41,7 +41,7 @@ namespace planets {
  *
  * This class provides properties and methods specific to Venus, including its physical and orbital parameters.
  */
-inline constexpr struct Venus : CelestialBody<"Venus", barycenters::SolarSystemBarycenter> {
+inline constexpr struct Venus final : CelestialBody<"Venus", barycenters::SolarSystemBarycenter> {
 } Venus;
 
 } // namespace planets
@@ -96,7 +96,7 @@ template <>
 inline constexpr auto get_position_at<planets::Venus>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Venus, axes::icrf);
-    return get_position_at_impl<VenusEphemerisTable, frame>(date);
+    return get_position_at_impl<ephemerides::VenusEphemerisTable, frame>(date);
 }
 
 /**
@@ -109,7 +109,7 @@ template <>
 inline constexpr auto get_velocity_at<planets::Venus>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Venus, axes::icrf);
-    return get_velocity_at_impl<VenusEphemerisTable, frame>(date);
+    return get_velocity_at_impl<ephemerides::VenusEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_VENUS_EPHEMERIS

@@ -39,7 +39,7 @@ namespace planets {
  *
  * This class provides properties and methods specific to Neptune, including its physical and orbital parameters.
  */
-inline constexpr struct Neptune : CelestialBody<"Neptune", barycenters::SolarSystemBarycenter> {
+inline constexpr struct Neptune final : CelestialBody<"Neptune", barycenters::SolarSystemBarycenter> {
 } Neptune;
 
 } // namespace planets
@@ -94,7 +94,7 @@ template <>
 inline constexpr auto get_position_at<planets::Neptune>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Neptune, axes::icrf);
-    return get_position_at_impl<NeptuneEphemerisTable, frame>(date);
+    return get_position_at_impl<ephemerides::NeptuneEphemerisTable, frame>(date);
 }
 
 /**
@@ -107,7 +107,7 @@ template <>
 inline constexpr auto get_velocity_at<planets::Neptune>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Neptune, axes::icrf);
-    return get_velocity_at_impl<NeptuneEphemerisTable, frame>(date);
+    return get_velocity_at_impl<ephemerides::NeptuneEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_NEPTUNE_EPHEMERIS

@@ -25,7 +25,7 @@ using namespace astrea::astro;
 static_assert(frames::earth::icrf.origin == planets::Earth);
 static_assert(frames::earth::earth_fixed.origin == planets::Earth);
 static_assert(frames::mars::icrf.origin == planets::Mars);
-static_assert(frames::sun::icrf.origin == planets::Sun);
+static_assert(frames::sun::icrf.origin == star::Sun);
 
 // Axis checks: axis member is a typed struct value — compare types.
 static_assert(frames::earth::icrf.axis == axes::icrf);

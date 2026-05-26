@@ -237,7 +237,7 @@ def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, da
         fID.write(f"#include <astro/systems/planets/JplEphemerisTable.hpp>\n\n")
         fID.write(f"namespace astrea {{\n")
         fID.write(f"namespace astro {{\n")
-        fID.write(f"namespace planets {{\n\n")
+        fID.write(f"namespace ephemerides {{\n\n")
         fID.write(f"struct {className} : public JplEphemerisTable {{\n")
 
         fID.write(f"\t{className}() = delete;\n")
@@ -255,9 +255,9 @@ def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, da
         fID.write(f"\tstatic std::size_t get_index(const Date& date, const Time& daysPerPoly) {{ return JplEphemerisTable::get_index(date, daysPerPoly); }}\n")
 
         fID.write("};\n\n")
-        fID.write(f"}} // namespace astrea \n")
+        fID.write(f"}} // namespace ephemerides \n\n")
         fID.write(f"}} // namespace astro \n")
-        fID.write(f"}} // namespace planets \n\n")
+        fID.write(f"}} // namespace astrea \n")
 
     # Write source file
     sourcefile = os.path.join(outPath, f"{relPath}/{className}.cpp")
@@ -267,7 +267,7 @@ def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, da
         fID.write(f"#include <ephemerides/{header}>\n\n")
         fID.write(f"namespace astrea {{\n")
         fID.write(f"namespace astro {{\n")
-        fID.write(f"namespace planets {{\n\n")
+        fID.write(f"namespace ephemerides {{\n\n")
 
         # Write the x coefficients to file
         fID.write(f"{typeString} {className}::X_INTERP {{\n")
@@ -293,9 +293,9 @@ def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, da
         fID.write("//-------------------------------------------------\n")
         fID.write("//-------------------------------------------------\n\n")
 
-        fID.write(f"}} // namespace astrea \n")
+        fID.write(f"}} // namespace ephemerides \n\n")
         fID.write(f"}} // namespace astro \n")
-        fID.write(f"}} // namespace planets \n\n")
+        fID.write(f"}} // namespace astrea \n")
 
     return
 

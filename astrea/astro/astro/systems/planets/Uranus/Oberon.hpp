@@ -4,7 +4,7 @@
  * @brief Header file for the Oberon class.
  * @date 2025-10-02
  *
- * @copyright Copyright (c) 2025
+ * @copyright Copyright (c) 2025 Jay Iuliano
  *
  */
 #pragma once
@@ -17,7 +17,8 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
+
+namespace moons {
 
 /**
  * @class Oberon
@@ -25,13 +26,13 @@ namespace planets {
  *
  * This class provides properties and methods specific to Oberon, including its physical and orbital parameters.
  */
-inline constexpr struct Oberon : CelestialBody<"Oberon", Uranus> {
+inline constexpr struct Oberon final : CelestialBody<"Oberon", planets::Uranus> {
 } Oberon;
 
-} // namespace planets
+} // namespace moons
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Oberon>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Oberon>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;

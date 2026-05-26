@@ -31,7 +31,7 @@
 namespace astrea {
 namespace astro {
 
-namespace planets {
+namespace star {
 
 /**
  * @class Sun
@@ -39,13 +39,13 @@ namespace planets {
  *
  * This class provides properties and methods specific to the Sun, including its physical and orbital parameters.
  */
-inline constexpr struct Sun : CelestialBody<"Sun", barycenters::SolarSystemBarycenter> {
+inline constexpr struct Sun final : CelestialBody<"Sun", barycenters::SolarSystemBarycenter> {
 } Sun;
 
-} // namespace planets
+} // namespace star
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Sun>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<star::Sun>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
@@ -91,10 +91,10 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
  * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Sun at the given date.
  */
 template <>
-inline constexpr auto get_position_at<planets::Sun>(const Date& date)
+inline constexpr auto get_position_at<star::Sun>(const Date& date)
 {
-    constexpr auto frame = get_parent_frame(planets::Sun, axes::icrf);
-    return get_position_at_impl<planets::SunEphemerisTable, frame>(date);
+    constexpr auto frame = get_parent_frame(star::Sun, axes::icrf);
+    return get_position_at_impl<ephemerides::SunEphemerisTable, frame>(date);
 }
 
 /**
@@ -104,10 +104,10 @@ inline constexpr auto get_position_at<planets::Sun>(const Date& date)
  * @return VelocityVector<frames::solar_system_barycenter::icrf> The velocity of the Sun at the given date.
  */
 template <>
-inline constexpr auto get_velocity_at<planets::Sun>(const Date& date)
+inline constexpr auto get_velocity_at<star::Sun>(const Date& date)
 {
-    constexpr auto frame = get_parent_frame(planets::Sun, axes::icrf);
-    return get_velocity_at_impl<planets::SunEphemerisTable, frame>(date);
+    constexpr auto frame = get_parent_frame(star::Sun, axes::icrf);
+    return get_velocity_at_impl<ephemerides::SunEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_SUN_EPHEMERIS

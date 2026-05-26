@@ -39,7 +39,7 @@ namespace planets {
  *
  * This class provides properties and methods specific to Saturn, including its physical and orbital parameters.
  */
-inline constexpr struct Saturn : CelestialBody<"Saturn", barycenters::SolarSystemBarycenter> {
+inline constexpr struct Saturn final : CelestialBody<"Saturn", barycenters::SolarSystemBarycenter> {
 } Saturn;
 
 } // namespace planets
@@ -94,7 +94,7 @@ template <>
 inline constexpr auto get_position_at<planets::Saturn>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Saturn, axes::icrf);
-    return get_position_at_impl<SaturnEphemerisTable, frame>(date);
+    return get_position_at_impl<ephemerides::SaturnEphemerisTable, frame>(date);
 }
 
 /**
@@ -107,7 +107,7 @@ template <>
 inline constexpr auto get_velocity_at<planets::Saturn>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Saturn, axes::icrf);
-    return get_velocity_at_impl<SaturnEphemerisTable, frame>(date);
+    return get_velocity_at_impl<ephemerides::SaturnEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_SATURN_EPHEMERIS

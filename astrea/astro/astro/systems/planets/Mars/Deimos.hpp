@@ -26,7 +26,8 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
+
+namespace moons {
 
 /**
  * @class Deimos
@@ -34,13 +35,13 @@ namespace planets {
  *
  * This class provides properties and methods specific to Deimos, including its physical and orbital parameters.
  */
-inline constexpr struct Deimos : CelestialBody<"Deimos", Mars> {
+inline constexpr struct Deimos final : CelestialBody<"Deimos", planets::Mars> {
 } Deimos;
 
-} // namespace planets
+} // namespace moons
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Deimos>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Deimos>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;

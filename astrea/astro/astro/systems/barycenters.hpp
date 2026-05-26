@@ -12,9 +12,15 @@ namespace astro {
 
 // Forward declarations — types only; completeness not required because member bodies
 // are stored via CelestialBodyTypePack<Ts...>{}, which has no data members.
-namespace planets {
+
+namespace star {
 
 struct Sun;
+
+} // namespace star
+
+namespace planets {
+
 struct Mercury;
 struct Venus;
 struct Earth;
@@ -23,51 +29,56 @@ struct Jupiter;
 struct Saturn;
 struct Uranus;
 struct Neptune;
-struct Moon;
 
 } // namespace planets
+
+namespace moons {
+
+struct Moon;
+
+} // namespace moons
 
 namespace barycenters {
 
 inline constexpr struct SolarSystemBarycenter final
     : Barycenter<"Solar System Barycenter">,
-      CelestialBodyTypePack<planets::Sun, planets::Mercury, planets::Venus, planets::Earth, planets::Mars, planets::Jupiter, planets::Saturn, planets::Uranus, planets::Neptune> {
+      CelestialBodyTypePack<star::Sun, planets::Mercury, planets::Venus, planets::Earth, planets::Mars, planets::Jupiter, planets::Saturn, planets::Uranus, planets::Neptune> {
 } SolarSystemBarycenter;
 
 inline constexpr struct MercuryBarycenter final : Barycenter<"Mercury Barycenter", SolarSystemBarycenter>,
-                                                  CelestialBodyTypePack<planets::Sun, planets::Mercury> {
+                                                  CelestialBodyTypePack<star::Sun, planets::Mercury> {
 } MercuryBarycenter;
 
 inline constexpr struct VenusBarycenter final : Barycenter<"Venus Barycenter", SolarSystemBarycenter>,
-                                                CelestialBodyTypePack<planets::Sun, planets::Venus> {
+                                                CelestialBodyTypePack<star::Sun, planets::Venus> {
 } VenusBarycenter;
 
 inline constexpr struct EarthBarycenter final : Barycenter<"Earth Barycenter", SolarSystemBarycenter>,
-                                                CelestialBodyTypePack<planets::Sun, planets::Earth> {
+                                                CelestialBodyTypePack<star::Sun, planets::Earth> {
 } EarthBarycenter;
 
 inline constexpr struct MarsBarycenter final : Barycenter<"Mars Barycenter", SolarSystemBarycenter>,
-                                               CelestialBodyTypePack<planets::Sun, planets::Mars> {
+                                               CelestialBodyTypePack<star::Sun, planets::Mars> {
 } MarsBarycenter;
 
 inline constexpr struct JupiterBarycenter final : Barycenter<"Jupiter Barycenter", SolarSystemBarycenter>,
-                                                  CelestialBodyTypePack<planets::Sun, planets::Jupiter> {
+                                                  CelestialBodyTypePack<star::Sun, planets::Jupiter> {
 } JupiterBarycenter;
 
 inline constexpr struct SaturnBarycenter final : Barycenter<"Saturn Barycenter", SolarSystemBarycenter>,
-                                                 CelestialBodyTypePack<planets::Sun, planets::Saturn> {
+                                                 CelestialBodyTypePack<star::Sun, planets::Saturn> {
 } SaturnBarycenter;
 
 inline constexpr struct UranusBarycenter final : Barycenter<"Uranus Barycenter", SolarSystemBarycenter>,
-                                                 CelestialBodyTypePack<planets::Sun, planets::Uranus> {
+                                                 CelestialBodyTypePack<star::Sun, planets::Uranus> {
 } UranusBarycenter;
 
 inline constexpr struct NeptuneBarycenter final : Barycenter<"Neptune Barycenter", SolarSystemBarycenter>,
-                                                  CelestialBodyTypePack<planets::Sun, planets::Neptune> {
+                                                  CelestialBodyTypePack<star::Sun, planets::Neptune> {
 } NeptuneBarycenter;
 
 inline constexpr struct EarthMoonBarycenter final : Barycenter<"Earth-Moon Barycenter", SolarSystemBarycenter>,
-                                                    CelestialBodyTypePack<planets::Earth, planets::Moon> {
+                                                    CelestialBodyTypePack<planets::Earth, moons::Moon> {
 } EarthMoonBarycenter;
 
 
@@ -82,7 +93,7 @@ template <>
 inline constexpr auto get_position_at<barycenters::EarthMoonBarycenter>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(barycenters::EarthMoonBarycenter, axes::icrf);
-    return get_position_at_impl<planets::EmbEphemerisTable, frame>(date);
+    return get_position_at_impl<ephemerides::EmbEphemerisTable, frame>(date);
 }
 
 /**
@@ -92,7 +103,7 @@ template <>
 inline constexpr auto get_velocity_at<barycenters::EarthMoonBarycenter>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(barycenters::EarthMoonBarycenter, axes::icrf);
-    return get_velocity_at_impl<planets::EmbEphemerisTable, frame>(date);
+    return get_velocity_at_impl<ephemerides::EmbEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS

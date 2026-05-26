@@ -26,7 +26,8 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
+
+namespace moons {
 
 /**
  * @class Iapetus
@@ -34,13 +35,13 @@ namespace planets {
  *
  * This class provides properties and methods specific to Iapetus, including its physical and orbital parameters.
  */
-inline constexpr struct Iapetus : CelestialBody<"Iapetus", Saturn> {
+inline constexpr struct Iapetus final : CelestialBody<"Iapetus", planets::Saturn> {
 } Iapetus;
 
-} // namespace planets
+} // namespace moons
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Iapetus>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Iapetus>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;

@@ -26,7 +26,8 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
+
+namespace moons {
 
 /**
  * @class Rhea
@@ -34,13 +35,13 @@ namespace planets {
  *
  * This class provides properties and methods specific to Rhea, including its physical and orbital parameters.
  */
-inline constexpr struct Rhea : CelestialBody<"Rhea", Saturn> {
+inline constexpr struct Rhea final : CelestialBody<"Rhea", planets::Saturn> {
 } Rhea;
 
-} // namespace planets
+} // namespace moons
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Rhea>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Rhea>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;

@@ -47,7 +47,7 @@ class PayloadTest : public testing::Test {
     void SetUp() override
     {
         StateHistory history;
-        history.insert(State(Keplerian::LEO(), J2000, sys));
+        history.insert(State(Keplerian<astro::frames::earth::icrf>::LEO(), J2000));
         satWithHistory.set_state_history(history);
     }
 
@@ -60,7 +60,6 @@ class PayloadTest : public testing::Test {
     ThrusterParameters paramsCenter{ thrust, boresight, CENTER };
     Spacecraft sat;
     Spacecraft satWithHistory;
-    AstrodynamicsSystem sys;
 };
 
 int main(int argc, char** argv)

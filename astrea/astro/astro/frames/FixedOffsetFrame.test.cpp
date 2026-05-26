@@ -52,8 +52,8 @@ static_assert(HasSpatialOffset<ZeroEarthIcrf>);
 static_assert(ZeroEarthIcrf::parent.origin == planets::Earth);
 static_assert(HasSpatialOffset<ZeroMarsIcrf>);
 static_assert(ZeroMarsIcrf::parent.origin == planets::Mars);
-static_assert(has_same_origin(ZeroEarthIcrf{}, ZeroMarsIcrf{}));
-static_assert(!has_same_origin(ZeroEarthIcrf::parent, ZeroMarsIcrf::parent));
+static_assert(ZeroEarthIcrf::origin == ZeroMarsIcrf::origin); // share the same origin (FixedOffsetOrigin), but different parents (Earth vs Mars)
+static_assert(ZeroEarthIcrf::parent.origin != ZeroMarsIcrf::parent.origin); // different parents (Earth vs Mars)
 
 TEST_F(FixedOffsetFrameTest, DefaultOffsetXIsZero)
 {

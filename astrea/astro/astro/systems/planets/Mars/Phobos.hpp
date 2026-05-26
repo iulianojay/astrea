@@ -26,7 +26,8 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
+
+namespace moons {
 
 /**
  * @class Phobos
@@ -34,13 +35,13 @@ namespace planets {
  *
  * This class provides properties and methods specific to Phobos, including its physical and orbital parameters.
  */
-inline constexpr struct Phobos : CelestialBody<"Phobos", Mars> {
+inline constexpr struct Phobos final : CelestialBody<"Phobos", planets::Mars> {
 } Phobos;
 
-} // namespace planets
+} // namespace moons
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Phobos>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Phobos>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;

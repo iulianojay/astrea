@@ -26,7 +26,8 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
+
+namespace moons {
 
 /**
  * @class Europa
@@ -34,13 +35,13 @@ namespace planets {
  *
  * This class provides properties and methods specific to Europa, including its physical and orbital parameters.
  */
-inline constexpr struct Europa : CelestialBody<"Europa", Jupiter> {
+inline constexpr struct Europa final : CelestialBody<"Europa", planets::Jupiter> {
 } Europa;
 
-} // namespace planets
+} // namespace moons
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Europa>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Europa>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;

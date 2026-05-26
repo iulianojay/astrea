@@ -40,7 +40,7 @@ namespace planets {
  *
  * This class provides properties and methods specific to Jupiter, including its physical and orbital parameters.
  */
-inline constexpr struct Jupiter : CelestialBody<"Jupiter", barycenters::SolarSystemBarycenter> {
+inline constexpr struct Jupiter final : CelestialBody<"Jupiter", barycenters::SolarSystemBarycenter> {
 } Jupiter;
 
 } // namespace planets
@@ -95,7 +95,7 @@ template <>
 inline constexpr auto get_position_at<planets::Jupiter>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Jupiter, axes::icrf);
-    return get_position_at_impl<JupiterEphemerisTable, frame>(date);
+    return get_position_at_impl<ephemerides::JupiterEphemerisTable, frame>(date);
 }
 
 /**
@@ -108,7 +108,7 @@ template <>
 inline constexpr auto get_velocity_at<planets::Jupiter>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Jupiter, axes::icrf);
-    return get_velocity_at_impl<JupiterEphemerisTable, frame>(date);
+    return get_velocity_at_impl<ephemerides::JupiterEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_JUPITER_EPHEMERIS

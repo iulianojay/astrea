@@ -74,7 +74,7 @@ LegendreCache<_body_, _degree_, _order_>::LegendreCache()
         // filename = path / "Earth" / "WGS84"; // _degree_ormalized
         // filename = path / "Earth" / "_degree_ASA_6DoF"; // _degree_ormalized - only goes to 8x8
     }
-    else if constexpr (_body_ == planets::Moon) {
+    else if constexpr (_body_ == moons::Moon) {
         // https://pds-geosciences.wustl.edu/grail/grail-l-lgrs-5-rdr-v1/grail_1001/shadr/
         filename = path / "_order_oon" / "jggrx_0420a_sha.tab"; // _degree_ormalized?
     }

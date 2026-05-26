@@ -26,7 +26,8 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
+
+namespace moons {
 
 /**
  * @class Titania
@@ -34,13 +35,13 @@ namespace planets {
  *
  * This class provides properties and methods specific to Titania, including its physical and orbital parameters.
  */
-inline constexpr struct Titania : CelestialBody<"Titania", Uranus> {
+inline constexpr struct Titania final : CelestialBody<"Titania", planets::Uranus> {
 } Titania;
 
-} // namespace planets
+} // namespace moons
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Titania>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Titania>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;

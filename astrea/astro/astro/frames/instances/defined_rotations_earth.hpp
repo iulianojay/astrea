@@ -45,10 +45,7 @@ namespace astro {
  * by get_body_icrf_frame<planets::Earth>() so that Geodetic<planets::Earth> works correctly.
  */
 template <IsFrame auto in_frame, IsFrame auto out_frame>
-    requires(
-        has_same_origin(in_frame, out_frame) && has_axis(in_frame, axes::icrf) &&
-        IsFixedRotatingFrame<decltype(out_frame)> && has_origin(in_frame, planets::Earth)
-    )
+    requires(in_frame.origin == out_frame.origin && in_frame.origin == planets::Earth && in_frame.axis == axes::icrf && IsFixedRotatingFrame<decltype(out_frame)>)
 inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
 {
     const Angle gst = julian_date_to_sidereal_time(date.jd());
@@ -65,7 +62,7 @@ template <>
 inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems_fixed>
     get_dcm<frames::earth::icrf, frames::earth::ems_fixed>(const Date& date)
 {
-    const auto rEarth2Moon = get_relative_position<planets::Earth, planets::Moon>(date);
+    const auto rEarth2Moon = get_relative_position<planets::Earth, moons::Moon>(date);
     const Angle lambda     = atan2(rEarth2Moon[1], rEarth2Moon[0]);
     return DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems_fixed>::Z(-lambda);
 }

@@ -51,11 +51,11 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
     const Distance rMagCenterToVehicle                   = rCenterToVehicle.norm();
 
     // Central body properties
-    constexpr bool isSun = (center == planets::Sun);
+    constexpr bool isSun = (center == star::Sun);
 
     // Radius from central body to sun
     const RadiusVector<frames::primary> rCenterToSun =
-        get_relative_position<center, planets::Sun>(date).force_frame_conversion<frames::primary>();
+        get_relative_position<center, star::Sun>(date).force_frame_conversion<frames::primary>();
     const Distance rMagCenterToSun = rCenterToSun.norm();
 
     const RadiusVector<frames::primary> rVehicleToSun = rCenterToSun - rCenterToVehicle;
@@ -78,7 +78,7 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
         const Angle refAngle2 = acos(equitorialR / rMagCenterToSun);
 
         if (refAngle1 + refAngle2 <= refAngle) { // In shadow
-            static constexpr Distance diamSun = get_equitorial_radius<planets::Sun>() * 2;
+            static constexpr Distance diamSun = get_equitorial_radius<star::Sun>() * 2;
             const Distance Xu                 = equitorialR * rMagCenterToSun / (diamSun - equitorialR);
 
             const RadiusVector<frames::primary> rP = -Xu * rCenterToSun / rMagCenterToSun;

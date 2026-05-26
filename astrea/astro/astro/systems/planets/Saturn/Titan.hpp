@@ -28,7 +28,8 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
+
+namespace moons {
 
 /**
  * @class Titan
@@ -36,13 +37,13 @@ namespace planets {
  *
  * This class provides properties and methods specific to Titan, including its physical and orbital parameters.
  */
-inline constexpr struct Titan : CelestialBody<"Titan", Saturn> {
+inline constexpr struct Titan final : CelestialBody<"Titan", planets::Saturn> {
 } Titan;
 
-} // namespace planets
+} // namespace moons
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Titan>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Titan>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;

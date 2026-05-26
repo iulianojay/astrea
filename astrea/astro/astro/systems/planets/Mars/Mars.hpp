@@ -41,7 +41,7 @@ namespace planets {
  *
  * This class provides properties and methods specific to Mars, including its physical and orbital parameters.
  */
-inline constexpr struct Mars : CelestialBody<"Mars", barycenters::SolarSystemBarycenter> {
+inline constexpr struct Mars final : CelestialBody<"Mars", barycenters::SolarSystemBarycenter> {
 } Mars;
 
 } // namespace planets
@@ -108,7 +108,7 @@ template <>
 inline constexpr auto get_position_at<planets::Mars>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Mars, axes::icrf);
-    return get_position_at_impl<MarsEphemerisTable, frame>(date);
+    return get_position_at_impl<ephemerides::MarsEphemerisTable, frame>(date);
 }
 
 /**
@@ -121,7 +121,7 @@ template <>
 inline constexpr auto get_velocity_at<planets::Mars>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Mars, axes::icrf);
-    return get_velocity_at_impl<MarsEphemerisTable, frame>(date);
+    return get_velocity_at_impl<ephemerides::MarsEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_MARS_EPHEMERIS

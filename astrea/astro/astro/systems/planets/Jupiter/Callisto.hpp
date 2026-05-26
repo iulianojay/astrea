@@ -26,7 +26,8 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
+
+namespace moons {
 
 /**
  * @class Callisto
@@ -34,13 +35,13 @@ namespace planets {
  *
  * This class provides properties and methods specific to Callisto, including its physical and orbital parameters.
  */
-inline constexpr struct Callisto : CelestialBody<"Callisto", Jupiter> {
+inline constexpr struct Callisto final : CelestialBody<"Callisto", planets::Jupiter> {
 } Callisto;
 
-} // namespace planets
+} // namespace moons
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Callisto>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Callisto>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;

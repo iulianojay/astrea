@@ -31,7 +31,7 @@
 namespace astrea {
 namespace astro {
 
-namespace planets {
+namespace moons {
 
 /**
  * @class Moon
@@ -39,13 +39,13 @@ namespace planets {
  *
  * This class provides properties and methods specific to the Moon, including its physical and orbital parameters.
  */
-inline constexpr struct Moon : CelestialBody<"Moon", Earth> {
+inline constexpr struct Moon final : CelestialBody<"Moon", planets::Earth> {
 } Moon;
 
-} // namespace planets
+} // namespace moons
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Moon>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Moon>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
@@ -91,10 +91,10 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
  * @return RadiusVector<frames::earth::icrf> The position of the Moon at the given date.
  */
 template <>
-inline constexpr auto get_position_at<planets::Moon>(const Date& date)
+inline constexpr auto get_position_at<moons::Moon>(const Date& date)
 {
-    constexpr auto frame = get_parent_frame(planets::Moon, axes::icrf);
-    return get_position_at_impl<planets::MoonEphemerisTable, frame>(date);
+    constexpr auto frame = get_parent_frame(moons::Moon, axes::icrf);
+    return get_position_at_impl<ephemerides::MoonEphemerisTable, frame>(date);
 }
 
 /**
@@ -104,10 +104,10 @@ inline constexpr auto get_position_at<planets::Moon>(const Date& date)
  * @return VelocityVector<frames::earth::icrf> The velocity of the Moon at the given date.
  */
 template <>
-inline constexpr auto get_velocity_at<planets::Moon>(const Date& date)
+inline constexpr auto get_velocity_at<moons::Moon>(const Date& date)
 {
-    constexpr auto frame = get_parent_frame(planets::Moon, axes::icrf);
-    return get_velocity_at_impl<planets::MoonEphemerisTable, frame>(date);
+    constexpr auto frame = get_parent_frame(moons::Moon, axes::icrf);
+    return get_velocity_at_impl<ephemerides::MoonEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS

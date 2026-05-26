@@ -48,10 +48,10 @@ struct EarthParameters {
  */
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 // SPICE ephemeris data for Earth is relative to the Earth-Moon barycenter, so we set the parent frame accordingly.
-inline constexpr struct Earth : CelestialBody<"Earth", barycenters::EarthMoonBarycenter> {
+inline constexpr struct Earth final : CelestialBody<"Earth", barycenters::EarthMoonBarycenter> {
 } Earth;
 #else
-inline constexpr struct Earth : CelestialBody<"Earth", barycenters::SolarSystemBarycenter> {
+inline constexpr struct Earth final : CelestialBody<"Earth", barycenters::SolarSystemBarycenter> {
 } Earth;
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
@@ -117,7 +117,7 @@ template <>
 inline constexpr auto get_position_at<planets::Earth>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Earth, axes::icrf);
-    return get_position_at_impl<planets::EarthFromEmbEphemerisTable, frame>(date);
+    return get_position_at_impl<ephemerides::EarthFromEmbEphemerisTable, frame>(date);
 }
 
 /**
@@ -130,7 +130,7 @@ template <>
 inline constexpr auto get_velocity_at<planets::Earth>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Earth, axes::icrf);
-    return get_velocity_at_impl<planets::EarthFromEmbEphemerisTable, frame>(date);
+    return get_velocity_at_impl<ephemerides::EarthFromEmbEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS

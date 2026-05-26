@@ -39,7 +39,7 @@ namespace planets {
  *
  * This class provides properties and methods specific to Mercury, including its physical and orbital parameters.
  */
-inline constexpr struct Mercury : CelestialBody<"Mercury", barycenters::SolarSystemBarycenter> {
+inline constexpr struct Mercury final : CelestialBody<"Mercury", barycenters::SolarSystemBarycenter> {
 } Mercury;
 
 } // namespace planets
@@ -94,7 +94,7 @@ template <>
 inline constexpr auto get_position_at<planets::Mercury>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Mercury, axes::icrf);
-    return get_position_at_impl<MercuryEphemerisTable, frame>(date);
+    return get_position_at_impl<ephemerides::MercuryEphemerisTable, frame>(date);
 }
 
 /**
@@ -107,7 +107,7 @@ template <>
 inline constexpr auto get_velocity_at<planets::Mercury>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Mercury, axes::icrf);
-    return get_velocity_at_impl<MercuryEphemerisTable, frame>(date);
+    return get_velocity_at_impl<ephemerides::MercuryEphemerisTable, frame>(date);
 }
 
 #endif // ASTREA_BUILD_MERCURY_EPHEMERIS

@@ -26,7 +26,8 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
+
+namespace moons {
 
 /**
  * @class Ganymede
@@ -34,13 +35,13 @@ namespace planets {
  *
  * This class provides properties and methods specific to Ganymede, including its physical and orbital parameters.
  */
-inline constexpr struct Ganymede : CelestialBody<"Ganymede", Jupiter> {
+inline constexpr struct Ganymede final : CelestialBody<"Ganymede", planets::Jupiter> {
 } Ganymede;
 
-} // namespace planets
+} // namespace moons
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Ganymede>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Ganymede>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;

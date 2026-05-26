@@ -30,7 +30,8 @@
 
 namespace astrea {
 namespace astro {
-namespace planets {
+
+namespace moons {
 
 /**
  * @class Triton
@@ -38,13 +39,13 @@ namespace planets {
  *
  * This class provides properties and methods specific to Triton, including its physical and orbital parameters.
  */
-inline constexpr struct Triton : CelestialBody<"Triton", Neptune> {
+inline constexpr struct Triton final : CelestialBody<"Triton", planets::Neptune> {
 } Triton;
 
-} // namespace planets
+} // namespace moons
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Triton>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Triton>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
