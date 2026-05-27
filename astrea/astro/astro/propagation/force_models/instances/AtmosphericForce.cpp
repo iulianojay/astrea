@@ -52,7 +52,7 @@ using mp_units::si::unit_symbols::s;
 Perturbation AtmosphericForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    static constexpr auto center            = decltype(frames::primary)::origin;
+    static constexpr auto center            = frames::primary.origin;
     const AngularVelocity& bodyRotationRate = get_rotation_rate<center>();
 
     const RadiusVector<frames::primary>& r   = state.get_position();

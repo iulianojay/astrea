@@ -51,8 +51,8 @@ class Geodetic {
     friend std::ostream& operator<<(std::ostream&, Geodetic<body> const&);
 
   public:
-    static constexpr auto body          = _body_;                        //!< The celestial body of this Geodetic state.
-    static constexpr auto _icrf_frame_  = get_body_icrf_frame<_body_>(); //!< Inertial frame for the body.
+    static constexpr auto body          = _body_; //!< The celestial body of this Geodetic state.
+    static constexpr auto _icrf_frame_  = make_frame(_body_, axes::icrf); //!< Inertial frame for the body.
     static constexpr auto _fixed_frame_ = get_body_fixed_frame<_body_>(); //!< Body-fixed rotating frame.
 
     /**
@@ -82,12 +82,19 @@ class Geodetic {
     }
 
     /**
-     * @brief Constructor for Geodetic from a radius vector in the body's inertial frame.
+     * @brief Constructor for Geodetic from a radius vector in any inertial frame centred on the same body.
      *
-     * @param r Radius vector in the body's ICRF frame.
+     * Accepts any frame whose origin matches _body_ and whose axis is the ICRF axis, so that both
+     * the canonical named frame (e.g. frames::earth::icrf) and the synthetic frame produced by
+     * make_frame(_body_, axes::icrf) are accepted.
+     *
+     * @tparam _frame_ The inertial frame of the radius vector.
+     * @param r Radius vector in an ICRF-axis frame centred on the body.
      * @param date Epoch date used to convert inertial to body-fixed.
      */
-    Geodetic(const RadiusVector<_icrf_frame_>& r, const Date& date);
+    template <auto _frame_>
+        requires(equivalent(_frame_, make_frame(_body_, axes::icrf)))
+    Geodetic(const RadiusVector<_frame_>& r, const Date& date);
 
     /**
      * @brief Constructor for Geodetic from a radius vector in the body-fixed frame.
@@ -296,7 +303,7 @@ class Geodetic {
  * @return The latitude, longitude, and altitude as a tuple.
  */
 template <IsFrame auto frame>
-    requires(IsFixedRotatingFrame<decltype(frame)>)
+    requires(IsBodyFixedFrame<decltype(frame)>)
 std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geodetic(const RadiusVector<frame>& rBodyFixed)
 {
     using mp_units::si::unit_symbols::km;
@@ -350,7 +357,7 @@ std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geodetic(const RadiusVe
  * @return The radius vector in ECEF coordinates.
  */
 template <IsFrame auto frame>
-    requires(IsFixedRotatingFrame<decltype(frame)>)
+    requires(IsBodyFixedFrame<decltype(frame)>)
 RadiusVector<frame> convert_geodetic_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt)
 {
     const Unitless sinLat = sin(lat);

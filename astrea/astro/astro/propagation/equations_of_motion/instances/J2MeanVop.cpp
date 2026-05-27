@@ -49,9 +49,9 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
 ) const
 {
     // Extract
-    const GravParam mu     = get_mu<decltype(frames::primary)::origin>();
-    const auto J2          = get_j2<decltype(frames::primary)::origin>();
-    const auto equitorialR = get_equitorial_radius<decltype(frames::primary)::origin>();
+    const GravParam mu     = get_mu<frames::primary.origin>();
+    const auto J2          = get_j2<frames::primary.origin>();
+    const auto equitorialR = get_equitorial_radius<frames::primary.origin>();
 
     const Keplerian<frames::primary> elements = state.in_element_set<Keplerian<frames::primary>>();
     const Distance& a                         = elements.get_semimajor();

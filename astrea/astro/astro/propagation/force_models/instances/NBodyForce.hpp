@@ -63,7 +63,7 @@ class NBodyForce : public PerturbingForce {
         const RadiusVector<frames::primary>& rCenterToVehicle = state.get_position();
 
         // Center body properties
-        constexpr static auto center = decltype(frames::primary)::origin;
+        constexpr static auto center = frames::primary.origin;
 
         // Reset perturbation
         AccelerationVector<frames::primary> accelNBody{ Acceleration::zero() };

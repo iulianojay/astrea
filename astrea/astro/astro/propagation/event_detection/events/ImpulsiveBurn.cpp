@@ -65,8 +65,7 @@ Unitless ImpulsiveBurn::measure_altitude_event(const Time& time, const State& st
 {
     const Cartesian<frames::primary> elements = state.in_element_set<Cartesian<frames::primary>>();
 
-    const Distance altitude =
-        Geodetic<decltype(frames::primary)::origin>(elements.get_position(), state.get_epoch()).get_altitude();
+    const Distance altitude = Geodetic<frames::primary.origin>(elements.get_position(), state.get_epoch()).get_altitude();
 
     return (altitude - _triggerAltitude) / (1.0 * km);
 }

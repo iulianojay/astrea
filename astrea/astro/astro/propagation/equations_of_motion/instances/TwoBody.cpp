@@ -41,7 +41,7 @@ OrbitalElementPartials TwoBody::compute_dynamics(
 ) const
 {
     // Extract
-    const GravParam mu = get_mu<decltype(frames::primary)::origin>();
+    const GravParam mu = get_mu<frames::primary.origin>();
 
     const RadiusVector<frames::primary> r   = state.get_position();
     const VelocityVector<frames::primary> v = state.get_velocity();
@@ -75,7 +75,7 @@ StateTransitionMatrix TwoBody::compute_stm(const State& state, const Vehicle& ve
         dax/dy = 3*mu*x*y/r^5
         dax/dz = 3*mu*x*z/r^5
     */
-    const GravParam mu = get_mu<decltype(frames::primary)::origin>();
+    const GravParam mu = get_mu<frames::primary.origin>();
 
     const auto r  = state.get_position();
     const auto& x = r[0];

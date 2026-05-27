@@ -30,13 +30,12 @@ static_assert(frames::sun::icrf.origin == star::Sun);
 // Axis checks: axis member is a typed struct value — compare types.
 static_assert(frames::earth::icrf.axis == axes::icrf);
 static_assert(frames::earth::j2000.axis == axes::j2000);
-static_assert(IsFixedRotatingFrame<std::remove_cv_t<decltype(frames::earth::earth_fixed)>>);
+static_assert(IsBodyFixedFrame<std::remove_cv_t<decltype(frames::earth::earth_fixed)>>);
 
 // Parent checks: parent member is a constexpr value — compare decltype.
-static_assert(frames::earth::earth_fixed.parent == frames::earth::icrf);
 static_assert(!IsDerivedFrame<std::remove_cv_t<decltype(frames::earth::icrf)>>);
 static_assert(!IsDerivedFrame<std::remove_cv_t<decltype(frames::earth::j2000)>>);
-static_assert(IsDerivedFrame<std::remove_cv_t<decltype(frames::earth::earth_fixed)>>);
+static_assert(!IsDerivedFrame<std::remove_cv_t<decltype(frames::earth::earth_fixed)>>);
 
 static_assert(IsFrame<std::remove_cv_t<decltype(frames::earth::icrf)>>);
 static_assert(IsFrame<std::remove_cv_t<decltype(frames::earth::j2000)>>);
@@ -51,9 +50,9 @@ static_assert(IsInertialFrame<std::remove_cv_t<decltype(frames::mars::icrf)>>);
 // cannot be asserted until the concept is properly implemented.
 // static_assert(!IsInertialFrame<std::remove_cv_t<decltype(frames::earth::earth_fixed)>>);
 
-static_assert(IsFixedRotatingFrame<std::remove_cv_t<decltype(frames::earth::earth_fixed)>>);
-static_assert(!IsFixedRotatingFrame<std::remove_cv_t<decltype(frames::earth::icrf)>>);
-static_assert(!IsFixedRotatingFrame<std::remove_cv_t<decltype(frames::earth::j2000)>>);
+static_assert(IsBodyFixedFrame<std::remove_cv_t<decltype(frames::earth::earth_fixed)>>);
+static_assert(!IsBodyFixedFrame<std::remove_cv_t<decltype(frames::earth::icrf)>>);
+static_assert(!IsBodyFixedFrame<std::remove_cv_t<decltype(frames::earth::j2000)>>);
 
 static_assert(IsStaticFrame<std::remove_cv_t<decltype(frames::earth::icrf)>>);
 static_assert(IsStaticFrame<std::remove_cv_t<decltype(frames::earth::j2000)>>);

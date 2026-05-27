@@ -95,23 +95,5 @@ struct Frame<_name_, _origin_, _axis_, _parent_> : detail::FrameBase {
     static constexpr auto parent = _parent_; //!< The parent frame of this frame.
 };
 
-
-template <mp_units::symbol_text, auto...>
-struct FixedRotatingFrame;
-
-/**
- * @brief Fixed rotating frame without a parent frame (root body-fixed frame).
- */
-template <mp_units::symbol_text _name_, IsOrigin auto _origin_, IsAxis auto _axis_, Coordinate _rotation_coordinate_>
-struct FixedRotatingFrame<_name_, _origin_, _axis_, _rotation_coordinate_>
-    : Frame<_name_, _origin_, FixedRotatingAxis<_axis_, _rotation_coordinate_>{}> {};
-
-/**
- * @brief Fixed rotating frame with a parent frame.
- */
-template <mp_units::symbol_text _name_, IsOrigin auto _origin_, IsAxis auto _axis_, Coordinate _rotation_coordinate_, IsFrame auto _parent_>
-struct FixedRotatingFrame<_name_, _origin_, _axis_, _rotation_coordinate_, _parent_>
-    : Frame<_name_, _origin_, FixedRotatingAxis<_axis_, _rotation_coordinate_>{}, _parent_> {};
-
 } // namespace astro
 } // namespace astrea

@@ -478,24 +478,6 @@ inline constexpr Angle julian_date_to_body_sidereal_time(JulianDate date)
 }
 
 /**
- * @brief Get the body-centered inertial (ICRF) frame for a celestial body.
- *
- * Returns a frame centred at @p body with ICRF axes. For well-known bodies
- * (e.g. Earth) an explicit specialisation in the appropriate platform header
- * returns the canonical named frame instance so that existing DCM
- * specialisations are reused. For all other bodies a synthetic frame is
- * returned, which works with the generic body-fixed DCM template.
- *
- * @tparam _body_ The celestial body NTTP.
- * @return A constexpr frame value centred at _body_ with icrf axes.
- */
-template <IsCelestialBody auto body>
-inline consteval auto get_body_icrf_frame()
-{
-    return Frame<decltype(body)::name + mp_units::symbol_text{ "_icrf" }, body, axes::icrf>{};
-}
-
-/**
  * @brief Get the body-fixed rotating frame for a celestial body.
  *
  * Returns a Z-rotation body-fixed frame for @p body. For well-known bodies
@@ -504,12 +486,12 @@ inline consteval auto get_body_icrf_frame()
  * specialisations are reused.
  *
  * @tparam body The celestial body NTTP.
- * @return A constexpr FixedRotatingFrame value centred at body.
+ * @return A constexpr BodyFixedFrame value centred at body.
  */
 template <IsCelestialBody auto body>
 inline consteval auto get_body_fixed_frame()
 {
-    return FixedRotatingFrame<decltype(body)::name + mp_units::symbol_text{ "_fixed" }, body, axes::icrf, Coordinate::Z>{};
+    return BodyFixedFrame<body.name + mp_units::symbol_text{ "_fixed" }, body>{};
 }
 
 } // namespace astro

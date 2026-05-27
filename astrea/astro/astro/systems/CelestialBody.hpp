@@ -26,6 +26,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/Axis.hpp>
+#include <astro/frames/BodyFixedFrame.hpp>
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/Frame.hpp>
 #include <astro/frames/Origin.hpp>
@@ -42,11 +43,22 @@ struct CelestialBodyBase {};
 
 } // namespace detail
 
+// Reference axes defined by the International Reference Pole (IPM) and the International Reference Meridian (IRM).
+template <mp_units::symbol_text _name_>
+struct ReferenceAxes : Axis<_name_ + mp_units::symbol_text{ " reference axes" }> {};
+
+// Geocentric axes defined by the geographic pole and meridian.
+template <mp_units::symbol_text _name_>
+struct GeocentricAxes : Axis<_name_ + mp_units::symbol_text{ " geocentric axes" }> {};
+
 /**
  * @brief CelestialBody class represents a celestial body in an astrodynamics system.
  */
 template <mp_units::symbol_text _name_, IsOrigin auto _parent_>
-struct CelestialBody : Origin<_name_, _parent_>, detail::CelestialBodyBase {};
+struct CelestialBody : Origin<_name_, _parent_>, detail::CelestialBodyBase {
+    static constexpr ReferenceAxes<_name_> reference_axes{};
+    static constexpr GeocentricAxes<_name_> geocentric_axes{};
+};
 
 // ---------------------------------------------------------------------------
 // Primary template declarations.

@@ -58,8 +58,8 @@ inline constexpr DirectionCosineMatrix<frame, frame_u> get_dcm(const Date& date)
  */
 template <IsFrame auto in_frame, IsFrame auto out_frame>
     requires(
-        in_frame.origin == out_frame.origin && in_frame.axis == axes::icrf &&
-        IsFixedRotatingFrame<decltype(out_frame)> && in_frame.origin != star::Sun && out_frame.origin != planets::Earth
+        in_frame.origin == out_frame.origin && in_frame.axis == axes::icrf && IsBodyFixedFrame<decltype(out_frame)> &&
+        in_frame.origin != star::Sun && out_frame.origin != planets::Earth
     )
 inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
 {

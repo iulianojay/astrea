@@ -51,7 +51,7 @@ class Geocentric {
 
   public:
     static constexpr auto body          = _body_; //!< The celestial body of this Geocentric state.
-    static constexpr auto _icrf_frame_  = get_body_icrf_frame<_body_>();  //!< Inertial frame for the body.
+    static constexpr auto _icrf_frame_  = make_frame(_body_, axes::icrf); //!< Inertial frame for the body.
     static constexpr auto _fixed_frame_ = get_body_fixed_frame<_body_>(); //!< Body-fixed rotating frame.
 
     /**
@@ -81,12 +81,17 @@ class Geocentric {
     }
 
     /**
-     * @brief Constructor for Geocentric from an inertial radius vector.
+     * @brief Constructor for Geocentric from any inertial radius vector centred on the same body.
      *
-     * @param r Radius vector in the body's inertial frame (position)
-     * @param date Date for the frame transformation
+     * Accepts any frame whose origin matches _body_ and whose axis is the ICRF axis.
+     *
+     * @tparam _frame_ The inertial frame of the radius vector.
+     * @param r Radius vector in an ICRF-axis frame centred on the body.
+     * @param date Date for the frame transformation.
      */
-    Geocentric(const RadiusVector<_icrf_frame_>& r, const Date& date);
+    template <auto _frame_>
+        requires(equivalent(_frame_, make_frame(_body_, axes::icrf)))
+    Geocentric(const RadiusVector<_frame_>& r, const Date& date);
 
     /**
      * @brief Constructor for Geocentric from a body-fixed radius vector.
@@ -313,7 +318,7 @@ Distance calculate_geocentric_radius(const Angle& lat)
  * @return The latitude, longitude, and altitude as a tuple.
  */
 template <IsFrame auto frame>
-    requires(IsFixedRotatingFrame<decltype(frame)>)
+    requires(IsBodyFixedFrame<decltype(frame)>)
 std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geocentric(const RadiusVector<frame>& rEcef)
 {
     const Distance& x = rEcef[0];
@@ -342,7 +347,7 @@ std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geocentric(const Radius
  * @return The radius vector in ECEF coordinates.
  */
 template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<decltype(_frame_)>)
+    requires(IsBodyFixedFrame<decltype(_frame_)>)
 RadiusVector<_frame_> convert_geocentric_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt)
 {
     const Distance rGeocentric = calculate_geocentric_radius<decltype(_frame_)::origin>(lat);

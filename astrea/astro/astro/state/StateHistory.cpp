@@ -115,7 +115,7 @@ State StateHistory::get_state_at(const Date& date, const bool allowApproximation
     const State& preState              = *std::prev(iter);
     const OrbitalElements& preElements = preState.get_elements();
 
-    const auto& mu = get_mu<decltype(frames::primary)::origin>();
+    const auto& mu = get_mu<frames::primary.origin>();
 
     // Normalize to initial date for simplicity
     const Time time0 = 0.0 * astrea::detail::time_unit;

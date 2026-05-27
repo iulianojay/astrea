@@ -33,7 +33,9 @@ namespace astrea {
 namespace astro {
 
 template <IsCelestialBody auto _body_>
-Cylindrical<_body_>::Cylindrical(const RadiusVector<_icrf_frame_>& rIcrf, const Date& date)
+template <auto _frame_>
+    requires(equivalent(_frame_, make_frame(_body_, axes::icrf)))
+Cylindrical<_body_>::Cylindrical(const RadiusVector<_frame_>& rIcrf, const Date& date)
 {
     *this = Cylindrical<_body_>(rIcrf.template in_frame<_fixed_frame_>(date));
 }

@@ -45,7 +45,7 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
 {
     // Extract
     const Date date              = state.get_epoch();
-    static constexpr auto center = decltype(frames::primary)::origin;
+    static constexpr auto center = frames::primary.origin;
 
     const RadiusVector<frames::primary> rCenterToVehicle = state.get_position();
     const Distance rMagCenterToVehicle                   = rCenterToVehicle.norm();

@@ -54,7 +54,7 @@ class Spherical {
 
   public:
     static constexpr auto body          = _body_; //!< The celestial body of this Spherical state.
-    static constexpr auto _icrf_frame_  = get_body_icrf_frame<_body_>();  //!< Inertial frame for the body.
+    static constexpr auto _icrf_frame_  = make_frame(_body_, axes::icrf); //!< Inertial frame for the body.
     static constexpr auto _fixed_frame_ = get_body_fixed_frame<_body_>(); //!< Body-fixed rotating frame.
 
     /**
@@ -84,12 +84,17 @@ class Spherical {
     }
 
     /**
-     * @brief Constructor for Spherical from an inertial radius vector.
+     * @brief Constructor for Spherical from any inertial radius vector centred on the same body.
      *
-     * @param r Radius vector in the body's inertial frame
-     * @param date Date for the frame transformation
+     * Accepts any frame whose origin matches _body_ and whose axis is the ICRF axis.
+     *
+     * @tparam _frame_ The inertial frame of the radius vector.
+     * @param r Radius vector in an ICRF-axis frame centred on the body.
+     * @param date Date for the frame transformation.
      */
-    Spherical(const RadiusVector<_icrf_frame_>& r, const Date& date);
+    template <auto _frame_>
+        requires(equivalent(_frame_, make_frame(_body_, axes::icrf)))
+    Spherical(const RadiusVector<_frame_>& r, const Date& date);
 
     /**
      * @brief Constructor for Spherical from a body-fixed radius vector.
@@ -181,7 +186,7 @@ class Spherical {
  * @return The range, inclination, and azimuth as a tuple.
  */
 template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<decltype(_frame_)>)
+    requires(IsBodyFixedFrame<decltype(_frame_)>)
 std::tuple<Distance, Angle, Angle> convert_body_fixed_to_spherical(const RadiusVector<_frame_>& rFixed)
 {
     using mp_units::angular::unit_symbols::rad;
@@ -211,7 +216,7 @@ std::tuple<Distance, Angle, Angle> convert_body_fixed_to_spherical(const RadiusV
  * @return The radius vector in the body-fixed frame.
  */
 template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<decltype(_frame_)>)
+    requires(IsBodyFixedFrame<decltype(_frame_)>)
 RadiusVector<_frame_> convert_spherical_to_body_fixed(const Distance& range, const Angle& inclination, const Angle& azimuth)
 {
     return RadiusVector<_frame_>(range * sin(inclination) * cos(azimuth), range * sin(inclination) * sin(azimuth), range * cos(inclination));

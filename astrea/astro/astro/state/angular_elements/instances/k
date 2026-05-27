@@ -1,0 +1,2 @@
+CartesianVector<km, FixedRotatingFrame<symbol_text<11, 11>{ fixed_u8string<11>{ "Earth_fixed" }, fixed_string<11>{ "Earth_fixed" } }, planets::Earth(), axes::icrf(), Coordinate::Z>()>
+    CartesianVector<km, frames::earth::earth_fixed()>

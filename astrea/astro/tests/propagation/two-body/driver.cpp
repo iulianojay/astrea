@@ -41,7 +41,7 @@ using mp_units::si::unit_symbols::W;
 class TwoBodyPropagationTest : public testing::Test {
   public:
     TwoBodyPropagationTest() :
-        mu(get_mu<decltype(frames::primary)::origin>()),
+        mu(get_mu<frames::primary.origin>()),
         propTime(weeks(1)),
         epoch(J2000)
     {

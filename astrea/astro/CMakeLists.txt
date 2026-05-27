@@ -76,7 +76,7 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.fwd.hpp
 
     ${ASTRO_BASE}/frames/instances/body_centered_inertial_frames.hpp
-    ${ASTRO_BASE}/frames/instances/fixed_rotating_frames.hpp
+    ${ASTRO_BASE}/frames/instances/body_fixed_frames.hpp
     ${ASTRO_BASE}/frames/instances/defined_rotations.hpp
     
     ${ASTRO_BASE}/frames/dynamic/EastNorthUp.hpp

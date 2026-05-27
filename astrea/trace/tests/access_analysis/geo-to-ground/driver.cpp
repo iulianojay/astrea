@@ -48,7 +48,7 @@ using mp_units::si::unit_symbols::W;
 class GeoToGroundAccessTest : public testing::Test {
   public:
     GeoToGroundAccessTest() :
-        mu(get_mu<decltype(frames::primary)::origin>()),
+        mu(get_mu<frames::primary.origin>()),
         semimajorGeo(42164.0 * km),
         propTime(weeks(1)),
         resolution(minutes(1))

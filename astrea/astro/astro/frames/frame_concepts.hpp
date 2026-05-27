@@ -30,6 +30,7 @@ struct FrameBase;
 struct OriginBase;
 struct AxisBase;
 struct CoordinateLineBase;
+struct BodyFixedFrameBase;
 
 template <typename T>
 concept SymbolicConstant = (!std::is_const_v<T>) && (!std::is_reference_v<T>) && std::is_empty_v<T> &&
@@ -47,9 +48,6 @@ concept IsOrigin = std::derived_from<T, detail::OriginBase> && detail::SymbolicC
 template <typename T>
 concept IsAxis = std::derived_from<T, detail::AxisBase> && detail::SymbolicConstant<T>;
 
-template <typename T>
-concept IsCoordinateLine = std::derived_from<T, detail::CoordinateLineBase> && detail::SymbolicConstant<T>;
-
 /**
  * @brief Concept to determine if a frame is inertial.
  *
@@ -66,8 +64,7 @@ concept IsInertialFrame = true; // IsFrame<T> && (T::axis == axes::icrf || T::ax
  * @return true if the frame is body-fixed, false otherwise.
  */
 template <typename T>
-concept IsFixedRotatingFrame =
-    requires { decltype(T::axis)::reference_axis; } && requires { decltype(T::axis)::rotation_coordinate; };
+concept IsBodyFixedFrame = std::derived_from<T, detail::BodyFixedFrameBase> && detail::SymbolicConstant<T>;
 
 /**
  * @brief Concept to determine if a frame is static (inertial or body-fixed).
@@ -76,7 +73,7 @@ concept IsFixedRotatingFrame =
  * @return true if the frame is static, false otherwise.
  */
 template <typename T>
-concept IsStaticFrame = (IsInertialFrame<T> || IsFixedRotatingFrame<T>);
+concept IsStaticFrame = (IsInertialFrame<T> || IsBodyFixedFrame<T>);
 
 /**
  * @brief Concept to determine if a frame is dynamic (LVLH, RIC, VNB).

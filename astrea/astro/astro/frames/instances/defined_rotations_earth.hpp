@@ -7,7 +7,7 @@
  * generic templates in defined_rotations.hpp can be included mid-way through
  * the include graph (e.g. via dynamic_frames.hpp) without pulling in
  * frames::earth::*, which are only complete once body_centered_inertial_frames.hpp
- * and fixed_rotating_frames.hpp have both finished.
+ * and body_fixed_frames.hpp have both finished.
  *
  * frames.hpp includes this file AFTER its two frame-instance headers, so by
  * the time these specialisations are compiled all earth frame types are complete.
@@ -40,12 +40,9 @@ namespace astro {
  * HasDcm<earth::icrf, earth::earth_fixed> (and similar requires-expressions) can find this
  * overload.  GCC 15 does not locate explicit template<> specialisations when checking
  * concept requires-expressions with constrained-auto NTTP arguments.
- *
- * This covers both the canonical frames::earth::icrf and any synthetic frame types produced
- * by get_body_icrf_frame<planets::Earth>() so that Geodetic<planets::Earth> works correctly.
  */
 template <IsFrame auto in_frame, IsFrame auto out_frame>
-    requires(in_frame.origin == out_frame.origin && in_frame.origin == planets::Earth && in_frame.axis == axes::icrf && IsFixedRotatingFrame<decltype(out_frame)>)
+    requires(in_frame.origin == out_frame.origin && in_frame.origin == planets::Earth && in_frame.axis == axes::icrf && IsBodyFixedFrame<decltype(out_frame)>)
 inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
 {
     const Angle gst = julian_date_to_sidereal_time(date.jd());
@@ -65,27 +62,6 @@ inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems_f
     const auto rEarth2Moon = get_relative_position<planets::Earth, moons::Moon>(date);
     const Angle lambda     = atan2(rEarth2Moon[1], rEarth2Moon[0]);
     return DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems_fixed>::Z(-lambda);
-}
-
-/**
- * @brief Earth-specific specialisation of get_body_icrf_frame returning the canonical Earth ICRF frame.
- *
- * Using the named frame ensures the existing get_dcm specialisations are matched
- * during frame-conversion look-ups.
- */
-template <>
-inline consteval auto get_body_icrf_frame<planets::Earth>()
-{
-    return frames::earth::icrf;
-}
-
-/**
- * @brief Earth-specific specialisation of get_body_fixed_frame returning the canonical ECEF frame.
- */
-template <>
-inline consteval auto get_body_fixed_frame<planets::Earth>()
-{
-    return frames::earth::earth_fixed;
 }
 
 } // namespace astro

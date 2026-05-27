@@ -54,7 +54,7 @@ class Cylindrical {
 
   public:
     static constexpr auto body          = _body_; //!< The celestial body of this Cylindrical state.
-    static constexpr auto _icrf_frame_  = get_body_icrf_frame<_body_>();  //!< Inertial frame for the body.
+    static constexpr auto _icrf_frame_  = make_frame(_body_, axes::icrf); //!< Inertial frame for the body.
     static constexpr auto _fixed_frame_ = get_body_fixed_frame<_body_>(); //!< Body-fixed rotating frame.
 
     /**
@@ -84,12 +84,17 @@ class Cylindrical {
     }
 
     /**
-     * @brief Constructor for Cylindrical from an inertial radius vector.
+     * @brief Constructor for Cylindrical from any inertial radius vector centred on the same body.
      *
-     * @param r Radius vector in the body's inertial frame
-     * @param date Date for the frame transformation
+     * Accepts any frame whose origin matches _body_ and whose axis is the ICRF axis.
+     *
+     * @tparam _frame_ The inertial frame of the radius vector.
+     * @param r Radius vector in an ICRF-axis frame centred on the body.
+     * @param date Date for the frame transformation.
      */
-    Cylindrical(const RadiusVector<_icrf_frame_>& r, const Date& date);
+    template <auto _frame_>
+        requires(equivalent(_frame_, make_frame(_body_, axes::icrf)))
+    Cylindrical(const RadiusVector<_frame_>& r, const Date& date);
 
     /**
      * @brief Constructor for Cylindrical from a body-fixed radius vector.
@@ -181,7 +186,7 @@ class Cylindrical {
  * @return The range, azimuth, and elevation as a tuple.
  */
 template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<decltype(_frame_)>)
+    requires(IsBodyFixedFrame<decltype(_frame_)>)
 std::tuple<Distance, Angle, Distance> convert_body_fixed_to_cylindrical(const RadiusVector<_frame_>& rFixed)
 {
     using mp_units::si::unit_symbols::km;
@@ -202,7 +207,7 @@ std::tuple<Distance, Angle, Distance> convert_body_fixed_to_cylindrical(const Ra
  * @return The radius vector in the body-fixed frame.
  */
 template <IsFrame auto _frame_>
-    requires(IsFixedRotatingFrame<decltype(_frame_)>)
+    requires(IsBodyFixedFrame<decltype(_frame_)>)
 RadiusVector<_frame_> convert_cylindrical_to_body_fixed(const Distance& range, const Angle& azimuth, const Distance& elevation)
 {
     return RadiusVector<_frame_>(range * cos(azimuth), range * sin(azimuth), elevation);
