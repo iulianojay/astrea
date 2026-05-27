@@ -93,20 +93,20 @@ TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
 TEST_F(AtmosphericForceTest, MartianAtmosphere)
 {
     AtmosphericForce martianAtmosphere;
-    State state(Cartesian<frames::mars::icrf>::LEO(get_mu<Mars>()), epoch);
+    State state(Cartesian<frames::mars::icrf>::LEO(get_mu<planets::Mars>()), epoch);
     ASSERT_NO_THROW(martianAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }
 
 TEST_F(AtmosphericForceTest, VenutianAtmosphere)
 {
     AtmosphericForce venutianAtmosphere;
-    State state(Cartesian<frames::venus::icrf>::LEO(get_mu<Venus>()), epoch);
+    State state(Cartesian<frames::venus::icrf>::LEO(get_mu<planets::Venus>()), epoch);
     ASSERT_NO_THROW(venutianAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }
 
 TEST_F(AtmosphericForceTest, TitanAtmosphere)
 {
     AtmosphericForce titanAtmosphere;
-    State state(Cartesian<frames::titan::icrf>::LEO(get_mu<Titan>()), epoch);
+    State state(Cartesian<frames::titan::icrf>::LEO(get_mu<moons::Titan>()), epoch);
     ASSERT_NO_THROW(titanAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }

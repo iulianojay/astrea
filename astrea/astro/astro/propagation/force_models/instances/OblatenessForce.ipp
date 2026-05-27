@@ -282,7 +282,7 @@ AccelerationVector<frames::primary>
     }
 
     // Correct
-    const auto muOverR = mu * oneOverR; // km^2/s^2
+    const GravParam muOverR = mu * oneOverR; // km^2/s^2
 
     const auto dVdr   = -dVdrOuterSum * (muOverR * oneOverR); // km/s^2
     const auto dVdlat = dVdlatOuterSum * muOverR;             // km^2/s^2

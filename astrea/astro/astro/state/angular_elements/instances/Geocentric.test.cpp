@@ -46,7 +46,7 @@ class GeocentricTest : public testing::Test {
     Angle latitude    = 0.0 * astrea::detail::angle_unit;
     Angle longitude   = 0.0 * astrea::detail::angle_unit;
     Distance altitude = 10000.0 * km;
-    Geocentric<Earth> state{ latitude, longitude, altitude };
+    Geocentric<planets::Earth> state{ latitude, longitude, altitude };
 };
 
 int main(int argc, char** argv)
@@ -64,53 +64,56 @@ TEST_F(GeocentricTest, Stream)
     ASSERT_EQ(ss.str(), expected.str());
 }
 
-TEST_F(GeocentricTest, DefaultConstructor) { ASSERT_NO_THROW(Geocentric<Earth>()); }
+TEST_F(GeocentricTest, DefaultConstructor) { ASSERT_NO_THROW(Geocentric<planets::Earth>()); }
 
 TEST_F(GeocentricTest, UnitlessConstructor)
 {
-    Geocentric<Earth> zeroState;
+    Geocentric<planets::Earth> zeroState;
     ASSERT_TRUE(math::nearly_equal(zeroState.get_altitude(), Distance(0.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(zeroState.get_latitude(), Angle(0.0 * rad), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(zeroState.get_longitude(), Angle(0.0 * rad), REL_TOL));
 
-    Geocentric<Earth> scaledState(2.0 * one);
+    Geocentric<planets::Earth> scaledState(2.0 * one);
     ASSERT_TRUE(math::nearly_equal(scaledState.get_altitude(), Distance(2.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(scaledState.get_latitude(), Angle(2.0 * rad), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(scaledState.get_longitude(), Angle(2.0 * rad), REL_TOL));
 }
 
-TEST_F(GeocentricTest, ParameterizedConstructor) { ASSERT_NO_THROW(Geocentric<Earth>(latitude, longitude, altitude)); }
+TEST_F(GeocentricTest, ParameterizedConstructor)
+{
+    ASSERT_NO_THROW(Geocentric<planets::Earth>(latitude, longitude, altitude));
+}
 
 TEST_F(GeocentricTest, EciVectorConstructor)
 {
     RadiusVector<frames::earth::icrf> rEci{ 7000.0 * km, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Geocentric<Earth>(rEci, epoch));
+    ASSERT_NO_THROW(Geocentric<planets::Earth>(rEci, epoch));
 }
 
 TEST_F(GeocentricTest, EcefVectorConstructor)
 {
     RadiusVector<frames::earth::earth_fixed> rEcef{ 7000.0 * km, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Geocentric<Earth>(rEcef));
+    ASSERT_NO_THROW(Geocentric<planets::Earth>(rEcef));
 }
 
 TEST_F(GeocentricTest, OrbitalElementsConstructor)
 {
     Keplerian<frames::earth::icrf> kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
-    ASSERT_NO_THROW(Geocentric<Earth>(kep, epoch));
+    ASSERT_NO_THROW(Geocentric<planets::Earth>(kep, epoch));
 }
 
-TEST_F(GeocentricTest, CopyConstructor) { ASSERT_NO_THROW(Geocentric<Earth> newGeo(state)); }
+TEST_F(GeocentricTest, CopyConstructor) { ASSERT_NO_THROW(Geocentric<planets::Earth> newGeo(state)); }
 
-TEST_F(GeocentricTest, MoveConstructor) { ASSERT_NO_THROW(Geocentric<Earth> newGeo(std::move(state))); }
+TEST_F(GeocentricTest, MoveConstructor) { ASSERT_NO_THROW(Geocentric<planets::Earth> newGeo(std::move(state))); }
 
-TEST_F(GeocentricTest, CopyAssignment) { ASSERT_NO_THROW(Geocentric<Earth> newGeo = state); }
+TEST_F(GeocentricTest, CopyAssignment) { ASSERT_NO_THROW(Geocentric<planets::Earth> newGeo = state); }
 
-TEST_F(GeocentricTest, MoveAssignment) { ASSERT_NO_THROW(Geocentric<Earth> newGeo = std::move(state)); }
+TEST_F(GeocentricTest, MoveAssignment) { ASSERT_NO_THROW(Geocentric<planets::Earth> newGeo = std::move(state)); }
 
 TEST_F(GeocentricTest, EqualityOperator)
 {
-    Geocentric<Earth> sameState{ latitude, longitude, altitude };
-    Geocentric<Earth> diffState{ latitude, longitude, altitude + 1.0 * km };
+    Geocentric<planets::Earth> sameState{ latitude, longitude, altitude };
+    Geocentric<planets::Earth> diffState{ latitude, longitude, altitude + 1.0 * km };
     ASSERT_TRUE(state == sameState);
     ASSERT_FALSE(state == diffState);
     ASSERT_FALSE(state != sameState);
@@ -119,8 +122,8 @@ TEST_F(GeocentricTest, EqualityOperator)
 
 TEST_F(GeocentricTest, AdditionOperator)
 {
-    Geocentric<Earth> other{ 1.0 * rad, 1.0 * rad, 1.0 * km };
-    Geocentric<Earth> result = state + other;
+    Geocentric<planets::Earth> other{ 1.0 * rad, 1.0 * rad, 1.0 * km };
+    Geocentric<planets::Earth> result = state + other;
     ASSERT_EQ(result.get_altitude(), altitude + 1.0 * km);
     ASSERT_EQ(result.get_latitude(), latitude + 1.0 * rad);
     ASSERT_EQ(result.get_longitude(), longitude + 1.0 * rad);
@@ -128,7 +131,7 @@ TEST_F(GeocentricTest, AdditionOperator)
 
 TEST_F(GeocentricTest, AdditionAssignmentOperator)
 {
-    Geocentric<Earth> other{ 1.0 * rad, 1.0 * rad, 1.0 * km };
+    Geocentric<planets::Earth> other{ 1.0 * rad, 1.0 * rad, 1.0 * km };
     state += other;
     ASSERT_EQ(state.get_altitude(), altitude + 1.0 * km);
     ASSERT_EQ(state.get_latitude(), latitude + 1.0 * rad);
@@ -137,8 +140,8 @@ TEST_F(GeocentricTest, AdditionAssignmentOperator)
 
 TEST_F(GeocentricTest, SubtractionOperator)
 {
-    Geocentric<Earth> other{ 1.0 * rad, 1.0 * rad, 1.0 * km };
-    Geocentric<Earth> result = state - other;
+    Geocentric<planets::Earth> other{ 1.0 * rad, 1.0 * rad, 1.0 * km };
+    Geocentric<planets::Earth> result = state - other;
     ASSERT_EQ(result.get_altitude(), altitude - 1.0 * km);
     ASSERT_EQ(result.get_latitude(), latitude - 1.0 * rad);
     ASSERT_EQ(result.get_longitude(), longitude - 1.0 * rad);
@@ -146,7 +149,7 @@ TEST_F(GeocentricTest, SubtractionOperator)
 
 TEST_F(GeocentricTest, SubtractionAssignmentOperator)
 {
-    Geocentric<Earth> other{ 1.0 * rad, 1.0 * rad, 1.0 * km };
+    Geocentric<planets::Earth> other{ 1.0 * rad, 1.0 * rad, 1.0 * km };
     state -= other;
     ASSERT_EQ(state.get_altitude(), altitude - 1.0 * km);
     ASSERT_EQ(state.get_latitude(), latitude - 1.0 * rad);
@@ -155,8 +158,8 @@ TEST_F(GeocentricTest, SubtractionAssignmentOperator)
 
 TEST_F(GeocentricTest, MultiplicationOperator)
 {
-    Unitless multiplier      = 2.0 * one;
-    Geocentric<Earth> result = state * multiplier;
+    Unitless multiplier               = 2.0 * one;
+    Geocentric<planets::Earth> result = state * multiplier;
     ASSERT_EQ(result.get_altitude(), altitude * multiplier);
     ASSERT_EQ(result.get_latitude(), latitude * multiplier);
     ASSERT_EQ(result.get_longitude(), longitude * multiplier);
@@ -173,8 +176,8 @@ TEST_F(GeocentricTest, MultiplicationAssignmentOperator)
 
 TEST_F(GeocentricTest, DivisionOperator)
 {
-    Unitless divisor         = 2.0 * one;
-    Geocentric<Earth> result = state / divisor;
+    Unitless divisor                  = 2.0 * one;
+    Geocentric<planets::Earth> result = state / divisor;
     ASSERT_EQ(result.get_altitude(), altitude / divisor);
     ASSERT_EQ(result.get_latitude(), latitude / divisor);
     ASSERT_EQ(result.get_longitude(), longitude / divisor);
@@ -191,7 +194,7 @@ TEST_F(GeocentricTest, DivisionAssignmentOperator)
 
 TEST_F(GeocentricTest, DivisionByGeocentricOperator)
 {
-    Geocentric<Earth> other{ 2.0 * rad, 2.0 * rad, 2.0 * km };
+    Geocentric<planets::Earth> other{ 2.0 * rad, 2.0 * rad, 2.0 * km };
     std::vector<Unitless> result = state / other;
     ASSERT_EQ(result.size(), 3);
     ASSERT_EQ(result[0], latitude / other.get_latitude());
@@ -201,11 +204,11 @@ TEST_F(GeocentricTest, DivisionByGeocentricOperator)
 
 TEST_F(GeocentricTest, Interpolate)
 {
-    Geocentric<Earth> other{ 1.5 * rad, 1.5 * rad, 20000.0 * km };
-    Time thisTime            = seconds(0);
-    Time otherTime           = seconds(10);
-    Time targetTime          = seconds(5);
-    Geocentric<Earth> result = state.interpolate(thisTime, otherTime, other, targetTime);
+    Geocentric<planets::Earth> other{ 1.5 * rad, 1.5 * rad, 20000.0 * km };
+    Time thisTime                     = seconds(0);
+    Time otherTime                    = seconds(10);
+    Time targetTime                   = seconds(5);
+    Geocentric<planets::Earth> result = state.interpolate(thisTime, otherTime, other, targetTime);
     ASSERT_TRUE(math::nearly_equal(result.get_altitude(), Distance(15000.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_latitude(), Angle(0.75 * rad), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_longitude(), Angle(0.75 * rad), REL_TOL));

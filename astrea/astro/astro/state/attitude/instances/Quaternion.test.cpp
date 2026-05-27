@@ -28,6 +28,7 @@
 #include <astro/frames/DirectionCosineMatrix.hpp>
 #include <astro/state/attitude/instances/EulerAngles.hpp>
 #include <astro/state/attitude/instances/Quaternion.hpp>
+#include <astro/systems/celestial_bodies.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
@@ -37,9 +38,12 @@ using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
 
 // Define some dummy frame types for testing template functionality
-struct TestFrame1 {};
-struct TestFrame2 {};
-struct TestFrame3 {};
+constexpr inline struct TestFrame1 final : Frame<"TestFrame1", planets::Earth, axes::icrf> {
+} TestFrame1;
+constexpr inline struct TestFrame2 final : Frame<"TestFrame2", planets::Mars, axes::icrf> {
+} TestFrame2;
+constexpr inline struct TestFrame3 final : Frame<"TestFrame3", planets::Jupiter, axes::icrf> {
+} TestFrame3;
 
 // Define a complete chain of transformations: Frame1 -> Frame2 -> Frame3 -> Frame1
 using Q12 = Quaternion<TestFrame1, TestFrame2>;

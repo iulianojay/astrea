@@ -36,7 +36,7 @@ class OrbitalElementsTest : public testing::Test {
     {
         _mu           = get_mu<planets::Earth>();
         _cartElements = Cartesian<frames::earth::icrf>::LEO(_mu);
-        _keplElements = Keplerian::LEO();
+        _keplElements = Keplerian<frames::earth::icrf>::LEO();
         _equiElements = Equinoctial::LEO(_mu);
     }
 
@@ -259,8 +259,8 @@ TEST_F(OrbitalElementsTest, InterpolateCartesian)
 
 TEST_F(OrbitalElementsTest, InterpolateKeplerian)
 {
-    Keplerian<frames::earth::icrf> original = Keplerian::LEO();
-    Keplerian<frames::earth::icrf> final    = Keplerian::LEO() * Unitless(1.1 * one);
+    Keplerian<frames::earth::icrf> original = Keplerian<frames::earth::icrf>::LEO();
+    Keplerian<frames::earth::icrf> final    = Keplerian<frames::earth::icrf>::LEO() * Unitless(1.1 * one);
 
     OrbitalElements result   = _keplElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), _mu, 0.5 * s);
     OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, _mu, 0.5 * s);
@@ -309,7 +309,7 @@ TEST_F(OrbitalElementsTest, Stream)
     ss.str("");
     ss << _keplElements;
     exp.str("");
-    exp << Keplerian::LEO();
+    exp << Keplerian<frames::earth::icrf>::LEO();
     ASSERT_EQ(ss.str(), exp.str());
 
     ss.str("");

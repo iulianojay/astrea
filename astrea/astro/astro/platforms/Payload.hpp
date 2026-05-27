@@ -181,18 +181,19 @@ class Payload {
      */
     CartesianVector<Distance, frames::earth::icrf> get_inertial_position(const Date& date) const
     {
-        // Assumes the payload is fixed
-        static const auto parentToPayload = get_parameters().get_attachment_point();
+        // // Assumes the payload is fixed
+        // static const auto parentToPayload = get_parameters().get_attachment_point();
 
-        // Get current RIC
-        const auto parentPosition = get_parent()->get_inertial_position(date);
-        const auto parentVelocity = get_parent()->get_inertial_velocity(date);
-        const auto ricFrame       = frames::dynamic::ric.instantaneous(parentPosition, parentVelocity);
+        // // Get current RIC
+        // const auto parentPosition = get_parent()->get_inertial_position(date);
+        // const auto parentVelocity = get_parent()->get_inertial_velocity(date);
+        // const auto ricFrame       = frames::dynamic::ric.instantaneous(parentPosition, parentVelocity);
 
-        // Rotate to inertial
-        const auto parentToPayloadInInertial = ricFrame.rotate_out_of_this_frame(parentToPayload, date);
+        // // Rotate to inertial
+        // const auto parentToPayloadInInertial = ricFrame.rotate_out_of_this_frame(parentToPayload, date);
 
-        return parentPosition + parentToPayloadInInertial;
+        // return parentPosition + parentToPayloadInInertial;
+        return {};
     }
 
     /**
@@ -204,7 +205,7 @@ class Payload {
     CartesianVector<Velocity, frames::earth::icrf> get_inertial_velocity(const Date& date) const
     {
         // Assumes the payload is fixed
-        return get_parent()->get_inertial_velocity(date);
+        return {}; // get_parent()->get_inertial_velocity(date);
     }
 
   protected:

@@ -46,7 +46,7 @@ class SphericalTest : public testing::Test {
     Angle azimuth     = 0.0 * astrea::detail::angle_unit;
     Angle inclination = 0.0 * astrea::detail::angle_unit;
     Distance range    = 10000.0 * km;
-    Spherical<Earth> state{ range, inclination, azimuth };
+    Spherical<planets::Earth> state{ range, inclination, azimuth };
 };
 
 
@@ -66,53 +66,56 @@ TEST_F(SphericalTest, Stream)
     ASSERT_EQ(ss.str(), expected.str());
 }
 
-TEST_F(SphericalTest, DefaultConstructor) { ASSERT_NO_THROW(Spherical<Earth>()); }
+TEST_F(SphericalTest, DefaultConstructor) { ASSERT_NO_THROW(Spherical<planets::Earth>()); }
 
 TEST_F(SphericalTest, UnitlessConstructor)
 {
-    Spherical<Earth> zeroState;
+    Spherical<planets::Earth> zeroState;
     ASSERT_TRUE(math::nearly_equal(zeroState.get_range(), Distance(0.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(zeroState.get_inclination(), Angle(0.0 * rad), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(zeroState.get_azimuth(), Angle(0.0 * rad), REL_TOL));
 
-    Spherical<Earth> scaledState(2.0 * one);
+    Spherical<planets::Earth> scaledState(2.0 * one);
     ASSERT_TRUE(math::nearly_equal(scaledState.get_range(), Distance(2.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(scaledState.get_inclination(), Angle(2.0 * rad), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(scaledState.get_azimuth(), Angle(2.0 * rad), REL_TOL));
 }
 
-TEST_F(SphericalTest, ParameterizedConstructor) { ASSERT_NO_THROW(Spherical<Earth>(range, inclination, azimuth)); }
+TEST_F(SphericalTest, ParameterizedConstructor)
+{
+    ASSERT_NO_THROW(Spherical<planets::Earth>(range, inclination, azimuth));
+}
 
 TEST_F(SphericalTest, EciVectorConstructor)
 {
     RadiusVector<frames::earth::icrf> rEci{ range, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Spherical<Earth>(rEci, epoch));
+    ASSERT_NO_THROW(Spherical<planets::Earth>(rEci, epoch));
 }
 
 TEST_F(SphericalTest, EcefVectorConstructor)
 {
     RadiusVector<frames::earth::earth_fixed> rEcef{ range, 0.0 * km, 0.0 * km };
-    ASSERT_NO_THROW(Spherical<Earth>(rEcef));
+    ASSERT_NO_THROW(Spherical<planets::Earth>(rEcef));
 }
 
 TEST_F(SphericalTest, OrbitalElementsConstructor)
 {
     Keplerian<frames::earth::icrf> kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
-    ASSERT_NO_THROW(Spherical<Earth>(kep, epoch));
+    ASSERT_NO_THROW(Spherical<planets::Earth>(kep, epoch));
 }
 
-TEST_F(SphericalTest, CopyConstructor) { ASSERT_NO_THROW(Spherical<Earth> newSph(state)); }
+TEST_F(SphericalTest, CopyConstructor) { ASSERT_NO_THROW(Spherical<planets::Earth> newSph(state)); }
 
-TEST_F(SphericalTest, MoveConstructor) { ASSERT_NO_THROW(Spherical<Earth> newSph(std::move(state))); }
+TEST_F(SphericalTest, MoveConstructor) { ASSERT_NO_THROW(Spherical<planets::Earth> newSph(std::move(state))); }
 
-TEST_F(SphericalTest, CopyAssignment) { ASSERT_NO_THROW(Spherical<Earth> newSph = state); }
+TEST_F(SphericalTest, CopyAssignment) { ASSERT_NO_THROW(Spherical<planets::Earth> newSph = state); }
 
-TEST_F(SphericalTest, MoveAssignment) { ASSERT_NO_THROW(Spherical<Earth> newSph = std::move(state)); }
+TEST_F(SphericalTest, MoveAssignment) { ASSERT_NO_THROW(Spherical<planets::Earth> newSph = std::move(state)); }
 
 TEST_F(SphericalTest, EqualityOperator)
 {
-    Spherical<Earth> sameState{ range, inclination, azimuth };
-    Spherical<Earth> diffState{ range + 1.0 * km, inclination, azimuth };
+    Spherical<planets::Earth> sameState{ range, inclination, azimuth };
+    Spherical<planets::Earth> diffState{ range + 1.0 * km, inclination, azimuth };
     ASSERT_TRUE(state == sameState);
     ASSERT_FALSE(state == diffState);
     ASSERT_FALSE(state != sameState);
@@ -121,8 +124,8 @@ TEST_F(SphericalTest, EqualityOperator)
 
 TEST_F(SphericalTest, AdditionOperator)
 {
-    Spherical<Earth> other{ 1.0 * km, 1.0 * rad, 1.0 * rad };
-    Spherical<Earth> result = state + other;
+    Spherical<planets::Earth> other{ 1.0 * km, 1.0 * rad, 1.0 * rad };
+    Spherical<planets::Earth> result = state + other;
     ASSERT_EQ(result.get_range(), range + 1.0 * km);
     ASSERT_EQ(result.get_inclination(), inclination + 1.0 * rad);
     ASSERT_EQ(result.get_azimuth(), azimuth + 1.0 * rad);
@@ -130,7 +133,7 @@ TEST_F(SphericalTest, AdditionOperator)
 
 TEST_F(SphericalTest, AdditionAssignmentOperator)
 {
-    Spherical<Earth> other{ 1.0 * km, 1.0 * rad, 1.0 * rad };
+    Spherical<planets::Earth> other{ 1.0 * km, 1.0 * rad, 1.0 * rad };
     state += other;
     ASSERT_EQ(state.get_range(), range + 1.0 * km);
     ASSERT_EQ(state.get_inclination(), inclination + 1.0 * rad);
@@ -139,8 +142,8 @@ TEST_F(SphericalTest, AdditionAssignmentOperator)
 
 TEST_F(SphericalTest, SubtractionOperator)
 {
-    Spherical<Earth> other{ 1.0 * km, 1.0 * rad, 1.0 * rad };
-    Spherical<Earth> result = state - other;
+    Spherical<planets::Earth> other{ 1.0 * km, 1.0 * rad, 1.0 * rad };
+    Spherical<planets::Earth> result = state - other;
     ASSERT_EQ(result.get_range(), range - 1.0 * km);
     ASSERT_EQ(result.get_inclination(), inclination - 1.0 * rad);
     ASSERT_EQ(result.get_azimuth(), azimuth - 1.0 * rad);
@@ -148,7 +151,7 @@ TEST_F(SphericalTest, SubtractionOperator)
 
 TEST_F(SphericalTest, SubtractionAssignmentOperator)
 {
-    Spherical<Earth> other{ 1.0 * km, 1.0 * rad, 1.0 * rad };
+    Spherical<planets::Earth> other{ 1.0 * km, 1.0 * rad, 1.0 * rad };
     state -= other;
     ASSERT_EQ(state.get_range(), range - 1.0 * km);
     ASSERT_EQ(state.get_inclination(), inclination - 1.0 * rad);
@@ -157,8 +160,8 @@ TEST_F(SphericalTest, SubtractionAssignmentOperator)
 
 TEST_F(SphericalTest, MultiplicationOperator)
 {
-    Unitless multiplier     = 2.0 * one;
-    Spherical<Earth> result = state * multiplier;
+    Unitless multiplier              = 2.0 * one;
+    Spherical<planets::Earth> result = state * multiplier;
     ASSERT_EQ(result.get_range(), range * multiplier);
     ASSERT_EQ(result.get_inclination(), inclination * multiplier);
     ASSERT_EQ(result.get_azimuth(), azimuth * multiplier);
@@ -175,8 +178,8 @@ TEST_F(SphericalTest, MultiplicationAssignmentOperator)
 
 TEST_F(SphericalTest, DivisionOperator)
 {
-    Unitless divisor        = 2.0 * one;
-    Spherical<Earth> result = state / divisor;
+    Unitless divisor                 = 2.0 * one;
+    Spherical<planets::Earth> result = state / divisor;
     ASSERT_EQ(result.get_range(), range / divisor);
     ASSERT_EQ(result.get_inclination(), inclination / divisor);
     ASSERT_EQ(result.get_azimuth(), azimuth / divisor);
@@ -193,7 +196,7 @@ TEST_F(SphericalTest, DivisionAssignmentOperator)
 
 TEST_F(SphericalTest, DivisionBySphericalOperator)
 {
-    Spherical<Earth> other{ 2.0 * km, 2.0 * rad, 2.0 * rad };
+    Spherical<planets::Earth> other{ 2.0 * km, 2.0 * rad, 2.0 * rad };
     std::vector<Unitless> result = state / other;
     ASSERT_EQ(result.size(), 3);
     ASSERT_EQ(result[0], range / other.get_range());
@@ -221,11 +224,11 @@ TEST_F(SphericalTest, GetPositionEci)
 
 TEST_F(SphericalTest, Interpolate)
 {
-    Spherical<Earth> other{ 20000.0 * km, 1.5 * rad, 1.5 * rad };
-    Time thisTime           = seconds(0);
-    Time otherTime          = seconds(10);
-    Time targetTime         = seconds(5);
-    Spherical<Earth> result = state.interpolate(thisTime, otherTime, other, targetTime);
+    Spherical<planets::Earth> other{ 20000.0 * km, 1.5 * rad, 1.5 * rad };
+    Time thisTime                    = seconds(0);
+    Time otherTime                   = seconds(10);
+    Time targetTime                  = seconds(5);
+    Spherical<planets::Earth> result = state.interpolate(thisTime, otherTime, other, targetTime);
     ASSERT_TRUE(math::nearly_equal(result.get_range(), Distance(15000.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_inclination(), Angle(0.75 * rad), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_azimuth(), Angle(0.75 * rad), REL_TOL));

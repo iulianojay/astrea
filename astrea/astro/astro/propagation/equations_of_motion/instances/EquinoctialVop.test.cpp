@@ -42,7 +42,7 @@ class EquinoctialTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
-    const auto mu = get_mu<frames::primary::origin>();
+    const GravParam mu = get_mu<frames::primary.origin>();
     ForceVector<frames::earth::icrf> noForce;
     Vehicle sat;
     Date epoch;
@@ -65,10 +65,10 @@ TEST_F(EquinoctialTest, GetExpectedSet)
 
 TEST_F(EquinoctialTest, Derivative)
 {
-    Equinoctial<frames::earth::icrf> equi0 = Equinoctial::LEO(mu);
+    Equinoctial<frames::earth::icrf> equi0 = Equinoctial<frames::earth::icrf>::LEO(mu);
     EquinoctialPartial<frames::earth::icrf> expected =
-        EquinoctialPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0010780076129942077 * rad / s);
-    State state(equi0, epoch, sys);
+        EquinoctialPartial<frames::earth::icrf>(0.0 * km / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0010780076129942077 * rad / s);
+    State state(equi0, epoch);
 
     OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
     ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));

@@ -43,13 +43,13 @@ class KeplerianTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
 
     Date epoch;
-    const auto mu = get_mu<frames::primary::origin>();
-    Distance a    = 7000.0 * km;
-    Unitless ecc  = 0.01 * one;
-    Angle inc     = 98.0 * deg;
-    Angle raan    = 40.0 * deg;
-    Angle w       = 80.0 * deg;
-    Angle theta   = 0.0 * deg;
+    const GravParam mu = get_mu<frames::primary.origin>();
+    Distance a         = 7000.0 * km;
+    Unitless ecc       = 0.01 * one;
+    Angle inc          = 98.0 * deg;
+    Angle raan         = 40.0 * deg;
+    Angle w            = 80.0 * deg;
+    Angle theta        = 0.0 * deg;
     Keplerian<frames::earth::icrf> state{ a, ecc, inc, raan, w, theta };
 };
 
@@ -112,36 +112,36 @@ TEST_F(KeplerianTest, EquinoctialConstructor)
 
 TEST_F(KeplerianTest, LEOStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian::LEO());
-    auto leo = Keplerian::LEO();
+    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::LEO());
+    auto leo = Keplerian<frames::earth::icrf>::LEO();
     ASSERT_GT(leo.get_semimajor().numerical_value_in(km), 0.0);
 }
 
 TEST_F(KeplerianTest, LMEOStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian::LMEO());
-    auto lmeo = Keplerian::LMEO();
+    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::LMEO());
+    auto lmeo = Keplerian<frames::earth::icrf>::LMEO();
     ASSERT_GT(lmeo.get_semimajor().numerical_value_in(km), 0.0);
 }
 
 TEST_F(KeplerianTest, GPSStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian::GPS());
-    auto gps = Keplerian::GPS();
+    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::GPS());
+    auto gps = Keplerian<frames::earth::icrf>::GPS();
     ASSERT_GT(gps.get_semimajor().numerical_value_in(km), 0.0);
 }
 
 TEST_F(KeplerianTest, HMEOStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian::HMEO());
-    auto hmeo = Keplerian::HMEO();
+    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::HMEO());
+    auto hmeo = Keplerian<frames::earth::icrf>::HMEO();
     ASSERT_GT(hmeo.get_semimajor().numerical_value_in(km), 0.0);
 }
 
 TEST_F(KeplerianTest, GEOStaticMethod)
 {
-    ASSERT_NO_THROW(Keplerian::GEO());
-    auto geo = Keplerian::GEO();
+    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>::GEO());
+    auto geo = Keplerian<frames::earth::icrf>::GEO();
     ASSERT_GT(geo.get_semimajor().numerical_value_in(km), 0.0);
 }
 

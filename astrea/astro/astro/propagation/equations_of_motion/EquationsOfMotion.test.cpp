@@ -57,7 +57,9 @@ class MockEquationsOfMotion : public EquationsOfMotion {
     ) const override
     {
         // Return simple mock dynamics (zero acceleration for testing)
-        return CartesianPartial(0.0 * km / s, 0.0 * km / s, 0.0 * km / s, 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s));
+        return CartesianPartial<frames::earth::icrf>(
+            0.0 * km / s, 0.0 * km / s, 0.0 * km / s, 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
+        );
     }
 
     constexpr std::size_t get_expected_set_id() const override
@@ -73,8 +75,8 @@ class EquationsOfMotionTest : public testing::Test {
     void SetUp() override
     {
         // Set up test state with basic Cartesian<frames::primary> elements
-        cart  = Cartesian<frames::primary>::LEO(get_mu<frames::primary::origin>());
-        state = State(cart, epoch, sys);
+        cart  = Cartesian<frames::primary>::LEO(get_mu<frames::primary.origin>());
+        state = State(cart, epoch);
     }
 
     const Unitless REL_TOL = 1.0e-6;
@@ -83,7 +85,6 @@ class EquationsOfMotionTest : public testing::Test {
     ForceVector<frames::primary> noForce;
     TorqueVector<frames::primary> noTorque;
     Vehicle vehicle;
-    CelestialBody sys;
     Date epoch;
     Cartesian<frames::primary> cart;
     State state;

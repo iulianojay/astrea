@@ -107,7 +107,7 @@ class Cylindrical {
     template <IsOrbitalElements T>
     Cylindrical(const T& elements, const Date& date)
     {
-        *this = Cylindrical<_body_>(Cartesian(elements).get_position().template in_frame<_fixed_frame_>(date));
+        *this = Cylindrical<_body_>(Cartesian<_icrf_frame_>(elements).get_position().template in_frame<_fixed_frame_>(date));
     }
 
     /**

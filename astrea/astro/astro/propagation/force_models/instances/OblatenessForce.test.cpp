@@ -36,7 +36,7 @@ class OblatenessForceTest : public testing::Test {
   public:
     OblatenessForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
-        oblatenessForce(sys, 2, 2)
+        oblatenessForce(2, 2)
     {
     }
 
@@ -67,7 +67,7 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(OblatenessForceTest, DefaultConstructor) { ASSERT_NO_THROW(OblatenessForce(sys, 2, 0)); }
+TEST_F(OblatenessForceTest, DefaultConstructor) { ASSERT_NO_THROW(OblatenessForce(2, 0)); }
 
 // Vallado, Ex. 8.5
 TEST_F(OblatenessForceTest, ComputeForceValladoEx85)

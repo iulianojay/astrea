@@ -37,15 +37,15 @@ class MinimalTestPlatform : public PayloadPlatform<Thruster> {
     }
 
     // Required pure virtual function from PayloadPlatform
-    std::size_t get_id() const override { return _id; }
+    std::size_t get_id() const { return _id; }
 
     // Required pure virtual function from
-    std::string get_name() const override { return "MinimalTestPlatform"; }
-    CartesianVector<Distance, frames::earth::icrf> get_inertial_position(const Date& date) const override
+    std::string get_name() const { return "MinimalTestPlatform"; }
+    CartesianVector<Distance, frames::earth::icrf> get_inertial_position(const Date& date) const
     {
         return { 0.0 * km, 0.0 * km, 0.0 * km };
     }
-    CartesianVector<Velocity, frames::earth::icrf> get_inertial_velocity(const Date& date) const override
+    CartesianVector<Velocity, frames::earth::icrf> get_inertial_velocity(const Date& date) const
     {
         return { 0.0 * (km / s), 0.0 * (km / s), 0.0 * (km / s) };
     }

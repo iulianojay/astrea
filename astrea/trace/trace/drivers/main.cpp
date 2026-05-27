@@ -92,9 +92,9 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
     const Angle anchorAnomaly    = 0.0 * deg;
     const Angle crossTrackOffset = 7.39 * deg; // 900 km off track
     const Angle phasing          = 7.39 * deg;
-    Shell<Viewer> shell1(sys, startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan, anchorAnomaly);
-    Shell<Viewer> shell2(sys, startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan + crossTrackOffset, anchorAnomaly - phasing);
-    Shell<Viewer> shell3(sys, startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan, anchorAnomaly - 2.0 * phasing);
+    Shell<Viewer> shell1(startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan, anchorAnomaly);
+    Shell<Viewer> shell2(startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan + crossTrackOffset, anchorAnomaly - phasing);
+    Shell<Viewer> shell3(startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan, anchorAnomaly - 2.0 * phasing);
     Constellation<Viewer> constellation({ shell1, shell2, shell3 });
 
     // Add sensors

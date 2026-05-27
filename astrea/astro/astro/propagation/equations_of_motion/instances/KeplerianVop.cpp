@@ -51,8 +51,8 @@ OrbitalElementPartials KeplerianVop::compute_dynamics(
 ) const
 {
     // Extract
-    const auto mu    = get_mu<decltype(frames::primary)::origin>();
-    const Date& date = state.get_epoch();
+    const GravParam mu = get_mu<decltype(frames::primary)::origin>();
+    const Date& date   = state.get_epoch();
 
     const Keplerian<frames::primary> elements = state.in_element_set<Keplerian<frames::primary>>();
     const Distance& a                         = elements.get_semimajor();

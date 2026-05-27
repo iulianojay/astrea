@@ -36,10 +36,10 @@ using mp_units::si::unit_symbols::km;
 static const Unitless REL_TOL = 1.0e-10 * one;
 static const Unitless ABS_TOL = 1.0e-12 * one;
 
+static_assert(frames::HasDcm<frames::earth::icrf, frames::earth::j2000>);
 static_assert(frames::HasValidFrameTransformation<frames::earth::icrf, frames::earth::icrf>);
-static_assert(frames::HasValidFrameTransformation<frames::earth::icrf, frames::earth::j2000>);
+static_assert(frames::HasValidFrameTransformation<frames::earth::j2000, frames::earth::icrf>);
 static_assert(frames::HasValidFrameTransformation<frames::earth::icrf, frames::earth::earth_fixed>);
-static_assert(frames::HasDcm<frames::earth::j2000, frames::earth::icrf>);
 
 TEST(GetCenterOffset, SameOriginICRFReturnsZeroVector)
 {

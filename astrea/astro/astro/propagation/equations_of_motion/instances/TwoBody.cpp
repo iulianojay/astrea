@@ -41,14 +41,14 @@ OrbitalElementPartials TwoBody::compute_dynamics(
 ) const
 {
     // Extract
-    const auto mu = get_mu<decltype(frames::primary)::origin>();
+    const GravParam mu = get_mu<decltype(frames::primary)::origin>();
 
     const RadiusVector<frames::primary> r   = state.get_position();
     const VelocityVector<frames::primary> v = state.get_velocity();
 
     // mu/R^3
-    const Distance R        = r.norm();
-    const quantity muOverR3 = mu / pow<3>(R);
+    const Distance R    = r.norm();
+    const auto muOverR3 = mu / pow<3>(R);
 
     // Dynamics
     return CartesianPartial<frames::primary>(v, -muOverR3 * r + control / vehicle.get_mass());
@@ -75,7 +75,7 @@ StateTransitionMatrix TwoBody::compute_stm(const State& state, const Vehicle& ve
         dax/dy = 3*mu*x*y/r^5
         dax/dz = 3*mu*x*z/r^5
     */
-    const auto mu = get_mu<decltype(frames::primary)::origin>();
+    const GravParam mu = get_mu<decltype(frames::primary)::origin>();
 
     const auto r  = state.get_position();
     const auto& x = r[0];
@@ -83,8 +83,8 @@ StateTransitionMatrix TwoBody::compute_stm(const State& state, const Vehicle& ve
     const auto& z = r[2];
     const auto R  = r.norm();
 
-    quantity muOverR3      = mu / pow<3>(R);
-    quantity threeMuOverR5 = 3 * mu / pow<5>(R);
+    const auto muOverR3      = mu / pow<3>(R);
+    const auto threeMuOverR5 = 3 * mu / pow<5>(R);
 
     StateTransitionMatrix stm;
 

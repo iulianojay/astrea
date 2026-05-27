@@ -50,8 +50,8 @@ OrbitalElementPartials EquinoctialVop::compute_dynamics(
 ) const
 {
     // Get need representations
-    const auto mu                 = get_mu<decltype(frames::primary)::origin>();
-    const Date& date              = state.get_epoch();
+    const GravParam mu                             = get_mu<decltype(frames::primary)::origin>();
+    const Date& date                               = state.get_epoch();
     const Equinoctial<frames::primary> equinoctial = state.in_element_set<Equinoctial<frames::primary>>();
 
     // Extract

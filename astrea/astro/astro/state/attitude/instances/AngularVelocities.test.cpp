@@ -16,8 +16,8 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
+#include <astro/frames/dynamic/dynamic_frames.hpp>
 #include <astro/frames/frames.hpp>
-#include <astro/frames/instances/dynamic_body_frame.hpp>
 #include <astro/state/attitude/instances/AngularVelocities.hpp>
 #include <astro/utilities/conversions.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -29,9 +29,9 @@ using mp_units::angular::unit_symbols::deg;
 using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
-using TestFrame      = frames::dynamic::body;
-using TestOutFrame   = frames::earth::icrf;
-using TestAngularVel = AngularVelocities<TestFrame, TestOutFrame>;
+inline constexpr auto TestFrame    = frames::dynamic::body;
+inline constexpr auto TestOutFrame = frames::earth::icrf;
+using TestAngularVel               = AngularVelocities<TestFrame, TestOutFrame>;
 
 class AngularVelocitiesTest : public testing::Test {
   public:

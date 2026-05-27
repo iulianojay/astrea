@@ -56,7 +56,7 @@ class NBodyForceTest : public testing::Test {
 
     Spacecraft sat;
     Date epoch;
-    NBodyForce nBodyForce;
+    NBodyForce<planets::Earth, moons::Moon, star::Sun> nBodyForce;
 };
 
 
@@ -67,7 +67,7 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(NBodyForceTest, DefaultConstructor) { ASSERT_NO_THROW(NBodyForce()); }
+TEST_F(NBodyForceTest, DefaultConstructor) { ASSERT_NO_THROW(NBodyForce<>()); }
 
 // Vallado, Ex. 8.5
 TEST_F(NBodyForceTest, ComputeForceValladoEx85)

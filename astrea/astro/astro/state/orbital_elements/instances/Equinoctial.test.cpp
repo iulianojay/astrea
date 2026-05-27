@@ -43,13 +43,13 @@ class EquinoctialTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
 
     Date epoch;
-    const auto mu = get_mu<frames::primary::origin>();
-    Distance p    = 7000.0 * km;
-    Unitless f    = 0.01 * one;
-    Unitless g    = 0.0 * one;
-    Unitless h    = 0.0 * one;
-    Unitless k    = 0.0 * one;
-    Angle L       = 0.0 * rad;
+    const GravParam mu = get_mu<frames::primary.origin>();
+    Distance p         = 7000.0 * km;
+    Unitless f         = 0.01 * one;
+    Unitless g         = 0.0 * one;
+    Unitless h         = 0.0 * one;
+    Unitless k         = 0.0 * one;
+    Angle L            = 0.0 * rad;
     Equinoctial<frames::earth::icrf> state{ p, f, g, h, k, L };
 };
 

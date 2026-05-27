@@ -89,10 +89,18 @@ struct CartesianVector {
 
     // Explicitly deleted copy/move assignment/constructor to prevent implicit frame switches.
     template <IsFrame auto frame_u>
-    inline constexpr CartesianVector(const CartesianVector<Value_T, frame_u>& other) = delete;
+        requires(equivalent(frame, frame_u))
+    inline constexpr CartesianVector(const CartesianVector<Value_T, frame_u>& other) :
+        _vector{ other.get_x(), other.get_y(), other.get_z() }
+    {
+    }
 
     template <IsFrame auto frame_u>
-    inline constexpr CartesianVector(CartesianVector<Value_T, frame_u>&& other) = delete;
+        requires(equivalent(frame, frame_u))
+    inline constexpr CartesianVector(CartesianVector<Value_T, frame_u>&& other) :
+        _vector{ std::move(other.get_x()), std::move(other.get_y()), std::move(other.get_z()) }
+    {
+    }
 
     /**
      * @brief Copy constructor for CartesianVector that implicitly converts the unit.

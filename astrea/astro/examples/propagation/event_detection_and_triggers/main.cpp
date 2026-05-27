@@ -36,7 +36,7 @@ int main()
     // modifying the current vehicle or state.
 
     // Setup initial state
-    const auto mu = get_mu<planets::Earth>();
+    const GravParam mu = get_mu<planets::Earth>();
 
     const Date epoch; // Defaults to J2000
     const Keplerian<frames::earth::icrf> elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
@@ -101,7 +101,7 @@ int main()
     for (const auto& [eventName, dates] : eventTimes) {
         for (const Date& date : dates) {
             const Keplerian<frames::earth::icrf> elementsAfterBurn =
-                history.get_state_at(date + 60.0 * s).in_element_set<Keplerian<frames::earth::icrf>> ();
+                history.get_state_at(date + 60.0 * s).in_element_set<Keplerian<frames::earth::icrf>>();
             mp_units::quantity<min> orbitalPeriod =
                 TWO_PI * sqrt(pow<3>(elementsAfterBurn.get_semimajor()) / mu) / (isq_angle::cotes_angle);
             std::cout << "\t" << orbitalPeriod << std::endl;

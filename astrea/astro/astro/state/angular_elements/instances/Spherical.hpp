@@ -107,7 +107,7 @@ class Spherical {
     template <IsOrbitalElements T>
     Spherical(const T& elements, const Date& date)
     {
-        *this = Spherical<_body_>(Cartesian(elements).get_position().template in_frame<_fixed_frame_>(date));
+        *this = Spherical<_body_>(Cartesian<frames::earth::icrf>(elements).get_position().template in_frame<_fixed_frame_>(date));
     }
 
     /**

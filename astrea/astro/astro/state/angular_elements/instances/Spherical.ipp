@@ -41,7 +41,7 @@ Spherical<_body_>::Spherical(const RadiusVector<_icrf_frame_>& rIcrf, const Date
 template <IsCelestialBody auto _body_>
 Spherical<_body_>::Spherical(const RadiusVector<_fixed_frame_>& rFixed)
 {
-    std::tie(_range, _inclination, _azimuth) = convertbodyfixed_to_spherical(rFixed);
+    std::tie(_range, _inclination, _azimuth) = convert_body_fixed_to_spherical(rFixed);
 }
 
 // Copy constructor
@@ -178,7 +178,7 @@ Spherical<_body_>
 template <IsCelestialBody auto _body_>
 RadiusVector<Spherical<_body_>::_fixed_frame_> Spherical<_body_>::get_position() const
 {
-    return convert_spherical_tobodyfixed<_fixed_frame_>(_range, _inclination, _azimuth);
+    return convert_spherical_to_body_fixed<_fixed_frame_>(_range, _inclination, _azimuth);
 }
 
 template <IsCelestialBody auto _body_>
