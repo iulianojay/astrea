@@ -72,7 +72,7 @@
 
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/CelestialBodyParameters.hpp>
-#include <astro/systems/planets.hpp>
+#include <astro/systems/celestial_bodies.hpp>
 #include <astro/systems/system_utilities.hpp>
 
 #include <astro/time/Date.hpp>

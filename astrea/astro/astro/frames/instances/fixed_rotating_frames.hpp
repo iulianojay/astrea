@@ -20,7 +20,7 @@
 
 #include <astro/frames/Frame.hpp>
 #include <astro/frames/instances/body_centered_inertial_frames.hpp>
-#include <astro/systems/planets.hpp>
+#include <astro/systems/celestial_bodies.hpp>
 
 namespace astrea {
 namespace astro {

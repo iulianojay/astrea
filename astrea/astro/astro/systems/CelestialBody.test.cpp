@@ -20,7 +20,7 @@
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/CelestialBody.hpp>
-#include <astro/systems/planets.hpp>
+#include <astro/systems/celestial_bodies.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>

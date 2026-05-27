@@ -26,7 +26,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
-#include <astro/systems/planets/Earth/Earth.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <astro/time/Date.hpp>
 #include <units/units.hpp>
 #include <utilities/ProgressBar.hpp>

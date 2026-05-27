@@ -40,7 +40,7 @@
 #include <astro/types/enums.hpp>
 
 // NOTE: CoefficientPack and get_linear_expansion_coefficients must be declared BEFORE
-// including any header that pulls in planets.hpp, because planet headers specialise
+// including any header that pulls in celestial_bodies.hpp, because planet headers specialise
 // get_linear_expansion_coefficients.  The primary template must be visible first.
 namespace astrea {
 namespace astro {

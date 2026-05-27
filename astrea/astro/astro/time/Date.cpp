@@ -21,7 +21,7 @@
 
 #include <mp-units/math.h>
 
-#include <astro/systems/planets/Earth/Earth.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <astro/utilities/conversions.hpp>
 
 using namespace mp_units;

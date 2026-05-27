@@ -57,7 +57,7 @@ concept IsCoordinateLine = std::derived_from<T, detail::CoordinateLineBase> && d
  * @return true if the frame is inertial (ICRF or J2000), false otherwise.
  */
 template <typename T>
-concept IsInertialFrame = true; // TODO: Figure this out
+concept IsInertialFrame = true; // IsFrame<T> && (T::axis == axes::icrf || T::axis == axes::j2000); // TODO: Generalize this idea
 
 /**
  * @brief Concept to determine if a frame is body-fixed.

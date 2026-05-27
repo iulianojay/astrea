@@ -30,7 +30,7 @@
 #include <astro/frames/Frame.hpp>
 #include <astro/frames/transformations.hpp>
 #include <astro/state/angular_elements/instances/Geodetic.hpp>
-#include <astro/systems/planets.hpp>
+#include <astro/systems/celestial_bodies.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
@@ -42,7 +42,8 @@ namespace frames {
  */
 template <IsFrame auto _parent_>
 struct EastNorthUpTag : Frame<"enu", DynamicOrigin{}, DynamicAxis{}, _parent_> {
-    EastNorthUp<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const {
+    EastNorthUp<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const
+    {
         return EastNorthUp<_parent_>(r, v);
     }
 };
@@ -99,7 +100,6 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp<_frame_>, _frame_, enu_tag<
         );
     }
 };
-
 
 
 } // namespace frames

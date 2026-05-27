@@ -22,7 +22,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/systems/CelestialBody.hpp>
-#include <astro/systems/planets/Earth/Earth.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
 #include <ephemerides/Earth/MoonEphemerisTable.hpp>

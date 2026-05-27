@@ -71,7 +71,7 @@ inline Density find_atmospheric_density(const State& state)
 /// Primary template declarations for ephemeris position/velocity (NTTP-based).
 /// Explicit specialisations are provided in planet headers (Chebyshev ephemeris).
 /// The primary template definition (Keplerian fallback) is provided by
-/// celestial_reference_default_getters.hpp, which planets.hpp includes after all planet headers.
+/// celestial_reference_default_getters.hpp, which celestial_bodies.hpp includes after all planet headers.
 template <auto _body_>
 auto get_position_at(const Date& date);
 

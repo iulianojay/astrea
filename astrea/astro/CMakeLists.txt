@@ -62,7 +62,7 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.cpp
     ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.cpp
 
-    ${ASTRO_BASE}/systems/planets/JplEphemerisTable.cpp
+    ${ASTRO_BASE}/systems/celestial_bodies/JplEphemerisTable.cpp
 
     ${ASTRO_BASE}/time/Date.cpp
 
@@ -162,27 +162,27 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/systems/system_utilities.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
     ${ASTRO_BASE}/systems/CelestialBodyParameters.hpp
-    ${ASTRO_BASE}/systems/planets.hpp
-    ${ASTRO_BASE}/systems/planets/JplEphemerisTable.hpp
-    ${ASTRO_BASE}/systems/planets/Earth/Earth.hpp
-    ${ASTRO_BASE}/systems/planets/Earth/atmosphere/JacciaRoberts.hpp
-    ${ASTRO_BASE}/systems/planets/Earth/atmosphere/HarrisPriester.hpp
-    ${ASTRO_BASE}/systems/planets/Earth/Moon.hpp
-    ${ASTRO_BASE}/systems/planets/Mars/Deimos.hpp
-    ${ASTRO_BASE}/systems/planets/Mars/Mars.hpp
-    ${ASTRO_BASE}/systems/planets/Mars/Phobos.hpp
-    ${ASTRO_BASE}/systems/planets/Mercury/Mercury.hpp
-    ${ASTRO_BASE}/systems/planets/Neptune/Neptune.hpp
-    ${ASTRO_BASE}/systems/planets/Neptune/Triton.hpp
-    ${ASTRO_BASE}/systems/planets/Saturn/Iapetus.hpp
-    ${ASTRO_BASE}/systems/planets/Saturn/Rhea.hpp
-    ${ASTRO_BASE}/systems/planets/Saturn/Saturn.hpp
-    ${ASTRO_BASE}/systems/planets/Saturn/Titan.hpp
-    ${ASTRO_BASE}/systems/planets/Sun/Sun.hpp
-    ${ASTRO_BASE}/systems/planets/Uranus/Uranus.hpp
-    ${ASTRO_BASE}/systems/planets/Uranus/Titania.hpp
-    ${ASTRO_BASE}/systems/planets/Uranus/Oberon.hpp
-    ${ASTRO_BASE}/systems/planets/Venus/Venus.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/JplEphemerisTable.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Earth/Earth.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Earth/Moon.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Mars/Deimos.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Mars/Mars.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Mars/Phobos.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Mercury/Mercury.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Neptune/Neptune.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Neptune/Triton.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Saturn/Iapetus.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Saturn/Rhea.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Saturn/Saturn.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Saturn/Titan.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Sun/Sun.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Uranus/Uranus.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Uranus/Titania.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Uranus/Oberon.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Venus/Venus.hpp
 
     ${ASTRO_BASE}/time/Date.hpp
     ${ASTRO_BASE}/time/Interval.hpp

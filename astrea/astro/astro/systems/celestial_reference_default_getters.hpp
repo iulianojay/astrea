@@ -17,7 +17,7 @@
  *
  *   This file MUST be included AFTER all planet headers (and therefore after all
  *   get_position_at explicit specialisations) so that the linker can select the correct
- *   overload.  planets.hpp includes it automatically at the bottom.
+ *   overload.  celestial_bodies.hpp includes it automatically at the bottom.
  *
  * @date 2025-08-02
  *
@@ -47,7 +47,7 @@ namespace astro {
  * @brief Get the Keplerian elements of a celestial body at a specific date using a linear approximation.
  *
  * This uses the JPL approximate-positions algorithm:
- * https://ssd.jpl.nasa.gov/planets/approx_pos.html
+ * https://ssd.jpl.nasa.gov/celestial_bodies/approx_pos.html
  *
  * Bodies that have get_linear_expansion_coefficients specialised use the full
  * perturbation-corrected mean anomaly.  All other bodies fall back to the default

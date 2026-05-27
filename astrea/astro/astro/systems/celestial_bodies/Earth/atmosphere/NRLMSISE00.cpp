@@ -18,7 +18,7 @@
  */
 #pragma once
 
-#include <astro/systems/planets/Earth/atmosphere/JacciaRoberts.hpp>
+#include <astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp>
 
 #include <mp-units/core.h>
 #include <mp-units/systems/angular.h>

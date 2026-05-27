@@ -234,7 +234,7 @@ def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, da
         fID.write(f"#include <array>\n")
         fID.write(f"#include <units/units.hpp>\n")
         fID.write(f"#include <astro/time/Date.hpp>\n\n")
-        fID.write(f"#include <astro/systems/planets/JplEphemerisTable.hpp>\n\n")
+        fID.write(f"#include <astro/systems/celestial_bodies/JplEphemerisTable.hpp>\n\n")
         fID.write(f"namespace astrea {{\n")
         fID.write(f"namespace astro {{\n")
         fID.write(f"namespace ephemerides {{\n\n")
@@ -482,7 +482,7 @@ def generate_earth_relative_to_barycenter_file(lineBlocks: list, em_ratio: float
             # Add NUM_COEFF so the next X value starts off properly
             idx += NUM_COEFF
 
-    # relPath = "astro/systems/planets/Earth"
+    # relPath = "astro/systems/celestial_bodies/Earth"
     relPath = "Earth"
     write_to_file(outPath, relPath, "EarthFromEmbEphemerisTable", NUM_COEFF + 2, DAYS_PER_POLY, xChebyshevStr,
                   yChebyshevStr, zChebyshevStr)

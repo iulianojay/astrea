@@ -1,7 +1,7 @@
 /**
- * @file Deimos.hpp
+ * @file Phobos.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the Deimos class.
+ * @brief Header file for the Phobos class.
  * @date 2025-10-02
  *
  * @copyright Copyright (c) 2025 Jay Iuliano
@@ -22,7 +22,7 @@
 
 #include <astro/astro.fwd.hpp>
 #include <astro/systems/CelestialBody.hpp>
-#include <astro/systems/planets/Mars/Mars.hpp>
+#include <astro/systems/celestial_bodies/Mars/Mars.hpp>
 
 namespace astrea {
 namespace astro {
@@ -30,18 +30,18 @@ namespace astro {
 namespace moons {
 
 /**
- * @class Deimos
- * @brief Represents the Deimos celestial body.
+ * @class Phobos
+ * @brief Represents the Phobos celestial body.
  *
- * This class provides properties and methods specific to Deimos, including its physical and orbital parameters.
+ * This class provides properties and methods specific to Phobos, including its physical and orbital parameters.
  */
-inline constexpr struct Deimos final : CelestialBody<"Deimos", planets::Mars> {
-} Deimos;
+inline constexpr struct Phobos final : CelestialBody<"Phobos", planets::Mars> {
+} Phobos;
 
 } // namespace moons
 
 template <>
-inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Deimos>()
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Phobos>()
 {
     using namespace mp_units;
     using mp_units::angular::unit_symbols::deg;
@@ -53,29 +53,29 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::De
 
     return { .type                   = CelestialBodyType::MOON,
              .referenceDate          = Date(JulianDate(JulianDateClock::duration{ 2433282.5 })),
-             .mu                     = GravParam(7.112e-4 * pow<3>(km) / pow<2>(s)),
-             .mass                   = Mass(10.6e-9 * (mag_power<10, 24> * kg)),
-             .equitorialRadius       = Distance(11.1 * km),
-             .polarRadius            = Distance(9.1 * km),
-             .crashRadius            = Distance(11.15 * km),
-             .sphereOfInfluence      = Distance(7.23133636677e-07 * au),
+             .mu                     = GravParam(9.85e-5 * pow<3>(km) / pow<2>(s)),
+             .mass                   = Mass(2.4e-9 * (mag_power<10, 24> * kg)),
+             .equitorialRadius       = Distance(6.2 * km),
+             .polarRadius            = Distance(5.1 * km),
+             .crashRadius            = Distance(6.25 * km),
+             .sphereOfInfluence      = Distance(9.98573371442e-07 * au),
              .j2                     = Unitless(0.0 * one),
              .j3                     = Unitless(0.0 * one),
-             .axialTilt              = Angle(25.199 * deg),
-             .rotationRate           = AngularVelocity(27092.28308927283 * deg / day),
-             .siderealPeriod         = Time(0.31891 * day),
-             .semimajorAxis          = Distance(9378.0 * km),
-             .eccentricity           = Unitless(0.0151 * one),
-             .inclination            = Angle(1.08 * deg),
-             .rightAscension         = Angle(207.784 * deg),
-             .longitudeOfPerigee     = Angle(357.841 * deg),
-             .meanLongitude          = Angle(448.9 * deg),
+             .axialTilt              = Angle(0.0 * deg),
+             .rotationRate           = AngularVelocity(1128.844 * deg / day),
+             .siderealPeriod         = Time(1.26244 * day),
+             .semimajorAxis          = Distance(23459.0 * km),
+             .eccentricity           = Unitless(0.0005 * one),
+             .inclination            = Angle(1.79 * deg),
+             .rightAscension         = Angle(24.525 * deg),
+             .longitudeOfPerigee     = Angle(285.254 * deg),
+             .meanLongitude          = Angle(610.583 * deg),
              .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / JulianCentury),
              .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / JulianCentury),
              .inclinationRate        = BodyAngularVelocity(0.0 * deg / JulianCentury),
-             .rightAscensionRate     = BodyAngularVelocity(57302029 * deg / JulianCentury),
-             .longitudeOfPerigeeRate = BodyAngularVelocity(171830131 * deg / JulianCentury),
-             .meanLongitudeRate      = BodyAngularVelocity(148603627216.0 * deg / JulianCentury) };
+             .rightAscensionRate     = BodyAngularVelocity(2376381 * deg / JulianCentury),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(7111440.9 * deg / JulianCentury),
+             .meanLongitudeRate      = BodyAngularVelocity(37503046910.7 * deg / JulianCentury) };
 }
 
 } // namespace astro

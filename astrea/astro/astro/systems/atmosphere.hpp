@@ -29,13 +29,13 @@
 
 #include <astro/state/State.hpp>
 #include <astro/state/angular_elements/instances/Geodetic.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
+#include <astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp>
+#include <astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp>
+#include <astro/systems/celestial_bodies/Mars/Mars.hpp>
+#include <astro/systems/celestial_bodies/Saturn/Titan.hpp>
+#include <astro/systems/celestial_bodies/Venus/Venus.hpp>
 #include <astro/systems/celestial_reference_getters.hpp>
-#include <astro/systems/planets/Earth/Earth.hpp>
-#include <astro/systems/planets/Earth/atmosphere/HarrisPriester.hpp>
-#include <astro/systems/planets/Earth/atmosphere/JacciaRoberts.hpp>
-#include <astro/systems/planets/Mars/Mars.hpp>
-#include <astro/systems/planets/Saturn/Titan.hpp>
-#include <astro/systems/planets/Venus/Venus.hpp>
 
 namespace astrea {
 namespace astro {

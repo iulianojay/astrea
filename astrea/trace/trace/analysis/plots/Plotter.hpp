@@ -26,7 +26,7 @@
 #include <matplot/matplot.h>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/systems/planets/Earth/Earth.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <units/units.hpp>
 
 #include <trace/trace.fwd.hpp>
