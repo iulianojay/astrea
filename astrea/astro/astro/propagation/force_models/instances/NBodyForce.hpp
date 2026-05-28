@@ -67,24 +67,27 @@ class NBodyForce : public PerturbingForce {
 
         // Reset perturbation
         AccelerationVector<frames::primary> accelNBody{ Acceleration::zero() };
-        for (const auto& body : { bodies... }) {
-            // Find center to nth body and spacecraft to nth body
-            // NOTE: The forced frame conversion here is fine since it's just a relative translation, no rotation or velocity
-            const RadiusVector<frames::primary> rCenterToNbody =
-                get_relative_position<body, center>(date).template force_frame_conversion<frames::primary>();
-            const RadiusVector<frames::primary> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
+        (
+            [&]<auto body>() {
+                // Find center to nth body and spacecraft to nth body
+                // NOTE: The forced frame conversion here is fine since it's just a relative translation, no rotation or velocity
+                const RadiusVector<frames::primary> rCenterToNbody =
+                    get_relative_position<body, center>(date).template force_frame_conversion<frames::primary>();
+                const RadiusVector<frames::primary> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
 
-            // Normalize
-            const Distance rMagVehicleToNbody = rVehicleToNbody.norm();
-            const Distance rMagCenterToNbody  = rCenterToNbody.norm();
+                // Normalize
+                const Distance rMagVehicleToNbody = rVehicleToNbody.norm();
+                const Distance rMagCenterToNbody  = rCenterToNbody.norm();
 
-            // Perturbational force from nth body
-            const GravParam mu          = get_mu<body>();
-            const quantity directTerm   = mu / pow<3>(rMagVehicleToNbody);
-            const quantity indirectTerm = mu / pow<3>(rMagCenterToNbody);
+                // Perturbational force from nth body
+                const GravParam mu          = get_mu<body>();
+                const quantity directTerm   = mu / pow<3>(rMagVehicleToNbody);
+                const quantity indirectTerm = mu / pow<3>(rMagCenterToNbody);
 
-            accelNBody += directTerm * rVehicleToNbody - indirectTerm * rCenterToNbody;
-        }
+                accelNBody += directTerm * rVehicleToNbody - indirectTerm * rCenterToNbody;
+            }.template operator()<bodies>(),
+            ...
+        );
 
         return { .force = accelNBody * vehicle.get_mass() };
     }

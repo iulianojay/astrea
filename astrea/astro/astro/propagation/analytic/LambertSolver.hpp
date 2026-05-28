@@ -23,7 +23,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 

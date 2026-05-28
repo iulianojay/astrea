@@ -28,8 +28,8 @@
 
 // astro
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frame_concepts.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_concepts.hpp>
@@ -112,7 +112,7 @@ class Spherical {
     template <IsOrbitalElements T>
     Spherical(const T& elements, const Date& date)
     {
-        *this = Spherical<_body_>(Cartesian<frames::earth::icrf>(elements).get_position().template in_frame<_fixed_frame_>(date));
+        *this = Spherical<_body_>(Cartesian<_icrf_frame_>(elements).get_position().template in_frame<_fixed_frame_>(date));
     }
 
     /**

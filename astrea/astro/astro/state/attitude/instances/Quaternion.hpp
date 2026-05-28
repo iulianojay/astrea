@@ -27,9 +27,9 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/DirectionCosineMatrix.hpp>
-#include <astro/frames/frame_concepts.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/frames/framework/DirectionCosineMatrix.hpp>
+#include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/state/attitude/instances/EulerAngles.hpp>
 #include <astro/types/enums.hpp>
 

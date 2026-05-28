@@ -21,7 +21,7 @@
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>

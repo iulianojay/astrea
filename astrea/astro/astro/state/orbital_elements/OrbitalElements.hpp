@@ -25,8 +25,8 @@
 
 // Astro
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/frame_registry.hpp>
-#include <astro/frames/primary_frame.hpp>
+#include <astro/frames/framework/frame_registry.hpp>
+#include <astro/frames/framework/primary_frame.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
@@ -50,7 +50,7 @@ namespace astro {
  * instantiation of every listed template to this variant.
  *
  * To register frames from user code, see ExtraRegisteredFrames in
- * astro/frames/frame_registry.hpp.
+ * astro/frames/framework/frame_registry.hpp.
  */
 template <template <auto> class... FrameIndexedTypes>
 using OrbitalElementVariant = typename detail::tuple_to_variant<typename detail::multi_tuple_cat<
@@ -338,6 +338,28 @@ class OrbitalElements {
     static constexpr std::size_t get_set_id()
     {
         return get_variant_index<ElementVariant, T, 0>();
+    }
+
+    /**
+     * @brief Converts all held orbital elements to the specified frame.
+     *
+     * Visits the current element type and calls its in_frame<target_frame>(epoch, mu),
+     * returning a new OrbitalElements holding the converted elements.
+     *
+     * @tparam target_frame The frame to convert into.
+     * @param epoch The epoch at which to evaluate the frame transformation.
+     * @param mu The gravitational parameter of the central body.
+     * @return OrbitalElements Orbital elements expressed in target_frame.
+     */
+    template <IsFrame auto target_frame>
+    OrbitalElements in_frame(const Date& epoch, const GravParam& mu) const
+    {
+        return std::visit(
+            [&](const auto& x) -> OrbitalElements {
+                return OrbitalElements(x.template in_frame<target_frame>(epoch, mu));
+            },
+            _elements
+        );
     }
 
   private:

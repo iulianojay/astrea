@@ -23,8 +23,8 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/dynamic/dynamic_frames.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
 
 namespace astrea {
 namespace astro {

@@ -16,7 +16,7 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/CelestialBody.hpp>

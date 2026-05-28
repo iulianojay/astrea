@@ -25,11 +25,11 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/Axis.hpp>
-#include <astro/frames/BodyFixedFrame.hpp>
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/Frame.hpp>
-#include <astro/frames/Origin.hpp>
+#include <astro/frames/framework/Axis.hpp>
+#include <astro/frames/framework/BodyFixedFrame.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/frames/framework/Frame.hpp>
+#include <astro/frames/framework/Origin.hpp>
 #include <astro/systems/CelestialBodyParameters.hpp>
 #include <astro/systems/system_concepts.hpp>
 #include <astro/time/Date.hpp>
@@ -62,9 +62,9 @@ struct CelestialBody : Origin<_name_, _parent_>, detail::CelestialBodyBase {
 
 // ---------------------------------------------------------------------------
 // Primary template declarations.
-// These live here (not in celestial_reference_getters.hpp) so that planet headers
+// These live here (not in property_getters.hpp) so that planet headers
 // can specialise them without triggering the heavy State/Keplerian/frames include
-// chain that celestial_reference_getters.hpp used to pull in.
+// chain that property_getters.hpp used to pull in.
 // ---------------------------------------------------------------------------
 
 /// Primary template — must be specialised for each body.
@@ -83,7 +83,7 @@ inline Density find_atmospheric_density(const State& state)
 /// Primary template declarations for ephemeris position/velocity (NTTP-based).
 /// Explicit specialisations are provided in planet headers (Chebyshev ephemeris).
 /// The primary template definition (Keplerian fallback) is provided by
-/// celestial_reference_default_getters.hpp, which celestial_bodies.hpp includes after all planet headers.
+/// default_property_getters.hpp, which celestial_bodies.hpp includes after all planet headers.
 template <auto _body_>
 auto get_position_at(const Date& date);
 
@@ -93,6 +93,6 @@ auto get_velocity_at(const Date& date);
 } // namespace astro
 } // namespace astrea
 
-// celestial_reference_getters.hpp provides lightweight inline helpers (get_mu, get_mass, etc.)
+// property_getters.hpp provides lightweight inline helpers (get_mu, get_mass, etc.)
 // and get_position_at_impl / get_velocity_at_impl.  It is lightweight — no State.hpp dependency.
-#include <astro/systems/celestial_reference_getters.hpp>
+#include <astro/systems/property_getters.hpp>

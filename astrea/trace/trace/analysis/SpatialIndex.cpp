@@ -16,7 +16,7 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/isq_angle.h>
 
-#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
 
 #include <trace/platforms/ground/GroundPoint.hpp>

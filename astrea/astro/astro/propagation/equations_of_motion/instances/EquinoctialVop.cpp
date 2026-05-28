@@ -19,7 +19,7 @@
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/frames/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>

@@ -20,7 +20,7 @@
 
 #include <concepts>
 
-#include <astro/frames/frame_concepts.hpp>
+#include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {

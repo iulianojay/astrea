@@ -16,7 +16,7 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/PerturbingForce.hpp>
 #include <astro/state/State.hpp>

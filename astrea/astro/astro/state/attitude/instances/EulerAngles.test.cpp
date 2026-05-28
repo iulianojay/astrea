@@ -16,7 +16,7 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/dynamic/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/state/attitude/instances/AngularVelocities.hpp>
 #include <astro/state/attitude/instances/EulerAngles.hpp>
@@ -31,8 +31,8 @@ using mp_units::angular::unit_symbols::deg;
 using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::s;
 
-using TestFrame       = frames::earth::icrf;
-using TestOutFrame    = frames::dynamic::body;
+inline constexpr auto TestFrame    = frames::earth::icrf;
+inline constexpr auto TestOutFrame = frames::dynamic::body;
 using TestEulerAngles = EulerAngles<RotationSequence::ZXZ, RotationType::INTRINSIC, TestFrame, TestOutFrame>;
 
 class EulerAnglesTest : public testing::Test {

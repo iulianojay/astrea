@@ -75,23 +75,33 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
 
-    ${ASTRO_BASE}/frames/instances/body_centered_inertial_frames.hpp
-    ${ASTRO_BASE}/frames/instances/body_fixed_frames.hpp
-    ${ASTRO_BASE}/frames/instances/defined_rotations.hpp
-    
-    ${ASTRO_BASE}/frames/dynamic/EastNorthUp.hpp
-    ${ASTRO_BASE}/frames/dynamic/LocalHorizontalLocalVertical.hpp
-    ${ASTRO_BASE}/frames/dynamic/RadialInTrackCrossTrack.hpp
-    ${ASTRO_BASE}/frames/dynamic/VelocityNormalBinormal.hpp
+    ${ASTRO_BASE}/frames/definitions/body_centered_inertial_frames.hpp
+    ${ASTRO_BASE}/frames/definitions/body_fixed_frames.hpp
+    ${ASTRO_BASE}/frames/definitions/defined_rotations.hpp
+    ${ASTRO_BASE}/frames/definitions/defined_rotations_earth.hpp
+    ${ASTRO_BASE}/frames/definitions/EastNorthUp.hpp
+    ${ASTRO_BASE}/frames/definitions/LocalHorizontalLocalVertical.hpp
+    ${ASTRO_BASE}/frames/definitions/RadialInTrackCrossTrack.hpp
+    ${ASTRO_BASE}/frames/definitions/VelocityNormalBinormal.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames.hpp
+    ${ASTRO_BASE}/frames/definitions/transformations.hpp
 
-    ${ASTRO_BASE}/frames/DirectionCosineMatrix.hpp
-    ${ASTRO_BASE}/frames/CartesianVector.hpp
-    ${ASTRO_BASE}/frames/dynamic_frames.hpp
-    ${ASTRO_BASE}/frames/frame_concepts.hpp
-    ${ASTRO_BASE}/frames/Frame.hpp
-    ${ASTRO_BASE}/frames/FixedOffsetFrame.hpp
+    ${ASTRO_BASE}/frames/framework/Axis.hpp
+    ${ASTRO_BASE}/frames/framework/BodyFixedFrame.hpp
+    ${ASTRO_BASE}/frames/framework/CartesianVector.hpp
+    ${ASTRO_BASE}/frames/framework/DirectionCosineMatrix.hpp
+    ${ASTRO_BASE}/frames/framework/DynamicFrame.hpp
+    ${ASTRO_BASE}/frames/framework/FixedOffsetFrame.hpp
+    ${ASTRO_BASE}/frames/framework/Frame.hpp
+    ${ASTRO_BASE}/frames/framework/Origin.hpp
+    ${ASTRO_BASE}/frames/framework/frame_concepts.hpp
+    ${ASTRO_BASE}/frames/framework/frame_registry.hpp
+    ${ASTRO_BASE}/frames/framework/frame_utilities.hpp
+    ${ASTRO_BASE}/frames/framework/primary_frame.hpp
+
+    ${ASTRO_BASE}/frames/framework.hpp
     ${ASTRO_BASE}/frames/frames.hpp
-    ${ASTRO_BASE}/frames/transformations.hpp
+    ${ASTRO_BASE}/frames/definitions.hpp
 
     ${ASTRO_BASE}/platforms/space/Constellation.hpp
     ${ASTRO_BASE}/platforms/space/Constellation.ipp

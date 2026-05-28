@@ -22,7 +22,7 @@
 #include <unordered_map>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
 #include <units/units.hpp>
 
 #include <trace/platforms/sensors/fov/FieldOfView.hpp>

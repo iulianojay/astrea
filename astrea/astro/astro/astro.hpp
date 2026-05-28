@@ -18,23 +18,23 @@
  */
 #pragma once
 
-#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
 #include <astro/state/orbital_data_formats/orbital_data_formats.hpp>
 #include <astro/state/orbital_elements/orbital_elements.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/Frame.hpp>
-#include <astro/frames/dynamic_frames.hpp>
-#include <astro/frames/frame_concepts.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/frames/framework/Frame.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/frames/frames.hpp>
-#include <astro/frames/transformations.hpp>
+#include <astro/frames/definitions/transformations.hpp>
 
-#include <astro/frames/DirectionCosineMatrix.hpp>
-#include <astro/frames/DynamicFrame.hpp>
-#include <astro/frames/dynamic_frames.hpp>
+#include <astro/frames/framework/DirectionCosineMatrix.hpp>
+#include <astro/frames/framework/DynamicFrame.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
 #include <astro/frames/frames.hpp>
 
 #include <astro/platforms/Vehicle.hpp>

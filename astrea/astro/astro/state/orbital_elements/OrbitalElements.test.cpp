@@ -37,7 +37,7 @@ class OrbitalElementsTest : public testing::Test {
         _mu           = get_mu<planets::Earth>();
         _cartElements = Cartesian<frames::earth::icrf>::LEO(_mu);
         _keplElements = Keplerian<frames::earth::icrf>::LEO();
-        _equiElements = Equinoctial::LEO(_mu);
+        _equiElements = Equinoctial<frames::earth::icrf>::LEO(_mu);
     }
 
     const Unitless REL_TOL = 1.0e-6;
@@ -272,8 +272,8 @@ TEST_F(OrbitalElementsTest, InterpolateKeplerian)
 
 TEST_F(OrbitalElementsTest, InterpolateEquinoctial)
 {
-    Equinoctial<frames::earth::icrf> original = Equinoctial::LEO(_mu);
-    Equinoctial<frames::earth::icrf> final    = Equinoctial::LEO(_mu) * Unitless(1.1 * one);
+    Equinoctial<frames::earth::icrf> original = Equinoctial<frames::earth::icrf>::LEO(_mu);
+    Equinoctial<frames::earth::icrf> final    = Equinoctial<frames::earth::icrf>::LEO(_mu) * Unitless(1.1 * one);
 
     OrbitalElements result   = _equiElements.interpolate(0.0 * s, 1.0 * s, OrbitalElements(final), _mu, 0.5 * s);
     OrbitalElements expected = original.interpolate(0.0 * s, 1.0 * s, final, _mu, 0.5 * s);
@@ -315,7 +315,7 @@ TEST_F(OrbitalElementsTest, Stream)
     ss.str("");
     ss << _equiElements;
     exp.str("");
-    exp << Equinoctial::LEO(_mu);
+    exp << Equinoctial<frames::earth::icrf>::LEO(_mu);
     ASSERT_EQ(ss.str(), exp.str());
 }
 

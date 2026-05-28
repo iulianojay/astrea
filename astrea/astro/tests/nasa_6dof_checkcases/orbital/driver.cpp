@@ -24,7 +24,7 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>

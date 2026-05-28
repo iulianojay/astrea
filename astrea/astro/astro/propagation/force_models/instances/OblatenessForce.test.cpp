@@ -35,8 +35,7 @@ using mp_units::si::unit_symbols::s;
 class OblatenessForceTest : public testing::Test {
   public:
     OblatenessForceTest() :
-        epoch("2020-02-18 15:08:47.23847"),
-        oblatenessForce(2, 2)
+        epoch("2020-02-18 15:08:47.23847")
     {
     }
 
@@ -56,7 +55,6 @@ class OblatenessForceTest : public testing::Test {
 
     Spacecraft sat;
     Date epoch;
-    OblatenessForce oblatenessForce;
 };
 
 
@@ -67,7 +65,7 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(OblatenessForceTest, DefaultConstructor) { ASSERT_NO_THROW(OblatenessForce(2, 0)); }
+TEST_F(OblatenessForceTest, DefaultConstructor) { ASSERT_NO_THROW(OblatenessForce<planets::Earth>()); }
 
 // Vallado, Ex. 8.5
 TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
@@ -75,7 +73,7 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
     Cartesian<frames::earth::icrf> cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
                                          -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
     State state(cart, epoch);
-    const auto [force, torque]                          = oblatenessForce.compute_perturbation(state, Vehicle(sat));
+    const auto [force, torque] = OblatenessForce<planets::Earth, 2, 2>().compute_perturbation(state, Vehicle(sat));
     const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
 
     // Vallado Ex. 8.5 expected results

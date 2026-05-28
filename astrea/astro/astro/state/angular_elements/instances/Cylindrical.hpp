@@ -28,8 +28,8 @@
 
 // astro
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frame_concepts.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_concepts.hpp>

@@ -403,6 +403,20 @@ class Keplerian {
      */
     std::vector<Unitless> force_to_vector() const;
 
+    /**
+     * @brief Converts this Keplerian state to Keplerian elements expressed in a different frame.
+     *
+     * First converts to Cartesian in the native frame, applies the physical frame transformation,
+     * then converts the result back to Keplerian elements.
+     *
+     * @tparam target_frame The target frame.
+     * @param epoch The epoch at which to evaluate the frame transformation.
+     * @param mu The gravitational parameter of the central body.
+     * @return Keplerian<target_frame> This state expressed in the target frame.
+     */
+    template <IsFrame auto target_frame>
+    Keplerian<target_frame> in_frame(const Date& epoch, const GravParam& mu) const;
+
   private:
     Distance _semimajor;    //!< Semimajor axis of the orbit
     Unitless _eccentricity; //!< Eccentricity of the orbit

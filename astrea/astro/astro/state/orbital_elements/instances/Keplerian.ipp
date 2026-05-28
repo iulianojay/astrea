@@ -14,6 +14,7 @@
 #include <iomanip>
 #include <iostream>
 
+#include <astro/frames/definitions/transformations.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/types/typedefs.hpp>
@@ -519,6 +520,13 @@ std::ostream& operator<<(std::ostream& os, KeplerianPartial<_frame_> const& elem
     os << elements._trueAnomalyPartial;
     os << "] (KeplerianPartial)";
     return os;
+}
+
+template <IsFrame auto _frame_>
+template <IsFrame auto target_frame>
+Keplerian<target_frame> Keplerian<_frame_>::in_frame(const Date& epoch, const GravParam& mu) const
+{
+    return Keplerian<target_frame>(Cartesian<_frame_>(*this, mu).template in_frame<target_frame>(epoch), mu);
 }
 
 } // namespace astro

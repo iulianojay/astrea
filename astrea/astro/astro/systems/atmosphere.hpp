@@ -35,7 +35,7 @@
 #include <astro/systems/celestial_bodies/Mars/Mars.hpp>
 #include <astro/systems/celestial_bodies/Saturn/Titan.hpp>
 #include <astro/systems/celestial_bodies/Venus/Venus.hpp>
-#include <astro/systems/celestial_reference_getters.hpp>
+#include <astro/systems/property_getters.hpp>
 
 namespace astrea {
 namespace astro {

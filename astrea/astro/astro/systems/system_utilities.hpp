@@ -28,7 +28,7 @@
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/barycenters.hpp>
 #include <astro/systems/celestial_bodies.hpp>
-#include <astro/systems/celestial_reference_getters.hpp>
+#include <astro/systems/property_getters.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/enums.hpp>
 #include <astro/types/type_traits.hpp>
@@ -151,10 +151,9 @@ template <IsCelestialReference auto body1, IsCelestialReference auto body2>
 constexpr auto get_relative_position(const Date& date)
 {
     if constexpr (is_same_body<body1, body2>()) {
-        return decltype(get_position_at<body1>(date))()(Distance::zero(), Distance::zero(), Distance::zero());
+        return decltype(get_position_at<body1>(date))(Distance::zero(), Distance::zero(), Distance::zero());
     }
-
-    if constexpr (has_parent<body1>() && is_same_body<get_parent<body1>(), body2>()) {
+    else if constexpr (has_parent<body1>() && is_same_body<get_parent<body1>(), body2>()) {
         return get_position_at<body1>(date);
     }
     else if constexpr (has_parent<body2>() && is_same_body<get_parent<body2>(), body1>()) {
@@ -180,10 +179,9 @@ template <IsCelestialReference auto body1, IsCelestialReference auto body2>
 constexpr auto get_relative_velocity(const Date& date)
 {
     if constexpr (is_same_body<body1, body2>()) {
-        return decltype(get_velocity_at<body1>(date))()(Velocity::zero(), Velocity::zero(), Velocity::zero());
+        return decltype(get_velocity_at<body1>(date))(Velocity::zero(), Velocity::zero(), Velocity::zero());
     }
-
-    if constexpr (has_parent<body1>() && is_same_body<get_parent<body1>(), body2>()) {
+    else if constexpr (has_parent<body1>() && is_same_body<get_parent<body1>(), body2>()) {
         return get_velocity_at<body1>(date);
     }
     else if constexpr (has_parent<body2>() && is_same_body<get_parent<body2>(), body1>()) {

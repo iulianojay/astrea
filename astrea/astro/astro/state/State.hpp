@@ -21,7 +21,7 @@
 #include <iosfwd>
 #include <optional>
 
-#include <astro/frames/dynamic/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
 #include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/attitude/instances/Quaternion.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
@@ -58,6 +58,21 @@ class State {
      */
     State(const OrbitalElements& elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
         _elements(elements),
+        _epoch(epoch),
+        _attitude(attitude)
+    {
+    }
+
+    /**
+     * @brief Constructs a State from a Cartesian in any frame, converting it to the primary frame.
+     *
+     * @param elements Cartesian elements in an arbitrary inertial frame.
+     * @param epoch The epoch of the state.
+     * @param attitude The attitude of the state.
+     */
+    template <IsFrame auto frame>
+    State(Cartesian<frame> elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
+        _elements(elements.template in_frame<frames::primary>(epoch)),
         _epoch(epoch),
         _attitude(attitude)
     {
@@ -179,7 +194,7 @@ class State {
     /**
      * @brief Gets the position vector from the state.
      *
-     * @return RadiusVector<frames::earth::icrf> The position vector of the state.
+     * @return RadiusVector<frames::primary> The position vector of the state.
      */
     RadiusVector<frames::primary> get_position() const
     {
@@ -201,7 +216,7 @@ class State {
     /**
      * @brief Gets the velocity vector from the state.
      *
-     * @return VelocityVector<frames::earth::icrf> The velocity vector of the state.
+     * @return VelocityVector<frames::primary> The velocity vector of the state.
      */
     VelocityVector<frames::primary> get_velocity() const
     {

@@ -16,7 +16,7 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/dynamic/RadialInTrackCrossTrack.hpp>
+#include <astro/frames/definitions/RadialInTrackCrossTrack.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/event_detection/Event.hpp>

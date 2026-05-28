@@ -16,7 +16,7 @@
 #include <cmath>
 #include <stdexcept>
 
-#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
 
 namespace astrea {

@@ -24,7 +24,7 @@
 #include <gtl/phmap.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <astro/time/Date.hpp>

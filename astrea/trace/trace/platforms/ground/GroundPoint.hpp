@@ -26,9 +26,9 @@
 #include <mp-units/systems/si.h>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
-#include <astro/systems/celestial_reference_getters.hpp>
+#include <astro/systems/property_getters.hpp>
 #include <astro/systems/system_concepts.hpp>
 #include <astro/time/Date.hpp>
 #include <units/units.hpp>

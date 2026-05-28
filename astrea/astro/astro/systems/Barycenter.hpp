@@ -22,9 +22,9 @@
 
 #include <units/units.hpp>
 
-#include <astro/frames/Axis.hpp>
-#include <astro/frames/Frame.hpp>
-#include <astro/frames/Origin.hpp>
+#include <astro/frames/framework/Axis.hpp>
+#include <astro/frames/framework/Frame.hpp>
+#include <astro/frames/framework/Origin.hpp>
 #include <astro/systems/system_concepts.hpp>
 
 namespace astrea {

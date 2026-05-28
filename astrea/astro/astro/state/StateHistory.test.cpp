@@ -37,9 +37,11 @@ class StateHistoryTest : public testing::Test {
         time1 = 1.0 * s;
         time2 = 2.0 * s;
 
-        state0 = State(Cartesian(0.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch);
-        state1 = State(Cartesian(1.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch + time1);
-        state2 = State(Cartesian(2.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch + time2);
+        state0 = State(Cartesian<frames::earth::icrf>(0.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch);
+        state1 =
+            State(Cartesian<frames::earth::icrf>(1.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch + time1);
+        state2 =
+            State(Cartesian<frames::earth::icrf>(2.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch + time2);
 
         history.insert(state0);
         history.insert(state1);

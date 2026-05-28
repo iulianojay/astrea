@@ -1,6 +1,6 @@
 #pragma once
 
-#include <astro/frames/frame_utilities.hpp>
+#include <astro/frames/framework/frame_utilities.hpp>
 #include <astro/systems/Barycenter.hpp>
 
 #ifdef ASTREA_BUILD_EARTH_EPHEMERIS
