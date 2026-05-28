@@ -16,8 +16,8 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
@@ -90,58 +90,61 @@ TEST_F(EquinoctialTest, UnitlessConstructor)
     ASSERT_TRUE(math::nearly_equal(scaledState.get_true_longitude(), Angle(2.0 * rad), REL_TOL));
 }
 
-TEST_F(EquinoctialTest, ParameterizedConstructor) { ASSERT_NO_THROW(Equinoctial(p, f, g, h, k, L)); }
+TEST_F(EquinoctialTest, ParameterizedConstructor)
+{
+    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>(p, f, g, h, k, L));
+}
 
 TEST_F(EquinoctialTest, EquinoctialConstructor)
 {
     Equinoctial<frames::earth::icrf> other{ 8000.0 * km, 0.02 * one, 0.01 * one, 0.005 * one, 0.003 * one, 0.5 * rad };
-    ASSERT_NO_THROW(Equinoctial(other.get_mu()));
+    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>(other, mu));
 }
 
 TEST_F(EquinoctialTest, KeplerianConstructor)
 {
-    Keplerian kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
-    ASSERT_NO_THROW(Equinoctial(kep.get_mu()));
+    Keplerian<frames::earth::icrf> kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
+    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>(kep, mu));
 }
 
 TEST_F(EquinoctialTest, CartesianConstructor)
 {
     Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
-    ASSERT_NO_THROW(Equinoctial(cart.get_mu()));
+    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>(cart, mu));
 }
 
 TEST_F(EquinoctialTest, LEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial::LEO(mu));
-    auto leo = Equinoctial::LEO(mu);
+    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::LEO(mu));
+    auto leo = Equinoctial<frames::earth::icrf>::LEO(mu);
     ASSERT_GT(leo.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, LMEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial::LMEO(mu));
-    auto lmeo = Equinoctial::LMEO(mu);
+    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::LMEO(mu));
+    auto lmeo = Equinoctial<frames::earth::icrf>::LMEO(mu);
     ASSERT_GT(lmeo.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, GPSStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial::GPS(mu));
-    auto gps = Equinoctial::GPS(mu);
+    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::GPS(mu));
+    auto gps = Equinoctial<frames::earth::icrf>::GPS(mu);
     ASSERT_GT(gps.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, HMEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial::HMEO(mu));
-    auto hmeo = Equinoctial::HMEO(mu);
+    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::HMEO(mu));
+    auto hmeo = Equinoctial<frames::earth::icrf>::HMEO(mu);
     ASSERT_GT(hmeo.get_semilatus().numerical_value_in(km), 0.0);
 }
 
 TEST_F(EquinoctialTest, GEOStaticMethod)
 {
-    ASSERT_NO_THROW(Equinoctial::GEO(mu));
-    auto geo = Equinoctial::GEO(mu);
+    ASSERT_NO_THROW(Equinoctial<frames::earth::icrf>::GEO(mu));
+    auto geo = Equinoctial<frames::earth::icrf>::GEO(mu);
     ASSERT_GT(geo.get_semilatus().numerical_value_in(km), 0.0);
 }
 
@@ -166,7 +169,7 @@ TEST_F(EquinoctialTest, MoveConstructor)
 TEST_F(EquinoctialTest, CopyAssignment)
 {
     ASSERT_NO_THROW(Equinoctial<frames::earth::icrf> newEqui = state);
-    Equinoctial<frames::earth::icrf> frames::earth::icrf > newEqui = state;
+    Equinoctial<frames::earth::icrf> newEqui = state;
     ASSERT_TRUE(math::nearly_equal(newEqui.get_semilatus(), p, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(newEqui.get_f(), f, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(newEqui.get_g(), g, REL_TOL));
@@ -324,7 +327,7 @@ TEST_F(EquinoctialTest, Interpolate)
     Time thisTime                           = 0.0 * s;
     Time otherTime                          = 10.0 * s;
     Time targetTime                         = 5.0 * s;
-    Equinoctial<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other.get_mu(), targetTime);
+    Equinoctial<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other, mu, targetTime);
 
     // At t=5s (midpoint), expect average of start and end values
     ASSERT_TRUE(math::nearly_equal(result.get_semilatus(), (p + 14000.0 * km) / 2.0, REL_TOL));
@@ -336,7 +339,7 @@ TEST_F(EquinoctialTest, FromKeplerianConversion)
 {
     // Test conversion from Keplerian to Equinoctial
     Keplerian<frames::earth::icrf> kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
-    Equinoctial<frames::earth::icrf> equi(kep.get_mu());
+    Equinoctial<frames::earth::icrf> equi(kep, mu);
 
     // Verify the Equinoctial state has reasonable values
     ASSERT_GT(equi.get_semilatus().numerical_value_in(km), 0.0);
@@ -346,7 +349,7 @@ TEST_F(EquinoctialTest, FromCartesianConversion)
 {
     // Test conversion from Cartesian to Equinoctial
     Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
-    Equinoctial<frames::earth::icrf> equi(cart.get_mu());
+    Equinoctial<frames::earth::icrf> equi(cart, mu);
 
     // Verify the Equinoctial state has reasonable values
     ASSERT_GT(equi.get_semilatus().numerical_value_in(km), 0.0);

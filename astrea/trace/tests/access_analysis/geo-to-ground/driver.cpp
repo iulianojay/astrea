@@ -83,7 +83,9 @@ int main(int argc, char** argv)
 TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
 {
     // Build constellation
-    const Cartesian<frames::earth::icrf> elem0(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
+    const Cartesian<frames::earth::icrf> elem0(
+        Keplerian<frames::earth::icrf>(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu
+    );
     const State state0(elem0, epoch);
 
     const auto rEcef           = elem0.get_position().in_frame<frames::earth::earth_fixed>(epoch);
@@ -127,11 +129,15 @@ TEST_F(GeoToGroundAccessTest, GeoAlwaysConnected)
 TEST_F(GeoToGroundAccessTest, TwoBallGeoNeverConnected)
 {
     // Build constellation
-    State state1({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu), epoch });
+    State state1(
+        { Cartesian<frames::earth::icrf>(Keplerian<frames::earth::icrf>(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu), epoch }
+    );
     Viewer geo1;
     geo1.store_state(state1);
 
-    State state2({ Cartesian(Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), mu), epoch });
+    State state2(
+        { Cartesian<frames::earth::icrf>(Keplerian<frames::earth::icrf>(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), mu), epoch }
+    );
     Viewer geo2;
     geo2.store_state(state2);
 
@@ -166,10 +172,10 @@ TEST_F(GeoToGroundAccessTest, TwoBallGeoNeverConnected)
 TEST_F(GeoToGroundAccessTest, FourBallGeo)
 {
     // Build constellation
-    State state1({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), epoch });
-    State state2({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), epoch });
-    State state3({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), epoch });
-    State state4({ Keplerian(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg), epoch });
+    State state1({ Keplerian<frames::earth::icrf>(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), epoch });
+    State state2({ Keplerian<frames::earth::icrf>(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 90.0 * deg), epoch });
+    State state3({ Keplerian<frames::earth::icrf>(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg), epoch });
+    State state4({ Keplerian<frames::earth::icrf>(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 270.0 * deg), epoch });
 
     Viewer geo1;
     geo1.store_state(state1);

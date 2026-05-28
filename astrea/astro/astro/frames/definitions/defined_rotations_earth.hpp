@@ -20,17 +20,16 @@
  */
 #pragma once
 
+#include <type_traits>
+
 #include <mp-units/systems/angular/math.h>
 
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions/body_centered_inertial_frames.hpp>
+#include <astro/frames/definitions/body_fixed_frames.hpp>
 #include <astro/frames/definitions/defined_rotations.hpp>
 #include <astro/systems/celestial_bodies.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
-
-// frames::earth::* must already be in scope when this header is parsed.
-// This is guaranteed because frames.hpp includes the body-centred-inertial and
-// fixed-rotating frame headers before it includes us.
 
 namespace astrea {
 namespace astro {
@@ -53,20 +52,27 @@ inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& 
 }
 
 /**
- * @brief DCM from Earth ICRF to Earth-Moon Synodic (EMS) frame.
+ * @brief DCM from any Earth-centred ICRF frame to the Earth-Moon Synodic (EMS) frame.
  *
- * The EMS frame is centred at the Earth–Moon barycentre with the x-axis
- * pointing towards the Moon.
+ * Identified by: in_frame centred on Earth with ICRF axes, out_frame with a
+ * SynodicAxis<Earth,Moon> axis (i.e. the ems_fixed frame).  Using a constrained
+ * template rather than an explicit specialisation avoids naming
+ * frames::earth::icrf / frames::earth::ems_fixed at declaration time, which
+ * would fail when this header is reached via a circular include chain before
+ * body_centered_inertial_frames.hpp has finished.
  */
-template <>
-inline constexpr DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems_fixed>
-    get_dcm<frames::earth::icrf, frames::earth::ems_fixed>(const Date& date)
+template <IsFrame auto in_frame, IsFrame auto out_frame>
+    requires(
+        in_frame.origin == planets::Earth && in_frame.axis == axes::icrf &&
+        std::is_same_v<std::decay_t<decltype(out_frame.axis)>, SynodicAxis<planets::Earth, moons::Moon>>
+    )
+inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
 {
     using mp_units::angular::atan2;
 
     const auto rEarth2Moon = get_relative_position<planets::Earth, moons::Moon>(date);
     const Angle lambda     = atan2(rEarth2Moon[1], rEarth2Moon[0]);
-    return DirectionCosineMatrix<frames::earth::icrf, frames::earth::ems_fixed>::Z(-lambda);
+    return DirectionCosineMatrix<in_frame, out_frame>::Z(-lambda);
 }
 
 } // namespace astro

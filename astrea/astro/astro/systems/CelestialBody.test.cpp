@@ -28,6 +28,8 @@
 using namespace astrea;
 using namespace astro;
 using namespace planets;
+using namespace star;
+using namespace moons;
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
 using mp_units::angular::unit_symbols::rad;
@@ -44,8 +46,6 @@ class CelestialBodyTest : public testing::Test {
     void SetUp() override {}
 
     const Unitless REL_TOL = 1.0e-6;
-
-    Earth earth;
 };
 
 
@@ -57,8 +57,8 @@ int main(int argc, char** argv)
 
 TEST_F(CelestialBodyTest, Equality)
 {
-    ASSERT_EQ(Earth(), Earth());
-    ASSERT_NE(Earth(), Moon());
+    ASSERT_EQ(Earth, Earth);
+    ASSERT_NE(Earth, Moon);
 }
 
 TEST_F(CelestialBodyTest, GetName) { ASSERT_EQ(get_name<planets::Earth>(), "Earth"); }
@@ -240,12 +240,13 @@ TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
     const auto& sunMu   = get_mu<Sun>();
 
     // Pull out states
-    const RadiusVector<frames::solar_system_barycenter::icrf> sunPosition   = get_position_at<Sun>(date);
-    const RadiusVector<frames::solar_system_barycenter::icrf> earthPosition = get_position_at<planets::Earth>(date);
-    const RadiusVector<frames::solar_system_barycenter::icrf> moonPosition  = get_position_at<Moon>(date);
+    const auto sunPosition   = get_position_at<Sun>(date);
+    const auto earthPosition = get_position_at<planets::Earth>(date);
+    const auto moonPosition  = get_position_at<Moon>(date);
 
     // Expected results
-    const RadiusVector<frames::solar_system_barycenter::icrf> expSunToMoonPosition(-26790642.141607 * km, 132490700.52134 * km, 57480615.9131708 * km);
+    const auto expSunToMoonPosition =
+        RadiusVector<frames::solar_system_barycenter::icrf>(-26790642.141607 * km, 132490700.52134 * km, 57480615.9131708 * km);
 
     std::cout << "Earth to Moon Position: " << moonPosition << std::endl;
     std::cout << "Sun to Earth Position: " << earthPosition - sunPosition << std::endl;
@@ -304,9 +305,9 @@ TEST_F(CelestialBodyTest, FindAtmosphericDensity)
     );
 
     // Test Earth (has atmosphere in derived class)
-    const State state0(Keplerian{ 6378.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
-    const State state1(Keplerian{ 6478.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
-    const State state2(Keplerian{ 6878.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
+    const State state0(Keplerian<frames::earth::icrf>{ 6378.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
+    const State state1(Keplerian<frames::earth::icrf>{ 6478.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
+    const State state2(Keplerian<frames::earth::icrf>{ 6878.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
     ASSERT_NO_THROW(dummyBody.find_atmospheric_density(state0));
     ASSERT_NO_THROW(dummyBody.find_atmospheric_density(state1));
     ASSERT_NO_THROW(dummyBody.find_atmospheric_density(state2));
@@ -327,39 +328,4 @@ TEST_F(CelestialBodyTest, GetPositionAt)
     const auto xComponent = phobosPosition[0];
     ASSERT_GT(xComponent.numerical_value_in(km), -get_semimajor<Phobos>().numerical_value_in(km) * 1.1);
     ASSERT_LT(xComponent.numerical_value_in(km), get_semimajor<Phobos>().numerical_value_in(km) * 1.1);
-}
-
-TEST_F(CelestialBodyTest, CopyConstructor)
-{
-    const auto earthCopy = Earth();
-    ASSERT_EQ(get_name<decltype(earthCopy)>(), get_name<planets::Earth>());
-    ASSERT_EQ(get_parent<decltype(earthCopy)>(), get_parent<planets::Earth>());
-    ASSERT_EQ(get_body_type<decltype(earthCopy)>(), get_body_type<planets::Earth>());
-    ASSERT_TRUE(math::nearly_equal(get_mu<decltype(earthCopy)>(), get_mu<planets::Earth>(), REL_TOL));
-    ASSERT_TRUE(math::nearly_equal(get_mass<decltype(earthCopy)>(), get_mass<planets::Earth>(), REL_TOL));
-}
-
-TEST_F(CelestialBodyTest, AllPlanetaryBodies)
-{
-    // Test all planetary body constructors are functional
-    ASSERT_NO_THROW(Sun());
-    ASSERT_NO_THROW(Mercury());
-    ASSERT_NO_THROW(Venus());
-    ASSERT_NO_THROW(Mars());
-    ASSERT_NO_THROW(Phobos());
-    ASSERT_NO_THROW(Deimos());
-    ASSERT_NO_THROW(Jupiter());
-    ASSERT_NO_THROW(Ganymede());
-    ASSERT_NO_THROW(Callisto());
-    ASSERT_NO_THROW(Io());
-    ASSERT_NO_THROW(Europa());
-    ASSERT_NO_THROW(Saturn());
-    ASSERT_NO_THROW(Titan());
-    ASSERT_NO_THROW(Rhea());
-    ASSERT_NO_THROW(Iapetus());
-    ASSERT_NO_THROW(Uranus());
-    ASSERT_NO_THROW(Titania());
-    ASSERT_NO_THROW(Oberon());
-    ASSERT_NO_THROW(Neptune());
-    ASSERT_NO_THROW(Triton());
 }

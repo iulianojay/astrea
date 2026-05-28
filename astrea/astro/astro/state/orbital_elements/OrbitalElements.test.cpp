@@ -62,11 +62,20 @@ static_assert(IsOrbitalElements<Equinoctial<frames::earth::icrf>>);
 
 TEST_F(OrbitalElementsTest, DefaultConstructor) { ASSERT_NO_THROW(OrbitalElements()); }
 
-TEST_F(OrbitalElementsTest, CartesianConstructor) { ASSERT_NO_THROW(OrbitalElements(Cartesian())); }
+TEST_F(OrbitalElementsTest, CartesianConstructor)
+{
+    ASSERT_NO_THROW(OrbitalElements(Cartesian<frames::earth::icrf>()));
+}
 
-TEST_F(OrbitalElementsTest, KeplerianConstructor) { ASSERT_NO_THROW(OrbitalElements(Keplerian())); }
+TEST_F(OrbitalElementsTest, KeplerianConstructor)
+{
+    ASSERT_NO_THROW(OrbitalElements(Keplerian<frames::earth::icrf>()));
+}
 
-TEST_F(OrbitalElementsTest, EquinoctialConstructor) { ASSERT_NO_THROW(OrbitalElements(Equinoctial())); }
+TEST_F(OrbitalElementsTest, EquinoctialConstructor)
+{
+    ASSERT_NO_THROW(OrbitalElements(Equinoctial<frames::earth::icrf>()));
+}
 
 TEST_F(OrbitalElementsTest, EqualityOperator)
 {

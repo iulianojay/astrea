@@ -24,6 +24,7 @@
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
 #include <astro/frames/framework/Frame.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
+#include <astro/systems/celestial_bodies.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {

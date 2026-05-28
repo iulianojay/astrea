@@ -16,8 +16,8 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
@@ -42,6 +42,7 @@ class CartesianTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
+    GravParam mu = get_mu<frames::primary.origin>();
     Date epoch;
     Distance x  = 7000.0 * km;
     Distance y  = 0.0 * km;
@@ -105,19 +106,19 @@ TEST_F(CartesianTest, CartesianConstructor)
 {
     Cartesian<frames::earth::icrf> other{ 5000.0 * km,  1000.0 * km,  2000.0 * km,
                                           1.0 * km / s, 2.0 * km / s, 3.0 * km / s };
-    ASSERT_NO_THROW(Cartesian<frames::earth::icrf>(other.get_mu()));
+    ASSERT_NO_THROW(Cartesian<frames::earth::icrf>(other, mu));
 }
 
 TEST_F(CartesianTest, KeplerianConstructor)
 {
     Keplerian<frames::earth::icrf> kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
-    ASSERT_NO_THROW(Cartesian<frames::earth::icrf>(kep.get_mu()));
+    ASSERT_NO_THROW(Cartesian<frames::earth::icrf>(kep, mu));
 }
 
 TEST_F(CartesianTest, EquinoctialConstructor)
 {
     Equinoctial<frames::earth::icrf> equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
-    ASSERT_NO_THROW(Cartesian<frames::earth::icrf>(equi.get_mu()));
+    ASSERT_NO_THROW(Cartesian<frames::earth::icrf>(equi, mu));
 }
 
 TEST_F(CartesianTest, CopyConstructor)
@@ -414,7 +415,7 @@ TEST_F(CartesianTest, Interpolate)
     Time thisTime                         = 0.0 * s;
     Time otherTime                        = 10.0 * s;
     Time targetTime                       = 5.0 * s;
-    Cartesian<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other.get_mu(), targetTime);
+    Cartesian<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other, mu, targetTime);
 
     // At t=5s (midpoint), expect average of start and end values
     ASSERT_TRUE(math::nearly_equal(result.get_x(), (x + 14000.0 * km) / 2.0, REL_TOL));
@@ -429,7 +430,7 @@ TEST_F(CartesianTest, FromKeplerianConversion)
 {
     // Test conversion from Keplerian to Cartesian and back
     Keplerian<frames::earth::icrf> kep{ 7000.0 * km, 0.01 * one, 98.0 * deg, 40.0 * deg, 80.0 * deg, 0.0 * deg };
-    Cartesian<frames::earth::icrf> cart(kep.get_mu());
+    Cartesian<frames::earth::icrf> cart(kep, mu);
 
     // Verify the Cartesian state is non-zero
     Distance r_mag = sqrt(cart.get_x() * cart.get_x() + cart.get_y() * cart.get_y() + cart.get_z() * cart.get_z());
@@ -443,7 +444,7 @@ TEST_F(CartesianTest, FromEquinoctialConversion)
 {
     // Test conversion from Equinoctial to Cartesian
     Equinoctial<frames::earth::icrf> equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
-    Cartesian<frames::earth::icrf> cart(equi.get_mu());
+    Cartesian<frames::earth::icrf> cart(equi, mu);
 
     // Verify the Cartesian state is non-zero
     Distance r_mag = sqrt(cart.get_x() * cart.get_x() + cart.get_y() * cart.get_y() + cart.get_z() * cart.get_z());
@@ -454,7 +455,7 @@ TEST_F(CartesianTest, ZeroSemimajorKeplerianConversion)
 {
     // Test edge case with zero semimajor axis
     Keplerian<frames::earth::icrf> kep{ 0.0 * km, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg };
-    Cartesian<frames::earth::icrf> cart(kep.get_mu());
+    Cartesian<frames::earth::icrf> cart(kep, mu);
 
     ASSERT_TRUE(math::nearly_equal(cart.get_x(), Distance(0.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(cart.get_y(), Distance(0.0 * km), REL_TOL));
@@ -468,7 +469,7 @@ TEST_F(CartesianTest, ZeroSemilatusEquinoctialConversion)
 {
     // Test edge case with zero semilatus
     Equinoctial<frames::earth::icrf> equi{ 0.0 * km, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
-    Cartesian<frames::earth::icrf> cart(equi.get_mu());
+    Cartesian<frames::earth::icrf> cart(equi, mu);
 
     ASSERT_TRUE(math::nearly_equal(cart.get_x(), Distance(0.0 * km), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(cart.get_y(), Distance(0.0 * km), REL_TOL));

@@ -24,8 +24,8 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 
@@ -221,7 +221,8 @@ class Orbital6DofTest : public testing::Test {
 
     StateHistory run_propagation(const EomType eomId, const ForceModel& forces, const InitialOrbitType& orbitType, const VehicleType vehicleType)
     {
-        OrbitalElements initialElements = (orbitType == CIRCULAR) ? Keplerian(circular, mu) : Keplerian(elliptic, mu);
+        OrbitalElements initialElements = (orbitType == CIRCULAR) ? Keplerian<frames::earth::icrf>(circular, mu) :
+                                                                    Keplerian<frames::earth::icrf>(elliptic, mu);
         State state0(initialElements, epoch);
 
         Spacecraft sat = build_spacecraft(orbitType, vehicleType);
@@ -289,7 +290,7 @@ class Orbital6DofTest : public testing::Test {
                 );
         }
         else {
-            return State({ Cartesian(position, velocity) }, epoch + time);
+            return State({ Cartesian<frames::earth::icrf>(position, velocity) }, epoch + time);
         }
 
         AngularVelocities<frames::dynamic::body, frames::earth::icrf> angularVelocity(0.0 * rad / s, 0.0 * rad / s, 0.0 * rad / s);
@@ -300,7 +301,7 @@ class Orbital6DofTest : public testing::Test {
                 row.bodyAngularVelocityWrtEi_rad_s_Yaw.value() * rad / s
             );
         }
-        return State({ Cartesian(position, velocity) }, epoch + time, Attitude(attitudeAngles, angularVelocity));
+        return State({ Cartesian<frames::earth::icrf>(position, velocity) }, epoch + time, Attitude(attitudeAngles, angularVelocity));
     }
 
     std::vector<std::pair<StateHistory, std::string>> get_checkcase_histories(const std::string& pattern) const

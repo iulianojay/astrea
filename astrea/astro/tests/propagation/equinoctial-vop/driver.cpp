@@ -74,7 +74,7 @@ TEST_F(EquinoctialVopPropagationTest, GEONoForces)
 {
     // Build constellation
     Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::GEO();
-    State state{ Equinoctial(kep0, mu), epoch };
+    State state{ Equinoctial<frames::earth::icrf>(kep0, mu), epoch };
     Spacecraft geo;
     Vehicle vehicle{ geo };
 
@@ -93,7 +93,7 @@ TEST_F(EquinoctialVopPropagationTest, GPSNoForces)
 {
     // Build constellation
     Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::GPS();
-    State state{ Equinoctial(kep0, mu), epoch };
+    State state{ Equinoctial<frames::earth::icrf>(kep0, mu), epoch };
     Spacecraft meo;
     Vehicle vehicle{ meo };
 
@@ -108,11 +108,11 @@ TEST_F(EquinoctialVopPropagationTest, GPSNoForces)
 }
 
 
-TEST_F(EquinoctialVopPropagationTest, GEONoForces)
+TEST_F(EquinoctialVopPropagationTest, LEONoForces)
 {
     // Build constellation
-    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::GEO();
-    State state{ Equinoctial(kep0, mu), epoch };
+    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::LEO();
+    State state{ Equinoctial<frames::earth::icrf>(kep0, mu), epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };
 

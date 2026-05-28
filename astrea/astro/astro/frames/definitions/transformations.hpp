@@ -25,7 +25,6 @@
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
-#include <astro/frames/frames.hpp>
 #include <astro/frames/definitions/defined_rotations.hpp>
 #include <astro/systems/system_utilities.hpp>
 

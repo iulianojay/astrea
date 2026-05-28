@@ -45,7 +45,8 @@ int main()
     Equinoctial<frames::earth::icrf> equinoctial{ keplerian, mu };
     std::cout << "Converted to Keplerian: " << keplerian << std::endl;
     std::cout << "Converted to Equinoctial: " << equinoctial << std::endl;
-    std::cout << "Converted back to Cartesian: " << Cartesian(equinoctial, mu) << std::endl << std::endl;
+    std::cout << "Converted back to Cartesian: " << Cartesian<frames::earth::icrf>(equinoctial, mu) << std::endl
+              << std::endl;
 
     // Each element set also supports common operators **but only for the same element set**
     Cartesian<frames::earth::icrf> cartesian2{

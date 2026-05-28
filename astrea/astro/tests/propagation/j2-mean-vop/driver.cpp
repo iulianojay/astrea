@@ -105,10 +105,10 @@ TEST_F(J2MeanVopPropagationTest, GPSNoForces)
 }
 
 
-TEST_F(J2MeanVopPropagationTest, GEONoForces)
+TEST_F(J2MeanVopPropagationTest, LEONoForces)
 {
     // Build constellation
-    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::GEO();
+    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::LEO();
     State state{ kep0, epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };

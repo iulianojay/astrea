@@ -83,7 +83,9 @@ int main(int argc, char** argv)
 TEST_F(LeoToGroundAccessTest, LeoThinCone)
 {
     // Build constellation
-    const Cartesian<frames::earth::icrf> elem0(Keplerian(semimajorLeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
+    const Cartesian<frames::earth::icrf> elem0(
+        Keplerian<frames::earth::icrf>(semimajorLeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu
+    );
     const State state0(elem0, epoch);
 
     const auto& centralBody = sys.get_central_body();

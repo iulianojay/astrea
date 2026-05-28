@@ -105,10 +105,10 @@ TEST_F(TwoBodyPropagationTest, GPS)
 }
 
 
-TEST_F(TwoBodyPropagationTest, GEO)
+TEST_F(TwoBodyPropagationTest, LEO)
 {
     // Build constellation
-    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::GEO();
+    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::LEO();
     State state{ kep0, epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };

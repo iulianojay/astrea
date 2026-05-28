@@ -16,8 +16,8 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
@@ -90,24 +90,27 @@ TEST_F(KeplerianTest, UnitlessConstructor)
     ASSERT_TRUE(math::nearly_equal(scaledState.get_true_anomaly(), Angle(2.0 * rad), REL_TOL));
 }
 
-TEST_F(KeplerianTest, ParameterizedConstructor) { ASSERT_NO_THROW(Keplerian(a, ecc, inc, raan, w, theta)); }
+TEST_F(KeplerianTest, ParameterizedConstructor)
+{
+    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>(a, ecc, inc, raan, w, theta));
+}
 
 TEST_F(KeplerianTest, KeplerianConstructor)
 {
     Keplerian<frames::earth::icrf> other{ 8000.0 * km, 0.02 * one, 45.0 * deg, 30.0 * deg, 60.0 * deg, 90.0 * deg };
-    ASSERT_NO_THROW(Keplerian(other.get_mu()));
+    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>(other, mu));
 }
 
 TEST_F(KeplerianTest, CartesianConstructor)
 {
     Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
-    ASSERT_NO_THROW(Keplerian(cart.get_mu()));
+    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>(cart, mu));
 }
 
 TEST_F(KeplerianTest, EquinoctialConstructor)
 {
     Equinoctial<frames::earth::icrf> equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
-    ASSERT_NO_THROW(Keplerian(equi.get_mu()));
+    ASSERT_NO_THROW(Keplerian<frames::earth::icrf>(equi, mu));
 }
 
 TEST_F(KeplerianTest, LEOStaticMethod)
@@ -177,15 +180,14 @@ TEST_F(KeplerianTest, CopyAssignment)
 
 TEST_F(KeplerianTest, MoveAssignment)
 {
-    Keplerian<frames::earth::icrf> frames::earth::icrf > temp{ a, ecc, inc, raan, w, theta };
+    Keplerian<frames::earth::icrf> temp{ a, ecc, inc, raan, w, theta };
     ASSERT_NO_THROW(Keplerian<frames::earth::icrf> newKep = std::move(temp));
 }
 
 TEST_F(KeplerianTest, EqualityOperator)
 {
-    Keplerian<frames::earth::icrf> frames::earth::icrf > sameState{ a, ecc, inc, raan, w, theta };
-    Keplerian<frames::earth::icrf> frames::earth::icrf > frames::earth::icrf >
-        diffState{ a + 1000.0 * km, ecc, inc, raan, w, theta };
+    Keplerian<frames::earth::icrf> sameState{ a, ecc, inc, raan, w, theta };
+    Keplerian<frames::earth::icrf> diffState{ a + 1000.0 * km, ecc, inc, raan, w, theta };
     ASSERT_TRUE(state == sameState);
     ASSERT_FALSE(state == diffState);
     ASSERT_FALSE(state != sameState);
@@ -194,8 +196,7 @@ TEST_F(KeplerianTest, EqualityOperator)
 
 TEST_F(KeplerianTest, AdditionOperator)
 {
-    Keplerian<frames::earth::icrf> Keplerian<frames::earth::icrf> other{ 1000.0 * km, 0.005 * one, 10.0 * deg,
-                                                                         5.0 * deg,   10.0 * deg,  15.0 * deg };
+    Keplerian<frames::earth::icrf> other{ 1000.0 * km, 0.005 * one, 10.0 * deg, 5.0 * deg, 10.0 * deg, 15.0 * deg };
     Keplerian<frames::earth::icrf> result = state + other;
     ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), a + 1000.0 * km, REL_TOL));
     ASSERT_TRUE(math::nearly_equal(result.get_eccentricity(), ecc + 0.005 * one, REL_TOL));
@@ -348,7 +349,7 @@ TEST_F(KeplerianTest, Interpolate)
     Time thisTime                         = 0.0 * s;
     Time otherTime                        = 10.0 * s;
     Time targetTime                       = 5.0 * s;
-    Keplerian<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other.get_mu(), targetTime);
+    Keplerian<frames::earth::icrf> result = state.interpolate(thisTime, otherTime, other, mu, targetTime);
 
     // At t=5s (midpoint), expect average of start and end values
     ASSERT_TRUE(math::nearly_equal(result.get_semimajor(), (a + 14000.0 * km) / 2.0, REL_TOL));
@@ -359,7 +360,7 @@ TEST_F(KeplerianTest, FromCartesianConversion)
 {
     // Test conversion from Cartesian to Keplerian
     Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.546 * km / s, 0.0 * km / s };
-    Keplerian<frames::earth::icrf> kep(cart.get_mu());
+    Keplerian<frames::earth::icrf> kep(cart, mu);
 
     // Verify the Keplerian state has reasonable values
     ASSERT_GT(kep.get_semimajor().numerical_value_in(km), 0.0);
@@ -371,7 +372,7 @@ TEST_F(KeplerianTest, FromEquinoctialConversion)
 {
     // Test conversion from Equinoctial to Keplerian
     Equinoctial<frames::earth::icrf> equi{ 7000.0 * km, 0.01 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad };
-    Keplerian<frames::earth::icrf> kep(equi.get_mu());
+    Keplerian<frames::earth::icrf> kep(equi, mu);
 
     // Verify the Keplerian state has reasonable values
     ASSERT_GT(kep.get_semimajor().numerical_value_in(km), 0.0);

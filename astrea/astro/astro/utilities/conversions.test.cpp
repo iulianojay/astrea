@@ -57,12 +57,12 @@ class ConversionTest : public testing::Test {
         const GravParam mu = get_mu<frames::primary.origin>();
         const Velocity V   = sqrt(mu / R);
 
-        _keplExp = Keplerian(R, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
-        _cartExp = Cartesian(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
-        _equiExp = Equinoctial(R, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad);
+        _keplExp = Keplerian<frames::primary>(R, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
+        _cartExp = Cartesian<frames::primary>(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
+        _equiExp = Equinoctial<frames::primary>(R, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad);
 
-        _eciExp  = Cartesian(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
-        _ecefExp = Cartesian(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
+        _eciExp  = Cartesian<frames::primary>(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
+        _ecefExp = Cartesian<frames::primary>(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
 
         // Hard code vallado values to ensure tests pass
         rEquitorial = 6378.1363 * km;
@@ -78,7 +78,7 @@ class ConversionTest : public testing::Test {
     OrbitalElements _ecefExp;
 
     // Setup
-    GravParam mu;
+    GravParam mu = get_mu<frames::primary.origin>();
     Distance rEquitorial;
     Distance rPolar;
 
@@ -94,8 +94,8 @@ class ConversionTest : public testing::Test {
     template <typename T>
     OrbitalElements random_elements()
     {
-        Keplerian<frames::earth::icrf> elements(semimajorDist(rng), eccDist(rng), incDist(rng), raanDist(rng), wDist(rng), thetaDist(rng));
-        return OrbitalElements(T(elements.get_mu()));
+        Keplerian<T::frame> elements(semimajorDist(rng), eccDist(rng), incDist(rng), raanDist(rng), wDist(rng), thetaDist(rng));
+        return OrbitalElements(T(elements, mu));
     }
 };
 

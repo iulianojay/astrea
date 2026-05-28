@@ -50,7 +50,7 @@ class DeorbitTest : public testing::Test {
         const RadiusVector<frames::earth::icrf> position{ 6400.0 * km, 0.0 * km, 0.0 * km };
         const VelocityVector<frames::earth::icrf> velocity{ 0.0 * km / s, 7.8 * km / s, 0.0 * km / s };
 
-        cartesian = Cartesian(position, velocity);
+        cartesian = Cartesian<frames::earth::icrf>(position, velocity);
         state     = State(cartesian, epoch);
     }
 
