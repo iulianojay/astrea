@@ -63,7 +63,11 @@ TEST_F(CelestialBodyTest, Equality)
 
 TEST_F(CelestialBodyTest, GetName) { ASSERT_EQ(planets::Earth.name, mp_units::symbol_text{ "Earth" }); }
 
-TEST_F(CelestialBodyTest, GetParent) { ASSERT_TRUE(get_parent<planets::Earth>() == star::Sun); }
+#ifdef ASTREA_BUILD_EARTH_EPHEMERIS
+TEST_F(CelestialBodyTest, GetParent) { ASSERT_TRUE(get_parent<planets::Earth>() == barycenters::EarthMoonBarycenter); }
+#else
+TEST_F(CelestialBodyTest, GetParent) { ASSERT_TRUE(get_parent<planets::Earth>() == barycenters::EarthMoonBarycenter); }
+#endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 TEST_F(CelestialBodyTest, GetType) { ASSERT_EQ(get_body_type<planets::Earth>(), CelestialBodyType::PLANET); }
 
@@ -221,13 +225,13 @@ TEST_F(CelestialBodyTest, GetStateAtValldoEx)
     // These comparisons are close but not exact. It could be due to the tables Vallado uses differing from the output
     // of the Chebyshev approximations. We just lower the required tolerance a bit so the tests pass. The following test
     // returns exact values so this is likely not an indication that there are any accuracy issues
-    ASSERT_TRUE(nearly_equal(sunPosition - earthPosition, expEarth2SunPosition, 0.0 * one, 1800.0 * one));
+    ASSERT_TRUE(nearly_equal(sunPosition - (earthPosition + embPosition), expEarth2SunPosition, 0.0 * one, 1800.0 * one));
     ASSERT_TRUE(nearly_equal(moonPosition, expEarth2MoonPosition, 0.0 * one, 50.0 * one)); // x value has largest inaccuracy but it's more accurate than Vallado's approximation
 
 #elif !defined(ASTREA_BUILD_EARTH_EPHEMERIS) && !defined(ASTREA_BUILD_SUN_EPHEMERIS)
 
     // Linear approximations are not great
-    ASSERT_TRUE(nearly_equal(sunPosition - earthPosition, expEarth2SunPosition, 1.0e-1 * one));
+    ASSERT_TRUE(nearly_equal(sunPosition - (earthPosition + embPosition), expEarth2SunPosition, 1.0e-1 * one));
     ASSERT_TRUE(nearly_equal(moonPosition, expEarth2MoonPosition, 1.0 * one)); // big ooph
 
 #endif
@@ -260,7 +264,7 @@ TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
     std::cout << "Sun to Moon Position: " << moonPosition + earthPosition + embPosition - sunPosition << std::endl;
     std::cout << "Expected Sun to Moon Position: " << expSunToMoonPosition << std::endl << std::endl;
 
-    ASSERT_TRUE(nearly_equal(moonPosition + earthPosition - sunPosition, expSunToMoonPosition, REL_TOL));
+    ASSERT_TRUE(nearly_equal(moonPosition + earthPosition + embPosition - sunPosition, expSunToMoonPosition, REL_TOL));
 }
 
 #endif // defined(ASTREA_BUILD_EARTH_EPHEMERIS) && defined(ASTREA_BUILD_MOON_EPHEMERIS) && defined(ASTREA_BUILD_SUN_EPHEMERIS)

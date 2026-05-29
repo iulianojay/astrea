@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <vector>
 
 #include <math/operations.hpp>
@@ -72,7 +73,12 @@ bool nearly_equal(
 ) noexcept
 {
     for (std::size_t ii = 0; ii < 3; ++ii) {
-        if (!math::nearly_equal(vec[ii], expected[ii], relTol, absTol)) { return false; }
+        if (!math::nearly_equal(vec[ii], expected[ii], relTol, absTol)) {
+            std::cout << "Input: " << vec << std::endl;
+            std::cout << "Expected: " << expected << std::endl;
+            std::cout << "Element " << ii << " differs: " << vec[ii] << " vs " << expected[ii] << std::endl;
+            return false;
+        }
     }
     return true;
 }
@@ -100,7 +106,13 @@ bool nearly_equal(
 {
     for (std::size_t ii = 0; ii < 3; ++ii) {
         for (std::size_t jj = 0; jj < 3; ++jj) {
-            if (!math::nearly_equal(dcm1[ii, jj], dcm2[ii, jj], relTol, absTol)) { return false; }
+            if (!math::nearly_equal(dcm1[ii, jj], dcm2[ii, jj], relTol, absTol)) {
+                std::cout << "Input: " << dcm1 << std::endl;
+                std::cout << "Expected: " << dcm2 << std::endl;
+                std::cout << "Element (" << ii << ", " << jj << ") differs: " << dcm1[ii, jj] << " vs " << dcm2[ii, jj]
+                          << std::endl;
+                return false;
+            }
         }
     }
     return true;

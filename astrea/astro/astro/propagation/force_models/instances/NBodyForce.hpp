@@ -69,6 +69,10 @@ class NBodyForce : public PerturbingForce {
         AccelerationVector<frames::primary> accelNBody{ Acceleration::zero() };
         (
             [&]<auto body>() {
+                if constexpr (body == center) {
+                    return; // Skip central body
+                }
+
                 // Find center to nth body and spacecraft to nth body
                 // NOTE: The forced frame conversion here is fine since it's just a relative translation, no rotation or velocity
                 const RadiusVector<frames::primary> rCenterToNbody =

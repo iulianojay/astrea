@@ -66,11 +66,11 @@ TEST_F(TwoLineElementsTest, StringConstructorLinesWrongSize)
         "1 25544U 98067A   08264.51782528 -.00002182  00000-0 -11606-4 0  2927 blahblahblah",
         "2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.72125391563537 blahblahblah"
     };
-    ASSERT_ANY_THROW(TwoLineElements(longTle));
+    ASSERT_ANY_THROW(TwoLineElements{ longTle });
 
     std::array<std::string, 2> shortTle = { "1 25544U 98067A   08264.51782528 -.00002182  00000-0 -11606-4 0  ",
                                             "2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.7212539156" };
-    ASSERT_ANY_THROW(TwoLineElements(shortTle));
+    ASSERT_ANY_THROW(TwoLineElements{ shortTle });
 }
 
 TEST_F(TwoLineElementsTest, StringConstructor)

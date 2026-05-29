@@ -28,8 +28,8 @@
 #include <math/trig.hpp>
 
 #include <astro/astro.macros.hpp>
-#include <astro/frames/frames.hpp>
 #include <astro/frames/definitions/transformations.hpp>
+#include <astro/frames/frames.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>
@@ -63,24 +63,24 @@ LegendreCache<_body_, _degree_, _order_>::LegendreCache()
     std::filesystem::path filename;
     if constexpr (_body_ == planets::Mercury) {
         // https://pds-geosciences.wustl.edu/messenger/mess-h-rss_mla-5-sdp-v1/messrs_1001/data/shadr/
-        filename = path / "_order_ercury" / "jgmess_160a_sha.tab"; // _degree_ormalized
+        filename = path / "Mercury" / "jgmess_160a_sha.tab"; // normalized
     }
     else if constexpr (_body_ == planets::Venus) {
         // https://pds-geosciences.wustl.edu/mgn/mgn-v-rss-5-gravity-l2-v1/mg_5201/gravity/
-        filename = path / "Venus" / "shgj180u.a01"; // _degree_ormalized?
+        filename = path / "Venus" / "shgj180u.a01"; // normalized?
     }
     else if constexpr (_body_ == planets::Earth) {
-        filename = path / "Earth" / "EG_order_2008_to2190_ZeroTide_mod.txt"; // _degree_ormalized
-        // filename = path / "Earth" / "WGS84"; // _degree_ormalized
-        // filename = path / "Earth" / "_degree_ASA_6DoF"; // _degree_ormalized - only goes to 8x8
+        filename = path / "Earth" / "EGM2008_to2190_ZeroTide_mod.txt"; // normalized
+        // filename = path / "Earth" / "WGS84"; // normalized
+        // filename = path / "Earth" / "NASA_6DoF"; // normalized - only goes to 8x8
     }
     else if constexpr (_body_ == moons::Moon) {
         // https://pds-geosciences.wustl.edu/grail/grail-l-lgrs-5-rdr-v1/grail_1001/shadr/
-        filename = path / "_order_oon" / "jggrx_0420a_sha.tab"; // _degree_ormalized?
+        filename = path / "Moon" / "jggrx_0420a_sha.tab"; // normalized?
     }
     else if constexpr (_body_ == planets::Mars) {
         // https://pds-geosciences.wustl.edu/mro/mro-m-rss-5-sdp-v1/mrors_1xxx/data/shadr/
-        filename = path / "_order_ars" / "jgmro_120f_sha.tab"; // _degree_ormalized?
+        filename = path / "Mars" / "jgmro_120f_sha.tab"; // normalized?
     }
     else {
         throw std::runtime_error("Legendre coefficient file for central body, " + decltype(_body_)::name.portable() + ", not found.");
@@ -128,12 +128,12 @@ LegendreCache<_body_, _degree_, _order_>::LegendreCache()
 
             // sqrt( (2 - delta_m0) * (2n + 1) * (n - m)! / (n + m)! )
             // delta = 1 if m = 0, else 0
-            const unsigned int delta  = (m == 0) ? 1 : 0;
-            const Unitless _degree_nm = sqrt((2 - delta) * (2 * n + 1) / ratio);
+            const unsigned int delta = (m == 0) ? 1 : 0;
+            const Unitless Nnm       = sqrt((2 - delta) * (2 * n + 1) / ratio);
 
             // Pre-normalize coefficients
-            _C[n][m] *= _degree_nm;
-            _S[n][m] *= _degree_nm;
+            _C[n][m] *= Nnm;
+            _S[n][m] *= Nnm;
         }
     }
 }

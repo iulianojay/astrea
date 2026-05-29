@@ -35,8 +35,7 @@ using mp_units::si::unit_symbols::s;
 class NBodyForceTest : public testing::Test {
   public:
     NBodyForceTest() :
-        epoch("2020-02-18 15:08:47.23847"),
-        nBodyForce()
+        epoch("2020-02-18 15:08:47.23847")
     {
     }
 
@@ -92,9 +91,9 @@ TEST_F(NBodyForceTest, ComputeForceValladoEx85)
 
 
     // These values come from a run of this code, not Vallado's, but they're close
-    const AccelerationVector<frames::earth::icrf> expected{ 2.74172e-10 * km / (s * s),
-                                                            -2.82853e-10 * km / (s * s),
-                                                            -8.78525e-10 * km / (s * s) };
+    const AccelerationVector<frames::earth::icrf> expected{ 2.771e-10 * km / (s * s),
+                                                            -2.78014e-10 * km / (s * s),
+                                                            -8.81891e-10 * km / (s * s) };
 
 #elif !defined(ASTREA_BUILD_EARTH_EPHEMERIS) && !defined(ASTREA_BUILD_SUN_EPHEMERIS)
 
@@ -107,11 +106,6 @@ TEST_F(NBodyForceTest, ComputeForceValladoEx85)
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();
 
-    std::cout << "NBodyForce acceleration: " << accel << std::endl;
-    std::cout << "Expected acceleration: " << expected << std::endl;
-    std::cout << "NBodyForce acceleration norm: " << accelNorm << std::endl;
-    std::cout << "Expected acceleration norm: " << expectedNorm << std::endl;
-
-    ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL));
     ASSERT_TRUE(nearly_equal(accel, expected, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL));
 }

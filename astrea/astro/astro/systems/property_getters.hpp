@@ -308,7 +308,7 @@ inline constexpr Angle get_mean_anomaly(Date date)
     const auto L    = get_mean_longitude<body>(date);
     const auto w    = get_longitude_of_perigee<body>(date);
     const auto raan = get_right_ascension<body>(date);
-    return L - w - raan;
+    return wrap_angle(L - w - raan);
 };
 
 /**

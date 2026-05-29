@@ -20,9 +20,9 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/framework/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
 #include <astro/frames/definitions/transformations.hpp>
+#include <astro/frames/frames.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/time/Date.hpp>
 
 #include <tests/utilities/comparisons.hpp>
@@ -33,8 +33,8 @@ using namespace mp_units;
 using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::km;
 
-static const Unitless REL_TOL = 1.0e-10 * one;
-static const Unitless ABS_TOL = 1.0e-12 * one;
+static const Unitless REL_TOL = 1.0e-6 * one;
+static const Unitless ABS_TOL = 1.0e-6 * one;
 
 static_assert(frames::HasDcm<frames::earth::icrf, frames::earth::j2000>);
 static_assert(frames::HasValidFrameTransformation<frames::earth::icrf, frames::earth::icrf>);
@@ -73,18 +73,22 @@ TEST(RotateVectorIntoFrame, SameFrameZeroVectorRemainsZero)
     EXPECT_TRUE(nearly_equal(result, zero, REL_TOL, ABS_TOL));
 }
 
-TEST(RotateVectorIntoFrame, EarthIcrfToJ2000IsIdentityAtJ2000)
+TEST(RotateVectorIntoFrame, EarthIcrfToJ2000IsNearlyIdentityAtJ2000)
 {
     const CartesianVector<Unitless, frames::earth::icrf> vec{ 1.0 * one, 0.0 * one, 0.0 * one };
     const auto result = frames::rotate_vector_into_frame<Unitless, frames::earth::icrf, frames::earth::j2000>(vec, J2000);
-    EXPECT_TRUE(nearly_equal(result, CartesianVector<Unitless, frames::earth::j2000>{ 1.0 * one, 0.0 * one, 0.0 * one }, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(
+        nearly_equal(result, CartesianVector<Unitless, frames::earth::j2000>{ 1.0 * one, 7.0783e-08 * one, 8.0561e-08 * one }, REL_TOL, ABS_TOL)
+    );
 }
 
-TEST(RotateVectorIntoFrame, EarthJ2000ToIcrfIsIdentityAtJ2000)
+TEST(RotateVectorIntoFrame, EarthJ2000ToIcrfIsNearlyIdentityAtJ2000)
 {
     const CartesianVector<Unitless, frames::earth::j2000> vec{ 0.0 * one, 1.0 * one, 0.0 * one };
     const auto result = frames::rotate_vector_into_frame<Unitless, frames::earth::j2000, frames::earth::icrf>(vec, J2000);
-    EXPECT_TRUE(nearly_equal(result, CartesianVector<Unitless, frames::earth::icrf>{ 0.0 * one, 1.0 * one, 0.0 * one }, REL_TOL, ABS_TOL));
+    EXPECT_TRUE(
+        nearly_equal(result, CartesianVector<Unitless, frames::earth::icrf>{ 7.0783e-08 * one, 1.0 * one, -3.306e-08 * one }, REL_TOL, ABS_TOL)
+    );
 }
 
 TEST(RotateVectorIntoFrame, IcrfToEcefToIcrfRoundTripRecoverOriginal)

@@ -55,7 +55,7 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
 
     // Radius from central body to sun
     const RadiusVector<frames::primary> rCenterToSun =
-        get_relative_position<center, star::Sun>(date).force_frame_conversion<frames::primary>();
+        get_relative_position<star::Sun, center>(date).force_frame_conversion<frames::primary>();
     const Distance rMagCenterToSun = rCenterToSun.norm();
 
     const RadiusVector<frames::primary> rVehicleToSun = rCenterToSun - rCenterToVehicle;

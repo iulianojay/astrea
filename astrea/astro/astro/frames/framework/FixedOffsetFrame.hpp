@@ -244,7 +244,7 @@ template <IsFixedOffsetFrame auto frame>
 inline constexpr auto get_offset_from_root_frame()
 {
     if constexpr (HasSpatialOffset<decltype(frame)>) {
-        if constexpr (IsDerivedFrame<decltype(frame.parent)>) {
+        if constexpr (IsDerivedFrame<std::remove_cv_t<decltype(frame.parent)>>) {
             // r_grandparent->parent + r_parent->child = r_grandparent->child
             // Force-convert the accumulated parent offset into frame::parent's frame type so
             // both operands of operator+ share the same CartesianVector frame parameter.
@@ -284,8 +284,8 @@ inline constexpr DirectionCosineMatrix<frame.parent, frame> get_dcm_from_frame()
 template <IsFixedOffsetFrame auto frame>
 inline constexpr auto get_dcm_from_root_frame()
 {
-    if constexpr (HasAngularOffset<decltype(frame)>) {
-        if constexpr (IsDerivedFrame<decltype(frame.parent)>) {
+    if constexpr (HasAngularOffset<std::remove_cv_t<decltype(frame)>>) {
+        if constexpr (IsDerivedFrame<std::remove_cv_t<decltype(frame.parent)>>) {
             // DCM<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
             return get_dcm_from_root_frame<frame.parent>() * get_dcm_from_frame<frame>();
         }
@@ -294,7 +294,9 @@ inline constexpr auto get_dcm_from_root_frame()
         }
     }
     else {
-        if constexpr (IsDerivedFrame<decltype(frame.parent)>) { return get_dcm_from_root_frame<frame.parent>(); }
+        if constexpr (IsDerivedFrame<std::remove_cv_t<decltype(frame.parent)>>) {
+            return get_dcm_from_root_frame<frame.parent>();
+        }
         else {
             return DirectionCosineMatrix<frame.parent, frame>::identity();
         }

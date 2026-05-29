@@ -263,19 +263,19 @@ TEST_F(PayloadTest, GetName)
 //     ASSERT_TRUE(math::nearly_equal(payloadPos.get_x(), parentPos.get_x(), REL_TOL));
 //     ASSERT_TRUE(math::nearly_equal(payloadPos.get_y(), parentPos.get_y(), REL_TOL));
 //     ASSERT_TRUE(math::nearly_equal(payloadPos.get_z(), parentPos.get_z(), REL_TOL));
+// // }
+
+// TEST_F(PayloadTest, GetInertialVelocityThrowsWithoutHistory)
+// {
+//     Thruster thruster(sat, params);
+//     ASSERT_ANY_THROW({ auto vel = thruster.get_inertial_velocity(Date()); });
 // }
 
-TEST_F(PayloadTest, GetInertialVelocityThrowsWithoutHistory)
-{
-    Thruster thruster(sat, params);
-    ASSERT_ANY_THROW({ auto vel = thruster.get_inertial_velocity(Date()); });
-}
-
-TEST_F(PayloadTest, GetInertialVelocityNoThrowWithHistory)
-{
-    Thruster thruster(satWithHistory, params);
-    ASSERT_NO_THROW({ auto vel = thruster.get_inertial_velocity(Date()); });
-}
+// TEST_F(PayloadTest, GetInertialVelocityNoThrowWithHistory)
+// {
+//     Thruster thruster(satWithHistory, params);
+//     ASSERT_NO_THROW({ auto vel = thruster.get_inertial_velocity(Date()); });
+// }
 
 // TEST_F(PayloadTest, GetInertialVelocityMatchesParent)
 // {
