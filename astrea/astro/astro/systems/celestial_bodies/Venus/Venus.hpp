@@ -93,7 +93,8 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
  * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Venus at the given date.
  */
 template <>
-inline constexpr auto get_position_at<planets::Venus>(const Date& date)
+inline constexpr CartesianVector<Distance, get_parent_frame(planets::Venus, axes::icrf)>
+    get_position_at<planets::Venus>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Venus, axes::icrf);
     return get_position_at_impl<ephemerides::VenusEphemerisTable, frame>(date);
@@ -106,7 +107,8 @@ inline constexpr auto get_position_at<planets::Venus>(const Date& date)
  * @return VelocityVector<frames::solar_system_barycenter::icrf> The velocity of the Venus at the given date.
  */
 template <>
-inline constexpr auto get_velocity_at<planets::Venus>(const Date& date)
+inline constexpr CartesianVector<Velocity, get_parent_frame(planets::Venus, axes::icrf)>
+    get_velocity_at<planets::Venus>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Venus, axes::icrf);
     return get_velocity_at_impl<ephemerides::VenusEphemerisTable, frame>(date);

@@ -178,21 +178,21 @@ class EulerAngles {
      * rotation type). These allow for implicit conversions between equivalent sequences (e.g., ZXZ extrinsic with
      * angles [x, y, z] to ZXZ intrinsic with angles [z, y, x]).
      */
-    template <RotationSequence sequence_u, RotationType rotation_type_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+    template <RotationSequence sequence_u, RotationType rotation_type_u, auto _in_frame_u_, auto _out_frame_u_>
         requires(IsEquivalentEulerAngles<sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>)
     EulerAngles(const EulerAngles<sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>& other) :
         _angles(other._angles.reverse())
     {
     }
 
-    template <RotationSequence sequence_u, RotationType rotation_type_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+    template <RotationSequence sequence_u, RotationType rotation_type_u, auto _in_frame_u_, auto _out_frame_u_>
         requires(IsEquivalentEulerAngles<sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>)
     EulerAngles(EulerAngles<sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>&& other) :
         _angles(other._angles.reverse())
     {
     }
 
-    template <RotationSequence sequence_u, RotationType rotation_type_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+    template <RotationSequence sequence_u, RotationType rotation_type_u, auto _in_frame_u_, auto _out_frame_u_>
         requires(IsEquivalentEulerAngles<sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>)
     EulerAngles& operator=(const EulerAngles<sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>& other)
     {
@@ -200,7 +200,7 @@ class EulerAngles {
         return *this;
     }
 
-    template <RotationSequence sequence_u, RotationType rotation_type_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+    template <RotationSequence sequence_u, RotationType rotation_type_u, auto _in_frame_u_, auto _out_frame_u_>
         requires(IsEquivalentEulerAngles<sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>)
     EulerAngles& operator=(EulerAngles<sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>&& other)
     {
@@ -301,20 +301,20 @@ class EulerAngles {
     }
 
     // Explicitly deleted copy/move assignment/constructor to prevent implicit frame switches, rotation type conversions, and sequence conversions.
-    template <RotationSequence sequence_u, RotationType rotation_type_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+    template <RotationSequence sequence_u, RotationType rotation_type_u, auto _in_frame_u_, auto _out_frame_u_>
         requires(!IsCompatibleEulerAngles<sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>)
     EulerAngles(const EulerAngles<sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>& other) = delete;
 
-    template <RotationSequence sequence_u, RotationType rotation_type_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+    template <RotationSequence sequence_u, RotationType rotation_type_u, auto _in_frame_u_, auto _out_frame_u_>
         requires(!IsCompatibleEulerAngles<sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>)
     EulerAngles(EulerAngles<sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>&& other) = delete;
 
-    template <RotationSequence sequence_u, RotationType rotation_type_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+    template <RotationSequence sequence_u, RotationType rotation_type_u, auto _in_frame_u_, auto _out_frame_u_>
         requires(!IsCompatibleEulerAngles<sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>)
     EulerAngles<sequence, rotation_type, _in_frame_, _out_frame_>&
         operator=(const EulerAngles<sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>& other) = delete;
 
-    template <RotationSequence sequence_u, RotationType rotation_type_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+    template <RotationSequence sequence_u, RotationType rotation_type_u, auto _in_frame_u_, auto _out_frame_u_>
         requires(!IsCompatibleEulerAngles<sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>)
     EulerAngles<sequence, rotation_type, _in_frame_, _out_frame_>&
         operator=(EulerAngles<sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>&& other) = delete;
@@ -331,7 +331,7 @@ class EulerAngles {
         return _angles == other._angles;
     }
 
-    template <RotationSequence sequence_u, RotationType rotation_type_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+    template <RotationSequence sequence_u, RotationType rotation_type_u, auto _in_frame_u_, auto _out_frame_u_>
         requires(IsEquivalentEulerAngles<sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>)
     bool operator==(const EulerAngles<sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>& other) const
     {
@@ -345,7 +345,7 @@ class EulerAngles {
      * @return true If the two vectors are not equal.
      * @return false If the two vectors are equal.
      */
-    template <RotationSequence sequence_u, RotationType rotation_type_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_>
+    template <RotationSequence sequence_u, RotationType rotation_type_u, auto _in_frame_u_, auto _out_frame_u_>
         requires(!IsCompatibleEulerAngles<sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>)
     bool operator==(const EulerAngles<sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_>& other) const
     {

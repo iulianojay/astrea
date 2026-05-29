@@ -56,8 +56,8 @@ namespace astro {
  * @param date The date at which to compute the elements.
  * @return Keplerian The approximate Keplerian elements at the given date.
  */
-template <auto _body_, IsFrame auto _frame_>
-inline Keplerian<_frame_> get_keplerian_elements_at(Date date)
+template <auto _body_>
+inline constexpr Keplerian<get_parent_frame(_body_, axes::icrf)> get_keplerian_elements_at(Date date)
 {
     using namespace mp_units;
     using namespace mp_units::angular;
@@ -75,7 +75,7 @@ inline Keplerian<_frame_> get_keplerian_elements_at(Date date)
     const Angle argPer                        = wrap_angle(w - raan);
 
     const Angle thetat = convert_mean_anomaly_to_true_anomaly(Me, ecc);
-    return Keplerian<_frame_>(a, ecc, inc, raan, argPer, thetat);
+    return Keplerian<get_parent_frame(_body_, axes::icrf)>(a, ecc, inc, raan, argPer, thetat);
 }
 
 /**
@@ -89,10 +89,10 @@ inline Keplerian<_frame_> get_keplerian_elements_at(Date date)
  * ephemeris is enabled) use that specialisation in preference to this primary template.
  */
 template <auto _body_>
-inline auto get_position_at(const Date& date)
+inline constexpr CartesianVector<Distance, get_parent_frame(_body_, axes::icrf)> get_position_at(const Date& date)
 {
     constexpr auto frame        = get_parent_frame(_body_, axes::icrf);
-    const Keplerian<frame> coes = get_keplerian_elements_at<_body_, frame>(date);
+    const Keplerian<frame> coes = get_keplerian_elements_at<_body_>(date);
     constexpr auto parent       = get_parent(_body_);
     const GravParam mu          = get_mu<parent>();
     return Cartesian<frame>(coes, mu).get_position();
@@ -104,10 +104,10 @@ inline auto get_position_at(const Date& date)
  * See get_position_at for usage notes.
  */
 template <auto _body_>
-inline auto get_velocity_at(const Date& date)
+inline constexpr CartesianVector<Velocity, get_parent_frame(_body_, axes::icrf)> get_velocity_at(const Date& date)
 {
     constexpr auto frame        = get_parent_frame(_body_, axes::icrf);
-    const Keplerian<frame> coes = get_keplerian_elements_at<_body_, frame>(date);
+    const Keplerian<frame> coes = get_keplerian_elements_at<_body_>(date);
     constexpr auto parent       = get_parent(_body_);
     const GravParam mu          = get_mu<parent>();
     return Cartesian<frame>(coes, mu).get_velocity();

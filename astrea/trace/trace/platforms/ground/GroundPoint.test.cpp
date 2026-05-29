@@ -58,7 +58,7 @@ TEST_F(GroundPointTest, GetLongitude) { ASSERT_EQ(point.get_longitude(), longitu
 
 TEST_F(GroundPointTest, GetAltitude) { ASSERT_EQ(point.get_altitude(), altitude); }
 
-TEST_F(GroundPointTest, GetParent) { ASSERT_EQ(GroundPoint<astro::planets::Earth>::body, astro::planets::Earth); }
+TEST_F(GroundPointTest, GetParent) { ASSERT_TRUE(GroundPoint<astro::planets::Earth>::body == astro::planets::Earth); }
 
 TEST_F(GroundPointTest, GetId)
 {

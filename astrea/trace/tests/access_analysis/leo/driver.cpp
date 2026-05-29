@@ -58,7 +58,7 @@ class LeoToGroundAccessTest : public testing::Test {
         integrator.set_rel_tol(1.0e-10);
 
         // Build Force Model
-        forces.add<OblatenessForce, 2, 0>();
+        forces.add<OblatenessForce, planets::Earth, 2, 0>();
     }
 
     void SetUp() override {}
@@ -87,8 +87,6 @@ TEST_F(LeoToGroundAccessTest, LeoThinCone)
         Keplerian<frames::earth::icrf>(semimajorLeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu
     );
     const State state0(elem0, epoch);
-
-    const auto& centralBody = sys.get_central_body();
 
     Viewer leo;
     leo.store_state(state0);

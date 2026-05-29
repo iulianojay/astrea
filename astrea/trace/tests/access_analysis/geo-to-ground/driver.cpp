@@ -58,7 +58,7 @@ class GeoToGroundAccessTest : public testing::Test {
         integrator.set_rel_tol(1.0e-10);
 
         // Build Force Model
-        forces.add<OblatenessForce, 2, 0>();
+        forces.add<OblatenessForce, planets::Earth, 2, 0>();
     }
 
     void SetUp() override {}

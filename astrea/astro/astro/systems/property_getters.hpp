@@ -305,8 +305,10 @@ inline constexpr Angle get_true_anomaly(Date date)
 template <IsCelestialBody auto body>
 inline constexpr Angle get_mean_anomaly(Date date)
 {
-    const mp_units::quantity<JulianCentury> T = get_time_since_reference_epoch<body>(date);
-    return get_celestial_body_parameters<body>().meanAnomaly + get_celestial_body_parameters<body>().meanAnomalyRate * T;
+    const auto L    = get_mean_longitude<body>(date);
+    const auto w    = get_longitude_of_perigee<body>(date);
+    const auto raan = get_right_ascension<body>(date);
+    return L - w - raan;
 };
 
 /**

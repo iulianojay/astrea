@@ -84,7 +84,7 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
 
     // Build constellation
     const Distance altitude      = 560.0 * km;
-    const Distance semimajor     = altitude + sys.get_central_body()->get_equitorial_radius();
+    const Distance semimajor     = altitude + get_equitorial_radius<planets::Earth>();
     const Angle inclination      = 97.6316 * deg; // roughly sunsync, whatever
     const std::size_t nSats      = 4;
     const std::size_t nPlanes    = 4;

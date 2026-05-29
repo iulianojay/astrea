@@ -21,16 +21,16 @@
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/CelestialBody.hpp>
 #include <astro/systems/celestial_bodies.hpp>
+#include <astro/systems/default_property_getters.hpp>
+#include <astro/systems/property_getters.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
 using namespace astro;
-using namespace planets;
-using namespace star;
-using namespace moons;
 using namespace mp_units;
+
 using mp_units::angular::unit_symbols::deg;
 using mp_units::angular::unit_symbols::rad;
 using mp_units::iau::unit_symbols::au;
@@ -57,13 +57,13 @@ int main(int argc, char** argv)
 
 TEST_F(CelestialBodyTest, Equality)
 {
-    ASSERT_EQ(Earth, Earth);
-    ASSERT_NE(Earth, Moon);
+    ASSERT_TRUE(planets::Earth == planets::Earth);
+    ASSERT_FALSE(planets::Earth == moons::Moon);
 }
 
-TEST_F(CelestialBodyTest, GetName) { ASSERT_EQ(get_name<planets::Earth>(), "Earth"); }
+TEST_F(CelestialBodyTest, GetName) { ASSERT_EQ(planets::Earth.name, mp_units::symbol_text{ "Earth" }); }
 
-TEST_F(CelestialBodyTest, GetParent) { ASSERT_EQ(get_parent<planets::Earth>(), Sun); }
+TEST_F(CelestialBodyTest, GetParent) { ASSERT_TRUE(get_parent<planets::Earth>() == star::Sun); }
 
 TEST_F(CelestialBodyTest, GetType) { ASSERT_EQ(get_body_type<planets::Earth>(), CelestialBodyType::PLANET); }
 
@@ -124,42 +124,42 @@ TEST_F(CelestialBodyTest, GetSiderealPeriod)
 
 TEST_F(CelestialBodyTest, GetSemimajor)
 {
-    ASSERT_TRUE(math::nearly_equal(get_semimajor<planets::Earth>(), Distance(1.00000261 * au), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_semimajor<planets::Earth>(J2000), Distance(1.00000261 * au), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetEccentricity)
 {
-    ASSERT_TRUE(math::nearly_equal(get_eccentricity<planets::Earth>(), Unitless(0.01671123 * one), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_eccentricity<planets::Earth>(J2000), Unitless(0.01671123 * one), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetInclination)
 {
-    ASSERT_TRUE(math::nearly_equal(get_inclination<planets::Earth>(), Angle(-0.00001531 * deg), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_inclination<planets::Earth>(J2000), Angle(-0.00001531 * deg), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetRightAscension)
 {
-    ASSERT_TRUE(math::nearly_equal(get_right_ascension<planets::Earth>(), Angle(0.0 * deg), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_right_ascension<planets::Earth>(J2000), Angle(0.0 * deg), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetLongitudeOfPerigee)
 {
-    ASSERT_TRUE(math::nearly_equal(get_longitude_of_perigee<planets::Earth>(), Angle(102.93768193 * deg), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_longitude_of_perigee<planets::Earth>(J2000), Angle(102.93768193 * deg), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetMeanLongitude)
 {
-    ASSERT_TRUE(math::nearly_equal(get_mean_longitude<planets::Earth>(), Angle(100.4645716 * deg), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_mean_longitude<planets::Earth>(J2000), Angle(100.4645716 * deg), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetTrueAnomaly)
 {
-    ASSERT_TRUE(math::nearly_equal(get_true_anomaly<planets::Earth>(), Angle(6.238549 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_true_anomaly<planets::Earth>(J2000), Angle(6.238549 * rad), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetMeanAnomaly)
 {
-    ASSERT_TRUE(math::nearly_equal(get_mean_anomaly<planets::Earth>(), Angle(6.240021 * rad), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(get_mean_anomaly<planets::Earth>(J2000), Angle(6.240021 * rad), REL_TOL));
 }
 
 TEST_F(CelestialBodyTest, GetSemimajorRate)
@@ -197,19 +197,22 @@ TEST_F(CelestialBodyTest, GetStateAtValldoEx)
 {
     const Date date("2020-02-18 15:08:47.23847");
     const auto& earthMu = get_mu<planets::Earth>();
-    const auto& sunMu   = get_mu<Sun>();
+    const auto& sunMu   = get_mu<star::Sun>();
 
     // Pull out states
-    const RadiusVector<frames::solar_system_barycenter::icrf> sunPosition   = get_position_at<Sun>(date);
-    const RadiusVector<frames::solar_system_barycenter::icrf> earthPosition = get_position_at<planets::Earth>(date);
-    const RadiusVector<frames::solar_system_barycenter::icrf> moonPosition  = get_position_at<Moon>(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> sunPosition = get_position_at<star::Sun>(date);
+    const auto earthPosition =
+        get_position_at<planets::Earth>(date).force_frame_conversion<frames::solar_system_barycenter::icrf>();
+    const RadiusVector<frames::solar_system_barycenter::icrf> embPosition =
+        get_position_at<barycenters::EarthMoonBarycenter>(date);
+    const RadiusVector<frames::earth::icrf> moonPosition = get_position_at<moons::Moon>(date);
 
     // Expected results
     const RadiusVector<frames::solar_system_barycenter::icrf> expEarth2SunPosition(126921698.413 * km, -69561377.707 * km, -30155074.470 * km); // Vallado lists a negative x value, likely in error
-    std::cout << std::endl << "Earth to Sun Position: " << sunPosition - earthPosition << std::endl;
+    std::cout << std::endl << "Earth to Sun Position: " << sunPosition - (earthPosition + embPosition) << std::endl;
     std::cout << "Expected Earth to Sun Position: " << expEarth2SunPosition << std::endl;
 
-    const RadiusVector<frames::solar_system_barycenter::icrf> expEarth2MoonPosition(14462.297 * km, -357096.976 * km, -151599.34 * km);
+    const RadiusVector<frames::earth::icrf> expEarth2MoonPosition(14462.297 * km, -357096.976 * km, -151599.34 * km);
     std::cout << "Earth to Moon Position: " << moonPosition << std::endl;
     std::cout << "Expected Moon Position: " << expEarth2MoonPosition << std::endl << std::endl;
 
@@ -236,21 +239,25 @@ TEST_F(CelestialBodyTest, GetStateAtValldoEx)
 TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
 {
     const Date date("2000-01-01 12:00:00");
-    const auto& earthMu = get_mu<planets::Earth>();
-    const auto& sunMu   = get_mu<Sun>();
+    const GravParam earthMu = get_mu<planets::Earth>();
+    const GravParam sunMu   = get_mu<star::Sun>();
 
     // Pull out states
-    const auto sunPosition   = get_position_at<Sun>(date);
-    const auto earthPosition = get_position_at<planets::Earth>(date);
-    const auto moonPosition  = get_position_at<Moon>(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> sunPosition = get_position_at<star::Sun>(date);
+    const auto earthPosition =
+        get_position_at<planets::Earth>(date).force_frame_conversion<frames::solar_system_barycenter::icrf>();
+    const RadiusVector<frames::solar_system_barycenter::icrf> embPosition =
+        get_position_at<barycenters::EarthMoonBarycenter>(date);
+    const RadiusVector<frames::solar_system_barycenter::icrf> moonPosition =
+        get_position_at<moons::Moon>(date).force_frame_conversion<frames::solar_system_barycenter::icrf>();
 
     // Expected results
     const auto expSunToMoonPosition =
         RadiusVector<frames::solar_system_barycenter::icrf>(-26790642.141607 * km, 132490700.52134 * km, 57480615.9131708 * km);
 
     std::cout << "Earth to Moon Position: " << moonPosition << std::endl;
-    std::cout << "Sun to Earth Position: " << earthPosition - sunPosition << std::endl;
-    std::cout << "Sun to Moon Position: " << moonPosition + earthPosition - sunPosition << std::endl;
+    std::cout << "Sun to Earth Position: " << embPosition + earthPosition - sunPosition << std::endl;
+    std::cout << "Sun to Moon Position: " << moonPosition + earthPosition + embPosition - sunPosition << std::endl;
     std::cout << "Expected Sun to Moon Position: " << expSunToMoonPosition << std::endl << std::endl;
 
     ASSERT_TRUE(nearly_equal(moonPosition + earthPosition - sunPosition, expSunToMoonPosition, REL_TOL));
@@ -261,8 +268,6 @@ TEST_F(CelestialBodyTest, GetStateAtJplEphemEx)
 TEST_F(CelestialBodyTest, GetKeplerianElementsAt)
 {
     const Date date("2020-02-18 15:08:47.23847");
-
-    ASSERT_NO_THROW(get_keplerian_elements_at<planets::Earth>(date));
     const auto kep = get_keplerian_elements_at<planets::Earth>(date);
 
     // Should return the orbital elements with linear approximation
@@ -271,49 +276,55 @@ TEST_F(CelestialBodyTest, GetKeplerianElementsAt)
     ASSERT_LT(kep.get_eccentricity().numerical_value_in(mp_units::one), 1.0);
 }
 
+inline constexpr struct DummyBody : CelestialBody<"Dummy", star::Sun> {
+} DummyBody;
+
+namespace astrea::astro {
+template <>
+inline consteval CelestialBodyParameters get_celestial_body_parameters<DummyBody>()
+{
+    return { .type                   = CelestialBodyType::PLANET,
+             .referenceDate          = Date(J2000),
+             .mu                     = GravParam(1.32712440018e11 * km * km * km / (s * s)),
+             .mass                   = Mass(1.989e30 * kg),
+             .equitorialRadius       = Distance(696340.0 * km),
+             .polarRadius            = Distance(696340.0 * km),
+             .crashRadius            = Distance(696340.0 * km),
+             .sphereOfInfluence      = Distance(0.0 * km),
+             .j2                     = Unitless(0.0 * one),
+             .j3                     = Unitless(0.0 * one),
+             .axialTilt              = Angle(0.0 * rad),
+             .rotationRate           = AngularVelocity(0.0 * rad / s),
+             .siderealPeriod         = Time(0.0 * s),
+             .semimajorAxis          = Distance(0.0 * km),
+             .eccentricity           = Unitless(0.0 * one),
+             .inclination            = Angle(0.0 * rad),
+             .rightAscension         = Angle(0.0 * rad),
+             .longitudeOfPerigee     = Angle(0.0 * rad),
+             .meanLongitude          = Angle(0.0 * rad),
+             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / s),
+             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / s),
+             .inclinationRate        = BodyAngularVelocity(0.0 * rad / s),
+             .rightAscensionRate     = BodyAngularVelocity(0.0 * rad / s),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(0.0 * rad / s),
+             .meanLongitudeRate      = BodyAngularVelocity(0.0 * rad / s) };
+}
+} // namespace astrea::astro
+
 TEST_F(CelestialBodyTest, FindAtmosphericDensity)
 {
     const Date date("2020-02-18 15:08:47.23847");
-    const CelestialBody dummyBody(
-        { .name                   = "test",
-          .parent                 = Sun,
-          .type                   = CelestialBodyType::STAR,
-          .referenceDate          = date,
-          .mu                     = GravParam(1.32712440018e11 * km * km * km / (s * s)),
-          .mass                   = Mass(1.989e30 * kg),
-          .equitorialRadius       = Distance(696340.0 * km),
-          .polarRadius            = Distance(696340.0 * km),
-          .crashRadius            = Distance(696340.0 * km),
-          .sphereOfInfluence      = Distance(0.0 * km),
-          .j2                     = Unitless(0.0 * one),
-          .j3                     = Unitless(0.0 * one),
-          .axialTilt              = Angle(0.0 * rad),
-          .rotationRate           = AngularVelocity(0.0 * rad / s),
-          .siderealPeriod         = Time(0.0 * s),
-          .semimajorAxis          = Distance(0.0 * km),
-          .eccentricity           = Unitless(0.0 * one),
-          .inclination            = Angle(0.0 * rad),
-          .rightAscension         = Angle(0.0 * rad),
-          .longitudeOfPerigee     = Angle(0.0 * rad),
-          .meanLongitude          = Angle(0.0 * rad),
-          .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / s),
-          .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / s),
-          .inclinationRate        = BodyAngularVelocity(0.0 * rad / s),
-          .rightAscensionRate     = BodyAngularVelocity(0.0 * rad / s),
-          .longitudeOfPerigeeRate = BodyAngularVelocity(0.0 * rad / s),
-          .meanLongitudeRate      = BodyAngularVelocity(0.0 * rad / s) }
-    );
 
     // Test Earth (has atmosphere in derived class)
     const State state0(Keplerian<frames::earth::icrf>{ 6378.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
     const State state1(Keplerian<frames::earth::icrf>{ 6478.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
     const State state2(Keplerian<frames::earth::icrf>{ 6878.0 * km, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad }, date);
-    ASSERT_NO_THROW(dummyBody.find_atmospheric_density(state0));
-    ASSERT_NO_THROW(dummyBody.find_atmospheric_density(state1));
-    ASSERT_NO_THROW(dummyBody.find_atmospheric_density(state2));
+    ASSERT_NO_THROW(find_atmospheric_density<DummyBody>(state0));
+    ASSERT_NO_THROW(find_atmospheric_density<DummyBody>(state1));
+    ASSERT_NO_THROW(find_atmospheric_density<DummyBody>(state2));
 
     // Base class returns zero density for most bodies
-    const auto densityAtAltitude = dummyBody.find_atmospheric_density(state0);
+    const auto densityAtAltitude = find_atmospheric_density<DummyBody>(state0);
     ASSERT_EQ(densityAtAltitude.numerical_value_in(kg / (mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m * mp_units::si::unit_symbols::m)), 0.0);
 }
 
@@ -321,11 +332,11 @@ TEST_F(CelestialBodyTest, GetPositionAt)
 {
     const Date date("2020-02-18 15:08:47.23847");
 
-    ASSERT_NO_THROW(get_position_at<Phobos>(date));
-    const auto phobosPosition = get_position_at<Phobos>(date);
+    ASSERT_NO_THROW(get_position_at<moons::Phobos>(date));
+    const auto phobosPosition = get_position_at<moons::Phobos>(date);
 
     // Position should have reasonable magnitude (thousands of km for Phobos)
     const auto xComponent = phobosPosition[0];
-    ASSERT_GT(xComponent.numerical_value_in(km), -get_semimajor<Phobos>().numerical_value_in(km) * 1.1);
-    ASSERT_LT(xComponent.numerical_value_in(km), get_semimajor<Phobos>().numerical_value_in(km) * 1.1);
+    ASSERT_GT(xComponent.numerical_value_in(km), -get_semimajor<moons::Phobos>(date).numerical_value_in(km) * 1.1);
+    ASSERT_LT(xComponent.numerical_value_in(km), get_semimajor<moons::Phobos>(date).numerical_value_in(km) * 1.1);
 }

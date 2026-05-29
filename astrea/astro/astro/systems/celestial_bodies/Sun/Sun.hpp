@@ -91,7 +91,7 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<star::Sun
  * @return RadiusVector<frames::solar_system_barycenter::icrf> The position of the Sun at the given date.
  */
 template <>
-inline constexpr auto get_position_at<star::Sun>(const Date& date)
+inline constexpr CartesianVector<Distance, get_parent_frame(star::Sun, axes::icrf)> get_position_at<star::Sun>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(star::Sun, axes::icrf);
     return get_position_at_impl<ephemerides::SunEphemerisTable, frame>(date);
@@ -104,7 +104,7 @@ inline constexpr auto get_position_at<star::Sun>(const Date& date)
  * @return VelocityVector<frames::solar_system_barycenter::icrf> The velocity of the Sun at the given date.
  */
 template <>
-inline constexpr auto get_velocity_at<star::Sun>(const Date& date)
+inline constexpr CartesianVector<Velocity, get_parent_frame(star::Sun, axes::icrf)> get_velocity_at<star::Sun>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(star::Sun, axes::icrf);
     return get_velocity_at_impl<ephemerides::SunEphemerisTable, frame>(date);

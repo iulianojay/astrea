@@ -90,7 +90,8 @@ inline constexpr struct EarthMoonBarycenter final : Barycenter<"Earth-Moon Baryc
  * @brief Get the position of the Earth-Moon Barycenter at a specific date in the ICRF frame using JPL DE430 ephemeris data.
  */
 template <>
-inline constexpr auto get_position_at<barycenters::EarthMoonBarycenter>(const Date& date)
+inline constexpr CartesianVector<Distance, get_parent_frame(barycenters::EarthMoonBarycenter, axes::icrf)>
+    get_position_at<barycenters::EarthMoonBarycenter>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(barycenters::EarthMoonBarycenter, axes::icrf);
     return get_position_at_impl<ephemerides::EmbEphemerisTable, frame>(date);
@@ -100,7 +101,8 @@ inline constexpr auto get_position_at<barycenters::EarthMoonBarycenter>(const Da
  * @brief Get the velocity of the Earth-Moon Barycenter at a specific date in the ICRF frame using JPL DE430 ephemeris data.
  */
 template <>
-inline constexpr auto get_velocity_at<barycenters::EarthMoonBarycenter>(const Date& date)
+inline constexpr CartesianVector<Velocity, get_parent_frame(barycenters::EarthMoonBarycenter, axes::icrf)>
+    get_velocity_at<barycenters::EarthMoonBarycenter>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(barycenters::EarthMoonBarycenter, axes::icrf);
     return get_velocity_at_impl<ephemerides::EmbEphemerisTable, frame>(date);

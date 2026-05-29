@@ -87,15 +87,17 @@ struct CartesianVector {
     inline constexpr CartesianVector& operator=(const CartesianVector&) = default;
     inline constexpr CartesianVector& operator=(CartesianVector&&)      = default;
 
-    // Explicitly deleted copy/move assignment/constructor to prevent implicit frame switches.
-    template <IsFrame auto frame_u>
+    // Equivalent-frame copy/move constructors. Uses plain `auto` (not `IsFrame auto`) to avoid
+    // GCC 15 tsubst ICE with constrained auto NTTPs (deduction failure crashes instead of SFINAE).
+    // The `requires(equivalent(...))` clause enforces same-origin/axis/parent at the constraint stage.
+    template <auto frame_u>
         requires(equivalent(frame, frame_u))
     inline constexpr CartesianVector(const CartesianVector<Value_T, frame_u>& other) :
         _vector{ other.get_x(), other.get_y(), other.get_z() }
     {
     }
 
-    template <IsFrame auto frame_u>
+    template <auto frame_u>
         requires(equivalent(frame, frame_u))
     inline constexpr CartesianVector(CartesianVector<Value_T, frame_u>&& other) :
         _vector{ std::move(other.get_x()), std::move(other.get_y()), std::move(other.get_z()) }

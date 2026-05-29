@@ -58,7 +58,7 @@ class SimpleGeoAccessTest : public testing::Test {
         integrator.set_rel_tol(1.0e-10);
 
         // Build Force Model
-        forces.add<OblatenessForce, 2, 0>();
+        forces.add<OblatenessForce, planets::Earth, 2, 0>();
     }
 
     void SetUp() override {}
@@ -140,7 +140,8 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
     // Build constellation
     State state1(
         Cartesian<frames::earth::icrf>(
-            Keplerian<frames::earth::icrf>(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg).get_mu()
+            Keplerian<frames::earth::icrf>(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg),
+            get_mu<planets::Earth>()
         ),
         epoch
     );
@@ -149,7 +150,8 @@ TEST_F(SimpleGeoAccessTest, TwoBallGeoNeverConnected)
 
     State state2(
         Cartesian<frames::earth::icrf>(
-            Keplerian<frames::earth::icrf>(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg).get_mu()
+            Keplerian<frames::earth::icrf>(semimajorGeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 180.0 * deg),
+            get_mu<planets::Earth>()
         ),
         epoch
     );

@@ -114,7 +114,8 @@ inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::
  * @return RadiusVector<frames::earth_barycenter::icrf> The position of the Earth at the given date.
  */
 template <>
-inline constexpr auto get_position_at<planets::Earth>(const Date& date)
+inline constexpr CartesianVector<Distance, get_parent_frame(planets::Earth, axes::icrf)>
+    get_position_at<planets::Earth>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Earth, axes::icrf);
     return get_position_at_impl<ephemerides::EarthFromEmbEphemerisTable, frame>(date);
@@ -127,7 +128,8 @@ inline constexpr auto get_position_at<planets::Earth>(const Date& date)
  * @return VelocityVector<frames::earth_barycenter::icrf> The velocity of the Earth at the given date.
  */
 template <>
-inline constexpr auto get_velocity_at<planets::Earth>(const Date& date)
+inline constexpr CartesianVector<Velocity, get_parent_frame(planets::Earth, axes::icrf)>
+    get_velocity_at<planets::Earth>(const Date& date)
 {
     constexpr auto frame = get_parent_frame(planets::Earth, axes::icrf);
     return get_velocity_at_impl<ephemerides::EarthFromEmbEphemerisTable, frame>(date);

@@ -85,10 +85,10 @@ inline Density find_atmospheric_density(const State& state)
 /// The primary template definition (Keplerian fallback) is provided by
 /// default_property_getters.hpp, which celestial_bodies.hpp includes after all planet headers.
 template <auto _body_>
-auto get_position_at(const Date& date);
+inline constexpr CartesianVector<Distance, get_parent_frame(_body_, axes::icrf)> get_position_at(const Date& date);
 
 template <auto _body_>
-auto get_velocity_at(const Date& date);
+inline constexpr CartesianVector<Velocity, get_parent_frame(_body_, axes::icrf)> get_velocity_at(const Date& date);
 
 } // namespace astro
 } // namespace astrea
