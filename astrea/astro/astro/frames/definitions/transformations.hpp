@@ -22,10 +22,10 @@
 #include <utilities/string_util.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/definitions/defined_rotations.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
-#include <astro/frames/definitions/defined_rotations.hpp>
 #include <astro/systems/system_utilities.hpp>
 
 namespace astrea {
@@ -130,7 +130,9 @@ inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date)
         "DCM defined in both directions between these two frames; define only one to avoid symmetry issues."
     );
     static_assert(
-        IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>, "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference."
+        IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>,
+        "Dynamic frame conversions cannot be called statically. "
+        "Dynamic frames must be created at runtime with a position/velocity to reference."
     );
     static_assert(
         !always_false<NoDcmBetween<frame.name, frame_u.name>> || HasDcm<frame, frame_u> || HasDcm<frame_u, frame> || frame == frame_u,
@@ -138,7 +140,7 @@ inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date)
     );
 
     if constexpr (frame == frame_u) {
-        return DCM<frame, frame_u>::identity(); // TODO: Figure out how to do this earlier to avoid unnecessary matrix math
+        return DCM<frame, frame_u>::identity(); // TODO: Make sure to do this earlier to avoid unnecessary matrix math
     }
     else if constexpr (HasDcm<frame, frame_u>) {
         return get_dcm<frame, frame_u>(date);
@@ -149,6 +151,59 @@ inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date)
     throw std::logic_error("How did you get here?");
 }
 
+template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
+inline constexpr CartesianVector<Value_T, frame_u> get_offset_impl(const Date& date)
+{
+    static_assert(std::is_same_v<Value_T, Distance> || std::is_same_v<Value_T, Velocity>, "translate_vector_into_frame: Value_T must be Distance or Velocity.");
+
+    constexpr auto origin   = frame.origin;
+    constexpr auto origin_u = frame_u.origin;
+
+    if constexpr (equivalent(origin, origin_u)) {
+        return CartesianVector<Value_T, frame_u>(Value_T::zero(), Value_T::zero(), Value_T::zero());
+    }
+    else if constexpr (IsCelestialReference<decltype(origin)> && IsCelestialReference<decltype(origin_u)>) {
+        // Two celestial references and we hook into the ephemeris system
+        if constexpr (std::is_same_v<Value_T, Distance>) {
+            return get_relative_position<origin, origin_u>(date).template force_frame_conversion<frame_u>();
+        }
+        else if constexpr (std::is_same_v<Value_T, Velocity>) {
+            return get_relative_velocity<origin, origin_u>(date).template force_frame_conversion<frame_u>();
+        }
+    }
+    else if constexpr (IsFixedOffsetFrame<decltype(frame)> || IsFixedOffsetFrame<decltype(frame_u)>) {
+        if constexpr (!std::is_same_v<Value_T, Distance>) {
+            // We can only calculate velocity offsets for celestial references since we rely on the ephemeris system for the relative velocity
+            throw std::logic_error("Fixed velocity offsets are not currently supported.");
+        }
+
+        // At least one fixed offset frame in the mix, so we can use the static offsets
+        // We could explicitly write out all these frames to make sure they're correct, but this is more legible and the
+        // forced conversions would be required anyway.
+        if constexpr (IsFixedOffsetFrame<decltype(frame)> && IsFixedOffsetFrame<decltype(frame_u)>) {
+            constexpr auto offset1 = get_offset_from_root(frame).template force_frame_conversion<frame_u>(); // r_root->frame
+            constexpr auto offset2 = get_offset_from_root(frame_u).template force_frame_conversion<frame_u>(); // r_root_u->frame_u
+            const auto rootOffsets = // r_root_u->root
+                get_relative_position<get_root_frame(frame), get_root_frame(frame_u)>(date).template force_frame_conversion<frame_u>();
+            return offset2 - offset1 + rootOffsets;
+        }
+        else if constexpr (IsFixedOffsetFrame<decltype(frame)>) {
+            const auto offset1 = get_offset_from_root(frame).template force_frame_conversion<frame_u>(); // r_root->frame
+            const auto rootOffsets = // r_root_u->root
+                get_relative_position<get_root_frame(frame), origin_u>(date).template force_frame_conversion<frame_u>();
+            return rootOffsets - offset1;
+        }
+        else if constexpr (IsFixedOffsetFrame<decltype(frame_u)>) {
+            const auto offset2 = get_offset_from_root(frame_u).template force_frame_conversion<frame_u>(); // r_root_u->frame_u
+            const auto rootOffsets = // r_root_u->root
+                get_relative_position<origin, get_root_frame(frame_u)>(date).template force_frame_conversion<frame_u>();
+            return offset2 + rootOffsets;
+        }
+    }
+    // No origins in common and at least one frame is not fixed offset, so we don't have a way to determine the offset
+    throw std::logic_error("Cannot determine center offset between these two frames as it is not linked to a common reference.");
+}
+
 } // namespace
 
 template <IsFrame auto frame, IsFrame auto frame_u>
@@ -157,6 +212,7 @@ concept HasValidFrameTransformation = requires(Date date) {
 } || requires(Date date) {
     { get_dcm_impl<frame_u, frame>(date) } -> std::same_as<DCM<frame_u, frame>>;
 } || frame == frame_u;
+
 
 /**
  * @brief Rotate a vector from one frame to another at a given date using the Direction Cosine Matrix (DCM).
@@ -187,46 +243,13 @@ inline constexpr CartesianVector<Value_T, frame_u>
  * @param vec The vector to translate.
  * @param date The date at which to perform the translation.
  * @return CartesianVector<Value_T, frame_u> A new CartesianVector in the target frame.
- *
- * @note: This overload doesn't change in the input frame to avoid unnecessary frame conversions when the frames share the same origin but different axes.
  */
 template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
-    requires(frame.origin == frame_u.origin)
-inline constexpr CartesianVector<Value_T, frame>
-    translate_vector_into_frame(const CartesianVector<Value_T, frame>& vec, const Date& date)
-{
-    return vec;
-}
-
-/**
- * @brief Translate a vector from one frame to another at a given date by accounting for the center offset between the frames.
- *
- * This function calculates the center offset between frame and frame_u at the specified date and translates the input vector accordingly.
- *
- * @tparam Value_T The type of the vector components (e.g., Distance, Velocity).
- * @tparam frame The source frame type.
- * @tparam frame_u The target frame type.
- * @param vec The vector to translate.
- * @param date The date at which to perform the translation.
- * @return CartesianVector<Value_T, frame_u> A new CartesianVector in the target frame.
- */
-template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
-    requires(frame.origin != frame_u.origin && frame.axis == frame_u.axis)
 inline constexpr CartesianVector<Value_T, frame_u>
     translate_vector_into_frame(const CartesianVector<Value_T, frame>& vec, const Date& date)
 {
-    if constexpr (std::is_same_v<Value_T, Distance>) {
-        const auto& posRel = get_relative_position<frame_u.origin, frame.origin>(date); // frame -> frame_u
-        return vec.template force_frame_conversion<frame_u>() + posRel.template force_frame_conversion<frame_u>();
-    }
-    else if constexpr (std::is_same_v<Value_T, Velocity>) {
-        const auto& velRel = get_relative_velocity<frame_u.origin, frame.origin>(date); // frame -> frame_u
-        return vec.template force_frame_conversion<frame_u>() - velRel.template force_frame_conversion<frame_u>();
-    }
-    else {
-        static_assert(std::is_same_v<Value_T, Distance> || std::is_same_v<Value_T, Velocity>,
-                      "translate_vector_into_frame: Value_T must be Distance or Velocity.");
-    }
+    const CartesianVector<Value_T, frame_u> offset = get_offset_impl<Value_T, frame, frame_u>(date);
+    return vec.template force_frame_conversion<frame_u>() + offset;
 }
 
 /**
@@ -260,7 +283,8 @@ inline constexpr CartesianVector<Value_T, frame_u>
         constexpr struct IntermediateFrame
             : Frame<frame.name + mp_units::symbol_text{ " / " } + frame_u.name, frame_u.origin, frame.axis> {
         } IntermediateFrame{};
-        const auto vecInIntermediate = translate_vector_into_frame<Value_T, frame, IntermediateFrame>(vec, date);
+        const CartesianVector<Value_T, IntermediateFrame> vecInIntermediate =
+            translate_vector_into_frame<Value_T, frame, IntermediateFrame>(vec, date);
         return rotate_vector_into_frame<Value_T, IntermediateFrame, frame_u>(vecInIntermediate, date);
     }
 }

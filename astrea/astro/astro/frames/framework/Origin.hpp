@@ -32,11 +32,16 @@ namespace astro {
 namespace detail {
 
 struct OriginBase {
-  template<IsOrigin Lhs, IsOrigin Rhs>
-  [[nodiscard]] friend consteval bool operator==(Lhs, Rhs)
-  {
-    return std::is_same_v<Lhs, Rhs>;
-  }
+    template <IsOrigin Lhs, IsOrigin Rhs>
+    [[nodiscard]] friend consteval bool operator==(Lhs, Rhs)
+    {
+        return std::is_same_v<Lhs, Rhs>;
+    }
+    template <IsOrigin Lhs, IsOrigin Rhs>
+    [[nodiscard]] friend consteval bool equivalent(Lhs, Rhs)
+    {
+        return std::is_same_v<Lhs, Rhs>;
+    }
 };
 
 } // namespace detail

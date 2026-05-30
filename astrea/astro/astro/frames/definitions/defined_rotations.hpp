@@ -39,7 +39,7 @@ namespace astro {
  * @ref https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA%20TP%2020220014814%20final.pdf
  */
 template <IsFrame auto frame, IsFrame auto frame_u>
-    requires(frame.axis == axes::icrf && frame_u.axis == axes::j2000 && frame.origin == frame_u.origin)
+    requires(equivalent(frame.axis, axes::icrf) && equivalent(frame_u.axis, axes::j2000))
 inline constexpr DirectionCosineMatrix<frame, frame_u> get_dcm(const Date& date)
 {
     using mp_units::angular::unit_symbols::rad;
@@ -57,15 +57,29 @@ inline constexpr DirectionCosineMatrix<frame, frame_u> get_dcm(const Date& date)
  * @param date The date for which to get the DCM.
  * @return DirectionCosineMatrix<in_frame, out_frame> The DCM from in_frame to out_frame.
  */
-template <IsFrame auto in_frame, IsFrame auto out_frame>
-    requires(
-        in_frame.origin == out_frame.origin && in_frame.axis == axes::icrf && IsBodyFixedFrame<decltype(out_frame)> &&
-        in_frame.origin != star::Sun && out_frame.origin != planets::Earth
-    )
+template <IsFrame auto in_frame, IsBodyFixedFrame auto out_frame>
+    requires(equivalent(in_frame.axis, axes::icrf) && in_frame.origin != planets::Earth)
 inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
 {
     const Angle gst = date.body_sidereal_time<decltype(out_frame)::origin>();
     return DirectionCosineMatrix<in_frame, out_frame>::Z(-gst);
+}
+
+/**
+ * @brief Retrieves the direction cosine matrix representing the fixed angular offset from the parent frame to the given FixedOffsetFrame.
+ */
+template <IsFixedOffsetFrame auto frame, IsFrame auto parent>
+    requires(equivalent(frame.parent.axis, parent.axis))
+inline constexpr DirectionCosineMatrix<parent, frame> get_dcm()
+{
+    if constexpr (HasAngularOffset<decltype(frame)>) {
+        return DirectionCosineMatrix<parent, frame>::template from_euler_angles<frame.axis.sequence>(
+            frame.axis.misalignment.phi, frame.axis.misalignment.theta, frame.axis.misalignment.psi
+        );
+    }
+    else {
+        return DirectionCosineMatrix<parent, frame>::identity();
+    }
 }
 
 } // namespace astro

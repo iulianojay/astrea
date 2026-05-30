@@ -145,7 +145,7 @@ consteval auto find_common_ancestor()
  * @param date The date at which to get the relative position.
  * @param id1 The ID of the first celestial body.
  * @param id2 The ID of the second celestial body.
- * @return CartesianVector<Distance, frames::solar_system_barycenter::icrf> The relative position vector from id2 to id1.
+ * @return CartesianVector<Distance, frame> The relative position vector from id2 to id1.
  */
 template <IsCelestialReference auto body1, IsCelestialReference auto body2>
 constexpr auto get_relative_position(const Date& date)

@@ -42,12 +42,6 @@ struct FrameBase {
     {
         return std::is_same_v<Lhs, Rhs>;
     }
-
-    template <IsFrame Lhs, IsFrame Rhs>
-    [[nodiscard]] friend consteval bool equivalent(Lhs t, Rhs u)
-    {
-        return t.origin == u.origin && t.axis == u.axis && has_same_parent(t, u);
-    }
 };
 
 } // namespace detail
@@ -94,6 +88,13 @@ struct Frame<_name_, _origin_, _axis_, _parent_> : detail::FrameBase {
     static constexpr auto axis   = _axis_;   //!< The axis type of the frame.
     static constexpr auto parent = _parent_; //!< The parent frame of this frame.
 };
+
+
+template <IsFrame Lhs, IsFrame Rhs>
+[[nodiscard]] consteval bool equivalent(Lhs t, Rhs u)
+{
+    return equivalent(t.origin, u.origin) && equivalent(t.axis, u.axis) && has_same_parent(t, u);
+}
 
 } // namespace astro
 } // namespace astrea

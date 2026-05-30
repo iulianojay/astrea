@@ -20,6 +20,7 @@
 
 #include <type_traits>
 
+#include <mp-units/core.h>
 #include <mp-units/framework/symbol_text.h>
 
 #include <units/units.hpp>
@@ -134,6 +135,80 @@ inline consteval auto compose_name()
            mp_units::symbol_text{ "; " } + quantity_list_to_fixed_string<_phi_, _theta_, _psi_>() + mp_units::symbol_text{ "]" };
 }
 
+namespace detail {
+
+} // namespace detail
+
+template <IsOrigin auto _parent_, Distance _x_, Distance _y_, Distance _z_>
+struct FixedOffsetOrigin : Origin<"fixed offset", _parent_> {
+    struct Offset {
+        Distance x;
+        Distance y;
+        Distance z;
+    };
+    static constexpr Offset offset{ _x_, _y_, _z_ }; //!< The fixed offset vector from the parent frame to this frame.
+};
+
+template <IsAxis auto _parent_, Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_>
+struct FixedOffsetAxis : Axis<"fixed offset", _parent_> {
+    static constexpr auto sequence = _sequence_; //!< The rotation sequence for the angular offset.
+    struct Misalignment {
+        Angle phi;
+        Angle theta;
+        Angle psi;
+    };
+    static constexpr Misalignment misalignment{ _phi_, _theta_, _psi_ }; //!< The fixed angular offset from the parent frame to this frame.
+};
+
+template <IsOrigin Origin_T>
+    requires(HasSpatialOffset<Origin_T>)
+[[nodiscard]] consteval bool offset_is_zero(Origin_T origin)
+{
+    using mp_units::is_eq_zero;
+    return is_eq_zero(origin.offset.x) && is_eq_zero(origin.offset.y) && is_eq_zero(origin.offset.z);
+}
+
+template <IsAxis Axis_T>
+    requires(HasAngularOffset<Axis_T>)
+[[nodiscard]] consteval bool misalignment_is_zero(Axis_T axis)
+{
+    using mp_units::is_eq_zero;
+    return is_eq_zero(axis.misalignment.phi) && is_eq_zero(axis.misalignment.theta) && is_eq_zero(axis.misalignment.psi);
+}
+
+
+template <IsOrigin Lhs, IsOrigin Rhs>
+    requires(HasSpatialOffset<Lhs> || HasSpatialOffset<Rhs>)
+[[nodiscard]] consteval bool equivalent1(Lhs lhs, Rhs rhs)
+{
+    if constexpr (HasSpatialOffset<Lhs> && !HasSpatialOffset<Rhs>) {
+        return equivalent(lhs.parent, rhs) && offset_is_zero(lhs);
+    }
+    else if constexpr (!HasSpatialOffset<Lhs> && HasSpatialOffset<Rhs>) {
+        return equivalent(lhs, rhs.parent) && offset_is_zero(rhs);
+    }
+    else {
+        // Offset numbers are baked into the type so don't need to check them directly
+        return std::is_same_v<Lhs, Rhs>;
+    }
+}
+
+template <IsAxis Lhs, IsAxis Rhs>
+    requires(HasAngularOffset<Lhs> || HasAngularOffset<Rhs>)
+[[nodiscard]] consteval bool equivalent(Lhs lhs, Rhs rhs)
+{
+    if constexpr (HasAngularOffset<Lhs> && !HasAngularOffset<Rhs>) {
+        return equivalent(lhs.parent, rhs) && misalignment_is_zero(lhs);
+    }
+    else if constexpr (!HasAngularOffset<Lhs> && HasAngularOffset<Rhs>) {
+        return equivalent(lhs, rhs.parent) && misalignment_is_zero(rhs);
+    }
+    else {
+        // Offset numbers are baked into the type so don't need to check them directly
+        return std::is_same_v<Lhs, Rhs>;
+    }
+}
+
 /**
  * @brief Class representing a fixed offset frame, which is defined by a fixed spatial and/or angular offset from a parent frame.
  *
@@ -146,37 +221,6 @@ inline consteval auto compose_name()
 template <auto...>
 struct FixedOffsetFrame;
 
-namespace detail {
-
-template <Distance _x_, Distance _y_, Distance _z_>
-struct FixedOffsetOrigin : Origin<"fixed offset"> {
-    struct Offset {
-        decltype(_x_) x;
-        decltype(_y_) y;
-        decltype(_z_) z;
-    };
-    static constexpr Offset offset{ _x_, _y_, _z_ }; //!< The fixed offset vector from the parent frame to this frame.
-};
-
-template <Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_>
-struct FixedOffsetAxis : Axis<"fixed offset"> {
-    static constexpr auto sequence = _sequence_; //!< The rotation sequence for the angular offset.
-    struct Misalignment {
-        decltype(_phi_) phi;
-        decltype(_theta_) theta;
-        decltype(_psi_) psi;
-    };
-    static constexpr Misalignment misalignment{ _phi_, _theta_, _psi_ }; //!< The fixed angular offset from the parent frame to this frame.
-};
-
-} // namespace detail
-
-template <Distance _x_, Distance _y_, Distance _z_>
-inline constexpr detail::FixedOffsetOrigin<_x_, _y_, _z_> FixedOffsetOrigin{};
-
-template <Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_>
-inline constexpr detail::FixedOffsetAxis<_phi_, _theta_, _psi_, _sequence_> FixedOffsetAxis{};
-
 /**
  * @brief Specialization of FixedOffsetFrame for a pure spatial offset (no angular misalignment).
  *
@@ -188,7 +232,8 @@ inline constexpr detail::FixedOffsetAxis<_phi_, _theta_, _psi_, _sequence_> Fixe
  */
 template <IsFrame auto _parent_, Distance _x_, Distance _y_, Distance _z_, auto... Args>
 struct FixedOffsetFrame<_parent_, _x_, _y_, _z_, Args...>
-    : Frame<compose_name<_parent_.name, _x_, _y_, _z_>(), FixedOffsetOrigin<_x_, _y_, _z_>, _parent_.axis, _parent_> {};
+    : Frame<compose_name<_parent_.name, _x_, _y_, _z_>(), FixedOffsetOrigin<_parent_.origin, _x_, _y_, _z_>{}, _parent_.axis, _parent_> {
+};
 
 /**
  * @brief Specialization of FixedOffsetFrame for a pure angular offset (no spatial offset).
@@ -202,7 +247,7 @@ struct FixedOffsetFrame<_parent_, _x_, _y_, _z_, Args...>
  */
 template <IsFrame auto _parent_, Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_, auto... Args>
 struct FixedOffsetFrame<_parent_, _phi_, _theta_, _psi_, _sequence_, Args...>
-    : Frame<compose_name<_parent_.name, _phi_, _theta_, _psi_>(), _parent_.origin, FixedOffsetAxis<_phi_, _theta_, _psi_, _sequence_>, _parent_> {
+    : Frame<compose_name<_parent_.name, _phi_, _theta_, _psi_>(), _parent_.origin, FixedOffsetAxis<_parent_.axis, _phi_, _theta_, _psi_, _sequence_>{}, _parent_> {
 };
 
 /**
@@ -219,8 +264,77 @@ struct FixedOffsetFrame<_parent_, _phi_, _theta_, _psi_, _sequence_, Args...>
  */
 template <IsFrame auto _parent_, Distance _x_, Distance _y_, Distance _z_, Angle _phi_, Angle _theta_, Angle _psi_, RotationSequence _sequence_, auto... Args>
 struct FixedOffsetFrame<_parent_, _x_, _y_, _z_, _phi_, _theta_, _psi_, _sequence_, Args...>
-    : Frame<compose_name<_parent_.name, _x_, _y_, _z_, _phi_, _theta_, _psi_>(), FixedOffsetOrigin<_x_, _y_, _z_>, FixedOffsetAxis<_phi_, _theta_, _psi_, _sequence_>, _parent_> {
-};
+    : Frame<
+          compose_name<_parent_.name, _x_, _y_, _z_, _phi_, _theta_, _psi_>(),
+          FixedOffsetOrigin<_parent_.origin, _x_, _y_, _z_>{},
+          FixedOffsetAxis<_parent_.axis, _phi_, _theta_, _psi_, _sequence_>{},
+          _parent_> {};
+
+
+template <IsFixedOffsetFrame Frame_T>
+consteval bool is_aligned_with_parent(Frame_T frame)
+{
+    if constexpr (HasSpatialOffset<Frame_T> && !HasAngularOffset<Frame_T>) { return offset_is_zero(frame.origin); }
+    else if constexpr (!HasSpatialOffset<Frame_T> && HasAngularOffset<Frame_T>) {
+        return misalignment_is_zero(frame.axis);
+    }
+    else if constexpr (HasSpatialOffset<Frame_T> && HasAngularOffset<Frame_T>) {
+        return offset_is_zero(frame.origin) && misalignment_is_zero(frame.axis);
+    }
+    throw std::logic_error("Invalid frame configuration: Frame must have at least a spatial or angular offset to be considered a FixedOffsetFrame.");
+}
+
+template <IsFixedOffsetFrame Lhs, IsFixedOffsetFrame Rhs>
+[[nodiscard]] consteval bool have_same_offsets(Lhs lhs, Rhs rhs)
+{
+    if constexpr (HasSpatialOffset<Lhs> && HasSpatialOffset<Rhs>) {
+        return std::is_same_v<decltype(lhs.origin.offset), decltype(rhs.origin.offset)>;
+    }
+    else if constexpr (HasSpatialOffset<Lhs> || HasSpatialOffset<Rhs>) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+template <IsFixedOffsetFrame Lhs, IsFixedOffsetFrame Rhs>
+[[nodiscard]] consteval bool have_same_misalignment(Lhs lhs, Rhs rhs)
+{
+    if constexpr (HasAngularOffset<Lhs> && HasAngularOffset<Rhs>) {
+        return std::is_same_v<decltype(lhs.axis.misalignment), decltype(rhs.axis.misalignment)>;
+    }
+    else if constexpr (HasAngularOffset<Lhs> || HasAngularOffset<Rhs>) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+template <IsFrame Lhs, IsFrame Rhs>
+    requires(IsFixedOffsetFrame<Lhs> || IsFixedOffsetFrame<Rhs>)
+[[nodiscard]] consteval bool equivalent(Lhs lhs, Rhs rhs)
+{
+    if constexpr (IsFixedOffsetFrame<Lhs> && !IsFixedOffsetFrame<Rhs>) {
+        return equivalent(lhs.parent, rhs) && is_aligned_with_parent(lhs);
+    }
+    else if constexpr (!IsFixedOffsetFrame<Lhs> && IsFixedOffsetFrame<Rhs>) {
+        return equivalent(lhs, rhs.parent) && is_aligned_with_parent(rhs);
+    }
+    else if constexpr (IsFixedOffsetFrame<Lhs> && IsFixedOffsetFrame<Rhs>) {
+        return equivalent(lhs.parent, rhs.parent) && have_same_offsets(lhs, rhs) && have_same_misalignment(lhs, rhs);
+    }
+}
+
+template <IsFixedOffsetFrame auto frame>
+consteval auto get_root_frame()
+{
+    if constexpr (IsDerivedFrame<std::remove_cv_t<decltype(frame.parent)>>) { return get_root_frame<frame.parent>(); }
+    else {
+        return frame.parent;
+    }
+}
 
 /**
  * @brief Retrieves the fixed spatial offset from the parent frame to the given FixedOffsetFrame.
@@ -261,24 +375,6 @@ inline constexpr auto get_offset_from_root_frame()
 }
 
 /**
- * @brief Retrieves the direction cosine matrix representing the fixed angular offset from the parent frame to the given FixedOffsetFrame.
- */
-template <IsFixedOffsetFrame auto frame>
-inline constexpr DirectionCosineMatrix<frame.parent, frame> get_dcm_from_frame()
-{
-    if constexpr (HasAngularOffset<decltype(frame)>) {
-        return DirectionCosineMatrix<frame.parent, frame>::template from_euler_angles<decltype(frame.axis)::sequence>(
-            decltype(frame.axis)::misalignment.phi,
-            decltype(frame.axis)::misalignment.theta,
-            decltype(frame.axis)::misalignment.psi
-        );
-    }
-    else {
-        return DirectionCosineMatrix<frame.parent, frame>::identity();
-    }
-}
-
-/**
  * @brief Retrieves the accumulated direction cosine matrix from the root frame to the given FixedOffsetFrame by recursively composing the DCMs along the parent chain.
  */
 template <IsFixedOffsetFrame auto frame>
@@ -287,10 +383,10 @@ inline constexpr auto get_dcm_from_root_frame()
     if constexpr (HasAngularOffset<std::remove_cv_t<decltype(frame)>>) {
         if constexpr (IsDerivedFrame<std::remove_cv_t<decltype(frame.parent)>>) {
             // DCM<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
-            return get_dcm_from_root_frame<frame.parent>() * get_dcm_from_frame<frame>();
+            return get_dcm_from_root_frame<frame.parent>() * get_dcm<frame, frame.parent>();
         }
         else {
-            return get_dcm_from_frame<frame>();
+            return get_dcm<frame, frame.parent>();
         }
     }
     else {

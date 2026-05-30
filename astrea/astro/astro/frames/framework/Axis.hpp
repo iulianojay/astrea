@@ -31,34 +31,37 @@ namespace astro {
 
 namespace detail {
 
-struct CoordinateLineBase {};
-struct AxisBase { 
-  template<IsAxis Lhs, IsAxis Rhs>
-  [[nodiscard]] friend consteval bool operator==(Lhs, Rhs)
-  {
-    return std::is_same_v<Lhs, Rhs>;
-  }
+struct AxisBase {
+    template <IsAxis Lhs, IsAxis Rhs>
+    [[nodiscard]] friend consteval bool operator==(Lhs, Rhs)
+    {
+        return std::is_same_v<Lhs, Rhs>;
+    }
+    template <IsAxis Lhs, IsAxis Rhs>
+    [[nodiscard]] friend consteval bool equivalent(Lhs, Rhs)
+    {
+        return std::is_same_v<Lhs, Rhs>;
+    }
 };
-
-template <typename T>
-concept IsAxisProperty = (!IsAxis<T>);
 
 } // namespace detail
 
 enum class Coordinate { X, Y, Z };
 
+template <mp_units::symbol_text, auto...>
+struct Axis;
 
 template <mp_units::symbol_text _name_>
-struct Axis : detail::AxisBase {
+struct Axis<_name_> : detail::AxisBase {
     static constexpr auto name = _name_; //!< The name of the axis.
 };
 
-
-template <IsAxis auto _reference_axis_, Coordinate _rotation_coordinate_>
-struct FixedRotatingAxis : Axis<decltype(_reference_axis_)::name + mp_units::symbol_text{ "_fixed_rotating" }> {
-    static constexpr auto reference_axis      = _reference_axis_;      //!< The reference axis of the frame.
-    static constexpr auto rotation_coordinate = _rotation_coordinate_; //!< The coordinate the axis rotates about.
+template <mp_units::symbol_text _name_, IsAxis auto _parent_>
+struct Axis<_name_, _parent_> : detail::AxisBase {
+    static constexpr auto name   = _name_;   //!< The name of the axis.
+    static constexpr auto parent = _parent_; //!< The parent axis of this axis, if any.
 };
+
 
 struct DynamicAxis : Axis<"dynamic"> {};
 
@@ -83,15 +86,15 @@ consteval bool has_same_axis(T t, U u)
 
 namespace axes {
 
-inline constexpr struct j2000 final : Axis<"EME2000"> {
-    // x - mean equator and equinox of date at J2000
-    // z - mean pole of date at J2000
-} j2000;
-
 inline constexpr struct icrf final : Axis<"ICRF"> {
     // x - Measured, meant to coincide with EME2000 X-axis at J2000
     // z - Measured, meant to coincide with EME2000 Z-axis at J2000
 } icrf;
+
+inline constexpr struct j2000 final : Axis<"EME2000"> {
+    // x - mean equator and equinox of date at J2000
+    // z - mean pole of date at J2000
+} j2000;
 
 } // namespace axes
 

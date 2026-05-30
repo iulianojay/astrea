@@ -109,7 +109,7 @@ concept IsRootFrame = IsFrame<T> && !IsDerivedFrame<T>;
  * @return true if the frame has a fixed spatial offset, false otherwise.
  */
 template <typename T>
-concept HasSpatialOffset = requires { T::origin.offset; };
+concept HasSpatialOffset = requires { T::origin.offset; } || requires { T::offset; };
 
 /**
  * @brief Concept to determine if a frame has a fixed angular offset from its parent frame.
@@ -118,7 +118,7 @@ concept HasSpatialOffset = requires { T::origin.offset; };
  * @return true if the frame has a fixed angular offset, false otherwise.
  */
 template <typename T>
-concept HasAngularOffset = requires { T::axis.misalignment; };
+concept HasAngularOffset = requires { T::axis.misalignment; } || requires { T::misalignment; };
 
 /**
  * @brief Concept to determine if a frame is a FixedOffsetFrame, which is defined as a frame that is derived from

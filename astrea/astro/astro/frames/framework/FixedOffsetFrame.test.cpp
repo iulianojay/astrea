@@ -57,7 +57,7 @@ static_assert(HasSpatialOffset<remove_cv_ref<decltype(ZeroEarthIcrf)>>);
 static_assert(ZeroEarthIcrf::parent.origin == planets::Earth);
 static_assert(HasSpatialOffset<remove_cv_ref<decltype(ZeroMarsIcrf)>>);
 static_assert(ZeroMarsIcrf::parent.origin == planets::Mars);
-static_assert(ZeroEarthIcrf::origin == ZeroMarsIcrf::origin); // share the same origin (FixedOffsetOrigin), but different parents (Earth vs Mars)
+static_assert(ZeroEarthIcrf::origin != ZeroMarsIcrf::origin); // share the same origin (FixedOffsetOrigin), but different parents (Earth vs Mars)
 static_assert(ZeroEarthIcrf::parent.origin != ZeroMarsIcrf::parent.origin); // different parents (Earth vs Mars)
 
 TEST_F(FixedOffsetFrameTest, DefaultOffsetXIsZero)
@@ -89,16 +89,20 @@ static_assert(IsInertialFrame<remove_cv_ref<decltype(ZeroEarthIcrf)>>);
 
 static_assert(ZeroEarthIcrf.origin != frames::earth::icrf.origin);
 static_assert(ZeroEarthIcrf::parent.origin == frames::earth::icrf.origin);
+static_assert(equivalent1(ZeroEarthIcrf.origin, frames::earth::icrf.origin));
 
 static_assert(ZeroEarthIcrf.axis == frames::earth::icrf.axis);
 static_assert(ZeroEarthIcrf::parent.axis == frames::earth::icrf.axis);
+static_assert(equivalent(ZeroEarthIcrf.axis, frames::earth::icrf.axis));
 
 static_assert(ZeroEarthIcrf != frames::earth::icrf);
+static_assert(equivalent(ZeroEarthIcrf, frames::earth::icrf));
 static_assert(ZeroEarthIcrf::parent == frames::earth::icrf);
 
 inline constexpr struct Also : FixedOffsetFrame<frames::earth::icrf, Distance::zero(), Distance::zero(), Distance::zero()> {
 } Also;
-static_assert(ZeroEarthIcrf != Also);
+static_assert(ZeroEarthIcrf != Also);           // Type differs, even though all members are the same
+static_assert(equivalent(ZeroEarthIcrf, Also)); // Equivalent since they share the same parent and have values
 static_assert(ZeroEarthIcrf != ZeroMarsIcrf);
 
 
@@ -146,7 +150,7 @@ static constexpr Unitless ANGULAR_TOL = 1.0e-10 * one;
 
 TEST_F(FixedOffsetFrameTest, ZeroAnglesGivesIdentityMisalignment_Diagonal)
 {
-    const auto& dcm = get_dcm_from_frame<ZeroAngularEarthIcrf>();
+    const auto& dcm = get_dcm<ZeroAngularEarthIcrf, ZeroAngularEarthIcrf.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[1, 1], 1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 2], 1.0 * one, ANGULAR_TOL));
@@ -154,7 +158,7 @@ TEST_F(FixedOffsetFrameTest, ZeroAnglesGivesIdentityMisalignment_Diagonal)
 
 TEST_F(FixedOffsetFrameTest, ZeroAnglesGivesIdentityMisalignment_OffDiagonal)
 {
-    const auto& dcm = get_dcm_from_frame<ZeroAngularEarthIcrf>();
+    const auto& dcm = get_dcm<ZeroAngularEarthIcrf, ZeroAngularEarthIcrf.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 1], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 0.0 * one, ANGULAR_TOL));
@@ -170,7 +174,7 @@ TEST_F(FixedOffsetFrameTest, ZeroAnglesGivesIdentityMisalignment_OffDiagonal)
 
 TEST_F(FixedOffsetFrameTest, XYZHalfPiPhiGivesXRotation_FirstRow)
 {
-    const auto& dcm = get_dcm_from_frame<RotXHalfPiXYZ>();
+    const auto& dcm = get_dcm<RotXHalfPiXYZ, RotXHalfPiXYZ.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[0, 1], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, ANGULAR_TOL));
@@ -178,7 +182,7 @@ TEST_F(FixedOffsetFrameTest, XYZHalfPiPhiGivesXRotation_FirstRow)
 
 TEST_F(FixedOffsetFrameTest, XYZHalfPiPhiGivesXRotation_SecondRow)
 {
-    const auto& dcm = get_dcm_from_frame<RotXHalfPiXYZ>();
+    const auto& dcm = get_dcm<RotXHalfPiXYZ, RotXHalfPiXYZ.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[1, 1], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[1, 2], -1.0 * one, ANGULAR_TOL));
@@ -186,7 +190,7 @@ TEST_F(FixedOffsetFrameTest, XYZHalfPiPhiGivesXRotation_SecondRow)
 
 TEST_F(FixedOffsetFrameTest, XYZHalfPiPhiGivesXRotation_ThirdRow)
 {
-    const auto& dcm = get_dcm_from_frame<RotXHalfPiXYZ>();
+    const auto& dcm = get_dcm<RotXHalfPiXYZ, RotXHalfPiXYZ.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 2], 0.0 * one, ANGULAR_TOL));
@@ -199,7 +203,7 @@ TEST_F(FixedOffsetFrameTest, XYZHalfPiPhiGivesXRotation_ThirdRow)
 
 TEST_F(FixedOffsetFrameTest, XYZHalfPiThetaGivesYRotation_FirstRow)
 {
-    const auto& dcm = get_dcm_from_frame<RotYHalfPiXYZ>();
+    const auto& dcm = get_dcm<RotYHalfPiXYZ, RotYHalfPiXYZ.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[0, 1], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 1.0 * one, ANGULAR_TOL));
@@ -207,7 +211,7 @@ TEST_F(FixedOffsetFrameTest, XYZHalfPiThetaGivesYRotation_FirstRow)
 
 TEST_F(FixedOffsetFrameTest, XYZHalfPiThetaGivesYRotation_SecondRow)
 {
-    const auto& dcm = get_dcm_from_frame<RotYHalfPiXYZ>();
+    const auto& dcm = get_dcm<RotYHalfPiXYZ, RotYHalfPiXYZ.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[1, 1], 1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[1, 2], 0.0 * one, ANGULAR_TOL));
@@ -215,7 +219,7 @@ TEST_F(FixedOffsetFrameTest, XYZHalfPiThetaGivesYRotation_SecondRow)
 
 TEST_F(FixedOffsetFrameTest, XYZHalfPiThetaGivesYRotation_ThirdRow)
 {
-    const auto& dcm = get_dcm_from_frame<RotYHalfPiXYZ>();
+    const auto& dcm = get_dcm<RotYHalfPiXYZ, RotYHalfPiXYZ.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[2, 0], -1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 2], 0.0 * one, ANGULAR_TOL));
@@ -228,7 +232,7 @@ TEST_F(FixedOffsetFrameTest, XYZHalfPiThetaGivesYRotation_ThirdRow)
 
 TEST_F(FixedOffsetFrameTest, XYZHalfPiPsiGivesZRotation_FirstRow)
 {
-    const auto& dcm = get_dcm_from_frame<RotZHalfPiXYZ>();
+    const auto& dcm = get_dcm<RotZHalfPiXYZ, RotZHalfPiXYZ.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[0, 1], -1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, ANGULAR_TOL));
@@ -236,7 +240,7 @@ TEST_F(FixedOffsetFrameTest, XYZHalfPiPsiGivesZRotation_FirstRow)
 
 TEST_F(FixedOffsetFrameTest, XYZHalfPiPsiGivesZRotation_SecondRow)
 {
-    const auto& dcm = get_dcm_from_frame<RotZHalfPiXYZ>();
+    const auto& dcm = get_dcm<RotZHalfPiXYZ, RotZHalfPiXYZ.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[1, 1], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[1, 2], 0.0 * one, ANGULAR_TOL));
@@ -244,7 +248,7 @@ TEST_F(FixedOffsetFrameTest, XYZHalfPiPsiGivesZRotation_SecondRow)
 
 TEST_F(FixedOffsetFrameTest, XYZHalfPiPsiGivesZRotation_ThirdRow)
 {
-    const auto& dcm = get_dcm_from_frame<RotZHalfPiXYZ>();
+    const auto& dcm = get_dcm<RotZHalfPiXYZ, RotZHalfPiXYZ.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 2], 1.0 * one, ANGULAR_TOL));
@@ -255,7 +259,7 @@ TEST_F(FixedOffsetFrameTest, XYZHalfPiPsiGivesZRotation_ThirdRow)
 
 TEST_F(FixedOffsetFrameTest, ZYXHalfPiPhiGivesZRotation_FirstRow)
 {
-    const auto& dcm = get_dcm_from_frame<RotXHalfPiZYX>();
+    const auto& dcm = get_dcm<RotXHalfPiZYX, RotXHalfPiZYX.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[0, 1], -1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, ANGULAR_TOL));
@@ -263,7 +267,7 @@ TEST_F(FixedOffsetFrameTest, ZYXHalfPiPhiGivesZRotation_FirstRow)
 
 TEST_F(FixedOffsetFrameTest, ZYXHalfPiPhiGivesZRotation_SecondRow)
 {
-    const auto& dcm = get_dcm_from_frame<RotXHalfPiZYX>();
+    const auto& dcm = get_dcm<RotXHalfPiZYX, RotXHalfPiZYX.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[1, 1], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[1, 2], 0.0 * one, ANGULAR_TOL));
@@ -271,7 +275,7 @@ TEST_F(FixedOffsetFrameTest, ZYXHalfPiPhiGivesZRotation_SecondRow)
 
 TEST_F(FixedOffsetFrameTest, ZYXHalfPiPhiGivesZRotation_ThirdRow)
 {
-    const auto& dcm = get_dcm_from_frame<RotXHalfPiZYX>();
+    const auto& dcm = get_dcm<RotXHalfPiZYX, RotXHalfPiZYX.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 2], 1.0 * one, ANGULAR_TOL));
@@ -319,13 +323,13 @@ TEST_F(FixedOffsetFrameTest, GetOffsetFromFrameReturnsCorrectZ)
     EXPECT_DOUBLE_EQ(off.get_z().numerical_value_in(km), 3.0);
 }
 
-// get_dcm_from_frame returns Rx(pi/2) — same result as RotXHalfPiXYZ despite also having an offset
+// get_dcm returns Rx(pi/2) — same result as RotXHalfPiXYZ despite also having an offset
 // [[1, 0,  0],
 //  [0, 0, -1],
 //  [0, 1,  0]]
 TEST_F(FixedOffsetFrameTest, GetDcmFromFrameFirstRow)
 {
-    const auto dcm = get_dcm_from_frame<CombinedEarthIcrf>();
+    const auto dcm = get_dcm<CombinedEarthIcrf, CombinedEarthIcrf.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[0, 0], 1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[0, 1], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[0, 2], 0.0 * one, ANGULAR_TOL));
@@ -333,7 +337,7 @@ TEST_F(FixedOffsetFrameTest, GetDcmFromFrameFirstRow)
 
 TEST_F(FixedOffsetFrameTest, GetDcmFromFrameSecondRow)
 {
-    const auto dcm = get_dcm_from_frame<CombinedEarthIcrf>();
+    const auto dcm = get_dcm<CombinedEarthIcrf, CombinedEarthIcrf.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[1, 0], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[1, 1], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[1, 2], -1.0 * one, ANGULAR_TOL));
@@ -341,7 +345,7 @@ TEST_F(FixedOffsetFrameTest, GetDcmFromFrameSecondRow)
 
 TEST_F(FixedOffsetFrameTest, GetDcmFromFrameThirdRow)
 {
-    const auto dcm = get_dcm_from_frame<CombinedEarthIcrf>();
+    const auto dcm = get_dcm<CombinedEarthIcrf, CombinedEarthIcrf.parent>();
     EXPECT_TRUE(math::nearly_equal(dcm[2, 0], 0.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 1], 1.0 * one, ANGULAR_TOL));
     EXPECT_TRUE(math::nearly_equal(dcm[2, 2], 0.0 * one, ANGULAR_TOL));
@@ -366,7 +370,7 @@ TEST_F(FixedOffsetFrameTest, GetOffsetFromRootFrameMatchesFromFrameZ)
     EXPECT_DOUBLE_EQ(off.get_z().numerical_value_in(km), 3.0);
 }
 
-// get_dcm_from_root_frame for a non-derived parent is identical to get_dcm_from_frame
+// get_dcm_from_root_frame for a non-derived parent is identical to get_dcm
 TEST_F(FixedOffsetFrameTest, GetDcmFromRootFrameMatchesFromFrameFirstRow)
 {
     const auto dcm = get_dcm_from_root_frame<CombinedEarthIcrf>();
