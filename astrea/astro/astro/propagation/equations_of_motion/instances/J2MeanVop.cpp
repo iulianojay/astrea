@@ -85,7 +85,7 @@ OrbitalElementPartials J2MeanVop::compute_dynamics(
                                                             termA * (3.0 - 5.0 * termB) * z };
 
     // Only normal pert required
-    const UnitVector Nhat         = r.cross(v).unit();
+    const Direction Nhat          = r.cross(v).direction();
     const Acceleration normalPert = accelOblateness.dot(Nhat);
 
     // Precompute

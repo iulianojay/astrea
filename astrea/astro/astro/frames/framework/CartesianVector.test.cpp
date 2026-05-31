@@ -16,9 +16,9 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/framework/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
 #include <astro/frames/definitions/transformations.hpp>
+#include <astro/frames/frames.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
@@ -212,10 +212,10 @@ TEST_F(CartesianVectorTest, TestNormAndUnit)
     EXPECT_TRUE(math::nearly_equal(normVec2, sqrt(2.0) * one, REL_TOL));
 
     // Unit vector
-    auto unitVec1 = vec1.unit();
+    auto unitVec1 = vec1.direction();
     ASSERT_TRUE(nearly_equal(unitVec1, TestVector(1.0 * one, 0.0 * one, 0.0 * one), REL_TOL));
 
-    auto unitVec2   = (vec1 + vec2).unit();
+    auto unitVec2   = (vec1 + vec2).direction();
     double invSqrt2 = 1.0 / sqrt(2.0);
     ASSERT_TRUE(nearly_equal(unitVec2, TestVector(invSqrt2 * one, invSqrt2 * one, 0.0 * one), REL_TOL));
 }

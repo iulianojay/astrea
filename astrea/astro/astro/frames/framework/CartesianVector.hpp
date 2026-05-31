@@ -362,6 +362,8 @@ struct CartesianVector {
      * @brief Calculate the norm (magnitude) of the vector.
      *
      * @return T The norm of the vector.
+     *
+     * @note: This can't be called "magnitude" due to an mp-units type resolution bug
      */
     inline constexpr Value_T norm() const
     {
@@ -374,10 +376,12 @@ struct CartesianVector {
      * @return CartesianVector<Unitless> A unit vector in the same direction as this vector.
      * @note If the norm is zero, returns a zero vector.
      */
-    inline constexpr CartesianVector<Unitless, frame> unit() const
+    inline constexpr CartesianVector<Unitless, frame> direction() const
     {
+        using namespace mp_units;
+
         const Value_T n = norm();
-        if (n.numerical_value_in(n.unit) == 0) {
+        if (is_eq_zero(n)) {
             // Return zero vector if norm is zero
             return CartesianVector<Unitless, frame>(0.0 * mp_units::one, 0.0 * mp_units::one, 0.0 * mp_units::one);
         }
@@ -401,7 +405,7 @@ struct CartesianVector {
         const Value_T v1Mag = norm();
         const Value_U v2Mag = other.norm();
 
-        if (v1Mag == Value_T::zero() || v2Mag == Value_U::zero()) {
+        if (is_eq_zero(v1Mag) || is_eq_zero(v2Mag)) {
             throw std::runtime_error("Cannot calculate angle with zero-magnitude vector");
         }
 

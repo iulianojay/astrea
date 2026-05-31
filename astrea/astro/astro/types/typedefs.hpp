@@ -49,7 +49,7 @@ using AccelerationVector = CartesianVector<Acceleration, frame>;
  * This is used for direction vectors that do not have units of distance, velocity, or acceleration.
  */
 template <IsFrame auto frame>
-using UnitVector = CartesianVector<Unitless, frame>;
+using Direction = CartesianVector<Unitless, frame>;
 
 /**
  * @brief Type alias for a vector representing force vectors in 3D space.

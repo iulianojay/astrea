@@ -128,7 +128,7 @@ class GroundPoint : virtual public AccessObject {
         const Velocity vEcefMag = rEcefPlanarNorm * astro::get_rotation_rate<_body_>() / mp_units::isq_angle::cotes_angle;
 
         const astro::CartesianVector<Distance, fixed_frame> z{ 0.0 * km, 0.0 * km, 1.0 * km };
-        const auto vEcef = z.cross(rEcefPlanar).unit() * vEcefMag;
+        const auto vEcef = z.cross(rEcefPlanar).direction() * vEcefMag;
 
         return vEcef.template in_frame<icrf_frame>(date);
     }

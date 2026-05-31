@@ -81,8 +81,8 @@ AttitudePartials EquationsOfMotion::compute_kinematics(
         inertiaTensor.inverse_multiply(externalTorque - w.cross(inertiaTensor * w) / pow<2>(rad)) * rad;
 
     // Compute quaternion rate
-    const Unitless& s                          = q.get_scalar_part();
-    const UnitVector<frames::dynamic::body>& u = q.get_vector_part();
+    const Unitless& s                         = q.get_scalar_part();
+    const Direction<frames::dynamic::body>& u = q.get_vector_part();
     const BodyQuaternionRate quaternionRate{ 0.5 * w.dot(u) / rad, 0.5 * (w * s - w.cross(u)) / rad };
 
     return AttitudePartials(quaternionRate, angularAcceleration);

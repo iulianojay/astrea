@@ -59,7 +59,7 @@ class ImpulsiveBurnTest : public testing::Test {
         vehicle = Vehicle(spacecraft);
 
         // Set up a standard burn direction (radial)
-        burnDirection = UnitVector<frames::dynamic::ric>(1.0, 0.0, 0.0);
+        burnDirection = Direction<frames::dynamic::ric>(1.0, 0.0, 0.0);
     }
 
     const Unitless REL_TOL = 1.0e-6 * one;
@@ -68,7 +68,7 @@ class ImpulsiveBurnTest : public testing::Test {
     State state;
     Vehicle vehicle;
     Spacecraft spacecraft;
-    UnitVector<frames::dynamic::ric> burnDirection;
+    Direction<frames::dynamic::ric> burnDirection;
 };
 
 int main(int argc, char** argv)

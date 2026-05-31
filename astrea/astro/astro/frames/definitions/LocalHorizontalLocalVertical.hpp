@@ -19,10 +19,10 @@
 #pragma once
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/definitions/body_centered_inertial_frames.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
 #include <astro/frames/framework/DynamicFrame.hpp>
-#include <astro/frames/definitions/body_centered_inertial_frames.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
@@ -34,7 +34,8 @@ namespace frames {
  */
 template <IsFrame auto _parent_>
 struct LvlhTag : Frame<"lvlh", DynamicOrigin{}, DynamicAxis{}, _parent_> {
-    LocalHorizontalLocalVertical<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const {
+    LocalHorizontalLocalVertical<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const
+    {
         return LocalHorizontalLocalVertical<_parent_>(r, v);
     }
 };
@@ -74,14 +75,13 @@ struct LocalHorizontalLocalVertical
      */
     DirectionCosineMatrix<parent, tag> get_dcm(const Date& date) const
     {
-        const auto r               = this->get_position(date).unit();
-        const auto v               = this->get_velocity(date).unit();
-        const auto h               = r.cross(v).unit();
-        const auto localHorizontal = ((-h).cross(-r)).unit();
+        const auto r               = this->get_position(date).direction();
+        const auto v               = this->get_velocity(date).direction();
+        const auto h               = r.cross(v).direction();
+        const auto localHorizontal = ((-h).cross(-r)).direction();
         return DirectionCosineMatrix<parent, tag>::from_vectors(localHorizontal, -h, -r);
     }
 };
-
 
 
 } // namespace frames

@@ -379,14 +379,14 @@ TEST_F(QuaternionTest, UnitMethod)
     TestQuaternion unitQ = q;
     unitQ.normalize();
 
-    // Since quaternions are automatically normalized, unit() should return the same quaternion
+    // Since quaternions are automatically normalized, direction() should return the same quaternion
     ExpectQuaternionNearlyEqual(unitQ, q);
 
     // Unit quaternion should have norm 1 (but so should the original)
     EXPECT_TRUE(math::nearly_equal(unitQ.norm(), 1.0 * one, REL_TOL, ABS_TOL));
     EXPECT_TRUE(math::nearly_equal(q.norm(), 1.0 * one, REL_TOL, ABS_TOL));
 
-    // Test with any quaternion - unit() should be idempotent
+    // Test with any quaternion - direction() should be idempotent
     TestQuaternion anyUnit(1.0 * one, 0.0 * one, 0.0 * one, 0.0 * one);
     TestQuaternion unitOfUnit = anyUnit;
     unitOfUnit.normalize();

@@ -68,7 +68,7 @@ int main()
     // Currently, Astrea only defines a few built-in events, but users can easily define their own custom events by
     // implementing a user-defined Event. Here, we use the built-in impulsive burn, and set it to trigger at a specific
     // true anomaly. It can also be set to trigger at a specific mean anomaly, altitude, or epoch.
-    ImpulsiveBurn burn = ImpulsiveBurn::trigger_at_true_anomaly(0.0 * deg, UnitVector<frames::dynamic::ric>(0.0, 1.0, 0.0));
+    ImpulsiveBurn burn = ImpulsiveBurn::trigger_at_true_anomaly(0.0 * deg, Direction<frames::dynamic::ric>(0.0, 1.0, 0.0));
     Event burnEvent(burn);
     integrator.add_event(burnEvent);
 

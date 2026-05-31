@@ -46,7 +46,7 @@ int main()
 
     // The vector utility also several common vector operations, such as dot and cross products.
     auto rEciMag   = rEci.norm();
-    auto rEciUnit  = rEci.unit();
+    auto rEciUnit  = rEci.direction();
     auto rEciDot   = rEci.dot(rEci);
     auto rEciCross = rEci.cross(rEci);
 

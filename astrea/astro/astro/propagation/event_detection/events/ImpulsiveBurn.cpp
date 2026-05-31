@@ -98,7 +98,7 @@ void ImpulsiveBurn::trigger_action(const Time& time, State& state, Vehicle& vehi
 
     // Rotate out of RIC
     const auto ricFrame = frames::dynamic::ric.instantaneous(elements.get_position(), elements.get_velocity());
-    const UnitVector<frames::earth::icrf> burnDirection = ricFrame.rotate_out_of_this_frame(_burnDirection, state.get_epoch());
+    const Direction<frames::earth::icrf> burnDirection = ricFrame.rotate_out_of_this_frame(_burnDirection, state.get_epoch());
 
     const auto dv = deltaV * burnDirection;
     elements += dv;

@@ -19,10 +19,10 @@
 #pragma once
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/definitions/body_centered_inertial_frames.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
 #include <astro/frames/framework/DynamicFrame.hpp>
-#include <astro/frames/definitions/body_centered_inertial_frames.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
@@ -34,7 +34,8 @@ namespace frames {
  */
 template <IsFrame auto _parent_>
 struct RicTag : Frame<"ric", DynamicOrigin{}, DynamicAxis{}, _parent_> {
-    RadialInTrackCrossTrack<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const {
+    RadialInTrackCrossTrack<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const
+    {
         return RadialInTrackCrossTrack<_parent_>(r, v);
     }
 };
@@ -73,14 +74,13 @@ struct RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack<_pa
      */
     DirectionCosineMatrix<parent, tag> get_dcm(const Date& date) const
     {
-        const auto r       = this->get_position(date).unit();
-        const auto v       = this->get_velocity(date).unit();
-        const auto h       = r.cross(v).unit();
-        const auto inTrack = (-r.cross(h)).unit();
+        const auto r       = this->get_position(date).direction();
+        const auto v       = this->get_velocity(date).direction();
+        const auto h       = r.cross(v).direction();
+        const auto inTrack = (-r.cross(h)).direction();
         return DirectionCosineMatrix<parent, tag>::from_vectors(r, inTrack, h);
     }
 };
-
 
 
 } // namespace frames

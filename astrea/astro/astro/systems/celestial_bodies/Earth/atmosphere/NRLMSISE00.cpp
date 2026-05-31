@@ -759,7 +759,7 @@ class NRLMSISE00 : public AbstractSunInfluencedAtmosphere {
         const auto& position = state.get_position();
 
         const RadiusVector<frames::solar_system_barycenter::icrf> sun2Earth = get_position_at(date);
-        const UnitVector<frames::earth::icrf> sunDirection = -sun2Earth.unit().force_frame_conversion<frames::earth::icrf>();
+        const Direction<frames::earth::icrf> sunDirection = -sun2Earth.direction().force_frame_conversion<frames::earth::icrf>();
 
         const Angle lst =
             std::numbers::pi * rad + atan2(
