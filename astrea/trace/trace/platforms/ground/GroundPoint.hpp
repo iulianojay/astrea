@@ -110,12 +110,12 @@ class GroundPoint : virtual public AccessObject {
     /**
      * @brief Returns the inertial position at the given date.
      */
-    auto get_inertial_position(const astro::Date& date) const { return _lla.get_position(date); }
+    auto get_position(const astro::Date& date) const { return _lla.get_position(date); }
 
     /**
      * @brief Returns the inertial velocity at the given date, computed from the body's rotation rate.
      */
-    auto get_inertial_velocity(const astro::Date& date) const
+    auto get_velocity(const astro::Date& date) const
     {
         using namespace mp_units::si::unit_symbols;
         constexpr auto fixed_frame = astro::Geodetic<_body_>::_fixed_frame_;

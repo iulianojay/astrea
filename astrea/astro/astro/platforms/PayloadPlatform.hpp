@@ -20,6 +20,7 @@
 
 #include <vector>
 
+#include <astro/frames/framework/primary_frame.hpp>
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -107,6 +108,22 @@ class PayloadPlatform {
      * @return std::size_t ID of the payload.
      */
     virtual std::size_t get_id() const = 0;
+
+    /**
+     * @brief Get the position of the platform.
+     *
+     * @param date The date for which to get the position.
+     * @return RadiusVector<frames::primary> Position of the platform.
+     */
+    virtual RadiusVector<frames::primary> get_position(const Date& date) const = 0;
+
+    /**
+     * @brief Get the velocity of the platform.
+     *
+     * @param date The date for which to get the velocity.
+     * @return VelocityVector<frames::primary> Velocity of the platform.
+     */
+    virtual VelocityVector<frames::primary> get_velocity(const Date& date) const = 0;
 
     /**
      * @brief Get the mass of the platform.

@@ -61,6 +61,6 @@ TEST_F(GroundStationTest, GetName) { ASSERT_EQ(station->get_name(), name); }
 
 TEST_F(GroundStationTest, GetId) { ASSERT_NO_THROW(station->get_id()); }
 
-TEST_F(GroundStationTest, GetInertialPosition) { ASSERT_NO_THROW(auto pos = station->get_inertial_position(Date())); }
+TEST_F(GroundStationTest, GetInertialPosition) { ASSERT_NO_THROW(auto pos = station->get_position(Date())); }
 
-TEST_F(GroundStationTest, GetInertialVelocity) { ASSERT_NO_THROW(auto vel = station->get_inertial_velocity(Date())); }
+TEST_F(GroundStationTest, GetInertialVelocity) { ASSERT_NO_THROW(auto vel = station->get_velocity(Date())); }

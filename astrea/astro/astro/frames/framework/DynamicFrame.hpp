@@ -42,7 +42,7 @@ struct DynamicFrame {
      * @param position The position vector in the parent frame.
      * @param velocity The velocity vector in the parent frame.
      */
-    DynamicFrame(const RadiusVector<_self_>& position, const VelocityVector<_self_>& velocity) :
+    DynamicFrame(const RadiusVector<_parent_>& position, const VelocityVector<_parent_>& velocity) :
         _position(position),
         _velocity(velocity)
     {

@@ -91,7 +91,7 @@ ViewerRefVec AccessAnalyzer::cache_viewers(ViewerConstellation& constel)
                 const std::size_t platformIdx = _positionCache.add_platform(viewer.get_id(), nTimesteps);
 
                 for (std::size_t iTime = 0; iTime < nTimesteps; ++iTime) {
-                    const auto rEcef = viewer.get_inertial_position(_dates[iTime]).in_frame<earth::earth_fixed>(_dates[iTime]);
+                    const auto rEcef = viewer.get_position(_dates[iTime]).in_frame<earth::earth_fixed>(_dates[iTime]);
                     _positionCache.set_position(platformIdx, iTime, rEcef);
                 }
             }

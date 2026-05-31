@@ -22,8 +22,8 @@
 #include <math/interpolation.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/frames.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/state/StateHistory.hpp>
 #include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
@@ -107,7 +107,7 @@ Perturbation Spacecraft::get_control_authority(const State& state) const
         totalThrust[1] += thruster.get_thrust();
     }
 
-    const Cartesian<frames::earth::icrf> elements = state.in_element_set<Cartesian<frames::earth::icrf>>();
+    const Cartesian<frames::primary> elements = state.in_element_set<Cartesian<frames::primary>>();
     const auto ricFrame = frames::dynamic::ric.instantaneous(elements.get_position(), elements.get_velocity());
     return {
         .force = ricFrame.rotate_out_of_this_frame(totalThrust, state.get_epoch()), .torque = {} // first cut
@@ -131,17 +131,15 @@ void Spacecraft::set_lift_area(const SurfaceArea& liftArea) { _liftArea = liftAr
 
 void Spacecraft::set_name(const std::string& name) { _name = name; }
 
-RadiusVector<frames::earth::icrf> Spacecraft::get_inertial_position(const Date& date) const
+RadiusVector<frames::primary> Spacecraft::get_position(const Date& date) const
 {
-    const Cartesian<frames::earth::icrf> elements =
-        _stateHistory.get_state_at(date).in_element_set<Cartesian<frames::earth::icrf>>();
+    const Cartesian<frames::primary> elements = _stateHistory.get_state_at(date).in_element_set<Cartesian<frames::primary>>();
     return elements.get_position();
 }
 
-VelocityVector<frames::earth::icrf> Spacecraft::get_inertial_velocity(const Date& date) const
+VelocityVector<frames::primary> Spacecraft::get_velocity(const Date& date) const
 {
-    const Cartesian<frames::earth::icrf> elements =
-        _stateHistory.get_state_at(date).in_element_set<Cartesian<frames::earth::icrf>>();
+    const Cartesian<frames::primary> elements = _stateHistory.get_state_at(date).in_element_set<Cartesian<frames::primary>>();
     return elements.get_velocity();
 }
 

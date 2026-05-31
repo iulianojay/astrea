@@ -180,14 +180,14 @@ TEST_F(SpacecraftTest, GetStateHistory)
 
 TEST_F(SpacecraftTest, GetInertialPosition)
 {
-    ASSERT_ANY_THROW(spacecraft.get_inertial_position(Date()));
-    ASSERT_NO_THROW(spacecraftWithHistory.get_inertial_position(Date()));
+    ASSERT_ANY_THROW(spacecraft.get_position(Date()));
+    ASSERT_NO_THROW(spacecraftWithHistory.get_position(Date()));
 }
 
 TEST_F(SpacecraftTest, GetInertialVelocity)
 {
-    ASSERT_ANY_THROW(spacecraft.get_inertial_velocity(Date()));
-    ASSERT_NO_THROW(spacecraftWithHistory.get_inertial_velocity(Date()));
+    ASSERT_ANY_THROW(spacecraft.get_velocity(Date()));
+    ASSERT_NO_THROW(spacecraftWithHistory.get_velocity(Date()));
 }
 
 TEST_F(SpacecraftTest, AddPayload)

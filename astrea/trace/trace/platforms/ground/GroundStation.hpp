@@ -66,11 +66,53 @@ class GroundStation : public GroundPoint<_body_>, public SensorPlatform {
         }
     }
 
+    /**
+     * @brief Default destructor for GroundStation
+     */
     ~GroundStation() = default;
 
+    /**
+     * @brief Gets the unique identifier for this ground station.
+     *
+     * @return std::size_t The unique identifier for this ground station.
+     */
     std::size_t get_id() const override { return Base::_id; }
 
+    /**
+     * @brief Gets the human-readable name of the ground station.
+     *
+     * @return std::string The name of the ground station.
+     */
     std::string get_name() const { return _name; }
+
+    /**
+     * @brief Gets the position of the ground station in the body-fixed frame.
+     *
+     * @return astro::RadiusVector<astro::frames::Geodetic<_body_>::_fixed_frame_> The position of the ground station in the body-fixed frame.
+     */
+    auto get_position() const { return Base::get_position(); }
+
+    /**
+     * @brief Gets the inertial position of the spacecraft at a specific date.
+     *
+     * @param date The date at which to retrieve the position.
+     * @return astro::RadiusVector<astro::frames::primary> The inertial position of the spacecraft.
+     */
+    astro::RadiusVector<astro::frames::primary> get_position(const astro::Date& date) const
+    {
+        return Base::get_position(date);
+    }
+
+    /**
+     * @brief Gets the inertial velocity of the spacecraft at a specific date.
+     *
+     * @param date The date at which to retrieve the velocity.
+     * @return astro::VelocityVector<astro::frames::primary> The inertial velocity of the spacecraft.
+     */
+    astro::VelocityVector<astro::frames::primary> get_velocity(const astro::Date& date) const
+    {
+        return Base::get_velocity(date);
+    }
 
   private:
     std::string _name; //!< Human-readable name of the ground station.

@@ -88,9 +88,9 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
      * @param date The date for which to get the position.
      * @return astro::RadiusVector<astro::frames::earth::icrf> The inertial position of the viewer.
      */
-    astro::RadiusVector<astro::frames::earth::icrf> get_inertial_position(const astro::Date& date) const
+    astro::RadiusVector<astro::frames::earth::icrf> get_position(const astro::Date& date) const
     {
-        return Spacecraft::get_inertial_position(date);
+        return Spacecraft::get_position(date);
     }
 
     /**
@@ -99,9 +99,9 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
      * @param date The date for which to get the velocity.
      * @return astro::RadiusVector<astro::frames::earth::icrf> The inertial velocity of the viewer.
      */
-    astro::VelocityVector<astro::frames::earth::icrf> get_inertial_velocity(const astro::Date& date) const
+    astro::VelocityVector<astro::frames::earth::icrf> get_velocity(const astro::Date& date) const
     {
-        return Spacecraft::get_inertial_velocity(date);
+        return Spacecraft::get_velocity(date);
     }
 
     // This is so stupid. Why C++ standards committee
