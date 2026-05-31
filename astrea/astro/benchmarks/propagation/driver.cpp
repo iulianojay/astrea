@@ -62,9 +62,18 @@ static void BenchmarkPropagation(benchmark::State& state)
 
     ForceModel forces;
     if (eomIdx >= 2) {
-        if (gravity > 0) { forces.add<OblatenessForce, gravity, gravity>(); }
+        if (gravity > 0) {
+            // Ugh
+            if (gravity == 2) { forces.add<OblatenessForce, planets::Earth, 2, 2>(); }
+            else if (gravity == 20) {
+                forces.add<OblatenessForce, planets::Earth, 20, 20>();
+            }
+            else if (gravity == 70) {
+                forces.add<OblatenessForce, planets::Earth, 70, 70>();
+            }
+        }
         if (perturb & kDrag) { forces.add<AtmosphericForce>(); }
-        if (perturb & kNBody) { forces.add<NBodyForce>(); }
+        if (perturb & kNBody) { forces.add<NBodyForce, planets::Earth, moons::Moon, star::Sun>(); }
         if (perturb & kSRP) { forces.add<SolarRadiationPressure>(); }
     }
 
