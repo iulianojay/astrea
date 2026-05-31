@@ -31,9 +31,6 @@ int main()
     // - Classical Orbital Elements (Keplerian)
     // - Modified Equinoctial Elements (Equinoctial)
     // - State Vectors (Cartesian)
-
-    // For now, the Cartesian<frames::earth::icrf> element set is defined in the ECI frame, but future releases will
-    // support other frames as well.
     Cartesian<frames::earth::icrf> cartesian{
         7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s,
     };

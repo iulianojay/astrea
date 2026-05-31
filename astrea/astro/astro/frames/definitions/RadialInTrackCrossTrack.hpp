@@ -56,8 +56,8 @@ struct RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack<_pa
     /**
      * @brief Constructor for instantaneous dynamic state/frames.
      *
-     * @param position The position vector in the ECI frame.
-     * @param velocity The velocity vector in the ECI frame.
+     * @param position The position vector in the parent frame.
+     * @param velocity The velocity vector in the parent frame.
      */
     RadialInTrackCrossTrack(const RadiusVector<parent>& position, const VelocityVector<parent>& velocity) :
         DynamicFrame<RadialInTrackCrossTrack<_parent_>, parent, ric_tag<_parent_>>(position, velocity)
@@ -70,7 +70,7 @@ struct RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack<_pa
      * @brief Gets the Direction Cosine Matrix (DCM) for the RIC frame at a given date.
      *
      * @param date The date for which the DCM is requested.
-     * @return DirectionCosineMatrix<parent, RadialInTrackCrossTrack> The DCM from ECI to RIC.
+     * @return DirectionCosineMatrix<parent, RadialInTrackCrossTrack> The DCM from parent to RIC.
      */
     DirectionCosineMatrix<parent, tag> get_dcm(const Date& date) const
     {

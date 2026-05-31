@@ -24,11 +24,11 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/definitions/transformations.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
 #include <astro/frames/framework/DynamicFrame.hpp>
 #include <astro/frames/framework/Frame.hpp>
-#include <astro/frames/definitions/transformations.hpp>
 #include <astro/state/angular_elements/instances/Geodetic.hpp>
 #include <astro/systems/celestial_bodies.hpp>
 #include <astro/time/Date.hpp>
@@ -64,8 +64,8 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp<_frame_>, _frame_, enu_tag<
     /**
      * @brief Constructor for instantaneous dynamic state/frames.
      *
-     * @param position The position vector in the ECI frame.
-     * @param velocity The velocity vector in the ECI frame.
+     * @param position The position vector in the parent frame.
+     * @param velocity The velocity vector in the parent frame.
      */
     EastNorthUp(const RadiusVector<frame>& position, const VelocityVector<frame>& velocity) :
         DynamicFrame<EastNorthUp<_frame_>, frame, enu_tag<_frame_>>(position, velocity)
@@ -78,7 +78,7 @@ struct EastNorthUp : public DynamicFrame<EastNorthUp<_frame_>, _frame_, enu_tag<
      * @brief Gets the Direction Cosine Matrix (DCM) for the ENU frame at a given date.
      *
      * @param date The date for which the DCM is requested.
-     * @return DirectionCosineMatrix<frame, EastNorthUp> The DCM from ECI to ENU.
+     * @return DirectionCosineMatrix<frame, EastNorthUp> The DCM from parent to ENU.
      */
     DirectionCosineMatrix<frame, tag> get_dcm(const Date& date) const
     {

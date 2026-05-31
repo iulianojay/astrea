@@ -39,10 +39,10 @@ struct DynamicFrame {
      * @brief Constructor for instantaneous dynamic state/frames.
      *
      * @param name The name of the dynamic frame.
-     * @param position The position vector in the ECI frame.
-     * @param velocity The velocity vector in the ECI frame.
+     * @param position The position vector in the parent frame.
+     * @param velocity The velocity vector in the parent frame.
      */
-    DynamicFrame(const RadiusVector<_parent_>& position, const VelocityVector<_parent_>& velocity) :
+    DynamicFrame(const RadiusVector<_self_>& position, const VelocityVector<_self_>& velocity) :
         _position(position),
         _velocity(velocity)
     {
@@ -52,12 +52,12 @@ struct DynamicFrame {
     static constexpr auto parent = _parent_; //!< The reference frame of the dynamic frame.
 
     /**
-     * @brief Rotates a CartesianVector from Earth-Centered Inertial (ECI) to _parent_ coordinates.
+     * @brief Rotates a CartesianVector from the parent frame to this frame's coordinates.
      *
      * @tparam Value_T The type of the vector components.
-     * @param vec The CartesianVector in ECI coordinates.
+     * @param vec The CartesianVector in parent coordinates.
      * @param date The date for which the conversion is performed.
-     * @return CartesianVector<Value_T, _parent_> The rotated CartesianVector in _parent_ coordinates.
+     * @return CartesianVector<Value_T, _self_> The rotated CartesianVector in this frame's coordinates.
      */
     template <typename Value_T>
     CartesianVector<Value_T, _self_> rotate_into_this_frame(const CartesianVector<Value_T, parent>& vec, const Date& date) const
@@ -66,12 +66,12 @@ struct DynamicFrame {
     }
 
     /**
-     * @brief Rotates a CartesianVector from _parent_ coordinates to Earth-Centered Inertial (ECI) coordinates.
+     * @brief Rotates a CartesianVector from this frame's coordinates to the parent frame coordinates.
      *
      * @tparam Value_T The type of the vector components.
-     * @param vec The CartesianVector in _parent_ coordinates.
+     * @param vec The CartesianVector in this frame's coordinates.
      * @param date The date for which the conversion is performed.
-     * @return CartesianVector<Value_T, self> The rotated CartesianVector in ECI coordinates.
+     * @return CartesianVector<Value_T, parent> The rotated CartesianVector in parent coordinates.
      */
     template <typename Value_T>
     CartesianVector<Value_T, parent> rotate_out_of_this_frame(const CartesianVector<Value_T, _self_>& vec, const Date& date) const
@@ -80,12 +80,12 @@ struct DynamicFrame {
     }
 
     /**
-     * @brief Converts a CartesianVector from Earth-Centered Inertial (ECI) to _parent_ coordinates.
+     * @brief Converts a CartesianVector from the parent frame to this frame's coordinates.
      *
      * @tparam Value_T The type of the vector components.
-     * @param vec The CartesianVector in ECI coordinates.
+     * @param vec The CartesianVector in parent coordinates.
      * @param date The date for which the conversion is performed.
-     * @return RadiusVector<self> The converted CartesianVector in _parent_ coordinates.
+     * @return RadiusVector<_self_> The converted CartesianVector in this frame's coordinates.
      */
     RadiusVector<_self_> transform_to_this_frame(const RadiusVector<parent>& vec, const Date& date) const
     {
@@ -93,12 +93,12 @@ struct DynamicFrame {
     }
 
     /**
-     * @brief Converts a CartesianVector from _parent_ coordinates to Earth-Centered Inertial (ECI) coordinates.
+     * @brief Converts a CartesianVector from this frame's coordinates to the parent frame coordinates.
      *
      * @tparam Value_T The type of the vector components.
-     * @param vec The CartesianVector in _parent_ coordinates.
+     * @param vec The CartesianVector in this frame's coordinates.
      * @param date The date for which the conversion is performed.
-     * @return RadiusVector<parent> The converted CartesianVector in ECI coordinates.
+     * @return RadiusVector<parent> The converted CartesianVector in parent coordinates.
      */
     RadiusVector<parent> transform_from_this_frame(const RadiusVector<_self_>& vec, const Date& date) const
     {
@@ -107,10 +107,10 @@ struct DynamicFrame {
 
   private:
     /**
-     * @brief Get the direction cosine matrix (DCM) from Earth-Centered Inertial (ECI) to _parent_ coordinates.
+     * @brief Get the direction cosine matrix (DCM) from the parent frame to this frame's coordinates.
      *
      * @param date The date for which the DCM is requested.
-     * @return DirectionCosineMatrix<parent, Self> The DCM from ECI to _parent_ coordinates.
+     * @return DirectionCosineMatrix<parent, Self> The DCM from parent to this frame's coordinates.
      */
     DirectionCosineMatrix<parent, _self_> get_dcm_impl(const Date& date) const
     {

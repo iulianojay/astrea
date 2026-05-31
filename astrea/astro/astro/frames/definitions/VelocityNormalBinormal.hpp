@@ -56,8 +56,8 @@ struct VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal<_pare
     /**
      * @brief Constructor for instantaneous dynamic state/frames.
      *
-     * @param position The position vector in the ECI frame.
-     * @param velocity The velocity vector in the ECI frame.
+     * @param position The position vector in the parent frame.
+     * @param velocity The velocity vector in the parent frame.
      */
     VelocityNormalBinormal(const RadiusVector<parent>& position, const VelocityVector<parent>& velocity) :
         DynamicFrame<VelocityNormalBinormal<_parent_>, parent, vnb_tag<_parent_>>(position, velocity)
@@ -70,7 +70,7 @@ struct VelocityNormalBinormal : public DynamicFrame<VelocityNormalBinormal<_pare
      * @brief Gets the Direction Cosine Matrix (DCM) for the VNB frame at a given date.
      *
      * @param date The date for which the DCM is requested.
-     * @return DirectionCosineMatrix<parent, VelocityNormalBinormal> The DCM from ECI to VNB.
+     * @return DirectionCosineMatrix<parent, VelocityNormalBinormal> The DCM from parent to VNB.
      */
     DirectionCosineMatrix<parent, tag> get_dcm(const Date& date) const
     {

@@ -57,8 +57,8 @@ struct LocalHorizontalLocalVertical
     /**
      * @brief Constructor for instantaneous dynamic state/frames.
      *
-     * @param position The position vector in the ECI frame.
-     * @param velocity The velocity vector in the ECI frame.
+     * @param position The position vector in the parent frame.
+     * @param velocity The velocity vector in the parent frame.
      */
     LocalHorizontalLocalVertical(const RadiusVector<parent>& position, const VelocityVector<parent>& velocity) :
         DynamicFrame<LocalHorizontalLocalVertical<_parent_>, parent, lvlh_tag<_parent_>>(position, velocity)
@@ -71,7 +71,7 @@ struct LocalHorizontalLocalVertical
      * @brief Gets the Direction Cosine Matrix (DCM) for the Local Horizontal, Local Vertical frame at a given date.
      *
      * @param date The date for which the DCM is computed.
-     * @return DirectionCosineMatrix<parent, LocalHorizontalLocalVertical> The DCM from ECI to LVLH.
+     * @return DirectionCosineMatrix<parent, LocalHorizontalLocalVertical> The DCM from parent to LVLH.
      */
     DirectionCosineMatrix<parent, tag> get_dcm(const Date& date) const
     {
