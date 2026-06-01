@@ -22,10 +22,10 @@
 #include <type_traits>
 #include <variant>
 
-#include <astro/frames/framework/frame_concepts.hpp>
-#include <astro/frames/framework/frame_registry.fwd.hpp>
-#include <astro/frames/framework/primary_frame.hpp>
+#include <astro/frames/definitions/frame_registry.fwd.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
 #include <astro/frames/definitions/transformations.hpp>
+#include <astro/frames/framework/frame_concepts.hpp>
 
 namespace astrea {
 namespace astro {

@@ -18,13 +18,13 @@
  */
 #pragma once
 
-#include <astro/frames/framework/DynamicFrame.hpp>
-#include <astro/frames/framework/Frame.hpp>
 #include <astro/frames/definitions/EastNorthUp.hpp>
 #include <astro/frames/definitions/LocalHorizontalLocalVertical.hpp>
 #include <astro/frames/definitions/RadialInTrackCrossTrack.hpp>
 #include <astro/frames/definitions/VelocityNormalBinormal.hpp>
-#include <astro/frames/framework/frame_registry.hpp>
+#include <astro/frames/definitions/frame_registry.hpp>
+#include <astro/frames/framework/DynamicFrame.hpp>
+#include <astro/frames/framework/Frame.hpp>
 
 namespace astrea {
 namespace astro {

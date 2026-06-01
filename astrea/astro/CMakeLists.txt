@@ -95,9 +95,9 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/framework/Frame.hpp
     ${ASTRO_BASE}/frames/framework/Origin.hpp
     ${ASTRO_BASE}/frames/framework/frame_concepts.hpp
-    ${ASTRO_BASE}/frames/framework/frame_registry.hpp
+    ${ASTRO_BASE}/frames/definitions/frame_registry.hpp
     ${ASTRO_BASE}/frames/framework/frame_utilities.hpp
-    ${ASTRO_BASE}/frames/framework/primary_frame.hpp
+    ${ASTRO_BASE}/frames/definitions/primary_frame.hpp
 
     ${ASTRO_BASE}/frames/framework.hpp
     ${ASTRO_BASE}/frames/frames.hpp

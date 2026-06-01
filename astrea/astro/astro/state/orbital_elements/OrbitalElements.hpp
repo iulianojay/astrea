@@ -25,8 +25,8 @@
 
 // Astro
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/framework/frame_registry.hpp>
-#include <astro/frames/framework/primary_frame.hpp>
+#include <astro/frames/definitions/frame_registry.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
 #include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/state/orbital_elements/instances/Equinoctial.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
@@ -50,7 +50,7 @@ namespace astro {
  * instantiation of every listed template to this variant.
  *
  * To register frames from user code, see ExtraRegisteredFrames in
- * astro/frames/framework/frame_registry.hpp.
+ * astro/frames/definitions/frame_registry.hpp.
  */
 template <template <auto> class... FrameIndexedTypes>
 using OrbitalElementVariant = typename detail::tuple_to_variant<typename detail::multi_tuple_cat<

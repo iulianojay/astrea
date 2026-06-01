@@ -13,7 +13,7 @@
 
 #include <astro/propagation/event_detection/events/Deorbit.hpp>
 
-#include <astro/frames/framework/frame_registry.hpp>
+#include <astro/frames/definitions/frame_registry.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/angular_elements/instances/Geodetic.hpp>
 

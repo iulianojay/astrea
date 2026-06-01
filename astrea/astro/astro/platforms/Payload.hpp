@@ -23,9 +23,9 @@
 #include <utilities/IdProvider.hpp>
 
 #include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
 #include <astro/frames/frames.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
-#include <astro/frames/framework/primary_frame.hpp>
 #include <astro/platforms/PayloadPlatform.hpp>
 #include <astro/types/typedefs.hpp>
 

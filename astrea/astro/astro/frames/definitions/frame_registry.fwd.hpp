@@ -31,7 +31,7 @@ namespace astro {
  *
  * @code
  * #include <astro/frames/definitions/body_centered_inertial_frames.hpp>
- * #include <astro/frames/framework/frame_registry.fwd.hpp>
+ * #include <astro/frames/definitions/frame_registry.fwd.hpp>
  *
  * namespace astrea::astro {
  *   template <>
@@ -41,7 +41,7 @@ namespace astro {
  *   };
  * }
  *
- * #include <astro/frames/framework/frame_registry.hpp>
+ * #include <astro/frames/definitions/frame_registry.hpp>
  * // ... all other astrea headers
  * @endcode
  *
