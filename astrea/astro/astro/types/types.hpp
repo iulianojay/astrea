@@ -1,10 +1,10 @@
 /**
- * @file astro.hpp
+ * @file types.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the astro module
- * @date 2025-08-03
+ * @brief Header file for the types module
+ * @date 2026-06-01
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -18,11 +18,9 @@
  */
 #pragma once
 
-#include <astro/frames/frames.hpp>
-#include <astro/platforms/platforms.hpp>
-#include <astro/propagation/propagation.hpp>
-#include <astro/state/state.hpp>
-#include <astro/systems/systems.hpp>
-#include <astro/time/time.hpp>
-#include <astro/types/types.hpp>
-#include <astro/utilities/conversions.hpp>
+#include <astro/types/concepts.hpp>
+#include <astro/types/enums.hpp>
+#include <astro/types/tuple_hash.hpp>
+#include <astro/types/type_traits.hpp>
+#include <astro/types/typedefs.hpp>
+#include <astro/types/variant_util.hpp>

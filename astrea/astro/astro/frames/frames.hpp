@@ -18,6 +18,5 @@
  */
 #pragma once
 
-#include <astro/frames/definitions/body_centered_inertial_frames.hpp>
-#include <astro/frames/definitions/body_fixed_frames.hpp>
-#include <astro/frames/definitions/defined_rotations_earth.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework.hpp>

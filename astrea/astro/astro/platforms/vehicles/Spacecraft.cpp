@@ -22,7 +22,7 @@
 #include <math/interpolation.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/state/StateHistory.hpp>

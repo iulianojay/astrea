@@ -16,8 +16,8 @@
 #include <cmath>
 #include <stdexcept>
 
+#include <astro/frames/definitions.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
 
 namespace astrea {
 namespace trace {

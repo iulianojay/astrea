@@ -28,8 +28,8 @@
 
 #include <units/typedefs.hpp>
 
+#include <astro/frames/definitions.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {

@@ -15,7 +15,7 @@
 
 #include <map>
 
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/angular_elements/instances/Geodetic.hpp>
 

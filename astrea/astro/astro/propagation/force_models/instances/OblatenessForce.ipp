@@ -28,8 +28,8 @@
 #include <math/trig.hpp>
 
 #include <astro/astro.macros.hpp>
+#include <astro/frames/definitions.hpp>
 #include <astro/frames/definitions/transformations.hpp>
-#include <astro/frames/frames.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/angular_elements/angular_elements.hpp>

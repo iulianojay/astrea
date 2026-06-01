@@ -17,7 +17,7 @@
 #include <type_traits>
 #include <variant>
 
-#include <astro/frames/framework/frame_registry.hpp>
+#include <astro/frames/definitions/frame_registry.hpp>
 
 using namespace astrea::astro;
 
@@ -53,14 +53,16 @@ int main(int argc, char** argv)
 TEST_F(FrameRegistryTest, AutomaticallyRegisteredFramesIsTuple)
 {
     // Must be a std::tuple (instantiation of the template)
-    constexpr bool is_tuple = same_type_v<AutomaticallyRegisteredFrames, std::tuple<std::decay_t<decltype(frames::earth::icrf)>>>;
+    constexpr bool is_tuple =
+        same_type_v<AutomaticallyRegisteredFrames, std::tuple<std::decay_t<decltype(frames::earth::icrf)>>>;
     static_assert(is_tuple, "AutomaticallyRegisteredFrames must be std::tuple<std::decay_t<decltype(frames::earth::icrf)>>");
     SUCCEED();
 }
 
 TEST_F(FrameRegistryTest, AutomaticallyRegisteredFramesContainsEarthICRF)
 {
-    constexpr bool has_earth_icrf = same_type_v<std::tuple_element_t<0, AutomaticallyRegisteredFrames>, std::decay_t<decltype(frames::earth::icrf)>>;
+    constexpr bool has_earth_icrf =
+        same_type_v<std::tuple_element_t<0, AutomaticallyRegisteredFrames>, std::decay_t<decltype(frames::earth::icrf)>>;
     static_assert(has_earth_icrf, "First element of AutomaticallyRegisteredFrames must be frames::earth::icrf");
     SUCCEED();
 }
@@ -184,7 +186,8 @@ TEST_F(FrameRegistryTest, AllRegisteredFramesDefaultEqualsAutoFrames)
 
 TEST_F(FrameRegistryTest, AllRegisteredFramesContainsEarthICRF)
 {
-    constexpr bool has_earth_icrf = same_type_v<std::tuple_element_t<0, astrea::astro::detail::AllRegisteredFrames>, std::decay_t<decltype(frames::earth::icrf)>>;
+    constexpr bool has_earth_icrf =
+        same_type_v<std::tuple_element_t<0, astrea::astro::detail::AllRegisteredFrames>, std::decay_t<decltype(frames::earth::icrf)>>;
     static_assert(has_earth_icrf, "AllRegisteredFrames[0] must be frames::earth::icrf");
     SUCCEED();
 }
@@ -206,8 +209,9 @@ TEST_F(FrameRegistryTest, ManualExtensionCombinesAutoAndExtraFrames)
     // Simulate what AllRegisteredFrames would be if the user had registered
     // frames::moon::icrf and frames::mars::icrf as extra frames.
     using SimulatedExtra = std::tuple<std::decay_t<decltype(frames::moon::icrf)>, std::decay_t<decltype(frames::mars::icrf)>>;
-    using SimulatedAll   = astrea::astro::detail::tuple_cat_types<AutomaticallyRegisteredFrames, SimulatedExtra>::type;
-    using Expected       = std::tuple<std::decay_t<decltype(frames::earth::icrf)>, std::decay_t<decltype(frames::moon::icrf)>, std::decay_t<decltype(frames::mars::icrf)>>;
+    using SimulatedAll = astrea::astro::detail::tuple_cat_types<AutomaticallyRegisteredFrames, SimulatedExtra>::type;
+    using Expected =
+        std::tuple<std::decay_t<decltype(frames::earth::icrf)>, std::decay_t<decltype(frames::moon::icrf)>, std::decay_t<decltype(frames::mars::icrf)>>;
 
     static_assert(same_type_v<SimulatedAll, Expected>, "Simulated extension must produce earth::icrf, moon::icrf, mars::icrf in order");
     constexpr std::size_t size = std::tuple_size_v<SimulatedAll>;

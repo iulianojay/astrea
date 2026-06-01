@@ -130,7 +130,6 @@ concept HasAngularOffset = requires { T::axis.misalignment; } || requires { T::m
 template <typename T>
 concept IsFixedOffsetFrame = IsDerivedFrame<T> && (HasSpatialOffset<T> || HasAngularOffset<T>);
 
-
 template <IsFrame T, IsFrame U>
 consteval bool has_same_parent(T t, U u)
 {

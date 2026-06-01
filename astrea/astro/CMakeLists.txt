@@ -100,7 +100,6 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/frames/definitions/primary_frame.hpp
 
     ${ASTRO_BASE}/frames/framework.hpp
-    ${ASTRO_BASE}/frames/frames.hpp
     ${ASTRO_BASE}/frames/definitions.hpp
 
     ${ASTRO_BASE}/platforms/space/Constellation.hpp

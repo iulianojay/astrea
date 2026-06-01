@@ -20,7 +20,8 @@
 
 #include <type_traits>
 
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions/body_centered_inertial_frames.hpp>
+#include <astro/frames/definitions/body_fixed_frames.hpp>
 
 namespace astrea {
 namespace astro {
