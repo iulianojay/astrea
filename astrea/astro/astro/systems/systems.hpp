@@ -1,10 +1,10 @@
 /**
- * @file astro.hpp
+ * @file systems.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the astro module
- * @date 2025-08-03
+ * @brief Header file for the systems module
+ * @date 2026-06-01
  *
- * @copyright Copyright (c) 2025 Jay Iuliano
+ * @copyright Copyright (c) 2026 Jay Iuliano
  *
  * The GNU Lesser General Public License (LGPL)
  *
@@ -18,25 +18,14 @@
  */
 #pragma once
 
-#include <astro/state/state.hpp>
+#include <astro/systems/Barycenter.hpp>
+#include <astro/systems/CelestialBody.hpp>
+#include <astro/systems/CelestialBodyParameters.hpp>
+#include <astro/systems/barycenters.hpp>
+#include <astro/systems/celestial_bodies.hpp>
+#include <astro/systems/default_property_getters.hpp>
+#include <astro/systems/property_getters.hpp>
+#include <astro/systems/system_concepts.hpp>
+#include <astro/systems/system_utilities.hpp>
 
-#include <astro/frames/definitions.hpp>
-#include <astro/frames/frames.hpp>
-#include <astro/frames/framework.hpp>
-
-#include <astro/platforms/platforms.hpp>
-
-#include <astro/propagation/propagation.hpp>
-
-#include <astro/systems/systems.hpp>
-
-#include <astro/time/time.hpp>
-
-#include <astro/types/tuple_hash.hpp>
-#include <astro/types/typedefs.hpp>
-
-#include <astro/utilities/conversions.hpp>
-
-// atmosphere.hpp requires State.hpp + frames.hpp to be complete.
-// Include it here, at the very end, after all other headers.
-// #include <astro/systems/atmosphere.hpp>
+#include <astro/systems/atmosphere.hpp>
