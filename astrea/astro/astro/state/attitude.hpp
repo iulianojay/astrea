@@ -18,7 +18,7 @@
  */
 #pragma once
 
+#include <astro/state/attitude/AngularVelocities.hpp>
 #include <astro/state/attitude/Attitude.hpp>
-#include <astro/state/attitude/instances/AngularVelocities.hpp>
-#include <astro/state/attitude/instances/EulerAngles.hpp>
-#include <astro/state/attitude/instances/Quaternion.hpp>
+#include <astro/state/attitude/EulerAngles.hpp>
+#include <astro/state/attitude/Quaternion.hpp>

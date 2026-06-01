@@ -19,7 +19,7 @@
 
 #include <astro/frames/definitions.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/angular_elements/instances/Geodetic.hpp>
+#include <astro/state/angular_elements/Geodetic.hpp>
 
 namespace astrea {
 namespace astro {

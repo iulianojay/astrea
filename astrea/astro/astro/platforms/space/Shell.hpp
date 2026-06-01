@@ -27,7 +27,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/platforms/space/Plane.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
+#include <astro/state/orbital_elements/Keplerian.hpp>
 
 namespace astrea {
 namespace astro {

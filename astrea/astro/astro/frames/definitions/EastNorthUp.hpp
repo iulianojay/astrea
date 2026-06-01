@@ -29,7 +29,7 @@
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
 #include <astro/frames/framework/DynamicFrame.hpp>
 #include <astro/frames/framework/Frame.hpp>
-#include <astro/state/angular_elements/instances/Geodetic.hpp>
+#include <astro/state/angular_elements/Geodetic.hpp>
 #include <astro/systems/celestial_bodies.hpp>
 #include <astro/time/Date.hpp>
 

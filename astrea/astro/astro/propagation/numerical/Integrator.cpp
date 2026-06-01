@@ -26,7 +26,7 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
-#include <astro/propagation/equations_of_motion/instances/TwoBody.hpp>
+#include <astro/propagation/equations_of_motion/TwoBody.hpp>
 #include <astro/propagation/event_detection/Event.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>
 #include <astro/propagation/numerical/butcher_tableau.hpp>

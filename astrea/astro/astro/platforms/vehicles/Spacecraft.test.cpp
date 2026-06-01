@@ -18,7 +18,7 @@
 
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
+#include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>
 #include <astro/systems/system_utilities.hpp>
 
 using namespace astrea;

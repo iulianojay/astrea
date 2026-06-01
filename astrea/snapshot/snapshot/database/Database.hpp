@@ -32,7 +32,7 @@
 #include <units/typedefs.hpp>
 
 #include <astro/astro.macros.hpp>
-#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
+#include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>
 
 #include <snapshot/snapshot.macros.hpp>
 

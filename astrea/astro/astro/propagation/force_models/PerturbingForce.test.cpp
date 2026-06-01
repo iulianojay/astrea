@@ -20,7 +20,7 @@
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/PerturbingForce.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>

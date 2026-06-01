@@ -19,7 +19,7 @@
 #include <astro/frames/definitions/frame_registry.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/propagation/analytic/LambertSolver.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <tests/utilities/comparisons.hpp>
 

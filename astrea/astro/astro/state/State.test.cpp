@@ -17,10 +17,10 @@
 #include <units/units.hpp>
 
 #include <astro/state/State.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
+#include <astro/state/orbital_elements/Equinoctial.hpp>
+#include <astro/state/orbital_elements/Keplerian.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/state/orbital_elements/instances/Equinoctial.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 

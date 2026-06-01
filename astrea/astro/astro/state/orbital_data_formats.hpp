@@ -18,5 +18,5 @@
  */
 #pragma once
 
-#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
-#include <astro/state/orbital_data_formats/instances/TwoLineElements.hpp>
+#include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>
+#include <astro/state/orbital_data_formats/TwoLineElements.hpp>

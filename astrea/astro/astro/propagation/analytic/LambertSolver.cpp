@@ -26,7 +26,7 @@
 
 #include <astro/frames/definitions.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {

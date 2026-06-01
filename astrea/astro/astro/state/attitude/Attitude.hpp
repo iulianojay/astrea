@@ -27,9 +27,9 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/definitions.hpp>
 #include <astro/frames/definitions/dynamic_frames.hpp>
-#include <astro/state/attitude/instances/AngularVelocities.hpp>
-#include <astro/state/attitude/instances/EulerAngles.hpp>
-#include <astro/state/attitude/instances/Quaternion.hpp>
+#include <astro/state/attitude/AngularVelocities.hpp>
+#include <astro/state/attitude/EulerAngles.hpp>
+#include <astro/state/attitude/Quaternion.hpp>
 #include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/types/variant_util.hpp>

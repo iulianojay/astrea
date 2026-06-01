@@ -36,8 +36,8 @@
 #pragma once
 
 #include <astro/frames/framework/frame_utilities.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
+#include <astro/state/orbital_elements/Keplerian.hpp>
 #include <astro/systems/property_getters.hpp>
 
 namespace astrea {

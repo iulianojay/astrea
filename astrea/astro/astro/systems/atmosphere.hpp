@@ -28,7 +28,7 @@
 #include <units/units.hpp>
 
 #include <astro/state/State.hpp>
-#include <astro/state/angular_elements/instances/Geodetic.hpp>
+#include <astro/state/angular_elements/Geodetic.hpp>
 #include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp>
 #include <astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp>

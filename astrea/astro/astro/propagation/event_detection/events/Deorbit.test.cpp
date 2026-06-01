@@ -22,9 +22,9 @@
 #include <astro/propagation/event_detection/EventDetector.hpp>
 #include <astro/propagation/event_detection/events/Deorbit.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/angular_elements/instances/Geodetic.hpp>
+#include <astro/state/angular_elements/Geodetic.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
 #include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <astro/systems/system_utilities.hpp>
 

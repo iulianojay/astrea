@@ -27,9 +27,9 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/frames/definitions/frame_registry.hpp>
 #include <astro/frames/definitions/primary_frame.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/state/orbital_elements/instances/Equinoctial.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
+#include <astro/state/orbital_elements/Equinoctial.hpp>
+#include <astro/state/orbital_elements/Keplerian.hpp>
 #include <astro/types/concepts.hpp>
 #include <astro/types/variant_util.hpp>
 

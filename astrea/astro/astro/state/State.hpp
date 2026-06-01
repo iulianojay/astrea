@@ -23,7 +23,7 @@
 
 #include <astro/frames/definitions/dynamic_frames.hpp>
 #include <astro/state/attitude/Attitude.hpp>
-#include <astro/state/attitude/instances/Quaternion.hpp>
+#include <astro/state/attitude/Quaternion.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>

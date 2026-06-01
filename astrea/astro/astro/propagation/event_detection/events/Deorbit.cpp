@@ -15,7 +15,7 @@
 
 #include <astro/frames/definitions/frame_registry.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/angular_elements/instances/Geodetic.hpp>
+#include <astro/state/angular_elements/Geodetic.hpp>
 
 using mp_units::si::unit_symbols::km;
 
