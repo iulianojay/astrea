@@ -371,6 +371,19 @@ struct CartesianVector {
     }
 
     /**
+     * @brief Calculate the p-norm of the vector.
+     *
+     * @tparam N The order of the norm to calculate (default is 2 for Euclidean norm).
+     * @return T The p-norm of the vector.
+     */
+    template <unsigned N = 2>
+    inline constexpr Value_T p_norm() const
+    {
+        using namespace mp_units;
+        return pow<1, N>(pow<N>(_vector[0]) + pow<N>(_vector[1]) + pow<N>(_vector[2]));
+    }
+
+    /**
      * @brief Normalize the vector to create a unit vector.
      *
      * @return CartesianVector<Unitless> A unit vector in the same direction as this vector.

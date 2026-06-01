@@ -43,15 +43,13 @@ using mp_units::si::unit_symbols::s;
 
 Perturbation SolarRadiationPressure::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
-    // Extract
-    const Date date              = state.get_epoch();
     static constexpr auto center = frames::primary.origin;
+    static constexpr bool isSun  = (center == star::Sun);
 
+    // Extract
+    const Date date                                      = state.get_epoch();
     const RadiusVector<frames::primary> rCenterToVehicle = state.get_position();
     const Distance rMagCenterToVehicle                   = rCenterToVehicle.norm();
-
-    // Central body properties
-    constexpr bool isSun = (center == star::Sun);
 
     // Radius from central body to sun
     const RadiusVector<frames::primary> rCenterToSun =
@@ -69,7 +67,7 @@ Perturbation SolarRadiationPressure::compute_perturbation(const State& state, co
     // Scale by umbria/penumbra
     Unitless fractionOfRecievedSunlight = 1.0 * one;
     if (!isSun) {
-        static const Distance& equitorialR = get_equitorial_radius<center>();
+        static constexpr Distance equitorialR = get_equitorial_radius<center>();
 
         //  This part calculates the angle between the occulating body and the Sun, the body and the satellite, and the Sun and the
         //  satellite. It then compares them to decide if the s/c is lit, in umbra, or in penumbra. See Vallado for details.

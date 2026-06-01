@@ -134,19 +134,19 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
     while (_iteration < _MAX_ITER) {
 
         // Check for event
-        const bool terminalEvent = check_event(time, state, vehicle);
-        if (terminalEvent) {
+        if (check_event(time, state, vehicle)) {
             std::cout << "Warning: Terminal conditions detected.";
-            return stateHistory;
+            break;
         }
 
         // Make sure state and time are valid
         if (!validate_state_and_time(time, state)) {
             std::cout << "Integration Error: Invalid state or time (NaN or Inf). \n\n";
-            return stateHistory;
+            break;
         }
 
         // Step
+        bool interiorStepFailure = false;
         if (_useFixedStep) {
             // Step without error correction
             // I think an interesting choice would allow the user to use the fixed timestep but the
@@ -164,7 +164,8 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
                 // Catch underflow
                 if (time + timeStep == time) {
                     std::cout << "Integration Error: Stepsize underflow. \n\n";
-                    return stateHistory;
+                    interiorStepFailure = true;
+                    break;
                 }
 
                 // Break if step succeeded
@@ -178,9 +179,11 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
             if (_variableStepIteration >= _MAX_VAR_STEP_ITER) {
                 std::cout
                     << "Integration Error: Max iterations exceeded. Unable to find stepsize within tolerance. \n\n";
-                return stateHistory;
+                interiorStepFailure = true;
+                break;
             }
         }
+        if (interiorStepFailure) { break; }
 
         // Successful event
         watch_step(time, state, vehicle);
@@ -200,8 +203,8 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
         ++_iteration;
     }
 
-    // Store last state if not already stored
-    if (!_store) { stateHistory.insert(state); }
+    // Always store last state, even on failure to get last valid state
+    stateHistory.insert(state);
 
     // Store event times
     if (!_eventDetector.get_events().empty()) { stateHistory.set_event_times(_eventDetector.get_event_times(_epoch0)); }
@@ -324,10 +327,10 @@ std::pair<State, State> Integrator::take_step(const Time& time, const Time& time
     // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i-1) k_j a[i][j])
     for (std::size_t iStage = 0; iStage < _nStages; ++iStage) {
         // Calculate intermediate state for current stage (except stage 0)
-        _statePlusKi = state;
+        State statePlusKi = state;
         if (iStage > 0) {
             for (std::size_t jStage = 0; jStage < iStage; ++jStage) {
-                _statePlusKi += _kMatrix[jStage] * _a[iStage][jStage];
+                statePlusKi += _kMatrix[jStage] * _a[iStage][jStage];
             }
         }
 
@@ -335,17 +338,17 @@ std::pair<State, State> Integrator::take_step(const Time& time, const Time& time
         StatePartial partial;
         if (iStage == 0) {
             if (_stepMethod == StepMethod::RK45 || _stepMethod == StepMethod::RKF45 || _stepMethod == StepMethod::RKF78) {
-                partial = find_state_derivative(time, _statePlusKi, vehicle);
+                partial = find_state_derivative(time, statePlusKi, vehicle);
             }
             else if (_stepMethod == StepMethod::DOP45 || _stepMethod == StepMethod::DOP78) {
-                if (_iteration == 0) { partial = find_state_derivative(time, _statePlusKi, vehicle); }
+                if (_iteration == 0) { partial = find_state_derivative(time, statePlusKi, vehicle); }
                 else {
                     partial = _YFinalPrevious;
                 }
             }
         }
         else {
-            partial = find_state_derivative(time + _c[iStage] * timeStep, _statePlusKi, vehicle);
+            partial = find_state_derivative(time + _c[iStage] * timeStep, statePlusKi, vehicle);
         }
 
         // Store k value
