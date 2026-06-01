@@ -16,8 +16,8 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
+#include <astro/frames.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
 #include <astro/state/angular_elements/instances/Spherical.hpp>
 #include <astro/systems/celestial_bodies.hpp>
 #include <astro/systems/system_utilities.hpp>

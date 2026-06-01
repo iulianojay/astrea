@@ -25,7 +25,7 @@
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/angular_elements/angular_elements.hpp>
+#include <astro/state/angular_elements.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/state/orbital_elements/instances/Keplerian.hpp>
 #include <astro/systems/system_utilities.hpp>

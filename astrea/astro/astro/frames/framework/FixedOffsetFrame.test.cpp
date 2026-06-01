@@ -19,7 +19,7 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/frames.hpp>
+#include <astro/frames.hpp>
 #include <astro/frames/framework/FixedOffsetFrame.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/types/type_traits.hpp>

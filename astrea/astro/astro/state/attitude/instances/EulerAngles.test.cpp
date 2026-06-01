@@ -16,8 +16,8 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
+#include <astro/frames.hpp>
 #include <astro/frames/definitions/dynamic_frames.hpp>
-#include <astro/frames/frames.hpp>
 #include <astro/state/attitude/instances/AngularVelocities.hpp>
 #include <astro/state/attitude/instances/EulerAngles.hpp>
 #include <astro/state/attitude/instances/Quaternion.hpp>

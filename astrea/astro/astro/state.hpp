@@ -20,7 +20,7 @@
 
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
-#include <astro/state/angular_elements/angular_elements.hpp>
-#include <astro/state/attitude/attitude.hpp>
-#include <astro/state/orbital_data_formats/orbital_data_formats.hpp>
-#include <astro/state/orbital_elements/orbital_elements.hpp>
+#include <astro/state/angular_elements.hpp>
+#include <astro/state/attitude.hpp>
+#include <astro/state/orbital_data_formats.hpp>
+#include <astro/state/orbital_elements.hpp>

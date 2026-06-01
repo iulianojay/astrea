@@ -20,9 +20,9 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
+#include <astro/frames.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
-#include <astro/frames/frames.hpp>
 
 #include <tests/utilities/comparisons.hpp>
 

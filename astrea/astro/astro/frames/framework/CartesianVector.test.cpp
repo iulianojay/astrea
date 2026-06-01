@@ -16,8 +16,8 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
+#include <astro/frames.hpp>
 #include <astro/frames/definitions/transformations.hpp>
-#include <astro/frames/frames.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <tests/utilities/comparisons.hpp>
 

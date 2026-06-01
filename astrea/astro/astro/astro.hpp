@@ -18,11 +18,11 @@
  */
 #pragma once
 
-#include <astro/frames/frames.hpp>
-#include <astro/platforms/platforms.hpp>
-#include <astro/propagation/propagation.hpp>
-#include <astro/state/state.hpp>
-#include <astro/systems/systems.hpp>
-#include <astro/time/time.hpp>
-#include <astro/types/types.hpp>
+#include <astro/frames.hpp>
+#include <astro/platforms.hpp>
+#include <astro/propagation.hpp>
+#include <astro/state.hpp>
+#include <astro/systems.hpp>
+#include <astro/time.hpp>
+#include <astro/types.hpp>
 #include <astro/utilities/conversions.hpp>
