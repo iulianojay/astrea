@@ -33,8 +33,9 @@ int main()
 
     // The Frame class is a compile-time interface that allows rules to be imposed on frame-supporting types,
     // and frame transformations. A frame in Astrea is defined by an origin (typically a celestial body), and an
-    // axis. Currently, Astrea only supports pre-defined origins for static frames (that is, the center is inertially
-    // fixed), and a series of pre-defined axes. Future releases may allow for completely customized origins and axes.
+    // axis. Astrea supports a complex system that allows for arbitrary frame definitions as well as a completely
+    // compile-time interface for computing frame transformations. All frames directly connected to an origin or axis
+    // defined within the ICRS should be either supported directly or easily constructible.
 
     // Astrea provides definitions for many commonly used frames
     static constexpr auto ECI  = frames::earth::icrf;        // static
@@ -69,15 +70,18 @@ int main()
     std::cout << "Position in ECEF @ J2000: " << rEcefJ2000 << std::endl;
     std::cout << "Position in ECEF @ J2000 + 12 hours: " << rEcef << std::endl << std::endl;
 
-    // Implicit frame switches are not allowed, but can be forced in special circumstances
+    // Implicit frame switches are not allowed, unless the frames are equivalent (same origin, axis, and parent).
     // CartesianVector<Length, ECEF> rEcefImplicit = rEci; // Compiler will fail!
-    CartesianVector<Length, ECEF> rEcefForced = rEci.force_frame_conversion<ECEF>();
-
-    // Implicit transformation to/from dynamic frames are not allowed
     // CartesianVector<Length, RIC> rRic = rEci.in_frame<RIC>(J2000); // Compiler will fail!
 
-    // Note: custom frames must be defined as complete frame values (not just forward-declared types) to be used
-    // with CartesianVector's NTTP frame parameter.
+    inline constexpr struct ecef final : BodyFixedFrame<"ecef", planets::Earth> {
+    } ecef;
+    static_assert(ecef != frames::earth::earth_fixed, "Frames equality is type-based so these are considered different frames.");
+    static_assert(equivalent(ecef, frames::earth::earth_fixed), "Frames equivalence is based on frame properties, so these are considered equivalent frames.");
+    CartesianVector<Length, ecef> rEcefImplicitConversion = rEcef;
+
+    // And frame conversions can be forced if need be
+    CartesianVector<Length, ECEF> rEcefForced = rEci.force_frame_conversion<ECEF>();
 
     // For complex, time-dependent frames, such as those attached to a payload, or vehicle, the frames must be explicitly instantiated
     // to call any vector transformations. They are not required to declare the vector type, however.
