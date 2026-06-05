@@ -117,8 +117,6 @@ struct DynamicFrame {
         return static_cast<const Self*>(this)->get_dcm(date);
     }
 
-    RadiusVector<parent> get_center_offset(const Date& date) const { return get_position(date); }
-
   protected:
     RadiusVector<parent> _position;   //!< The position vector
     VelocityVector<parent> _velocity; //!< The velocity vector

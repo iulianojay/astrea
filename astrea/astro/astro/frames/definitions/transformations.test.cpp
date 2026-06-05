@@ -41,22 +41,6 @@ static_assert(frames::HasValidFrameTransformation<frames::earth::icrf, frames::e
 static_assert(frames::HasValidFrameTransformation<frames::earth::j2000, frames::earth::icrf>);
 static_assert(frames::HasValidFrameTransformation<frames::earth::icrf, frames::earth::earth_fixed>);
 
-TEST(GetCenterOffset, SameOriginICRFReturnsZeroVector)
-{
-    const auto offset = frames::get_center_offset<frames::earth::icrf, frames::earth::j2000>(J2000);
-    EXPECT_NEAR(offset.get_x().numerical_value_in(km), 0.0, 1e-12);
-    EXPECT_NEAR(offset.get_y().numerical_value_in(km), 0.0, 1e-12);
-    EXPECT_NEAR(offset.get_z().numerical_value_in(km), 0.0, 1e-12);
-}
-
-TEST(GetCenterOffset, SameOriginECEFReturnsZeroVector)
-{
-    const auto offset = frames::get_center_offset<frames::earth::icrf, frames::earth::earth_fixed>(J2000);
-    EXPECT_NEAR(offset.get_x().numerical_value_in(km), 0.0, 1e-12);
-    EXPECT_NEAR(offset.get_y().numerical_value_in(km), 0.0, 1e-12);
-    EXPECT_NEAR(offset.get_z().numerical_value_in(km), 0.0, 1e-12);
-}
-
 TEST(RotateVectorIntoFrame, SameFrameReturnsIdenticalVector)
 {
     constexpr auto F = frames::earth::icrf;

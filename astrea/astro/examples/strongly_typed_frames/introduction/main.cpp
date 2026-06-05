@@ -26,6 +26,9 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
+inline constexpr struct ecef final : BodyFixedFrame<"ecef", planets::Earth> {
+} ecef;
+
 int main()
 {
     // Astrea supports a system of strongly typed frames which allows for compile-time checking of frame
@@ -33,11 +36,7 @@ int main()
 
     // The Frame class is a compile-time interface that allows rules to be imposed on frame-supporting types,
     // and frame transformations. A frame in Astrea is defined by an origin (typically a celestial body), and an
-    // axis. Astrea supports a complex system that allows for arbitrary frame definitions as well as a completely
-    // compile-time interface for computing frame transformations. All frames directly connected to an origin or axis
-    // defined within the ICRS should be either supported directly or easily constructible.
-
-    // Astrea provides definitions for many commonly used frames
+    // axis. Astrea provides definitions for many commonly used frames
     static constexpr auto ECI  = frames::earth::icrf;        // static
     static constexpr auto ECEF = frames::earth::earth_fixed; // static
     static constexpr auto RIC  = frames::dynamic::ric;       // dynamic
@@ -73,9 +72,6 @@ int main()
     // Implicit frame switches are not allowed, unless the frames are equivalent (same origin, axis, and parent).
     // CartesianVector<Length, ECEF> rEcefImplicit = rEci; // Compiler will fail!
     // CartesianVector<Length, RIC> rRic = rEci.in_frame<RIC>(J2000); // Compiler will fail!
-
-    inline constexpr struct ecef final : BodyFixedFrame<"ecef", planets::Earth> {
-    } ecef;
     static_assert(ecef != frames::earth::earth_fixed, "Frames equality is type-based so these are considered different frames.");
     static_assert(equivalent(ecef, frames::earth::earth_fixed), "Frames equivalence is based on frame properties, so these are considered equivalent frames.");
     CartesianVector<Length, ecef> rEcefImplicitConversion = rEcef;

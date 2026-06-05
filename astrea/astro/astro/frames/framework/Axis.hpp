@@ -91,7 +91,7 @@ inline constexpr struct icrf final : Axis<"ICRF"> {
     // z - Measured, meant to coincide with EME2000 Z-axis at J2000
 } icrf;
 
-inline constexpr struct j2000 final : Axis<"EME2000"> {
+inline constexpr struct j2000 final : Axis<"EME2000", icrf> {
     // x - mean equator and equinox of date at J2000
     // z - mean pole of date at J2000
 } j2000;

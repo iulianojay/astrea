@@ -55,60 +55,51 @@ concept HasDcm = requires(const Date& date) { get_dcm<frame, frame_u>(date); };
 template <IsFrame auto frame, IsFrame auto frame_u>
 concept HasDcmMethod = requires(const Date& date) { frame.template get_dcm<frame, frame_u>(date); };
 
-/**
- * @brief Get the center offset between two frames at a given date.
- *
- * If the frames share the same origin, the offset is zero.
- * If the frames share the same axis but have different origins, the offset is the relative position between the two
- * origins in frame. All calculations are done in the solar_system_barycenter::icrf frame.
- *
- * @tparam frame The first frame type.
- * @tparam frame_u The second frame type.
- * @param date The date at which to calculate the offset.
- * @return CartesianVector<Distance, frame> The offset vector from frame to frame_u expressed in frame.
- */
-template <IsFrame auto frame, IsFrame auto frame_u>
-    requires(frame.origin == frame_u.origin)
-inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& date)
-{
-    return CartesianVector<Distance, frame>(Distance::zero(), Distance::zero(), Distance::zero());
-}
-
-/**
- * @brief Get the center offset between two frames at a given date.
- *
- * If the frames share the same origin, the offset is zero.
- * If the frames share the same axis but have different origins, the offset is the relative position between the two
- * origins in frame. All calculations are done in the solar_system_barycenter::icrf frame.
- *
- * @tparam frame The first frame type.
- * @tparam frame_u The second frame type.
- * @param date The date at which to calculate the offset.
- * @return CartesianVector<Distance, frame> The offset vector from frame to frame_u expressed in frame.
- */
-template <IsFrame auto frame, IsFrame auto frame_u>
-    requires(frame.origin != frame_u.origin && frame.axis == frame_u.axis)
-inline constexpr CartesianVector<Distance, frame> get_center_offset(const Date& date)
-{
-    // Forcing the frame change here doesn't matter since the offset is just a difference and it's already implied that
-    // these two frames share an axis.
-    return get_relative_position<frame.origin, frame_u.origin>(date).template force_frame_conversion<frame>();
-}
-
 namespace {
 
 // Diagnostic tag types — intentionally left undefined.
 // When used as a template argument to always_false<>, the compiler prints the
 // frame names (embedded in the mp_units::symbol_text NTTPs) in the error note,
 // e.g.:  'always_false<NoDcmBetween<"gcrf", "eci">> evaluates to false'
-template <mp_units::symbol_text, mp_units::symbol_text>
+template <auto...>
 struct NoDcmBetween;
 
-template <mp_units::symbol_text, mp_units::symbol_text>
+template <auto...>
 struct DcmDefinedBothWays;
 
-template <typename>
-inline constexpr bool always_false = false;
+/**
+ * @brief Retrieves the accumulated direction cosine matrix from the root frame to the given FixedOffsetFrame by recursively composing the DCMs along the parent chain.
+ */
+template <IsFrame auto frame, IsFrame auto root>
+inline constexpr DCM<frame, root> get_dcm_to_root_frame(const Date& date)
+{
+    static constexpr auto axis      = frame.axis;
+    static constexpr auto root_axis = root.axis;
+
+    // first check if these transformations exist directly
+    if constexpr (HasDcm<frame, root>) { return get_dcm<frame, root>(date); }
+    else if constexpr (HasDcm<root, frame>) {
+        return get_dcm<root, frame>(date).transpose();
+    }
+    // current frame is root
+    else if constexpr (equivalent(axis, root_axis)) {
+        return DCM<root, frame>::identity();
+    }
+    // current frame is a direct child of root
+    else if constexpr (equivalent(axis.parent, root_axis)) {
+        static constexpr auto parent = make_frame(frame.origin, axis.parent);
+        return get_dcm_impl<frame, parent>(date);
+    }
+    // current frame is a descendant of root
+    else if constexpr (IsDerivedAxis<decltype(axis.parent)>) {
+        // DCM<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
+        static constexpr auto parent = make_frame(frame.origin, axis.parent);
+        return get_dcm_impl<frame, parent>(date) * get_dcm_to_root_frame<parent, root>(date);
+    }
+    else {
+        static_assert(always_false<NoDcmBetween<frame.name.portable(), root.name.portable()>>, "Frame is not a descendant of root frame.");
+    }
+}
 
 /**
  * @brief Get the Direction Cosine Matrix (DCM) between two frames at a given date.
@@ -126,7 +117,8 @@ template <IsFrame auto frame, IsFrame auto frame_u>
 inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date)
 {
     static_assert(
-        !always_false<DcmDefinedBothWays<frame.name, frame_u.name>> || !(HasDcm<frame, frame_u> && HasDcm<frame_u, frame>),
+        !(HasDcm<frame, frame_u> && HasDcm<frame_u, frame>) ||
+            always_false<DcmDefinedBothWays<frame.name.portable(), frame_u.name.portable()>>,
         "DCM defined in both directions between these two frames; define only one to avoid symmetry issues."
     );
     static_assert(
@@ -135,11 +127,13 @@ inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date)
         "Dynamic frames must be created at runtime with a position/velocity to reference."
     );
     static_assert(
-        !always_false<NoDcmBetween<frame.name, frame_u.name>> || HasDcm<frame, frame_u> || HasDcm<frame_u, frame> || frame == frame_u,
-        "No DCM (get_dcm method) defined between these two frames."
+        (HasDcm<frame, frame_u> || HasDcm<frame_u, frame> || equivalent(frame.axis, frame_u.axis) ||
+         HasCommonAncestor<frame.axis, frame_u.axis>) ||
+            always_false<NoDcmBetween<frame.name.portable(), frame_u.name.portable()>>,
+        "No DCM (get_dcm method) defined between these two frames and no common ancestor found."
     );
 
-    if constexpr (frame == frame_u) {
+    if constexpr (equivalent(frame.axis, frame_u.axis)) {
         return DCM<frame, frame_u>::identity(); // TODO: Make sure to do this earlier to avoid unnecessary matrix math
     }
     else if constexpr (HasDcm<frame, frame_u>) {
@@ -148,7 +142,17 @@ inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date)
     else if constexpr (HasDcm<frame_u, frame>) {
         return get_dcm<frame_u, frame>(date).transpose();
     }
-    throw std::logic_error("How did you get here?");
+    else if constexpr (HasCommonAncestor<frame.axis, frame_u.axis>) {
+        // If no direct DCM defined but common ancestor exists, we can get the DCMs to the common ancestor and compose them
+        static constexpr auto root_axis = find_common_ancestor(frame.axis, frame_u.axis);
+        static constexpr auto root      = make_frame(frame.origin, root_axis);
+        const DCM<frame, root> dcm1     = get_dcm_to_root_frame<frame, root>(date);
+        const DCM<frame_u, root> dcm2   = get_dcm_to_root_frame<frame_u, root>(date);
+        return dcm1 * dcm2.transpose(); // DCM_root->frame_u * DCM_frame->root = DCM_frame->frame_u
+    }
+    else {
+        static_assert(always_false<NoDcmBetween<frame.name.portable(), frame_u.name.portable()>>, "Getting here means something is wrong with the static assertions. Please report this to the developers.");
+    }
 }
 
 template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
@@ -211,7 +215,7 @@ concept HasValidFrameTransformation = requires(Date date) {
     { get_dcm_impl<frame, frame_u>(date) } -> std::same_as<DCM<frame, frame_u>>;
 } || requires(Date date) {
     { get_dcm_impl<frame_u, frame>(date) } -> std::same_as<DCM<frame_u, frame>>;
-} || frame == frame_u;
+};
 
 
 /**
@@ -280,9 +284,7 @@ inline constexpr CartesianVector<Value_T, frame_u>
     else {
         // Different origin and axis: translate to the intermediate frame that shares frame's axis
         // but frame_u's origin (e.g. ssb::icrf -> earth::icrf), then rotate to frame_u.
-        constexpr struct IntermediateFrame
-            : Frame<frame.name + mp_units::symbol_text{ " / " } + frame_u.name, frame_u.origin, frame.axis> {
-        } IntermediateFrame{};
+        constexpr auto IntermediateFrame = make_frame(frame_u.origin, frame.axis);
         const CartesianVector<Value_T, IntermediateFrame> vecInIntermediate =
             translate_vector_into_frame<Value_T, frame, IntermediateFrame>(vec, date);
         return rotate_vector_into_frame<Value_T, IntermediateFrame, frame_u>(vecInIntermediate, date);

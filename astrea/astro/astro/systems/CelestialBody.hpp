@@ -45,11 +45,11 @@ struct CelestialBodyBase {};
 
 // Reference axes defined by the International Reference Pole (IPM) and the International Reference Meridian (IRM).
 template <mp_units::symbol_text _name_>
-struct ReferenceAxes : Axis<_name_ + mp_units::symbol_text{ " reference axes" }> {};
+struct ReferenceAxes : Axis<_name_ + mp_units::symbol_text{ " reference axes" }, axes::icrf> {};
 
 // Geocentric axes defined by the geographic pole and meridian.
 template <mp_units::symbol_text _name_>
-struct GeocentricAxes : Axis<_name_ + mp_units::symbol_text{ " geocentric axes" }> {};
+struct GeocentricAxes : Axis<_name_ + mp_units::symbol_text{ " geocentric axes" }, axes::icrf> {};
 
 /**
  * @brief CelestialBody class represents a celestial body in an astrodynamics system.

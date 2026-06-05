@@ -57,8 +57,8 @@ inline constexpr DirectionCosineMatrix<frame, frame_u> get_dcm(const Date& date)
  * @param date The date for which to get the DCM.
  * @return DirectionCosineMatrix<in_frame, out_frame> The DCM from in_frame to out_frame.
  */
-template <IsFrame auto in_frame, IsBodyFixedFrame auto out_frame>
-    requires(equivalent(in_frame.axis, axes::icrf) && in_frame.origin != planets::Earth)
+template <IsFrame auto in_frame, IsFrame auto out_frame>
+    requires(IsBodyFixedFrame<decltype(out_frame)> && equivalent(in_frame.axis, axes::icrf) && in_frame.origin != planets::Earth)
 inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
 {
     const Angle gst = date.body_sidereal_time<decltype(out_frame)::origin>();
@@ -68,8 +68,8 @@ inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& 
 /**
  * @brief Retrieves the direction cosine matrix representing the fixed angular offset from the parent frame to the given FixedOffsetFrame.
  */
-template <IsFixedOffsetFrame auto frame, IsFrame auto parent>
-    requires(equivalent(frame.parent.axis, parent.axis))
+template <IsFrame auto frame, IsFrame auto parent>
+    requires(IsFixedOffsetFrame<decltype(frame)> && equivalent(frame.parent.axis, parent.axis))
 inline constexpr DirectionCosineMatrix<parent, frame> get_dcm()
 {
     if constexpr (HasAngularOffset<decltype(frame)>) {

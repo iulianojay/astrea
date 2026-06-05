@@ -84,6 +84,21 @@ concept IsStaticFrame = (IsInertialFrame<T> || IsBodyFixedFrame<T>);
 template <typename T>
 concept IsDynamicFrame = !IsStaticFrame<T>;
 
+template <typename T>
+concept IsDerivedOrigin = IsOrigin<T> && requires { T::parent; };
+
+template <typename T>
+concept IsRootOrigin = IsOrigin<T> && !IsDerivedOrigin<T>;
+
+template <typename T>
+concept IsDerivedAxis = IsAxis<T> && requires { T::parent; };
+
+template <typename T>
+concept IsRootAxis = IsAxis<T> && !IsDerivedAxis<T>;
+
+template <typename>
+inline constexpr bool always_false = false;
+
 /**
  * @brief Concept to determine if a frame is derived from another frame (i.e., it has a parent member).
  *
@@ -91,7 +106,7 @@ concept IsDynamicFrame = !IsStaticFrame<T>;
  * @return true if the frame is derived from another frame, false otherwise.
  */
 template <typename T>
-concept IsDerivedFrame = IsFrame<T> && requires { T::parent; };
+concept IsDerivedFrame = IsFrame<T> && (requires { T::parent; } || IsDerivedOrigin<T> || IsDerivedAxis<T>);
 
 /**
  * @brief Concept to determine if a frame is a root frame (i.e., it has no parent member).
