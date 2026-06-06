@@ -55,9 +55,9 @@ inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& 
  * @brief DCM from any Earth-centred ICRF frame to the Earth-Moon Synodic (EMS) frame.
  *
  * Identified by: in_frame centred on Earth with ICRF axes, out_frame with a
- * SynodicAxis<Earth,Moon> axis (i.e. the ems_fixed frame).  Using a constrained
+ * SynodicAxis<Earth,Moon> axis (i.e. the ems frame).  Using a constrained
  * template rather than an explicit specialisation avoids naming
- * frames::earth::icrf / frames::earth::ems_fixed at declaration time, which
+ * frames::earth::icrf / frames::earth::ems at declaration time, which
  * would fail when this header is reached via a circular include chain before
  * body_centered_inertial_frames.hpp has finished.
  */

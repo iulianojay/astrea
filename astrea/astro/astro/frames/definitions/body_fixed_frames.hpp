@@ -38,10 +38,12 @@ inline constexpr struct venus_fixed final : BodyFixedFrame<"venus_fixed", planet
 namespace earth {
 inline constexpr struct earth_fixed final : BodyFixedFrame<"ecef", planets::Earth> {
 } earth_fixed;
-inline constexpr struct ems_fixed final
-    : SynodicFrame<"ems_fixed", barycenters::EarthMoonBarycenter, planets::Earth, moons::Moon> {
-} ems_fixed;
 } // namespace earth
+
+namespace earth_moon_barycenter {
+inline constexpr struct ems final : SynodicFrame<"ems", barycenters::EarthMoonBarycenter, planets::Earth, moons::Moon> {
+} ems;
+} // namespace earth_moon_barycenter
 
 namespace moon {
 inline constexpr struct moon_fixed final : BodyFixedFrame<"moon_fixed", moons::Moon> {

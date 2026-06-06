@@ -33,15 +33,19 @@ namespace astro {
 
 namespace detail {
 
-struct BodyFixedFrameBase {};
+struct SynodicFrameBase {};
 
 } // namespace detail
 
-/**
- * @brief Fixed rotating frame .
- */
-template <mp_units::symbol_text _name_, IsCelestialBody auto _origin_, IsAxis auto _axis_ = _origin_.reference_axes>
-struct BodyFixedFrame : Frame<_name_, _origin_, _axis_>, detail::BodyFixedFrameBase {};
+template <IsCelestialBody auto _primary_, IsCelestialBody auto _secondary_>
+struct SynodicAxis
+    : Axis<_primary_.name + mp_units::symbol_text{ "-" } + _secondary_.name + mp_units::symbol_text{ " synodic axis" }> {
+    static constexpr auto primary   = _primary_;
+    static constexpr auto secondary = _secondary_;
+};
+
+template <mp_units::symbol_text _name_, IsBarycenter auto _origin_, IsCelestialBody auto _primary_, IsCelestialBody auto _secondary_>
+struct SynodicFrame : Frame<_name_, _origin_, SynodicAxis<_primary_, _secondary_>{}>, detail::SynodicFrameBase {};
 
 } // namespace astro
 } // namespace astrea

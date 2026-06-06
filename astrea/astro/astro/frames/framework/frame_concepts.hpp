@@ -67,6 +67,15 @@ template <typename T>
 concept IsBodyFixedFrame = std::derived_from<T, detail::BodyFixedFrameBase> && detail::SymbolicConstant<T>;
 
 /**
+ * @brief Concept to determine if a frame is a synodic frame.
+ *
+ * @tparam T The frame type to check.
+ * @return true if the frame is a synodic frame, false otherwise.
+ */
+template <typename T>
+concept IsSynodicFrame = std::derived_from<T, detail::SynodicFrameBase> && detail::SymbolicConstant<T>;
+
+/**
  * @brief Concept to determine if a frame is static (inertial or body-fixed).
  *
  * @tparam T The frame type to check.
