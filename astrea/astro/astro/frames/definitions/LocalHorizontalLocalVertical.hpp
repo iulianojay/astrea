@@ -33,7 +33,7 @@ namespace frames {
  * @brief Frame tag type for LocalHorizontalLocalVertical, defined outside the class to allow use as a DynamicFrame NTTP.
  */
 template <IsFrame auto _parent_>
-struct LvlhTag : Frame<"lvlh", DynamicOrigin{}, DynamicAxis{}, _parent_> {
+struct LvlhTag : Frame<"Local-Horizontal-Local-Vertical", DynamicOrigin{}, DynamicAxis{}, _parent_> {
     LocalHorizontalLocalVertical<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const
     {
         return LocalHorizontalLocalVertical<_parent_>(r, v);

@@ -66,6 +66,30 @@ inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& 
 }
 
 /**
+ * @brief Get the Direction Cosine Matrix (DCM) for a synodic frame at a given date.
+ *
+ * @tparam in_frame The input frame type, must be ICRF and share the same origin as out_frame.
+ * @tparam out_frame The output frame type, must be SYNODIC and share the same origin as in_frame.
+ * @param date The date for which to get the DCM.
+ * @return DirectionCosineMatrix<in_frame, out_frame> The DCM from in_frame to out_frame.
+ */
+template <IsFrame auto in_frame, IsFrame auto out_frame>
+    requires(IsSynodicFrame<decltype(out_frame)> && equivalent(in_frame.axis, axes::icrf))
+inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
+{
+    static constexpr auto primary   = out_frame.axis.primary;
+    static constexpr auto secondary = out_frame.axis.secondary;
+
+    const auto r = get_relative_position<secondary, primary>(date).direction(); // x-axis
+    const auto v = get_relative_velocity<secondary, primary>(date).direction(); // nearly the y-axis but not quite
+    const auto h = r.cross(v); // z-axis, normal to the plane of motion of the secondary around the primary
+    const auto y = h.cross(r); // y-axis, normal to the plane of motion and the line connecting the primary and
+                               // secondary, pointing in the direction of motion of the secondary around the primary
+
+    return DirectionCosineMatrix<in_frame, out_frame>::from_vectors(r, y, h);
+}
+
+/**
  * @brief Retrieves the direction cosine matrix representing the fixed angular offset from the parent frame to the given FixedOffsetFrame.
  */
 template <IsFrame auto frame, IsFrame auto parent>

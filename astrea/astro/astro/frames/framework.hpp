@@ -26,5 +26,6 @@
 #include <astro/frames/framework/FixedOffsetFrame.hpp>
 #include <astro/frames/framework/Frame.hpp>
 #include <astro/frames/framework/Origin.hpp>
+#include <astro/frames/framework/SynodicFrame.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/frames/framework/frame_utilities.hpp>
