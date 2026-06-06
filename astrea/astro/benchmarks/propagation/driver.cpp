@@ -42,13 +42,12 @@ static constexpr const char* kEomNames[] = { "TwoBody", "J2MeanVop", "KeplerianV
 // Single benchmark — ranges:
 //   range(0) : EOM type index (0–4)
 //   range(1) : propagation time in minutes
-//   range(2) : OblatenessForce degree/order  (ignored for TwoBody and J2MeanVop)
+//   range(2) : OblatenessForce degree/order (ignored for TwoBody and J2MeanVop)
 //   range(3) : perturbation flags kDrag|kNBody|kSRP (ignored for TwoBody and J2MeanVop)
 static void BenchmarkPropagation(benchmark::State& state)
 {
-    AstrodynamicsSystem sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN });
     const Date epoch{};
-    const State state0{ Keplerian::LEO(), epoch, sys };
+    const State state0{ Keplerian<frames::earth::icrf>::LEO(), epoch };
     Spacecraft sat{};
     Vehicle vehicle{ sat };
 
@@ -63,9 +62,18 @@ static void BenchmarkPropagation(benchmark::State& state)
 
     ForceModel forces;
     if (eomIdx >= 2) {
-        if (gravity > 0) { forces.add<OblatenessForce>(sys, gravity, gravity); }
+        if (gravity > 0) {
+            // Ugh
+            if (gravity == 2) { forces.add<OblatenessForce, planets::Earth, 2, 2>(); }
+            else if (gravity == 20) {
+                forces.add<OblatenessForce, planets::Earth, 20, 20>();
+            }
+            else if (gravity == 70) {
+                forces.add<OblatenessForce, planets::Earth, 70, 70>();
+            }
+        }
         if (perturb & kDrag) { forces.add<AtmosphericForce>(); }
-        if (perturb & kNBody) { forces.add<NBodyForce>(); }
+        if (perturb & kNBody) { forces.add<NBodyForce, planets::Earth, moons::Moon, star::Sun>(); }
         if (perturb & kSRP) { forces.add<SolarRadiationPressure>(); }
     }
 
@@ -107,12 +115,12 @@ static void BenchmarkPropagation(benchmark::State& state)
 
 // -----------------------------------------------------------------------
 // Registration
-//   Prop times  : 1 day (1440 min)
+//   Prop times  : ~1 orbit (97 min), 1 day (1440 min)
 //
-//   No-force EOM (TwoBody, J2MeanVop):
+//   No-force EOM (0 - TwoBody, 1 - J2MeanVop):
 //     gravity = 0, perturb = 0 (flags ignored)
 //
-//   Force-based EOM (KeplerianVop, EquinoctialVop, CowellsMethod):
+//   Force-based EOM (2 - KeplerianVop, 3 - EquinoctialVop, 4 - CowellsMethod):
 //     gravity sweeps : 2, 20, 70
 //     perturb sweeps : 0 (none), 1 (drag), 2 (n-body), 4 (srp), 7 (all)
 // -----------------------------------------------------------------------

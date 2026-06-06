@@ -24,8 +24,9 @@
 #include <gtl/phmap.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <astro/time/Date.hpp>
 #include <units/units.hpp>
 #include <utilities/ProgressBar.hpp>
@@ -72,9 +73,9 @@ using ViewerConstellation = astro::Constellation<Viewer>;
 
 using ViewerRefVec = std::vector<std::shared_ptr<Viewer>>;
 
-using GroundStationRefVec = std::vector<std::shared_ptr<GroundStation>>;
+using GroundStationRefVec = std::vector<std::shared_ptr<GroundStation<astro::planets::Earth>>>;
 
-using GroundPointRefVec = std::vector<std::shared_ptr<GroundPoint>>;
+using GroundPointRefVec = std::vector<std::shared_ptr<GroundPoint<astro::planets::Earth>>>;
 
 using PairVec = std::vector<std::pair<std::size_t, std::size_t>>;
 
@@ -88,14 +89,12 @@ class AccessAnalyzer {
      * @param resolution The time resolution for access calculations.
      * @param startDate The start date for the analysis.
      * @param endDate The end date for the analysis.
-     * @param sys The astrodynamics system used for calculations.
      * @param printProgress Flag indicating whether to print progress during calculations.
      */
-    AccessAnalyzer(const Time& resolution, const astro::Date& startDate, const astro::Date& endDate, const astro::AstrodynamicsSystem& sys, const bool printProgress = false) :
+    AccessAnalyzer(const Time& resolution, const astro::Date& startDate, const astro::Date& endDate, const bool printProgress = false) :
         _resolution(resolution),
         _startDate(startDate),
         _endDate(endDate),
-        _sys(&sys),
         _printProgress(printProgress)
     {
         create_date_vector();
@@ -126,7 +125,7 @@ class AccessAnalyzer {
      * @param sys The astrodynamics system used for calculations.
      * @return AccessArray A collection of accesses between viewers and ground stations.
      */
-    AccessArray find_accesses(ViewerConstellation& constel, GroundArchitecture& grounds, const bool includeInternalAccesses = false);
+    AccessArray find_accesses(ViewerConstellation& constel, GroundArchitecture<astro::planets::Earth>& grounds, const bool includeInternalAccesses = false);
 
     /**
      * @brief Find accesses between a constellation of viewers and a ground architecture.
@@ -135,16 +134,15 @@ class AccessAnalyzer {
      * @param grid The grid containing ground points.
      * @return AccessArray A collection of accesses between viewers and ground stations.
      */
-    AccessArray find_accesses(ViewerConstellation& constel, Grid& grid, const bool includeInternalAccesses = false);
+    AccessArray find_accesses(ViewerConstellation& constel, Grid<astro::planets::Earth>& grid, const bool includeInternalAccesses = false);
 
   private:
-    Time _resolution;                       //!< Time resolution for access calculations
-    astro::Date _startDate;                 //!< Start date for access analysis
-    astro::Date _endDate;                   //!< End date for access analysis
-    const astro::AstrodynamicsSystem* _sys; //!< Pointer to the astrodynamics system used for calculations
-    DateVector _dates;                      //!< Vector of dates, created from startDate, endDate, and resolution
-    PositionCache _positionCache;           //!< Optimized contiguous cache for platform positions
-    bool _printProgress;                    //!< Flag to indicate whether to print progress during calculations
+    Time _resolution;             //!< Time resolution for access calculations
+    astro::Date _startDate;       //!< Start date for access analysis
+    astro::Date _endDate;         //!< End date for access analysis
+    DateVector _dates;            //!< Vector of dates, created from startDate, endDate, and resolution
+    PositionCache _positionCache; //!< Optimized contiguous cache for platform positions
+    bool _printProgress;          //!< Flag to indicate whether to print progress during calculations
 
     // This isn't doing anything currently, but I'm not convinced it's a terrible idea to speed up the pre-checks by
     // binning the ground points using the spatial index and only checking the corners for very dense grids.
@@ -191,8 +189,10 @@ class AccessAnalyzer {
      * @param groundPoint The ground point to check for accesses.
      * @return RiseSetArray A collection of rise/set pairs representing the accesses.
      */
-    RiseSetArray
-        find_platform_to_ground_point_accesses(std::shared_ptr<astro::PayloadPlatform<Sensor>> platform, const std::shared_ptr<GroundPoint> groundPoint) const;
+    RiseSetArray find_platform_to_ground_point_accesses(
+        std::shared_ptr<astro::PayloadPlatform<Sensor>> platform,
+        const std::shared_ptr<GroundPoint<astro::planets::Earth>> groundPoint
+    ) const;
 
     /**
      * @brief Find accesses between a sensor and another sensor.
@@ -236,7 +236,7 @@ class AccessAnalyzer {
      * @return GroundStationRefVec A vector of pointers to the ground stations in the
      * architecture, in the same order as the position cache entries.
      */
-    GroundStationRefVec cache_ground_points(GroundArchitecture& grounds);
+    GroundStationRefVec cache_ground_points(GroundArchitecture<astro::planets::Earth>& grounds);
 
     /**
      * @brief Cache the inertial positions of ground points in a grid for all time steps.
@@ -244,7 +244,7 @@ class AccessAnalyzer {
      * @param grid The grid containing the ground points to cache.
      * @return GroundPointRefVec A vector of pointers to the ground points in the grid, in the same order as the position cache entries.
      */
-    GroundPointRefVec cache_ground_points(Grid& grid);
+    GroundPointRefVec cache_ground_points(Grid<astro::planets::Earth>& grid);
 
     /**
      * @brief Build access information for a pair of objects based on their cached positions.

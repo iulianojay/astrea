@@ -290,7 +290,6 @@ class Integrator {
 
     // ith order steps
     std::array<State, _MAX_STAGES> _kMatrix = {}; //!< Matrix of intermediate steps for the Runge-Kutta method
-    State _statePlusKi;                           //!< State vector plus the ith order step
     StatePartial _YFinalPrevious;                 //!< Previous final state vector for the Dormand-Prince method
 
     // Initial step size

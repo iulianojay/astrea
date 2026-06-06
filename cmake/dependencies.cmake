@@ -104,6 +104,7 @@ CPMFindPackage(
     GITHUB_REPOSITORY fnc12/sqlite_orm
     GIT_TAG v1.9.1
     GIT_SHALLOW TRUE
+    SYSTEM YES
 )
 
 # Matplot++ for plotting

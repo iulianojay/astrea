@@ -176,9 +176,9 @@ DCM<FromFrame, ToFrame> get_dcm_impl(const Date& date)
 {
     static_assert(!(HasDcm<FromFrame, ToFrame> && HasDcm<ToFrame, FromFrame>), "DCM defined in both directions, please define only one to avoid symmetry issues.");
     static_assert(IsStaticFrame<FromFrame> && IsStaticFrame<ToFrame>, "Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference.");
-    static_assert(HasDcm<FromFrame, ToFrame> || HasDcm<ToFrame, FromFrame> || IsSameFrame<FromFrame, ToFrame>, "No DCM defined between these two frames.");
+    static_assert(HasDcm<FromFrame, ToFrame> || HasDcm<ToFrame, FromFrame> || is_same_frame(FromFrame, ToFrame), "No DCM defined between these two frames.");
 
-    if constexpr (IsSameFrame<FromFrame, ToFrame>) {
+    if constexpr (is_same_frame(FromFrame, ToFrame)) {
         return DCM<FromFrame, ToFrame>::identity();
     }
     else if constexpr (HasDcm<FromFrame, ToFrame>) {

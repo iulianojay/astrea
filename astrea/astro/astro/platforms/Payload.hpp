@@ -22,10 +22,10 @@
 
 #include <utilities/IdProvider.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/FrameReference.hpp>
-#include <astro/frames/dynamic_frames.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/PayloadPlatform.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -113,7 +113,7 @@ class PayloadParameters {
  * including field of view and access management.
  */
 template <class Payload_T, class PayloadParameters_T>
-class Payload : public virtual FrameReference {
+class Payload {
 
     friend PayloadPlatform<Payload_T>;
 
@@ -175,20 +175,20 @@ class Payload : public virtual FrameReference {
     std::string get_name() const { return "Payload"; }
 
     /**
-     * @brief Get the position of the payload in Earth-Centered Inertial coordinates.
+     * @brief Get the position of the payload in the primary frame.
      *
      * @param date The date for which to get the position.
-     * @return CartesianVector<Distance, frames::earth::icrf> Position of the payload in Earth-Centered Inertial coordinates.
+     * @return CartesianVector<Distance, frames::primary> Position of the payload in the primary frame.
      */
-    CartesianVector<Distance, frames::earth::icrf> get_inertial_position(const Date& date) const
+    CartesianVector<Distance, frames::primary> get_position(const Date& date) const
     {
         // Assumes the payload is fixed
         static const auto parentToPayload = get_parameters().get_attachment_point();
 
         // Get current RIC
-        const auto parentPosition = get_parent()->get_inertial_position(date);
-        const auto parentVelocity = get_parent()->get_inertial_velocity(date);
-        const auto ricFrame       = frames::dynamic::ric::instantaneous(parentPosition, parentVelocity);
+        const auto parentPosition = get_parent()->get_position(date);
+        const auto parentVelocity = get_parent()->get_velocity(date);
+        const auto ricFrame       = frames::dynamic::ric.instantaneous(parentPosition, parentVelocity);
 
         // Rotate to inertial
         const auto parentToPayloadInInertial = ricFrame.rotate_out_of_this_frame(parentToPayload, date);
@@ -197,15 +197,15 @@ class Payload : public virtual FrameReference {
     }
 
     /**
-     * @brief Get the velocity of the payload in Earth-Centered Inertial coordinates.
+     * @brief Get the velocity of the payload in the primary frame. Assumes all payloads are fixed to their platform.
      *
      * @param date The date for which to get the velocity.
-     * @return CartesianVector<Velocity, frames::earth::icrf> Velocity of the payload in Earth-Centered Inertial coordinates.
+     * @return CartesianVector<Velocity, frames::primary> Velocity of the payload in the primary frame.
      */
-    CartesianVector<Velocity, frames::earth::icrf> get_inertial_velocity(const Date& date) const
+    CartesianVector<Velocity, frames::primary> get_velocity(const Date& date) const
     {
         // Assumes the payload is fixed
-        return get_parent()->get_inertial_velocity(date);
+        return get_parent()->get_velocity(date);
     }
 
   protected:

@@ -20,8 +20,8 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/force_models/PerturbingForce.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -43,13 +43,12 @@ class DummyForce : public PerturbingForce {
 
 class ForceModelTest : public testing::Test {
   public:
-    ForceModelTest(){};
+    ForceModelTest() {};
     void SetUp() override {}
 
     DummyForce force;
     Date date;
     Vehicle vehicle;
-    AstrodynamicsSystem sys;
 };
 
 int main(int argc, char** argv)
@@ -74,10 +73,9 @@ TEST(ForceModelTest, ComputeForces)
     model.add<DummyForce>();
 
     Vehicle vehicle;
-    AstrodynamicsSystem sys;
     Date date;
     Cartesian<frames::primary> cart;
-    State state(cart, date, sys);
+    State state(cart, date);
 
     auto [accel, torque] = model.compute_perturbations(state, vehicle);
     EXPECT_EQ(accel.get_x(), 0.0 * N);

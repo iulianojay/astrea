@@ -18,6 +18,8 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/si.h>
 
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
+
 #include <trace/analysis/stats/FoldsOfCoverage.hpp>
 #include <trace/platforms/ground/Grid.hpp>
 #include <trace/risesets/AccessArray.hpp>
@@ -38,9 +40,9 @@ namespace plotting {
 namespace { // anonymous scoping to hide these functions further
 
 
-std::pair<std::vector<double>, std::vector<double>> extract_lats_lons(const Grid& grounds);
+std::pair<std::vector<double>, std::vector<double>> extract_lats_lons(const Grid<astro::planets::Earth>& grounds);
 
-std::pair<std::vector<double>, std::vector<double>> extract_lats_lons(const Grid& grounds)
+std::pair<std::vector<double>, std::vector<double>> extract_lats_lons(const Grid<astro::planets::Earth>& grounds)
 {
     std::vector<double> lats;
     std::vector<double> lons;
@@ -58,7 +60,7 @@ void Plotter::plot_access_metrics(const AccessArray& accesses, const std::filesy
 
 void Plotter::plot_number_of_folds(
     const ViewerConstellation& satellites,
-    const Grid& grounds,
+    const Grid<astro::planets::Earth>& grounds,
     const AccessArray& accesses,
     const Time& resolution,
     const Time& start,

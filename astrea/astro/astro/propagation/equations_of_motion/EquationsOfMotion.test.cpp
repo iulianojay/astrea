@@ -23,9 +23,9 @@
 #include <astro/propagation/force_models/Perturbation.hpp>
 #include <astro/state/State.hpp>
 #include <astro/state/attitude/Attitude.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 
 using mp_units::angular::unit_symbols::rad;
@@ -57,7 +57,9 @@ class MockEquationsOfMotion : public EquationsOfMotion {
     ) const override
     {
         // Return simple mock dynamics (zero acceleration for testing)
-        return CartesianPartial(0.0 * km / s, 0.0 * km / s, 0.0 * km / s, 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s));
+        return CartesianPartial<frames::earth::icrf>(
+            0.0 * km / s, 0.0 * km / s, 0.0 * km / s, 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s)
+        );
     }
 
     constexpr std::size_t get_expected_set_id() const override
@@ -73,8 +75,8 @@ class EquationsOfMotionTest : public testing::Test {
     void SetUp() override
     {
         // Set up test state with basic Cartesian<frames::primary> elements
-        cart  = Cartesian<frames::primary>::LEO(sys.get_mu());
-        state = State(cart, epoch, sys);
+        cart  = Cartesian<frames::primary>::LEO(get_mu<frames::primary.origin>());
+        state = State(cart, epoch);
     }
 
     const Unitless REL_TOL = 1.0e-6;
@@ -83,7 +85,6 @@ class EquationsOfMotionTest : public testing::Test {
     ForceVector<frames::primary> noForce;
     TorqueVector<frames::primary> noTorque;
     Vehicle vehicle;
-    AstrodynamicsSystem sys;
     Date epoch;
     Cartesian<frames::primary> cart;
     State state;
@@ -117,7 +118,6 @@ TEST_F(EquationsOfMotionTest, OperatorCall)
     ASSERT_NO_THROW(result1 = eomDefault(state, vehicle));
 
     // Verify the result has proper structure
-    ASSERT_EQ(&result1.get_system(), &sys);
     ASSERT_EQ(result1.get_epoch(), epoch);
 
     // Test with force model
@@ -125,7 +125,6 @@ TEST_F(EquationsOfMotionTest, OperatorCall)
     ASSERT_NO_THROW(result2 = eomWithForces(state, vehicle));
 
     // Verify the result has proper structure
-    ASSERT_EQ(&result2.get_system(), &sys);
     ASSERT_EQ(result2.get_epoch(), epoch);
 }
 
@@ -171,7 +170,6 @@ TEST_F(EquationsOfMotionTest, OperatorCallWithForces)
     ASSERT_NO_THROW(result = eomDefault(state, vehicle));
 
     // Verify basic structure
-    ASSERT_EQ(&result.get_system(), &sys);
     ASSERT_EQ(result.get_epoch(), epoch);
 }
 
@@ -187,7 +185,6 @@ TEST_F(EquationsOfMotionTest, OperatorCallWithAttitude)
     ASSERT_NO_THROW(result = eomDefault(stateWithAttitude, vehicle));
 
     // Verify the result has proper structure and includes attitude partials
-    ASSERT_EQ(&result.get_system(), &sys);
     ASSERT_EQ(result.get_epoch(), epoch);
 
     // The result should include attitude partials when attitude is present
@@ -203,7 +200,6 @@ TEST_F(EquationsOfMotionTest, OperatorCallWithoutAttitude)
     ASSERT_NO_THROW(result = eomDefault(state, vehicle));
 
     // Verify the result has proper structure
-    ASSERT_EQ(&result.get_system(), &sys);
     ASSERT_EQ(result.get_epoch(), epoch);
 
     // The result should only have orbital elements (6 components)
@@ -220,10 +216,6 @@ TEST_F(EquationsOfMotionTest, MultipleInstances)
     StatePartial result1, result2;
     ASSERT_NO_THROW(result1 = eom1(state, vehicle));
     ASSERT_NO_THROW(result2 = eom2(state, vehicle));
-
-    // Both should produce valid results
-    ASSERT_EQ(&result1.get_system(), &sys);
-    ASSERT_EQ(&result2.get_system(), &sys);
 }
 
 // Test virtual destructor functionality

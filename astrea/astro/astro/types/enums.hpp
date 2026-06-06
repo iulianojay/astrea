@@ -30,52 +30,6 @@ namespace astro {
 using EnumType = uint32_t;
 
 /**
- * @brief Celestial body identifiers.
- */
-enum class CelestialBodyId : EnumType {
-    UNSET,
-
-    // Solar System Bodies
-    SUN,
-    MERCURY,
-    VENUS,
-    EARTH,
-    MOON,
-    MARS,
-    PHOBOS,
-    DEIMOS,
-    JUPITER,
-    GANYMEDE,
-    CALLISTO,
-    IO,
-    EUROPA,
-    SATURN,
-    TITAN,
-    RHEA,
-    IAPETUS,
-    URANUS,
-    TITANIA,
-    OBERON,
-    NEPTUNE,
-    TRITON,
-
-    // Barycenters
-    SOLAR_SYSTEM_BARYCENTER,
-    MERCURY_BARYCENTER,
-    VENUS_BARYCENTER,
-    EARTH_BARYCENTER,
-    MARS_BARYCENTER,
-    JUPITER_BARYCENTER,
-    SATURN_BARYCENTER,
-    URANUS_BARYCENTER,
-    NEPTUNE_BARYCENTER,
-
-    // Other
-    CUSTOM,
-    FIXED_OFFSET
-};
-
-/**
  * @brief Celestial body types.
  */
 enum class CelestialBodyType : EnumType { UNSET, STAR, PLANET, MOON };

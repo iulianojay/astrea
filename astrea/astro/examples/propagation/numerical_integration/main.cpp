@@ -34,10 +34,9 @@ int main()
     // For most users, integration will be no more difficult than that when using a more sophisticated integration library.
 
     // Setup initial state
-    AstrodynamicsSystem sys; // Defaults to Earth-Moon
-    const Date epoch;        // Defaults to J2000
-    const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
-    const State state0(elements, epoch, sys);
+    const Date epoch; // Defaults to J2000
+    const Keplerian<frames::earth::icrf> elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
+    const State state0(elements, epoch);
 
     // Including attitude will automatically trigger kinematic eoms during propagation. This is meant to be used with a
     // control model to propagate attitude states, but can be used without one if you just want the kinematic effects.
@@ -45,7 +44,7 @@ int main()
     // model the effects in your custom forces, eoms, or in your vehicle model.
     /*
     const BodyQuaternion attitude{ 1.0, 0.0, 0.0, 0.0 }; // Identity quaternion - no rotation
-    const State state0(elements, epoch, sys, attitude);
+    const State state0(elements, epoch, attitude);
     */
 
     // Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing
@@ -57,7 +56,7 @@ int main()
     // give users more flexibility.
     ForceModel forces;
     forces.add<AtmosphericForce>();
-    forces.add<OblatenessForce>(sys, 10, 10);
+    forces.add<OblatenessForce, planets::Earth, 10, 10>();
 
     // Build EoMs - these can be selected from pre-built options, or users can create their own by inheriting from the
     // base EquationsOfMotion class. Note that a force or perturbation model is not required.

@@ -22,9 +22,9 @@
 
 #include <gtl/phmap.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
-#include <astro/state/angular_elements/angular_elements.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/angular_elements.hpp>
 
 #include <trace/types/typedefs.hpp>
 

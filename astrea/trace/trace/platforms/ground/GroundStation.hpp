@@ -21,8 +21,7 @@
 #include <string>
 #include <vector>
 
-#include <astro/astro.fwd.hpp>
-#include <astro/systems/CelestialBody.hpp>
+#include <astro/systems/system_concepts.hpp>
 #include <astro/time/Date.hpp>
 #include <units/units.hpp>
 
@@ -33,69 +32,90 @@ namespace astrea {
 namespace trace {
 
 /**
- * @brief Ground station class for managing ground-based access.
- * This class inherits from GroundPoint, AccessObject, and SensorPlatform.
- * It represents a ground station with a specific latitude, longitude, altitude,
- * and a collection of sensors. It also provides methods to manage access and
- * sensor functionalities.
+ * @brief Ground station on the surface of a celestial body, with sensors.
+ *
+ * @tparam _body_ The celestial body NTTP this station resides on.
  */
-class GroundStation : public GroundPoint, public SensorPlatform {
+template <astro::IsCelestialBody auto _body_>
+class GroundStation : public GroundPoint<_body_>, public SensorPlatform {
+    using Base = GroundPoint<_body_>;
+
   public:
     /**
-     * @brief Constructs a GroundStation object with specified latitude, longitude, altitude, sensors, and name.
+     * @brief Constructs a GroundStation.
      *
-     * @param latitude The latitude of the ground station.
-     * @param longitude The longitude of the ground station.
-     * @param altitude The altitude of the ground station.
-     * @param sensors The sensors associated with the ground station.
-     * @param name The name of the ground station.
+     * @param latitude  Geodetic latitude.
+     * @param longitude Longitude.
+     * @param altitude  Altitude above the surface (default 0 km).
+     * @param name      Human-readable name (default "Unnamed").
+     * @param sensors   Sensor parameters to attach (default none).
      */
     GroundStation(
-        const astro::CelestialBody* parent,
         const Angle& latitude,
         const Angle& longitude,
         const Distance& altitude                     = 0.0 * mp_units::si::unit_symbols::km,
-        const std::string name                       = "Unnammed",
+        const std::string name                       = "Unnamed",
         const std::vector<SensorParameters>& sensors = {}
-    );
+    ) :
+        Base(latitude, longitude, altitude),
+        SensorPlatform(),
+        _name(name)
+    {
+        for (const auto& sp : sensors) {
+            attach_payload(sp);
+        }
+    }
 
     /**
-     * @brief Default destructor for the GroundStation class.
+     * @brief Default destructor for GroundStation
      */
     ~GroundStation() = default;
 
     /**
-     * @brief Get the ID of the payload.
+     * @brief Gets the unique identifier for this ground station.
      *
-     * @return std::size_t ID of the payload.
+     * @return std::size_t The unique identifier for this ground station.
      */
-    std::size_t get_id() const;
+    std::size_t get_id() const override { return Base::_id; }
 
     /**
-     * @brief Get the name of the ground station.
+     * @brief Gets the human-readable name of the ground station.
      *
      * @return std::string The name of the ground station.
      */
-    std::string get_name() const;
+    std::string get_name() const { return _name; }
 
     /**
-     * @brief Get the inertial position of the ground station in the ECI frame.
+     * @brief Gets the position of the ground station in the body-fixed frame.
      *
-     * @param date The date for which to compute the position.
-     * @return RadiusVector<frames::earth::icrf> The inertial position of the ground station.
+     * @return astro::RadiusVector<astro::frames::Geodetic<_body_>::_fixed_frame_> The position of the ground station in the body-fixed frame.
      */
-    astro::CartesianVector<Distance, astro::frames::earth::icrf> get_inertial_position(const astro::Date& date) const;
+    auto get_position() const { return Base::get_position(); }
 
     /**
-     * @brief Get the inertial velocity of the ground station in the ECI frame.
+     * @brief Gets the inertial position of the spacecraft at a specific date.
      *
-     * @param date The date for which to compute the velocity.
-     * @return VelocityVector<frames::earth::icrf> The inertial velocity of the ground station.
+     * @param date The date at which to retrieve the position.
+     * @return astro::RadiusVector<astro::frames::primary> The inertial position of the spacecraft.
      */
-    astro::CartesianVector<Velocity, astro::frames::earth::icrf> get_inertial_velocity(const astro::Date& date) const;
+    astro::RadiusVector<astro::frames::primary> get_position(const astro::Date& date) const
+    {
+        return Base::get_position(date);
+    }
+
+    /**
+     * @brief Gets the inertial velocity of the spacecraft at a specific date.
+     *
+     * @param date The date at which to retrieve the velocity.
+     * @return astro::VelocityVector<astro::frames::primary> The inertial velocity of the spacecraft.
+     */
+    astro::VelocityVector<astro::frames::primary> get_velocity(const astro::Date& date) const
+    {
+        return Base::get_velocity(date);
+    }
 
   private:
-    std::string _name; //!< Name of the ground station.
+    std::string _name; //!< Human-readable name of the ground station.
 };
 
 } // namespace trace

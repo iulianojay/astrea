@@ -23,8 +23,8 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/instances/dynamic_body_frame.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
 
 namespace astrea {
 namespace astro {
@@ -32,9 +32,9 @@ namespace astro {
 /**
  * @brief A class representing an inertia matrix in the astrea astro platform.
  *
- * @tparam Frame_T The frame in which the inertia tensor is defined. Defaults to `frames::dynamic::body`.
+ * @tparam _frame_ The frame in which the inertia tensor is defined. Defaults to `frames::dynamic::body`.
  */
-template <class Frame_T = frames::dynamic::body>
+template <IsFrame auto _frame_ = frames::dynamic::body>
 class InertiaTensor {
 
     static constexpr MomentOfInertia zero =
@@ -129,8 +129,8 @@ class InertiaTensor {
      * @brief Multiplies the inertia tensor by a CartesianVector, effectively applying the inertia tensor to the vector.
      */
     template <typename Value_U>
-    CartesianVector<decltype(Value_U{} / MomentOfInertia{}), Frame_T>
-        inverse_multiply(const CartesianVector<Value_U, Frame_T>& vec) const
+    CartesianVector<decltype(Value_U{} / MomentOfInertia{}), _frame_>
+        inverse_multiply(const CartesianVector<Value_U, _frame_>& vec) const
     {
         // Compute the determinant
         // TODO: Generalize a 3x3 matrix class and use it with the DCM as well

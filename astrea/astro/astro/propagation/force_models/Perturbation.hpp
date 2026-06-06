@@ -22,9 +22,9 @@
 
 #include <units/units.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frame_registry.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {

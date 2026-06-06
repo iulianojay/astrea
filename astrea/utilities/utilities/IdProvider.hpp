@@ -21,7 +21,7 @@
 
 #include <atomic>
 
-#include <mp-units/ext/fixed_string.h>
+#include <mp-units/framework/symbol_text.h>
 
 namespace astrea {
 namespace utilities {
@@ -39,7 +39,7 @@ class IdProvider {
      * @tparam name A string literal representing the type of ID being generated (e.g., "Spacecraft", "Plane", etc.).
      * @return std::size_t The next unique ID.
      */
-    template <mp_units::basic_fixed_string name>
+    template <mp_units::symbol_text name>
     static std::size_t get_next_id()
     {
         static std::atomic<std::size_t> _idCounter{ 0 };

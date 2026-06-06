@@ -24,9 +24,9 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si.h>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {

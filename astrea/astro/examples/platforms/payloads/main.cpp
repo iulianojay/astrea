@@ -63,16 +63,15 @@ struct MyPayload : public Payload<MyPayload, MyPayloadParameters> {
     std::size_t _id;
 };
 
-// Finally, we use the PayloadPlatform to attach our paylaod to a platform. Payload platforms are expected to be a
-// FrameReference as well so we need to implement those methods. This will likely change in the future.
+// Finally, we use the PayloadPlatform to attach our paylaod to a platform
 struct MySpacecraft : public PayloadPlatform<MyPayload> {
     std::size_t get_id() const { return 0; }
     std::string get_name() const { return "MySpacecraft"; }
-    CartesianVector<Distance, frames::earth::icrf> get_inertial_position(const Date& date) const
+    CartesianVector<Distance, frames::earth::icrf> get_position(const Date& date) const
     {
         return { 0.0 * km, 0.0 * km, 0.0 * km };
     }
-    CartesianVector<Velocity, frames::earth::icrf> get_inertial_velocity(const Date& date) const
+    CartesianVector<Velocity, frames::earth::icrf> get_velocity(const Date& date) const
     {
         return { 0.0 * km / s, 0.0 * km / s, 0.0 * km / s };
     }

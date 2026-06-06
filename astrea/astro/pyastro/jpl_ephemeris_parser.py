@@ -234,10 +234,10 @@ def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, da
         fID.write(f"#include <array>\n")
         fID.write(f"#include <units/units.hpp>\n")
         fID.write(f"#include <astro/time/Date.hpp>\n\n")
-        fID.write(f"#include <astro/systems/planetary_bodies/JplEphemerisTable.hpp>\n\n")
+        fID.write(f"#include <astro/systems/celestial_bodies/JplEphemerisTable.hpp>\n\n")
         fID.write(f"namespace astrea {{\n")
         fID.write(f"namespace astro {{\n")
-        fID.write(f"namespace planetary_bodies {{\n\n")
+        fID.write(f"namespace ephemerides {{\n\n")
         fID.write(f"struct {className} : public JplEphemerisTable {{\n")
 
         fID.write(f"\t{className}() = delete;\n")
@@ -255,9 +255,9 @@ def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, da
         fID.write(f"\tstatic std::size_t get_index(const Date& date, const Time& daysPerPoly) {{ return JplEphemerisTable::get_index(date, daysPerPoly); }}\n")
 
         fID.write("};\n\n")
-        fID.write(f"}} // namespace astrea \n")
+        fID.write(f"}} // namespace ephemerides \n\n")
         fID.write(f"}} // namespace astro \n")
-        fID.write(f"}} // namespace planetary_bodies \n\n")
+        fID.write(f"}} // namespace astrea \n")
 
     # Write source file
     sourcefile = os.path.join(outPath, f"{relPath}/{className}.cpp")
@@ -267,7 +267,7 @@ def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, da
         fID.write(f"#include <ephemerides/{header}>\n\n")
         fID.write(f"namespace astrea {{\n")
         fID.write(f"namespace astro {{\n")
-        fID.write(f"namespace planetary_bodies {{\n\n")
+        fID.write(f"namespace ephemerides {{\n\n")
 
         # Write the x coefficients to file
         fID.write(f"{typeString} {className}::X_INTERP {{\n")
@@ -293,9 +293,9 @@ def write_to_file(outPath: str, relPath: str, className: str, nEntries : int, da
         fID.write("//-------------------------------------------------\n")
         fID.write("//-------------------------------------------------\n\n")
 
-        fID.write(f"}} // namespace astrea \n")
+        fID.write(f"}} // namespace ephemerides \n\n")
         fID.write(f"}} // namespace astro \n")
-        fID.write(f"}} // namespace planetary_bodies \n\n")
+        fID.write(f"}} // namespace astrea \n")
 
     return
 
@@ -482,7 +482,7 @@ def generate_earth_relative_to_barycenter_file(lineBlocks: list, em_ratio: float
             # Add NUM_COEFF so the next X value starts off properly
             idx += NUM_COEFF
 
-    # relPath = "astro/systems/planetary_bodies/Earth"
+    # relPath = "astro/systems/celestial_bodies/Earth"
     relPath = "Earth"
     write_to_file(outPath, relPath, "EarthFromEmbEphemerisTable", NUM_COEFF + 2, DAYS_PER_POLY, xChebyshevStr,
                   yChebyshevStr, zChebyshevStr)
@@ -498,7 +498,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate JPL Ephemeris files for Astrea")
     parser.add_argument('--bodies', nargs='+', type=str, default=[body.name for body in CelestialBodies],
                         help='List of celestial bodies to generate ephemeris files for. Default is all bodies.')
-    parser.add_argument('-o', '--output_path', type=str, default=pathlib.Path(ASTRO_ROOT,"systems","planetary_bodies"))
+    parser.add_argument('-o', '--output_path', type=str, default=pathlib.Path(ASTRO_ROOT,"systems","planets"))
     args = parser.parse_args()
 
     # Parse the header table

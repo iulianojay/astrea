@@ -53,7 +53,6 @@ AccessArray propagate_and_run_access_analysis(
     astro::Constellation<T>& constellation,
     U& grounds,
     const Date& startDate,
-    const AstrodynamicsSystem& sys,
     const Time propTime,
     const Time accessResolution,
     const bool printProgress
@@ -72,7 +71,6 @@ int main()
 int trace_analysis(const Time propTime, const Time accessResolution, const bool printProgress, const Angle gridSpacing)
 {
     // Setup system
-    AstrodynamicsSystem sys;
     Date startDate = Date::now();
 
     // Query database
@@ -86,7 +84,7 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
 
     // Build constellation
     const Distance altitude      = 560.0 * km;
-    const Distance semimajor     = altitude + sys.get_central_body()->get_equitorial_radius();
+    const Distance semimajor     = altitude + get_equitorial_radius<planets::Earth>();
     const Angle inclination      = 97.6316 * deg; // roughly sunsync, whatever
     const std::size_t nSats      = 4;
     const std::size_t nPlanes    = 4;
@@ -94,9 +92,9 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
     const Angle anchorAnomaly    = 0.0 * deg;
     const Angle crossTrackOffset = 7.39 * deg; // 900 km off track
     const Angle phasing          = 7.39 * deg;
-    Shell<Viewer> shell1(sys, startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan, anchorAnomaly);
-    Shell<Viewer> shell2(sys, startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan + crossTrackOffset, anchorAnomaly - phasing);
-    Shell<Viewer> shell3(sys, startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan, anchorAnomaly - 2.0 * phasing);
+    Shell<Viewer> shell1(startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan, anchorAnomaly);
+    Shell<Viewer> shell2(startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan + crossTrackOffset, anchorAnomaly - phasing);
+    Shell<Viewer> shell3(startDate, semimajor, inclination, nSats, nPlanes, 1.0, anchorRaan, anchorAnomaly - 2.0 * phasing);
     Constellation<Viewer> constellation({ shell1, shell2, shell3 });
 
     // Add sensors
@@ -105,12 +103,13 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
     for (auto& shell : constellation.get_shells()) {
         for (auto& plane : shell.get_planes()) {
             // const auto elements = plane.get_elements();
-            // std::cout << "RAAN: " << elements.in_element_set<Keplerian>(sys.get_mu()).get_right_ascension().in(deg) << std::endl;
+            // std::cout << "RAAN: " << elements.in_element_set<Keplerian<frames::earth::icrf>>
+            // (get_mu<frames::primary.origin>()).get_right_ascension().in(deg) << std::endl;
             for (auto& sat : plane.get_all_spacecraft()) {
                 // const auto state = sat.get_state_history().first();
                 // std::cout << "\t" << state;
                 // const auto rEci = state.in_element_set<Cartesian>().get_position();
-                // const auto lla  = Geodetic(rEci, startDate, sys.get_central_body().get());
+                // const auto lla  = Geodetic(rEci, startDate.get_central_body().get());
                 // std::cout << "-> Lon: " << lla.get_longitude().in(deg) << std::endl;
                 sat.attach_payload(leoCone);
                 sat.set_name("Sat " + std::to_string(sat.get_id()) + "(Cluster " + std::to_string(sat.get_id() % 3 + 1) + ")");
@@ -126,11 +125,11 @@ int trace_analysis(const Time propTime, const Time accessResolution, const bool 
     // Polandish
     LatLon corner1{ 48.0 * deg, 14.0 * deg };
     LatLon corner4{ 55.0 * deg, 25.0 * deg };
-    Grid grid(sys.get_central_body().get(), corner1, corner4, GridType::UNIFORM, gridSpacing);
+    Grid<astro::planets::Earth> grid(corner1, corner4, GridType::UNIFORM, gridSpacing);
 
     // Propagate and find access
     const AccessArray accesses =
-        propagate_and_run_access_analysis(constellation, grid, startDate, sys, propTime, accessResolution, printProgress);
+        propagate_and_run_access_analysis(constellation, grid, startDate, propTime, accessResolution, printProgress);
     const AccessStats stats(accesses);
     const FoldsOfCoverage folds(accesses, accessResolution, propTime);
 
@@ -155,7 +154,6 @@ AccessArray propagate_and_run_access_analysis(
     astro::Constellation<T>& constellation,
     U& grounds,
     const Date& startDate,
-    const AstrodynamicsSystem& sys,
     const Time propTime,
     const Time accessResolution,
     const bool printProgress
@@ -206,7 +204,7 @@ AccessArray propagate_and_run_access_analysis(
     }
 
     // Find access
-    AccessAnalyzer analyzer(accessResolution, startDate, endDate, sys, true);
+    AccessAnalyzer analyzer(accessResolution, startDate, endDate, true);
     const auto accesses = analyzer.find_accesses(constellation, grounds, true);
 
     end  = std::chrono::steady_clock::now();
