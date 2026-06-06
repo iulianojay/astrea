@@ -38,7 +38,7 @@ struct BodyFixedFrameBase {};
 } // namespace detail
 
 /**
- * @brief Fixed rotating frame .
+ * @brief Body-fixed frame defined by a celestial body and its reference axes. The origin is at the center of mass of the body, and the axes are fixed to the body.
  */
 template <mp_units::symbol_text _name_, IsCelestialBody auto _origin_, IsAxis auto _axis_ = _origin_.reference_axes>
 struct BodyFixedFrame : Frame<_name_, _origin_, _axis_>, detail::BodyFixedFrameBase {};

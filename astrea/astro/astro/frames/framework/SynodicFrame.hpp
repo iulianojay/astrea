@@ -37,6 +37,12 @@ struct SynodicFrameBase {};
 
 } // namespace detail
 
+/**
+ * @brief Axis defined by the line connecting two celestial bodies and the plane of motion of the secondary around the primary.
+ *
+ * The x-axis points from the primary to the secondary, the z-axis is normal to the plane of motion of the secondary around the primary,
+ * and the y-axis is normal to both, pointing in the direction of motion of the secondary around the primary.
+ */
 template <IsCelestialBody auto _primary_, IsCelestialBody auto _secondary_>
 struct SynodicAxis
     : Axis<_primary_.name + mp_units::symbol_text{ "-" } + _secondary_.name + mp_units::symbol_text{ " synodic axis" }> {
@@ -44,6 +50,13 @@ struct SynodicAxis
     static constexpr auto secondary = _secondary_;
 };
 
+
+/**
+ * @brief Synodic frame defined by the line connecting two celestial bodies and the plane of motion of the secondary around the primary.
+ *
+ * The x-axis points from the primary to the secondary, the z-axis is normal to the plane of motion of the secondary around the primary,
+ * and the y-axis is normal to both, pointing in the direction of motion of the secondary around the primary.
+ */
 template <mp_units::symbol_text _name_, IsBarycenter auto _origin_, IsCelestialBody auto _primary_, IsCelestialBody auto _secondary_>
 struct SynodicFrame : Frame<_name_, _origin_, SynodicAxis<_primary_, _secondary_>{}>, detail::SynodicFrameBase {};
 

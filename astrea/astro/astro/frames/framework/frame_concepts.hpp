@@ -26,12 +26,17 @@ namespace astro {
 
 namespace detail {
 
+// Base classes for each frame component type, used to identify them in concepts. These are not intended to be used directly by users.
 struct FrameBase;
 struct OriginBase;
 struct AxisBase;
 struct CoordinateLineBase;
 struct BodyFixedFrameBase;
+struct SynodicFrameBase;
 
+/**
+ * @brief A symbolic constant is a type that is empty, trivially constructible, trivially copyable, trivially moveable, and trivially destructible.
+ */
 template <typename T>
 concept SymbolicConstant = (!std::is_const_v<T>) && (!std::is_reference_v<T>) && std::is_empty_v<T> &&
                            std::is_trivially_default_constructible_v<T> && std::is_trivially_copy_constructible_v<T> &&
@@ -39,12 +44,21 @@ concept SymbolicConstant = (!std::is_const_v<T>) && (!std::is_reference_v<T>) &&
 
 } // namespace detail
 
+/**
+ * @brief Concept to determine if a type is a frame, which is defined as a type that derives from FrameBase and is a symbolic constant.
+ */
 template <typename T>
 concept IsFrame = std::derived_from<T, detail::FrameBase> && detail::SymbolicConstant<T>;
 
+/**
+ * @brief Concept to determine if a type is an origin, which is defined as a type that derives from OriginBase and is a symbolic constant.
+ */
 template <typename T>
 concept IsOrigin = std::derived_from<T, detail::OriginBase> && detail::SymbolicConstant<T>;
 
+/**
+ * @brief Concept to determine if a type is an axis, which is defined as a type that derives from AxisBase and is a symbolic constant.
+ */
 template <typename T>
 concept IsAxis = std::derived_from<T, detail::AxisBase> && detail::SymbolicConstant<T>;
 
@@ -93,18 +107,33 @@ concept IsStaticFrame = (IsInertialFrame<T> || IsBodyFixedFrame<T>);
 template <typename T>
 concept IsDynamicFrame = !IsStaticFrame<T>;
 
+/**
+ * @brief Concept to determine if an origin is derived from another origin (i.e., it has a parent member).
+ */
 template <typename T>
 concept IsDerivedOrigin = IsOrigin<T> && requires { T::parent; };
 
+/**
+ * @brief Concept to determine if an origin is a root origin (i.e., it has no parent member).
+ */
 template <typename T>
 concept IsRootOrigin = IsOrigin<T> && !IsDerivedOrigin<T>;
 
+/**
+ * @brief Concept to determine if an axis is derived from another axis (i.e., it has a parent member).
+ */
 template <typename T>
 concept IsDerivedAxis = IsAxis<T> && requires { T::parent; };
 
+/**
+ * @brief Concept to determine if an axis is a root axis (i.e., it has no parent member).
+ */
 template <typename T>
 concept IsRootAxis = IsAxis<T> && !IsDerivedAxis<T>;
 
+/**
+ * @brief A helper variable template that is always false, used for static_asserts in templates that should never be instantiated.
+ */
 template <typename>
 inline constexpr bool always_false = false;
 
@@ -154,12 +183,31 @@ concept HasAngularOffset = requires { T::axis.misalignment; } || requires { T::m
 template <typename T>
 concept IsFixedOffsetFrame = IsDerivedFrame<T> && (HasSpatialOffset<T> || HasAngularOffset<T>);
 
+/**
+ * @brief Helper function to determine if two frames share the same parent frame. This is used in the get_dcm function
+ * for FixedOffsetFrames to ensure that the input and output frames share the same parent frame.
+ *
+ * @tparam T The type of the first frame.
+ * @tparam U The type of the second frame.
+ * @param t An instance of the first frame type (not used, only for type deduction).
+ * @param u An instance of the second frame type (not used, only for type deduction).
+ * @return true if the frames share the same parent frame, false otherwise.
+ */
 template <IsFrame T, IsFrame U>
 consteval bool has_same_parent(T t, U u)
 {
     return false;
 }
 
+/**
+ * @brief Specialization of has_same_parent for frames that are both derived frames. This checks if the parent types are the same.
+ *
+ * @tparam T The type of the first frame, must be a derived frame.
+ * @tparam U The type of the second frame, must be a derived frame.
+ * @param t An instance of the first frame type (not used, only for type deduction).
+ * @param u An instance of the second frame type (not used, only for type deduction).
+ * @return true if the frames share the same parent frame, false otherwise.
+ */
 template <IsFrame T, IsFrame U>
     requires(IsDerivedFrame<T> && IsDerivedFrame<U>)
 consteval bool has_same_parent(T t, U u)
@@ -167,6 +215,15 @@ consteval bool has_same_parent(T t, U u)
     return std::is_same_v<decltype(T::parent), decltype(U::parent)>;
 }
 
+/**
+ * @brief Specialization of has_same_parent for frames that are both root frames. Root frames are considered to share the same parent (themselves).
+ *
+ * @tparam T The type of the first frame, must be a root frame.
+ * @tparam U The type of the second frame, must be a root frame.
+ * @param t An instance of the first frame type (not used, only for type deduction).
+ * @param u An instance of the second frame type (not used, only for type deduction).
+ * @return true if the frames share the same parent frame, false otherwise.
+ */
 template <IsFrame T, IsFrame U>
     requires(IsRootFrame<T> && IsRootFrame<U>)
 consteval bool has_same_parent(T t, U u)

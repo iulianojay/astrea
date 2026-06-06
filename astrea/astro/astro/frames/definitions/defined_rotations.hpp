@@ -65,6 +65,14 @@ inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& 
     return DirectionCosineMatrix<in_frame, out_frame>::Z(-gst);
 }
 
+/**
+ * @brief Get the Direction Cosine Matrix (DCM) for a synodic frame at a given date.
+ *
+ * @tparam in_frame The input frame type, must be ICRF and share the same origin as out_frame.
+ * @tparam out_frame The output frame type, must be SYNODIC and share the same origin as in_frame.
+ * @param date The date for which to get the DCM.
+ * @return DirectionCosineMatrix<in_frame, out_frame> The DCM from in_frame to out_frame.
+ */
 template <IsFrame auto in_frame, IsFrame auto out_frame>
     requires(IsSynodicFrame<decltype(out_frame)> && equivalent(in_frame.axis, axes::icrf))
 inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
