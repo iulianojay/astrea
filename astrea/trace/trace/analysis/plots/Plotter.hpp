@@ -26,6 +26,7 @@
 #include <matplot/matplot.h>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <units/units.hpp>
 
 #include <trace/trace.fwd.hpp>
@@ -45,7 +46,7 @@ class Plotter {
 
     void plot_number_of_folds(
         const ViewerConstellation& satellites,
-        const Grid& grounds,
+        const Grid<astro::planets::Earth>& grounds,
         const AccessArray& accesses,
         const Time& resolution,
         const Time& start,

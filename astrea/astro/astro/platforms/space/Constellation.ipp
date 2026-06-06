@@ -37,11 +37,11 @@ Constellation<Spacecraft_T>::Constellation(std::vector<Spacecraft_T> satellites)
 }
 
 template <class Spacecraft_T>
-Constellation<Spacecraft_T>::Constellation(const std::vector<GeneralPerturbations>& gps, const AstrodynamicsSystem& system)
+Constellation<Spacecraft_T>::Constellation(const std::vector<GeneralPerturbations>& gps)
 {
     std::vector<Spacecraft_T> satellites;
     for (const auto& gp : gps) {
-        satellites.push_back(Spacecraft_T(gp, system));
+        satellites.push_back(Spacecraft_T(gp));
     }
     *this = Constellation(satellites);
 }
@@ -49,7 +49,6 @@ Constellation<Spacecraft_T>::Constellation(const std::vector<GeneralPerturbation
 
 template <class Spacecraft_T>
 Constellation<Spacecraft_T>::Constellation(
-    const AstrodynamicsSystem& sys,
     const Date& epoch,
     const Distance& semimajor,
     const Angle& inclination,
@@ -61,7 +60,7 @@ Constellation<Spacecraft_T>::Constellation(
 )
 {
 
-    shells.emplace_back(Shell<Spacecraft_T>(sys, epoch, semimajor, inclination, T, P, F, anchorRAAN, anchorAnomaly));
+    shells.emplace_back(Shell<Spacecraft_T>(epoch, semimajor, inclination, T, P, F, anchorRAAN, anchorAnomaly));
 
     id = utilities::IdProvider::get_next_id<"Constellation">();
 }

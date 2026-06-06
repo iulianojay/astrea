@@ -38,6 +38,9 @@ bool nearly_equal(
     const int maxIdx    = ignoreFastVariable ? 5 : 6;
     for (int ii = 0; ii < maxIdx; ii++) {
         if (!math::nearly_equal(firstUnitless[ii], secondUnitless[ii], relTol, absTol.size() == 1 ? absTol[0] : absTol[ii])) {
+            std::cout << "First: " << first << std::endl;
+            std::cout << "Second: " << second << std::endl;
+            std::cout << "Element " << ii << " differs: " << firstUnitless[ii] << " vs " << secondUnitless[ii] << std::endl;
             return false;
         }
     }
@@ -54,6 +57,9 @@ bool nearly_equal(const OrbitalElementPartials& first, const OrbitalElementParti
     const std::vector<Unitless> secondScaled = (second * scale).force_to_vector();
     for (int ii = 0; ii < 6; ii++) {
         if (!math::nearly_equal(firstScaled[ii], secondScaled[ii], relTol, absTol.size() == 1 ? absTol[0] : absTol[ii])) {
+            std::cout << "First: " << first << std::endl;
+            std::cout << "Second: " << second << std::endl;
+            std::cout << "Element " << ii << " differs: " << firstScaled[ii] << " vs " << secondScaled[ii] << std::endl;
             return false;
         }
     }

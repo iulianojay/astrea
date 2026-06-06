@@ -68,30 +68,3 @@ TEST_F(NullVehicleTest, Clone)
     ASSERT_EQ(clonePtr->get_name(), customNullVehicle.get_name());
     delete clonePtr;
 }
-
-TEST_F(NullVehicleTest, GetInertialPosition)
-{
-    Date d;
-    auto pos = nullVehicle.get_inertial_position(d);
-    ASSERT_EQ(pos.get_x(), 0.0 * km);
-    ASSERT_EQ(pos.get_y(), 0.0 * km);
-    ASSERT_EQ(pos.get_z(), 0.0 * km);
-}
-
-TEST_F(NullVehicleTest, GetInertialVelocity)
-{
-    Date d;
-    auto vel = nullVehicle.get_inertial_velocity(d);
-    ASSERT_EQ(vel.get_x(), 0.0 * km / s);
-    ASSERT_EQ(vel.get_y(), 0.0 * km / s);
-    ASSERT_EQ(vel.get_z(), 0.0 * km / s);
-}
-
-TEST_F(NullVehicleTest, GetInertialAcceleration)
-{
-    Date d;
-    auto acc = nullVehicle.get_inertial_acceleration(d);
-    ASSERT_EQ(acc.get_x(), 0.0 * km / (s * s));
-    ASSERT_EQ(acc.get_y(), 0.0 * km / (s * s));
-    ASSERT_EQ(acc.get_z(), 0.0 * km / (s * s));
-}

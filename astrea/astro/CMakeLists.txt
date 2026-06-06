@@ -40,17 +40,15 @@ set(ASTRO_SOURCES
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOff.cpp
 
     ${ASTRO_BASE}/propagation/force_models/ForceModel.cpp
-    ${ASTRO_BASE}/propagation/force_models/instances/AtmosphericForce.cpp
-    ${ASTRO_BASE}/propagation/force_models/instances/NBodyForce.cpp
-    ${ASTRO_BASE}/propagation/force_models/instances/OblatenessForce.cpp
-    ${ASTRO_BASE}/propagation/force_models/instances/SolarRadiationPressure.cpp
+    ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.cpp
+    ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressure.cpp
 
-    ${ASTRO_BASE}/propagation/equations_of_motion/instances/KeplerianVop.cpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/instances/CowellsMethod.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/CowellsMethod.cpp
     ${ASTRO_BASE}/propagation/equations_of_motion/EquationsOfMotion.cpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/instances/EquinoctialVop.cpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/instances/J2MeanVop.cpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/instances/TwoBody.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/EquinoctialVop.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/J2MeanVop.cpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.cpp
 
     ${ASTRO_BASE}/propagation/equations_of_motion/StateTransitionMatrix.cpp
 
@@ -59,36 +57,12 @@ set(ASTRO_SOURCES
 
     ${ASTRO_BASE}/state/attitude/Attitude.cpp
 
-    ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.cpp
-    ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.cpp
-    ${ASTRO_BASE}/state/angular_elements/instances/Geocentric.cpp
-    ${ASTRO_BASE}/state/angular_elements/instances/Spherical.cpp
-
-    ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.cpp
-    ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.cpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.cpp
 
-    ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.cpp
-    ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.cpp
+    ${ASTRO_BASE}/state/orbital_data_formats/TwoLineElements.cpp
+    ${ASTRO_BASE}/state/orbital_data_formats/GeneralPerturbations.cpp
 
-    ${ASTRO_BASE}/frames/FrameReference.cpp
-
-    ${ASTRO_BASE}/systems/AstrodynamicsSystem.cpp
-    ${ASTRO_BASE}/systems/CelestialBody.cpp
-    ${ASTRO_BASE}/systems/planetary_bodies/JplEphemerisTable.cpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Earth/Earth.cpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Earth/atmosphere/JacciaRoberts.cpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Earth/atmosphere/HarrisPriester.cpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Earth/Moon.cpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Mars/Mars.cpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Mercury/Mercury.cpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Neptune/Neptune.cpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Jupiter/Jupiter.cpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Saturn.cpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Titan.cpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Sun/Sun.cpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Uranus/Uranus.cpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Venus/Venus.cpp
+    ${ASTRO_BASE}/systems/celestial_bodies/JplEphemerisTable.cpp
 
     ${ASTRO_BASE}/time/Date.cpp
 
@@ -101,23 +75,32 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/astro.hpp
     ${ASTRO_BASE}/astro.fwd.hpp
 
-    ${ASTRO_BASE}/frames/instances/body_centered_inertial_frames.hpp
-    ${ASTRO_BASE}/frames/instances/body_fixed_frames.hpp
-    ${ASTRO_BASE}/frames/instances/defined_rotations.hpp
-    ${ASTRO_BASE}/frames/instances/EastNorthUp.hpp
-    ${ASTRO_BASE}/frames/instances/LocalHorizontalLocalVertical.hpp
-    ${ASTRO_BASE}/frames/instances/RadialInTrackCrossTrack.hpp
-    ${ASTRO_BASE}/frames/instances/VelocityNormalBinormal.hpp
+    ${ASTRO_BASE}/frames/definitions/body_centered_inertial_frames.hpp
+    ${ASTRO_BASE}/frames/definitions/body_fixed_frames.hpp
+    ${ASTRO_BASE}/frames/definitions/defined_rotations.hpp
+    ${ASTRO_BASE}/frames/definitions/defined_rotations_earth.hpp
+    ${ASTRO_BASE}/frames/definitions/EastNorthUp.hpp
+    ${ASTRO_BASE}/frames/definitions/LocalHorizontalLocalVertical.hpp
+    ${ASTRO_BASE}/frames/definitions/RadialInTrackCrossTrack.hpp
+    ${ASTRO_BASE}/frames/definitions/VelocityNormalBinormal.hpp
+    ${ASTRO_BASE}/frames/definitions/dynamic_frames.hpp
+    ${ASTRO_BASE}/frames/definitions/transformations.hpp
 
-    ${ASTRO_BASE}/frames/DirectionCosineMatrix.hpp
-    ${ASTRO_BASE}/frames/CartesianVector.hpp
-    ${ASTRO_BASE}/frames/dynamic_frames.hpp
-    ${ASTRO_BASE}/frames/frame_concepts.hpp
-    ${ASTRO_BASE}/frames/Frame.hpp
-    ${ASTRO_BASE}/frames/FixedOffsetFrame.hpp
-    ${ASTRO_BASE}/frames/FrameReference.hpp
-    ${ASTRO_BASE}/frames/frames.hpp
-    ${ASTRO_BASE}/frames/transformations.hpp
+    ${ASTRO_BASE}/frames/framework/Axis.hpp
+    ${ASTRO_BASE}/frames/framework/BodyFixedFrame.hpp
+    ${ASTRO_BASE}/frames/framework/CartesianVector.hpp
+    ${ASTRO_BASE}/frames/framework/DirectionCosineMatrix.hpp
+    ${ASTRO_BASE}/frames/framework/DynamicFrame.hpp
+    ${ASTRO_BASE}/frames/framework/FixedOffsetFrame.hpp
+    ${ASTRO_BASE}/frames/framework/Frame.hpp
+    ${ASTRO_BASE}/frames/framework/Origin.hpp
+    ${ASTRO_BASE}/frames/framework/frame_concepts.hpp
+    ${ASTRO_BASE}/frames/definitions/frame_registry.hpp
+    ${ASTRO_BASE}/frames/framework/frame_utilities.hpp
+    ${ASTRO_BASE}/frames/definitions/primary_frame.hpp
+
+    ${ASTRO_BASE}/frames/framework.hpp
+    ${ASTRO_BASE}/frames/definitions.hpp
 
     ${ASTRO_BASE}/platforms/space/Constellation.hpp
     ${ASTRO_BASE}/platforms/space/Constellation.ipp
@@ -145,19 +128,20 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOn.hpp
     ${ASTRO_BASE}/propagation/event_detection/events/TurnThrustersOff.hpp
 
-    ${ASTRO_BASE}/propagation/force_models/instances/AtmosphericForce.hpp
+    ${ASTRO_BASE}/propagation/force_models/AtmosphericForce.hpp
     ${ASTRO_BASE}/propagation/force_models/PerturbingForce.hpp
     ${ASTRO_BASE}/propagation/force_models/ForceModel.hpp
-    ${ASTRO_BASE}/propagation/force_models/instances/NBodyForce.hpp
-    ${ASTRO_BASE}/propagation/force_models/instances/OblatenessForce.hpp
-    ${ASTRO_BASE}/propagation/force_models/instances/SolarRadiationPressure.hpp
+    ${ASTRO_BASE}/propagation/force_models/NBodyForce.hpp
+    ${ASTRO_BASE}/propagation/force_models/OblatenessForce.hpp
+    ${ASTRO_BASE}/propagation/force_models/OblatenessForce.ipp
+    ${ASTRO_BASE}/propagation/force_models/SolarRadiationPressure.hpp
 
-    ${ASTRO_BASE}/propagation/equations_of_motion/instances/KeplerianVop.hpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/instances/CowellsMethod.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/KeplerianVop.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/CowellsMethod.hpp
     ${ASTRO_BASE}/propagation/equations_of_motion/EquationsOfMotion.hpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/instances/J2MeanVop.hpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/instances/EquinoctialVop.hpp
-    ${ASTRO_BASE}/propagation/equations_of_motion/instances/TwoBody.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/J2MeanVop.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/EquinoctialVop.hpp
+    ${ASTRO_BASE}/propagation/equations_of_motion/TwoBody.hpp
 
     ${ASTRO_BASE}/propagation/equations_of_motion/StateTransitionMatrix.hpp
 
@@ -165,50 +149,49 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/state/StateHistory.hpp
 
     ${ASTRO_BASE}/state/attitude/Attitude.hpp
-    ${ASTRO_BASE}/state/attitude/instances/Quaternion.hpp
-    ${ASTRO_BASE}/state/attitude/instances/AngularVelocities.hpp
-    ${ASTRO_BASE}/state/attitude/instances/EulerAngles.hpp
+    ${ASTRO_BASE}/state/attitude/Quaternion.hpp
+    ${ASTRO_BASE}/state/attitude/AngularVelocities.hpp
+    ${ASTRO_BASE}/state/attitude/EulerAngles.hpp
 
-    ${ASTRO_BASE}/state/angular_elements/instances/Cylindrical.hpp
-    ${ASTRO_BASE}/state/angular_elements/instances/Geocentric.hpp
-    ${ASTRO_BASE}/state/angular_elements/instances/Geodetic.hpp
-    ${ASTRO_BASE}/state/angular_elements/instances/Spherical.hpp
-    ${ASTRO_BASE}/state/angular_elements/AngularElements.hpp
+    ${ASTRO_BASE}/state/angular_elements/Cylindrical.hpp
+    ${ASTRO_BASE}/state/angular_elements/Geocentric.hpp
+    ${ASTRO_BASE}/state/angular_elements/Geodetic.hpp
+    ${ASTRO_BASE}/state/angular_elements/Spherical.hpp
 
-    ${ASTRO_BASE}/state/orbital_elements/instances/Cartesian.hpp
-    ${ASTRO_BASE}/state/orbital_elements/instances/Equinoctial.hpp
-    ${ASTRO_BASE}/state/orbital_elements/instances/Keplerian.hpp
+    ${ASTRO_BASE}/state/orbital_elements/Cartesian.hpp
+    ${ASTRO_BASE}/state/orbital_elements/Equinoctial.hpp
+    ${ASTRO_BASE}/state/orbital_elements/Keplerian.hpp
     ${ASTRO_BASE}/state/orbital_elements/OrbitalElements.hpp
 
-    ${ASTRO_BASE}/state/orbital_data_formats/instances/TwoLineElements.hpp
-    ${ASTRO_BASE}/state/orbital_data_formats/instances/GeneralPerturbations.hpp
+    ${ASTRO_BASE}/state/orbital_data_formats/TwoLineElements.hpp
+    ${ASTRO_BASE}/state/orbital_data_formats/GeneralPerturbations.hpp
 
-    ${ASTRO_BASE}/state/attitude/instances/Quaternion.hpp
+    ${ASTRO_BASE}/state/attitude/Quaternion.hpp
 
-    ${ASTRO_BASE}/systems/AstrodynamicsSystem.hpp
+    ${ASTRO_BASE}/systems/system_utilities.hpp
     ${ASTRO_BASE}/systems/CelestialBody.hpp
     ${ASTRO_BASE}/systems/CelestialBodyParameters.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/planetary_bodies.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/JplEphemerisTable.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Earth/Earth.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Earth/atmosphere/JacciaRoberts.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Earth/atmosphere/HarrisPriester.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Earth/Moon.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Mars/Deimos.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Mars/Mars.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Mars/Phobos.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Mercury/Mercury.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Neptune/Neptune.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Neptune/Triton.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Iapetus.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Rhea.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Saturn.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Saturn/Titan.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Sun/Sun.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Uranus/Uranus.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Uranus/Titania.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Uranus/Oberon.hpp
-    ${ASTRO_BASE}/systems/planetary_bodies/Venus/Venus.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/JplEphemerisTable.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Earth/Earth.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Earth/Moon.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Mars/Deimos.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Mars/Mars.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Mars/Phobos.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Mercury/Mercury.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Neptune/Neptune.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Neptune/Triton.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Saturn/Iapetus.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Saturn/Rhea.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Saturn/Saturn.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Saturn/Titan.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Sun/Sun.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Uranus/Uranus.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Uranus/Titania.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Uranus/Oberon.hpp
+    ${ASTRO_BASE}/systems/celestial_bodies/Venus/Venus.hpp
 
     ${ASTRO_BASE}/time/Date.hpp
     ${ASTRO_BASE}/time/Interval.hpp

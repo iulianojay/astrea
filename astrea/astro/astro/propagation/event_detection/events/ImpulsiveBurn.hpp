@@ -23,8 +23,8 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/frames.hpp>
-#include <astro/frames/instances/RadialInTrackCrossTrack.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
 #include <astro/utilities/conversions.hpp>
 
 namespace astrea {
@@ -50,7 +50,7 @@ class ImpulsiveBurn {
         _triggerAnomaly(0.0 * mp_units::angular::unit_symbols::rad),
         _triggerAltitude(0.0 * mp_units::si::unit_symbols::km),
         _triggerEpoch(Date()),
-        _burnDirection(UnitVector<frames::dynamic::ric>(1.0, 0.0, 0.0))
+        _burnDirection(Direction<frames::dynamic::ric>(1.0, 0.0, 0.0))
     {
     }
 
@@ -63,7 +63,7 @@ class ImpulsiveBurn {
      * @return ImpulsiveBurn An ImpulsiveBurn Event that triggers at the specified true anomaly.
      */
     static ImpulsiveBurn
-        trigger_at_true_anomaly(const Angle& triggerAnomaly, const UnitVector<frames::dynamic::ric> burnDirection, const unsigned nMaxTriggers = 0)
+        trigger_at_true_anomaly(const Angle& triggerAnomaly, const Direction<frames::dynamic::ric> burnDirection, const unsigned nMaxTriggers = 0)
     {
         return ImpulsiveBurn(nMaxTriggers, BurnTrigger::TRUE_ANOMALY, burnDirection, triggerAnomaly);
     }
@@ -77,7 +77,7 @@ class ImpulsiveBurn {
      * @return ImpulsiveBurn An ImpulsiveBurn Event that triggers at the specified mean anomaly.
      */
     static ImpulsiveBurn
-        trigger_at_mean_anomaly(const Angle& triggerAnomaly, const UnitVector<frames::dynamic::ric> burnDirection, const unsigned nMaxTriggers = 0)
+        trigger_at_mean_anomaly(const Angle& triggerAnomaly, const Direction<frames::dynamic::ric> burnDirection, const unsigned nMaxTriggers = 0)
     {
         return ImpulsiveBurn(nMaxTriggers, BurnTrigger::MEAN_ANOMALY, burnDirection, triggerAnomaly);
     }
@@ -91,7 +91,7 @@ class ImpulsiveBurn {
      * @return ImpulsiveBurn An ImpulsiveBurn Event that triggers at the specified altitude.
      */
     static ImpulsiveBurn
-        trigger_at_altitude(const Distance& triggerAltitude, const UnitVector<frames::dynamic::ric> burnDirection, const unsigned nMaxTriggers = 0)
+        trigger_at_altitude(const Distance& triggerAltitude, const Direction<frames::dynamic::ric> burnDirection, const unsigned nMaxTriggers = 0)
     {
         ImpulsiveBurn burn(nMaxTriggers, BurnTrigger::ALTITUDE, burnDirection, triggerAltitude);
         return burn;
@@ -106,7 +106,7 @@ class ImpulsiveBurn {
      * @return ImpulsiveBurn An ImpulsiveBurn Event that triggers at the specified epoch.
      */
     static ImpulsiveBurn
-        trigger_at_epoch(const Date& triggerEpoch, const UnitVector<frames::dynamic::ric> burnDirection, const unsigned nMaxTriggers = 0)
+        trigger_at_epoch(const Date& triggerEpoch, const Direction<frames::dynamic::ric> burnDirection, const unsigned nMaxTriggers = 0)
     {
         ImpulsiveBurn burn(nMaxTriggers, BurnTrigger::SCHEDULED, burnDirection, triggerEpoch);
         return burn;
@@ -123,7 +123,7 @@ class ImpulsiveBurn {
     ImpulsiveBurn(
         const unsigned nMaxTriggers,
         const BurnTrigger trigger,
-        const UnitVector<frames::dynamic::ric> burnDirection,
+        const Direction<frames::dynamic::ric> burnDirection,
         const Angle triggerAnomaly = 0.0 * astrea::detail::angle_unit
     ) :
         _nMaxTriggers(nMaxTriggers),
@@ -131,7 +131,7 @@ class ImpulsiveBurn {
         _triggerAnomaly(wrap_angle(triggerAnomaly)),
         _triggerAltitude(0.0 * mp_units::si::unit_symbols::km),
         _triggerEpoch(Date()),
-        _burnDirection(burnDirection.unit())
+        _burnDirection(burnDirection.direction())
     {
     }
 
@@ -142,13 +142,13 @@ class ImpulsiveBurn {
      * @param trigger The condition that triggers the burn.
      * @param triggerAltitude The altitude at which the burn should trigger, if the trigger condition is based on altitude.
      */
-    ImpulsiveBurn(const unsigned nMaxTriggers, const BurnTrigger trigger, const UnitVector<frames::dynamic::ric> burnDirection, const Distance triggerAltitude) :
+    ImpulsiveBurn(const unsigned nMaxTriggers, const BurnTrigger trigger, const Direction<frames::dynamic::ric> burnDirection, const Distance triggerAltitude) :
         _nMaxTriggers(nMaxTriggers),
         _trigger(trigger),
         _triggerAnomaly(0.0 * mp_units::angular::unit_symbols::rad),
         _triggerAltitude(triggerAltitude),
         _triggerEpoch(Date()),
-        _burnDirection(burnDirection.unit())
+        _burnDirection(burnDirection.direction())
     {
     }
 
@@ -159,13 +159,13 @@ class ImpulsiveBurn {
      * @param trigger The condition that triggers the burn.
      * @param triggerEpoch The epoch at which the burn should trigger, if the trigger condition is based on a scheduled time.
      */
-    ImpulsiveBurn(const unsigned nMaxTriggers, const BurnTrigger trigger, const UnitVector<frames::dynamic::ric> burnDirection, const Date triggerEpoch) :
+    ImpulsiveBurn(const unsigned nMaxTriggers, const BurnTrigger trigger, const Direction<frames::dynamic::ric> burnDirection, const Date triggerEpoch) :
         _nMaxTriggers(nMaxTriggers),
         _trigger(trigger),
         _triggerAnomaly(0.0 * mp_units::angular::unit_symbols::rad),
         _triggerAltitude(0.0 * mp_units::si::unit_symbols::km),
         _triggerEpoch(triggerEpoch),
-        _burnDirection(burnDirection.unit())
+        _burnDirection(burnDirection.direction())
     {
     }
 
@@ -209,7 +209,7 @@ class ImpulsiveBurn {
     const Angle _triggerAnomaly;
     const Distance _triggerAltitude;
     const Date _triggerEpoch;
-    const UnitVector<frames::dynamic::ric> _burnDirection;
+    const Direction<frames::dynamic::ric> _burnDirection;
 
     /**
      * @brief Measures the anomaly as a trigger.

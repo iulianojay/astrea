@@ -97,7 +97,6 @@ class Sensor : public AccessObject, public astro::Payload<Sensor, SensorParamete
      * @param attachmentPoint The point on the platform where the sensor is attached.
      */
     template <typename Parent_T>
-        requires(std::is_base_of_v<astro::FrameReference, Parent_T>)
     Sensor(const Parent_T& parent, const SensorParameters& parameters) :
         AccessObject(),
         Payload<Sensor, SensorParameters>(parent, parameters)
