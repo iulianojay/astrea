@@ -24,28 +24,29 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 
-#include <astro/propagation/equations_of_motion/instances/CowellsMethod.hpp>
-#include <astro/propagation/equations_of_motion/instances/EquinoctialVop.hpp>
-#include <astro/propagation/equations_of_motion/instances/J2MeanVop.hpp>
-#include <astro/propagation/equations_of_motion/instances/KeplerianVop.hpp>
-#include <astro/propagation/equations_of_motion/instances/TwoBody.hpp>
+#include <astro/propagation/equations_of_motion/CowellsMethod.hpp>
+#include <astro/propagation/equations_of_motion/EquinoctialVop.hpp>
+#include <astro/propagation/equations_of_motion/J2MeanVop.hpp>
+#include <astro/propagation/equations_of_motion/KeplerianVop.hpp>
+#include <astro/propagation/equations_of_motion/TwoBody.hpp>
 
+#include <astro/propagation/force_models/AtmosphericForce.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
-#include <astro/propagation/force_models/instances/AtmosphericForce.hpp>
-#include <astro/propagation/force_models/instances/NBodyForce.hpp>
-#include <astro/propagation/force_models/instances/OblatenessForce.hpp>
-#include <astro/propagation/force_models/instances/SolarRadiationPressure.hpp>
+#include <astro/propagation/force_models/NBodyForce.hpp>
+#include <astro/propagation/force_models/OblatenessForce.hpp>
+#include <astro/propagation/force_models/SolarRadiationPressure.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 
 #include <astro/astro.macros.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/systems/planetary_bodies/Earth/Earth.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
+#include <astro/systems/property_getters.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/utilities/plotting.hpp>
@@ -75,13 +76,21 @@ inline constexpr auto slug = lbf * pow<2>(s) / ft;
 namespace astrea {
 namespace astro {
 
-using namespace planetary_bodies;
+using namespace planets;
 
 namespace tests {
 
 enum EomType { TWO_BODY = 0, COWELLS_METHOD = 1, KEPLERIAN_VOP = 2, EQUINOCTIAL_VOP = 3 };
 enum InitialOrbitType { CIRCULAR = 0, ELLIPTIC = 1 };
 enum VehicleType { ISS = 0, SPHERE = 1, BRICK = 2, CYLINDER = 3 };
+
+namespace astrea::astro {
+template <>
+inline constexpr GravParam get_mu<planets::Earth>()
+{
+    return 398600.436 * pow<3>(km) / pow<2>(s); // different mu value
+}
+} // namespace astrea::astro
 
 
 class Orbital6DofTest : public testing::Test {
@@ -96,7 +105,7 @@ class Orbital6DofTest : public testing::Test {
 
   public:
     Orbital6DofTest() :
-        mu(sys.get_mu()),
+        mu(get_mu<frames::primary.origin>()),
         epoch("2007/324:00:00:00", "%Y/%j:%H:%M:%S"),
         circular(
             RadiusVector<frames::earth::icrf>(-4292.65341 * km, 955.16847 * km, 5139.35657 * km),
@@ -108,11 +117,6 @@ class Orbital6DofTest : public testing::Test {
         ),
         propTime(28800.0 * s)
     {
-        CelestialBodyParameters nasaEarthData = planetary_bodies::DEFAULT_EARTH_PARAMS;
-        nasaEarthData.mu                      = 398600.436 * pow<3>(km) / pow<2>(s); // different mu value
-
-        sys = AstrodynamicsSystem(Earth(nasaEarthData), { CelestialBodyId::SUN });
-
         integrator.switch_fixed_timestep(true);
         integrator.set_timestep(1.0 * s);
         integrator.set_abs_tol(1.0e-13);
@@ -150,17 +154,19 @@ class Orbital6DofTest : public testing::Test {
         switch (vehicleType) {
             case ISS: {
                 sat.set_mass(400'000.0 * kg);
-                sat.set_inertia_tensor(InertiaTensor<frames::dynamic::body>(
-                    1.02e8 * kg * pow<2>(m),  // xx
-                    6.96e6 * kg * pow<2>(m),  // xy
-                    5.48e6 * kg * pow<2>(m),  // xz
-                    6.96e6 * kg * pow<2>(m),  // yx
-                    0.91e8 * kg * pow<2>(m),  // yy
-                    -5.90e5 * kg * pow<2>(m), // yz
-                    5.48e6 * kg * pow<2>(m),  // zx
-                    -5.90e5 * kg * pow<2>(m), // zy
-                    5.48e6 * kg * pow<2>(m)   // zz
-                ));
+                sat.set_inertia_tensor(
+                    InertiaTensor<frames::dynamic::body>(
+                        1.02e8 * kg * pow<2>(m),  // xx
+                        6.96e6 * kg * pow<2>(m),  // xy
+                        5.48e6 * kg * pow<2>(m),  // xz
+                        6.96e6 * kg * pow<2>(m),  // yx
+                        0.91e8 * kg * pow<2>(m),  // yy
+                        -5.90e5 * kg * pow<2>(m), // yz
+                        5.48e6 * kg * pow<2>(m),  // zx
+                        -5.90e5 * kg * pow<2>(m), // zy
+                        5.48e6 * kg * pow<2>(m)   // zz
+                    )
+                );
                 sat.set_ram_area(2.5e3 * m * m);
                 sat.set_lift_area(2.5e3 * m * m);
                 sat.set_solar_area(2.5e3 * m * m);
@@ -221,8 +227,9 @@ class Orbital6DofTest : public testing::Test {
 
     StateHistory run_propagation(const EomType eomId, const ForceModel& forces, const InitialOrbitType& orbitType, const VehicleType vehicleType)
     {
-        OrbitalElements initialElements = (orbitType == CIRCULAR) ? Keplerian(circular, mu) : Keplerian(elliptic, mu);
-        State state0(initialElements, epoch, sys);
+        OrbitalElements initialElements = (orbitType == CIRCULAR) ? Keplerian<frames::earth::icrf>(circular, mu) :
+                                                                    Keplerian<frames::earth::icrf>(elliptic, mu);
+        State state0(initialElements, epoch);
 
         Spacecraft sat = build_spacecraft(orbitType, vehicleType);
         Vehicle vehicle{ sat };
@@ -289,7 +296,7 @@ class Orbital6DofTest : public testing::Test {
                 );
         }
         else {
-            return State({ Cartesian(position, velocity) }, epoch + time, sys);
+            return State({ Cartesian<frames::earth::icrf>(position, velocity) }, epoch + time);
         }
 
         AngularVelocities<frames::dynamic::body, frames::earth::icrf> angularVelocity(0.0 * rad / s, 0.0 * rad / s, 0.0 * rad / s);
@@ -300,7 +307,7 @@ class Orbital6DofTest : public testing::Test {
                 row.bodyAngularVelocityWrtEi_rad_s_Yaw.value() * rad / s
             );
         }
-        return State({ Cartesian(position, velocity) }, epoch + time, sys, Attitude(attitudeAngles, angularVelocity));
+        return State({ Cartesian<frames::earth::icrf>(position, velocity) }, epoch + time, Attitude(attitudeAngles, angularVelocity));
     }
 
     std::vector<std::pair<StateHistory, std::string>> get_checkcase_histories(const std::string& pattern) const
@@ -656,7 +663,6 @@ class Orbital6DofTest : public testing::Test {
 
     std::filesystem::path outputDir;
 
-    AstrodynamicsSystem sys;
     GravParam mu;
     Date epoch;
     Cartesian<frames::earth::icrf> circular;
@@ -686,7 +692,7 @@ TEST_F(Orbital6DofTest, Checkcase2_Propagation)
 TEST_F(Orbital6DofTest, Checkcase3A_4x4Oblateness)
 {
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 4, 4);
+    forces.add<OblatenessForce, planets::Earth, 4, 4>();
 
     const auto propagations = run_all_propagations(forces, CIRCULAR, ISS);
 
@@ -697,7 +703,7 @@ TEST_F(Orbital6DofTest, Checkcase3A_4x4Oblateness)
 TEST_F(Orbital6DofTest, Checkcase3B_8x8Oblateness)
 {
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 8, 8);
+    forces.add<OblatenessForce, planets::Earth, 8, 8>();
 
     const auto propagations = run_all_propagations(forces, CIRCULAR, ISS);
 
@@ -707,10 +713,8 @@ TEST_F(Orbital6DofTest, Checkcase3B_8x8Oblateness)
 
 TEST_F(Orbital6DofTest, Checkcase4_NBody)
 {
-    sys.add_body(CelestialBodyId::MOON);
-
     ForceModel forces;
-    forces.add<NBodyForce>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
 
     const auto propagations = run_all_propagations(forces, CIRCULAR, ISS);
 
@@ -721,7 +725,7 @@ TEST_F(Orbital6DofTest, Checkcase4_NBody)
 TEST_F(Orbital6DofTest, Checkcase5A_SrpSolarMin)
 {
     ForceModel forces;
-    forces.add<NBodyForce>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
     forces.add<SolarRadiationPressure>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, ISS);
@@ -733,7 +737,7 @@ TEST_F(Orbital6DofTest, Checkcase5A_SrpSolarMin)
 TEST_F(Orbital6DofTest, Checkcase5B_SrpSolarMean)
 {
     ForceModel forces;
-    forces.add<NBodyForce>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
     forces.add<SolarRadiationPressure>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, ISS);
@@ -745,7 +749,7 @@ TEST_F(Orbital6DofTest, Checkcase5B_SrpSolarMean)
 TEST_F(Orbital6DofTest, Checkcase5C_SrpSolarMax)
 {
     ForceModel forces;
-    forces.add<NBodyForce>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
     forces.add<SolarRadiationPressure>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, ISS);
@@ -798,11 +802,9 @@ TEST_F(Orbital6DofTest, Checkcase6B_AtmosDynamicSphere)
 
 TEST_F(Orbital6DofTest, Checkcase7A_4x4Oblateness_NBody)
 {
-    sys.add_body(CelestialBodyId::MOON);
-
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 4, 4);
-    forces.add<NBodyForce>();
+    forces.add<OblatenessForce, planets::Earth, 4, 4>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 
@@ -812,11 +814,9 @@ TEST_F(Orbital6DofTest, Checkcase7A_4x4Oblateness_NBody)
 
 TEST_F(Orbital6DofTest, Checkcase7B_8x8Oblateness_NBody)
 {
-    sys.add_body(CelestialBodyId::MOON);
-
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 8, 8);
-    forces.add<NBodyForce>();
+    forces.add<OblatenessForce, planets::Earth, 8, 8>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 
@@ -826,11 +826,9 @@ TEST_F(Orbital6DofTest, Checkcase7B_8x8Oblateness_NBody)
 
 TEST_F(Orbital6DofTest, Checkcase7C_4x4Oblateness_NBody_Drag)
 {
-    sys.add_body(CelestialBodyId::MOON);
-
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 4, 4);
-    forces.add<NBodyForce>();
+    forces.add<OblatenessForce, planets::Earth, 4, 4>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
     forces.add<AtmosphericForce>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
@@ -841,11 +839,9 @@ TEST_F(Orbital6DofTest, Checkcase7C_4x4Oblateness_NBody_Drag)
 
 TEST_F(Orbital6DofTest, Checkcase7D_8x8Oblateness_NBody_Drag)
 {
-    sys.add_body(CelestialBodyId::MOON);
-
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 8, 8);
-    forces.add<NBodyForce>();
+    forces.add<OblatenessForce, planets::Earth, 8, 8>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
     forces.add<AtmosphericForce>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);

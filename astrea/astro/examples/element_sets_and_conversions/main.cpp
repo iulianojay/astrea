@@ -31,22 +31,19 @@ int main()
     // - Classical Orbital Elements (Keplerian)
     // - Modified Equinoctial Elements (Equinoctial)
     // - State Vectors (Cartesian)
-
-    // For now, the Cartesian<frames::earth::icrf> element set is defined in the ECI frame, but future releases will
-    // support other frames as well.
     Cartesian<frames::earth::icrf> cartesian{
         7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s,
     };
     std::cout << "Cartesian: " << cartesian << std::endl;
 
     // Conversions at the instance level are done through constructors
-    AstrodynamicsSystem sys; // Default system is Earth-Moon system
-    const auto& mu = sys.get_mu();
-    Keplerian keplerian{ cartesian, mu };
-    Equinoctial equinoctial{ keplerian, mu };
+    const auto& mu = get_mu<planets::Earth>();
+    Keplerian<frames::earth::icrf> keplerian{ cartesian, mu };
+    Equinoctial<frames::earth::icrf> equinoctial{ keplerian, mu };
     std::cout << "Converted to Keplerian: " << keplerian << std::endl;
     std::cout << "Converted to Equinoctial: " << equinoctial << std::endl;
-    std::cout << "Converted back to Cartesian: " << Cartesian(equinoctial, mu) << std::endl << std::endl;
+    std::cout << "Converted back to Cartesian: " << Cartesian<frames::earth::icrf>(equinoctial, mu) << std::endl
+              << std::endl;
 
     // Each element set also supports common operators **but only for the same element set**
     Cartesian<frames::earth::icrf> cartesian2{
@@ -76,12 +73,13 @@ int main()
     std::cout << "OrbitalElements (from Keplerian): " << elements << std::endl;
 
     // This class can handle conversions internally
-    elements.convert_to_set<Keplerian>(mu);
+    elements.convert_to_set<Keplerian<frames::earth::icrf>>(mu);
     std::cout << "OrbitalElements converted to Keplerian: " << elements << std::endl;
-    const OrbitalElements converted = static_cast<const OrbitalElements&>(elements).convert_to_set<Equinoctial>(mu);
+    const OrbitalElements converted =
+        static_cast<const OrbitalElements&>(elements).convert_to_set<Equinoctial<frames::earth::icrf>>(mu);
     std::cout << "OrbitalElements converted to Equinoctial: " << converted << std::endl;
 
     // And it can return the desired element set directly
-    const Keplerian keplerian2 = elements.in_element_set<Keplerian>(mu);
+    const Keplerian<frames::earth::icrf> keplerian2 = elements.in_element_set<Keplerian<frames::earth::icrf>>(mu);
     std::cout << "Extracted Keplerian conversion: " << keplerian2 << std::endl;
 }

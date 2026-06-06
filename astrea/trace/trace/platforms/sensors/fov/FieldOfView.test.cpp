@@ -12,7 +12,7 @@
  */
 
 #include <gtest/gtest.h>
-#include <gtl/btree.hpp>
+#include <gtl/phmap.hpp>
 
 #include <astro/astro.hpp>
 
@@ -52,7 +52,7 @@ class FieldOfViewTest : public testing::Test {
 
     Angle halfCone;
     CircularFieldOfView circFov;
-    gtl::btree_map<Angle, Angle> points;
+    gtl::flat_hash_map<Angle, Angle> points;
     PolygonalFieldOfView polyFov;
 };
 

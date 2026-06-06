@@ -28,6 +28,7 @@
 
 #include <units/units.hpp>
 
+#include <astro/systems/system_concepts.hpp>
 #include <astro/time/JulianDateClock.hpp>
 #include <astro/time/TerrestrialTimeClock.hpp>
 
@@ -54,21 +55,6 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
  */
 Angle julian_date_to_sidereal_time(const JulianDate& date);
 
-// Forward declaration to avoid circular dependency (CelestialBodyParameters.hpp includes Date.hpp)
-class CelestialBody;
-
-/**
- * @brief Compute the equivalent of Greenwich Sidereal Time for an arbitrary celestial body.
- *
- * Computes the accumulated rotation angle of the body's prime meridian relative to its
- * inertial reference direction since J2000, using the body's rotation rate.
- *
- * @param date The Julian date at which to evaluate the angle.
- * @param body The celestial body whose prime meridian angle is desired.
- * @return Angle The body's prime meridian rotation angle, wrapped to [0, 2π).
- */
-Angle julian_date_to_body_sidereal_time(const JulianDate& date, const CelestialBody& body);
-
 /**
  * @brief Class representing a date in the astrea astro library.
  *
@@ -86,7 +72,7 @@ class Date {
      *
      * @param jdate The JulianDate to initialize the Date object.
      */
-    Date(const JulianDate& jdate = J2000) :
+    constexpr Date(const JulianDate& jdate = J2000) :
         _julianDate(jdate)
     {
     }
@@ -277,7 +263,11 @@ class Date {
      * @param body The celestial body whose prime meridian angle is desired.
      * @return Angle The body's prime meridian rotation angle, wrapped to [0, 2π).
      */
-    Angle body_sidereal_time(const CelestialBody& body) const;
+    template <IsCelestialBody auto _body_>
+    Angle body_sidereal_time() const
+    {
+        return julian_date_to_body_sidereal_time<_body_>(_julianDate);
+    }
 
   private:
     JulianDate _julianDate; //!< Julian date representation of the Date object

@@ -1,2 +1,0 @@
-# Strongly Typed Frames
-

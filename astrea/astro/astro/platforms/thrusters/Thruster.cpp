@@ -13,8 +13,8 @@
 
 #include <astro/platforms/thrusters/Thruster.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 
 namespace astrea {
 namespace astro {

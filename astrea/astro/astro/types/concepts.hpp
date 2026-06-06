@@ -43,31 +43,33 @@ concept IsConstructableTo = requires(T elements, const GravParam& mu) {
  * @brief Concept to check if a type can be converted to Cartesian elements.
  *
  * @tparam T The type to check.
- * @tparam Frame_T The frame type to check.
+ * @tparam frame The frame type to check.
  */
-template <typename T, typename Frame_T>
+template <typename T, IsFrame auto frame>
 concept HasDirectCartesianConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_cartesian(mu) } -> std::same_as<Cartesian<Frame_T>>;
+    { elements.to_cartesian(mu) } -> std::same_as<Cartesian<frame>>;
 };
 
 /**
  * @brief Concept to check if a type can be converted to Keplerian elements.
  *
  * @tparam T The type to check.
+ * @tparam frame The frame type to check.
  */
-template <typename T>
+template <typename T, IsFrame auto frame>
 concept HasDirectKeplerianConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_keplerian(mu) } -> std::same_as<Keplerian>;
+    { elements.to_keplerian(mu) } -> std::same_as<Keplerian<frame>>;
 };
 
 /**
  * @brief Concept to check if a type can be converted to Equinoctial elements.
  *
  * @tparam T The type to check.
+ * @tparam frame The frame type to check.
  */
-template <typename T>
+template <typename T, IsFrame auto frame>
 concept HasDirectEquinoctialConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_equinoctial(mu) } -> std::same_as<Equinoctial>;
+    { elements.to_equinoctial(mu) } -> std::same_as<Equinoctial<frame>>;
 };
 
 /**

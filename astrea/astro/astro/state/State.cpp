@@ -37,28 +37,25 @@ State::State(const StateHistory& history)
 }
 
 
-State State::from_vector(const std::vector<Unitless>& vec, const std::size_t idx, const AstrodynamicsSystem& sys)
+State State::from_vector(const std::vector<Unitless>& vec, const std::size_t idx)
 {
-    if (vec.size() == 6) { return State(OrbitalElements::from_vector(vec, idx), Date(), sys); }
+    if (vec.size() == 6) { return State(OrbitalElements::from_vector(vec, idx), Date()); }
 
     const auto elementValues  = std::vector<Unitless>(vec.begin(), vec.begin() + 6);
     const auto attitudeValues = std::vector<Unitless>(vec.begin() + 6, vec.end());
-    return State(OrbitalElements::from_vector(elementValues, idx), Date(), sys, Attitude::from_vector(attitudeValues));
+    return State(OrbitalElements::from_vector(elementValues, idx), Date(), Attitude::from_vector(attitudeValues));
 }
 
 bool State::operator==(const State& other) const
 {
-    return _epoch == other._epoch && _elements == other._elements && _system == other._system &&
-           _attitude.has_value() == other._attitude.has_value() &&
+    return _epoch == other._epoch && _elements == other._elements && _attitude.has_value() == other._attitude.has_value() &&
            (!_attitude.has_value() || _attitude.value() == other._attitude.value());
 }
 
 State State::operator+(const State& other) const
 {
-    validate_system(other);
     return { _elements + other._elements,
              _epoch,
-             get_system(),
              _attitude.has_value() && other._attitude.has_value() ?
                  std::optional<Attitude>(_attitude.value() + other._attitude.value()) :
                  std::nullopt };
@@ -66,7 +63,6 @@ State State::operator+(const State& other) const
 
 State& State::operator+=(const State& other)
 {
-    validate_system(other);
     _elements += other._elements;
     if (_attitude.has_value() && other._attitude.has_value()) { _attitude.value() += other._attitude.value(); }
     return *this;
@@ -74,10 +70,8 @@ State& State::operator+=(const State& other)
 
 State State::operator-(const State& other) const
 {
-    validate_system(other);
     return { _elements - other._elements,
              _epoch,
-             get_system(),
              _attitude.has_value() && other._attitude.has_value() ?
                  std::optional<Attitude>(_attitude.value() - other._attitude.value()) :
                  std::nullopt };
@@ -85,7 +79,6 @@ State State::operator-(const State& other) const
 
 State& State::operator-=(const State& other)
 {
-    validate_system(other);
     _elements -= other._elements;
     if (_attitude.has_value() && other._attitude.has_value()) { _attitude.value() -= other._attitude.value(); }
     return *this;
@@ -93,7 +86,7 @@ State& State::operator-=(const State& other)
 
 State State::operator*(const Unitless& scalar) const
 {
-    return { _elements * scalar, _epoch, get_system(), _attitude }; // attitude shouldn't scale
+    return { _elements * scalar, _epoch, _attitude }; // attitude shouldn't scale
 }
 
 State& State::operator*=(const Unitless& scalar)
@@ -104,7 +97,7 @@ State& State::operator*=(const Unitless& scalar)
 
 State State::operator/(const Unitless& scalar) const
 {
-    return { _elements / scalar, _epoch, get_system(), _attitude }; // attitude shouldn't scale
+    return { _elements / scalar, _epoch, _attitude }; // attitude shouldn't scale
 }
 
 State& State::operator/=(const Unitless& scalar)
@@ -116,27 +109,16 @@ State& State::operator/=(const Unitless& scalar)
 StatePartial State::operator/(const Time& divisor) const
 {
     return { _epoch,
-             get_system(),
              _elements / divisor,
              _attitude.has_value() ? std::optional<AttitudePartials>(_attitude.value() / divisor) : std::nullopt };
-}
-
-void State::validate_system(const State& other) const
-{
-    if (&get_system() != &other.get_system()) {
-        throw std::runtime_error("States belong to different astrodynamics systems.");
-    }
 }
 
 State StatePartial::operator*(const Time& time) const
 {
     return { _elementPartials * time,
              _epoch + time,
-             get_system(),
              _attitudePartial.has_value() ? std::optional<Attitude>(_attitudePartial.value() * time) : std::nullopt };
 }
-
-const AstrodynamicsSystem& StatePartial::get_system() const { return *_system; }
 
 const Date& StatePartial::get_epoch() const { return _epoch; }
 

@@ -115,8 +115,7 @@ State StateHistory::get_state_at(const Date& date, const bool allowApproximation
     const State& preState              = *std::prev(iter);
     const OrbitalElements& preElements = preState.get_elements();
 
-    const AstrodynamicsSystem& system = preState.get_system();
-    const auto& mu                    = system.get_mu();
+    const auto& mu = get_mu<frames::primary.origin>();
 
     // Normalize to initial date for simplicity
     const Time time0 = 0.0 * astrea::detail::time_unit;
@@ -124,7 +123,7 @@ State StateHistory::get_state_at(const Date& date, const bool allowApproximation
     const Time time  = date - preDate;
 
     const OrbitalElements interpolatedElements = preElements.interpolate(time0, timef, postElements, mu, time);
-    return State({ interpolatedElements, date, system });
+    return State({ interpolatedElements, date });
 
     // // Insert if we want this to store
     // _states[date] = interpolatedState;

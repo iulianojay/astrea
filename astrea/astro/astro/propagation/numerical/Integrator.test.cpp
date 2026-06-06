@@ -21,7 +21,7 @@
 #include <astro/propagation/equations_of_motion/StateTransitionMatrix.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 #include <astro/state/StateHistory.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -63,7 +63,6 @@ class IntegratorTest : public ::testing::Test {
 
     void SetUp() override {}
 
-    AstrodynamicsSystem sys;
     Date epoch;
     Vehicle vehicle;
     State state;
