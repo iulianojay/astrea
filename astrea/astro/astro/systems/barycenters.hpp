@@ -45,37 +45,37 @@ inline constexpr struct SolarSystemBarycenter final
       CelestialBodyTypePack<star::Sun, planets::Mercury, planets::Venus, planets::Earth, planets::Mars, planets::Jupiter, planets::Saturn, planets::Uranus, planets::Neptune> {
 } SolarSystemBarycenter;
 
-inline constexpr struct MercuryBarycenter final : Barycenter<"Mercury Barycenter", SolarSystemBarycenter>,
-                                                  CelestialBodyTypePack<star::Sun, planets::Mercury> {
-} MercuryBarycenter;
+inline constexpr struct MercurySunBarycenter final : Barycenter<"Mercury Barycenter", SolarSystemBarycenter>,
+                                                     CelestialBodyTypePack<star::Sun, planets::Mercury> {
+} MercurySunBarycenter;
 
-inline constexpr struct VenusBarycenter final : Barycenter<"Venus Barycenter", SolarSystemBarycenter>,
-                                                CelestialBodyTypePack<star::Sun, planets::Venus> {
-} VenusBarycenter;
+inline constexpr struct VenusSunBarycenter final : Barycenter<"Venus Barycenter", SolarSystemBarycenter>,
+                                                   CelestialBodyTypePack<star::Sun, planets::Venus> {
+} VenusSunBarycenter;
 
-inline constexpr struct EarthBarycenter final : Barycenter<"Earth Barycenter", SolarSystemBarycenter>,
-                                                CelestialBodyTypePack<star::Sun, planets::Earth> {
-} EarthBarycenter;
+inline constexpr struct EarthSunBarycenter final : Barycenter<"Earth Barycenter", SolarSystemBarycenter>,
+                                                   CelestialBodyTypePack<star::Sun, planets::Earth> {
+} EarthSunBarycenter;
 
-inline constexpr struct MarsBarycenter final : Barycenter<"Mars Barycenter", SolarSystemBarycenter>,
-                                               CelestialBodyTypePack<star::Sun, planets::Mars> {
-} MarsBarycenter;
+inline constexpr struct MarsSunBarycenter final : Barycenter<"Mars Barycenter", SolarSystemBarycenter>,
+                                                  CelestialBodyTypePack<star::Sun, planets::Mars> {
+} MarsSunBarycenter;
 
-inline constexpr struct JupiterBarycenter final : Barycenter<"Jupiter Barycenter", SolarSystemBarycenter>,
-                                                  CelestialBodyTypePack<star::Sun, planets::Jupiter> {
-} JupiterBarycenter;
+inline constexpr struct JupiterSunBarycenter final : Barycenter<"Jupiter Barycenter", SolarSystemBarycenter>,
+                                                     CelestialBodyTypePack<star::Sun, planets::Jupiter> {
+} JupiterSunBarycenter;
 
-inline constexpr struct SaturnBarycenter final : Barycenter<"Saturn Barycenter", SolarSystemBarycenter>,
-                                                 CelestialBodyTypePack<star::Sun, planets::Saturn> {
-} SaturnBarycenter;
+inline constexpr struct SaturnSunBarycenter final : Barycenter<"Saturn Barycenter", SolarSystemBarycenter>,
+                                                    CelestialBodyTypePack<star::Sun, planets::Saturn> {
+} SaturnSunBarycenter;
 
-inline constexpr struct UranusBarycenter final : Barycenter<"Uranus Barycenter", SolarSystemBarycenter>,
-                                                 CelestialBodyTypePack<star::Sun, planets::Uranus> {
-} UranusBarycenter;
+inline constexpr struct UranusSunBarycenter final : Barycenter<"Uranus Barycenter", SolarSystemBarycenter>,
+                                                    CelestialBodyTypePack<star::Sun, planets::Uranus> {
+} UranusSunBarycenter;
 
-inline constexpr struct NeptuneBarycenter final : Barycenter<"Neptune Barycenter", SolarSystemBarycenter>,
-                                                  CelestialBodyTypePack<star::Sun, planets::Neptune> {
-} NeptuneBarycenter;
+inline constexpr struct NeptuneSunBarycenter final : Barycenter<"Neptune Barycenter", SolarSystemBarycenter>,
+                                                     CelestialBodyTypePack<star::Sun, planets::Neptune> {
+} NeptuneSunBarycenter;
 
 inline constexpr struct EarthMoonBarycenter final : Barycenter<"Earth-Moon Barycenter", SolarSystemBarycenter>,
                                                     CelestialBodyTypePack<planets::Earth, moons::Moon> {
