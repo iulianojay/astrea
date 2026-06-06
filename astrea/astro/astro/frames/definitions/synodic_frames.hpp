@@ -18,7 +18,7 @@
  */
 #pragma once
 
-#include <astro/frames/framework/BodyFixedFrame.hpp>
+#include <astro/frames/framework/SynodicFrame.hpp>
 #include <astro/systems/celestial_bodies.hpp>
 
 namespace astrea {
@@ -27,19 +27,19 @@ namespace frames {
 
 namespace mercury_sun_barycenter {
 inline constexpr struct mss final
-    : SynodicFrame<"Mercury-Sun Synodic Frame", barycenters::MercurySunBarycenter, planets::Mercury, suns::Sun> {
+    : SynodicFrame<"Mercury-Sun Synodic Frame", barycenters::MercurySunBarycenter, planets::Mercury, star::Sun> {
 } mss;
 } // namespace mercury_sun_barycenter
 
 namespace venus_sun_barycenter {
 inline constexpr struct vss final
-    : SynodicFrame<"Venus-Sun Synodic Frame", barycenters::VenusSunBarycenter, planets::Venus, suns::Sun> {
+    : SynodicFrame<"Venus-Sun Synodic Frame", barycenters::VenusSunBarycenter, planets::Venus, star::Sun> {
 } vss;
 } // namespace venus_sun_barycenter
 
 namespace earth_sun_barycenter {
 inline constexpr struct ess final
-    : SynodicFrame<"Earth-Sun Synodic Frame", barycenters::EarthSunBarycenter, planets::Earth, suns::Sun> {
+    : SynodicFrame<"Earth-Sun Synodic Frame", barycenters::EarthSunBarycenter, planets::Earth, star::Sun> {
 } ess;
 } // namespace earth_sun_barycenter
 
@@ -51,31 +51,31 @@ inline constexpr struct ems final
 
 namespace mars_sun_barycenter {
 inline constexpr struct mss final
-    : SynodicFrame<"Mars-Sun Synodic Frame", barycenters::MarsSunBarycenter, planets::Mars, suns::Sun> {
+    : SynodicFrame<"Mars-Sun Synodic Frame", barycenters::MarsSunBarycenter, planets::Mars, star::Sun> {
 } mss;
 } // namespace mars_sun_barycenter
 
 namespace jupiter_sun_barycenter {
 inline constexpr struct jss final
-    : SynodicFrame<"Jupiter-Sun Synodic Frame", barycenters::JupiterSunBarycenter, planets::Jupiter, suns::Sun> {
+    : SynodicFrame<"Jupiter-Sun Synodic Frame", barycenters::JupiterSunBarycenter, planets::Jupiter, star::Sun> {
 } jss;
 } // namespace jupiter_sun_barycenter
 
 namespace saturn_sun_barycenter {
 inline constexpr struct sss final
-    : SynodicFrame<"Saturn-Sun Synodic Frame", barycenters::SaturnSunBarycenter, planets::Saturn, suns::Sun> {
+    : SynodicFrame<"Saturn-Sun Synodic Frame", barycenters::SaturnSunBarycenter, planets::Saturn, star::Sun> {
 } sss;
 } // namespace saturn_sun_barycenter
 
 namespace uranus_sun_barycenter {
 inline constexpr struct uss final
-    : SynodicFrame<"Uranus-Sun Synodic Frame", barycenters::UranusSunBarycenter, planets::Uranus, suns::Sun> {
+    : SynodicFrame<"Uranus-Sun Synodic Frame", barycenters::UranusSunBarycenter, planets::Uranus, star::Sun> {
 } uss;
 } // namespace uranus_sun_barycenter
 
 namespace neptune_sun_barycenter {
 inline constexpr struct nss final
-    : SynodicFrame<"Neptune-Sun Synodic Frame", barycenters::NeptuneSunBarycenter, planets::Neptune, suns::Sun> {
+    : SynodicFrame<"Neptune-Sun Synodic Frame", barycenters::NeptuneSunBarycenter, planets::Neptune, star::Sun> {
 } nss;
 } // namespace neptune_sun_barycenter
 

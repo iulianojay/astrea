@@ -51,29 +51,5 @@ inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& 
     return DirectionCosineMatrix<in_frame, out_frame>::Z(-gst);
 }
 
-/**
- * @brief DCM from any Earth-centred ICRF frame to the Earth-Moon Synodic (EMS) frame.
- *
- * Identified by: in_frame centred on Earth with ICRF axes, out_frame with a
- * SynodicAxis<Earth,Moon> axis (i.e. the ems frame).  Using a constrained
- * template rather than an explicit specialisation avoids naming
- * frames::earth::icrf / frames::earth::ems at declaration time, which
- * would fail when this header is reached via a circular include chain before
- * body_centered_inertial_frames.hpp has finished.
- */
-template <IsFrame auto in_frame, IsFrame auto out_frame>
-    requires(
-        in_frame.origin == planets::Earth && in_frame.axis == axes::icrf &&
-        std::is_same_v<std::decay_t<decltype(out_frame.axis)>, SynodicAxis<planets::Earth, moons::Moon>>
-    )
-inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
-{
-    using mp_units::angular::atan2;
-
-    const auto rEarth2Moon = get_relative_position<planets::Earth, moons::Moon>(date);
-    const Angle lambda     = atan2(rEarth2Moon[1], rEarth2Moon[0]);
-    return DirectionCosineMatrix<in_frame, out_frame>::Z(-lambda);
-}
-
 } // namespace astro
 } // namespace astrea

@@ -47,9 +47,9 @@ inline constexpr struct j2000 final : Frame<"Venus J2000", planets::Venus, axes:
 } // namespace venus
 
 namespace earth {
-inline constexpr struct icrf final : Frame<"Earth ICRF", planets::Earth, axes::icrf> {
+inline constexpr struct icrf final : Frame<"GCRF", planets::Earth, axes::icrf> {
 } icrf;
-inline constexpr struct j2000 final : Frame<"Earth J2000", planets::Earth, axes::j2000> {
+inline constexpr struct j2000 final : Frame<"EME2000", planets::Earth, axes::j2000> {
 } j2000;
 } // namespace earth
 
