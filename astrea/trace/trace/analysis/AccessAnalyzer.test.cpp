@@ -17,13 +17,12 @@ class AccessAnalyzerTest : public testing::Test {
 
     ViewerConstellation make_constellation()
     {
-        ViewerConstellation constellation(sys, startDate, 7000.0 * km, 53.0 * deg, 1, 1, 2.0);
+        ViewerConstellation constellation(startDate, 7000.0 * km, 53.0 * deg, 1, 1, 2.0);
         Integrator integrator;
         constellation.propagate(endDate, integrator);
         return constellation;
     }
 
-    AstrodynamicsSystem sys;
     Date startDate;
     Time resolution = 60.0 * s;
     Date endDate    = startDate + 30.0 * resolution;
@@ -35,11 +34,11 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST_F(AccessAnalyzerTest, Constructor) { ASSERT_NO_THROW(AccessAnalyzer(resolution, startDate, endDate, sys)); }
+TEST_F(AccessAnalyzerTest, Constructor) { ASSERT_NO_THROW(AccessAnalyzer(resolution, startDate, endDate)); }
 
 TEST_F(AccessAnalyzerTest, FindInternalAccessesWithPropagatedMultiViewerConstellation)
 {
-    AccessAnalyzer analyzer(resolution, startDate, endDate, sys);
+    AccessAnalyzer analyzer(resolution, startDate, endDate);
     ViewerConstellation constellation = make_constellation();
 
     ASSERT_EQ(constellation.size(), 1);
@@ -50,11 +49,11 @@ TEST_F(AccessAnalyzerTest, FindInternalAccessesWithPropagatedMultiViewerConstell
 
 TEST_F(AccessAnalyzerTest, FindAccessesWithEmptyGroundArchitectureReturnsEmpty)
 {
-    AccessAnalyzer analyzer(resolution, startDate, endDate, sys);
+    AccessAnalyzer analyzer(resolution, startDate, endDate);
     ViewerConstellation constellation = make_constellation();
     ASSERT_EQ(constellation.size(), 1);
 
-    GroundArchitecture grounds(std::vector<GroundStation>{});
+    GroundArchitecture<astro::planets::Earth> grounds(std::vector<GroundStation<astro::planets::Earth>>{});
 
     const AccessArray accesses = analyzer.find_accesses(constellation, grounds, false);
     ASSERT_EQ(accesses.size(), 0);
@@ -62,11 +61,11 @@ TEST_F(AccessAnalyzerTest, FindAccessesWithEmptyGroundArchitectureReturnsEmpty)
 
 TEST_F(AccessAnalyzerTest, FindAccessesWithEmptyGridReturnsEmpty)
 {
-    AccessAnalyzer analyzer(resolution, startDate, endDate, sys);
+    AccessAnalyzer analyzer(resolution, startDate, endDate);
     ViewerConstellation constellation = make_constellation();
     ASSERT_EQ(constellation.size(), 1);
 
-    Grid grid;
+    Grid<astro::planets::Earth> grid;
 
     const AccessArray accesses = analyzer.find_accesses(constellation, grid, false);
     ASSERT_EQ(accesses.size(), 0);
@@ -74,11 +73,11 @@ TEST_F(AccessAnalyzerTest, FindAccessesWithEmptyGridReturnsEmpty)
 
 TEST_F(AccessAnalyzerTest, IncludeInternalAccessesWithEmptyGridForPropagatedMultiViewerConstellation)
 {
-    AccessAnalyzer analyzer(resolution, startDate, endDate, sys);
+    AccessAnalyzer analyzer(resolution, startDate, endDate);
     ViewerConstellation constellation = make_constellation();
     ASSERT_EQ(constellation.size(), 1);
 
-    Grid grid;
+    Grid<astro::planets::Earth> grid;
 
     const AccessArray accesses = analyzer.find_accesses(constellation, grid, true);
     ASSERT_GE(accesses.size(), 0);

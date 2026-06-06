@@ -24,7 +24,8 @@
 #include <utilities/IdProvider.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/instances/dynamic_body_frame.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
 #include <astro/platforms/InertiaTensor.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
@@ -47,12 +48,11 @@ class Spacecraft : public ThrusterPlatform {
     Spacecraft() { _id = utilities::IdProvider::get_next_id<"Platform">(); };
 
     /**
-     * @brief Constructs a Spacecraft with a GeneralPerturbations object and an AstrodynamicsSystem.
+     * @brief Constructs a Spacecraft with a GeneralPerturbations object.
      *
      * @param gp The GeneralPerturbations object containing initial parameters.
-     * @param sys The AstrodynamicsSystem to which this spacecraft belongs.
      */
-    Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem& sys);
+    Spacecraft(const GeneralPerturbations& gp);
 
     /**
      * @brief Virtual destructor for Spacecraft.
@@ -71,17 +71,17 @@ class Spacecraft : public ThrusterPlatform {
      * @brief Gets the inertial position of the spacecraft at a specific date.
      *
      * @param date The date at which to retrieve the position.
-     * @return RadiusVector<frames::earth::icrf> The inertial position of the spacecraft.
+     * @return RadiusVector<frames::primary> The inertial position of the spacecraft.
      */
-    RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const override;
+    RadiusVector<frames::primary> get_position(const Date& date) const;
 
     /**
      * @brief Gets the inertial velocity of the spacecraft at a specific date.
      *
      * @param date The date at which to retrieve the velocity.
-     * @return VelocityVector<frames::earth::icrf> The inertial velocity of the spacecraft.
+     * @return VelocityVector<frames::primary> The inertial velocity of the spacecraft.
      */
-    VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const override;
+    VelocityVector<frames::primary> get_velocity(const Date& date) const;
 
     /**
      * @brief Stores the state history of the spacecraft.
@@ -185,7 +185,7 @@ class Spacecraft : public ThrusterPlatform {
      * @brief Gets the thrust of the spacecraft.
      *
      * @param state The state of the spacecraft for which to get the thrust.
-     * @return ForceVector<frames::earth::icrf> The thrust of the spacecraft.
+     * @return ForceVector<frames::primary> The thrust of the spacecraft.
      */
     Perturbation get_control_authority(const State& state) const;
 

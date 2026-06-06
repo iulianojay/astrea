@@ -46,9 +46,8 @@ int main()
             const Cartesian<frames::earth::icrf> cartesian = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
             // Build out a burn in the RIC frame, pointing in the nadir direction
-            using RIC       = astro::frames::dynamic::ric;
-            const RIC frame = frames::dynamic::ric::instantaneous(cartesian.get_position(), cartesian.get_velocity());
-            const ForceVector<RIC> nadirThrust{ -1.0 * N, 0.0 * N, 0.0 * N };
+            const auto frame = frames::dynamic::ric.instantaneous(cartesian.get_position(), cartesian.get_velocity());
+            const ForceVector<astro::frames::dynamic::ric> nadirThrust{ -1.0 * N, 0.0 * N, 0.0 * N };
 
             std::cout << "Applying continuous thrust force: " << _name << " at time " << date << std::endl;
             std::cout << nadirThrust << std::endl;
@@ -58,7 +57,7 @@ int main()
             const auto thrustForce = frame.rotate_out_of_this_frame(nadirThrust, date);
             std::cout << "Thrust force in inertial frame: " << thrustForce << std::endl;
 
-            const CartesianVector<Length, RIC> thrusterOffset{ 0.0 * m, 1.0 * m, 0.0 * m };
+            const CartesianVector<Length, astro::frames::dynamic::ric> thrusterOffset{ 0.0 * m, 1.0 * m, 0.0 * m };
             const auto thrustTorque = frame.rotate_out_of_this_frame(nadirThrust.cross(thrusterOffset), date);
 
             return { .force = thrustForce, .torque = thrustTorque };
@@ -69,13 +68,12 @@ int main()
     };
 
     // Input arguments are forwarded to the constructor of the Force subclass
-    AstrodynamicsSystem sys;
     ForceModel forceModel;
     forceModel.add<ContinuousThrust>("My Continuous Thrust");
 
     // During propagation, the force model is queried for the total acceleration
     Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 7000.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s };
-    State state(cart, Date(), sys);
+    State state(cart, Date());
     const auto [totalAcceleration, totalTorque] = forceModel.compute_perturbations(state, Vehicle());
     std::cout << "Total Acceleration: " << totalAcceleration << std::endl;
     std::cout << "Total Torque: " << totalTorque << std::endl;

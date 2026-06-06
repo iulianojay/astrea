@@ -168,10 +168,8 @@ nav:
       - Examples: examples/index.md
       - Fundamentals:
           - Strongly Typed Units: examples/fundamentals/strongly_typed_units.md
-          - Strongly Typed Frames: examples/fundamentals/strongly_typed_frames.md
           - Time Systems: examples/fundamentals/time_systems.md
           - State Representations: examples/fundamentals/state_representations.md
-          - Astrodynamic Systems: examples/fundamentals/astrodynamic_systems.md
           - Propagation:
             - Numerical Integration: examples/fundamentals/propagation/numerical_integration.md
             - Lambert Solutions: examples/fundamentals/propagation/lambert_solutions.md
@@ -180,7 +178,7 @@ nav:
             - Events: examples/fundamentals/propagation/events.md
             - Vehicles: examples/fundamentals/propagation/vehicles.md
           - Frames:
-            - Strongly Typed Frames: examples/fundamentals/frames/strongly_typed_frames.md
+            - Introduction to Strongly Typed Frames: examples/fundamentals/frames/introduction.md
             - Frame Transformations: examples/fundamentals/frames/frame_transformations.md
             - Cartesian Vectors: examples/fundamentals/frames/cartesian_vectors.md
       - Advanced:

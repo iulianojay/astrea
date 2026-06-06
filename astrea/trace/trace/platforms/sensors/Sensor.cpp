@@ -13,18 +13,19 @@
 
 #include <trace/platforms/sensors/Sensor.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/FrameReference.hpp>
-#include <astro/frames/dynamic_frames.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 
 namespace astrea {
 namespace trace {
 
 bool Sensor::contains(const astro::RadiusVector<astro::frames::earth::icrf>& sensor2target, const astro::Date& date) const
 {
-    if (!_parameters.get_fov()) { return false; }                        // No FOV means no access
-    const astro::frames::dynamic::ric frame(_parent);                    // Convert to RIC frame of parent object
+    if (!_parameters.get_fov()) { return false; } // No FOV means no access
+    const astro::RadiusVector<astro::frames::earth::icrf> parentPosition   = get_parent()->get_position(date);
+    const astro::VelocityVector<astro::frames::earth::icrf> parentVelocity = get_parent()->get_velocity(date);
+    const auto frame = astro::frames::dynamic::ric.instantaneous(parentPosition, parentVelocity); // RIC frame of parent
     const astro::RadiusVector<astro::frames::earth::icrf> boresightEci = // Rotate boresight from RIC to ECI frame
         frame.rotate_out_of_this_frame(_parameters.get_boresight(), date); // Don't convert to avoid re-centering of boresight
     return _parameters.get_fov()->contains(boresightEci, sensor2target); // Check if the target is within the FOV

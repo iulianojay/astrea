@@ -37,20 +37,19 @@ int main()
     auto start = std::chrono::steady_clock::now();
 
     // Setup system
-    AstrodynamicsSystem sys;
     Date epoch = Date::now();
 
     // Build constellation
-    Keplerian initialElements = Keplerian::LEO();
+    Keplerian<frames::earth::icrf> initialElements = Keplerian<frames::earth::icrf>::LEO();
     initialElements.set_eccentricity(0.001 * one);
     initialElements.set_inclination(25.0 * deg);
 
-    State state0(initialElements, epoch, sys);
+    State state0(initialElements, epoch);
     Spacecraft sat;
 
     // Force model
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 100, 100);
+    forces.add<OblatenessForce, 100, 100>();
     forces.add<SolarRadiationPressure>();
     forces.add<AtmosphericForce>();
     forces.add<NBodyForce>();

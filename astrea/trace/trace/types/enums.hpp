@@ -21,7 +21,7 @@
 #include <array>
 #include <string>
 
-#include <gtl/btree.hpp>
+#include <gtl/phmap.hpp>
 
 #include <trace/types/typedefs.hpp>
 
@@ -39,10 +39,10 @@ enum class StatType : EnumType {
 };
 
 static const std::array<StatType, 4> ALL_STAT_TYPES = { StatType::MIN, StatType::AVG, StatType::MAX, StatType::PCT };
-static const gtl::btree_map<StatType, std::string> STAT_TYPE_STRINGS = { { StatType::MIN, "MIN" },
-                                                                         { StatType::AVG, "AVG" },
-                                                                         { StatType::MAX, "MAX" },
-                                                                         { StatType::PCT, "PCT" } };
+static const gtl::flat_hash_map<StatType, std::string> STAT_TYPE_STRINGS = { { StatType::MIN, "MIN" },
+                                                                             { StatType::AVG, "AVG" },
+                                                                             { StatType::MAX, "MAX" },
+                                                                             { StatType::PCT, "PCT" } };
 
 /**
  * @brief Enumeration for different rise/set metrics.
@@ -53,8 +53,8 @@ enum class RiseSetMetric : EnumType {
 };
 
 static const std::array<RiseSetMetric, 2> ALL_RISE_SET_METRICS = { RiseSetMetric::GAP, RiseSetMetric::ACCESS_TIME };
-static const gtl::btree_map<RiseSetMetric, std::string> RISE_SET_METRIC_STRINGS = { { RiseSetMetric::GAP, "GAP" },
-                                                                                    { RiseSetMetric::ACCESS_TIME, "ACCESS_TIME" } };
+static const gtl::flat_hash_map<RiseSetMetric, std::string> RISE_SET_METRIC_STRINGS = { { RiseSetMetric::GAP, "GAP" },
+                                                                                        { RiseSetMetric::ACCESS_TIME, "ACCESS_TIME" } };
 /**
  * @brief Enumeration for different access metrics.
  */
@@ -64,8 +64,8 @@ enum class AccessMetric : EnumType {
 };
 
 static const std::array<AccessMetric, 2> ALL_ACCESS_METRICS = { AccessMetric::MTTA, AccessMetric::AVG_DAILY_VIS };
-static const gtl::btree_map<AccessMetric, std::string> ACCESS_METRIC_STRINGS = { { AccessMetric::MTTA, "MTTA" },
-                                                                                 { AccessMetric::AVG_DAILY_VIS, "AVG_DAILY_VIS" } };
+static const gtl::flat_hash_map<AccessMetric, std::string> ACCESS_METRIC_STRINGS = { { AccessMetric::MTTA, "MTTA" },
+                                                                                     { AccessMetric::AVG_DAILY_VIS, "AVG_DAILY_VIS" } };
 
 /**
  * @brief Enumeration for different grid types.
@@ -78,16 +78,16 @@ enum class GridType : EnumType {
     MANUAL       //!< Manual grid with user-defined points
 };
 
-static const std::array<GridType, 5> ALL_GRID_TYPES                  = { GridType::UNIFORM,
-                                                                         GridType::EQUAL_AREA,
-                                                                         GridType::WEIGHTED_NS,
-                                                                         GridType::WEIGHTED_EW,
-                                                                         GridType::MANUAL };
-static const gtl::btree_map<GridType, std::string> GRID_TYPE_STRINGS = { { GridType::UNIFORM, "UNIFORM" },
-                                                                         { GridType::EQUAL_AREA, "EQUAL_AREA" },
-                                                                         { GridType::WEIGHTED_NS, "WEIGHTED_NS" },
-                                                                         { GridType::WEIGHTED_EW, "WEIGHTED_EW" },
-                                                                         { GridType::MANUAL, "MANUAL" } };
+static const std::array<GridType, 5> ALL_GRID_TYPES                      = { GridType::UNIFORM,
+                                                                             GridType::EQUAL_AREA,
+                                                                             GridType::WEIGHTED_NS,
+                                                                             GridType::WEIGHTED_EW,
+                                                                             GridType::MANUAL };
+static const gtl::flat_hash_map<GridType, std::string> GRID_TYPE_STRINGS = { { GridType::UNIFORM, "UNIFORM" },
+                                                                             { GridType::EQUAL_AREA, "EQUAL_AREA" },
+                                                                             { GridType::WEIGHTED_NS, "WEIGHTED_NS" },
+                                                                             { GridType::WEIGHTED_EW, "WEIGHTED_EW" },
+                                                                             { GridType::MANUAL, "MANUAL" } };
 
 } // namespace trace
 } // namespace astrea

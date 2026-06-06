@@ -21,7 +21,7 @@
 
 #include <mp-units/math.h>
 
-#include <astro/systems/planetary_bodies/Earth/Earth.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <astro/utilities/conversions.hpp>
 
 using namespace mp_units;
@@ -75,11 +75,6 @@ std::string Date::epoch() const
 
 Angle Date::gmst() const { return julian_date_to_sidereal_time(_julianDate); }
 
-Angle Date::body_sidereal_time(const CelestialBody& body) const
-{
-    return julian_date_to_body_sidereal_time(_julianDate, body);
-}
-
 // General conversions
 JulianDate epoch_to_julian_date(const std::string& epoch, const std::string format)
 {
@@ -120,21 +115,10 @@ Angle julian_date_to_sidereal_time(const JulianDate& julianDate)
         (100.4606184 * one + 36000.77005361 * T0 + 0.00038793 * T0 * T0 - 2.583e-8 * T0 * T0 * T0) * deg;
 
     // GST
-    static const AngularVelocity earthRotRate = planetary_bodies::Earth().get_rotation_rate(); // in rad/s
+    static const AngularVelocity earthRotRate = get_rotation_rate<planets::Earth>();
     const Angle greenwichSiderealTime         = wrap_angle(greenwichUniversalTime + earthRotRate * universalTime);
 
     return greenwichSiderealTime;
-}
-
-Angle julian_date_to_body_sidereal_time(const JulianDate& date, const CelestialBody& body)
-{
-    using mp_units::non_si::day;
-
-    // Elapsed time since J2000 in seconds
-    const Time elapsed = (date.time_since_epoch().count() - J2000.time_since_epoch().count()) * day;
-
-    // Accumulated rotation of the body's prime meridian since J2000
-    return wrap_angle(body.get_rotation_rate() * elapsed);
 }
 
 } // namespace astro

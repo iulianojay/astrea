@@ -23,7 +23,6 @@ Shell<Spacecraft_T>::Shell(std::vector<Spacecraft_T> satellites)
 
 template <class Spacecraft_T>
 Shell<Spacecraft_T>::Shell(
-    const AstrodynamicsSystem& sys,
     const Date& epoch,
     const Distance& semimajor,
     const Angle& inclination,
@@ -34,11 +33,11 @@ Shell<Spacecraft_T>::Shell(
     const Angle& anchorAnomaly
 )
 {
-    using mp_units::angular::unit_symbols::deg;
-
     if (T % P) {
-        throw std::runtime_error("The Walker constructor requires the total number planes is a multiple of the total "
-                                 "number of of satellites.");
+        throw std::runtime_error(
+            "The Walker constructor requires the total number planes is a multiple of the total "
+            "number of of satellites."
+        );
     }
 
     const size_t satsPerPlane = T / P;
@@ -51,19 +50,16 @@ Shell<Spacecraft_T>::Shell(
     for (auto& plane : planes) {
         plane.satellites.resize(satsPerPlane);
 
-        const Keplerian planeElements{ semimajor,
-                                       0.0 * mp_units::one,
-                                       inclination,
-                                       (anchorRAAN + deltaRAAN * iPlane),
-                                       0.0 * mp_units::angular::unit_symbols::rad,
-                                       0.0 * mp_units::angular::unit_symbols::rad };
+        const Keplerian<frames::primary> planeElements{ semimajor,     Unitless::zero(),
+                                                        inclination,   (anchorRAAN + deltaRAAN * iPlane),
+                                                        Angle::zero(), Angle::zero() };
         plane.elements = OrbitalElements(planeElements);
 
         for (auto& sat : plane.satellites) {
             auto satElements = planeElements;
             satElements.set_true_anomaly(anchorAnomaly + deltaAnomaly * iAnom);
 
-            const State state(OrbitalElements(satElements), epoch, sys);
+            const State state(OrbitalElements(satElements), epoch);
             sat.store_state(state);
             ++iAnom;
         }

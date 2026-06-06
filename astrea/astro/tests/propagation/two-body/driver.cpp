@@ -17,11 +17,11 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/propagation/equations_of_motion/instances/TwoBody.hpp>
+#include <astro/propagation/equations_of_motion/TwoBody.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -41,7 +41,7 @@ using mp_units::si::unit_symbols::W;
 class TwoBodyPropagationTest : public testing::Test {
   public:
     TwoBodyPropagationTest() :
-        mu(sys.get_mu()),
+        mu(get_mu<frames::primary.origin>()),
         propTime(weeks(1)),
         epoch(J2000)
     {
@@ -52,7 +52,6 @@ class TwoBodyPropagationTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
     const Unitless ABS_TOL = 1.0e-2;
 
-    AstrodynamicsSystem sys;
     GravParam mu;
     ForceModel forces;
     Integrator integrator;
@@ -71,8 +70,8 @@ int main(int argc, char** argv)
 TEST_F(TwoBodyPropagationTest, GEO)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::GEO();
-    State state{ kep0, epoch, sys };
+    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::GEO();
+    State state{ kep0, epoch };
     Spacecraft geo;
     Vehicle vehicle{ geo };
 
@@ -81,7 +80,7 @@ TEST_F(TwoBodyPropagationTest, GEO)
 
     // Validate
     for (const auto& state : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+        const Keplerian<frames::earth::icrf> kep = state.in_element_set<Keplerian<frames::earth::icrf>>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }
@@ -90,8 +89,8 @@ TEST_F(TwoBodyPropagationTest, GEO)
 TEST_F(TwoBodyPropagationTest, GPS)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::GPS();
-    State state{ kep0, epoch, sys };
+    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::GPS();
+    State state{ kep0, epoch };
     Spacecraft meo;
     Vehicle vehicle{ meo };
 
@@ -100,7 +99,7 @@ TEST_F(TwoBodyPropagationTest, GPS)
 
     // Validate
     for (const auto& state : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+        const Keplerian<frames::earth::icrf> kep = state.in_element_set<Keplerian<frames::earth::icrf>>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }
@@ -109,8 +108,8 @@ TEST_F(TwoBodyPropagationTest, GPS)
 TEST_F(TwoBodyPropagationTest, LEO)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::LEO();
-    State state{ kep0, epoch, sys };
+    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::LEO();
+    State state{ kep0, epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };
 
@@ -119,7 +118,7 @@ TEST_F(TwoBodyPropagationTest, LEO)
 
     // Validate
     for (const auto& state : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+        const Keplerian<frames::earth::icrf> kep = state.in_element_set<Keplerian<frames::earth::icrf>>();
         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }

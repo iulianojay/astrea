@@ -36,12 +36,11 @@ int main()
     // modifying the current vehicle or state.
 
     // Setup initial state
-    AstrodynamicsSystem sys; // Defaults to Earth-Moon
-    const auto mu = sys.get_mu();
+    const GravParam mu = get_mu<planets::Earth>();
 
     const Date epoch; // Defaults to J2000
-    const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
-    const State state0(elements, epoch, sys);
+    const Keplerian<frames::earth::icrf> elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
+    const State state0(elements, epoch);
 
     // Build the vehicle
     Spacecraft sat;
@@ -69,7 +68,7 @@ int main()
     // Currently, Astrea only defines a few built-in events, but users can easily define their own custom events by
     // implementing a user-defined Event. Here, we use the built-in impulsive burn, and set it to trigger at a specific
     // true anomaly. It can also be set to trigger at a specific mean anomaly, altitude, or epoch.
-    ImpulsiveBurn burn = ImpulsiveBurn::trigger_at_true_anomaly(0.0 * deg, UnitVector<frames::dynamic::ric>(0.0, 1.0, 0.0));
+    ImpulsiveBurn burn = ImpulsiveBurn::trigger_at_true_anomaly(0.0 * deg, Direction<frames::dynamic::ric>(0.0, 1.0, 0.0));
     Event burnEvent(burn);
     integrator.add_event(burnEvent);
 
@@ -101,7 +100,8 @@ int main()
     std::cout << "Period After Each Burn:" << std::endl;
     for (const auto& [eventName, dates] : eventTimes) {
         for (const Date& date : dates) {
-            const Keplerian elementsAfterBurn = history.get_state_at(date + 60.0 * s).in_element_set<Keplerian>();
+            const Keplerian<frames::earth::icrf> elementsAfterBurn =
+                history.get_state_at(date + 60.0 * s).in_element_set<Keplerian<frames::earth::icrf>>();
             mp_units::quantity<min> orbitalPeriod =
                 TWO_PI * sqrt(pow<3>(elementsAfterBurn.get_semimajor()) / mu) / (isq_angle::cotes_angle);
             std::cout << "\t" << orbitalPeriod << std::endl;

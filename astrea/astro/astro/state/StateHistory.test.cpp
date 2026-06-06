@@ -18,7 +18,7 @@
 
 #include <astro/state/State.hpp>
 #include <astro/state/StateHistory.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 
 using namespace astrea;
@@ -37,16 +37,17 @@ class StateHistoryTest : public testing::Test {
         time1 = 1.0 * s;
         time2 = 2.0 * s;
 
-        state0 = State(Cartesian(0.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch, sys);
-        state1 = State(Cartesian(1.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch + time1, sys);
-        state2 = State(Cartesian(2.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch + time2, sys);
+        state0 = State(Cartesian<frames::earth::icrf>(0.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch);
+        state1 =
+            State(Cartesian<frames::earth::icrf>(1.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch + time1);
+        state2 =
+            State(Cartesian<frames::earth::icrf>(2.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 0.0 * km / s, 0.0 * km / s), epoch + time2);
 
         history.insert(state0);
         history.insert(state1);
     }
 
     StateHistory history;
-    AstrodynamicsSystem sys;
     Date epoch;
     Time time0, time1, time2;
     State state0, state1, state2;

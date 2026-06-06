@@ -182,7 +182,7 @@ rerun_tests:
 
 .PHONY: run_benchmarks
 run_benchmarks:
-	cd $(build_path)/astrea/astro/benchmarks
+	sh ./scripts/run_benchmarks.sh
 
 .PHONY: run_examples
 run_examples:

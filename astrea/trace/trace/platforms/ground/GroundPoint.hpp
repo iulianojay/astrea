@@ -18,12 +18,22 @@
  */
 #pragma once
 
+#include <sstream>
 #include <string>
 
+#include <mp-units/systems/angular.h>
+#include <mp-units/systems/isq_angle.h>
+#include <mp-units/systems/si.h>
+
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/FrameReference.hpp>
-#include <astro/state/angular_elements/angular_elements.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/angular_elements.hpp>
+#include <astro/systems/property_getters.hpp>
+#include <astro/systems/system_concepts.hpp>
+#include <astro/time/Date.hpp>
 #include <units/units.hpp>
+
+#include <utilities/IdProvider.hpp>
 
 #include <trace/platforms/AccessObject.hpp>
 #include <trace/types/typedefs.hpp>
@@ -33,119 +43,116 @@ namespace astrea {
 namespace trace {
 
 /**
- * @brief Represents a point on the ground with latitude, longitude, and altitude.
+ * @brief Represents a point on the surface of a celestial body with latitude, longitude, and altitude.
  *
- * This class is used to define a ground point in terms of its geographic coordinates
- * and altitude above sea level. It can be extended to include additional properties
- * or methods as needed for specific applications.
+ * @tparam _body_ The celestial body NTTP this ground point resides on.
  */
-class GroundPoint : virtual public AccessObject, virtual astro::FrameReference {
+template <astro::IsCelestialBody auto _body_>
+class GroundPoint : virtual public AccessObject {
   public:
+    static constexpr auto body = _body_; //!< The celestial body this ground point resides on.
+
     /**
      * @brief Constructs a GroundPoint with specified latitude, longitude, and altitude.
      *
-     * @param latitutde The latitude of the ground point (default is 0 degrees).
+     * @param latitude  The latitude of the ground point (default is 0 degrees).
      * @param longitude The longitude of the ground point (default is 0 degrees).
-     * @param altitude The altitude of the ground point above sea level (default is 0 kilometers).
+     * @param altitude  The altitude of the ground point above the surface (default is 0 km).
      */
     GroundPoint(
-        const astro::CelestialBody* parent = nullptr,
-        const Angle& latitutde             = 0.0 * mp_units::angular::unit_symbols::deg,
-        const Angle& longitude             = 0.0 * mp_units::angular::unit_symbols::deg,
-        const Distance& altitude           = 0.0 * mp_units::si::unit_symbols::km
-    );
+        const Angle& latitude    = 0.0 * mp_units::angular::unit_symbols::deg,
+        const Angle& longitude   = 0.0 * mp_units::angular::unit_symbols::deg,
+        const Distance& altitude = 0.0 * mp_units::si::unit_symbols::km
+    ) :
+        AccessObject(),
+        _lla(latitude, longitude, altitude),
+        _id(utilities::IdProvider::get_next_id<"Platform">())
+    {
+    }
 
-    /**
-     * @brief Destructor for the GroundPoint class.
-     */
     virtual ~GroundPoint() = default;
 
     /**
-     * @brief Equality operator for comparing two GroundPoint objects.
-     *
-     * @param other The other GroundPoint to compare with.
-     * @return true if the two GroundPoint objects are equal, false otherwise.
+     * @brief Equality operator — compares geodetic coordinates.
      */
-    bool operator==(const GroundPoint& other) const;
+    bool operator==(const GroundPoint& other) const { return _lla == other._lla; }
 
     /**
-     * @brief Gets the geodetic coordinates of the ground point.
-     *
-     * @return const Geodetic& The geodetic coordinates (latitude, longitude, altitude) of the ground point.
+     * @brief Returns the geodetic coordinates of the ground point.
      */
-    const astro::Geodetic& get_lla() const;
+    const astro::Geodetic<_body_>& get_lla() const { return _lla; }
 
     /**
-     * @brief Gets the latitude of the ground point.
-     *
-     * @return Angle The latitude of the ground point.
+     * @brief Returns the latitude of the ground point.
      */
-    const Angle& get_latitude() const;
+    const Angle& get_latitude() const { return _lla.get_latitude(); }
 
     /**
-     * @brief Gets the longitude of the ground point.
-     *
-     * @return Angle The longitude of the ground point.
+     * @brief Returns the longitude of the ground point.
      */
-    const Angle& get_longitude() const;
+    const Angle& get_longitude() const { return _lla.get_longitude(); }
 
     /**
-     * @brief Gets the altitude of the ground point above sea level.
-     *
-     * @return Distance The altitude of the ground point.
+     * @brief Returns the altitude of the ground point above the surface.
      */
-    const Distance& get_altitude() const;
+    const Distance& get_altitude() const { return _lla.get_altitude(); }
 
     /**
-     * @brief Gets the parent celestial body of the ground point.
-     *
-     * @return const CelestialBody* Pointer to the parent celestial body.
+     * @brief Returns the unique identifier for this ground point.
      */
-
-    const astro::CelestialBody* get_parent() const;
+    std::size_t get_id() const override { return _id; }
 
     /**
-     * @brief Get the unique identifier for the ground station.
-     *
-     * @return std::size_t The unique identifier for the ground station.
+     * @brief Returns the position in the body-fixed frame.
      */
-    std::size_t get_id() const;
+    auto get_position() const { return _lla.get_position(); }
 
     /**
-     * @brief Get the position of the frame in Earth-Centered-Earth-Fixed (ECEF) coordinates.
-     *
-     * @param date The date for which to get the position.
-     * @return CartesianVector<Distance, frames::earth::earth_fixed>
+     * @brief Returns the inertial position at the given date.
      */
-    astro::CartesianVector<Distance, astro::frames::earth::earth_fixed> get_position() const;
+    auto get_position(const astro::Date& date) const { return _lla.get_position(date); }
 
     /**
-     * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
-     *
-     * @param date The date for which to get the position.
-     * @return CartesianVector<Distance, frames::earth::icrf>
+     * @brief Returns the inertial velocity at the given date, computed from the body's rotation rate.
      */
-    astro::CartesianVector<Distance, astro::frames::earth::icrf> get_inertial_position(const astro::Date& date) const;
+    auto get_velocity(const astro::Date& date) const
+    {
+        using namespace mp_units::si::unit_symbols;
+        constexpr auto fixed_frame = astro::Geodetic<_body_>::_fixed_frame_;
+        constexpr auto icrf_frame  = astro::Geodetic<_body_>::_icrf_frame_;
+
+        const auto rEcef = _lla.get_position();
+        const auto rEcefPlanar = astro::CartesianVector<Distance, fixed_frame>{ rEcef.get_x(), rEcef.get_y(), 0.0 * km };
+
+        const Distance rEcefPlanarNorm = rEcefPlanar.norm();
+        const Velocity vEcefMag = rEcefPlanarNorm * astro::get_rotation_rate<_body_>() / mp_units::isq_angle::cotes_angle;
+
+        const astro::CartesianVector<Distance, fixed_frame> z{ 0.0 * km, 0.0 * km, 1.0 * km };
+        const auto vEcef = z.cross(rEcefPlanar).direction() * vEcefMag;
+
+        return vEcef.template in_frame<icrf_frame>(date);
+    }
 
     /**
-     * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
-     *
-     * @param date The date for which to get the velocity.
-     * @return CartesianVector<Velocity, frames::earth::icrf>
+     * @brief Returns a human-readable name for the ground point.
      */
-    astro::CartesianVector<Velocity, astro::frames::earth::icrf> get_inertial_velocity(const astro::Date& date) const;
+    std::string get_name() const
+    {
+        using mp_units::angular::unit_symbols::deg;
+        using mp_units::si::unit_symbols::km;
 
-    /**
-     * @brief Get the name of the ground point.
-     *
-     * @return std::string The name of the ground point, typically derived from its coordinates or a user-defined identifier.
-     */
-    std::string get_name() const;
+        std::ostringstream oss;
+        oss << "[" << _lla.get_latitude().in(deg) << ", " << _lla.get_longitude().in(deg);
+        if (_lla.get_altitude() != 0.0 * km) { oss << ", " << _lla.get_altitude(); }
+        oss << "]";
+        oss << " (" << decltype(_body_)::name.portable() << ")";
+
+        return oss.str();
+    }
 
   protected:
-    const astro::CelestialBody* _parent; //!< Pointer to the parent celestial body
-    astro::Geodetic _lla;                //!< Geodetic coordinates of the ground point
-    std::size_t _id;                     //!< Unique identifier for the ground station, generated from its properties.
+    astro::Geodetic<_body_> _lla; //!< Geodetic coordinates of the ground point.
+    std::size_t _id;              //!< Unique identifier, generated at construction.
 };
 
 } // namespace trace

@@ -24,7 +24,7 @@
 #include <astro/state/State.hpp>
 #include <astro/state/attitude/Attitude.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/types/typedefs.hpp>
 
 using namespace mp_units;
@@ -58,7 +58,7 @@ StatePartial EquationsOfMotion::operator()(const State& state, const Vehicle& ve
             std::optional<AttitudePartials>(compute_kinematics(state, vehicle, perts.torque, control.torque)) :
             std::nullopt;
 
-    return StatePartial(state.get_epoch(), state.get_system(), dynamics, kinematics);
+    return StatePartial(state.get_epoch(), dynamics, kinematics);
 }
 
 AttitudePartials EquationsOfMotion::compute_kinematics(
@@ -81,8 +81,8 @@ AttitudePartials EquationsOfMotion::compute_kinematics(
         inertiaTensor.inverse_multiply(externalTorque - w.cross(inertiaTensor * w) / pow<2>(rad)) * rad;
 
     // Compute quaternion rate
-    const Unitless& s                          = q.get_scalar_part();
-    const UnitVector<frames::dynamic::body>& u = q.get_vector_part();
+    const Unitless& s                         = q.get_scalar_part();
+    const Direction<frames::dynamic::body>& u = q.get_vector_part();
     const BodyQuaternionRate quaternionRate{ 0.5 * w.dot(u) / rad, 0.5 * (w * s - w.cross(u)) / rad };
 
     return AttitudePartials(quaternionRate, angularAcceleration);

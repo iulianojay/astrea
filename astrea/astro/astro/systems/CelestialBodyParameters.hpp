@@ -26,8 +26,6 @@ namespace astrea {
 namespace astro {
 
 struct CelestialBodyParameters {
-    std::string name;                           //!< Name of the celestial body.
-    CelestialBodyId parent;                     //!< Reference to the parent planetary body.
     CelestialBodyType type;                     //!< Type of the celestial body.
     Date referenceDate;                         //!< Reference date for the celestial body data.
     GravParam mu;                               //!< Gravitational parameter (mu) of the celestial body.

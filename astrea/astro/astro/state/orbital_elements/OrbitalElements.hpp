@@ -25,31 +25,37 @@
 
 // Astro
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/frame_registry.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/state/orbital_elements/instances/Equinoctial.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
+#include <astro/frames/definitions/frame_registry.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
+#include <astro/state/orbital_elements/Equinoctial.hpp>
+#include <astro/state/orbital_elements/Keplerian.hpp>
 #include <astro/types/concepts.hpp>
 #include <astro/types/variant_util.hpp>
 
 namespace astrea {
 namespace astro {
 /**
- * @brief Variant of all registered Cartesian<Frame> types plus any extra element types.
+ * @brief Variant of all frame-indexed element types expanded over every registered frame.
  *
- * Driven entirely by frame_registry.hpp — adding frames there automatically
- * extends this variant. Typically used as:
+ * The first element type (Cartesian) is always included. Any additional
+ * frame-indexed templates passed as FrameIndexedTypes are also expanded over
+ * all registered frames. Typically used as:
  *
  * @code
  *   using ElementVariant = OrbitalElementVariant<Keplerian, Equinoctial>;
  * @endcode
  *
+ * Adding a frame to ExtraRegisteredFrames automatically adds a new
+ * instantiation of every listed template to this variant.
+ *
  * To register frames from user code, see ExtraRegisteredFrames in
- * astro/frames/frame_registry.hpp.
+ * astro/frames/definitions/frame_registry.hpp.
  */
-template <typename... ExtraElementTypes>
-using OrbitalElementVariant =
-    typename detail::tuple_to_variant<typename detail::apply_template<Cartesian, detail::AllRegisteredFrames>::type, ExtraElementTypes...>::type;
+template <template <auto> class... FrameIndexedTypes>
+using OrbitalElementVariant = typename detail::tuple_to_variant<typename detail::multi_tuple_cat<
+    typename detail::apply_nttp_template<Cartesian, detail::AllRegisteredFrames>::type,
+    typename detail::apply_nttp_template<FrameIndexedTypes, detail::AllRegisteredFrames>::type...>::type>::type;
 
 
 /**
@@ -70,7 +76,7 @@ concept IsOrbitalElements = requires(T) {
     std::is_destructible<T>::value;
     requires !std::is_same<T, OrbitalElements>::value;
     requires std::is_same<T, Cartesian<frames::primary>>::value || IsConstructableTo<T, Cartesian<frames::primary>> ||
-                 HasDirectCartesianConversion<T, Cartesian<frames::primary>>;
+                 HasDirectCartesianConversion<T, frames::primary>;
     requires HasToVector<T>;
     requires HasMathOperators<T>;
     requires HasInPlaceMathOperators<T>;
@@ -90,7 +96,7 @@ class OrbitalElements {
      * @brief Variant type to hold different orbital element types.
      *
      * Extended at compile time via ExtraRegisteredFrames<> specialization.
-     * See cartesian_frame_registry.hpp for details.
+     * See cartesianframeregistry.hpp for details.
      */
     using ElementVariant = OrbitalElementVariant<Keplerian, Equinoctial>;
 
@@ -108,33 +114,37 @@ class OrbitalElements {
     }
 
     /**
-     * @brief Constructor initializing with Cartesian<Frame_T> elements.
+     * @brief Constructor initializing with Cartesian<frame> elements.
      *
      * @param elements The orbital elements to initialize with.
      */
-    template <typename Frame_T>
-        requires(IsRegisteredFrame<Frame_T>)
-    OrbitalElements(Cartesian<Frame_T> elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElements(Cartesian<frame> elements) :
         _elements(elements)
     {
     }
 
     /**
-     * @brief Constructor initializing with Keplerian elements.
+     * @brief Constructor initializing with Keplerian<frame> elements.
      *
      * @param elements The orbital elements to initialize with.
      */
-    OrbitalElements(Keplerian elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElements(Keplerian<frame> elements) :
         _elements(elements)
     {
     }
 
     /**
-     * @brief Constructor initializing with Equinoctial elements.
+     * @brief Constructor initializing with Equinoctial<frame> elements.
      *
      * @param elements The orbital elements to initialize with.
      */
-    OrbitalElements(Equinoctial elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElements(Equinoctial<frame> elements) :
         _elements(elements)
     {
     }
@@ -330,6 +340,28 @@ class OrbitalElements {
         return get_variant_index<ElementVariant, T, 0>();
     }
 
+    /**
+     * @brief Converts all held orbital elements to the specified frame.
+     *
+     * Visits the current element type and calls its in_frame<target_frame>(epoch, mu),
+     * returning a new OrbitalElements holding the converted elements.
+     *
+     * @tparam target_frame The frame to convert into.
+     * @param epoch The epoch at which to evaluate the frame transformation.
+     * @param mu The gravitational parameter of the central body.
+     * @return OrbitalElements Orbital elements expressed in target_frame.
+     */
+    template <IsFrame auto target_frame>
+    OrbitalElements in_frame(const Date& epoch, const GravParam& mu) const
+    {
+        return std::visit(
+            [&](const auto& x) -> OrbitalElements {
+                return OrbitalElements(x.template in_frame<target_frame>(epoch, mu));
+            },
+            _elements
+        );
+    }
+
   private:
     ElementVariant _elements; //!< Variant holding the orbital elements (Cartesian, Keplerian, Equinoctial)
 
@@ -352,9 +384,11 @@ class OrbitalElements {
     static OrbitalElements from_vector(const std::vector<Unitless>& vec, const std::size_t idx);
 };
 
-template <typename... ExtraElementTypes>
-using OrbitalElementPartialVariant =
-    typename detail::tuple_to_variant<typename detail::apply_template<CartesianPartial, detail::AllRegisteredFrames>::type, ExtraElementTypes...>::type;
+template <template <auto> class... FrameIndexedTypes>
+using OrbitalElementPartialVariant = typename detail::tuple_to_variant<typename detail::multi_tuple_cat<
+    typename detail::apply_nttp_template<CartesianPartial, detail::AllRegisteredFrames>::type,
+    typename detail::apply_nttp_template<FrameIndexedTypes, detail::AllRegisteredFrames>::type...>::type>::type;
+
 
 /**
  * @brief Class representing partial derivatives of orbital elements.
@@ -385,9 +419,9 @@ class OrbitalElementPartials {
      *
      * @param elements The orbital element partials to initialize with.
      */
-    template <typename Frame_T>
-        requires(IsRegisteredFrame<Frame_T>)
-    OrbitalElementPartials(CartesianPartial<Frame_T> elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElementPartials(CartesianPartial<frame> elements) :
         _elements(elements)
     {
     }
@@ -397,7 +431,9 @@ class OrbitalElementPartials {
      *
      * @param elements The orbital element partials to initialize with.
      */
-    OrbitalElementPartials(KeplerianPartial elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElementPartials(KeplerianPartial<frame> elements) :
         _elements(elements)
     {
     }
@@ -407,7 +443,9 @@ class OrbitalElementPartials {
      *
      * @param elements The orbital element partials to initialize with.
      */
-    OrbitalElementPartials(EquinoctialPartial elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElementPartials(EquinoctialPartial<frame> elements) :
         _elements(elements)
     {
     }

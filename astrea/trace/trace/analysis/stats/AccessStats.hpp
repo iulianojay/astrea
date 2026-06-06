@@ -21,7 +21,7 @@
 #include <string>
 #include <vector>
 
-#include <gtl/btree.hpp>
+#include <gtl/phmap.hpp>
 
 #include <units/units.hpp>
 
@@ -92,8 +92,8 @@ struct AccessStats {
     /**
      * @brief Accesses the access statistics for all receiver IDs and AccessMetrics.
      *
-     * @return const gtl::btree_map<std::size_t, gtl::btree_map<AccessMetric, Time>>& A reference to the map containing
-     * the access metrics for all receiver IDs and AccessMetrics.
+     * @return const gtl::flat_hash_map<std::size_t, gtl::flat_hash_map<AccessMetric, Time>>& A reference to the map
+     * containing the access metrics for all receiver IDs and AccessMetrics.
      */
     const auto& get_access_metrics() const { return _accessMetrics; }
 
@@ -122,12 +122,12 @@ struct AccessStats {
     auto& get_hyper_statistics(const RiseSetMetric& metric) { return _hyperStats[metric]; }
 
   private:
-    gtl::btree_map<std::size_t, RiseSetArray> _risesets;         //!< Union of all risesets to any single receiver
-    gtl::btree_map<std::size_t, RiseSetStats> _stats;            //!< Stats on risesets
-    gtl::btree_map<RiseSetMetric, HyperStats<Time>> _hyperStats; //!< Statistics on riseset stats
+    gtl::flat_hash_map<std::size_t, RiseSetArray> _risesets;         //!< Union of all risesets to any single receiver
+    gtl::flat_hash_map<std::size_t, RiseSetStats> _stats;            //!< Stats on risesets
+    gtl::flat_hash_map<RiseSetMetric, HyperStats<Time>> _hyperStats; //!< Statistics on riseset stats
 
-    gtl::btree_map<std::size_t, gtl::btree_map<AccessMetric, Time>> _accessMetrics; //!< Access metric values
-    gtl::btree_map<AccessMetric, Stats<Time>> _accessStats;                         //!< Access stats
+    gtl::flat_hash_map<std::size_t, gtl::flat_hash_map<AccessMetric, Time>> _accessMetrics; //!< Access metric values
+    gtl::flat_hash_map<AccessMetric, Stats<Time>> _accessStats;                             //!< Access stats
 };
 
 } // namespace trace
