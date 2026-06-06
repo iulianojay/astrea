@@ -1,3 +1,5 @@
+[[PLACEHOLDER]]
+
 # Platforms and Payloads
 
 Astrea provides a flexible platform and payload architecture that enables modular spacecraft design. The system supports payload attachment, platform management, and integrated vehicle configurations.

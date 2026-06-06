@@ -1,3 +1,5 @@
+[[PLACEHOLDER]]
+
 # Cartesian Vectors
 
 The `CartesianVector` class is the fundamental vector type in Astrea, providing strongly-typed 3D vectors with compile-time unit and frame safety. This class prevents common errors in astrodynamics calculations by enforcing unit consistency and coordinate frame awareness.
