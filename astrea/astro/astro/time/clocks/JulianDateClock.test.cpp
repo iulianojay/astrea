@@ -16,7 +16,7 @@
 
 #include <units/units.hpp>
 
-#include <astro/time/JulianDateClock.hpp>
+#include <astro/time/clocks/JulianDateClock.hpp>
 
 using namespace astrea;
 using namespace astro;

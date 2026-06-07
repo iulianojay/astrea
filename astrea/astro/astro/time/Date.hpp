@@ -29,8 +29,7 @@
 #include <units/units.hpp>
 
 #include <astro/systems/system_concepts.hpp>
-#include <astro/time/JulianDateClock.hpp>
-#include <astro/time/TerrestrialTimeClock.hpp>
+#include <astro/time/clocks.hpp>
 
 namespace astrea {
 namespace astro {
@@ -219,6 +218,13 @@ class Date {
      * @return TerrestrialTime The Date in TT clock format.
      */
     TerrestrialTime tt() const { return in_clock<TerrestrialTimeClock>(); }
+
+    /**
+     * @brief Get the Date in Geocentric Coordinate Time (TCG) clock format.
+     *
+     * @return GeocentricCoordinateTime The Date in TCG clock format.
+     */
+    GeocentricCoordinateTime tcg() const { return in_clock<GeocentricCoordinateTimeClock>(); }
 
     /**
      * @brief Get the Date in sys clock format.

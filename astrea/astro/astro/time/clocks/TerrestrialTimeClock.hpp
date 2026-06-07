@@ -91,9 +91,7 @@ struct TerrestrialTimeClock {
     static auto to_sys(TerrestrialDateTime<Duration> const& timePoint) noexcept
     {
         using namespace std::chrono;
-        auto const tai_dur = duration_cast<tai_clock::duration>(timePoint.time_since_epoch()) -
-                             duration_cast<tai_clock::duration>(tt_tai_offset);
-        return clock_cast<system_clock>(std::chrono::time_point<tai_clock>{ tai_dur });
+        return sys_time{ timePoint - clock_cast<TerrestrialTimeClock>(sys_days{}) };
     }
 
     /**

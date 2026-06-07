@@ -15,7 +15,7 @@
 
 #include <units/units.hpp>
 
-#include <astro/time/TerrestrialTimeClock.hpp>
+#include <astro/time/clocks/TerrestrialTimeClock.hpp>
 
 using namespace astrea;
 using namespace astro;
