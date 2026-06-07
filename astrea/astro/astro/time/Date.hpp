@@ -227,6 +227,13 @@ class Date {
     GeocentricCoordinateTime tcg() const { return in_clock<GeocentricCoordinateTimeClock>(); }
 
     /**
+     * @brief Get the Date in Barycentric Dynamical Time (TDB) clock format.
+     *
+     * @return BarycentricDynamicalTime The Date in TDB clock format.
+     */
+    BarycentricDynamicalTime tdb() const { return in_clock<BarycentricDynamicalTimeClock>(); }
+
+    /**
      * @brief Get the Date in sys clock format.
      *
      * @return std::chrono::time_point<std::chrono::system_clock>

@@ -52,6 +52,7 @@ struct GeocentricCoordinateTimeClock {
 
     static constexpr bool is_steady = false; //!< TCG is not a steady clock; it is anchored to TAI.
     static constexpr rep Lg{ 6.969290134e-10 }; //!< The dimensionless constant Lg, representing the rate difference between TCG and TT
+    static constexpr JulianDateClock::duration jdRef{ 2443144.5 };
 
     /**
      * @brief Converts a system time point to a Geocentric Coordinate Time time point.
@@ -66,9 +67,8 @@ struct GeocentricCoordinateTimeClock {
     static auto from_sys(std::chrono::sys_time<Duration> const& timePoint) noexcept
     {
         using namespace std::chrono;
-        const auto tt    = TerrestrialTimeClock::from_sys(timePoint).time_since_epoch();
-        const auto jdRef = JulianDateClock::duration{ 2443144.5 };
-        const auto jd    = JulianDateClock::from_sys(timePoint).time_since_epoch();
+        const auto tt = TerrestrialTimeClock::from_sys(timePoint).time_since_epoch();
+        const auto jd = JulianDateClock::from_sys(timePoint).time_since_epoch();
         return GeocentricCoordinateDateTime{ tt + Lg / (1.0 - Lg) * (jd - jdRef) };
     }
 
@@ -85,7 +85,10 @@ struct GeocentricCoordinateTimeClock {
     static auto to_sys(GeocentricCoordinateDateTime<Duration> const& timePoint) noexcept
     {
         using namespace std::chrono;
-        return sys_time{ timePoint - clock_cast<GeocentricCoordinateTimeClock>(sys_days{}) };
+        static const auto sysRef = JulianDateClock::to_sys(JulianDateClock::time_point{ jdRef });
+        static const auto tgcRef = GeocentricCoordinateTimeClock::from_sys(sysRef);
+        const auto tt = timePoint.time_since_epoch() - Lg / (1.0 - Lg) * duration_cast<days>(timePoint - tgcRef);
+        return TerrestrialTimeClock::to_sys(TerrestrialTimeClock::time_point{ TerrestrialTimeClock::duration{ tt } });
     }
 
     /**
