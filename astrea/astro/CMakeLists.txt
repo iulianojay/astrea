@@ -198,6 +198,8 @@ set(ASTRO_HEADERS
     ${ASTRO_BASE}/time/clocks/JulianDateClock.hpp
     ${ASTRO_BASE}/time/clocks/GeocentricCoordinateTimeClock.hpp
     ${ASTRO_BASE}/time/clocks/TerrestrialTimeClock.hpp
+    ${ASTRO_BASE}/time/clocks/BarycentricDynamicalTimeClock.hpp
+    ${ASTRO_BASE}/time/clocks/BarycentricCoordinateTimeClock.hpp
 
     ${ASTRO_BASE}/types/typedefs.hpp
     ${ASTRO_BASE}/types/tuple_hash.hpp

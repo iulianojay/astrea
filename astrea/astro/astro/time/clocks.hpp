@@ -18,6 +18,7 @@
  */
 #pragma once
 
+#include <astro/time/clocks/BarycentricCoordinateTimeClock.hpp>
 #include <astro/time/clocks/BarycentricDynamicalTimeClock.hpp>
 #include <astro/time/clocks/GeocentricCoordinateTimeClock.hpp>
 #include <astro/time/clocks/JulianDateClock.hpp>

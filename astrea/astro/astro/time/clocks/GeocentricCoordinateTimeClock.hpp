@@ -62,6 +62,8 @@ struct GeocentricCoordinateTimeClock {
      * @tparam Duration The duration type of the system time point.
      * @param timePoint The system time point to convert.
      * @return GeocentricCoordinateDateTime The converted TCG time point.
+     *
+     * @ref https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA%20TP%2020220014814%20final.pdf
      */
     template <class Duration>
     static auto from_sys(std::chrono::sys_time<Duration> const& timePoint) noexcept
@@ -80,6 +82,8 @@ struct GeocentricCoordinateTimeClock {
      * @tparam Duration The duration type of the TCG time point.
      * @param timePoint The TCG time point to convert.
      * @return std::chrono::sys_time<std::chrono::tai_clock::duration> The converted system time point.
+     *
+     * @ref https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA%20TP%2020220014814%20final.pdf
      */
     template <class Duration>
     static auto to_sys(GeocentricCoordinateDateTime<Duration> const& timePoint) noexcept

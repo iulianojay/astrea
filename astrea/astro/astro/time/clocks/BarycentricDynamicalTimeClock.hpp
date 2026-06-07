@@ -62,6 +62,8 @@ struct BarycentricDynamicalTimeClock {
      * @tparam Duration The duration type of the system time point.
      * @param timePoint The system time point to convert.
      * @return BarycentricDynamicalTimePoint The converted TDB time point.
+     *
+     * @ref https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA%20TP%2020220014814%20final.pdf
      */
     template <class Duration>
     static auto from_sys(std::chrono::sys_time<Duration> const& timePoint) noexcept
@@ -82,6 +84,8 @@ struct BarycentricDynamicalTimeClock {
      * @tparam Duration The duration type of the TDB time point.
      * @param timePoint The TDB time point to convert.
      * @return std::chrono::sys_time<std::chrono::tai_clock::duration> The converted system time point.
+     *
+     * @ref https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA%20TP%2020220014814%20final.pdf
      */
     template <class Duration>
     static auto to_sys(BarycentricDynamicalTimePoint<Duration> const& timePoint) noexcept

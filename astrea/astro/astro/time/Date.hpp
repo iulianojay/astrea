@@ -234,6 +234,13 @@ class Date {
     BarycentricDynamicalTime tdb() const { return in_clock<BarycentricDynamicalTimeClock>(); }
 
     /**
+     * @brief Get the Date in Barycentric Coordinate Time (TCB) clock format.
+     *
+     * @return BarycentricCoordinateTime The Date in TCB clock format.
+     */
+    BarycentricCoordinateTime tcb() const { return in_clock<BarycentricCoordinateTimeClock>(); }
+
+    /**
      * @brief Get the Date in sys clock format.
      *
      * @return std::chrono::time_point<std::chrono::system_clock>
