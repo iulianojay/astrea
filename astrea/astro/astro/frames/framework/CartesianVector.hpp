@@ -453,8 +453,18 @@ struct CartesianVector {
      * @throws std::runtime_error If the frames do not share the same origin or if the DCM cannot be obtained.
      */
     template <IsFrame auto frame_u>
-        requires(_frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
+        requires(std::is_same_v<Value_T, Distance> && _frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
     inline constexpr CartesianVector<Value_T, frame_u> in_frame(const Date& date) const;
+
+    template <IsFrame auto frame_u>
+        requires(std::is_same_v<Value_T, Velocity> && _frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
+    inline constexpr CartesianVector<Value_T, frame_u>
+        in_frame(const Date& date, const CartesianVector<Distance, _frame_>& position) const;
+
+    template <IsFrame auto frame_u>
+        requires(std::is_same_v<Value_T, Acceleration> && _frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
+    inline constexpr CartesianVector<Value_T, frame_u>
+        in_frame(const Date& date, const CartesianVector<Distance, _frame_>& position, const CartesianVector<Velocity, _frame_>& velocity) const;
 
     /**
      * @brief Translate this vector by another vector in a different frame, resulting in a vector in a third frame.
