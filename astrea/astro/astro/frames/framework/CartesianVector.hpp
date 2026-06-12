@@ -456,11 +456,34 @@ struct CartesianVector {
         requires(std::is_same_v<Value_T, Distance> && _frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
     inline constexpr CartesianVector<Value_T, frame_u> in_frame(const Date& date) const;
 
+    /**
+     * @brief Rotate this vector into another frame at a given date, accounting for velocity aberration.
+     *
+     * @tparam frame_u The target frame type to rotate into.
+     * @param date The date at which to perform the rotation.
+     * @param position The position vector in the original frame, used for calculating velocity aberration effects.
+     * @return CartesianVector<Value_T, frame_u> A new CartesianVector in the target frame.
+     * @throws std::runtime_error If the frames do not share the same origin or if the DCM cannot be obtained.
+     * @note This is only valid for velocity vectors since velocity aberration is a function of the position and
+     * velocity of the object.
+     */
     template <IsFrame auto frame_u>
         requires(std::is_same_v<Value_T, Velocity> && _frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
     inline constexpr CartesianVector<Value_T, frame_u>
         in_frame(const Date& date, const CartesianVector<Distance, _frame_>& position) const;
 
+    /**
+     * @brief Rotate this vector into another frame at a given date, accounting for velocity and acceleration aberration.
+     *
+     * @tparam frame_u The target frame type to rotate into.
+     * @param date The date at which to perform the rotation.
+     * @param position The position vector in the original frame, used for calculating aberration effects.
+     * @param velocity The velocity vector in the original frame, used for calculating aberration effects.
+     * @return CartesianVector<Value_T, frame_u> A new CartesianVector in the target frame.
+     * @throws std::runtime_error If the frames do not share the same origin or if the DCM cannot be obtained.
+     * @note This is only valid for acceleration vectors since velocity and acceleration aberration are functions of the position,
+     * velocity, and acceleration of the object.
+     */
     template <IsFrame auto frame_u>
         requires(std::is_same_v<Value_T, Acceleration> && _frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
     inline constexpr CartesianVector<Value_T, frame_u>
@@ -495,6 +518,10 @@ struct CartesianVector {
         );
     }
 
+    // TODO: Remove this function and replace it with an OffsetVector class that explicitly represents the offset between
+    // two frames, which can then be applied to any vector in the original frame to get a vector in the target frame. This
+    // would make it clearer that the operation is applying an offset rather than a general translation, and would allow
+    // for more efficient calculations by precomputing the offset vector once and reusing it for multiple vectors.
     /**
      * @brief Calculate the offset vector from another vector in a different frame, resulting in a vector in a third frame.
      *

@@ -579,162 +579,171 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      *
      * @return DirectionCosineMatrixAccel<out_frame> The identity direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> identity() {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>{ Matrix3x3<quantity<one / pow<2>(s)>>::identity() }
-    };
-}
+    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> identity()
+    {
+        return DirectionCosineMatrixAccel<in_frame, out_frame>{ Matrix3x3<quantity<one / pow<2>(s)>>::identity() };
+    }
 
-/**
- * @brief Transposes the direction cosine matrix, effectively inverting the transformation.
- *
- * @return DirectionCosineMatrixAccel<out_frame, in_frame> The transposed direction cosine matrix.
- */
-inline constexpr DirectionCosineMatrixAccel<out_frame, in_frame>
-    transpose() const
-{
-    return DirectionCosineMatrixAccel<out_frame, in_frame>{ { _matrix[0][0], _matrix[1][0], _matrix[2][0] },
-                                                            { _matrix[0][1], _matrix[1][1], _matrix[2][1] },
-                                                            { _matrix[0][2], _matrix[1][2], _matrix[2][2] } };
-}
+    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> zero()
+    {
+        return DirectionCosineMatrixAccel<in_frame, out_frame>{ Matrix3x3<quantity<one / pow<2>(s)>>::zero() };
+    }
 
-/**
- * @brief Creates a direction cosine matrix from Euler angles based on a specified rotation sequence.
- *
- * @tparam sequence The rotation sequence to use for the Euler angles (e.g., XYZ, ZYX, etc.).
- * @param alpha The first Euler angle (rotation around the first axis in the sequence).
- * @param beta The second Euler angle (rotation around the second axis in the sequence).
- * @param gamma The third Euler angle (rotation around the third axis in the sequence).
- * @param alphaDot The rate of change of the first Euler angle.
- * @param betaDot The rate of change of the second Euler angle.
- * @param gammaDot The rate of change of the third Euler angle.
- * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
- */
-template <RotationSequence sequence>
-static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
-    from_euler_angles(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
-{
-    if constexpr (sequence == RotationSequence::ZXZ) {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::ZXZ(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
-    }
-    else if constexpr (sequence == RotationSequence::XYX) {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::XYX(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
-    }
-    else if constexpr (sequence == RotationSequence::YZY) {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::YZY(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
-    }
-    else if constexpr (sequence == RotationSequence::ZYZ) {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::ZYZ(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
-    }
-    else if constexpr (sequence == RotationSequence::XZX) {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::XZX(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
-    }
-    else if constexpr (sequence == RotationSequence::YXY) {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::YXY(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
-    }
-    else if constexpr (sequence == RotationSequence::XYZ) {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::XYZ(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
-    }
-    else if constexpr (sequence == RotationSequence::YZX) {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::YZX(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
-    }
-    else if constexpr (sequence == RotationSequence::ZXY) {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::ZXY(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
-    }
-    else if constexpr (sequence == RotationSequence::XZY) {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::XZY(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
-    }
-    else if constexpr (sequence == RotationSequence::ZYX) {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::ZYX(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
-    }
-    else if constexpr (sequence == RotationSequence::YXZ) {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::YXZ(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
-    }
-}
 
-/**
- * @brief Apply the direction cosine matrix to a CartesianVector.
- *
- * @tparam Value_T The type of the vector components.
- * @param vec The CartesianVector to which the DCM will be applied.
- * @return CartesianVector<Value_T, out_frame> The transformed CartesianVector in the output frame.
- */
-template <typename Value_T>
-inline constexpr CartesianVector<decltype(Value_T{} / s), out_frame> operator*(const CartesianVector<Value_T, in_frame>& vec) const
-{
-    return { row(0).dot(vec), row(1).dot(vec), row(2).dot(vec) };
-}
+    /**
+     * @brief Transposes the direction cosine matrix, effectively inverting the transformation.
+     *
+     * @return DirectionCosineMatrixAccel<out_frame, in_frame> The transposed direction cosine matrix.
+     */
+    inline constexpr DirectionCosineMatrixAccel<out_frame, in_frame> transpose() const
+    {
+        return DirectionCosineMatrixAccel<out_frame, in_frame>{ { _matrix[0][0], _matrix[1][0], _matrix[2][0] },
+                                                                { _matrix[0][1], _matrix[1][1], _matrix[2][1] },
+                                                                { _matrix[0][2], _matrix[1][2], _matrix[2][2] } };
+    }
 
-/**
- * @brief Compose this direction cosine matrix rate with a DCM, resulting in a new DCM rate.
- *
- * @tparam in_frame_u The input frame of the other DCM.
- * @tparam out_frame_u The output frame of the other DCM.
- * @param dcm The other DCM to compose with this one.
- * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting composed DCM rate.
- */
-inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> operator*(DirectionCosineMatrixAccel<in_frame, out_frame> dcm) const
-{
-    return { static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) * static_cast<Matrix3x3<Unitless>>(dcm) };
-}
+    /**
+     * @brief Creates a direction cosine matrix from Euler angles based on a specified rotation sequence.
+     *
+     * @tparam sequence The rotation sequence to use for the Euler angles (e.g., XYZ, ZYX, etc.).
+     * @param alpha The first Euler angle (rotation around the first axis in the sequence).
+     * @param beta The second Euler angle (rotation around the second axis in the sequence).
+     * @param gamma The third Euler angle (rotation around the third axis in the sequence).
+     * @param alphaDot The rate of change of the first Euler angle.
+     * @param betaDot The rate of change of the second Euler angle.
+     * @param gammaDot The rate of change of the third Euler angle.
+     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     */
+    template <RotationSequence sequence>
+    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+        from_euler_angles(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+    {
+        if constexpr (sequence == RotationSequence::ZXZ) {
+            return DirectionCosineMatrixAccel<in_frame, out_frame>::ZXZ(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+        }
+        else if constexpr (sequence == RotationSequence::XYX) {
+            return DirectionCosineMatrixAccel<in_frame, out_frame>::XYX(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+        }
+        else if constexpr (sequence == RotationSequence::YZY) {
+            return DirectionCosineMatrixAccel<in_frame, out_frame>::YZY(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+        }
+        else if constexpr (sequence == RotationSequence::ZYZ) {
+            return DirectionCosineMatrixAccel<in_frame, out_frame>::ZYZ(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+        }
+        else if constexpr (sequence == RotationSequence::XZX) {
+            return DirectionCosineMatrixAccel<in_frame, out_frame>::XZX(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+        }
+        else if constexpr (sequence == RotationSequence::YXY) {
+            return DirectionCosineMatrixAccel<in_frame, out_frame>::YXY(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+        }
+        else if constexpr (sequence == RotationSequence::XYZ) {
+            return DirectionCosineMatrixAccel<in_frame, out_frame>::XYZ(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+        }
+        else if constexpr (sequence == RotationSequence::YZX) {
+            return DirectionCosineMatrixAccel<in_frame, out_frame>::YZX(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+        }
+        else if constexpr (sequence == RotationSequence::ZXY) {
+            return DirectionCosineMatrixAccel<in_frame, out_frame>::ZXY(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+        }
+        else if constexpr (sequence == RotationSequence::XZY) {
+            return DirectionCosineMatrixAccel<in_frame, out_frame>::XZY(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+        }
+        else if constexpr (sequence == RotationSequence::ZYX) {
+            return DirectionCosineMatrixAccel<in_frame, out_frame>::ZYX(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+        }
+        else if constexpr (sequence == RotationSequence::YXZ) {
+            return DirectionCosineMatrixAccel<in_frame, out_frame>::YXZ(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+        }
+    }
 
-/**
- * @brief Compose two direction cosine matrices (matrix multiplication).
- *
- * Produces DCM<in_frame, new_out_frame> = this * rhs, where this is
- * DCM<in_frame, out_frame> and rhs is DCM<out_frame, new_out_frame>.
- *
- * @tparam new_out_frame The output frame of the right-hand-side DCM.
- * @param accel The right-hand-side DCM to compose with.
- * @return DirectionCosineMatrixAccelAccel<in_frame, new_out_frame> The composed DCM.
- */
-template <IsFrame auto new_out_frame>
-inline constexpr DirectionCosineMatrixAccelAccel<in_frame, new_out_frame>
-    operator*(const DirectionCosineMatrixAccel<out_frame, new_out_frame>& accel) const;
+    /**
+     * @brief Apply the direction cosine matrix to a CartesianVector.
+     *
+     * @tparam Value_T The type of the vector components.
+     * @param vec The CartesianVector to which the DCM will be applied.
+     * @return CartesianVector<Value_T, out_frame> The transformed CartesianVector in the output frame.
+     */
+    template <typename Value_T>
+    inline constexpr CartesianVector<decltype(Value_T{} / s), out_frame>
+        operator*(const CartesianVector<Value_T, in_frame>& vec) const
+    {
+        return { row(0).dot(vec), row(1).dot(vec), row(2).dot(vec) };
+    }
 
-/**
- * @brief Add two direction cosine matrices element-wise.
- *
- * @param other The other DCM to add to this DCM.
- * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting DCM after addition.
- */
-inline constexpr DirectionCosineMatrixAccel operator+(const DirectionCosineMatrixAccel& other) const
-{
-    return { static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) + static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(other) };
-}
+    /**
+     * @brief Compose this direction cosine matrix rate with a DCM, resulting in a new DCM rate.
+     *
+     * @tparam in_frame_u The input frame of the other DCM.
+     * @tparam out_frame_u The output frame of the other DCM.
+     * @param dcm The other DCM to compose with this one.
+     * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting composed DCM rate.
+     */
+    inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> operator*(DirectionCosineMatrixAccel<in_frame, out_frame> dcm) const
+    {
+        return { static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) * static_cast<Matrix3x3<Unitless>>(dcm) };
+    }
 
-/**
- * @brief Negate the direction cosine matrix element-wise.
- *
- * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting DCM after negation.
- */
-inline constexpr DirectionCosineMatrixAccel operator-() const
-{
-    return { -static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) };
-}
+    /**
+     * @brief Compose two direction cosine matrices (matrix multiplication).
+     *
+     * Produces DCM<in_frame, new_out_frame> = this * rhs, where this is
+     * DCM<in_frame, out_frame> and rhs is DCM<out_frame, new_out_frame>.
+     *
+     * @tparam new_out_frame The output frame of the right-hand-side DCM.
+     * @param accel The right-hand-side DCM to compose with.
+     * @return DirectionCosineMatrixAccelAccel<in_frame, new_out_frame> The composed DCM.
+     */
+    template <IsFrame auto new_out_frame>
+    inline constexpr DirectionCosineMatrixAccelAccel<in_frame, new_out_frame>
+        operator*(const DirectionCosineMatrixAccel<out_frame, new_out_frame>& accel) const;
 
-/**
- * @brief Subtract another direction cosine matrix from this one element-wise.
- *
- * @param other The other DCM to subtract from this DCM.
- * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting DCM after subtraction.
- */
-inline constexpr DirectionCosineMatrixAccel operator-(const DirectionCosineMatrixAccel& other) const
-{
-    return { static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) - static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(other) };
-}
+    /**
+     * @brief Add two direction cosine matrices element-wise.
+     *
+     * @param other The other DCM to add to this DCM.
+     * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting DCM after addition.
+     */
+    inline constexpr DirectionCosineMatrixAccel operator+(const DirectionCosineMatrixAccel& other) const
+    {
+        return { static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) +
+                 static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(other) };
+    }
 
-/**
- * @brief Multiply this direction cosine matrix by another DCM element-wise.
- *
- * Note: This is not the same as matrix multiplication (composition of rotations). This is an element-wise operation.
- *
- * @param other The other DCM to multiply with this DCM.
- * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting DCM after element-wise multiplication.
- */
-inline constexpr DirectionCosineMatrixAccel operator*(const DirectionCosineMatrixAccel& other) const
-{
-    return { static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) * static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(other) };
-}
+    /**
+     * @brief Negate the direction cosine matrix element-wise.
+     *
+     * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting DCM after negation.
+     */
+    inline constexpr DirectionCosineMatrixAccel operator-() const
+    {
+        return { -static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) };
+    }
+
+    /**
+     * @brief Subtract another direction cosine matrix from this one element-wise.
+     *
+     * @param other The other DCM to subtract from this DCM.
+     * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting DCM after subtraction.
+     */
+    inline constexpr DirectionCosineMatrixAccel operator-(const DirectionCosineMatrixAccel& other) const
+    {
+        return { static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) -
+                 static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(other) };
+    }
+
+    /**
+     * @brief Multiply this direction cosine matrix by another DCM element-wise.
+     *
+     * Note: This is not the same as matrix multiplication (composition of rotations). This is an element-wise operation.
+     *
+     * @param other The other DCM to multiply with this DCM.
+     * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting DCM after element-wise multiplication.
+     */
+    inline constexpr DirectionCosineMatrixAccel operator*(const DirectionCosineMatrixAccel& other) const
+    {
+        return { static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) *
+                 static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(other) };
+    }
 };
 
 

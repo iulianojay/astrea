@@ -126,6 +126,20 @@ inline constexpr CartesianVector<Velocity, get_parent_frame(planets::Mars, axes:
     return get_velocity_at_impl<ephemerides::MarsEphemerisTable, frame>(date);
 }
 
+/**
+ * @brief Get the acceleration of the Mars at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+ *
+ * @param date The date for which to find the acceleration of the Mars.
+ * @return AccelerationVector<frames::solar_system_barycenter::icrf> The acceleration of the Mars at the given date.
+ */
+template <>
+inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Mars, axes::icrf)>
+    get_acceleration_at<planets::Mars>(const Date& date)
+{
+    constexpr auto frame = get_parent_frame(planets::Mars, axes::icrf);
+    return get_acceleration_at_impl<ephemerides::MarsEphemerisTable, frame>(date);
+}
+
 #endif // ASTREA_BUILD_MARS_EPHEMERIS
 
 } // namespace astro

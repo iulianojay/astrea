@@ -293,6 +293,7 @@ inline constexpr CartesianVector<Value_T, frame_u> transform_vector_into_frame(
         return translate_vector_into_frame<Value_T, frame, frame_u>(vec, date);
     }
 
+    // Get the offset even if it's zero to ensure we properly handle velocity and acceleration transformations that require the position/velocity for the offset calculation
     const CartesianVector<Value_T, frame_u> offset = get_offset_impl<Value_T, frame, frame_u>(date);
     const auto dcm                                 = get_dcm_impl<frame, frame_u>(date);
 

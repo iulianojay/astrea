@@ -22,6 +22,8 @@
 #include <astro/frames/framework/BodyFixedFrame.hpp>
 #include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
+#include <astro/frames/framework/DirectionCosineMatrixAccel.hpp>
+#include <astro/frames/framework/DirectionCosineMatrixRate.hpp>
 #include <astro/frames/framework/DynamicFrame.hpp>
 #include <astro/frames/framework/FixedOffsetFrame.hpp>
 #include <astro/frames/framework/Frame.hpp>

@@ -112,6 +112,20 @@ inline constexpr CartesianVector<Velocity, get_parent_frame(planets::Neptune, ax
     return get_velocity_at_impl<ephemerides::NeptuneEphemerisTable, frame>(date);
 }
 
+/**
+ * @brief Get the acceleration of the Neptune at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+ *
+ * @param date The date for which to find the acceleration of the Neptune.
+ * @return AccelerationVector<frames::solar_system_barycenter::icrf> The acceleration of the Neptune at the given date.
+ */
+template <>
+inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Neptune, axes::icrf)>
+    get_acceleration_at<planets::Neptune>(const Date& date)
+{
+    constexpr auto frame = get_parent_frame(planets::Neptune, axes::icrf);
+    return get_acceleration_at_impl<ephemerides::NeptuneEphemerisTable, frame>(date);
+}
+
 #endif // ASTREA_BUILD_NEPTUNE_EPHEMERIS
 
 /**

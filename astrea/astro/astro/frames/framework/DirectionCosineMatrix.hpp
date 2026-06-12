@@ -385,6 +385,11 @@ class DirectionCosineMatrix : public Matrix3x3<Unitless> {
         return DirectionCosineMatrix<in_frame, out_frame>{ Matrix3x3<Unitless>::identity() };
     }
 
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> zero()
+    {
+        return DirectionCosineMatrix<in_frame, out_frame>{ Matrix3x3<Unitless>::zero() };
+    }
+
     /**
      * @brief Transposes the direction cosine matrix, effectively inverting the transformation.
      *

@@ -113,5 +113,21 @@ inline constexpr CartesianVector<Velocity, get_parent_frame(_body_, axes::icrf)>
     return Cartesian<frame>(coes, mu).get_velocity();
 }
 
+/**
+ * @brief Keplerian fallback for get_acceleration_at.
+ *
+ * See get_position_at for usage notes.
+ */
+template <auto _body_>
+inline constexpr CartesianVector<Acceleration, get_parent_frame(_body_, axes::icrf)> get_acceleration_at(const Date& date)
+{
+    constexpr auto frame                     = get_parent_frame(_body_, axes::icrf);
+    const Keplerian<frame> coes              = get_keplerian_elements_at<_body_>(date);
+    constexpr auto parent                    = get_parent(_body_);
+    const GravParam mu                       = get_mu<parent>();
+    const CartesianVector<Distance, frame> r = Cartesian<frame>(coes, mu).get_position();
+    return -mu * r / pow<3>(r.norm());
+}
+
 } // namespace astro
 } // namespace astrea

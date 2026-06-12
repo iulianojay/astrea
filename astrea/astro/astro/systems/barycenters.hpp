@@ -108,6 +108,17 @@ inline constexpr CartesianVector<Velocity, get_parent_frame(barycenters::EarthMo
     return get_velocity_at_impl<ephemerides::EmbEphemerisTable, frame>(date);
 }
 
+/**
+ * @brief Get the acceleration of the Earth-Moon Barycenter at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+ */
+template <>
+inline constexpr CartesianVector<Acceleration, get_parent_frame(barycenters::EarthMoonBarycenter, axes::icrf)>
+    get_acceleration_at<barycenters::EarthMoonBarycenter>(const Date& date)
+{
+    constexpr auto frame = get_parent_frame(barycenters::EarthMoonBarycenter, axes::icrf);
+    return get_acceleration_at_impl<ephemerides::EmbEphemerisTable, frame>(date);
+}
+
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 } // namespace astro

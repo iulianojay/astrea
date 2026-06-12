@@ -401,6 +401,11 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
         return DirectionCosineMatrixRate<in_frame, out_frame>{ Matrix3x3<Frequency>::identity() };
     }
 
+    static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame> zero()
+    {
+        return DirectionCosineMatrixRate<in_frame, out_frame>{ Matrix3x3<Frequency>::zero() };
+    }
+
     /**
      * @brief Transposes the direction cosine matrix, effectively inverting the transformation.
      *

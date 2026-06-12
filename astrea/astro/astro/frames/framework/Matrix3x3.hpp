@@ -185,6 +185,13 @@ struct Matrix3x3 {
                           { 0.0 * unit, 0.0 * unit, 1.0 * unit } };
     }
 
+    static inline constexpr Matrix3x3 zero()
+    {
+        return Matrix3x3{ { 0.0 * Value_T::unit, 0.0 * Value_T::unit, 0.0 * Value_T::unit },
+                          { 0.0 * Value_T::unit, 0.0 * Value_T::unit, 0.0 * Value_T::unit },
+                          { 0.0 * Value_T::unit, 0.0 * Value_T::unit, 0.0 * Value_T::unit } };
+    }
+
     /**
      * @brief Transposes the matrix, effectively inverting the transformation.
      *
