@@ -469,10 +469,12 @@ inline constexpr CartesianVector<Acceleration, frame> get_acceleration_at_impl(D
     const Velocity vz2 = math::evaluate_chebyshev_derivative(mjd2, zInterp, _COEFF_ZERO_FACTOR) * km / day;
 
     // 2nd order central difference: f''(x) ≈ (f(x+h) - 2f(x) + f(x-h)) / h^2
-    static constexpr auto oneOverStepSquared = 1.0 / (timePerCoefficient * timePerCoefficient);
-    const Acceleration ax                    = (vx1 - 2.0 * vx + vx2) * oneOverStepSquared;
-    const Acceleration ay                    = (vy1 - 2.0 * vy + vy2) * oneOverStepSquared;
-    const Acceleration az                    = (vz1 - 2.0 * vz + vz2) * oneOverStepSquared;
+    // Time unit correction to account for h^2 in denominator
+    static constexpr Time stepSquaredFactor =
+        (timePerCoefficient * timePerCoefficient.numerical_value_in(timePerCoefficient.unit));
+    const Acceleration ax = (vx1 - 2.0 * vx + vx2) / stepSquaredFactor;
+    const Acceleration ay = (vy1 - 2.0 * vy + vy2) / stepSquaredFactor;
+    const Acceleration az = (vz1 - 2.0 * vz + vz2) / stepSquaredFactor;
 
     return CartesianVector<Acceleration, frame>(ax, ay, az);
 }

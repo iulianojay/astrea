@@ -60,7 +60,7 @@ using BodyAngleVelocities = AngularVelocities<frames::dynamic::body, frames::ear
 /**
  * @brief Type alias for a ICRF->body angle sequence acceleration
  */
-using BodyAngularAcceleration = AngularAccels<frames::dynamic::body, frames::earth::icrf>;
+using BodyAngularAcceleration = AngularAccelerations<frames::dynamic::body, frames::earth::icrf>;
 
 /**
  * @brief Concept to check if a type is an attitude type.

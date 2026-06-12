@@ -25,16 +25,24 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 
+#include <units/units.hpp>
 #include <utilities/string_util.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/framework/DirectionCosineMatrixRate.hpp>
+#include <astro/frames/framework/DirectionCosineMatrix.hpp>
 #include <astro/frames/framework/Matrix3x3.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
+
+namespace {
+
+using namespace mp_units;
+using mp_units::si::unit_symbols::s;
+
+} // namespace
 
 template <IsFrame auto in_frame, IsFrame auto out_frame>
 class DirectionCosineMatrixRateAccel;
@@ -95,12 +103,16 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @param thetaDot The rate of change of the angle of rotation around the X-axis.
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame> X(const Angle& theta, const AngularRate& thetaDot)
+    static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame> X(const Angle& theta, const AngularVelocity& thetaDot)
     {
         const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
-        return DirectionCosineMatrixRate<in_frame, out_frame>{ { 1.0 * one / s, 0.0 * one / s, 0.0 * one / s },
-                                                               { 0.0 * one / s, -thetaDot * sinTheta / s, -thetaDot * cosTheta / s },
-                                                               { 0.0 * one / s, thetaDot * cosTheta / s, thetaDot * sinTheta / s } };
+        // Disolve angular unit
+        const auto thetaDotUnitless = thetaDot / thetaDot.unit;
+        return DirectionCosineMatrixRate<in_frame, out_frame>{
+            { 1.0 * one / s, 0.0 * one / s, 0.0 * one / s },
+            { 0.0 * one / s, -thetaDotUnitless * sinTheta, -thetaDotUnitless * cosTheta },
+            { 0.0 * one / s, thetaDotUnitless * cosTheta, thetaDotUnitless * sinTheta }
+        };
     }
 
     /**
@@ -110,12 +122,16 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @param thetaDot The rate of change of the angle of rotation around the Y-axis.
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame> Y(const Angle& theta, const AngularRate& thetaDot)
+    static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame> Y(const Angle& theta, const AngularVelocity& thetaDot)
     {
         const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
-        return DirectionCosineMatrixRate<in_frame, out_frame>{ { -thetaDot * sinTheta / s, 0.0 * one / s, thetaDot * cosTheta / s },
-                                                               { 0.0 * one / s, 0.0 * one / s, 0.0 * one / s },
-                                                               { -thetaDot * cosTheta / s, 0.0 * one / s, -thetaDot * sinTheta / s } };
+        // Disolve angular unit
+        const auto thetaDotUnitless = thetaDot / thetaDot.unit;
+        return DirectionCosineMatrixRate<in_frame, out_frame>{
+            { -thetaDotUnitless * sinTheta, 0.0 * one / s, thetaDotUnitless * cosTheta },
+            { 0.0 * one / s, 0.0 * one / s, 0.0 * one / s },
+            { -thetaDotUnitless * cosTheta, 0.0 * one / s, -thetaDotUnitless * sinTheta }
+        };
     }
 
     /**
@@ -125,12 +141,16 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @param thetaDot The rate of change of the angle of rotation around the Z-axis.
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame> Z(const Angle& theta, const AngularRate& thetaDot)
+    static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame> Z(const Angle& theta, const AngularVelocity& thetaDot)
     {
         const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
-        return DirectionCosineMatrixRate<in_frame, out_frame>{ { -thetaDot * sinTheta / s, -thetaDot * cosTheta / s, 0.0 * one / s },
-                                                               { thetaDot * cosTheta / s, -thetaDot * sinTheta / s, 0.0 * one / s },
-                                                               { 0.0 * one / s, 0.0 * one / s, 0.0 * one / s } };
+        // Disolve angular unit
+        const auto thetaDotUnitless = thetaDot / thetaDot.unit;
+        return DirectionCosineMatrixRate<in_frame, out_frame>{
+            { -thetaDotUnitless * sinTheta, -thetaDotUnitless * cosTheta, 0.0 * one / s },
+            { thetaDotUnitless * cosTheta, -thetaDotUnitless * sinTheta, 0.0 * one / s },
+            { 0.0 * one / s, 0.0 * one / s, 0.0 * one / s }
+        };
     }
 
     /**
@@ -145,7 +165,12 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-        XZX(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+        XZX(const Angle& alpha,
+            const Angle& beta,
+            const Angle& gamma,
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot)
     {
         const auto X     = DirectionCosineMatrix<in_frame, out_frame>::X(alpha);
         const auto Xdot  = DirectionCosineMatrixRate<in_frame, out_frame>::X(alpha, alphaDot);
@@ -168,7 +193,12 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-        XYX(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+        XYX(const Angle& alpha,
+            const Angle& beta,
+            const Angle& gamma,
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot)
     {
         const auto X     = DirectionCosineMatrix<in_frame, out_frame>::X(alpha);
         const auto Xdot  = DirectionCosineMatrixRate<in_frame, out_frame>::X(alpha, alphaDot);
@@ -191,7 +221,12 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-        YZY(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+        YZY(const Angle& alpha,
+            const Angle& beta,
+            const Angle& gamma,
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot)
     {
         const auto Y     = DirectionCosineMatrix<in_frame, out_frame>::Y(alpha);
         const auto Ydot  = DirectionCosineMatrixRate<in_frame, out_frame>::Y(alpha, alphaDot);
@@ -214,7 +249,12 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-        ZXZ(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+        ZXZ(const Angle& alpha,
+            const Angle& beta,
+            const Angle& gamma,
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot)
     {
         const auto Z     = DirectionCosineMatrix<in_frame, out_frame>::Z(alpha);
         const auto Zdot  = DirectionCosineMatrixRate<in_frame, out_frame>::Z(alpha, alphaDot);
@@ -237,7 +277,12 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-        ZYZ(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+        ZYZ(const Angle& alpha,
+            const Angle& beta,
+            const Angle& gamma,
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot)
     {
         const auto Z     = DirectionCosineMatrix<in_frame, out_frame>::Z(alpha);
         const auto Zdot  = DirectionCosineMatrixRate<in_frame, out_frame>::Z(alpha, alphaDot);
@@ -260,7 +305,12 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-        YXY(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+        YXY(const Angle& alpha,
+            const Angle& beta,
+            const Angle& gamma,
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot)
     {
         const auto Y     = DirectionCosineMatrix<in_frame, out_frame>::Y(alpha);
         const auto Ydot  = DirectionCosineMatrixRate<in_frame, out_frame>::Y(alpha, alphaDot);
@@ -283,7 +333,12 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-        XYZ(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+        XYZ(const Angle& alpha,
+            const Angle& beta,
+            const Angle& gamma,
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot)
     {
         const auto X    = DirectionCosineMatrix<in_frame, out_frame>::X(alpha);
         const auto Xdot = DirectionCosineMatrixRate<in_frame, out_frame>::X(alpha, alphaDot);
@@ -306,7 +361,12 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-        YZX(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+        YZX(const Angle& alpha,
+            const Angle& beta,
+            const Angle& gamma,
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot)
     {
         const auto Y    = DirectionCosineMatrix<in_frame, out_frame>::Y(alpha);
         const auto Ydot = DirectionCosineMatrixRate<in_frame, out_frame>::Y(alpha, alphaDot);
@@ -329,7 +389,12 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-        ZXY(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+        ZXY(const Angle& alpha,
+            const Angle& beta,
+            const Angle& gamma,
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot)
     {
         const auto Z    = DirectionCosineMatrix<in_frame, out_frame>::Z(alpha);
         const auto Zdot = DirectionCosineMatrixRate<in_frame, out_frame>::Z(alpha, alphaDot);
@@ -352,7 +417,12 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-        XZY(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+        XZY(const Angle& alpha,
+            const Angle& beta,
+            const Angle& gamma,
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot)
     {
         return DirectionCosineMatrixRate<in_frame, out_frame>::YZX(gamma, gammaDot, beta, betaDot, alpha, alphaDot);
     }
@@ -369,7 +439,12 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-        ZYX(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+        ZYX(const Angle& alpha,
+            const Angle& beta,
+            const Angle& gamma,
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot)
     {
         return DirectionCosineMatrixRate<in_frame, out_frame>::XYZ(gamma, gammaDot, beta, betaDot, alpha, alphaDot);
     }
@@ -386,9 +461,25 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @return DirectionCosineMatrixRate<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-        YXZ(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+        YXZ(const Angle& alpha,
+            const Angle& beta,
+            const Angle& gamma,
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot)
     {
         return DirectionCosineMatrixRate<in_frame, out_frame>::ZXY(gamma, gammaDot, beta, betaDot, alpha, alphaDot);
+    }
+
+    /**
+     * @brief Retrieves a specific row of the direction cosine matrix rate as a CartesianVector.
+     *
+     * @param idx The index of the row to retrieve (0 for the first row, 1 for the second row, 2 for the third row).
+     * @return CartesianVector<Frequency, in_frame> The specified row of the DCM rate as a CartesianVector.
+     */
+    inline constexpr CartesianVector<Frequency, in_frame> row(const std::size_t& idx) const
+    {
+        return { static_cast<Matrix3x3<Frequency>>(*this).row(idx) };
     }
 
     /**
@@ -430,7 +521,7 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      */
     template <RotationSequence sequence>
     static inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-        from_euler_angles(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+        from_euler_angles(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularVelocity& alphaDot, const AngularVelocity& betaDot, const AngularVelocity& gammaDot)
     {
         if constexpr (sequence == RotationSequence::ZXZ) {
             return DirectionCosineMatrixRate<in_frame, out_frame>::ZXZ(alpha, alphaDot, beta, betaDot, gamma, gammaDot);
@@ -498,20 +589,6 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
     }
 
     /**
-     * @brief Compose two direction cosine matrices (matrix multiplication).
-     *
-     * Produces DCM<in_frame, new_out_frame> = this * rhs, where this is
-     * DCM<in_frame, out_frame> and rhs is DCM<out_frame, new_out_frame>.
-     *
-     * @tparam new_out_frame The output frame of the right-hand-side DCM.
-     * @param accel The right-hand-side DCM to compose with.
-     * @return DirectionCosineMatrixRateAccel<in_frame, new_out_frame> The composed DCM.
-     */
-    template <IsFrame auto new_out_frame>
-    inline constexpr DirectionCosineMatrixRateAccel<in_frame, new_out_frame>
-        operator*(const DirectionCosineMatrixRate<out_frame, new_out_frame>& accel) const;
-
-    /**
      * @brief Add two direction cosine matrices element-wise.
      *
      * @param other The other DCM to add to this DCM.
@@ -544,17 +621,12 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
     }
 
     /**
-     * @brief Multiply this direction cosine matrix by another DCM element-wise.
+     * @brief Compose two direction cosine matrix rates (matrix multiplication).
      *
-     * Note: This is not the same as matrix multiplication (composition of rotations). This is an element-wise operation.
-     *
-     * @param other The other DCM to multiply with this DCM.
-     * @return DirectionCosineMatrixRate<in_frame, out_frame> The resulting DCM after element-wise multiplication.
+     * @param other The right-hand-side DCM rate to compose with.
+     * @return DirectionCosineMatrixRateAccel<in_frame, new_out_frame> The composed DCM.
      */
-    inline constexpr DirectionCosineMatrixRate operator*(const DirectionCosineMatrixRate& other) const
-    {
-        return { static_cast<Matrix3x3<Frequency>>(*this) * static_cast<Matrix3x3<Frequency>>(other) };
-    }
+    inline constexpr DirectionCosineMatrixRateAccel<_in_frame_, _out_frame_> operator*(const DirectionCosineMatrixRate& other) const;
 };
 
 /**
@@ -582,10 +654,10 @@ inline constexpr DcmRate<frame, frame_u> get_dcm_rate(const Date& date) = delete
  */
 template <IsFrame auto in_frame, IsFrame auto out_frame>
 inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-    operator*(DirectionCosineMatrixRate<in_frame, out_frame> dcm, DirectionCosineMatrixRate<in_frame, out_frame> rate) const
+    operator*(DirectionCosineMatrix<in_frame, out_frame> dcm, DirectionCosineMatrixRate<in_frame, out_frame> rate)
 {
-    return DirectionCosineMatrixRate<in_frame, out_frame>{ static_cast<Matrix3x3<Frequency>>(dcm) *
-                                                           static_cast<Matrix3x3<Unitless>>(rate) };
+    return DirectionCosineMatrixRate<in_frame, out_frame>{ static_cast<Matrix3x3<Unitless>>(dcm) *
+                                                           static_cast<Matrix3x3<Frequency>>(rate) };
 };
 
 } // namespace astro

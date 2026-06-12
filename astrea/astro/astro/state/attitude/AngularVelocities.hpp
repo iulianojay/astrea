@@ -263,13 +263,16 @@ class AngularVelocities {
     }
 
     /**
-     * @brief Scalar division operator for AngularVelocities by a Time quantity, resulting in an AngularAccels.
+     * @brief Scalar division operator for AngularVelocities by a Time quantity, resulting in an AngularAccelerations.
      *
      * @param time The time quantity to divide by.
-     * @return AngularAccels<in_frame, ref_frame> A new
-     * AngularAccels that is the quotient of this sequence and the time.
+     * @return AngularAccelerations<in_frame, ref_frame> A new
+     * AngularAccelerations that is the quotient of this sequence and the time.
      */
-    AngularAccels<in_frame, ref_frame> operator/(const Time& time) const { return { _angularVelocities / time }; }
+    AngularAccelerations<in_frame, ref_frame> operator/(const Time& time) const
+    {
+        return { _angularVelocities / time };
+    }
 
     /**
      * @brief Scalar division operator for AngularVelocities by a quantity, resulting in an AngularVelocities.
@@ -425,7 +428,7 @@ CartesianVector<decltype(MomentOfInertia{} * AngularVelocity{}), in_frame>
  * @tparam ref_frame The output frame type (e.g., ECI, ECEF).
  */
 template <IsFrame auto _in_frame_, IsFrame auto _ref_frame_>
-class AngularAccels {
+class AngularAccelerations {
 
     friend class Attitude;
 
@@ -434,28 +437,28 @@ class AngularAccels {
     static constexpr auto ref_frame = _ref_frame_;
 
     /**
-     * @brief Default constructor for the AngularAccels class. Initializes all angular accelerations to zero.
+     * @brief Default constructor for the AngularAccelerations class. Initializes all angular accelerations to zero.
      */
-    AngularAccels() = default;
+    AngularAccelerations() = default;
 
     /**
-     * @brief Constructor for the AngularAccels class from three angular accelerations.
+     * @brief Constructor for the AngularAccelerations class from three angular accelerations.
      *
      * @param accel1 The first angular acceleration in the sequence.
      * @param accel2 The second angular acceleration in the sequence.
      * @param accel3 The third angular acceleration in the sequence.
      */
-    AngularAccels(const AngularAcceleration& accel1, const AngularAcceleration& accel2, const AngularAcceleration& accel3) :
+    AngularAccelerations(const AngularAcceleration& accel1, const AngularAcceleration& accel2, const AngularAcceleration& accel3) :
         _angularAccels(accel1, accel2, accel3)
     {
     }
 
     /**
-     * @brief Constructor for the AngularAccels class from a CartesianVector of angular accelerations.
+     * @brief Constructor for the AngularAccelerations class from a CartesianVector of angular accelerations.
      *
      * @param accels A CartesianVector containing the three angular accelerations in the sequence.
      */
-    AngularAccels(const CartesianVector<AngularAcceleration, in_frame>& accels) :
+    AngularAccelerations(const CartesianVector<AngularAcceleration, in_frame>& accels) :
         _angularAccels(accels)
     {
     }
@@ -491,55 +494,55 @@ class AngularAccels {
     const CartesianVector<AngularAcceleration, in_frame>& get_angularAccels() const { return _angularAccels; }
 
     /**
-     * @brief Addition operator for AngularAccels.
+     * @brief Addition operator for AngularAccelerations.
      *
-     * @param other The other AngularAccels to add.
-     * @return AngularAccels<in_frame, ref_frame> A new
-     * AngularAccels that is the sum of this and other.
+     * @param other The other AngularAccelerations to add.
+     * @return AngularAccelerations<in_frame, ref_frame> A new
+     * AngularAccelerations that is the sum of this and other.
      */
-    AngularAccels<in_frame, ref_frame> operator+(const AngularAccels<in_frame, ref_frame>& other) const
+    AngularAccelerations<in_frame, ref_frame> operator+(const AngularAccelerations<in_frame, ref_frame>& other) const
     {
         return { _angularAccels + other._angularAccels };
     }
 
     /**
-     * @brief Addition assignment operator for AngularAccels.
+     * @brief Addition assignment operator for AngularAccelerations.
      *
-     * @param other The other AngularAccels to add.
-     * @return AngularAccels<in_frame, ref_frame>& Reference to the current object after addition.
+     * @param other The other AngularAccelerations to add.
+     * @return AngularAccelerations<in_frame, ref_frame>& Reference to the current object after addition.
      */
-    AngularAccels<in_frame, ref_frame>& operator+=(const AngularAccels<in_frame, ref_frame>& other)
+    AngularAccelerations<in_frame, ref_frame>& operator+=(const AngularAccelerations<in_frame, ref_frame>& other)
     {
         _angularAccels += other._angularAccels;
         return *this;
     }
 
     /**
-     * @brief Subtraction operator for AngularAccels.
+     * @brief Subtraction operator for AngularAccelerations.
      *
-     * @param other The other AngularAccels to subtract.
-     * @return AngularAccels<in_frame, ref_frame> A new
-     * AngularAccels that is the difference of this and other.
+     * @param other The other AngularAccelerations to subtract.
+     * @return AngularAccelerations<in_frame, ref_frame> A new
+     * AngularAccelerations that is the difference of this and other.
      */
-    AngularAccels<in_frame, ref_frame> operator-(const AngularAccels<in_frame, ref_frame>& other) const
+    AngularAccelerations<in_frame, ref_frame> operator-(const AngularAccelerations<in_frame, ref_frame>& other) const
     {
         return { _angularAccels - other._angularAccels };
     }
 
     /**
-     * @brief Subtraction assignment operator for AngularAccels.
+     * @brief Subtraction assignment operator for AngularAccelerations.
      *
-     * @param other The other AngularAccels to subtract.
-     * @return AngularAccels<in_frame, ref_frame>& Reference to the current object after subtraction.
+     * @param other The other AngularAccelerations to subtract.
+     * @return AngularAccelerations<in_frame, ref_frame>& Reference to the current object after subtraction.
      */
-    AngularAccels<in_frame, ref_frame>& operator-=(const AngularAccels<in_frame, ref_frame>& other)
+    AngularAccelerations<in_frame, ref_frame>& operator-=(const AngularAccelerations<in_frame, ref_frame>& other)
     {
         _angularAccels -= other._angularAccels;
         return *this;
     }
 
     /**
-     * @brief Scalar multiplication operator for AngularAccels by a quantity, resulting in a CartesianVector.
+     * @brief Scalar multiplication operator for AngularAccelerations by a quantity, resulting in a CartesianVector.
      *
      * @param scalar The quantity to multiply by.
      * @return CartesianVector<decltype(AngularAcceleration{} * Value_U{}), in_frame> A new
@@ -552,7 +555,7 @@ class AngularAccels {
     }
 
     /**
-     * @brief Scalar multiplication operator for AngularAccels.
+     * @brief Scalar multiplication operator for AngularAccelerations.
      *
      * @param time The time value to multiply with.
      * @return AngularVelocities<in_frame, ref_frame> A new AngularVelocities that is the product of this sequence and the time
@@ -560,7 +563,7 @@ class AngularAccels {
     AngularVelocities<in_frame, ref_frame> operator*(const Time& time) const { return { _angularAccels * time }; }
 
     /**
-     * @brief Scalar division operator for AngularAccels by a quantity, resulting in a CartesianVector.
+     * @brief Scalar division operator for AngularAccelerations by a quantity, resulting in a CartesianVector.
      *
      * @param scalar The quantity to divide by.
      * @return CartesianVector<decltype(AngularAcceleration{} / Value_U{}), in_frame> A new
@@ -586,12 +589,15 @@ class AngularAccels {
     }
 
     /**
-     * @brief Dot product of this angle vector with another AngularAccels.
+     * @brief Dot product of this angle vector with another AngularAccelerations.
      *
-     * @param other The other AngularAccels to take the dot product with.
+     * @param other The other AngularAccelerations to take the dot product with.
      * @return auto The resulting scalar from the dot product.
      */
-    auto dot(const AngularAccels<in_frame, ref_frame>& other) const { return _angularAccels.dot(other._angularAccels); }
+    auto dot(const AngularAccelerations<in_frame, ref_frame>& other) const
+    {
+        return _angularAccels.dot(other._angularAccels);
+    }
 
     /**
      * @brief Cross product of this angular acceleration vector with a CartesianVector.
@@ -607,13 +613,13 @@ class AngularAccels {
     }
 
     /**
-     * @brief Cross product of this angle vector with another AngularAccels.
+     * @brief Cross product of this angle vector with another AngularAccelerations.
      *
-     * @param other The other AngularAccels to take the cross product with.
+     * @param other The other AngularAccelerations to take the cross product with.
      * @return CartesianVector<decltype(AngularAcceleration{} * AngularAcceleration{}), in_frame> The resulting CartesianVector from the cross product.
      */
     CartesianVector<decltype(AngularAcceleration{} * AngularAcceleration{}), in_frame>
-        cross(const AngularAccels<in_frame, ref_frame>& other) const
+        cross(const AngularAccelerations<in_frame, ref_frame>& other) const
     {
         return _angularAccels.cross(other._angularAccels);
     }
@@ -635,7 +641,7 @@ class AngularAccels {
 };
 
 /**
- * @brief Scalar multiplication operator for a quantity multiplied by AngularAccels, resulting in a CartesianVector.
+ * @brief Scalar multiplication operator for a quantity multiplied by AngularAccelerations, resulting in a CartesianVector.
  *
  * @tparam Value_U The type of the scalar quantity.
  * @tparam sequence The specific sequence of rotations.
@@ -643,29 +649,29 @@ class AngularAccels {
  * @tparam in_frame The input frame type.
  * @tparam ref_frame The output frame type.
  * @param scalar The quantity to multiply with.
- * @param accel The AngularAccels to multiply.
+ * @param accel The AngularAccelerations to multiply.
  * @return CartesianVector<decltype(Value_U{} * AngularAcceleration{}), in_frame> The resulting CartesianVector.
  */
 template <typename Value_U, IsFrame auto in_frame, IsFrame auto ref_frame>
 CartesianVector<decltype(Value_U{} * AngularAcceleration{}), in_frame>
-    operator*(const Value_U& scalar, const AngularAccels<in_frame, ref_frame>& accel)
+    operator*(const Value_U& scalar, const AngularAccelerations<in_frame, ref_frame>& accel)
 {
     return { scalar * accel.get_angularAccels() };
 }
 
 /**
- * @brief Scalar multiplication operator for Time multiplied by AngularAccels, resulting in an AngularVelocities.
+ * @brief Scalar multiplication operator for Time multiplied by AngularAccelerations, resulting in an AngularVelocities.
  *
  * @tparam sequence The specific sequence of rotations.
  * @tparam type Whether the sequence is intrinsic or extrinsic.
  * @tparam in_frame The input frame type.
  * @tparam ref_frame The output frame type.
  * @param time The time value to multiply with.
- * @param accel The AngularAccels to multiply.
+ * @param accel The AngularAccelerations to multiply.
  * @return AngularVelocities The resulting AngularVelocities.
  */
 template <IsFrame auto in_frame, IsFrame auto ref_frame>
-AngularVelocities<in_frame, ref_frame> operator*(const Time& time, const AngularAccels<in_frame, ref_frame>& accel)
+AngularVelocities<in_frame, ref_frame> operator*(const Time& time, const AngularAccelerations<in_frame, ref_frame>& accel)
 {
     return { time * accel.get_angularAccels() };
 }
@@ -689,18 +695,18 @@ std::ostream& operator<<(std::ostream& os, const AngularVelocities<in_frame, ref
 }
 
 /**
- * @brief Output stream operator for AngularAccels.
+ * @brief Output stream operator for AngularAccelerations.
  *
  * @tparam sequence The specific sequence of rotations (e.g., RotationSequence::ZXZ).
  * @tparam type Whether the sequence is intrinsic or extrinsic.
  * @tparam in_frame The input frame type (e.g., ECI, ECEF).
  * @tparam ref_frame The output frame type (e.g., ECI, ECEF).
  * @param os The output stream to write to.
- * @param angleSequenceAccel The AngularAccels to output.
- * @return std::ostream& The output stream after writing the AngularAccels.
+ * @param angleSequenceAccel The AngularAccelerations to output.
+ * @return std::ostream& The output stream after writing the AngularAccelerations.
  */
 template <IsFrame auto in_frame, IsFrame auto ref_frame>
-std::ostream& operator<<(std::ostream& os, const AngularAccels<in_frame, ref_frame>& angleSequenceAccel)
+std::ostream& operator<<(std::ostream& os, const AngularAccelerations<in_frame, ref_frame>& angleSequenceAccel)
 {
     os << "[" << angleSequenceAccel[0] << " , " << angleSequenceAccel[1] << " , " << angleSequenceAccel[2] << "]";
     return os;

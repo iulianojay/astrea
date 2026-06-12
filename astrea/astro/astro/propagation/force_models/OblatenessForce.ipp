@@ -431,8 +431,10 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
     const Acceleration muOverR2 = mu / (equitorialR * equitorialR);
     const AccelerationVector<frames::primary_fixed> accelOblatenessEcef = { ax * muOverR2, ay * muOverR2, az * muOverR2 };
 
-    // Transform back to inertial frame - original values are in ecef, not w.r.t ecef
-    return { .force = (accelOblatenessEcef.in_frame<frames::primary>(date) * vehicle.get_mass()) };
+    // Transform back to inertial frame without abberations - original values are in ecef, not w.r.t ecef
+    const AccelerationVector<frames::primary> accelOblatenessIcrf =
+        frames::rotate_vector_into_frame<Acceleration, frames::primary_fixed, frames::primary>(accelOblatenessEcef, date);
+    return { .force = (accelOblatenessIcrf * vehicle.get_mass()) };
 }
 
 } // namespace astro

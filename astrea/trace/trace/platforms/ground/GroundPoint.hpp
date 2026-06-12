@@ -130,7 +130,7 @@ class GroundPoint : virtual public AccessObject {
         const astro::CartesianVector<Distance, fixed_frame> z{ 0.0 * km, 0.0 * km, 1.0 * km };
         const auto vEcef = z.cross(rEcefPlanar).direction() * vEcefMag;
 
-        return vEcef.template in_frame<icrf_frame>(date);
+        return vEcef.template in_frame<icrf_frame>(date, rEcef);
     }
 
     /**

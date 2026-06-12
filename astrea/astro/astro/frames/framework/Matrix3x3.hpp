@@ -18,7 +18,6 @@
  */
 #pragma once
 
-#include <algorithm>
 #include <array>
 #include <cmath>
 #include <iostream>
@@ -167,7 +166,7 @@ struct Matrix3x3 {
      * @param idx The index of the row to retrieve (0, 1, or 2).
      * @return const CartesianVector<Value_T, in_frame>& The requested row as a CartesianVector.
      */
-    inline constexpr CartesianVector<Value_T, in_frame> row(const std::size_t& idx) const
+    inline constexpr std::array<Value_T, 3> row(const std::size_t& idx) const
     {
         return { _matrix[idx * 3 + 0], _matrix[idx * 3 + 1], _matrix[idx * 3 + 2] };
     }
@@ -197,7 +196,12 @@ struct Matrix3x3 {
      *
      * @return Matrix3x3 The transposed matrix.
      */
-    inline constexpr Matrix3x3 transpose() const { return std::reverse(_matrix.begin(), _matrix.end()); }
+    inline constexpr Matrix3x3 transpose() const
+    {
+        return Matrix3x3{ { _matrix[0 * 3 + 0], _matrix[1 * 3 + 0], _matrix[2 * 3 + 0] },
+                          { _matrix[0 * 3 + 1], _matrix[1 * 3 + 1], _matrix[2 * 3 + 1] },
+                          { _matrix[0 * 3 + 2], _matrix[1 * 3 + 2], _matrix[2 * 3 + 2] } };
+    }
 
     /**
      * @brief Get the trace of the matrix (the sum of the diagonal elements).
@@ -244,7 +248,7 @@ struct Matrix3x3 {
         }
     }
 
-  private:
+  protected:
     std::array<Value_T, 9> _matrix; //!< 3x3 matrix to hold the direction cosines.
 
     /**
@@ -254,6 +258,8 @@ struct Matrix3x3 {
      */
     inline constexpr void _normalize(const Unitless& scale)
     {
+        using namespace mp_units;
+
         for (auto& element : _matrix) {
             element *= scale;
             // Avoid very small values that should be zero
@@ -261,20 +267,6 @@ struct Matrix3x3 {
         }
     }
 };
-
-/**
- * @brief Alias for Matrix3x3 with a specific output frame type.
- *
- * This alias simplifies the usage of Matrix3x3 by allowing the user to specify the output frame type.
- *
- * @tparam out_frame The frame type to which the matrix applies.
- */
-template <IsFrame auto in_frame, IsFrame auto out_frame>
-using matrix = Matrix3x3<in_frame, out_frame>;
-
-// Defined template function and then delete it so we can enforce lookup restrictions
-template <IsFrame auto frame, IsFrame auto frame_u>
-inline constexpr matrix<frame, frame_u> get_matrix(const Date& date) = delete;
 
 } // namespace astro
 } // namespace astrea

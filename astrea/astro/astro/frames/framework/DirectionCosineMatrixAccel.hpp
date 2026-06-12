@@ -25,9 +25,12 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 
+#include <units/units.hpp>
 #include <utilities/string_util.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/framework/DirectionCosineMatrix.hpp>
+#include <astro/frames/framework/DirectionCosineMatrixRate.hpp>
 #include <astro/frames/framework/Matrix3x3.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/types/enums.hpp>
@@ -99,19 +102,24 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
-        X(const Angle& theta, const AngularRate& thetaDot, const AngularAccel& thetaDotDot)
+        X(const Angle& theta, const AngularVelocity& thetaDot, const AngularAcceleration& thetaDotDot)
     {
         const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
+
+        // Disolve angular unit
+        const auto thetaDotUnitless    = thetaDot / thetaDot.unit;
+        const auto thetaDotDotUnitless = thetaDotDot / thetaDotDot.unit;
+        const auto thetaDotSquared     = pow<2>(thetaDotUnitless);
 
         const auto xx = 1.0 * one / pow<2>(s);
         const auto xy = 0.0 * one / pow<2>(s);
         const auto xz = 0.0 * one / pow<2>(s);
         const auto yx = 0.0 * one / pow<2>(s);
-        const auto yy = (-thetaDotDot * sinTheta - pow<2>(thetaDot) * cosTheta) / pow<2>(s);
-        const auto yz = (-thetaDotDot * cosTheta + pow<2>(thetaDot) * sinTheta) / pow<2>(s);
+        const auto yy = (-thetaDotDotUnitless * sinTheta - thetaDotSquared * cosTheta);
+        const auto yz = (-thetaDotDotUnitless * cosTheta + thetaDotSquared * sinTheta);
         const auto zx = 0.0 * one / pow<2>(s);
-        const auto zy = (thetaDotDot * cosTheta - pow<2>(thetaDot) * sinTheta) / pow<2>(s);
-        const auto zz = (-thetaDotDot * sinTheta - pow<2>(thetaDot) * cosTheta) / pow<2>(s);
+        const auto zy = (thetaDotDotUnitless * cosTheta - thetaDotSquared * sinTheta);
+        const auto zz = (-thetaDotDotUnitless * sinTheta - thetaDotSquared * cosTheta);
 
         return DirectionCosineMatrixAccel<in_frame, out_frame>{ { xx, xy, xz, yx, yy, yz, zx, zy, zz } };
     }
@@ -124,19 +132,24 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
-        Y(const Angle& theta, const AngularRate& thetaDot, const AngularAccel& thetaDotDot)
+        Y(const Angle& theta, const AngularVelocity& thetaDot, const AngularAcceleration& thetaDotDot)
     {
         const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
 
-        const auto xx = (-thetaDotDot * cosTheta + pow<2>(thetaDot) * sinTheta) / pow<2>(s);
+        // Disolve angular unit
+        const auto thetaDotUnitless    = thetaDot / thetaDot.unit;
+        const auto thetaDotDotUnitless = thetaDotDot / thetaDotDot.unit;
+        const auto thetaDotSquared     = pow<2>(thetaDotUnitless);
+
+        const auto xx = (-thetaDotDotUnitless * cosTheta + thetaDotSquared * sinTheta);
         const auto xy = 0.0 * one / pow<2>(s);
-        const auto xz = (thetaDotDot * sinTheta + pow<2>(thetaDot) * cosTheta) / pow<2>(s);
+        const auto xz = (thetaDotDotUnitless * sinTheta + thetaDotSquared * cosTheta);
         const auto yx = 0.0 * one / pow<2>(s);
         const auto yy = 0.0 * one / pow<2>(s);
         const auto yz = 0.0 * one / pow<2>(s);
-        const auto zx = (thetaDotDot * sinTheta + pow<2>(thetaDot) * cosTheta) / pow<2>(s);
+        const auto zx = (thetaDotDotUnitless * sinTheta + thetaDotSquared * cosTheta);
         const auto zy = 0.0 * one / pow<2>(s);
-        const auto zz = (-thetaDotDot * cosTheta + pow<2>(thetaDot) * sinTheta) / pow<2>(s);
+        const auto zz = (-thetaDotDotUnitless * cosTheta + thetaDotSquared * sinTheta);
 
         return DirectionCosineMatrixAccel<in_frame, out_frame>{ { xx, xy, xz, yx, yy, yz, zx, zy, zz } };
     }
@@ -149,15 +162,20 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
-        Z(const Angle& theta, const AngularRate& thetaDot, const AngularAccel& thetaDotDot)
+        Z(const Angle& theta, const AngularVelocity& thetaDot, const AngularAcceleration& thetaDotDot)
     {
         const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
 
-        const auto xx = (-thetaDotDot * cosTheta + pow<2>(thetaDot) * sinTheta) / pow<2>(s);
-        const auto xy = (thetaDotDot * sinTheta + pow<2>(thetaDot) * cosTheta) / pow<2>(s);
+        // Disolve angular unit
+        const auto thetaDotUnitless    = thetaDot / thetaDot.unit;
+        const auto thetaDotDotUnitless = thetaDotDot / thetaDotDot.unit;
+        const auto thetaDotSquared     = pow<2>(thetaDotUnitless);
+
+        const auto xx = (-thetaDotDotUnitless * cosTheta + thetaDotSquared * sinTheta);
+        const auto xy = (thetaDotDotUnitless * sinTheta + thetaDotSquared * cosTheta);
         const auto xz = 0.0 * one / pow<2>(s);
-        const auto yx = (-thetaDotDot * sinTheta - pow<2>(thetaDot) * cosTheta) / pow<2>(s);
-        const auto yy = (-thetaDotDot * cosTheta + pow<2>(thetaDot) * sinTheta) / pow<2>(s);
+        const auto yx = (-thetaDotDotUnitless * sinTheta - thetaDotSquared * cosTheta);
+        const auto yy = (-thetaDotDotUnitless * cosTheta + thetaDotSquared * sinTheta);
         const auto yz = 0.0 * one / pow<2>(s);
         const auto zx = 0.0 * one / pow<2>(s);
         const auto zy = 0.0 * one / pow<2>(s);
@@ -181,12 +199,12 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
         XZX(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
-            const AngularRate& alphaDot,
-            const AngularRate& betaDot,
-            const AngularRate& gammaDot,
-            const AngularAccel& alphaDotDot,
-            const AngularAccel& betaDotDot,
-            const AngularAccel& gammaDotDot)
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot,
+            const AngularAcceleration& alphaDotDot,
+            const AngularAcceleration& betaDotDot,
+            const AngularAcceleration& gammaDotDot)
     {
         const auto X     = DirectionCosineMatrix<in_frame, out_frame>::X(alpha);
         const auto Xdot  = DirectionCosineMatrixRate<in_frame, out_frame>::X(alpha, alphaDot);
@@ -218,12 +236,12 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
         XYX(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
-            const AngularRate& alphaDot,
-            const AngularRate& betaDot,
-            const AngularRate& gammaDot,
-            const AngularAccel& alphaDotDot,
-            const AngularAccel& betaDotDot,
-            const AngularAccel& gammaDotDot)
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot,
+            const AngularAcceleration& alphaDotDot,
+            const AngularAcceleration& betaDotDot,
+            const AngularAcceleration& gammaDotDot)
     {
         const auto X     = DirectionCosineMatrix<in_frame, out_frame>::X(alpha);
         const auto Xdot  = DirectionCosineMatrixRate<in_frame, out_frame>::X(alpha, alphaDot);
@@ -255,12 +273,12 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
         YZY(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
-            const AngularRate& alphaDot,
-            const AngularRate& betaDot,
-            const AngularRate& gammaDot,
-            const AngularAccel& alphaDotDot,
-            const AngularAccel& betaDotDot,
-            const AngularAccel& gammaDotDot)
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot,
+            const AngularAcceleration& alphaDotDot,
+            const AngularAcceleration& betaDotDot,
+            const AngularAcceleration& gammaDotDot)
     {
         const auto Y     = DirectionCosineMatrix<in_frame, out_frame>::Y(alpha);
         const auto Ydot  = DirectionCosineMatrixRate<in_frame, out_frame>::Y(alpha, alphaDot);
@@ -292,12 +310,12 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
         ZXZ(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
-            const AngularRate& alphaDot,
-            const AngularRate& betaDot,
-            const AngularRate& gammaDot,
-            const AngularAccel& alphaDotDot,
-            const AngularAccel& betaDotDot,
-            const AngularAccel& gammaDotDot)
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot,
+            const AngularAcceleration& alphaDotDot,
+            const AngularAcceleration& betaDotDot,
+            const AngularAcceleration& gammaDotDot)
     {
         const auto Z     = DirectionCosineMatrix<in_frame, out_frame>::Z(alpha);
         const auto Zdot  = DirectionCosineMatrixRate<in_frame, out_frame>::Z(alpha, alphaDot);
@@ -329,12 +347,12 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
         ZYZ(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
-            const AngularRate& alphaDot,
-            const AngularRate& betaDot,
-            const AngularRate& gammaDot,
-            const AngularAccel& alphaDotDot,
-            const AngularAccel& betaDotDot,
-            const AngularAccel& gammaDotDot)
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot,
+            const AngularAcceleration& alphaDotDot,
+            const AngularAcceleration& betaDotDot,
+            const AngularAcceleration& gammaDotDot)
     {
         const auto Z     = DirectionCosineMatrix<in_frame, out_frame>::Z(alpha);
         const auto Zdot  = DirectionCosineMatrixRate<in_frame, out_frame>::Z(alpha, alphaDot);
@@ -366,12 +384,12 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
         YXY(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
-            const AngularRate& alphaDot,
-            const AngularRate& betaDot,
-            const AngularRate& gammaDot,
-            const AngularAccel& alphaDotDot,
-            const AngularAccel& betaDotDot,
-            const AngularAccel& gammaDotDot)
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot,
+            const AngularAcceleration& alphaDotDot,
+            const AngularAcceleration& betaDotDot,
+            const AngularAcceleration& gammaDotDot)
     {
         const auto Y     = DirectionCosineMatrix<in_frame, out_frame>::Y(alpha);
         const auto Ydot  = DirectionCosineMatrixRate<in_frame, out_frame>::Y(alpha, alphaDot);
@@ -403,12 +421,12 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
         XYZ(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
-            const AngularRate& alphaDot,
-            const AngularRate& betaDot,
-            const AngularRate& gammaDot,
-            const AngularAccel& alphaDotDot,
-            const AngularAccel& betaDotDot,
-            const AngularAccel& gammaDotDot)
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot,
+            const AngularAcceleration& alphaDotDot,
+            const AngularAcceleration& betaDotDot,
+            const AngularAcceleration& gammaDotDot)
     {
         const auto X     = DirectionCosineMatrixAccel<in_frame, out_frame>::X(alpha);
         const auto Xdot  = DirectionCosineMatrixRate<in_frame, out_frame>::X(alpha, alphaDot);
@@ -440,12 +458,12 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
         YZX(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
-            const AngularRate& alphaDot,
-            const AngularRate& betaDot,
-            const AngularRate& gammaDot,
-            const AngularAccel& alphaDotDot,
-            const AngularAccel& betaDotDot,
-            const AngularAccel& gammaDotDot)
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot,
+            const AngularAcceleration& alphaDotDot,
+            const AngularAcceleration& betaDotDot,
+            const AngularAcceleration& gammaDotDot)
     {
         const auto Y     = DirectionCosineMatrix<in_frame, out_frame>::Y(alpha);
         const auto Ydot  = DirectionCosineMatrixRate<in_frame, out_frame>::Y(alpha, alphaDot);
@@ -477,12 +495,12 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
         ZXY(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
-            const AngularRate& alphaDot,
-            const AngularRate& betaDot,
-            const AngularRate& gammaDot,
-            const AngularAccel& alphaDotDot,
-            const AngularAccel& betaDotDot,
-            const AngularAccel& gammaDotDot)
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot,
+            const AngularAcceleration& alphaDotDot,
+            const AngularAcceleration& betaDotDot,
+            const AngularAcceleration& gammaDotDot)
     {
         const auto Z     = DirectionCosineMatrix<in_frame, out_frame>::Z(alpha);
         const auto Zdot  = DirectionCosineMatrixRate<in_frame, out_frame>::Z(alpha, alphaDot);
@@ -514,12 +532,12 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
         XZY(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
-            const AngularRate& alphaDot,
-            const AngularRate& betaDot,
-            const AngularRate& gammaDot,
-            const AngularAccel& alphaDotDot,
-            const AngularAccel& betaDotDot,
-            const AngularAccel& gammaDotDot)
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot,
+            const AngularAcceleration& alphaDotDot,
+            const AngularAcceleration& betaDotDot,
+            const AngularAcceleration& gammaDotDot)
     {
         return DirectionCosineMatrixAccel<in_frame, out_frame>::YZX(gamma, gammaDot, beta, betaDot, alpha, alphaDot, gammaDotDot, betaDotDot, alphaDotDot);
     }
@@ -539,12 +557,12 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
         ZYX(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
-            const AngularRate& alphaDot,
-            const AngularRate& betaDot,
-            const AngularRate& gammaDot,
-            const AngularAccel& alphaDotDot,
-            const AngularAccel& betaDotDot,
-            const AngularAccel& gammaDotDot)
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot,
+            const AngularAcceleration& alphaDotDot,
+            const AngularAcceleration& betaDotDot,
+            const AngularAcceleration& gammaDotDot)
     {
         return DirectionCosineMatrixAccel<in_frame, out_frame>::XYZ(gamma, gammaDot, beta, betaDot, alpha, alphaDot, gammaDotDot, betaDotDot, alphaDotDot);
     }
@@ -564,14 +582,25 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
         YXZ(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
-            const AngularRate& alphaDot,
-            const AngularRate& betaDot,
-            const AngularRate& gammaDot,
-            const AngularAccel& alphaDotDot,
-            const AngularAccel& betaDotDot,
-            const AngularAccel& gammaDotDot)
+            const AngularVelocity& alphaDot,
+            const AngularVelocity& betaDot,
+            const AngularVelocity& gammaDot,
+            const AngularAcceleration& alphaDotDot,
+            const AngularAcceleration& betaDotDot,
+            const AngularAcceleration& gammaDotDot)
     {
         return DirectionCosineMatrixAccel<in_frame, out_frame>::ZXY(gamma, gammaDot, beta, betaDot, alpha, alphaDot, gammaDotDot, betaDotDot, alphaDotDot);
+    }
+
+    /**
+     * @brief Retrieves a specific row of the direction cosine matrix accel as a CartesianVector.
+     *
+     * @param idx The index of the row to retrieve (0 for the first row, 1 for the second row, 2 for the third row).
+     * @return CartesianVector<quantity<one / pow<2>(s)>, in_frame> The specified row of the DCM accel as a CartesianVector.
+     */
+    inline constexpr CartesianVector<quantity<one / pow<2>(s)>, in_frame> row(const std::size_t& idx) const
+    {
+        return { static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this).row(idx) };
     }
 
     /**
@@ -597,9 +626,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      */
     inline constexpr DirectionCosineMatrixAccel<out_frame, in_frame> transpose() const
     {
-        return DirectionCosineMatrixAccel<out_frame, in_frame>{ { _matrix[0][0], _matrix[1][0], _matrix[2][0] },
-                                                                { _matrix[0][1], _matrix[1][1], _matrix[2][1] },
-                                                                { _matrix[0][2], _matrix[1][2], _matrix[2][2] } };
+        return DirectionCosineMatrixAccel<out_frame, in_frame>{ static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this).transpose() };
     }
 
     /**
@@ -612,11 +639,23 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      * @param alphaDot The rate of change of the first Euler angle.
      * @param betaDot The rate of change of the second Euler angle.
      * @param gammaDot The rate of change of the third Euler angle.
+     * @param alphaDotDot The second derivative of the first Euler angle.
+     * @param betaDotDot The second derivative of the second Euler angle.
+     * @param gammaDotDot The second derivative of the third Euler angle.
      * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
      */
     template <RotationSequence sequence>
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
-        from_euler_angles(const Angle& alpha, const Angle& beta, const Angle& gamma, const AngularRate& alphaDot, const AngularRate& betaDot, const AngularRate& gammaDot)
+    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> from_euler_angles(
+        const Angle& alpha,
+        const Angle& beta,
+        const Angle& gamma,
+        const AngularVelocity& alphaDot,
+        const AngularVelocity& betaDot,
+        const AngularVelocity& gammaDot,
+        const AngularAcceleration& alphaDotDot,
+        const AngularAcceleration& betaDotDot,
+        const AngularAcceleration& gammaDotDot
+    )
     {
         if constexpr (sequence == RotationSequence::ZXZ) {
             return DirectionCosineMatrixAccel<in_frame, out_frame>::ZXZ(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
@@ -664,7 +703,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      * @return CartesianVector<Value_T, out_frame> The transformed CartesianVector in the output frame.
      */
     template <typename Value_T>
-    inline constexpr CartesianVector<decltype(Value_T{} / s), out_frame>
+    inline constexpr CartesianVector<decltype(Value_T{} / pow<2>(s)), out_frame>
         operator*(const CartesianVector<Value_T, in_frame>& vec) const
     {
         return { row(0).dot(vec), row(1).dot(vec), row(2).dot(vec) };
@@ -691,10 +730,10 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      *
      * @tparam new_out_frame The output frame of the right-hand-side DCM.
      * @param accel The right-hand-side DCM to compose with.
-     * @return DirectionCosineMatrixAccelAccel<in_frame, new_out_frame> The composed DCM.
+     * @return DirectionCosineMatrixAccel<in_frame, new_out_frame> The composed DCM.
      */
     template <IsFrame auto new_out_frame>
-    inline constexpr DirectionCosineMatrixAccelAccel<in_frame, new_out_frame>
+    inline constexpr DirectionCosineMatrixAccel<in_frame, new_out_frame>
         operator*(const DirectionCosineMatrixAccel<out_frame, new_out_frame>& accel) const;
 
     /**
@@ -761,32 +800,11 @@ using DcmAccel = DirectionCosineMatrixAccel<in_frame, out_frame>;
 template <IsFrame auto frame, IsFrame auto frame_u>
 inline constexpr DcmAccel<frame, frame_u> get_dcm_accel(const Date& date) = delete;
 
-
-/**
- * @brief Compose two direction cosine matrices (matrix multiplication).
- *
- * Produces DCM<in_frame, new_out_frame> = this * rhs, where this is
- * DCM<in_frame, out_frame> and rhs is DCM<out_frame, new_out_frame>.
- *
- * @tparam new_out_frame The output frame of the right-hand-side DCM.
- * @param other The right-hand-side DCM to compose with.
- * @return DirectionCosineMatrixAccel<in_frame, new_out_frame> The composed DCM.
- */
-template <IsFrame auto new_out_frame>
-inline constexpr DirectionCosineMatrixAccel<in_frame, new_out_frame>
-    operator*(const DirectionCosineMatrixAccel<out_frame, new_out_frame>& other) const
+template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
+inline constexpr DirectionCosineMatrixRateAccel<_in_frame_, _out_frame_>
+    DirectionCosineMatrixRate<_in_frame_, _out_frame_>::operator*(const DirectionCosineMatrixRate<_in_frame_, _out_frame_>& rate) const
 {
-    return DirectionCosineMatrixAccel<in_frame, new_out_frame>{
-        { _matrix[0][0] * other[0, 0] + _matrix[0][1] * other[1, 0] + _matrix[0][2] * other[2, 0],
-          _matrix[0][0] * other[0, 1] + _matrix[0][1] * other[1, 1] + _matrix[0][2] * other[2, 1],
-          _matrix[0][0] * other[0, 2] + _matrix[0][1] * other[1, 2] + _matrix[0][2] * other[2, 2] },
-        { _matrix[1][0] * other[0, 0] + _matrix[1][1] * other[1, 0] + _matrix[1][2] * other[2, 0],
-          _matrix[1][0] * other[0, 1] + _matrix[1][1] * other[1, 1] + _matrix[1][2] * other[2, 1],
-          _matrix[1][0] * other[0, 2] + _matrix[1][1] * other[1, 2] + _matrix[1][2] * other[2, 2] },
-        { _matrix[2][0] * other[0, 0] + _matrix[2][1] * other[1, 0] + _matrix[2][2] * other[2, 0],
-          _matrix[2][0] * other[0, 1] + _matrix[2][1] * other[1, 1] + _matrix[2][2] * other[2, 1],
-          _matrix[2][0] * other[0, 2] + _matrix[2][1] * other[1, 2] + _matrix[2][2] * other[2, 2] }
-    };
+    return { static_cast<Matrix3x3<Frequency>>(*this) * static_cast<Matrix3x3<Frequency>>(rate) };
 }
 
 } // namespace astro

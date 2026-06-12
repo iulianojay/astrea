@@ -73,6 +73,16 @@ struct CartesianVector {
     }
 
     /**
+     * @brief Constructor for CartesianVector from an array of components.
+     *
+     * @param vec An array containing the three components of the vector (x, y, z).
+     */
+    inline constexpr CartesianVector(const std::array<Value_T, 3>& vec) :
+        _vector{ vec[0], vec[1], vec[2] }
+    {
+    }
+
+    /**
      * @brief Return the reverse of the vector, which switches the x and z components. This is useful for converting between different rotation sequences.
      */
     inline constexpr CartesianVector reverse() const { return { _vector[2], _vector[1], _vector[0] }; }
@@ -454,7 +464,7 @@ struct CartesianVector {
      */
     template <IsFrame auto frame_u>
         requires(std::is_same_v<Value_T, Distance> && _frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
-    inline constexpr CartesianVector<Value_T, frame_u> in_frame(const Date& date) const;
+    inline constexpr CartesianVector<Distance, frame_u> in_frame(const Date& date) const;
 
     /**
      * @brief Rotate this vector into another frame at a given date, accounting for velocity aberration.
@@ -469,7 +479,7 @@ struct CartesianVector {
      */
     template <IsFrame auto frame_u>
         requires(std::is_same_v<Value_T, Velocity> && _frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
-    inline constexpr CartesianVector<Value_T, frame_u>
+    inline constexpr CartesianVector<Velocity, frame_u>
         in_frame(const Date& date, const CartesianVector<Distance, _frame_>& position) const;
 
     /**
@@ -486,7 +496,7 @@ struct CartesianVector {
      */
     template <IsFrame auto frame_u>
         requires(std::is_same_v<Value_T, Acceleration> && _frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
-    inline constexpr CartesianVector<Value_T, frame_u>
+    inline constexpr CartesianVector<Acceleration, frame_u>
         in_frame(const Date& date, const CartesianVector<Distance, _frame_>& position, const CartesianVector<Velocity, _frame_>& velocity) const;
 
     /**

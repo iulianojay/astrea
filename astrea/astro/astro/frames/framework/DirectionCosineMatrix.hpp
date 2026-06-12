@@ -25,6 +25,7 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 
+#include <units/units.hpp>
 #include <utilities/string_util.hpp>
 
 #include <astro/astro.fwd.hpp>
@@ -376,6 +377,17 @@ class DirectionCosineMatrix : public Matrix3x3<Unitless> {
     }
 
     /**
+     * @brief Retrieves a specific row of the direction cosine matrix as a CartesianVector.
+     *
+     * @param idx The index of the row to retrieve (0 for the first row, 1 for the second row, 2 for the third row).
+     * @return CartesianVector<Unitless, in_frame> The specified row of the DCM as a CartesianVector.
+     */
+    inline constexpr CartesianVector<Unitless, in_frame> row(const std::size_t& idx) const
+    {
+        return { static_cast<Matrix3x3<Unitless>>(*this).row(idx) };
+    }
+
+    /**
      * @brief Creates an identity direction cosine matrix (no rotation).
      *
      * @return DirectionCosineMatrix<out_frame> The identity direction cosine matrix.
@@ -461,7 +473,9 @@ class DirectionCosineMatrix : public Matrix3x3<Unitless> {
     template <typename Value_T>
     inline constexpr CartesianVector<Value_T, out_frame> operator*(const CartesianVector<Value_T, in_frame>& vec) const
     {
-        return { Matrix3x3<Unitless>::operator*(vec) };
+        return { _matrix[0 * 3 + 0] * vec[0] + _matrix[0 * 3 + 1] * vec[1] + _matrix[0 * 3 + 2] * vec[2],
+                 _matrix[1 * 3 + 0] * vec[0] + _matrix[1 * 3 + 1] * vec[1] + _matrix[1 * 3 + 2] * vec[2],
+                 _matrix[2 * 3 + 0] * vec[0] + _matrix[2 * 3 + 1] * vec[1] + _matrix[2 * 3 + 2] * vec[2] };
     }
 
     /**
@@ -478,7 +492,7 @@ class DirectionCosineMatrix : public Matrix3x3<Unitless> {
     inline constexpr DirectionCosineMatrix<in_frame, new_out_frame>
         operator*(const DirectionCosineMatrix<out_frame, new_out_frame>& other) const
     {
-        return { Matrix3x3<Unitless>::operator*(other) };
+        return { static_cast<Matrix3x3<Unitless>>(*this) * static_cast<Matrix3x3<Unitless>>(other) };
     }
 
     /**
