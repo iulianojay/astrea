@@ -16,7 +16,7 @@
 
 #include <units/units.hpp>
 
-#include <astro/time/JulianDateClock.hpp>
+#include <astro/time/clocks/JulianDateClock.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -57,4 +57,13 @@ TEST_F(JulianDateClockTest, Now)
         std::chrono::duration<double>(sysNow.time_since_epoch()).count(),
         std::chrono::duration<double>(jdNow.time_since_epoch()).count()
     );
+}
+
+TEST_F(JulianDateClockTest, RoundTrip)
+{
+    auto sys  = std::chrono::system_clock::now();
+    auto jd   = JulianDateClock::from_sys(sys);
+    auto sys2 = JulianDateClock::to_sys(jd);
+    auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(sys2 - sys);
+    ASSERT_EQ(diff.count(), 0);
 }
