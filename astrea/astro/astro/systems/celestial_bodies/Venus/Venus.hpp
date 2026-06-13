@@ -114,6 +114,20 @@ inline constexpr CartesianVector<Velocity, get_parent_frame(planets::Venus, axes
     return get_velocity_at_impl<ephemerides::VenusEphemerisTable, frame>(date);
 }
 
+/**
+ * @brief Get the acceleration of the Venus at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+ *
+ * @param date The date for which to find the acceleration of the Venus.
+ * @return AccelerationVector<frames::solar_system_barycenter::icrf> The acceleration of the Venus at the given date.
+ */
+template <>
+inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Venus, axes::icrf)>
+    get_acceleration_at<planets::Venus>(const Date& date)
+{
+    constexpr auto frame = get_parent_frame(planets::Venus, axes::icrf);
+    return get_acceleration_at_impl<ephemerides::VenusEphemerisTable, frame>(date);
+}
+
 #endif // ASTREA_BUILD_VENUS_EPHEMERIS
 
 } // namespace astro

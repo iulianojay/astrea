@@ -81,7 +81,8 @@ TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
     const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ 1.4553e-9 * km / (s * s),
                                                                        1.5354e-9 * km / (s * s),
                                                                        3.2957e-9 * km / (s * s) };
-    const AccelerationVector<frames::earth::icrf> expected = expectedEcef.in_frame<frames::earth::icrf>(epoch);
+    const AccelerationVector<frames::earth::icrf> expected =
+        frames::rotate_vector_into_frame<Acceleration, frames::primary_fixed, frames::primary>(expectedEcef, epoch);
 
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();

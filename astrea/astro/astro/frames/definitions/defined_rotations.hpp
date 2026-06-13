@@ -22,6 +22,8 @@
 #include <units/units.hpp>
 
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
+#include <astro/frames/framework/DirectionCosineMatrixAccel.hpp>
+#include <astro/frames/framework/DirectionCosineMatrixRate.hpp>
 #include <astro/frames/framework/Frame.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/systems/celestial_bodies.hpp>
@@ -61,9 +63,19 @@ template <IsFrame auto in_frame, IsFrame auto out_frame>
     requires(IsBodyFixedFrame<decltype(out_frame)> && equivalent(in_frame.axis, axes::icrf) && in_frame.origin != planets::Earth)
 inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
 {
-    const Angle gst = date.body_sidereal_time<decltype(out_frame)::origin>();
+    const Angle gst = date.body_sidereal_time<out_frame.origin>();
     return DirectionCosineMatrix<in_frame, out_frame>::Z(-gst);
 }
+
+template <IsFrame auto in_frame, IsFrame auto out_frame>
+    requires(IsBodyFixedFrame<decltype(out_frame)> && equivalent(in_frame.axis, axes::icrf) && in_frame.origin != planets::Earth)
+inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm_rate(const Date& date)
+{
+    const Angle gst                    = date.body_sidereal_time<out_frame.origin>();
+    const AngularVelocity rotationRate = get_rotation_rate<out_frame.origin>();
+    return DirectionCosineMatrixRate<in_frame, out_frame>::Z(-gst, rotationRate);
+}
+
 
 /**
  * @brief Get the Direction Cosine Matrix (DCM) for a synodic frame at a given date.

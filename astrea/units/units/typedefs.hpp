@@ -208,4 +208,9 @@ using MomentOfInertia = mp_units::quantity<detail::mass_unit * mp_units::pow<2>(
  */
 using SolarFlux = mp_units::quantity<SolarFluxUnits>;
 
+/**
+ * @brief Definition for a chirp quantity, representing the rate of change of frequency.
+ */
+using Chirp = mp_units::quantity<detail::frequency_unit / detail::time_unit>;
+
 } // namespace astrea

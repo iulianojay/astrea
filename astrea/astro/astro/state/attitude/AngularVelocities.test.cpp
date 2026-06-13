@@ -299,13 +299,13 @@ TEST_F(AngularVelocitiesTest, TestChainedOperations)
     compare_angular_velocity_sequences(result, expected, REL_TOL);
 }
 
-// Tests for AngularAccels
-using TestEulerAcceleration     = AngularAccels<TestFrame, TestOutFrame>;
-using TestTaitBryanAcceleration = AngularAccels<TestFrame, TestOutFrame>;
+// Tests for AngularAccelerations
+using TestEulerAcceleration     = AngularAccelerations<TestFrame, TestOutFrame>;
+using TestTaitBryanAcceleration = AngularAccelerations<TestFrame, TestOutFrame>;
 
-class AngularAccelsTest : public testing::Test {
+class AngularAccelerationsTest : public testing::Test {
   public:
-    AngularAccelsTest() {}
+    AngularAccelerationsTest() {}
 
     void SetUp() override {}
 
@@ -324,17 +324,17 @@ class AngularAccelsTest : public testing::Test {
     AngularAcceleration angularAccel3 = 0.3 * rad / (s * s);
 };
 
-TEST_F(AngularAccelsTest, TestConstructors)
+TEST_F(AngularAccelerationsTest, TestConstructors)
 {
     // Default constructor
     ASSERT_NO_THROW(TestEulerAcceleration());
 
     // Parameterized constructor with angular accelerations
     ASSERT_NO_THROW(TestEulerAcceleration(angularAccel1, angularAccel2, angularAccel3));
-    ASSERT_NO_THROW((AngularAccels<TestFrame, TestOutFrame>(angularAccel1, angularAccel2, angularAccel3)));
+    ASSERT_NO_THROW((AngularAccelerations<TestFrame, TestOutFrame>(angularAccel1, angularAccel2, angularAccel3)));
 }
 
-TEST_F(AngularAccelsTest, TestAccess)
+TEST_F(AngularAccelerationsTest, TestAccess)
 {
     TestEulerAcceleration accel(angularAccel1, angularAccel2, angularAccel3);
 
@@ -344,7 +344,7 @@ TEST_F(AngularAccelsTest, TestAccess)
     ASSERT_TRUE(math::nearly_equal(accel[2], angularAccel3, REL_TOL));
 }
 
-TEST_F(AngularAccelsTest, TestMultiplicationByTime)
+TEST_F(AngularAccelerationsTest, TestMultiplicationByTime)
 {
     TestEulerAcceleration accel(angularAccel1, angularAccel2, angularAccel3);
     Time dt = 2.0 * s;
@@ -356,7 +356,7 @@ TEST_F(AngularAccelsTest, TestMultiplicationByTime)
     ASSERT_TRUE(math::nearly_equal(velocity[2], 0.6 * rad / s, REL_TOL));
 }
 
-TEST_F(AngularAccelsTest, TestForceToVector)
+TEST_F(AngularAccelerationsTest, TestForceToVector)
 {
     TestEulerAcceleration accel(angularAccel1, angularAccel2, angularAccel3);
 

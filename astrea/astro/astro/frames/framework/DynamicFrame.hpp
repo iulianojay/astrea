@@ -62,7 +62,7 @@ struct DynamicFrame {
     template <typename Value_T>
     CartesianVector<Value_T, _self_> rotate_into_this_frame(const CartesianVector<Value_T, parent>& vec, const Date& date) const
     {
-        return get_dcm_impl(date) * vec;
+        return this->get_dcm_impl(date) * vec;
     }
 
     /**
@@ -76,7 +76,7 @@ struct DynamicFrame {
     template <typename Value_T>
     CartesianVector<Value_T, parent> rotate_out_of_this_frame(const CartesianVector<Value_T, _self_>& vec, const Date& date) const
     {
-        return get_dcm_impl(date).transpose() * vec;
+        return this->get_dcm_impl(date).transpose() * vec;
     }
 
     /**
@@ -89,7 +89,7 @@ struct DynamicFrame {
      */
     RadiusVector<_self_> transform_to_this_frame(const RadiusVector<parent>& vec, const Date& date) const
     {
-        return get_dcm_impl(date) * (vec - get_position(date));
+        return this->get_dcm_impl(date) * (vec - get_position(date));
     }
 
     /**
@@ -102,7 +102,7 @@ struct DynamicFrame {
      */
     RadiusVector<parent> transform_from_this_frame(const RadiusVector<_self_>& vec, const Date& date) const
     {
-        return get_dcm_impl(date).transpose() * vec + get_position(date);
+        return this->get_dcm_impl(date).transpose() * vec + get_position(date);
     }
 
   private:

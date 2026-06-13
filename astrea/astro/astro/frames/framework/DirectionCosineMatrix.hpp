@@ -25,9 +25,11 @@
 #include <mp-units/math.h>
 #include <mp-units/systems/angular/math.h>
 
+#include <units/units.hpp>
 #include <utilities/string_util.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/framework/Matrix3x3.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/types/enums.hpp>
 
@@ -57,19 +59,7 @@ inline constexpr auto sin_cos_pack(const Angle& angle)
  * @tparam out_frame The frame type to which the DCM applies.
  */
 template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
-class DirectionCosineMatrix {
-
-    friend std::ostream& operator<<(std::ostream& os, const DirectionCosineMatrix& dcm)
-    {
-        for (const auto& row : dcm._matrix) {
-            os << "| ";
-            for (const auto& element : row) {
-                os << element << " ";
-            }
-            os << "|\n";
-        }
-        return os;
-    }
+class DirectionCosineMatrix : public Matrix3x3<Unitless> {
 
   public:
     static constexpr auto in_frame  = _in_frame_;  //!< The input frame of the DCM.
@@ -80,8 +70,8 @@ class DirectionCosineMatrix {
      *
      * @param matrix An array containing the three rows of the DCM, each represented as a CartesianVector.
      */
-    inline constexpr DirectionCosineMatrix(const std::array<std::array<Unitless, 3>, 3>& matrix) :
-        _matrix{ matrix }
+    inline constexpr DirectionCosineMatrix(const std::array<Unitless, 9>& matrix) :
+        Matrix3x3<Unitless>{ matrix }
     {
         normalize();
     }
@@ -94,7 +84,13 @@ class DirectionCosineMatrix {
      * @param row3 An array containing the three elements of the third row of the DCM.
      */
     inline constexpr DirectionCosineMatrix(const std::array<Unitless, 3>& row1, const std::array<Unitless, 3>& row2, const std::array<Unitless, 3>& row3) :
-        _matrix{ row1, row2, row3 }
+        Matrix3x3<Unitless>{ row1, row2, row3 }
+    {
+        normalize();
+    }
+
+    inline constexpr DirectionCosineMatrix(const Matrix3x3<Unitless>& matrix) :
+        Matrix3x3<Unitless>{ matrix }
     {
         normalize();
     }
@@ -381,15 +377,29 @@ class DirectionCosineMatrix {
     }
 
     /**
+     * @brief Retrieves a specific row of the direction cosine matrix as a CartesianVector.
+     *
+     * @param idx The index of the row to retrieve (0 for the first row, 1 for the second row, 2 for the third row).
+     * @return CartesianVector<Unitless, in_frame> The specified row of the DCM as a CartesianVector.
+     */
+    inline constexpr CartesianVector<Unitless, in_frame> row(const std::size_t& idx) const
+    {
+        return { static_cast<Matrix3x3<Unitless>>(*this).row(idx) };
+    }
+
+    /**
      * @brief Creates an identity direction cosine matrix (no rotation).
      *
      * @return DirectionCosineMatrix<out_frame> The identity direction cosine matrix.
      */
     static inline constexpr DirectionCosineMatrix<in_frame, out_frame> identity()
     {
-        return DirectionCosineMatrix<in_frame, out_frame>{ { 1.0 * one, 0.0 * one, 0.0 * one },
-                                                           { 0.0 * one, 1.0 * one, 0.0 * one },
-                                                           { 0.0 * one, 0.0 * one, 1.0 * one } };
+        return DirectionCosineMatrix<in_frame, out_frame>{ Matrix3x3<Unitless>::identity() };
+    }
+
+    static inline constexpr DirectionCosineMatrix<in_frame, out_frame> zero()
+    {
+        return DirectionCosineMatrix<in_frame, out_frame>{ Matrix3x3<Unitless>::zero() };
     }
 
     /**
@@ -399,9 +409,7 @@ class DirectionCosineMatrix {
      */
     inline constexpr DirectionCosineMatrix<out_frame, in_frame> transpose() const
     {
-        return DirectionCosineMatrix<out_frame, in_frame>{ { _matrix[0][0], _matrix[1][0], _matrix[2][0] },
-                                                           { _matrix[0][1], _matrix[1][1], _matrix[2][1] },
-                                                           { _matrix[0][2], _matrix[1][2], _matrix[2][2] } };
+        return DirectionCosineMatrix<out_frame, in_frame>{ static_cast<Matrix3x3<Unitless>>(*this).transpose() };
     }
 
     /**
@@ -456,24 +464,6 @@ class DirectionCosineMatrix {
     }
 
     /**
-     * @brief Access operator for the elements of the direction cosine matrix.
-     *
-     * @param row The row index (0, 1, or 2).
-     * @param col The column index (0, 1, or 2).
-     * @return Unitless& Reference to the element at the specified row and column.
-     */
-    inline constexpr Unitless& operator[](std::size_t row, std::size_t col) { return _matrix[row][col]; }
-
-    /**
-     * @brief Const access operator for the elements of the direction cosine matrix.
-     *
-     * @param row The row index (0, 1, or 2).
-     * @param col The column index (0, 1, or 2).
-     * @return const Unitless& Reference to the element at the specified row and column.
-     */
-    inline constexpr const Unitless& operator[](std::size_t row, std::size_t col) const { return _matrix[row][col]; }
-
-    /**
      * @brief Apply the direction cosine matrix to a CartesianVector.
      *
      * @tparam Value_T The type of the vector components.
@@ -483,109 +473,68 @@ class DirectionCosineMatrix {
     template <typename Value_T>
     inline constexpr CartesianVector<Value_T, out_frame> operator*(const CartesianVector<Value_T, in_frame>& vec) const
     {
-        return CartesianVector<Value_T, out_frame>(row(0).dot(vec), row(1).dot(vec), row(2).dot(vec));
+        return { _matrix[0 * 3 + 0] * vec[0] + _matrix[0 * 3 + 1] * vec[1] + _matrix[0 * 3 + 2] * vec[2],
+                 _matrix[1 * 3 + 0] * vec[0] + _matrix[1 * 3 + 1] * vec[1] + _matrix[1 * 3 + 2] * vec[2],
+                 _matrix[2 * 3 + 0] * vec[0] + _matrix[2 * 3 + 1] * vec[1] + _matrix[2 * 3 + 2] * vec[2] };
     }
 
     /**
-     * @brief Compose two direction cosine matrices (matrix multiplication).
+     * @brief Compose two direction cosine matrices (matrix multiplication). This creates a new rotation.
      *
-     * Produces DCM<in_frame, _newout_frame> = this * rhs, where this is
-     * DCM<in_frame, out_frame> and rhs is DCM<out_frame, _newout_frame>.
+     * Produces DCM<in_frame, new_out_frame> = this * rhs, where this is
+     * DCM<in_frame, out_frame> and rhs is DCM<out_frame, new_out_frame>.
      *
-     * @tparam _newout_frame The output frame of the right-hand-side DCM.
+     * @tparam new_out_frame The output frame of the right-hand-side DCM.
      * @param other The right-hand-side DCM to compose with.
-     * @return DirectionCosineMatrix<in_frame, _newout_frame> The composed DCM.
+     * @return DirectionCosineMatrix<in_frame, new_out_frame> The composed DCM.
      */
-    template <IsFrame auto _newout_frame>
-    inline constexpr DirectionCosineMatrix<in_frame, _newout_frame>
-        operator*(const DirectionCosineMatrix<out_frame, _newout_frame>& other) const
+    template <IsFrame auto new_out_frame>
+    inline constexpr DirectionCosineMatrix<in_frame, new_out_frame>
+        operator*(const DirectionCosineMatrix<out_frame, new_out_frame>& other) const
     {
-        return DirectionCosineMatrix<in_frame, _newout_frame>{
-            { _matrix[0][0] * other[0, 0] + _matrix[0][1] * other[1, 0] + _matrix[0][2] * other[2, 0],
-              _matrix[0][0] * other[0, 1] + _matrix[0][1] * other[1, 1] + _matrix[0][2] * other[2, 1],
-              _matrix[0][0] * other[0, 2] + _matrix[0][1] * other[1, 2] + _matrix[0][2] * other[2, 2] },
-            { _matrix[1][0] * other[0, 0] + _matrix[1][1] * other[1, 0] + _matrix[1][2] * other[2, 0],
-              _matrix[1][0] * other[0, 1] + _matrix[1][1] * other[1, 1] + _matrix[1][2] * other[2, 1],
-              _matrix[1][0] * other[0, 2] + _matrix[1][1] * other[1, 2] + _matrix[1][2] * other[2, 2] },
-            { _matrix[2][0] * other[0, 0] + _matrix[2][1] * other[1, 0] + _matrix[2][2] * other[2, 0],
-              _matrix[2][0] * other[0, 1] + _matrix[2][1] * other[1, 1] + _matrix[2][2] * other[2, 1],
-              _matrix[2][0] * other[0, 2] + _matrix[2][1] * other[1, 2] + _matrix[2][2] * other[2, 2] }
-        };
+        return { static_cast<Matrix3x3<Unitless>>(*this) * static_cast<Matrix3x3<Unitless>>(other) };
     }
 
     /**
-     * @brief Get a specific row of the direction cosine matrix.
+     * @brief Add two direction cosine matrices element-wise.
      *
-     * @param idx The index of the row to retrieve (0, 1, or 2).
-     * @return const CartesianVector<Value_T, in_frame>& The requested row as a CartesianVector.
+     * @param other The other DCM to add to this DCM.
+     * @return DirectionCosineMatrix<in_frame, out_frame> The resulting DCM after addition.
      */
-    inline constexpr CartesianVector<Unitless, in_frame> row(const std::size_t& idx) const
+    inline constexpr DirectionCosineMatrix operator+(const DirectionCosineMatrix& other) const
     {
-        return { _matrix[idx][0], _matrix[idx][1], _matrix[idx][2] };
+        return { static_cast<Matrix3x3<Unitless>>(*this) + static_cast<Matrix3x3<Unitless>>(other) };
     }
 
     /**
-     * @brief Get the trace of the direction cosine matrix (the sum of the diagonal elements).
+     * @brief Negate the direction cosine matrix element-wise.
      *
-     * @return Unitless The trace of the direction cosine matrix.
+     * @return DirectionCosineMatrix<in_frame, out_frame> The resulting DCM after negation.
      */
-    inline constexpr Unitless trace() const { return _matrix[0][0] + _matrix[1][1] + _matrix[2][2]; }
+    inline constexpr DirectionCosineMatrix operator-() const { return { -static_cast<Matrix3x3<Unitless>>(*this) }; }
 
     /**
-     * @brief Get the determinant of the direction cosine matrix.
+     * @brief Subtract another direction cosine matrix from this one element-wise.
      *
-     * @return Unitless The determinant of the direction cosine matrix.
+     * @param other The other DCM to subtract from this DCM.
+     * @return DirectionCosineMatrix<in_frame, out_frame> The resulting DCM after subtraction.
      */
-    inline constexpr Unitless determinant() const
+    inline constexpr DirectionCosineMatrix operator-(const DirectionCosineMatrix& other) const
     {
-        return _matrix[0][0] * (_matrix[1][1] * _matrix[2][2] - _matrix[1][2] * _matrix[2][1]) -
-               _matrix[0][1] * (_matrix[1][0] * _matrix[2][2] - _matrix[1][2] * _matrix[2][0]) +
-               _matrix[0][2] * (_matrix[1][0] * _matrix[2][1] - _matrix[1][1] * _matrix[2][0]);
+        return { static_cast<Matrix3x3<Unitless>>(*this) - static_cast<Matrix3x3<Unitless>>(other) };
     }
 
     /**
-     * @brief Normalizes the direction cosine matrix to ensure it represents a valid rotation.
+     * @brief Multiply this direction cosine matrix by another DCM element-wise.
      *
-     * This method scales the elements of the matrix so that the determinant is 1, which is a requirement for a
-     * valid rotation matrix. If the determinant is zero, an exception is thrown since the matrix cannot be
-     * normalized. Uses a linear approximation when the determinant is close to 1 for numerical efficiency.
-     */
-    inline constexpr void normalize()
-    {
-        using namespace mp_units;
-
-        const Unitless det = determinant();
-        if (is_eq_zero(det)) {
-            throw std::runtime_error("Cannot normalize a zero-value determinant DCM. The matrix is likely singular.");
-        }
-
-        // For 3x3 matrices, determinant scales as k^3 where k is the scaling factor
-        // Use linear approximation when determinant is close to 1: k ≈ 1 - (det-1)/3
-        // https://stackoverflow.com/questions/11667783/quaternion-and-normalization
-        if (abs(1.0 * one - det) < 2.107342e-08 * one) { _normalize(1.0 * one - (det - 1.0 * one) / 3.0); }
-        else {
-            // Exact formula: k = (1/det)^(1/3) to make k^3 * det = 1
-            _normalize(1.0 * one / cbrt(det));
-        }
-    }
-
-  private:
-    std::array<std::array<Unitless, 3>, 3> _matrix; //!< 3x3 matrix to hold the direction cosines.
-
-    /**
-     * @brief Normalizes the direction cosine matrix by scaling all elements by the given factor.
+     * Note: This is not the same as matrix multiplication (composition of rotations). This is an element-wise operation.
      *
-     * @param scale The factor to scale the matrix elements by to achieve normalization.
+     * @param other The other DCM to multiply with this DCM.
+     * @return DirectionCosineMatrix<in_frame, out_frame> The resulting DCM after element-wise multiplication.
      */
-    inline constexpr void _normalize(const Unitless& scale)
+    inline constexpr DirectionCosineMatrix operator*(const DirectionCosineMatrix& other) const
     {
-        for (auto& row : _matrix) {
-            for (auto& element : row) {
-                element *= scale;
-                // Avoid very small values that should be zero
-                if (mp_units::abs(element) < 1.0e-15 * one) { element = 0.0 * one; }
-            }
-        }
+        return { static_cast<Matrix3x3<Unitless>>(*this) * static_cast<Matrix3x3<Unitless>>(other) };
     }
 };
 

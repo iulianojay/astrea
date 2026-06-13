@@ -113,6 +113,20 @@ inline constexpr CartesianVector<Velocity, get_parent_frame(planets::Jupiter, ax
     return get_velocity_at_impl<ephemerides::JupiterEphemerisTable, frame>(date);
 }
 
+/**
+ * @brief Get the acceleration of the Jupiter at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+ *
+ * @param date The date for which to find the acceleration of the Jupiter.
+ * @return AccelerationVector<frames::solar_system_barycenter::icrf> The acceleration of the Jupiter at the given date.
+ */
+template <>
+inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Jupiter, axes::icrf)>
+    get_acceleration_at<planets::Jupiter>(const Date& date)
+{
+    constexpr auto frame = get_parent_frame(planets::Jupiter, axes::icrf);
+    return get_acceleration_at_impl<ephemerides::JupiterEphemerisTable, frame>(date);
+}
+
 #endif // ASTREA_BUILD_JUPITER_EPHEMERIS
 
 /**

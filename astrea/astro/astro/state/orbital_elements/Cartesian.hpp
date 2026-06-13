@@ -327,7 +327,9 @@ class Cartesian {
     template <IsFrame auto target_frame>
     Cartesian<target_frame> in_frame(const Date& epoch) const
     {
-        return Cartesian<target_frame>{ _r.template in_frame<target_frame>(epoch), _v.template in_frame<target_frame>(epoch) };
+        const CartesianVector<Distance, target_frame> rTarget = _r.template in_frame<target_frame>(epoch);
+        const CartesianVector<Velocity, target_frame> vTarget = _v.template in_frame<target_frame>(epoch, _r);
+        return Cartesian<target_frame>(rTarget, vTarget);
     }
 
     template <IsFrame auto target_frame>
