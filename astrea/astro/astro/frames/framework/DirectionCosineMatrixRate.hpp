@@ -109,7 +109,7 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
         // Disolve angular unit
         const auto thetaDotUnitless = thetaDot / thetaDot.unit;
         return DirectionCosineMatrixRate<in_frame, out_frame>{
-            { 1.0 * one / s, 0.0 * one / s, 0.0 * one / s },
+            { 0.0 * one / s, 0.0 * one / s, 0.0 * one / s },
             { 0.0 * one / s, -thetaDotUnitless * sinTheta, -thetaDotUnitless * cosTheta },
             { 0.0 * one / s, thetaDotUnitless * cosTheta, thetaDotUnitless * sinTheta }
         };
@@ -583,7 +583,21 @@ struct DirectionCosineMatrixRate : public Matrix3x3<Frequency> {
      * @param dcm The other DCM to compose with this one.
      * @return DirectionCosineMatrixRate<in_frame, out_frame> The resulting composed DCM rate.
      */
-    inline constexpr DirectionCosineMatrixRate<in_frame, out_frame> operator*(DirectionCosineMatrixRate<in_frame, out_frame> dcm) const
+    inline constexpr DirectionCosineMatrixRate<in_frame, out_frame> operator*(DirectionCosineMatrix<in_frame, out_frame> dcm) const
+    {
+        return { static_cast<Matrix3x3<Frequency>>(*this) * static_cast<Matrix3x3<Unitless>>(dcm) };
+    }
+
+    /**
+     * @brief Compose this direction cosine matrix rate with a DCM, resulting in a new DCM rate.
+     *
+     * @tparam new_out_frame The output frame of the other DCM.
+     * @param dcm The other DCM to compose with this one.
+     * @return DirectionCosineMatrixRate<in_frame, new_out_frame> The resulting composed DCM rate.
+     */
+    template <IsFrame auto new_out_frame>
+    inline constexpr DirectionCosineMatrixRate<out_frame, new_out_frame>
+        operator*(DirectionCosineMatrix<out_frame, new_out_frame> dcm) const
     {
         return { static_cast<Matrix3x3<Frequency>>(*this) * static_cast<Matrix3x3<Unitless>>(dcm) };
     }
@@ -659,6 +673,24 @@ inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
     return DirectionCosineMatrixRate<in_frame, out_frame>{ static_cast<Matrix3x3<Unitless>>(dcm) *
                                                            static_cast<Matrix3x3<Frequency>>(rate) };
 };
+
+/**
+ * @brief Compose a direction cosine matrix with a direction cosine matrix rate, resulting in a new direction cosine matrix rate.
+ *
+ * @tparam in_frame The input frame of the DCM and DCM rate.
+ * @tparam out_frame The output frame of the DCM and DCM rate.
+ * @tparam new_out_frame The new output frame of the resulting DCM rate.
+ * @param dcm The direction cosine matrix to compose with the DCM rate.
+ * @param rate The direction cosine matrix rate to compose with the DCM.
+ * @return DirectionCosineMatrixRate<in_frame, new_out_frame> The resulting composed DCM rate.
+ */
+template <IsFrame auto in_frame, IsFrame auto out_frame, IsFrame auto new_out_frame>
+inline constexpr DirectionCosineMatrixRate<in_frame, new_out_frame>
+    operator*(DirectionCosineMatrix<in_frame, out_frame> dcm, DirectionCosineMatrixRate<out_frame, new_out_frame> rate)
+{
+    return DirectionCosineMatrixRate<in_frame, new_out_frame>{ static_cast<Matrix3x3<Unitless>>(dcm) *
+                                                               static_cast<Matrix3x3<Frequency>>(rate) };
+}
 
 } // namespace astro
 } // namespace astrea

@@ -53,7 +53,7 @@ using mp_units::si::unit_symbols::s;
  * @tparam out_frame The frame type to which the DCM applies.
  */
 template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
-struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> {
+struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
 
     static constexpr auto in_frame  = _in_frame_;  //!< The input frame of the DCM.
     static constexpr auto out_frame = _out_frame_; //!< The output frame of the DCM
@@ -63,8 +63,8 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      *
      * @param matrix An array containing the three rows of the DCM, each represented as a CartesianVector.
      */
-    inline constexpr DirectionCosineMatrixAccel(const std::array<quantity<one / pow<2>(s)>, 9>& matrix) :
-        Matrix3x3<quantity<one / pow<2>(s)>>{ matrix }
+    inline constexpr DirectionCosineMatrixAccel(const std::array<Chirp, 9>& matrix) :
+        Matrix3x3<Chirp>{ matrix }
     {
     }
 
@@ -75,22 +75,18 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      * @param row2 An array containing the three elements of the second row of the DCM.
      * @param row3 An array containing the three elements of the third row of the DCM.
      */
-    inline constexpr DirectionCosineMatrixAccel(
-        const std::array<quantity<one / pow<2>(s)>, 3>& row1,
-        const std::array<quantity<one / pow<2>(s)>, 3>& row2,
-        const std::array<quantity<one / pow<2>(s)>, 3>& row3
-    ) :
-        Matrix3x3<quantity<one / pow<2>(s)>>{ row1, row2, row3 }
+    inline constexpr DirectionCosineMatrixAccel(const std::array<Chirp, 3>& row1, const std::array<Chirp, 3>& row2, const std::array<Chirp, 3>& row3) :
+        Matrix3x3<Chirp>{ row1, row2, row3 }
     {
     }
 
     /**
-     * @brief Constructor for DirectionCosineMatrixAccel from a Matrix3x3 of quantity<one / pow<2>(s)>.
+     * @brief Constructor for DirectionCosineMatrixAccel from a Matrix3x3 of Chirp.
      *
      * @param matrix A Matrix3x3 containing the elements of the DCM.
      */
-    inline constexpr DirectionCosineMatrixAccel(const Matrix3x3<quantity<one / pow<2>(s)>>& matrix) :
-        Matrix3x3<quantity<one / pow<2>(s)>>{ matrix }
+    inline constexpr DirectionCosineMatrixAccel(const Matrix3x3<Chirp>& matrix) :
+        Matrix3x3<Chirp>{ matrix }
     {
     }
 
@@ -111,7 +107,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
         const auto thetaDotDotUnitless = thetaDotDot / thetaDotDot.unit;
         const auto thetaDotSquared     = pow<2>(thetaDotUnitless);
 
-        const auto xx = 1.0 * one / pow<2>(s);
+        const auto xx = 0.0 * one / pow<2>(s);
         const auto xy = 0.0 * one / pow<2>(s);
         const auto xz = 0.0 * one / pow<2>(s);
         const auto yx = 0.0 * one / pow<2>(s);
@@ -596,11 +592,11 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      * @brief Retrieves a specific row of the direction cosine matrix accel as a CartesianVector.
      *
      * @param idx The index of the row to retrieve (0 for the first row, 1 for the second row, 2 for the third row).
-     * @return CartesianVector<quantity<one / pow<2>(s)>, in_frame> The specified row of the DCM accel as a CartesianVector.
+     * @return CartesianVector<Chirp, in_frame> The specified row of the DCM accel as a CartesianVector.
      */
-    inline constexpr CartesianVector<quantity<one / pow<2>(s)>, in_frame> row(const std::size_t& idx) const
+    inline constexpr CartesianVector<Chirp, in_frame> row(const std::size_t& idx) const
     {
-        return { static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this).row(idx) };
+        return { static_cast<Matrix3x3<Chirp>>(*this).row(idx) };
     }
 
     /**
@@ -610,12 +606,12 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      */
     static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> identity()
     {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>{ Matrix3x3<quantity<one / pow<2>(s)>>::identity() };
+        return DirectionCosineMatrixAccel<in_frame, out_frame>{ Matrix3x3<Chirp>::identity() };
     }
 
     static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> zero()
     {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>{ Matrix3x3<quantity<one / pow<2>(s)>>::zero() };
+        return DirectionCosineMatrixAccel<in_frame, out_frame>{ Matrix3x3<Chirp>::zero() };
     }
 
 
@@ -626,7 +622,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      */
     inline constexpr DirectionCosineMatrixAccel<out_frame, in_frame> transpose() const
     {
-        return DirectionCosineMatrixAccel<out_frame, in_frame>{ static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this).transpose() };
+        return DirectionCosineMatrixAccel<out_frame, in_frame>{ static_cast<Matrix3x3<Chirp>>(*this).transpose() };
     }
 
     /**
@@ -719,7 +715,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      */
     inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> operator*(DirectionCosineMatrixAccel<in_frame, out_frame> dcm) const
     {
-        return { static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) * static_cast<Matrix3x3<Unitless>>(dcm) };
+        return { static_cast<Matrix3x3<Chirp>>(*this) * static_cast<Matrix3x3<Unitless>>(dcm) };
     }
 
     /**
@@ -744,8 +740,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      */
     inline constexpr DirectionCosineMatrixAccel operator+(const DirectionCosineMatrixAccel& other) const
     {
-        return { static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) +
-                 static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(other) };
+        return { static_cast<Matrix3x3<Chirp>>(*this) + static_cast<Matrix3x3<Chirp>>(other) };
     }
 
     /**
@@ -753,10 +748,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      *
      * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting DCM after negation.
      */
-    inline constexpr DirectionCosineMatrixAccel operator-() const
-    {
-        return { -static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) };
-    }
+    inline constexpr DirectionCosineMatrixAccel operator-() const { return { -static_cast<Matrix3x3<Chirp>>(*this) }; }
 
     /**
      * @brief Subtract another direction cosine matrix from this one element-wise.
@@ -766,8 +758,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      */
     inline constexpr DirectionCosineMatrixAccel operator-(const DirectionCosineMatrixAccel& other) const
     {
-        return { static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) -
-                 static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(other) };
+        return { static_cast<Matrix3x3<Chirp>>(*this) - static_cast<Matrix3x3<Chirp>>(other) };
     }
 
     /**
@@ -780,8 +771,34 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<quantity<one / pow<2>(s)>> 
      */
     inline constexpr DirectionCosineMatrixAccel operator*(const DirectionCosineMatrixAccel& other) const
     {
-        return { static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(*this) *
-                 static_cast<Matrix3x3<quantity<one / pow<2>(s)>>>(other) };
+        return { static_cast<Matrix3x3<Chirp>>(*this) * static_cast<Matrix3x3<Chirp>>(other) };
+    }
+
+    /**
+     * @brief Compose this direction cosine matrix rate with a DCM, resulting in a new DCM rate.
+     *
+     * @tparam in_frame_u The input frame of the other DCM.
+     * @tparam out_frame_u The output frame of the other DCM.
+     * @param dcm The other DCM to compose with this one.
+     * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting composed DCM rate.
+     */
+    inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> operator*(DirectionCosineMatrix<in_frame, out_frame> dcm) const
+    {
+        return { static_cast<Matrix3x3<Chirp>>(*this) * static_cast<Matrix3x3<Unitless>>(dcm) };
+    }
+
+    /**
+     * @brief Compose this direction cosine matrix rate with a DCM, resulting in a new DCM rate.
+     *
+     * @tparam new_out_frame The output frame of the other DCM.
+     * @param dcm The other DCM to compose with this one.
+     * @return DirectionCosineMatrixAccel<in_frame, new_out_frame> The resulting composed DCM rate.
+     */
+    template <IsFrame auto new_out_frame>
+    inline constexpr DirectionCosineMatrixAccel<out_frame, new_out_frame>
+        operator*(DirectionCosineMatrix<out_frame, new_out_frame> dcm) const
+    {
+        return { static_cast<Matrix3x3<Chirp>>(*this) * static_cast<Matrix3x3<Unitless>>(dcm) };
     }
 };
 
@@ -800,11 +817,56 @@ using DcmAccel = DirectionCosineMatrixAccel<in_frame, out_frame>;
 template <IsFrame auto frame, IsFrame auto frame_u>
 inline constexpr DcmAccel<frame, frame_u> get_dcm_accel(const Date& date) = delete;
 
+/**
+ * @brief Compose two direction cosine matrix rates (matrix multiplication).
+ *
+ * Produces DCMRate<in_frame, new_out_frame> = this * rhs, where this is
+ * DCMRate<in_frame, out_frame> and rhs is DCMRate<out_frame, new_out_frame>.
+ *
+ * @tparam new_out_frame The output frame of the right-hand-side DCM rate.
+ * @param rate The right-hand-side DCM rate to compose with.
+ * @return DirectionCosineMatrixRateAccel<_in_frame_, new_out_frame> The composed DCM rate.
+ */
 template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
 inline constexpr DirectionCosineMatrixRateAccel<_in_frame_, _out_frame_>
     DirectionCosineMatrixRate<_in_frame_, _out_frame_>::operator*(const DirectionCosineMatrixRate<_in_frame_, _out_frame_>& rate) const
 {
     return { static_cast<Matrix3x3<Frequency>>(*this) * static_cast<Matrix3x3<Frequency>>(rate) };
+}
+
+/**
+ * @brief Compose a direction cosine matrix with a direction cosine matrix rate, resulting in a new direction cosine matrix rate.
+ *
+ * @tparam in_frame The input frame of the DCM and DCM rate.
+ * @tparam out_frame The output frame of the DCM and DCM rate.
+ * @param dcm The direction cosine matrix to compose with the DCM rate.
+ * @param rate The direction cosine matrix rate to compose with the DCM.
+ * @return DirectionCosineMatrixRate<in_frame, out_frame> The resulting composed DCM rate.
+ */
+template <IsFrame auto in_frame, IsFrame auto out_frame>
+inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
+    operator*(DirectionCosineMatrix<in_frame, out_frame> dcm, DirectionCosineMatrixAccel<in_frame, out_frame> rate)
+{
+    return DirectionCosineMatrixRate<in_frame, out_frame>{ static_cast<Matrix3x3<Unitless>>(dcm) *
+                                                           static_cast<Matrix3x3<Chirp>>(rate) };
+};
+
+/**
+ * @brief Compose a direction cosine matrix with a direction cosine matrix acceleration, resulting in a new direction cosine matrix acceleration.
+ *
+ * @tparam in_frame The input frame of the DCM and DCM acceleration.
+ * @tparam out_frame The output frame of the DCM and DCM acceleration.
+ * @tparam new_out_frame The new output frame of the resulting DCM acceleration.
+ * @param dcm The direction cosine matrix to compose with the DCM acceleration.
+ * @param rate The direction cosine matrix acceleration to compose with the DCM.
+ * @return DirectionCosineMatrixAccel<in_frame, new_out_frame> The resulting composed DCM acceleration.
+ */
+template <IsFrame auto in_frame, IsFrame auto out_frame, IsFrame auto new_out_frame>
+inline constexpr DirectionCosineMatrixAccel<in_frame, new_out_frame>
+    operator*(DirectionCosineMatrix<in_frame, out_frame> dcm, DirectionCosineMatrixAccel<out_frame, new_out_frame> rate)
+{
+    return DirectionCosineMatrixAccel<in_frame, new_out_frame>{ static_cast<Matrix3x3<Unitless>>(dcm) *
+                                                                static_cast<Matrix3x3<Chirp>>(rate) };
 }
 
 } // namespace astro

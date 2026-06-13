@@ -44,6 +44,28 @@ template <IsFrame auto frame, IsFrame auto frame_u>
 concept HasDcm = requires(const Date& date) { get_dcm<frame, frame_u>(date); };
 
 /**
+ * @brief Concept to determine if a Direction Cosine Matrix Rate can be obtained between two frames at a given date.
+ *
+ * @tparam frame The first frame type to check.
+ * @tparam frame_u The second frame type to check.
+ * @param date The date at which to obtain the DCM rate.
+ * @return true if the specialization of get_dcm_rate has been defined, false otherwise.
+ */
+template <IsFrame auto frame, IsFrame auto frame_u>
+concept HasDcmRate = requires(const Date& date) { get_dcm_rate<frame, frame_u>(date); };
+
+/**
+ * @brief Concept to determine if a Direction Cosine Matrix Acceleration can be obtained between two frames at a given date.
+ *
+ * @tparam frame The first frame type to check.
+ * @tparam frame_u The second frame type to check.
+ * @param date The date at which to obtain the DCM acceleration.
+ * @return true if the specialization of get_dcm_accel has been defined, false otherwise.
+ */
+template <IsFrame auto frame, IsFrame auto frame_u>
+concept HasDcmAccel = requires(const Date& date) { get_dcm_accel<frame, frame_u>(date); };
+
+/**
  * @brief Concept to determine if a frame class has a member function to obtain the Direction Cosine Matrix (DCM) to another frame at a given date.
  *
  * @tparam frame The frame type to check.
@@ -70,8 +92,19 @@ struct DcmDefinedBothWays;
 template <IsFrame auto frame, IsFrame auto frame_u>
 inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date);
 
+template <IsFrame auto frame, IsFrame auto frame_u>
+inline constexpr DcmRate<frame, frame_u> get_dcm_rate_impl(const Date& date);
+
+template <IsFrame auto frame, IsFrame auto frame_u>
+inline constexpr DcmAccel<frame, frame_u> get_dcm_accel_impl(const Date& date);
+
 /**
  * @brief Retrieves the accumulated direction cosine matrix from the root frame to the given FixedOffsetFrame by recursively composing the DCMs along the parent chain.
+ *
+ * @tparam frame The frame type for which to retrieve the DCM to the root frame.
+ * @tparam root The root frame type to which the DCM should be obtained.
+ * @param date The date at which to retrieve the DCM.
+ * @return DCM<frame, root> The direction cosine matrix from the root frame to the given frame.
  */
 template <IsFrame auto frame, IsFrame auto root>
 inline constexpr DCM<frame, root> get_dcm_to_root_frame(const Date& date)
@@ -105,10 +138,109 @@ inline constexpr DCM<frame, root> get_dcm_to_root_frame(const Date& date)
 }
 
 /**
+ * @brief Retrieves the accumulated direction cosine matrix rate from the root frame to the given frame by recursively composing the DCM rates along the parent chain.
+ *
+ * @tparam frame The frame type for which to retrieve the DCM rate to the root frame.
+ * @tparam root The root frame type to which the DCM rate should be obtained.
+ * @param date The date at which to retrieve the DCM rate.
+ * @return DcmRate<frame, root> The direction cosine matrix rate from the root frame to the given frame.
+ */
+template <IsFrame auto frame, IsFrame auto root>
+inline constexpr DcmRate<frame, root> get_dcm_rate_to_root_frame(const Date& date)
+{
+    static constexpr auto axis      = frame.axis;
+    static constexpr auto root_axis = root.axis;
+
+    // first check if these transformations exist directly
+    if constexpr (HasDcmRate<frame, root>) { return get_dcm_rate<frame, root>(date); }
+    else if constexpr (HasDcmRate<root, frame>) {
+        return get_dcm_rate<root, frame>(date).transpose();
+    }
+    // current frame is root
+    else if constexpr (equivalent(axis, root_axis)) {
+        return DcmRate<root, frame>::zero();
+    }
+    // current frame is a direct child of root
+    else if constexpr (equivalent(axis.parent, root_axis)) {
+        static constexpr auto parent = make_frame(frame.origin, axis.parent);
+        return get_dcm_rate_impl<frame, parent>(date);
+    }
+    // current frame is a descendant of root
+    else if constexpr (IsDerivedAxis<decltype(axis.parent)>) {
+        static constexpr auto parent = make_frame(frame.origin, axis.parent);
+
+        const DCM<frame, parent> dcmToParent            = get_dcm_impl<frame, parent>(date);
+        const DCM<parent, root> dcmParentToRoot         = get_dcm_to_root_frame<parent, root>(date);
+        const DcmRate<frame, parent> dcmRateToParent    = get_dcm_rate_impl<frame, parent>(date);
+        const DcmRate<parent, root> dcmRateParentToRoot = get_dcm_rate_to_root_frame<parent, root>(date);
+
+        // Dcm<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
+        // DcmRate<grandparent, parent> * DCM<parent, child> + Dcm<grandparent, parent> * DcmRate<parent, child> = DcmRate<grandparent, child>
+        return dcmToParent * dcmRateParentToRoot + dcmParentToRoot * dcmRateToParent;
+    }
+    else {
+        return DcmRate<root, frame>::zero();
+    }
+}
+
+/**
+ * @brief Retrieves the accumulated direction cosine matrix acceleration from the root frame to the given frame by
+ * recursively composing the DCM accelerations along the parent chain.
+ *
+ * @tparam frame The frame type for which to retrieve the DCM acceleration to the root frame.
+ * @tparam root The root frame type to which the DCM acceleration should be obtained.
+ * @param date The date at which to retrieve the DCM acceleration.
+ * @return DcmAccel<frame, root> The direction cosine matrix acceleration from the root frame to the given frame.
+ */
+template <IsFrame auto frame, IsFrame auto root>
+inline constexpr DcmAccel<frame, root> get_dcm_accel_to_root_frame(const Date& date)
+{
+    static constexpr auto axis      = frame.axis;
+    static constexpr auto root_axis = root.axis;
+
+    // first check if these transformations exist directly
+    if constexpr (HasDcmAccel<frame, root>) { return get_dcm_accel<frame, root>(date); }
+    else if constexpr (HasDcmAccel<root, frame>) {
+        return get_dcm_accel<root, frame>(date).transpose();
+    }
+    // current frame is root
+    else if constexpr (equivalent(axis, root_axis)) {
+        return DcmAccel<root, frame>::zero();
+    }
+    // current frame is a direct child of root
+    else if constexpr (equivalent(axis.parent, root_axis)) {
+        static constexpr auto parent = make_frame(frame.origin, axis.parent);
+        return get_dcm_accel_impl<frame, parent>(date);
+    }
+    // current frame is a descendant of root
+    else if constexpr (IsDerivedAxis<decltype(axis.parent)>) {
+        // DCM<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
+        static constexpr auto parent = make_frame(frame.origin, axis.parent);
+
+        const DCM<frame, parent> dcmToParent              = get_dcm_impl<frame, parent>(date);
+        const DCM<parent, root> dcmParentToRoot           = get_dcm_to_root_frame<parent, root>(date);
+        const DcmRate<frame, parent> dcmRateToParent      = get_dcm_rate_impl<frame, parent>(date);
+        const DcmRate<parent, root> dcmRateParentToRoot   = get_dcm_rate_to_root_frame<parent, root>(date);
+        const DcmAccel<frame, parent> dcmAccelToParent    = get_dcm_accel_impl<frame, parent>(date);
+        const DcmAccel<parent, root> dcmAccelParentToRoot = get_dcm_accel_to_root_frame<parent, root>(date);
+
+        // Dcm<grandparent, parent> * DCM<parent, child> = DCM<grandparent, child>
+        // DcmRate<grandparent, parent> * DCM<parent, child> + Dcm<grandparent, parent> * DcmRate<parent, child> = DcmRate<grandparent, child>
+        // DcmAccel<grandparent, parent> * DCM<parent, child> + 2 * DcmRate<grandparent, parent> * DcmRate<parent, child> + Dcm<grandparent, parent> * DcmAccel<parent, child> = DcmAccel<grandparent, child>
+        return dcmToParent * dcmAccelParentToRoot + 2.0 * dcmRateParentToRoot * dcmRateToParent + dcmParentToRoot * dcmAccelToParent;
+    }
+    else {
+        return DcmAccel<root, frame>::zero();
+    }
+}
+
+/**
  * @brief Get the Direction Cosine Matrix (DCM) between two frames at a given date.
  *
  * This function retrieves the DCM that transforms vectors from frame to frame_u.
- * If the DCM is not directly defined, it attempts to use the inverse DCM if available.
+ * If the DCM is not directly defined, it attempts to use the inverse DCM if available. If neither is available, it
+ * checks for a common ancestor frame and composes the DCMs to and from the common ancestor. If no valid transformation
+ * can be found, a compile-time error is triggered.
  *
  * @tparam frame The source frame type.
  * @tparam frame_u The target frame type.
@@ -158,6 +290,109 @@ inline constexpr DCM<frame, frame_u> get_dcm_impl(const Date& date)
     }
 }
 
+/**
+ * @brief Get the Direction Cosine Matrix (DCM) rate between two frames at a given date.
+ *
+ * This function retrieves the DCM rate that transforms vectors from frame to frame_u.
+ * If the DCM rate is not directly defined, it attempts to use the inverse DCM rate if available. If neither is
+ * available, it checks for a common ancestor frame and composes the DCM rates to and from the common ancestor. If no
+ * valid transformation can be found, it is assumed that the DCM rate is zero
+ *
+ * @tparam frame The source frame type.
+ * @tparam frame_u The target frame type.
+ * @param date The date at which to retrieve the DCM rate.
+ * @return DcmRate<frame, frame_u> The Direction Cosine Matrix rate from frame to frame_u.
+ */
+template <IsFrame auto frame, IsFrame auto frame_u>
+inline constexpr DcmRate<frame, frame_u> get_dcm_rate_impl(const Date& date)
+{
+    if constexpr (equivalent(frame.axis, frame_u.axis)) { return DcmRate<frame, frame_u>::zero(); }
+    else if constexpr (HasDcmRate<frame, frame_u>) {
+        return get_dcm_rate<frame, frame_u>(date);
+    }
+    else if constexpr (HasDcmRate<frame_u, frame>) {
+        return get_dcm_rate<frame_u, frame>(date).transpose();
+    }
+    else if constexpr (HasCommonAncestor<frame.axis, frame_u.axis>) {
+        // If no direct DCM defined but common ancestor exists, we can get the DCMs to the common ancestor and compose them
+        static constexpr auto root_axis = find_common_ancestor(frame.axis, frame_u.axis);
+        static constexpr auto root      = make_frame(frame.origin, root_axis);
+
+        const DCM<frame, root> dcm1           = get_dcm_to_root_frame<frame, root>(date);
+        const DCM<frame_u, root> dcm2         = get_dcm_to_root_frame<frame_u, root>(date);
+        const DcmRate<frame, root> dcmRate1   = get_dcm_rate_to_root_frame<frame, root>(date);
+        const DcmRate<frame_u, root> dcmRate2 = get_dcm_rate_to_root_frame<frame_u, root>(date);
+
+        // DCM_frame->frame_u = DCM_root->frame_u * DCM_frame->root
+        // DCM_rate_frame->frame_u = DCM_rate_frame->root * DCM_root->frame_u + DCM_frame->root * DCM_rate_root->frame_u
+        return dcmRate1 * dcm2.transpose() + dcm1 * dcmRate2.transpose();
+    }
+    else {
+        // TODO: Trigger warning?
+        return DcmRate<frame, frame_u>::zero();
+    }
+}
+
+/**
+ * @brief Get the Direction Cosine Matrix (DCM) acceleration between two frames at a given date.
+ *
+ * This function retrieves the DCM acceleration that transforms vectors from frame to frame_u.
+ * If the DCM acceleration is not directly defined, it attempts to use the inverse DCM acceleration if available. If
+ * neither is available, it checks for a common ancestor frame and composes the DCM accelerations to and from the common
+ * ancestor. If no valid transformation can be found, it is assumed that the DCM acceleration is zero
+ *
+ * @tparam frame The source frame type.
+ * @tparam frame_u The target frame type.
+ * @param date The date at which to retrieve the DCM acceleration.
+ * @return DcmAccel<frame, frame_u> The Direction Cosine Matrix acceleration from frame to frame_u.
+ */
+template <IsFrame auto frame, IsFrame auto frame_u>
+inline constexpr DcmAccel<frame, frame_u> get_dcm_accel_impl(const Date& date)
+{
+    if constexpr (equivalent(frame.axis, frame_u.axis)) { return DcmAccel<frame, frame_u>::zero(); }
+    else if constexpr (HasDcmAccel<frame, frame_u>) {
+        return get_dcm_accel<frame, frame_u>(date);
+    }
+    else if constexpr (HasDcmAccel<frame_u, frame>) {
+        return get_dcm_accel<frame_u, frame>(date).transpose();
+    }
+    else if constexpr (HasCommonAncestor<frame.axis, frame_u.axis>) {
+        // If no direct DCM defined but common ancestor exists, we can get the DCMs to the common ancestor and compose them
+        static constexpr auto root_axis = find_common_ancestor(frame.axis, frame_u.axis);
+        static constexpr auto root      = make_frame(frame.origin, root_axis);
+
+        const DCM<frame, root> dcm1             = get_dcm_to_root_frame<frame, root>(date);
+        const DCM<frame_u, root> dcm2           = get_dcm_to_root_frame<frame_u, root>(date);
+        const DcmRate<frame, root> dcmRate1     = get_dcm_rate_to_root_frame<frame, root>(date);
+        const DcmRate<frame_u, root> dcmRate2   = get_dcm_rate_to_root_frame<frame_u, root>(date);
+        const DcmAccel<frame, root> dcmAccel1   = get_dcm_accel_to_root_frame<frame, root>(date);
+        const DcmAccel<frame_u, root> dcmAccel2 = get_dcm_accel_to_root_frame<frame_u, root>(date);
+
+        // DCM_frame->frame_u = DCM_root->frame_u * DCM_frame->root
+        // DCM_rate_frame->frame_u = DCM_rate_frame->root * DCM_root->frame_u + DCM_frame->root * DCM_rate_root->frame_u
+        // DCM_accel_frame->frame_u = DCM_accel_frame->root * DCM_root->frame_u + 2 * DCM_rate_frame->root * DCM_rate_root->frame_u + DCM_frame->root * DCM_accel_root->frame_u
+        return dcmAccel1 * dcm2.transpose() + 2 * dcmRate1 * dcmRate2.transpose() + dcm1 * dcmAccel2.transpose();
+    }
+    else {
+        // TODO: Trigger warning?
+        return DcmAccel<frame, frame_u>::zero();
+    }
+}
+
+/**
+ * @brief Get the center offset between two frames at a given date.
+ *
+ * This function calculates the offset between the origins of two frames by chaining translations. Works for position,
+ * velocity, and acceleration for offsets between celestial references, and position offsets for fixed offset frames. Velocity
+ * and acceleration offsets for fixed offset frames are not currently supported.
+ *
+ * @tparam Value_T The type of the offset vector components (e.g., Distance, Velocity, Acceleration).
+ * @tparam frame The first frame type.
+ * @tparam frame_u The second frame type.
+ * @param date The date at which to calculate the offset.
+ * @return CartesianVector<Value_T, frame_u> The offset vector from frame to frame_u.
+ * @throws std::logic_error If the offset cannot be determined due to lack of common reference or unsupported frame types.
+ */
 template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
 inline constexpr CartesianVector<Value_T, frame_u> get_offset_impl(const Date& date)
 {
@@ -219,6 +454,14 @@ inline constexpr CartesianVector<Value_T, frame_u> get_offset_impl(const Date& d
 
 } // namespace
 
+/**
+ * @brief Concept to determine if a valid frame transformation (DCM) can be obtained between two frames at a given date, either through a direct DCM or an inverse DCM.
+ *
+ * @tparam frame The first frame type to check.
+ * @tparam frame_u The second frame type to check.
+ * @param date The date at which to obtain the DCM.
+ * @return true if a valid DCM can be obtained between the two frames, false otherwise.
+ */
 template <IsFrame auto frame, IsFrame auto frame_u>
 concept HasValidFrameTransformation = requires(Date date) {
     { get_dcm_impl<frame, frame_u>(date) } -> std::same_as<DCM<frame, frame_u>>;
@@ -299,6 +542,16 @@ inline constexpr CartesianVector<Distance, frame_u>
     return dcm * vec + offset;
 }
 
+/**
+ * @brief Transform a velocity vector from one frame to another at a given date, accounting for both rotation and translation.
+ *
+ * @tparam frame The source frame type.
+ * @tparam frame_u The target frame type.
+ * @param vec The velocity vector to transform.
+ * @param date The date at which to perform the transformation.
+ * @param position The position vector in the source frame.
+ * @return CartesianVector<Velocity, frame_u> A new velocity vector in the target frame.
+ */
 template <IsFrame auto frame, IsFrame auto frame_u>
     requires(IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>)
 inline constexpr CartesianVector<Velocity, frame_u>
@@ -322,6 +575,17 @@ inline constexpr CartesianVector<Velocity, frame_u>
     return dcmRate * position + dcm * vec + offset;
 }
 
+/**
+ * @brief Transform an acceleration vector from one frame to another at a given date, accounting for both rotation and translation.
+ *
+ * @tparam frame The source frame type.
+ * @tparam frame_u The target frame type.
+ * @param vec The acceleration vector to transform.
+ * @param date The date at which to perform the transformation.
+ * @param position The position vector in the source frame.
+ * @param velocity The velocity vector in the source frame.
+ * @return CartesianVector<Acceleration, frame_u> A new acceleration vector in the target frame.
+ */
 template <IsFrame auto frame, IsFrame auto frame_u>
     requires(IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>)
 inline constexpr CartesianVector<Acceleration, frame_u> transform_vector_into_frame(
