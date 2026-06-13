@@ -397,19 +397,21 @@ template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
 inline constexpr CartesianVector<Value_T, frame_u> get_offset_impl(const Date& date)
 {
     static_assert(
-        std::is_same_v<Value_T, Distance> || std::is_same_v<Value_T, Velocity> || std::is_same_v<Value_T, Acceleration>,
-        "translate_vector_into_frame: Value_T must be Distance, Velocity, or Acceleration."
+        (std::is_same_v<Value_T, Distance> || std::is_same_v<Value_T, Unitless> || std::is_same_v<Value_T, Velocity> ||
+         std::is_same_v<Value_T, Acceleration>),
+        "translate_vector_into_frame: Value_T must be Distance, Unitless, Velocity, or Acceleration."
     );
 
     constexpr auto origin   = frame.origin;
     constexpr auto origin_u = frame_u.origin;
 
-    if constexpr (equivalent(origin, origin_u)) {
+    // If the frames share the same origin or if we're asking for the offset of a direction vector, then the offset is zero regardless of frame type
+    if constexpr (equivalent(origin, origin_u) || std::is_same_v<Value_T, Unitless>) {
         return CartesianVector<Value_T, frame_u>(Value_T::zero(), Value_T::zero(), Value_T::zero());
     }
     else if constexpr (IsCelestialReference<decltype(origin)> && IsCelestialReference<decltype(origin_u)>) {
         // Two celestial references and we hook into the ephemeris system
-        if constexpr (std::is_same_v<Value_T, Distance>) {
+        if constexpr (std::is_same_v<Value_T, Distance> || std::is_same_v<Value_T, Unitless>) {
             return get_relative_position<origin, origin_u>(date).template force_frame_conversion<frame_u>();
         }
         else if constexpr (std::is_same_v<Value_T, Velocity>) {
@@ -420,9 +422,9 @@ inline constexpr CartesianVector<Value_T, frame_u> get_offset_impl(const Date& d
         }
     }
     else if constexpr (IsFixedOffsetFrame<decltype(frame)> || IsFixedOffsetFrame<decltype(frame_u)>) {
-        if constexpr (!std::is_same_v<Value_T, Distance>) {
+        if constexpr (!(std::is_same_v<Value_T, Distance> || std::is_same_v<Value_T, Unitless>)) {
             // We can only calculate velocity offsets for celestial references since we rely on the ephemeris system for the relative velocity
-            throw std::logic_error("Fixed velocity and acceleration offsets are not currently supported.");
+            static_assert(always_false<Value_T>, "Fixed velocity and acceleration offsets are not currently supported.");
         }
 
         // At least one fixed offset frame in the mix, so we can use the static offsets
@@ -520,23 +522,23 @@ inline constexpr CartesianVector<Value_T, frame_u>
  * @param date The date at which to perform the transformation.
  * @return CartesianVector<Value_T, frame_u> A new CartesianVector in the target frame.
  */
-template <IsFrame auto frame, IsFrame auto frame_u>
-    requires(IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>)
-inline constexpr CartesianVector<Distance, frame_u>
-    transform_vector_into_frame(const CartesianVector<Distance, frame>& vec, const Date& date)
+template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
+    requires((std::is_same_v<Value_T, Distance> || std::is_same_v<Value_T, Unitless>) && IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>)
+inline constexpr CartesianVector<Value_T, frame_u>
+    transform_vector_into_frame(const CartesianVector<Value_T, frame>& vec, const Date& date)
 {
-    // Same axis: translation only
-    if constexpr (equivalent(frame.axis, frame_u.axis)) {
-        return translate_vector_into_frame<Distance, frame, frame_u>(vec, date);
+    // Same origin or direction vector: rotation only
+    if constexpr (equivalent(frame.origin, frame_u.origin) || std::is_same_v<Value_T, Unitless>) {
+        return rotate_vector_into_frame<Value_T, frame, frame_u>(vec, date);
     }
-    // Same origin: rotation only
-    else if constexpr (equivalent(frame.origin, frame_u.origin)) {
-        return rotate_vector_into_frame<Distance, frame, frame_u>(vec, date);
+    // Same axis: translation only
+    else if constexpr (equivalent(frame.axis, frame_u.axis)) {
+        return translate_vector_into_frame<Value_T, frame, frame_u>(vec, date);
     }
 
     // Translation + rotation case
-    const CartesianVector<Distance, frame_u> offset = get_offset_impl<Distance, frame, frame_u>(date);
-    const auto dcm                                  = get_dcm_impl<frame, frame_u>(date);
+    const CartesianVector<Value_T, frame_u> offset = get_offset_impl<Value_T, frame, frame_u>(date);
+    const auto dcm                                 = get_dcm_impl<frame, frame_u>(date);
 
     // r_2 = DCM * r_1 + r_o
     return dcm * vec + offset;
@@ -619,10 +621,10 @@ inline constexpr CartesianVector<Acceleration, frame_u> transform_vector_into_fr
 
 template <typename Value_T, IsFrame auto _frame_>
 template <IsFrame auto frame_u>
-    requires(std::is_same_v<Value_T, Distance> && _frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
-inline constexpr CartesianVector<Distance, frame_u> CartesianVector<Value_T, _frame_>::in_frame(const Date& date) const
+    requires((std::is_same_v<Value_T, Distance> || std::is_same_v<Value_T, Unitless>) && _frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
+inline constexpr CartesianVector<Value_T, frame_u> CartesianVector<Value_T, _frame_>::in_frame(const Date& date) const
 {
-    return frames::transform_vector_into_frame<_frame_, frame_u>(*this, date);
+    return frames::transform_vector_into_frame<Value_T, _frame_, frame_u>(*this, date);
 }
 
 

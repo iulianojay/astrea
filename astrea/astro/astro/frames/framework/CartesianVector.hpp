@@ -455,6 +455,35 @@ struct CartesianVector {
     }
 
     /**
+     * @brief No-op overload when calling in_frame with the same frame.
+     *
+     * @tparam frame_u The target frame type to get the vector in.
+     * @return CartesianVector<Value_T, frame_u> A new CartesianVector in the target frame.
+     * @throws std::runtime_error If the frames do not share the same origin or if the DCM cannot be obtained.
+     */
+    template <IsFrame auto frame_u>
+        requires((frame == frame_u))
+    inline constexpr CartesianVector<Value_T, frame_u> in_frame(const Date&, const CartesianVector<Distance, _frame_>&) const
+    {
+        return *this;
+    }
+
+    /**
+     * @brief No-op overload when calling in_frame with the same frame.
+     *
+     * @tparam frame_u The target frame type to get the vector in.
+     * @return CartesianVector<Value_T, frame_u> A new CartesianVector in the target frame.
+     * @throws std::runtime_error If the frames do not share the same origin or if the DCM cannot be obtained.
+     */
+    template <IsFrame auto frame_u>
+        requires((frame == frame_u))
+    inline constexpr CartesianVector<Value_T, frame_u>
+        in_frame(const Date&, const CartesianVector<Distance, _frame_>&, const CartesianVector<Velocity, _frame_>&) const
+    {
+        return *this;
+    }
+
+    /**
      * @brief Rotate this vector into another frame at a given date.
      *
      * @tparam frame_u The target frame type to rotate into.
@@ -463,8 +492,8 @@ struct CartesianVector {
      * @throws std::runtime_error If the frames do not share the same origin or if the DCM cannot be obtained.
      */
     template <IsFrame auto frame_u>
-        requires(std::is_same_v<Value_T, Distance> && _frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
-    inline constexpr CartesianVector<Distance, frame_u> in_frame(const Date& date) const;
+        requires((std::is_same_v<Value_T, Distance> || std::is_same_v<Value_T, Unitless>) && _frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
+    inline constexpr CartesianVector<Value_T, frame_u> in_frame(const Date& date) const;
 
     /**
      * @brief Rotate this vector into another frame at a given date, accounting for velocity aberration.
