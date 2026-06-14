@@ -21,6 +21,7 @@
 #include <array>
 #include <typeinfo>
 
+#include <mp-units/framework.h>
 #include <mp-units/systems/angular.h>
 
 #include <units/units.hpp>
@@ -100,16 +101,16 @@ struct CartesianVector {
     // Equivalent-frame copy/move constructors. Uses plain `auto` (not `IsFrame auto`) to avoid
     // GCC 15 tsubst ICE with constrained auto NTTPs (deduction failure crashes instead of SFINAE).
     // The `requires(equivalent(...))` clause enforces same-origin/axis/parent at the constraint stage.
-    template <auto frame_u>
-        requires(equivalent(frame, frame_u))
-    inline constexpr CartesianVector(const CartesianVector<Value_T, frame_u>& other) :
+    template <typename Value_U, auto frame_u>
+        requires((std::is_same_v<Value_T, Value_U> || mp_units::interconvertible(Value_T::unit, Value_U::unit)) && equivalent(frame, frame_u))
+    inline constexpr CartesianVector(const CartesianVector<Value_U, frame_u>& other) :
         _vector{ other.get_x(), other.get_y(), other.get_z() }
     {
     }
 
-    template <auto frame_u>
-        requires(equivalent(frame, frame_u))
-    inline constexpr CartesianVector(CartesianVector<Value_T, frame_u>&& other) :
+    template <typename Value_U, auto frame_u>
+        requires((std::is_same_v<Value_T, Value_U> || mp_units::interconvertible(Value_T::unit, Value_U::unit)) && equivalent(frame, frame_u))
+    inline constexpr CartesianVector(CartesianVector<Value_U, frame_u>&& other) :
         _vector{ std::move(other.get_x()), std::move(other.get_y()), std::move(other.get_z()) }
     {
     }

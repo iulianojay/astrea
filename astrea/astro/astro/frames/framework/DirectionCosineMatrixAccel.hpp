@@ -29,34 +29,24 @@
 #include <utilities/string_util.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/framework/DcmInterface.hpp>
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
 #include <astro/frames/framework/DirectionCosineMatrixRate.hpp>
-#include <astro/frames/framework/Matrix3x3.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
 
-namespace {
-
-using namespace mp_units;
-using mp_units::si::unit_symbols::s;
-
-} // namespace
-
 /**
  * @brief Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames.
  *
  * This class provides methods to create DCMs for various rotations and to apply them to vectors.
  *
- * @tparam out_frame The frame type to which the DCM applies.
+ * @tparam _out_frame_ The frame type to which the DCM applies.
  */
 template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
-struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
-
-    static constexpr auto in_frame  = _in_frame_;  //!< The input frame of the DCM.
-    static constexpr auto out_frame = _out_frame_; //!< The output frame of the DCM
+struct DirectionCosineMatrixAccel : public DcmInterface<Chirp, _in_frame_, _out_frame_> {
 
     /**
      * @brief Constructor for DirectionCosineMatrixAccel from an array of CartesianVectors.
@@ -64,7 +54,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param matrix An array containing the three rows of the DCM, each represented as a CartesianVector.
      */
     inline constexpr DirectionCosineMatrixAccel(const std::array<Chirp, 9>& matrix) :
-        Matrix3x3<Chirp>{ matrix }
+        DcmInterface<Chirp, _in_frame_, _out_frame_>{ matrix }
     {
     }
 
@@ -76,17 +66,17 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param row3 An array containing the three elements of the third row of the DCM.
      */
     inline constexpr DirectionCosineMatrixAccel(const std::array<Chirp, 3>& row1, const std::array<Chirp, 3>& row2, const std::array<Chirp, 3>& row3) :
-        Matrix3x3<Chirp>{ row1, row2, row3 }
+        DcmInterface<Chirp, _in_frame_, _out_frame_>{ row1, row2, row3 }
     {
     }
 
     /**
-     * @brief Constructor for DirectionCosineMatrixAccel from a Matrix3x3 of Chirp.
+     * @brief Constructor for DirectionCosineMatrixAccel from a DcmInterface of Chirp.
      *
-     * @param matrix A Matrix3x3 containing the elements of the DCM.
+     * @param matrix A DcmInterface containing the elements of the DCM.
      */
-    inline constexpr DirectionCosineMatrixAccel(const Matrix3x3<Chirp>& matrix) :
-        Matrix3x3<Chirp>{ matrix }
+    inline constexpr DirectionCosineMatrixAccel(const DcmInterface<Chirp, _in_frame_, _out_frame_>& matrix) :
+        DcmInterface<Chirp, _in_frame_, _out_frame_>{ matrix }
     {
     }
 
@@ -95,11 +85,14 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      *
      * @param theta The angle of rotation around the X-axis.
      * @param thetaDot The rate of change of the angle of rotation around the X-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         X(const Angle& theta, const AngularVelocity& thetaDot, const AngularAcceleration& thetaDotDot)
     {
+        using namespace mp_units;
+        using mp_units::si::unit_symbols::s;
+
         const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
 
         // Disolve angular unit
@@ -117,7 +110,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
         const auto zy = (thetaDotDotUnitless * cosTheta - thetaDotSquared * sinTheta);
         const auto zz = (-thetaDotDotUnitless * sinTheta - thetaDotSquared * cosTheta);
 
-        return DirectionCosineMatrixAccel<in_frame, out_frame>{ { xx, xy, xz, yx, yy, yz, zx, zy, zz } };
+        return { { xx, xy, xz, yx, yy, yz, zx, zy, zz } };
     }
 
     /**
@@ -125,11 +118,14 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      *
      * @param theta The angle of rotation around the Y-axis.
      * @param thetaDot The rate of change of the angle of rotation around the Y-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         Y(const Angle& theta, const AngularVelocity& thetaDot, const AngularAcceleration& thetaDotDot)
     {
+        using namespace mp_units;
+        using mp_units::si::unit_symbols::s;
+
         const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
 
         // Disolve angular unit
@@ -147,7 +143,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
         const auto zy = 0.0 * one / pow<2>(s);
         const auto zz = (-thetaDotDotUnitless * cosTheta + thetaDotSquared * sinTheta);
 
-        return DirectionCosineMatrixAccel<in_frame, out_frame>{ { xx, xy, xz, yx, yy, yz, zx, zy, zz } };
+        return { { xx, xy, xz, yx, yy, yz, zx, zy, zz } };
     }
 
     /**
@@ -155,11 +151,14 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      *
      * @param theta The angle of rotation around the Z-axis.
      * @param thetaDot The rate of change of the angle of rotation around the Z-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         Z(const Angle& theta, const AngularVelocity& thetaDot, const AngularAcceleration& thetaDotDot)
     {
+        using namespace mp_units;
+        using mp_units::si::unit_symbols::s;
+
         const auto [sinTheta, cosTheta] = sin_cos_pack(theta);
 
         // Disolve angular unit
@@ -177,7 +176,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
         const auto zy = 0.0 * one / pow<2>(s);
         const auto zz = 0.0 * one / pow<2>(s);
 
-        return DirectionCosineMatrixAccel<in_frame, out_frame>{ { xx, xy, xz, yx, yy, yz, zx, zy, zz } };
+        return { { xx, xy, xz, yx, yy, yz, zx, zy, zz } };
     }
 
     /**
@@ -189,9 +188,9 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param alphaDot The rate of change of the angle of rotation around the X-axis.
      * @param betaDot The rate of change of the angle of rotation around the Z-axis.
      * @param gammaDot The rate of change of the angle of rotation around the X-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         XZX(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
@@ -202,17 +201,17 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
             const AngularAcceleration& betaDotDot,
             const AngularAcceleration& gammaDotDot)
     {
-        const auto X     = DirectionCosineMatrix<in_frame, out_frame>::X(alpha);
-        const auto Xdot  = DirectionCosineMatrixRate<in_frame, out_frame>::X(alpha, alphaDot);
-        const auto Xddot = DirectionCosineMatrixAccel<in_frame, out_frame>::X(alpha, alphaDot, alphaDotDot);
+        const auto X     = DirectionCosineMatrix<_in_frame_, _out_frame_>::X(alpha);
+        const auto Xdot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::X(alpha, alphaDot);
+        const auto Xddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::X(alpha, alphaDot, alphaDotDot);
 
-        const auto Z     = DirectionCosineMatrix<in_frame, out_frame>::Z(beta);
-        const auto Zdot  = DirectionCosineMatrixRate<in_frame, out_frame>::Z(beta, betaDot);
-        const auto Zddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Z(beta, betaDot, betaDotDot);
+        const auto Z     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Z(beta);
+        const auto Zdot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Z(beta, betaDot);
+        const auto Zddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Z(beta, betaDot, betaDotDot);
 
-        const auto X2     = DirectionCosineMatrix<in_frame, out_frame>::X(gamma);
-        const auto X2dot  = DirectionCosineMatrixRate<in_frame, out_frame>::X(gamma, gammaDot);
-        const auto X2ddot = DirectionCosineMatrixAccel<in_frame, out_frame>::X(gamma, gammaDot, gammaDotDot);
+        const auto X2     = DirectionCosineMatrix<_in_frame_, _out_frame_>::X(gamma);
+        const auto X2dot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::X(gamma, gammaDot);
+        const auto X2ddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::X(gamma, gammaDot, gammaDotDot);
 
         return Xddot * Z * X2 + X * Zddot * X2 + X * Z * X2ddot + 2.0 * (Xdot * Zdot * X2 + Xdot * Z * X2dot + X * Zdot * X2dot);
     }
@@ -226,9 +225,9 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param alphaDot The rate of change of the angle of rotation around the X-axis.
      * @param betaDot The rate of change of the angle of rotation around the Y-axis.
      * @param gammaDot The rate of change of the angle of rotation around the X-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         XYX(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
@@ -239,17 +238,17 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
             const AngularAcceleration& betaDotDot,
             const AngularAcceleration& gammaDotDot)
     {
-        const auto X     = DirectionCosineMatrix<in_frame, out_frame>::X(alpha);
-        const auto Xdot  = DirectionCosineMatrixRate<in_frame, out_frame>::X(alpha, alphaDot);
-        const auto Xddot = DirectionCosineMatrixAccel<in_frame, out_frame>::X(alpha, alphaDot, alphaDotDot);
+        const auto X     = DirectionCosineMatrix<_in_frame_, _out_frame_>::X(alpha);
+        const auto Xdot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::X(alpha, alphaDot);
+        const auto Xddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::X(alpha, alphaDot, alphaDotDot);
 
-        const auto Y     = DirectionCosineMatrix<in_frame, out_frame>::Y(beta);
-        const auto Ydot  = DirectionCosineMatrixRate<in_frame, out_frame>::Y(beta, betaDot);
-        const auto Yddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Y(beta, betaDot, betaDotDot);
+        const auto Y     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Y(beta);
+        const auto Ydot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Y(beta, betaDot);
+        const auto Yddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Y(beta, betaDot, betaDotDot);
 
-        const auto X2     = DirectionCosineMatrix<in_frame, out_frame>::X(gamma);
-        const auto X2dot  = DirectionCosineMatrixRate<in_frame, out_frame>::X(gamma, gammaDot);
-        const auto X2ddot = DirectionCosineMatrixAccel<in_frame, out_frame>::X(gamma, gammaDot, gammaDotDot);
+        const auto X2     = DirectionCosineMatrix<_in_frame_, _out_frame_>::X(gamma);
+        const auto X2dot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::X(gamma, gammaDot);
+        const auto X2ddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::X(gamma, gammaDot, gammaDotDot);
 
         return Xddot * Y * X2 + X * Yddot * X2 + X * Y * X2ddot + 2.0 * (Xdot * Ydot * X2 + Xdot * Y * X2dot + X * Ydot * X2dot);
     }
@@ -263,9 +262,9 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param alphaDot The rate of change of the angle of rotation around the Y-axis.
      * @param betaDot The rate of change of the angle of rotation around the Z-axis.
      * @param gammaDot The rate of change of the angle of rotation around the Y-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         YZY(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
@@ -276,17 +275,17 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
             const AngularAcceleration& betaDotDot,
             const AngularAcceleration& gammaDotDot)
     {
-        const auto Y     = DirectionCosineMatrix<in_frame, out_frame>::Y(alpha);
-        const auto Ydot  = DirectionCosineMatrixRate<in_frame, out_frame>::Y(alpha, alphaDot);
-        const auto Yddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Y(alpha, alphaDot, alphaDotDot);
+        const auto Y     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Y(alpha);
+        const auto Ydot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Y(alpha, alphaDot);
+        const auto Yddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Y(alpha, alphaDot, alphaDotDot);
 
-        const auto Z     = DirectionCosineMatrix<in_frame, out_frame>::Z(beta);
-        const auto Zdot  = DirectionCosineMatrixRate<in_frame, out_frame>::Z(beta, betaDot);
-        const auto Zddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Z(beta, betaDot, betaDotDot);
+        const auto Z     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Z(beta);
+        const auto Zdot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Z(beta, betaDot);
+        const auto Zddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Z(beta, betaDot, betaDotDot);
 
-        const auto Y2     = DirectionCosineMatrix<in_frame, out_frame>::Y(gamma);
-        const auto Y2dot  = DirectionCosineMatrixRate<in_frame, out_frame>::Y(gamma, gammaDot);
-        const auto Y2ddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Y(gamma, gammaDot, gammaDotDot);
+        const auto Y2     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Y(gamma);
+        const auto Y2dot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Y(gamma, gammaDot);
+        const auto Y2ddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Y(gamma, gammaDot, gammaDotDot);
 
         return Yddot * Z * Y2 + Y * Zddot * Y2 + Y * Z * Y2ddot + 2.0 * (Ydot * Zdot * Y2 + Ydot * Z * Y2dot + Y * Zdot * Y2dot);
     }
@@ -300,9 +299,9 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param alphaDot The rate of change of the angle of rotation around the Z-axis.
      * @param betaDot The rate of change of the angle of rotation around the X-axis.
      * @param gammaDot The rate of change of the angle of rotation around the Z-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         ZXZ(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
@@ -313,17 +312,17 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
             const AngularAcceleration& betaDotDot,
             const AngularAcceleration& gammaDotDot)
     {
-        const auto Z     = DirectionCosineMatrix<in_frame, out_frame>::Z(alpha);
-        const auto Zdot  = DirectionCosineMatrixRate<in_frame, out_frame>::Z(alpha, alphaDot);
-        const auto Zddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Z(alpha, alphaDot, alphaDotDot);
+        const auto Z     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Z(alpha);
+        const auto Zdot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Z(alpha, alphaDot);
+        const auto Zddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Z(alpha, alphaDot, alphaDotDot);
 
-        const auto X     = DirectionCosineMatrix<in_frame, out_frame>::X(beta);
-        const auto Xdot  = DirectionCosineMatrixRate<in_frame, out_frame>::X(beta, betaDot);
-        const auto Xddot = DirectionCosineMatrixAccel<in_frame, out_frame>::X(beta, betaDot, betaDotDot);
+        const auto X     = DirectionCosineMatrix<_in_frame_, _out_frame_>::X(beta);
+        const auto Xdot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::X(beta, betaDot);
+        const auto Xddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::X(beta, betaDot, betaDotDot);
 
-        const auto Z2     = DirectionCosineMatrix<in_frame, out_frame>::Z(gamma);
-        const auto Z2dot  = DirectionCosineMatrixRate<in_frame, out_frame>::Z(gamma, gammaDot);
-        const auto Z2ddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Z(gamma, gammaDot, gammaDotDot);
+        const auto Z2     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Z(gamma);
+        const auto Z2dot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Z(gamma, gammaDot);
+        const auto Z2ddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Z(gamma, gammaDot, gammaDotDot);
 
         return Zddot * X * Z2 + Z * Xddot * Z2 + Z * X * Z2ddot + 2.0 * (Zdot * Xdot * Z2 + Zdot * X * Z2dot + Z * Xdot * Z2dot);
     }
@@ -337,9 +336,9 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param alphaDot The rate of change of the angle of rotation around the Z-axis.
      * @param betaDot The rate of change of the angle of rotation around the Y-axis.
      * @param gammaDot The rate of change of the angle of rotation around the Z-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         ZYZ(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
@@ -350,17 +349,17 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
             const AngularAcceleration& betaDotDot,
             const AngularAcceleration& gammaDotDot)
     {
-        const auto Z     = DirectionCosineMatrix<in_frame, out_frame>::Z(alpha);
-        const auto Zdot  = DirectionCosineMatrixRate<in_frame, out_frame>::Z(alpha, alphaDot);
-        const auto Zddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Z(alpha, alphaDot, alphaDotDot);
+        const auto Z     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Z(alpha);
+        const auto Zdot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Z(alpha, alphaDot);
+        const auto Zddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Z(alpha, alphaDot, alphaDotDot);
 
-        const auto Y     = DirectionCosineMatrix<in_frame, out_frame>::Y(beta);
-        const auto Ydot  = DirectionCosineMatrixRate<in_frame, out_frame>::Y(beta, betaDot);
-        const auto Yddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Y(beta, betaDot, betaDotDot);
+        const auto Y     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Y(beta);
+        const auto Ydot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Y(beta, betaDot);
+        const auto Yddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Y(beta, betaDot, betaDotDot);
 
-        const auto Z2     = DirectionCosineMatrix<in_frame, out_frame>::Z(gamma);
-        const auto Z2dot  = DirectionCosineMatrixRate<in_frame, out_frame>::Z(gamma, gammaDot);
-        const auto Z2ddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Z(gamma, gammaDot, gammaDotDot);
+        const auto Z2     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Z(gamma);
+        const auto Z2dot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Z(gamma, gammaDot);
+        const auto Z2ddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Z(gamma, gammaDot, gammaDotDot);
 
         return Zddot * Y * Z2 + Z * Yddot * Z2 + Z * Y * Z2ddot + 2.0 * (Zdot * Ydot * Z2 + Zdot * Y * Z2dot + Z * Ydot * Z2dot);
     }
@@ -374,9 +373,9 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param alphaDot The rate of change of the angle of rotation around the Y-axis.
      * @param betaDot The rate of change of the angle of rotation around the X-axis.
      * @param gammaDot The rate of change of the angle of rotation around the Y-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         YXY(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
@@ -387,17 +386,17 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
             const AngularAcceleration& betaDotDot,
             const AngularAcceleration& gammaDotDot)
     {
-        const auto Y     = DirectionCosineMatrix<in_frame, out_frame>::Y(alpha);
-        const auto Ydot  = DirectionCosineMatrixRate<in_frame, out_frame>::Y(alpha, alphaDot);
-        const auto Yddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Y(alpha, alphaDot, alphaDotDot);
+        const auto Y     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Y(alpha);
+        const auto Ydot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Y(alpha, alphaDot);
+        const auto Yddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Y(alpha, alphaDot, alphaDotDot);
 
-        const auto X     = DirectionCosineMatrix<in_frame, out_frame>::X(beta);
-        const auto Xdot  = DirectionCosineMatrixRate<in_frame, out_frame>::X(beta, betaDot);
-        const auto Xddot = DirectionCosineMatrixAccel<in_frame, out_frame>::X(beta, betaDot, betaDotDot);
+        const auto X     = DirectionCosineMatrix<_in_frame_, _out_frame_>::X(beta);
+        const auto Xdot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::X(beta, betaDot);
+        const auto Xddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::X(beta, betaDot, betaDotDot);
 
-        const auto Y2     = DirectionCosineMatrix<in_frame, out_frame>::Y(gamma);
-        const auto Y2dot  = DirectionCosineMatrixRate<in_frame, out_frame>::Y(gamma, gammaDot);
-        const auto Y2ddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Y(gamma, gammaDot, gammaDotDot);
+        const auto Y2     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Y(gamma);
+        const auto Y2dot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Y(gamma, gammaDot);
+        const auto Y2ddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Y(gamma, gammaDot, gammaDotDot);
 
         return Yddot * X * Y2 + Y * Xddot * Y2 + Y * X * Y2ddot + 2.0 * (Ydot * Xdot * Y2 + Ydot * X * Y2dot + Y * Xdot * Y2dot);
     }
@@ -411,9 +410,9 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param alphaDot The rate of change of the angle of rotation around the X-axis.
      * @param betaDot The rate of change of the angle of rotation around the Y-axis.
      * @param gammaDot The rate of change of the angle of rotation around the Z-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         XYZ(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
@@ -424,17 +423,17 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
             const AngularAcceleration& betaDotDot,
             const AngularAcceleration& gammaDotDot)
     {
-        const auto X     = DirectionCosineMatrixAccel<in_frame, out_frame>::X(alpha);
-        const auto Xdot  = DirectionCosineMatrixRate<in_frame, out_frame>::X(alpha, alphaDot);
-        const auto Xddot = DirectionCosineMatrixAccel<in_frame, out_frame>::X(alpha, alphaDot, alphaDotDot);
+        const auto X     = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::X(alpha);
+        const auto Xdot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::X(alpha, alphaDot);
+        const auto Xddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::X(alpha, alphaDot, alphaDotDot);
 
-        const auto Y     = DirectionCosineMatrix<in_frame, out_frame>::Y(beta);
-        const auto Ydot  = DirectionCosineMatrixRate<in_frame, out_frame>::Y(beta, betaDot);
-        const auto Yddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Y(beta, betaDot, betaDotDot);
+        const auto Y     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Y(beta);
+        const auto Ydot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Y(beta, betaDot);
+        const auto Yddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Y(beta, betaDot, betaDotDot);
 
-        const auto Z     = DirectionCosineMatrix<in_frame, out_frame>::Z(gamma);
-        const auto Zdot  = DirectionCosineMatrixRate<in_frame, out_frame>::Z(gamma, gammaDot);
-        const auto Zddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Z(gamma, gammaDot, gammaDotDot);
+        const auto Z     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Z(gamma);
+        const auto Zdot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Z(gamma, gammaDot);
+        const auto Zddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Z(gamma, gammaDot, gammaDotDot);
 
         return Xddot * Y * Z + X * Yddot * Z + X * Y * Zddot + 2.0 * (Xdot * Ydot * Z + Xdot * Y * Zdot + X * Ydot * Zdot);
     }
@@ -448,9 +447,9 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param alphaDot The rate of change of the angle of rotation around the Y-axis.
      * @param betaDot The rate of change of the angle of rotation around the Z-axis.
      * @param gammaDot The rate of change of the angle of rotation around the X-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         YZX(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
@@ -461,17 +460,17 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
             const AngularAcceleration& betaDotDot,
             const AngularAcceleration& gammaDotDot)
     {
-        const auto Y     = DirectionCosineMatrix<in_frame, out_frame>::Y(alpha);
-        const auto Ydot  = DirectionCosineMatrixRate<in_frame, out_frame>::Y(alpha, alphaDot);
-        const auto Yddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Y(alpha, alphaDot, alphaDotDot);
+        const auto Y     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Y(alpha);
+        const auto Ydot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Y(alpha, alphaDot);
+        const auto Yddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Y(alpha, alphaDot, alphaDotDot);
 
-        const auto Z     = DirectionCosineMatrix<in_frame, out_frame>::Z(beta);
-        const auto Zdot  = DirectionCosineMatrixRate<in_frame, out_frame>::Z(beta, betaDot);
-        const auto Zddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Z(beta, betaDot, betaDotDot);
+        const auto Z     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Z(beta);
+        const auto Zdot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Z(beta, betaDot);
+        const auto Zddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Z(beta, betaDot, betaDotDot);
 
-        const auto X     = DirectionCosineMatrix<in_frame, out_frame>::X(gamma);
-        const auto Xdot  = DirectionCosineMatrixRate<in_frame, out_frame>::X(gamma, gammaDot);
-        const auto Xddot = DirectionCosineMatrixAccel<in_frame, out_frame>::X(gamma, gammaDot, gammaDotDot);
+        const auto X     = DirectionCosineMatrix<_in_frame_, _out_frame_>::X(gamma);
+        const auto Xdot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::X(gamma, gammaDot);
+        const auto Xddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::X(gamma, gammaDot, gammaDotDot);
 
         return Yddot * Z * X + Y * Zddot * X + Y * Z * Xddot + 2.0 * (Ydot * Zdot * X + Ydot * Z * Xdot + Y * Zdot * Xdot);
     }
@@ -485,9 +484,9 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param alphaDot The rate of change of the angle of rotation around the Z-axis.
      * @param betaDot The rate of change of the angle of rotation around the X-axis.
      * @param gammaDot The rate of change of the angle of rotation around the Y-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         ZXY(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
@@ -498,17 +497,17 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
             const AngularAcceleration& betaDotDot,
             const AngularAcceleration& gammaDotDot)
     {
-        const auto Z     = DirectionCosineMatrix<in_frame, out_frame>::Z(alpha);
-        const auto Zdot  = DirectionCosineMatrixRate<in_frame, out_frame>::Z(alpha, alphaDot);
-        const auto Zddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Z(alpha, alphaDot, alphaDotDot);
+        const auto Z     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Z(alpha);
+        const auto Zdot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Z(alpha, alphaDot);
+        const auto Zddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Z(alpha, alphaDot, alphaDotDot);
 
-        const auto X     = DirectionCosineMatrix<in_frame, out_frame>::X(beta);
-        const auto Xdot  = DirectionCosineMatrixRate<in_frame, out_frame>::X(beta, betaDot);
-        const auto Xddot = DirectionCosineMatrixAccel<in_frame, out_frame>::X(beta, betaDot, betaDotDot);
+        const auto X     = DirectionCosineMatrix<_in_frame_, _out_frame_>::X(beta);
+        const auto Xdot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::X(beta, betaDot);
+        const auto Xddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::X(beta, betaDot, betaDotDot);
 
-        const auto Y     = DirectionCosineMatrix<in_frame, out_frame>::Y(gamma);
-        const auto Ydot  = DirectionCosineMatrixRate<in_frame, out_frame>::Y(gamma, gammaDot);
-        const auto Yddot = DirectionCosineMatrixAccel<in_frame, out_frame>::Y(gamma, gammaDot, gammaDotDot);
+        const auto Y     = DirectionCosineMatrix<_in_frame_, _out_frame_>::Y(gamma);
+        const auto Ydot  = DirectionCosineMatrixRate<_in_frame_, _out_frame_>::Y(gamma, gammaDot);
+        const auto Yddot = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::Y(gamma, gammaDot, gammaDotDot);
 
         return Zddot * X * Y + Z * Xddot * Y + Z * X * Yddot + 2.0 * (Zdot * Xdot * Y + Zdot * X * Ydot + Z * Xdot * Ydot);
     }
@@ -522,9 +521,9 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param alphaDot The rate of change of the angle of rotation around the X-axis.
      * @param betaDot The rate of change of the angle of rotation around the Z-axis.
      * @param gammaDot The rate of change of the angle of rotation around the Y-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         XZY(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
@@ -535,7 +534,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
             const AngularAcceleration& betaDotDot,
             const AngularAcceleration& gammaDotDot)
     {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::YZX(gamma, gammaDot, beta, betaDot, alpha, alphaDot, gammaDotDot, betaDotDot, alphaDotDot);
+        return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::YZX(gamma, gammaDot, beta, betaDot, alpha, alphaDot, gammaDotDot, betaDotDot, alphaDotDot);
     }
 
     /**
@@ -547,9 +546,9 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param alphaDot The rate of change of the angle of rotation around the Z-axis.
      * @param betaDot The rate of change of the angle of rotation around the Y-axis.
      * @param gammaDot The rate of change of the angle of rotation around the X-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         ZYX(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
@@ -560,7 +559,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
             const AngularAcceleration& betaDotDot,
             const AngularAcceleration& gammaDotDot)
     {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::XYZ(gamma, gammaDot, beta, betaDot, alpha, alphaDot, gammaDotDot, betaDotDot, alphaDotDot);
+        return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::XYZ(gamma, gammaDot, beta, betaDot, alpha, alphaDot, gammaDotDot, betaDotDot, alphaDotDot);
     }
 
     /**
@@ -572,9 +571,9 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param alphaDot The rate of change of the angle of rotation around the Y-axis.
      * @param betaDot The rate of change of the angle of rotation around the X-axis.
      * @param gammaDot The rate of change of the angle of rotation around the Z-axis.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame>
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_>
         YXZ(const Angle& alpha,
             const Angle& beta,
             const Angle& gamma,
@@ -585,44 +584,7 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
             const AngularAcceleration& betaDotDot,
             const AngularAcceleration& gammaDotDot)
     {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>::ZXY(gamma, gammaDot, beta, betaDot, alpha, alphaDot, gammaDotDot, betaDotDot, alphaDotDot);
-    }
-
-    /**
-     * @brief Retrieves a specific row of the direction cosine matrix accel as a CartesianVector.
-     *
-     * @param idx The index of the row to retrieve (0 for the first row, 1 for the second row, 2 for the third row).
-     * @return CartesianVector<Chirp, in_frame> The specified row of the DCM accel as a CartesianVector.
-     */
-    inline constexpr CartesianVector<Chirp, in_frame> row(const std::size_t& idx) const
-    {
-        return { static_cast<Matrix3x3<Chirp>>(*this).row(idx) };
-    }
-
-    /**
-     * @brief Creates an identity direction cosine matrix (no rotation).
-     *
-     * @return DirectionCosineMatrixAccel<out_frame> The identity direction cosine matrix.
-     */
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> identity()
-    {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>{ Matrix3x3<Chirp>::identity() };
-    }
-
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> zero()
-    {
-        return DirectionCosineMatrixAccel<in_frame, out_frame>{ Matrix3x3<Chirp>::zero() };
-    }
-
-
-    /**
-     * @brief Transposes the direction cosine matrix, effectively inverting the transformation.
-     *
-     * @return DirectionCosineMatrixAccel<out_frame, in_frame> The transposed direction cosine matrix.
-     */
-    inline constexpr DirectionCosineMatrixAccel<out_frame, in_frame> transpose() const
-    {
-        return DirectionCosineMatrixAccel<out_frame, in_frame>{ static_cast<Matrix3x3<Chirp>>(*this).transpose() };
+        return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::ZXY(gamma, gammaDot, beta, betaDot, alpha, alphaDot, gammaDotDot, betaDotDot, alphaDotDot);
     }
 
     /**
@@ -638,10 +600,10 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
      * @param alphaDotDot The second derivative of the first Euler angle.
      * @param betaDotDot The second derivative of the second Euler angle.
      * @param gammaDotDot The second derivative of the third Euler angle.
-     * @return DirectionCosineMatrixAccel<out_frame> The resulting direction cosine matrix.
+     * @return DirectionCosineMatrixAccel<_out_frame_> The resulting direction cosine matrix.
      */
     template <RotationSequence sequence>
-    static inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> from_euler_angles(
+    static inline constexpr DirectionCosineMatrixAccel<_in_frame_, _out_frame_> from_euler_angles(
         const Angle& alpha,
         const Angle& beta,
         const Angle& gamma,
@@ -654,151 +616,80 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
     )
     {
         if constexpr (sequence == RotationSequence::ZXZ) {
-            return DirectionCosineMatrixAccel<in_frame, out_frame>::ZXZ(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+            return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::ZXZ(
+                alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot
+            );
         }
         else if constexpr (sequence == RotationSequence::XYX) {
-            return DirectionCosineMatrixAccel<in_frame, out_frame>::XYX(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+            return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::XYX(
+                alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot
+            );
         }
         else if constexpr (sequence == RotationSequence::YZY) {
-            return DirectionCosineMatrixAccel<in_frame, out_frame>::YZY(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+            return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::YZY(
+                alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot
+            );
         }
         else if constexpr (sequence == RotationSequence::ZYZ) {
-            return DirectionCosineMatrixAccel<in_frame, out_frame>::ZYZ(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+            return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::ZYZ(
+                alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot
+            );
         }
         else if constexpr (sequence == RotationSequence::XZX) {
-            return DirectionCosineMatrixAccel<in_frame, out_frame>::XZX(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+            return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::XZX(
+                alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot
+            );
         }
         else if constexpr (sequence == RotationSequence::YXY) {
-            return DirectionCosineMatrixAccel<in_frame, out_frame>::YXY(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+            return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::YXY(
+                alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot
+            );
         }
         else if constexpr (sequence == RotationSequence::XYZ) {
-            return DirectionCosineMatrixAccel<in_frame, out_frame>::XYZ(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+            return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::XYZ(
+                alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot
+            );
         }
         else if constexpr (sequence == RotationSequence::YZX) {
-            return DirectionCosineMatrixAccel<in_frame, out_frame>::YZX(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+            return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::YZX(
+                alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot
+            );
         }
         else if constexpr (sequence == RotationSequence::ZXY) {
-            return DirectionCosineMatrixAccel<in_frame, out_frame>::ZXY(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+            return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::ZXY(
+                alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot
+            );
         }
         else if constexpr (sequence == RotationSequence::XZY) {
-            return DirectionCosineMatrixAccel<in_frame, out_frame>::XZY(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+            return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::XZY(
+                alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot
+            );
         }
         else if constexpr (sequence == RotationSequence::ZYX) {
-            return DirectionCosineMatrixAccel<in_frame, out_frame>::ZYX(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+            return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::ZYX(
+                alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot
+            );
         }
         else if constexpr (sequence == RotationSequence::YXZ) {
-            return DirectionCosineMatrixAccel<in_frame, out_frame>::YXZ(alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot);
+            return DirectionCosineMatrixAccel<_in_frame_, _out_frame_>::YXZ(
+                alpha, alphaDot, beta, betaDot, gamma, gammaDot, alphaDotDot, betaDotDot, gammaDotDot
+            );
         }
     }
 
-    /**
-     * @brief Apply the direction cosine matrix to a CartesianVector.
-     *
-     * @tparam Value_T The type of the vector components.
-     * @param vec The CartesianVector to which the DCM will be applied.
-     * @return CartesianVector<Value_T, out_frame> The transformed CartesianVector in the output frame.
-     */
-    template <typename Value_T>
-    inline constexpr CartesianVector<decltype(Value_T{} / pow<2>(s)), out_frame>
-        operator*(const CartesianVector<Value_T, in_frame>& vec) const
+    inline constexpr DirectionCosineMatrixAccel<_out_frame_, _in_frame_> transpose() const
     {
-        return { row(0).dot(vec), row(1).dot(vec), row(2).dot(vec) };
+        return { static_cast<DcmInterface<Chirp, _in_frame_, _out_frame_>>(*this).transpose() };
     }
 
-    /**
-     * @brief Compose this direction cosine matrix rate with a DCM, resulting in a new DCM rate.
-     *
-     * @tparam in_frame_u The input frame of the other DCM.
-     * @tparam out_frame_u The output frame of the other DCM.
-     * @param dcm The other DCM to compose with this one.
-     * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting composed DCM rate.
-     */
-    inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> operator*(DirectionCosineMatrixAccel<in_frame, out_frame> dcm) const
+    static inline constexpr DirectionCosineMatrixAccel identity()
     {
-        return { static_cast<Matrix3x3<Chirp>>(*this) * static_cast<Matrix3x3<Unitless>>(dcm) };
+        return { DcmInterface<Chirp, _in_frame_, _out_frame_>::identity() };
     }
 
-    /**
-     * @brief Compose two direction cosine matrices (matrix multiplication).
-     *
-     * Produces DCM<in_frame, new_out_frame> = this * rhs, where this is
-     * DCM<in_frame, out_frame> and rhs is DCM<out_frame, new_out_frame>.
-     *
-     * @tparam new_out_frame The output frame of the right-hand-side DCM.
-     * @param accel The right-hand-side DCM to compose with.
-     * @return DirectionCosineMatrixAccel<in_frame, new_out_frame> The composed DCM.
-     */
-    template <IsFrame auto new_out_frame>
-    inline constexpr DirectionCosineMatrixAccel<in_frame, new_out_frame>
-        operator*(const DirectionCosineMatrixAccel<out_frame, new_out_frame>& accel) const;
-
-    /**
-     * @brief Add two direction cosine matrices element-wise.
-     *
-     * @param other The other DCM to add to this DCM.
-     * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting DCM after addition.
-     */
-    inline constexpr DirectionCosineMatrixAccel operator+(const DirectionCosineMatrixAccel& other) const
+    static inline constexpr DirectionCosineMatrixAccel zero()
     {
-        return { static_cast<Matrix3x3<Chirp>>(*this) + static_cast<Matrix3x3<Chirp>>(other) };
-    }
-
-    /**
-     * @brief Negate the direction cosine matrix element-wise.
-     *
-     * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting DCM after negation.
-     */
-    inline constexpr DirectionCosineMatrixAccel operator-() const { return { -static_cast<Matrix3x3<Chirp>>(*this) }; }
-
-    /**
-     * @brief Subtract another direction cosine matrix from this one element-wise.
-     *
-     * @param other The other DCM to subtract from this DCM.
-     * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting DCM after subtraction.
-     */
-    inline constexpr DirectionCosineMatrixAccel operator-(const DirectionCosineMatrixAccel& other) const
-    {
-        return { static_cast<Matrix3x3<Chirp>>(*this) - static_cast<Matrix3x3<Chirp>>(other) };
-    }
-
-    /**
-     * @brief Multiply this direction cosine matrix by another DCM element-wise.
-     *
-     * Note: This is not the same as matrix multiplication (composition of rotations). This is an element-wise operation.
-     *
-     * @param other The other DCM to multiply with this DCM.
-     * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting DCM after element-wise multiplication.
-     */
-    inline constexpr DirectionCosineMatrixAccel operator*(const DirectionCosineMatrixAccel& other) const
-    {
-        return { static_cast<Matrix3x3<Chirp>>(*this) * static_cast<Matrix3x3<Chirp>>(other) };
-    }
-
-    /**
-     * @brief Compose this direction cosine matrix rate with a DCM, resulting in a new DCM rate.
-     *
-     * @tparam in_frame_u The input frame of the other DCM.
-     * @tparam out_frame_u The output frame of the other DCM.
-     * @param dcm The other DCM to compose with this one.
-     * @return DirectionCosineMatrixAccel<in_frame, out_frame> The resulting composed DCM rate.
-     */
-    inline constexpr DirectionCosineMatrixAccel<in_frame, out_frame> operator*(DirectionCosineMatrix<in_frame, out_frame> dcm) const
-    {
-        return { static_cast<Matrix3x3<Chirp>>(*this) * static_cast<Matrix3x3<Unitless>>(dcm) };
-    }
-
-    /**
-     * @brief Compose this direction cosine matrix rate with a DCM, resulting in a new DCM rate.
-     *
-     * @tparam new_out_frame The output frame of the other DCM.
-     * @param dcm The other DCM to compose with this one.
-     * @return DirectionCosineMatrixAccel<in_frame, new_out_frame> The resulting composed DCM rate.
-     */
-    template <IsFrame auto new_out_frame>
-    inline constexpr DirectionCosineMatrixAccel<out_frame, new_out_frame>
-        operator*(DirectionCosineMatrix<out_frame, new_out_frame> dcm) const
-    {
-        return { static_cast<Matrix3x3<Chirp>>(*this) * static_cast<Matrix3x3<Unitless>>(dcm) };
+        return { DcmInterface<Chirp, _in_frame_, _out_frame_>::zero() };
     }
 };
 
@@ -808,66 +699,14 @@ struct DirectionCosineMatrixAccel : public Matrix3x3<Chirp> {
  *
  * This alias simplifies the usage of DirectionCosineMatrixAccel by allowing the user to specify the output frame type.
  *
- * @tparam out_frame The frame type to which the DCM applies.
+ * @tparam _out_frame_ The frame type to which the DCM applies.
  */
-template <IsFrame auto in_frame, IsFrame auto out_frame>
-using DcmAccel = DirectionCosineMatrixAccel<in_frame, out_frame>;
+template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
+using DcmAccel = DirectionCosineMatrixAccel<_in_frame_, _out_frame_>;
 
 // Defined template function and then delete it so we can enforce lookup restrictions
 template <IsFrame auto frame, IsFrame auto frame_u>
 inline constexpr DcmAccel<frame, frame_u> get_dcm_accel(const Date& date) = delete;
-
-/**
- * @brief Compose two direction cosine matrix rates (matrix multiplication).
- *
- * Produces DCMRate<in_frame, new_out_frame> = this * rhs, where this is
- * DCMRate<in_frame, out_frame> and rhs is DCMRate<out_frame, new_out_frame>.
- *
- * @tparam new_out_frame The output frame of the right-hand-side DCM rate.
- * @param rate The right-hand-side DCM rate to compose with.
- * @return DirectionCosineMatrixRateAccel<_in_frame_, new_out_frame> The composed DCM rate.
- */
-template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
-inline constexpr DirectionCosineMatrixRateAccel<_in_frame_, _out_frame_>
-    DirectionCosineMatrixRate<_in_frame_, _out_frame_>::operator*(const DirectionCosineMatrixRate<_in_frame_, _out_frame_>& rate) const
-{
-    return { static_cast<Matrix3x3<Frequency>>(*this) * static_cast<Matrix3x3<Frequency>>(rate) };
-}
-
-/**
- * @brief Compose a direction cosine matrix with a direction cosine matrix rate, resulting in a new direction cosine matrix rate.
- *
- * @tparam in_frame The input frame of the DCM and DCM rate.
- * @tparam out_frame The output frame of the DCM and DCM rate.
- * @param dcm The direction cosine matrix to compose with the DCM rate.
- * @param rate The direction cosine matrix rate to compose with the DCM.
- * @return DirectionCosineMatrixRate<in_frame, out_frame> The resulting composed DCM rate.
- */
-template <IsFrame auto in_frame, IsFrame auto out_frame>
-inline constexpr DirectionCosineMatrixRate<in_frame, out_frame>
-    operator*(DirectionCosineMatrix<in_frame, out_frame> dcm, DirectionCosineMatrixAccel<in_frame, out_frame> rate)
-{
-    return DirectionCosineMatrixRate<in_frame, out_frame>{ static_cast<Matrix3x3<Unitless>>(dcm) *
-                                                           static_cast<Matrix3x3<Chirp>>(rate) };
-};
-
-/**
- * @brief Compose a direction cosine matrix with a direction cosine matrix acceleration, resulting in a new direction cosine matrix acceleration.
- *
- * @tparam in_frame The input frame of the DCM and DCM acceleration.
- * @tparam out_frame The output frame of the DCM and DCM acceleration.
- * @tparam new_out_frame The new output frame of the resulting DCM acceleration.
- * @param dcm The direction cosine matrix to compose with the DCM acceleration.
- * @param rate The direction cosine matrix acceleration to compose with the DCM.
- * @return DirectionCosineMatrixAccel<in_frame, new_out_frame> The resulting composed DCM acceleration.
- */
-template <IsFrame auto in_frame, IsFrame auto out_frame, IsFrame auto new_out_frame>
-inline constexpr DirectionCosineMatrixAccel<in_frame, new_out_frame>
-    operator*(DirectionCosineMatrix<in_frame, out_frame> dcm, DirectionCosineMatrixAccel<out_frame, new_out_frame> rate)
-{
-    return DirectionCosineMatrixAccel<in_frame, new_out_frame>{ static_cast<Matrix3x3<Unitless>>(dcm) *
-                                                                static_cast<Matrix3x3<Chirp>>(rate) };
-}
 
 } // namespace astro
 } // namespace astrea
