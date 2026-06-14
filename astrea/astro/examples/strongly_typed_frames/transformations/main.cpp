@@ -70,8 +70,8 @@ int main()
     CartesianVector<Acceleration, frames::earth::earth_fixed> a2 =
         a1.in_frame<frames::earth::earth_fixed>(epoch, r1, v1); // Transforms a1 from Frame1 to Frame2 at the given epoch
 
-    // Sometimes, however, it's desirable to apply a specific transformation, such as a pure rotation without
-    // translation or abberations. In this case, users can call the direct rotations
+    // Sometimes it's desirable to apply a specific transformation, such as a pure rotation without translation or
+    // abberations. In this case, users can call the direct rotations
     auto v2NoAbberation = frames::rotate_vector_into_frame<frames::earth::earth_fixed>(v1, epoch);
 
     return 0;
