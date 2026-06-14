@@ -15,7 +15,6 @@ dependencies = [
     "gprof2dot>=2021.2.0",
     "graphviz>=0.20.1",
     "scipy>=1.7.0",
-    "cartopy>=0.22.0",
     "mkdocs>=1.4.0",
     "mkdocs-material[imaging]>=9.0.0",
     "mkdocs-rss-plugin>=0.1.0",
