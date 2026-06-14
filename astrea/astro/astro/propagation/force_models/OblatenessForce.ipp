@@ -433,7 +433,7 @@ Perturbation OblatenessForce<_body_, _degree_, _order_>::compute_perturbation(co
 
     // Transform back to inertial frame without abberations - original values are in ecef, not w.r.t ecef
     const AccelerationVector<frames::primary> accelOblatenessIcrf =
-        frames::rotate_vector_into_frame<Acceleration, frames::primary_fixed, frames::primary>(accelOblatenessEcef, date);
+        frames::rotate_vector_into_frame<frames::primary>(accelOblatenessEcef, date);
     return { .force = (accelOblatenessIcrf * vehicle.get_mass()) };
 }
 

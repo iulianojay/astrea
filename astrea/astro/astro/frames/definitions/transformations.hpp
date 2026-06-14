@@ -119,12 +119,11 @@ inline constexpr DCM<frame, root> get_dcm_to_root_frame(const Date& date)
     }
     // current frame is root
     else if constexpr (equivalent(axis, root_axis)) {
-        return DCM<root, frame>::identity();
+        return DCM<frame, root>::identity();
     }
     // current frame is a direct child of root
     else if constexpr (equivalent(axis.parent, root_axis)) {
-        static constexpr auto parent = make_frame(frame.origin, axis.parent);
-        return get_dcm_impl<frame, parent>(date);
+        return get_dcm_impl<frame, root>(date);
     }
     // current frame is a descendant of root
     else if constexpr (IsDerivedAxis<decltype(axis.parent)>) {
@@ -158,12 +157,11 @@ inline constexpr DcmRate<frame, root> get_dcm_rate_to_root_frame(const Date& dat
     }
     // current frame is root
     else if constexpr (equivalent(axis, root_axis)) {
-        return DcmRate<root, frame>::zero();
+        return DcmRate<frame, root>::zero();
     }
     // current frame is a direct child of root
     else if constexpr (equivalent(axis.parent, root_axis)) {
-        static constexpr auto parent = make_frame(frame.origin, axis.parent);
-        return get_dcm_rate_impl<frame, parent>(date);
+        return get_dcm_rate_impl<frame, root>(date);
     }
     // current frame is a descendant of root
     else if constexpr (IsDerivedAxis<decltype(axis.parent)>) {
@@ -205,12 +203,11 @@ inline constexpr DcmAccel<frame, root> get_dcm_accel_to_root_frame(const Date& d
     }
     // current frame is root
     else if constexpr (equivalent(axis, root_axis)) {
-        return DcmAccel<root, frame>::zero();
+        return DcmAccel<frame, root>::zero();
     }
     // current frame is a direct child of root
     else if constexpr (equivalent(axis.parent, root_axis)) {
-        static constexpr auto parent = make_frame(frame.origin, axis.parent);
-        return get_dcm_accel_impl<frame, parent>(date);
+        return get_dcm_accel_impl<frame, root>(date);
     }
     // current frame is a descendant of root
     else if constexpr (IsDerivedAxis<decltype(axis.parent)>) {
@@ -371,7 +368,7 @@ inline constexpr DcmAccel<frame, frame_u> get_dcm_accel_impl(const Date& date)
         // DCM_frame->frame_u = DCM_root->frame_u * DCM_frame->root
         // DCM_rate_frame->frame_u = DCM_rate_frame->root * DCM_root->frame_u + DCM_frame->root * DCM_rate_root->frame_u
         // DCM_accel_frame->frame_u = DCM_accel_frame->root * DCM_root->frame_u + 2 * DCM_rate_frame->root * DCM_rate_root->frame_u + DCM_frame->root * DCM_accel_root->frame_u
-        return dcmAccel1 * dcm2.transpose() + 2 * dcmRate1 * dcmRate2.transpose() + dcm1 * dcmAccel2.transpose();
+        return dcmAccel1 * dcm2.transpose() + 2.0 * dcmRate1 * dcmRate2.transpose() + dcm1 * dcmAccel2.transpose();
     }
     else {
         // TODO: Trigger warning?
@@ -386,9 +383,9 @@ inline constexpr DcmAccel<frame, frame_u> get_dcm_accel_impl(const Date& date)
  * velocity, and acceleration for offsets between celestial references, and position offsets for fixed offset frames. Velocity
  * and acceleration offsets for fixed offset frames are not currently supported.
  *
+ * @tparam frame_u The second frame type.
  * @tparam Value_T The type of the offset vector components (e.g., Distance, Velocity, Acceleration).
  * @tparam frame The first frame type.
- * @tparam frame_u The second frame type.
  * @param date The date at which to calculate the offset.
  * @return CartesianVector<Value_T, frame_u> The offset vector from frame to frame_u.
  * @throws std::logic_error If the offset cannot be determined due to lack of common reference or unsupported frame types.
@@ -475,14 +472,14 @@ concept HasValidFrameTransformation = requires(Date date) {
 /**
  * @brief Rotate a vector from one frame to another at a given date using the Direction Cosine Matrix (DCM).
  *
+ * @tparam frame_u The target frame type.
  * @tparam Value_T The type of the vector components (e.g., Distance, Velocity).
  * @tparam frame The source frame type.
- * @tparam frame_u The target frame type.
  * @param vec The vector to rotate.
  * @param date The date at which to perform the rotation.
  * @return CartesianVector<Value_T, frame_u> A new CartesianVector in the target frame.
  */
-template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
+template <IsFrame auto frame_u, typename Value_T, IsFrame auto frame>
 inline constexpr CartesianVector<Value_T, frame_u>
     rotate_vector_into_frame(const CartesianVector<Value_T, frame>& vec, const Date& date)
 {
@@ -495,14 +492,14 @@ inline constexpr CartesianVector<Value_T, frame_u>
  *
  * This function calculates the center offset between frame and frame_u at the specified date and translates the input vector accordingly.
  *
+ * @tparam frame_u The target frame type.
  * @tparam Value_T The type of the vector components (e.g., Distance, Velocity).
  * @tparam frame The source frame type.
- * @tparam frame_u The target frame type.
  * @param vec The vector to translate.
  * @param date The date at which to perform the translation.
  * @return CartesianVector<Value_T, frame_u> A new CartesianVector in the target frame.
  */
-template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
+template <IsFrame auto frame_u, typename Value_T, IsFrame auto frame>
 inline constexpr CartesianVector<Value_T, frame_u>
     translate_vector_into_frame(const CartesianVector<Value_T, frame>& vec, const Date& date)
 {
@@ -516,24 +513,24 @@ inline constexpr CartesianVector<Value_T, frame_u>
  * This function first translates the vector by the center offset between the two frames, then rotates it using the
  * Direction Cosine Matrix (DCM).
  *
- * @tparam frame The source frame type.
  * @tparam frame_u The target frame type.
+ * @tparam frame The source frame type.
  * @param vec The vector to transform.
  * @param date The date at which to perform the transformation.
  * @return CartesianVector<Value_T, frame_u> A new CartesianVector in the target frame.
  */
-template <typename Value_T, IsFrame auto frame, IsFrame auto frame_u>
+template <IsFrame auto frame_u, typename Value_T, IsFrame auto frame>
     requires((std::is_same_v<Value_T, Distance> || std::is_same_v<Value_T, Unitless>) && IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>)
 inline constexpr CartesianVector<Value_T, frame_u>
     transform_vector_into_frame(const CartesianVector<Value_T, frame>& vec, const Date& date)
 {
     // Same origin or direction vector: rotation only
     if constexpr (equivalent(frame.origin, frame_u.origin) || std::is_same_v<Value_T, Unitless>) {
-        return rotate_vector_into_frame<Value_T, frame, frame_u>(vec, date);
+        return rotate_vector_into_frame<frame_u>(vec, date);
     }
     // Same axis: translation only
     else if constexpr (equivalent(frame.axis, frame_u.axis)) {
-        return translate_vector_into_frame<Value_T, frame, frame_u>(vec, date);
+        return translate_vector_into_frame<frame_u>(vec, date);
     }
 
     // Translation + rotation case
@@ -547,31 +544,29 @@ inline constexpr CartesianVector<Value_T, frame_u>
 /**
  * @brief Transform a velocity vector from one frame to another at a given date, accounting for both rotation and translation.
  *
- * @tparam frame The source frame type.
  * @tparam frame_u The target frame type.
+ * @tparam frame The source frame type.
  * @param vec The velocity vector to transform.
  * @param date The date at which to perform the transformation.
  * @param position The position vector in the source frame.
  * @return CartesianVector<Velocity, frame_u> A new velocity vector in the target frame.
  */
-template <IsFrame auto frame, IsFrame auto frame_u>
+template <IsFrame auto frame_u, IsFrame auto frame>
     requires(IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>)
 inline constexpr CartesianVector<Velocity, frame_u>
     transform_vector_into_frame(const CartesianVector<Velocity, frame>& vec, const Date& date, const CartesianVector<Distance, frame>& position)
 {
     // Same axis: translation only
-    if constexpr (equivalent(frame.axis, frame_u.axis)) {
-        return translate_vector_into_frame<Velocity, frame, frame_u>(vec, date);
-    }
+    if constexpr (equivalent(frame.axis, frame_u.axis)) { return translate_vector_into_frame<frame_u>(vec, date); }
     // Same origin: rotation only
     else if constexpr (equivalent(frame.origin, frame_u.origin)) {
-        return rotate_vector_into_frame<Velocity, frame, frame_u>(vec, date);
+        return rotate_vector_into_frame<frame_u>(vec, date);
     }
 
     // Translation + rotation case
     const CartesianVector<Velocity, frame_u> offset = get_offset_impl<Velocity, frame, frame_u>(date);
-    const auto dcm                                  = get_dcm_impl<frame, frame_u>(date);
-    const auto dcmRate                              = get_dcm_rate_impl<frame, frame_u>(date);
+    const DCM<frame, frame_u> dcm                   = get_dcm_impl<frame, frame_u>(date);
+    const DcmRate<frame, frame_u> dcmRate           = get_dcm_rate_impl<frame, frame_u>(date);
 
     // v_2 = DCM * v_1 + DCM_dot * r_1 + v_o
     return dcmRate * position + dcm * vec + offset;
@@ -580,15 +575,15 @@ inline constexpr CartesianVector<Velocity, frame_u>
 /**
  * @brief Transform an acceleration vector from one frame to another at a given date, accounting for both rotation and translation.
  *
- * @tparam frame The source frame type.
  * @tparam frame_u The target frame type.
+ * @tparam frame The source frame type.
  * @param vec The acceleration vector to transform.
  * @param date The date at which to perform the transformation.
  * @param position The position vector in the source frame.
  * @param velocity The velocity vector in the source frame.
  * @return CartesianVector<Acceleration, frame_u> A new acceleration vector in the target frame.
  */
-template <IsFrame auto frame, IsFrame auto frame_u>
+template <IsFrame auto frame_u, IsFrame auto frame>
     requires(IsStaticFrame<decltype(frame)> && IsStaticFrame<decltype(frame_u)>)
 inline constexpr CartesianVector<Acceleration, frame_u> transform_vector_into_frame(
     const CartesianVector<Acceleration, frame>& vec,
@@ -598,22 +593,20 @@ inline constexpr CartesianVector<Acceleration, frame_u> transform_vector_into_fr
 )
 {
     // Same axis: translation only
-    if constexpr (equivalent(frame.axis, frame_u.axis)) {
-        return translate_vector_into_frame<Acceleration, frame, frame_u>(vec, date);
-    }
+    if constexpr (equivalent(frame.axis, frame_u.axis)) { return translate_vector_into_frame<frame_u>(vec, date); }
     // Same origin: rotation only
     else if constexpr (equivalent(frame.origin, frame_u.origin)) {
-        return rotate_vector_into_frame<Acceleration, frame, frame_u>(vec, date);
+        return rotate_vector_into_frame<frame_u>(vec, date);
     }
 
     // Translation + rotation case
     const CartesianVector<Acceleration, frame_u> offset = get_offset_impl<Acceleration, frame, frame_u>(date);
-    const auto dcm                                      = get_dcm_impl<frame, frame_u>(date);
-    const auto dcmRate                                  = get_dcm_rate_impl<frame, frame_u>(date);
-    const auto dcmAccel                                 = get_dcm_accel_impl<frame, frame_u>(date);
+    const DCM<frame, frame_u> dcm                       = get_dcm_impl<frame, frame_u>(date);
+    const DcmRate<frame, frame_u> dcmRate               = get_dcm_rate_impl<frame, frame_u>(date);
+    const DcmAccel<frame, frame_u> dcmAccel             = get_dcm_accel_impl<frame, frame_u>(date);
 
     // a_2 = DCM * a_1 + 2 * DCM_dot * v_1 + DCM_ddot * r_1 + a_o
-    return dcmAccel * position + 2.0 * dcmRate * velocity + dcm * vec + offset;
+    return dcmAccel * position + 2.0 * (dcmRate * velocity) + dcm * vec + offset;
 }
 
 
@@ -624,7 +617,7 @@ template <IsFrame auto frame_u>
     requires((std::is_same_v<Value_T, Distance> || std::is_same_v<Value_T, Unitless>) && _frame_ != frame_u && IsStaticFrame<decltype(frame_u)>)
 inline constexpr CartesianVector<Value_T, frame_u> CartesianVector<Value_T, _frame_>::in_frame(const Date& date) const
 {
-    return frames::transform_vector_into_frame<Value_T, _frame_, frame_u>(*this, date);
+    return frames::transform_vector_into_frame<frame_u>(*this, date);
 }
 
 
@@ -634,7 +627,7 @@ template <IsFrame auto frame_u>
 inline constexpr CartesianVector<Velocity, frame_u>
     CartesianVector<Value_T, _frame_>::in_frame(const Date& date, const CartesianVector<Distance, _frame_>& position) const
 {
-    return frames::transform_vector_into_frame<_frame_, frame_u>(*this, date, position);
+    return frames::transform_vector_into_frame<frame_u>(*this, date, position);
 }
 
 template <typename Value_T, IsFrame auto _frame_>
@@ -646,7 +639,7 @@ inline constexpr CartesianVector<Acceleration, frame_u> CartesianVector<Value_T,
     const CartesianVector<Velocity, _frame_>& velocity
 ) const
 {
-    return frames::transform_vector_into_frame<_frame_, frame_u>(*this, date, position, velocity);
+    return frames::transform_vector_into_frame<frame_u>(*this, date, position, velocity);
 }
 
 } // namespace astro
