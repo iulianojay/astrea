@@ -35,3 +35,6 @@ dependencies = [
 
 [dependency-groups]
 dev = []
+
+[cartopy.uv]
+include-package-data=false

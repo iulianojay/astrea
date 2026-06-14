@@ -198,11 +198,11 @@ build_report: run_checkcases
 
 .PHONY: docker
 docker:
-	docker build -t astrea:latest -f ./docker/linux/Dockerfile.dev . --build-arg USER=$(username)
+	docker build -t astrea:latest -f ./docker/Dockerfile.dev . --build-arg USER=$(username)
 
-.PHONY: docker-windows
-docker-windows:
-	docker build -t astrea:latest-windows -f ./docker/windows/Dockerfile.dev . --build-arg USER=$(username)
+# .PHONY: docker-windows
+# docker-windows:
+# 	docker build -t astrea:latest-windows -f ./docker/windows/Dockerfile.dev . --build-arg USER=$(username)
 
 .PHONY: clean
 clean:
