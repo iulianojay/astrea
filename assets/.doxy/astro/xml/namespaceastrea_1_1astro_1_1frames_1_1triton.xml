@@ -1,39 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1triton" kind="namespace" language="C++">
     <compoundname>astrea::astro::frames::triton</compoundname>
-      <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a06b47e6377e315367d54cef50fe9422f" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::TRITON, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" kindref="member">FrameAxis::ICRF</ref> &gt;</type>
-        <definition>using astrea::astro::frames::triton::icrf = typedef InertialFrame&lt;CelestialBodyId::TRITON, FrameAxis::ICRF&gt;</definition>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1triton_1_1icrf" prot="public">astrea::astro::frames::triton::icrf</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1triton_1_1j2000" prot="public">astrea::astro::frames::triton::j2000</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1triton_1_1triton__fixed" prot="public">astrea::astro::frames::triton::triton_fixed</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a71b9d894e67d2f972850028d672c5e8b" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1triton_1_1icrf" kindref="compound">astrea::astro::frames::triton::icrf</ref></type>
+        <definition>astrea::astro::frames::triton::icrf astrea::astro::frames::triton::icrf</definition>
         <argsstring></argsstring>
         <name>icrf</name>
+        <qualifiedname>astrea::astro::frames::triton::icrf</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="133" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="133" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="177" column="6"/>
       </memberdef>
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a90f5f9fb34863eda1c9113dedc3033b8" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::TRITON, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" kindref="member">FrameAxis::J2000</ref> &gt;</type>
-        <definition>using astrea::astro::frames::triton::j2000 = typedef InertialFrame&lt;CelestialBodyId::TRITON, FrameAxis::J2000&gt;</definition>
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a5a7d5cade4bdbf9832ed50bd31108fd6" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1triton_1_1j2000" kindref="compound">astrea::astro::frames::triton::j2000</ref></type>
+        <definition>astrea::astro::frames::triton::j2000 astrea::astro::frames::triton::j2000</definition>
         <argsstring></argsstring>
         <name>j2000</name>
+        <qualifiedname>astrea::astro::frames::triton::j2000</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="134" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="134" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="179" column="7"/>
       </memberdef>
-      </sectiondef>
+      <memberdef kind="variable" id="body__fixed__frames_8hpp_1a0fd35e9fc12f675c802cf3119e6c752e" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1triton_1_1triton__fixed" kindref="compound">astrea::astro::frames::triton::triton_fixed</ref></type>
+        <definition>astrea::astro::frames::triton::triton_fixed astrea::astro::frames::triton::triton_fixed</definition>
+        <argsstring></argsstring>
+        <name>triton_fixed</name>
+        <qualifiedname>astrea::astro::frames::triton::triton_fixed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="130" column="14"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="132" column="1"/>
+    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="175" column="1"/>
   </compounddef>
 </doxygen>

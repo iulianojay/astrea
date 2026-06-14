@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1HasCommonAncestor" kind="concept">
+    <compoundname>astrea::astro::HasCommonAncestor</compoundname>
+    <templateparamlist>
+      <param>
+        <type>IsAxis auto</type>
+        <declname>axis</declname>
+        <defname>axis</defname>
+      </param>
+      <param>
+        <type>IsAxis auto</type>
+        <declname>axis_u</declname>
+        <defname>axis_u</defname>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;IsAxis auto axis, IsAxis auto axis_u&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1HasCommonAncestor" kindref="compound">astrea::astro::HasCommonAncestor</ref> =  requires { find_common_ancestor(axis, axis_u); }    </initializer>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/framework/frame_utilities.hpp" line="96" column="1"/>
+  </compounddef>
+</doxygen>

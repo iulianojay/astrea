@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1detail_1_1multi__tuple__cat" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::detail::multi_tuple_cat</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename...</type>
+        <declname>Tuples</declname>
+        <defname>Tuples</defname>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="72" column="1" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="72" bodyend="-1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

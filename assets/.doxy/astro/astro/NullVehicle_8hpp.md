@@ -12,7 +12,6 @@ _A class representing a null vehicle in the astrea astro platform._ [More...](#d
 
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/FrameReference.hpp>`
 
 
 

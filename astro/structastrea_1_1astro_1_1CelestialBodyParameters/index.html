@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -174,6 +174,53 @@ You're not viewing the latest version.
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
     
     
       <div class="md-header__source">
@@ -430,8 +477,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
     
     
     
@@ -482,34 +527,6 @@ You're not viewing the latest version.
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting_started/about/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    About Astrea
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -691,10 +708,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
-        
-      
     
     
     
@@ -773,34 +786,6 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/strongly_typed_frames/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Strongly Typed Frames
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../examples/fundamentals/time_systems/" class="md-nav__link">
         
   
@@ -856,34 +841,6 @@ You're not viewing the latest version.
   
   
   
-    <li class="md-nav__item">
-      <a href="../../examples/fundamentals/astrodynamic_systems/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Astrodynamic Systems
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -910,10 +867,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
             
   
   
@@ -931,8 +888,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1089,7 +1046,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/vehicles.md" class="md-nav__link">
+      <a href="../../examples/fundamentals/propagation/vehicles/" class="md-nav__link">
         
   
   
@@ -1144,10 +1101,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
             
   
   
@@ -1165,8 +1122,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_7">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1183,14 +1140,14 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/frames/strongly_typed_frames/" class="md-nav__link">
+      <a href="../../examples/fundamentals/frames/introduction/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Strongly Typed Frames
+    Introduction to Strongly Typed Frames
   
 
     
@@ -6292,75 +6249,67 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;">Angle</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a></td>
 <td style="text-align: left;"><a href="#variable-axialtilt"><strong>axialTilt</strong></a>  <br><em>Axial tilt of the celestial body.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Distance</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Distance</strong></a></td>
 <td style="text-align: left;"><a href="#variable-crashradius"><strong>crashRadius</strong></a>  <br><em>Crash radius of the celestial body.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Unitless</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
 <td style="text-align: left;"><a href="#variable-eccentricity"><strong>eccentricity</strong></a>  <br><em>Eccentricity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">BodyUnitlessPerTime</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>BodyUnitlessPerTime</strong></a></td>
 <td style="text-align: left;"><a href="#variable-eccentricityrate"><strong>eccentricityRate</strong></a>  <br><em>Rate of change of the eccentricity.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Distance</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Distance</strong></a></td>
 <td style="text-align: left;"><a href="#variable-equitorialradius"><strong>equitorialRadius</strong></a>  <br><em>Equatorial radius of the celestial body.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Angle</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a></td>
 <td style="text-align: left;"><a href="#variable-inclination"><strong>inclination</strong></a>  <br><em>Inclination.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">BodyAngularRate</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>BodyAngularVelocity</strong></a></td>
 <td style="text-align: left;"><a href="#variable-inclinationrate"><strong>inclinationRate</strong></a>  <br><em>Rate of change of the inclination.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Unitless</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
 <td style="text-align: left;"><a href="#variable-j2"><strong>j2</strong></a>  <br><em>J2 gravitational coefficient of the celestial body.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Unitless</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Unitless</strong></a></td>
 <td style="text-align: left;"><a href="#variable-j3"><strong>j3</strong></a>  <br><em>J3 gravitational coefficient of the celestial body.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Angle</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a></td>
 <td style="text-align: left;"><a href="#variable-longitudeofperigee"><strong>longitudeOfPerigee</strong></a>  <br><em>Longitude of perigee.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">BodyAngularRate</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>BodyAngularVelocity</strong></a></td>
 <td style="text-align: left;"><a href="#variable-longitudeofperigeerate"><strong>longitudeOfPerigeeRate</strong></a>  <br><em>Rate of change of the longitude of perigee.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Mass</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Mass</strong></a></td>
 <td style="text-align: left;"><a href="#variable-mass"><strong>mass</strong></a>  <br><em>Mass of the celestial body.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Angle</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a></td>
 <td style="text-align: left;"><a href="#variable-meanlongitude"><strong>meanLongitude</strong></a>  <br><em>Mean longitude.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">BodyAngularRate</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>BodyAngularVelocity</strong></a></td>
 <td style="text-align: left;"><a href="#variable-meanlongituderate"><strong>meanLongitudeRate</strong></a>  <br><em>Rate of change of the mean longitude.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">GravParam</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>GravParam</strong></a></td>
 <td style="text-align: left;"><a href="#variable-mu"><strong>mu</strong></a>  <br><em>Gravitational parameter (mu) of the celestial body.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">std::string</td>
-<td style="text-align: left;"><a href="#variable-name"><strong>name</strong></a>  <br><em>Name of the celestial body.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;"><a href="../namespaceastrea_1_1astro/#enum-celestialbodyid"><strong>CelestialBodyId</strong></a></td>
-<td style="text-align: left;"><a href="#variable-parent"><strong>parent</strong></a>  <br><em>Reference to the parent planetary body.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">Distance</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Distance</strong></a></td>
 <td style="text-align: left;"><a href="#variable-polarradius"><strong>polarRadius</strong></a>  <br><em>Polar radius of the celestial body.</em></td>
 </tr>
 <tr>
@@ -6368,31 +6317,31 @@ You're not viewing the latest version.
 <td style="text-align: left;"><a href="#variable-referencedate"><strong>referenceDate</strong></a>  <br><em>Reference date for the celestial body data.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Angle</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Angle</strong></a></td>
 <td style="text-align: left;"><a href="#variable-rightascension"><strong>rightAscension</strong></a>  <br><em>Right ascension.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">BodyAngularRate</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>BodyAngularVelocity</strong></a></td>
 <td style="text-align: left;"><a href="#variable-rightascensionrate"><strong>rightAscensionRate</strong></a>  <br><em>Rate of change of the right ascension.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">AngularRate</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>AngularVelocity</strong></a></td>
 <td style="text-align: left;"><a href="#variable-rotationrate"><strong>rotationRate</strong></a>  <br><em>Rotation rate of the celestial body.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Distance</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Distance</strong></a></td>
 <td style="text-align: left;"><a href="#variable-semimajoraxis"><strong>semimajorAxis</strong></a>  <br><em>Semimajor axis.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">InterplanetaryVelocity</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>InterplanetaryVelocity</strong></a></td>
 <td style="text-align: left;"><a href="#variable-semimajoraxisrate"><strong>semimajorAxisRate</strong></a>  <br><em>Rate of change of the semimajor axis.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Time</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Time</strong></a></td>
 <td style="text-align: left;"><a href="#variable-siderealperiod"><strong>siderealPeriod</strong></a>  <br><em>Sidereal period of the celestial body.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">Distance</td>
+<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>Distance</strong></a></td>
 <td style="text-align: left;"><a href="#variable-sphereofinfluence"><strong>sphereOfInfluence</strong></a>  <br><em>Sphere of influence of the celestial body.</em></td>
 </tr>
 <tr>
@@ -6440,7 +6389,7 @@ You're not viewing the latest version.
 
 <h3 id="variable-inclinationrate">variable inclinationRate<a class="headerlink" href="#variable-inclinationrate" title="Permanent link">&para;</a></h3>
 <p><em>Rate of change of the inclination.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">BodyAngularRate</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">inclinationRate</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">BodyAngularVelocity</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">inclinationRate</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
@@ -6464,7 +6413,7 @@ You're not viewing the latest version.
 
 <h3 id="variable-longitudeofperigeerate">variable longitudeOfPerigeeRate<a class="headerlink" href="#variable-longitudeofperigeerate" title="Permanent link">&para;</a></h3>
 <p><em>Rate of change of the longitude of perigee.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">BodyAngularRate</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">longitudeOfPerigeeRate</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">BodyAngularVelocity</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">longitudeOfPerigeeRate</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
@@ -6482,7 +6431,7 @@ You're not viewing the latest version.
 
 <h3 id="variable-meanlongituderate">variable meanLongitudeRate<a class="headerlink" href="#variable-meanlongituderate" title="Permanent link">&para;</a></h3>
 <p><em>Rate of change of the mean longitude.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">BodyAngularRate</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">meanLongitudeRate</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">BodyAngularVelocity</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">meanLongitudeRate</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
@@ -6492,75 +6441,63 @@ You're not viewing the latest version.
 </span></code></pre></div></p>
 <hr>
 
-<h3 id="variable-name">variable name<a class="headerlink" href="#variable-name" title="Permanent link">&para;</a></h3>
-<p><em>Name of the celestial body.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">name</span><span class="p">;</span>
-</span></code></pre></div></p>
-<hr>
-
-<h3 id="variable-parent">variable parent<a class="headerlink" href="#variable-parent" title="Permanent link">&para;</a></h3>
-<p><em>Reference to the parent planetary body.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">CelestialBodyId</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">parent</span><span class="p">;</span>
-</span></code></pre></div></p>
-<hr>
-
 <h3 id="variable-polarradius">variable polarRadius<a class="headerlink" href="#variable-polarradius" title="Permanent link">&para;</a></h3>
 <p><em>Polar radius of the celestial body.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">Distance</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">polarRadius</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Distance</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">polarRadius</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="variable-referencedate">variable referenceDate<a class="headerlink" href="#variable-referencedate" title="Permanent link">&para;</a></h3>
 <p><em>Reference date for the celestial body data.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">Date</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">referenceDate</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">Date</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">referenceDate</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="variable-rightascension">variable rightAscension<a class="headerlink" href="#variable-rightascension" title="Permanent link">&para;</a></h3>
 <p><em>Right ascension.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">Angle</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">rightAscension</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">Angle</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">rightAscension</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="variable-rightascensionrate">variable rightAscensionRate<a class="headerlink" href="#variable-rightascensionrate" title="Permanent link">&para;</a></h3>
 <p><em>Rate of change of the right ascension.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">BodyAngularRate</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">rightAscensionRate</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">BodyAngularVelocity</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">rightAscensionRate</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="variable-rotationrate">variable rotationRate<a class="headerlink" href="#variable-rotationrate" title="Permanent link">&para;</a></h3>
 <p><em>Rotation rate of the celestial body.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">AngularRate</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">rotationRate</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">AngularVelocity</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">rotationRate</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="variable-semimajoraxis">variable semimajorAxis<a class="headerlink" href="#variable-semimajoraxis" title="Permanent link">&para;</a></h3>
 <p><em>Semimajor axis.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">Distance</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">semimajorAxis</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">Distance</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">semimajorAxis</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="variable-semimajoraxisrate">variable semimajorAxisRate<a class="headerlink" href="#variable-semimajoraxisrate" title="Permanent link">&para;</a></h3>
 <p><em>Rate of change of the semimajor axis.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">InterplanetaryVelocity</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">semimajorAxisRate</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">InterplanetaryVelocity</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">semimajorAxisRate</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="variable-siderealperiod">variable siderealPeriod<a class="headerlink" href="#variable-siderealperiod" title="Permanent link">&para;</a></h3>
 <p><em>Sidereal period of the celestial body.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">Time</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">siderealPeriod</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">Time</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">siderealPeriod</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="variable-sphereofinfluence">variable sphereOfInfluence<a class="headerlink" href="#variable-sphereofinfluence" title="Permanent link">&para;</a></h3>
 <p><em>Sphere of influence of the celestial body.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">Distance</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">sphereOfInfluence</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">Distance</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">sphereOfInfluence</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="variable-type">variable type<a class="headerlink" href="#variable-type" title="Permanent link">&para;</a></h3>
 <p><em>Type of the celestial body.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">CelestialBodyType</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">type</span><span class="p">;</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">CelestialBodyType</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBodyParameters</span><span class="o">::</span><span class="n">type</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 

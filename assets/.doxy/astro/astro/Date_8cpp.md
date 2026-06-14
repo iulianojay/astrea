@@ -16,9 +16,8 @@
 * `#include <iomanip>`
 * `#include <iostream>`
 * `#include <sstream>`
-* `#include <date/date.h>`
 * `#include <mp-units/math.h>`
-* `#include <astro/systems/planetary_bodies/Earth/Earth.hpp>`
+* `#include <astro/systems/celestial_bodies/Earth/Earth.hpp>`
 * `#include <astro/utilities/conversions.hpp>`
 
 

@@ -1,0 +1,729 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1AngularAccelerations" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::AngularAccelerations</compoundname>
+    <includes refid="AngularVelocities_8hpp" local="no">AngularVelocities.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_in_frame_</declname>
+        <defname>_in_frame_</defname>
+      </param>
+      <param>
+        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_ref_frame_</declname>
+        <defname>_ref_frame_</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1AngularAccelerations_1a07fdd44fdce37f11b4956f47abf1b6b5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref></type>
+        <definition>friend class Attitude</definition>
+        <argsstring></argsstring>
+        <name>Attitude</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::Attitude</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="433" column="18" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="433" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1AngularAccelerations_1a266a0fbd21645f7913d1f87da3b14b4f" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::in_frame</definition>
+        <argsstring></argsstring>
+        <name>in_frame</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::in_frame</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="436" column="27" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="436" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1AngularAccelerations_1a0f5b9ba7e2b6b5df514469d6803caef0" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::ref_frame</definition>
+        <argsstring></argsstring>
+        <name>ref_frame</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::ref_frame</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_ref_frame_</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="437" column="27" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="437" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1AngularAccelerations_1a2eff198a59da8a162ca9e87957e97fd1" prot="private" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref>, in_frame &gt;</type>
+        <definition>CartesianVector&lt;AngularAcceleration, in_frame&gt; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::_angularAccels</definition>
+        <argsstring></argsstring>
+        <name>_angularAccels</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::_angularAccels</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="640" column="21" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="640" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a331d1830cf8302ec7191034cfa70b1d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::AngularAccelerations</definition>
+        <argsstring>()=default</argsstring>
+        <name>AngularAccelerations</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::AngularAccelerations</qualifiedname>
+        <briefdescription>
+<para>Default constructor for the <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref> class. Initializes all angular accelerations to zero. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="442" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a335e425346787fd31842dbfe0848ae5a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::AngularAccelerations</definition>
+        <argsstring>(const AngularAcceleration &amp;accel1, const AngularAcceleration &amp;accel2, const AngularAcceleration &amp;accel3)</argsstring>
+        <name>AngularAccelerations</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::AngularAccelerations</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <declname>accel1</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <declname>accel2</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+          <declname>accel3</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for the <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref> class from three angular accelerations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>accel1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first angular acceleration in the sequence. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>accel2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second angular acceleration in the sequence. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>accel3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The third angular acceleration in the sequence. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="451" column="5" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="451" bodyend="454"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a97fcd4f78c1dae592fed26c680f36c6b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::AngularAccelerations</definition>
+        <argsstring>(const CartesianVector&lt; AngularAcceleration, in_frame &gt; &amp;accels)</argsstring>
+        <name>AngularAccelerations</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::AngularAccelerations</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref>, in_frame &gt; &amp;</type>
+          <declname>accels</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for the <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref> class from a <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> of angular accelerations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>accels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> containing the three angular accelerations in the sequence. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="461" column="5" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="461" bodyend="464"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a9ad592833e0f9a7ebaa3f8d73ebc47e7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+        <definition>AngularAcceleration &amp; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::operator[]</definition>
+        <argsstring>(std::size_t index)</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::operator[]</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Array access operator for accessing individual angular acceleration components. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the angular acceleration component (0, 1, or 2). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>AngularAcceleration&amp; Reference to the angular acceleration component. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="472" column="25" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="472" bodyend="472"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a828af8bf1474c2fefa65bae91bdc80d5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref> &amp;</type>
+        <definition>const AngularAcceleration &amp; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::operator[]</definition>
+        <argsstring>(std::size_t index) const</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::operator[]</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Const array access operator for accessing individual angular acceleration components. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the angular acceleration component (0, 1, or 2). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const AngularAcceleration&amp; Const reference to the angular acceleration component. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="480" column="31" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="480" bodyend="480"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a48895ae489f63b826476dc1ec0c2d760" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref>, in_frame &gt; &amp;</type>
+        <definition>CartesianVector&lt; AngularAcceleration, in_frame &gt; &amp; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::get_angularAccels</definition>
+        <argsstring>()</argsstring>
+        <name>get_angularAccels</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::get_angularAccels</qualifiedname>
+        <briefdescription>
+<para>Get access to the underlying <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;AngularAcceleration, in_frame&gt;</ref>&amp; Reference to the internal <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="487" column="21" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="487" bodyend="487"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1ac2905468dc13c09e180a799aa1687e14" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref>, in_frame &gt; &amp;</type>
+        <definition>const CartesianVector&lt; AngularAcceleration, in_frame &gt; &amp; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::get_angularAccels</definition>
+        <argsstring>() const</argsstring>
+        <name>get_angularAccels</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::get_angularAccels</qualifiedname>
+        <briefdescription>
+<para>Get const access to the underlying <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;AngularAcceleration, in_frame&gt;</ref>&amp; Const reference to the internal <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="494" column="27" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="494" bodyend="494"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a5eb3af303458b6295a7cf3cd75b86b36" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>&lt; in_frame, ref_frame &gt;</type>
+        <definition>AngularAccelerations&lt; in_frame, ref_frame &gt; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::operator+</definition>
+        <argsstring>(const AngularAccelerations&lt; in_frame, ref_frame &gt; &amp;other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::operator+</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>&lt; in_frame, ref_frame &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Addition operator for <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref> to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>AngularAccelerations&lt;in_frame, ref_frame&gt; A new <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref> that is the sum of this and other. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="503" column="26" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="503" bodyend="506"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a66ee1062c6b7cf5f484de376aa101187" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>&lt; in_frame, ref_frame &gt; &amp;</type>
+        <definition>AngularAccelerations&lt; in_frame, ref_frame &gt; &amp; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::operator+=</definition>
+        <argsstring>(const AngularAccelerations&lt; in_frame, ref_frame &gt; &amp;other)</argsstring>
+        <name>operator+=</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::operator+=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>&lt; in_frame, ref_frame &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Addition assignment operator for <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref> to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>AngularAccelerations&lt;in_frame, ref_frame&gt;&amp; Reference to the current object after addition. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="514" column="26" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="514" bodyend="518"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a998cd5a6d5f886fb3727aad67d767f16" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>&lt; in_frame, ref_frame &gt;</type>
+        <definition>AngularAccelerations&lt; in_frame, ref_frame &gt; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::operator-</definition>
+        <argsstring>(const AngularAccelerations&lt; in_frame, ref_frame &gt; &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::operator-</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>&lt; in_frame, ref_frame &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Subtraction operator for <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref> to subtract. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>AngularAccelerations&lt;in_frame, ref_frame&gt; A new <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref> that is the difference of this and other. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="527" column="26" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="527" bodyend="530"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a3c5c80f1837049304806ea2456dd96fa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>&lt; in_frame, ref_frame &gt; &amp;</type>
+        <definition>AngularAccelerations&lt; in_frame, ref_frame &gt; &amp; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::operator-=</definition>
+        <argsstring>(const AngularAccelerations&lt; in_frame, ref_frame &gt; &amp;other)</argsstring>
+        <name>operator-=</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::operator-=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>&lt; in_frame, ref_frame &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Subtraction assignment operator for <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref> to subtract. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>AngularAccelerations&lt;in_frame, ref_frame&gt;&amp; Reference to the current object after subtraction. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="538" column="26" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="538" bodyend="542"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a00e2d96032e8b41df4cb48278a7ee081" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref>{} *<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}), in_frame &gt;</type>
+        <definition>CartesianVector&lt; decltype(AngularAcceleration{} *Value_U{}), in_frame &gt; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::operator*</definition>
+        <argsstring>(const Value_U &amp;scalar) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::operator*</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref> &amp;</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+<para>Scalar multiplication operator for <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref> by a quantity, resulting in a <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The quantity to multiply by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt;decltype(AngularAcceleration{} * Value_U{}), in_frame&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> that is the product of this sequence and the quantity. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="552" column="21" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="552" bodyend="555"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a7040a937d5cfaf6cef76c6757fcc4e20" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1AngularVelocities" kindref="compound">AngularVelocities</ref>&lt; in_frame, ref_frame &gt;</type>
+        <definition>AngularVelocities&lt; in_frame, ref_frame &gt; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::operator*</definition>
+        <argsstring>(const Time &amp;time) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::operator*</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Scalar multiplication operator for <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time value to multiply with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>AngularVelocities&lt;in_frame, ref_frame&gt; A new <ref refid="classastrea_1_1astro_1_1AngularVelocities" kindref="compound">AngularVelocities</ref> that is the product of this sequence and the time </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="563" column="23" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="563" bodyend="563"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1abd3f63f852d4c90ada16292ea5eda1d9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref>{}/<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}), in_frame &gt;</type>
+        <definition>CartesianVector&lt; decltype(AngularAcceleration{}/Value_U{}), in_frame &gt; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::operator/</definition>
+        <argsstring>(const Value_U &amp;scalar) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::operator/</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref> &amp;</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+<para>Scalar division operator for <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref> by a quantity, resulting in a <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The quantity to divide by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt;decltype(AngularAcceleration{} / Value_U{}), in_frame&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> that is the quotient of this sequence and the quantity. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="573" column="21" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="573" bodyend="576"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a078b371cf3d26f5b983686d70915d101" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>auto astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::dot</definition>
+        <argsstring>(const CartesianVector&lt; Value_U, in_frame &gt; &amp;other) const</argsstring>
+        <name>dot</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::dot</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, in_frame &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Dot product of this angular acceleration vector with a <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Value_U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&apos;s components. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to take the dot product with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>auto The resulting scalar from the dot product. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="586" column="10" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="586" bodyend="589"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1ad7bf93de01d14ffa1e2a1c55f2245936" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>auto astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::dot</definition>
+        <argsstring>(const AngularAccelerations&lt; in_frame, ref_frame &gt; &amp;other) const</argsstring>
+        <name>dot</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::dot</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>&lt; in_frame, ref_frame &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Dot product of this angle vector with another <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref> to take the dot product with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>auto The resulting scalar from the dot product. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="597" column="10" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="597" bodyend="600"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a7b242f3794bc188153e9946e8f2fa7ea" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref>{} *<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}), in_frame &gt;</type>
+        <definition>CartesianVector&lt; decltype(AngularAcceleration{} *Value_U{}), in_frame &gt; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::cross</definition>
+        <argsstring>(const CartesianVector&lt; Value_U, in_frame &gt; &amp;other) const</argsstring>
+        <name>cross</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::cross</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, in_frame &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Cross product of this angular acceleration vector with a <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Value_U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&apos;s components. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to take the cross product with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt;decltype(AngularAcceleration{} * Value_U{}), in_frame&gt; The resulting <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> from the cross product. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="610" column="21" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="610" bodyend="613"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a8e9ee79f46dc77ed6f44e931a2a6ee72" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref>{} *<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularAcceleration</ref>{}), in_frame &gt;</type>
+        <definition>CartesianVector&lt; decltype(AngularAcceleration{} *AngularAcceleration{}), in_frame &gt; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::cross</definition>
+        <argsstring>(const AngularAccelerations&lt; in_frame, ref_frame &gt; &amp;other) const</argsstring>
+        <name>cross</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::cross</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>&lt; in_frame, ref_frame &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Cross product of this angle vector with another <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1astro_1_1AngularAccelerations" kindref="compound">AngularAccelerations</ref> to take the cross product with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt;decltype(AngularAcceleration{} * AngularAcceleration{}), in_frame&gt; The resulting <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> from the cross product. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="622" column="9" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="622" bodyend="625"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1AngularAccelerations_1a9c78140113012d66a9d67da2e0fad3d1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt;</type>
+        <definition>std::vector&lt; Unitless &gt; astrea::astro::AngularAccelerations&lt; _in_frame_, _ref_frame_ &gt;::force_to_vector</definition>
+        <argsstring>() const</argsstring>
+        <name>force_to_vector</name>
+        <qualifiedname>astrea::astro::AngularAccelerations::force_to_vector</qualifiedname>
+        <briefdescription>
+<para>Converts the angular sequence acceleration to a vector form for use in numerical integration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A std::vector of Unitless quantities representing the components of the angular sequence acceleration, in the order [first, second, third]. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="632" column="17" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="632" bodyend="637"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class representing the angular sequence acceleration, which is the time derivative of the angular sequence velocity. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>in_frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input frame type (e.g., ECI, ECEF). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ref_frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output frame type (e.g., ECI, ECEF). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/attitude/AngularVelocities.hpp" line="431" column="1" bodyfile="astrea/astro/astro/state/attitude/AngularVelocities.hpp" bodystart="431" bodyend="641"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a2eff198a59da8a162ca9e87957e97fd1" prot="private" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>_angularAccels</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a331d1830cf8302ec7191034cfa70b1d3" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>AngularAccelerations</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a335e425346787fd31842dbfe0848ae5a" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>AngularAccelerations</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a97fcd4f78c1dae592fed26c680f36c6b" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>AngularAccelerations</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a07fdd44fdce37f11b4956f47abf1b6b5" prot="private" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>Attitude</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a7b242f3794bc188153e9946e8f2fa7ea" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>cross</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a8e9ee79f46dc77ed6f44e931a2a6ee72" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>cross</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a078b371cf3d26f5b983686d70915d101" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>dot</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1ad7bf93de01d14ffa1e2a1c55f2245936" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>dot</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a9c78140113012d66a9d67da2e0fad3d1" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>force_to_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a48895ae489f63b826476dc1ec0c2d760" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>get_angularAccels</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1ac2905468dc13c09e180a799aa1687e14" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>get_angularAccels</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a266a0fbd21645f7913d1f87da3b14b4f" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>in_frame</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a00e2d96032e8b41df4cb48278a7ee081" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>operator*</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a7040a937d5cfaf6cef76c6757fcc4e20" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>operator*</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a5eb3af303458b6295a7cf3cd75b86b36" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>operator+</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a66ee1062c6b7cf5f484de376aa101187" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>operator+=</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a998cd5a6d5f886fb3727aad67d767f16" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>operator-</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a3c5c80f1837049304806ea2456dd96fa" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>operator-=</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1abd3f63f852d4c90ada16292ea5eda1d9" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>operator/</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a9ad592833e0f9a7ebaa3f8d73ebc47e7" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a828af8bf1474c2fefa65bae91bdc80d5" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1astro_1_1AngularAccelerations_1a0f5b9ba7e2b6b5df514469d6803caef0" prot="public" virt="non-virtual"><scope>astrea::astro::AngularAccelerations</scope><name>ref_frame</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,312 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1detail_1_1CelestialBodyBase" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::detail::CelestialBodyBase</compoundname>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Callisto&quot;, planets::Jupiter &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Deimos&quot;, planets::Mars &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Europa&quot;, planets::Jupiter &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Ganymede&quot;, planets::Jupiter &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Iapetus&quot;, planets::Saturn &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Io&quot;, planets::Jupiter &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Moon&quot;, planets::Earth &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Oberon&quot;, planets::Uranus &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Phobos&quot;, planets::Mars &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Rhea&quot;, planets::Saturn &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Titan&quot;, planets::Saturn &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Titania&quot;, planets::Uranus &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Triton&quot;, planets::Neptune &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Earth&quot;, barycenters::SolarSystemBarycenter &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Jupiter&quot;, barycenters::SolarSystemBarycenter &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Mars&quot;, barycenters::SolarSystemBarycenter &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Mercury&quot;, barycenters::SolarSystemBarycenter &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Neptune&quot;, barycenters::SolarSystemBarycenter &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Saturn&quot;, barycenters::SolarSystemBarycenter &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Uranus&quot;, barycenters::SolarSystemBarycenter &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Venus&quot;, barycenters::SolarSystemBarycenter &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Sun&quot;, barycenters::SolarSystemBarycenter &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt; _name_, _parent_ &gt;</derivedcompoundref>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::CelestialBody&lt;&quot;Callisto&quot;, planets::Jupiter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea::astro::CelestialBody&lt;&quot;Deimos&quot;, planets::Mars &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>astrea::astro::CelestialBody&lt;&quot;Earth&quot;, barycenters::SolarSystemBarycenter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea::astro::CelestialBody&lt;&quot;Europa&quot;, planets::Jupiter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea::astro::CelestialBody&lt;&quot;Ganymede&quot;, planets::Jupiter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea::astro::CelestialBody&lt;&quot;Iapetus&quot;, planets::Saturn &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea::astro::CelestialBody&lt;&quot;Io&quot;, planets::Jupiter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>astrea::astro::CelestialBody&lt;&quot;Jupiter&quot;, barycenters::SolarSystemBarycenter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>astrea::astro::CelestialBody&lt;&quot;Mars&quot;, barycenters::SolarSystemBarycenter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>astrea::astro::CelestialBody&lt;&quot;Mercury&quot;, barycenters::SolarSystemBarycenter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astrea::astro::CelestialBody&lt;&quot;Moon&quot;, planets::Earth &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>astrea::astro::CelestialBody&lt;&quot;Neptune&quot;, barycenters::SolarSystemBarycenter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>astrea::astro::CelestialBody&lt;&quot;Oberon&quot;, planets::Uranus &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astrea::astro::CelestialBody&lt;&quot;Phobos&quot;, planets::Mars &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>astrea::astro::CelestialBody&lt;&quot;Rhea&quot;, planets::Saturn &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>astrea::astro::CelestialBody&lt;&quot;Saturn&quot;, barycenters::SolarSystemBarycenter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>astrea::astro::CelestialBody&lt;&quot;Sun&quot;, barycenters::SolarSystemBarycenter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>astrea::astro::CelestialBody&lt;&quot;Titan&quot;, planets::Saturn &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>astrea::astro::CelestialBody&lt;&quot;Titania&quot;, planets::Uranus &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>astrea::astro::CelestialBody&lt;&quot;Triton&quot;, planets::Neptune &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>astrea::astro::CelestialBody&lt;&quot;Uranus&quot;, barycenters::SolarSystemBarycenter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>astrea::astro::CelestialBody&lt;&quot;Venus&quot;, barycenters::SolarSystemBarycenter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>astrea::astro::CelestialBody&lt; _name_, _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea::astro::detail::CelestialBodyBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1CelestialBodyBase"/>
+      </node>
+      <node id="3">
+        <label>astrea::astro::moons::Callisto</label>
+        <link refid="structastrea_1_1astro_1_1moons_1_1Callisto"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea::astro::moons::Deimos</label>
+        <link refid="structastrea_1_1astro_1_1moons_1_1Deimos"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea::astro::moons::Europa</label>
+        <link refid="structastrea_1_1astro_1_1moons_1_1Europa"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astrea::astro::moons::Ganymede</label>
+        <link refid="structastrea_1_1astro_1_1moons_1_1Ganymede"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea::astro::moons::Iapetus</label>
+        <link refid="structastrea_1_1astro_1_1moons_1_1Iapetus"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>astrea::astro::moons::Io</label>
+        <link refid="structastrea_1_1astro_1_1moons_1_1Io"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astrea::astro::moons::Moon</label>
+        <link refid="structastrea_1_1astro_1_1moons_1_1Moon"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>astrea::astro::moons::Oberon</label>
+        <link refid="structastrea_1_1astro_1_1moons_1_1Oberon"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astrea::astro::moons::Phobos</label>
+        <link refid="structastrea_1_1astro_1_1moons_1_1Phobos"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>astrea::astro::moons::Rhea</label>
+        <link refid="structastrea_1_1astro_1_1moons_1_1Rhea"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>astrea::astro::moons::Titan</label>
+        <link refid="structastrea_1_1astro_1_1moons_1_1Titan"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>astrea::astro::moons::Titania</label>
+        <link refid="structastrea_1_1astro_1_1moons_1_1Titania"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>astrea::astro::moons::Triton</label>
+        <link refid="structastrea_1_1astro_1_1moons_1_1Triton"/>
+        <childnode refid="26" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>astrea::astro::planets::Earth</label>
+        <link refid="structastrea_1_1astro_1_1planets_1_1Earth"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>astrea::astro::planets::Jupiter</label>
+        <link refid="structastrea_1_1astro_1_1planets_1_1Jupiter"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>astrea::astro::planets::Mars</label>
+        <link refid="structastrea_1_1astro_1_1planets_1_1Mars"/>
+        <childnode refid="32" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>astrea::astro::planets::Mercury</label>
+        <link refid="structastrea_1_1astro_1_1planets_1_1Mercury"/>
+        <childnode refid="34" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>astrea::astro::planets::Neptune</label>
+        <link refid="structastrea_1_1astro_1_1planets_1_1Neptune"/>
+        <childnode refid="36" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>astrea::astro::planets::Saturn</label>
+        <link refid="structastrea_1_1astro_1_1planets_1_1Saturn"/>
+        <childnode refid="38" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>astrea::astro::planets::Uranus</label>
+        <link refid="structastrea_1_1astro_1_1planets_1_1Uranus"/>
+        <childnode refid="40" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>astrea::astro::planets::Venus</label>
+        <link refid="structastrea_1_1astro_1_1planets_1_1Venus"/>
+        <childnode refid="42" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>astrea::astro::star::Sun</label>
+        <link refid="structastrea_1_1astro_1_1star_1_1Sun"/>
+        <childnode refid="44" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="astrea/astro/astro/systems/CelestialBody.hpp" line="42" column="1" bodyfile="astrea/astro/astro/systems/CelestialBody.hpp" bodystart="42" bodyend="42"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

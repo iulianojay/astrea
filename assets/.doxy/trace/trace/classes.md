@@ -10,6 +10,8 @@
 ([**astrea::trace**](namespaceastrea_1_1trace.md))
 * [**AccessInfo**](structastrea_1_1trace_1_1AccessInfo.md)
 ([**astrea::trace**](namespaceastrea_1_1trace.md))
+* [**AccessMetricsRecord**](structastrea_1_1trace_1_1AccessMetricsRecord.md)
+([**astrea::trace**](namespaceastrea_1_1trace.md))
 * [**AccessObject**](classastrea_1_1trace_1_1AccessObject.md)
 ([**astrea::trace**](namespaceastrea_1_1trace.md))
 * [**AccessStats**](structastrea_1_1trace_1_1AccessStats.md)
@@ -26,11 +28,19 @@
 ([**astrea::trace**](namespaceastrea_1_1trace.md))
 
 
+## d
+
+* [**DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md)
+([**astrea::trace**](namespaceastrea_1_1trace.md))
+
+
 ## f
 
 * [**FieldOfView**](classastrea_1_1trace_1_1FieldOfView.md)
 ([**astrea::trace**](namespaceastrea_1_1trace.md))
 * [**FoldsOfCoverage**](classastrea_1_1trace_1_1FoldsOfCoverage.md)
+([**astrea::trace**](namespaceastrea_1_1trace.md))
+* [**FoldsRecord**](structastrea_1_1trace_1_1FoldsRecord.md)
 ([**astrea::trace**](namespaceastrea_1_1trace.md))
 
 
@@ -41,6 +51,8 @@
 * [**Grid**](classastrea_1_1trace_1_1Grid.md)
 ([**astrea::trace**](namespaceastrea_1_1trace.md))
 * [**GroundArchitecture**](classastrea_1_1trace_1_1GroundArchitecture.md)
+([**astrea::trace**](namespaceastrea_1_1trace.md))
+* [**GroundLocationRecord**](structastrea_1_1trace_1_1GroundLocationRecord.md)
 ([**astrea::trace**](namespaceastrea_1_1trace.md))
 * [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md)
 ([**astrea::trace**](namespaceastrea_1_1trace.md))
@@ -80,7 +92,13 @@
 
 ## r
 
+* [**ReceiverRiseSetMetricsRecord**](structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord.md)
+([**astrea::trace**](namespaceastrea_1_1trace.md))
 * [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md)
+([**astrea::trace**](namespaceastrea_1_1trace.md))
+* [**RiseSetMetricsRecord**](structastrea_1_1trace_1_1RiseSetMetricsRecord.md)
+([**astrea::trace**](namespaceastrea_1_1trace.md))
+* [**RiseSetRecord**](structastrea_1_1trace_1_1RiseSetRecord.md)
 ([**astrea::trace**](namespaceastrea_1_1trace.md))
 * [**RiseSetStats**](structastrea_1_1trace_1_1RiseSetStats.md)
 ([**astrea::trace**](namespaceastrea_1_1trace.md))

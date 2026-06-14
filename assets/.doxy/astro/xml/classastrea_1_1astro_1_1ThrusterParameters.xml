@@ -1,42 +1,60 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1ThrusterParameters" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::ThrusterParameters</compoundname>
     <basecompoundref refid="classastrea_1_1astro_1_1PayloadParameters" prot="public" virt="non-virtual">astrea::astro::PayloadParameters</basecompoundref>
     <includes refid="Thruster_8hpp" local="no">Thruster.hpp</includes>
-      <sectiondef kind="protected-attrib">
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1ThrusterParameters_1ade41a642efb42f9ea8cb47bcbf646166" prot="protected" static="no" mutable="no">
-        <type>Thrust</type>
-        <definition>Thrust astrea::astro::ThrusterParameters::_thrust</definition>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1ThrusterParameters_1ac10d9d2890fd0f63733ca0ca105f8b17" prot="protected" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Force</ref></type>
+        <definition>Force astrea::astro::ThrusterParameters::_thrust</definition>
         <argsstring></argsstring>
         <name>_thrust</name>
+        <qualifiedname>astrea::astro::ThrusterParameters::_thrust</qualifiedname>
         <briefdescription>
-<para>Thrust magnitude. </para>
+<para>Force magnitude. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="66" column="12" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="66" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="83" column="11" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="83" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="classastrea_1_1astro_1_1ThrusterParameters_1a1cc626250b0428de1e01723470486715" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1ThrusterParameters_1a8b2b0b810cdd5bcdf0f8e7cb689499e8" prot="protected" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>bool astrea::astro::ThrusterParameters::_isOn</definition>
+        <argsstring></argsstring>
+        <name>_isOn</name>
+        <qualifiedname>astrea::astro::ThrusterParameters::_isOn</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">false</ref></initializer>
+        <briefdescription>
+<para><ref refid="classastrea_1_1astro_1_1Thruster" kindref="compound">Thruster</ref> state (on/off) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="84" column="10" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ThrusterParameters_1a45270599e57f4b506b4d1d5037663e01" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::ThrusterParameters::ThrusterParameters</definition>
-        <argsstring>(const Thrust &amp;thrust, const CartesianVector&lt; Distance, frames::dynamic::ric &gt; &amp;boresight=NADIR_RIC, const CartesianVector&lt; Distance, frames::dynamic::ric &gt; &amp;attachmentPoint=CENTER)</argsstring>
+        <argsstring>(const Force &amp;thrust, const CartesianVector&lt; Distance, frames::dynamic::ric &gt; &amp;boresight=NADIR_RIC, const CartesianVector&lt; Distance, frames::dynamic::ric &gt; &amp;attachmentPoint=CENTER)</argsstring>
         <name>ThrusterParameters</name>
+        <qualifiedname>astrea::astro::ThrusterParameters::ThrusterParameters</qualifiedname>
         <param>
-          <type>const Thrust &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Force</ref> &amp;</type>
           <declname>thrust</declname>
         </param>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Distance, <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">frames::dynamic::ric</ref> &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, frames::dynamic::ric &gt; &amp;</type>
           <declname>boresight</declname>
           <defval>NADIR_RIC</defval>
         </param>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Distance, <ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">frames::dynamic::ric</ref> &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, frames::dynamic::ric &gt; &amp;</type>
           <declname>attachmentPoint</declname>
           <defval>CENTER</defval>
         </param>
@@ -72,6 +90,7 @@
         <definition>virtual astrea::astro::ThrusterParameters::~ThrusterParameters</definition>
         <argsstring>()=default</argsstring>
         <name>~ThrusterParameters</name>
+        <qualifiedname>astrea::astro::ThrusterParameters::~ThrusterParameters</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1astro_1_1ThrusterParameters" kindref="compound">ThrusterParameters</ref>. </para>
         </briefdescription>
@@ -81,51 +100,101 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="56" column="13"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1ThrusterParameters_1a262ac4d8f55d544db0bcdc060894b656" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>Thrust</type>
-        <definition>Thrust astrea::astro::ThrusterParameters::get_thrust</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ThrusterParameters_1a371ba45ffdccfaae9c2a96b555ee2f8b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Force</ref></type>
+        <definition>Force astrea::astro::ThrusterParameters::get_thrust</definition>
         <argsstring>() const</argsstring>
         <name>get_thrust</name>
+        <qualifiedname>astrea::astro::ThrusterParameters::get_thrust</qualifiedname>
         <briefdescription>
 <para>Get the thrust magnitude. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>Thrust magnitude. </para>
+<para><simplesect kind="return"><para>Force magnitude. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="63" column="12" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="63" bodyend="63"/>
+        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="63" column="11" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="63" bodyend="63"/>
       </memberdef>
-      </sectiondef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ThrusterParameters_1a3a7daa392e69d7e86930f9c8832be2bd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>bool astrea::astro::ThrusterParameters::is_on</definition>
+        <argsstring>() const</argsstring>
+        <name>is_on</name>
+        <qualifiedname>astrea::astro::ThrusterParameters::is_on</qualifiedname>
+        <briefdescription>
+<para>Set the thrust magnitude. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>thrust</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Force magnitude to set. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="70" column="10" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="70" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ThrusterParameters_1ace7d8bf1633505f9615479a613bb48b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::ThrusterParameters::switch_on</definition>
+        <argsstring>()</argsstring>
+        <name>switch_on</name>
+        <qualifiedname>astrea::astro::ThrusterParameters::switch_on</qualifiedname>
+        <briefdescription>
+<para>Switch the thruster on. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="75" column="10" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1ThrusterParameters_1abf2f0f642363e5ae704511e654664713" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::ThrusterParameters::switch_off</definition>
+        <argsstring>()</argsstring>
+        <name>switch_off</name>
+        <qualifiedname>astrea::astro::ThrusterParameters::switch_off</qualifiedname>
+        <briefdescription>
+<para>Switch the thruster off. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="80" column="10" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="80" bodyend="80"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
 <para>Class for storing and managing thruster parameters. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1">
-        <label>astrea::astro::ThrusterParameters</label>
-        <link refid="classastrea_1_1astro_1_1ThrusterParameters"/>
-        <childnode refid="2" relation="public-inheritance">
-        </childnode>
-      </node>
       <node id="2">
         <label>astrea::astro::PayloadParameters</label>
         <link refid="classastrea_1_1astro_1_1PayloadParameters"/>
       </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="3">
-        <label>astrea::astro::CartesianVector&lt; astrea::astro::frames::RadialInTrackCrossTrack &gt;</label>
-        <link refid="classastrea_1_1astro_1_1CartesianVector"/>
-      </node>
       <node id="1">
         <label>astrea::astro::ThrusterParameters</label>
         <link refid="classastrea_1_1astro_1_1ThrusterParameters"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>astrea::astro::CartesianVector&lt; astro::frames::dynamic::ric &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CartesianVector"/>
       </node>
       <node id="2">
         <label>astrea::astro::PayloadParameters</label>
@@ -135,19 +204,29 @@
           <edgelabel>_boresight</edgelabel>
         </childnode>
       </node>
+      <node id="1">
+        <label>astrea::astro::ThrusterParameters</label>
+        <link refid="classastrea_1_1astro_1_1ThrusterParameters"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="35" column="1" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="35" bodyend="67"/>
+    <location file="astrea/astro/astro/platforms/thrusters/Thruster.hpp" line="35" column="1" bodyfile="astrea/astro/astro/platforms/thrusters/Thruster.hpp" bodystart="35" bodyend="85"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1PayloadParameters_1ac00a6b09f894ff2bc23a3e5c09178201" prot="protected" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>_attachmentPoint</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadParameters_1a01f3c5598eab8ab44095633b97e73cb7" prot="protected" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>_boresight</name></member>
-      <member refid="classastrea_1_1astro_1_1ThrusterParameters_1ade41a642efb42f9ea8cb47bcbf646166" prot="protected" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>_thrust</name></member>
-      <member refid="classastrea_1_1astro_1_1PayloadParameters_1adc77175e75bf9c52138e316ebbd4ef4e" prot="public" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>get_attachment_point</name></member>
-      <member refid="classastrea_1_1astro_1_1PayloadParameters_1a4785cf97067d0219de0d21f5863a9896" prot="public" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>get_boresight</name></member>
-      <member refid="classastrea_1_1astro_1_1ThrusterParameters_1a262ac4d8f55d544db0bcdc060894b656" prot="public" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>get_thrust</name></member>
+      <member refid="classastrea_1_1astro_1_1ThrusterParameters_1a8b2b0b810cdd5bcdf0f8e7cb689499e8" prot="protected" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>_isOn</name></member>
+      <member refid="classastrea_1_1astro_1_1ThrusterParameters_1ac10d9d2890fd0f63733ca0ca105f8b17" prot="protected" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>_thrust</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadParameters_1aa427ab5b3a5c8c0a00d0753fdf0303ed" prot="public" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>get_attachment_point</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadParameters_1ab1f56fb13171da62e0f641de204200ba" prot="public" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>get_boresight</name></member>
+      <member refid="classastrea_1_1astro_1_1ThrusterParameters_1a371ba45ffdccfaae9c2a96b555ee2f8b" prot="public" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>get_thrust</name></member>
+      <member refid="classastrea_1_1astro_1_1ThrusterParameters_1a3a7daa392e69d7e86930f9c8832be2bd" prot="public" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>is_on</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadParameters_1a6cdfdaee0415ade95ae4f9bbb7cceeb0" prot="protected" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>PayloadParameters</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadParameters_1af3d2af7af17eef0cb4e036bd7f0609cf" prot="public" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>set_attachment_point</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadParameters_1af7dbb7cf61c73e53934794bfd880dbc5" prot="public" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>set_boresight</name></member>
-      <member refid="classastrea_1_1astro_1_1ThrusterParameters_1a1cc626250b0428de1e01723470486715" prot="public" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>ThrusterParameters</name></member>
+      <member refid="classastrea_1_1astro_1_1ThrusterParameters_1abf2f0f642363e5ae704511e654664713" prot="public" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>switch_off</name></member>
+      <member refid="classastrea_1_1astro_1_1ThrusterParameters_1ace7d8bf1633505f9615479a613bb48b2" prot="public" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>switch_on</name></member>
+      <member refid="classastrea_1_1astro_1_1ThrusterParameters_1a45270599e57f4b506b4d1d5037663e01" prot="public" virt="non-virtual"><scope>astrea::astro::ThrusterParameters</scope><name>ThrusterParameters</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadParameters_1a3123c3e9d7db97d339e3331f1946b4fc" prot="protected" virt="virtual"><scope>astrea::astro::ThrusterParameters</scope><name>~PayloadParameters</name></member>
       <member refid="classastrea_1_1astro_1_1ThrusterParameters_1a842ff60023264e3fd29c80cb9e92e2a6" prot="public" virt="virtual"><scope>astrea::astro::ThrusterParameters</scope><name>~ThrusterParameters</name></member>
     </listofallmembers>

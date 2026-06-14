@@ -46,6 +46,7 @@
 * **carrier\_to\_noise\_density** ([**astrea::trace::Antenna**](classastrea_1_1trace_1_1Antenna.md))
 * **carrier\_to\_noise\_ratio** ([**astrea::trace::Antenna**](classastrea_1_1trace_1_1Antenna.md))
 * **CircularFieldOfView** ([**astrea::trace::CircularFieldOfView**](classastrea_1_1trace_1_1CircularFieldOfView.md))
+* **clear\_all\_tables** ([**astrea::trace::DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md))
 * **create\_uniformly\_spaced\_vector** ([**astrea::trace::Grid**](classastrea_1_1trace_1_1Grid.md))
 * **clear** ([**astrea::trace::PositionCache**](classastrea_1_1trace_1_1PositionCache.md), [**astrea::trace::SpatialIndex**](classastrea_1_1trace_1_1SpatialIndex.md))
 * **calculate\_statistic** ([**astrea::trace::RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md))
@@ -54,6 +55,7 @@
 ## d
 
 * **drop\_access** ([**astrea::trace::AccessObject**](classastrea_1_1trace_1_1AccessObject.md))
+* **DatabaseOutputManager** ([**astrea::trace::DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md))
 
 
 ## e
@@ -64,7 +66,6 @@
 
 ## f
 
-* **filter\_impossible\_pairs** ([**astrea::trace::AccessAnalyzer**](classastrea_1_1trace_1_1AccessAnalyzer.md))
 * **find\_accesses** ([**astrea::trace::AccessAnalyzer**](classastrea_1_1trace_1_1AccessAnalyzer.md))
 * **find\_internal\_accesses** ([**astrea::trace::AccessAnalyzer**](classastrea_1_1trace_1_1AccessAnalyzer.md))
 * **find\_platform\_to\_ground\_point\_accesses** ([**astrea::trace::AccessAnalyzer**](classastrea_1_1trace_1_1AccessAnalyzer.md))
@@ -100,21 +101,19 @@
 * **get\_system\_noise\_temperature** ([**astrea::trace::AntennaParameters**](classastrea_1_1trace_1_1AntennaParameters.md))
 * **get\_transmit\_loss** ([**astrea::trace::AntennaParameters**](classastrea_1_1trace_1_1AntennaParameters.md))
 * **get\_wavelength** ([**astrea::trace::AntennaParameters**](classastrea_1_1trace_1_1AntennaParameters.md))
+* **get\_storage** ([**astrea::trace::DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md))
 * **get\_stats** ([**astrea::trace::FoldsOfCoverage**](classastrea_1_1trace_1_1FoldsOfCoverage.md))
 * **Grid** ([**astrea::trace::Grid**](classastrea_1_1trace_1_1Grid.md))
 * **get\_grid\_type** ([**astrea::trace::Grid**](classastrea_1_1trace_1_1Grid.md))
-* **get\_parent** ([**astrea::trace::Grid**](classastrea_1_1trace_1_1Grid.md), [**astrea::trace::GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md))
 * **GroundArchitecture** ([**astrea::trace::GroundArchitecture**](classastrea_1_1trace_1_1GroundArchitecture.md))
 * **GroundPoint** ([**astrea::trace::GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md))
-* **generate\_id** ([**astrea::trace::GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md), [**astrea::trace::Sensor**](classastrea_1_1trace_1_1Sensor.md))
 * **get\_altitude** ([**astrea::trace::GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md))
-* **get\_inertial\_position** ([**astrea::trace::GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md), [**astrea::trace::GroundStation**](classastrea_1_1trace_1_1GroundStation.md), [**astrea::trace::Viewer**](classastrea_1_1trace_1_1Viewer.md))
-* **get\_inertial\_velocity** ([**astrea::trace::GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md), [**astrea::trace::GroundStation**](classastrea_1_1trace_1_1GroundStation.md), [**astrea::trace::Viewer**](classastrea_1_1trace_1_1Viewer.md))
 * **get\_latitude** ([**astrea::trace::GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md))
 * **get\_lla** ([**astrea::trace::GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md))
 * **get\_longitude** ([**astrea::trace::GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md))
 * **get\_name** ([**astrea::trace::GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md), [**astrea::trace::GroundStation**](classastrea_1_1trace_1_1GroundStation.md), [**astrea::trace::Viewer**](classastrea_1_1trace_1_1Viewer.md))
-* **get\_position** ([**astrea::trace::GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md))
+* **get\_position** ([**astrea::trace::GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md), [**astrea::trace::GroundStation**](classastrea_1_1trace_1_1GroundStation.md), [**astrea::trace::Viewer**](classastrea_1_1trace_1_1Viewer.md))
+* **get\_velocity** ([**astrea::trace::GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md), [**astrea::trace::GroundStation**](classastrea_1_1trace_1_1GroundStation.md), [**astrea::trace::Viewer**](classastrea_1_1trace_1_1Viewer.md))
 * **GroundStation** ([**astrea::trace::GroundStation**](classastrea_1_1trace_1_1GroundStation.md))
 * **get\_index** ([**astrea::trace::PositionCache**](classastrea_1_1trace_1_1PositionCache.md))
 * **get\_platform\_id** ([**astrea::trace::PositionCache**](classastrea_1_1trace_1_1PositionCache.md))
@@ -166,6 +165,7 @@
 * **operator[]** ([**astrea::trace::AccessArray**](classastrea_1_1trace_1_1AccessArray.md), [**astrea::trace::Grid**](classastrea_1_1trace_1_1Grid.md), [**astrea::trace::GroundArchitecture**](classastrea_1_1trace_1_1GroundArchitecture.md), [**astrea::trace::RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md), [**astrea::trace::RiseSetStats**](structastrea_1_1trace_1_1RiseSetStats.md))
 * **operator\|** ([**astrea::trace::AccessArray**](classastrea_1_1trace_1_1AccessArray.md), [**astrea::trace::RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md))
 * **operator\|=** ([**astrea::trace::AccessArray**](classastrea_1_1trace_1_1AccessArray.md), [**astrea::trace::RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md))
+* **optimize\_database\_performance** ([**astrea::trace::DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md))
 * **operator-** ([**astrea::trace::RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md))
 * **operator-=** ([**astrea::trace::RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md))
 * **operator=** ([**astrea::trace::RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md))
@@ -178,7 +178,6 @@
 * **PolygonalFieldOfView** ([**astrea::trace::PolygonalFieldOfView**](classastrea_1_1trace_1_1PolygonalFieldOfView.md))
 * **PositionCache** ([**astrea::trace::PositionCache**](classastrea_1_1trace_1_1PositionCache.md))
 * **prepend** ([**astrea::trace::RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md))
-* **Payload** ([**astrea::trace::Sensor**](classastrea_1_1trace_1_1Sensor.md))
 * **Plotter** ([**astrea::trace::plotting::Plotter**](classastrea_1_1trace_1_1plotting_1_1Plotter.md))
 * **plot\_access\_metrics** ([**astrea::trace::plotting::Plotter**](classastrea_1_1trace_1_1plotting_1_1Plotter.md))
 * **plot\_number\_of\_folds** ([**astrea::trace::plotting::Plotter**](classastrea_1_1trace_1_1plotting_1_1Plotter.md))
@@ -186,7 +185,6 @@
 
 ## r
 
-* **requires** ([**astrea::trace::AccessAnalyzer**](classastrea_1_1trace_1_1AccessAnalyzer.md), [**astrea::trace::Sensor**](classastrea_1_1trace_1_1Sensor.md))
 * **receiver\_loss** ([**astrea::trace::Antenna**](classastrea_1_1trace_1_1Antenna.md))
 * **recieved\_power** ([**astrea::trace::Antenna**](classastrea_1_1trace_1_1Antenna.md))
 * **reserve** ([**astrea::trace::PositionCache**](classastrea_1_1trace_1_1PositionCache.md))
@@ -209,7 +207,15 @@
 * **set\_power** ([**astrea::trace::AntennaParameters**](classastrea_1_1trace_1_1AntennaParameters.md))
 * **set\_receiver\_loss** ([**astrea::trace::AntennaParameters**](classastrea_1_1trace_1_1AntennaParameters.md))
 * **set\_transmit\_loss** ([**astrea::trace::AntennaParameters**](classastrea_1_1trace_1_1AntennaParameters.md))
+* **save\_access\_metrics** ([**astrea::trace::DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md))
+* **save\_ground\_locations** ([**astrea::trace::DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md))
+* **save\_number\_of\_folds** ([**astrea::trace::DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md))
+* **save\_receiver\_riseset\_metrics** ([**astrea::trace::DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md))
+* **save\_results** ([**astrea::trace::DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md))
+* **save\_riseset\_metrics** ([**astrea::trace::DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md))
+* **save\_risesets** ([**astrea::trace::DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md))
 * **set\_position** ([**astrea::trace::PositionCache**](classastrea_1_1trace_1_1PositionCache.md))
+* **Sensor** ([**astrea::trace::Sensor**](classastrea_1_1trace_1_1Sensor.md))
 * **SensorParameters** ([**astrea::trace::SensorParameters**](classastrea_1_1trace_1_1SensorParameters.md))
 * **set\_fov** ([**astrea::trace::SensorParameters**](classastrea_1_1trace_1_1SensorParameters.md))
 * **SpatialIndex** ([**astrea::trace::SpatialIndex**](classastrea_1_1trace_1_1SpatialIndex.md))

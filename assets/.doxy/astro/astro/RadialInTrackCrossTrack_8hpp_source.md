@@ -2,7 +2,7 @@
 
 # File RadialInTrackCrossTrack.hpp
 
-[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**instances**](dir_a85615e9ad779999123e94bfb15c8545.md) **>** [**RadialInTrackCrossTrack.hpp**](RadialInTrackCrossTrack_8hpp.md)
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**definitions**](dir_0fbce91be2e6463cb25c5b2d70c0c29c.md) **>** [**RadialInTrackCrossTrack.hpp**](RadialInTrackCrossTrack_8hpp.md)
 
 [Go to the documentation of this file](RadialInTrackCrossTrack_8hpp.md)
 
@@ -12,49 +12,51 @@
 #pragma once
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/instances/body_centered_inertial_frames.hpp>
-#include <astro/frames/types/DirectionCosineMatrix.hpp>
-#include <astro/frames/types/DynamicFrame.hpp>
+#include <astro/frames/definitions/body_centered_inertial_frames.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/frames/framework/DirectionCosineMatrix.hpp>
+#include <astro/frames/framework/DynamicFrame.hpp>
 #include <astro/time/Date.hpp>
 
 namespace astrea {
 namespace astro {
 namespace frames {
 
-class RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack, FrameAxis::RIC> {
-
-    friend DynamicFrame<RadialInTrackCrossTrack, FrameAxis::RIC>;
-
-  public:
-    RadialInTrackCrossTrack() = delete; 
-
-    RadialInTrackCrossTrack(const FrameReference* parent) :
-        DynamicFrame<RadialInTrackCrossTrack, FrameAxis::RIC>(parent)
+template <IsFrame auto _parent_>
+struct RicTag : Frame<"Radial-In-Track-Cross-Track", DynamicOrigin{}, DynamicAxis{}, _parent_> {
+    RadialInTrackCrossTrack<_parent_> instantaneous(const RadiusVector<_parent_>& r, const VelocityVector<_parent_>& v) const
     {
-    }
-
-    ~RadialInTrackCrossTrack() = default;
-
-    DirectionCosineMatrix<frames::earth::icrf, RadialInTrackCrossTrack> get_dcm(const Date& date) const
-    {
-        const auto r       = get_inertial_position(date).unit();
-        const auto v       = get_inertial_velocity(date).unit();
-        const auto h       = r.cross(v).unit();
-        const auto inTrack = (-r.cross(h)).unit();
-        return DirectionCosineMatrix<frames::earth::icrf, RadialInTrackCrossTrack>::from_vectors(r, inTrack, h);
-    }
-
-  private:
-    RadialInTrackCrossTrack(const RadiusVector<frames::earth::icrf>& position, const VelocityVector<frames::earth::icrf>& velocity) :
-        DynamicFrame<RadialInTrackCrossTrack, FrameAxis::RIC>(position, velocity)
-    {
+        return RadialInTrackCrossTrack<_parent_>(r, v);
     }
 };
 
-namespace dynamic {
-using ric = RadialInTrackCrossTrack;
-} // namespace dynamic
+template <IsFrame auto _parent_>
+inline constexpr RicTag<_parent_> ric_tag{};
+
+template <IsFrame auto _parent_>
+struct RadialInTrackCrossTrack : public DynamicFrame<RadialInTrackCrossTrack<_parent_>, _parent_, ric_tag<_parent_>> {
+
+    using tag_type = RicTag<_parent_>;       
+    static inline constexpr tag_type tag{};  
+    static constexpr auto parent = _parent_; 
+
+    RadialInTrackCrossTrack(const RadiusVector<parent>& position, const VelocityVector<parent>& velocity) :
+        DynamicFrame<RadialInTrackCrossTrack<_parent_>, parent, ric_tag<_parent_>>(position, velocity)
+    {
+    }
+
+    RadialInTrackCrossTrack() = delete; 
+
+    DirectionCosineMatrix<parent, tag> get_dcm(const Date& date) const
+    {
+        const auto r       = this->get_position(date).direction();
+        const auto v       = this->get_velocity(date).direction();
+        const auto h       = r.cross(v).direction();
+        const auto inTrack = (-r.cross(h)).direction();
+        return DirectionCosineMatrix<parent, tag>::from_vectors(r, inTrack, h);
+    }
+};
+
 
 } // namespace frames
 } // namespace astro

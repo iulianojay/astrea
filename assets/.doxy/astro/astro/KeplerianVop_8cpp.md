@@ -16,12 +16,12 @@
 * `#include <mp-units/systems/angular/math.h>`
 * `#include <mp-units/systems/isq_angle.h>`
 * `#include <mp-units/systems/si/math.h>`
-* `#include <astro/frames/dynamic_frames.hpp>`
-* `#include <astro/frames/frames.hpp>`
+* `#include <astro/frames/definitions.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames.hpp>`
 * `#include <astro/platforms/Vehicle.hpp>`
 * `#include <astro/state/State.hpp>`
-* `#include <astro/state/orbital_elements/instances/Cartesian.hpp>`
-* `#include <astro/state/orbital_elements/instances/Keplerian.hpp>`
+* `#include <astro/state/orbital_elements/Cartesian.hpp>`
+* `#include <astro/state/orbital_elements/Keplerian.hpp>`
 
 
 

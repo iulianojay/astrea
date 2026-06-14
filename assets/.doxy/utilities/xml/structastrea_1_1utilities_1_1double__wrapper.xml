@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1utilities_1_1double__wrapper" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::utilities::double_wrapper</compoundname>
+    <includes refid="string__util_8hpp" local="no">string_util.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1utilities_1_1double__wrapper_1a592239ec36b3463342ad8326d303c523" prot="public" static="no" mutable="no">
+        <type>long long int</type>
+        <definition>long long int astrea::utilities::double_wrapper::whole</definition>
+        <argsstring></argsstring>
+        <name>whole</name>
+        <qualifiedname>astrea::utilities::double_wrapper::whole</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="96" column="19" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1utilities_1_1double__wrapper_1ab2e081ac87ed9a8e27c38865879eb371" prot="public" static="no" mutable="no">
+        <type>long long int</type>
+        <definition>long long int astrea::utilities::double_wrapper::frac</definition>
+        <argsstring></argsstring>
+        <name>frac</name>
+        <qualifiedname>astrea::utilities::double_wrapper::frac</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="97" column="19" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structastrea_1_1utilities_1_1double__wrapper_1ac65a308f054f98879951c50d41f016d4" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr astrea::utilities::double_wrapper::double_wrapper</definition>
+        <argsstring>(double v, int prec=5)</argsstring>
+        <name>double_wrapper</name>
+        <qualifiedname>astrea::utilities::double_wrapper::double_wrapper</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>prec</declname>
+          <defval>5</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="99" column="15" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="99" bodyend="106"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Credit to <ulink url="https://github.com/tcsullivan/constexpr-to-string/tree/master">https://github.com/tcsullivan/constexpr-to-string/tree/master</ulink> for the following implementation of <computeroutput>f_to_string</computeroutput> </para>
+    </detaileddescription>
+    <location file="astrea/utilities/utilities/string_util.hpp" line="95" column="1" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="95" bodyend="107"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1utilities_1_1double__wrapper_1ac65a308f054f98879951c50d41f016d4" prot="public" virt="non-virtual"><scope>astrea::utilities::double_wrapper</scope><name>double_wrapper</name></member>
+      <member refid="structastrea_1_1utilities_1_1double__wrapper_1ab2e081ac87ed9a8e27c38865879eb371" prot="public" virt="non-virtual"><scope>astrea::utilities::double_wrapper</scope><name>frac</name></member>
+      <member refid="structastrea_1_1utilities_1_1double__wrapper_1a592239ec36b3463342ad8326d303c523" prot="public" virt="non-virtual"><scope>astrea::utilities::double_wrapper</scope><name>whole</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

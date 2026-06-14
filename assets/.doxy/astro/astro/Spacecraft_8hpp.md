@@ -12,7 +12,11 @@ _A class representing a spacecraft in the astrea astro platform._ [More...](#det
 
 * `#include <string>`
 * `#include <units/units.hpp>`
+* `#include <utilities/IdProvider.hpp>`
 * `#include <astro/astro.fwd.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames.hpp>`
+* `#include <astro/frames/definitions/primary_frame.hpp>`
+* `#include <astro/platforms/InertiaTensor.hpp>`
 * `#include <astro/platforms/Vehicle.hpp>`
 * `#include <astro/platforms/thrusters/Thruster.hpp>`
 * `#include <astro/state/StateHistory.hpp>`

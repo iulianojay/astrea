@@ -19,7 +19,7 @@ _Database utility wrapper for the snapshot module._ [More...](#detailed-descript
 * `#include <mp-units/systems/si.h>`
 * `#include <units/typedefs.hpp>`
 * `#include <astro/astro.macros.hpp>`
-* `#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>`
+* `#include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>`
 * `#include <snapshot/snapshot.macros.hpp>`
 * `#include <snapshot/database/Database.ipp>`
 
@@ -47,7 +47,7 @@ _Database utility wrapper for the snapshot module._ [More...](#detailed-descript
 
 | Type | Name |
 | ---: | :--- |
-| class | [**DatabaseUtilityWrapper**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md) &lt;class T&gt;<br>_Database utility wrapper for the snapshot module._  |
+| class | [**DatabaseUtilityWrapper**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md) &lt;[**class**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12) [**T**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12)&gt;<br>_Database utility wrapper for the snapshot module._  |
 
 
 

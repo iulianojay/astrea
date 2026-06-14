@@ -1,34 +1,45 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1frames" kind="namespace" language="C++">
     <compoundname>astrea::astro::frames</compoundname>
-    <innerclass refid="classastrea_1_1astro_1_1frames_1_1EastNorthUp" prot="public">astrea::astro::frames::EastNorthUp</innerclass>
-    <innerclass refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical" prot="public">astrea::astro::frames::LocalHorizontalLocalVertical</innerclass>
-    <innerclass refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" prot="public">astrea::astro::frames::RadialInTrackCrossTrack</innerclass>
-    <innerclass refid="classastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal" prot="public">astrea::astro::frames::VelocityNormalBinormal</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1EastNorthUp" prot="public">astrea::astro::frames::EastNorthUp</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1EastNorthUpTag" prot="public">astrea::astro::frames::EastNorthUpTag</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical" prot="public">astrea::astro::frames::LocalHorizontalLocalVertical</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1LvlhTag" prot="public">astrea::astro::frames::LvlhTag</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" prot="public">astrea::astro::frames::RadialInTrackCrossTrack</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1RicTag" prot="public">astrea::astro::frames::RicTag</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal" prot="public">astrea::astro::frames::VelocityNormalBinormal</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1VnbTag" prot="public">astrea::astro::frames::VnbTag</innerclass>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1callisto">astrea::astro::frames::callisto</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1deimos">astrea::astro::frames::deimos</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1dynamic">astrea::astro::frames::dynamic</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1earth">astrea::astro::frames::earth</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1earth__barycenter">astrea::astro::frames::earth_barycenter</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1earth__moon__barycenter">astrea::astro::frames::earth_moon_barycenter</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1earth__sun__barycenter">astrea::astro::frames::earth_sun_barycenter</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1europa">astrea::astro::frames::europa</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1ganymede">astrea::astro::frames::ganymede</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1iapetus">astrea::astro::frames::iapetus</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1io">astrea::astro::frames::io</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1jupiter">astrea::astro::frames::jupiter</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1jupiter__barycenter">astrea::astro::frames::jupiter_barycenter</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1jupiter__sun__barycenter">astrea::astro::frames::jupiter_sun_barycenter</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1mars">astrea::astro::frames::mars</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1mars__barycenter">astrea::astro::frames::mars_barycenter</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1mars__sun__barycenter">astrea::astro::frames::mars_sun_barycenter</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1mercury">astrea::astro::frames::mercury</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1mercury__barycenter">astrea::astro::frames::mercury_barycenter</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1mercury__sun__barycenter">astrea::astro::frames::mercury_sun_barycenter</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1moon">astrea::astro::frames::moon</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1neptune">astrea::astro::frames::neptune</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1neptune__barycenter">astrea::astro::frames::neptune_barycenter</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1neptune__sun__barycenter">astrea::astro::frames::neptune_sun_barycenter</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1oberon">astrea::astro::frames::oberon</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1phobos">astrea::astro::frames::phobos</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1rhea">astrea::astro::frames::rhea</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1saturn">astrea::astro::frames::saturn</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1saturn__barycenter">astrea::astro::frames::saturn_barycenter</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1saturn__sun__barycenter">astrea::astro::frames::saturn_sun_barycenter</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1solar__system__barycenter">astrea::astro::frames::solar_system_barycenter</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1sun">astrea::astro::frames::sun</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1titan">astrea::astro::frames::titan</innernamespace>
@@ -36,158 +47,158 @@
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1triton">astrea::astro::frames::triton</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1uranus">astrea::astro::frames::uranus</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1uranus__barycenter">astrea::astro::frames::uranus_barycenter</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1uranus__sun__barycenter">astrea::astro::frames::uranus_sun_barycenter</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1venus">astrea::astro::frames::venus</innernamespace>
     <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1venus__barycenter">astrea::astro::frames::venus_barycenter</innernamespace>
-      <sectiondef kind="func">
-      <memberdef kind="function" id="transformations_8hpp_1aad18931dd48fc08334d80c1af3d4bca2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+    <innernamespace refid="namespaceastrea_1_1astro_1_1frames_1_1venus__sun__barycenter">astrea::astro::frames::venus_sun_barycenter</innernamespace>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="EastNorthUp_8hpp_1ad071f88acb145bd152f5dd6e118dba1e" prot="public" static="no" constexpr="yes" mutable="no">
         <templateparamlist>
           <param>
-            <type>typename Frame_T</type>
-          </param>
-          <param>
-            <type>typename Frame_U</type>
+            <type>IsFrame auto</type>
+            <declname>_parent_</declname>
+            <defname>_parent_</defname>
           </param>
         </templateparamlist>
-        <type></type>
-        <definition>astrea::astro::frames::requires</definition>
-        <argsstring>(HasSameOrigin&lt; Frame_T, Frame_U &gt;) CartesianVector&lt; Distance</argsstring>
-        <name>requires</name>
-        <param>
-          <type>HasSameOrigin&lt; Frame_T, Frame_U &gt;</type>
-        </param>
-        <briefdescription>
-<para>Get the center offset between two frames at a given date. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>If the frames share the same origin, the offset is zero. If the frames share the same axis but have different origins, the offset is the relative position between the two origins in Frame_T. All calculations are done in the solar_system_barycenter::icrf frame.</para>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>Frame_T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The first frame type. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>Frame_U</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The second frame type. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>date</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The date at which to calculate the offset. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>CartesianVector&lt;Distance, Frame_T&gt; The offset vector from Frame_T to Frame_U expressed in Frame_T. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/frames/transformations.hpp" line="50" column="5"/>
-      </memberdef>
-      <memberdef kind="function" id="transformations_8hpp_1a4110aafa02ffeab59fce0e4413a5bc46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>Frame_T</type>
-        <definition>Frame_T astrea::astro::frames::get_center_offset</definition>
-        <argsstring>(const Date &amp;date)</argsstring>
-        <name>get_center_offset</name>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
-          <declname>date</declname>
-        </param>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1frames_1_1EastNorthUpTag" kindref="compound">EastNorthUpTag</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref> &gt;</type>
+        <definition>constexpr EastNorthUpTag&lt;_parent_&gt; astrea::astro::frames::enu_tag</definition>
+        <argsstring></argsstring>
+        <name>enu_tag</name>
+        <qualifiedname>astrea::astro::frames::enu_tag</qualifiedname>
+        <initializer>{}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/transformations.hpp" line="51" column="10" bodyfile="astrea/astro/astro/frames/transformations.hpp" bodystart="51" bodyend="56"/>
+        <location file="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" line="52" column="33" bodyfile="astrea/astro/astro/frames/definitions/EastNorthUp.hpp" bodystart="52" bodyend="52"/>
       </memberdef>
-      <memberdef kind="function" id="transformations_8hpp_1a535b6cf51696d563e86fc2d0232cc677" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="variable" id="LocalHorizontalLocalVertical_8hpp_1a45867dc2587533af131f71718e6827e3" prot="public" static="no" constexpr="yes" mutable="no">
         <templateparamlist>
           <param>
-            <type>typename Frame_T</type>
-          </param>
-          <param>
-            <type>typename Frame_U</type>
+            <type>IsFrame auto</type>
+            <declname>_parent_</declname>
+            <defname>_parent_</defname>
           </param>
         </templateparamlist>
-        <type></type>
-        <definition>astrea::astro::frames::requires</definition>
-        <argsstring>(!HasSameOrigin&lt; Frame_T, Frame_U &gt; &amp;&amp;HasSameAxis&lt; Frame_T, Frame_U &gt;) CartesianVector&lt; Distance</argsstring>
-        <name>requires</name>
-        <param>
-          <type>!HasSameOrigin&lt; Frame_T, Frame_U &gt; &amp;&amp;HasSameAxis&lt; Frame_T, Frame_U &gt;</type>
-        </param>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1frames_1_1LvlhTag" kindref="compound">LvlhTag</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref> &gt;</type>
+        <definition>constexpr LvlhTag&lt;_parent_&gt; astrea::astro::frames::lvlh_tag</definition>
+        <argsstring></argsstring>
+        <name>lvlh_tag</name>
+        <qualifiedname>astrea::astro::frames::lvlh_tag</qualifiedname>
+        <initializer>{}</initializer>
         <briefdescription>
-<para>Get the center offset between two frames at a given date. </para>
         </briefdescription>
         <detaileddescription>
-<para>If the frames share the same origin, the offset is zero. If the frames share the same axis but have different origins, the offset is the relative position between the two origins in Frame_T. All calculations are done in the solar_system_barycenter::icrf frame.</para>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>Frame_T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The first frame type. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>Frame_U</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The second frame type. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>date</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The date at which to calculate the offset. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>CartesianVector&lt;Distance, Frame_T&gt; The offset vector from Frame_T to Frame_U expressed in Frame_T. </para>
-</simplesect>
-</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/transformations.hpp" line="71" column="5"/>
+        <location file="astrea/astro/astro/frames/definitions/LocalHorizontalLocalVertical.hpp" line="44" column="26" bodyfile="astrea/astro/astro/frames/definitions/LocalHorizontalLocalVertical.hpp" bodystart="44" bodyend="44"/>
       </memberdef>
-      <memberdef kind="function" id="transformations_8hpp_1ae9abbd63db731ecd9c7648f1c2d0c73e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="variable" id="primary__frame_8hpp_1a7461beb432f5a65704a66ccd33abe96b" prot="public" static="no" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::frames::primary</definition>
+        <argsstring></argsstring>
+        <name>primary</name>
+        <qualifiedname>astrea::astro::frames::primary</qualifiedname>
+        <initializer>= <ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1icrf" kindref="compound">frames::earth::icrf</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/primary_frame.hpp" line="31" column="23" bodyfile="astrea/astro/astro/frames/definitions/primary_frame.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="primary__frame_8hpp_1a2109b299b5295552b3e8b5802cb6460f" prot="public" static="no" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::frames::primary_fixed</definition>
+        <argsstring></argsstring>
+        <name>primary_fixed</name>
+        <qualifiedname>astrea::astro::frames::primary_fixed</qualifiedname>
+        <initializer>= <ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed" kindref="compound">frames::earth::earth_fixed</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/primary_frame.hpp" line="32" column="23" bodyfile="astrea/astro/astro/frames/definitions/primary_frame.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="RadialInTrackCrossTrack_8hpp_1a7929b7269d170812ca548807e3fd5361" prot="public" static="no" constexpr="yes" mutable="no">
         <templateparamlist>
+          <param>
+            <type>IsFrame auto</type>
+            <declname>_parent_</declname>
+            <defname>_parent_</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1frames_1_1RicTag" kindref="compound">RicTag</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref> &gt;</type>
+        <definition>constexpr RicTag&lt;_parent_&gt; astrea::astro::frames::ric_tag</definition>
+        <argsstring></argsstring>
+        <name>ric_tag</name>
+        <qualifiedname>astrea::astro::frames::ric_tag</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/RadialInTrackCrossTrack.hpp" line="44" column="25" bodyfile="astrea/astro/astro/frames/definitions/RadialInTrackCrossTrack.hpp" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="variable" id="VelocityNormalBinormal_8hpp_1acc48067571e439b66c8ee9786c9f9392" prot="public" static="no" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>IsFrame auto</type>
+            <declname>_parent_</declname>
+            <defname>_parent_</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1frames_1_1VnbTag" kindref="compound">VnbTag</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref> &gt;</type>
+        <definition>constexpr VnbTag&lt;_parent_&gt; astrea::astro::frames::vnb_tag</definition>
+        <argsstring></argsstring>
+        <name>vnb_tag</name>
+        <qualifiedname>astrea::astro::frames::vnb_tag</qualifiedname>
+        <initializer>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" line="44" column="25" bodyfile="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" bodystart="44" bodyend="44"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="transformations_8hpp_1ae49ad18e70074ffc159b7ebae70a9c83" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame auto</type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
           <param>
             <type>typename Value_T</type>
           </param>
           <param>
-            <type>typename Frame_T</type>
-          </param>
-          <param>
-            <type>typename Frame_U</type>
+            <type>IsFrame auto</type>
+            <declname>frame</declname>
+            <defname>frame</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Value_T, Frame_U &gt;</type>
-        <definition>CartesianVector&lt;Value_T, Frame_U&gt; astrea::astro::frames::rotate_vector_into_frame</definition>
-        <argsstring>(const CartesianVector&lt; Value_T, Frame_T &gt; &amp;vec, const Date &amp;date)</argsstring>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Value_T, frame_u &gt; astrea::astro::frames::rotate_vector_into_frame</definition>
+        <argsstring>(const CartesianVector&lt; Value_T, frame &gt; &amp;vec, const Date &amp;date)</argsstring>
         <name>rotate_vector_into_frame</name>
+        <qualifiedname>astrea::astro::frames::rotate_vector_into_frame</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Value_T, Frame_T &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, frame &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -195,6 +206,14 @@
         </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target frame type. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
 <parameternamelist>
 <parametername>Value_T</parametername>
 </parameternamelist>
@@ -204,18 +223,10 @@
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>Frame_T</parametername>
+<parametername>frame</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>The source frame type. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>Frame_U</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The target frame type. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -236,30 +247,362 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>CartesianVector&lt;Value_T, Frame_U&gt; A new <ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> in the target frame. </para>
-</simplesect>
-<parameterlist kind="exception"><parameteritem>
-<parameternamelist>
-<parametername>std::runtime_error</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>If the frames do not share the same origin or if the DCM cannot be obtained. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="note"><para>This function multiplies the vector by the DCM and does NOT return a vector with respect to the new frame. It is the user&apos;s responsibility to understand if this makes sense or not. </para>
+<simplesect kind="return"><para>CartesianVector&lt;Value_T, frame_u&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> in the target frame. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/transformations.hpp" line="131" column="17" bodyfile="astrea/astro/astro/frames/transformations.hpp" bodystart="131" bodyend="135"/>
+        <location file="astrea/astro/astro/frames/definitions/transformations.hpp" line="484" column="5" bodyfile="astrea/astro/astro/frames/definitions/transformations.hpp" bodystart="484" bodyend="488"/>
       </memberdef>
-      </sectiondef>
+      <memberdef kind="function" id="transformations_8hpp_1a59c1b47c9b5d77e995eb352c44f3abc8" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame auto</type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+          <param>
+            <type>typename Value_T</type>
+          </param>
+          <param>
+            <type>IsFrame auto</type>
+            <declname>frame</declname>
+            <defname>frame</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Value_T, frame_u &gt; astrea::astro::frames::translate_vector_into_frame</definition>
+        <argsstring>(const CartesianVector&lt; Value_T, frame &gt; &amp;vec, const Date &amp;date)</argsstring>
+        <name>translate_vector_into_frame</name>
+        <qualifiedname>astrea::astro::frames::translate_vector_into_frame</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, frame &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+<para>Translate a vector from one frame to another at a given date by accounting for the center offset between the frames. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function calculates the center offset between frame and frame_u at the specified date and translates the input vector accordingly.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target frame type. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Value_T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vector components (e.g., Distance, Velocity). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The source frame type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector to translate. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date at which to perform the translation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CartesianVector&lt;Value_T, frame_u&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> in the target frame. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/transformations.hpp" line="504" column="5" bodyfile="astrea/astro/astro/frames/definitions/transformations.hpp" bodystart="504" bodyend="508"/>
+      </memberdef>
+      <memberdef kind="function" id="transformations_8hpp_1a38bf79c81ea337a6c7bc75060de723ee" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame auto</type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+          <param>
+            <type>typename Value_T</type>
+          </param>
+          <param>
+            <type>IsFrame auto</type>
+            <declname>frame</declname>
+            <defname>frame</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Value_T, frame_u &gt; astrea::astro::frames::transform_vector_into_frame</definition>
+        <argsstring>(const CartesianVector&lt; Value_T, frame &gt; &amp;vec, const Date &amp;date)</argsstring>
+        <name>transform_vector_into_frame</name>
+        <qualifiedname>astrea::astro::frames::transform_vector_into_frame</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, frame &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+    <requiresclause>((std::is_same_v&lt;Value_T, Distance&gt; || std::is_same_v&lt;Value_T, Unitless&gt;) &amp;&amp; IsStaticFrame&lt;decltype(frame)&gt; &amp;&amp; IsStaticFrame&lt;decltype(frame_u)&gt;)    </requiresclause>
+        <briefdescription>
+<para>Transform a vector from one frame to another at a given date, accounting for both rotation and translation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function first translates the vector by the center offset between the two frames, then rotates it using the Direction Cosine Matrix (DCM).</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target frame type. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The source frame type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector to transform. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date at which to perform the transformation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CartesianVector&lt;Value_T, frame_u&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> in the target frame. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/transformations.hpp" line="525" column="5" bodyfile="astrea/astro/astro/frames/definitions/transformations.hpp" bodystart="525" bodyend="542"/>
+      </memberdef>
+      <memberdef kind="function" id="transformations_8hpp_1a1a072935c92f5b818c7939d1ef52bc56" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame auto</type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+          <param>
+            <type>IsFrame auto</type>
+            <declname>frame</declname>
+            <defname>frame</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Velocity</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Velocity, frame_u &gt; astrea::astro::frames::transform_vector_into_frame</definition>
+        <argsstring>(const CartesianVector&lt; Velocity, frame &gt; &amp;vec, const Date &amp;date, const CartesianVector&lt; Distance, frame &gt; &amp;position)</argsstring>
+        <name>transform_vector_into_frame</name>
+        <qualifiedname>astrea::astro::frames::transform_vector_into_frame</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Velocity</ref>, frame &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, frame &gt; &amp;</type>
+          <declname>position</declname>
+        </param>
+    <requiresclause>(IsStaticFrame&lt;decltype(frame)&gt; &amp;&amp; IsStaticFrame&lt;decltype(frame_u)&gt;)    </requiresclause>
+        <briefdescription>
+<para>Transform a velocity vector from one frame to another at a given date, accounting for both rotation and translation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target frame type. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The source frame type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The velocity vector to transform. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date at which to perform the transformation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position vector in the source frame. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CartesianVector&lt;Velocity, frame_u&gt; A new velocity vector in the target frame. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/transformations.hpp" line="557" column="5" bodyfile="astrea/astro/astro/frames/definitions/transformations.hpp" bodystart="557" bodyend="573"/>
+      </memberdef>
+      <memberdef kind="function" id="transformations_8hpp_1a05ebc8a65604ea58a4b481107fb380ef" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame auto</type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+          <param>
+            <type>IsFrame auto</type>
+            <declname>frame</declname>
+            <defname>frame</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Acceleration</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Acceleration, frame_u &gt; astrea::astro::frames::transform_vector_into_frame</definition>
+        <argsstring>(const CartesianVector&lt; Acceleration, frame &gt; &amp;vec, const Date &amp;date, const CartesianVector&lt; Distance, frame &gt; &amp;position, const CartesianVector&lt; Velocity, frame &gt; &amp;velocity)</argsstring>
+        <name>transform_vector_into_frame</name>
+        <qualifiedname>astrea::astro::frames::transform_vector_into_frame</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Acceleration</ref>, frame &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, frame &gt; &amp;</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Velocity</ref>, frame &gt; &amp;</type>
+          <declname>velocity</declname>
+        </param>
+    <requiresclause>(IsStaticFrame&lt;decltype(frame)&gt; &amp;&amp; IsStaticFrame&lt;decltype(frame_u)&gt;)    </requiresclause>
+        <briefdescription>
+<para>Transform an acceleration vector from one frame to another at a given date, accounting for both rotation and translation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target frame type. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The source frame type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The acceleration vector to transform. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date at which to perform the transformation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position vector in the source frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>velocity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The velocity vector in the source frame. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CartesianVector&lt;Acceleration, frame_u&gt; A new acceleration vector in the target frame. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/transformations.hpp" line="588" column="34" bodyfile="astrea/astro/astro/frames/definitions/transformations.hpp" bodystart="588" bodyend="610"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="25" column="1"/>
+    <location file="astrea/astro/astro/astro.fwd.hpp" line="81" column="1"/>
   </compounddef>
 </doxygen>

@@ -11,12 +11,16 @@
 
 #pragma once
 
+#include <optional>
 #include <vector>
 
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>
+#include <astro/propagation/event_detection/Schedule.hpp>
+#include <astro/propagation/numerical/StepWatcher.hpp>
 #include <astro/state/State.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/types/typedefs.hpp>
@@ -24,38 +28,76 @@
 namespace astrea {
 namespace astro {
 
+enum class StepMethod : EnumType {
+    RK45,  
+    RKF45, 
+    RKF78, 
+    DOP45, 
+    DOP78, 
+};
+
+struct IntegratorSettings {
+    Unitless absTol       = 1.0e-13;                              
+    Unitless relTol       = 1.0e-13;                              
+    int itMax             = 10000;                                
+    StepMethod stepMethod = StepMethod::RKF78;                    
+    Time initialTimeStep  = 1.0 * mp_units::si::unit_symbols::s;  
+    bool useFixedStep     = false;                                
+    Time fixedTimeStep    = 30.0 * mp_units::si::unit_symbols::s; 
+};
+
 class Integrator {
 
   public:
-    enum class StepMethod : EnumType {
-        RK45,  
-        RKF45, 
-        RKF78, 
-        DOP45, 
-        DOP78, 
-    };
-
-    static inline Interval defaultInterval{ 0.0 * astrea::detail::time_unit, 86400.0 * astrea::detail::time_unit }; 
-
     Integrator() = default;
+
+    Integrator(const IntegratorSettings& settings) :
+        _ABS_TOL(settings.absTol),
+        _REL_TOL(settings.relTol),
+        _MAX_ITER(settings.itMax),
+        _timeStepInitial(settings.initialTimeStep),
+        _stepMethod(settings.stepMethod),
+        _useFixedStep(settings.useFixedStep),
+        _fixedTimeStep(settings.fixedTimeStep)
+    {
+    }
 
     ~Integrator() = default;
 
-    StateHistory
-        propagate(const State& state0, const Time& propTime, const EquationsOfMotion& eom, Vehicle vehicle, bool store = false, std::vector<Event> events = {});
+    StateHistory propagate(const State& state0, const Time& propTime, Vehicle vehicle);
 
-    StateHistory
-        propagate(const State& state0, const Date& endEpoch, const EquationsOfMotion& eom, Vehicle vehicle, bool store = false, std::vector<Event> events = {});
+    StateHistory propagate(const State& state0, const Date& endEpoch, Vehicle vehicle);
+
+    State propagate_no_storage(const State& state0, const Time& propTime, Vehicle vehicle);
+
+    State propagate_no_storage(const State& state0, const Date& endEpoch, Vehicle vehicle);
+
+    void set_schedule(const Schedule& schedule);
+
+    void clear();
+
+    void add_event(const Event& event);
+
+    void add_events(const std::vector<Event>& events);
+
+    void clear_events();
+
+    template <typename T>
+        requires(std::derived_from<T, EquationsOfMotion>)
+    void set_equations_of_motion(const T& eom)
+    {
+        _eom = std::make_unique<T>(eom);
+    }
+
+    void add_step_watcher(const StepWatcher& watcher);
+
+    void clear_watchers();
 
     void set_abs_tol(const Unitless& absTol);
 
     void set_rel_tol(const Unitless& relTol);
 
     void set_max_iter(const int& itMax);
-
-    void switch_print(const bool& onOff);
-
-    void switch_timer(const bool& onOff);
 
     void set_step_method(const StepMethod& stepMethod);
 
@@ -70,6 +112,10 @@ class Integrator {
     int n_func_evals() { return _functionEvaluations; }
 
   private:
+    // Tolerances
+    Unitless _ABS_TOL = 1.0e-13; 
+    Unitless _REL_TOL = 1.0e-13; 
+
     // Integrator constants
     const Unitless _EPSILON               = 0.8;    
     const Unitless _MIN_ERROR_TO_CATCH    = 2.0e-4; 
@@ -103,49 +149,42 @@ class Integrator {
 
     // ith order steps
     std::array<State, _MAX_STAGES> _kMatrix = {}; 
-    State _statePlusKi;                           
     StatePartial _YFinalPrevious;                 
-
-    // Clock variables
-    clock_t _startClock{}; 
-    clock_t _endClock{};   
-
-    // Tolerances
-    Unitless _ABS_TOL = 1.0e-13; 
-    Unitless _REL_TOL = 1.0e-13; 
 
     // Initial step size
     Time _timeStepInitial = 60.0 * astrea::detail::time_unit; 
 
     // Run options
     bool _printOn = false; 
-    bool _timerOn = false; 
+    bool _store   = true;  
 
     StepMethod _stepMethod = StepMethod::DOP45; 
+    std::unique_ptr<EquationsOfMotion> _eom; 
 
-    // Fake fixed step
+    // Fixed step
     bool _useFixedStep  = false;                           
     Time _fixedTimeStep = 1.0 * astrea::detail::time_unit; 
 
     // Events
     EventDetector _eventDetector;
+    Schedule _schedule;
+    std::vector<StepWatcher> _stepWatchers;
 
-    StatePartial find_state_derivative(const Time& time, const State& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    StateHistory propagate_impl(const State& state0, const Time& propTime, Vehicle vehicle);
 
-    void setup(const std::vector<Event>& events);
+    StatePartial find_state_derivative(const Time& time, const State& state, Vehicle& vehicle);
 
-    void teardown();
+    void setup();
 
     void setup_butcher_tableau();
 
-    bool try_step(Time& time, Time& timeStep, State& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    bool try_step(Time& time, Time& timeStep, State& state, Vehicle& vehicle);
 
     Unitless find_max_error(const State& stateNew, const State& stateError) const;
 
-    void take_fixed_step(Time& time, Time& timeStep, State& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    void take_fixed_step(Time& time, Time& timeStep, State& state, Vehicle& vehicle);
 
-    std::pair<State, State>
-        take_step(const Time& time, const Time& timeStep, const State& state, const EquationsOfMotion& eom, Vehicle& vehicle);
+    std::pair<State, State> take_step(const Time& time, const Time& timeStep, const State& state, Vehicle& vehicle);
 
     bool check_error(const Unitless& maxError, const State& stateNew, const State& stateError, Time& time, Time& timeStep, State& state);
 
@@ -153,17 +192,11 @@ class Integrator {
 
     void store_final_func_eval(const Time& timeStep);
 
-    void print_iteration(const Time& time, const State& state, const Time& timeFinal, const State& stateInitial);
-
-    void print_performance() const;
-
-    void startTimer();
-
-    void endTimer();
-
     bool check_event(const Time& time, State& state, Vehicle& vehicle);
 
     bool validate_state_and_time(const Time& time, const State& state) const;
+
+    void watch_step(const Time& time, const State& state, const Vehicle& vehicle) const;
 };
 
 } // namespace astro

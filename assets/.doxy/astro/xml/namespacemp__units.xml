@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespacemp__units" kind="namespace" language="C++">
     <compoundname>mp_units</compoundname>
     <innerclass refid="structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4" prot="public">mp_units::quantity_point_like_traits&lt; astrea::astro::Date &gt;</innerclass>

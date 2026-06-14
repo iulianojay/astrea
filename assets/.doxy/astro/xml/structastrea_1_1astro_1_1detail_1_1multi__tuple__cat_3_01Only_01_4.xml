@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01Only_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::detail::multi_tuple_cat&lt; Only &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Only</ref></type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01Only_01_4_1a58e9aca1399c2f31949b862884e178d1" prot="public" static="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Only</ref></type>
+        <definition>using astrea::astro::detail::multi_tuple_cat&lt; Only &gt;::type =  Only</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <qualifiedname>astrea::astro::detail::multi_tuple_cat&lt; Only &gt;::type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="81" column="5" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="80" column="1" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="80" bodyend="82"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01Only_01_4_1a58e9aca1399c2f31949b862884e178d1" prot="public" virt="non-virtual"><scope>astrea::astro::detail::multi_tuple_cat&lt; Only &gt;</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

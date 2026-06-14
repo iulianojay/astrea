@@ -64,14 +64,25 @@ template <auto R, typename Rep>
     return mp_units::quantity{ min(q1.numerical_value_in(q1.unit), q2.numerical_value_in(q1.unit)), q1.unit };
 }
 
-template <mp_units::ReferenceOf<mp_units::dimensionless> auto R, typename Rep>
-    requires requires(Rep v) { pow(v, v); } || requires(Rep v) { std::pow(v, v); }
-[[nodiscard]] inline mp_units::quantity<mp_units::one, Rep>
-    pow(const mp_units::quantity<R, Rep>& q, const mp_units::quantity<R, Rep>& n) noexcept
+template <mp_units::ReferenceOf<mp_units::dimensionless> auto R1, mp_units::ReferenceOf<mp_units::dimensionless> auto R2, typename Rep1, typename Rep2>
+    requires requires(Rep1 v1, Rep2 v2) { pow(v1, v2); } || requires(Rep1 v1, Rep2 v2) { std::pow(v1, v2); }
+[[nodiscard]] inline mp_units::quantity<mp_units::one, Rep1>
+    pow(const mp_units::quantity<R1, Rep1>& q, const mp_units::quantity<R2, Rep2>& n) noexcept
 {
     using std::pow;
     return mp_units::quantity{ pow(q.numerical_value_in(mp_units::one), n.numerical_value_in(mp_units::one)), mp_units::one };
 }
+
+template <auto R, typename Rep>
+    requires requires(Rep v) { clamp(v, v, v); } || requires(Rep v) { std::clamp(v, v, v); }
+[[nodiscard]] inline mp_units::quantity<R, Rep>
+    clamp(const mp_units::quantity<R, Rep>& q, const mp_units::quantity<R, Rep>& low, const mp_units::quantity<R, Rep>& high) noexcept
+{
+    using std::clamp;
+    return mp_units::quantity{ clamp(q.numerical_value_in(q.unit), low.numerical_value_in(q.unit), high.numerical_value_in(q.unit)),
+                               q.unit };
+}
+
 
 } // namespace math
 } // namespace astrea

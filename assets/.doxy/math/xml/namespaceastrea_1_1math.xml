@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1math" kind="namespace" language="C++">
     <compoundname>astrea::math</compoundname>
-      <sectiondef kind="func">
+    <sectiondef kind="func">
       <memberdef kind="function" id="chebyshev__util_8cpp_1adb42d1a1a90d1ad5b89756a63d0a77b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
         <definition>double astrea::math::transform_from_chebyshev_range</definition>
         <argsstring>(const double &amp;x, const double &amp;lb, const double &amp;ub)</argsstring>
         <name>transform_from_chebyshev_range</name>
+        <qualifiedname>astrea::math::transform_from_chebyshev_range</qualifiedname>
         <param>
           <type>const double &amp;</type>
           <declname>x</declname>
@@ -63,6 +64,7 @@
         <definition>double astrea::math::transform_to_chebyshev_range</definition>
         <argsstring>(const double &amp;x, const double &amp;lb, const double &amp;ub)</argsstring>
         <name>transform_to_chebyshev_range</name>
+        <qualifiedname>astrea::math::transform_to_chebyshev_range</qualifiedname>
         <param>
           <type>const double &amp;</type>
           <declname>x</declname>
@@ -125,6 +127,7 @@
         <definition>double astrea::math::evaluate_chebyshev_polynomial</definition>
         <argsstring>(const double &amp;x, const double &amp;lb, const double &amp;ub, const std::array&lt; double, N &gt; &amp;coeff, const double &amp;coeffZeroFactor=0.5, const double &amp;extrapolationTol=1.0e-6)</argsstring>
         <name>evaluate_chebyshev_polynomial</name>
+        <qualifiedname>astrea::math::evaluate_chebyshev_polynomial</qualifiedname>
         <param>
           <type>const double &amp;</type>
           <declname>x</declname>
@@ -243,6 +246,7 @@
         <definition>double astrea::math::evaluate_chebyshev_polynomial</definition>
         <argsstring>(const double &amp;x, const std::array&lt; double, N &gt; &amp;boundsCoeff, const double &amp;coeffZeroFactor=0.5, const double &amp;extrapolationTol=1.0e-6)</argsstring>
         <name>evaluate_chebyshev_polynomial</name>
+        <qualifiedname>astrea::math::evaluate_chebyshev_polynomial</qualifiedname>
         <param>
           <type>const double &amp;</type>
           <declname>x</declname>
@@ -339,6 +343,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 187-188, 
         <definition>double astrea::math::evaluate_chebyshev_derivative</definition>
         <argsstring>(double x, double lb, double ub, const std::array&lt; double, N &gt; &amp;coeff, double extrapolationTol=1.0e-6)</argsstring>
         <name>evaluate_chebyshev_derivative</name>
+        <qualifiedname>astrea::math::evaluate_chebyshev_derivative</qualifiedname>
         <param>
           <type>double</type>
           <declname>x</declname>
@@ -444,6 +449,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 187-188, 
         <definition>double astrea::math::evaluate_chebyshev_derivative</definition>
         <argsstring>(double x, const std::array&lt; double, N &gt; &amp;boundsCoeff, double extrapolationTol=1.0e-6)</argsstring>
         <name>evaluate_chebyshev_derivative</name>
+        <qualifiedname>astrea::math::evaluate_chebyshev_derivative</qualifiedname>
         <param>
           <type>double</type>
           <declname>x</declname>
@@ -528,6 +534,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         <definition>Y astrea::math::interpolate</definition>
         <argsstring>(const std::vector&lt; X &gt; &amp;x, const std::vector&lt; Y &gt; &amp;y, const X &amp;sx)</argsstring>
         <name>interpolate</name>
+        <qualifiedname>astrea::math::interpolate</qualifiedname>
         <param>
           <type>const std::vector&lt; X &gt; &amp;</type>
           <declname>x</declname>
@@ -616,6 +623,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         <definition>Y astrea::math::fast_interpolate</definition>
         <argsstring>(const std::array&lt; X, 2 &gt; &amp;x, const std::array&lt; Y, 2 &gt; &amp;y, const X &amp;sx)</argsstring>
         <name>fast_interpolate</name>
+        <qualifiedname>astrea::math::fast_interpolate</qualifiedname>
         <param>
           <type>const std::array&lt; X, 2 &gt; &amp;</type>
           <declname>x</declname>
@@ -711,6 +719,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         <definition>constexpr bool astrea::math::nearly_equal</definition>
         <argsstring>(const mp_units::quantity&lt; R1, Rep &gt; &amp;x, const mp_units::quantity&lt; R2, Rep &gt; &amp;y, const mp_units::quantity&lt; mp_units::one, Rep &gt; &amp;relTol=0.0 *mp_units::one, const mp_units::quantity&lt; mp_units::one, Rep &gt; &amp;absTol=0.0 *mp_units::one) noexcept</argsstring>
         <name>nearly_equal</name>
+        <qualifiedname>astrea::math::nearly_equal</qualifiedname>
         <param>
           <type>const mp_units::quantity&lt; R1, Rep &gt; &amp;</type>
           <declname>x</declname>
@@ -730,7 +739,7 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
           <defval>0.0 *mp_units::one</defval>
         </param>
         <briefdescription>
-<para>Check if two quantities of the same unit are nearly equal within a relative tolerance. </para>
+<para>Check if two quantities of the same unit are nearly equal within a relative and absolute tolerance. </para>
         </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="templateparam"><parameteritem>
@@ -771,7 +780,15 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
 <parametername>relTol</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Relative tolerance for comparison. </para>
+<para>Relative tolerance for comparison. Default is 0, which means relative differences are not considered. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>absTol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Absolute tolerance for comparison. Default is 0, which means absolute differences are not considered. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -783,9 +800,9 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="43" column="17" bodyfile="astrea/math/math/operations.hpp" bodystart="43" bodyend="67"/>
+        <location file="astrea/math/math/operations.hpp" line="44" column="17" bodyfile="astrea/math/math/operations.hpp" bodystart="44" bodyend="68"/>
       </memberdef>
-      <memberdef kind="function" id="operations_8hpp_1a04df492f02f9ce4d5e00964f5a96f1e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="operations_8hpp_1a13c8a192d58b0225407e422267cdefde" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>auto</type>
@@ -796,22 +813,278 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
             <type>typename Rep</type>
           </param>
         </templateparamlist>
-        <type>requires</type>
-        <definition>requires astrea::math::requires</definition>
-        <argsstring>(Rep v)</argsstring>
-        <name>requires</name>
+        <type>mp_units::quantity&lt; R, Rep &gt;</type>
+        <definition>mp_units::quantity&lt; R, Rep &gt; astrea::math::max</definition>
+        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q1, const mp_units::quantity&lt; R, Rep &gt; &amp;q2) noexcept</argsstring>
+        <name>max</name>
+        <qualifiedname>astrea::math::max</qualifiedname>
         <param>
-          <type>Rep</type>
-          <declname>v</declname>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q1</declname>
         </param>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q2</declname>
+        </param>
+    <requiresclause>requires(Rep v) { max(v, v); } || requires(Rep v) { std::max(v, v); }    </requiresclause>
+        <briefdescription>
+<para>Returns the maximum of two quantities of the same unit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unit type (e.g., distance, time). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Rep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The representation type (e.g., double). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First quantity to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>q2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second quantity to compare. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The maximum of the two quantities. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/operations.hpp" line="81" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="81" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="operations_8hpp_1a8c39995fb8abca15cc5143d5425f7d26" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>mp_units::quantity&lt; R, Rep &gt;</type>
+        <definition>mp_units::quantity&lt; R, Rep &gt; astrea::math::min</definition>
+        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q1, const mp_units::quantity&lt; R, Rep &gt; &amp;q2) noexcept</argsstring>
+        <name>min</name>
+        <qualifiedname>astrea::math::min</qualifiedname>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q1</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q2</declname>
+        </param>
+    <requiresclause>requires(Rep v) { min(v, v); } || requires(Rep v) { std::min(v, v); }    </requiresclause>
+        <briefdescription>
+<para>Returns the minimum of two quantities of the same unit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unit type (e.g., distance, time). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Rep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The representation type (e.g., double). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First quantity to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>q2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second quantity to compare. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The minimum of the two quantities. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/operations.hpp" line="98" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="98" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="operations_8hpp_1a366d78f9b21636bb268a3ed9049fa18b" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>mp_units::ReferenceOf&lt; mp_units::dimensionless &gt; auto</type>
+            <declname>R1</declname>
+            <defname>R1</defname>
+          </param>
+          <param>
+            <type>mp_units::ReferenceOf&lt; mp_units::dimensionless &gt; auto</type>
+            <declname>R2</declname>
+            <defname>R2</defname>
+          </param>
+          <param>
+            <type>typename Rep1</type>
+          </param>
+          <param>
+            <type>typename Rep2</type>
+          </param>
+        </templateparamlist>
+        <type>mp_units::quantity&lt; mp_units::one, Rep1 &gt;</type>
+        <definition>mp_units::quantity&lt; mp_units::one, Rep1 &gt; astrea::math::pow</definition>
+        <argsstring>(const mp_units::quantity&lt; R1, Rep1 &gt; &amp;q, const mp_units::quantity&lt; R2, Rep2 &gt; &amp;n) noexcept</argsstring>
+        <name>pow</name>
+        <qualifiedname>astrea::math::pow</qualifiedname>
+        <param>
+          <type>const mp_units::quantity&lt; R1, Rep1 &gt; &amp;</type>
+          <declname>q</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; R2, Rep2 &gt; &amp;</type>
+          <declname>n</declname>
+        </param>
+    <requiresclause>requires(Rep1 v1, Rep2 v2) { pow(v1, v2); } || requires(Rep1 v1, Rep2 v2) { std::pow(v1, v2); }    </requiresclause>
+        <briefdescription>
+<para>Returns the result of raising a dimensionless quantity to the power of another dimensionless quantity. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unit type (must be dimensionless). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Rep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The representation type (e.g., double). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The quantity to be raised to a power. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The exponent quantity. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of raising q to the power of n, with the same unit as q (which is dimensionless). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/operations.hpp" line="116" column="5" bodyfile="astrea/math/math/operations.hpp" bodystart="116" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="operations_8hpp_1adb10fbaa0dc54cf1caf8c15503499898" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>mp_units::quantity&lt; R, Rep &gt;</type>
+        <definition>mp_units::quantity&lt; R, Rep &gt; astrea::math::clamp</definition>
+        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q, const mp_units::quantity&lt; R, Rep &gt; &amp;low, const mp_units::quantity&lt; R, Rep &gt; &amp;high) noexcept</argsstring>
+        <name>clamp</name>
+        <qualifiedname>astrea::math::clamp</qualifiedname>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>low</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>high</declname>
+        </param>
+    <requiresclause>requires(Rep v) { clamp(v, v, v); } || requires(Rep v) { std::clamp(v, v, v); }    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/operations.hpp" line="125" column="5" bodyfile="astrea/math/math/operations.hpp" bodystart="125" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="trig_8hpp_1a19cc70ec319a907c374f8ac988b4db4b" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>mp_units::ReferenceOf&lt; mp_units::angular::angle &gt; auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto</type>
+        <definition>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto astrea::math::sinc</definition>
+        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
+        <name>sinc</name>
+        <qualifiedname>astrea::math::sinc</qualifiedname>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q</declname>
+        </param>
+    <requiresclause>requires(Rep v) { sin(v); } || requires(Rep v) { std::sin(v); }    </requiresclause>
         <briefdescription>
 <para>Computes the sinc function for a given angle in radians. </para>
         </briefdescription>
         <detaileddescription>
-<para>Computes the associated Legendre function of the first kind.</para>
-<para>Computes the Bessel function of the first kind of order zero.</para>
-<para>Computes the hyperbolic sine of a given angle in radians.</para>
-<para>Computes the hyperbolic cosine of a given angle in radians.</para>
 <para>The sinc function is defined as sin(x)/x, where x is in radians. This function handles both integral and floating-point types.</para>
 <para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
@@ -839,9 +1112,40 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The value of the sinc function at the given angle.</para>
+<simplesect kind="return"><para>The value of the sinc function at the given angle. </para>
 </simplesect>
-<parameterlist kind="templateparam"><parameteritem>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/trig.hpp" line="43" column="35" bodyfile="astrea/math/math/trig.hpp" bodystart="43" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="trig_8hpp_1a3b85c702df84b8462a853006fdd76d0c" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>mp_units::ReferenceOf&lt; mp_units::angular::angle &gt; auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto</type>
+        <definition>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto astrea::math::cosh</definition>
+        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
+        <name>cosh</name>
+        <qualifiedname>astrea::math::cosh</qualifiedname>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q</declname>
+        </param>
+    <requiresclause>requires(Rep v) { cosh(v); } || requires(Rep v) { std::cosh(v); }    </requiresclause>
+        <briefdescription>
+<para>Computes the hyperbolic cosine of a given angle in radians. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
 <parametername>R</parametername>
 </parameternamelist>
@@ -867,9 +1171,40 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The value of the hyperbolic cosine at the given angle.</para>
+<simplesect kind="return"><para>The value of the hyperbolic cosine at the given angle. </para>
 </simplesect>
-<parameterlist kind="templateparam"><parameteritem>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/trig.hpp" line="71" column="35" bodyfile="astrea/math/math/trig.hpp" bodystart="71" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="trig_8hpp_1a3e370c308e3a6e00e61243ff4b4f80bb" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>mp_units::ReferenceOf&lt; mp_units::angular::angle &gt; auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto</type>
+        <definition>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto astrea::math::sinh</definition>
+        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
+        <name>sinh</name>
+        <qualifiedname>astrea::math::sinh</qualifiedname>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q</declname>
+        </param>
+    <requiresclause>requires(Rep v) { sinh(v); } || requires(Rep v) { std::sinh(v); }    </requiresclause>
+        <briefdescription>
+<para>Computes the hyperbolic sine of a given angle in radians. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
 <parametername>R</parametername>
 </parameternamelist>
@@ -895,9 +1230,44 @@ Numerical Recipes in Fortran 77: The Art of Scientific Computing, Page 189, Rout
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The value of the hyperbolic sine at the given angle.</para>
+<simplesect kind="return"><para>The value of the hyperbolic sine at the given angle. </para>
 </simplesect>
-This function computes the Bessel function of the first kind of order zero for a given value. It is defined as J_0(x) = (1/π) ∫_0^π cos(x sin(θ)) dθ.</para>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/trig.hpp" line="95" column="35" bodyfile="astrea/math/math/trig.hpp" bodystart="95" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="trig_8hpp_1a7441ac3de7e390dd6ca1960e63c01eee" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>mp_units::ReferenceOf&lt; mp_units::dimensionless &gt; auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr mp_units::quantity&lt; mp_units::one, Rep &gt;</type>
+        <definition>constexpr mp_units::quantity&lt; mp_units::one, Rep &gt; astrea::math::cyl_bessel_j</definition>
+        <argsstring>(const Rep &amp;nu, const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
+        <name>cyl_bessel_j</name>
+        <qualifiedname>astrea::math::cyl_bessel_j</qualifiedname>
+        <param>
+          <type>const Rep &amp;</type>
+          <declname>nu</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q</declname>
+        </param>
+    <requiresclause>requires(Rep v) { std::cyl_bessel_j(static_cast&lt;Rep&gt;(0.0), v); }    </requiresclause>
+        <briefdescription>
+<para>Computes the Bessel function of the first kind of order zero. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function computes the Bessel function of the first kind of order zero for a given value. It is defined as J_0(x) = (1/π) ∫_0^π cos(x sin(θ)) dθ.</para>
 <para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
 <parametername>R</parametername>
@@ -924,9 +1294,48 @@ This function computes the Bessel function of the first kind of order zero for a
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The value of the Bessel function of the first kind of order zero at the given input.</para>
+<simplesect kind="return"><para>The value of the Bessel function of the first kind of order zero at the given input. </para>
 </simplesect>
-This function computes the associated Legendre function P_n^m(x) for given n, m, and x. It is defined as P_n^m(x) = (1/2^n n!) (d/dx)^n ((1 - x^2)^n) P_m^n(x).</para>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/math/math/trig.hpp" line="122" column="31" bodyfile="astrea/math/math/trig.hpp" bodystart="122" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="trig_8hpp_1a15e82cd47191247ee10408c938e42a60" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>mp_units::ReferenceOf&lt; mp_units::dimensionless &gt; auto</type>
+            <declname>R</declname>
+            <defname>R</defname>
+          </param>
+          <param>
+            <type>typename Rep</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr mp_units::quantity&lt; mp_units::one, Rep &gt;</type>
+        <definition>constexpr mp_units::quantity&lt; mp_units::one, Rep &gt; astrea::math::assoc_legendre</definition>
+        <argsstring>(const unsigned int &amp;n, const unsigned int &amp;m, const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
+        <name>assoc_legendre</name>
+        <qualifiedname>astrea::math::assoc_legendre</qualifiedname>
+        <param>
+          <type>const unsigned int &amp;</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const unsigned int &amp;</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
+          <declname>q</declname>
+        </param>
+    <requiresclause>requires(Rep v) { std::assoc_legendre(0, 0, v); }    </requiresclause>
+        <briefdescription>
+<para>Computes the associated Legendre function of the first kind. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function computes the associated Legendre function P_n^m(x) for given n, m, and x. It is defined as P_n^m(x) = (1/2^n n!) (d/dx)^n ((1 - x^2)^n) P_m^n(x).</para>
 <para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
 <parametername>R</parametername>
@@ -975,166 +1384,6 @@ This function computes the associated Legendre function P_n^m(x) for given n, m,
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="70" column="14" bodyfile="astrea/math/math/operations.hpp" bodystart="70" bodyend="70"/>
-      </memberdef>
-      <memberdef kind="function" id="operations_8hpp_1a49640f27c0eac6a8776f3c004b6c2234" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
-        <type>mp_units::quantity&lt; R, Rep &gt;</type>
-        <definition>mp_units::quantity&lt;R, Rep&gt; astrea::math::max</definition>
-        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q1, const mp_units::quantity&lt; R, Rep &gt; &amp;q2) noexcept</argsstring>
-        <name>max</name>
-        <param>
-          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
-          <declname>q1</declname>
-        </param>
-        <param>
-          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
-          <declname>q2</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="71" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="71" bodyend="75"/>
-      </memberdef>
-      <memberdef kind="function" id="operations_8hpp_1afc63545be68508018275fbfe999de952" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
-        <type>mp_units::quantity&lt; R, Rep &gt;</type>
-        <definition>mp_units::quantity&lt;R, Rep&gt; astrea::math::min</definition>
-        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q1, const mp_units::quantity&lt; R, Rep &gt; &amp;q2) noexcept</argsstring>
-        <name>min</name>
-        <param>
-          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
-          <declname>q1</declname>
-        </param>
-        <param>
-          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
-          <declname>q2</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="79" column="28" bodyfile="astrea/math/math/operations.hpp" bodystart="79" bodyend="83"/>
-      </memberdef>
-      <memberdef kind="function" id="operations_8hpp_1a2fc7045a56419b2868147e96e368e07e" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
-        <type>mp_units::quantity&lt; mp_units::one, Rep &gt;</type>
-        <definition>mp_units::quantity&lt;mp_units::one, Rep&gt; astrea::math::pow</definition>
-        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q, const mp_units::quantity&lt; R, Rep &gt; &amp;n) noexcept</argsstring>
-        <name>pow</name>
-        <param>
-          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
-          <declname>q</declname>
-        </param>
-        <param>
-          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
-          <declname>n</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/math/math/operations.hpp" line="88" column="5" bodyfile="astrea/math/math/operations.hpp" bodystart="88" bodyend="92"/>
-      </memberdef>
-      <memberdef kind="function" id="trig_8hpp_1af25b12b21ab23edfd9cb885984bbd14b" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
-        <type>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto</type>
-        <definition>mp_units::QuantityOf&lt;mp_units::dimensionless&gt; auto astrea::math::sinc</definition>
-        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
-        <name>sinc</name>
-        <param>
-          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
-          <declname>q</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="43" column="35" bodyfile="astrea/math/math/trig.hpp" bodystart="43" bodyend="59"/>
-      </memberdef>
-      <memberdef kind="function" id="trig_8hpp_1a6a8e05be1d0547f765410baac79c4207" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
-        <type>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto</type>
-        <definition>mp_units::QuantityOf&lt;mp_units::dimensionless&gt; auto astrea::math::cosh</definition>
-        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
-        <name>cosh</name>
-        <param>
-          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
-          <declname>q</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="71" column="35" bodyfile="astrea/math/math/trig.hpp" bodystart="71" bodyend="83"/>
-      </memberdef>
-      <memberdef kind="function" id="trig_8hpp_1aa84acd5c86ab9e671410115b26e030f7" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
-        <type>mp_units::QuantityOf&lt; mp_units::dimensionless &gt; auto</type>
-        <definition>mp_units::QuantityOf&lt;mp_units::dimensionless&gt; auto astrea::math::sinh</definition>
-        <argsstring>(const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
-        <name>sinh</name>
-        <param>
-          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
-          <declname>q</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="95" column="35" bodyfile="astrea/math/math/trig.hpp" bodystart="95" bodyend="107"/>
-      </memberdef>
-      <memberdef kind="function" id="trig_8hpp_1a67683580c025b108458ddc130e263517" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
-        <type>constexpr mp_units::quantity&lt; mp_units::one, Rep &gt;</type>
-        <definition>constexpr mp_units::quantity&lt;mp_units::one, Rep&gt; astrea::math::cyl_bessel_j</definition>
-        <argsstring>(const Rep &amp;nu, const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
-        <name>cyl_bessel_j</name>
-        <param>
-          <type>const Rep &amp;</type>
-          <declname>nu</declname>
-        </param>
-        <param>
-          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
-          <declname>q</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/math/math/trig.hpp" line="122" column="31" bodyfile="astrea/math/math/trig.hpp" bodystart="122" bodyend="126"/>
-      </memberdef>
-      <memberdef kind="function" id="trig_8hpp_1afe87de754030420fc0ea1c8a51c949c9" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
-        <type>constexpr mp_units::quantity&lt; mp_units::one, Rep &gt;</type>
-        <definition>constexpr mp_units::quantity&lt;mp_units::one, Rep&gt; astrea::math::assoc_legendre</definition>
-        <argsstring>(const unsigned int &amp;n, const unsigned int &amp;m, const mp_units::quantity&lt; R, Rep &gt; &amp;q) noexcept</argsstring>
-        <name>assoc_legendre</name>
-        <param>
-          <type>const unsigned int &amp;</type>
-          <declname>n</declname>
-        </param>
-        <param>
-          <type>const unsigned int &amp;</type>
-          <declname>m</declname>
-        </param>
-        <param>
-          <type>const mp_units::quantity&lt; R, Rep &gt; &amp;</type>
-          <declname>q</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
         <location file="astrea/math/math/trig.hpp" line="144" column="5" bodyfile="astrea/math/math/trig.hpp" bodystart="144" bodyend="148"/>
       </memberdef>
       <memberdef kind="function" id="trig_8hpp_1afb4d7a968d43b5c732112833f4133b80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -1147,6 +1396,7 @@ This function computes the associated Legendre function P_n^m(x) for given n, m,
         <definition>T astrea::math::atan3</definition>
         <argsstring>(T y, T x)</argsstring>
         <name>atan3</name>
+        <qualifiedname>astrea::math::atan3</qualifiedname>
         <param>
           <type>T</type>
           <declname>y</declname>
@@ -1163,7 +1413,7 @@ This function computes the associated Legendre function P_n^m(x) for given n, m,
         </inbodydescription>
         <location file="astrea/math/math/trig.hpp" line="152" column="3" bodyfile="astrea/math/math/trig.hpp" bodystart="152" bodyend="172"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

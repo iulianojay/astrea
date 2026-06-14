@@ -35,32 +35,30 @@
 
 | Type | Name |
 | ---: | :--- |
-|  Angle | [**axialTilt**](#variable-axialtilt)  <br>_Axial tilt of the celestial body._  |
-|  Distance | [**crashRadius**](#variable-crashradius)  <br>_Crash radius of the celestial body._  |
-|  Unitless | [**eccentricity**](#variable-eccentricity)  <br>_Eccentricity._  |
-|  BodyUnitlessPerTime | [**eccentricityRate**](#variable-eccentricityrate)  <br>_Rate of change of the eccentricity._  |
-|  Distance | [**equitorialRadius**](#variable-equitorialradius)  <br>_Equatorial radius of the celestial body._  |
-|  Angle | [**inclination**](#variable-inclination)  <br>_Inclination._  |
-|  BodyAngularRate | [**inclinationRate**](#variable-inclinationrate)  <br>_Rate of change of the inclination._  |
-|  Unitless | [**j2**](#variable-j2)  <br>_J2 gravitational coefficient of the celestial body._  |
-|  Unitless | [**j3**](#variable-j3)  <br>_J3 gravitational coefficient of the celestial body._  |
-|  Angle | [**longitudeOfPerigee**](#variable-longitudeofperigee)  <br>_Longitude of perigee._  |
-|  BodyAngularRate | [**longitudeOfPerigeeRate**](#variable-longitudeofperigeerate)  <br>_Rate of change of the longitude of perigee._  |
-|  Mass | [**mass**](#variable-mass)  <br>_Mass of the celestial body._  |
-|  Angle | [**meanLongitude**](#variable-meanlongitude)  <br>_Mean longitude._  |
-|  BodyAngularRate | [**meanLongitudeRate**](#variable-meanlongituderate)  <br>_Rate of change of the mean longitude._  |
-|  GravParam | [**mu**](#variable-mu)  <br>_Gravitational parameter (mu) of the celestial body._  |
-|  std::string | [**name**](#variable-name)  <br>_Name of the celestial body._  |
-|  [**CelestialBodyId**](namespaceastrea_1_1astro.md#enum-celestialbodyid) | [**parent**](#variable-parent)  <br>_Reference to the parent planetary body._  |
-|  Distance | [**polarRadius**](#variable-polarradius)  <br>_Polar radius of the celestial body._  |
+|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**axialTilt**](#variable-axialtilt)  <br>_Axial tilt of the celestial body._  |
+|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**crashRadius**](#variable-crashradius)  <br>_Crash radius of the celestial body._  |
+|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**eccentricity**](#variable-eccentricity)  <br>_Eccentricity._  |
+|  [**BodyUnitlessPerTime**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**eccentricityRate**](#variable-eccentricityrate)  <br>_Rate of change of the eccentricity._  |
+|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**equitorialRadius**](#variable-equitorialradius)  <br>_Equatorial radius of the celestial body._  |
+|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**inclination**](#variable-inclination)  <br>_Inclination._  |
+|  [**BodyAngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**inclinationRate**](#variable-inclinationrate)  <br>_Rate of change of the inclination._  |
+|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**j2**](#variable-j2)  <br>_J2 gravitational coefficient of the celestial body._  |
+|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**j3**](#variable-j3)  <br>_J3 gravitational coefficient of the celestial body._  |
+|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**longitudeOfPerigee**](#variable-longitudeofperigee)  <br>_Longitude of perigee._  |
+|  [**BodyAngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**longitudeOfPerigeeRate**](#variable-longitudeofperigeerate)  <br>_Rate of change of the longitude of perigee._  |
+|  [**Mass**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**mass**](#variable-mass)  <br>_Mass of the celestial body._  |
+|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**meanLongitude**](#variable-meanlongitude)  <br>_Mean longitude._  |
+|  [**BodyAngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**meanLongitudeRate**](#variable-meanlongituderate)  <br>_Rate of change of the mean longitude._  |
+|  [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**mu**](#variable-mu)  <br>_Gravitational parameter (mu) of the celestial body._  |
+|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**polarRadius**](#variable-polarradius)  <br>_Polar radius of the celestial body._  |
 |  [**Date**](classastrea_1_1astro_1_1Date.md) | [**referenceDate**](#variable-referencedate)  <br>_Reference date for the celestial body data._  |
-|  Angle | [**rightAscension**](#variable-rightascension)  <br>_Right ascension._  |
-|  BodyAngularRate | [**rightAscensionRate**](#variable-rightascensionrate)  <br>_Rate of change of the right ascension._  |
-|  AngularRate | [**rotationRate**](#variable-rotationrate)  <br>_Rotation rate of the celestial body._  |
-|  Distance | [**semimajorAxis**](#variable-semimajoraxis)  <br>_Semimajor axis._  |
-|  InterplanetaryVelocity | [**semimajorAxisRate**](#variable-semimajoraxisrate)  <br>_Rate of change of the semimajor axis._  |
-|  Time | [**siderealPeriod**](#variable-siderealperiod)  <br>_Sidereal period of the celestial body._  |
-|  Distance | [**sphereOfInfluence**](#variable-sphereofinfluence)  <br>_Sphere of influence of the celestial body._  |
+|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**rightAscension**](#variable-rightascension)  <br>_Right ascension._  |
+|  [**BodyAngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**rightAscensionRate**](#variable-rightascensionrate)  <br>_Rate of change of the right ascension._  |
+|  [**AngularVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**rotationRate**](#variable-rotationrate)  <br>_Rotation rate of the celestial body._  |
+|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**semimajorAxis**](#variable-semimajoraxis)  <br>_Semimajor axis._  |
+|  [**InterplanetaryVelocity**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**semimajorAxisRate**](#variable-semimajoraxisrate)  <br>_Rate of change of the semimajor axis._  |
+|  [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**siderealPeriod**](#variable-siderealperiod)  <br>_Sidereal period of the celestial body._  |
+|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**sphereOfInfluence**](#variable-sphereofinfluence)  <br>_Sphere of influence of the celestial body._  |
 |  [**CelestialBodyType**](namespaceastrea_1_1astro.md#enum-celestialbodytype) | [**type**](#variable-type)  <br>_Type of the celestial body._  |
 
 
@@ -199,7 +197,7 @@ Angle astrea::astro::CelestialBodyParameters::inclination;
 
 _Rate of change of the inclination._ 
 ```C++
-BodyAngularRate astrea::astro::CelestialBodyParameters::inclinationRate;
+BodyAngularVelocity astrea::astro::CelestialBodyParameters::inclinationRate;
 ```
 
 
@@ -255,7 +253,7 @@ Angle astrea::astro::CelestialBodyParameters::longitudeOfPerigee;
 
 _Rate of change of the longitude of perigee._ 
 ```C++
-BodyAngularRate astrea::astro::CelestialBodyParameters::longitudeOfPerigeeRate;
+BodyAngularVelocity astrea::astro::CelestialBodyParameters::longitudeOfPerigeeRate;
 ```
 
 
@@ -297,7 +295,7 @@ Angle astrea::astro::CelestialBodyParameters::meanLongitude;
 
 _Rate of change of the mean longitude._ 
 ```C++
-BodyAngularRate astrea::astro::CelestialBodyParameters::meanLongitudeRate;
+BodyAngularVelocity astrea::astro::CelestialBodyParameters::meanLongitudeRate;
 ```
 
 
@@ -312,34 +310,6 @@ BodyAngularRate astrea::astro::CelestialBodyParameters::meanLongitudeRate;
 _Gravitational parameter (mu) of the celestial body._ 
 ```C++
 GravParam astrea::astro::CelestialBodyParameters::mu;
-```
-
-
-
-
-<hr>
-
-
-
-### variable name 
-
-_Name of the celestial body._ 
-```C++
-std::string astrea::astro::CelestialBodyParameters::name;
-```
-
-
-
-
-<hr>
-
-
-
-### variable parent 
-
-_Reference to the parent planetary body._ 
-```C++
-CelestialBodyId astrea::astro::CelestialBodyParameters::parent;
 ```
 
 
@@ -395,7 +365,7 @@ Angle astrea::astro::CelestialBodyParameters::rightAscension;
 
 _Rate of change of the right ascension._ 
 ```C++
-BodyAngularRate astrea::astro::CelestialBodyParameters::rightAscensionRate;
+BodyAngularVelocity astrea::astro::CelestialBodyParameters::rightAscensionRate;
 ```
 
 
@@ -409,7 +379,7 @@ BodyAngularRate astrea::astro::CelestialBodyParameters::rightAscensionRate;
 
 _Rotation rate of the celestial body._ 
 ```C++
-AngularRate astrea::astro::CelestialBodyParameters::rotationRate;
+AngularVelocity astrea::astro::CelestialBodyParameters::rotationRate;
 ```
 
 

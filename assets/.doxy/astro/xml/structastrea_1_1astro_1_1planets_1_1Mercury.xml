@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1planets_1_1Mercury" kind="class" language="C++" prot="public" final="yes">
+    <compoundname>astrea::astro::planets::Mercury</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1CelestialBody" prot="public" virt="non-virtual">astrea::astro::CelestialBody&lt;&quot;Mercury&quot;, barycenters::SolarSystemBarycenter &gt;</basecompoundref>
+    <includes refid="Mercury_8hpp" local="no">Mercury.hpp</includes>
+    <briefdescription>
+<para>Represents the <ref refid="structastrea_1_1astro_1_1planets_1_1Mercury" kindref="compound">Mercury</ref> celestial body. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class provides properties and methods specific to <ref refid="structastrea_1_1astro_1_1planets_1_1Mercury" kindref="compound">Mercury</ref>, including its physical and orbital parameters. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::CelestialBody&lt;&quot;Mercury&quot;, barycenters::SolarSystemBarycenter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea::astro::Origin&lt; _name_, _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea::astro::detail::CelestialBodyBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1CelestialBodyBase"/>
+      </node>
+      <node id="4">
+        <label>astrea::astro::detail::OriginBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1OriginBase"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::planets::Mercury</label>
+        <link refid="structastrea_1_1astro_1_1planets_1_1Mercury"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::CelestialBody&lt;&quot;Mercury&quot;, barycenters::SolarSystemBarycenter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBody"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea::astro::Origin&lt; _name_, _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea::astro::detail::CelestialBodyBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1CelestialBodyBase"/>
+      </node>
+      <node id="4">
+        <label>astrea::astro::detail::OriginBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1OriginBase"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::planets::Mercury</label>
+        <link refid="structastrea_1_1astro_1_1planets_1_1Mercury"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/systems/celestial_bodies/Mercury/Mercury.hpp" line="42" column="17" bodyfile="astrea/astro/astro/systems/celestial_bodies/Mercury/Mercury.hpp" bodystart="42" bodyend="43"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1CelestialBody_1a6f403339fafac7a7813ab6e153c86c8f" prot="public" virt="non-virtual"><scope>astrea::astro::planets::Mercury</scope><name>geocentric_axes</name></member>
+      <member refid="structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4_1a9091dfe3c437f00a4b14cdc412e1f66c" prot="public" virt="non-virtual"><scope>astrea::astro::planets::Mercury</scope><name>name</name></member>
+      <member refid="structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4_1a85c69d53e48c955b0c625b3e2962e212" prot="public" virt="non-virtual"><scope>astrea::astro::planets::Mercury</scope><name>parent</name></member>
+      <member refid="structastrea_1_1astro_1_1CelestialBody_1acf9f4ab0b863acbbe71612a1eaecd795" prot="public" virt="non-virtual"><scope>astrea::astro::planets::Mercury</scope><name>reference_axes</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

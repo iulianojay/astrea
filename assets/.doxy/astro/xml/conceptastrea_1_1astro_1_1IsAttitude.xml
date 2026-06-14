@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1IsAttitude" kind="concept">
+    <compoundname>astrea::astro::IsAttitude</compoundname>
+    <includes refid="Attitude_8hpp" local="no">Attitude.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename T&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1IsAttitude" kindref="compound">astrea::astro::IsAttitude</ref> =  requires(T) {
+    std::is_same&lt;T, remove_cv_ref&lt;T&gt;&gt;::value;
+    std::is_default_constructible&lt;T&gt;::value;
+    std::is_copy_constructible&lt;T&gt;::value;
+    std::is_move_constructible&lt;T&gt;::value;
+    std::is_destructible&lt;T&gt;::value;
+    requires !std::is_same&lt;T, Attitude&gt;::value;
+}    </initializer>
+    <briefdescription>
+<para>Concept to check if a type is an attitude type. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This concept checks if a type is a valid attitude type, ensuring it meets the requirements for being default constructible, copyable, movable, destructible, and convertible to Quaternion orientation.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="75" column="1"/>
+  </compounddef>
+</doxygen>

@@ -27,10 +27,6 @@
 
 #include <units/units.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/FrameReference.hpp>
-#include <astro/time/Date.hpp>
-
 namespace astrea {
 namespace astro {
 
@@ -47,21 +43,6 @@ NullVehicle* NullVehicle::clone() const { return new NullVehicle(*this); }
 Mass NullVehicle::get_mass() const { return _mass; }
 
 std::string NullVehicle::get_name() const { return "NullVehicle"; }
-
-RadiusVector<frames::earth::icrf> NullVehicle::get_inertial_position(const Date& date) const
-{
-    return { 0.0 * km, 0.0 * km, 0.0 * km };
-}
-
-VelocityVector<frames::earth::icrf> NullVehicle::get_inertial_velocity(const Date& date) const
-{
-    return { 0.0 * km / s, 0.0 * km / s, 0.0 * km / s };
-}
-
-AccelerationVector<frames::earth::icrf> NullVehicle::get_inertial_acceleration(const Date& date) const
-{
-    return { 0.0 * km / (s * s), 0.0 * km / (s * s), 0.0 * km / (s * s) };
-}
 
 } // namespace astro
 } // namespace astrea

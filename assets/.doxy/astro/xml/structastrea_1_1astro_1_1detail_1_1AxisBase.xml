@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1detail_1_1AxisBase" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::detail::AxisBase</compoundname>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1Axis_3_01__name___01_4" prot="public" virt="non-virtual">astrea::astro::Axis&lt; _name_ &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4" prot="public" virt="non-virtual">astrea::astro::Axis&lt; _name_, _parent_ &gt;</derivedcompoundref>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="structastrea_1_1astro_1_1detail_1_1AxisBase_1a23e813faee2357ee58bcaad4329c2d02" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsAxis</type>
+            <declname>Lhs</declname>
+            <defname>Lhs</defname>
+          </param>
+          <param>
+            <type>IsAxis</type>
+            <declname>Rhs</declname>
+            <defname>Rhs</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">consteval</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>consteval bool operator==</definition>
+        <argsstring>(Lhs, Rhs)</argsstring>
+        <name>operator==</name>
+        <qualifiedname>astrea::astro::detail::AxisBase::operator==</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Lhs</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Rhs</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/Axis.hpp" line="36" column="28" bodyfile="astrea/astro/astro/frames/framework/Axis.hpp" bodystart="36" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="friend" id="structastrea_1_1astro_1_1detail_1_1AxisBase_1ad4002bfd728d8259384644a5523d4a6e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsAxis</type>
+            <declname>Lhs</declname>
+            <defname>Lhs</defname>
+          </param>
+          <param>
+            <type>IsAxis</type>
+            <declname>Rhs</declname>
+            <defname>Rhs</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">consteval</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>consteval bool equivalent</definition>
+        <argsstring>(Lhs, Rhs)</argsstring>
+        <name>equivalent</name>
+        <qualifiedname>astrea::astro::detail::AxisBase::equivalent</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Lhs</ref></type>
+          <defname>lhs</defname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Rhs</ref></type>
+          <defname>rhs</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/Axis.hpp" line="41" column="28" bodyfile="astrea/astro/astro/frames/framework/Axis.hpp" bodystart="41" bodyend="44"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::Axis&lt; _name_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Axis_3_01__name___01_4"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea::astro::Axis&lt; _name_, _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea::astro::detail::AxisBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1AxisBase"/>
+      </node>
+    </inheritancegraph>
+    <location file="astrea/astro/astro/frames/framework/Axis.hpp" line="34" column="1" bodyfile="astrea/astro/astro/frames/framework/Axis.hpp" bodystart="34" bodyend="45"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1detail_1_1AxisBase_1ad4002bfd728d8259384644a5523d4a6e" prot="public" virt="non-virtual"><scope>astrea::astro::detail::AxisBase</scope><name>equivalent</name></member>
+      <member refid="structastrea_1_1astro_1_1detail_1_1AxisBase_1a23e813faee2357ee58bcaad4329c2d02" prot="public" virt="non-virtual"><scope>astrea::astro::detail::AxisBase</scope><name>operator==</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

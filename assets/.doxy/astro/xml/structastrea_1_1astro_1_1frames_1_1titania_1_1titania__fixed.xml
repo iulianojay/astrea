@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1frames_1_1titania_1_1titania__fixed" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>astrea::astro::frames::titania::titania_fixed</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Titania Fixed Frame&quot;, moons::Titania &gt;</basecompoundref>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Titania Fixed Frame&quot;, moons::Titania &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea::astro::Frame&lt; symbol_text,... &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="4">
+        <label>astrea::astro::detail::BodyFixedFrameBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1BodyFixedFrameBase"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::frames::titania::titania_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1titania_1_1titania__fixed"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Titania Fixed Frame&quot;, moons::Titania &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea::astro::Frame&lt; symbol_text,... &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="4">
+        <label>astrea::astro::detail::BodyFixedFrameBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1BodyFixedFrameBase"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::frames::titania::titania_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1titania_1_1titania__fixed"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="114" column="17" bodyfile="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" bodystart="114" bodyend="115"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

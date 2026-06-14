@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -178,6 +178,53 @@ You're not viewing the latest version.
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
     
     
       <div class="md-header__source">
@@ -436,8 +483,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
     
     
     
@@ -488,34 +533,6 @@ You're not viewing the latest version.
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting_started/about/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    About Astrea
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -697,10 +714,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
-        
-      
     
     
     
@@ -779,34 +792,6 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/strongly_typed_frames/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Strongly Typed Frames
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../examples/fundamentals/time_systems/" class="md-nav__link">
         
   
@@ -862,34 +847,6 @@ You're not viewing the latest version.
   
   
   
-    <li class="md-nav__item">
-      <a href="../../examples/fundamentals/astrodynamic_systems/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Astrodynamic Systems
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -916,10 +873,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
             
   
   
@@ -937,8 +894,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1095,7 +1052,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/vehicles.md" class="md-nav__link">
+      <a href="../../examples/fundamentals/propagation/vehicles/" class="md-nav__link">
         
   
   
@@ -1150,10 +1107,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
             
   
   
@@ -1171,8 +1128,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_7">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1189,14 +1146,14 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/frames/strongly_typed_frames/" class="md-nav__link">
+      <a href="../../examples/fundamentals/frames/introduction/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Strongly Typed Frames
+    Introduction to Strongly Typed Frames
   
 
     
@@ -1624,10 +1581,10 @@ You're not viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-openclosed-principle" class="md-nav__link">
+  <a href="#users-dont-want-to-inherit-your-classes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Open/Closed Principle
+        Users don't want to inherit your classes
       
     </span>
   </a>
@@ -1635,10 +1592,10 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-plugin-architecture" class="md-nav__link">
+  <a href="#compile-time-is-king" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Plugin Architecture
+        Compile-time is king
       
     </span>
   </a>
@@ -1646,60 +1603,10 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-type-safety" class="md-nav__link">
+  <a href="#provide-examples-not-solutions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Type Safety
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-performance-preservation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Performance Preservation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#extension-points" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Extension Points
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Extension Points">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#custom-force-models" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Custom Force Models
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#custom-analysis-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Custom Analysis Tools
+        Provide examples, not solutions
       
     </span>
   </a>
@@ -6441,61 +6348,17 @@ You're not viewing the latest version.
 <h1 id="extensibility">Extensibility<a class="headerlink" href="#extensibility" title="Permanent link">&para;</a></h1>
 <p>Astrea is designed to be highly extensible, allowing users to add custom force models, coordinate frames, propagators, and analysis tools without modifying the core library. This document outlines the extensibility patterns and interfaces that enable customization.</p>
 <h2 id="extensibility-principles">Extensibility Principles<a class="headerlink" href="#extensibility-principles" title="Permanent link">&para;</a></h2>
-<h3 id="1-openclosed-principle">1. Open/Closed Principle<a class="headerlink" href="#1-openclosed-principle" title="Permanent link">&para;</a></h3>
-<p>Astrea is open for extension but closed for modification. New functionality can be added through well-defined interfaces without changing existing code.</p>
-<h3 id="2-plugin-architecture">2. Plugin Architecture<a class="headerlink" href="#2-plugin-architecture" title="Permanent link">&para;</a></h3>
-<p>Extensions are implemented as plugins that register themselves with the appropriate systems at startup or compile-time.</p>
-<h3 id="3-type-safety">3. Type Safety<a class="headerlink" href="#3-type-safety" title="Permanent link">&para;</a></h3>
-<p>Extensions maintain the same compile-time type safety guarantees as the core library.</p>
-<h3 id="4-performance-preservation">4. Performance Preservation<a class="headerlink" href="#4-performance-preservation" title="Permanent link">&para;</a></h3>
-<p>Extension mechanisms introduce zero runtime overhead when not used and minimal overhead when active.</p>
-<h2 id="extension-points">Extension Points<a class="headerlink" href="#extension-points" title="Permanent link">&para;</a></h2>
-<h3 id="custom-force-models">Custom Force Models<a class="headerlink" href="#custom-force-models" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astrea</span><span class="o">::</span><span class="nn">propagation</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="c1">// Abstract base class for force models</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">ForceModel</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">ForceModel</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">name</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="p">};</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">}</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1">// Example: Custom atmospheric drag model</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">class</span><span class="w"> </span><span class="nc">CustomDragModel</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">ForceModel</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">drag_coefficient_</span><span class="p">;</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="n">units</span><span class="o">::</span><span class="n">area</span><span class="w"> </span><span class="n">cross_sectional_area_</span><span class="p">;</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="n">units</span><span class="o">::</span><span class="n">mass</span><span class="w"> </span><span class="n">spacecraft_mass_</span><span class="p">;</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">acceleration</span><span class="p">(</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">state</span><span class="o">::</span><span class="n">CartesianState</span><span class="o">&lt;&gt;&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">time</span><span class="o">::</span><span class="n">EpochTT</span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">math</span><span class="o">::</span><span class="n">Vector3</span><span class="o">&lt;</span><span class="n">units</span><span class="o">::</span><span class="n">acceleration</span><span class="o">&gt;</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">        </span><span class="c1">// Implementation details...</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">drag_acceleration</span><span class="p">;</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">name</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;CustomDrag&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="p">};</span>
-</span></code></pre></div>
-<h3 id="custom-analysis-tools">Custom Analysis Tools<a class="headerlink" href="#custom-analysis-tools" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astrea</span><span class="o">::</span><span class="nn">trace</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">AnalysisTool</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">AnalysisTool</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">analyze</span><span class="p">(</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Platform</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">platforms</span><span class="p">,</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">TimeInterval</span><span class="o">&amp;</span><span class="w"> </span><span class="n">analysis_period</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">AnalysisResults</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">name</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="p">};</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">}</span>
-</span></code></pre></div>
-<hr />
-<p><em>Astrea's extensibility architecture enables users to customize every aspect of the library while maintaining type safety, performance, and the consistent API design that makes Astrea reliable for mission-critical applications.</em></p>
+<p>There are many solutions for extensibility in C++. Astrea's approach is generically based on the following principles:</p>
+<h3 id="users-dont-want-to-inherit-your-classes"><strong>Users don't want to inherit your classes</strong><a class="headerlink" href="#users-dont-want-to-inherit-your-classes" title="Permanent link">&para;</a></h3>
+<p>In general, just using a 3rd party library is already a burden. Requiring users to directly inherit your type structures, and all the assumptions that come with, can be a cumbersome and exhausting. As such, where extensibility is useful, common, or well-defined, Astrea uses type-erasure and leans on concepts to allow users to implement their own types without needing to inherit from Astrea's type system.</p>
+<p>In cases where polymorphism makes sense, and extensibility is less common, Astrea will use minimal inheritance. A key example of this is the <code>PerturbingForce</code>. Generally, users won't be writing many of their own forces, they'll just use the ones available in the library. This class also only has a single virtual method, so the runtime overhead is minimal. If many users started writing their own forces, we would consider switching to a type-erased version of the <code>PerturbingForce</code> interface as well. A similar case was made for the <code>EquationsOfMotion</code>.</p>
+<h3 id="compile-time-is-king"><strong>Compile-time is king</strong><a class="headerlink" href="#compile-time-is-king" title="Permanent link">&para;</a></h3>
+<p>Extensibility mechanisms should introduce minimal runtime overhead, ensuring that performance-critical applications are not adversely affected. It's easy to design systems of functions that check for properties at runtime and throw errors or try to handle the behavior smoothly. While this tends to be easier for developers, the authors believe that compile-time checks are considerably safer mechanisms for handling bad-behavior. Wherever possible, Astrea tries to lean on concepts, and static type checking mechanisms to ensure performance and accuracy. This makes it easier to avoid throwing errors, safely declare function and class behavior, and make use of the powerful C++ compile-time optimizations.</p>
+<p>A benefit of compile-time guarantees is that a lot of information can be optimized away. A runtime object representing a frame, for example, might include the center, the axis, the parent object (probably with lifetime issues), maybe a time system, an offset (or several), etc. Every time you need this, you build out everything it needs or you pass it around, adding a hit to memory and speed, complexity to your code, and constant checks for sanity, correctness, and consistency. In Astrea, all this is done by the compiler as much as possible. </p>
+<p>The result of this style tends to be difficulty for maintainers of the core library. Complex trees of template packs, strange bugs and difficult corner cases, platform-dependent behaviors, and so on. The authors believe this trade-off is worth the price. A performant, compile-time library pays for itself very quickly.</p>
+<h3 id="provide-examples-not-solutions"><strong>Provide examples, not solutions</strong><a class="headerlink" href="#provide-examples-not-solutions" title="Permanent link">&para;</a></h3>
+<p>Many libraries that receive wide adoption grow beyond the scope of what can be reasonable maintained - a class for every problem, a function for every condition, a structure for every <em>thing</em> a user might want to build, and don't forget the <code>ThingBuilder</code>! The authors believe that this decision to expand without boundaries leads to untennable maintainence, massive overhead, and a steadily growing set of unfixable problems. A feature that touches ten others might require ten updates to be fixed. A satellite class defined with good intentions and best practices might end up being the design that restricts the entire library once a spacecraft factory, a spacecraft container, a spacecraft interface, and a spacecraft watcher are all strictly defined and require updates.</p>
+<p>With this in mind, Astrea strives for a minimalist approach. Instead of solving all problems and implementing all interfaces, Astrea prefers to define high level interfaces and abstractions that allows users to build out a type system they prefer. As much as possible, extensibility points are defined through type-erased interfaces with a few examples for users to expand on. Astrea is not meant to be a repository for every possible definition of a system of astrodynamic types, but a foundation on which others can build freely.</p>
 
 
 

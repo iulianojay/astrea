@@ -29,7 +29,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**DatabaseUtilityWrapper**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md) &lt;class T&gt;<br>_Database utility wrapper for the snapshot module._  |
+| class | [**DatabaseUtilityWrapper**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md) &lt;[**class**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12) [**T**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12)&gt;<br>_Database utility wrapper for the snapshot module._  |
 | class | [**EthzClient**](classastrea_1_1snapshot_1_1EthzClient.md) <br>[_**EthzClient**_](classastrea_1_1snapshot_1_1EthzClient.md) _class for interacting with the ETHZ satellite database API._ |
 | class | [**SpaceTrackClient**](classastrea_1_1snapshot_1_1SpaceTrackClient.md) <br>[_**SpaceTrackClient**_](classastrea_1_1snapshot_1_1SpaceTrackClient.md) _class for interacting with the SpaceTrack API._ |
 
@@ -124,7 +124,7 @@ inline auto astrea::snapshot::get_snapshot ()
 
 
 
-This function creates and returns a SQLite storage instance for the snapshot database.
+This function creates and returns a SQLite storage instance for the snapshot database with performance optimizations applied.
 
 
 

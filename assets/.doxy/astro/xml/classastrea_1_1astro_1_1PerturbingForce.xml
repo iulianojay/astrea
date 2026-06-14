@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1PerturbingForce" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>astrea::astro::PerturbingForce</compoundname>
+    <derivedcompoundref refid="classastrea_1_1astro_1_1AtmosphericForce" prot="public" virt="non-virtual">astrea::astro::AtmosphericForce</derivedcompoundref>
+    <derivedcompoundref refid="classastrea_1_1astro_1_1NBodyForce" prot="public" virt="non-virtual">astrea::astro::NBodyForce&lt; bodies &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classastrea_1_1astro_1_1OblatenessForce" prot="public" virt="non-virtual">astrea::astro::OblatenessForce&lt; _body_, _degree_, _order_ &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classastrea_1_1astro_1_1SolarRadiationPressure" prot="public" virt="non-virtual">astrea::astro::SolarRadiationPressure</derivedcompoundref>
+    <includes refid="PerturbingForce_8hpp" local="no">PerturbingForce.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PerturbingForce_1a31d3645e85270aa1c1936252bb9a34a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::PerturbingForce::PerturbingForce</definition>
+        <argsstring>()=default</argsstring>
+        <name>PerturbingForce</name>
+        <qualifiedname>astrea::astro::PerturbingForce::PerturbingForce</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="classastrea_1_1astro_1_1PerturbingForce" kindref="compound">PerturbingForce</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="37" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PerturbingForce_1a5b564712f5a9df20b0c3180c517b1546" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual astrea::astro::PerturbingForce::~PerturbingForce</definition>
+        <argsstring>()=default</argsstring>
+        <name>~PerturbingForce</name>
+        <qualifiedname>astrea::astro::PerturbingForce::~PerturbingForce</qualifiedname>
+        <briefdescription>
+<para>Default destructor for <ref refid="classastrea_1_1astro_1_1PerturbingForce" kindref="compound">PerturbingForce</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="42" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PerturbingForce_1ac9606ee76f4d3cc3e140770d1a43f567" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="structastrea_1_1astro_1_1Perturbation" kindref="compound">Perturbation</ref></type>
+        <definition>virtual Perturbation astrea::astro::PerturbingForce::compute_perturbation</definition>
+        <argsstring>(const State &amp;state, const Vehicle &amp;vehicle) const =0</argsstring>
+        <name>compute_perturbation</name>
+        <qualifiedname>astrea::astro::PerturbingForce::compute_perturbation</qualifiedname>
+        <reimplementedby refid="classastrea_1_1astro_1_1OblatenessForce_1ada76327aaf44ae302337a0eba8cbdf02">compute_perturbation</reimplementedby>
+        <reimplementedby refid="classastrea_1_1astro_1_1AtmosphericForce_1ae1707750ac7e675816bd7c4e8336e5e4">compute_perturbation</reimplementedby>
+        <reimplementedby refid="classastrea_1_1astro_1_1NBodyForce_1a79ab51b4ea14792017f7c2c447e4e1d7">compute_perturbation</reimplementedby>
+        <reimplementedby refid="classastrea_1_1astro_1_1SolarRadiationPressure_1adea465cb291d0319bb85ae49a8854060">compute_perturbation</reimplementedby>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <declname>vehicle</declname>
+        </param>
+        <briefdescription>
+<para>Computes the force acting on a vehicle at a given date and state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> of the vehicle </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vehicle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> object representing the spacecraft </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1Perturbation" kindref="compound">Perturbation</ref> The computed acceleration and torque vectors due to the force. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="51" column="26"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Abstract base class for force models in astrodynamics. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class defines the interface for computing forces acting on a vehicle in space. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::AtmosphericForce</label>
+        <link refid="classastrea_1_1astro_1_1AtmosphericForce"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea::astro::NBodyForce&lt; bodies &gt;</label>
+        <link refid="classastrea_1_1astro_1_1NBodyForce"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea::astro::OblatenessForce&lt; _body_, _degree_, _order_ &gt;</label>
+        <link refid="classastrea_1_1astro_1_1OblatenessForce"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea::astro::PerturbingForce</label>
+        <link refid="classastrea_1_1astro_1_1PerturbingForce"/>
+      </node>
+      <node id="5">
+        <label>astrea::astro::SolarRadiationPressure</label>
+        <link refid="classastrea_1_1astro_1_1SolarRadiationPressure"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" line="32" column="1" bodyfile="astrea/astro/astro/propagation/force_models/PerturbingForce.hpp" bodystart="32" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1ac9606ee76f4d3cc3e140770d1a43f567" prot="public" virt="pure-virtual"><scope>astrea::astro::PerturbingForce</scope><name>compute_perturbation</name></member>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1a31d3645e85270aa1c1936252bb9a34a3" prot="public" virt="non-virtual"><scope>astrea::astro::PerturbingForce</scope><name>PerturbingForce</name></member>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1a5b564712f5a9df20b0c3180c517b1546" prot="public" virt="virtual"><scope>astrea::astro::PerturbingForce</scope><name>~PerturbingForce</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

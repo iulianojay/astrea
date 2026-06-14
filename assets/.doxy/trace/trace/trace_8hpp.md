@@ -26,9 +26,9 @@ _Header file for the access module._ [More...](#detailed-description)
 * `#include <trace/platforms/ground/GroundStation.hpp>`
 * `#include <trace/platforms/sensors/Antenna.hpp>`
 * `#include <trace/platforms/sensors/Sensor.hpp>`
+* `#include <trace/platforms/sensors/fov/CircularFieldOfView.hpp>`
 * `#include <trace/platforms/sensors/fov/FieldOfView.hpp>`
-* `#include <trace/platforms/sensors/fov/instances/CircularFieldOfView.hpp>`
-* `#include <trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp>`
+* `#include <trace/platforms/sensors/fov/PolygonalFieldOfView.hpp>`
 * `#include <trace/platforms/vehicles/Viewer.hpp>`
 * `#include <trace/risesets/AccessArray.hpp>`
 * `#include <trace/risesets/RiseSetArray.hpp>`

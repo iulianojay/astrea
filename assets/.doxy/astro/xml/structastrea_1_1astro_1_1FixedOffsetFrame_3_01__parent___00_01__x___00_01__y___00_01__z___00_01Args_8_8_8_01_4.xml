@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__x___00_01__y___00_01__z___00_01Args_8_8_8_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::FixedOffsetFrame&lt; _parent_, _x_, _y_, _z_, Args... &gt;</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1Frame" prot="public" virt="non-virtual">astrea::astro::Frame&lt; compose_name&lt; _parent_.name, _x_, _y_, _z_ &gt;(), FixedOffsetOrigin&lt; _parent_.origin, _x_, _y_, _z_ &gt;{}, _parent_.axis, _parent_ &gt;</basecompoundref>
+    <includes refid="FixedOffsetFrame_8hpp" local="no">FixedOffsetFrame.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_parent_</declname>
+        <defname>_parent_</defname>
+      </param>
+      <param>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <declname>_x_</declname>
+        <defname>_x_</defname>
+      </param>
+      <param>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <declname>_y_</declname>
+        <defname>_y_</defname>
+      </param>
+      <param>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <declname>_z_</declname>
+        <defname>_z_</defname>
+      </param>
+      <param>
+        <type>auto...</type>
+        <declname>Args</declname>
+        <defname>Args</defname>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+<para>Specialization of <ref refid="structastrea_1_1astro_1_1FixedOffsetFrame" kindref="compound">FixedOffsetFrame</ref> for a pure spatial offset (no angular misalignment). </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_parent_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parent frame from which this frame is derived. Must satisfy the IsFrame concept. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_x_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The fixed offset in the x direction from the parent frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_y_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The fixed offset in the y direction from the parent frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_z_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The fixed offset in the z direction from the parent frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Additional template parameters (not used in this specialization). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::Frame&lt; compose_name&lt; _parent_.name, _x_, _y_, _z_ &gt;(), FixedOffsetOrigin&lt; _parent_.origin, _x_, _y_, _z_ &gt;{}, _parent_.axis, _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::FixedOffsetFrame&lt; _parent_, _x_, _y_, _z_, Args... &gt;</label>
+        <link refid="structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__x___00_01__y___00_01__z___00_01Args_8_8_8_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::Frame&lt; compose_name&lt; _parent_.name, _x_, _y_, _z_ &gt;(), FixedOffsetOrigin&lt; _parent_.origin, _x_, _y_, _z_ &gt;{}, _parent_.axis, _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::FixedOffsetFrame&lt; _parent_, _x_, _y_, _z_, Args... &gt;</label>
+        <link refid="structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__x___00_01__y___00_01__z___00_01Args_8_8_8_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="234" column="1" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="235" bodyend="236"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

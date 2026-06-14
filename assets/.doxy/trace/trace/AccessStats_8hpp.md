@@ -12,7 +12,7 @@ _Contains utilities for calculating access statistics._ [More...](#detailed-desc
 
 * `#include <string>`
 * `#include <vector>`
-* `#include <gtl/btree.hpp>`
+* `#include <gtl/phmap.hpp>`
 * `#include <units/units.hpp>`
 * `#include <trace/analysis/stats/HyperStats.hpp>`
 * `#include <trace/analysis/stats/RiseSetStats.hpp>`

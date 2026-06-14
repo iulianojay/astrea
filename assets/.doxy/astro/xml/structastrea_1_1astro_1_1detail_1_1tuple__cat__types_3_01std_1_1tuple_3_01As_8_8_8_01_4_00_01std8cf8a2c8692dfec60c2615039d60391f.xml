@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1detail_1_1tuple__cat__types_3_01std_1_1tuple_3_01As_8_8_8_01_4_00_01std8cf8a2c8692dfec60c2615039d60391f" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::detail::tuple_cat_types&lt; std::tuple&lt; As... &gt;, std::tuple&lt; Bs... &gt; &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename...</type>
+        <declname>As</declname>
+        <defname>As</defname>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>Bs</declname>
+        <defname>Bs</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structastrea_1_1astro_1_1detail_1_1tuple__cat__types_3_01std_1_1tuple_3_01As_8_8_8_01_4_00_01std8cf8a2c8692dfec60c2615039d60391f_1ac7f0e404d69c6b1a278b270f7837dcc9" prot="public" static="no">
+        <type>std::tuple&lt; As..., Bs... &gt;</type>
+        <definition>using astrea::astro::detail::tuple_cat_types&lt; std::tuple&lt; As... &gt;, std::tuple&lt; Bs... &gt; &gt;::type =  std::tuple&lt;As..., Bs...&gt;</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <qualifiedname>astrea::astro::detail::tuple_cat_types&lt; std::tuple&lt; As... &gt;, std::tuple&lt; Bs... &gt; &gt;::type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="48" column="5" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="47" column="1" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="47" bodyend="49"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1detail_1_1tuple__cat__types_3_01std_1_1tuple_3_01As_8_8_8_01_4_00_01std8cf8a2c8692dfec60c2615039d60391f_1ac7f0e404d69c6b1a278b270f7837dcc9" prot="public" virt="non-virtual"><scope>astrea::astro::detail::tuple_cat_types&lt; std::tuple&lt; As... &gt;, std::tuple&lt; Bs... &gt; &gt;</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

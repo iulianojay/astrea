@@ -2,7 +2,7 @@
 
 # Class astrea::snapshot::DatabaseUtilityWrapper
 
-**template &lt;class T&gt;**
+**template &lt;[**class**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12) [**T**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12)&gt;**
 
 
 
@@ -54,12 +54,13 @@ _Database utility wrapper for the snapshot module._ [More...](#detailed-descript
 
 | Type | Name |
 | ---: | :--- |
-|   | [**DatabaseUtilityWrapper**](#function-databaseutilitywrapper) (T && db) <br>_Default constructor for_ [_**DatabaseUtilityWrapper**_](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md) _._ |
-|  std::vector&lt; astro::GeneralPerturbations &gt; | [**get\_all**](#function-get_all) (Args &&... args) const<br>_Gets all GeneralPerturbations records from the database._  |
-|  const T & | [**get\_database**](#function-get_database) () const<br>_Gets the underlying database instance._  |
-|  astro::GeneralPerturbations | [**get\_sat\_from\_norad\_id**](#function-get_sat_from_norad_id) (const unsigned & id) const<br>_Gets a GeneralPerturbations record by its NORAD ID._  |
-|  std::vector&lt; astro::GeneralPerturbations &gt; | [**get\_sats\_by\_name**](#function-get_sats_by_name) (const std::string & name) const<br>_Gets a GeneralPerturbations record by its name._  |
-|  std::vector&lt; astro::GeneralPerturbations &gt; | [**get\_sats\_in\_range**](#function-get_sats_in_range) (const Distance & minPeriapsis, const Distance & maxApoapsis) const<br>_Gets GeneralPerturbations records within a specified range of periapsis and apoapsis._  |
+|   | [**DatabaseUtilityWrapper**](#function-databaseutilitywrapper) ([**T**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12) && db) <br>_Default constructor for_ [_**DatabaseUtilityWrapper**_](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md) _._ |
+|  std::vector&lt; astro::GeneralPerturbations &gt; | [**get\_all**](#function-get_all-12) (Args &&... args) const<br>_Gets all GeneralPerturbations records from the database._  |
+|  std::vector&lt; GeneralPerturbations &gt; | [**get\_all**](#function-get_all-22) (Args &&... args) const<br> |
+|  [**const**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12) [**T**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12) & | [**get\_database**](#function-get_database) () const<br>_Gets the underlying database instance._  |
+|  astro::GeneralPerturbations | [**get\_sat\_from\_norad\_id**](#function-get_sat_from_norad_id) ([**const**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12) [**unsigned**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12) & id) const<br>_Gets a GeneralPerturbations record by its NORAD ID._  |
+|  std::vector&lt; astro::GeneralPerturbations &gt; | [**get\_sats\_by\_name**](#function-get_sats_by_name) ([**const**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12) std::string & name) const<br>_Gets a GeneralPerturbations record by its name._  |
+|  std::vector&lt; astro::GeneralPerturbations &gt; | [**get\_sats\_in\_range**](#function-get_sats_in_range) ([**const**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12) [**Distance**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12) & minPeriapsis, [**const**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12) [**Distance**](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md#function-get_all-12) & maxApoapsis) const<br>_Gets GeneralPerturbations records within a specified range of periapsis and apoapsis._  |
 |   | [**~DatabaseUtilityWrapper**](#function-databaseutilitywrapper) () = default<br>_Default destructor for_ [_**DatabaseUtilityWrapper**_](classastrea_1_1snapshot_1_1DatabaseUtilityWrapper.md) _._ |
 
 
@@ -141,7 +142,7 @@ Initializes the [**DatabaseUtilityWrapper**](classastrea_1_1snapshot_1_1Database
 
 
 
-### function get\_all 
+### function get\_all [1/2]
 
 _Gets all GeneralPerturbations records from the database._ 
 ```C++
@@ -183,11 +184,27 @@ A vector containing all GeneralPerturbations records.
 
 
 
+### function get\_all [2/2]
+
+```C++
+template<typename... Args>
+std::vector< GeneralPerturbations > astrea::snapshot::DatabaseUtilityWrapper::get_all (
+    Args &&... args
+) const
+```
+
+
+
+
+<hr>
+
+
+
 ### function get\_database 
 
 _Gets the underlying database instance._ 
 ```C++
-const T & astrea::snapshot::DatabaseUtilityWrapper::get_database () const
+const  T & astrea::snapshot::DatabaseUtilityWrapper::get_database () const
 ```
 
 
@@ -213,7 +230,7 @@ A reference to the wrapped database instance.
 _Gets a GeneralPerturbations record by its NORAD ID._ 
 ```C++
 astro::GeneralPerturbations astrea::snapshot::DatabaseUtilityWrapper::get_sat_from_norad_id (
-    const unsigned & id
+    const  unsigned & id
 ) const
 ```
 
@@ -281,8 +298,8 @@ A GeneralPerturbations object corresponding to the given name.
 _Gets GeneralPerturbations records within a specified range of periapsis and apoapsis._ 
 ```C++
 std::vector< astro::GeneralPerturbations > astrea::snapshot::DatabaseUtilityWrapper::get_sats_in_range (
-    const Distance & minPeriapsis,
-    const Distance & maxApoapsis
+    const  Distance & minPeriapsis,
+    const  Distance & maxApoapsis
 ) const
 ```
 

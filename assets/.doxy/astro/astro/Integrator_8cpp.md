@@ -21,13 +21,13 @@
 * `#include <math/math.hpp>`
 * `#include <units/units.hpp>`
 * `#include <astro/platforms/Vehicle.hpp>`
-* `#include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>`
+* `#include <astro/propagation/equations_of_motion/TwoBody.hpp>`
 * `#include <astro/propagation/event_detection/Event.hpp>`
 * `#include <astro/propagation/event_detection/EventDetector.hpp>`
 * `#include <astro/propagation/numerical/butcher_tableau.hpp>`
 * `#include <astro/state/StateHistory.hpp>`
+* `#include <astro/state/orbital_elements.hpp>`
 * `#include <astro/state/orbital_elements/OrbitalElements.hpp>`
-* `#include <astro/state/orbital_elements/orbital_elements.hpp>`
 * `#include <astro/time/Interval.hpp>`
 * `#include <astro/types/typedefs.hpp>`
 

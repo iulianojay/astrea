@@ -13,11 +13,11 @@
 
 #include <vector>
 
-#include <gtl/btree.hpp>
+#include <gtl/phmap.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
-#include <astro/state/angular_elements/angular_elements.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/state/angular_elements.hpp>
 
 #include <trace/types/typedefs.hpp>
 
@@ -52,9 +52,9 @@ class PositionCache {
     void clear();
 
   private:
-    std::vector<std::size_t> _platformIds;               
-    std::vector<std::vector<EcefRadiusVec>> _positions;  
-    gtl::btree_map<std::size_t, std::size_t> _idToIndex; 
+    std::vector<std::size_t> _platformIds;                   
+    std::vector<std::vector<EcefRadiusVec>> _positions;      
+    gtl::flat_hash_map<std::size_t, std::size_t> _idToIndex; 
 };
 
 } // namespace trace

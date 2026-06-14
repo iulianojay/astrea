@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::Axis&lt; _name_, _parent_ &gt;</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1detail_1_1AxisBase" prot="public" virt="non-virtual">astrea::astro::detail::AxisBase</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>mp_units::symbol_text</type>
+        <declname>_name_</declname>
+        <defname>_name_</defname>
+      </param>
+      <param>
+        <type>IsAxis <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_parent_</declname>
+        <defname>_parent_</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4_1a1e78e0c2451845a31657ca53810cb55f" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::Axis&lt; _name_, _parent_ &gt;::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>astrea::astro::Axis&lt; _name_, _parent_ &gt;::name</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_name_</ref></initializer>
+        <briefdescription>
+<para>The name of the axis. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/Axis.hpp" line="61" column="27" bodyfile="astrea/astro/astro/frames/framework/Axis.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4_1a04f3f2c9225c52105e944c7dba65d08f" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::Axis&lt; _name_, _parent_ &gt;::parent</definition>
+        <argsstring></argsstring>
+        <name>parent</name>
+        <qualifiedname>astrea::astro::Axis&lt; _name_, _parent_ &gt;::parent</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref></initializer>
+        <briefdescription>
+<para>The parent axis of this axis, if any. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/Axis.hpp" line="62" column="27" bodyfile="astrea/astro/astro/frames/framework/Axis.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>astrea::astro::Axis&lt; _name_, _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::detail::AxisBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1AxisBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>astrea::astro::Axis&lt; _name_, _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::detail::AxisBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1AxisBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/frames/framework/Axis.hpp" line="60" column="1" bodyfile="astrea/astro/astro/frames/framework/Axis.hpp" bodystart="60" bodyend="63"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4_1a1e78e0c2451845a31657ca53810cb55f" prot="public" virt="non-virtual"><scope>astrea::astro::Axis&lt; _name_, _parent_ &gt;</scope><name>name</name></member>
+      <member refid="structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4_1a04f3f2c9225c52105e944c7dba65d08f" prot="public" virt="non-virtual"><scope>astrea::astro::Axis&lt; _name_, _parent_ &gt;</scope><name>parent</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespacemp__units_1_1angular" kind="namespace" language="C++">
     <compoundname>mp_units::angular</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="55" column="1"/>
+    <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="53" column="1"/>
   </compounddef>
 </doxygen>

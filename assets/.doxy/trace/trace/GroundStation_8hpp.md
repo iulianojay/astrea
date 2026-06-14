@@ -12,8 +12,7 @@ _Header file for the GroundStation class._ [More...](#detailed-description)
 
 * `#include <string>`
 * `#include <vector>`
-* `#include <astro/astro.fwd.hpp>`
-* `#include <astro/systems/CelestialBody.hpp>`
+* `#include <astro/systems/system_concepts.hpp>`
 * `#include <astro/time/Date.hpp>`
 * `#include <units/units.hpp>`
 * `#include <trace/platforms/ground/GroundPoint.hpp>`
@@ -43,7 +42,7 @@ _Header file for the GroundStation class._ [More...](#detailed-description)
 
 | Type | Name |
 | ---: | :--- |
-| class | [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) <br>_Ground station class for managing ground-based access. This class inherits from_ [_**GroundPoint**_](classastrea_1_1trace_1_1GroundPoint.md) _,_[_**AccessObject**_](classastrea_1_1trace_1_1AccessObject.md) _, and SensorPlatform. It represents a ground station with a specific latitude, longitude, altitude, and a collection of sensors. It also provides methods to manage access and sensor functionalities._ |
+| class | [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) &lt;\_body\_&gt;<br>_Ground station on the surface of a celestial body, with sensors._  |
 
 
 

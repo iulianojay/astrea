@@ -17,12 +17,11 @@
 * `#include <mp-units/systems/si.h>`
 * `#include <math/interpolation.hpp>`
 * `#include <units/units.hpp>`
-* `#include <astro/frames/CartesianVector.hpp>`
-* `#include <astro/frames/FrameReference.hpp>`
-* `#include <astro/frames/frames.hpp>`
+* `#include <astro/frames/definitions.hpp>`
+* `#include <astro/frames/framework/CartesianVector.hpp>`
 * `#include <astro/platforms/thrusters/Thruster.hpp>`
 * `#include <astro/state/StateHistory.hpp>`
-* `#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>`
+* `#include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>`
 * `#include <astro/state/orbital_elements/OrbitalElements.hpp>`
 * `#include <astro/time/Date.hpp>`
 * `#include <astro/types/typedefs.hpp>`

@@ -15,14 +15,10 @@
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
+#include <astro/types/concepts.hpp>
 
 namespace astrea {
 namespace astro {
-
-template <typename T>
-concept HasGetName = requires(const T event) {
-    { event.get_name() } -> std::same_as<std::string>;
-};
 
 template <typename T>
 concept HasMeasureEvent = requires(const T event, const Time& time, const State& state, const Vehicle& vehicle) {
@@ -71,6 +67,8 @@ struct EventInnerBase {
     virtual const void* get_ptr() const = 0;
 
     virtual void* get_ptr() = 0;
+
+    virtual const std::type_info& type() const = 0;
 };
 
 template <typename T>
@@ -129,6 +127,8 @@ struct EventInner final : public EventInnerBase {
 
     void* get_ptr() final { return &_value; }
 
+    const std::type_info& type() const final { return typeid(T); }
+
     T _value; 
 };
 
@@ -138,8 +138,8 @@ class Event; // Forward declaration of the Event class
 
 template <typename T>
 concept IsGenericallyConstructableEvent = requires(T) {
+    requires !std::is_same<Event, remove_cv_ref<T>>::value;
     requires IsUserDefinedEvent<T>;
-    std::negation<std::is_same<Event, remove_cv_ref<T>>>::value;
 };
 
 
@@ -180,7 +180,14 @@ class Event {
     const T* extract() const noexcept
     {
         auto p = static_cast<const detail::EventInner<T>*>(ptr());
-        return p == nullptr ? nullptr : &(p->_value);
+        return ptr()->type() == typeid(T) ? &(p->_value) : nullptr;
+    }
+
+    template <IsGenericallyConstructableEvent T>
+    T* extract_mutable_reference() noexcept
+    {
+        auto p = static_cast<detail::EventInner<T>*>(ptr());
+        return ptr()->type() == typeid(T) ? &(p->_value) : nullptr;
     }
 
     Unitless measure_event(const Time& time, const State& state, const Vehicle& vehicle) const

@@ -12,8 +12,9 @@
 #pragma once
 
 #include <astro/astro.fwd.hpp>
-#include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
@@ -22,13 +23,32 @@ class EquationsOfMotion {
   public:
     EquationsOfMotion() = default;
 
+    EquationsOfMotion(const ForceModel& forces);
+
     virtual ~EquationsOfMotion() = default;
 
-    virtual OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const = 0;
+    StatePartial operator()(const State& state, const Vehicle& vehicle) const;
 
-    virtual StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const = 0;
+    virtual OrbitalElementPartials compute_dynamics(
+        const State& state,
+        const Vehicle& vehicle,
+        const ForceVector<frames::primary>& perts,
+        const ForceVector<frames::primary>& control
+    ) const = 0;
+
+    virtual AttitudePartials compute_kinematics(
+        const State& state,
+        const Vehicle& vehicle,
+        const TorqueVector<frames::primary>& perts,
+        const TorqueVector<frames::primary>& control
+    ) const;
+
+    virtual StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const;
 
     virtual constexpr std::size_t get_expected_set_id() const = 0;
+
+  protected:
+    const ForceModel* forces = nullptr; 
 };
 
 } // namespace astro

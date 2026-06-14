@@ -4,7 +4,7 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**state**](dir_cf1a4d8122645f8636e977da512a043c.md) **>** [**orbital\_elements**](dir_6eb62f1e639545772a8b9a71f7b1d0b7.md) **>** [**instances**](dir_2296e922a578ce2ef4a64c83384e553c.md) **>** [**Equinoctial.hpp**](Equinoctial_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**state**](dir_cf1a4d8122645f8636e977da512a043c.md) **>** [**orbital\_elements**](dir_6eb62f1e639545772a8b9a71f7b1d0b7.md) **>** [**Equinoctial.hpp**](Equinoctial_8hpp.md)
 
 [Go to the source code of this file](Equinoctial_8hpp_source.md)
 
@@ -14,6 +14,7 @@ _This file defines the Equinoctial class and its associated methods._ [More...](
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/types/typedefs.hpp>`
+* `#include <astro/state/orbital_elements/Equinoctial.ipp>`
 
 
 
@@ -39,8 +40,8 @@ _This file defines the Equinoctial class and its associated methods._ [More...](
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) <br>_The_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _class represents the equinoctial orbital elements._ |
-| class | [**EquinoctialPartial**](classastrea_1_1astro_1_1EquinoctialPartial.md) <br>_Class representing a partial derivative of an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
+| class | [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) &lt;\_frame\_&gt;<br>_The_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _class represents the equinoctial orbital elements._ |
+| class | [**EquinoctialPartial**](classastrea_1_1astro_1_1EquinoctialPartial.md) &lt;\_frame\_&gt;<br>_Class representing a partial derivative of an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
 
 
 
@@ -124,5 +125,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/state/orbital_elements/Equinoctial.hpp`
 

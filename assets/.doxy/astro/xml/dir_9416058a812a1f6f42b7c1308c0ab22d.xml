@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_9416058a812a1f6f42b7c1308c0ab22d" kind="dir">
+    <compoundname>astrea/astro/astro/time/clocks</compoundname>
+    <innerfile refid="BarycentricCoordinateTimeClock_8hpp">BarycentricCoordinateTimeClock.hpp</innerfile>
+    <innerfile refid="BarycentricDynamicalTimeClock_8hpp">BarycentricDynamicalTimeClock.hpp</innerfile>
+    <innerfile refid="GeocentricCoordinateTimeClock_8hpp">GeocentricCoordinateTimeClock.hpp</innerfile>
+    <innerfile refid="JulianDateClock_8hpp">JulianDateClock.hpp</innerfile>
+    <innerfile refid="TerrestrialTimeClock_8hpp">TerrestrialTimeClock.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/time/clocks/"/>
+  </compounddef>
+</doxygen>

@@ -1,49 +1,29 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="JplEphemerisTable_8cpp" kind="file" language="C++">
     <compoundname>JplEphemerisTable.cpp</compoundname>
-    <includes refid="JplEphemerisTable_8hpp" local="no">astro/systems/planetary_bodies/JplEphemerisTable.hpp</includes>
+    <includes refid="JplEphemerisTable_8hpp" local="no">astro/systems/celestial_bodies/JplEphemerisTable.hpp</includes>
     <includes local="no">stdexcept</includes>
     <incdepgraph>
-      <node id="10">
-        <label>stdexcept</label>
-      </node>
-      <node id="5">
-        <label>string</label>
-      </node>
-      <node id="8">
-        <label>astro/time/JulianDateClock.hpp</label>
-        <link refid="JulianDateClock_8hpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
       <node id="1">
-        <label>astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.cpp</label>
+        <label>astrea/astro/astro/systems/celestial_bodies/JplEphemerisTable.cpp</label>
         <link refid="JplEphemerisTable_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>iosfwd</label>
-      </node>
       <node id="2">
-        <label>astro/systems/planetary_bodies/JplEphemerisTable.hpp</label>
+        <label>astro/systems/celestial_bodies/JplEphemerisTable.hpp</label>
         <link refid="JplEphemerisTable_8hpp_source"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
       <node id="9">
-        <label>chrono</label>
-      </node>
-      <node id="6">
-        <label>mp-units/systems/si/chrono.h</label>
-      </node>
-      <node id="7">
-        <label>units/units.hpp</label>
+        <label>astro/systems/system_concepts.hpp</label>
+        <link refid="system__concepts_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
       </node>
       <node id="3">
         <label>astro/time/Date.hpp</label>
@@ -58,6 +38,107 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astro/time/clocks.hpp</label>
+        <link refid="clocks_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astro/time/clocks/BarycentricCoordinateTimeClock.hpp</label>
+        <link refid="BarycentricCoordinateTimeClock_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astro/time/clocks/BarycentricDynamicalTimeClock.hpp</label>
+        <link refid="BarycentricDynamicalTimeClock_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astro/time/clocks/GeocentricCoordinateTimeClock.hpp</label>
+        <link refid="GeocentricCoordinateTimeClock_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>astro/time/clocks/JulianDateClock.hpp</label>
+        <link refid="JulianDateClock_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>astro/time/clocks/TerrestrialTimeClock.hpp</label>
+        <link refid="TerrestrialTimeClock_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>chrono</label>
+      </node>
+      <node id="10">
+        <label>concepts</label>
+      </node>
+      <node id="5">
+        <label>iosfwd</label>
+      </node>
+      <node id="7">
+        <label>mp-units/systems/si/chrono.h</label>
+      </node>
+      <node id="13">
+        <label>numbers</label>
+      </node>
+      <node id="14">
+        <label>ratio</label>
+      </node>
+      <node id="19">
+        <label>stdexcept</label>
+      </node>
+      <node id="6">
+        <label>string</label>
+      </node>
+      <node id="8">
+        <label>units/units.hpp</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
@@ -80,7 +161,7 @@
 <codeline lineno="11"><highlight class="comment"><sp/>*<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with<sp/>Astrea.<sp/>If<sp/>not,<sp/>see<sp/>&lt;https://www.gnu.org/licenses/&gt;.</highlight></codeline>
 <codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/systems/planetary_bodies/JplEphemerisTable.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/systems/celestial_bodies/JplEphemerisTable.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Standard<sp/>Library<sp/>Includes</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -106,6 +187,6 @@
 <codeline lineno="37"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="38"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="astrea/astro/astro/systems/planetary_bodies/JplEphemerisTable.cpp"/>
+    <location file="astrea/astro/astro/systems/celestial_bodies/JplEphemerisTable.cpp"/>
   </compounddef>
 </doxygen>

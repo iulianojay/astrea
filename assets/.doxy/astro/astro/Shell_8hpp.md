@@ -13,10 +13,11 @@
 * `#include <string>`
 * `#include <vector>`
 * `#include <units/units.hpp>`
+* `#include <utilities/IdProvider.hpp>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/platforms/space/Plane.hpp>`
 * `#include <astro/propagation/numerical/Integrator.hpp>`
-* `#include <astro/state/orbital_elements/instances/Keplerian.hpp>`
+* `#include <astro/state/orbital_elements/Keplerian.hpp>`
 * `#include <astro/platforms/space/Shell.ipp>`
 
 
@@ -43,7 +44,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Shell**](classastrea_1_1astro_1_1Shell.md) &lt;class Spacecraft\_T&gt;<br>_A_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _is a collection of planes, each containing a set of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _. It is used to represent sub-constellations of satellites in orbit._ |
+| class | [**Shell**](classastrea_1_1astro_1_1Shell.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br>_A_ [_**Shell**_](classastrea_1_1astro_1_1Shell.md) _is a collection of planes, each containing a set of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _. It is used to represent sub-constellations of satellites in orbit._ |
 | class | [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) <br>_Iterator for iterating over all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Shell**_](classastrea_1_1astro_1_1Shell.md) _._ |
 
 

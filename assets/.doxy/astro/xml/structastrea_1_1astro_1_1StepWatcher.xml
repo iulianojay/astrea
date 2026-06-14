@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1StepWatcher" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::StepWatcher</compoundname>
+    <includes refid="StepWatcher_8hpp" local="no">StepWatcher.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1StepWatcher_1a951bce8ff73a4937e8f3aed244b0163c" prot="private" static="no" mutable="no">
+        <type>std::function&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;)&gt;</type>
+        <definition>std::function&lt;void(const Time&amp;, const State&amp;, const Vehicle&amp;)&gt; astrea::astro::StepWatcher::_func</definition>
+        <argsstring></argsstring>
+        <name>_func</name>
+        <qualifiedname>astrea::astro::StepWatcher::_func</qualifiedname>
+        <briefdescription>
+<para>Function to be called at each step of the integration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/numerical/StepWatcher.hpp" line="88" column="19" bodyfile="astrea/astro/astro/propagation/numerical/StepWatcher.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1StepWatcher_1ab484696b2aac8131a8ccdb10b23cec6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::StepWatcher::StepWatcher</definition>
+        <argsstring>()=default</argsstring>
+        <name>StepWatcher</name>
+        <qualifiedname>astrea::astro::StepWatcher::StepWatcher</qualifiedname>
+        <briefdescription>
+<para>Default constructor for <ref refid="structastrea_1_1astro_1_1StepWatcher" kindref="compound">StepWatcher</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/numerical/StepWatcher.hpp" line="36" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1StepWatcher_1a7ad640e5940c89341af1500dee1ca35e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref></type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>astrea::astro::StepWatcher::StepWatcher</definition>
+        <argsstring>(T &amp;&amp;func)</argsstring>
+        <name>StepWatcher</name>
+        <qualifiedname>astrea::astro::StepWatcher::StepWatcher</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref> &amp;&amp;</type>
+          <declname>func</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="structastrea_1_1astro_1_1StepWatcher" kindref="compound">StepWatcher</ref> that takes a function to be called at each step of the integration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>func</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The function to be called at each step of the integration. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/numerical/StepWatcher.hpp" line="44" column="5" bodyfile="astrea/astro/astro/propagation/numerical/StepWatcher.hpp" bodystart="44" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1StepWatcher_1adb152db67350704c6191f506dfb085ac" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::StepWatcher::operator()</definition>
+        <argsstring>(const Time &amp;time, const State &amp;state, const Vehicle &amp;vehicle) const</argsstring>
+        <name>operator()</name>
+        <qualifiedname>astrea::astro::StepWatcher::operator()</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <declname>vehicle</declname>
+        </param>
+        <briefdescription>
+<para>Call the stored function with the given time, state, and vehicle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current time of the integration step. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle at this integration step. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vehicle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vehicle being propagated. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/numerical/StepWatcher.hpp" line="82" column="10" bodyfile="astrea/astro/astro/propagation/numerical/StepWatcher.hpp" bodystart="82" bodyend="85"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Function wrapper class for watching the state of the integrator at each step. This can be used for plotting or logging the state during propagation. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/numerical/StepWatcher.hpp" line="31" column="1" bodyfile="astrea/astro/astro/propagation/numerical/StepWatcher.hpp" bodystart="31" bodyend="89"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1StepWatcher_1a951bce8ff73a4937e8f3aed244b0163c" prot="private" virt="non-virtual"><scope>astrea::astro::StepWatcher</scope><name>_func</name></member>
+      <member refid="structastrea_1_1astro_1_1StepWatcher_1adb152db67350704c6191f506dfb085ac" prot="public" virt="non-virtual"><scope>astrea::astro::StepWatcher</scope><name>operator()</name></member>
+      <member refid="structastrea_1_1astro_1_1StepWatcher_1ab484696b2aac8131a8ccdb10b23cec6f" prot="public" virt="non-virtual"><scope>astrea::astro::StepWatcher</scope><name>StepWatcher</name></member>
+      <member refid="structastrea_1_1astro_1_1StepWatcher_1a7ad640e5940c89341af1500dee1ca35e" prot="public" virt="non-virtual"><scope>astrea::astro::StepWatcher</scope><name>StepWatcher</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

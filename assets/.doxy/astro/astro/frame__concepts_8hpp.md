@@ -4,14 +4,13 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**frame\_concepts.hpp**](frame__concepts_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**framework**](dir_aa3952657448f7008c08b8ed45c303ac.md) **>** [**frame\_concepts.hpp**](frame__concepts_8hpp.md)
 
 [Go to the source code of this file](frame__concepts_8hpp_source.md)
 
 _Definitions for frame concepts and other compile-time utilities._ [More...](#detailed-description)
 
 * `#include <concepts>`
-* `#include <astro/astro.fwd.hpp>`
 
 
 
@@ -31,6 +30,7 @@ _Definitions for frame concepts and other compile-time utilities._ [More...](#de
 | ---: | :--- |
 | namespace | [**astrea**](namespaceastrea.md) <br> |
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
+| namespace | [**detail**](namespaceastrea_1_1astro_1_1detail.md) <br> |
 
 
 
@@ -116,5 +116,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/frame_concepts.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/framework/frame_concepts.hpp`
 

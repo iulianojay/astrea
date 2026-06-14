@@ -2,7 +2,7 @@
 
 # File Venus.hpp
 
-[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**planetary\_bodies**](dir_18001f99c0231f827e3b1298618599da.md) **>** [**Venus**](dir_c031715b0a158a554841f23d3696455e.md) **>** [**Venus.hpp**](Venus_8hpp.md)
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**celestial\_bodies**](dir_b988f8927672605e377af1c3b431ef9b.md) **>** [**Venus**](dir_8fa374767bd61918cc8bb3b53abef633.md) **>** [**Venus.hpp**](Venus_8hpp.md)
 
 [Go to the documentation of this file](Venus_8hpp.md)
 
@@ -11,72 +11,94 @@
 
 #pragma once
 
-#include <mp-units/systems/angular.h>
-#include <mp-units/systems/iau.h>
-#include <mp-units/systems/si.h>
+#include <map>
 
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/systems/CelestialBody.hpp>
-#include <astro/types/typedefs.hpp>
+#include <astro/systems/barycenters.hpp>
+
+#ifdef ASTREA_BUILD_VENUS_EPHEMERIS
+#include <ephemerides/Venus/VenusEphemerisTable.hpp>
+#endif // ASTREA_BUILD_VENUS_EPHEMERIS
 
 namespace astrea {
 namespace astro {
-namespace planetary_bodies {
 
-static const CelestialBodyParameters DEFAULT_VENUS_PARAMS{
-    .name          = "Venus",
-    .parent        = CelestialBodyId::SUN,
-    .type          = CelestialBodyType::PLANET,
-    .referenceDate = Date("2000-01-01 12:00:00"),
-    .mu = GravParam(324860.0 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
-    .mass              = Mass(4.87 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
-    .equitorialRadius  = Distance(6051.8 * mp_units::si::unit_symbols::km),
-    .polarRadius       = Distance(6051.8 * mp_units::si::unit_symbols::km),
-    .crashRadius       = Distance(6301.8 * mp_units::si::unit_symbols::km),
-    .sphereOfInfluence = Distance(0.061640255733634 * mp_units::iau::unit_symbols::au),
-    .j2                = Unitless(4.458e-6 * mp_units::one),
-    .j3                = Unitless(-0.0000025323e-6 * mp_units::one),
-    .axialTilt         = Angle(2.64 * mp_units::angular::unit_symbols::deg),
-    .rotationRate      = AngularRate(-1.481329081370229 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
-    .siderealPeriod    = Time(224.701 * mp_units::non_si::day),
-    .semimajorAxis     = Distance(0.72333566 * mp_units::iau::unit_symbols::au),
-    .eccentricity      = Unitless(0.00677672 * mp_units::one),
-    .inclination       = Angle(3.39467605 * mp_units::angular::unit_symbols::deg),
-    .rightAscension    = Angle(76.67984255 * mp_units::angular::unit_symbols::deg),
-    .longitudeOfPerigee     = Angle(131.60246718 * mp_units::angular::unit_symbols::deg),
-    .meanLongitude          = Angle(181.97909950 * mp_units::angular::unit_symbols::deg),
-    .semimajorAxisRate      = InterplanetaryVelocity(0.00000390 * mp_units::iau::unit_symbols::au / JulianCentury),
-    .eccentricityRate       = BodyUnitlessPerTime(-0.00004107 * mp_units::one / JulianCentury),
-    .inclinationRate        = BodyAngularRate(-0.00078890 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .rightAscensionRate     = BodyAngularRate(-0.27769418 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .longitudeOfPerigeeRate = BodyAngularRate(0.00268329 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .meanLongitudeRate      = BodyAngularRate(58517.81538729 * mp_units::angular::unit_symbols::deg / JulianCentury)
-};
+namespace planets {
 
-class Venus : public CelestialBody {
+inline constexpr struct Venus final : CelestialBody<"Venus", barycenters::SolarSystemBarycenter> {
+} Venus;
 
-  public:
-    constexpr Venus() :
-        CelestialBody(DEFAULT_VENUS_PARAMS)
-    {
-    }
+} // namespace planets
 
-    ~Venus() = default;
+template <>
+inline consteval CelestialBodyParameters get_celestial_body_parameters<planets::Venus>()
+{
+    using namespace mp_units;
+    using mp_units::angular::unit_symbols::deg;
+    using mp_units::iau::unit_symbols::au;
+    using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::kg;
+    using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::s;
 
-    Density find_atmospheric_density(const Date& date, const Distance& altitude) const override;
-
-    static constexpr CelestialBodyId get_id() { return CelestialBodyId::VENUS; };
+    return { .type                   = CelestialBodyType::PLANET,
+             .referenceDate          = Date(J2000),
+             .mu                     = GravParam(324860.0 * pow<3>(km) / pow<2>(s)),
+             .mass                   = Mass(4.87 * (mag_power<10, 24> * kg)),
+             .equitorialRadius       = Distance(6051.8 * km),
+             .polarRadius            = Distance(6051.8 * km),
+             .crashRadius            = Distance(6301.8 * km),
+             .sphereOfInfluence      = Distance(0.061640255733634 * au),
+             .j2                     = Unitless(4.458e-6 * one),
+             .j3                     = Unitless(-0.0000025323e-6 * one),
+             .axialTilt              = Angle(2.64 * deg),
+             .rotationRate           = AngularVelocity(-1.481329081370229 * deg / day),
+             .siderealPeriod         = Time(224.701 * day),
+             .semimajorAxis          = Distance(0.72333566 * au),
+             .eccentricity           = Unitless(0.00677672 * one),
+             .inclination            = Angle(3.39467605 * deg),
+             .rightAscension         = Angle(76.67984255 * deg),
+             .longitudeOfPerigee     = Angle(131.60246718 * deg),
+             .meanLongitude          = Angle(181.97909950 * deg),
+             .semimajorAxisRate      = InterplanetaryVelocity(0.00000390 * au / JulianCentury),
+             .eccentricityRate       = BodyUnitlessPerTime(-0.00004107 * one / JulianCentury),
+             .inclinationRate        = BodyAngularVelocity(-0.00078890 * deg / JulianCentury),
+             .rightAscensionRate     = BodyAngularVelocity(-0.27769418 * deg / JulianCentury),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(0.00268329 * deg / JulianCentury),
+             .meanLongitudeRate      = BodyAngularVelocity(58517.81538729 * deg / JulianCentury) };
+}
 
 #ifdef ASTREA_BUILD_VENUS_EPHEMERIS
 
-    RadiusVector<frames::solar_system_barycenter::icrf> get_position_at(const Date& date) const;
+template <>
+inline constexpr CartesianVector<Distance, get_parent_frame(planets::Venus, axes::icrf)>
+    get_position_at<planets::Venus>(const Date& date)
+{
+    constexpr auto frame = get_parent_frame(planets::Venus, axes::icrf);
+    return get_position_at_impl<ephemerides::VenusEphemerisTable, frame>(date);
+}
+
+template <>
+inline constexpr CartesianVector<Velocity, get_parent_frame(planets::Venus, axes::icrf)>
+    get_velocity_at<planets::Venus>(const Date& date)
+{
+    constexpr auto frame = get_parent_frame(planets::Venus, axes::icrf);
+    return get_velocity_at_impl<ephemerides::VenusEphemerisTable, frame>(date);
+}
+
+template <>
+inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Venus, axes::icrf)>
+    get_acceleration_at<planets::Venus>(const Date& date)
+{
+    constexpr auto frame = get_parent_frame(planets::Venus, axes::icrf);
+    return get_acceleration_at_impl<ephemerides::VenusEphemerisTable, frame>(date);
+}
 
 #endif // ASTREA_BUILD_VENUS_EPHEMERIS
-};
 
-} // namespace planetary_bodies
 } // namespace astro
 } // namespace astrea
 ```

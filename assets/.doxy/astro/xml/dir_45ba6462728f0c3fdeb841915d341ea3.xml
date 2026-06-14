@@ -1,17 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_45ba6462728f0c3fdeb841915d341ea3" kind="dir">
     <compoundname>astrea/astro/astro/frames</compoundname>
-    <innerdir refid="dir_a85615e9ad779999123e94bfb15c8545">astrea/astro/astro/frames/instances</innerdir>
-    <innerdir refid="dir_6f58486cdc039e35eca8cf5d1aadadc3">astrea/astro/astro/frames/types</innerdir>
-    <innerfile refid="CartesianVector_8hpp">CartesianVector.hpp</innerfile>
-    <innerfile refid="dynamic__frames_8hpp">dynamic_frames.hpp</innerfile>
-    <innerfile refid="Frame_8hpp">Frame.hpp</innerfile>
-    <innerfile refid="frame__concepts_8hpp">frame_concepts.hpp</innerfile>
-    <innerfile refid="FrameReference_8cpp">FrameReference.cpp</innerfile>
-    <innerfile refid="FrameReference_8hpp">FrameReference.hpp</innerfile>
-    <innerfile refid="frames_8hpp">frames.hpp</innerfile>
-    <innerfile refid="transformations_8hpp">transformations.hpp</innerfile>
+    <innerdir refid="dir_0fbce91be2e6463cb25c5b2d70c0c29c">astrea/astro/astro/frames/definitions</innerdir>
+    <innerdir refid="dir_aa3952657448f7008c08b8ed45c303ac">astrea/astro/astro/frames/framework</innerdir>
+    <innerfile refid="definitions_8hpp">definitions.hpp</innerfile>
+    <innerfile refid="framework_8hpp">framework.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1Perturbation" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::Perturbation</compoundname>
+    <includes refid="Perturbation_8hpp" local="no">Perturbation.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1Perturbation_1a6a0c7280c30a6d99f94537871d7b1102" prot="public" static="no" mutable="no">
+        <type><ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt;</type>
+        <definition>ForceVector&lt;frames::primary&gt; astrea::astro::Perturbation::force</definition>
+        <argsstring></argsstring>
+        <name>force</name>
+        <qualifiedname>astrea::astro::Perturbation::force</qualifiedname>
+        <initializer>= { 0.0 * mp_units::si::unit_symbols::N }</initializer>
+        <briefdescription>
+<para>The computed force vector due to the perturbing force. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/Perturbation.hpp" line="37" column="17" bodyfile="astrea/astro/astro/propagation/force_models/Perturbation.hpp" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1Perturbation_1abdd6fe7c18e8719240445a8ffe6b3105" prot="public" static="no" mutable="no">
+        <type><ref refid="typedefs_8hpp_1a1e793f0e594ba124a88f5c26e1c18930" kindref="member">TorqueVector</ref>&lt; frames::primary &gt;</type>
+        <definition>TorqueVector&lt;frames::primary&gt; astrea::astro::Perturbation::torque</definition>
+        <argsstring></argsstring>
+        <name>torque</name>
+        <qualifiedname>astrea::astro::Perturbation::torque</qualifiedname>
+        <initializer>= { 0.0 * mp_units::si::unit_symbols::N * mp_units::si::unit_symbols::m }</initializer>
+        <briefdescription>
+<para>The computed torque vector due to the perturbing force. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/force_models/Perturbation.hpp" line="38" column="18" bodyfile="astrea/astro/astro/propagation/force_models/Perturbation.hpp" bodystart="38" bodyend="38"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Struct to hold the results of a perturbation force computation, including both acceleration and torque. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::CartesianVector&lt; frames::primary &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CartesianVector"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::Perturbation</label>
+        <link refid="structastrea_1_1astro_1_1Perturbation"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>force</edgelabel>
+          <edgelabel>torque</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/propagation/force_models/Perturbation.hpp" line="36" column="1" bodyfile="astrea/astro/astro/propagation/force_models/Perturbation.hpp" bodystart="36" bodyend="39"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1Perturbation_1a6a0c7280c30a6d99f94537871d7b1102" prot="public" virt="non-virtual"><scope>astrea::astro::Perturbation</scope><name>force</name></member>
+      <member refid="structastrea_1_1astro_1_1Perturbation_1abdd6fe7c18e8719240445a8ffe6b3105" prot="public" virt="non-virtual"><scope>astrea::astro::Perturbation</scope><name>torque</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

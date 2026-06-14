@@ -1,18 +1,26 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="snapshot_8macros_8hpp" kind="file" language="C++">
     <compoundname>snapshot.macros.hpp</compoundname>
     <includedby refid="Database_8hpp" local="no">astrea/snapshot/snapshot/database/Database.hpp</includedby>
     <invincdepgraph>
-      <node id="3">
-        <label>astrea/snapshot/snapshot/snapshot.hpp</label>
-        <link refid="snapshot_8hpp"/>
-      </node>
       <node id="2">
         <label>astrea/snapshot/snapshot/database/Database.hpp</label>
         <link refid="Database_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/snapshot/snapshot/database/Database.ipp</label>
+        <link refid="Database_8ipp_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea/snapshot/snapshot/snapshot.hpp</label>
+        <link refid="snapshot_8hpp"/>
       </node>
       <node id="1">
         <label>astrea/snapshot/snapshot/snapshot.macros.hpp</label>
@@ -21,7 +29,7 @@
         </childnode>
       </node>
     </invincdepgraph>
-      <sectiondef kind="define">
+    <sectiondef kind="define">
       <memberdef kind="define" id="snapshot_8macros_8hpp_1a0c8cb98b96340e4d86fb6b1c87e99c06" prot="public" static="no">
         <name>_SNAPSHOT_ROOT_</name>
         <briefdescription>
@@ -32,7 +40,7 @@
         </inbodydescription>
         <location file="astrea/snapshot/snapshot/snapshot.macros.hpp" line="23" column="9" bodyfile="astrea/snapshot/snapshot/snapshot.macros.hpp" bodystart="23" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>Macros for the snapshot module. </para>
     </briefdescription>
@@ -53,7 +61,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_SNAPSHOT_ROOT_</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_SNAPSHOT_ROOT_</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal">static_assert(</highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;_SNAPSHOT_ROOT_<sp/>environment<sp/>variable<sp/>not<sp/>set<sp/>or<sp/>passed<sp/>to<sp/>compiler.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(</highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;_SNAPSHOT_ROOT_<sp/>environment<sp/>variable<sp/>not<sp/>set<sp/>or<sp/>passed<sp/>to<sp/>compiler.&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_SNAPSHOT_ROOT_</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>

@@ -18,8 +18,8 @@
 * `#include <astro/platforms/space/Constellation.hpp>`
 * `#include <astro/state/State.hpp>`
 * `#include <astro/state/StateHistory.hpp>`
-* `#include <astro/state/orbital_elements/instances/Cartesian.hpp>`
-* `#include <astro/systems/AstrodynamicsSystem.hpp>`
+* `#include <astro/state/orbital_elements/Cartesian.hpp>`
+* `#include <astro/systems/system_utilities.hpp>`
 * `#include <astro/time/Date.hpp>`
 * `#include <astro/utilities/conversions.hpp>`
 * `#include <trace/analysis/PositionCache.hpp>`

@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="structastrea_1_1trace_1_1IdPair" kind="struct" language="C++" prot="public">
     <compoundname>astrea::trace::IdPair</compoundname>
     <includes refid="IdPair_8hpp" local="no">IdPair.hpp</includes>
-      <sectiondef kind="public-attrib">
+    <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structastrea_1_1trace_1_1IdPair_1a8fc800adbde5491c18ddbb7a34e5b0bb" prot="public" static="no" mutable="no">
         <type>std::size_t</type>
         <definition>std::size_t astrea::trace::IdPair::sender</definition>
         <argsstring></argsstring>
         <name>sender</name>
+        <qualifiedname>astrea::trace::IdPair::sender</qualifiedname>
         <briefdescription>
 <para>&lt; The ID of the sender. </para>
         </briefdescription>
@@ -23,6 +24,7 @@
         <definition>std::size_t astrea::trace::IdPair::receiver</definition>
         <argsstring></argsstring>
         <name>receiver</name>
+        <qualifiedname>astrea::trace::IdPair::receiver</qualifiedname>
         <briefdescription>
 <para>The ID of the receiver. </para>
         </briefdescription>
@@ -32,13 +34,14 @@
         </inbodydescription>
         <location file="astrea/trace/trace/types/IdPair.hpp" line="33" column="17" bodyfile="astrea/trace/trace/types/IdPair.hpp" bodystart="33" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="structastrea_1_1trace_1_1IdPair_1a53ccca170038a290d837982f1734bcf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::IdPair::IdPair</definition>
         <argsstring>()=default</argsstring>
         <name>IdPair</name>
+        <qualifiedname>astrea::trace::IdPair::IdPair</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>. </para>
         </briefdescription>
@@ -53,6 +56,7 @@
         <definition>astrea::trace::IdPair::IdPair</definition>
         <argsstring>(std::size_t sender, std::size_t receiver)</argsstring>
         <name>IdPair</name>
+        <qualifiedname>astrea::trace::IdPair::IdPair</qualifiedname>
         <param>
           <type>std::size_t</type>
           <declname>sender</declname>
@@ -93,6 +97,7 @@
         <definition>astrea::trace::IdPair::IdPair</definition>
         <argsstring>(const IdPair &amp;other)</argsstring>
         <name>IdPair</name>
+        <qualifiedname>astrea::trace::IdPair::IdPair</qualifiedname>
         <param>
           <type>const <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref> &amp;</type>
           <declname>other</declname>
@@ -121,6 +126,7 @@
         <definition>astrea::trace::IdPair::~IdPair</definition>
         <argsstring>()=default</argsstring>
         <name>~IdPair</name>
+        <qualifiedname>astrea::trace::IdPair::~IdPair</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref>. </para>
         </briefdescription>
@@ -135,6 +141,7 @@
         <definition>bool astrea::trace::IdPair::operator==</definition>
         <argsstring>(const IdPair &amp;other) const</argsstring>
         <name>operator==</name>
+        <qualifiedname>astrea::trace::IdPair::operator==</qualifiedname>
         <param>
           <type>const <ref refid="structastrea_1_1trace_1_1IdPair" kindref="compound">IdPair</ref> &amp;</type>
           <declname>other</declname>
@@ -160,7 +167,7 @@
         </inbodydescription>
         <location file="astrea/trace/trace/types/IdPair.hpp" line="71" column="10" bodyfile="astrea/trace/trace/types/IdPair.hpp" bodystart="71" bodyend="71"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>Represents a pair of IDs for sender and receiver. </para>
     </briefdescription>

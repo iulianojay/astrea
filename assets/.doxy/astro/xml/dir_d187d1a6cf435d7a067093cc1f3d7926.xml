@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_d187d1a6cf435d7a067093cc1f3d7926" kind="dir">
+    <compoundname>astrea/astro/astro/state/attitude</compoundname>
+    <innerfile refid="AngularVelocities_8hpp">AngularVelocities.hpp</innerfile>
+    <innerfile refid="Attitude_8cpp">Attitude.cpp</innerfile>
+    <innerfile refid="Attitude_8hpp">Attitude.hpp</innerfile>
+    <innerfile refid="EulerAngles_8hpp">EulerAngles.hpp</innerfile>
+    <innerfile refid="EulerAngles_8ipp">EulerAngles.ipp</innerfile>
+    <innerfile refid="Quaternion_8hpp">Quaternion.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/attitude/"/>
+  </compounddef>
+</doxygen>

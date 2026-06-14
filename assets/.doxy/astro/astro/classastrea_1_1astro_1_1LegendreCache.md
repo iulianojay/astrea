@@ -2,6 +2,8 @@
 
 # Class astrea::astro::LegendreCache
 
+**template &lt;IsCelestialBody [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_body\_, std::size\_t \_degree\_, std::size\_t \_order\_&gt;**
+
 
 
 [**ClassList**](annotated.md) **>** [**astrea**](namespaceastrea.md) **>** [**astro**](namespaceastrea_1_1astro.md) **>** [**LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md)
@@ -51,11 +53,9 @@
 
 | Type | Name |
 | ---: | :--- |
-|   | [**LegendreCache**](#function-legendrecache-12) () = default<br>_Default constructor for_ [_**LegendreCache**_](classastrea_1_1astro_1_1LegendreCache.md) _._ |
-|   | [**LegendreCache**](#function-legendrecache-22) (const [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & sys, const std::size\_t & degree, const std::size\_t & order) <br>_Builds the cache for Legendre polynomials and coefficients._  |
-|  Unitless | [**get\_cosine\_coefficient**](#function-get_cosine_coefficient) (const std::size\_t & n, const std::size\_t & m) const<br>_Gets the cosine coefficient for given n and m._  |
-|  Unitless | [**get\_normalizing\_coefficient**](#function-get_normalizing_coefficient) (const std::size\_t & n, const std::size\_t & m) const<br>_Gets the normalizing coefficient for given n and m._  |
-|  Unitless | [**get\_sine\_coefficient**](#function-get_sine_coefficient) (const std::size\_t & n, const std::size\_t & m) const<br>_Gets the sine coefficient for given n and m._  |
+|   | [**LegendreCache**](#function-legendrecache) () <br>_Builds the cache for Legendre polynomials and coefficients._  |
+|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_cosine\_coefficient**](#function-get_cosine_coefficient) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & n, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & m) const<br>_Gets the cosine coefficient for given n and m._  |
+|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_sine\_coefficient**](#function-get_sine_coefficient) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & n, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::size\_t & m) const<br>_Gets the sine coefficient for given n and m._  |
 |   | [**~LegendreCache**](#function-legendrecache) () = default<br>_Default destructor for_ [_**LegendreCache**_](classastrea_1_1astro_1_1LegendreCache.md) _._ |
 
 
@@ -90,29 +90,11 @@
 
 
 
-### function LegendreCache [1/2]
-
-_Default constructor for_ [_**LegendreCache**_](classastrea_1_1astro_1_1LegendreCache.md) _._
-```C++
-astrea::astro::LegendreCache::LegendreCache () = default
-```
-
-
-
-
-<hr>
-
-
-
-### function LegendreCache [2/2]
+### function LegendreCache 
 
 _Builds the cache for Legendre polynomials and coefficients._ 
 ```C++
-astrea::astro::LegendreCache::LegendreCache (
-    const AstrodynamicsSystem & sys,
-    const std::size_t & degree,
-    const std::size_t & order
-) 
+astrea::astro::LegendreCache::LegendreCache () 
 ```
 
 
@@ -122,7 +104,6 @@ astrea::astro::LegendreCache::LegendreCache (
 **Parameters:**
 
 
-* `sys` Astrodynamics system containing celestial body data 
 * `degree` Degree of the spherical harmonics 
 * `order` Order of the spherical harmonics 
 
@@ -160,42 +141,6 @@ Unitless astrea::astro::LegendreCache::get_cosine_coefficient (
 **Returns:**
 
 Unitless The value of the cosine coefficient Cnm 
-
-
-
-
-
-        
-
-<hr>
-
-
-
-### function get\_normalizing\_coefficient 
-
-_Gets the normalizing coefficient for given n and m._ 
-```C++
-Unitless astrea::astro::LegendreCache::get_normalizing_coefficient (
-    const std::size_t & n,
-    const std::size_t & m
-) const
-```
-
-
-
-
-
-**Parameters:**
-
-
-* `n` Degree of the polynomial 
-* `m` Order of the polynomial 
-
-
-
-**Returns:**
-
-Unitless The value of the normalizing coefficient Nnm 
 
 
 

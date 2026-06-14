@@ -40,6 +40,7 @@ _Custom units for astrea project._ [More...](#detailed-description)
 | ---: | :--- |
 | struct | [**EarthRadii**](structastrea_1_1EarthRadii.md) <br>_Definition for Earth Radii as 6378 km._  |
 | struct | [**JulianCentury**](structastrea_1_1JulianCentury.md) <br>_Definition for a Julian Century as 36525 days._  |
+| struct | [**SolarFluxUnits**](structastrea_1_1SolarFluxUnits.md) <br>_Definition for Solar Flux Units as 1e-22 W / (m^2 \* Hz)._  |
 
 
 

@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -178,6 +178,53 @@ You're not viewing the latest version.
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
     
     
       <div class="md-header__source">
@@ -438,8 +485,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
     
     
     
@@ -490,34 +535,6 @@ You're not viewing the latest version.
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting_started/about/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    About Astrea
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -699,10 +716,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
-        
-      
     
     
     
@@ -781,34 +794,6 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/strongly_typed_frames/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Strongly Typed Frames
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../examples/fundamentals/time_systems/" class="md-nav__link">
         
   
@@ -864,34 +849,6 @@ You're not viewing the latest version.
   
   
   
-    <li class="md-nav__item">
-      <a href="../../examples/fundamentals/astrodynamic_systems/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Astrodynamic Systems
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -918,10 +875,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
             
   
   
@@ -939,8 +896,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1097,7 +1054,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/vehicles.md" class="md-nav__link">
+      <a href="../../examples/fundamentals/propagation/vehicles/" class="md-nav__link">
         
   
   
@@ -1152,10 +1109,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
             
   
   
@@ -1173,8 +1130,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_7">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1191,14 +1148,14 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/frames/strongly_typed_frames/" class="md-nav__link">
+      <a href="../../examples/fundamentals/frames/introduction/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Strongly Typed Frames
+    Introduction to Strongly Typed Frames
   
 
     
@@ -1967,6 +1924,17 @@ You're not viewing the latest version.
     <span class="md-ellipsis">
       
         a
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b
       
     </span>
   </a>
@@ -6578,24 +6546,77 @@ You're not viewing the latest version.
 <h1 id="class-index">Class Index<a class="headerlink" href="#class-index" title="Permanent link">&para;</a></h1>
 <h2 id="a">a<a class="headerlink" href="#a" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../classastrea_1_1astro_1_1AstrodynamicsSystem/"><strong>AstrodynamicsSystem</strong></a>
+<li><a href="../classastrea_1_1astro_1_1AngularAccelerations/"><strong>AngularAccelerations</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1AngularVelocities/"><strong>AngularVelocities</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1apply__nttp__template/"><strong>apply_nttp_template</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1apply__nttp__template_3_01T_00_01std_1_1tuple_3_01Frames_8_8_8_01_4_01_4/"><strong>apply_nttp_template&lt; T, std::tuple&lt; Frames... &gt; &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1apply__template/"><strong>apply_template</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1apply__template_3_01T_00_01std_1_1tuple_3_01Frames_8_8_8_01_4_01_4/"><strong>apply_template&lt; T, std::tuple&lt; Frames... &gt; &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1AtmosphericForce/"><strong>AtmosphericForce</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1Attitude/"><strong>Attitude</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1AttitudePartials/"><strong>AttitudePartials</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1Axis/"><strong>Axis</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1Axis_3_01__name___01_4/"><strong>Axis&lt; _name_ &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4/"><strong>Axis&lt; _name_, _parent_ &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1AxisBase/"><strong>AxisBase</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
+</ul>
+<h2 id="b">b<a class="headerlink" href="#b" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../structastrea_1_1astro_1_1Barycenter/"><strong>Barycenter</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1Barycenter_3_01__name___01_4/"><strong>Barycenter&lt; _name_ &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1Barycenter_3_01__name___00_01__parent___01_4/"><strong>Barycenter&lt; _name_, _parent_ &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1BarycenterBase/"><strong>BarycenterBase</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1BarycentricCoordinateTimeClock/"><strong>BarycentricCoordinateTimeClock</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1BarycentricDynamicalTimeClock/"><strong>BarycentricDynamicalTimeClock</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1planets_1_1BatesProfileParams/"><strong>BatesProfileParams</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1dynamic_1_1body/"><strong>body</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1dynamic/"><strong>astrea::astro::frames::dynamic</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1BodyFixedFrame/"><strong>BodyFixedFrame</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1BodyFixedFrameBase/"><strong>BodyFixedFrameBase</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
 </ul>
 <h2 id="c">c<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Callisto/"><strong>Callisto</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1moons_1_1Callisto/"><strong>Callisto</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1moons/"><strong>astrea::astro::moons</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1callisto_1_1callisto__fixed/"><strong>callisto_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1callisto/"><strong>astrea::astro::frames::callisto</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1Cartesian/"><strong>Cartesian</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1CartesianPartial/"><strong>CartesianPartial</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>
+<li><a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1CelestialBody/"><strong>CelestialBody</strong></a>
+<li><a href="../structastrea_1_1astro_1_1CelestialBody/"><strong>CelestialBody</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1CelestialBodyBase/"><strong>CelestialBodyBase</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
 <li><a href="../structastrea_1_1astro_1_1CelestialBodyParameters/"><strong>CelestialBodyParameters</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1CelestialBodyTypePack/"><strong>CelestialBodyTypePack</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem/"><strong>CircularRestrictedThreeBodyProblem</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1Constellation/"><strong>Constellation</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
@@ -6608,17 +6629,45 @@ You're not viewing the latest version.
 <ul>
 <li><a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Deimos/"><strong>Deimos</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1moons_1_1Deimos/"><strong>Deimos</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1moons/"><strong>astrea::astro::moons</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1deimos_1_1deimos__fixed/"><strong>deimos_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1deimos/"><strong>astrea::astro::frames::deimos</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1Deorbit/"><strong>Deorbit</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>DirectionCosineMatrix</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1DirectionCosineMatrixAccel/"><strong>DirectionCosineMatrixAccel</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1DirectionCosineMatrixRate/"><strong>DirectionCosineMatrixRate</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1DynamicAxis/"><strong>DynamicAxis</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1DynamicFrame/"><strong>DynamicFrame</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1DynamicOrigin/"><strong>DynamicOrigin</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 </ul>
 <h2 id="e">e<a class="headerlink" href="#e" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Earth/"><strong>Earth</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1frames_1_1EastNorthUp/"><strong>EastNorthUp</strong></a>
+<li><a href="../structastrea_1_1astro_1_1planets_1_1Earth/"><strong>Earth</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed/"><strong>earth_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1earth/"><strong>astrea::astro::frames::earth</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1barycenters_1_1EarthMoonBarycenter/"><strong>EarthMoonBarycenter</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1barycenters/"><strong>astrea::astro::barycenters</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1planets_1_1EarthParameters/"><strong>EarthParameters</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1barycenters_1_1EarthSunBarycenter/"><strong>EarthSunBarycenter</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1barycenters/"><strong>astrea::astro::barycenters</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1EastNorthUp/"><strong>EastNorthUp</strong></a>
 (<a href="../namespaceastrea_1_1astro_1_1frames/"><strong>astrea::astro::frames</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1EastNorthUpTag/"><strong>EastNorthUpTag</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames/"><strong>astrea::astro::frames</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1earth__moon__barycenter_1_1ems/"><strong>ems</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1earth__moon__barycenter/"><strong>astrea::astro::frames::earth_moon_barycenter</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1EquationsOfMotion/"><strong>EquationsOfMotion</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1Equinoctial/"><strong>Equinoctial</strong></a>
@@ -6627,8 +6676,14 @@ You're not viewing the latest version.
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1EquinoctialVop/"><strong>EquinoctialVop</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Europa/"><strong>Europa</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1earth__sun__barycenter_1_1ess/"><strong>ess</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1earth__sun__barycenter/"><strong>astrea::astro::frames::earth_sun_barycenter</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1EulerAngles/"><strong>EulerAngles</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1moons_1_1Europa/"><strong>Europa</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1moons/"><strong>astrea::astro::moons</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1europa_1_1europa__fixed/"><strong>europa_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1europa/"><strong>astrea::astro::frames::europa</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1Event/"><strong>Event</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1EventDetector/"><strong>EventDetector</strong></a>
@@ -6638,63 +6693,229 @@ You're not viewing the latest version.
 <li><a href="../structastrea_1_1astro_1_1detail_1_1EventInnerBase/"><strong>EventInnerBase</strong></a>
 (<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
 <li><a href="../structastrea_1_1astro_1_1EventDetector_1_1EventTracker/"><strong>EventTracker</strong></a></li>
+<li><a href="../structastrea_1_1astro_1_1ExtraRegisteredFrames/"><strong>ExtraRegisteredFrames</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 </ul>
 <h2 id="f">f<a class="headerlink" href="#f" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../classastrea_1_1astro_1_1Force/"><strong>Force</strong></a>
+<li><a href="../structastrea_1_1astro_1_1FixedOffsetAxis/"><strong>FixedOffsetAxis</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1FixedOffsetFrame/"><strong>FixedOffsetFrame</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__phi___00_01__theta___00_01__psi_9e091a834f5483531831878cbc7beda5/"><strong>FixedOffsetFrame&lt; _parent_, _phi_, _theta_, _psi_, _sequence_, Args... &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__x___00_01__y___00_01__z___00_01_3721297a9a90e06cc0beab0e7a99da8d/"><strong>FixedOffsetFrame&lt; _parent_, _x_, _y_, _z_, _phi_, _theta_, _psi_, _sequence_, Args... &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__x___00_01__y___00_01__z___00_01Args_8_8_8_01_4/"><strong>FixedOffsetFrame&lt; _parent_, _x_, _y_, _z_, Args... &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1FixedOffsetOrigin/"><strong>FixedOffsetOrigin</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1ForceModel/"><strong>ForceModel</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../structastrea_1_1astro_1_1Frame/"><strong>Frame</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1FrameReference/"><strong>FrameReference</strong></a>
+<li><a href="../structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___01_4/"><strong>Frame&lt; _name_, _origin_, _axis_ &gt;</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___00_01__parent___01_4/"><strong>Frame&lt; _name_, _origin_, _axis_, _parent_ &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1FrameBase/"><strong>FrameBase</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
 </ul>
 <h2 id="g">g<a class="headerlink" href="#g" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Ganymede/"><strong>Ganymede</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1moons_1_1Ganymede/"><strong>Ganymede</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1moons/"><strong>astrea::astro::moons</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1ganymede_1_1ganymede__fixed/"><strong>ganymede_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1ganymede/"><strong>astrea::astro::frames::ganymede</strong></a>)</li>
 <li><a href="../structastrea_1_1astro_1_1GeneralPerturbations/"><strong>GeneralPerturbations</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1Geocentric/"><strong>Geocentric</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1GeocentricAxes/"><strong>GeocentricAxes</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1GeocentricCoordinateTimeClock/"><strong>GeocentricCoordinateTimeClock</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1Geodetic/"><strong>Geodetic</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 </ul>
 <h2 id="h">h<a class="headerlink" href="#h" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../structstd_1_1hash_3_01astrea_1_1astro_1_1CelestialBody_01_4/"><strong>hash&lt; astrea::astro::CelestialBody &gt;</strong></a>
-(<a href="../namespacestd/"><strong>std</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere/"><strong>HarrisPriesterAtmosphere</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
 <li><a href="../structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4/"><strong>hash&lt; std::tuple&lt; TT... &gt; &gt;</strong></a>
 (<a href="../namespacestd/"><strong>std</strong></a>)</li>
 </ul>
 <h2 id="i">i<a class="headerlink" href="#i" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Iapetus/"><strong>Iapetus</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1moons_1_1Iapetus/"><strong>Iapetus</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1moons/"><strong>astrea::astro::moons</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1iapetus_1_1iapetus__fixed/"><strong>iapetus_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1iapetus/"><strong>astrea::astro::frames::iapetus</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1axes_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1axes/"><strong>astrea::astro::axes</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1callisto_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1callisto/"><strong>astrea::astro::frames::callisto</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1deimos_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1deimos/"><strong>astrea::astro::frames::deimos</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1earth_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1earth/"><strong>astrea::astro::frames::earth</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1earth__barycenter_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1earth__barycenter/"><strong>astrea::astro::frames::earth_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1europa_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1europa/"><strong>astrea::astro::frames::europa</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1ganymede_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1ganymede/"><strong>astrea::astro::frames::ganymede</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1iapetus_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1iapetus/"><strong>astrea::astro::frames::iapetus</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1io_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1io/"><strong>astrea::astro::frames::io</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1jupiter_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1jupiter/"><strong>astrea::astro::frames::jupiter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1jupiter__barycenter_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1jupiter__barycenter/"><strong>astrea::astro::frames::jupiter_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1mars_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1mars/"><strong>astrea::astro::frames::mars</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1mars__barycenter_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1mars__barycenter/"><strong>astrea::astro::frames::mars_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1mercury_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1mercury/"><strong>astrea::astro::frames::mercury</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1mercury__barycenter_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1mercury__barycenter/"><strong>astrea::astro::frames::mercury_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1moon_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1moon/"><strong>astrea::astro::frames::moon</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1neptune_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1neptune/"><strong>astrea::astro::frames::neptune</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1neptune__barycenter_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1neptune__barycenter/"><strong>astrea::astro::frames::neptune_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1oberon_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1oberon/"><strong>astrea::astro::frames::oberon</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1phobos_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1phobos/"><strong>astrea::astro::frames::phobos</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1rhea_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1rhea/"><strong>astrea::astro::frames::rhea</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1saturn_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1saturn/"><strong>astrea::astro::frames::saturn</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1saturn__barycenter_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1saturn__barycenter/"><strong>astrea::astro::frames::saturn_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1solar__system__barycenter_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1solar__system__barycenter/"><strong>astrea::astro::frames::solar_system_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1sun_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1sun/"><strong>astrea::astro::frames::sun</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1titan_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1titan/"><strong>astrea::astro::frames::titan</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1titania_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1titania/"><strong>astrea::astro::frames::titania</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1triton_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1triton/"><strong>astrea::astro::frames::triton</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1uranus_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1uranus/"><strong>astrea::astro::frames::uranus</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1uranus__barycenter_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1uranus__barycenter/"><strong>astrea::astro::frames::uranus_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1venus_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1venus/"><strong>astrea::astro::frames::venus</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1venus__barycenter_1_1icrf/"><strong>icrf</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1venus__barycenter/"><strong>astrea::astro::frames::venus_barycenter</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1ImpulsiveBurn/"><strong>ImpulsiveBurn</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1InertiaTensor/"><strong>InertiaTensor</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1Integrator/"><strong>Integrator</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1IntegratorSettings/"><strong>IntegratorSettings</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1Interval/"><strong>Interval</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Io/"><strong>Io</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
-<li><a href="../structastrea_1_1astro_1_1is__specialization/"><strong>is_specialization</strong></a>
+<li><a href="../structastrea_1_1astro_1_1moons_1_1Io/"><strong>Io</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1moons/"><strong>astrea::astro::moons</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1io_1_1io__fixed/"><strong>io_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1io/"><strong>astrea::astro::frames::io</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1is__cartesian__vector/"><strong>is_cartesian_vector</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
-<li><a href="../structastrea_1_1astro_1_1is__specialization_3_01Template_3_01Args_8_8_8_01_4_00_01Template_01_4/"><strong>is_specialization&lt; Template&lt; Args... &gt;, Template &gt;</strong></a>
+<li><a href="../structastrea_1_1astro_1_1is__cartesian__vector_3_01CartesianVector_3_01Value__T_00_01frame_01_4_01_4/"><strong>is_cartesian_vector&lt; CartesianVector&lt; Value_T, frame &gt; &gt;</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 </ul>
 <h2 id="j">j<a class="headerlink" href="#j" title="Permanent link">&para;</a></h2>
 <ul>
+<li><a href="../structastrea_1_1astro_1_1axes_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1axes/"><strong>astrea::astro::axes</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1callisto_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1callisto/"><strong>astrea::astro::frames::callisto</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1deimos_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1deimos/"><strong>astrea::astro::frames::deimos</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1earth_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1earth/"><strong>astrea::astro::frames::earth</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1earth__barycenter_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1earth__barycenter/"><strong>astrea::astro::frames::earth_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1europa_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1europa/"><strong>astrea::astro::frames::europa</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1ganymede_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1ganymede/"><strong>astrea::astro::frames::ganymede</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1iapetus_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1iapetus/"><strong>astrea::astro::frames::iapetus</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1io_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1io/"><strong>astrea::astro::frames::io</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1jupiter_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1jupiter/"><strong>astrea::astro::frames::jupiter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1jupiter__barycenter_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1jupiter__barycenter/"><strong>astrea::astro::frames::jupiter_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1mars_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1mars/"><strong>astrea::astro::frames::mars</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1mars__barycenter_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1mars__barycenter/"><strong>astrea::astro::frames::mars_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1mercury_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1mercury/"><strong>astrea::astro::frames::mercury</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1mercury__barycenter_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1mercury__barycenter/"><strong>astrea::astro::frames::mercury_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1moon_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1moon/"><strong>astrea::astro::frames::moon</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1neptune_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1neptune/"><strong>astrea::astro::frames::neptune</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1neptune__barycenter_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1neptune__barycenter/"><strong>astrea::astro::frames::neptune_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1oberon_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1oberon/"><strong>astrea::astro::frames::oberon</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1phobos_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1phobos/"><strong>astrea::astro::frames::phobos</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1rhea_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1rhea/"><strong>astrea::astro::frames::rhea</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1saturn_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1saturn/"><strong>astrea::astro::frames::saturn</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1saturn__barycenter_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1saturn__barycenter/"><strong>astrea::astro::frames::saturn_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1solar__system__barycenter_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1solar__system__barycenter/"><strong>astrea::astro::frames::solar_system_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1sun_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1sun/"><strong>astrea::astro::frames::sun</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1titan_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1titan/"><strong>astrea::astro::frames::titan</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1titania_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1titania/"><strong>astrea::astro::frames::titania</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1triton_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1triton/"><strong>astrea::astro::frames::triton</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1uranus_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1uranus/"><strong>astrea::astro::frames::uranus</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1uranus__barycenter_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1uranus__barycenter/"><strong>astrea::astro::frames::uranus_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1venus_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1venus/"><strong>astrea::astro::frames::venus</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1venus__barycenter_1_1j2000/"><strong>j2000</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1venus__barycenter/"><strong>astrea::astro::frames::venus_barycenter</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1J2MeanVop/"><strong>J2MeanVop</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere/"><strong>JacciaRobertsAtmosphere</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
 <li><a href="../structastrea_1_1astro_1_1JplEphemerisTable/"><strong>JplEphemerisTable</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1jupiter__sun__barycenter_1_1jss/"><strong>jss</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1jupiter__sun__barycenter/"><strong>astrea::astro::frames::jupiter_sun_barycenter</strong></a>)</li>
 <li><a href="../structastrea_1_1astro_1_1JulianDateClock/"><strong>JulianDateClock</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Jupiter/"><strong>Jupiter</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1planets_1_1Jupiter/"><strong>Jupiter</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1jupiter_1_1jupiter__fixed/"><strong>jupiter_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1jupiter/"><strong>astrea::astro::frames::jupiter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1barycenters_1_1JupiterSunBarycenter/"><strong>JupiterSunBarycenter</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1barycenters/"><strong>astrea::astro::barycenters</strong></a>)</li>
 </ul>
 <h2 id="k">k<a class="headerlink" href="#k" title="Permanent link">&para;</a></h2>
 <ul>
@@ -6711,24 +6932,60 @@ You're not viewing the latest version.
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1LegendreCache/"><strong>LegendreCache</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical/"><strong>LocalHorizontalLocalVertical</strong></a>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical/"><strong>LocalHorizontalLocalVertical</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames/"><strong>astrea::astro::frames</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1LvlhTag/"><strong>LvlhTag</strong></a>
 (<a href="../namespaceastrea_1_1astro_1_1frames/"><strong>astrea::astro::frames</strong></a>)</li>
 </ul>
 <h2 id="m">m<a class="headerlink" href="#m" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Mars/"><strong>Mars</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Mercury/"><strong>Mercury</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Moon/"><strong>Moon</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1planets_1_1Mars/"><strong>Mars</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1mars_1_1mars__fixed/"><strong>mars_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1mars/"><strong>astrea::astro::frames::mars</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1barycenters_1_1MarsSunBarycenter/"><strong>MarsSunBarycenter</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1barycenters/"><strong>astrea::astro::barycenters</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1planets_1_1Mercury/"><strong>Mercury</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1mercury_1_1mercury__fixed/"><strong>mercury_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1mercury/"><strong>astrea::astro::frames::mercury</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1barycenters_1_1MercurySunBarycenter/"><strong>MercurySunBarycenter</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1barycenters/"><strong>astrea::astro::barycenters</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment/"><strong>Misalignment</strong></a>
+(<a href="../structastrea_1_1astro_1_1FixedOffsetAxis/"><strong>astrea::astro::FixedOffsetAxis</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1moons_1_1Moon/"><strong>Moon</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1moons/"><strong>astrea::astro::moons</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1moon_1_1moon__fixed/"><strong>moon_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1moon/"><strong>astrea::astro::frames::moon</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1mars__sun__barycenter_1_1mss/"><strong>mss</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1mars__sun__barycenter/"><strong>astrea::astro::frames::mars_sun_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1mercury__sun__barycenter_1_1mss/"><strong>mss</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1mercury__sun__barycenter/"><strong>astrea::astro::frames::mercury_sun_barycenter</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1multi__tuple__cat/"><strong>multi_tuple_cat</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01First_00_01Rest_8_8_8_01_4/"><strong>multi_tuple_cat&lt; First, Rest... &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01Only_01_4/"><strong>multi_tuple_cat&lt; Only &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_4/"><strong>multi_tuple_cat&lt;&gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
 </ul>
 <h2 id="n">n<a class="headerlink" href="#n" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../classastrea_1_1astro_1_1NBodyForce/"><strong>NBodyForce</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Neptune/"><strong>Neptune</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1planets_1_1Neptune/"><strong>Neptune</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1neptune_1_1neptune__fixed/"><strong>neptune_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1neptune/"><strong>astrea::astro::frames::neptune</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1barycenters_1_1NeptuneSunBarycenter/"><strong>NeptuneSunBarycenter</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1barycenters/"><strong>astrea::astro::barycenters</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00/"><strong>NRLMSISE00</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere/"><strong>NRLMSISE00Atmosphere</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1neptune__sun__barycenter_1_1nss/"><strong>nss</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1neptune__sun__barycenter/"><strong>astrea::astro::frames::neptune_sun_barycenter</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1NullEvent/"><strong>NullEvent</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1NullVehicle/"><strong>NullVehicle</strong></a>
@@ -6736,14 +6993,27 @@ You're not viewing the latest version.
 </ul>
 <h2 id="o">o<a class="headerlink" href="#o" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Oberon/"><strong>Oberon</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1moons_1_1Oberon/"><strong>Oberon</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1moons/"><strong>astrea::astro::moons</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1oberon_1_1oberon__fixed/"><strong>oberon_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1oberon/"><strong>astrea::astro::frames::oberon</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1OblatenessForce/"><strong>OblatenessForce</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1FixedOffsetOrigin_1_1Offset/"><strong>Offset</strong></a>
+(<a href="../structastrea_1_1astro_1_1FixedOffsetOrigin/"><strong>astrea::astro::FixedOffsetOrigin</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1OrbitalElementPartials/"><strong>OrbitalElementPartials</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1OrbitalElements/"><strong>OrbitalElements</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1Origin/"><strong>Origin</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1Origin_3_01__name___01_4/"><strong>Origin&lt; _name_ &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4/"><strong>Origin&lt; _name_, _parent_ &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1OriginBase/"><strong>OriginBase</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>Output</strong></a></li>
 </ul>
 <h2 id="p">p<a class="headerlink" href="#p" title="Permanent link">&para;</a></h2>
 <ul>
@@ -6753,8 +7023,14 @@ You're not viewing the latest version.
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Phobos/"><strong>Phobos</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1Perturbation/"><strong>Perturbation</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1PerturbingForce/"><strong>PerturbingForce</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1moons_1_1Phobos/"><strong>Phobos</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1moons/"><strong>astrea::astro::moons</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1phobos_1_1phobos__fixed/"><strong>phobos_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1phobos/"><strong>astrea::astro::frames::phobos</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 </ul>
@@ -6762,13 +7038,23 @@ You're not viewing the latest version.
 <ul>
 <li><a href="../structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4/"><strong>quantity_point_like_traits&lt; astrea::astro::Date &gt;</strong></a>
 (<a href="../namespacemp__units/"><strong>mp_units</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1Quaternion/"><strong>Quaternion</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1QuaternionPartial/"><strong>QuaternionPartial</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 </ul>
 <h2 id="r">r<a class="headerlink" href="#r" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack/"><strong>RadialInTrackCrossTrack</strong></a>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack/"><strong>RadialInTrackCrossTrack</strong></a>
 (<a href="../namespaceastrea_1_1astro_1_1frames/"><strong>astrea::astro::frames</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Rhea/"><strong>Rhea</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1ReferenceAxes/"><strong>ReferenceAxes</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1moons_1_1Rhea/"><strong>Rhea</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1moons/"><strong>astrea::astro::moons</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1rhea_1_1rhea__fixed/"><strong>rhea_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1rhea/"><strong>astrea::astro::frames::rhea</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1RicTag/"><strong>RicTag</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames/"><strong>astrea::astro::frames</strong></a>)</li>
 </ul>
 <h2 id="s">s<a class="headerlink" href="#s" title="Permanent link">&para;</a></h2>
 <ul>
@@ -6776,16 +7062,30 @@ You're not viewing the latest version.
 (<a href="../classastrea_1_1astro_1_1Constellation/"><strong>astrea::astro::Constellation</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1Shell_1_1sat__iterator/"><strong>sat_iterator</strong></a>
 (<a href="../classastrea_1_1astro_1_1Shell/"><strong>astrea::astro::Shell</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Saturn/"><strong>Saturn</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1planets_1_1Saturn/"><strong>Saturn</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1saturn_1_1saturn__fixed/"><strong>saturn_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1saturn/"><strong>astrea::astro::frames::saturn</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1barycenters_1_1SaturnSunBarycenter/"><strong>SaturnSunBarycenter</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1barycenters/"><strong>astrea::astro::barycenters</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1Schedule/"><strong>Schedule</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1Shell/"><strong>Shell</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1SolarRadiationPressure/"><strong>SolarRadiationPressure</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1barycenters_1_1SolarSystemBarycenter/"><strong>SolarSystemBarycenter</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1barycenters/"><strong>astrea::astro::barycenters</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1LambertSolver_1_1Solution/"><strong>Solution</strong></a>
+(<a href="../classastrea_1_1astro_1_1LambertSolver/"><strong>astrea::astro::LambertSolver</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1Spacecraft/"><strong>Spacecraft</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1planets_1_1SpeciesModelParams/"><strong>SpeciesModelParams</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1Spherical/"><strong>Spherical</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1saturn__sun__barycenter_1_1sss/"><strong>sss</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1saturn__sun__barycenter/"><strong>astrea::astro::frames::saturn_sun_barycenter</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1StateHistory/"><strong>StateHistory</strong></a>
@@ -6794,21 +7094,50 @@ You're not viewing the latest version.
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1StateTransitionMatrix/"><strong>StateTransitionMatrix</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Sun/"><strong>Sun</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1StepWatcher/"><strong>StepWatcher</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1star_1_1Sun/"><strong>Sun</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1star/"><strong>astrea::astro::star</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Switch/"><strong>Switch</strong></a></li>
+<li><a href="../structastrea_1_1astro_1_1SynodicAxis/"><strong>SynodicAxis</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1SynodicFrame/"><strong>SynodicFrame</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1SynodicFrameBase/"><strong>SynodicFrameBase</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
 </ul>
 <h2 id="t">t<a class="headerlink" href="#t" title="Permanent link">&para;</a></h2>
 <ul>
+<li><a href="../structastrea_1_1astro_1_1TerrestrialTimeClock/"><strong>TerrestrialTimeClock</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1Thruster/"><strong>Thruster</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1ThrusterParameters/"><strong>ThrusterParameters</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Titan/"><strong>Titan</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Titania/"><strong>Titania</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Triton/"><strong>Triton</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1moons_1_1Titan/"><strong>Titan</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1moons/"><strong>astrea::astro::moons</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1titan_1_1titan__fixed/"><strong>titan_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1titan/"><strong>astrea::astro::frames::titan</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1moons_1_1Titania/"><strong>Titania</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1moons/"><strong>astrea::astro::moons</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1titania_1_1titania__fixed/"><strong>titania_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1titania/"><strong>astrea::astro::frames::titania</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1moons_1_1Triton/"><strong>Triton</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1moons/"><strong>astrea::astro::moons</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1triton_1_1triton__fixed/"><strong>triton_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1triton/"><strong>astrea::astro::frames::triton</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1tuple__cat__types/"><strong>tuple_cat_types</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1tuple__cat__types_3_01std_1_1tuple_3_01As_8_8_8_01_4_00_01std8cf8a2c8692dfec60c2615039d60391f/"><strong>tuple_cat_types&lt; std::tuple&lt; As... &gt;, std::tuple&lt; Bs... &gt; &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1tuple__to__variant/"><strong>tuple_to_variant</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1detail_1_1tuple__to__variant_3_01std_1_1tuple_3_01Ts_8_8_8_01_4_00_01Extra_8_8_8_01_4/"><strong>tuple_to_variant&lt; std::tuple&lt; Ts... &gt;, Extra... &gt;</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1TurnThrustersOff/"><strong>TurnThrustersOff</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
+<li><a href="../classastrea_1_1astro_1_1TurnThrustersOn/"><strong>TurnThrustersOn</strong></a>
+(<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1TwoBody/"><strong>TwoBody</strong></a>
 (<a href="../namespaceastrea_1_1astro/"><strong>astrea::astro</strong></a>)</li>
 <li><a href="../classastrea_1_1astro_1_1TwoLineElements/"><strong>TwoLineElements</strong></a>
@@ -6816,8 +7145,14 @@ You're not viewing the latest version.
 </ul>
 <h2 id="u">u<a class="headerlink" href="#u" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Uranus/"><strong>Uranus</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1planets_1_1Uranus/"><strong>Uranus</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1uranus_1_1uranus__fixed/"><strong>uranus_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1uranus/"><strong>astrea::astro::frames::uranus</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1barycenters_1_1UranusSunBarycenter/"><strong>UranusSunBarycenter</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1barycenters/"><strong>astrea::astro::barycenters</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1uranus__sun__barycenter_1_1uss/"><strong>uss</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1uranus__sun__barycenter/"><strong>astrea::astro::frames::uranus_sun_barycenter</strong></a>)</li>
 </ul>
 <h2 id="v">v<a class="headerlink" href="#v" title="Permanent link">&para;</a></h2>
 <ul>
@@ -6827,10 +7162,18 @@ You're not viewing the latest version.
 (<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
 <li><a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/"><strong>VehicleInnerBase</strong></a>
 (<a href="../namespaceastrea_1_1astro_1_1detail/"><strong>astrea::astro::detail</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal/"><strong>VelocityNormalBinormal</strong></a>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal/"><strong>VelocityNormalBinormal</strong></a>
 (<a href="../namespaceastrea_1_1astro_1_1frames/"><strong>astrea::astro::frames</strong></a>)</li>
-<li><a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Venus/"><strong>Venus</strong></a>
-(<a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>astrea::astro::planetary_bodies</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1planets_1_1Venus/"><strong>Venus</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1planets/"><strong>astrea::astro::planets</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1venus_1_1venus__fixed/"><strong>venus_fixed</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1venus/"><strong>astrea::astro::frames::venus</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1barycenters_1_1VenusSunBarycenter/"><strong>VenusSunBarycenter</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1barycenters/"><strong>astrea::astro::barycenters</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1VnbTag/"><strong>VnbTag</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames/"><strong>astrea::astro::frames</strong></a>)</li>
+<li><a href="../structastrea_1_1astro_1_1frames_1_1venus__sun__barycenter_1_1vss/"><strong>vss</strong></a>
+(<a href="../namespaceastrea_1_1astro_1_1frames_1_1venus__sun__barycenter/"><strong>astrea::astro::frames::venus_sun_barycenter</strong></a>)</li>
 </ul>
 
 

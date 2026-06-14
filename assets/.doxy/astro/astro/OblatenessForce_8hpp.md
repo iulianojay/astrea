@@ -15,7 +15,8 @@ _Header file for the NBodyForce class, which computes the gravitational force du
 * `#include <vector>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/propagation/force_models/Force.hpp>`
+* `#include <astro/propagation/force_models/PerturbingForce.hpp>`
+* `#include <astro/propagation/force_models/OblatenessForce.ipp>`
 
 
 
@@ -41,8 +42,8 @@ _Header file for the NBodyForce class, which computes the gravitational force du
 
 | Type | Name |
 | ---: | :--- |
-| class | [**LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md) <br> |
-| class | [**OblatenessForce**](classastrea_1_1astro_1_1OblatenessForce.md) <br>_Class to compute the gravitational force due to the oblateness of a celestial body._  |
+| class | [**LegendreCache**](classastrea_1_1astro_1_1LegendreCache.md) &lt;\_body\_, \_degree\_, \_order\_&gt;<br> |
+| class | [**OblatenessForce**](classastrea_1_1astro_1_1OblatenessForce.md) &lt;\_body\_, \_degree\_, \_order\_&gt;<br>_Class to compute the gravitational force due to the oblateness of a celestial_ _body_ _._ |
 
 
 
@@ -99,7 +100,7 @@ _Header file for the NBodyForce class, which computes the gravitational force du
 Header file for the SolarRadiationPressure class, which computes the solar radiation pressure force on a spacecraft.
 
 
-Header file for the OblatenessForce class, which computes the gravitational force due to the oblateness of a celestial body.
+Header file for the OblatenessForce class, which computes the gravitational force due to the oblateness of a celestial _body_.
 
 
 
@@ -126,7 +127,34 @@ Copyright (c) 2025 Jay Iuliano
 The GNU Lesser General Public License (LGPL)
 
 
-This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/). 
+This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/).
+
+
+
+
+**Author:**
+
+Jay Iuliano ([iuliano.jay@gmail.com](mailto:iuliano.jay@gmail.com)) 
+
+
+
+
+**Date:**
+
+2025-08-02
+
+
+
+
+**Copyright:**
+
+Copyright (c) 2025 Jay Iuliano
+
+
+The G\_degree\_U Lesser General Public License (LGPL)
+
+
+This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the G\_degree\_U Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT A\_degree\_Y WARRA\_degree\_TY; without even the implied warranty of \_order\_ERCHA\_degree\_TABILITY or FIT\_degree\_ESS FOR A PARTICULAR PURPOSE. See the G\_degree\_U Lesser General Public License for more details. You should have received a copy of the G\_degree\_U General Public License along with Astrea. If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/). 
 
 
     

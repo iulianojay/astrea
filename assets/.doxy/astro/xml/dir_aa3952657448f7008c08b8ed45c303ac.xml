@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_aa3952657448f7008c08b8ed45c303ac" kind="dir">
+    <compoundname>astrea/astro/astro/frames/framework</compoundname>
+    <innerfile refid="Axis_8hpp">Axis.hpp</innerfile>
+    <innerfile refid="BodyFixedFrame_8hpp">BodyFixedFrame.hpp</innerfile>
+    <innerfile refid="CartesianVector_8hpp">CartesianVector.hpp</innerfile>
+    <innerfile refid="DcmInterface_8hpp">DcmInterface.hpp</innerfile>
+    <innerfile refid="DirectionCosineMatrix_8hpp">DirectionCosineMatrix.hpp</innerfile>
+    <innerfile refid="DirectionCosineMatrixAccel_8hpp">DirectionCosineMatrixAccel.hpp</innerfile>
+    <innerfile refid="DirectionCosineMatrixRate_8hpp">DirectionCosineMatrixRate.hpp</innerfile>
+    <innerfile refid="DynamicFrame_8hpp">DynamicFrame.hpp</innerfile>
+    <innerfile refid="FixedOffsetFrame_8hpp">FixedOffsetFrame.hpp</innerfile>
+    <innerfile refid="Frame_8hpp">Frame.hpp</innerfile>
+    <innerfile refid="frame__concepts_8hpp">frame_concepts.hpp</innerfile>
+    <innerfile refid="frame__utilities_8hpp">frame_utilities.hpp</innerfile>
+    <innerfile refid="Origin_8hpp">Origin.hpp</innerfile>
+    <innerfile refid="SynodicFrame_8hpp">SynodicFrame.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/framework/"/>
+  </compounddef>
+</doxygen>

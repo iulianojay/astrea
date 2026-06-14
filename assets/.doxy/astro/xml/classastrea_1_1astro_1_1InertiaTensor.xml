@@ -1,0 +1,399 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1InertiaTensor" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::InertiaTensor</compoundname>
+    <includes refid="InertiaTensor_8hpp" local="no">InertiaTensor.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_frame_</declname>
+        <defname>_frame_</defname>
+        <defval><ref refid="structastrea_1_1astro_1_1frames_1_1dynamic_1_1body" kindref="compound">frames::dynamic::body</ref></defval>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1InertiaTensor_1aa327ca84ddf88b8cc6d61a80e26c7321" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref></type>
+        <definition>constexpr MomentOfInertia astrea::astro::InertiaTensor&lt; _frame_ &gt;::zero</definition>
+        <argsstring></argsstring>
+        <name>zero</name>
+        <qualifiedname>astrea::astro::InertiaTensor::zero</qualifiedname>
+        <initializer>=
+        0.0 * mp_units::si::unit_symbols::kg * mp_units::pow&lt;2&gt;(mp_units::si::unit_symbols::m)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="40" column="38" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1InertiaTensor_1aff30d3d69b7d5b8955e3a3ce498a6293" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref></type>
+        <definition>constexpr MomentOfInertia astrea::astro::InertiaTensor&lt; _frame_ &gt;::one</definition>
+        <argsstring></argsstring>
+        <name>one</name>
+        <qualifiedname>astrea::astro::InertiaTensor::one</qualifiedname>
+        <initializer>=
+        1.0 * mp_units::si::unit_symbols::kg * mp_units::pow&lt;2&gt;(mp_units::si::unit_symbols::m)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="42" column="38" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1InertiaTensor_1a0389d2bcc2ee18651814bc15b1f3074d" prot="private" static="no" mutable="no">
+        <type>std::array&lt; std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref>, 3 &gt;, 3 &gt;</type>
+        <definition>std::array&lt;std::array&lt;MomentOfInertia, 3&gt;, 3&gt; astrea::astro::InertiaTensor&lt; _frame_ &gt;::_tensor</definition>
+        <argsstring></argsstring>
+        <name>_tensor</name>
+        <qualifiedname>astrea::astro::InertiaTensor::_tensor</qualifiedname>
+        <briefdescription>
+<para>Inertia tensor of the body in the dynamic body frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="159" column="16" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="159" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1InertiaTensor_1a193da6ce9801780890e91a8d4e0361ee" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::InertiaTensor&lt; _frame_ &gt;::InertiaTensor</definition>
+        <argsstring>()</argsstring>
+        <name>InertiaTensor</name>
+        <qualifiedname>astrea::astro::InertiaTensor::InertiaTensor</qualifiedname>
+        <briefdescription>
+<para>Default constructor for an inertia tensor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="49" column="15" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="49" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1InertiaTensor_1a2f3cfbbf741f492845bca4a0d0669602" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::InertiaTensor&lt; _frame_ &gt;::~InertiaTensor</definition>
+        <argsstring>()=default</argsstring>
+        <name>~InertiaTensor</name>
+        <qualifiedname>astrea::astro::InertiaTensor::~InertiaTensor</qualifiedname>
+        <briefdescription>
+<para>Default destructor for an inertia tensor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="57" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1InertiaTensor_1aa3145eddea70fc9d3ea8546e4c4d67d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::InertiaTensor&lt; _frame_ &gt;::InertiaTensor</definition>
+        <argsstring>(const MomentOfInertia &amp;Ixx, const MomentOfInertia &amp;Ixy, const MomentOfInertia &amp;Ixz, const MomentOfInertia &amp;Iyx, const MomentOfInertia &amp;Iyy, const MomentOfInertia &amp;Iyz, const MomentOfInertia &amp;Izx, const MomentOfInertia &amp;Izy, const MomentOfInertia &amp;Izz)</argsstring>
+        <name>InertiaTensor</name>
+        <qualifiedname>astrea::astro::InertiaTensor::InertiaTensor</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <declname>Ixx</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <declname>Ixy</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <declname>Ixz</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <declname>Iyx</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <declname>Iyy</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <declname>Iyz</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <declname>Izx</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <declname>Izy</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <declname>Izz</declname>
+        </param>
+        <briefdescription>
+<para>Constructs an inertia tensor with the specified moments of inertia. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Ixx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Moment of inertia about the x-axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Ixy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Product of inertia about the x and y axes. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Ixz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Product of inertia about the x and z axes. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Iyy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Moment of inertia about the y-axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Iyz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Product of inertia about the y and z axes. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Izz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Moment of inertia about the z-axis. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="69" column="5" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="69" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1InertiaTensor_1aec6c00202b1b57e6a921f99a29fe0399" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::InertiaTensor&lt; _frame_ &gt;::InertiaTensor</definition>
+        <argsstring>(const MomentOfInertia &amp;Ixx, const MomentOfInertia &amp;Iyy, const MomentOfInertia &amp;Izz)</argsstring>
+        <name>InertiaTensor</name>
+        <qualifiedname>astrea::astro::InertiaTensor::InertiaTensor</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <declname>Ixx</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <declname>Iyy</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <declname>Izz</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a diagonal inertia tensor with the specified moments of inertia along the principal axes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Ixx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Moment of inertia about the x-axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Iyy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Moment of inertia about the y-axis. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Izz</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Moment of inertia about the z-axis. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="91" column="5" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="91" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1InertiaTensor_1aa6eb3c166a43b1e132fc1300f0869f9a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::InertiaTensor&lt; _frame_ &gt;::InertiaTensor</definition>
+        <argsstring>(const MomentOfInertia &amp;Iii)</argsstring>
+        <name>InertiaTensor</name>
+        <qualifiedname>astrea::astro::InertiaTensor::InertiaTensor</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+          <declname>Iii</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a spherical inertia tensor with the specified moment of inertia about any axis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Iii</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Moment of inertia about any axis (for a sphere, all moments of inertia are equal). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="101" column="5" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="101" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1InertiaTensor_1a4b3ad68c14fa8366cdabab259abfe0d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+        <definition>MomentOfInertia &amp; astrea::astro::InertiaTensor&lt; _frame_ &gt;::operator[]</definition>
+        <argsstring>(size_t i, size_t j)</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::astro::InertiaTensor::operator[]</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">size_t</ref></type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">size_t</ref></type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Accesses the inertia tensor element at the specified row and column. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="109" column="21" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="109" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1InertiaTensor_1af2eb8a40e802736e2e92ef6514a5d106" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref> &amp;</type>
+        <definition>const MomentOfInertia &amp; astrea::astro::InertiaTensor&lt; _frame_ &gt;::operator[]</definition>
+        <argsstring>(size_t i, size_t j) const</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::astro::InertiaTensor::operator[]</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">size_t</ref></type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">size_t</ref></type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Accesses the inertia tensor element at the specified row and column (const version). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="114" column="27" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="114" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1InertiaTensor_1af0595e7e129cb90ede127acae83fdb41" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>auto astrea::astro::InertiaTensor&lt; _frame_ &gt;::determinant</definition>
+        <argsstring>() const</argsstring>
+        <name>determinant</name>
+        <qualifiedname>astrea::astro::InertiaTensor::determinant</qualifiedname>
+        <briefdescription>
+<para>Computes the determinant of the inertia tensor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>auto The determinant of the inertia tensor. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="121" column="10" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="121" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1InertiaTensor_1a631f2f277e9dc2e21ca37696b3e39ffe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}/<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">MomentOfInertia</ref>{}), _frame_ &gt;</type>
+        <definition>CartesianVector&lt; decltype(Value_U{}/MomentOfInertia{}), _frame_ &gt; astrea::astro::InertiaTensor&lt; _frame_ &gt;::inverse_multiply</definition>
+        <argsstring>(const CartesianVector&lt; Value_U, _frame_ &gt; &amp;vec) const</argsstring>
+        <name>inverse_multiply</name>
+        <qualifiedname>astrea::astro::InertiaTensor::inverse_multiply</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, _frame_ &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+<para>Multiplies the inertia tensor by a <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>, effectively applying the inertia tensor to the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="133" column="9" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="133" bodyend="156"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A class representing an inertia matrix in the astrea astro platform. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_frame_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame in which the inertia tensor is defined. Defaults to <computeroutput><ref refid="structastrea_1_1astro_1_1frames_1_1dynamic_1_1body" kindref="compound">frames::dynamic::body</ref></computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/platforms/InertiaTensor.hpp" line="38" column="1" bodyfile="astrea/astro/astro/platforms/InertiaTensor.hpp" bodystart="38" bodyend="160"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1InertiaTensor_1a0389d2bcc2ee18651814bc15b1f3074d" prot="private" virt="non-virtual"><scope>astrea::astro::InertiaTensor</scope><name>_tensor</name></member>
+      <member refid="classastrea_1_1astro_1_1InertiaTensor_1af0595e7e129cb90ede127acae83fdb41" prot="public" virt="non-virtual"><scope>astrea::astro::InertiaTensor</scope><name>determinant</name></member>
+      <member refid="classastrea_1_1astro_1_1InertiaTensor_1a193da6ce9801780890e91a8d4e0361ee" prot="public" virt="non-virtual"><scope>astrea::astro::InertiaTensor</scope><name>InertiaTensor</name></member>
+      <member refid="classastrea_1_1astro_1_1InertiaTensor_1aa3145eddea70fc9d3ea8546e4c4d67d7" prot="public" virt="non-virtual"><scope>astrea::astro::InertiaTensor</scope><name>InertiaTensor</name></member>
+      <member refid="classastrea_1_1astro_1_1InertiaTensor_1aec6c00202b1b57e6a921f99a29fe0399" prot="public" virt="non-virtual"><scope>astrea::astro::InertiaTensor</scope><name>InertiaTensor</name></member>
+      <member refid="classastrea_1_1astro_1_1InertiaTensor_1aa6eb3c166a43b1e132fc1300f0869f9a" prot="public" virt="non-virtual"><scope>astrea::astro::InertiaTensor</scope><name>InertiaTensor</name></member>
+      <member refid="classastrea_1_1astro_1_1InertiaTensor_1a631f2f277e9dc2e21ca37696b3e39ffe" prot="public" virt="non-virtual"><scope>astrea::astro::InertiaTensor</scope><name>inverse_multiply</name></member>
+      <member refid="classastrea_1_1astro_1_1InertiaTensor_1aff30d3d69b7d5b8955e3a3ce498a6293" prot="private" virt="non-virtual"><scope>astrea::astro::InertiaTensor</scope><name>one</name></member>
+      <member refid="classastrea_1_1astro_1_1InertiaTensor_1a4b3ad68c14fa8366cdabab259abfe0d9" prot="public" virt="non-virtual"><scope>astrea::astro::InertiaTensor</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1astro_1_1InertiaTensor_1af2eb8a40e802736e2e92ef6514a5d106" prot="public" virt="non-virtual"><scope>astrea::astro::InertiaTensor</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1astro_1_1InertiaTensor_1aa327ca84ddf88b8cc6d61a80e26c7321" prot="private" virt="non-virtual"><scope>astrea::astro::InertiaTensor</scope><name>zero</name></member>
+      <member refid="classastrea_1_1astro_1_1InertiaTensor_1a2f3cfbbf741f492845bca4a0d0669602" prot="public" virt="non-virtual"><scope>astrea::astro::InertiaTensor</scope><name>~InertiaTensor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

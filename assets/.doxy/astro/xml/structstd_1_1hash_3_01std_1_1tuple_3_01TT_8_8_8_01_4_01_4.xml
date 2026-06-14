@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4" kind="struct" language="C++" prot="public">
     <compoundname>std::hash&lt; std::tuple&lt; TT... &gt; &gt;</compoundname>
     <templateparamlist>
@@ -9,12 +9,13 @@
         <defname>TT</defname>
       </param>
     </templateparamlist>
-      <sectiondef kind="public-func">
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4_1afdf58525bd44e80be2af8355db0eba2e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
         <definition>size_t std::hash&lt; std::tuple&lt; TT... &gt; &gt;::operator()</definition>
         <argsstring>(std::tuple&lt; TT... &gt; const &amp;tt) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>std::hash&lt; std::tuple&lt; TT... &gt; &gt;::operator()</qualifiedname>
         <param>
           <type>std::tuple&lt; TT... &gt; const &amp;</type>
           <declname>tt</declname>
@@ -27,7 +28,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/types/tuple_hash.hpp" line="58" column="12" bodyfile="astrea/astro/astro/types/tuple_hash.hpp" bodystart="58" bodyend="63"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

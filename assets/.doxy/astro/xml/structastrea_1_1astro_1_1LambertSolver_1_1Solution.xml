@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1LambertSolver_1_1Solution" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::LambertSolver::Solution</compoundname>
+    <includes refid="LambertSolver_8hpp" local="no">LambertSolver.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_frame_</declname>
+        <defname>_frame_</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1LambertSolver_1_1Solution_1a0b6dcf7cf8d64af320e33e063bd790c7" prot="public" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref></type>
+        <definition>Time astrea::astro::LambertSolver::Solution&lt; _frame_ &gt;::tof</definition>
+        <argsstring></argsstring>
+        <name>tof</name>
+        <qualifiedname>astrea::astro::LambertSolver::Solution::tof</qualifiedname>
+        <briefdescription>
+<para>Time of flight for the transfer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="88" column="14" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1LambertSolver_1_1Solution_1af2ce8ade01d9217936534a49ae07c501" prot="public" static="no" mutable="no">
+        <type><ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector</ref>&lt; _frame_ &gt;</type>
+        <definition>VelocityVector&lt;_frame_&gt; astrea::astro::LambertSolver::Solution&lt; _frame_ &gt;::v0</definition>
+        <argsstring></argsstring>
+        <name>v0</name>
+        <qualifiedname>astrea::astro::LambertSolver::Solution::v0</qualifiedname>
+        <briefdescription>
+<para>Initial velocity vector at r0. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="89" column="24" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1LambertSolver_1_1Solution_1a49dd93828fc3419e916b2071119014b7" prot="public" static="no" mutable="no">
+        <type><ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector</ref>&lt; _frame_ &gt;</type>
+        <definition>VelocityVector&lt;_frame_&gt; astrea::astro::LambertSolver::Solution&lt; _frame_ &gt;::vf</definition>
+        <argsstring></argsstring>
+        <name>vf</name>
+        <qualifiedname>astrea::astro::LambertSolver::Solution::vf</qualifiedname>
+        <briefdescription>
+<para>Final velocity vector at rf. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="90" column="24" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Result structure for optimal Lambert solutions. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::CartesianVector&lt; _frame_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CartesianVector"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>dot</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>_frame_</label>
+        <link refid="class__frame__"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::LambertSolver::Solution&lt; _frame_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1LambertSolver_1_1Solution"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>v0</edgelabel>
+          <edgelabel>vf</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" line="87" column="5" bodyfile="astrea/astro/astro/propagation/analytic/LambertSolver.hpp" bodystart="87" bodyend="91"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1LambertSolver_1_1Solution_1a0b6dcf7cf8d64af320e33e063bd790c7" prot="public" virt="non-virtual"><scope>astrea::astro::LambertSolver::Solution</scope><name>tof</name></member>
+      <member refid="structastrea_1_1astro_1_1LambertSolver_1_1Solution_1af2ce8ade01d9217936534a49ae07c501" prot="public" virt="non-virtual"><scope>astrea::astro::LambertSolver::Solution</scope><name>v0</name></member>
+      <member refid="structastrea_1_1astro_1_1LambertSolver_1_1Solution_1a49dd93828fc3419e916b2071119014b7" prot="public" virt="non-virtual"><scope>astrea::astro::LambertSolver::Solution</scope><name>vf</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

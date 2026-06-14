@@ -14,8 +14,8 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/dynamic_frames.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
 #include <astro/platforms/Payload.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -25,7 +25,7 @@ namespace astro {
 class ThrusterParameters : public PayloadParameters {
   public:
     ThrusterParameters(
-        const Thrust& thrust,
+        const Force& thrust,
         const CartesianVector<Distance, frames::dynamic::ric>& boresight       = NADIR_RIC,
         const CartesianVector<Distance, frames::dynamic::ric>& attachmentPoint = CENTER
     ) :
@@ -36,10 +36,17 @@ class ThrusterParameters : public PayloadParameters {
 
     virtual ~ThrusterParameters() = default;
 
-    Thrust get_thrust() const { return _thrust; }
+    Force get_thrust() const { return _thrust; }
+
+    bool is_on() const { return _isOn; }
+
+    void switch_on() { _isOn = true; }
+
+    void switch_off() { _isOn = false; }
 
   protected:
-    Thrust _thrust; 
+    Force _thrust;      
+    bool _isOn = false; 
 };
 
 class Thruster : public Payload<Thruster, ThrusterParameters> {
@@ -48,7 +55,6 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
 
   public:
     template <typename Parent_T>
-        requires(std::is_base_of_v<FrameReference, Parent_T>)
     Thruster(const Parent_T& parent, const ThrusterParameters& parameters) :
         Payload<Thruster, ThrusterParameters>(parent, parameters)
     {
@@ -60,8 +66,13 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
 
     Velocity get_impulsive_delta_v() const;
 
-  private:
-    std::size_t generate_id() const;
+    Force get_thrust() const;
+
+    void switch_on();
+
+    void switch_off();
+
+    bool is_on() const;
 };
 
 using ThrusterPlatform = PayloadPlatform<Thruster>;

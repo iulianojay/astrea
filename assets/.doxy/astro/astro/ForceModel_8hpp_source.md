@@ -19,7 +19,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/propagation/force_models/Force.hpp>
+#include <astro/propagation/force_models/PerturbingForce.hpp>
 
 namespace astrea {
 namespace astro {
@@ -33,26 +33,35 @@ class ForceModel {
     std::size_t size() const { return forces.size(); }
 
     template <typename T, typename... Args>
-    const std::unique_ptr<Force>& add(Args&&... args)
+    const std::unique_ptr<PerturbingForce>& add(Args&&... args)
     {
         static const std::string name = typeid(T).name();
         if (forces.count(name) == 0) { forces.emplace(name, std::make_unique<T>(std::forward<Args>(args)...)); }
         return forces.at(name);
     }
 
-    CartesianVector<Acceleration, frames::earth::icrf> compute_forces(const State& state, const Vehicle& vehicle) const;
+    template <template <auto...> class Pert, auto... Params, typename... Args>
+    const std::unique_ptr<PerturbingForce>& add(Args&&... args)
+    {
+        using T                       = Pert<Params...>;
+        static const std::string name = typeid(T).name();
+        if (forces.count(name) == 0) { forces.emplace(name, std::make_unique<T>(std::forward<Args>(args)...)); }
+        return forces.at(name);
+    }
 
-    const std::unique_ptr<Force>& at(const std::string& name) const;
+    Perturbation compute_perturbations(const State& state, const Vehicle& vehicle) const;
+
+    const std::unique_ptr<PerturbingForce>& at(const std::string& name) const;
 
     template <typename T>
-    const std::unique_ptr<Force>& get() const
+    const std::unique_ptr<PerturbingForce>& get() const
     {
         static const std::string name = typeid(T).name();
         return forces.at(name);
     }
 
   private:
-    std::unordered_map<std::string, std::unique_ptr<Force>> forces; 
+    std::unordered_map<std::string, std::unique_ptr<PerturbingForce>> forces; 
 };
 
 } // namespace astro

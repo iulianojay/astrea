@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_9708b761f2d3397b5afefec8b7ac12b4" kind="dir">
     <compoundname>astrea/trace/trace/platforms/vehicles</compoundname>
     <innerfile refid="Viewer_8hpp">Viewer.hpp</innerfile>

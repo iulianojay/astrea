@@ -4,17 +4,16 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**types**](dir_6f58486cdc039e35eca8cf5d1aadadc3.md) **>** [**DynamicFrame.hpp**](DynamicFrame_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**framework**](dir_aa3952657448f7008c08b8ed45c303ac.md) **>** [**DynamicFrame.hpp**](DynamicFrame_8hpp.md)
 
 [Go to the source code of this file](DynamicFrame_8hpp_source.md)
 
 _Header file for the DynamicFrame class in the astro namespace._ [More...](#detailed-description)
 
 * `#include <string>`
-* `#include <astro/frames/CartesianVector.hpp>`
-* `#include <astro/frames/Frame.hpp>`
-* `#include <astro/frames/FrameReference.hpp>`
-* `#include <astro/frames/frames.hpp>`
+* `#include <astro/frames/framework/CartesianVector.hpp>`
+* `#include <astro/frames/framework/DirectionCosineMatrix.hpp>`
+* `#include <astro/frames/framework/Frame.hpp>`
 * `#include <astro/time/Date.hpp>`
 * `#include <astro/types/typedefs.hpp>`
 
@@ -38,6 +37,11 @@ _Header file for the DynamicFrame class in the astro namespace._ [More...](#deta
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
 
 
+## Classes
+
+| Type | Name |
+| ---: | :--- |
+| struct | [**DynamicFrame**](structastrea_1_1astro_1_1DynamicFrame.md) &lt;[**typename**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Self**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_parent\_, \_self\_&gt;<br>_Base class for all dynamic state/frames._  |
 
 
 
@@ -121,5 +125,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/types/DynamicFrame.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/framework/DynamicFrame.hpp`
 

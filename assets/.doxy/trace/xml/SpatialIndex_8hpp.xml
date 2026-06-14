@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="SpatialIndex_8hpp" kind="file" language="C++">
     <compoundname>SpatialIndex.hpp</compoundname>
     <includes local="no">unordered_set</includes>
@@ -10,9 +10,6 @@
     <includedby refid="SpatialIndex_8cpp" local="no">astrea/trace/trace/analysis/SpatialIndex.cpp</includedby>
     <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
     <incdepgraph>
-      <node id="2">
-        <label>unordered_set</label>
-      </node>
       <node id="1">
         <label>astrea/trace/trace/analysis/SpatialIndex.hpp</label>
         <link refid="SpatialIndex_8hpp"/>
@@ -23,17 +20,22 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="3">
-        <label>vector</label>
-      </node>
       <node id="4">
         <label>units/units.hpp</label>
       </node>
+      <node id="2">
+        <label>unordered_set</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="3">
-        <label>astrea/trace/trace/trace.hpp</label>
-        <link refid="trace_8hpp"/>
+      <node id="2">
+        <label>astrea/trace/trace/analysis/AccessAnalyzer.hpp</label>
+        <link refid="AccessAnalyzer_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>astrea/trace/trace/analysis/SpatialIndex.hpp</label>
@@ -43,11 +45,9 @@
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>astrea/trace/trace/analysis/AccessAnalyzer.hpp</label>
-        <link refid="AccessAnalyzer_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
+      <node id="3">
+        <label>astrea/trace/trace/trace.hpp</label>
+        <link refid="trace_8hpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="structastrea_1_1trace_1_1GeographicBin" prot="public">astrea::trace::GeographicBin</innerclass>
@@ -92,7 +92,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="49" refid="classastrea_1_1trace_1_1SpatialIndex" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1trace_1_1SpatialIndex" kindref="compound">SpatialIndex</ref><sp/>{</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1SpatialIndex_1ac72aec45982c8518811bbd407f47bca9" kindref="member">SpatialIndex</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>binSize<sp/>=<sp/>10.0<sp/>*<sp/>mp_units::angular::unit_symbols::deg);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1trace_1_1SpatialIndex" kindref="compound">SpatialIndex</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>binSize<sp/>=<sp/>10.0<sp/>*<sp/>mp_units::angular::unit_symbols::deg);</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
 <codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1SpatialIndex_1a555bbe79be77a9e687ef302284507ac4" kindref="member">add_ground_point</ref>(std::size_t<sp/>groundPointIdx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>lat,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Angle&amp;<sp/>lon);</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"></highlight></codeline>

@@ -13,7 +13,8 @@
 
 #include <vector>
 
-#include <astro/frames/FrameReference.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
+#include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
 
 
@@ -21,9 +22,10 @@ namespace astrea {
 namespace astro {
 
 template <class Payload_T>
-class PayloadPlatform : virtual public FrameReference {
+class PayloadPlatform {
 
-    using PayloadParameters_T = decltype(std::declval<Payload_T>().get_parameters());
+    // This is cursed
+    using PayloadParameters_T = remove_cv_ref<decltype(std::declval<Payload_T>().get_parameters())>;
 
   protected:
     PayloadPlatform() = default;
@@ -62,6 +64,10 @@ class PayloadPlatform : virtual public FrameReference {
 
   public:
     virtual std::size_t get_id() const = 0;
+
+    virtual RadiusVector<frames::primary> get_position(const Date& date) const = 0;
+
+    virtual VelocityVector<frames::primary> get_velocity(const Date& date) const = 0;
 
     virtual Mass get_mass() const { return 0.0 * mp_units::si::unit_symbols::kg; }
 

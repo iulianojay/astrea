@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1detail_1_1SymbolicConstant" kind="concept">
+    <compoundname>astrea::astro::detail::SymbolicConstant</compoundname>
+    <includes refid="frame__concepts_8hpp" local="no">frame_concepts.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename T&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1detail_1_1SymbolicConstant" kindref="compound">astrea::astro::detail::SymbolicConstant</ref> =  (!std::is_const_v&lt;T&gt;) &amp;&amp; (!std::is_reference_v&lt;T&gt;) &amp;&amp; std::is_empty_v&lt;T&gt; &amp;&amp;
+                           std::is_trivially_default_constructible_v&lt;T&gt; &amp;&amp; std::is_trivially_copy_constructible_v&lt;T&gt; &amp;&amp;
+                           std::is_trivially_move_constructible_v&lt;T&gt; &amp;&amp; std::is_trivially_destructible_v&lt;T&gt;    </initializer>
+    <briefdescription>
+<para>A symbolic constant is a type that is empty, trivially constructible, trivially copyable, trivially moveable, and trivially destructible. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/framework/frame_concepts.hpp" line="41" column="1"/>
+  </compounddef>
+</doxygen>

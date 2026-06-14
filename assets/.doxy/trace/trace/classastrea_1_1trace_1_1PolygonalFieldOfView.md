@@ -75,7 +75,7 @@ Inherits the following classes: [astrea::trace::FieldOfView](classastrea_1_1trac
 | ---: | :--- |
 |   | [**PolygonalFieldOfView**](#function-polygonalfieldofview-13) (const Angle & halfConeAngle=std::numbers::pi/4.0 \*mp\_units::angular::unit\_symbols::rad, const int & nPoints=72) <br>_Constructor for_ [_**PolygonalFieldOfView**_](classastrea_1_1trace_1_1PolygonalFieldOfView.md) _._ |
 |   | [**PolygonalFieldOfView**](#function-polygonalfieldofview-23) (const Angle & halfConeWidth, const Angle & halfConeHeight, const int & nPoints=72) <br>_Constructor for_ [_**PolygonalFieldOfView**_](classastrea_1_1trace_1_1PolygonalFieldOfView.md) _with specified half-cone width and height._ |
-|   | [**PolygonalFieldOfView**](#function-polygonalfieldofview-33) (const gtl::btree\_map&lt; Angle, Angle &gt; & points) <br>_Constructor for_ [_**PolygonalFieldOfView**_](classastrea_1_1trace_1_1PolygonalFieldOfView.md) _with a set of points._ |
+|   | [**PolygonalFieldOfView**](#function-polygonalfieldofview-33) (const gtl::flat\_hash\_map&lt; Angle, Angle &gt; & points) <br>_Constructor for_ [_**PolygonalFieldOfView**_](classastrea_1_1trace_1_1PolygonalFieldOfView.md) _with a set of points._ |
 | virtual bool | [**contains**](#function-contains) (const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; & boresight, const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; & target) const<br>_Checks if a target is within the polygonal field of view._  |
 |   | [**~PolygonalFieldOfView**](#function-polygonalfieldofview) () = default<br>_Default destructor for_ [_**PolygonalFieldOfView**_](classastrea_1_1trace_1_1PolygonalFieldOfView.md) _._ |
 
@@ -220,7 +220,7 @@ astrea::trace::PolygonalFieldOfView::PolygonalFieldOfView (
 _Constructor for_ [_**PolygonalFieldOfView**_](classastrea_1_1trace_1_1PolygonalFieldOfView.md) _with a set of points._
 ```C++
 inline astrea::trace::PolygonalFieldOfView::PolygonalFieldOfView (
-    const gtl::btree_map< Angle, Angle > & points
+    const gtl::flat_hash_map< Angle, Angle > & points
 ) 
 ```
 
@@ -300,5 +300,5 @@ astrea::trace::PolygonalFieldOfView::~PolygonalFieldOfView () = default
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp`
+The documentation for this class was generated from the following file `astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp`
 

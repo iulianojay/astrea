@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1earth__sun__barycenter" kind="namespace" language="C++">
+    <compoundname>astrea::astro::frames::earth_sun_barycenter</compoundname>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1earth__sun__barycenter_1_1ess" prot="public">astrea::astro::frames::earth_sun_barycenter::ess</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="synodic__frames_8hpp_1a734b963d0af80dbad36da1bf7f2eec13" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1earth__sun__barycenter_1_1ess" kindref="compound">astrea::astro::frames::earth_sun_barycenter::ess</ref></type>
+        <definition>astrea::astro::frames::earth_sun_barycenter::ess astrea::astro::frames::earth_sun_barycenter::ess</definition>
+        <argsstring></argsstring>
+        <name>ess</name>
+        <qualifiedname>astrea::astro::frames::earth_sun_barycenter::ess</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/synodic_frames.hpp" line="43" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/definitions/synodic_frames.hpp" line="40" column="1"/>
+  </compounddef>
+</doxygen>

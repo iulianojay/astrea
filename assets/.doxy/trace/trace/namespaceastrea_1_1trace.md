@@ -37,23 +37,30 @@
 | class | [**AccessAnalyzer**](classastrea_1_1trace_1_1AccessAnalyzer.md) <br> |
 | class | [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) <br>_Represents a collection of access times indexed by sender and receiver IDs. This class provides methods to manipulate and query access times for different sender-receiver pairs._  |
 | struct | [**AccessInfo**](structastrea_1_1trace_1_1AccessInfo.md) <br> |
+| struct | [**AccessMetricsRecord**](structastrea_1_1trace_1_1AccessMetricsRecord.md) <br> |
 | class | [**AccessObject**](classastrea_1_1trace_1_1AccessObject.md) <br>_Base class for objects that can visually access other objects._  |
 | struct | [**AccessStats**](structastrea_1_1trace_1_1AccessStats.md) <br>_The_ [_**AccessStats**_](structastrea_1_1trace_1_1AccessStats.md) _struct represents statistics for access times based on an_[_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _._ |
 | class | [**Antenna**](classastrea_1_1trace_1_1Antenna.md) <br>_Represents an antenna with properties such as diameter, efficiency, frequency, and power._  |
 | class | [**AntennaParameters**](classastrea_1_1trace_1_1AntennaParameters.md) <br>_Class for storing and managing antenna parameters._  |
 | class | [**CircularFieldOfView**](classastrea_1_1trace_1_1CircularFieldOfView.md) <br>_Circular field of view implementation._  |
+| class | [**DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md) <br>_A class for managing database output operations with a single database instance._  |
 | class | [**FieldOfView**](classastrea_1_1trace_1_1FieldOfView.md) <br>_Base class for Field of View (FoV) representations._  |
 | class | [**FoldsOfCoverage**](classastrea_1_1trace_1_1FoldsOfCoverage.md) <br>_The_ [_**FoldsOfCoverage**_](classastrea_1_1trace_1_1FoldsOfCoverage.md) _class represents the folds of coverage (simultaneous accesses) for each receiver ID over time._ |
+| struct | [**FoldsRecord**](structastrea_1_1trace_1_1FoldsRecord.md) <br> |
 | struct | [**GeographicBin**](structastrea_1_1trace_1_1GeographicBin.md) <br>_Geographic bin for spatial partitioning._  |
-| class | [**Grid**](classastrea_1_1trace_1_1Grid.md) <br>_Class representing a grid of ground points._  |
-| class | [**GroundArchitecture**](classastrea_1_1trace_1_1GroundArchitecture.md) <br>[_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _class represents a collection of ground stations._ |
-| class | [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) <br>_Represents a point on the ground with latitude, longitude, and altitude._  |
-| class | [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) <br>_Ground station class for managing ground-based access. This class inherits from_ [_**GroundPoint**_](classastrea_1_1trace_1_1GroundPoint.md) _,_[_**AccessObject**_](classastrea_1_1trace_1_1AccessObject.md) _, and SensorPlatform. It represents a ground station with a specific latitude, longitude, altitude, and a collection of sensors. It also provides methods to manage access and sensor functionalities._ |
+| class | [**Grid**](classastrea_1_1trace_1_1Grid.md) &lt;\_body\_&gt;<br>_Class representing a grid of ground points on the surface of a celestial body._  |
+| class | [**GroundArchitecture**](classastrea_1_1trace_1_1GroundArchitecture.md) &lt;\_body\_&gt;<br>_A collection of ground stations on the surface of a celestial body._  |
+| struct | [**GroundLocationRecord**](structastrea_1_1trace_1_1GroundLocationRecord.md) <br> |
+| class | [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) &lt;\_body\_&gt;<br>_Represents a point on the surface of a celestial body with latitude, longitude, and altitude._  |
+| class | [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) &lt;\_body\_&gt;<br>_Ground station on the surface of a celestial body, with sensors._  |
 | struct | [**HyperStats**](structastrea_1_1trace_1_1HyperStats.md) &lt;class T&gt;<br>_The_ [_**HyperStats**_](structastrea_1_1trace_1_1HyperStats.md) _struct represents statistics of statistics, allowing for the calculation of statistics on a vector of Stats&lt;T&gt;._ |
 | struct | [**IdPair**](structastrea_1_1trace_1_1IdPair.md) <br>_Represents a pair of IDs for sender and receiver._  |
 | class | [**PolygonalFieldOfView**](classastrea_1_1trace_1_1PolygonalFieldOfView.md) <br>_Polygonal field of view implementation._  |
 | class | [**PositionCache**](classastrea_1_1trace_1_1PositionCache.md) <br>_Contiguous memory cache for platform positions across time._  |
+| struct | [**ReceiverRiseSetMetricsRecord**](structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord.md) <br> |
 | class | [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) <br>_Represents an array of rise and set times._  |
+| struct | [**RiseSetMetricsRecord**](structastrea_1_1trace_1_1RiseSetMetricsRecord.md) <br> |
+| struct | [**RiseSetRecord**](structastrea_1_1trace_1_1RiseSetRecord.md) <br> |
 | struct | [**RiseSetStats**](structastrea_1_1trace_1_1RiseSetStats.md) <br>_The_ [_**RiseSetStats**_](structastrea_1_1trace_1_1RiseSetStats.md) _struct represents statistics for rise and set times based on a_[_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _and a RiseSetMetric._ |
 | class | [**Sensor**](classastrea_1_1trace_1_1Sensor.md) <br>[_**Sensor**_](classastrea_1_1trace_1_1Sensor.md) _class representing a sensor on a platform._ |
 | class | [**SensorParameters**](classastrea_1_1trace_1_1SensorParameters.md) <br>_Class for storing and managing sensor parameters._  |
@@ -72,8 +79,8 @@
 | typedef astro::RadiusVector&lt; astro::frames::earth::icrf &gt; | [**EciRadiusVec**](#typedef-eciradiusvec)  <br> |
 | typedef uint32\_t | [**EnumType**](#typedef-enumtype)  <br>_Type definition for enumeration types._  |
 | enum [**EnumType**](namespaceastrea_1_1trace.md#typedef-enumtype) | [**GridType**](#enum-gridtype)  <br>_Enumeration for different grid types._  |
-| typedef std::vector&lt; std::shared\_ptr&lt; [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) &gt; &gt; | [**GroundPointRefVec**](#typedef-groundpointrefvec)  <br> |
-| typedef std::vector&lt; std::shared\_ptr&lt; [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) &gt; &gt; | [**GroundStationRefVec**](#typedef-groundstationrefvec)  <br> |
+| typedef std::vector&lt; std::shared\_ptr&lt; [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md)&lt; astro::planets::Earth &gt; &gt; &gt; | [**GroundPointRefVec**](#typedef-groundpointrefvec)  <br> |
+| typedef std::vector&lt; std::shared\_ptr&lt; [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md)&lt; astro::planets::Earth &gt; &gt; &gt; | [**GroundStationRefVec**](#typedef-groundstationrefvec)  <br> |
 | typedef std::pair&lt; Angle, Angle &gt; | [**LatLon**](#typedef-latlon)  <br>_Latitude/Longitude coordinate pair._  |
 | typedef std::vector&lt; std::pair&lt; std::size\_t, std::size\_t &gt; &gt; | [**PairVec**](#typedef-pairvec)  <br> |
 | enum  | [**PatternApproximation**](#enum-patternapproximation)  <br>_Enum class for different antenna pattern approximations._  |
@@ -86,28 +93,21 @@
 
 
 
-## Public Attributes
-
-| Type | Name |
-| ---: | :--- |
-|  concept | [**HasSize**](#variable-hassize)   = `/* multi line expression */`<br> |
-|  concept | [**HasSubscriptOperator**](#variable-hassubscriptoperator)   = `/* multi line expression */`<br> |
-|  concept | [**IsPlatformContainer**](#variable-isplatformcontainer)   = `HasSize&lt;T&gt; && HasSubscriptOperator&lt;T&gt;`<br> |
 
 
 ## Public Static Attributes
 
 | Type | Name |
 | ---: | :--- |
-|  const gtl::btree\_map&lt; [**AccessMetric**](namespaceastrea_1_1trace.md#enum-accessmetric), std::string &gt; | [**ACCESS\_METRIC\_STRINGS**](#variable-access_metric_strings)   = `/* multi line expression */`<br> |
+|  const gtl::flat\_hash\_map&lt; [**AccessMetric**](namespaceastrea_1_1trace.md#enum-accessmetric), std::string &gt; | [**ACCESS\_METRIC\_STRINGS**](#variable-access_metric_strings)   = `/* multi line expression */`<br> |
 |  const std::array&lt; [**AccessMetric**](namespaceastrea_1_1trace.md#enum-accessmetric), 2 &gt; | [**ALL\_ACCESS\_METRICS**](#variable-all_access_metrics)   = `{ AccessMetric::MTTA, AccessMetric::AVG\_DAILY\_VIS }`<br> |
 |  const std::array&lt; [**GridType**](namespaceastrea_1_1trace.md#enum-gridtype), 5 &gt; | [**ALL\_GRID\_TYPES**](#variable-all_grid_types)   = `/* multi line expression */`<br> |
 |  const std::array&lt; [**RiseSetMetric**](namespaceastrea_1_1trace.md#enum-risesetmetric), 2 &gt; | [**ALL\_RISE\_SET\_METRICS**](#variable-all_rise_set_metrics)   = `{ RiseSetMetric::GAP, RiseSetMetric::ACCESS\_TIME }`<br> |
 |  const std::array&lt; [**StatType**](namespaceastrea_1_1trace.md#enum-stattype), 4 &gt; | [**ALL\_STAT\_TYPES**](#variable-all_stat_types)   = `{ StatType::MIN, StatType::AVG, StatType::MAX, StatType::PCT }`<br> |
 |  const std::vector&lt; Unitless &gt; | [**DEFAULT\_PERCENTILES**](#variable-default_percentiles)   = `{ 1, 5, 10, 25, 50, 75, 90, 95, 99 }`<br> |
-|  const gtl::btree\_map&lt; [**GridType**](namespaceastrea_1_1trace.md#enum-gridtype), std::string &gt; | [**GRID\_TYPE\_STRINGS**](#variable-grid_type_strings)   = `/* multi line expression */`<br> |
-|  const gtl::btree\_map&lt; [**RiseSetMetric**](namespaceastrea_1_1trace.md#enum-risesetmetric), std::string &gt; | [**RISE\_SET\_METRIC\_STRINGS**](#variable-rise_set_metric_strings)   = `/* multi line expression */`<br> |
-|  const gtl::btree\_map&lt; [**StatType**](namespaceastrea_1_1trace.md#enum-stattype), std::string &gt; | [**STAT\_TYPE\_STRINGS**](#variable-stat_type_strings)   = `/* multi line expression */`<br> |
+|  const gtl::flat\_hash\_map&lt; [**GridType**](namespaceastrea_1_1trace.md#enum-gridtype), std::string &gt; | [**GRID\_TYPE\_STRINGS**](#variable-grid_type_strings)   = `/* multi line expression */`<br> |
+|  const gtl::flat\_hash\_map&lt; [**RiseSetMetric**](namespaceastrea_1_1trace.md#enum-risesetmetric), std::string &gt; | [**RISE\_SET\_METRIC\_STRINGS**](#variable-rise_set_metric_strings)   = `/* multi line expression */`<br> |
+|  const gtl::flat\_hash\_map&lt; [**StatType**](namespaceastrea_1_1trace.md#enum-stattype), std::string &gt; | [**STAT\_TYPE\_STRINGS**](#variable-stat_type_strings)   = `/* multi line expression */`<br> |
 
 
 
@@ -129,17 +129,13 @@
 |  Angle | [**calculate\_angle\_between\_vectors**](#function-calculate_angle_between_vectors) (const EciRadiusVec & vector1, const EciRadiusVec & vector2) <br> |
 |  Angle | [**calculate\_angle\_between\_vectors**](#function-calculate_angle_between_vectors) (const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; & vector1, const astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; & vector2) <br>_Computes the angle between two radius vectors._  |
 |  std::string | [**get\_object\_name\_from\_id**](#function-get_object_name_from_id) (std::size\_t id, const astro::Constellation&lt; T &gt; & satellites, const U & grounds=U()) <br> |
+|  auto | [**make\_database\_storage**](#function-make_database_storage) (const std::filesystem::path & dbPath) <br> |
 |  std::ostream & | [**operator&lt;&lt;**](#function-operator) (std::ostream & os, const [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) & accessarray) <br>_Overloads the output stream operator for the_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _._ |
 |  std::ostream & | [**operator&lt;&lt;**](#function-operator_1) (std::ostream & os, const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & risesets) <br> |
-|  bool | [**point\_in\_polygon**](#function-point_in_polygon) (const std::pair&lt; Unitless, Unitless &gt; & point, const std::vector&lt; std::pair&lt; Unitless, Unitless &gt;&gt; & polygon) <br> |
+|  bool | [**point\_in\_polygon**](#function-point_in_polygon) (const std::pair&lt; Unitless, Unitless &gt; & point, const std::vector&lt; std::pair&lt; Unitless, Unitless &gt; &gt; & polygon) <br> |
 |  [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) | [**riseset\_difference**](#function-riseset_difference) (const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & a, const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & b) <br>_Difference of two_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _objects._ |
 |  [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) | [**riseset\_intersection**](#function-riseset_intersection) (const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & a, const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & b) <br>_Intersection of two_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _objects._ |
 |  [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) | [**riseset\_union**](#function-riseset_union) (const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & a, const [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) & b) <br>_Union of two_ [_**RiseSetArray**_](classastrea_1_1trace_1_1RiseSetArray.md) _objects._ |
-|  void | [**save\_access\_metrics\_to\_file**](#function-save_access_metrics_to_file) (const [**AccessStats**](structastrea_1_1trace_1_1AccessStats.md) & stats, const std::filesystem::path & outdir, const astro::Constellation&lt; T &gt; & satellites, const U & grounds=U()) <br>_Saves the_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _to a file in a human-readable format._ |
-|  void | [**save\_number\_of\_folds\_to\_file**](#function-save_number_of_folds_to_file) (const [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) & accesses, const std::filesystem::path & outdir, const astro::Constellation&lt; T &gt; & satellites, const U & grounds, const Time & resolution, const Time & end) <br>_Saves the_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _to a file in a human-readable format._ |
-|  void | [**save\_receiver\_riseset\_metrics\_to\_file**](#function-save_receiver_riseset_metrics_to_file) (const [**AccessStats**](structastrea_1_1trace_1_1AccessStats.md) & stats, const std::filesystem::path & outdir, const astro::Constellation&lt; T &gt; & satellites, const U & grounds=U()) <br>_Saves the_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _to a file in a human-readable format._ |
-|  void | [**save\_riseset\_metrics\_to\_file**](#function-save_riseset_metrics_to_file) (const [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) & accesses, const std::filesystem::path & outdir, const astro::Constellation&lt; T &gt; & satellites, const U & grounds=U()) <br>_Saves the_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _to a file in a human-readable format._ |
-|  void | [**save\_risesets\_to\_file**](#function-save_risesets_to_file) (const [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) & accesses, const std::filesystem::path & outdir, const astro::Constellation&lt; T &gt; & satellites, const U & grounds=U()) <br>_Saves the_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _to a file in a human-readable format._ |
 |  std::string | [**to\_formatted\_string**](#function-to_formatted_string) (Time t) <br>_Converts a Time object to a formatted string._  |
 
 
@@ -268,7 +264,7 @@ enum astrea::trace::GridType {
 ### typedef GroundPointRefVec 
 
 ```C++
-using astrea::trace::GroundPointRefVec = typedef std::vector<std::shared_ptr<GroundPoint> >;
+using astrea::trace::GroundPointRefVec = typedef std::vector<std::shared_ptr<GroundPoint<astro::planets::Earth> >>;
 ```
 
 
@@ -281,7 +277,7 @@ using astrea::trace::GroundPointRefVec = typedef std::vector<std::shared_ptr<Gro
 ### typedef GroundStationRefVec 
 
 ```C++
-using astrea::trace::GroundStationRefVec = typedef std::vector<std::shared_ptr<GroundStation> >;
+using astrea::trace::GroundStationRefVec = typedef std::vector<std::shared_ptr<GroundStation<astro::planets::Earth> >>;
 ```
 
 
@@ -413,47 +409,6 @@ using astrea::trace::ViewerRefVec = typedef std::vector<std::shared_ptr<Viewer> 
 
 
 <hr>
-## Public Attributes Documentation
-
-
-
-
-### variable HasSize 
-
-```C++
-concept astrea::trace::HasSize;
-```
-
-
-
-
-<hr>
-
-
-
-### variable HasSubscriptOperator 
-
-```C++
-concept astrea::trace::HasSubscriptOperator;
-```
-
-
-
-
-<hr>
-
-
-
-### variable IsPlatformContainer 
-
-```C++
-concept astrea::trace::IsPlatformContainer;
-```
-
-
-
-
-<hr>
 ## Public Static Attributes Documentation
 
 
@@ -462,7 +417,7 @@ concept astrea::trace::IsPlatformContainer;
 ### variable ACCESS\_METRIC\_STRINGS 
 
 ```C++
-const gtl::btree_map<AccessMetric, std::string> astrea::trace::ACCESS_METRIC_STRINGS;
+const gtl::flat_hash_map<AccessMetric, std::string> astrea::trace::ACCESS_METRIC_STRINGS;
 ```
 
 
@@ -540,7 +495,7 @@ const std::vector<Unitless> astrea::trace::DEFAULT_PERCENTILES;
 ### variable GRID\_TYPE\_STRINGS 
 
 ```C++
-const gtl::btree_map<GridType, std::string> astrea::trace::GRID_TYPE_STRINGS;
+const gtl::flat_hash_map<GridType, std::string> astrea::trace::GRID_TYPE_STRINGS;
 ```
 
 
@@ -553,7 +508,7 @@ const gtl::btree_map<GridType, std::string> astrea::trace::GRID_TYPE_STRINGS;
 ### variable RISE\_SET\_METRIC\_STRINGS 
 
 ```C++
-const gtl::btree_map<RiseSetMetric, std::string> astrea::trace::RISE_SET_METRIC_STRINGS;
+const gtl::flat_hash_map<RiseSetMetric, std::string> astrea::trace::RISE_SET_METRIC_STRINGS;
 ```
 
 
@@ -566,7 +521,7 @@ const gtl::btree_map<RiseSetMetric, std::string> astrea::trace::RISE_SET_METRIC_
 ### variable STAT\_TYPE\_STRINGS 
 
 ```C++
-const gtl::btree_map<StatType, std::string> astrea::trace::STAT_TYPE_STRINGS;
+const gtl::flat_hash_map<StatType, std::string> astrea::trace::STAT_TYPE_STRINGS;
 ```
 
 
@@ -648,6 +603,21 @@ std::string astrea::trace::get_object_name_from_id (
 
 
 
+### function make\_database\_storage 
+
+```C++
+inline auto astrea::trace::make_database_storage (
+    const std::filesystem::path & dbPath
+) 
+```
+
+
+
+
+<hr>
+
+
+
 ### function operator&lt;&lt; 
 
 _Overloads the output stream operator for the_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _._
@@ -705,7 +675,7 @@ std::ostream & astrea::trace::operator<< (
 ```C++
 bool astrea::trace::point_in_polygon (
     const std::pair< Unitless, Unitless > & point,
-    const std::vector< std::pair< Unitless, Unitless >> & polygon
+    const std::vector< std::pair< Unitless, Unitless > > & polygon
 ) 
 ```
 
@@ -814,213 +784,6 @@ RiseSetArray astrea::trace::riseset_union (
 
 [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) The union of the two [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) objects. 
 
-
-
-
-
-        
-
-<hr>
-
-
-
-### function save\_access\_metrics\_to\_file 
-
-_Saves the_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _to a file in a human-readable format._
-```C++
-template<typename T, typename U>
-void astrea::trace::save_access_metrics_to_file (
-    const AccessStats & stats,
-    const std::filesystem::path & outdir,
-    const astro::Constellation< T > & satellites,
-    const U & grounds=U()
-) 
-```
-
-
-
-
-
-**Template parameters:**
-
-
-* `T` The type of Spacecraft used in the Constellation. 
-
-
-
-**Parameters:**
-
-
-* `accesses` The [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) containing the access times to be saved. 
-* `outdir` The directory to save the file to. 
-* `satellites` The Constellation containing the Spacecraft for which access times are being saved. 
-* `grounds` The [**GroundArchitecture**](classastrea_1_1trace_1_1GroundArchitecture.md) containing the ground stations for which access times are being saved 
-
-
-
-
-        
-
-<hr>
-
-
-
-### function save\_number\_of\_folds\_to\_file 
-
-_Saves the_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _to a file in a human-readable format._
-```C++
-template<typename T, typename U>
-void astrea::trace::save_number_of_folds_to_file (
-    const AccessArray & accesses,
-    const std::filesystem::path & outdir,
-    const astro::Constellation< T > & satellites,
-    const U & grounds,
-    const Time & resolution,
-    const Time & end
-) 
-```
-
-
-
-
-
-**Template parameters:**
-
-
-* `T` The type of Spacecraft used in the Constellation. 
-
-
-
-**Parameters:**
-
-
-* `accesses` The [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) containing the access times to be saved. 
-* `outdir` The directory to save the file to. 
-* `satellites` The Constellation containing the Spacecraft for which access times are being saved. 
-* `grounds` The [**GroundArchitecture**](classastrea_1_1trace_1_1GroundArchitecture.md) containing the ground stations for which access times are being saved 
-
-
-
-
-        
-
-<hr>
-
-
-
-### function save\_receiver\_riseset\_metrics\_to\_file 
-
-_Saves the_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _to a file in a human-readable format._
-```C++
-template<typename T, typename U>
-void astrea::trace::save_receiver_riseset_metrics_to_file (
-    const AccessStats & stats,
-    const std::filesystem::path & outdir,
-    const astro::Constellation< T > & satellites,
-    const U & grounds=U()
-) 
-```
-
-
-
-
-
-**Template parameters:**
-
-
-* `T` The type of Spacecraft used in the Constellation. 
-
-
-
-**Parameters:**
-
-
-* `accesses` The [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) containing the access times to be saved. 
-* `outdir` The directory to save the file to. 
-* `satellites` The Constellation containing the Spacecraft for which access times are being saved. 
-* `grounds` The [**GroundArchitecture**](classastrea_1_1trace_1_1GroundArchitecture.md) containing the ground stations for which access times are being saved 
-
-
-
-
-        
-
-<hr>
-
-
-
-### function save\_riseset\_metrics\_to\_file 
-
-_Saves the_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _to a file in a human-readable format._
-```C++
-template<typename T, typename U>
-void astrea::trace::save_riseset_metrics_to_file (
-    const AccessArray & accesses,
-    const std::filesystem::path & outdir,
-    const astro::Constellation< T > & satellites,
-    const U & grounds=U()
-) 
-```
-
-
-
-
-
-**Template parameters:**
-
-
-* `T` The type of Spacecraft used in the Constellation. 
-
-
-
-**Parameters:**
-
-
-* `accesses` The [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) containing the access times to be saved. 
-* `outdir` The directory to save the file to. 
-* `satellites` The Constellation containing the Spacecraft for which access times are being saved. 
-* `grounds` The [**GroundArchitecture**](classastrea_1_1trace_1_1GroundArchitecture.md) containing the ground stations for which access times are being saved 
-
-
-
-
-        
-
-<hr>
-
-
-
-### function save\_risesets\_to\_file 
-
-_Saves the_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _to a file in a human-readable format._
-```C++
-template<typename T, typename U>
-void astrea::trace::save_risesets_to_file (
-    const AccessArray & accesses,
-    const std::filesystem::path & outdir,
-    const astro::Constellation< T > & satellites,
-    const U & grounds=U()
-) 
-```
-
-
-
-
-
-**Template parameters:**
-
-
-* `T` The type of Spacecraft used in the Constellation. 
-
-
-
-**Parameters:**
-
-
-* `accesses` The [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) containing the access times to be saved. 
-* `outdir` The directory to save the file to. 
-* `satellites` The Constellation containing the Spacecraft for which access times are being saved. 
-* `grounds` The [**GroundArchitecture**](classastrea_1_1trace_1_1GroundArchitecture.md) containing the ground stations for which access times are being saved 
 
 
 

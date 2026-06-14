@@ -21,7 +21,6 @@ namespace astro {
 
 class StateHistory {
 
-    using StateMap      = gtl::btree_map<Date, State>;
     using EventTimesMap = gtl::btree_map<std::string, std::vector<Date>>;
 
   public:
@@ -34,21 +33,29 @@ class StateHistory {
 
     ~StateHistory() = default;
 
-    State& operator[](const Date& date);
-
-    const State& at(const Date& date) const;
-
     void insert(const State& state);
+
+    void insert(const StateHistory& stateHistory);
+
+    void fast_append(const State& state) { _states.push_back(state); }
+
+    void fast_prepend(const State& state) { _states.insert(_states.begin(), state); }
 
     std::size_t size() const;
 
+    bool empty() const;
+
     void clear();
 
-    const Date& epoch() const { return _states.begin()->first; }
+    const Date& epoch() const { return _states.front().get_epoch(); }
 
-    const State& first() const { return _states.begin()->second; }
+    State& first() { return _states.front(); }
 
-    const State& last() const { return _states.rbegin()->second; }
+    const State& first() const { return _states.front(); }
+
+    State& last() { return _states.back(); }
+
+    const State& last() const { return _states.back(); }
 
     void set_object_id(const std::size_t& objectId) { _objectId = objectId; }
 
@@ -56,7 +63,7 @@ class StateHistory {
 
     const State& get_closest_state(const Date& date) const;
 
-    State get_state_at(const Date& date) const;
+    State get_state_at(const Date& date, const bool allowApproximation = true) const;
 
     void set_event_times(const EventTimesMap& eventTimes) { _eventTimes = eventTimes; }
 
@@ -64,9 +71,9 @@ class StateHistory {
 
     EventTimesMap& get_event_times() { return _eventTimes; }
 
-    using iterator = StateMap::iterator;
+    using iterator = std::vector<State>::iterator;
 
-    using const_iterator = StateMap::const_iterator;
+    using const_iterator = std::vector<State>::const_iterator;
 
     iterator begin() { return _states.begin(); }
 
@@ -80,10 +87,12 @@ class StateHistory {
 
     const_iterator cend() const { return _states.cend(); }
 
+    void sort();
+
   private:
-    StateMap _states;          
-    EventTimesMap _eventTimes; 
-    std::size_t _objectId = 0; 
+    std::vector<State> _states; 
+    EventTimesMap _eventTimes;  
+    std::size_t _objectId = 0;  
 };
 
 } // namespace astro

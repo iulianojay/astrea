@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_283e5a6c8e70b5075f630fb83b6454d7" kind="dir">
     <compoundname>astrea/astro/astro/propagation/event_detection</compoundname>
     <innerdir refid="dir_ffe0d0558a41319d577ebe8d35f3c9da">astrea/astro/astro/propagation/event_detection/events</innerdir>
@@ -7,6 +7,8 @@
     <innerfile refid="Event_8hpp">Event.hpp</innerfile>
     <innerfile refid="EventDetector_8cpp">EventDetector.cpp</innerfile>
     <innerfile refid="EventDetector_8hpp">EventDetector.hpp</innerfile>
+    <innerfile refid="Schedule_8cpp">Schedule.cpp</innerfile>
+    <innerfile refid="Schedule_8hpp">Schedule.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

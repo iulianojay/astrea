@@ -11,8 +11,12 @@
 _Class representing the state of an astronomical object._ [More...](#detailed-description)
 
 * `#include <iosfwd>`
+* `#include <optional>`
+* `#include <astro/frames/definitions/dynamic_frames.hpp>`
+* `#include <astro/state/attitude/Attitude.hpp>`
+* `#include <astro/state/attitude/Quaternion.hpp>`
 * `#include <astro/state/orbital_elements/OrbitalElements.hpp>`
-* `#include <astro/systems/AstrodynamicsSystem.hpp>`
+* `#include <astro/systems/system_utilities.hpp>`
 * `#include <astro/time/Date.hpp>`
 * `#include <astro/types/typedefs.hpp>`
 
@@ -40,7 +44,7 @@ _Class representing the state of an astronomical object._ [More...](#detailed-de
 
 | Type | Name |
 | ---: | :--- |
-| class | [**State**](classastrea_1_1astro_1_1State.md) <br>_Class representing the state of an astronomical object._  |
+| class | [**State**](classastrea_1_1astro_1_1State.md) <br>_Class representing the state of an astronomical object. This class encapsulates the orbital elements, epoch, and the astrodynamics system that the state belongs to. It also optionally includes the attitude of the object as a quaternion._  |
 | class | [**StatePartial**](classastrea_1_1astro_1_1StatePartial.md) <br> |
 
 

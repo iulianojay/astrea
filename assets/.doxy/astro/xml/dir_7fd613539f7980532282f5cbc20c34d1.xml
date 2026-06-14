@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_7fd613539f7980532282f5cbc20c34d1" kind="dir">
+    <compoundname>astrea/astro/astro/systems/celestial_bodies/Saturn</compoundname>
+    <innerfile refid="Iapetus_8hpp">Iapetus.hpp</innerfile>
+    <innerfile refid="Rhea_8hpp">Rhea.hpp</innerfile>
+    <innerfile refid="Saturn_8hpp">Saturn.hpp</innerfile>
+    <innerfile refid="Titan_8hpp">Titan.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/celestial_bodies/Saturn/"/>
+  </compounddef>
+</doxygen>

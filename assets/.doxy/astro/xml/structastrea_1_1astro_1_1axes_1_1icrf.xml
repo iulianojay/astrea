@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1axes_1_1icrf" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>astrea::astro::axes::icrf</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1Axis" prot="public" virt="non-virtual">astrea::astro::Axis&lt;&quot;ICRF&quot;&gt;</basecompoundref>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::Axis&lt;&quot;ICRF&quot;&gt;</label>
+        <link refid="structastrea_1_1astro_1_1Axis"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::axes::icrf</label>
+        <link refid="structastrea_1_1astro_1_1axes_1_1icrf"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::Axis&lt;&quot;ICRF&quot;&gt;</label>
+        <link refid="structastrea_1_1astro_1_1Axis"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::axes::icrf</label>
+        <link refid="structastrea_1_1astro_1_1axes_1_1icrf"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/frames/framework/Axis.hpp" line="89" column="17" bodyfile="astrea/astro/astro/frames/framework/Axis.hpp" bodystart="89" bodyend="92"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

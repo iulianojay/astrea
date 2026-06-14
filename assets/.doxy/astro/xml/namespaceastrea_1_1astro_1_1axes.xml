@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1astro_1_1axes" kind="namespace" language="C++">
+    <compoundname>astrea::astro::axes</compoundname>
+    <innerclass refid="structastrea_1_1astro_1_1axes_1_1icrf" prot="public">astrea::astro::axes::icrf</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1axes_1_1j2000" prot="public">astrea::astro::axes::j2000</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="Axis_8hpp_1aca8b01926b1a2c88cce9c066eb344ec3" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1axes_1_1icrf" kindref="compound">astrea::astro::axes::icrf</ref></type>
+        <definition>astrea::astro::axes::icrf astrea::astro::axes::icrf</definition>
+        <argsstring></argsstring>
+        <name>icrf</name>
+        <qualifiedname>astrea::astro::axes::icrf</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/Axis.hpp" line="92" column="6"/>
+      </memberdef>
+      <memberdef kind="variable" id="Axis_8hpp_1a29bfe37b31015ce645739123202fc5e2" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1axes_1_1j2000" kindref="compound">astrea::astro::axes::j2000</ref></type>
+        <definition>astrea::astro::axes::j2000 astrea::astro::axes::j2000</definition>
+        <argsstring></argsstring>
+        <name>j2000</name>
+        <qualifiedname>astrea::astro::axes::j2000</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/Axis.hpp" line="97" column="7"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/framework/Axis.hpp" line="87" column="1"/>
+  </compounddef>
+</doxygen>

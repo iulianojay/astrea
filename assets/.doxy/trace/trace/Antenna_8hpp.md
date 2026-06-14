@@ -12,7 +12,7 @@ _Antenna class for representing antenna properties and behaviors._ [More...](#de
 
 * `#include <vector>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/dynamic_frames.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames.hpp>`
 * `#include <astro/types/typedefs.hpp>`
 * `#include <math/trig.hpp>`
 * `#include <units/units.hpp>`

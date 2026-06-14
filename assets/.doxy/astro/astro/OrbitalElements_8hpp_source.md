@@ -18,62 +18,21 @@
 
 // Astro
 #include <astro/astro.fwd.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/state/orbital_elements/instances/Equinoctial.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/types/type_traits.hpp>
-#include <astro/types/typedefs.hpp>
+#include <astro/frames/definitions/frame_registry.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
+#include <astro/state/orbital_elements/Equinoctial.hpp>
+#include <astro/state/orbital_elements/Keplerian.hpp>
+#include <astro/types/concepts.hpp>
 #include <astro/types/variant_util.hpp>
 
 namespace astrea {
 namespace astro {
+template <template <auto> class... FrameIndexedTypes>
+using OrbitalElementVariant = typename detail::tuple_to_variant<typename detail::multi_tuple_cat<
+    typename detail::apply_nttp_template<Cartesian, detail::AllRegisteredFrames>::type,
+    typename detail::apply_nttp_template<FrameIndexedTypes, detail::AllRegisteredFrames>::type...>::type>::type;
 
-template <typename T, typename U>
-concept IsConstructableTo = requires(T elements, const GravParam& mu) {
-    { U(elements, mu) };
-};
-
-template <typename T>
-concept HasDirectCartesianConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_cartesian(mu) } -> std::same_as<Cartesian>;
-};
-
-template <typename T>
-concept HasDirectKeplerianConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_keplerian(mu) } -> std::same_as<Keplerian>;
-};
-
-template <typename T>
-concept HasDirectEquinoctialConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_equinoctial(mu) } -> std::same_as<Equinoctial>;
-};
-
-template <typename T>
-concept HasIterpolate =
-    requires(const T elements, const Time& thisTime, const Time& otherTime, const T& other, const GravParam& mu, const Time& targetTime) {
-        { elements.interpolate(thisTime, otherTime, other, mu, targetTime) } -> std::same_as<T>;
-    };
-
-template <typename T>
-concept HasToVector = requires(const T elements) {
-    { elements.force_to_vector() } -> std::same_as<std::vector<Unitless>>;
-};
-
-template <typename T>
-concept HasMathOperators = requires(const T elements, const T other, const Unitless scalar) {
-    { elements + other } -> std::same_as<T>;
-    { elements - other } -> std::same_as<T>;
-    { elements* scalar } -> std::same_as<T>;
-    { elements / scalar } -> std::same_as<T>;
-};
-
-template <typename T>
-concept HasInPlaceMathOperators = requires(T elements, const T other, const Unitless scalar) {
-    { elements += other };
-    { elements -= other };
-    { elements *= scalar };
-    { elements /= scalar };
-};
 
 template <typename T>
 concept IsOrbitalElements = requires(T) {
@@ -83,7 +42,8 @@ concept IsOrbitalElements = requires(T) {
     std::is_move_constructible<T>::value;
     std::is_destructible<T>::value;
     requires !std::is_same<T, OrbitalElements>::value;
-    requires std::is_same<T, Cartesian>::value || IsConstructableTo<T, Cartesian> || HasDirectCartesianConversion<T>;
+    requires std::is_same<T, Cartesian<frames::primary>>::value || IsConstructableTo<T, Cartesian<frames::primary>> ||
+                 HasDirectCartesianConversion<T, frames::primary>;
     requires HasToVector<T>;
     requires HasMathOperators<T>;
     requires HasInPlaceMathOperators<T>;
@@ -93,7 +53,7 @@ class OrbitalElementPartials; // Forward declaration
 
 class OrbitalElements {
 
-    using ElementVariant = std::variant<Cartesian, Keplerian, Equinoctial>;
+    using ElementVariant = OrbitalElementVariant<Keplerian, Equinoctial>;
 
     friend std::ostream& operator<<(std::ostream& os, const OrbitalElements& state);
     friend class StateTransitionMatrix;
@@ -101,21 +61,27 @@ class OrbitalElements {
 
   public:
     OrbitalElements() :
-        _elements(Cartesian())
+        _elements(Cartesian<frames::primary>())
     {
     }
 
-    OrbitalElements(Cartesian elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElements(Cartesian<frame> elements) :
         _elements(elements)
     {
     }
 
-    OrbitalElements(Keplerian elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElements(Keplerian<frame> elements) :
         _elements(elements)
     {
     }
 
-    OrbitalElements(Equinoctial elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElements(Equinoctial<frame> elements) :
         _elements(elements)
     {
     }
@@ -180,6 +146,17 @@ class OrbitalElements {
         return get_variant_index<ElementVariant, T, 0>();
     }
 
+    template <IsFrame auto target_frame>
+    OrbitalElements in_frame(const Date& epoch, const GravParam& mu) const
+    {
+        return std::visit(
+            [&](const auto& x) -> OrbitalElements {
+                return OrbitalElements(x.template in_frame<target_frame>(epoch, mu));
+            },
+            _elements
+        );
+    }
+
   private:
     ElementVariant _elements; 
 
@@ -188,29 +165,41 @@ class OrbitalElements {
     static OrbitalElements from_vector(const std::vector<Unitless>& vec, const std::size_t idx);
 };
 
+template <template <auto> class... FrameIndexedTypes>
+using OrbitalElementPartialVariant = typename detail::tuple_to_variant<typename detail::multi_tuple_cat<
+    typename detail::apply_nttp_template<CartesianPartial, detail::AllRegisteredFrames>::type,
+    typename detail::apply_nttp_template<FrameIndexedTypes, detail::AllRegisteredFrames>::type...>::type>::type;
+
+
 class OrbitalElementPartials {
 
-    using PartialVariant = std::variant<CartesianPartial, KeplerianPartial, EquinoctialPartial>;
+    using PartialVariant = OrbitalElementPartialVariant<KeplerianPartial, EquinoctialPartial>;
 
     friend std::ostream& operator<<(std::ostream& os, const OrbitalElementPartials& state);
 
   public:
     OrbitalElementPartials() :
-        _elements(CartesianPartial())
+        _elements(CartesianPartial<frames::primary>())
     {
     }
 
-    OrbitalElementPartials(CartesianPartial elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElementPartials(CartesianPartial<frame> elements) :
         _elements(elements)
     {
     }
 
-    OrbitalElementPartials(KeplerianPartial elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElementPartials(KeplerianPartial<frame> elements) :
         _elements(elements)
     {
     }
 
-    OrbitalElementPartials(EquinoctialPartial elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElementPartials(EquinoctialPartial<frame> elements) :
         _elements(elements)
     {
     }
@@ -232,15 +221,6 @@ class OrbitalElementPartials {
 };
 
 void throw_mismatched_types();
-
-bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, bool ignoreFastVariable = false, Unitless relTol = 1.0e-5 * astrea::detail::unitless);
-
-bool nearly_equal(
-    const OrbitalElementPartials& first,
-    const OrbitalElementPartials& second,
-    bool ignoreFastVariable = false,
-    Unitless relTol         = 1.0e-5 * astrea::detail::unitless
-);
 
 } // namespace astro
 } // namespace astrea

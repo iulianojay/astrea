@@ -14,6 +14,7 @@
 * `#include <vector>`
 * `#include <mp-units/math.h>`
 * `#include <mp-units/systems/si.h>`
+* `#include <astro/systems/celestial_bodies/Earth/Earth.hpp>`
 * `#include <trace/analysis/stats/FoldsOfCoverage.hpp>`
 * `#include <trace/platforms/ground/Grid.hpp>`
 * `#include <trace/risesets/AccessArray.hpp>`

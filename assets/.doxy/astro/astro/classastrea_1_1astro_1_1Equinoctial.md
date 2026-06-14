@@ -2,6 +2,8 @@
 
 # Class astrea::astro::Equinoctial
 
+**template &lt;IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_frame\_&gt;**
+
 
 
 [**ClassList**](annotated.md) **>** [**astrea**](namespaceastrea.md) **>** [**astro**](namespaceastrea_1_1astro.md) **>** [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)
@@ -34,6 +36,11 @@ _The_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _class represe
 
 
 
+## Public Static Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**frame**](#variable-frame)   = `\_frame\_`<br>_The reference frame of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
 
 
 
@@ -52,35 +59,35 @@ _The_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _class represe
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Equinoctial**](#function-equinoctial-18) (Unitless scale=0.0 \*astrea::detail::unitless) <br>_Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object with default values._ |
-|   | [**Equinoctial**](#function-equinoctial-28) (const Distance & semilatus, const Unitless & f, const Unitless & g, const Unitless & h, const Unitless & k, const Angle & trueLongitude) <br>_Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object with specified values._ |
-|   | [**Equinoctial**](#function-equinoctial-38) (const [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & elements, const GravParam & mu) <br>_Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from another_[_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object._ |
-|   | [**Equinoctial**](#function-equinoctial-48) (const [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & elements, const GravParam & mu) <br>_Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _elements._ |
-|   | [**Equinoctial**](#function-equinoctial-58) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & elements, const GravParam & mu) <br>_Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _elements._ |
-|   | [**Equinoctial**](#function-equinoctial-68) (const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elements, const GravParam & mu) <br>_Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from_[_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _._ |
-|   | [**Equinoctial**](#function-equinoctial-78) (const [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & other) <br>_Copy constructor for_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _._ |
-|   | [**Equinoctial**](#function-equinoctial-88) ([**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) && other) noexcept<br>_Move constructor for_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _._ |
-|  std::vector&lt; Unitless &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector to a vector of unitless values._ |
-|  const Unitless & | [**get\_f**](#function-get_f) () const<br>_Get the f value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
-|  const Unitless & | [**get\_g**](#function-get_g) () const<br>_Get the g value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
-|  const Unitless & | [**get\_h**](#function-get_h) () const<br>_Get the h value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
-|  const Unitless & | [**get\_k**](#function-get_k) () const<br>_Get the k value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
-|  const Distance & | [**get\_semilatus**](#function-get_semilatus) () const<br>_Get the semilatus value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
-|  const Angle & | [**get\_true\_longitude**](#function-get_true_longitude) () const<br>_Get the true longitude value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**interpolate**](#function-interpolate) (const Time & thisTime, const Time & otherTime, const [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & other, const GravParam & mu, const Time & targetTime) const<br>_Interpolates the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector between two time instances._ |
-|  bool | [**operator!=**](#function-operator) (const [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & other) const<br>_Checks if two_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _objects are not equal._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**operator\***](#function-operator_1) (const Unitless & multiplier) const<br>_Multiplies the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a scalar._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & | [**operator\*=**](#function-operator_2) (const Unitless & multiplier) <br>_Multiplies the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a scalar._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**operator+**](#function-operator_3) (const [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & other) const<br>_Adds two_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _objects._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & | [**operator+=**](#function-operator_4) (const [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & other) <br>_Adds another_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object to the current one._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**operator-**](#function-operator-) (const [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & other) const<br>_Subtracts another_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from the current one._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & | [**operator-=**](#function-operator-_1) (const [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & other) <br>_Subtracts another_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from the current one._ |
-|  [**EquinoctialPartial**](classastrea_1_1astro_1_1EquinoctialPartial.md) | [**operator/**](#function-operator_5) (const Time & time) const<br>_Divides the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a time._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**operator/**](#function-operator_6) (const Unitless & divisor) const<br>_Divides the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a scalar._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & | [**operator/=**](#function-operator_7) (const Unitless & divisor) <br>_Divides the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a scalar._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & | [**operator=**](#function-operator_8) ([**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) && other) noexcept<br>_Move assignment operator for_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & | [**operator=**](#function-operator_9) (const [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & other) <br>_Copy assignment operator for_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _._ |
-|  bool | [**operator==**](#function-operator_10) (const [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & other) const<br>_Checks if two_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _objects are equal._ |
+|   | [**Equinoctial**](#function-equinoctial-17) ([**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) scale=0.0 \*astrea::detail::unitless) <br>_Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object with default values._ |
+|   | [**Equinoctial**](#function-equinoctial-27) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & semilatus, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & f, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & g, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & h, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & k, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & trueLongitude) <br>_Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object with specified values._ |
+|   | [**Equinoctial**](#function-equinoctial-37) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; & elements, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) <br>_Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from another_[_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object._ |
+|   | [**Equinoctial**](#function-equinoctial-47) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; & elements, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) <br>_Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _elements._ |
+|   | [**Equinoctial**](#function-equinoctial-57) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md)&lt; \_frame\_ &gt; & elements, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) <br>_Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _elements._ |
+|   | [**Equinoctial**](#function-equinoctial-67) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; & other) <br>_Copy constructor for_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _._ |
+|   | [**Equinoctial**](#function-equinoctial-77) ([**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; && other) noexcept<br>_Move constructor for_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _._ |
+|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector to a vector of unitless values._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_f**](#function-get_f) () const<br>_Get the f value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_g**](#function-get_g) () const<br>_Get the g value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_h**](#function-get_h) () const<br>_Get the h value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_k**](#function-get_k) () const<br>_Get the k value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_semilatus**](#function-get_semilatus) () const<br>_Get the semilatus value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_true\_longitude**](#function-get_true_longitude) () const<br>_Get the true longitude value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; [**target\_frame**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**in\_frame**](#function-in_frame) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) const<br>_Converts this_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state to_[_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _elements expressed in a different frame._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**interpolate**](#function-interpolate) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & thisTime, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & otherTime, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; & other, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & targetTime) const<br>_Interpolates the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector between two time instances._ |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator!=**](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; & other) const<br>_Checks if two_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _objects are not equal._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**operator\***](#function-operator_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & multiplier) const<br>_Multiplies the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a scalar._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & | [**operator\*=**](#function-operator_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & multiplier) <br>_Multiplies the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a scalar._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**operator+**](#function-operator_3) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; & other) const<br>_Adds two_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _objects._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & | [**operator+=**](#function-operator_4) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; & other) <br>_Adds another_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object to the current one._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**operator-**](#function-operator-) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; & other) const<br>_Subtracts another_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from the current one._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & | [**operator-=**](#function-operator-_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; & other) <br>_Subtracts another_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from the current one._ |
+|  [**EquinoctialPartial**](classastrea_1_1astro_1_1EquinoctialPartial.md)&lt; \_frame\_ &gt; | [**operator/**](#function-operator_5) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time) const<br>_Divides the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a time._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**operator/**](#function-operator_6) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & divisor) const<br>_Divides the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a scalar._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & | [**operator/=**](#function-operator_7) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & divisor) <br>_Divides the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a scalar._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & | [**operator=**](#function-operator_8) ([**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; && other) noexcept<br>_Move assignment operator for_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & | [**operator=**](#function-operator_9) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; & other) <br>_Copy assignment operator for_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _._ |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator==**](#function-operator_10) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; & other) const<br>_Checks if two_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _objects are equal._ |
 |   | [**~Equinoctial**](#function-equinoctial) () = default<br>_Default destructor for_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _._ |
 
 
@@ -88,11 +95,11 @@ _The_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _class represe
 
 | Type | Name |
 | ---: | :--- |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**GEO**](#function-geo) (const GravParam & mu) <br>_A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a GEO orbit._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**GPS**](#function-gps) (const GravParam & mu) <br>_A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a GPS orbit._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**HMEO**](#function-hmeo) (const GravParam & mu) <br>_A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a HMEO orbit._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**LEO**](#function-leo) (const GravParam & mu) <br>_A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a LEO orbit._ |
-|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**LMEO**](#function-lmeo) (const GravParam & mu) <br>_A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a LMEO orbit._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**GEO**](#function-geo) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) <br>_A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a GEO orbit._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**GPS**](#function-gps) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) <br>_A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a GPS orbit._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**HMEO**](#function-hmeo) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) <br>_A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a HMEO orbit._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**LEO**](#function-leo) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) <br>_A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a LEO orbit._ |
+|  [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) | [**LMEO**](#function-lmeo) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) <br>_A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a LMEO orbit._ |
 
 
 
@@ -126,12 +133,28 @@ The equinoctial elements are a set of orbital elements that are particularly use
 
 
     
+## Public Static Attributes Documentation
+
+
+
+
+### variable frame 
+
+_The reference frame of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._
+```C++
+constexpr auto astrea::astro::Equinoctial< _frame_ >::frame;
+```
+
+
+
+
+<hr>
 ## Public Functions Documentation
 
 
 
 
-### function Equinoctial [1/8]
+### function Equinoctial [1/7]
 
 _Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object with default values._
 ```C++
@@ -158,17 +181,17 @@ inline astrea::astro::Equinoctial::Equinoctial (
 
 
 
-### function Equinoctial [2/8]
+### function Equinoctial [2/7]
 
 _Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object with specified values._
 ```C++
 inline astrea::astro::Equinoctial::Equinoctial (
-    const Distance & semilatus,
-    const Unitless & f,
-    const Unitless & g,
-    const Unitless & h,
-    const Unitless & k,
-    const Angle & trueLongitude
+    const  Distance & semilatus,
+    const  Unitless & f,
+    const  Unitless & g,
+    const  Unitless & h,
+    const  Unitless & k,
+    const  Angle & trueLongitude
 ) 
 ```
 
@@ -195,13 +218,13 @@ inline astrea::astro::Equinoctial::Equinoctial (
 
 
 
-### function Equinoctial [3/8]
+### function Equinoctial [3/7]
 
 _Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from another_[_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object._
 ```C++
 inline astrea::astro::Equinoctial::Equinoctial (
-    const Equinoctial & elements,
-    const GravParam & mu
+    const  Equinoctial < _frame_ > & elements,
+    const  GravParam & mu
 ) 
 ```
 
@@ -224,13 +247,13 @@ inline astrea::astro::Equinoctial::Equinoctial (
 
 
 
-### function Equinoctial [4/8]
+### function Equinoctial [4/7]
 
 _Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _elements._
 ```C++
 astrea::astro::Equinoctial::Equinoctial (
-    const Keplerian & elements,
-    const GravParam & mu
+    const  Keplerian < _frame_ > & elements,
+    const  GravParam & mu
 ) 
 ```
 
@@ -253,13 +276,13 @@ astrea::astro::Equinoctial::Equinoctial (
 
 
 
-### function Equinoctial [5/8]
+### function Equinoctial [5/7]
 
 _Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _elements._
 ```C++
-astrea::astro::Equinoctial::Equinoctial (
-    const Cartesian & elements,
-    const GravParam & mu
+inline astrea::astro::Equinoctial::Equinoctial (
+    const  Cartesian < _frame_ > & elements,
+    const  GravParam & mu
 ) 
 ```
 
@@ -282,41 +305,12 @@ astrea::astro::Equinoctial::Equinoctial (
 
 
 
-### function Equinoctial [6/8]
-
-_Constructs an_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from_[_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _._
-```C++
-astrea::astro::Equinoctial::Equinoctial (
-    const OrbitalElements & elements,
-    const GravParam & mu
-) 
-```
-
-
-
-
-
-**Parameters:**
-
-
-* `elements` The [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) to convert. 
-* `sys` The astrodynamics system context for conversion. 
-
-
-
-
-        
-
-<hr>
-
-
-
-### function Equinoctial [7/8]
+### function Equinoctial [6/7]
 
 _Copy constructor for_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _._
 ```C++
 astrea::astro::Equinoctial::Equinoctial (
-    const Equinoctial & other
+    const  Equinoctial < _frame_ > & other
 ) 
 ```
 
@@ -327,12 +321,12 @@ astrea::astro::Equinoctial::Equinoctial (
 
 
 
-### function Equinoctial [8/8]
+### function Equinoctial [7/7]
 
 _Move constructor for_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _._
 ```C++
 astrea::astro::Equinoctial::Equinoctial (
-    Equinoctial && other
+    Equinoctial < _frame_ > && other
 ) noexcept
 ```
 
@@ -383,7 +377,7 @@ std::vector&lt;Unitless&gt; Vector containing the semilatus, f, g, h, k, and tru
 
 _Get the f value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._
 ```C++
-inline const Unitless & astrea::astro::Equinoctial::get_f () const
+inline const  Unitless & astrea::astro::Equinoctial::get_f () const
 ```
 
 
@@ -408,7 +402,7 @@ const Unitless& Reference to the f component of the [**Equinoctial**](classastre
 
 _Get the g value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._
 ```C++
-inline const Unitless & astrea::astro::Equinoctial::get_g () const
+inline const  Unitless & astrea::astro::Equinoctial::get_g () const
 ```
 
 
@@ -433,7 +427,7 @@ const Unitless& Reference to the g component of the [**Equinoctial**](classastre
 
 _Get the h value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._
 ```C++
-inline const Unitless & astrea::astro::Equinoctial::get_h () const
+inline const  Unitless & astrea::astro::Equinoctial::get_h () const
 ```
 
 
@@ -458,7 +452,7 @@ const Unitless& Reference to the h component of the [**Equinoctial**](classastre
 
 _Get the k value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._
 ```C++
-inline const Unitless & astrea::astro::Equinoctial::get_k () const
+inline const  Unitless & astrea::astro::Equinoctial::get_k () const
 ```
 
 
@@ -483,7 +477,7 @@ const Unitless& Reference to the k component of the [**Equinoctial**](classastre
 
 _Get the semilatus value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._
 ```C++
-inline const Distance & astrea::astro::Equinoctial::get_semilatus () const
+inline const  Distance & astrea::astro::Equinoctial::get_semilatus () const
 ```
 
 
@@ -508,7 +502,7 @@ const Distance& Reference to the semilatus component of the [**Equinoctial**](cl
 
 _Get the true longitude value of the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector._
 ```C++
-inline const Angle & astrea::astro::Equinoctial::get_true_longitude () const
+inline const  Angle & astrea::astro::Equinoctial::get_true_longitude () const
 ```
 
 
@@ -529,16 +523,63 @@ const Angle& Reference to the true longitude component of the [**Equinoctial**](
 
 
 
+### function in\_frame 
+
+_Converts this_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state to_[_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _elements expressed in a different frame._
+```C++
+template<IsFrame auto target_frame>
+Equinoctial < target_frame > astrea::astro::Equinoctial::in_frame (
+    const  Date & epoch,
+    const  GravParam & mu
+) const
+```
+
+
+
+First converts to [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) in the native frame, applies the physical frame transformation, then converts the result back to [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) elements.
+
+
+
+
+**Template parameters:**
+
+
+* `target_frame` The target frame. 
+
+
+
+**Parameters:**
+
+
+* `epoch` The epoch at which to evaluate the frame transformation. 
+* `mu` The gravitational parameter of the central body. 
+
+
+
+**Returns:**
+
+Equinoctial&lt;target\_frame&gt; This state expressed in the target frame. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function interpolate 
 
 _Interpolates the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector between two time instances._
 ```C++
 Equinoctial astrea::astro::Equinoctial::interpolate (
-    const Time & thisTime,
-    const Time & otherTime,
-    const Equinoctial & other,
-    const GravParam & mu,
-    const Time & targetTime
+    const  Time & thisTime,
+    const  Time & otherTime,
+    const  Equinoctial < _frame_ > & other,
+    const  GravParam & mu,
+    const  Time & targetTime
 ) const
 ```
 
@@ -576,7 +617,7 @@ Equinoctial astrea::astro::Equinoctial::interpolate (
 _Checks if two_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _objects are not equal._
 ```C++
 bool astrea::astro::Equinoctial::operator!= (
-    const Equinoctial & other
+    const  Equinoctial < _frame_ > & other
 ) const
 ```
 
@@ -610,7 +651,7 @@ true if the two [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) object
 _Multiplies the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a scalar._
 ```C++
 Equinoctial astrea::astro::Equinoctial::operator* (
-    const Unitless & multiplier
+    const  Unitless & multiplier
 ) const
 ```
 
@@ -644,7 +685,7 @@ Resultant [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) after multip
 _Multiplies the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a scalar._
 ```C++
 Equinoctial & astrea::astro::Equinoctial::operator*= (
-    const Unitless & multiplier
+    const  Unitless & multiplier
 ) 
 ```
 
@@ -678,7 +719,7 @@ Reference to the current [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.m
 _Adds two_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _objects._
 ```C++
 Equinoctial astrea::astro::Equinoctial::operator+ (
-    const Equinoctial & other
+    const  Equinoctial < _frame_ > & other
 ) const
 ```
 
@@ -712,7 +753,7 @@ Resultant [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) sum.
 _Adds another_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object to the current one._
 ```C++
 Equinoctial & astrea::astro::Equinoctial::operator+= (
-    const Equinoctial & other
+    const  Equinoctial < _frame_ > & other
 ) 
 ```
 
@@ -746,7 +787,7 @@ Reference to the current [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.m
 _Subtracts another_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from the current one._
 ```C++
 Equinoctial astrea::astro::Equinoctial::operator- (
-    const Equinoctial & other
+    const  Equinoctial < _frame_ > & other
 ) const
 ```
 
@@ -780,7 +821,7 @@ Resultant [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) after subtra
 _Subtracts another_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _object from the current one._
 ```C++
 Equinoctial & astrea::astro::Equinoctial::operator-= (
-    const Equinoctial & other
+    const  Equinoctial < _frame_ > & other
 ) 
 ```
 
@@ -813,8 +854,8 @@ Reference to the current [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.m
 
 _Divides the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a time._
 ```C++
-EquinoctialPartial astrea::astro::Equinoctial::operator/ (
-    const Time & time
+EquinoctialPartial < _frame_ > astrea::astro::Equinoctial::operator/ (
+    const  Time & time
 ) const
 ```
 
@@ -848,7 +889,7 @@ Resultant [**EquinoctialPartial**](classastrea_1_1astro_1_1EquinoctialPartial.md
 _Divides the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a scalar._
 ```C++
 Equinoctial astrea::astro::Equinoctial::operator/ (
-    const Unitless & divisor
+    const  Unitless & divisor
 ) const
 ```
 
@@ -882,7 +923,7 @@ Resultant [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) after divisi
 _Divides the_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vector by a scalar._
 ```C++
 Equinoctial & astrea::astro::Equinoctial::operator/= (
-    const Unitless & divisor
+    const  Unitless & divisor
 ) 
 ```
 
@@ -916,7 +957,7 @@ Reference to the current [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.m
 _Move assignment operator for_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _._
 ```C++
 Equinoctial & astrea::astro::Equinoctial::operator= (
-    Equinoctial && other
+    Equinoctial < _frame_ > && other
 ) noexcept
 ```
 
@@ -933,7 +974,7 @@ Equinoctial & astrea::astro::Equinoctial::operator= (
 
 **Returns:**
 
-[**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)& Reference to the current object 
+[**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt;_frame_&gt;& Reference to the current object 
 
 
 
@@ -950,7 +991,7 @@ Equinoctial & astrea::astro::Equinoctial::operator= (
 _Copy assignment operator for_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _._
 ```C++
 Equinoctial & astrea::astro::Equinoctial::operator= (
-    const Equinoctial & other
+    const  Equinoctial < _frame_ > & other
 ) 
 ```
 
@@ -984,7 +1025,7 @@ Equinoctial & astrea::astro::Equinoctial::operator= (
 _Checks if two_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _objects are equal._
 ```C++
 bool astrea::astro::Equinoctial::operator== (
-    const Equinoctial & other
+    const  Equinoctial < _frame_ > & other
 ) const
 ```
 
@@ -1034,7 +1075,7 @@ astrea::astro::Equinoctial::~Equinoctial () = default
 _A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a GEO orbit._
 ```C++
 static Equinoctial astrea::astro::Equinoctial::GEO (
-    const GravParam & mu
+    const  GravParam & mu
 ) 
 ```
 
@@ -1071,7 +1112,7 @@ This method return predefined [**Equinoctial**](classastrea_1_1astro_1_1Equinoct
 _A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a GPS orbit._
 ```C++
 static Equinoctial astrea::astro::Equinoctial::GPS (
-    const GravParam & mu
+    const  GravParam & mu
 ) 
 ```
 
@@ -1108,7 +1149,7 @@ This method return predefined [**Equinoctial**](classastrea_1_1astro_1_1Equinoct
 _A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a HMEO orbit._
 ```C++
 static Equinoctial astrea::astro::Equinoctial::HMEO (
-    const GravParam & mu
+    const  GravParam & mu
 ) 
 ```
 
@@ -1145,7 +1186,7 @@ This method return predefined [**Equinoctial**](classastrea_1_1astro_1_1Equinoct
 _A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a LEO orbit._
 ```C++
 static Equinoctial astrea::astro::Equinoctial::LEO (
-    const GravParam & mu
+    const  GravParam & mu
 ) 
 ```
 
@@ -1182,7 +1223,7 @@ This method return predefined [**Equinoctial**](classastrea_1_1astro_1_1Equinoct
 _A static method to create_ [_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _state vectors for a LMEO orbit._
 ```C++
 static Equinoctial astrea::astro::Equinoctial::LMEO (
-    const GravParam & mu
+    const  GravParam & mu
 ) 
 ```
 
@@ -1213,5 +1254,5 @@ This method return predefined [**Equinoctial**](classastrea_1_1astro_1_1Equinoct
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/state/orbital_elements/Equinoctial.hpp`
 

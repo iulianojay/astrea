@@ -2,7 +2,7 @@
 
 # File JplEphemerisTable.cpp
 
-[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**planetary\_bodies**](dir_18001f99c0231f827e3b1298618599da.md) **>** [**JplEphemerisTable.cpp**](JplEphemerisTable_8cpp.md)
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**celestial\_bodies**](dir_b988f8927672605e377af1c3b431ef9b.md) **>** [**JplEphemerisTable.cpp**](JplEphemerisTable_8cpp.md)
 
 [Go to the documentation of this file](JplEphemerisTable_8cpp.md)
 
@@ -21,7 +21,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/systems/planetary_bodies/JplEphemerisTable.hpp>
+#include <astro/systems/celestial_bodies/JplEphemerisTable.hpp>
 
 // Standard Library Includes
 #include <stdexcept>

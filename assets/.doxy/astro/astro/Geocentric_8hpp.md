@@ -4,7 +4,7 @@
 
 
 
-[**FileList**](files.md) **>** [**angular\_elements**](dir_8f2f7499654791f4fc4240f01fb9baf6.md) **>** [**instances**](dir_1a50007be9f0149ab221abcea88ff37f.md) **>** [**Geocentric.hpp**](Geocentric_8hpp.md)
+[**FileList**](files.md) **>** [**angular\_elements**](dir_8f2f7499654791f4fc4240f01fb9baf6.md) **>** [**Geocentric.hpp**](Geocentric_8hpp.md)
 
 [Go to the source code of this file](Geocentric_8hpp_source.md)
 
@@ -13,11 +13,14 @@ _This file defines the Geocentric class and its associated methods._ [More...](#
 * `#include <iosfwd>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/CartesianVector.hpp>`
-* `#include <astro/frames/frames.hpp>`
+* `#include <astro/frames/definitions.hpp>`
+* `#include <astro/frames/framework/CartesianVector.hpp>`
+* `#include <astro/frames/framework/frame_concepts.hpp>`
 * `#include <astro/state/orbital_elements/OrbitalElements.hpp>`
-* `#include <astro/systems/AstrodynamicsSystem.hpp>`
+* `#include <astro/systems/system_concepts.hpp>`
+* `#include <astro/systems/system_utilities.hpp>`
 * `#include <astro/types/typedefs.hpp>`
+* `#include <astro/state/angular_elements/Geocentric.ipp>`
 
 
 
@@ -43,7 +46,7 @@ _This file defines the Geocentric class and its associated methods._ [More...](#
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) <br>_Class representing a_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector in astrodynamics._ |
+| class | [**Geocentric**](classastrea_1_1astro_1_1Geocentric.md) &lt;\_body\_&gt;<br>_Class representing a_ [_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _state vector in astrodynamics._ |
 
 
 
@@ -127,5 +130,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/state/angular_elements/Geocentric.hpp`
 

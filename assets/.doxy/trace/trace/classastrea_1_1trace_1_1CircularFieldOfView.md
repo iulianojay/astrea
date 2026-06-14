@@ -238,5 +238,5 @@ astrea::trace::CircularFieldOfView::~CircularFieldOfView () = default
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/trace/trace/platforms/sensors/fov/instances/CircularFieldOfView.hpp`
+The documentation for this class was generated from the following file `astrea/trace/trace/platforms/sensors/fov/CircularFieldOfView.hpp`
 

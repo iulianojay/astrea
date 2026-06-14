@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1IsCompatibleEulerAngles" kind="concept">
+    <compoundname>astrea::astro::IsCompatibleEulerAngles</compoundname>
+    <includes refid="EulerAngles_8hpp" local="no">EulerAngles.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>RotationSequence</type>
+        <declname>sequence_t</declname>
+        <defname>sequence_t</defname>
+      </param>
+      <param>
+        <type>RotationType</type>
+        <declname>rotation_t</declname>
+        <defname>rotation_t</defname>
+      </param>
+      <param>
+        <type>IsFrame auto</type>
+        <declname>_in_frame_</declname>
+        <defname>_in_frame_</defname>
+      </param>
+      <param>
+        <type>IsFrame auto</type>
+        <declname>_out_frame_</declname>
+        <defname>_out_frame_</defname>
+      </param>
+      <param>
+        <type>RotationSequence</type>
+        <declname>sequence_u</declname>
+        <defname>sequence_u</defname>
+      </param>
+      <param>
+        <type>RotationType</type>
+        <declname>rotation_u</declname>
+        <defname>rotation_u</defname>
+      </param>
+      <param>
+        <type>IsFrame auto</type>
+        <declname>_in_frame_u_</declname>
+        <defname>_in_frame_u_</defname>
+      </param>
+      <param>
+        <type>IsFrame auto</type>
+        <declname>_out_frame_u_</declname>
+        <defname>_out_frame_u_</defname>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;RotationSequence sequence_t, RotationType rotation_t, IsFrame auto _in_frame_, IsFrame auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1IsCompatibleEulerAngles" kindref="compound">astrea::astro::IsCompatibleEulerAngles</ref> = 
+    IsSameEulerAngles&lt;sequence_t, rotation_t, _in_frame_, _out_frame_, sequence_u, rotation_u, _in_frame_u_, _out_frame_u_&gt; ||
+    IsEquivalentEulerAngles&lt;sequence_t, rotation_t, _in_frame_, _out_frame_, sequence_u, rotation_u, _in_frame_u_, _out_frame_u_&gt;    </initializer>
+    <briefdescription>
+<para>Concept to check if two EulerAngless are compatible (either the same or equivalent). </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="note"><para>Technically, all angle sequences can be represented as all others with the exception of singularities, but we want to prevent implicit conversions between sequences that would lead to very non-obvious bugs. If users want to convert between different sequences, they can do so explicitly through the DCM or by converting to the same rotation type and then using the reverse sequence if desired. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="111" column="1"/>
+  </compounddef>
+</doxygen>

@@ -14,11 +14,12 @@
 #include <memory>
 #include <vector>
 
-#include <gtl/btree.hpp>
+#include <gtl/phmap.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <astro/time/Date.hpp>
 #include <units/units.hpp>
 #include <utilities/ProgressBar.hpp>
@@ -59,9 +60,9 @@ using ViewerConstellation = astro::Constellation<Viewer>;
 
 using ViewerRefVec = std::vector<std::shared_ptr<Viewer>>;
 
-using GroundStationRefVec = std::vector<std::shared_ptr<GroundStation>>;
+using GroundStationRefVec = std::vector<std::shared_ptr<GroundStation<astro::planets::Earth>>>;
 
-using GroundPointRefVec = std::vector<std::shared_ptr<GroundPoint>>;
+using GroundPointRefVec = std::vector<std::shared_ptr<GroundPoint<astro::planets::Earth>>>;
 
 using PairVec = std::vector<std::pair<std::size_t, std::size_t>>;
 
@@ -69,11 +70,10 @@ using PairVec = std::vector<std::pair<std::size_t, std::size_t>>;
 class AccessAnalyzer {
 
   public:
-    AccessAnalyzer(const Time& resolution, const astro::Date& startDate, const astro::Date& endDate, const astro::AstrodynamicsSystem& sys, const bool printProgress = false) :
+    AccessAnalyzer(const Time& resolution, const astro::Date& startDate, const astro::Date& endDate, const bool printProgress = false) :
         _resolution(resolution),
         _startDate(startDate),
         _endDate(endDate),
-        _sys(&sys),
         _printProgress(printProgress)
     {
         create_date_vector();
@@ -83,18 +83,17 @@ class AccessAnalyzer {
 
     AccessArray find_internal_accesses(ViewerConstellation& constel, const bool clearPositionCache = true);
 
-    AccessArray find_accesses(ViewerConstellation& constel, GroundArchitecture& grounds, const bool includeInternalAccesses = false);
+    AccessArray find_accesses(ViewerConstellation& constel, GroundArchitecture<astro::planets::Earth>& grounds, const bool includeInternalAccesses = false);
 
-    AccessArray find_accesses(ViewerConstellation& constel, Grid& grid, const bool includeInternalAccesses = false);
+    AccessArray find_accesses(ViewerConstellation& constel, Grid<astro::planets::Earth>& grid, const bool includeInternalAccesses = false);
 
   private:
-    Time _resolution;                       
-    astro::Date _startDate;                 
-    astro::Date _endDate;                   
-    const astro::AstrodynamicsSystem* _sys; 
-    DateVector _dates;                      
-    PositionCache _positionCache;           
-    bool _printProgress;                    
+    Time _resolution;             
+    astro::Date _startDate;       
+    astro::Date _endDate;         
+    DateVector _dates;            
+    PositionCache _positionCache; 
+    bool _printProgress;          
 
     // This isn't doing anything currently, but I'm not convinced it's a terrible idea to speed up the pre-checks by
     // binning the ground points using the spatial index and only checking the corners for very dense grids.
@@ -110,8 +109,10 @@ class AccessAnalyzer {
         const bool twoWay = false
     ) const;
 
-    RiseSetArray
-        find_platform_to_ground_point_accesses(std::shared_ptr<astro::PayloadPlatform<Sensor>> platform, const std::shared_ptr<GroundPoint> groundPoint) const;
+    RiseSetArray find_platform_to_ground_point_accesses(
+        std::shared_ptr<astro::PayloadPlatform<Sensor>> platform,
+        const std::shared_ptr<GroundPoint<astro::planets::Earth>> groundPoint
+    ) const;
 
     RiseSetArray find_sensor_accesses(
         const std::vector<AccessInfo>& accessInfo,
@@ -124,37 +125,11 @@ class AccessAnalyzer {
 
     ViewerRefVec cache_viewers(ViewerConstellation& constel);
 
-    GroundStationRefVec cache_ground_points(GroundArchitecture& grounds);
+    GroundStationRefVec cache_ground_points(GroundArchitecture<astro::planets::Earth>& grounds);
 
-    GroundPointRefVec cache_ground_points(Grid& grid);
+    GroundPointRefVec cache_ground_points(Grid<astro::planets::Earth>& grid);
 
     std::vector<AccessInfo> build_access_info(const std::size_t& id1, const std::size_t& id2) const;
-
-    PairVec filter_impossible_pairs(const ViewerRefVec& viewers) const;
-
-    template <typename T, typename U>
-        requires requires(T t) { t.get_id(); } && requires(U u) { u.get_id(); }
-    PairVec filter_impossible_pairs(const std::vector<std::shared_ptr<T>>& objects1, const std::vector<std::shared_ptr<U>>& objects2) const
-    {
-        if (_printProgress) { std::cout << "\tFiltering impossible sat-to-ground pairs..." << std::flush; }
-
-        constexpr bool atmosphereBlocks = !(std::is_base_of_v<GroundPoint, T> || std::is_base_of_v<GroundPoint, U>);
-        PairVec validPairs;
-        for (std::size_t ii = 0; ii < objects1.size(); ++ii) {
-            for (std::size_t jj = 0; jj < objects2.size(); ++jj) {
-                if (can_objects_ever_access_each_other(objects1[ii]->get_id(), objects2[jj]->get_id(), atmosphereBlocks)) {
-                    validPairs.emplace_back(ii, jj);
-                }
-            }
-        }
-
-        if (_printProgress) {
-            std::cout << " kept " << validPairs.size() << " / " << (objects1.size() * objects2.size()) << " pairs ("
-                      << (100.0 * validPairs.size() / (objects1.size() * objects2.size())) << "%)" << std::endl;
-        }
-
-        return validPairs;
-    }
 };
 
 } // namespace trace

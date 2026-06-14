@@ -192,7 +192,7 @@ inline const auto & astrea::trace::AccessStats::get_access_metrics () const
 
 **Returns:**
 
-const gtl::btree\_map&lt;std::size\_t, gtl::btree\_map&lt;AccessMetric, Time&gt;&gt;& A reference to the map containing the access metrics for all receiver IDs and AccessMetrics. 
+const gtl::flat\_hash\_map&lt;std::size\_t, gtl::flat\_hash\_map&lt;AccessMetric, Time&gt;&gt;& A reference to the map containing the access metrics for all receiver IDs and AccessMetrics. 
 
 
 

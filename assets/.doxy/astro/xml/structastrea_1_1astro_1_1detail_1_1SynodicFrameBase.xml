@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1detail_1_1SynodicFrameBase" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::detail::SynodicFrameBase</compoundname>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1SynodicFrame" prot="public" virt="non-virtual">astrea::astro::SynodicFrame&lt;&quot;Earth-Moon Synodic Frame&quot;, barycenters::EarthMoonBarycenter, planets::Earth, moons::Moon &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1SynodicFrame" prot="public" virt="non-virtual">astrea::astro::SynodicFrame&lt;&quot;Earth-Sun Synodic Frame&quot;, barycenters::EarthSunBarycenter, planets::Earth, star::Sun &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1SynodicFrame" prot="public" virt="non-virtual">astrea::astro::SynodicFrame&lt;&quot;Jupiter-Sun Synodic Frame&quot;, barycenters::JupiterSunBarycenter, planets::Jupiter, star::Sun &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1SynodicFrame" prot="public" virt="non-virtual">astrea::astro::SynodicFrame&lt;&quot;Mars-Sun Synodic Frame&quot;, barycenters::MarsSunBarycenter, planets::Mars, star::Sun &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1SynodicFrame" prot="public" virt="non-virtual">astrea::astro::SynodicFrame&lt;&quot;Mercury-Sun Synodic Frame&quot;, barycenters::MercurySunBarycenter, planets::Mercury, star::Sun &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1SynodicFrame" prot="public" virt="non-virtual">astrea::astro::SynodicFrame&lt;&quot;Neptune-Sun Synodic Frame&quot;, barycenters::NeptuneSunBarycenter, planets::Neptune, star::Sun &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1SynodicFrame" prot="public" virt="non-virtual">astrea::astro::SynodicFrame&lt;&quot;Saturn-Sun Synodic Frame&quot;, barycenters::SaturnSunBarycenter, planets::Saturn, star::Sun &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1SynodicFrame" prot="public" virt="non-virtual">astrea::astro::SynodicFrame&lt;&quot;Uranus-Sun Synodic Frame&quot;, barycenters::UranusSunBarycenter, planets::Uranus, star::Sun &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1SynodicFrame" prot="public" virt="non-virtual">astrea::astro::SynodicFrame&lt;&quot;Venus-Sun Synodic Frame&quot;, barycenters::VenusSunBarycenter, planets::Venus, star::Sun &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1SynodicFrame" prot="public" virt="non-virtual">astrea::astro::SynodicFrame&lt; _name_, _origin_, _primary_, _secondary_ &gt;</derivedcompoundref>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::SynodicFrame&lt;&quot;Earth-Moon Synodic Frame&quot;, barycenters::EarthMoonBarycenter, planets::Earth, moons::Moon &gt;</label>
+        <link refid="structastrea_1_1astro_1_1SynodicFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea::astro::SynodicFrame&lt;&quot;Earth-Sun Synodic Frame&quot;, barycenters::EarthSunBarycenter, planets::Earth, star::Sun &gt;</label>
+        <link refid="structastrea_1_1astro_1_1SynodicFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea::astro::SynodicFrame&lt;&quot;Jupiter-Sun Synodic Frame&quot;, barycenters::JupiterSunBarycenter, planets::Jupiter, star::Sun &gt;</label>
+        <link refid="structastrea_1_1astro_1_1SynodicFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea::astro::SynodicFrame&lt;&quot;Mars-Sun Synodic Frame&quot;, barycenters::MarsSunBarycenter, planets::Mars, star::Sun &gt;</label>
+        <link refid="structastrea_1_1astro_1_1SynodicFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea::astro::SynodicFrame&lt;&quot;Mercury-Sun Synodic Frame&quot;, barycenters::MercurySunBarycenter, planets::Mercury, star::Sun &gt;</label>
+        <link refid="structastrea_1_1astro_1_1SynodicFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea::astro::SynodicFrame&lt;&quot;Neptune-Sun Synodic Frame&quot;, barycenters::NeptuneSunBarycenter, planets::Neptune, star::Sun &gt;</label>
+        <link refid="structastrea_1_1astro_1_1SynodicFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astrea::astro::SynodicFrame&lt;&quot;Saturn-Sun Synodic Frame&quot;, barycenters::SaturnSunBarycenter, planets::Saturn, star::Sun &gt;</label>
+        <link refid="structastrea_1_1astro_1_1SynodicFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>astrea::astro::SynodicFrame&lt;&quot;Uranus-Sun Synodic Frame&quot;, barycenters::UranusSunBarycenter, planets::Uranus, star::Sun &gt;</label>
+        <link refid="structastrea_1_1astro_1_1SynodicFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astrea::astro::SynodicFrame&lt;&quot;Venus-Sun Synodic Frame&quot;, barycenters::VenusSunBarycenter, planets::Venus, star::Sun &gt;</label>
+        <link refid="structastrea_1_1astro_1_1SynodicFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>astrea::astro::SynodicFrame&lt; _name_, _origin_, _primary_, _secondary_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1SynodicFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea::astro::detail::SynodicFrameBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1SynodicFrameBase"/>
+      </node>
+      <node id="3">
+        <label>astrea::astro::frames::earth_moon_barycenter::ems</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1earth__moon__barycenter_1_1ems"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea::astro::frames::earth_sun_barycenter::ess</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1earth__sun__barycenter_1_1ess"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea::astro::frames::jupiter_sun_barycenter::jss</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1jupiter__sun__barycenter_1_1jss"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astrea::astro::frames::mars_sun_barycenter::mss</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1mars__sun__barycenter_1_1mss"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea::astro::frames::mercury_sun_barycenter::mss</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1mercury__sun__barycenter_1_1mss"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>astrea::astro::frames::neptune_sun_barycenter::nss</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1neptune__sun__barycenter_1_1nss"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astrea::astro::frames::saturn_sun_barycenter::sss</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1saturn__sun__barycenter_1_1sss"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>astrea::astro::frames::uranus_sun_barycenter::uss</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1uranus__sun__barycenter_1_1uss"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astrea::astro::frames::venus_sun_barycenter::vss</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1venus__sun__barycenter_1_1vss"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="astrea/astro/astro/frames/framework/SynodicFrame.hpp" line="36" column="1" bodyfile="astrea/astro/astro/frames/framework/SynodicFrame.hpp" bodystart="36" bodyend="36"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

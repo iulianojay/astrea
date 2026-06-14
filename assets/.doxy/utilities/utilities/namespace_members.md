@@ -16,9 +16,14 @@
 * **extract\_string\_from\_json** ([**astrea::utilities**](namespaceastrea_1_1utilities.md))
 
 
+## f
+
+* **f\_to\_string** ([**astrea::utilities**](namespaceastrea_1_1utilities.md))
+
+
 ## g
 
-* **get\_type\_name** ([**astrea::utilities**](namespaceastrea_1_1utilities.md))
+* **get\_body\_type\_name** ([**astrea::utilities**](namespaceastrea_1_1utilities.md))
 
 
 ## r

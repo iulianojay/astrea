@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1utilities_1_1IdProvider" kind="class" language="C++" prot="public">
+    <compoundname>astrea::utilities::IdProvider</compoundname>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1IdProvider_1ac4be8b80155f5339ee7794a14f3acf51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::utilities::IdProvider::IdProvider</definition>
+        <argsstring>()=delete</argsstring>
+        <name>IdProvider</name>
+        <qualifiedname>astrea::utilities::IdProvider::IdProvider</qualifiedname>
+        <briefdescription>
+<para>Deleted constructor to prevent instantiation of <ref refid="classastrea_1_1utilities_1_1IdProvider" kindref="compound">IdProvider</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/IdProvider.hpp" line="34" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1IdProvider_1adcc8a736dc15eb472d3554a36bf096d7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>mp_units::symbol_text</type>
+            <declname>name</declname>
+            <defname>name</defname>
+          </param>
+        </templateparamlist>
+        <type>std::size_t</type>
+        <definition>static std::size_t astrea::utilities::IdProvider::get_next_id</definition>
+        <argsstring>()</argsstring>
+        <name>get_next_id</name>
+        <qualifiedname>astrea::utilities::IdProvider::get_next_id</qualifiedname>
+        <briefdescription>
+<para>Get the next unique ID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A string literal representing the type of ID being generated (e.g., &quot;Spacecraft&quot;, &quot;Plane&quot;, etc.). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::size_t The next unique ID. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/IdProvider.hpp" line="43" column="24" bodyfile="astrea/utilities/utilities/IdProvider.hpp" bodystart="43" bodyend="47"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/utilities/utilities/IdProvider.hpp" line="29" column="1" bodyfile="astrea/utilities/utilities/IdProvider.hpp" bodystart="29" bodyend="48"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1utilities_1_1IdProvider_1adcc8a736dc15eb472d3554a36bf096d7" prot="public" virt="non-virtual"><scope>astrea::utilities::IdProvider</scope><name>get_next_id</name></member>
+      <member refid="classastrea_1_1utilities_1_1IdProvider_1ac4be8b80155f5339ee7794a14f3acf51" prot="public" virt="non-virtual"><scope>astrea::utilities::IdProvider</scope><name>IdProvider</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

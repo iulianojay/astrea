@@ -11,6 +11,8 @@
 
 #pragma once
 
+#include <astro/systems/system_concepts.hpp>
+
 namespace astrea {
 namespace trace {
 
@@ -18,9 +20,13 @@ struct IdPair;
 class RiseSetArray;
 class AccessArray;
 
+template <astro::IsCelestialBody auto _body_>
 class Grid;
+template <astro::IsCelestialBody auto _body_>
 class GroundPoint;
+template <astro::IsCelestialBody auto _body_>
 class GroundArchitecture;
+template <astro::IsCelestialBody auto _body_>
 class GroundStation;
 
 class Sensor;

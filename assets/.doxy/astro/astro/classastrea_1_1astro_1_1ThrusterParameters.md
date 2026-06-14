@@ -73,8 +73,11 @@ Inherits the following classes: [astrea::astro::PayloadParameters](classastrea_1
 
 | Type | Name |
 | ---: | :--- |
-|   | [**ThrusterParameters**](#function-thrusterparameters) (const Thrust & thrust, const [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, [**frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; & boresight=NADIR\_RIC, const [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, [**frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; & attachmentPoint=CENTER) <br>_Constructor for_ [_**ThrusterParameters**_](classastrea_1_1astro_1_1ThrusterParameters.md) _._ |
-|  Thrust | [**get\_thrust**](#function-get_thrust) () const<br>_Get the thrust magnitude._  |
+|   | [**ThrusterParameters**](#function-thrusterparameters) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Force**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & thrust, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frames::dynamic::ric &gt; & boresight=NADIR\_RIC, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md)&lt; [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frames::dynamic::ric &gt; & attachmentPoint=CENTER) <br>_Constructor for_ [_**ThrusterParameters**_](classastrea_1_1astro_1_1ThrusterParameters.md) _._ |
+|  [**Force**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_thrust**](#function-get_thrust) () const<br>_Get the thrust magnitude._  |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**is\_on**](#function-is_on) () const<br>_Set the thrust magnitude._  |
+|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**switch\_off**](#function-switch_off) () <br>_Switch the thruster off._  |
+|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**switch\_on**](#function-switch_on) () <br>_Switch the thruster on._  |
 | virtual  | [**~ThrusterParameters**](#function-thrusterparameters) () = default<br>_Default destructor for_ [_**ThrusterParameters**_](classastrea_1_1astro_1_1ThrusterParameters.md) _._ |
 
 
@@ -84,10 +87,10 @@ See [astrea::astro::PayloadParameters](classastrea_1_1astro_1_1PayloadParameters
 
 | Type | Name |
 | ---: | :--- |
-|  [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; | [**get\_attachment\_point**](classastrea_1_1astro_1_1PayloadParameters.md#function-get_attachment_point) () const<br>_Get the attachment point of the payload._  |
-|  [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; | [**get\_boresight**](classastrea_1_1astro_1_1PayloadParameters.md#function-get_boresight) () const<br>_Get the boresight direction of the payload._  |
-|  void | [**set\_attachment\_point**](classastrea_1_1astro_1_1PayloadParameters.md#function-set_attachment_point) (const [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; & attachmentPoint) <br>_Set the attachment point of the payload._  |
-|  void | [**set\_boresight**](classastrea_1_1astro_1_1PayloadParameters.md#function-set_boresight) (const [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; & boresight) <br>_Set the boresight direction of the payload._  |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; & | [**get\_attachment\_point**](classastrea_1_1astro_1_1PayloadParameters.md#function-get_attachment_point) () const<br>_Get the attachment point of the payload._  |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; & | [**get\_boresight**](classastrea_1_1astro_1_1PayloadParameters.md#function-get_boresight) () const<br>_Get the boresight direction of the payload._  |
+|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**set\_attachment\_point**](classastrea_1_1astro_1_1PayloadParameters.md#function-set_attachment_point) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; & attachmentPoint) <br>_Set the attachment point of the payload._  |
+|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**set\_boresight**](classastrea_1_1astro_1_1PayloadParameters.md#function-set_boresight) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; & boresight) <br>_Set the boresight direction of the payload._  |
 
 
 
@@ -106,7 +109,8 @@ See [astrea::astro::PayloadParameters](classastrea_1_1astro_1_1PayloadParameters
 
 | Type | Name |
 | ---: | :--- |
-|  Thrust | [**\_thrust**](#variable-_thrust)  <br>_Thrust magnitude._  |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**\_isOn**](#variable-_ison)   = `[**false**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>[_**Thruster**_](classastrea_1_1astro_1_1Thruster.md) _state (on/off)_ |
+|  [**Force**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**\_thrust**](#variable-_thrust)  <br>_Force magnitude._  |
 
 
 ## Protected Attributes inherited from astrea::astro::PayloadParameters
@@ -115,8 +119,8 @@ See [astrea::astro::PayloadParameters](classastrea_1_1astro_1_1PayloadParameters
 
 | Type | Name |
 | ---: | :--- |
-|  [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; | [**\_attachmentPoint**](classastrea_1_1astro_1_1PayloadParameters.md#variable-_attachmentpoint)  <br>_Attachment point of the payload on the platform._  |
-|  [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; | [**\_boresight**](classastrea_1_1astro_1_1PayloadParameters.md#variable-_boresight)  <br>_Boresight vector of the payload, indicating the direction it is pointing._  |
+|  [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; | [**\_attachmentPoint**](classastrea_1_1astro_1_1PayloadParameters.md#variable-_attachmentpoint)  <br>_Attachment point of the payload on the platform._  |
+|  [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; | [**\_boresight**](classastrea_1_1astro_1_1PayloadParameters.md#variable-_boresight)  <br>_Boresight vector of the payload, indicating the direction it is pointing._  |
 
 
 
@@ -155,7 +159,7 @@ See [astrea::astro::PayloadParameters](classastrea_1_1astro_1_1PayloadParameters
 
 | Type | Name |
 | ---: | :--- |
-|   | [**PayloadParameters**](classastrea_1_1astro_1_1PayloadParameters.md#function-payloadparameters) (const [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; & boresight=NADIR\_RIC, const [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; & attachmentPoint=CENTER) <br>_Constructor for_ [_**PayloadParameters**_](classastrea_1_1astro_1_1PayloadParameters.md) _._ |
+|   | [**PayloadParameters**](classastrea_1_1astro_1_1PayloadParameters.md#function-payloadparameters) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; & boresight=NADIR\_RIC, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; & attachmentPoint=CENTER) <br>_Constructor for_ [_**PayloadParameters**_](classastrea_1_1astro_1_1PayloadParameters.md) _._ |
 | virtual  | [**~PayloadParameters**](classastrea_1_1astro_1_1PayloadParameters.md#function-payloadparameters) () = default<br>_Default destructor for_ [_**PayloadParameters**_](classastrea_1_1astro_1_1PayloadParameters.md) _._ |
 
 
@@ -173,9 +177,9 @@ See [astrea::astro::PayloadParameters](classastrea_1_1astro_1_1PayloadParameters
 _Constructor for_ [_**ThrusterParameters**_](classastrea_1_1astro_1_1ThrusterParameters.md) _._
 ```C++
 inline astrea::astro::ThrusterParameters::ThrusterParameters (
-    const Thrust & thrust,
-    const CartesianVector < Distance, frames::dynamic::ric > & boresight=NADIR_RIC,
-    const CartesianVector < Distance, frames::dynamic::ric > & attachmentPoint=CENTER
+    const  Force & thrust,
+    const  CartesianVector < Distance , frames::dynamic::ric > & boresight=NADIR_RIC,
+    const  CartesianVector < Distance , frames::dynamic::ric > & attachmentPoint=CENTER
 ) 
 ```
 
@@ -202,7 +206,7 @@ inline astrea::astro::ThrusterParameters::ThrusterParameters (
 
 _Get the thrust magnitude._ 
 ```C++
-inline Thrust astrea::astro::ThrusterParameters::get_thrust () const
+inline Force astrea::astro::ThrusterParameters::get_thrust () const
 ```
 
 
@@ -211,13 +215,66 @@ inline Thrust astrea::astro::ThrusterParameters::get_thrust () const
 
 **Returns:**
 
-Thrust magnitude. 
+Force magnitude. 
 
 
 
 
 
         
+
+<hr>
+
+
+
+### function is\_on 
+
+_Set the thrust magnitude._ 
+```C++
+inline bool astrea::astro::ThrusterParameters::is_on () const
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `thrust` Force magnitude to set. 
+
+
+
+
+        
+
+<hr>
+
+
+
+### function switch\_off 
+
+_Switch the thruster off._ 
+```C++
+inline void astrea::astro::ThrusterParameters::switch_off () 
+```
+
+
+
+
+<hr>
+
+
+
+### function switch\_on 
+
+_Switch the thruster on._ 
+```C++
+inline void astrea::astro::ThrusterParameters::switch_on () 
+```
+
+
+
 
 <hr>
 
@@ -239,11 +296,25 @@ virtual astrea::astro::ThrusterParameters::~ThrusterParameters () = default
 
 
 
+### variable \_isOn 
+
+[_**Thruster**_](classastrea_1_1astro_1_1Thruster.md) _state (on/off)_
+```C++
+bool astrea::astro::ThrusterParameters::_isOn;
+```
+
+
+
+
+<hr>
+
+
+
 ### variable \_thrust 
 
-_Thrust magnitude._ 
+_Force magnitude._ 
 ```C++
-Thrust astrea::astro::ThrusterParameters::_thrust;
+Force astrea::astro::ThrusterParameters::_thrust;
 ```
 
 

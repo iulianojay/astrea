@@ -1,0 +1,1736 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1EulerAngles" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::EulerAngles</compoundname>
+    <includes refid="EulerAngles_8hpp" local="no">EulerAngles.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+        <declname>sequence</declname>
+        <defname>sequence</defname>
+      </param>
+      <param>
+        <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+        <declname>rotation_type</declname>
+        <defname>rotation_type</defname>
+      </param>
+      <param>
+        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_in_frame_</declname>
+        <defname>_in_frame_</defname>
+      </param>
+      <param>
+        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_out_frame_</declname>
+        <defname>_out_frame_</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1EulerAngles_1a07fdd44fdce37f11b4956f47abf1b6b5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref></type>
+        <definition>friend class Attitude</definition>
+        <argsstring></argsstring>
+        <name>Attitude</name>
+        <qualifiedname>astrea::astro::EulerAngles::Attitude</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="128" column="18" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1EulerAngles_1a0bd55b909a11e091303378038b1c6534" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const EulerAngles &amp;euler)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> &amp;</type>
+          <declname>euler</declname>
+        </param>
+        <briefdescription>
+<para>Output stream operator for <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>sequence</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The specific sequence of rotations (e.g., RotationSequence::ZXZ). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether the sequence is intrinsic or extrinsic. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_in_frame_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input frame type (e.g., ECI, ECEF). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_out_frame_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output frame type (e.g., ECI, ECEF). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output stream to write to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>angleSequence</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> to output. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::ostream&amp; The output stream after writing the <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="129" column="12" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="129" bodyend="133"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1EulerAngles_1a6bd0376b2b0a8cde7ad73aea137c59dc" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::in_frame</definition>
+        <argsstring></argsstring>
+        <name>in_frame</name>
+        <qualifiedname>astrea::astro::EulerAngles::in_frame</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="136" column="27" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1EulerAngles_1ab88286f659315a34f5ede6342032027d" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::out_frame</definition>
+        <argsstring></argsstring>
+        <name>out_frame</name>
+        <qualifiedname>astrea::astro::EulerAngles::out_frame</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="137" column="27" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="137" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1EulerAngles_1ac5f56150d144ef1103c1d9098baa9f28" prot="private" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref> &gt;</type>
+        <definition>CartesianVector&lt;Angle, _in_frame_&gt; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::_angles</definition>
+        <argsstring></argsstring>
+        <name>_angles</name>
+        <qualifiedname>astrea::astro::EulerAngles::_angles</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="558" column="21" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="558" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1ab7a89a5968f90b81511b582bc798ae7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::EulerAngles</definition>
+        <argsstring>()=default</argsstring>
+        <name>EulerAngles</name>
+        <qualifiedname>astrea::astro::EulerAngles::EulerAngles</qualifiedname>
+        <briefdescription>
+<para>Default constructor for the <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> class. Initializes all angles to zero. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="142" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1aa64db038f397034c2ebb51e5865c8a26" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::EulerAngles</definition>
+        <argsstring>(const Angle &amp;angle1, const Angle &amp;angle2, const Angle &amp;angle3)</argsstring>
+        <name>EulerAngles</name>
+        <qualifiedname>astrea::astro::EulerAngles::EulerAngles</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <declname>angle1</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <declname>angle2</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+          <declname>angle3</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for the <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> class from three angles. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>angle1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first angle in the sequence. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>angle2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second angle in the sequence. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>angle3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The third angle in the sequence. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="151" column="5" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="151" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a11bd98984dd8306ed31c30bb6497d51e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::EulerAngles</definition>
+        <argsstring>(const CartesianVector&lt; Angle, _in_frame_ &gt; &amp;angles)</argsstring>
+        <name>EulerAngles</name>
+        <qualifiedname>astrea::astro::EulerAngles::EulerAngles</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref> &gt; &amp;</type>
+          <declname>angles</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for the <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> class from a <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> of angles. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>angles</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> containing the three angles in the sequence. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="162" column="5" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="162" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1ac378d7de2b5c689bc36226535d7e0dac" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::EulerAngles</definition>
+        <argsstring>(const EulerAngles &amp;other)=default</argsstring>
+        <name>EulerAngles</name>
+        <qualifiedname>astrea::astro::EulerAngles::EulerAngles</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Default copy and move constructors and assignment operators for the same sequence, rotation type, and frames. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="171" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a25af3876712b3cc6b77bd2f0b5d68af8" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::EulerAngles</definition>
+        <argsstring>(EulerAngles &amp;&amp;other)=default</argsstring>
+        <name>EulerAngles</name>
+        <qualifiedname>astrea::astro::EulerAngles::EulerAngles</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="172" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a8a239b7e205e794fe4681685144f1833" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> &amp;</type>
+        <definition>EulerAngles &amp; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator=</definition>
+        <argsstring>(const EulerAngles &amp;other)=default</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="173" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1ad8d39b2181d64d672f320ab3957282cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> &amp;</type>
+        <definition>EulerAngles &amp; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator=</definition>
+        <argsstring>(EulerAngles &amp;&amp;other)=default</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="174" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1afa80863918b3a1925777e219918c2e70" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+            <declname>sequence_u</declname>
+            <defname>sequence_u</defname>
+          </param>
+          <param>
+            <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+            <declname>rotation_type_u</declname>
+            <defname>rotation_type_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_in_frame_u_</declname>
+            <defname>_in_frame_u_</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_out_frame_u_</declname>
+            <defname>_out_frame_u_</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::EulerAngles</definition>
+        <argsstring>(const EulerAngles&lt; sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_ &gt; &amp;other)</argsstring>
+        <name>EulerAngles</name>
+        <qualifiedname>astrea::astro::EulerAngles::EulerAngles</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sequence_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_u_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_u_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(IsEquivalentEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;)    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Copy and move constructors and assignment operators for equivalent sequences (reverse sequence and opposite rotation type). These allow for implicit conversions between equivalent sequences (e.g., ZXZ extrinsic with angles [x, y, z] to ZXZ intrinsic with angles [z, y, x]). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="183" column="5" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="183" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a23a41b59bfe43a7d4a4a649c9443d347" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+            <declname>sequence_u</declname>
+            <defname>sequence_u</defname>
+          </param>
+          <param>
+            <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+            <declname>rotation_type_u</declname>
+            <defname>rotation_type_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_in_frame_u_</declname>
+            <defname>_in_frame_u_</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_out_frame_u_</declname>
+            <defname>_out_frame_u_</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::EulerAngles</definition>
+        <argsstring>(EulerAngles&lt; sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_ &gt; &amp;&amp;other)</argsstring>
+        <name>EulerAngles</name>
+        <qualifiedname>astrea::astro::EulerAngles::EulerAngles</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sequence_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_u_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_u_</ref> &gt; &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(IsEquivalentEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;)    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="190" column="5" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="190" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1af3110ce5062c3940ee2352eb4589e1ce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+            <declname>sequence_u</declname>
+            <defname>sequence_u</defname>
+          </param>
+          <param>
+            <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+            <declname>rotation_type_u</declname>
+            <defname>rotation_type_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_in_frame_u_</declname>
+            <defname>_in_frame_u_</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_out_frame_u_</declname>
+            <defname>_out_frame_u_</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> &amp;</type>
+        <definition>EulerAngles &amp; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator=</definition>
+        <argsstring>(const EulerAngles&lt; sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_ &gt; &amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sequence_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_u_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_u_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(IsEquivalentEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;)    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="197" column="17" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="197" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1aec5e4b345470fbb294abb03d311f7b07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+            <declname>sequence_u</declname>
+            <defname>sequence_u</defname>
+          </param>
+          <param>
+            <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+            <declname>rotation_type_u</declname>
+            <defname>rotation_type_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_in_frame_u_</declname>
+            <defname>_in_frame_u_</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_out_frame_u_</declname>
+            <defname>_out_frame_u_</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> &amp;</type>
+        <definition>EulerAngles &amp; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator=</definition>
+        <argsstring>(EulerAngles&lt; sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_ &gt; &amp;&amp;other)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sequence_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_u_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_u_</ref> &gt; &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(IsEquivalentEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;)    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="205" column="17" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="205" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1ae20dd96c8b8b789eab9bfe221c2f344f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+            <declname>sequence_u</declname>
+            <defname>sequence_u</defname>
+          </param>
+          <param>
+            <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+            <declname>rotation_type_u</declname>
+            <defname>rotation_type_u</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::EulerAngles</definition>
+        <argsstring>(const EulerAngles&lt; sequence_u, rotation_type_u, _in_frame_, _out_frame_ &gt; &amp;other)</argsstring>
+        <name>EulerAngles</name>
+        <qualifiedname>astrea::astro::EulerAngles::EulerAngles</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sequence_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(!IsCompatibleEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_, _out_frame_&gt;)    </requiresclause>
+        <briefdescription>
+<para>Explicit copy constructor for incompatible sequences (different specific sequence, different rotation type, or different frames). Converts through the DCM to ensure correct transformations between frames and proper handling of singularities. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> to copy from, which must be incompatible with this sequence. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt;sequence, rotation_type, <emphasis>in_frame</emphasis>, <emphasis>out_frame</emphasis>&gt; A new <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> object that is the result of converting the other sequence to this sequence. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="220" column="5" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.ipp" bodystart="29" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a3d7293bdef014427c3cfefed406616e0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; <ref refid="EulerAngles_8hpp_1a621e09c6f4089da8b3686045e3cb7d3f" kindref="member">get_reverse_sequence</ref>(sequence), <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref> &gt;</type>
+        <definition>EulerAngles&lt; get_reverse_sequence(sequence), rotation_type, _out_frame_, _in_frame_ &gt; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::get_inverse_sequence</definition>
+        <argsstring>() const</argsstring>
+        <name>get_inverse_sequence</name>
+        <qualifiedname>astrea::astro::EulerAngles::get_inverse_sequence</qualifiedname>
+        <briefdescription>
+<para>Constructs the inverse sequence with the same rotation type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt;get_reverse_sequence(sequence), rotation_type, <emphasis>out_frame</emphasis>, <emphasis>in_frame</emphasis>&gt; A new <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> object that is the inverse sequence with the same rotation type and reversed angles. object that is the inverse sequence with the same rotation type and reversed angles. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="229" column="17" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="229" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1ad3d6c29685db35c93d76b56e94da6aa1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+        <definition>Angle &amp; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator[]</definition>
+        <argsstring>(std::size_t index)</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator[]</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Array access operator for accessing individual angle components. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the angle component (0, 1, or 2). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Angle&amp; Reference to the angle component. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="241" column="11" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="241" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a917f13002e05f336ebc3f01b0a0ea04a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+        <definition>const Angle &amp; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator[]</definition>
+        <argsstring>(std::size_t index) const</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator[]</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Const array access operator for accessing individual angle components. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the angle component (0, 1, or 2). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const Angle&amp; Const reference to the angle component. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="249" column="17" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="249" bodyend="249"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a59d393b06670da1ad13f36ccd2184fa8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref> &gt; &amp;</type>
+        <definition>CartesianVector&lt; Angle, _in_frame_ &gt; &amp; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::get_angles</definition>
+        <argsstring>()</argsstring>
+        <name>get_angles</name>
+        <qualifiedname>astrea::astro::EulerAngles::get_angles</qualifiedname>
+        <briefdescription>
+<para>Get access to the underlying <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt;Angle, <emphasis>in_frame</emphasis>&gt;&amp; Reference to the internal <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="256" column="21" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="256" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1ae18deefa261e26beaf7737c4236ab3a8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref> &gt; &amp;</type>
+        <definition>const CartesianVector&lt; Angle, _in_frame_ &gt; &amp; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::get_angles</definition>
+        <argsstring>() const</argsstring>
+        <name>get_angles</name>
+        <qualifiedname>astrea::astro::EulerAngles::get_angles</qualifiedname>
+        <briefdescription>
+<para>Get const access to the underlying <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt;Angle, <emphasis>in_frame</emphasis>&gt;&amp; Const reference to the internal <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="263" column="27" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="263" bodyend="263"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a34cb90dd292d33f0e3b3ecbe59131024" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <definition>DirectionCosineMatrix&lt; _in_frame_, _out_frame_ &gt; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::to_dcm</definition>
+        <argsstring>() const</argsstring>
+        <name>to_dcm</name>
+        <qualifiedname>astrea::astro::EulerAngles::to_dcm</qualifiedname>
+        <briefdescription>
+<para>Converts the angle sequence to a direction cosine matrix (DCM) for transforming vectors between frames. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix</ref>&lt;<emphasis>in_frame</emphasis>, <emphasis>out_frame</emphasis>&gt; The resulting direction cosine matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="270" column="27" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="270" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a5e8d1a8002d031f08dc32dbd4d7fd25b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+            <declname>rotation_u</declname>
+            <defname>rotation_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; <ref refid="EulerAngles_8hpp_1a621e09c6f4089da8b3686045e3cb7d3f" kindref="member">get_reverse_sequence</ref>(sequence), <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <definition>EulerAngles&lt; get_reverse_sequence(sequence), rotation_u, _in_frame_, _out_frame_ &gt; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::to_rotation_type</definition>
+        <argsstring>() const</argsstring>
+        <name>to_rotation_type</name>
+        <qualifiedname>astrea::astro::EulerAngles::to_rotation_type</qualifiedname>
+    <requiresclause>(rotation_type != rotation_u)    </requiresclause>
+        <briefdescription>
+<para>Converts the angle sequence to the opposite rotation type (intrinsic to extrinsic or vice versa) by reversing the order of the angles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="287" column="17" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="287" bodyend="290"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a57920c81982e2a400d36e185c73e019e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+            <declname>rotation_u</declname>
+            <defname>rotation_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <definition>EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::to_rotation_type</definition>
+        <argsstring>() const</argsstring>
+        <name>to_rotation_type</name>
+        <qualifiedname>astrea::astro::EulerAngles::to_rotation_type</qualifiedname>
+    <requiresclause>(rotation_type == rotation_u)    </requiresclause>
+        <briefdescription>
+<para>Converts the angle sequence to the same rotation type (intrinsic to intrinsic or extrinsic to extrinsic). This is a no-op but allows for explicit conversions between different sequences of the same rotation type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="298" column="17" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="298" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a29b177aea32d77754e4083468eaf5ea7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+            <declname>sequence_u</declname>
+            <defname>sequence_u</defname>
+          </param>
+          <param>
+            <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+            <declname>rotation_type_u</declname>
+            <defname>rotation_type_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_in_frame_u_</declname>
+            <defname>_in_frame_u_</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_out_frame_u_</declname>
+            <defname>_out_frame_u_</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::EulerAngles</definition>
+        <argsstring>(const EulerAngles&lt; sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_ &gt; &amp;other)=delete</argsstring>
+        <name>EulerAngles</name>
+        <qualifiedname>astrea::astro::EulerAngles::EulerAngles</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sequence_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_u_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_u_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(!IsCompatibleEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;)    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="306" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a7d030778f040b392c4b82ebe889c5396" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+            <declname>sequence_u</declname>
+            <defname>sequence_u</defname>
+          </param>
+          <param>
+            <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+            <declname>rotation_type_u</declname>
+            <defname>rotation_type_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_in_frame_u_</declname>
+            <defname>_in_frame_u_</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_out_frame_u_</declname>
+            <defname>_out_frame_u_</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::EulerAngles</definition>
+        <argsstring>(EulerAngles&lt; sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_ &gt; &amp;&amp;other)=delete</argsstring>
+        <name>EulerAngles</name>
+        <qualifiedname>astrea::astro::EulerAngles::EulerAngles</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sequence_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_u_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_u_</ref> &gt; &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(!IsCompatibleEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;)    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="310" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1ae4067436aa0c07ae22c676093b2d36e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+            <declname>sequence_u</declname>
+            <defname>sequence_u</defname>
+          </param>
+          <param>
+            <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+            <declname>rotation_type_u</declname>
+            <defname>rotation_type_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_in_frame_u_</declname>
+            <defname>_in_frame_u_</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_out_frame_u_</declname>
+            <defname>_out_frame_u_</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+        <definition>EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; &amp; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator=</definition>
+        <argsstring>(const EulerAngles&lt; sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_ &gt; &amp;other)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sequence_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_u_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_u_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(!IsCompatibleEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;)    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="315" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a792e6aefb366da2d188f0424560389ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+            <declname>sequence_u</declname>
+            <defname>sequence_u</defname>
+          </param>
+          <param>
+            <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+            <declname>rotation_type_u</declname>
+            <defname>rotation_type_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_in_frame_u_</declname>
+            <defname>_in_frame_u_</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_out_frame_u_</declname>
+            <defname>_out_frame_u_</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+        <definition>EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; &amp; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator=</definition>
+        <argsstring>(EulerAngles&lt; sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_ &gt; &amp;&amp;other)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sequence_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_u_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_u_</ref> &gt; &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(!IsCompatibleEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;)    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="320" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1ada08d2809ffec975c2c9501b08fbf519" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>bool astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator==</definition>
+        <argsstring>(const EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator==</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Equality operator for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to compare with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true If the two vectors are equal. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the two vectors are not equal. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="329" column="10" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="329" bodyend="332"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1ac9bb2576c7264b96521559b32d62b90e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+            <declname>sequence_u</declname>
+            <defname>sequence_u</defname>
+          </param>
+          <param>
+            <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+            <declname>rotation_type_u</declname>
+            <defname>rotation_type_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_in_frame_u_</declname>
+            <defname>_in_frame_u_</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_out_frame_u_</declname>
+            <defname>_out_frame_u_</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>bool astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator==</definition>
+        <argsstring>(const EulerAngles&lt; sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_ &gt; &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator==</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sequence_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_u_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_u_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(IsEquivalentEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;)    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="336" column="10" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="336" bodyend="339"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a919a09d9aa68df142f4e1e458702f18a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+            <declname>sequence_u</declname>
+            <defname>sequence_u</defname>
+          </param>
+          <param>
+            <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+            <declname>rotation_type_u</declname>
+            <defname>rotation_type_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_in_frame_u_</declname>
+            <defname>_in_frame_u_</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_out_frame_u_</declname>
+            <defname>_out_frame_u_</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>bool astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator==</definition>
+        <argsstring>(const EulerAngles&lt; sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_ &gt; &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator==</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sequence_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_u_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_u_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(!IsCompatibleEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;)    </requiresclause>
+        <briefdescription>
+<para>Inequality operator for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> in a different frame. Always false. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to compare with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true If the two vectors are not equal. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the two vectors are equal. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="350" column="10" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="350" bodyend="353"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a4255f96fb613f8db13e5199c1c47a872" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <definition>EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator+</definition>
+        <argsstring>(const EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; &amp;other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator+</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Addition operator for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt;sequence, rotation_type, <emphasis>in_frame</emphasis>, <emphasis>out_frame</emphasis>&gt; A new <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> that is the sum of this sequence and the other. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="362" column="9" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="362" bodyend="365"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a354b95a4ad13ff7c2ae9639d5cf44e90" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+        <definition>EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; &amp; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator+=</definition>
+        <argsstring>(const EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; &amp;other)</argsstring>
+        <name>operator+=</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator+=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Addition assignment operator for <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt;sequence, rotation_type, <emphasis>in_frame</emphasis>, <emphasis>out_frame</emphasis>&gt;&amp; Reference to the current object after addition. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="374" column="9" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="374" bodyend="379"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a4f48fae1bf4acf156f81844f97599012" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <definition>EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator-</definition>
+        <argsstring>(const EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator-</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Subtraction operator for <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> to subtract. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt;sequence, rotation_type, <emphasis>in_frame</emphasis>, <emphasis>out_frame</emphasis>&gt; A new <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> that is the difference of this sequence and the other. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="389" column="9" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="389" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1ad02360492ad499891540fcb197160af3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <definition>EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator-</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator-</qualifiedname>
+        <briefdescription>
+<para>Negation operator for <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt;sequence, rotation_type, <emphasis>in_frame</emphasis>, <emphasis>out_frame</emphasis>&gt; A new <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> that is the negation of this sequence. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="399" column="17" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="399" bodyend="399"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1abf8ff73f7b2ce86a3aa941240cb2ba9a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+        <definition>EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; &amp; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator-=</definition>
+        <argsstring>(const EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; &amp;other)</argsstring>
+        <name>operator-=</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator-=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Subtraction assignment operator for <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> to subtract. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt;sequence, rotation_type, <emphasis>in_frame</emphasis>, <emphasis>out_frame</emphasis>&gt;&amp; Reference to the current object after subtraction. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="408" column="9" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="408" bodyend="413"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1adb89a9f6a5c607069657bd0e63993d20" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <definition>EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator*</definition>
+        <argsstring>(const Unitless &amp;scalar) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator*</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+<para>Scalar multiplication operator for <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to multiply with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt;sequence, rotation_type, <emphasis>in_frame</emphasis>, <emphasis>out_frame</emphasis>&gt; A new <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> that is the product of this sequence and the scalar. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="421" column="17" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="421" bodyend="424"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1aed85af953571dcc823be7b8d363c51ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+        <definition>EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; &amp; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator*=</definition>
+        <argsstring>(const Unitless &amp;scalar)</argsstring>
+        <name>operator*=</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator*=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+<para>Scalar multiplication assignment operator for <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to multiply with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt;sequence, rotation_type, <emphasis>in_frame</emphasis>, <emphasis>out_frame</emphasis>&gt;&amp; Reference to the current object after multiplication. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="432" column="17" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="432" bodyend="437"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a402f0cb2d165e76251da87ec9546ca5d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1AngularVelocities" kindref="compound">AngularVelocities</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <definition>AngularVelocities&lt; _in_frame_, _out_frame_ &gt; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator/</definition>
+        <argsstring>(const Time &amp;time) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator/</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>Scalar division operator for <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> by a Time quantity, resulting in an EulerAnglesRate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time quantity to divide by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1AngularVelocities" kindref="compound">AngularVelocities</ref>&lt;<emphasis>in_frame</emphasis>, <emphasis>out_frame</emphasis>&gt; A new <ref refid="classastrea_1_1astro_1_1AngularVelocities" kindref="compound">AngularVelocities</ref> that is the quotient of this sequence and the time. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="446" column="23" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="446" bodyend="446"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a80220c862923ec1c4a5d248e9634ebb1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <definition>EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator/</definition>
+        <argsstring>(const Unitless &amp;scalar) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator/</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+<para>Scalar division operator for <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to divide by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt;sequence, rotation_type, <emphasis>in_frame</emphasis>, <emphasis>out_frame</emphasis>&gt; A new <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> that is the quotient of this sequence and the scalar. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="454" column="17" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="454" bodyend="457"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1af83b47193bf01721980ecbd8ee3fd0a0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+        <definition>EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; &amp; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::operator/=</definition>
+        <argsstring>(const Unitless &amp;scalar)</argsstring>
+        <name>operator/=</name>
+        <qualifiedname>astrea::astro::EulerAngles::operator/=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+<para>Scalar division assignment operator for <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to divide by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt;sequence, rotation_type, <emphasis>in_frame</emphasis>, <emphasis>out_frame</emphasis>&gt;&amp; Reference to the current object after division. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="465" column="17" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="465" bodyend="470"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1af9b34079ff795ec582a916fe1a3bff91" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>auto astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::dot</definition>
+        <argsstring>(const EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; &amp;other) const</argsstring>
+        <name>dot</name>
+        <qualifiedname>astrea::astro::EulerAngles::dot</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Dot product of this angle vector with another <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> to take the dot product with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>auto The resulting scalar from the dot product. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="478" column="10" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="478" bodyend="481"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1ac0abccf3e85939d02a0af4c92d6a280a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>auto astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::dot</definition>
+        <argsstring>(const CartesianVector&lt; Value_U, _in_frame_ &gt; &amp;other) const</argsstring>
+        <name>dot</name>
+        <qualifiedname>astrea::astro::EulerAngles::dot</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Dot product of this angle vector with a generic <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Value_U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value type of the <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to take the dot product with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>auto The resulting scalar from the dot product. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="491" column="10" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="491" bodyend="494"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1ab3d869c1722754e92c39ca0e6f012e56" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>auto astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::cross</definition>
+        <argsstring>(const EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; &amp;other) const</argsstring>
+        <name>cross</name>
+        <qualifiedname>astrea::astro::EulerAngles::cross</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Cross product of this angle vector with another <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> to take the cross product with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>auto The resulting <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> from the cross product. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="502" column="10" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="502" bodyend="505"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1ad138043f4fb69d41852abc5aeffe2384" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>auto astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::cross</definition>
+        <argsstring>(const CartesianVector&lt; Value_U, _in_frame_ &gt; &amp;other) const</argsstring>
+        <name>cross</name>
+        <qualifiedname>astrea::astro::EulerAngles::cross</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Cross product of this angle vector with a generic <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Value_U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value type of the <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to take the cross product with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>auto The resulting <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> from the cross product. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="515" column="10" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="515" bodyend="518"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a148aa65d6f9b6ab797dc6b7aa62e88e5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <definition>Angle astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::norm</definition>
+        <argsstring>() const</argsstring>
+        <name>norm</name>
+        <qualifiedname>astrea::astro::EulerAngles::norm</qualifiedname>
+        <briefdescription>
+<para>Norm of the angle vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Angle The resulting norm of the angle vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="525" column="11" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="525" bodyend="525"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a2cb437adab22ef6c58345214a2d890c8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt;</type>
+        <definition>std::vector&lt; Unitless &gt; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::force_to_vector</definition>
+        <argsstring>() const</argsstring>
+        <name>force_to_vector</name>
+        <qualifiedname>astrea::astro::EulerAngles::force_to_vector</qualifiedname>
+        <briefdescription>
+<para>Converts the angle sequence to a vector form for use in numerical integration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A std::vector of Unitless quantities representing the components of the angle sequence, in the order [first, second, third]. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="532" column="17" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="532" bodyend="535"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a5a92a3399dd20fca8b867b40b13bbee6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <definition>EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::interpolate</definition>
+        <argsstring>(const Time &amp;thisTime, const Time &amp;otherTime, const EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; &amp;other, const Time &amp;targetTime) const</argsstring>
+        <name>interpolate</name>
+        <qualifiedname>astrea::astro::EulerAngles::interpolate</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <declname>thisTime</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <declname>otherTime</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <declname>targetTime</declname>
+        </param>
+        <briefdescription>
+<para>Interpolates between this angle sequence and another angle sequence at a target time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>thisTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time corresponding to this angle sequence. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>otherTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time corresponding to the other angle sequence. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other angle sequence to interpolate with. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>targetTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time at which to interpolate the angle sequence. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt;sequence, rotation_type, <emphasis>in_frame</emphasis>, <emphasis>out_frame</emphasis>&gt; A new <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> that is the interpolation of this sequence and the other at the target time. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="547" column="17" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="547" bodyend="555"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a72d82354f2086a5b70dd7163fc997307" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::wrap_angles</definition>
+        <argsstring>()</argsstring>
+        <name>wrap_angles</name>
+        <qualifiedname>astrea::astro::EulerAngles::wrap_angles</qualifiedname>
+        <briefdescription>
+<para>Wraps the angles in the sequence to their appropriate ranges. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This function uses an assumed convention. I don&apos;t really know the limitations of it. Might have to modify it later. φ - [0, 2π) θ - [0, π) ψ - [0, 2π) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="569" column="10" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="569" bodyend="574"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EulerAngles_1a8c2c38d6a456a6f073ede199eb2882bf" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref> &gt;</type>
+        <definition>static EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt; astrea::astro::EulerAngles&lt; sequence, rotation_type, _in_frame_, _out_frame_ &gt;::from_vector</definition>
+        <argsstring>(const std::vector&lt; Unitless &gt; &amp;vec)</argsstring>
+        <name>from_vector</name>
+        <qualifiedname>astrea::astro::EulerAngles::from_vector</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+<para>Constructs an <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> from a vector of Unitless quantities representing the angle components. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A std::vector of Unitless quantities representing the components of the angle sequence, in the order [first, second, third]. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> constructed from the given vector.</para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the input vector does not have exactly 3 components. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="584" column="24" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="584" bodyend="592"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class representing a sequence of angles (either Euler or Tait-Bryan) for attitude transformations between frames. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>sequence</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The specific sequence of rotations (e.g., RotationSequence::ZXZ). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether the sequence is intrinsic or extrinsic. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_in_frame_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input frame type (e.g., ECI, ECEF). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>_out_frame_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output frame type (e.g., ECI, ECEF).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>: welcome to templating hell </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="126" column="1" bodyfile="astrea/astro/astro/state/attitude/EulerAngles.hpp" bodystart="126" bodyend="593"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ac5f56150d144ef1103c1d9098baa9f28" prot="private" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>_angles</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a07fdd44fdce37f11b4956f47abf1b6b5" prot="private" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>Attitude</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ab3d869c1722754e92c39ca0e6f012e56" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>cross</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ad138043f4fb69d41852abc5aeffe2384" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>cross</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1af9b34079ff795ec582a916fe1a3bff91" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>dot</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ac0abccf3e85939d02a0af4c92d6a280a" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>dot</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ab7a89a5968f90b81511b582bc798ae7a" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>EulerAngles</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1aa64db038f397034c2ebb51e5865c8a26" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>EulerAngles</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a11bd98984dd8306ed31c30bb6497d51e" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>EulerAngles</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ac378d7de2b5c689bc36226535d7e0dac" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>EulerAngles</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a25af3876712b3cc6b77bd2f0b5d68af8" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>EulerAngles</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1afa80863918b3a1925777e219918c2e70" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>EulerAngles</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a23a41b59bfe43a7d4a4a649c9443d347" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>EulerAngles</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ae20dd96c8b8b789eab9bfe221c2f344f" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>EulerAngles</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a29b177aea32d77754e4083468eaf5ea7" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>EulerAngles</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a7d030778f040b392c4b82ebe889c5396" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>EulerAngles</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a2cb437adab22ef6c58345214a2d890c8" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>force_to_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a8c2c38d6a456a6f073ede199eb2882bf" prot="private" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>from_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a59d393b06670da1ad13f36ccd2184fa8" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>get_angles</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ae18deefa261e26beaf7737c4236ab3a8" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>get_angles</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a3d7293bdef014427c3cfefed406616e0" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>get_inverse_sequence</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a6bd0376b2b0a8cde7ad73aea137c59dc" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>in_frame</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a5a92a3399dd20fca8b867b40b13bbee6" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>interpolate</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a148aa65d6f9b6ab797dc6b7aa62e88e5" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>norm</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1adb89a9f6a5c607069657bd0e63993d20" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator*</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1aed85af953571dcc823be7b8d363c51ff" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator*=</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a4255f96fb613f8db13e5199c1c47a872" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator+</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a354b95a4ad13ff7c2ae9639d5cf44e90" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator+=</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a4f48fae1bf4acf156f81844f97599012" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator-</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ad02360492ad499891540fcb197160af3" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator-</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1abf8ff73f7b2ce86a3aa941240cb2ba9a" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator-=</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a402f0cb2d165e76251da87ec9546ca5d" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator/</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a80220c862923ec1c4a5d248e9634ebb1" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator/</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1af83b47193bf01721980ecbd8ee3fd0a0" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator/=</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a0bd55b909a11e091303378038b1c6534" prot="private" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a8a239b7e205e794fe4681685144f1833" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ad8d39b2181d64d672f320ab3957282cf" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1af3110ce5062c3940ee2352eb4589e1ce" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1aec5e4b345470fbb294abb03d311f7b07" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ae4067436aa0c07ae22c676093b2d36e5" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a792e6aefb366da2d188f0424560389ab" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ada08d2809ffec975c2c9501b08fbf519" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator==</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ac9bb2576c7264b96521559b32d62b90e" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator==</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a919a09d9aa68df142f4e1e458702f18a" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator==</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ad3d6c29685db35c93d76b56e94da6aa1" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a917f13002e05f336ebc3f01b0a0ea04a" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1ab88286f659315a34f5ede6342032027d" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>out_frame</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a34cb90dd292d33f0e3b3ecbe59131024" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>to_dcm</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a5e8d1a8002d031f08dc32dbd4d7fd25b" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>to_rotation_type</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a57920c81982e2a400d36e185c73e019e" prot="public" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>to_rotation_type</name></member>
+      <member refid="classastrea_1_1astro_1_1EulerAngles_1a72d82354f2086a5b70dd7163fc997307" prot="private" virt="non-virtual"><scope>astrea::astro::EulerAngles</scope><name>wrap_angles</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

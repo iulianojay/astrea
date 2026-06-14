@@ -4,7 +4,7 @@
 
 
 
-[**FileList**](files.md) **>** [**angular\_elements**](dir_8f2f7499654791f4fc4240f01fb9baf6.md) **>** [**instances**](dir_1a50007be9f0149ab221abcea88ff37f.md) **>** [**Geodetic.hpp**](Geodetic_8hpp.md)
+[**FileList**](files.md) **>** [**angular\_elements**](dir_8f2f7499654791f4fc4240f01fb9baf6.md) **>** [**Geodetic.hpp**](Geodetic_8hpp.md)
 
 [Go to the source code of this file](Geodetic_8hpp_source.md)
 
@@ -13,11 +13,14 @@ _This file defines the Geodetic class and its associated methods._ [More...](#de
 * `#include <iosfwd>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/CartesianVector.hpp>`
-* `#include <astro/frames/frames.hpp>`
+* `#include <astro/frames/definitions.hpp>`
+* `#include <astro/frames/framework/CartesianVector.hpp>`
+* `#include <astro/frames/framework/frame_concepts.hpp>`
 * `#include <astro/state/orbital_elements/OrbitalElements.hpp>`
-* `#include <astro/systems/AstrodynamicsSystem.hpp>`
+* `#include <astro/systems/system_concepts.hpp>`
+* `#include <astro/systems/system_utilities.hpp>`
 * `#include <astro/types/typedefs.hpp>`
+* `#include <astro/state/angular_elements/Geodetic.ipp>`
 
 
 
@@ -43,7 +46,7 @@ _This file defines the Geodetic class and its associated methods._ [More...](#de
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) <br>_Class representing a_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector in astrodynamics._ |
+| class | [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) &lt;\_body\_&gt;<br>_Class representing a_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector in astrodynamics._ |
 
 
 
@@ -127,5 +130,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/state/angular_elements/Geodetic.hpp`
 

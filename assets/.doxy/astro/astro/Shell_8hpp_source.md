@@ -15,11 +15,12 @@
 #include <vector>
 
 #include <units/units.hpp>
+#include <utilities/IdProvider.hpp>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/platforms/space/Plane.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
+#include <astro/state/orbital_elements/Keplerian.hpp>
 
 namespace astrea {
 namespace astro {
@@ -39,7 +40,6 @@ class Shell {
     Shell(std::vector<Spacecraft_T> satellites);
 
     Shell(
-        const AstrodynamicsSystem& sys,
         const Date& epoch,
         const Distance& semimajor,
         const Angle& inclination,
@@ -50,7 +50,7 @@ class Shell {
         const Angle& anchorAnomaly = 0.0 * mp_units::angular::unit_symbols::rad
     );
 
-    ~Shell() { generate_id(); };
+    ~Shell() { id = utilities::IdProvider::get_next_id<"Shell">(); };
 
     const std::size_t size() const;
 
@@ -72,9 +72,9 @@ class Shell {
 
     const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
 
-    void propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Time& propTime, Integrator& integrator);
 
-    void propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Date& endEpoch, Integrator& integrator);
 
 
     // using iterator       = std::vector<Plane<Spacecraft_T>>::iterator;
@@ -194,8 +194,6 @@ class Shell {
     std::size_t id;
     std::string name;
     std::vector<Plane<Spacecraft_T>> planes;
-
-    void generate_id();
 };
 
 } // namespace astro

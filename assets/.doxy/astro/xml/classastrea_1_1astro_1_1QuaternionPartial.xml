@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1QuaternionPartial" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::QuaternionPartial</compoundname>
+    <includes refid="Quaternion_8hpp" local="no">Quaternion.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_in_frame_</declname>
+        <defname>_in_frame_</defname>
+      </param>
+      <param>
+        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_out_frame_</declname>
+        <defname>_out_frame_</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1QuaternionPartial_1a0b1f8d9c991cf41a25b58d4fe06cf9b9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref></type>
+        <definition>friend class AttitudePartial</definition>
+        <argsstring></argsstring>
+        <name>AttitudePartial</name>
+        <qualifiedname>astrea::astro::QuaternionPartial::AttitudePartial</qualifiedname>
+        <param>
+          <type>AttitudePartial</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="635" column="18" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="635" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1QuaternionPartial_1afdfe68a0b7ca9340ca086ad6aa3b3c72" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::QuaternionPartial&lt; _in_frame_, _out_frame_ &gt;::in_frame</definition>
+        <argsstring></argsstring>
+        <name>in_frame</name>
+        <qualifiedname>astrea::astro::QuaternionPartial::in_frame</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="638" column="27" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="638" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1QuaternionPartial_1a0da690dc96bc924f1aac24472a5c5628" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::QuaternionPartial&lt; _in_frame_, _out_frame_ &gt;::out_frame</definition>
+        <argsstring></argsstring>
+        <name>out_frame</name>
+        <qualifiedname>astrea::astro::QuaternionPartial::out_frame</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="639" column="27" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="639" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1QuaternionPartial_1a47a7d516a9fae6c90236f7a511eadc2a" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref></type>
+        <definition>UnitlessPerTime astrea::astro::QuaternionPartial&lt; _in_frame_, _out_frame_ &gt;::_sDot</definition>
+        <argsstring></argsstring>
+        <name>_sDot</name>
+        <qualifiedname>astrea::astro::QuaternionPartial::_sDot</qualifiedname>
+        <briefdescription>
+<para>Scalar part of the quaternion derivative. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="694" column="21" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="694" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1QuaternionPartial_1af9543f9baca7e45d3f093df9f3a98b68" prot="private" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref>, in_frame &gt;</type>
+        <definition>CartesianVector&lt;UnitlessPerTime, in_frame&gt; astrea::astro::QuaternionPartial&lt; _in_frame_, _out_frame_ &gt;::_uDot</definition>
+        <argsstring></argsstring>
+        <name>_uDot</name>
+        <qualifiedname>astrea::astro::QuaternionPartial::_uDot</qualifiedname>
+        <briefdescription>
+<para>Vector part of the quaternion derivative with no frame association. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="695" column="21" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="695" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1QuaternionPartial_1a4ff39780035c60731099b890348a7d17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::QuaternionPartial&lt; _in_frame_, _out_frame_ &gt;::QuaternionPartial</definition>
+        <argsstring>()=default</argsstring>
+        <name>QuaternionPartial</name>
+        <qualifiedname>astrea::astro::QuaternionPartial::QuaternionPartial</qualifiedname>
+        <briefdescription>
+<para>Default constructor for the <ref refid="classastrea_1_1astro_1_1QuaternionPartial" kindref="compound">QuaternionPartial</ref> class. Initializes to zero rates of change. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="644" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1QuaternionPartial_1ab8779f0a986ef854d457f0530549578e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::QuaternionPartial&lt; _in_frame_, _out_frame_ &gt;::QuaternionPartial</definition>
+        <argsstring>(const UnitlessPerTime &amp;sDot, const CartesianVector&lt; UnitlessPerTime, in_frame &gt; &amp;uDot)</argsstring>
+        <name>QuaternionPartial</name>
+        <qualifiedname>astrea::astro::QuaternionPartial::QuaternionPartial</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref> &amp;</type>
+          <declname>sDot</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref>, in_frame &gt; &amp;</type>
+          <declname>uDot</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for the <ref refid="classastrea_1_1astro_1_1QuaternionPartial" kindref="compound">QuaternionPartial</ref> class from a scalar and a <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sDot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar part of the quaternion derivative. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>uDot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector part of the quaternion derivative, representing the rate of change of the vector part of the quaternion. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="652" column="5" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="652" bodyend="656"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1QuaternionPartial_1af5b03cb63cf427d9a6c5679a7b652aa0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref> &amp;</type>
+        <definition>const UnitlessPerTime &amp; astrea::astro::QuaternionPartial&lt; _in_frame_, _out_frame_ &gt;::get_scalar_part</definition>
+        <argsstring>() const</argsstring>
+        <name>get_scalar_part</name>
+        <qualifiedname>astrea::astro::QuaternionPartial::get_scalar_part</qualifiedname>
+        <briefdescription>
+<para>Gets the scalar part of the quaternion. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const UnitlessPerTime&amp; The scalar part of the quaternion. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="663" column="27" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="663" bodyend="663"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1QuaternionPartial_1a7869af7851bcf229c799e5955c9c18ce" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref>, in_frame &gt; &amp;</type>
+        <definition>const CartesianVector&lt; UnitlessPerTime, in_frame &gt; &amp; astrea::astro::QuaternionPartial&lt; _in_frame_, _out_frame_ &gt;::get_vector_part</definition>
+        <argsstring>() const</argsstring>
+        <name>get_vector_part</name>
+        <qualifiedname>astrea::astro::QuaternionPartial::get_vector_part</qualifiedname>
+        <briefdescription>
+<para>Gets the vector part of the quaternion as a <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector&lt;UnitlessPerTime, in_frame&gt;</ref>&amp; The vector part of the quaternion. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="670" column="27" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="670" bodyend="670"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1QuaternionPartial_1a2cb5f01db1dfb0cd1923560d2dc79ce9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&lt; in_frame, out_frame &gt;</type>
+        <definition>Quaternion&lt; in_frame, out_frame &gt; astrea::astro::QuaternionPartial&lt; _in_frame_, _out_frame_ &gt;::operator*</definition>
+        <argsstring>(const Time &amp;dt) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>astrea::astro::QuaternionPartial::operator*</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+<para>Multiplies the quaternion derivative by a time quantity to get a quaternion representing the change in attitude over that time interval. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time quantity to multiply the quaternion derivative by, representing the time interval over which to apply the change in attitude. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref> that represents the change in attitude over the given time interval. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="678" column="16" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="678" bodyend="681"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1QuaternionPartial_1a388ba28c76dede297834755e6d222ffe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt;</type>
+        <definition>std::vector&lt; Unitless &gt; astrea::astro::QuaternionPartial&lt; _in_frame_, _out_frame_ &gt;::force_to_vector</definition>
+        <argsstring>() const</argsstring>
+        <name>force_to_vector</name>
+        <qualifiedname>astrea::astro::QuaternionPartial::force_to_vector</qualifiedname>
+        <briefdescription>
+<para>Converts the quaternion derivative to a vector form for use in numerical integration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A std::vector of Unitless quantities representing the components of the quaternion derivative, in the order [sDot, uDot_x, uDot_y, uDot_z]. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="688" column="17" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="688" bodyend="691"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class representing the partial derivative of a quaternion with respect to time, used for integration. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>in_frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input frame type (e.g., ECI, ECEF). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out_frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output frame type (e.g., ECI, ECEF). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/attitude/Quaternion.hpp" line="633" column="1" bodyfile="astrea/astro/astro/state/attitude/Quaternion.hpp" bodystart="633" bodyend="696"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1QuaternionPartial_1a47a7d516a9fae6c90236f7a511eadc2a" prot="private" virt="non-virtual"><scope>astrea::astro::QuaternionPartial</scope><name>_sDot</name></member>
+      <member refid="classastrea_1_1astro_1_1QuaternionPartial_1af9543f9baca7e45d3f093df9f3a98b68" prot="private" virt="non-virtual"><scope>astrea::astro::QuaternionPartial</scope><name>_uDot</name></member>
+      <member refid="classastrea_1_1astro_1_1QuaternionPartial_1a0b1f8d9c991cf41a25b58d4fe06cf9b9" prot="private" virt="non-virtual"><scope>astrea::astro::QuaternionPartial</scope><name>AttitudePartial</name></member>
+      <member refid="classastrea_1_1astro_1_1QuaternionPartial_1a388ba28c76dede297834755e6d222ffe" prot="public" virt="non-virtual"><scope>astrea::astro::QuaternionPartial</scope><name>force_to_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1QuaternionPartial_1af5b03cb63cf427d9a6c5679a7b652aa0" prot="public" virt="non-virtual"><scope>astrea::astro::QuaternionPartial</scope><name>get_scalar_part</name></member>
+      <member refid="classastrea_1_1astro_1_1QuaternionPartial_1a7869af7851bcf229c799e5955c9c18ce" prot="public" virt="non-virtual"><scope>astrea::astro::QuaternionPartial</scope><name>get_vector_part</name></member>
+      <member refid="classastrea_1_1astro_1_1QuaternionPartial_1afdfe68a0b7ca9340ca086ad6aa3b3c72" prot="public" virt="non-virtual"><scope>astrea::astro::QuaternionPartial</scope><name>in_frame</name></member>
+      <member refid="classastrea_1_1astro_1_1QuaternionPartial_1a2cb5f01db1dfb0cd1923560d2dc79ce9" prot="public" virt="non-virtual"><scope>astrea::astro::QuaternionPartial</scope><name>operator*</name></member>
+      <member refid="classastrea_1_1astro_1_1QuaternionPartial_1a0da690dc96bc924f1aac24472a5c5628" prot="public" virt="non-virtual"><scope>astrea::astro::QuaternionPartial</scope><name>out_frame</name></member>
+      <member refid="classastrea_1_1astro_1_1QuaternionPartial_1a4ff39780035c60731099b890348a7d17" prot="public" virt="non-virtual"><scope>astrea::astro::QuaternionPartial</scope><name>QuaternionPartial</name></member>
+      <member refid="classastrea_1_1astro_1_1QuaternionPartial_1ab8779f0a986ef854d457f0530549578e" prot="public" virt="non-virtual"><scope>astrea::astro::QuaternionPartial</scope><name>QuaternionPartial</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

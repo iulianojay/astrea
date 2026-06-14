@@ -1,0 +1,908 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::planets::NRLMSISE00</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">AbstractSunInfluencedAtmosphere</basecompoundref>
+    <innerclass refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output" prot="private">astrea::astro::planets::NRLMSISE00::Output</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Switch" prot="private">astrea::astro::planets::NRLMSISE00::Switch</innerclass>
+    <sectiondef kind="private-type">
+      <memberdef kind="enum" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6" prot="private" static="no" strong="no">
+        <type></type>
+        <name>AtomicDensity</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::AtomicDensity</qualifiedname>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a1d89721b826f1678add55beeded84bbd" prot="private">
+          <name>HELIUM</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6ad8f8bb24a81f5a057fa61f186060db71" prot="private">
+          <name>ATOMIC_OXYGEN</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a2038d6a8bd58cba06c73cf21b6ff3ea8" prot="private">
+          <name>MOLECULAR_NITROGEN</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6ab1a1e60218e88a7eb2fa61ad2c406a04" prot="private">
+          <name>MOLECULAR_OXYGEN</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6ab420296630bd81cf7fea13245af5b561" prot="private">
+          <name>ARGON</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a16cc7b735a4cab18785b9c4720a91120" prot="private">
+          <name>TOTAL_MASS</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6aba37f4cf45e33bdc4d55241f6eb93baf" prot="private">
+          <name>HYDROGEN</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a0440bc100d66186e4519d762fdffadb6" prot="private">
+          <name>ATOMIC_NITROGEN</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a09bd6aba84a0e1d886504e55a3ab4a4a" prot="private">
+          <name>ANOMALOUS_OXYGEN</name>
+          <initializer>= 8</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="597" column="5" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="597" bodyend="607"/>
+      </memberdef>
+      <memberdef kind="enum" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a371584d42d531377b0460fb90debe7ff" prot="private" static="no" strong="no">
+        <type></type>
+        <name>TemperatureType</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::TemperatureType</qualifiedname>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a371584d42d531377b0460fb90debe7ffa2e786c4c201767675c4e0337de50077a" prot="private">
+          <name>EXOSPHERIC</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a371584d42d531377b0460fb90debe7ffaa6750a5feedb1a2bc09cba26c4e0baef" prot="private">
+          <name>ALTITUDE</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="609" column="5" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="609" bodyend="609"/>
+      </memberdef>
+      <memberdef kind="enum" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0de" prot="private" static="no" strong="no">
+        <type></type>
+        <name>Option</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::Option</qualifiedname>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea3c048670af782aa8b0be10bb1fb12b7a" prot="private">
+          <name>F107_EFFECT_ON_MEAN</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deabc54c2338878c1d1d0333b9bfd54dd67" prot="private">
+          <name>INDEPENDENT_OF_TIME</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea8efa822fbbf68fdea36140b123af6cb0" prot="private">
+          <name>SYMMETRICAL_ANNUAL</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea5c1f634a7f06d1bcfeb02cfcf87b8296" prot="private">
+          <name>SYMMETRICAL_SEMIANNUAL</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea227c428e9accd06ccbabdf640b8c359e" prot="private">
+          <name>ASYMMETRICAL_ANNUAL</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea6cfe0301bdb903226879e193ae323afd" prot="private">
+          <name>ASYMMETRICAL_SEMIANNUAL</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea9000e0f39047b937943e8b3797482669" prot="private">
+          <name>DIURNAL</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea10df2203636c796a83b5675688d522ba" prot="private">
+          <name>SEMIDIURNAL</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea057b0867a5d5302294bd72a5bc1afc53" prot="private">
+          <name>DAILY_AP</name>
+          <initializer>= 8</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea425ce544d52f3a49beecac95a7768f39" prot="private">
+          <name>ALL_UT_LONGITUDINAL_EFFECTS</name>
+          <initializer>= 9</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea71ed05cc1e9dbfa8ba58cb09cd596d81" prot="private">
+          <name>LONGITUDINAL_EFFECTS</name>
+          <initializer>= 10</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea26fc865ae016fb67fb31e00da1d15373" prot="private">
+          <name>UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS</name>
+          <initializer>= 11</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea3e64e7c65e2a1221b4b0995196a7eafe" prot="private">
+          <name>MIXED_AP_UT_LONGITUDINAL_EFFECTS</name>
+          <initializer>= 12</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deacbb1cd1fb3921e5596e4e576b7d8dbd1" prot="private">
+          <name>TERDIURNAL</name>
+          <initializer>= 13</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea8438320bab53ddbbd42fe718c3951137" prot="private">
+          <name>DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM</name>
+          <initializer>= 14</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deaafcb6faa68ba1eb59cb3bd04a565eb7e" prot="private">
+          <name>ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS</name>
+          <initializer>= 15</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea5605d7712e7dcc8424221c9680bc3f3a" prot="private">
+          <name>ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB</name>
+          <initializer>= 16</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea2f81396cdd9bafb780edbb34b7a615f3" prot="private">
+          <name>ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS</name>
+          <initializer>= 17</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea4f6dd3f9347a5e6f67c077c69072fd4b" prot="private">
+          <name>ALL_120KM_GRADIENT_S_VARIATIONS</name>
+          <initializer>= 18</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea1f8b34e861306f80f65889aaf200f5b2" prot="private">
+          <name>ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS</name>
+          <initializer>= 19</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea6bf96d6c523200184e011113fc3d0b5b" prot="private">
+          <name>ALL_VARIATIONS_FROM_120KM_VALUES_ZLB</name>
+          <initializer>= 20</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deac2072a07ec9151741f06103c5c7af00d" prot="private">
+          <name>ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS</name>
+          <initializer>= 21</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deaa3d8ab0846a24feefd1b47ea888ca537" prot="private">
+          <name>TURBOPAUSE_SCALE_HEIGHT_VARIATIONS</name>
+          <initializer>= 22</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Switches for main effects. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="670" column="5" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="670" bodyend="694"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a96d04686f345ec9b6c8834d6d2ca0a35" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <definition>const Angle astrea::astro::planets::NRLMSISE00::LAT_REF</definition>
+        <argsstring></argsstring>
+        <name>LAT_REF</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::LAT_REF</qualifiedname>
+        <initializer>= 45.0 * deg</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference latitude (°). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="614" column="24" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="614" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1afa5bb4b6a1385664af7cf313815868fd" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Acceleration</ref></type>
+        <definition>const Acceleration astrea::astro::planets::NRLMSISE00::G_REF</definition>
+        <argsstring></argsstring>
+        <name>G_REF</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::G_REF</qualifiedname>
+        <initializer>= 980.616 * cm / (s * s)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference gravity on <ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">Earth</ref> surface at reference latitude (cm/s2). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="617" column="31" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="617" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1aeefc09580ef40240e8de6dc4a11dd001" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>const auto astrea::astro::planets::NRLMSISE00::R_GAS</definition>
+        <argsstring></argsstring>
+        <name>R_GAS</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::R_GAS</qualifiedname>
+        <initializer>= 831.4 * J / (mol * K)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gas constant (inverse of). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="622" column="23" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="622" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1af7678adc2a2e755c82170c6846f9a11c" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::NRLMSISE00::H_MASS</definition>
+        <argsstring></argsstring>
+        <name>H_MASS</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::H_MASS</qualifiedname>
+        <initializer>= 1.0 * u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Hydrogen atomic mass. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="625" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="625" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac43af814d5f6432b0aed2562c394562f" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::NRLMSISE00::HE_MASS</definition>
+        <argsstring></argsstring>
+        <name>HE_MASS</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::HE_MASS</qualifiedname>
+        <initializer>= 4.0 * u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Helium atomic mass. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="628" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="628" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a11ede295b09df83e11028e4b977ec45e" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::NRLMSISE00::N_MASS</definition>
+        <argsstring></argsstring>
+        <name>N_MASS</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::N_MASS</qualifiedname>
+        <initializer>= 14.0 * u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Nitrogen atomic mass. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="631" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="631" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a44df099086ffacd4373ff653fe9fc5d1" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::NRLMSISE00::N2_MASS</definition>
+        <argsstring></argsstring>
+        <name>N2_MASS</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::N2_MASS</qualifiedname>
+        <initializer>= 2.0 * N_MASS</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>N2 molecular mass. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="634" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="634" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a44a0f0b4c200583ef933bb7013c351d1" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::NRLMSISE00::O_MASS</definition>
+        <argsstring></argsstring>
+        <name>O_MASS</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::O_MASS</qualifiedname>
+        <initializer>= 16.0 * u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Oxygen atomic mass. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="637" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="637" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ad304aafe9d3f6ceef29c987dc17eb0cb" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::NRLMSISE00::O2_MASS</definition>
+        <argsstring></argsstring>
+        <name>O2_MASS</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::O2_MASS</qualifiedname>
+        <initializer>= 2.0 * O_MASS</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>O2 molecular mass. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="640" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="640" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ad655806238f4f6758e8ea50c78834ccb" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::NRLMSISE00::AR_MASS</definition>
+        <argsstring></argsstring>
+        <name>AR_MASS</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::AR_MASS</qualifiedname>
+        <initializer>= 40.0 * u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Argon atomic mass. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="643" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="643" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a452c459d3ed2d4cf3c7e5063ed93ce4c" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">SolarFlux</ref></type>
+        <definition>const SolarFlux astrea::astro::planets::NRLMSISE00::FLUX_REF</definition>
+        <argsstring></argsstring>
+        <name>FLUX_REF</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::FLUX_REF</qualifiedname>
+        <initializer>= 150.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reference average flux. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="648" column="28" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="648" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a6ff02864b39bdd929b2ded0620e748bd" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, 5 &gt;</type>
+        <definition>const std::array&lt;Distance, 5&gt; astrea::astro::planets::NRLMSISE00::ZN1</definition>
+        <argsstring></argsstring>
+        <name>ZN1</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::ZN1</qualifiedname>
+        <initializer>= { 123.435 * km, 110.0 * km, 100.0 * km, 90.0 * km, 72.5 * km }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Array of altitudes #1. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="651" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="651" bodyend="651"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac13404175a707315e5714a6b92aecd8f" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, 4 &gt;</type>
+        <definition>const std::array&lt;Distance, 4&gt; astrea::astro::planets::NRLMSISE00::ZN2</definition>
+        <argsstring></argsstring>
+        <name>ZN2</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::ZN2</qualifiedname>
+        <initializer>= { 72.5 * km, 55.0 * km, 45.0 * km, 32.5 * km }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Array of altitudes #2. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="654" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="654" bodyend="654"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a9c37542d418952bed1df5203a2f84322" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, 5 &gt;</type>
+        <definition>const std::array&lt;Distance, 5&gt; astrea::astro::planets::NRLMSISE00::ZN3</definition>
+        <argsstring></argsstring>
+        <name>ZN3</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::ZN3</qualifiedname>
+        <initializer>= { 32.5 * km, 20.0 * km, 15.0 * km, 10.0 * km, 0.0 * km }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Array of altitudes #3. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="657" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="657" bodyend="657"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1afa2139b530c31c03f3e6a748fcfd1a84" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <definition>const Distance astrea::astro::planets::NRLMSISE00::ZMIX</definition>
+        <argsstring></argsstring>
+        <name>ZMIX</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::ZMIX</qualifiedname>
+        <initializer>= 62.5 * km</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Mix altitude (km). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="660" column="27" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="660" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a3e3a8a3a73995487a63a1113904cca32" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref>, 10 &gt;</type>
+        <definition>const std::array&lt;double, 10&gt; astrea::astro::planets::NRLMSISE00::PAVGM</definition>
+        <argsstring></argsstring>
+        <name>PAVGM</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::PAVGM</qualifiedname>
+        <initializer>= { 2.61<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>, 2.64<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>,   2.29<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>,   2.17<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>, 2.17<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>,
+                                                  2.23<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>, 2.8676<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>, -2.93940, 2.50,   0.0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NRLMSISE-00 data: MIDDLE ATMOSPHERE AVERAGES pavgm[10]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="663" column="29" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="663" bodyend="664"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a3900e944b068c140de9c9c0edd2d18c2" prot="private" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Temperature</ref></type>
+        <definition>const Temperature astrea::astro::planets::NRLMSISE00::MIN_TEMP</definition>
+        <argsstring></argsstring>
+        <name>MIN_TEMP</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::MIN_TEMP</qualifiedname>
+        <initializer>= 50.0 * K</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NRLMSISE-00 minimum temperature, used in many cases in density computation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="667" column="30" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="667" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a92012476fca191bfe2e8259efa1032d3" prot="private" static="no" mutable="no">
+        <type>std::unordered_map&lt; Option, Switch &gt;</type>
+        <definition>std::unordered_map&lt;Option, Switch&gt; astrea::astro::planets::NRLMSISE00::options</definition>
+        <argsstring></argsstring>
+        <name>options</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::options</qualifiedname>
+        <initializer>{ { F107_EFFECT_ON_MEAN, Switch() },
+                                                { INDEPENDENT_OF_TIME, Switch() },
+                                                { SYMMETRICAL_ANNUAL, Switch() },
+                                                { SYMMETRICAL_SEMIANNUAL, Switch() },
+                                                { ASYMMETRICAL_ANNUAL, Switch() },
+                                                { ASYMMETRICAL_SEMIANNUAL, Switch() },
+                                                { DIURNAL, Switch() },
+                                                { SEMIDIURNAL, Switch() },
+                                                { DAILY_AP, Switch() },
+                                                { ALL_UT_LONGITUDINAL_EFFECTS, Switch() },
+                                                { LONGITUDINAL_EFFECTS, Switch() },
+                                                { UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS, Switch() },
+                                                { MIXED_AP_UT_LONGITUDINAL_EFFECTS, Switch() },
+                                                { TERDIURNAL, Switch() },
+                                                { DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM, Switch() },
+                                                { ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS, Switch() },
+                                                { ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB, Switch() },
+                                                { ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS, Switch() },
+                                                { ALL_120KM_GRADIENT_S_VARIATIONS, Switch() },
+                                                { ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS, Switch() },
+                                                { ALL_VARIATIONS_FROM_120KM_VALUES_ZLB, Switch() },
+                                                { ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS, Switch() },
+                                                { TURBOPAUSE_SCALE_HEIGHT_VARIATIONS, Switch() } }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="702" column="24" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="702" bodyend="724"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1abdc07c2bac822a1a150697ba10b904be" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Density</ref></type>
+        <definition>Density astrea::astro::planets::NRLMSISE00::find_atmospheric_density</definition>
+        <argsstring>(const State &amp;state)</argsstring>
+        <name>find_atmospheric_density</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::find_atmospheric_density</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="727" column="13" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="727" bodyend="754"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a8a851176a02966eab493e10028c83986" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref></type>
+        <definition>Time astrea::astro::planets::NRLMSISE00::calculate_local_solar_time</definition>
+        <argsstring>(const State &amp;state)</argsstring>
+        <name>calculate_local_solar_time</name>
+        <qualifiedname>astrea::astro::planets::NRLMSISE00::calculate_local_solar_time</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="756" column="10" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="756" bodyend="770"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This class implements the mathematical representation of the 2001 Naval Research Laboratory Mass Spectrometer and Incoherent Scatter Radar Exosphere (NRLMSISE-00) of the MSIS® class model. </para>
+<para>NRLMSISE-00 calculates the neutral atmosphere empirical model from the surface to lower exosphere (0 to 1000 km) and provides: <itemizedlist>
+<listitem>
+<para>Exospheric Temperature above Input Position (K) </para>
+</listitem>
+<listitem>
+<para>Local Temperature at Input Position (K) </para>
+</listitem>
+<listitem>
+<para>Total Mass-Density at Input Position (kg/m³) </para>
+</listitem>
+<listitem>
+<para>Partial Densities at Input Position (1/m³) for: <itemizedlist>
+<listitem>
+<para>He, </para>
+</listitem>
+<listitem>
+<para>H, </para>
+</listitem>
+<listitem>
+<para>N, </para>
+</listitem>
+<listitem>
+<para>O, </para>
+</listitem>
+<listitem>
+<para>Ar, </para>
+</listitem>
+<listitem>
+<para>N2, </para>
+</listitem>
+<listitem>
+<para>O2, </para>
+</listitem>
+<listitem>
+<para>anomalous oxygen. </para>
+</listitem>
+</itemizedlist>
+</para>
+</listitem>
+</itemizedlist>
+</para>
+<para>The model needs geographical and time information to compute general values, but also needs space weather data: <itemizedlist>
+<listitem>
+<para>mean and daily solar flux, </para>
+</listitem>
+<listitem>
+<para>geomagnetic indices. </para>
+</listitem>
+</itemizedlist>
+</para>
+<para>Switches can be used to turn on and off particular variations:<linebreak/>
+ 0 is off, 1 is on, and 2 is main effects off but cross terms on.<linebreak/>
+ The standard value is 1 for all the 23 available switches.<linebreak/>
+ Function of each switch according to its number: <itemizedlist>
+<listitem>
+<para>#1 - F10.7 effect on mean </para>
+</listitem>
+<listitem>
+<para>#2 - Independent of time </para>
+</listitem>
+<listitem>
+<para>#3 - Symmetrical annual </para>
+</listitem>
+<listitem>
+<para>#4 - Symmetrical semiannual </para>
+</listitem>
+<listitem>
+<para>#5 - Asymmetrical annual </para>
+</listitem>
+<listitem>
+<para>#6 - Asymmetrical semiannual </para>
+</listitem>
+<listitem>
+<para>#7 - Diurnal </para>
+</listitem>
+<listitem>
+<para>#8 - Semidiurnal </para>
+</listitem>
+<listitem>
+<para>#9 - Daily Ap [**] </para>
+</listitem>
+<listitem>
+<para>#10 - All UT, longitudinal effects </para>
+</listitem>
+<listitem>
+<para>#11 - Longitudinal </para>
+</listitem>
+<listitem>
+<para>#12 - UT and mixed UT, longitudinal </para>
+</listitem>
+<listitem>
+<para>#13 - Mixed AP, UT, longitudinal </para>
+</listitem>
+<listitem>
+<para>#14 - Terdiurnal </para>
+</listitem>
+<listitem>
+<para>#15 - Departures from diffusive equilibrium </para>
+</listitem>
+<listitem>
+<para>#16 - All exospheric temperature variations </para>
+</listitem>
+<listitem>
+<para>#17 - All variations from 120 km temperature (TLB) </para>
+</listitem>
+<listitem>
+<para>#18 - All lower thermosphere (TN1) temperature variations </para>
+</listitem>
+<listitem>
+<para>#19 - All 120 km gradient (S) variations </para>
+</listitem>
+<listitem>
+<para>#20 - All upper stratosphere (TN2) temperature variations </para>
+</listitem>
+<listitem>
+<para>#21 - All variations from 120 km values (ZLB) </para>
+</listitem>
+<listitem>
+<para>#22 - All lower mesosphere temperature (TN3) variations </para>
+</listitem>
+<listitem>
+<para>#23 - Turbopause scale height variations </para>
+</listitem>
+</itemizedlist>
+[**] Switch #9 is a bit specific: <itemizedlist>
+<listitem>
+<para>set to 1, the daily Ap only is used (first element of ap array), </para>
+</listitem>
+<listitem>
+<para>set to -1, the entire array of ap is used, including 3 hr ap indices. </para>
+</listitem>
+</itemizedlist>
+</para>
+<para>The NRLMSISE-00 model was developed by Mike Picone, Alan Hedin, and Doug Drob.<linebreak/>
+ They also wrote a NRLMSISE-00 distribution package in FORTRAN available at:<linebreak/>
+ <ulink url="ftp://hanna.ccmc.gsfc.nasa.gov/pub/modelweb/atmospheric/msis/nrlmsise00/">ftp://hanna.ccmc.gsfc.nasa.gov/pub/modelweb/atmospheric/msis/nrlmsise00/</ulink><linebreak/>
+ <linebreak/>
+ Dominik Brodowski implemented a C version of the NRLMSISE-00 model available at:<linebreak/>
+ <ulink url="https://www.brodo.de/space/nrlmsise/index.html">https://www.brodo.de/space/nrlmsise/index.html</ulink> </para>
+<para>Instances of this class are immutable. </para>
+<para><simplesect kind="author"><para>Mike Picone &amp; al (Naval Research Laboratory), 2001: FORTRAN routine </para>
+</simplesect>
+<simplesect kind="author"><para>Dominik Brodowski, 2004: C routine </para>
+</simplesect>
+<simplesect kind="author"><para>Pascal Parraud, 2016: Java translation </para>
+</simplesect>
+<simplesect kind="since"><para>8.1 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>AbstractSunInfluencedAtmosphere</label>
+      </node>
+      <node id="1">
+        <label>astrea::astro::planets::NRLMSISE00</label>
+        <link refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>AbstractSunInfluencedAtmosphere</label>
+      </node>
+      <node id="1">
+        <label>astrea::astro::planets::NRLMSISE00</label>
+        <link refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="594" column="1" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="594" bodyend="2153"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea4f6dd3f9347a5e6f67c077c69072fd4b" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ALL_120KM_GRADIENT_S_VARIATIONS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deaafcb6faa68ba1eb59cb3bd04a565eb7e" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ALL_EXOSPHERIC_TEMPERATURE_VARIATIONS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deac2072a07ec9151741f06103c5c7af00d" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ALL_LOWER_MESOSPHERE_TEMPERATURE_TN3_VARIATIONS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea2f81396cdd9bafb780edbb34b7a615f3" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ALL_LOWER_THERMOSPHERE_TEMPERATURE_TN1_VARIATIONS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea1f8b34e861306f80f65889aaf200f5b2" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ALL_UPPER_STRATOSPHERE_TEMPERATURE_TN2_VARIATIONS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea425ce544d52f3a49beecac95a7768f39" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ALL_UT_LONGITUDINAL_EFFECTS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea5605d7712e7dcc8424221c9680bc3f3a" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ALL_VARIATIONS_FROM_120KM_TEMPERATURE_TLB</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea6bf96d6c523200184e011113fc3d0b5b" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ALL_VARIATIONS_FROM_120KM_VALUES_ZLB</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a371584d42d531377b0460fb90debe7ffaa6750a5feedb1a2bc09cba26c4e0baef" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ALTITUDE</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a09bd6aba84a0e1d886504e55a3ab4a4a" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ANOMALOUS_OXYGEN</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ad655806238f4f6758e8ea50c78834ccb" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>AR_MASS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6ab420296630bd81cf7fea13245af5b561" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ARGON</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea227c428e9accd06ccbabdf640b8c359e" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ASYMMETRICAL_ANNUAL</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea6cfe0301bdb903226879e193ae323afd" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ASYMMETRICAL_SEMIANNUAL</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a0440bc100d66186e4519d762fdffadb6" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ATOMIC_NITROGEN</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6ad8f8bb24a81f5a057fa61f186060db71" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ATOMIC_OXYGEN</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>AtomicDensity</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a8a851176a02966eab493e10028c83986" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>calculate_local_solar_time</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea057b0867a5d5302294bd72a5bc1afc53" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>DAILY_AP</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea8438320bab53ddbbd42fe718c3951137" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>DEPARTURES_FROM_DIFFUSIVE_EQUILIBRIUM</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea9000e0f39047b937943e8b3797482669" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>DIURNAL</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a371584d42d531377b0460fb90debe7ffa2e786c4c201767675c4e0337de50077a" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>EXOSPHERIC</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea3c048670af782aa8b0be10bb1fb12b7a" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>F107_EFFECT_ON_MEAN</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1abdc07c2bac822a1a150697ba10b904be" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>find_atmospheric_density</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a452c459d3ed2d4cf3c7e5063ed93ce4c" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>FLUX_REF</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1afa5bb4b6a1385664af7cf313815868fd" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>G_REF</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1af7678adc2a2e755c82170c6846f9a11c" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>H_MASS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac43af814d5f6432b0aed2562c394562f" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>HE_MASS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a1d89721b826f1678add55beeded84bbd" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>HELIUM</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6aba37f4cf45e33bdc4d55241f6eb93baf" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>HYDROGEN</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deabc54c2338878c1d1d0333b9bfd54dd67" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>INDEPENDENT_OF_TIME</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a96d04686f345ec9b6c8834d6d2ca0a35" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>LAT_REF</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea71ed05cc1e9dbfa8ba58cb09cd596d81" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>LONGITUDINAL_EFFECTS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a3900e944b068c140de9c9c0edd2d18c2" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>MIN_TEMP</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea3e64e7c65e2a1221b4b0995196a7eafe" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>MIXED_AP_UT_LONGITUDINAL_EFFECTS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a2038d6a8bd58cba06c73cf21b6ff3ea8" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>MOLECULAR_NITROGEN</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6ab1a1e60218e88a7eb2fa61ad2c406a04" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>MOLECULAR_OXYGEN</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a44df099086ffacd4373ff653fe9fc5d1" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>N2_MASS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a11ede295b09df83e11028e4b977ec45e" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>N_MASS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ad304aafe9d3f6ceef29c987dc17eb0cb" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>O2_MASS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a44a0f0b4c200583ef933bb7013c351d1" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>O_MASS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0de" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>Option</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a92012476fca191bfe2e8259efa1032d3" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>options</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a3e3a8a3a73995487a63a1113904cca32" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>PAVGM</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1aeefc09580ef40240e8de6dc4a11dd001" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>R_GAS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea10df2203636c796a83b5675688d522ba" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>SEMIDIURNAL</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea8efa822fbbf68fdea36140b123af6cb0" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>SYMMETRICAL_ANNUAL</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea5c1f634a7f06d1bcfeb02cfcf87b8296" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>SYMMETRICAL_SEMIANNUAL</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a371584d42d531377b0460fb90debe7ff" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>TemperatureType</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deacbb1cd1fb3921e5596e4e576b7d8dbd1" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>TERDIURNAL</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac319459d7554433d1ca524bc8c663cd6a16cc7b735a4cab18785b9c4720a91120" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>TOTAL_MASS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0deaa3d8ab0846a24feefd1b47ea888ca537" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>TURBOPAUSE_SCALE_HEIGHT_VARIATIONS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a89fad0156805b564475cd170ec37c0dea26fc865ae016fb67fb31e00da1d15373" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>UT_AND_MIXED_UT_LONGITUDINAL_EFFECTS</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1afa2139b530c31c03f3e6a748fcfd1a84" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ZMIX</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a6ff02864b39bdd929b2ded0620e748bd" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ZN1</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1ac13404175a707315e5714a6b92aecd8f" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ZN2</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1a9c37542d418952bed1df5203a2f84322" prot="private" virt="non-virtual"><scope>astrea::astro::planets::NRLMSISE00</scope><name>ZN3</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

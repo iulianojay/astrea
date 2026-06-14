@@ -82,5 +82,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/utilities/utilities/json_util.cpp`
+The documentation for this class was generated from the following file `astrea/utilities/utilities/IdProvider.hpp`
 

@@ -2,7 +2,7 @@
 
 # File PolygonalFieldOfView.cpp
 
-[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**trace**](dir_e30098dbada9bbfb44888190c04e2af0.md) **>** [**trace**](dir_f04035ba8afac2675c737f654641e7b5.md) **>** [**platforms**](dir_4dbda61db413396ce1d3b920f98dbf93.md) **>** [**sensors**](dir_4c34a36d272c54a3547c6d2c18e9dea2.md) **>** [**fov**](dir_303a66b90134ad3dff734d202c421315.md) **>** [**instances**](dir_16a2422c641898ec244ea09da3a664c2.md) **>** [**PolygonalFieldOfView.cpp**](PolygonalFieldOfView_8cpp.md)
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**trace**](dir_e30098dbada9bbfb44888190c04e2af0.md) **>** [**trace**](dir_f04035ba8afac2675c737f654641e7b5.md) **>** [**platforms**](dir_4dbda61db413396ce1d3b920f98dbf93.md) **>** [**sensors**](dir_4c34a36d272c54a3547c6d2c18e9dea2.md) **>** [**fov**](dir_303a66b90134ad3dff734d202c421315.md) **>** [**PolygonalFieldOfView.cpp**](PolygonalFieldOfView_8cpp.md)
 
 [Go to the documentation of this file](PolygonalFieldOfView_8cpp.md)
 
@@ -21,13 +21,13 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp>
+#include <trace/platforms/sensors/fov/PolygonalFieldOfView.hpp>
 
 #include <cmath>
 #include <stdexcept>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 
 namespace astrea {
 namespace trace {

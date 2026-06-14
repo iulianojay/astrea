@@ -2,6 +2,8 @@
 
 # Class astrea::astro::Keplerian
 
+**template &lt;IsFrame [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_frame\_&gt;**
+
 
 
 [**ClassList**](annotated.md) **>** [**astrea**](namespaceastrea.md) **>** [**astro**](namespaceastrea_1_1astro.md) **>** [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)
@@ -34,6 +36,11 @@ _The_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _class represents 
 
 
 
+## Public Static Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**frame**](#variable-frame)   = `\_frame\_`<br>_The reference frame of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _elements._ |
 
 
 
@@ -52,43 +59,44 @@ _The_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _class represents 
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Keplerian**](#function-keplerian-18) (Unitless scale=0.0 \*astrea::detail::unitless) <br>_Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object with default values._ |
-|   | [**Keplerian**](#function-keplerian-28) (const Distance & semimajor, const Unitless & eccentricity, const Angle & inclination, const Angle & rightAscension, const Angle & argPerigee, const Angle & trueAnomaly) <br>_Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object with specified values._ |
-|   | [**Keplerian**](#function-keplerian-38) (const [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & elements, const GravParam & mu) <br>_Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from another_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object._ |
-|   | [**Keplerian**](#function-keplerian-48) (const [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) & elements, const GravParam & mu) <br>_Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from_[_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _._ |
-|   | [**Keplerian**](#function-keplerian-58) (const [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) & elements, const GravParam & mu) <br>_Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _elements._ |
-|   | [**Keplerian**](#function-keplerian-68) (const [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md) & elements, const GravParam & mu) <br>_Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from_[_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _elements._ |
-|   | [**Keplerian**](#function-keplerian-78) (const [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & other) <br>_Copy constructor for_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _._ |
-|   | [**Keplerian**](#function-keplerian-88) ([**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) && other) noexcept<br>_Move constructor for_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _._ |
-|  std::vector&lt; Unitless &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector to a vector of unitless values._ |
-|  const Angle & | [**get\_argument\_of\_perigee**](#function-get_argument_of_perigee) () const<br>_Get the argument of perigee of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
-|  const Unitless & | [**get\_eccentricity**](#function-get_eccentricity) () const<br>_Get the eccentricity of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
-|  const Angle & | [**get\_inclination**](#function-get_inclination) () const<br>_Get the inclination of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
-|  Angle | [**get\_mean\_anomaly**](#function-get_mean_anomaly) () const<br>_Get the mean anomaly of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
-|  MeanMotion | [**get\_mean\_motion**](#function-get_mean_motion) (const GravParam & mu) const<br>_Get the mean motion of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
-|  const Angle & | [**get\_right\_ascension**](#function-get_right_ascension) () const<br>_Get the right ascension of the ascending node of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
-|  const Distance & | [**get\_semimajor**](#function-get_semimajor) () const<br>_Get the semimajor axis of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
-|  const Angle & | [**get\_true\_anomaly**](#function-get_true_anomaly) () const<br>_Get the true anomaly of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
-|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) | [**interpolate**](#function-interpolate) (const Time & thisTime, const Time & otherTime, const [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & other, const GravParam & mu, const Time & targetTime) const<br>_Interpolates between two_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vectors._ |
-|  bool | [**operator!=**](#function-operator) (const [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & other) const<br>_Checks if two_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _objects are not equal._ |
-|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) | [**operator\***](#function-operator_1) (const Unitless & multiplier) const<br>_Multiplies the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by a scalar._ |
-|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & | [**operator\*=**](#function-operator_2) (const Unitless & multiplier) <br>_Multiplies the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by a scalar._ |
-|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) | [**operator+**](#function-operator_3) (const [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & other) const<br>_Adds two_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _objects._ |
-|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & | [**operator+=**](#function-operator_4) (const [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & other) <br>_Adds another_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object to the current one._ |
-|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) | [**operator-**](#function-operator-) (const [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & other) const<br>_Subtracts another_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from the current one._ |
-|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & | [**operator-=**](#function-operator-_1) (const [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & other) <br>_Subtracts another_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from the current one._ |
-|  [**KeplerianPartial**](classastrea_1_1astro_1_1KeplerianPartial.md) | [**operator/**](#function-operator_5) (const Time & time) const<br>_Divides the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by a time._ |
-|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) | [**operator/**](#function-operator_6) (const Unitless & divisor) const<br>_Divides the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by another_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object._ |
-|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & | [**operator/=**](#function-operator_7) (const Unitless & divisor) <br>_Divides the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by a scalar._ |
-|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & | [**operator=**](#function-operator_8) ([**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) && other) noexcept<br>_Move assignment operator for_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _._ |
-|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & | [**operator=**](#function-operator_9) (const [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & other) <br>_Copy assignment operator for_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _._ |
-|  bool | [**operator==**](#function-operator_10) (const [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & other) const<br>_Checks if two_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _objects are equal._ |
-|  void | [**set\_argument\_of\_perigee**](#function-set_argument_of_perigee) (const Angle & argPerigee) <br>_Get the argument of perigee of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
-|  void | [**set\_eccentricity**](#function-set_eccentricity) (const Unitless & eccentricity) <br>_Set the eccentricity of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
-|  void | [**set\_inclination**](#function-set_inclination) (const Angle & inclination) <br>_Set the inclination of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
-|  void | [**set\_right\_ascension**](#function-set_right_ascension) (const Angle & rightAscension) <br>_Set the right ascension of the ascending node of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
-|  void | [**set\_semimajor**](#function-set_semimajor) (const Distance & semimajor) <br>_Set the semimajor axis of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
-|  void | [**set\_true\_anomaly**](#function-set_true_anomaly) (const Angle & trueAnomaly) <br>_Get the true anomaly of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|   | [**Keplerian**](#function-keplerian-17) ([**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) scale=0.0 \*astrea::detail::unitless) <br>_Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object with default values._ |
+|   | [**Keplerian**](#function-keplerian-27) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & semimajor, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & eccentricity, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & inclination, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & rightAscension, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & argPerigee, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & trueAnomaly) <br>_Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object with specified values._ |
+|   | [**Keplerian**](#function-keplerian-37) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; & elements, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) <br>_Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from another_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object._ |
+|   | [**Keplerian**](#function-keplerian-47) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md)&lt; \_frame\_ &gt; & elements, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) <br>_Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _elements._ |
+|   | [**Keplerian**](#function-keplerian-57) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Equinoctial**](classastrea_1_1astro_1_1Equinoctial.md)&lt; \_frame\_ &gt; & elements, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) <br>_Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from_[_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _elements._ |
+|   | [**Keplerian**](#function-keplerian-67) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; & other) <br>_Copy constructor for_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _._ |
+|   | [**Keplerian**](#function-keplerian-77) ([**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; && other) noexcept<br>_Move constructor for_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _._ |
+|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**force\_to\_vector**](#function-force_to_vector) () const<br>_Converts the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector to a vector of unitless values._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_argument\_of\_perigee**](#function-get_argument_of_perigee) () const<br>_Get the argument of perigee of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_eccentricity**](#function-get_eccentricity) () const<br>_Get the eccentricity of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_inclination**](#function-get_inclination) () const<br>_Get the inclination of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_mean\_anomaly**](#function-get_mean_anomaly) () const<br>_Get the mean anomaly of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|  [**MeanMotion**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_mean\_motion**](#function-get_mean_motion) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) const<br>_Get the mean motion of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|  [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_orbital\_period**](#function-get_orbital_period) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) const<br>_Get the orbital period of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_right\_ascension**](#function-get_right_ascension) () const<br>_Get the right ascension of the ascending node of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_semimajor**](#function-get_semimajor) () const<br>_Get the semimajor axis of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_true\_anomaly**](#function-get_true_anomaly) () const<br>_Get the true anomaly of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; [**target\_frame**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**in\_frame**](#function-in_frame) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & epoch, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu) const<br>_Converts this_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state to_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _elements expressed in a different frame._ |
+|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) | [**interpolate**](#function-interpolate) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & thisTime, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & otherTime, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; & other, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**GravParam**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mu, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & targetTime) const<br>_Interpolates between two_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vectors._ |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator!=**](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; & other) const<br>_Checks if two_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _objects are not equal._ |
+|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) | [**operator\***](#function-operator_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & multiplier) const<br>_Multiplies the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by a scalar._ |
+|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & | [**operator\*=**](#function-operator_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & multiplier) <br>_Multiplies the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by a scalar._ |
+|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) | [**operator+**](#function-operator_3) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; & other) const<br>_Adds two_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _objects._ |
+|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & | [**operator+=**](#function-operator_4) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; & other) <br>_Adds another_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object to the current one._ |
+|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) | [**operator-**](#function-operator-) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; & other) const<br>_Subtracts another_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from the current one._ |
+|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & | [**operator-=**](#function-operator-_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; & other) <br>_Subtracts another_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from the current one._ |
+|  [**KeplerianPartial**](classastrea_1_1astro_1_1KeplerianPartial.md)&lt; \_frame\_ &gt; | [**operator/**](#function-operator_5) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time) const<br>_Divides the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by a time._ |
+|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) | [**operator/**](#function-operator_6) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & divisor) const<br>_Divides the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by another_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object._ |
+|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & | [**operator/=**](#function-operator_7) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & divisor) <br>_Divides the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by a scalar._ |
+|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & | [**operator=**](#function-operator_8) ([**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; && other) noexcept<br>_Move assignment operator for_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _._ |
+|  [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) & | [**operator=**](#function-operator_9) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; & other) <br>_Copy assignment operator for_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _._ |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator==**](#function-operator_10) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md)&lt; \_frame\_ &gt; & other) const<br>_Checks if two_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _objects are equal._ |
+|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**set\_argument\_of\_perigee**](#function-set_argument_of_perigee) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & argPerigee) <br>_Get the argument of perigee of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**set\_eccentricity**](#function-set_eccentricity) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & eccentricity) <br>_Set the eccentricity of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**set\_inclination**](#function-set_inclination) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & inclination) <br>_Set the inclination of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**set\_right\_ascension**](#function-set_right_ascension) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & rightAscension) <br>_Set the right ascension of the ascending node of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**set\_semimajor**](#function-set_semimajor) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & semimajor) <br>_Set the semimajor axis of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**set\_true\_anomaly**](#function-set_true_anomaly) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & trueAnomaly) <br>_Get the true anomaly of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
 |   | [**~Keplerian**](#function-keplerian) () = default<br>_Destructor for_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _._ |
 
 
@@ -134,12 +142,28 @@ The [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) elements are a set of 
 
 
     
+## Public Static Attributes Documentation
+
+
+
+
+### variable frame 
+
+_The reference frame of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _elements._
+```C++
+constexpr auto astrea::astro::Keplerian< _frame_ >::frame;
+```
+
+
+
+
+<hr>
 ## Public Functions Documentation
 
 
 
 
-### function Keplerian [1/8]
+### function Keplerian [1/7]
 
 _Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object with default values._
 ```C++
@@ -166,17 +190,17 @@ inline astrea::astro::Keplerian::Keplerian (
 
 
 
-### function Keplerian [2/8]
+### function Keplerian [2/7]
 
 _Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object with specified values._
 ```C++
 inline astrea::astro::Keplerian::Keplerian (
-    const Distance & semimajor,
-    const Unitless & eccentricity,
-    const Angle & inclination,
-    const Angle & rightAscension,
-    const Angle & argPerigee,
-    const Angle & trueAnomaly
+    const  Distance & semimajor,
+    const  Unitless & eccentricity,
+    const  Angle & inclination,
+    const  Angle & rightAscension,
+    const  Angle & argPerigee,
+    const  Angle & trueAnomaly
 ) 
 ```
 
@@ -203,13 +227,13 @@ inline astrea::astro::Keplerian::Keplerian (
 
 
 
-### function Keplerian [3/8]
+### function Keplerian [3/7]
 
 _Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from another_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object._
 ```C++
 inline astrea::astro::Keplerian::Keplerian (
-    const Keplerian & elements,
-    const GravParam & mu
+    const  Keplerian < _frame_ > & elements,
+    const  GravParam & mu
 ) 
 ```
 
@@ -232,42 +256,13 @@ inline astrea::astro::Keplerian::Keplerian (
 
 
 
-### function Keplerian [4/8]
-
-_Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from_[_**OrbitalElements**_](classastrea_1_1astro_1_1OrbitalElements.md) _._
-```C++
-astrea::astro::Keplerian::Keplerian (
-    const OrbitalElements & elements,
-    const GravParam & mu
-) 
-```
-
-
-
-
-
-**Parameters:**
-
-
-* `elements` The [**OrbitalElements**](classastrea_1_1astro_1_1OrbitalElements.md) to convert. 
-* `sys` The astrodynamics system context for conversion. 
-
-
-
-
-        
-
-<hr>
-
-
-
-### function Keplerian [5/8]
+### function Keplerian [4/7]
 
 _Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from_[_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _elements._
 ```C++
 astrea::astro::Keplerian::Keplerian (
-    const Cartesian & elements,
-    const GravParam & mu
+    const  Cartesian < _frame_ > & elements,
+    const  GravParam & mu
 ) 
 ```
 
@@ -290,13 +285,13 @@ astrea::astro::Keplerian::Keplerian (
 
 
 
-### function Keplerian [6/8]
+### function Keplerian [5/7]
 
 _Constructs a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from_[_**Equinoctial**_](classastrea_1_1astro_1_1Equinoctial.md) _elements._
 ```C++
 astrea::astro::Keplerian::Keplerian (
-    const Equinoctial & elements,
-    const GravParam & mu
+    const  Equinoctial < _frame_ > & elements,
+    const  GravParam & mu
 ) 
 ```
 
@@ -319,12 +314,12 @@ astrea::astro::Keplerian::Keplerian (
 
 
 
-### function Keplerian [7/8]
+### function Keplerian [6/7]
 
 _Copy constructor for_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _._
 ```C++
 astrea::astro::Keplerian::Keplerian (
-    const Keplerian & other
+    const  Keplerian < _frame_ > & other
 ) 
 ```
 
@@ -346,12 +341,12 @@ astrea::astro::Keplerian::Keplerian (
 
 
 
-### function Keplerian [8/8]
+### function Keplerian [7/7]
 
 _Move constructor for_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _._
 ```C++
 astrea::astro::Keplerian::Keplerian (
-    Keplerian && other
+    Keplerian < _frame_ > && other
 ) noexcept
 ```
 
@@ -402,7 +397,7 @@ std::vector&lt;Unitless&gt; Vector containing the semimajor axis, eccentricity, 
 
 _Get the argument of perigee of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 ```C++
-inline const Angle & astrea::astro::Keplerian::get_argument_of_perigee () const
+inline const  Angle & astrea::astro::Keplerian::get_argument_of_perigee () const
 ```
 
 
@@ -427,7 +422,7 @@ const Angle& Reference to the argument of perigee component of the [**Keplerian*
 
 _Get the eccentricity of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 ```C++
-inline const Unitless & astrea::astro::Keplerian::get_eccentricity () const
+inline const  Unitless & astrea::astro::Keplerian::get_eccentricity () const
 ```
 
 
@@ -452,7 +447,7 @@ const Unitless& Reference to the eccentricity component of the [**Keplerian**](c
 
 _Get the inclination of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 ```C++
-inline const Angle & astrea::astro::Keplerian::get_inclination () const
+inline const  Angle & astrea::astro::Keplerian::get_inclination () const
 ```
 
 
@@ -503,7 +498,7 @@ Angle Mean anomaly of the [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) 
 _Get the mean motion of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 ```C++
 MeanMotion astrea::astro::Keplerian::get_mean_motion (
-    const GravParam & mu
+    const  GravParam & mu
 ) const
 ```
 
@@ -532,11 +527,45 @@ MeanMotion Mean motion of the [**Keplerian**](classastrea_1_1astro_1_1Keplerian.
 
 
 
+### function get\_orbital\_period 
+
+_Get the orbital period of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
+```C++
+Time astrea::astro::Keplerian::get_orbital_period (
+    const  GravParam & mu
+) const
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `mu` Gravitational parameter of the central body 
+
+
+
+**Returns:**
+
+Time Orbital period of the [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) state vector. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function get\_right\_ascension 
 
 _Get the right ascension of the ascending node of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 ```C++
-inline const Angle & astrea::astro::Keplerian::get_right_ascension () const
+inline const  Angle & astrea::astro::Keplerian::get_right_ascension () const
 ```
 
 
@@ -561,7 +590,7 @@ const Angle& Reference to the right ascension component of the [**Keplerian**](c
 
 _Get the semimajor axis of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 ```C++
-inline const Distance & astrea::astro::Keplerian::get_semimajor () const
+inline const  Distance & astrea::astro::Keplerian::get_semimajor () const
 ```
 
 
@@ -586,7 +615,7 @@ const Distance& Reference to the semimajor axis component of the [**Keplerian**]
 
 _Get the true anomaly of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 ```C++
-inline const Angle & astrea::astro::Keplerian::get_true_anomaly () const
+inline const  Angle & astrea::astro::Keplerian::get_true_anomaly () const
 ```
 
 
@@ -607,16 +636,63 @@ const Angle& Reference to the true anomaly component of the [**Keplerian**](clas
 
 
 
+### function in\_frame 
+
+_Converts this_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state to_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _elements expressed in a different frame._
+```C++
+template<IsFrame auto target_frame>
+Keplerian < target_frame > astrea::astro::Keplerian::in_frame (
+    const  Date & epoch,
+    const  GravParam & mu
+) const
+```
+
+
+
+First converts to [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) in the native frame, applies the physical frame transformation, then converts the result back to [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) elements.
+
+
+
+
+**Template parameters:**
+
+
+* `target_frame` The target frame. 
+
+
+
+**Parameters:**
+
+
+* `epoch` The epoch at which to evaluate the frame transformation. 
+* `mu` The gravitational parameter of the central body. 
+
+
+
+**Returns:**
+
+Keplerian&lt;target\_frame&gt; This state expressed in the target frame. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function interpolate 
 
 _Interpolates between two_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vectors._
 ```C++
 Keplerian astrea::astro::Keplerian::interpolate (
-    const Time & thisTime,
-    const Time & otherTime,
-    const Keplerian & other,
-    const GravParam & mu,
-    const Time & targetTime
+    const  Time & thisTime,
+    const  Time & otherTime,
+    const  Keplerian < _frame_ > & other,
+    const  GravParam & mu,
+    const  Time & targetTime
 ) const
 ```
 
@@ -657,7 +733,7 @@ This method performs linear interpolation between two [**Keplerian**](classastre
 _Checks if two_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _objects are not equal._
 ```C++
 bool astrea::astro::Keplerian::operator!= (
-    const Keplerian & other
+    const  Keplerian < _frame_ > & other
 ) const
 ```
 
@@ -691,7 +767,7 @@ true if the two [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) objects ar
 _Multiplies the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by a scalar._
 ```C++
 Keplerian astrea::astro::Keplerian::operator* (
-    const Unitless & multiplier
+    const  Unitless & multiplier
 ) const
 ```
 
@@ -725,7 +801,7 @@ Resultant [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) after multiplica
 _Multiplies the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by a scalar._
 ```C++
 Keplerian & astrea::astro::Keplerian::operator*= (
-    const Unitless & multiplier
+    const  Unitless & multiplier
 ) 
 ```
 
@@ -759,7 +835,7 @@ Reference to the current [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) o
 _Adds two_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _objects._
 ```C++
 Keplerian astrea::astro::Keplerian::operator+ (
-    const Keplerian & other
+    const  Keplerian < _frame_ > & other
 ) const
 ```
 
@@ -793,7 +869,7 @@ Resultant [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) sum.
 _Adds another_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object to the current one._
 ```C++
 Keplerian & astrea::astro::Keplerian::operator+= (
-    const Keplerian & other
+    const  Keplerian < _frame_ > & other
 ) 
 ```
 
@@ -827,7 +903,7 @@ Reference to the current [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) o
 _Subtracts another_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from the current one._
 ```C++
 Keplerian astrea::astro::Keplerian::operator- (
-    const Keplerian & other
+    const  Keplerian < _frame_ > & other
 ) const
 ```
 
@@ -861,7 +937,7 @@ Resultant [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) after subtractio
 _Subtracts another_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object from the current one._
 ```C++
 Keplerian & astrea::astro::Keplerian::operator-= (
-    const Keplerian & other
+    const  Keplerian < _frame_ > & other
 ) 
 ```
 
@@ -894,8 +970,8 @@ Reference to the current [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) o
 
 _Divides the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by a time._
 ```C++
-KeplerianPartial astrea::astro::Keplerian::operator/ (
-    const Time & time
+KeplerianPartial < _frame_ > astrea::astro::Keplerian::operator/ (
+    const  Time & time
 ) const
 ```
 
@@ -929,7 +1005,7 @@ Resultant [**KeplerianPartial**](classastrea_1_1astro_1_1KeplerianPartial.md) af
 _Divides the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by another_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _object._
 ```C++
 Keplerian astrea::astro::Keplerian::operator/ (
-    const Unitless & divisor
+    const  Unitless & divisor
 ) const
 ```
 
@@ -963,7 +1039,7 @@ Resultant vector of unitless values after division.
 _Divides the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector by a scalar._
 ```C++
 Keplerian & astrea::astro::Keplerian::operator/= (
-    const Unitless & divisor
+    const  Unitless & divisor
 ) 
 ```
 
@@ -997,7 +1073,7 @@ Reference to the current [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) o
 _Move assignment operator for_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _._
 ```C++
 Keplerian & astrea::astro::Keplerian::operator= (
-    Keplerian && other
+    Keplerian < _frame_ > && other
 ) noexcept
 ```
 
@@ -1031,7 +1107,7 @@ Keplerian & astrea::astro::Keplerian::operator= (
 _Copy assignment operator for_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _._
 ```C++
 Keplerian & astrea::astro::Keplerian::operator= (
-    const Keplerian & other
+    const  Keplerian < _frame_ > & other
 ) 
 ```
 
@@ -1065,7 +1141,7 @@ Keplerian & astrea::astro::Keplerian::operator= (
 _Checks if two_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _objects are equal._
 ```C++
 bool astrea::astro::Keplerian::operator== (
-    const Keplerian & other
+    const  Keplerian < _frame_ > & other
 ) const
 ```
 
@@ -1099,7 +1175,7 @@ true if the two [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) objects ar
 _Get the argument of perigee of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 ```C++
 inline void astrea::astro::Keplerian::set_argument_of_perigee (
-    const Angle & argPerigee
+    const  Angle & argPerigee
 ) 
 ```
 
@@ -1115,7 +1191,7 @@ inline void astrea::astro::Keplerian::set_argument_of_perigee (
 _Set the eccentricity of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 ```C++
 inline void astrea::astro::Keplerian::set_eccentricity (
-    const Unitless & eccentricity
+    const  Unitless & eccentricity
 ) 
 ```
 
@@ -1131,7 +1207,7 @@ inline void astrea::astro::Keplerian::set_eccentricity (
 _Set the inclination of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 ```C++
 inline void astrea::astro::Keplerian::set_inclination (
-    const Angle & inclination
+    const  Angle & inclination
 ) 
 ```
 
@@ -1147,7 +1223,7 @@ inline void astrea::astro::Keplerian::set_inclination (
 _Set the right ascension of the ascending node of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 ```C++
 inline void astrea::astro::Keplerian::set_right_ascension (
-    const Angle & rightAscension
+    const  Angle & rightAscension
 ) 
 ```
 
@@ -1163,7 +1239,7 @@ inline void astrea::astro::Keplerian::set_right_ascension (
 _Set the semimajor axis of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 ```C++
 inline void astrea::astro::Keplerian::set_semimajor (
-    const Distance & semimajor
+    const  Distance & semimajor
 ) 
 ```
 
@@ -1179,7 +1255,7 @@ inline void astrea::astro::Keplerian::set_semimajor (
 _Get the true anomaly of the_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._
 ```C++
 inline void astrea::astro::Keplerian::set_true_anomaly (
-    const Angle & trueAnomaly
+    const  Angle & trueAnomaly
 ) 
 ```
 
@@ -1384,5 +1460,5 @@ This method return predefined [**Keplerian**](classastrea_1_1astro_1_1Keplerian.
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/state/orbital_elements/Keplerian.hpp`
 

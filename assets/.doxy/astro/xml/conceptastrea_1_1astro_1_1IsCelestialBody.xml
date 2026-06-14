@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1IsCelestialBody" kind="concept">
+    <compoundname>astrea::astro::IsCelestialBody</compoundname>
+    <includes refid="system__concepts_8hpp" local="no">system_concepts.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename T&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1IsCelestialBody" kindref="compound">astrea::astro::IsCelestialBody</ref> =  std::derived_from&lt;T, detail::CelestialBodyBase&gt; &amp;&amp; !std::derived_from&lt;T, detail::BarycenterBase&gt;    </initializer>
+    <briefdescription>
+<para>Concept to determine if a type is a celestial body. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/system_concepts.hpp" line="38" column="1"/>
+  </compounddef>
+</doxygen>

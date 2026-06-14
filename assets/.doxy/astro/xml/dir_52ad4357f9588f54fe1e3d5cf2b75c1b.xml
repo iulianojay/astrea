@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_52ad4357f9588f54fe1e3d5cf2b75c1b" kind="dir">
+    <compoundname>astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere</compoundname>
+    <innerfile refid="HarrisPriester_8cpp">HarrisPriester.cpp</innerfile>
+    <innerfile refid="HarrisPriester_8hpp">HarrisPriester.hpp</innerfile>
+    <innerfile refid="JacciaRoberts_8cpp">JacciaRoberts.cpp</innerfile>
+    <innerfile refid="JacciaRoberts_8hpp">JacciaRoberts.hpp</innerfile>
+    <innerfile refid="NRLMSISE00_8cpp">NRLMSISE00.cpp</innerfile>
+    <innerfile refid="NRLMSISE00_8hpp">NRLMSISE00.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/"/>
+  </compounddef>
+</doxygen>

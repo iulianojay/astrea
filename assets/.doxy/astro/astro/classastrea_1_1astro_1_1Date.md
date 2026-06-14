@@ -52,25 +52,33 @@ _Class representing a date in the astrea astro library._ [More...](#detailed-des
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Date**](#function-date-12) (const [**JulianDate**](namespaceastrea_1_1astro.md#typedef-juliandate) & jdate=J2000) <br>_Construct a_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object from a JulianDate._ |
-|   | [**Date**](#function-date-22) (const std::string & epoch, const std::string & format="%Y-%m-%d %H:%M:%S") <br>_Construct a_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object from a JulianDate._ |
+|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**Date**](#function-date-12) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**JulianDate**](namespaceastrea_1_1astro.md#typedef-juliandate) & jdate=J2000) <br>_Construct a_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object from a JulianDate._ |
+|   | [**Date**](#function-date-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::string & epoch, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::string & format="%Y-%m-%d %[**H:**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)%[**M:**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)%[**S"**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)) <br>_Construct a_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object from a JulianDate._ |
+|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**body\_sidereal\_time**](#function-body_sidereal_time) () const<br>_Get the equivalent of GMST for an arbitrary celestial body._  |
+|  [**int**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**day\_of\_year**](#function-day_of_year) () const<br> |
 |  std::string | [**epoch**](#function-epoch) () const<br>_Get the epoch of this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object as a string._ |
-|  Angle | [**gmst**](#function-gmst) () const<br>_Get the Greenwich Mean Sidereal Time (GMST) for this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
+|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**gmst**](#function-gmst) () const<br>_Get the Greenwich Mean Sidereal Time (GMST) for this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _around Earth._ |
 |  std::chrono::time\_point&lt; std::chrono::gps\_clock &gt; | [**gps**](#function-gps) () const<br>_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in GPS clock format._ |
-|  std::chrono::time\_point&lt; Clock\_T &gt; | [**in\_clock**](#function-in_clock) () const<br>_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in a specified clock format._ |
+|  std::chrono::time\_point&lt; [**Clock\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**in\_clock**](#function-in_clock) () const<br>_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in a specified clock format._ |
 |  [**JulianDate**](namespaceastrea_1_1astro.md#typedef-juliandate) | [**jd**](#function-jd) () const<br>_Get the Julian date representation of this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
-|  double | [**jdn**](#function-jdn) () const<br>_Get the Julian date in days since the epoch._  |
-|  std::chrono::duration&lt; double, std::ratio&lt; 86400 &gt; &gt; | [**mjd**](#function-mjd) () const<br>_Get the Modified Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _(MJD) representation of this_[_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
-|  [**Date**](classastrea_1_1astro_1_1Date.md) | [**operator+**](#function-operator) (const Time & time) const<br>_Add a Time object to this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
-|  [**Date**](classastrea_1_1astro_1_1Date.md) & | [**operator+=**](#function-operator_1) (const Time & time) <br>_Add a Time object to this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object in place._ |
-|  [**Date**](classastrea_1_1astro_1_1Date.md) | [**operator-**](#function-operator-) (const Time & time) const<br>_Subtract a Time object from this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
-|  Time | [**operator-**](#function-operator-_1) (const [**Date**](classastrea_1_1astro_1_1Date.md) & other) const<br>_Subtract another_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object from this_[_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
-|  [**Date**](classastrea_1_1astro_1_1Date.md) & | [**operator-=**](#function-operator-_2) (const Time & time) <br>_Subtract a Time object from this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object in place._ |
-|  auto | [**operator&lt;=&gt;**](#function-operator) (const [**Date**](classastrea_1_1astro_1_1Date.md) & other) const<br>_Compare this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object with another_[_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
-|  bool | [**operator==**](#function-operator_2) (const [**Date**](classastrea_1_1astro_1_1Date.md) & other) const<br>_Check if this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object is equal to another_[_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
-|  std::chrono::time\_point&lt; std::chrono::system\_clock &gt; | [**sys**](#function-sys) () const<br>_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in TT clock format._ |
+|  [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**jdn**](#function-jdn) () const<br>_Get the Julian date in days since the epoch._  |
+|  std::chrono::duration&lt; [**double**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), std::chrono::days::period &gt; | [**mjd**](#function-mjd) () const<br>_Get the Modified Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _(MJD) representation of this_[_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
+|  [**Date**](classastrea_1_1astro_1_1Date.md) | [**operator+**](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time) const<br>_Add a Time object to this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
+|  [**Date**](classastrea_1_1astro_1_1Date.md) & | [**operator+=**](#function-operator_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time) <br>_Add a Time object to this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object in place._ |
+|  [**Date**](classastrea_1_1astro_1_1Date.md) | [**operator-**](#function-operator-) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time) const<br>_Subtract a Time object from this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
+|  [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator-**](#function-operator-_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & other) const<br>_Subtract another_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object from this_[_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
+|  [**Date**](classastrea_1_1astro_1_1Date.md) & | [**operator-=**](#function-operator-_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & time) <br>_Subtract a Time object from this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object in place._ |
+|  [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator&lt;=&gt;**](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & other) const<br>_Compare this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object with another_[_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator==**](#function-operator_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & other) const<br>_Check if this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object is equal to another_[_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
+|  [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**seconds\_in\_local\_day**](#function-seconds_in_local_day) () const<br> |
+|  std::chrono::time\_point&lt; std::chrono::system\_clock &gt; | [**sys**](#function-sys) () const<br>_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in sys clock format._ |
 |  std::chrono::time\_point&lt; std::chrono::tai\_clock &gt; | [**tai**](#function-tai) () const<br>_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in TAI clock format._ |
+|  [**BarycentricCoordinateTime**](namespaceastrea_1_1astro.md#typedef-barycentriccoordinatetime) | [**tcb**](#function-tcb) () const<br>_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in Barycentric Coordinate Time (TCB) clock format._ |
+|  [**GeocentricCoordinateTime**](namespaceastrea_1_1astro.md#typedef-geocentriccoordinatetime) | [**tcg**](#function-tcg) () const<br>_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in_[_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _Coordinate Time (TCG) clock format._ |
+|  [**BarycentricDynamicalTime**](namespaceastrea_1_1astro.md#typedef-barycentricdynamicaltime) | [**tdb**](#function-tdb) () const<br>_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in Barycentric Dynamical Time (TDB) clock format._ |
+|  [**TerrestrialTime**](namespaceastrea_1_1astro.md#typedef-terrestrialtime) | [**tt**](#function-tt) () const<br>_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in Terrestrial Time (TT) clock format._ |
 |  std::chrono::time\_point&lt; std::chrono::utc\_clock &gt; | [**utc**](#function-utc) () const<br>_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in UTC clock format._ |
+|  std::chrono::year\_month\_day | [**year\_month\_day**](#function-year_month_day) () const<br> |
 |   | [**~Date**](#function-date) () = default<br>_Destructor for_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _._ |
 
 
@@ -78,7 +86,7 @@ _Class representing a date in the astrea astro library._ [More...](#detailed-des
 
 | Type | Name |
 | ---: | :--- |
-|  const [**Date**](classastrea_1_1astro_1_1Date.md) | [**now**](#function-now) () noexcept<br>_Get the current date and time as a_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) | [**now**](#function-now) () noexcept<br>_Get the current date and time as a_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object._ |
 
 
 
@@ -121,8 +129,8 @@ This class provides functionality for handling dates, including conversions to a
 
 _Construct a_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object from a JulianDate._
 ```C++
-inline astrea::astro::Date::Date (
-    const JulianDate & jdate=J2000
+inline constexpr astrea::astro::Date::Date (
+    const  JulianDate & jdate=J2000
 ) 
 ```
 
@@ -150,7 +158,7 @@ _Construct a_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object from a Julia
 ```C++
 inline astrea::astro::Date::Date (
     const std::string & epoch,
-    const std::string & format="%Y-%m-%d %H:%M:%S"
+    const std::string & format="%Y-%m-%d % H: % M: % S"
 ) 
 ```
 
@@ -168,6 +176,55 @@ inline astrea::astro::Date::Date (
 
 
         
+
+<hr>
+
+
+
+### function body\_sidereal\_time 
+
+_Get the equivalent of GMST for an arbitrary celestial body._ 
+```C++
+template<IsCelestialBody auto _body_>
+inline Angle astrea::astro::Date::body_sidereal_time () const
+```
+
+
+
+Computes the accumulated rotation angle of the body's prime meridian relative to its inertial reference direction since J2000, using the body's rotation rate.
+
+
+
+
+**Parameters:**
+
+
+* `body` The celestial body whose prime meridian angle is desired. 
+
+
+
+**Returns:**
+
+Angle The body's prime meridian rotation angle, wrapped to [0, 2π). 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function day\_of\_year 
+
+```C++
+inline int astrea::astro::Date::day_of_year () const
+```
+
+
+
 
 <hr>
 
@@ -200,7 +257,7 @@ std::string The epoch of this [**Date**](classastrea_1_1astro_1_1Date.md) object
 
 ### function gmst 
 
-_Get the Greenwich Mean Sidereal Time (GMST) for this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object._
+_Get the Greenwich Mean Sidereal Time (GMST) for this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _around Earth._
 ```C++
 Angle astrea::astro::Date::gmst () const
 ```
@@ -211,7 +268,7 @@ Angle astrea::astro::Date::gmst () const
 
 **Returns:**
 
-Angle The Greenwich Mean Sidereal Time for this [**Date**](classastrea_1_1astro_1_1Date.md) object. 
+Angle The Greenwich Mean Sidereal Time for this [**Date**](classastrea_1_1astro_1_1Date.md) around Earth. 
 
 
 
@@ -252,7 +309,7 @@ std::chrono::time\_point&lt;std::chrono::gps\_clock&gt;
 
 _Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in a specified clock format._
 ```C++
-template<typename Clock_T>
+template<typename  Clock_T>
 inline std::chrono::time_point< Clock_T > astrea::astro::Date::in_clock () const
 ```
 
@@ -335,7 +392,7 @@ double The Julian date in days since the epoch.
 
 _Get the Modified Julian_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _(MJD) representation of this_[_**Date**_](classastrea_1_1astro_1_1Date.md) _object._
 ```C++
-inline std::chrono::duration< double, std::ratio< 86400 > > astrea::astro::Date::mjd () const
+inline std::chrono::duration< double , std::chrono::days::period > astrea::astro::Date::mjd () const
 ```
 
 
@@ -344,7 +401,7 @@ inline std::chrono::duration< double, std::ratio< 86400 > > astrea::astro::Date:
 
 **Returns:**
 
-std::chrono::duration&lt;double, std::ratio&lt;86400&gt;&gt; The Modified Julian [**Date**](classastrea_1_1astro_1_1Date.md) representation of this [**Date**](classastrea_1_1astro_1_1Date.md) object. 
+std::chrono::duration&lt;double, std::chrono::days::period&gt; The Modified Julian [**Date**](classastrea_1_1astro_1_1Date.md) representation of this [**Date**](classastrea_1_1astro_1_1Date.md) object. 
 
 
 
@@ -361,7 +418,7 @@ std::chrono::duration&lt;double, std::ratio&lt;86400&gt;&gt; The Modified Julian
 _Add a Time object to this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object._
 ```C++
 Date astrea::astro::Date::operator+ (
-    const Time & time
+    const  Time & time
 ) const
 ```
 
@@ -395,7 +452,7 @@ Date astrea::astro::Date::operator+ (
 _Add a Time object to this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object in place._
 ```C++
 Date & astrea::astro::Date::operator+= (
-    const Time & time
+    const  Time & time
 ) 
 ```
 
@@ -429,7 +486,7 @@ Date & astrea::astro::Date::operator+= (
 _Subtract a Time object from this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object._
 ```C++
 Date astrea::astro::Date::operator- (
-    const Time & time
+    const  Time & time
 ) const
 ```
 
@@ -463,7 +520,7 @@ Date astrea::astro::Date::operator- (
 _Subtract another_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object from this_[_**Date**_](classastrea_1_1astro_1_1Date.md) _object._
 ```C++
 Time astrea::astro::Date::operator- (
-    const Date & other
+    const  Date & other
 ) const
 ```
 
@@ -497,7 +554,7 @@ Time A Time object representing the difference between the two dates.
 _Subtract a Time object from this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object in place._
 ```C++
 Date & astrea::astro::Date::operator-= (
-    const Time & time
+    const  Time & time
 ) 
 ```
 
@@ -531,7 +588,7 @@ Date & astrea::astro::Date::operator-= (
 _Compare this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object with another_[_**Date**_](classastrea_1_1astro_1_1Date.md) _object._
 ```C++
 inline auto astrea::astro::Date::operator<=> (
-    const Date & other
+    const  Date & other
 ) const
 ```
 
@@ -565,7 +622,7 @@ std::strong\_ordering A strong ordering result indicating the comparison.
 _Check if this_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object is equal to another_[_**Date**_](classastrea_1_1astro_1_1Date.md) _object._
 ```C++
 inline bool astrea::astro::Date::operator== (
-    const Date & other
+    const  Date & other
 ) const
 ```
 
@@ -594,23 +651,26 @@ bool True if the two [**Date**](classastrea_1_1astro_1_1Date.md) objects are equ
 
 
 
-### function sys 
+### function seconds\_in\_local\_day 
 
-_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in TT clock format._
 ```C++
-inline std::chrono::time_point< std::chrono::system_clock > astrea::astro::Date::sys () const
+inline Time astrea::astro::Date::seconds_in_local_day () const
 ```
 
 
 
 
-
-**Returns:**
-
-std::chrono::time\_point&lt;std::chrono::tt\_clock&gt;
+<hr>
 
 
-Get the [**Date**](classastrea_1_1astro_1_1Date.md) in sys clock format.
+
+### function sys 
+
+_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in sys clock format._
+```C++
+inline std::chrono::time_point< std::chrono::system_clock > astrea::astro::Date::sys () const
+```
+
 
 
 
@@ -654,6 +714,106 @@ std::chrono::time\_point&lt;std::chrono::tai\_clock&gt;
 
 
 
+### function tcb 
+
+_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in Barycentric Coordinate Time (TCB) clock format._
+```C++
+inline BarycentricCoordinateTime astrea::astro::Date::tcb () const
+```
+
+
+
+
+
+**Returns:**
+
+BarycentricCoordinateTime The [**Date**](classastrea_1_1astro_1_1Date.md) in TCB clock format. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function tcg 
+
+_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in_[_**Geocentric**_](classastrea_1_1astro_1_1Geocentric.md) _Coordinate Time (TCG) clock format._
+```C++
+inline GeocentricCoordinateTime astrea::astro::Date::tcg () const
+```
+
+
+
+
+
+**Returns:**
+
+GeocentricCoordinateTime The [**Date**](classastrea_1_1astro_1_1Date.md) in TCG clock format. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function tdb 
+
+_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in Barycentric Dynamical Time (TDB) clock format._
+```C++
+inline BarycentricDynamicalTime astrea::astro::Date::tdb () const
+```
+
+
+
+
+
+**Returns:**
+
+BarycentricDynamicalTime The [**Date**](classastrea_1_1astro_1_1Date.md) in TDB clock format. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function tt 
+
+_Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in Terrestrial Time (TT) clock format._
+```C++
+inline TerrestrialTime astrea::astro::Date::tt () const
+```
+
+
+
+
+
+**Returns:**
+
+TerrestrialTime The [**Date**](classastrea_1_1astro_1_1Date.md) in TT clock format. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function utc 
 
 _Get the_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _in UTC clock format._
@@ -679,6 +839,19 @@ std::chrono::time\_point&lt;std::chrono::utc\_clock&gt;
 
 
 
+### function year\_month\_day 
+
+```C++
+inline std::chrono::year_month_day astrea::astro::Date::year_month_day () const
+```
+
+
+
+
+<hr>
+
+
+
 ### function ~Date 
 
 _Destructor for_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _._
@@ -699,7 +872,7 @@ astrea::astro::Date::~Date () = default
 
 _Get the current date and time as a_ [_**Date**_](classastrea_1_1astro_1_1Date.md) _object._
 ```C++
-static const Date astrea::astro::Date::now () noexcept
+static const  Date astrea::astro::Date::now () noexcept
 ```
 
 

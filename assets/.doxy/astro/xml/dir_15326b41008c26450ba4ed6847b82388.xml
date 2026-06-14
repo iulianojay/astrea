@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_15326b41008c26450ba4ed6847b82388" kind="dir">
+    <compoundname>astrea/astro/astro/systems/celestial_bodies/Sun</compoundname>
+    <innerfile refid="Sun_8hpp">Sun.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/celestial_bodies/Sun/"/>
+  </compounddef>
+</doxygen>

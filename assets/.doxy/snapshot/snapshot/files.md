@@ -9,6 +9,7 @@ Here is a list of all files with brief descriptions:
         * **dir** [**snapshot**](dir_d7d302d432d8a6ab561803ec6eec1eed.md)     
             * **dir** [**database**](dir_51ef3faf157d043087a4594bebbd2397.md)     
                 * **file** [**Database.hpp**](Database_8hpp.md) _Database utility wrapper for the snapshot module._     
+                * **file** [**Database.ipp**](Database_8ipp.md)     
             * **dir** [**drivers**](dir_aa0888f3e9fa4d362dbefaddf806e79b.md)     
                 * **file** [**main.cpp**](main_8cpp.md)     
             * **dir** [**http-queries**](dir_e3fe50636e6aa25df3bf26a0e7917672.md)     

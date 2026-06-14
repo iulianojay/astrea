@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="structastrea_1_1JulianCentury" kind="struct" language="C++" prot="public" final="yes">
     <compoundname>astrea::JulianCentury</compoundname>
     <basecompoundref prot="public" virt="non-virtual">mp_units::named_unit&lt;&quot;JulianCentury&quot;, mp_units::mag&lt; 36525 &gt; *mp_units::non_si::day &gt;</basecompoundref>
@@ -31,7 +31,7 @@
         <label>mp_units::named_unit&lt;&quot;JulianCentury&quot;, mp_units::mag&lt; 36525 &gt; *mp_units::non_si::day &gt;</label>
       </node>
     </collaborationgraph>
-    <location file="astrea/units/units/custom.hpp" line="31" column="18" bodyfile="astrea/units/units/custom.hpp" bodystart="31" bodyend="32"/>
+    <location file="astrea/units/units/custom.hpp" line="31" column="17" bodyfile="astrea/units/units/custom.hpp" bodystart="31" bodyend="32"/>
     <listofallmembers>
     </listofallmembers>
   </compounddef>

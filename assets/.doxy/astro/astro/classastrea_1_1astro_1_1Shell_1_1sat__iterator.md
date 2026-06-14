@@ -32,11 +32,11 @@ _Iterator for iterating over all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spa
 
 | Type | Name |
 | ---: | :--- |
-| typedef [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; Spacecraft\_T &gt;::[**iterator**](classastrea_1_1astro_1_1Shell.md#typedef-iterator) | [**difference\_type**](#typedef-difference_type)  <br> |
+| typedef [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt;[**::iterator**](classastrea_1_1astro_1_1Shell.md#typedef-iterator) | [**difference\_type**](#typedef-difference_type)  <br> |
 | typedef std::forward\_iterator\_tag | [**iterator\_category**](#typedef-iterator_category)  <br> |
-| typedef const [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; Spacecraft\_T &gt;::[**iterator**](classastrea_1_1astro_1_1Shell.md#typedef-iterator) \* | [**pointer**](#typedef-pointer)  <br> |
-| typedef const [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; Spacecraft\_T &gt;::[**iterator**](classastrea_1_1astro_1_1Shell.md#typedef-iterator) & | [**reference**](#typedef-reference)  <br> |
-| typedef [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; Spacecraft\_T &gt;::[**iterator**](classastrea_1_1astro_1_1Shell.md#typedef-iterator) | [**value\_type**](#typedef-value_type)  <br> |
+| typedef [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt;[**::iterator**](classastrea_1_1astro_1_1Shell.md#typedef-iterator) \* | [**pointer**](#typedef-pointer)  <br> |
+| typedef [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt;[**::iterator**](classastrea_1_1astro_1_1Shell.md#typedef-iterator) & | [**reference**](#typedef-reference)  <br> |
+| typedef [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt;[**::iterator**](classastrea_1_1astro_1_1Shell.md#typedef-iterator) | [**value\_type**](#typedef-value_type)  <br> |
 
 
 
@@ -61,18 +61,18 @@ _Iterator for iterating over all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spa
 
 | Type | Name |
 | ---: | :--- |
-|  bool | [**operator!=**](#function-operator) (const [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) & other) const<br>_Inequality operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
-|  Spacecraft\_T | [**operator\***](#function-operator_1) () <br>_Dereference operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator!=**](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) & other) const<br>_Inequality operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
+|  [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator\***](#function-operator_1) () <br>_Dereference operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
 |  [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) & | [**operator++**](#function-operator_2) () <br>_Increment operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
-|  [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) | [**operator++**](#function-operator_3) (int) <br>_Post-increment operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
+|  [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) | [**operator++**](#function-operator_3) ([**int**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)) <br>_Post-increment operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
 |  [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) & | [**operator--**](#function-operator-) () <br>_Decrement operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
-|  [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) | [**operator--**](#function-operator-_1) (int) <br>_Post-decrement operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
-|  bool | [**operator&lt;**](#function-operator_4) (const [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) & other) const<br>_Less than operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
-|  bool | [**operator&lt;=**](#function-operator_5) (const [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) & other) const<br>_Less than or equal to operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
-|  bool | [**operator==**](#function-operator_6) (const [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) & other) const<br>_Comparison operators for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
-|  bool | [**operator&gt;**](#function-operator_7) (const [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) & other) const<br>_Greater than operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
-|  bool | [**operator&gt;=**](#function-operator_8) (const [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) & other) const<br>_Greater than or equal to operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
-|   | [**sat\_iterator**](#function-sat_iterator) (std::vector&lt; [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; Spacecraft\_T &gt;&gt;::[**iterator**](classastrea_1_1astro_1_1Shell.md#typedef-iterator) \_iterPlane, [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; Spacecraft\_T &gt;::[**iterator**](classastrea_1_1astro_1_1Shell.md#typedef-iterator) \_iterSat) <br>_Default constructor for_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _. Initializes the iterator to the beginning of the first plane's spacecraft._ |
+|  [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) | [**operator--**](#function-operator-_1) ([**int**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)) <br>_Post-decrement operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator&lt;**](#function-operator_4) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) & other) const<br>_Less than operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator&lt;=**](#function-operator_5) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) & other) const<br>_Less than or equal to operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator==**](#function-operator_6) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) & other) const<br>_Comparison operators for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator&gt;**](#function-operator_7) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) & other) const<br>_Greater than operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator&gt;=**](#function-operator_8) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**sat\_iterator**](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) & other) const<br>_Greater than or equal to operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._ |
+|   | [**sat\_iterator**](#function-sat_iterator) (std::vector&lt; [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; &gt;[**::iterator**](classastrea_1_1astro_1_1Shell.md#typedef-iterator) \_iterPlane, [**Plane**](classastrea_1_1astro_1_1Plane.md)&lt; [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt;[**::iterator**](classastrea_1_1astro_1_1Shell.md#typedef-iterator) \_iterSat) <br>_Default constructor for_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _. Initializes the iterator to the beginning of the first plane's spacecraft._ |
 
 
 
@@ -178,7 +178,7 @@ using astrea::astro::Shell< Spacecraft_T >::sat_iterator::value_type =  Plane<Sp
 _Inequality operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._
 ```C++
 inline bool astrea::astro::Shell::sat_iterator::operator!= (
-    const sat_iterator & other
+    const  sat_iterator & other
 ) const
 ```
 
@@ -341,7 +341,7 @@ inline sat_iterator astrea::astro::Shell::sat_iterator::operator-- (
 _Less than operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._
 ```C++
 inline bool astrea::astro::Shell::sat_iterator::operator< (
-    const sat_iterator & other
+    const  sat_iterator & other
 ) const
 ```
 
@@ -382,7 +382,7 @@ false if this iterator is not less than the other.
 _Less than or equal to operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._
 ```C++
 inline bool astrea::astro::Shell::sat_iterator::operator<= (
-    const sat_iterator & other
+    const  sat_iterator & other
 ) const
 ```
 
@@ -423,7 +423,7 @@ false if this iterator is not less than or equal to the other.
 _Comparison operators for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._
 ```C++
 inline bool astrea::astro::Shell::sat_iterator::operator== (
-    const sat_iterator & other
+    const  sat_iterator & other
 ) const
 ```
 
@@ -457,7 +457,7 @@ bool True if the iterators are equal, false otherwise.
 _Greater than operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._
 ```C++
 inline bool astrea::astro::Shell::sat_iterator::operator> (
-    const sat_iterator & other
+    const  sat_iterator & other
 ) const
 ```
 
@@ -498,7 +498,7 @@ false if this iterator is not greater than the other.
 _Greater than or equal to operator for the_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _._
 ```C++
 inline bool astrea::astro::Shell::sat_iterator::operator>= (
-    const sat_iterator & other
+    const  sat_iterator & other
 ) const
 ```
 
@@ -539,8 +539,8 @@ false if this iterator is not greater than or equal to the other.
 _Default constructor for_ [_**sat\_iterator**_](classastrea_1_1astro_1_1Shell_1_1sat__iterator.md) _. Initializes the iterator to the beginning of the first plane's spacecraft._
 ```C++
 inline astrea::astro::Shell::sat_iterator::sat_iterator (
-    std::vector< Plane < Spacecraft_T >>:: iterator _iterPlane,
-    Plane < Spacecraft_T >:: iterator _iterSat
+    std::vector< Plane < Spacecraft_T > > ::iterator _iterPlane,
+    Plane < Spacecraft_T > ::iterator _iterSat
 ) 
 ```
 

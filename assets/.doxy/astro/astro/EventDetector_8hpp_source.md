@@ -40,7 +40,11 @@ class EventDetector {
 
     ~EventDetector() = default;
 
-    void set_events(const std::vector<Event>& events);
+    void add_event(const Event& event);
+
+    void add_events(const std::vector<Event>& events);
+
+    void clear_events();
 
     std::vector<Event> get_events() const;
 

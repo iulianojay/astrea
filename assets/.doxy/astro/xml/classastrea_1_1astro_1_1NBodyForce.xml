@@ -1,15 +1,23 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1NBodyForce" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::NBodyForce</compoundname>
-    <basecompoundref refid="classastrea_1_1astro_1_1Force" prot="public" virt="non-virtual">astrea::astro::Force</basecompoundref>
+    <basecompoundref refid="classastrea_1_1astro_1_1PerturbingForce" prot="public" virt="non-virtual">astrea::astro::PerturbingForce</basecompoundref>
     <includes refid="NBodyForce_8hpp" local="no">NBodyForce.hpp</includes>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="classastrea_1_1astro_1_1NBodyForce_1af9594ff6724d581d3d7cf302a89be2aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+    <templateparamlist>
+      <param>
+        <type>IsCelestialBody auto...</type>
+        <declname>bodies</declname>
+        <defname>bodies</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1NBodyForce_1aea12b506fd466bd50e139d7e5277c41d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
-        <definition>astrea::astro::NBodyForce::NBodyForce</definition>
+        <definition>astrea::astro::NBodyForce&lt; bodies &gt;::NBodyForce</definition>
         <argsstring>()=default</argsstring>
         <name>NBodyForce</name>
+        <qualifiedname>astrea::astro::NBodyForce::NBodyForce</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="classastrea_1_1astro_1_1NBodyForce" kindref="compound">NBodyForce</ref>. </para>
         </briefdescription>
@@ -17,13 +25,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/NBodyForce.hpp" line="38" column="5"/>
+        <location file="astrea/astro/astro/propagation/force_models/NBodyForce.hpp" line="45" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1NBodyForce_1a61b7b5e9afe664e73b1f12f74e2ae7da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1NBodyForce_1a16e00c0ba8dc2756810e9549bddf87ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
-        <definition>astrea::astro::NBodyForce::~NBodyForce</definition>
+        <definition>astrea::astro::NBodyForce&lt; bodies &gt;::~NBodyForce</definition>
         <argsstring>()=default</argsstring>
         <name>~NBodyForce</name>
+        <qualifiedname>astrea::astro::NBodyForce::~NBodyForce</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1astro_1_1NBodyForce" kindref="compound">NBodyForce</ref>. </para>
         </briefdescription>
@@ -31,20 +40,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/NBodyForce.hpp" line="43" column="5"/>
+        <location file="astrea/astro/astro/propagation/force_models/NBodyForce.hpp" line="50" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1NBodyForce_1ac4381941fd26fd0b76aa51ef73c73437" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
-        <type><ref refid="classastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; Acceleration, frames::earth::icrf &gt;</type>
-        <definition>AccelerationVector&lt; frames::earth::icrf &gt; astrea::astro::NBodyForce::compute_force</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1NBodyForce_1a79ab51b4ea14792017f7c2c447e4e1d7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="structastrea_1_1astro_1_1Perturbation" kindref="compound">Perturbation</ref></type>
+        <definition>Perturbation astrea::astro::NBodyForce&lt; bodies &gt;::compute_perturbation</definition>
         <argsstring>(const State &amp;state, const Vehicle &amp;vehicle) const override</argsstring>
-        <name>compute_force</name>
-        <reimplements refid="classastrea_1_1astro_1_1Force_1a883c75bea3cb77b3999f966c63b0dd61">compute_force</reimplements>
+        <name>compute_perturbation</name>
+        <qualifiedname>astrea::astro::NBodyForce::compute_perturbation</qualifiedname>
+        <reimplements refid="classastrea_1_1astro_1_1PerturbingForce_1ac9606ee76f4d3cc3e140770d1a43f567">compute_perturbation</reimplements>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
           <declname>vehicle</declname>
         </param>
         <briefdescription>
@@ -56,7 +66,7 @@
 <parametername>state</parametername>
 </parameternamelist>
 <parameterdescription>
-<para><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector of the vehicle </para>
+<para>Cartesian&lt;frames::primary&gt; state vector of the vehicle </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -68,15 +78,15 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>AccelerationVector&lt;frames::earth::icrf&gt; The computed acceleration vector due to multiple bodies. </para>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1Perturbation" kindref="compound">Perturbation</ref> The computed force and torque due to multiple bodies. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/force_models/NBodyForce.hpp" line="52" column="21" bodyfile="astrea/astro/astro/propagation/force_models/NBodyForce.cpp" bodystart="39" bodyend="82"/>
+        <location file="astrea/astro/astro/propagation/force_models/NBodyForce.hpp" line="59" column="18" bodyfile="astrea/astro/astro/propagation/force_models/NBodyForce.hpp" bodystart="59" bodyend="97"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>Class to compute the gravitational force due to multiple celestial bodies. </para>
     </briefdescription>
@@ -84,35 +94,35 @@
     </detaileddescription>
     <inheritancegraph>
       <node id="1">
-        <label>astrea::astro::NBodyForce</label>
+        <label>astrea::astro::NBodyForce&lt; bodies &gt;</label>
         <link refid="classastrea_1_1astro_1_1NBodyForce"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
       <node id="2">
-        <label>astrea::astro::Force</label>
-        <link refid="classastrea_1_1astro_1_1Force"/>
+        <label>astrea::astro::PerturbingForce</label>
+        <link refid="classastrea_1_1astro_1_1PerturbingForce"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
       <node id="1">
-        <label>astrea::astro::NBodyForce</label>
+        <label>astrea::astro::NBodyForce&lt; bodies &gt;</label>
         <link refid="classastrea_1_1astro_1_1NBodyForce"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
       <node id="2">
-        <label>astrea::astro::Force</label>
-        <link refid="classastrea_1_1astro_1_1Force"/>
+        <label>astrea::astro::PerturbingForce</label>
+        <link refid="classastrea_1_1astro_1_1PerturbingForce"/>
       </node>
     </collaborationgraph>
-    <location file="astrea/astro/astro/propagation/force_models/NBodyForce.hpp" line="33" column="1" bodyfile="astrea/astro/astro/propagation/force_models/NBodyForce.hpp" bodystart="33" bodyend="53"/>
+    <location file="astrea/astro/astro/propagation/force_models/NBodyForce.hpp" line="40" column="1" bodyfile="astrea/astro/astro/propagation/force_models/NBodyForce.hpp" bodystart="40" bodyend="98"/>
     <listofallmembers>
-      <member refid="classastrea_1_1astro_1_1NBodyForce_1ac4381941fd26fd0b76aa51ef73c73437" prot="public" virt="virtual"><scope>astrea::astro::NBodyForce</scope><name>compute_force</name></member>
-      <member refid="classastrea_1_1astro_1_1Force_1a35ce93a85f35484f4bb999917bd56b21" prot="public" virt="non-virtual"><scope>astrea::astro::NBodyForce</scope><name>Force</name></member>
-      <member refid="classastrea_1_1astro_1_1NBodyForce_1af9594ff6724d581d3d7cf302a89be2aa" prot="public" virt="non-virtual"><scope>astrea::astro::NBodyForce</scope><name>NBodyForce</name></member>
-      <member refid="classastrea_1_1astro_1_1Force_1a44eb34fbd2be08409120a1fccd35da30" prot="public" virt="virtual"><scope>astrea::astro::NBodyForce</scope><name>~Force</name></member>
-      <member refid="classastrea_1_1astro_1_1NBodyForce_1a61b7b5e9afe664e73b1f12f74e2ae7da" prot="public" virt="non-virtual"><scope>astrea::astro::NBodyForce</scope><name>~NBodyForce</name></member>
+      <member refid="classastrea_1_1astro_1_1NBodyForce_1a79ab51b4ea14792017f7c2c447e4e1d7" prot="public" virt="virtual"><scope>astrea::astro::NBodyForce</scope><name>compute_perturbation</name></member>
+      <member refid="classastrea_1_1astro_1_1NBodyForce_1aea12b506fd466bd50e139d7e5277c41d" prot="public" virt="non-virtual"><scope>astrea::astro::NBodyForce</scope><name>NBodyForce</name></member>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1a31d3645e85270aa1c1936252bb9a34a3" prot="public" virt="non-virtual"><scope>astrea::astro::NBodyForce</scope><name>PerturbingForce</name></member>
+      <member refid="classastrea_1_1astro_1_1NBodyForce_1a16e00c0ba8dc2756810e9549bddf87ed" prot="public" virt="non-virtual"><scope>astrea::astro::NBodyForce</scope><name>~NBodyForce</name></member>
+      <member refid="classastrea_1_1astro_1_1PerturbingForce_1a5b564712f5a9df20b0c3180c517b1546" prot="public" virt="virtual"><scope>astrea::astro::NBodyForce</scope><name>~PerturbingForce</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

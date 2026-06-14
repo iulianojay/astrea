@@ -1,65 +1,88 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1dynamic" kind="namespace" language="C++">
     <compoundname>astrea::astro::frames::dynamic</compoundname>
-      <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="EastNorthUp_8hpp_1a28786422cf054e26367a06216b846610" prot="public" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1frames_1_1EastNorthUp" kindref="compound">EastNorthUp</ref></type>
-        <definition>using astrea::astro::frames::dynamic::enu = typedef EastNorthUp</definition>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1dynamic_1_1body" prot="public">astrea::astro::frames::dynamic::body</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="dynamic__frames_8hpp_1aa979ef83dec9b48a5bb1edebf590017b" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1dynamic_1_1body" kindref="compound">astrea::astro::frames::dynamic::body</ref></type>
+        <definition>astrea::astro::frames::dynamic::body astrea::astro::frames::dynamic::body</definition>
+        <argsstring></argsstring>
+        <name>body</name>
+        <qualifiedname>astrea::astro::frames::dynamic::body</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames.hpp" line="35" column="6"/>
+      </memberdef>
+      <memberdef kind="variable" id="dynamic__frames_8hpp_1ab31bdf477942b4a43f4a71fb4d4b4353" prot="public" static="no" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1frames_1_1EastNorthUpTag" kindref="compound">EastNorthUpTag</ref>&lt; frames::primary &gt;</type>
+        <definition>constexpr EastNorthUpTag&lt;frames::primary&gt; astrea::astro::frames::dynamic::enu</definition>
         <argsstring></argsstring>
         <name>enu</name>
+        <qualifiedname>astrea::astro::frames::dynamic::enu</qualifiedname>
+        <initializer>{}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/EastNorthUp.hpp" line="111" column="1" bodyfile="astrea/astro/astro/frames/instances/EastNorthUp.hpp" bodystart="111" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames.hpp" line="37" column="33" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames.hpp" bodystart="37" bodyend="37"/>
       </memberdef>
-      <memberdef kind="typedef" id="LocalHorizontalLocalVertical_8hpp_1a3bd95ebddc0159bcf93165be71eca70b" prot="public" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical" kindref="compound">LocalHorizontalLocalVertical</ref></type>
-        <definition>using astrea::astro::frames::dynamic::lvlh = typedef LocalHorizontalLocalVertical</definition>
+      <memberdef kind="variable" id="dynamic__frames_8hpp_1adcf6f6ae2adc51a686f60c56e4bc2ad3" prot="public" static="no" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1frames_1_1LvlhTag" kindref="compound">LvlhTag</ref>&lt; frames::primary &gt;</type>
+        <definition>constexpr LvlhTag&lt;frames::primary&gt; astrea::astro::frames::dynamic::lvlh</definition>
         <argsstring></argsstring>
         <name>lvlh</name>
+        <qualifiedname>astrea::astro::frames::dynamic::lvlh</qualifiedname>
+        <initializer>{}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp" line="86" column="1" bodyfile="astrea/astro/astro/frames/instances/LocalHorizontalLocalVertical.hpp" bodystart="86" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames.hpp" line="39" column="26" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames.hpp" bodystart="39" bodyend="39"/>
       </memberdef>
-      <memberdef kind="typedef" id="RadialInTrackCrossTrack_8hpp_1a1d5873200835954ca0390c534bf72fe7" prot="public" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack" kindref="compound">RadialInTrackCrossTrack</ref></type>
-        <definition>using astrea::astro::frames::dynamic::ric = typedef RadialInTrackCrossTrack</definition>
+      <memberdef kind="variable" id="dynamic__frames_8hpp_1a45af076743da834ec3c905b288fc8867" prot="public" static="no" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1frames_1_1RicTag" kindref="compound">RicTag</ref>&lt; frames::primary &gt;</type>
+        <definition>constexpr RicTag&lt;frames::primary&gt; astrea::astro::frames::dynamic::ric</definition>
         <argsstring></argsstring>
         <name>ric</name>
+        <qualifiedname>astrea::astro::frames::dynamic::ric</qualifiedname>
+        <initializer>{}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp" line="86" column="1" bodyfile="astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp" bodystart="86" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames.hpp" line="41" column="25" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames.hpp" bodystart="41" bodyend="41"/>
       </memberdef>
-      <memberdef kind="typedef" id="VelocityNormalBinormal_8hpp_1a48e7570478c06af1372315a2f65064e8" prot="public" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal" kindref="compound">VelocityNormalBinormal</ref></type>
-        <definition>using astrea::astro::frames::dynamic::vnb = typedef VelocityNormalBinormal</definition>
+      <memberdef kind="variable" id="dynamic__frames_8hpp_1ae683c27ff4ae0e9427eb1294691e8357" prot="public" static="no" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1frames_1_1VnbTag" kindref="compound">VnbTag</ref>&lt; frames::primary &gt;</type>
+        <definition>constexpr VnbTag&lt;frames::primary&gt; astrea::astro::frames::dynamic::vnb</definition>
         <argsstring></argsstring>
         <name>vnb</name>
+        <qualifiedname>astrea::astro::frames::dynamic::vnb</qualifiedname>
+        <initializer>{}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/VelocityNormalBinormal.hpp" line="84" column="1" bodyfile="astrea/astro/astro/frames/instances/VelocityNormalBinormal.hpp" bodystart="84" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/dynamic_frames.hpp" line="43" column="25" bodyfile="astrea/astro/astro/frames/definitions/dynamic_frames.hpp" bodystart="43" bodyend="43"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/instances/EastNorthUp.hpp" line="110" column="1"/>
+    <location file="astrea/astro/astro/frames/definitions/dynamic_frames.hpp" line="32" column="1"/>
   </compounddef>
 </doxygen>

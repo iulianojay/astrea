@@ -2,13 +2,15 @@
 
 # Class astrea::trace::GroundArchitecture
 
+**template &lt;astro::IsCelestialBody auto \_body\_&gt;**
+
 
 
 [**ClassList**](annotated.md) **>** [**astrea**](namespaceastrea.md) **>** [**trace**](namespaceastrea_1_1trace.md) **>** [**GroundArchitecture**](classastrea_1_1trace_1_1GroundArchitecture.md)
 
 
 
-[_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _class represents a collection of ground stations._[More...](#detailed-description)
+_A collection of ground stations on the surface of a celestial body._ [More...](#detailed-description)
 
 * `#include <GroundArchitecture.hpp>`
 
@@ -32,8 +34,8 @@
 
 | Type | Name |
 | ---: | :--- |
-| typedef std::vector&lt; [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) &gt;::[**const\_iterator**](classastrea_1_1trace_1_1GroundArchitecture.md#typedef-const_iterator) | [**const\_iterator**](#typedef-const_iterator)  <br>_Constant iterator type for the_ [_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _class._ |
-| typedef std::vector&lt; [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) &gt;::[**iterator**](classastrea_1_1trace_1_1GroundArchitecture.md#typedef-iterator) | [**iterator**](#typedef-iterator)  <br>_Iterator type for the_ [_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _class._ |
+| typedef typename std::vector&lt; Station &gt;::const\_iterator | [**const\_iterator**](#typedef-const_iterator)  <br>_Constant iterator type for the_ [_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _class._ |
+| typedef typename std::vector&lt; Station &gt;::iterator | [**iterator**](#typedef-iterator)  <br>_Iterator type for the_ [_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _class._ |
 
 
 
@@ -58,15 +60,15 @@
 
 | Type | Name |
 | ---: | :--- |
-|   | [**GroundArchitecture**](#function-groundarchitecture) (const std::vector&lt; [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) &gt; & groundStations) <br>_Constructs a_ [_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _with a list of ground stations._ |
+|   | [**GroundArchitecture**](#function-groundarchitecture) (const std::vector&lt; Station &gt; & groundStations) <br>_Constructs a_ [_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _with a list of ground stations._ |
 |  [**iterator**](classastrea_1_1trace_1_1GroundArchitecture.md#typedef-iterator) | [**begin**](#function-begin-12) () <br>_Returns an iterator to the beginning of the ground stations._  |
 |  [**const\_iterator**](classastrea_1_1trace_1_1GroundArchitecture.md#typedef-const_iterator) | [**begin**](#function-begin-22) () const<br>_Returns a constant iterator to the beginning of the ground stations._  |
 |  [**const\_iterator**](classastrea_1_1trace_1_1GroundArchitecture.md#typedef-const_iterator) | [**cbegin**](#function-cbegin) () const<br>_Returns a constant iterator to the beginning of the ground stations._  |
 |  [**const\_iterator**](classastrea_1_1trace_1_1GroundArchitecture.md#typedef-const_iterator) | [**cend**](#function-cend) () const<br>_Returns a constant iterator to the end of the ground stations._  |
 |  [**iterator**](classastrea_1_1trace_1_1GroundArchitecture.md#typedef-iterator) | [**end**](#function-end-12) () <br>_Returns an iterator to the end of the ground stations._  |
 |  [**const\_iterator**](classastrea_1_1trace_1_1GroundArchitecture.md#typedef-const_iterator) | [**end**](#function-end-22) () const<br>_Returns a constant iterator to the end of the ground stations._  |
-|  [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) & | [**operator[]**](#function-operator) (const std::size\_t & idx) <br>_Access operator for_ [_**GroundStation**_](classastrea_1_1trace_1_1GroundStation.md) _._ |
-|  const [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md) & | [**operator[]**](#function-operator_1) (const std::size\_t & idx) const<br>_Access operator for_ [_**GroundStation**_](classastrea_1_1trace_1_1GroundStation.md) _(const)._ |
+|  Station & | [**operator[]**](#function-operator) (const std::size\_t & idx) <br>_Access a ground station by index._  |
+|  const Station & | [**operator[]**](#function-operator_1) (const std::size\_t & idx) const<br>_Access a ground station by index (const)._  |
 |  std::size\_t | [**size**](#function-size) () const<br>_Returns the number of ground stations in the architecture._  |
 |   | [**~GroundArchitecture**](#function-groundarchitecture) () = default<br>_Default destructor for_ [_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _._ |
 
@@ -100,7 +102,17 @@
 ## Detailed Description
 
 
-This class is used to manage and access a set of ground stations, which can be used for various purposes such as communication, observation, or data collection. 
+This class manages and provides access to a set of ground stations, which can be used for communication, observation, or data collection.
+
+
+
+
+**Template parameters:**
+
+
+* `_body_` The celestial body NTTP that all stations in this architecture reside on. 
+
+
 
 
     
@@ -113,7 +125,7 @@ This class is used to manage and access a set of ground stations, which can be u
 
 _Constant iterator type for the_ [_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _class._
 ```C++
-using astrea::trace::GroundArchitecture::const_iterator =  std::vector<GroundStation>::const_iterator;
+using astrea::trace::GroundArchitecture< _body_ >::const_iterator =  typename std::vector<Station>::const_iterator;
 ```
 
 
@@ -127,7 +139,7 @@ using astrea::trace::GroundArchitecture::const_iterator =  std::vector<GroundSta
 
 _Iterator type for the_ [_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _class._
 ```C++
-using astrea::trace::GroundArchitecture::iterator =  std::vector<GroundStation>::iterator;
+using astrea::trace::GroundArchitecture< _body_ >::iterator =  typename std::vector<Station>::iterator;
 ```
 
 
@@ -144,7 +156,7 @@ using astrea::trace::GroundArchitecture::iterator =  std::vector<GroundStation>:
 _Constructs a_ [_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _with a list of ground stations._
 ```C++
 inline astrea::trace::GroundArchitecture::GroundArchitecture (
-    const std::vector< GroundStation > & groundStations
+    const std::vector< Station > & groundStations
 ) 
 ```
 
@@ -318,9 +330,9 @@ A constant iterator to one past the last ground station.
 
 ### function operator[] 
 
-_Access operator for_ [_**GroundStation**_](classastrea_1_1trace_1_1GroundStation.md) _._
+_Access a ground station by index._ 
 ```C++
-inline GroundStation & astrea::trace::GroundArchitecture::operator[] (
+inline Station & astrea::trace::GroundArchitecture::operator[] (
     const std::size_t & idx
 ) 
 ```
@@ -338,7 +350,7 @@ inline GroundStation & astrea::trace::GroundArchitecture::operator[] (
 
 **Returns:**
 
-[**GroundStation**](classastrea_1_1trace_1_1GroundStation.md)& Ground station at the specified index. 
+Station& Ground station at the specified index. 
 
 
 
@@ -352,9 +364,9 @@ inline GroundStation & astrea::trace::GroundArchitecture::operator[] (
 
 ### function operator[] 
 
-_Access operator for_ [_**GroundStation**_](classastrea_1_1trace_1_1GroundStation.md) _(const)._
+_Access a ground station by index (const)._ 
 ```C++
-inline const GroundStation & astrea::trace::GroundArchitecture::operator[] (
+inline const Station & astrea::trace::GroundArchitecture::operator[] (
     const std::size_t & idx
 ) const
 ```
@@ -372,7 +384,7 @@ inline const GroundStation & astrea::trace::GroundArchitecture::operator[] (
 
 **Returns:**
 
-const [**GroundStation**](classastrea_1_1trace_1_1GroundStation.md)& Ground station at the specified index. 
+const Station& Ground station at the specified index. 
 
 
 

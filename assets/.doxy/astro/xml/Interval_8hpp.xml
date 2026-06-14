@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="Interval_8hpp" kind="file" language="C++">
     <compoundname>Interval.hpp</compoundname>
     <includes local="no">units/units.hpp</includes>
-    <includedby refid="astro_8hpp" local="no">astrea/astro/astro/astro.hpp</includedby>
     <includedby refid="Integrator_8cpp" local="no">astrea/astro/astro/propagation/numerical/Integrator.cpp</includedby>
     <includedby refid="Integrator_8hpp" local="no">astrea/astro/astro/propagation/numerical/Integrator.hpp</includedby>
+    <includedby refid="time_8hpp" local="no">astrea/astro/astro/time.hpp</includedby>
     <incdepgraph>
       <node id="1">
         <label>astrea/astro/astro/time/Interval.hpp</label>
@@ -19,49 +19,67 @@
     </incdepgraph>
     <invincdepgraph>
       <node id="5">
-        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
-        <link refid="Plane_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
+      </node>
+      <node id="4">
+        <label>astrea/astro/astro/platforms.hpp</label>
+        <link refid="platforms_8hpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="6">
-        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
-        <link refid="Shell_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
+      <node id="3">
+        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
+        <link refid="Constellation_8hpp"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
+      <node id="6">
+        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
+        <link refid="Plane_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
+        <link refid="Shell_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea/astro/astro/propagation.hpp</label>
+        <link refid="propagation_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
       <node id="2">
-        <label>astrea/astro/astro/astro.hpp</label>
-        <link refid="astro_8hpp"/>
+        <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
+        <link refid="Integrator_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astrea/astro/astro/time.hpp</label>
+        <link refid="time_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>astrea/astro/astro/time/Interval.hpp</label>
         <link refid="Interval_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
-        <link refid="Integrator_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
-        <link refid="Constellation_8hpp"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -92,14 +110,14 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="32" refid="classastrea_1_1astro_1_1Interval" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1Interval" kindref="compound">Interval</ref><sp/>{</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="40" refid="classastrea_1_1astro_1_1Interval_1a9a7c26182b9941b17d2c36de25e37965" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Interval_1a9a7c26182b9941b17d2c36de25e37965" kindref="member">Interval</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/><ref refid="classastrea_1_1astro_1_1Interval_1acb1c4988ef0a24c881ecd49f2c0bf974" kindref="member">start</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time&amp;<sp/>end)<sp/>:</highlight></codeline>
+<codeline lineno="40" refid="classastrea_1_1astro_1_1Interval_1a9a7c26182b9941b17d2c36de25e37965" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Interval_1a9a7c26182b9941b17d2c36de25e37965" kindref="member">Interval</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Interval_1acb1c4988ef0a24c881ecd49f2c0bf974" kindref="member">start</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/>end)<sp/>:</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Interval_1acb1c4988ef0a24c881ecd49f2c0bf974" kindref="member">start</ref>(<ref refid="classastrea_1_1astro_1_1Interval_1acb1c4988ef0a24c881ecd49f2c0bf974" kindref="member">start</ref>),</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Interval_1a573e9523971a721de762cf978478cd8b" kindref="member">propTime</ref>(end){};</highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="47" refid="classastrea_1_1astro_1_1Interval_1a9a1f01247546e4521f883a012914693a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Interval_1a9a1f01247546e4521f883a012914693a" kindref="member">~Interval</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49" refid="classastrea_1_1astro_1_1Interval_1acb1c4988ef0a24c881ecd49f2c0bf974" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Time<sp/><ref refid="classastrea_1_1astro_1_1Interval_1acb1c4988ef0a24c881ecd49f2c0bf974" kindref="member">start</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="50" refid="classastrea_1_1astro_1_1Interval_1a573e9523971a721de762cf978478cd8b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>Time<sp/><ref refid="classastrea_1_1astro_1_1Interval_1a573e9523971a721de762cf978478cd8b" kindref="member">propTime</ref>;<sp/></highlight></codeline>
+<codeline lineno="49" refid="classastrea_1_1astro_1_1Interval_1acb1c4988ef0a24c881ecd49f2c0bf974" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref><sp/><ref refid="classastrea_1_1astro_1_1Interval_1acb1c4988ef0a24c881ecd49f2c0bf974" kindref="member">start</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50" refid="classastrea_1_1astro_1_1Interval_1a573e9523971a721de762cf978478cd8b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref><sp/><ref refid="classastrea_1_1astro_1_1Interval_1a573e9523971a721de762cf978478cd8b" kindref="member">propTime</ref>;<sp/></highlight></codeline>
 <codeline lineno="51"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
 <codeline lineno="53"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>

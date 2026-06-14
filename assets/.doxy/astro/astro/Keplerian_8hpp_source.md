@@ -2,7 +2,7 @@
 
 # File Keplerian.hpp
 
-[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**state**](dir_cf1a4d8122645f8636e977da512a043c.md) **>** [**orbital\_elements**](dir_6eb62f1e639545772a8b9a71f7b1d0b7.md) **>** [**instances**](dir_2296e922a578ce2ef4a64c83384e553c.md) **>** [**Keplerian.hpp**](Keplerian_8hpp.md)
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**state**](dir_cf1a4d8122645f8636e977da512a043c.md) **>** [**orbital\_elements**](dir_6eb62f1e639545772a8b9a71f7b1d0b7.md) **>** [**Keplerian.hpp**](Keplerian_8hpp.md)
 
 [Go to the documentation of this file](Keplerian_8hpp.md)
 
@@ -13,6 +13,10 @@
 
 #include <iosfwd>
 
+#include <mp-units/math.h>
+#include <mp-units/systems/angular.h>
+#include <mp-units/systems/si.h>
+
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
@@ -21,12 +25,16 @@
 namespace astrea {
 namespace astro {
 
+template <IsFrame auto _frame_>
 class Keplerian {
 
-    friend std::ostream& operator<<(std::ostream&, Keplerian const&);
+    template <IsFrame auto frame>
+    friend std::ostream& operator<<(std::ostream&, Keplerian<frame> const&);
     friend class OrbitalElements;
 
   public:
+    static constexpr auto frame = _frame_; 
+
     Keplerian(Unitless scale = 0.0 * astrea::detail::unitless) :
         _semimajor(scale * astrea::detail::distance_unit),
         _eccentricity(scale * astrea::detail::unitless),
@@ -47,16 +55,14 @@ class Keplerian {
     {
     }
 
-    Keplerian(const Keplerian& elements, const GravParam& mu) :
+    Keplerian(const Keplerian<_frame_>& elements, const GravParam& mu) :
         Keplerian(elements)
     {
     }
 
-    Keplerian(const OrbitalElements& elements, const GravParam& mu);
+    Keplerian(const Cartesian<_frame_>& elements, const GravParam& mu);
 
-    Keplerian(const Cartesian& elements, const GravParam& mu);
-
-    Keplerian(const Equinoctial& elements, const GravParam& mu);
+    Keplerian(const Equinoctial<_frame_>& elements, const GravParam& mu);
 
     static Keplerian LEO();
 
@@ -68,33 +74,33 @@ class Keplerian {
 
     static Keplerian GEO();
 
-    Keplerian(const Keplerian&);
+    Keplerian(const Keplerian<_frame_>&);
 
-    Keplerian(Keplerian&&) noexcept;
+    Keplerian(Keplerian<_frame_>&&) noexcept;
 
-    Keplerian& operator=(Keplerian&&) noexcept;
+    Keplerian& operator=(Keplerian<_frame_>&&) noexcept;
 
-    Keplerian& operator=(const Keplerian&);
+    Keplerian& operator=(const Keplerian<_frame_>&);
 
     ~Keplerian() = default;
 
-    bool operator==(const Keplerian& other) const;
+    bool operator==(const Keplerian<_frame_>& other) const;
 
-    bool operator!=(const Keplerian& other) const;
+    bool operator!=(const Keplerian<_frame_>& other) const;
 
-    Keplerian operator+(const Keplerian& other) const;
+    Keplerian operator+(const Keplerian<_frame_>& other) const;
 
-    Keplerian& operator+=(const Keplerian& other);
+    Keplerian& operator+=(const Keplerian<_frame_>& other);
 
-    Keplerian operator-(const Keplerian& other) const;
+    Keplerian operator-(const Keplerian<_frame_>& other) const;
 
-    Keplerian& operator-=(const Keplerian& other);
+    Keplerian& operator-=(const Keplerian<_frame_>& other);
 
     Keplerian operator*(const Unitless& multiplier) const;
 
     Keplerian& operator*=(const Unitless& multiplier);
 
-    KeplerianPartial operator/(const Time& time) const;
+    KeplerianPartial<_frame_> operator/(const Time& time) const;
 
     Keplerian operator/(const Unitless& divisor) const;
 
@@ -128,9 +134,14 @@ class Keplerian {
 
     MeanMotion get_mean_motion(const GravParam& mu) const;
 
-    Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian& other, const GravParam& mu, const Time& targetTime) const;
+    Time get_orbital_period(const GravParam& mu) const;
+
+    Keplerian interpolate(const Time& thisTime, const Time& otherTime, const Keplerian<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
 
     std::vector<Unitless> force_to_vector() const;
+
+    template <IsFrame auto target_frame>
+    Keplerian<target_frame> in_frame(const Date& epoch, const GravParam& mu) const;
 
   private:
     Distance _semimajor;    
@@ -148,20 +159,24 @@ class Keplerian {
     static Keplerian from_vector(const std::vector<Unitless>& vec);
 };
 
+template <IsFrame auto _frame_>
 class KeplerianPartial {
 
-    friend std::ostream& operator<<(std::ostream&, KeplerianPartial const&);
+    template <IsFrame auto frame>
+    friend std::ostream& operator<<(std::ostream&, KeplerianPartial<frame> const&);
 
   public:
+    static constexpr auto frame = _frame_; 
+
     KeplerianPartial() = default;
 
     KeplerianPartial(
         const Velocity& semimajorPartial,
         const UnitlessPerTime& eccentricityPartial,
-        const AngularRate& inclinationPartial,
-        const AngularRate& rightAscensionPartial,
-        const AngularRate& argPerigeePartial,
-        const AngularRate& trueAnomalyPartial
+        const AngularVelocity& inclinationPartial,
+        const AngularVelocity& rightAscensionPartial,
+        const AngularVelocity& argPerigeePartial,
+        const AngularVelocity& trueAnomalyPartial
     ) :
         _semimajorPartial(semimajorPartial),
         _eccentricityPartial(eccentricityPartial),
@@ -172,21 +187,23 @@ class KeplerianPartial {
     {
     }
 
-    Keplerian operator*(const Time& time) const;
+    Keplerian<_frame_> operator*(const Time& time) const;
 
     std::vector<Unitless> force_to_vector() const;
 
   private:
-    Velocity _semimajorPartial;           
-    UnitlessPerTime _eccentricityPartial; 
-    AngularRate _inclinationPartial;      
-    AngularRate _rightAscensionPartial;   
-    AngularRate _argPerigeePartial;       
-    AngularRate _trueAnomalyPartial;      
+    Velocity _semimajorPartial;             
+    UnitlessPerTime _eccentricityPartial;   
+    AngularVelocity _inclinationPartial;    
+    AngularVelocity _rightAscensionPartial; 
+    AngularVelocity _argPerigeePartial;     
+    AngularVelocity _trueAnomalyPartial;    
 };
 
 } // namespace astro
 } // namespace astrea
+
+#include <astro/state/orbital_elements/Keplerian.ipp>
 ```
 
 

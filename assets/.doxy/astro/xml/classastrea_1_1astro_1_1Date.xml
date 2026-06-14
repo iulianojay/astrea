@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1Date" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::Date</compoundname>
     <includes refid="Date_8hpp" local="no">Date.hpp</includes>
-      <sectiondef kind="private-attrib">
+    <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Date_1a71354c81079f8c9bda3cd2e07eb605b6" prot="private" static="no" mutable="no">
         <type><ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref></type>
         <definition>JulianDate astrea::astro::Date::_julianDate</definition>
         <argsstring></argsstring>
         <name>_julianDate</name>
+        <qualifiedname>astrea::astro::Date::_julianDate</qualifiedname>
         <briefdescription>
 <para>Julian date representation of the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> object. </para>
         </briefdescription>
@@ -16,21 +17,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="255" column="16" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="255" bodyend="-1"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="293" column="16" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="293" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="friend">
-      <memberdef kind="friend" id="classastrea_1_1astro_1_1Date_1a5b1351a8185acbf705748e99bdec03f7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1Date_1a4c1f027bd347ffe5e447054efb1c3309" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <definition>std::ostream &amp; operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;os, const Date &amp;obj)</argsstring>
         <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::Date::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <declname>os</declname>
         </param>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>obj</declname>
         </param>
         <briefdescription>
@@ -39,17 +41,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="64" column="12" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="34" bodyend="38"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="66" column="12" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="33" bodyend="37"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a8401426b654e330259e35a71bf149a17" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type></type>
-        <definition>astrea::astro::Date::Date</definition>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a7e4fade3a230c81386234f545a4ceaf8" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::Date::Date</definition>
         <argsstring>(const JulianDate &amp;jdate=J2000)</argsstring>
         <name>Date</name>
+        <qualifiedname>astrea::astro::Date::Date</qualifiedname>
         <param>
-          <type>const <ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref> &amp;</type>
           <declname>jdate</declname>
           <defval>J2000</defval>
         </param>
@@ -70,21 +73,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="72" column="5" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="72" bodyend="75"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="74" column="15" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="74" bodyend="77"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a73b16cef86ae412c83b7f01929b2630b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::Date::Date</definition>
         <argsstring>(const std::string &amp;epoch, const std::string &amp;format=&quot;%Y-%m-%d %H:%M:%S&quot;)</argsstring>
         <name>Date</name>
+        <qualifiedname>astrea::astro::Date::Date</qualifiedname>
         <param>
-          <type>const std::string &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::string &amp;</type>
           <declname>epoch</declname>
         </param>
         <param>
-          <type>const std::string &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::string &amp;</type>
           <declname>format</declname>
-          <defval>&quot;%Y-%m-%d %H:%M:%S&quot;</defval>
+          <defval>&quot;%Y-%m-%d %<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">H:</ref>%<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">M:</ref>%<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">S&quot;</ref></defval>
         </param>
         <briefdescription>
 <para>Construct a <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> object from a JulianDate. </para>
@@ -111,13 +115,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="83" column="5" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="83" bodyend="86"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="85" column="5" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="85" bodyend="88"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a0ba2c7ce5807e41ce777a6d50ffcb1e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::Date::~Date</definition>
         <argsstring>()=default</argsstring>
         <name>~Date</name>
+        <qualifiedname>astrea::astro::Date::~Date</qualifiedname>
         <briefdescription>
 <para>Destructor for <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>. </para>
         </briefdescription>
@@ -125,15 +130,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="91" column="5"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="93" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a29fb544e40783df4c2f1f6cac3c2ba29" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
         <definition>Date astrea::astro::Date::operator+</definition>
         <argsstring>(const Time &amp;time) const</argsstring>
         <name>operator+</name>
+        <qualifiedname>astrea::astro::Date::operator+</qualifiedname>
         <param>
-          <type>const Time &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
           <declname>time</declname>
         </param>
         <briefdescription>
@@ -155,15 +161,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="106" column="10" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="41" bodyend="45"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="108" column="10" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="40" bodyend="44"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a9123982708f21470636d84631ea27f01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
         <definition>Date &amp; astrea::astro::Date::operator+=</definition>
         <argsstring>(const Time &amp;time)</argsstring>
         <name>operator+=</name>
+        <qualifiedname>astrea::astro::Date::operator+=</qualifiedname>
         <param>
-          <type>const Time &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
           <declname>time</declname>
         </param>
         <briefdescription>
@@ -185,15 +192,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="114" column="10" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="46" bodyend="51"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="116" column="10" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="45" bodyend="50"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a9eb866f30e595978a5ff765fec9a8ad6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
         <definition>Date astrea::astro::Date::operator-</definition>
         <argsstring>(const Time &amp;time) const</argsstring>
         <name>operator-</name>
+        <qualifiedname>astrea::astro::Date::operator-</qualifiedname>
         <param>
-          <type>const Time &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
           <declname>time</declname>
         </param>
         <briefdescription>
@@ -215,15 +223,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="122" column="10" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="52" bodyend="56"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="124" column="10" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="51" bodyend="55"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a90bd53ed1eb420c0ed147d6173ec3240" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
         <definition>Date &amp; astrea::astro::Date::operator-=</definition>
         <argsstring>(const Time &amp;time)</argsstring>
         <name>operator-=</name>
+        <qualifiedname>astrea::astro::Date::operator-=</qualifiedname>
         <param>
-          <type>const Time &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
           <declname>time</declname>
         </param>
         <briefdescription>
@@ -245,15 +254,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="130" column="10" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="57" bodyend="62"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="132" column="10" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="56" bodyend="61"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1ac3f4158a8673ba911d34fd85d03bb287" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>Time</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref></type>
         <definition>Time astrea::astro::Date::operator-</definition>
         <argsstring>(const Date &amp;other) const</argsstring>
         <name>operator-</name>
+        <qualifiedname>astrea::astro::Date::operator-</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -275,15 +285,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="138" column="10" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="64" bodyend="64"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="140" column="10" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="63" bodyend="63"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1aa2bb5cc6b42df1259916f576dad32cd4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
         <definition>auto astrea::astro::Date::operator&lt;=&gt;</definition>
         <argsstring>(const Date &amp;other) const</argsstring>
         <name>operator&lt;=&gt;</name>
+        <qualifiedname>astrea::astro::Date::operator&lt;=&gt;</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -305,15 +316,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="146" column="5" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="146" bodyend="151"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="148" column="5" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="148" bodyend="148"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1aa72475e1cb6f308b11ef807fbb8d40d0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
         <definition>bool astrea::astro::Date::operator==</definition>
         <argsstring>(const Date &amp;other) const</argsstring>
         <name>operator==</name>
+        <qualifiedname>astrea::astro::Date::operator==</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -335,13 +347,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="159" column="10" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="159" bodyend="164"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="156" column="10" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="156" bodyend="156"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1afe51751712057407887112432198cf83" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="JulianDateClock_8hpp_1a5b2939b92eb16384dbaaac82f88d462d" kindref="member">JulianDate</ref></type>
         <definition>JulianDate astrea::astro::Date::jd</definition>
         <argsstring>() const</argsstring>
         <name>jd</name>
+        <qualifiedname>astrea::astro::Date::jd</qualifiedname>
         <briefdescription>
 <para>Get the Julian date representation of this <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> object. </para>
         </briefdescription>
@@ -352,13 +365,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="171" column="16" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="171" bodyend="171"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="163" column="16" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="163" bodyend="163"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a659ccad2be4223ab4f0a377b6de1802a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>double</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
         <definition>double astrea::astro::Date::jdn</definition>
         <argsstring>() const</argsstring>
         <name>jdn</name>
+        <qualifiedname>astrea::astro::Date::jdn</qualifiedname>
         <briefdescription>
 <para>Get the Julian date in days since the epoch. </para>
         </briefdescription>
@@ -369,30 +383,74 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="178" column="12" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="178" bodyend="178"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="170" column="12" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="170" bodyend="170"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a4410aa79c80f1f28a9adebe79dda0bb8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>std::chrono::duration&lt; double, std::ratio&lt; 86400 &gt; &gt;</type>
-        <definition>std::chrono::duration&lt;double, std::ratio&lt;86400&gt; &gt; astrea::astro::Date::mjd</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1ae8aa1f8a7833ed51c68d0826c7bfbefe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref></type>
+        <definition>Time astrea::astro::Date::seconds_in_local_day</definition>
+        <argsstring>() const</argsstring>
+        <name>seconds_in_local_day</name>
+        <qualifiedname>astrea::astro::Date::seconds_in_local_day</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="172" column="10" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="172" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a730e88bef182417b50a7b57702f3dde5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::chrono::year_month_day</type>
+        <definition>std::chrono::year_month_day astrea::astro::Date::year_month_day</definition>
+        <argsstring>() const</argsstring>
+        <name>year_month_day</name>
+        <qualifiedname>astrea::astro::Date::year_month_day</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="174" column="33" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="174" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1ab059a6ec620c838b3429dde41371ba32" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">int</ref></type>
+        <definition>int astrea::astro::Date::day_of_year</definition>
+        <argsstring>() const</argsstring>
+        <name>day_of_year</name>
+        <qualifiedname>astrea::astro::Date::day_of_year</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="179" column="9" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="179" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a00a9116704df9da4ae5efebc31665553" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::chrono::duration&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref>, std::chrono::days::period &gt;</type>
+        <definition>std::chrono::duration&lt; double, std::chrono::days::period &gt; astrea::astro::Date::mjd</definition>
         <argsstring>() const</argsstring>
         <name>mjd</name>
+        <qualifiedname>astrea::astro::Date::mjd</qualifiedname>
         <briefdescription>
 <para>Get the Modified Julian <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> (MJD) representation of this <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> object. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>std::chrono::duration&lt;double, std::ratio&lt;86400&gt;&gt; The Modified Julian <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> representation of this <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> object. </para>
+<para><simplesect kind="return"><para>std::chrono::duration&lt;double, std::chrono::days::period&gt; The Modified Julian <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> representation of this <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> object. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="185" column="27" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="185" bodyend="185"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="192" column="27" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="192" bodyend="192"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a537fad31c34f0633c4b4013c0e51a3a1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1aa1e1d360bc9b7c3d99f33920b3388649" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::chrono::time_point&lt; std::chrono::utc_clock &gt;</type>
-        <definition>std::chrono::time_point&lt;std::chrono::utc_clock&gt; astrea::astro::Date::utc</definition>
+        <definition>std::chrono::time_point&lt; std::chrono::utc_clock &gt; astrea::astro::Date::utc</definition>
         <argsstring>() const</argsstring>
         <name>utc</name>
+        <qualifiedname>astrea::astro::Date::utc</qualifiedname>
         <briefdescription>
 <para>Get the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in UTC clock format. </para>
         </briefdescription>
@@ -403,13 +461,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="192" column="29" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="192" bodyend="192"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="199" column="29" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="199" bodyend="199"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a80ff93b86dfbf0b94c8f555aebf9f37b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a299165f296cf08d1178cf28652e01504" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::chrono::time_point&lt; std::chrono::gps_clock &gt;</type>
-        <definition>std::chrono::time_point&lt;std::chrono::gps_clock&gt; astrea::astro::Date::gps</definition>
+        <definition>std::chrono::time_point&lt; std::chrono::gps_clock &gt; astrea::astro::Date::gps</definition>
         <argsstring>() const</argsstring>
         <name>gps</name>
+        <qualifiedname>astrea::astro::Date::gps</qualifiedname>
         <briefdescription>
 <para>Get the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in GPS clock format. </para>
         </briefdescription>
@@ -420,13 +479,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="199" column="29" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="199" bodyend="199"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="206" column="29" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="206" bodyend="206"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1abaacf0863c19401ca51ab66edd094cb4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1aa14ad4d259de730162ba941011f936f9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::chrono::time_point&lt; std::chrono::tai_clock &gt;</type>
-        <definition>std::chrono::time_point&lt;std::chrono::tai_clock&gt; astrea::astro::Date::tai</definition>
+        <definition>std::chrono::time_point&lt; std::chrono::tai_clock &gt; astrea::astro::Date::tai</definition>
         <argsstring>() const</argsstring>
         <name>tai</name>
+        <qualifiedname>astrea::astro::Date::tai</qualifiedname>
         <briefdescription>
 <para>Get the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in TAI clock format. </para>
         </briefdescription>
@@ -437,33 +497,104 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="206" column="29" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="206" bodyend="206"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="213" column="29" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="213" bodyend="213"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a38e71e11d64d8ae22a030c10ef3043b1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>std::chrono::time_point&lt; std::chrono::system_clock &gt;</type>
-        <definition>std::chrono::time_point&lt;std::chrono::system_clock&gt; astrea::astro::Date::sys</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1ac64a20ea3a81b17ebc2c0ee677902196" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="TerrestrialTimeClock_8hpp_1a2c7583451afd255f7052c95334f8f3dd" kindref="member">TerrestrialTime</ref></type>
+        <definition>TerrestrialTime astrea::astro::Date::tt</definition>
         <argsstring>() const</argsstring>
-        <name>sys</name>
+        <name>tt</name>
+        <qualifiedname>astrea::astro::Date::tt</qualifiedname>
         <briefdescription>
-<para>Get the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in TT clock format. </para>
+<para>Get the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in Terrestrial Time (TT) clock format. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>std::chrono::time_point&lt;std::chrono::tt_clock&gt;</para>
+<para><simplesect kind="return"><para>TerrestrialTime The <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in TT clock format. </para>
 </simplesect>
-Get the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in sys clock format.</para>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="220" column="21" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="220" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1abd4ba49e1840afd53ddc4e5cae689190" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="GeocentricCoordinateTimeClock_8hpp_1a583db8e9f3ee25281c9298ae9823517f" kindref="member">GeocentricCoordinateTime</ref></type>
+        <definition>GeocentricCoordinateTime astrea::astro::Date::tcg</definition>
+        <argsstring>() const</argsstring>
+        <name>tcg</name>
+        <qualifiedname>astrea::astro::Date::tcg</qualifiedname>
+        <briefdescription>
+<para>Get the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> Coordinate Time (TCG) clock format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>GeocentricCoordinateTime The <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in TCG clock format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="227" column="30" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="227" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a12f6a802bc0cc9a4fd2b5c41ce42910f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="BarycentricDynamicalTimeClock_8hpp_1ae5a4fa53de8d24a9a4ef824771a63b02" kindref="member">BarycentricDynamicalTime</ref></type>
+        <definition>BarycentricDynamicalTime astrea::astro::Date::tdb</definition>
+        <argsstring>() const</argsstring>
+        <name>tdb</name>
+        <qualifiedname>astrea::astro::Date::tdb</qualifiedname>
+        <briefdescription>
+<para>Get the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in Barycentric Dynamical Time (TDB) clock format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>BarycentricDynamicalTime The <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in TDB clock format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="234" column="30" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="234" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a46ec20027d734f078c31068b9d939f69" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="BarycentricCoordinateTimeClock_8hpp_1acabe34815bbce4559a3c3d4259afaf79" kindref="member">BarycentricCoordinateTime</ref></type>
+        <definition>BarycentricCoordinateTime astrea::astro::Date::tcb</definition>
+        <argsstring>() const</argsstring>
+        <name>tcb</name>
+        <qualifiedname>astrea::astro::Date::tcb</qualifiedname>
+        <briefdescription>
+<para>Get the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in Barycentric Coordinate Time (TCB) clock format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>BarycentricCoordinateTime The <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in TCB clock format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="241" column="31" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="241" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a59e036f0fe494c12494a5dd34305890a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::chrono::time_point&lt; std::chrono::system_clock &gt;</type>
+        <definition>std::chrono::time_point&lt; std::chrono::system_clock &gt; astrea::astro::Date::sys</definition>
+        <argsstring>() const</argsstring>
+        <name>sys</name>
+        <qualifiedname>astrea::astro::Date::sys</qualifiedname>
+        <briefdescription>
+<para>Get the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in sys clock format. </para>
+        </briefdescription>
+        <detaileddescription>
 <para><simplesect kind="return"><para>std::chrono::time_point&lt;std::chrono::system_clock&gt; </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="225" column="29" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="225" bodyend="225"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="248" column="29" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="248" bodyend="248"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a651d9af4b33b5452716621bb414593eb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
         <definition>std::string astrea::astro::Date::epoch</definition>
         <argsstring>() const</argsstring>
         <name>epoch</name>
+        <qualifiedname>astrea::astro::Date::epoch</qualifiedname>
         <briefdescription>
 <para>Get the epoch of this <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> object as a string. </para>
         </briefdescription>
@@ -474,18 +605,19 @@ Get the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> 
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="232" column="17" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="67" bodyend="75"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="255" column="17" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="66" bodyend="74"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a6b28341b7dd06e8912aa5e18d4bf5299" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1aa8e006ac904f501c041c57b4ebc77e7e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename Clock_T</type>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Clock_T</ref></type>
           </param>
         </templateparamlist>
-        <type>std::chrono::time_point&lt; Clock_T &gt;</type>
-        <definition>std::chrono::time_point&lt;Clock_T&gt; astrea::astro::Date::in_clock</definition>
+        <type>std::chrono::time_point&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Clock_T</ref> &gt;</type>
+        <definition>std::chrono::time_point&lt; Clock_T &gt; astrea::astro::Date::in_clock</definition>
         <argsstring>() const</argsstring>
         <name>in_clock</name>
+        <qualifiedname>astrea::astro::Date::in_clock</qualifiedname>
         <briefdescription>
 <para>Get the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> in a specified clock format. </para>
         </briefdescription>
@@ -505,32 +637,69 @@ Get the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> 
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="241" column="29" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="241" bodyend="245"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="264" column="29" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="264" bodyend="268"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1ac452455e9e5913ee9448fd7458161fd8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>Angle</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
         <definition>Angle astrea::astro::Date::gmst</definition>
         <argsstring>() const</argsstring>
         <name>gmst</name>
+        <qualifiedname>astrea::astro::Date::gmst</qualifiedname>
         <briefdescription>
-<para>Get the Greenwich Mean Sidereal Time (GMST) for this <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> object. </para>
+<para>Get the Greenwich Mean Sidereal Time (GMST) for this <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> around Earth. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>Angle The Greenwich Mean Sidereal Time for this <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> object. </para>
+<para><simplesect kind="return"><para>Angle The Greenwich Mean Sidereal Time for this <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> around Earth. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="252" column="11" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="77" bodyend="77"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="275" column="11" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="76" bodyend="76"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a3371711618a49be5c247b198fb17d26d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_body_</declname>
+            <defname>_body_</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <definition>Angle astrea::astro::Date::body_sidereal_time</definition>
+        <argsstring>() const</argsstring>
+        <name>body_sidereal_time</name>
+        <qualifiedname>astrea::astro::Date::body_sidereal_time</qualifiedname>
+        <briefdescription>
+<para>Get the equivalent of GMST for an arbitrary celestial body. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Computes the accumulated rotation angle of the body&apos;s prime meridian relative to its inertial reference direction since J2000, using the body&apos;s rotation rate.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>body</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The celestial body whose prime meridian angle is desired. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Angle The body&apos;s prime meridian rotation angle, wrapped to [0, 2π). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/Date.hpp" line="287" column="11" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="287" bodyend="290"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1Date_1a765df1b0db6751bd51efb2f00d0feced" prot="public" static="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
-        <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
         <definition>const Date astrea::astro::Date::now</definition>
         <argsstring>() noexcept</argsstring>
         <name>now</name>
+        <qualifiedname>astrea::astro::Date::now</qualifiedname>
         <briefdescription>
 <para>Get the current date and time as a <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> object. </para>
         </briefdescription>
@@ -541,39 +710,47 @@ Get the <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> 
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/time/Date.hpp" line="98" column="23" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="94" bodyend="94"/>
+        <location file="astrea/astro/astro/time/Date.hpp" line="100" column="23" bodyfile="astrea/astro/astro/time/Date.cpp" bodystart="93" bodyend="93"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>Class representing a date in the astrea astro library. </para>
     </briefdescription>
     <detaileddescription>
 <para>This class provides functionality for handling dates, including conversions to and from Julian dates, sidereal time calculations, and various clock conversions. </para>
     </detaileddescription>
-    <location file="astrea/astro/astro/time/Date.hpp" line="61" column="1" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="61" bodyend="256"/>
+    <location file="astrea/astro/astro/time/Date.hpp" line="63" column="1" bodyfile="astrea/astro/astro/time/Date.hpp" bodystart="63" bodyend="294"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1Date_1a71354c81079f8c9bda3cd2e07eb605b6" prot="private" virt="non-virtual"><scope>astrea::astro::Date</scope><name>_julianDate</name></member>
-      <member refid="classastrea_1_1astro_1_1Date_1a8401426b654e330259e35a71bf149a17" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>Date</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1a3371711618a49be5c247b198fb17d26d" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>body_sidereal_time</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1a7e4fade3a230c81386234f545a4ceaf8" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>Date</name></member>
       <member refid="classastrea_1_1astro_1_1Date_1a73b16cef86ae412c83b7f01929b2630b" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>Date</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1ab059a6ec620c838b3429dde41371ba32" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>day_of_year</name></member>
       <member refid="classastrea_1_1astro_1_1Date_1a651d9af4b33b5452716621bb414593eb" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>epoch</name></member>
       <member refid="classastrea_1_1astro_1_1Date_1ac452455e9e5913ee9448fd7458161fd8" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>gmst</name></member>
-      <member refid="classastrea_1_1astro_1_1Date_1a80ff93b86dfbf0b94c8f555aebf9f37b" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>gps</name></member>
-      <member refid="classastrea_1_1astro_1_1Date_1a6b28341b7dd06e8912aa5e18d4bf5299" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>in_clock</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1a299165f296cf08d1178cf28652e01504" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>gps</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1aa8e006ac904f501c041c57b4ebc77e7e" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>in_clock</name></member>
       <member refid="classastrea_1_1astro_1_1Date_1afe51751712057407887112432198cf83" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>jd</name></member>
       <member refid="classastrea_1_1astro_1_1Date_1a659ccad2be4223ab4f0a377b6de1802a" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>jdn</name></member>
-      <member refid="classastrea_1_1astro_1_1Date_1a4410aa79c80f1f28a9adebe79dda0bb8" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>mjd</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1a00a9116704df9da4ae5efebc31665553" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>mjd</name></member>
       <member refid="classastrea_1_1astro_1_1Date_1a765df1b0db6751bd51efb2f00d0feced" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>now</name></member>
       <member refid="classastrea_1_1astro_1_1Date_1a29fb544e40783df4c2f1f6cac3c2ba29" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>operator+</name></member>
       <member refid="classastrea_1_1astro_1_1Date_1a9123982708f21470636d84631ea27f01" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>operator+=</name></member>
       <member refid="classastrea_1_1astro_1_1Date_1a9eb866f30e595978a5ff765fec9a8ad6" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>operator-</name></member>
       <member refid="classastrea_1_1astro_1_1Date_1ac3f4158a8673ba911d34fd85d03bb287" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>operator-</name></member>
       <member refid="classastrea_1_1astro_1_1Date_1a90bd53ed1eb420c0ed147d6173ec3240" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>operator-=</name></member>
-      <member refid="classastrea_1_1astro_1_1Date_1a5b1351a8185acbf705748e99bdec03f7" prot="private" virt="non-virtual"><scope>astrea::astro::Date</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1a4c1f027bd347ffe5e447054efb1c3309" prot="private" virt="non-virtual"><scope>astrea::astro::Date</scope><name>operator&lt;&lt;</name></member>
       <member refid="classastrea_1_1astro_1_1Date_1aa2bb5cc6b42df1259916f576dad32cd4" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>operator&lt;=&gt;</name></member>
       <member refid="classastrea_1_1astro_1_1Date_1aa72475e1cb6f308b11ef807fbb8d40d0" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>operator==</name></member>
-      <member refid="classastrea_1_1astro_1_1Date_1a38e71e11d64d8ae22a030c10ef3043b1" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>sys</name></member>
-      <member refid="classastrea_1_1astro_1_1Date_1abaacf0863c19401ca51ab66edd094cb4" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>tai</name></member>
-      <member refid="classastrea_1_1astro_1_1Date_1a537fad31c34f0633c4b4013c0e51a3a1" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>utc</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1ae8aa1f8a7833ed51c68d0826c7bfbefe" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>seconds_in_local_day</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1a59e036f0fe494c12494a5dd34305890a" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>sys</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1aa14ad4d259de730162ba941011f936f9" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>tai</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1a46ec20027d734f078c31068b9d939f69" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>tcb</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1abd4ba49e1840afd53ddc4e5cae689190" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>tcg</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1a12f6a802bc0cc9a4fd2b5c41ce42910f" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>tdb</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1ac64a20ea3a81b17ebc2c0ee677902196" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>tt</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1aa1e1d360bc9b7c3d99f33920b3388649" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>utc</name></member>
+      <member refid="classastrea_1_1astro_1_1Date_1a730e88bef182417b50a7b57702f3dde5" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>year_month_day</name></member>
       <member refid="classastrea_1_1astro_1_1Date_1a0ba2c7ce5807e41ce777a6d50ffcb1e4" prot="public" virt="non-virtual"><scope>astrea::astro::Date</scope><name>~Date</name></member>
     </listofallmembers>
   </compounddef>

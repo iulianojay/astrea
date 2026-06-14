@@ -25,15 +25,26 @@
 
 
 
-
-
-## Public Types
+## Classes
 
 | Type | Name |
 | ---: | :--- |
-| typedef BodyFixedFrame&lt; CelestialBodyId::EARTH &gt; | [**earth\_fixed**](#typedef-earth_fixed)  <br> |
-| typedef InertialFrame&lt; CelestialBodyId::EARTH, FrameAxis::ICRF &gt; | [**icrf**](#typedef-icrf)  <br> |
-| typedef InertialFrame&lt; CelestialBodyId::EARTH, FrameAxis::J2000 &gt; | [**j2000**](#typedef-j2000)  <br> |
+| struct | [**earth\_fixed**](structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed.md) <br> |
+| struct | [**icrf**](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md) <br> |
+| struct | [**j2000**](structastrea_1_1astro_1_1frames_1_1earth_1_1j2000.md) <br> |
+
+
+
+
+
+
+## Public Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  [**astrea::astro::frames::earth::earth\_fixed**](structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed.md) | [**earth\_fixed**](#variable-earth_fixed)  <br> |
+|  [**astrea::astro::frames::earth::icrf**](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md) | [**icrf**](#variable-icrf)  <br> |
+|  [**astrea::astro::frames::earth::j2000**](structastrea_1_1astro_1_1frames_1_1earth_1_1j2000.md) | [**j2000**](#variable-j2000)  <br> |
 
 
 
@@ -78,19 +89,15 @@
 
 
 
+## Public Attributes Documentation
 
 
 
 
-## Public Types Documentation
-
-
-
-
-### typedef earth\_fixed 
+### variable earth\_fixed 
 
 ```C++
-using astrea::astro::frames::earth::earth_fixed = typedef BodyFixedFrame<CelestialBodyId::EARTH>;
+astrea::astro::frames::earth::earth_fixed astrea::astro::frames::earth::earth_fixed;
 ```
 
 
@@ -100,10 +107,10 @@ using astrea::astro::frames::earth::earth_fixed = typedef BodyFixedFrame<Celesti
 
 
 
-### typedef icrf 
+### variable icrf 
 
 ```C++
-using astrea::astro::frames::earth::icrf = typedef InertialFrame<CelestialBodyId::EARTH, FrameAxis::ICRF>;
+astrea::astro::frames::earth::icrf astrea::astro::frames::earth::icrf;
 ```
 
 
@@ -113,10 +120,10 @@ using astrea::astro::frames::earth::icrf = typedef InertialFrame<CelestialBodyId
 
 
 
-### typedef j2000 
+### variable j2000 
 
 ```C++
-using astrea::astro::frames::earth::j2000 = typedef InertialFrame<CelestialBodyId::EARTH, FrameAxis::J2000>;
+astrea::astro::frames::earth::j2000 astrea::astro::frames::earth::j2000;
 ```
 
 
@@ -125,5 +132,5 @@ using astrea::astro::frames::earth::j2000 = typedef InertialFrame<CelestialBodyI
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp`
 

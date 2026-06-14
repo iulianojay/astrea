@@ -20,3 +20,9 @@
 ([**astrea**](namespaceastrea.md))
 
 
+## s
+
+* [**SolarFluxUnits**](structastrea_1_1SolarFluxUnits.md)
+([**astrea**](namespaceastrea.md))
+
+

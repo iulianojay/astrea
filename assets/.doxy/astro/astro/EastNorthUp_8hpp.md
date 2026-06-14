@@ -4,7 +4,7 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**instances**](dir_a85615e9ad779999123e94bfb15c8545.md) **>** [**EastNorthUp.hpp**](EastNorthUp_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**definitions**](dir_0fbce91be2e6463cb25c5b2d70c0c29c.md) **>** [**EastNorthUp.hpp**](EastNorthUp_8hpp.md)
 
 [Go to the source code of this file](EastNorthUp_8hpp_source.md)
 
@@ -14,13 +14,13 @@ _Header file for the EastNorthUp class in the astro namespace._ [More...](#detai
 * `#include <mp-units/systems/si/math.h>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/CartesianVector.hpp>`
-* `#include <astro/frames/frames.hpp>`
-* `#include <astro/frames/transformations.hpp>`
-* `#include <astro/frames/types/DirectionCosineMatrix.hpp>`
-* `#include <astro/frames/types/DynamicFrame.hpp>`
-* `#include <astro/state/angular_elements/instances/Geodetic.hpp>`
-* `#include <astro/systems/planetary_bodies/planetary_bodies.hpp>`
+* `#include <astro/frames/definitions/transformations.hpp>`
+* `#include <astro/frames/framework/CartesianVector.hpp>`
+* `#include <astro/frames/framework/DirectionCosineMatrix.hpp>`
+* `#include <astro/frames/framework/DynamicFrame.hpp>`
+* `#include <astro/frames/framework/Frame.hpp>`
+* `#include <astro/state/angular_elements/Geodetic.hpp>`
+* `#include <astro/systems/celestial_bodies.hpp>`
 * `#include <astro/time/Date.hpp>`
 
 
@@ -42,14 +42,14 @@ _Header file for the EastNorthUp class in the astro namespace._ [More...](#detai
 | namespace | [**astrea**](namespaceastrea.md) <br> |
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
 | namespace | [**frames**](namespaceastrea_1_1astro_1_1frames.md) <br> |
-| namespace | [**dynamic**](namespaceastrea_1_1astro_1_1frames_1_1dynamic.md) <br> |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| class | [**EastNorthUp**](classastrea_1_1astro_1_1frames_1_1EastNorthUp.md) <br>_Class representing the East, North, Up (ENU) frame._  |
+| struct | [**EastNorthUp**](structastrea_1_1astro_1_1frames_1_1EastNorthUp.md) &lt;\_frame\_&gt;<br>_Class representing the East, North, Up (ENU) frame._  |
+| struct | [**EastNorthUpTag**](structastrea_1_1astro_1_1frames_1_1EastNorthUpTag.md) &lt;\_parent\_&gt;<br>[_**Frame**_](structastrea_1_1astro_1_1Frame.md) _tag type for_[_**EastNorthUp**_](structastrea_1_1astro_1_1frames_1_1EastNorthUp.md) _, defined outside the class to allow use as a_[_**DynamicFrame**_](structastrea_1_1astro_1_1DynamicFrame.md) _NTTP._ |
 
 
 
@@ -133,5 +133,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/instances/EastNorthUp.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/EastNorthUp.hpp`
 

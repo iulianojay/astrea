@@ -11,6 +11,7 @@
 _GroundArchitecture class definition._ [More...](#detailed-description)
 
 * `#include <vector>`
+* `#include <astro/systems/system_concepts.hpp>`
 * `#include <trace/platforms/ground/GroundStation.hpp>`
 
 
@@ -37,7 +38,7 @@ _GroundArchitecture class definition._ [More...](#detailed-description)
 
 | Type | Name |
 | ---: | :--- |
-| class | [**GroundArchitecture**](classastrea_1_1trace_1_1GroundArchitecture.md) <br>[_**GroundArchitecture**_](classastrea_1_1trace_1_1GroundArchitecture.md) _class represents a collection of ground stations._ |
+| class | [**GroundArchitecture**](classastrea_1_1trace_1_1GroundArchitecture.md) &lt;\_body\_&gt;<br>_A collection of ground stations on the surface of a celestial body._  |
 
 
 

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="structastrea_1_1trace_1_1HyperStats" kind="struct" language="C++" prot="public">
     <compoundname>astrea::trace::HyperStats</compoundname>
     <includes refid="HyperStats_8hpp" local="no">HyperStats.hpp</includes>
@@ -9,12 +9,13 @@
         <defval>Time</defval>
       </param>
     </templateparamlist>
-      <sectiondef kind="public-attrib">
+    <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structastrea_1_1trace_1_1HyperStats_1af069f3c7f363f5c9b8ce4859ed0e38db" prot="public" static="no" mutable="no">
         <type><ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats</ref>&lt; T &gt;</type>
         <definition>Stats&lt;T&gt; astrea::trace::HyperStats&lt; T &gt;::min</definition>
         <argsstring></argsstring>
         <name>min</name>
+        <qualifiedname>astrea::trace::HyperStats::min</qualifiedname>
         <briefdescription>
 <para>Statistics for the minimum values across the input Stats&lt;T&gt; vector. </para>
         </briefdescription>
@@ -29,6 +30,7 @@
         <definition>Stats&lt;T&gt; astrea::trace::HyperStats&lt; T &gt;::max</definition>
         <argsstring></argsstring>
         <name>max</name>
+        <qualifiedname>astrea::trace::HyperStats::max</qualifiedname>
         <briefdescription>
 <para>Statistics for the maximum values across the input Stats&lt;T&gt; vector. </para>
         </briefdescription>
@@ -43,6 +45,7 @@
         <definition>Stats&lt;T&gt; astrea::trace::HyperStats&lt; T &gt;::avg</definition>
         <argsstring></argsstring>
         <name>avg</name>
+        <qualifiedname>astrea::trace::HyperStats::avg</qualifiedname>
         <briefdescription>
 <para>Statistics for the average values across the input Stats&lt;T&gt; vector. </para>
         </briefdescription>
@@ -57,6 +60,7 @@
         <definition>std::vector&lt;Stats&lt;T&gt; &gt; astrea::trace::HyperStats&lt; T &gt;::percentiles</definition>
         <argsstring></argsstring>
         <name>percentiles</name>
+        <qualifiedname>astrea::trace::HyperStats::percentiles</qualifiedname>
         <briefdescription>
 <para>Statistics for each percentile across the input Stats&lt;T&gt; vector. </para>
         </briefdescription>
@@ -66,13 +70,14 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/HyperStats.hpp" line="128" column="17" bodyfile="astrea/trace/trace/analysis/stats/HyperStats.hpp" bodystart="128" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="structastrea_1_1trace_1_1HyperStats_1ac1968225bcde96ea4487e6c951c82ce0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::HyperStats&lt; T &gt;::HyperStats</definition>
         <argsstring>()=default</argsstring>
         <name>HyperStats</name>
+        <qualifiedname>astrea::trace::HyperStats::HyperStats</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="structastrea_1_1trace_1_1HyperStats" kindref="compound">HyperStats</ref>. </para>
         </briefdescription>
@@ -82,13 +87,14 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/HyperStats.hpp" line="49" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1trace_1_1HyperStats_1ad20ba8eac35c7358e319c6f2316e2b1f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1HyperStats_1acd97b41ce7dc20872935c533a6f9a164" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::HyperStats&lt; T &gt;::HyperStats</definition>
-        <argsstring>(const std::vector&lt; Stats&lt; T &gt;&gt; &amp;statsVec)</argsstring>
+        <argsstring>(const std::vector&lt; Stats&lt; T &gt; &gt; &amp;statsVec)</argsstring>
         <name>HyperStats</name>
+        <qualifiedname>astrea::trace::HyperStats::HyperStats</qualifiedname>
         <param>
-          <type>const std::vector&lt; <ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats</ref>&lt; T &gt;&gt; &amp;</type>
+          <type>const std::vector&lt; <ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats</ref>&lt; T &gt; &gt; &amp;</type>
           <declname>statsVec</declname>
         </param>
         <briefdescription>
@@ -119,11 +125,12 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/HyperStats.hpp" line="57" column="5" bodyfile="astrea/trace/trace/analysis/stats/HyperStats.hpp" bodystart="57" bodyend="95"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1trace_1_1HyperStats_1a894a63f8fb5508ba0aa56879419dabb5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1HyperStats_1ad293e07355c0981f557cd4a625b05c89" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; std::string &gt;</type>
-        <definition>std::vector&lt;std::string&gt; astrea::trace::HyperStats&lt; T &gt;::to_string_vector</definition>
+        <definition>std::vector&lt; std::string &gt; astrea::trace::HyperStats&lt; T &gt;::to_string_vector</definition>
         <argsstring>() const</argsstring>
         <name>to_string_vector</name>
+        <qualifiedname>astrea::trace::HyperStats::to_string_vector</qualifiedname>
         <briefdescription>
 <para>Converts the statistics of statistics to a vector of strings for output. </para>
         </briefdescription>
@@ -136,13 +143,14 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/HyperStats.hpp" line="102" column="17" bodyfile="astrea/trace/trace/analysis/stats/HyperStats.hpp" bodystart="102" bodyend="121"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-func">
+    </sectiondef>
+    <sectiondef kind="public-static-func">
       <memberdef kind="function" id="structastrea_1_1trace_1_1HyperStats_1ad8c6a68e40dae07a284f92b25ba8b5e4" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>constexpr std::size_t</type>
         <definition>static constexpr std::size_t astrea::trace::HyperStats&lt; T &gt;::size</definition>
         <argsstring>()</argsstring>
         <name>size</name>
+        <qualifiedname>astrea::trace::HyperStats::size</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -151,7 +159,7 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/HyperStats.hpp" line="123" column="34" bodyfile="astrea/trace/trace/analysis/stats/HyperStats.hpp" bodystart="123" bodyend="123"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>The <ref refid="structastrea_1_1trace_1_1HyperStats" kindref="compound">HyperStats</ref> struct represents statistics of statistics, allowing for the calculation of statistics on a vector of Stats&lt;T&gt;. </para>
     </briefdescription>
@@ -159,6 +167,10 @@
 <para>It contains Stats&lt;T&gt; for the minimum, maximum, and average values across the input Stats&lt;T&gt; vector, as well as a vector of Stats&lt;T&gt; for each percentile. </para>
     </detaileddescription>
     <collaborationgraph>
+      <node id="2">
+        <label>astrea::trace::Stats&lt; Time &gt;</label>
+        <link refid="structastrea_1_1trace_1_1Stats"/>
+      </node>
       <node id="1">
         <label>astrea::trace::HyperStats&lt; T &gt;</label>
         <link refid="structastrea_1_1trace_1_1HyperStats"/>
@@ -168,21 +180,17 @@
           <edgelabel>min</edgelabel>
         </childnode>
       </node>
-      <node id="2">
-        <label>astrea::trace::Stats&lt; Time &gt;</label>
-        <link refid="structastrea_1_1trace_1_1Stats"/>
-      </node>
     </collaborationgraph>
     <location file="astrea/trace/trace/analysis/stats/HyperStats.hpp" line="44" column="1" bodyfile="astrea/trace/trace/analysis/stats/HyperStats.hpp" bodystart="44" bodyend="129"/>
     <listofallmembers>
       <member refid="structastrea_1_1trace_1_1HyperStats_1ac6ff34fef00c0eb7d85ac16767475ba4" prot="public" virt="non-virtual"><scope>astrea::trace::HyperStats</scope><name>avg</name></member>
       <member refid="structastrea_1_1trace_1_1HyperStats_1ac1968225bcde96ea4487e6c951c82ce0" prot="public" virt="non-virtual"><scope>astrea::trace::HyperStats</scope><name>HyperStats</name></member>
-      <member refid="structastrea_1_1trace_1_1HyperStats_1ad20ba8eac35c7358e319c6f2316e2b1f" prot="public" virt="non-virtual"><scope>astrea::trace::HyperStats</scope><name>HyperStats</name></member>
+      <member refid="structastrea_1_1trace_1_1HyperStats_1acd97b41ce7dc20872935c533a6f9a164" prot="public" virt="non-virtual"><scope>astrea::trace::HyperStats</scope><name>HyperStats</name></member>
       <member refid="structastrea_1_1trace_1_1HyperStats_1a0303eacb7218c2caaf327c8066640571" prot="public" virt="non-virtual"><scope>astrea::trace::HyperStats</scope><name>max</name></member>
       <member refid="structastrea_1_1trace_1_1HyperStats_1af069f3c7f363f5c9b8ce4859ed0e38db" prot="public" virt="non-virtual"><scope>astrea::trace::HyperStats</scope><name>min</name></member>
       <member refid="structastrea_1_1trace_1_1HyperStats_1af7a4b53f507220b5c782c3ccb1c0e307" prot="public" virt="non-virtual"><scope>astrea::trace::HyperStats</scope><name>percentiles</name></member>
       <member refid="structastrea_1_1trace_1_1HyperStats_1ad8c6a68e40dae07a284f92b25ba8b5e4" prot="public" virt="non-virtual"><scope>astrea::trace::HyperStats</scope><name>size</name></member>
-      <member refid="structastrea_1_1trace_1_1HyperStats_1a894a63f8fb5508ba0aa56879419dabb5" prot="public" virt="non-virtual"><scope>astrea::trace::HyperStats</scope><name>to_string_vector</name></member>
+      <member refid="structastrea_1_1trace_1_1HyperStats_1ad293e07355c0981f557cd4a625b05c89" prot="public" virt="non-virtual"><scope>astrea::trace::HyperStats</scope><name>to_string_vector</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

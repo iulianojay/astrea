@@ -13,7 +13,7 @@
 
 #include <vector>
 
-#include <gtl/btree.hpp>
+#include <gtl/phmap.hpp>
 
 #include <units/units.hpp>
 
@@ -29,9 +29,9 @@ class FoldsOfCoverage {
 
     FoldsOfCoverage(const AccessArray& access, const Time& resolution, const Time& end);
 
-    using iterator = gtl::btree_map<std::size_t, std::vector<double>>::iterator;
+    using iterator = gtl::flat_hash_map<std::size_t, std::vector<double>>::iterator;
 
-    using const_iterator = gtl::btree_map<std::size_t, std::vector<double>>::const_iterator;
+    using const_iterator = gtl::flat_hash_map<std::size_t, std::vector<double>>::const_iterator;
 
     iterator begin() { return _folds.begin(); }
 
@@ -48,8 +48,8 @@ class FoldsOfCoverage {
     const Stats<double>& get_stats(const std::size_t& id) const { return _stats.at(id); }
 
   private:
-    gtl::btree_map<std::size_t, std::vector<double>> _folds; 
-    gtl::btree_map<std::size_t, Stats<double>> _stats; 
+    gtl::flat_hash_map<std::size_t, std::vector<double>> _folds; 
+    gtl::flat_hash_map<std::size_t, Stats<double>> _stats; 
 };
 
 } // namespace trace

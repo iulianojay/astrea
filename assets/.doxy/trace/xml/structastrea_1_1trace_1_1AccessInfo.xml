@@ -1,13 +1,42 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="structastrea_1_1trace_1_1AccessInfo" kind="struct" language="C++" prot="public">
     <compoundname>astrea::trace::AccessInfo</compoundname>
-      <sectiondef kind="public-attrib">
+    <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structastrea_1_1trace_1_1AccessInfo_1a5b5f93be17a781dee393b042199a558c" prot="public" static="no" mutable="no">
         <type>Time</type>
         <definition>Time astrea::trace::AccessInfo::time</definition>
         <argsstring></argsstring>
         <name>time</name>
+        <qualifiedname>astrea::trace::AccessInfo::time</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="61" column="10" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1AccessInfo_1a32931a0c03365033cab3938e0afa874e" prot="public" static="no" mutable="no">
+        <type>EcefRadiusVec</type>
+        <definition>EcefRadiusVec astrea::trace::AccessInfo::radius1to2</definition>
+        <argsstring></argsstring>
+        <name>radius1to2</name>
+        <qualifiedname>astrea::trace::AccessInfo::radius1to2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="62" column="19" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1AccessInfo_1a196e58dd538116c3eb71ce3450315b4f" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool astrea::trace::AccessInfo::isOcculted</definition>
+        <argsstring></argsstring>
+        <name>isOcculted</name>
+        <qualifiedname>astrea::trace::AccessInfo::isOcculted</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -16,38 +45,12 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="63" column="10" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="63" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structastrea_1_1trace_1_1AccessInfo_1a32931a0c03365033cab3938e0afa874e" prot="public" static="no" mutable="no">
-        <type>EcefRadiusVec</type>
-        <definition>EcefRadiusVec astrea::trace::AccessInfo::radius1to2</definition>
-        <argsstring></argsstring>
-        <name>radius1to2</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="64" column="19" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="64" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structastrea_1_1trace_1_1AccessInfo_1a196e58dd538116c3eb71ce3450315b4f" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool astrea::trace::AccessInfo::isOcculted</definition>
-        <argsstring></argsstring>
-        <name>isOcculted</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="65" column="10" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="65" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="62" column="1" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="62" bodyend="66"/>
+    <location file="astrea/trace/trace/analysis/AccessAnalyzer.cpp" line="60" column="1" bodyfile="astrea/trace/trace/analysis/AccessAnalyzer.cpp" bodystart="60" bodyend="64"/>
     <listofallmembers>
       <member refid="structastrea_1_1trace_1_1AccessInfo_1a196e58dd538116c3eb71ce3450315b4f" prot="public" virt="non-virtual"><scope>astrea::trace::AccessInfo</scope><name>isOcculted</name></member>
       <member refid="structastrea_1_1trace_1_1AccessInfo_1a32931a0c03365033cab3938e0afa874e" prot="public" virt="non-virtual"><scope>astrea::trace::AccessInfo</scope><name>radius1to2</name></member>

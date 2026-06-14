@@ -2,7 +2,7 @@
 
 # File Cartesian.hpp
 
-[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**state**](dir_cf1a4d8122645f8636e977da512a043c.md) **>** [**orbital\_elements**](dir_6eb62f1e639545772a8b9a71f7b1d0b7.md) **>** [**instances**](dir_2296e922a578ce2ef4a64c83384e553c.md) **>** [**Cartesian.hpp**](Cartesian_8hpp.md)
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**state**](dir_cf1a4d8122645f8636e977da512a043c.md) **>** [**orbital\_elements**](dir_6eb62f1e639545772a8b9a71f7b1d0b7.md) **>** [**Cartesian.hpp**](Cartesian_8hpp.md)
 
 [Go to the documentation of this file](Cartesian_8hpp.md)
 
@@ -22,19 +22,22 @@
 
 // astro
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
 
+template <IsFrame auto _frame_>
 class Cartesian {
 
-    friend std::ostream& operator<<(std::ostream&, Cartesian const&);
+    template <IsFrame auto frame>
+    friend std::ostream& operator<<(std::ostream&, Cartesian<frame> const&);
     friend class OrbitalElements;
 
   public:
+    static constexpr auto frame = _frame_; 
+
     Cartesian(Unitless scale = 0.0 * astrea::detail::unitless) :
         _r(scale * astrea::detail::distance_unit, scale * astrea::detail::distance_unit, scale * astrea::detail::distance_unit),
         _v(scale * astrea::detail::distance_unit / astrea::detail::time_unit,
@@ -43,7 +46,7 @@ class Cartesian {
     {
     }
 
-    Cartesian(const RadiusVector<frames::earth::icrf>& r, const VelocityVector<frames::earth::icrf>& v) :
+    Cartesian(const RadiusVector<_frame_>& r, const VelocityVector<_frame_>& v) :
         _r(r),
         _v(v)
     {
@@ -60,11 +63,9 @@ class Cartesian {
     {
     }
 
-    Cartesian(const Keplerian& elements, const GravParam& mu);
+    Cartesian(const Keplerian<_frame_>& elements, const GravParam& mu);
 
-    Cartesian(const Equinoctial& elements, const GravParam& mu);
-
-    Cartesian(const OrbitalElements& elements, const GravParam& mu);
+    Cartesian(const Equinoctial<_frame_>& elements, const GravParam& mu);
 
     static Cartesian LEO(const GravParam& mu);
 
@@ -76,55 +77,69 @@ class Cartesian {
 
     static Cartesian GEO(const GravParam& mu);
 
-    Cartesian(const Cartesian&);
+    Cartesian(const Cartesian<_frame_>&);
 
-    Cartesian(Cartesian&&) noexcept;
+    Cartesian(Cartesian<_frame_>&&) noexcept = default;
 
-    Cartesian& operator=(Cartesian&&) noexcept;
+    Cartesian& operator=(Cartesian<_frame_>&&) noexcept;
 
-    Cartesian& operator=(const Cartesian&);
+    Cartesian& operator=(const Cartesian<_frame_>&);
 
     ~Cartesian() = default;
 
-    bool operator==(const Cartesian& other) const;
+    bool operator==(const Cartesian<_frame_>& other) const;
 
-    bool operator!=(const Cartesian& other) const;
+    bool operator!=(const Cartesian<_frame_>& other) const;
 
-    Cartesian operator+(const Cartesian& other) const;
+    Cartesian operator+(const Cartesian<_frame_>& other) const;
 
-    Cartesian operator+(const RadiusVector<frames::earth::icrf>& r) const;
-    Cartesian operator+(const VelocityVector<frames::earth::icrf>& v) const;
+    Cartesian operator+(const RadiusVector<_frame_>& r) const;
+    Cartesian operator+(const VelocityVector<_frame_>& v) const;
 
-    Cartesian& operator+=(const Cartesian& other);
+    Cartesian& operator+=(const Cartesian<_frame_>& other);
 
-    Cartesian& operator+=(const RadiusVector<frames::earth::icrf>& r);
-    Cartesian& operator+=(const VelocityVector<frames::earth::icrf>& v);
+    Cartesian& operator+=(const RadiusVector<_frame_>& r);
+    Cartesian& operator+=(const VelocityVector<_frame_>& v);
 
-    Cartesian operator-(const Cartesian& other) const;
+    Cartesian operator-(const Cartesian<_frame_>& other) const;
 
-    Cartesian operator-(const RadiusVector<frames::earth::icrf>& r) const;
-    Cartesian operator-(const VelocityVector<frames::earth::icrf>& v) const;
+    Cartesian operator-(const RadiusVector<_frame_>& r) const;
+    Cartesian operator-(const VelocityVector<_frame_>& v) const;
 
-    Cartesian& operator-=(const Cartesian& other);
+    Cartesian& operator-=(const Cartesian<_frame_>& other);
 
-    Cartesian& operator-=(const RadiusVector<frames::earth::icrf>& r);
-    Cartesian& operator-=(const VelocityVector<frames::earth::icrf>& v);
+    Cartesian& operator-=(const RadiusVector<_frame_>& r);
+    Cartesian& operator-=(const VelocityVector<_frame_>& v);
 
     Cartesian operator*(const Unitless& multiplier) const; // TODO: Add left-hand version (i.e. scalar * state)
 
     Cartesian& operator*=(const Unitless& multiplier);
 
-    CartesianPartial operator/(const Time& time) const;
+    CartesianPartial<_frame_> operator/(const Time& time) const;
 
-    std::vector<Unitless> operator/(const Cartesian& other) const;
+    std::vector<Unitless> operator/(const Cartesian<_frame_>& other) const;
 
     Cartesian operator/(const Unitless& divisor) const;
 
     Cartesian& operator/=(const Unitless& divisor);
 
-    const RadiusVector<frames::earth::icrf>& get_position() const { return _r; }
+    template <IsFrame auto target_frame>
+    Cartesian<target_frame> in_frame(const Date& epoch) const
+    {
+        const CartesianVector<Distance, target_frame> rTarget = _r.template in_frame<target_frame>(epoch);
+        const CartesianVector<Velocity, target_frame> vTarget = _v.template in_frame<target_frame>(epoch, _r);
+        return Cartesian<target_frame>(rTarget, vTarget);
+    }
 
-    const VelocityVector<frames::earth::icrf>& get_velocity() const { return _v; }
+    template <IsFrame auto target_frame>
+    Cartesian<target_frame> in_frame(const Date& epoch, const GravParam& /*mu*/) const
+    {
+        return in_frame<target_frame>(epoch);
+    }
+
+    const RadiusVector<_frame_>& get_position() const { return _r; }
+
+    const VelocityVector<_frame_>& get_velocity() const { return _v; }
 
     const Distance& get_x() const { return _r.get_x(); }
 
@@ -140,20 +155,24 @@ class Cartesian {
 
     std::vector<Unitless> force_to_vector() const;
 
-    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian& other, const GravParam& mu, const Time& targetTime) const;
+    Cartesian interpolate(const Time& thisTime, const Time& otherTime, const Cartesian<_frame_>& other, const GravParam& mu, const Time& targetTime) const;
 
   private:
-    RadiusVector<frames::earth::icrf> _r;   
-    VelocityVector<frames::earth::icrf> _v; 
+    RadiusVector<_frame_> _r;   
+    VelocityVector<_frame_> _v; 
 
     static Cartesian from_vector(const std::vector<Unitless>& vec);
 };
 
+template <IsFrame auto _frame_>
 class CartesianPartial {
 
-    friend std::ostream& operator<<(std::ostream&, CartesianPartial const&);
+    template <IsFrame auto frame>
+    friend std::ostream& operator<<(std::ostream&, CartesianPartial<frame> const&);
 
   public:
+    static constexpr auto frame = _frame_; 
+
     CartesianPartial() = default;
 
     CartesianPartial(const Velocity& vx, const Velocity& vy, const Velocity& vz, const Acceleration& ax, const Acceleration& ay, const Acceleration& az) :
@@ -162,55 +181,37 @@ class CartesianPartial {
     {
     }
 
-    CartesianPartial(const VelocityVector<frames::earth::icrf>& v, const AccelerationVector<frames::earth::icrf>& a) :
+    CartesianPartial(const VelocityVector<_frame_>& v, const AccelerationVector<_frame_>& a) :
         _v(v),
         _a(a)
     {
     }
 
-    Cartesian operator*(const Time& time) const;
+    Velocity get_vx() const { return _v.get_x(); }
+
+    Velocity get_vy() const { return _v.get_y(); }
+
+    Velocity get_vz() const { return _v.get_z(); }
+
+    Acceleration get_ax() const { return _a.get_x(); }
+
+    Acceleration get_ay() const { return _a.get_y(); }
+
+    Acceleration get_az() const { return _a.get_z(); }
+
+    Cartesian<_frame_> operator*(const Time& time) const;
 
     std::vector<Unitless> force_to_vector() const;
 
   private:
-    VelocityVector<frames::earth::icrf> _v;     
-    AccelerationVector<frames::earth::icrf> _a; 
+    VelocityVector<_frame_> _v;     
+    AccelerationVector<_frame_> _a; 
 };
 
 } // namespace astro
 } // namespace astrea
 
-
-// namespace avro {
-
-// template <>
-// struct codec_traits<astrea::astro::Cartesian> {
-//     static void encode(Encoder& encoder, const astrea::astro::Cartesian& cartesian)
-//     {
-//         avro::encode(encoder, cartesian.get_x());
-//         avro::encode(encoder, cartesian.get_y());
-//         avro::encode(encoder, cartesian.get_z());
-//         avro::encode(encoder, cartesian.get_vx());
-//         avro::encode(encoder, cartesian.get_vy());
-//         avro::encode(encoder, cartesian.get_vz());
-//     }
-//     static void decode(Decoder& decoder, astrea::astro::Cartesian& cartesian)
-//     {
-//         astrea::Distance x{}, y{}, z{};
-//         astrea::Velocity vx{}, vy{}, vz{};
-
-//         avro::decode(decoder, x);
-//         avro::decode(decoder, y);
-//         avro::decode(decoder, z);
-//         avro::decode(decoder, vx);
-//         avro::decode(decoder, vy);
-//         avro::decode(decoder, vz);
-
-//         cartesian = astrea::astro::Cartesian(x, y, z, vx, vy, vz);
-//     }
-// };
-
-// } // namespace avro
+#include <astro/state/orbital_elements/Cartesian.ipp>
 ```
 
 

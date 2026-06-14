@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1TerrestrialTimeClock" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::TerrestrialTimeClock</compoundname>
+    <includes refid="TerrestrialTimeClock_8hpp" local="no">TerrestrialTimeClock.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structastrea_1_1astro_1_1TerrestrialTimeClock_1a37feec6101c7a849dce8064af104ce1e" prot="public" static="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
+        <definition>using astrea::astro::TerrestrialTimeClock::rep =  double</definition>
+        <argsstring></argsstring>
+        <name>rep</name>
+        <qualifiedname>astrea::astro::TerrestrialTimeClock::rep</qualifiedname>
+        <briefdescription>
+<para>The representation type, a double for sub-second precision. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" line="48" column="5" bodyfile="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structastrea_1_1astro_1_1TerrestrialTimeClock_1a6568b3249b106d4cb7752c4d8cd9b9b4" prot="public" static="no">
+        <type>std::ratio&lt; 1 &gt;</type>
+        <definition>using astrea::astro::TerrestrialTimeClock::period =  std::ratio&lt;1&gt;</definition>
+        <argsstring></argsstring>
+        <name>period</name>
+        <qualifiedname>astrea::astro::TerrestrialTimeClock::period</qualifiedname>
+        <briefdescription>
+<para>The period type, seconds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" line="49" column="5" bodyfile="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structastrea_1_1astro_1_1TerrestrialTimeClock_1a996c07a9dbb7cc81b01d1de5b59a2baf" prot="public" static="no">
+        <type>std::chrono::duration&lt; <ref refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1a37feec6101c7a849dce8064af104ce1e" kindref="member">rep</ref>, <ref refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1a6568b3249b106d4cb7752c4d8cd9b9b4" kindref="member">period</ref> &gt;</type>
+        <definition>using astrea::astro::TerrestrialTimeClock::duration =  std::chrono::duration&lt;rep, period&gt;</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <qualifiedname>astrea::astro::TerrestrialTimeClock::duration</qualifiedname>
+        <briefdescription>
+<para>The duration type, representing time in seconds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" line="50" column="5" bodyfile="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structastrea_1_1astro_1_1TerrestrialTimeClock_1a0077e41c9f7b1dbf05361c03852dc1cb" prot="public" static="no">
+        <type>std::chrono::time_point&lt; <ref refid="structastrea_1_1astro_1_1TerrestrialTimeClock" kindref="compound">TerrestrialTimeClock</ref> &gt;</type>
+        <definition>using astrea::astro::TerrestrialTimeClock::time_point =  std::chrono::time_point&lt;TerrestrialTimeClock&gt;</definition>
+        <argsstring></argsstring>
+        <name>time_point</name>
+        <qualifiedname>astrea::astro::TerrestrialTimeClock::time_point</qualifiedname>
+        <briefdescription>
+<para>The time point type for TT, using <ref refid="structastrea_1_1astro_1_1TerrestrialTimeClock" kindref="compound">TerrestrialTimeClock</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" line="51" column="5" bodyfile="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1TerrestrialTimeClock_1a25596bf932d16b95b298a075f96a7d01" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>constexpr bool astrea::astro::TerrestrialTimeClock::is_steady</definition>
+        <argsstring></argsstring>
+        <name>is_steady</name>
+        <qualifiedname>astrea::astro::TerrestrialTimeClock::is_steady</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">false</ref></initializer>
+        <briefdescription>
+<para>TT is not a steady clock; it is anchored to TAI. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" line="53" column="27" bodyfile="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1TerrestrialTimeClock_1ac4bf9c89cd98620bda664649d1b5dad1" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1a996c07a9dbb7cc81b01d1de5b59a2baf" kindref="member">duration</ref></type>
+        <definition>constexpr duration astrea::astro::TerrestrialTimeClock::tt_tai_offset</definition>
+        <argsstring></argsstring>
+        <name>tt_tai_offset</name>
+        <qualifiedname>astrea::astro::TerrestrialTimeClock::tt_tai_offset</qualifiedname>
+        <initializer>{ 32.184 }</initializer>
+        <briefdescription>
+<para>The fixed offset between Terrestrial Time and International Atomic Time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>TT = TAI + 32.184 s (as defined by the IAU). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" line="60" column="31" bodyfile="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" bodystart="60" bodyend="60"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1TerrestrialTimeClock_1a1725e3065cc647f221ad154b30bf3425" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>static auto astrea::astro::TerrestrialTimeClock::from_sys</definition>
+        <argsstring>(std::chrono::sys_time&lt; Duration &gt; const &amp;timePoint) noexcept</argsstring>
+        <name>from_sys</name>
+        <qualifiedname>astrea::astro::TerrestrialTimeClock::from_sys</qualifiedname>
+        <param>
+          <type>std::chrono::sys_time&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
+          <declname>timePoint</declname>
+        </param>
+        <briefdescription>
+<para>Converts a system time point to a Terrestrial Time time point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The conversion route is: UTC (sys) → TAI (via clock_cast, handling leap seconds) → TT (+ 32.184 s).</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The duration type of the system time point. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timePoint</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The system time point to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="TerrestrialTimeClock_8hpp_1a20e0e0e8958fdca22cc0f9e1a58d7fa3" kindref="member">TerrestrialDateTime&lt;TerrestrialTimeClock::duration&gt;</ref> The converted TT time point. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" line="72" column="17" bodyfile="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" bodystart="72" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1TerrestrialTimeClock_1a5d6cbad712768e14d595e718efef61ad" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>static auto astrea::astro::TerrestrialTimeClock::to_sys</definition>
+        <argsstring>(TerrestrialDateTime&lt; Duration &gt; const &amp;timePoint) noexcept</argsstring>
+        <name>to_sys</name>
+        <qualifiedname>astrea::astro::TerrestrialTimeClock::to_sys</qualifiedname>
+        <param>
+          <type><ref refid="TerrestrialTimeClock_8hpp_1a20e0e0e8958fdca22cc0f9e1a58d7fa3" kindref="member">TerrestrialDateTime</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
+          <declname>timePoint</declname>
+        </param>
+        <briefdescription>
+<para>Converts a Terrestrial Time time point to a system time point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The conversion route is: TT → TAI (- 32.184 s) → UTC (via clock_cast, handling leap seconds).</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The duration type of the TT time point. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timePoint</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The TT time point to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::chrono::sys_time&lt;std::chrono::tai_clock::duration&gt; The converted system time point. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" line="91" column="17" bodyfile="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" bodystart="91" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1TerrestrialTimeClock_1ad4b6403f1512c14e21935fd73780566e" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1a0077e41c9f7b1dbf05361c03852dc1cb" kindref="member">time_point</ref></type>
+        <definition>static time_point astrea::astro::TerrestrialTimeClock::now</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>now</name>
+        <qualifiedname>astrea::astro::TerrestrialTimeClock::now</qualifiedname>
+        <briefdescription>
+<para>Gets the current time point in Terrestrial Time format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1a0077e41c9f7b1dbf05361c03852dc1cb" kindref="member">TerrestrialTimeClock::time_point</ref> The current time point in TT format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" line="104" column="23" bodyfile="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" bodystart="104" bodyend="108"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A clock implementation for Terrestrial Time (TT). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Terrestrial Time is a continuous time scale defined by the IAU. It is related to International Atomic Time (TAI) by a fixed offset: TT = TAI + 32.184 seconds. TT is commonly used in astrodynamics as the independent variable for planetary motion equations.</para>
+<para>This clock provides conversions to and from the system clock via the TAI clock, accounting for the fixed TT-TAI offset. Leap seconds are handled transparently through std::chrono::tai_clock. </para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" line="47" column="1" bodyfile="astrea/astro/astro/time/clocks/TerrestrialTimeClock.hpp" bodystart="47" bodyend="109"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1a996c07a9dbb7cc81b01d1de5b59a2baf" prot="public" virt="non-virtual"><scope>astrea::astro::TerrestrialTimeClock</scope><name>duration</name></member>
+      <member refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1a1725e3065cc647f221ad154b30bf3425" prot="public" virt="non-virtual"><scope>astrea::astro::TerrestrialTimeClock</scope><name>from_sys</name></member>
+      <member refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1a25596bf932d16b95b298a075f96a7d01" prot="public" virt="non-virtual"><scope>astrea::astro::TerrestrialTimeClock</scope><name>is_steady</name></member>
+      <member refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1ad4b6403f1512c14e21935fd73780566e" prot="public" virt="non-virtual"><scope>astrea::astro::TerrestrialTimeClock</scope><name>now</name></member>
+      <member refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1a6568b3249b106d4cb7752c4d8cd9b9b4" prot="public" virt="non-virtual"><scope>astrea::astro::TerrestrialTimeClock</scope><name>period</name></member>
+      <member refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1a37feec6101c7a849dce8064af104ce1e" prot="public" virt="non-virtual"><scope>astrea::astro::TerrestrialTimeClock</scope><name>rep</name></member>
+      <member refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1a0077e41c9f7b1dbf05361c03852dc1cb" prot="public" virt="non-virtual"><scope>astrea::astro::TerrestrialTimeClock</scope><name>time_point</name></member>
+      <member refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1a5d6cbad712768e14d595e718efef61ad" prot="public" virt="non-virtual"><scope>astrea::astro::TerrestrialTimeClock</scope><name>to_sys</name></member>
+      <member refid="structastrea_1_1astro_1_1TerrestrialTimeClock_1ac4bf9c89cd98620bda664649d1b5dad1" prot="public" virt="non-virtual"><scope>astrea::astro::TerrestrialTimeClock</scope><name>tt_tai_offset</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

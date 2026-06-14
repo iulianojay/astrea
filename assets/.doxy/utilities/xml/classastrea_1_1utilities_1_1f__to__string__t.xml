@@ -1,0 +1,304 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1utilities_1_1f__to__string__t" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::utilities::f_to_string_t</compoundname>
+    <includes refid="string__util_8hpp" local="no">string_util.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="structastrea_1_1utilities_1_1double__wrapper" kindref="compound">double_wrapper</ref></type>
+        <declname>N</declname>
+        <defname>N</defname>
+      </param>
+      <param>
+        <type>typename char_type</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1utilities_1_1f__to__string__t_1a45e8436289b2ca5e32f66802c08bf7e0" prot="private" static="no" mutable="no">
+        <type>char_type</type>
+        <definition>char_type astrea::utilities::f_to_string_t&lt; N, char_type &gt;::buf[([]() constexpr noexcept { unsigned int len=2; if(N.whole&lt;=0) len++; for(auto n=N.whole;n;len++, n/=10) ; if(N.frac==0||(N.whole==0 &amp;&amp;N.frac&lt; 0)) len++; for(auto n=N.frac;n;len++, n/=10) ; return len; }())]</definition>
+        <argsstring>[([]() constexpr noexcept { unsigned int len=2;if(N.whole&lt;=0) len++;for(auto n=N.whole;n;len++, n/=10) ;if(N.frac==0||(N.whole==0 &amp;&amp;N.frac&lt; 0)) len++;for(auto n=N.frac;n;len++, n/=10) ;return len;}())]</argsstring>
+        <name>buf</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::buf</qualifiedname>
+        <initializer>= {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="116" column="15" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="125" bodyend="125"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1a85a9a482760cd11e00c2f59c759a738e" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr astrea::utilities::f_to_string_t&lt; N, char_type &gt;::f_to_string_t</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>f_to_string_t</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::f_to_string_t</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructs the object, filling <computeroutput>buf</computeroutput> with the string representation of N. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="131" column="15" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="131" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1a6b1767c2b9f90b546add00b8608355ca" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr astrea::utilities::f_to_string_t&lt; N, char_type &gt;::operator char_type *</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>operator char_type *</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::operator char_type *</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="152" column="15" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="152" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1a45964efa8aeda37b6ba5e2e7c767fee5" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr astrea::utilities::f_to_string_t&lt; N, char_type &gt;::operator const char_type *</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>operator const char_type *</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::operator const char_type *</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="153" column="15" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="153" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1a6a63906af8b0338766c16535f6b42f91" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::utilities::f_to_string_t&lt; N, char_type &gt;::size</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>size</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="155" column="20" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="155" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1a960631638e7e86ee2b9317cf170ec4c0" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::utilities::f_to_string_t&lt; N, char_type &gt;::data</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>data</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="157" column="20" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="157" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1a1297bd9ed6befa5722dc47ef5adc5c21" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::utilities::f_to_string_t&lt; N, char_type &gt;::data</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>data</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="158" column="20" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="158" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1ab7eed521a13d93ac96029f10e46436c3" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr auto &amp;</type>
+        <definition>constexpr auto &amp; astrea::utilities::f_to_string_t&lt; N, char_type &gt;::operator[]</definition>
+        <argsstring>(unsigned int i) noexcept</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::operator[]</qualifiedname>
+        <param>
+          <type>unsigned int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="159" column="20" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="159" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1ae55e9b67a0d3fd2fccebea120183e927" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr const auto &amp;</type>
+        <definition>constexpr const auto &amp; astrea::utilities::f_to_string_t&lt; N, char_type &gt;::operator[]</definition>
+        <argsstring>(unsigned int i) const noexcept</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::operator[]</qualifiedname>
+        <param>
+          <type>unsigned int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="160" column="26" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="160" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1a1da7f91db09a80b81ac3b119e7271d93" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr auto &amp;</type>
+        <definition>constexpr auto &amp; astrea::utilities::f_to_string_t&lt; N, char_type &gt;::front</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>front</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::front</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="161" column="20" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="161" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1af83a5aff4ce70a91a6393e2504ac91b1" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr const auto &amp;</type>
+        <definition>constexpr const auto &amp; astrea::utilities::f_to_string_t&lt; N, char_type &gt;::front</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>front</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::front</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="162" column="26" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="162" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1a548a676df70ede5539f834e6c303b7bc" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr auto &amp;</type>
+        <definition>constexpr auto &amp; astrea::utilities::f_to_string_t&lt; N, char_type &gt;::back</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>back</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::back</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="163" column="20" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="163" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1a8622a141ab9f2f3837ca89806115674a" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr const auto &amp;</type>
+        <definition>constexpr const auto &amp; astrea::utilities::f_to_string_t&lt; N, char_type &gt;::back</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>back</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::back</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="164" column="26" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="164" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1aa5e235d2a2cdd893e858924d1003a79f" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::utilities::f_to_string_t&lt; N, char_type &gt;::begin</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>begin</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="166" column="20" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="166" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1a5bd789cb9fd2b7e35fe6d3d18790c8c5" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::utilities::f_to_string_t&lt; N, char_type &gt;::begin</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>begin</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="167" column="20" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="167" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1ae0930491d3017ebebfc07f14d804372a" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::utilities::f_to_string_t&lt; N, char_type &gt;::end</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>end</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="168" column="20" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="168" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1utilities_1_1f__to__string__t_1afc8dcd4311402f4fbf454e1274da5d40" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr auto</type>
+        <definition>constexpr auto astrea::utilities::f_to_string_t&lt; N, char_type &gt;::end</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>end</name>
+        <qualifiedname>astrea::utilities::f_to_string_t::end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/utilities/utilities/string_util.hpp" line="169" column="20" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="169" bodyend="169"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Provides the ability to convert a floating-point number to a string at compile-time. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number to convert </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="astrea/utilities/utilities/string_util.hpp" line="115" column="1" bodyfile="astrea/utilities/utilities/string_util.hpp" bodystart="115" bodyend="170"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a548a676df70ede5539f834e6c303b7bc" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>back</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a8622a141ab9f2f3837ca89806115674a" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>back</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1aa5e235d2a2cdd893e858924d1003a79f" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>begin</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a5bd789cb9fd2b7e35fe6d3d18790c8c5" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>begin</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a45e8436289b2ca5e32f66802c08bf7e0" prot="private" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>buf</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a960631638e7e86ee2b9317cf170ec4c0" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>data</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a1297bd9ed6befa5722dc47ef5adc5c21" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>data</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1ae0930491d3017ebebfc07f14d804372a" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>end</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1afc8dcd4311402f4fbf454e1274da5d40" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>end</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a85a9a482760cd11e00c2f59c759a738e" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>f_to_string_t</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a1da7f91db09a80b81ac3b119e7271d93" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>front</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1af83a5aff4ce70a91a6393e2504ac91b1" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>front</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a6b1767c2b9f90b546add00b8608355ca" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>operator char_type *</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a45964efa8aeda37b6ba5e2e7c767fee5" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>operator const char_type *</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1ab7eed521a13d93ac96029f10e46436c3" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1ae55e9b67a0d3fd2fccebea120183e927" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>operator[]</name></member>
+      <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a6a63906af8b0338766c16535f6b42f91" prot="public" virt="non-virtual"><scope>astrea::utilities::f_to_string_t</scope><name>size</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

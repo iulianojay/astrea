@@ -16,7 +16,7 @@
 #include <astro/astro.fwd.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
+#include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -31,8 +31,8 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
   public:
     Viewer() = default;
 
-    Viewer(const astro::GeneralPerturbations& gp, const astro::AstrodynamicsSystem& system) :
-        Spacecraft(gp, system),
+    Viewer(const astro::GeneralPerturbations& gp) :
+        Spacecraft(gp),
         AccessObject()
     {
     }
@@ -45,14 +45,14 @@ class Viewer : public astro::Spacecraft, public AccessObject, public SensorPlatf
 
     Mass get_mass() const override { return Spacecraft::get_mass(); }
 
-    astro::RadiusVector<astro::frames::earth::icrf> get_inertial_position(const astro::Date& date) const
+    astro::RadiusVector<astro::frames::earth::icrf> get_position(const astro::Date& date) const
     {
-        return Spacecraft::get_inertial_position(date);
+        return Spacecraft::get_position(date);
     }
 
-    astro::VelocityVector<astro::frames::earth::icrf> get_inertial_velocity(const astro::Date& date) const
+    astro::VelocityVector<astro::frames::earth::icrf> get_velocity(const astro::Date& date) const
     {
-        return Spacecraft::get_inertial_velocity(date);
+        return Spacecraft::get_velocity(date);
     }
 
     // This is so stupid. Why C++ standards committee

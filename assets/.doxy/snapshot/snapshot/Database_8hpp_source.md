@@ -25,7 +25,7 @@
 #include <units/typedefs.hpp>
 
 #include <astro/astro.macros.hpp>
-#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
+#include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>
 
 #include <snapshot/snapshot.macros.hpp>
 
@@ -65,7 +65,7 @@ DatabaseUtilityWrapper<typename std::decay<T>::type> make_database(T&& database)
 
 inline auto get_snapshot()
 {
-    return sqlite_orm::make_storage(
+    auto storage = sqlite_orm::make_storage(
         std::string(_SNAPSHOT_ROOT_) + "/snapshot/database/snapshot.db",
         sqlite_orm::make_table(
             "GeneralPerturbations",
@@ -112,6 +112,16 @@ inline auto get_snapshot()
             sqlite_orm::make_column("TLE_LINE2", &astro::GeneralPerturbations::TLE_LINE2)
         )
     );
+
+    // Apply SQLite performance optimizations
+    try {
+        storage.pragma.journal_mode(sqlite_orm::journal_mode::WAL);
+    }
+    catch (...) {
+        // If optimizations fail, continue with defaults
+    }
+
+    return storage;
 }
 
 inline auto make_snapshot_wrapper() { return make_database(get_snapshot()); }

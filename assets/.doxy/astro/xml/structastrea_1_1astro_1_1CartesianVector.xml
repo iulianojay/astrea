@@ -1,0 +1,1662 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1CartesianVector" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::CartesianVector</compoundname>
+    <includes refid="CartesianVector_8hpp" local="no">CartesianVector.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref></type>
+      </param>
+      <param>
+        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_frame_</declname>
+        <defname>_frame_</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1CartesianVector_1aa3a6279ea26afde7ded7397c9c1c8bb1" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::frame</definition>
+        <argsstring></argsstring>
+        <name>frame</name>
+        <qualifiedname>astrea::astro::CartesianVector::frame</qualifiedname>
+        <initializer>= _frame_</initializer>
+        <briefdescription>
+<para>The reference frame of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="61" column="27" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1CartesianVector_1a8123262db04868e5ac160cd71de675b1" prot="public" static="no" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{} *<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}</type>
+        <definition>constexpr decltype(Value_T{} *Value_U{} astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::dot) (const CartesianVector&lt; Value_U, frame &gt; &amp;other) const</definition>
+        <argsstring>)(const CartesianVector&lt; Value_U, frame &gt; &amp;other) const</argsstring>
+        <name>dot</name>
+        <qualifiedname>astrea::astro::CartesianVector::dot</qualifiedname>
+        <briefdescription>
+<para>Dot product of this vector with another <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to compute the dot product with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>decltype(Value_T{} * Value_U{}) The result of the dot product. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="352" column="31" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="352" bodyend="355"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1CartesianVector_1a82948a7a054dba5e8ec3437308f88309" prot="public" static="no" mutable="no">
+        <type>std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, 3 &gt;</type>
+        <definition>std::array&lt;Value_T, 3&gt; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::_vector</definition>
+        <argsstring></argsstring>
+        <name>_vector</name>
+        <qualifiedname>astrea::astro::CartesianVector::_vector</qualifiedname>
+        <briefdescription>
+<para>Array to hold the x, y, and z components of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="583" column="16" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="583" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a9a3907c7285fcbabf802da65a77d26be" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::CartesianVector</definition>
+        <argsstring>(const Value_T &amp;x=Value_T::zero(), const Value_T &amp;y=Value_T::zero(), const Value_T &amp;z=Value_T::zero())</argsstring>
+        <name>CartesianVector</name>
+        <qualifiedname>astrea::astro::CartesianVector::CartesianVector</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref> &amp;</type>
+          <declname>x</declname>
+          <defval>Value_T::zero()</defval>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref> &amp;</type>
+          <declname>y</declname>
+          <defval>Value_T::zero()</defval>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref> &amp;</type>
+          <declname>z</declname>
+          <defval>Value_T::zero()</defval>
+        </param>
+        <briefdescription>
+<para>Default constructor for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the vector components to zero. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The x component of the vector (default is 0). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The y component of the vector (default is 0). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The z component of the vector (default is 0). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="71" column="22" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="71" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1acb3182f00c98db075471d89e2c717af8" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::CartesianVector</definition>
+        <argsstring>(const std::array&lt; Value_T, 3 &gt; &amp;vec)</argsstring>
+        <name>CartesianVector</name>
+        <qualifiedname>astrea::astro::CartesianVector::CartesianVector</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, 3 &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> from an array of components. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array containing the three components of the vector (x, y, z). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="81" column="22" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="81" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ab09462517ca5486851bb100bd936c1da" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref></type>
+        <definition>constexpr CartesianVector astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::reverse</definition>
+        <argsstring>() const</argsstring>
+        <name>reverse</name>
+        <qualifiedname>astrea::astro::CartesianVector::reverse</qualifiedname>
+        <briefdescription>
+<para>Return the reverse of the vector, which switches the x and z components. This is useful for converting between different rotation sequences. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="89" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="89" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a70bccccdc619b25667f810aca8c5d3a3" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::~CartesianVector</definition>
+        <argsstring>()=default</argsstring>
+        <name>~CartesianVector</name>
+        <qualifiedname>astrea::astro::CartesianVector::~CartesianVector</qualifiedname>
+        <briefdescription>
+<para>Destructor for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="94" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a5acce408050d3d3d74e1279aa0c0f465" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::CartesianVector</definition>
+        <argsstring>(const CartesianVector &amp;)=default</argsstring>
+        <name>CartesianVector</name>
+        <qualifiedname>astrea::astro::CartesianVector::CartesianVector</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="96" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a78c339c260af024b0342ced151f4de6e" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::CartesianVector</definition>
+        <argsstring>(CartesianVector &amp;&amp;)=default</argsstring>
+        <name>CartesianVector</name>
+        <qualifiedname>astrea::astro::CartesianVector::CartesianVector</qualifiedname>
+        <param>
+          <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="97" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a5db488bb4a9458eacbea29c45a28a2c1" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;</type>
+        <definition>constexpr CartesianVector &amp; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator=</definition>
+        <argsstring>(const CartesianVector &amp;)=default</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="98" column="38"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a15179bd4731b3f6a9f72f4814bc28d79" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;</type>
+        <definition>constexpr CartesianVector &amp; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator=</definition>
+        <argsstring>(CartesianVector &amp;&amp;)=default</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator=</qualifiedname>
+        <param>
+          <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="99" column="38"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ac7e11912ec0eecbc3656d9b84b889fdf" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::CartesianVector</definition>
+        <argsstring>(const CartesianVector&lt; Value_U, frame_u &gt; &amp;other)</argsstring>
+        <name>CartesianVector</name>
+        <qualifiedname>astrea::astro::CartesianVector::CartesianVector</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>((std::is_same_v&lt;Value_T, Value_U&gt; || mp_units::interconvertible(Value_T::unit, Value_U::unit)) &amp;&amp; equivalent(frame, frame_u))    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="106" column="22" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="106" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ade4e693b3889fe2acf95f2904e8d2e4e" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::CartesianVector</definition>
+        <argsstring>(CartesianVector&lt; Value_U, frame_u &gt; &amp;&amp;other)</argsstring>
+        <name>CartesianVector</name>
+        <qualifiedname>astrea::astro::CartesianVector::CartesianVector</qualifiedname>
+        <param>
+          <type><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt; &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>((std::is_same_v&lt;Value_T, Value_U&gt; || mp_units::interconvertible(Value_T::unit, Value_U::unit)) &amp;&amp; equivalent(frame, frame_u))    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="113" column="22" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="113" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1aa1f59f9b9baed2cd99db3bafebc1ce0f" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref></type>
+        <definition>constexpr CartesianVector astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator=</definition>
+        <argsstring>(const CartesianVector&lt; Value_U, frame &gt; &amp;other) const</argsstring>
+        <name>operator=</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, <ref refid="structastrea_1_1astro_1_1CartesianVector_1aa3a6279ea26afde7ded7397c9c1c8bb1" kindref="member">frame</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(!is_cartesian_vector_v&lt;Value_U&gt; &amp;&amp; std::constructible_from&lt;Value_T, Value_U&gt;)    </requiresclause>
+        <briefdescription>
+<para>Copy constructor for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> that implicitly converts the unit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> with the same components but potentially different unit. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="125" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="125" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ac9811f4b59f92a3be52f834d85214cb0" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Value_T, frame_u &gt; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::force_frame_conversion</definition>
+        <argsstring>() const</argsstring>
+        <name>force_frame_conversion</name>
+        <qualifiedname>astrea::astro::CartesianVector::force_frame_conversion</qualifiedname>
+        <briefdescription>
+<para>Copy constructor for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> that implicitly converts the frame. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to copy from. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="136" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="136" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1acd91d25e9317cc21ab0619c76c12e858" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref> &amp;</type>
+        <definition>constexpr Value_T &amp; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator[]</definition>
+        <argsstring>(size_t index)</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator[]</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">size_t</ref></type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Access operator for vector components. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the component to access (0 for x, 1 for y, 2 for z). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Value_T&amp; Reference to the component at the specified index. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="147" column="30" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="147" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a08f8a1ba4a94c28ee3db679c49d8f092" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref> &amp;</type>
+        <definition>constexpr const Value_T &amp; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator[]</definition>
+        <argsstring>(size_t index) const</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator[]</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">size_t</ref></type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Const access operator for vector components. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the component to access (0 for x, 1 for y, 2 for z). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const Value_T&amp; Reference to the component at the specified index. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="155" column="36" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="155" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a4f82e04b74523d926f81286d9c9a3147" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>constexpr bool astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator==</definition>
+        <argsstring>(const CartesianVector &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator==</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Equality operator for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> (same type and frame). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to compare with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true If the two vectors are equal. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the two vectors are not equal. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="164" column="27" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="164" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ae7321684fb2f11a33df1afbceaf3353e" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">OtherCart</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>constexpr bool astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator==</definition>
+        <argsstring>(const OtherCart &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator==</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">OtherCart</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(is_cartesian_vector_v&lt;OtherCart&gt; &amp;&amp; (OtherCart::frame != frame))    </requiresclause>
+        <briefdescription>
+<para>Equality operator for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> in a different frame or with an incompatible value type. Always returns false. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Uses a type-parameter approach to avoid GCC 15&apos;s constrained auto NTTP deduction bug (which incorrectly deduces <computeroutput>frame_u = Value_U</computeroutput> for <computeroutput>IsFrame auto frame_u</computeroutput> in both direct and reversed lookup).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to compare with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>false Always, since vectors in different frames or with incompatible types cannot be equal. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="181" column="27" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="181" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ac571f0705057cce059e2b71678dbed04" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref></type>
+        <definition>constexpr CartesianVector astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator+</definition>
+        <argsstring>(const CartesianVector &amp;other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator+</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Addition operator for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> that is the sum of this vector and the other. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="192" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="192" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a1bb16c81704f80f266bf2e1c7c008f61" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;</type>
+        <definition>constexpr CartesianVector &amp; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator+=</definition>
+        <argsstring>(const CartesianVector &amp;other)</argsstring>
+        <name>operator+=</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator+=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Addition assignment operator for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&amp; Reference to the current object after addition. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="203" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="203" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a07ab6e2ffe5b97db77a9973ebcef7376" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref></type>
+        <definition>constexpr CartesianVector astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator-</definition>
+        <argsstring>(const CartesianVector &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator-</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Subtraction operator for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to subtract. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> that is the difference of this vector and the other. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="217" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="217" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a8e3e658ee081c1bd17de259ee215f465" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref></type>
+        <definition>constexpr CartesianVector astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator-</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator-</qualifiedname>
+        <briefdescription>
+<para>Negation operator for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>CartesianVector&lt;T&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> that is the negation of this vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="227" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="227" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a9f0cc7359096f6c766714c5672cec3f6" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;</type>
+        <definition>constexpr CartesianVector &amp; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator-=</definition>
+        <argsstring>(const CartesianVector &amp;other)</argsstring>
+        <name>operator-=</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator-=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Subtraction assignment operator for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to subtract. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&amp; Reference to the current object after subtraction. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="238" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="238" bodyend="244"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ab02bf5c2726054044b85f42878e3b967" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{} *<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}), <ref refid="structastrea_1_1astro_1_1CartesianVector_1aa3a6279ea26afde7ded7397c9c1c8bb1" kindref="member">frame</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; decltype(Value_T{} *Value_U{}), frame &gt; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator*</definition>
+        <argsstring>(const Value_U &amp;scalar) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator*</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref> &amp;</type>
+          <declname>scalar</declname>
+        </param>
+    <requiresclause>(!is_cartesian_vector_v&lt;Value_U&gt;)    </requiresclause>
+        <briefdescription>
+<para>Scalar multiplication operator for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the scalar to multiply with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to multiply with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CartesianVector&lt;Value_T * Value_U, frame&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> that is the product of this vector and the scalar. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="255" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="255" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ae85a3f8e418c67c9b8a4afd8cbf55a75" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;</type>
+        <definition>constexpr CartesianVector &amp; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator*=</definition>
+        <argsstring>(const Unitless &amp;scalar)</argsstring>
+        <name>operator*=</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator*=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+<para>Scalar multiplication assignment operator for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to multiply with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&amp; Reference to the current object after multiplication. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="266" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="266" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ada32d351151fc3b9a4db1427abc616eb" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{}/<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}), <ref refid="structastrea_1_1astro_1_1CartesianVector_1aa3a6279ea26afde7ded7397c9c1c8bb1" kindref="member">frame</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; decltype(Value_T{}/Value_U{}), frame &gt; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator/</definition>
+        <argsstring>(const Value_U &amp;scalar) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator/</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref> &amp;</type>
+          <declname>scalar</declname>
+        </param>
+    <requiresclause>(!is_cartesian_vector_v&lt;Value_U&gt;)    </requiresclause>
+        <briefdescription>
+<para>Scalar division operator for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the scalar to divide by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to divide by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt;decltype(Value_T{} / U{})&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> that is the quotient of this vector and the scalar. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="283" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="283" bodyend="286"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1aead43dbfcf2f29538efe3745df7504e6" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> &amp;</type>
+        <definition>constexpr CartesianVector &amp; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::operator/=</definition>
+        <argsstring>(const Unitless &amp;scalar)</argsstring>
+        <name>operator/=</name>
+        <qualifiedname>astrea::astro::CartesianVector::operator/=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+<para>Scalar division assignment operator for <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to divide by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&amp; Reference to the current object after division. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="294" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="294" bodyend="300"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a470b39df11ebf0f839566bd77d67f2ce" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref> &amp;</type>
+        <definition>constexpr Value_T &amp; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::get_x</definition>
+        <argsstring>()</argsstring>
+        <name>get_x</name>
+        <qualifiedname>astrea::astro::CartesianVector::get_x</qualifiedname>
+        <briefdescription>
+<para>Get the x value of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Value_T&amp; Reference to the x component of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="307" column="30" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="307" bodyend="307"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ac20b45aa808224e7d458ab404f909388" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref> &amp;</type>
+        <definition>constexpr const Value_T &amp; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::get_x</definition>
+        <argsstring>() const</argsstring>
+        <name>get_x</name>
+        <qualifiedname>astrea::astro::CartesianVector::get_x</qualifiedname>
+        <briefdescription>
+<para>Get the x value of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const Value_T&amp; Reference to the x component of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="314" column="36" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="314" bodyend="314"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a783bff52824ebc838ad98d81e556bf39" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref> &amp;</type>
+        <definition>constexpr Value_T &amp; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::get_y</definition>
+        <argsstring>()</argsstring>
+        <name>get_y</name>
+        <qualifiedname>astrea::astro::CartesianVector::get_y</qualifiedname>
+        <briefdescription>
+<para>Get the y value of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Value_T&amp; Reference to the y component of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="321" column="30" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="321" bodyend="321"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ab111771a627c50b2a2bdae45df15c9a8" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref> &amp;</type>
+        <definition>constexpr const Value_T &amp; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::get_y</definition>
+        <argsstring>() const</argsstring>
+        <name>get_y</name>
+        <qualifiedname>astrea::astro::CartesianVector::get_y</qualifiedname>
+        <briefdescription>
+<para>Get the y value of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const Value_T&amp; Reference to the y component of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="328" column="36" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="328" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ae8bb024080155eb1bc1037dc40b95b88" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref> &amp;</type>
+        <definition>constexpr Value_T &amp; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::get_z</definition>
+        <argsstring>()</argsstring>
+        <name>get_z</name>
+        <qualifiedname>astrea::astro::CartesianVector::get_z</qualifiedname>
+        <briefdescription>
+<para>Get the z value of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Value_T&amp; Reference to the z component of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="335" column="30" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="335" bodyend="335"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ac9813a5d069fab9c6b2fcbf0d5557ddb" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref> &amp;</type>
+        <definition>constexpr const Value_T &amp; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::get_z</definition>
+        <argsstring>() const</argsstring>
+        <name>get_z</name>
+        <qualifiedname>astrea::astro::CartesianVector::get_z</qualifiedname>
+        <briefdescription>
+<para>Get the z value of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const Value_T&amp; Reference to the z component of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="342" column="36" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="342" bodyend="342"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a8f3c5e253983cf21ec1dc1727278c019" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{} *<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}), <ref refid="structastrea_1_1astro_1_1CartesianVector_1aa3a6279ea26afde7ded7397c9c1c8bb1" kindref="member">frame</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; decltype(Value_T{} *Value_U{}), frame &gt; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::cross</definition>
+        <argsstring>(const CartesianVector&lt; Value_U, frame &gt; &amp;other) const</argsstring>
+        <name>cross</name>
+        <qualifiedname>astrea::astro::CartesianVector::cross</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, <ref refid="structastrea_1_1astro_1_1CartesianVector_1aa3a6279ea26afde7ded7397c9c1c8bb1" kindref="member">frame</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Cross product of this vector with another <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to compute the cross product with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt;decltype(Value_T{} * Value_U{})&gt; The result of the cross product. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="365" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="365" bodyend="370"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a75269d776ccf393aa8dde178ccdcfee9" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref></type>
+        <definition>constexpr Value_T astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::norm</definition>
+        <argsstring>() const</argsstring>
+        <name>norm</name>
+        <qualifiedname>astrea::astro::CartesianVector::norm</qualifiedname>
+        <briefdescription>
+<para>Calculate the norm (magnitude) of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>T The norm of the vector.</para>
+</simplesect>
+<simplesect kind="note"><para>: This can&apos;t be called &quot;magnitude&quot; due to an mp-units type resolution bug </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="379" column="30" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="379" bodyend="382"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1afc641d215a0a1845ca251c8854e29704" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">unsigned</ref></type>
+            <declname>N</declname>
+            <defname>N</defname>
+            <defval>2</defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref></type>
+        <definition>constexpr Value_T astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::p_norm</definition>
+        <argsstring>() const</argsstring>
+        <name>p_norm</name>
+        <qualifiedname>astrea::astro::CartesianVector::p_norm</qualifiedname>
+        <briefdescription>
+<para>Calculate the p-norm of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The order of the norm to calculate (default is 2 for Euclidean norm). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>T The p-norm of the vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="391" column="30" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="391" bodyend="395"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a27ffd261041d161f3ec59879e48ac066" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>, <ref refid="structastrea_1_1astro_1_1CartesianVector_1aa3a6279ea26afde7ded7397c9c1c8bb1" kindref="member">frame</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Unitless, frame &gt; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::direction</definition>
+        <argsstring>() const</argsstring>
+        <name>direction</name>
+        <qualifiedname>astrea::astro::CartesianVector::direction</qualifiedname>
+        <briefdescription>
+<para>Normalize the vector to create a unit vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>CartesianVector&lt;Unitless&gt; A unit vector in the same direction as this vector. </para>
+</simplesect>
+<simplesect kind="note"><para>If the norm is zero, returns a zero vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="403" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="403" bodyend="413"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ac25fee10bf2c712dcf87b24e434877f3" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <definition>constexpr Angle astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::offset_angle</definition>
+        <argsstring>(const CartesianVector&lt; Value_U, frame &gt; &amp;other) const</argsstring>
+        <name>offset_angle</name>
+        <qualifiedname>astrea::astro::CartesianVector::offset_angle</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, <ref refid="structastrea_1_1astro_1_1CartesianVector_1aa3a6279ea26afde7ded7397c9c1c8bb1" kindref="member">frame</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Calculate the angle between this vector and another <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to calculate the angle with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Angle The angle between the two vectors. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If either vector has zero magnitude. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="424" column="28" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="424" bodyend="442"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a4d9aaf80fb1d8d3504db3e2076fb6a22" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Value_T, frame_u &gt; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::in_frame</definition>
+        <argsstring>(const Date &amp;) const</argsstring>
+        <name>in_frame</name>
+        <qualifiedname>astrea::astro::CartesianVector::in_frame</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <defname>date</defname>
+        </param>
+    <requiresclause>((frame == frame_u))    </requiresclause>
+        <briefdescription>
+<para>No-op overload when calling in_frame with the same frame. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target frame type to get the vector in. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CartesianVector&lt;Value_T, frame_u&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> in the target frame. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the frames do not share the same origin or if the DCM cannot be obtained. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="453" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="453" bodyend="456"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a3c2b60171079f96607605ee3e3af81ce" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Value_T, frame_u &gt; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::in_frame</definition>
+        <argsstring>(const Date &amp;, const CartesianVector&lt; Distance, _frame_ &gt; &amp;) const</argsstring>
+        <name>in_frame</name>
+        <qualifiedname>astrea::astro::CartesianVector::in_frame</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, _frame_ &gt; &amp;</type>
+        </param>
+    <requiresclause>((frame == frame_u))    </requiresclause>
+        <briefdescription>
+<para>No-op overload when calling in_frame with the same frame. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target frame type to get the vector in. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CartesianVector&lt;Value_T, frame_u&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> in the target frame. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the frames do not share the same origin or if the DCM cannot be obtained. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="467" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="467" bodyend="470"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a244121f055ebd7c5ad3347e7ee9a4924" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Value_T, frame_u &gt; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::in_frame</definition>
+        <argsstring>(const Date &amp;, const CartesianVector&lt; Distance, _frame_ &gt; &amp;, const CartesianVector&lt; Velocity, _frame_ &gt; &amp;) const</argsstring>
+        <name>in_frame</name>
+        <qualifiedname>astrea::astro::CartesianVector::in_frame</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, _frame_ &gt; &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Velocity</ref>, _frame_ &gt; &amp;</type>
+        </param>
+    <requiresclause>((frame == frame_u))    </requiresclause>
+        <briefdescription>
+<para>No-op overload when calling in_frame with the same frame. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target frame type to get the vector in. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CartesianVector&lt;Value_T, frame_u&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> in the target frame. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the frames do not share the same origin or if the DCM cannot be obtained. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="482" column="9" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="482" bodyend="485"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a8d21a4ade1651083908376d6fc0bb386" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Value_T, frame_u &gt; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::in_frame</definition>
+        <argsstring>(const Date &amp;date) const</argsstring>
+        <name>in_frame</name>
+        <qualifiedname>astrea::astro::CartesianVector::in_frame</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+    <requiresclause>((std::is_same_v&lt;Value_T, Distance&gt; || std::is_same_v&lt;Value_T, Unitless&gt;) &amp;&amp; _frame_ != frame_u &amp;&amp; IsStaticFrame&lt;decltype(frame_u)&gt;)    </requiresclause>
+        <briefdescription>
+<para>Rotate this vector into another frame at a given date. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target frame type to rotate into. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date at which to perform the rotation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CartesianVector&lt;Value_T, frame_u&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> in the target frame. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the frames do not share the same origin or if the DCM cannot be obtained. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="497" column="38"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a558195c37c1b1612331a6f9cd960a661" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Velocity</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Velocity, frame_u &gt; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::in_frame</definition>
+        <argsstring>(const Date &amp;date, const CartesianVector&lt; Distance, _frame_ &gt; &amp;position) const</argsstring>
+        <name>in_frame</name>
+        <qualifiedname>astrea::astro::CartesianVector::in_frame</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, _frame_ &gt; &amp;</type>
+          <declname>position</declname>
+        </param>
+    <requiresclause>(std::is_same_v&lt;Value_T, Velocity&gt; &amp;&amp; _frame_ != frame_u &amp;&amp; IsStaticFrame&lt;decltype(frame_u)&gt;)    </requiresclause>
+        <briefdescription>
+<para>Rotate this vector into another frame at a given date, accounting for velocity aberration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target frame type to rotate into. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date at which to perform the rotation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position vector in the original frame, used for calculating velocity aberration effects. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CartesianVector&lt;Value_T, frame_u&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> in the target frame. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the frames do not share the same origin or if the DCM cannot be obtained. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is only valid for velocity vectors since velocity aberration is a function of the position and velocity of the object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="513" column="9" bodyfile="astrea/astro/astro/frames/definitions/transformations.hpp" bodystart="628" bodyend="631"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1abe4347644854daf777c3e83f9b2e9f75" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Acceleration</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Acceleration, frame_u &gt; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::in_frame</definition>
+        <argsstring>(const Date &amp;date, const CartesianVector&lt; Distance, _frame_ &gt; &amp;position, const CartesianVector&lt; Velocity, _frame_ &gt; &amp;velocity) const</argsstring>
+        <name>in_frame</name>
+        <qualifiedname>astrea::astro::CartesianVector::in_frame</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref>, _frame_ &gt; &amp;</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Velocity</ref>, _frame_ &gt; &amp;</type>
+          <declname>velocity</declname>
+        </param>
+    <requiresclause>(std::is_same_v&lt;Value_T, Acceleration&gt; &amp;&amp; _frame_ != frame_u &amp;&amp; IsStaticFrame&lt;decltype(frame_u)&gt;)    </requiresclause>
+        <briefdescription>
+<para>Rotate this vector into another frame at a given date, accounting for velocity and acceleration aberration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target frame type to rotate into. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date at which to perform the rotation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position vector in the original frame, used for calculating aberration effects. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>velocity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The velocity vector in the original frame, used for calculating aberration effects. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CartesianVector&lt;Value_T, frame_u&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> in the target frame. </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the frames do not share the same origin or if the DCM cannot be obtained. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is only valid for acceleration vectors since velocity and acceleration aberration are functions of the position, velocity, and acceleration of the object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="530" column="9" bodyfile="astrea/astro/astro/frames/definitions/transformations.hpp" bodystart="636" bodyend="643"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1ad0ea53f4631eb9c3b80f041a8ad7106f" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+          <param>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame_v</declname>
+            <defname>frame_v</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_v</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Value_T, frame_v &gt; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::translate</definition>
+        <argsstring>(const CartesianVector&lt; Value_T, frame_u &gt; &amp;other) const</argsstring>
+        <name>translate</name>
+        <qualifiedname>astrea::astro::CartesianVector::translate</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(frame != frame_u &amp;&amp; frame.axis == frame_u.axis &amp;&amp; frame.origin != frame_u.origin)    </requiresclause>
+        <briefdescription>
+<para>Translate this vector by another vector in a different frame, resulting in a vector in a third frame. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This operation is valid when the two frames share the same axis but have different origins. For example, translating a position vector of the Moon relative to the Earth by the position vector of the Earth relative to the Solar System <ref refid="structastrea_1_1astro_1_1Barycenter" kindref="compound">Barycenter</ref> results in the position vector of the Moon relative to the Solar System <ref refid="structastrea_1_1astro_1_1Barycenter" kindref="compound">Barycenter</ref>.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame type of the vector to translate by. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frame_v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame type of the resulting vector. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to translate by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CartesianVector&lt;Value_T, frame_v&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> in the resulting frame. </para>
+</simplesect>
+<simplesect kind="note"><para>It is the user&apos;s responsibility to ensure that this operation makes sense in the context of the frames involved. r&lt;frame&gt; + r&lt;frame_u&gt; = r&lt;frame_v&gt; rEarth&lt;ssb::icrf&gt; + rMoon&lt;earth::icrf&gt; = rMoon&lt;ssb::icrf&gt; rEarth&lt;ssb::icrf&gt; + rMoon&lt;ssb::icrf&gt; = (rEarth + rMoon)&lt;ssb::icrf&gt; rEarth&lt;ssb::icrf&gt; + rMoon&lt;jupiter::icrf&gt; = (???)&lt;???&gt; there&apos;s no way to enforce this makes sense at compile time without explicitly knowing where the vectors start and end, so it has to be left to the user to use it correctly </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="554" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="554" bodyend="559"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1CartesianVector_1a1fcda94927ff3cb69f6f7e420edf79f4" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame_u</declname>
+            <defname>frame_u</defname>
+          </param>
+          <param>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame_v</declname>
+            <defname>frame_v</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_v</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Value_T, frame_v &gt; astrea::astro::CartesianVector&lt; Value_T, _frame_ &gt;::offset</definition>
+        <argsstring>(const CartesianVector&lt; Value_T, frame_u &gt; &amp;other) const</argsstring>
+        <name>offset</name>
+        <qualifiedname>astrea::astro::CartesianVector::offset</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">frame_u</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(frame != frame_u &amp;&amp; frame.axis == frame_u.axis &amp;&amp; frame.origin != frame_u.origin)    </requiresclause>
+        <briefdescription>
+<para>Calculate the offset vector from another vector in a different frame, resulting in a vector in a third frame. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame type of the vector to calculate the offset from. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frame_v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame type of the resulting vector. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> to calculate the offset from. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>CartesianVector&lt;Value_T, frame_v&gt; A new <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> in the resulting frame. </para>
+</simplesect>
+<simplesect kind="note"><para>It is the user&apos;s responsibility to ensure that this operation makes sense in the context of the frames involved. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="576" column="38" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="576" bodyend="581"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class representing a 3D vector in <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> coordinates. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class encapsulates a vector with three components (x, y, z) and provides various operations such as addition, subtraction, scalar multiplication, and dot/cross products.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the vector components (e.g., Distance, Velocity). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/framework/CartesianVector.hpp" line="59" column="1" bodyfile="astrea/astro/astro/frames/framework/CartesianVector.hpp" bodystart="59" bodyend="584"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a82948a7a054dba5e8ec3437308f88309" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>_vector</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a9a3907c7285fcbabf802da65a77d26be" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>CartesianVector</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1acb3182f00c98db075471d89e2c717af8" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>CartesianVector</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a5acce408050d3d3d74e1279aa0c0f465" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>CartesianVector</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a78c339c260af024b0342ced151f4de6e" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>CartesianVector</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ac7e11912ec0eecbc3656d9b84b889fdf" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>CartesianVector</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ade4e693b3889fe2acf95f2904e8d2e4e" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>CartesianVector</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a8f3c5e253983cf21ec1dc1727278c019" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>cross</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a27ffd261041d161f3ec59879e48ac066" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>direction</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a8123262db04868e5ac160cd71de675b1" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>dot</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ac9811f4b59f92a3be52f834d85214cb0" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>force_frame_conversion</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1aa3a6279ea26afde7ded7397c9c1c8bb1" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>frame</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a470b39df11ebf0f839566bd77d67f2ce" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>get_x</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ac20b45aa808224e7d458ab404f909388" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>get_x</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a783bff52824ebc838ad98d81e556bf39" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>get_y</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ab111771a627c50b2a2bdae45df15c9a8" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>get_y</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ae8bb024080155eb1bc1037dc40b95b88" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>get_z</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ac9813a5d069fab9c6b2fcbf0d5557ddb" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>get_z</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a4d9aaf80fb1d8d3504db3e2076fb6a22" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>in_frame</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a3c2b60171079f96607605ee3e3af81ce" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>in_frame</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a244121f055ebd7c5ad3347e7ee9a4924" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>in_frame</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a8d21a4ade1651083908376d6fc0bb386" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>in_frame</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a558195c37c1b1612331a6f9cd960a661" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>in_frame</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1abe4347644854daf777c3e83f9b2e9f75" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>in_frame</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a75269d776ccf393aa8dde178ccdcfee9" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>norm</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a1fcda94927ff3cb69f6f7e420edf79f4" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>offset</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ac25fee10bf2c712dcf87b24e434877f3" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>offset_angle</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ab02bf5c2726054044b85f42878e3b967" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator*</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ae85a3f8e418c67c9b8a4afd8cbf55a75" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator*=</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ac571f0705057cce059e2b71678dbed04" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator+</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a1bb16c81704f80f266bf2e1c7c008f61" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator+=</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a07ab6e2ffe5b97db77a9973ebcef7376" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator-</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a8e3e658ee081c1bd17de259ee215f465" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator-</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a9f0cc7359096f6c766714c5672cec3f6" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator-=</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ada32d351151fc3b9a4db1427abc616eb" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator/</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1aead43dbfcf2f29538efe3745df7504e6" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator/=</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a5db488bb4a9458eacbea29c45a28a2c1" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator=</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a15179bd4731b3f6a9f72f4814bc28d79" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator=</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1aa1f59f9b9baed2cd99db3bafebc1ce0f" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator=</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a4f82e04b74523d926f81286d9c9a3147" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator==</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ae7321684fb2f11a33df1afbceaf3353e" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator==</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1acd91d25e9317cc21ab0619c76c12e858" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator[]</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a08f8a1ba4a94c28ee3db679c49d8f092" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>operator[]</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1afc641d215a0a1845ca251c8854e29704" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>p_norm</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ab09462517ca5486851bb100bd936c1da" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>reverse</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1ad0ea53f4631eb9c3b80f041a8ad7106f" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>translate</name></member>
+      <member refid="structastrea_1_1astro_1_1CartesianVector_1a70bccccdc619b25667f810aca8c5d3a3" prot="public" virt="non-virtual"><scope>astrea::astro::CartesianVector</scope><name>~CartesianVector</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

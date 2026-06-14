@@ -51,23 +51,23 @@
 
 | Type | Name |
 | ---: | :--- |
-|  constexpr mp\_units::quantity&lt; mp\_units::one, Rep &gt; | [**assoc\_legendre**](#function-assoc_legendre) (const unsigned int & n, const unsigned int & m, const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br> |
+|  constexpr mp\_units::quantity&lt; mp\_units::one, Rep &gt; | [**assoc\_legendre**](#function-assoc_legendre) (const unsigned int & n, const unsigned int & m, const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Computes the associated Legendre function of the first kind._  |
 |  T | [**atan3**](#function-atan3) (T y, T x) <br> |
-|  mp\_units::QuantityOf&lt; mp\_units::dimensionless &gt; auto | [**cosh**](#function-cosh) (const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br> |
-|  constexpr mp\_units::quantity&lt; mp\_units::one, Rep &gt; | [**cyl\_bessel\_j**](#function-cyl_bessel_j) (const Rep & nu, const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br> |
+|  mp\_units::quantity&lt; R, Rep &gt; | [**clamp**](#function-clamp) (const mp\_units::quantity&lt; R, Rep &gt; & q, const mp\_units::quantity&lt; R, Rep &gt; & low, const mp\_units::quantity&lt; R, Rep &gt; & high) noexcept<br> |
+|  mp\_units::QuantityOf&lt; mp\_units::dimensionless &gt; auto | [**cosh**](#function-cosh) (const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Computes the hyperbolic cosine of a given angle in radians._  |
+|  constexpr mp\_units::quantity&lt; mp\_units::one, Rep &gt; | [**cyl\_bessel\_j**](#function-cyl_bessel_j) (const Rep & nu, const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Computes the Bessel function of the first kind of order zero._  |
 |  double | [**evaluate\_chebyshev\_derivative**](#function-evaluate_chebyshev_derivative) (double x, double lb, double ub, const std::array&lt; double, N &gt; & coeff, double extrapolationTol=1.0e-6) <br>_Evaluate the derivative of the Chebyshev polynomial at the specified value, x, which must be in the range [lb, ub], using Clenshaw's recurrence formula._  |
 |  double | [**evaluate\_chebyshev\_derivative**](#function-evaluate_chebyshev_derivative) (double x, const std::array&lt; double, N &gt; & boundsCoeff, double extrapolationTol=1.0e-6) <br>_Evaluate the derivative of the Chebyshev polynomial at the specified value, x, which must be in the range [lb, ub], using Clenshaw's recurrence formula._  |
 |  double | [**evaluate\_chebyshev\_polynomial**](#function-evaluate_chebyshev_polynomial) (const double & x, const double & lb, const double & ub, const std::array&lt; double, N &gt; & coeff, const double & coeffZeroFactor=0.5, const double & extrapolationTol=1.0e-6) <br>_Evaluate the Chebyshev polynomial at the specified value, x, which must be in the range [lb, ub], using Clenshaw's recurrence formula._  |
 |  double | [**evaluate\_chebyshev\_polynomial**](#function-evaluate_chebyshev_polynomial) (const double & x, const std::array&lt; double, N &gt; & boundsCoeff, const double & coeffZeroFactor=0.5, const double & extrapolationTol=1.0e-6) <br>_Evaluate the Chebyshev polynomial at the specified value, x, which must be in the range [lb, ub], using Clenshaw's recurrence formula._  |
 |  Y | [**fast\_interpolate**](#function-fast_interpolate) (const std::array&lt; X, 2 &gt; & x, const std::array&lt; Y, 2 &gt; & y, const X & sx) <br>_Fast linear interpolation for two points, with bounds checking._  |
 |  Y | [**interpolate**](#function-interpolate) (const std::vector&lt; X &gt; & x, const std::vector&lt; Y &gt; & y, const X & sx) <br>_Linear interpolation for a single point, with bounds checking._  |
-|  mp\_units::quantity&lt; R, Rep &gt; | [**max**](#function-max) (const mp\_units::quantity&lt; R, Rep &gt; & q1, const mp\_units::quantity&lt; R, Rep &gt; & q2) noexcept<br> |
-|  mp\_units::quantity&lt; R, Rep &gt; | [**min**](#function-min) (const mp\_units::quantity&lt; R, Rep &gt; & q1, const mp\_units::quantity&lt; R, Rep &gt; & q2) noexcept<br> |
-|  constexpr bool | [**nearly\_equal**](#function-nearly_equal) (const mp\_units::quantity&lt; R1, Rep &gt; & x, const mp\_units::quantity&lt; R2, Rep &gt; & y, const mp\_units::quantity&lt; mp\_units::one, Rep &gt; & relTol=0.0 \*mp\_units::one, const mp\_units::quantity&lt; mp\_units::one, Rep &gt; & absTol=0.0 \*mp\_units::one) noexcept<br>_Check if two quantities of the same unit are nearly equal within a relative tolerance._  |
-|  mp\_units::quantity&lt; mp\_units::one, Rep &gt; | [**pow**](#function-pow) (const mp\_units::quantity&lt; R, Rep &gt; & q, const mp\_units::quantity&lt; R, Rep &gt; & n) noexcept<br> |
-|  requires | [**requires**](#function-requires) (Rep v) <br>_Computes the sinc function for a given angle in radians._  |
-|  mp\_units::QuantityOf&lt; mp\_units::dimensionless &gt; auto | [**sinc**](#function-sinc) (const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br> |
-|  mp\_units::QuantityOf&lt; mp\_units::dimensionless &gt; auto | [**sinh**](#function-sinh) (const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br> |
+|  mp\_units::quantity&lt; R, Rep &gt; | [**max**](#function-max) (const mp\_units::quantity&lt; R, Rep &gt; & q1, const mp\_units::quantity&lt; R, Rep &gt; & q2) noexcept<br>_Returns the maximum of two quantities of the same unit._  |
+|  mp\_units::quantity&lt; R, Rep &gt; | [**min**](#function-min) (const mp\_units::quantity&lt; R, Rep &gt; & q1, const mp\_units::quantity&lt; R, Rep &gt; & q2) noexcept<br>_Returns the minimum of two quantities of the same unit._  |
+|  constexpr bool | [**nearly\_equal**](#function-nearly_equal) (const mp\_units::quantity&lt; R1, Rep &gt; & x, const mp\_units::quantity&lt; R2, Rep &gt; & y, const mp\_units::quantity&lt; mp\_units::one, Rep &gt; & relTol=0.0 \*mp\_units::one, const mp\_units::quantity&lt; mp\_units::one, Rep &gt; & absTol=0.0 \*mp\_units::one) noexcept<br>_Check if two quantities of the same unit are nearly equal within a relative and absolute tolerance._  |
+|  mp\_units::quantity&lt; mp\_units::one, Rep1 &gt; | [**pow**](#function-pow) (const mp\_units::quantity&lt; R1, Rep1 &gt; & q, const mp\_units::quantity&lt; R2, Rep2 &gt; & n) noexcept<br>_Returns the result of raising a dimensionless quantity to the power of another dimensionless quantity._  |
+|  mp\_units::QuantityOf&lt; mp\_units::dimensionless &gt; auto | [**sinc**](#function-sinc) (const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Computes the sinc function for a given angle in radians._  |
+|  mp\_units::QuantityOf&lt; mp\_units::dimensionless &gt; auto | [**sinh**](#function-sinh) (const mp\_units::quantity&lt; R, Rep &gt; & q) noexcept<br>_Computes the hyperbolic sine of a given angle in radians._  |
 |  double | [**transform\_from\_chebyshev\_range**](#function-transform_from_chebyshev_range) (const double & x, const double & lb, const double & ub) <br>_Transform variable from the Chebyshev range of [-1, 1] to the range [lb, ub]._  |
 |  double | [**transform\_to\_chebyshev\_range**](#function-transform_to_chebyshev_range) (const double & x, const double & lb, const double & ub) <br>_Transform variable from the range [lb, ub] to the Chebyshev range of [-1, 1]._  |
 
@@ -105,7 +105,9 @@
 
 ### function assoc\_legendre 
 
+_Computes the associated Legendre function of the first kind._ 
 ```C++
+template<mp_units::ReferenceOf< mp_units::dimensionless > auto R, typename Rep>
 constexpr mp_units::quantity< mp_units::one, Rep > astrea::math::assoc_legendre (
     const unsigned int & n,
     const unsigned int & m,
@@ -115,6 +117,37 @@ constexpr mp_units::quantity< mp_units::one, Rep > astrea::math::assoc_legendre 
 
 
 
+This function computes the associated Legendre function P\_n^m(x) for given n, m, and x. It is defined as P\_n^m(x) = (1/2^n n!) (d/dx)^n ((1 - x^2)^n) P\_m^n(x).
+
+
+
+
+**Template parameters:**
+
+
+* `R` The reference type for the input value (e.g., dimensionless). 
+* `Rep` The representation type (e.g., double, float). 
+
+
+
+**Parameters:**
+
+
+* `n` The degree of the polynomial. 
+* `m` The order of the polynomial. 
+* `q` The input value. 
+
+
+
+**Returns:**
+
+The value of the associated Legendre function at the given input. 
+
+
+
+
+
+        
 
 <hr>
 
@@ -137,11 +170,14 @@ T astrea::math::atan3 (
 
 
 
-### function cosh 
+### function clamp 
 
 ```C++
-inline mp_units::QuantityOf< mp_units::dimensionless > auto astrea::math::cosh (
-    const mp_units::quantity< R, Rep > & q
+template<auto R, typename Rep>
+inline mp_units::quantity< R, Rep > astrea::math::clamp (
+    const mp_units::quantity< R, Rep > & q,
+    const mp_units::quantity< R, Rep > & low,
+    const mp_units::quantity< R, Rep > & high
 ) noexcept
 ```
 
@@ -152,9 +188,54 @@ inline mp_units::QuantityOf< mp_units::dimensionless > auto astrea::math::cosh (
 
 
 
+### function cosh 
+
+_Computes the hyperbolic cosine of a given angle in radians._ 
+```C++
+template<mp_units::ReferenceOf< mp_units::angular::angle > auto R, typename Rep>
+inline mp_units::QuantityOf< mp_units::dimensionless > auto astrea::math::cosh (
+    const mp_units::quantity< R, Rep > & q
+) noexcept
+```
+
+
+
+
+
+**Template parameters:**
+
+
+* `R` The reference type for the angle (e.g., radian). 
+* `Rep` The representation type (e.g., double, float). 
+
+
+
+**Parameters:**
+
+
+* `q` The angle in radians. 
+
+
+
+**Returns:**
+
+The value of the hyperbolic cosine at the given angle. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function cyl\_bessel\_j 
 
+_Computes the Bessel function of the first kind of order zero._ 
 ```C++
+template<mp_units::ReferenceOf< mp_units::dimensionless > auto R, typename Rep>
 constexpr mp_units::quantity< mp_units::one, Rep > astrea::math::cyl_bessel_j (
     const Rep & nu,
     const mp_units::quantity< R, Rep > & q
@@ -163,6 +244,35 @@ constexpr mp_units::quantity< mp_units::one, Rep > astrea::math::cyl_bessel_j (
 
 
 
+This function computes the Bessel function of the first kind of order zero for a given value. It is defined as J\_0(x) = (1/π) ∫\_0^π cos(x sin(θ)) dθ.
+
+
+
+
+**Template parameters:**
+
+
+* `R` The reference type for the input value (e.g., dimensionless). 
+* `Rep` The representation type (e.g., double, float). 
+
+
+
+**Parameters:**
+
+
+* `q` The input value. 
+
+
+
+**Returns:**
+
+The value of the Bessel function of the first kind of order zero at the given input. 
+
+
+
+
+
+        
 
 <hr>
 
@@ -528,7 +638,9 @@ Y The interpolated y value at sx.
 
 ### function max 
 
+_Returns the maximum of two quantities of the same unit._ 
 ```C++
+template<auto R, typename Rep>
 inline mp_units::quantity< R, Rep > astrea::math::max (
     const mp_units::quantity< R, Rep > & q1,
     const mp_units::quantity< R, Rep > & q2
@@ -538,13 +650,42 @@ inline mp_units::quantity< R, Rep > astrea::math::max (
 
 
 
+
+**Template parameters:**
+
+
+* `R` The unit type (e.g., distance, time). 
+* `Rep` The representation type (e.g., double). 
+
+
+
+**Parameters:**
+
+
+* `q1` First quantity to compare. 
+* `q2` Second quantity to compare. 
+
+
+
+**Returns:**
+
+The maximum of the two quantities. 
+
+
+
+
+
+        
+
 <hr>
 
 
 
 ### function min 
 
+_Returns the minimum of two quantities of the same unit._ 
 ```C++
+template<auto R, typename Rep>
 inline mp_units::quantity< R, Rep > astrea::math::min (
     const mp_units::quantity< R, Rep > & q1,
     const mp_units::quantity< R, Rep > & q2
@@ -554,13 +695,40 @@ inline mp_units::quantity< R, Rep > astrea::math::min (
 
 
 
+
+**Template parameters:**
+
+
+* `R` The unit type (e.g., distance, time). 
+* `Rep` The representation type (e.g., double). 
+
+
+
+**Parameters:**
+
+
+* `q1` First quantity to compare. 
+* `q2` Second quantity to compare. 
+
+
+
+**Returns:**
+
+The minimum of the two quantities. 
+
+
+
+
+
+        
+
 <hr>
 
 
 
 ### function nearly\_equal 
 
-_Check if two quantities of the same unit are nearly equal within a relative tolerance._ 
+_Check if two quantities of the same unit are nearly equal within a relative and absolute tolerance._ 
 ```C++
 template<auto R1, auto R2, typename Rep>
 constexpr bool astrea::math::nearly_equal (
@@ -588,7 +756,8 @@ constexpr bool astrea::math::nearly_equal (
 
 * `x` First quantity to compare. 
 * `y` Second quantity to compare. 
-* `relTol` Relative tolerance for comparison. 
+* `relTol` Relative tolerance for comparison. Default is 0, which means relative differences are not considered. 
+* `absTol` Absolute tolerance for comparison. Default is 0, which means absolute differences are not considered. 
 
 
 
@@ -615,42 +784,59 @@ false if they are not nearly equal.
 
 ### function pow 
 
+_Returns the result of raising a dimensionless quantity to the power of another dimensionless quantity._ 
 ```C++
-inline mp_units::quantity< mp_units::one, Rep > astrea::math::pow (
-    const mp_units::quantity< R, Rep > & q,
-    const mp_units::quantity< R, Rep > & n
+template<mp_units::ReferenceOf< mp_units::dimensionless > auto R1, mp_units::ReferenceOf< mp_units::dimensionless > auto R2, typename Rep1, typename Rep2>
+inline mp_units::quantity< mp_units::one, Rep1 > astrea::math::pow (
+    const mp_units::quantity< R1, Rep1 > & q,
+    const mp_units::quantity< R2, Rep2 > & n
 ) noexcept
 ```
 
 
 
 
+
+**Template parameters:**
+
+
+* `R` The unit type (must be dimensionless). 
+* `Rep` The representation type (e.g., double). 
+
+
+
+**Parameters:**
+
+
+* `q` The quantity to be raised to a power. 
+* `n` The exponent quantity. 
+
+
+
+**Returns:**
+
+The result of raising q to the power of n, with the same unit as q (which is dimensionless). 
+
+
+
+
+
+        
+
 <hr>
 
 
 
-### function requires 
+### function sinc 
 
 _Computes the sinc function for a given angle in radians._ 
 ```C++
-template<auto R, typename Rep>
-requires astrea::math::requires (
-    Rep v
-) 
+template<mp_units::ReferenceOf< mp_units::angular::angle > auto R, typename Rep>
+inline mp_units::QuantityOf< mp_units::dimensionless > auto astrea::math::sinc (
+    const mp_units::quantity< R, Rep > & q
+) noexcept
 ```
 
-
-
-Computes the associated Legendre function of the first kind.
-
-
-Computes the Bessel function of the first kind of order zero.
-
-
-Computes the hyperbolic sine of a given angle in radians.
-
-
-Computes the hyperbolic cosine of a given angle in radians.
 
 
 The sinc function is defined as sin(x)/x, where x is in radians. This function handles both integral and floating-point types.
@@ -675,103 +861,7 @@ The sinc function is defined as sin(x)/x, where x is in radians. This function h
 
 **Returns:**
 
-The value of the sinc function at the given angle.
-
-
-
-
-**Template parameters:**
-
-
-* `R` The reference type for the angle (e.g., radian). 
-* `Rep` The representation type (e.g., double, float). 
-
-
-
-**Parameters:**
-
-
-* `q` The angle in radians. 
-
-
-
-**Returns:**
-
-The value of the hyperbolic cosine at the given angle.
-
-
-
-
-**Template parameters:**
-
-
-* `R` The reference type for the angle (e.g., radian). 
-* `Rep` The representation type (e.g., double, float). 
-
-
-
-**Parameters:**
-
-
-* `q` The angle in radians. 
-
-
-
-**Returns:**
-
-The value of the hyperbolic sine at the given angle.
-
-
-This function computes the Bessel function of the first kind of order zero for a given value. It is defined as J\_0(x) = (1/π) ∫\_0^π cos(x sin(θ)) dθ.
-
-
-
-
-**Template parameters:**
-
-
-* `R` The reference type for the input value (e.g., dimensionless). 
-* `Rep` The representation type (e.g., double, float). 
-
-
-
-**Parameters:**
-
-
-* `q` The input value. 
-
-
-
-**Returns:**
-
-The value of the Bessel function of the first kind of order zero at the given input.
-
-
-This function computes the associated Legendre function P\_n^m(x) for given n, m, and x. It is defined as P\_n^m(x) = (1/2^n n!) (d/dx)^n ((1 - x^2)^n) P\_m^n(x).
-
-
-
-
-**Template parameters:**
-
-
-* `R` The reference type for the input value (e.g., dimensionless). 
-* `Rep` The representation type (e.g., double, float). 
-
-
-
-**Parameters:**
-
-
-* `n` The degree of the polynomial. 
-* `m` The order of the polynomial. 
-* `q` The input value. 
-
-
-
-**Returns:**
-
-The value of the associated Legendre function at the given input. 
+The value of the sinc function at the given angle. 
 
 
 
@@ -783,24 +873,11 @@ The value of the associated Legendre function at the given input.
 
 
 
-### function sinc 
-
-```C++
-inline mp_units::QuantityOf< mp_units::dimensionless > auto astrea::math::sinc (
-    const mp_units::quantity< R, Rep > & q
-) noexcept
-```
-
-
-
-
-<hr>
-
-
-
 ### function sinh 
 
+_Computes the hyperbolic sine of a given angle in radians._ 
 ```C++
+template<mp_units::ReferenceOf< mp_units::angular::angle > auto R, typename Rep>
 inline mp_units::QuantityOf< mp_units::dimensionless > auto astrea::math::sinh (
     const mp_units::quantity< R, Rep > & q
 ) noexcept
@@ -808,6 +885,32 @@ inline mp_units::QuantityOf< mp_units::dimensionless > auto astrea::math::sinh (
 
 
 
+
+
+**Template parameters:**
+
+
+* `R` The reference type for the angle (e.g., radian). 
+* `Rep` The representation type (e.g., double, float). 
+
+
+
+**Parameters:**
+
+
+* `q` The angle in radians. 
+
+
+
+**Returns:**
+
+The value of the hyperbolic sine at the given angle. 
+
+
+
+
+
+        
 
 <hr>
 

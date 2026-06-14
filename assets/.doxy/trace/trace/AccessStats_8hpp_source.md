@@ -14,7 +14,7 @@
 #include <string>
 #include <vector>
 
-#include <gtl/btree.hpp>
+#include <gtl/phmap.hpp>
 
 #include <units/units.hpp>
 
@@ -54,12 +54,12 @@ struct AccessStats {
     auto& get_hyper_statistics(const RiseSetMetric& metric) { return _hyperStats[metric]; }
 
   private:
-    gtl::btree_map<std::size_t, RiseSetArray> _risesets;         
-    gtl::btree_map<std::size_t, RiseSetStats> _stats;            
-    gtl::btree_map<RiseSetMetric, HyperStats<Time>> _hyperStats; 
+    gtl::flat_hash_map<std::size_t, RiseSetArray> _risesets;         
+    gtl::flat_hash_map<std::size_t, RiseSetStats> _stats;            
+    gtl::flat_hash_map<RiseSetMetric, HyperStats<Time>> _hyperStats; 
 
-    gtl::btree_map<std::size_t, gtl::btree_map<AccessMetric, Time>> _accessMetrics; 
-    gtl::btree_map<AccessMetric, Stats<Time>> _accessStats;                         
+    gtl::flat_hash_map<std::size_t, gtl::flat_hash_map<AccessMetric, Time>> _accessMetrics; 
+    gtl::flat_hash_map<AccessMetric, Stats<Time>> _accessStats;                             
 };
 
 } // namespace trace

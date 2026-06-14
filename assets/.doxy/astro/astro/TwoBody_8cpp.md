@@ -14,10 +14,11 @@
 * `#include <mp-units/math.h>`
 * `#include <mp-units/systems/angular/math.h>`
 * `#include <mp-units/systems/si/math.h>`
-* `#include <astro/frames/CartesianVector.hpp>`
-* `#include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>`
+* `#include <astro/frames/framework/CartesianVector.hpp>`
+* `#include <astro/platforms/Vehicle.hpp>`
+* `#include <astro/propagation/equations_of_motion/StateTransitionMatrix.hpp>`
 * `#include <astro/state/State.hpp>`
-* `#include <astro/state/orbital_elements/instances/Cartesian.hpp>`
+* `#include <astro/state/orbital_elements/Cartesian.hpp>`
 
 
 

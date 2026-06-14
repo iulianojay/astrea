@@ -13,10 +13,12 @@
 
 #include <memory>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/FrameReference.hpp>
-#include <astro/frames/dynamic_frames.hpp>
-#include <astro/frames/frames.hpp>
+#include <utilities/IdProvider.hpp>
+
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/PayloadPlatform.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -47,9 +49,9 @@ class PayloadParameters {
     virtual ~PayloadParameters() = default;
 
   public:
-    astro::RadiusVector<astro::frames::dynamic::ric> get_boresight() const { return _boresight; }
+    const astro::RadiusVector<astro::frames::dynamic::ric>& get_boresight() const { return _boresight; }
 
-    astro::RadiusVector<astro::frames::dynamic::ric> get_attachment_point() const { return _attachmentPoint; }
+    const astro::RadiusVector<astro::frames::dynamic::ric>& get_attachment_point() const { return _attachmentPoint; }
 
     void set_boresight(const astro::RadiusVector<astro::frames::dynamic::ric>& boresight) { _boresight = boresight; }
 
@@ -66,7 +68,7 @@ class PayloadParameters {
 };
 
 template <class Payload_T, class PayloadParameters_T>
-class Payload { // TODO: add -> : public FrameReference
+class Payload {
 
     friend PayloadPlatform<Payload_T>;
 
@@ -76,7 +78,7 @@ class Payload { // TODO: add -> : public FrameReference
     Payload(const Parent_T& parent, const PayloadParameters_T& parameters) :
         _parent(&parent),
         _parameters(parameters),
-        _id(generate_id())
+        _id(utilities::IdProvider::get_next_id<"Payload">())
     {
     }
 
@@ -85,11 +87,35 @@ class Payload { // TODO: add -> : public FrameReference
   public:
     virtual std::size_t get_id() const = 0;
 
-    std::size_t generate_id() const { return static_cast<const Payload_T*>(this)->generate_id(); }
-
     const PayloadPlatform<Payload_T>* const get_parent() const { return _parent; }
 
-    PayloadParameters_T get_parameters() const { return _parameters; }
+    const PayloadParameters_T& get_parameters() const { return _parameters; }
+
+    PayloadParameters_T& get_parameters() { return _parameters; }
+
+    std::string get_name() const { return "Payload"; }
+
+    CartesianVector<Distance, frames::primary> get_position(const Date& date) const
+    {
+        // Assumes the payload is fixed
+        static const auto parentToPayload = get_parameters().get_attachment_point();
+
+        // Get current RIC
+        const auto parentPosition = get_parent()->get_position(date);
+        const auto parentVelocity = get_parent()->get_velocity(date);
+        const auto ricFrame       = frames::dynamic::ric.instantaneous(parentPosition, parentVelocity);
+
+        // Rotate to inertial
+        const auto parentToPayloadInInertial = ricFrame.rotate_out_of_this_frame(parentToPayload, date);
+
+        return parentPosition + parentToPayloadInInertial;
+    }
+
+    CartesianVector<Velocity, frames::primary> get_velocity(const Date& date) const
+    {
+        // Assumes the payload is fixed
+        return get_parent()->get_velocity(date);
+    }
 
   protected:
     const PayloadPlatform<Payload_T>* _parent; 

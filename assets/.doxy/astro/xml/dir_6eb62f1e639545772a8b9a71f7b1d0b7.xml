@@ -1,9 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_6eb62f1e639545772a8b9a71f7b1d0b7" kind="dir">
     <compoundname>astrea/astro/astro/state/orbital_elements</compoundname>
-    <innerdir refid="dir_2296e922a578ce2ef4a64c83384e553c">astrea/astro/astro/state/orbital_elements/instances</innerdir>
-    <innerfile refid="orbital__elements_8hpp">orbital_elements.hpp</innerfile>
+    <innerfile refid="Cartesian_8hpp">Cartesian.hpp</innerfile>
+    <innerfile refid="Cartesian_8ipp">Cartesian.ipp</innerfile>
+    <innerfile refid="Equinoctial_8hpp">Equinoctial.hpp</innerfile>
+    <innerfile refid="Equinoctial_8ipp">Equinoctial.ipp</innerfile>
+    <innerfile refid="Keplerian_8hpp">Keplerian.hpp</innerfile>
+    <innerfile refid="Keplerian_8ipp">Keplerian.ipp</innerfile>
     <innerfile refid="OrbitalElements_8cpp">OrbitalElements.cpp</innerfile>
     <innerfile refid="OrbitalElements_8hpp">OrbitalElements.hpp</innerfile>
     <briefdescription>

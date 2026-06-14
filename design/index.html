@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -178,6 +178,53 @@ You're not viewing the latest version.
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
     
     
       <div class="md-header__source">
@@ -436,8 +483,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
     
     
     
@@ -488,34 +533,6 @@ You're not viewing the latest version.
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../getting_started/about/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    About Astrea
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -697,10 +714,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
-        
-      
     
     
     
@@ -779,34 +792,6 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../examples/fundamentals/strongly_typed_frames/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Strongly Typed Frames
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../examples/fundamentals/time_systems/" class="md-nav__link">
         
   
@@ -862,34 +847,6 @@ You're not viewing the latest version.
   
   
   
-    <li class="md-nav__item">
-      <a href="../examples/fundamentals/astrodynamic_systems/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Astrodynamic Systems
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -916,10 +873,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
             
   
   
@@ -937,8 +894,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1095,7 +1052,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../examples/fundamentals/vehicles.md" class="md-nav__link">
+      <a href="../examples/fundamentals/propagation/vehicles/" class="md-nav__link">
         
   
   
@@ -1150,10 +1107,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
             
   
   
@@ -1171,8 +1128,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_7">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1189,14 +1146,14 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../examples/fundamentals/frames/strongly_typed_frames/" class="md-nav__link">
+      <a href="../examples/fundamentals/frames/introduction/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Strongly Typed Frames
+    Introduction to Strongly Typed Frames
   
 
     
@@ -6301,13 +6258,6 @@ You're not viewing the latest version.
 - <strong>Strong typing for coordinate frames</strong> to prevent reference frame confusion
 - <strong>Immutable data structures</strong> where possible to prevent accidental modification
 - <strong>Explicit conversions</strong> requiring user intent for potentially lossy operations</p>
-<h3 id="performance-without-compromise">Performance Without Compromise<a class="headerlink" href="#performance-without-compromise" title="Permanent link">&para;</a></h3>
-<p>While safety is the top priority, Astrea is designed to achieve zero-overhead abstractions that compile to performance equivalent to hand-optimized C code.</p>
-<p>Performance strategies:
-- <strong>Compile-time evaluation</strong> of unit conversions and coordinate transformations where possible
-- <strong>Template metaprogramming</strong> to move calculations from runtime to compile-time
-- <strong>Memory-efficient data structures</strong> optimized for cache performance
-- <strong>SIMD-friendly algorithms</strong> that can leverage modern CPU vector instructions</p>
 <h3 id="domain-driven-design">Domain-Driven Design<a class="headerlink" href="#domain-driven-design" title="Permanent link">&para;</a></h3>
 <p>Astrea's APIs and abstractions directly reflect the conceptual model that aerospace engineers use when thinking about orbital mechanics and mission analysis.</p>
 <p>Domain alignment:
@@ -6316,70 +6266,26 @@ You're not viewing the latest version.
 - <strong>Intuitive workflows</strong> that follow the logical sequence of aerospace analysis tasks
 - <strong>Professional terminology</strong> using standard aerospace engineering vocabulary</p>
 <h2 id="architectural-overview">Architectural Overview<a class="headerlink" href="#architectural-overview" title="Permanent link">&para;</a></h2>
-<p>Astrea follows a layered architecture where each layer builds upon lower-level foundations while maintaining clear separation of concerns:</p>
-<pre class="mermaid"><code>flowchart TB
-    subgraph "Application Layer"
-        mission["Mission Analysis"]
-        tools["Analysis Tools"]
-        viz["Visualization"]
-    end
-
-    subgraph "Astrodynamics Core (astro/)"
-        frames["Coordinate Frames"]
-        propagation["Propagation"]
-        elements["Orbital Elements"]
-        time["Time Systems"]
-        systems["Celestial Bodies"]
-    end
-
-    subgraph "Specialized Libraries"
-        trace["Access Analysis (trace/)"]
-        snapshot["Data Management (snapshot/)"]
-    end
-
-    subgraph "Foundation Layer"
-        math["Mathematics (math/)"]
-        units["Unit System (units/)"]
-        utils["Utilities"]
-    end
-
-    subgraph "External Dependencies"
-        mpunits["mp-units"]
-        spice["SPICE"]
-        sqlite["SQLite"]
-        json["JSON"]
-    end
-
-    mission --- frames
-    mission --- propagation
-    tools --- trace
-    tools --- snapshot
-
-    frames --- math
-    propagation --- math
-    trace --- frames
-    trace --- propagation
-
-    math --- units
-    units --- mpunits
-    systems --- spice
-    snapshot --- sqlite</code></pre>
+<p>Astrea follows a layered architecture where each layer builds upon lower-level foundations while maintaining clear separation of concerns. See the <a href="../getting_started/project_structure/">Project Structure</a> and <a href="architecture/">Architecture</a> for details on the organization of source code and modules.</p>
 <h2 id="design-principles">Design Principles<a class="headerlink" href="#design-principles" title="Permanent link">&para;</a></h2>
 <h3 id="1-explicit-over-implicit">1. Explicit Over Implicit<a class="headerlink" href="#1-explicit-over-implicit" title="Permanent link">&para;</a></h3>
 <p>Astrea favors explicit operations that make user intent clear over convenient but potentially ambiguous shortcuts.</p>
-<p><strong>Example</strong>: Coordinate frame transformations require explicit specification of source and target frames rather than assuming a "default" frame.</p>
+<p><strong>Example</strong>: Coordinate frame transformations require explicit specification of source and target frames rather than assuming a "default" frame.
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">transformed_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transform</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">from_frame</span><span class="p">,</span><span class="w"> </span><span class="n">to_frame</span><span class="p">);</span><span class="w">             </span><span class="c1">// implicit, unclear</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">state2</span><span class="o">&lt;</span><span class="n">to_frame</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transform</span><span class="o">&lt;</span><span class="n">from_frame</span><span class="p">,</span><span class="w"> </span><span class="n">to_frame</span><span class="o">&gt;</span><span class="p">(</span><span class="n">state1</span><span class="o">&lt;</span><span class="n">from_frame</span><span class="o">&gt;</span><span class="p">);</span><span class="w"> </span><span class="c1">// explicit, clear</span>
+</span></code></pre></div></p>
 <h3 id="2-fail-fast-and-loud">2. Fail Fast and Loud<a class="headerlink" href="#2-fail-fast-and-loud" title="Permanent link">&para;</a></h3>
 <p>When errors occur, they should be detected as early as possible (preferably at compile-time) and provide clear, actionable diagnostic information.</p>
-<p><strong>Example</strong>: Unit mismatches in calculations are caught at compile-time with detailed error messages indicating the expected and actual units.</p>
-<h3 id="3-composition-over-inheritance">3. Composition Over Inheritance<a class="headerlink" href="#3-composition-over-inheritance" title="Permanent link">&para;</a></h3>
-<p>Astrea uses composition and template-based design patterns rather than deep inheritance hierarchies to achieve flexibility and performance.</p>
-<p><strong>Example</strong>: Different propagation methods are composed from separate force models, integrators, and event handlers rather than derived from a common base class.</p>
+<p><strong>Example</strong>: Unit mismatches in calculations are caught at compile-time with detailed error messages indicating the expected and actual units.
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">velocityMpS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">7.8</span><span class="p">;</span><span class="w">            </span><span class="c1">// implicit, error prone, harder to read</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">quantity</span><span class="o">&lt;</span><span class="n">m</span><span class="o">/</span><span class="n">s</span><span class="o">&gt;</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">7.8</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="o">/</span><span class="n">s</span><span class="p">;</span><span class="w"> </span><span class="c1">// explicit, safe, self-documenting</span>
+</span></code></pre></div></p>
+<h3 id="3-composition-and-type-erasure-over-inheritance">3. Composition and Type-Erasure Over Inheritance<a class="headerlink" href="#3-composition-and-type-erasure-over-inheritance" title="Permanent link">&para;</a></h3>
+<p>Astrea uses composition and template-based design patterns rather than deep inheritance hierarchies to achieve flexibility and extensibility.</p>
+<p><strong>Example</strong>: Propagation, event detection, and step watchers, all common classes for users to specialize, are all designed around type-erased containers instead of traditional inheritance.</p>
 <h3 id="4-immutability-by-default">4. Immutability by Default<a class="headerlink" href="#4-immutability-by-default" title="Permanent link">&para;</a></h3>
 <p>Data structures are immutable unless mutation is explicitly necessary, reducing the chance of accidental modification and enabling optimization.</p>
-<p><strong>Example</strong>: Orbital state objects return new instances rather than modifying themselves during propagation.</p>
-<h3 id="5-resource-acquisition-is-initialization-raii">5. Resource Acquisition Is Initialization (RAII)<a class="headerlink" href="#5-resource-acquisition-is-initialization-raii" title="Permanent link">&para;</a></h3>
-<p>All resources (memory, files, database connections) are managed through RAII to ensure proper cleanup and exception safety.</p>
-<p><strong>Example</strong>: Database connections and SPICE kernels are automatically cleaned up when objects go out of scope.</p>
+<p><strong>Example</strong>: Functions are set to const by default, and all values are passed-by-reference unless explicitly required. </p>
 <h2 id="detailed-design-documents">Detailed Design Documents<a class="headerlink" href="#detailed-design-documents" title="Permanent link">&para;</a></h2>
 <p>The following sections provide in-depth coverage of specific design aspects:</p>
 <h3 id="architecture"><a href="architecture/">Architecture</a><a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h3>

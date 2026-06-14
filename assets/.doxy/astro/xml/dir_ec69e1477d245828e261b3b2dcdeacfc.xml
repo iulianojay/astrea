@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_ec69e1477d245828e261b3b2dcdeacfc" kind="dir">
+    <compoundname>astrea/astro/astro/systems/celestial_bodies/Neptune</compoundname>
+    <innerfile refid="Neptune_8hpp">Neptune.hpp</innerfile>
+    <innerfile refid="Triton_8hpp">Triton.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/celestial_bodies/Neptune/"/>
+  </compounddef>
+</doxygen>

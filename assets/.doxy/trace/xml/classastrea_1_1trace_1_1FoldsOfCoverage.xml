@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="classastrea_1_1trace_1_1FoldsOfCoverage" kind="class" language="C++" prot="public">
     <compoundname>astrea::trace::FoldsOfCoverage</compoundname>
     <includes refid="FoldsOfCoverage_8hpp" local="no">FoldsOfCoverage.hpp</includes>
-      <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="classastrea_1_1trace_1_1FoldsOfCoverage_1a5020155565267ddd76f33846711d31fb" prot="public" static="no">
-        <type>gtl::btree_map&lt; std::size_t, std::vector&lt; double &gt; &gt;::<ref refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a5020155565267ddd76f33846711d31fb" kindref="member">iterator</ref></type>
-        <definition>using astrea::trace::FoldsOfCoverage::iterator =  gtl::btree_map&lt;std::size_t, std::vector&lt;double&gt; &gt;::iterator</definition>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classastrea_1_1trace_1_1FoldsOfCoverage_1a285ab2f128bfe074c1a37fb8968e633c" prot="public" static="no">
+        <type>gtl::flat_hash_map&lt; std::size_t, std::vector&lt; double &gt; &gt;::iterator</type>
+        <definition>using astrea::trace::FoldsOfCoverage::iterator =  gtl::flat_hash_map&lt;std::size_t, std::vector&lt;double&gt; &gt;::iterator</definition>
         <argsstring></argsstring>
         <name>iterator</name>
+        <qualifiedname>astrea::trace::FoldsOfCoverage::iterator</qualifiedname>
         <briefdescription>
 <para>Iterator type for the <ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref>. </para>
         </briefdescription>
@@ -18,11 +19,12 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="58" column="5" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" bodystart="58" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classastrea_1_1trace_1_1FoldsOfCoverage_1a89385b2cd29a051f555efe278ea2ef78" prot="public" static="no">
-        <type>gtl::btree_map&lt; std::size_t, std::vector&lt; double &gt; &gt;::<ref refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a89385b2cd29a051f555efe278ea2ef78" kindref="member">const_iterator</ref></type>
-        <definition>using astrea::trace::FoldsOfCoverage::const_iterator =  gtl::btree_map&lt;std::size_t, std::vector&lt;double&gt; &gt;::const_iterator</definition>
+      <memberdef kind="typedef" id="classastrea_1_1trace_1_1FoldsOfCoverage_1af0ca65225319eb7c6b9827c69c737c7b" prot="public" static="no">
+        <type>gtl::flat_hash_map&lt; std::size_t, std::vector&lt; double &gt; &gt;::const_iterator</type>
+        <definition>using astrea::trace::FoldsOfCoverage::const_iterator =  gtl::flat_hash_map&lt;std::size_t, std::vector&lt;double&gt; &gt;::const_iterator</definition>
         <argsstring></argsstring>
         <name>const_iterator</name>
+        <qualifiedname>astrea::trace::FoldsOfCoverage::const_iterator</qualifiedname>
         <briefdescription>
 <para>Constant iterator type for the <ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref>. </para>
         </briefdescription>
@@ -32,13 +34,14 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="63" column="5" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" bodystart="63" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classastrea_1_1trace_1_1FoldsOfCoverage_1ae7cb76e9cbba59e46a6c08dd9329b053" prot="private" static="no" mutable="no">
-        <type>gtl::btree_map&lt; std::size_t, std::vector&lt; double &gt; &gt;</type>
-        <definition>gtl::btree_map&lt;std::size_t, std::vector&lt;double&gt; &gt; astrea::trace::FoldsOfCoverage::_folds</definition>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1FoldsOfCoverage_1a167ecab77a549778565024623685c802" prot="private" static="no" mutable="no">
+        <type>gtl::flat_hash_map&lt; std::size_t, std::vector&lt; double &gt; &gt;</type>
+        <definition>gtl::flat_hash_map&lt;std::size_t, std::vector&lt;double&gt; &gt; astrea::trace::FoldsOfCoverage::_folds</definition>
         <argsstring></argsstring>
         <name>_folds</name>
+        <qualifiedname>astrea::trace::FoldsOfCoverage::_folds</qualifiedname>
         <briefdescription>
 <para>Map of receiver ID to vector of folds of coverage over time. </para>
         </briefdescription>
@@ -46,13 +49,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="116" column="20" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" bodystart="116" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="116" column="24" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" bodystart="116" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classastrea_1_1trace_1_1FoldsOfCoverage_1ad0da4f13b2dc9e586d907f602b3049bc" prot="private" static="no" mutable="no">
-        <type>gtl::btree_map&lt; std::size_t, <ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats</ref>&lt; double &gt; &gt;</type>
-        <definition>gtl::btree_map&lt;std::size_t, Stats&lt;double&gt; &gt; astrea::trace::FoldsOfCoverage::_stats</definition>
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1FoldsOfCoverage_1a534e7eb286e4d95fb2a044c57d4e0a33" prot="private" static="no" mutable="no">
+        <type>gtl::flat_hash_map&lt; std::size_t, <ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats</ref>&lt; double &gt; &gt;</type>
+        <definition>gtl::flat_hash_map&lt;std::size_t, Stats&lt;double&gt; &gt; astrea::trace::FoldsOfCoverage::_stats</definition>
         <argsstring></argsstring>
         <name>_stats</name>
+        <qualifiedname>astrea::trace::FoldsOfCoverage::_stats</qualifiedname>
         <briefdescription>
 <para>Map of receiver ID to statistics for the folds of coverage. </para>
         </briefdescription>
@@ -60,15 +64,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="117" column="20" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" bodystart="117" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="117" column="24" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" bodystart="117" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1trace_1_1FoldsOfCoverage_1a0e43c94d84b342bb7106cea5cc0fc246" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::FoldsOfCoverage::FoldsOfCoverage</definition>
         <argsstring>()=default</argsstring>
         <name>FoldsOfCoverage</name>
+        <qualifiedname>astrea::trace::FoldsOfCoverage::FoldsOfCoverage</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref>. </para>
         </briefdescription>
@@ -83,6 +88,7 @@
         <definition>astrea::trace::FoldsOfCoverage::FoldsOfCoverage</definition>
         <argsstring>(const AccessArray &amp;access, const Time &amp;resolution, const Time &amp;end)</argsstring>
         <name>FoldsOfCoverage</name>
+        <qualifiedname>astrea::trace::FoldsOfCoverage::FoldsOfCoverage</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
           <declname>access</declname>
@@ -131,10 +137,11 @@
         <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="53" column="5" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.cpp" bodystart="23" bodyend="57"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1FoldsOfCoverage_1ae6f5f8f4e2aa3164b6d27030dd0a823d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a5020155565267ddd76f33846711d31fb" kindref="member">iterator</ref></type>
+        <type><ref refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a285ab2f128bfe074c1a37fb8968e633c" kindref="member">iterator</ref></type>
         <definition>iterator astrea::trace::FoldsOfCoverage::begin</definition>
         <argsstring>()</argsstring>
         <name>begin</name>
+        <qualifiedname>astrea::trace::FoldsOfCoverage::begin</qualifiedname>
         <briefdescription>
 <para>Returns an iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref>. </para>
         </briefdescription>
@@ -148,10 +155,11 @@
         <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="70" column="14" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" bodystart="70" bodyend="70"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1FoldsOfCoverage_1ae6fba7bcc17f9961016758c177561398" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a5020155565267ddd76f33846711d31fb" kindref="member">iterator</ref></type>
+        <type><ref refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a285ab2f128bfe074c1a37fb8968e633c" kindref="member">iterator</ref></type>
         <definition>iterator astrea::trace::FoldsOfCoverage::end</definition>
         <argsstring>()</argsstring>
         <name>end</name>
+        <qualifiedname>astrea::trace::FoldsOfCoverage::end</qualifiedname>
         <briefdescription>
 <para>Returns an iterator to the end of the <ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref>. </para>
         </briefdescription>
@@ -165,10 +173,11 @@
         <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="77" column="14" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" bodystart="77" bodyend="77"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1FoldsOfCoverage_1aa60d1d1416c581738db9614d75e29563" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a89385b2cd29a051f555efe278ea2ef78" kindref="member">const_iterator</ref></type>
+        <type><ref refid="classastrea_1_1trace_1_1FoldsOfCoverage_1af0ca65225319eb7c6b9827c69c737c7b" kindref="member">const_iterator</ref></type>
         <definition>const_iterator astrea::trace::FoldsOfCoverage::begin</definition>
         <argsstring>() const</argsstring>
         <name>begin</name>
+        <qualifiedname>astrea::trace::FoldsOfCoverage::begin</qualifiedname>
         <briefdescription>
 <para>Returns a constant iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref>. </para>
         </briefdescription>
@@ -182,10 +191,11 @@
         <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="84" column="20" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" bodystart="84" bodyend="84"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1FoldsOfCoverage_1ad0c633f447d3b1e837d8bb5c7b480752" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a89385b2cd29a051f555efe278ea2ef78" kindref="member">const_iterator</ref></type>
+        <type><ref refid="classastrea_1_1trace_1_1FoldsOfCoverage_1af0ca65225319eb7c6b9827c69c737c7b" kindref="member">const_iterator</ref></type>
         <definition>const_iterator astrea::trace::FoldsOfCoverage::end</definition>
         <argsstring>() const</argsstring>
         <name>end</name>
+        <qualifiedname>astrea::trace::FoldsOfCoverage::end</qualifiedname>
         <briefdescription>
 <para>Returns a constant iterator to the end of the <ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref>. </para>
         </briefdescription>
@@ -199,10 +209,11 @@
         <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="91" column="20" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" bodystart="91" bodyend="91"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1FoldsOfCoverage_1a500d8a62e18108f15c0d80d19511238d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a89385b2cd29a051f555efe278ea2ef78" kindref="member">const_iterator</ref></type>
+        <type><ref refid="classastrea_1_1trace_1_1FoldsOfCoverage_1af0ca65225319eb7c6b9827c69c737c7b" kindref="member">const_iterator</ref></type>
         <definition>const_iterator astrea::trace::FoldsOfCoverage::cbegin</definition>
         <argsstring>() const</argsstring>
         <name>cbegin</name>
+        <qualifiedname>astrea::trace::FoldsOfCoverage::cbegin</qualifiedname>
         <briefdescription>
 <para>Returns a constant iterator to the beginning of the <ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref>. </para>
         </briefdescription>
@@ -216,10 +227,11 @@
         <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="98" column="20" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" bodystart="98" bodyend="98"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1trace_1_1FoldsOfCoverage_1af8cafa272ad6aa077931016ea6df8380" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a89385b2cd29a051f555efe278ea2ef78" kindref="member">const_iterator</ref></type>
+        <type><ref refid="classastrea_1_1trace_1_1FoldsOfCoverage_1af0ca65225319eb7c6b9827c69c737c7b" kindref="member">const_iterator</ref></type>
         <definition>const_iterator astrea::trace::FoldsOfCoverage::cend</definition>
         <argsstring>() const</argsstring>
         <name>cend</name>
+        <qualifiedname>astrea::trace::FoldsOfCoverage::cend</qualifiedname>
         <briefdescription>
 <para>Returns a constant iterator to the end of the <ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref>. </para>
         </briefdescription>
@@ -232,11 +244,12 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="105" column="20" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" bodystart="105" bodyend="105"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1trace_1_1FoldsOfCoverage_1af7498fd17f6df7537145f404b6ac0998" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1FoldsOfCoverage_1aff1de2012c2874928d114050b0b8d818" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats</ref>&lt; double &gt; &amp;</type>
-        <definition>const Stats&lt;double&gt;&amp; astrea::trace::FoldsOfCoverage::get_stats</definition>
+        <definition>const Stats&lt; double &gt; &amp; astrea::trace::FoldsOfCoverage::get_stats</definition>
         <argsstring>(const std::size_t &amp;id) const</argsstring>
         <name>get_stats</name>
+        <qualifiedname>astrea::trace::FoldsOfCoverage::get_stats</qualifiedname>
         <param>
           <type>const std::size_t &amp;</type>
           <declname>id</declname>
@@ -262,7 +275,7 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="113" column="17" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" bodystart="113" bodyend="113"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>The <ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref> class represents the folds of coverage (simultaneous accesses) for each receiver ID over time. </para>
     </briefdescription>
@@ -271,19 +284,19 @@
     </detaileddescription>
     <location file="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" line="39" column="1" bodyfile="astrea/trace/trace/analysis/stats/FoldsOfCoverage.hpp" bodystart="39" bodyend="118"/>
     <listofallmembers>
-      <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1ae7cb76e9cbba59e46a6c08dd9329b053" prot="private" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>_folds</name></member>
-      <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1ad0da4f13b2dc9e586d907f602b3049bc" prot="private" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>_stats</name></member>
+      <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a167ecab77a549778565024623685c802" prot="private" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>_folds</name></member>
+      <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a534e7eb286e4d95fb2a044c57d4e0a33" prot="private" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>_stats</name></member>
       <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1ae6f5f8f4e2aa3164b6d27030dd0a823d" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>begin</name></member>
       <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1aa60d1d1416c581738db9614d75e29563" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>begin</name></member>
       <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a500d8a62e18108f15c0d80d19511238d" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>cbegin</name></member>
       <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1af8cafa272ad6aa077931016ea6df8380" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>cend</name></member>
-      <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a89385b2cd29a051f555efe278ea2ef78" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>const_iterator</name></member>
+      <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1af0ca65225319eb7c6b9827c69c737c7b" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>const_iterator</name></member>
       <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1ae6fba7bcc17f9961016758c177561398" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>end</name></member>
       <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1ad0c633f447d3b1e837d8bb5c7b480752" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>end</name></member>
       <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a0e43c94d84b342bb7106cea5cc0fc246" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>FoldsOfCoverage</name></member>
       <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a7c9c4fb7e8d3f0b016678274c8e38c9d" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>FoldsOfCoverage</name></member>
-      <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1af7498fd17f6df7537145f404b6ac0998" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>get_stats</name></member>
-      <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a5020155565267ddd76f33846711d31fb" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>iterator</name></member>
+      <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1aff1de2012c2874928d114050b0b8d818" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>get_stats</name></member>
+      <member refid="classastrea_1_1trace_1_1FoldsOfCoverage_1a285ab2f128bfe074c1a37fb8968e633c" prot="public" virt="non-virtual"><scope>astrea::trace::FoldsOfCoverage</scope><name>iterator</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

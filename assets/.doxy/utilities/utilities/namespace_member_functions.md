@@ -18,7 +18,7 @@
 
 ## g
 
-* **get\_type\_name** ([**astrea::utilities**](namespaceastrea_1_1utilities.md))
+* **get\_body\_type\_name** ([**astrea::utilities**](namespaceastrea_1_1utilities.md))
 
 
 ## r

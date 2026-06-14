@@ -1,14 +1,40 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1EquinoctialPartial" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::EquinoctialPartial</compoundname>
     <includes refid="Equinoctial_8hpp" local="no">Equinoctial.hpp</includes>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialPartial_1a37b187b612cba58adda191857a9662e7" prot="private" static="no" mutable="no">
-        <type>Velocity</type>
-        <definition>Velocity astrea::astro::EquinoctialPartial::_semilatusPartial</definition>
+    <templateparamlist>
+      <param>
+        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_frame_</declname>
+        <defname>_frame_</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialPartial_1a9825b2f059dc13688f18779c06122346" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::EquinoctialPartial&lt; _frame_ &gt;::frame</definition>
+        <argsstring></argsstring>
+        <name>frame</name>
+        <qualifiedname>astrea::astro::EquinoctialPartial::frame</qualifiedname>
+        <initializer>= _frame_</initializer>
+        <briefdescription>
+<para>The reference frame of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> state vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="389" column="27" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="389" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialPartial_1a02de93592aa22791432b98e70ae40a7c" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Velocity</ref></type>
+        <definition>Velocity astrea::astro::EquinoctialPartial&lt; _frame_ &gt;::_semilatusPartial</definition>
         <argsstring></argsstring>
         <name>_semilatusPartial</name>
+        <qualifiedname>astrea::astro::EquinoctialPartial::_semilatusPartial</qualifiedname>
         <briefdescription>
 <para>Semilatus rectum partial derivative. </para>
         </briefdescription>
@@ -16,13 +42,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="423" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="423" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="441" column="14" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="441" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialPartial_1aea7dfe490a2b48ca788e9104336b4dc1" prot="private" static="no" mutable="no">
-        <type>UnitlessPerTime</type>
-        <definition>UnitlessPerTime astrea::astro::EquinoctialPartial::_fPartial</definition>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialPartial_1a72bff4d686ba7447588fa1c33776f38e" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref></type>
+        <definition>UnitlessPerTime astrea::astro::EquinoctialPartial&lt; _frame_ &gt;::_fPartial</definition>
         <argsstring></argsstring>
         <name>_fPartial</name>
+        <qualifiedname>astrea::astro::EquinoctialPartial::_fPartial</qualifiedname>
         <briefdescription>
 <para>First component of the eccentricity vector partial derivative. </para>
         </briefdescription>
@@ -30,13 +57,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="424" column="21" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="424" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="442" column="21" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="442" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialPartial_1a80c2cf4c9d6d0deb5fa65e7cd5cb08d9" prot="private" static="no" mutable="no">
-        <type>UnitlessPerTime</type>
-        <definition>UnitlessPerTime astrea::astro::EquinoctialPartial::_gPartial</definition>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialPartial_1a3803241b10dfe1f23bc0c3b415950222" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref></type>
+        <definition>UnitlessPerTime astrea::astro::EquinoctialPartial&lt; _frame_ &gt;::_gPartial</definition>
         <argsstring></argsstring>
         <name>_gPartial</name>
+        <qualifiedname>astrea::astro::EquinoctialPartial::_gPartial</qualifiedname>
         <briefdescription>
 <para>Second component of the eccentricity vector partial derivative. </para>
         </briefdescription>
@@ -44,13 +72,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="425" column="21" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="425" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="443" column="21" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="443" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialPartial_1a5e7fa8f715e2e7390d9023b0d3fba633" prot="private" static="no" mutable="no">
-        <type>UnitlessPerTime</type>
-        <definition>UnitlessPerTime astrea::astro::EquinoctialPartial::_hPartial</definition>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialPartial_1a55ac5814d9a2959d519ec936c70295bd" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref></type>
+        <definition>UnitlessPerTime astrea::astro::EquinoctialPartial&lt; _frame_ &gt;::_hPartial</definition>
         <argsstring></argsstring>
         <name>_hPartial</name>
+        <qualifiedname>astrea::astro::EquinoctialPartial::_hPartial</qualifiedname>
         <briefdescription>
 <para>First component of the planar vector partial derivative. </para>
         </briefdescription>
@@ -58,13 +87,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="426" column="21" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="426" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="444" column="21" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="444" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialPartial_1a8017d83d258daf9cfb4cb8e7c0014e26" prot="private" static="no" mutable="no">
-        <type>UnitlessPerTime</type>
-        <definition>UnitlessPerTime astrea::astro::EquinoctialPartial::_kPartial</definition>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialPartial_1abbf2a1db2ac136d11c971ea3f968fc16" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref></type>
+        <definition>UnitlessPerTime astrea::astro::EquinoctialPartial&lt; _frame_ &gt;::_kPartial</definition>
         <argsstring></argsstring>
         <name>_kPartial</name>
+        <qualifiedname>astrea::astro::EquinoctialPartial::_kPartial</qualifiedname>
         <briefdescription>
 <para>Second component of the planar vector partial derivative. </para>
         </briefdescription>
@@ -72,13 +102,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="427" column="21" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="427" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="445" column="21" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="445" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialPartial_1a9ff5f2b839be6d761df895c48054aa6d" prot="private" static="no" mutable="no">
-        <type>AngularRate</type>
-        <definition>AngularRate astrea::astro::EquinoctialPartial::_trueLongitudePartial</definition>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1EquinoctialPartial_1a0b03ebf6ffe69fdace0ce55fde3e09b6" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref></type>
+        <definition>AngularVelocity astrea::astro::EquinoctialPartial&lt; _frame_ &gt;::_trueLongitudePartial</definition>
         <argsstring></argsstring>
         <name>_trueLongitudePartial</name>
+        <qualifiedname>astrea::astro::EquinoctialPartial::_trueLongitudePartial</qualifiedname>
         <briefdescription>
 <para>True longitude partial derivative. </para>
         </briefdescription>
@@ -86,22 +117,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="428" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="428" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="446" column="21" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="446" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="friend">
-      <memberdef kind="friend" id="classastrea_1_1astro_1_1EquinoctialPartial_1ace087d4541625c333bc76127ba4fa692" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1EquinoctialPartial_1ae190828264c1f8515630043de9b729df" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame</declname>
+            <defname>frame</defname>
+          </param>
+        </templateparamlist>
         <type>std::ostream &amp;</type>
-        <definition>std::ostream&amp; operator&lt;&lt;</definition>
-        <argsstring>(std::ostream &amp;, EquinoctialPartial const &amp;)</argsstring>
+        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;, EquinoctialPartial&lt; frame &gt; const &amp;)</argsstring>
         <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::EquinoctialPartial::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
-          <defname>os</defname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1EquinoctialPartial" kindref="compound">EquinoctialPartial</ref> const &amp;</type>
-          <defname>elements</defname>
+          <type><ref refid="classastrea_1_1astro_1_1EquinoctialPartial" kindref="compound">EquinoctialPartial</ref>&lt; <ref refid="classastrea_1_1astro_1_1EquinoctialPartial_1a9825b2f059dc13688f18779c06122346" kindref="member">frame</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -109,15 +146,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="370" column="12" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.cpp" bodystart="271" bodyend="282"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="386" column="12"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialPartial_1aa3ab89ad90b61551dbaaa51a0852b8ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialPartial_1a27a81a3975bcdb2e9a7a1c08831f1c80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
-        <definition>astrea::astro::EquinoctialPartial::EquinoctialPartial</definition>
+        <definition>astrea::astro::EquinoctialPartial&lt; _frame_ &gt;::EquinoctialPartial</definition>
         <argsstring>()=default</argsstring>
         <name>EquinoctialPartial</name>
+        <qualifiedname>astrea::astro::EquinoctialPartial::EquinoctialPartial</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="classastrea_1_1astro_1_1EquinoctialPartial" kindref="compound">EquinoctialPartial</ref>. </para>
         </briefdescription>
@@ -126,35 +164,36 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="378" column="5"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="396" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialPartial_1a1bf4ab4a4d709d6efb9c73dccc078eb4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialPartial_1afa88c1d2caaede194f628658b99baf9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>astrea::astro::EquinoctialPartial::EquinoctialPartial</definition>
-        <argsstring>(const Velocity &amp;semilatusPartial, const UnitlessPerTime &amp;fPartial, const UnitlessPerTime &amp;gPartial, const UnitlessPerTime &amp;hPartial, const UnitlessPerTime &amp;kPartial, const AngularRate &amp;trueLongitudePartial)</argsstring>
+        <definition>astrea::astro::EquinoctialPartial&lt; _frame_ &gt;::EquinoctialPartial</definition>
+        <argsstring>(const Velocity &amp;semilatusPartial, const UnitlessPerTime &amp;fPartial, const UnitlessPerTime &amp;gPartial, const UnitlessPerTime &amp;hPartial, const UnitlessPerTime &amp;kPartial, const AngularVelocity &amp;trueLongitudePartial)</argsstring>
         <name>EquinoctialPartial</name>
+        <qualifiedname>astrea::astro::EquinoctialPartial::EquinoctialPartial</qualifiedname>
         <param>
-          <type>const Velocity &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Velocity</ref> &amp;</type>
           <declname>semilatusPartial</declname>
         </param>
         <param>
-          <type>const UnitlessPerTime &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref> &amp;</type>
           <declname>fPartial</declname>
         </param>
         <param>
-          <type>const UnitlessPerTime &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref> &amp;</type>
           <declname>gPartial</declname>
         </param>
         <param>
-          <type>const UnitlessPerTime &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref> &amp;</type>
           <declname>hPartial</declname>
         </param>
         <param>
-          <type>const UnitlessPerTime &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref> &amp;</type>
           <declname>kPartial</declname>
         </param>
         <param>
-          <type>const AngularRate &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocity</ref> &amp;</type>
           <declname>trueLongitudePartial</declname>
         </param>
         <briefdescription>
@@ -214,15 +253,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="390" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="390" bodyend="405"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="408" column="5" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="408" bodyend="423"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialPartial_1a36c7d9ac7c67baa73064ab7a597588fc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref></type>
-        <definition>Equinoctial astrea::astro::EquinoctialPartial::operator*</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialPartial_1ae0e39e6bc9afe7fcc8e55a633cfa163c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref>&lt; _frame_ &gt;</type>
+        <definition>Equinoctial&lt; _frame_ &gt; astrea::astro::EquinoctialPartial&lt; _frame_ &gt;::operator*</definition>
         <argsstring>(const Time &amp;time) const</argsstring>
         <name>operator*</name>
+        <qualifiedname>astrea::astro::EquinoctialPartial::operator*</qualifiedname>
         <param>
-          <type>const Time &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
           <declname>time</declname>
         </param>
         <briefdescription>
@@ -244,13 +284,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="413" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.cpp" bodystart="243" bodyend="246"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="431" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="277" bodyend="280"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialPartial_1ae9a464af4888aaa03f42e8a0144aa1fd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; Unitless &gt;</type>
-        <definition>std::vector&lt; Unitless &gt; astrea::astro::EquinoctialPartial::force_to_vector</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1EquinoctialPartial_1a64a63f77b51de6fb1fead94733d53f22" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt;</type>
+        <definition>std::vector&lt; Unitless &gt; astrea::astro::EquinoctialPartial&lt; _frame_ &gt;::force_to_vector</definition>
         <argsstring>() const</argsstring>
         <name>force_to_vector</name>
+        <qualifiedname>astrea::astro::EquinoctialPartial::force_to_vector</qualifiedname>
         <briefdescription>
 <para>Converts the <ref refid="classastrea_1_1astro_1_1EquinoctialPartial" kindref="compound">EquinoctialPartial</ref> state vector to a vector of unitless values. </para>
         </briefdescription>
@@ -261,27 +302,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="420" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.cpp" bodystart="248" bodyend="256"/>
+        <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="438" column="17" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.ipp" bodystart="283" bodyend="291"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>Class representing a partial derivative of an <ref refid="classastrea_1_1astro_1_1Equinoctial" kindref="compound">Equinoctial</ref> state vector. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" line="368" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/instances/Equinoctial.hpp" bodystart="368" bodyend="429"/>
+    <location file="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" line="383" column="1" bodyfile="astrea/astro/astro/state/orbital_elements/Equinoctial.hpp" bodystart="383" bodyend="447"/>
     <listofallmembers>
-      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1aea7dfe490a2b48ca788e9104336b4dc1" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>_fPartial</name></member>
-      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a80c2cf4c9d6d0deb5fa65e7cd5cb08d9" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>_gPartial</name></member>
-      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a5e7fa8f715e2e7390d9023b0d3fba633" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>_hPartial</name></member>
-      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a8017d83d258daf9cfb4cb8e7c0014e26" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>_kPartial</name></member>
-      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a37b187b612cba58adda191857a9662e7" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>_semilatusPartial</name></member>
-      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a9ff5f2b839be6d761df895c48054aa6d" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>_trueLongitudePartial</name></member>
-      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1aa3ab89ad90b61551dbaaa51a0852b8ec" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>EquinoctialPartial</name></member>
-      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a1bf4ab4a4d709d6efb9c73dccc078eb4" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>EquinoctialPartial</name></member>
-      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1ae9a464af4888aaa03f42e8a0144aa1fd" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>force_to_vector</name></member>
-      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a36c7d9ac7c67baa73064ab7a597588fc" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>operator*</name></member>
-      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1ace087d4541625c333bc76127ba4fa692" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a72bff4d686ba7447588fa1c33776f38e" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>_fPartial</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a3803241b10dfe1f23bc0c3b415950222" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>_gPartial</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a55ac5814d9a2959d519ec936c70295bd" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>_hPartial</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1abbf2a1db2ac136d11c971ea3f968fc16" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>_kPartial</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a02de93592aa22791432b98e70ae40a7c" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>_semilatusPartial</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a0b03ebf6ffe69fdace0ce55fde3e09b6" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>_trueLongitudePartial</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a27a81a3975bcdb2e9a7a1c08831f1c80" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>EquinoctialPartial</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1afa88c1d2caaede194f628658b99baf9b" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>EquinoctialPartial</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a64a63f77b51de6fb1fead94733d53f22" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>force_to_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1a9825b2f059dc13688f18779c06122346" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>frame</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1ae0e39e6bc9afe7fcc8e55a633cfa163c" prot="public" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>operator*</name></member>
+      <member refid="classastrea_1_1astro_1_1EquinoctialPartial_1ae190828264c1f8515630043de9b729df" prot="private" virt="non-virtual"><scope>astrea::astro::EquinoctialPartial</scope><name>operator&lt;&lt;</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

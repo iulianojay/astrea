@@ -4,7 +4,7 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**CartesianVector.hpp**](CartesianVector_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**framework**](dir_aa3952657448f7008c08b8ed45c303ac.md) **>** [**CartesianVector.hpp**](CartesianVector_8hpp.md)
 
 [Go to the source code of this file](CartesianVector_8hpp_source.md)
 
@@ -12,14 +12,12 @@ _This file defines the CartesianVector class, which represents a 3D vector in Ca
 
 * `#include <array>`
 * `#include <typeinfo>`
-* `#include <mp-units/math.h>`
-* `#include <mp-units/systems/angular/math.h>`
-* `#include <units/typedefs.hpp>`
-* `#include <utilities/string_util.hpp>`
+* `#include <mp-units/framework.h>`
+* `#include <mp-units/systems/angular.h>`
+* `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/Frame.hpp>`
-* `#include <astro/frames/frame_concepts.hpp>`
-* `#include <astro/frames/transformations.hpp>`
+* `#include <astro/frames/framework/Frame.hpp>`
+* `#include <astro/frames/framework/frame_concepts.hpp>`
 
 
 
@@ -45,9 +43,9 @@ _This file defines the CartesianVector class, which represents a 3D vector in Ca
 
 | Type | Name |
 | ---: | :--- |
-| class | [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md) &lt;class Value\_T, class Frame\_T&gt;<br>_Class representing a 3D vector in_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _coordinates._ |
-| struct | [**is\_specialization**](structastrea_1_1astro_1_1is__specialization.md) &lt;class T, Template&gt;<br> |
-| struct | [**is\_specialization&lt; Template&lt; Args... &gt;, Template &gt;**](structastrea_1_1astro_1_1is__specialization_3_01Template_3_01Args_8_8_8_01_4_00_01Template_01_4.md) &lt;Template, Args&gt;<br> |
+| struct | [**CartesianVector**](structastrea_1_1astro_1_1CartesianVector.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), \_frame\_&gt;<br>_Class representing a 3D vector in_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _coordinates._ |
+| struct | [**is\_cartesian\_vector**](structastrea_1_1astro_1_1is__cartesian__vector.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br> |
+| struct | [**is\_cartesian\_vector&lt; CartesianVector&lt; Value\_T, frame &gt; &gt;**](structastrea_1_1astro_1_1is__cartesian__vector_3_01CartesianVector_3_01Value__T_00_01frame_01_4_01_4.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Value\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), frame&gt;<br> |
 
 
 
@@ -131,5 +129,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/CartesianVector.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/framework/CartesianVector.hpp`
 

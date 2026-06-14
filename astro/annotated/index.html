@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -178,6 +178,53 @@ You're not viewing the latest version.
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
     
     
       <div class="md-header__source">
@@ -438,8 +485,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
     
     
     
@@ -490,34 +535,6 @@ You're not viewing the latest version.
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting_started/about/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    About Astrea
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -699,10 +716,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
-        
-      
     
     
     
@@ -781,34 +794,6 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/strongly_typed_frames/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Strongly Typed Frames
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../examples/fundamentals/time_systems/" class="md-nav__link">
         
   
@@ -864,34 +849,6 @@ You're not viewing the latest version.
   
   
   
-    <li class="md-nav__item">
-      <a href="../../examples/fundamentals/astrodynamic_systems/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Astrodynamic Systems
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -918,10 +875,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
             
   
   
@@ -939,8 +896,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1097,7 +1054,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/vehicles.md" class="md-nav__link">
+      <a href="../../examples/fundamentals/propagation/vehicles/" class="md-nav__link">
         
   
   
@@ -1152,10 +1109,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
             
   
   
@@ -1173,8 +1130,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_7">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1191,14 +1148,14 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/frames/strongly_typed_frames/" class="md-nav__link">
+      <a href="../../examples/fundamentals/frames/introduction/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Strongly Typed Frames
+    Introduction to Strongly Typed Frames
   
 
     
@@ -6310,15 +6267,30 @@ You're not viewing the latest version.
 <h1 id="class-list">Class List<a class="headerlink" href="#class-list" title="Permanent link">&para;</a></h1>
 <p>Here are the classes, structs, unions and interfaces with brief descriptions:</p>
 <ul>
+<li><strong>namespace</strong> <a href="../namespace_0d125/"><strong>anonymous namespace{astrea/astro/astro/state/orbital_elements/Cartesian.ipp}</strong></a> </li>
 <li><strong>namespace</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a>     <ul>
 <li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a>     <ul>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1AstrodynamicsSystem/"><strong>AstrodynamicsSystem</strong></a> <em>Represents a system of celestial bodies and their interactions.</em>     </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1AngularAccelerations/"><strong>AngularAccelerations</strong></a> <em>Class representing the angular sequence acceleration, which is the time derivative of the angular sequence velocity.</em>     </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1AngularVelocities/"><strong>AngularVelocities</strong></a> <em>Class representing a sequence of angular velocities (either Euler or Tait-Bryan) for attitude transformations between frames.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1AtmosphericForce/"><strong>AtmosphericForce</strong></a> <em>Class to compute the atmospheric force on a vehicle.</em>     </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Attitude/"><strong>Attitude</strong></a> <em>Class representing a set of orientation.</em>     </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1AttitudePartials/"><strong>AttitudePartials</strong></a> <em>Class representing partial derivatives of orientation.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Axis/"><strong>Axis</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Axis_3_01__name___01_4/"><strong>Axis&lt; _name_ &gt;</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Axis_3_01__name___00_01__parent___01_4/"><strong>Axis&lt; _name_, _parent_ &gt;</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Barycenter/"><strong>Barycenter</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Barycenter_3_01__name___01_4/"><strong>Barycenter&lt; _name_ &gt;</strong></a> <em>No parent, no members.</em> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Barycenter_3_01__name___00_01__parent___01_4/"><strong>Barycenter&lt; _name_, _parent_ &gt;</strong></a> <em>With parent, no members.</em> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1BarycentricCoordinateTimeClock/"><strong>BarycentricCoordinateTimeClock</strong></a> <em>A clock implementation for Barycentric Coordinate Time (TCB).</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1BarycentricDynamicalTimeClock/"><strong>BarycentricDynamicalTimeClock</strong></a> <em>A clock implementation for Barycentric Dynamical Time (TDB).</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1BodyFixedFrame/"><strong>BodyFixedFrame</strong></a> <em>Body-fixed frame defined by a celestial body and its reference axes. The origin is at the center of mass of the body, and the axes are fixed to the body.</em> </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Cartesian/"><strong>Cartesian</strong></a> <em>Class representing a</em> <a href="../classastrea_1_1astro_1_1Cartesian/"><em><strong>Cartesian</strong></em></a> <em>state vector in astrodynamics.</em>    </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1CartesianPartial/"><strong>CartesianPartial</strong></a> <em>Class representing a partial derivative of a</em> <a href="../classastrea_1_1astro_1_1Cartesian/"><em><strong>Cartesian</strong></em></a> <em>state vector.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a> <em>Class representing a 3D vector in</em> <a href="../classastrea_1_1astro_1_1Cartesian/"><em><strong>Cartesian</strong></em></a> <em>coordinates.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1CelestialBody/"><strong>CelestialBody</strong></a> <a href="../classastrea_1_1astro_1_1CelestialBody/"><em><strong>CelestialBody</strong></em></a> <em>class represents a celestial body in an astrodynamics system.</em>    </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a> <em>Class representing a 3D vector in</em> <a href="../classastrea_1_1astro_1_1Cartesian/"><em><strong>Cartesian</strong></em></a> <em>coordinates.</em>    </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1CelestialBody/"><strong>CelestialBody</strong></a> <a href="../structastrea_1_1astro_1_1CelestialBody/"><em><strong>CelestialBody</strong></em></a> <em>class represents a celestial body in an astrodynamics system.</em>    </li>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1CelestialBodyParameters/"><strong>CelestialBodyParameters</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1CelestialBodyTypePack/"><strong>CelestialBodyTypePack</strong></a> <em>Type-list used to attach member bodies to a</em> <a href="../structastrea_1_1astro_1_1Barycenter/"><em><strong>Barycenter</strong></em></a> <em>.</em></li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem/"><strong>CircularRestrictedThreeBodyProblem</strong></a> <em>Class implementing the Circular Restricted Three-Body Problem equations of motion.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Constellation/"><strong>Constellation</strong></a> <em>A</em> <a href="../classastrea_1_1astro_1_1Constellation/"><em><strong>Constellation</strong></em></a> <em>is a collection of</em><a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>, organized into Shells and/or Planes.</em>    <ul>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Constellation_1_1sat__iterator/"><strong>sat_iterator</strong></a> <em>Iterator class for iterating over all</em> <a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>in the</em><a href="../classastrea_1_1astro_1_1Constellation/"><em><strong>Constellation</strong></em></a> <em>.</em>    </li>
 </ul>
@@ -6328,44 +6300,81 @@ You're not viewing the latest version.
 <li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1DOP45/"><strong>DOP45</strong></a>     </li>
 <li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1DOP78/"><strong>DOP78</strong></a>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Date/"><strong>Date</strong></a> <em>Class representing a date in the astrea astro library.</em>     </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>DirectionCosineMatrix</strong></a> <em>Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a> <em>Class representing a 3x3 matrix, used for matrices and their rates/accelerations.</em>     </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Deorbit/"><strong>Deorbit</strong></a> <em>A class representing a deorbit</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass.</em>    </li>
+<li><strong>struct</strong> <a href="../classastrea_1_1astro_1_1DirectionCosineMatrix/"><strong>DirectionCosineMatrix</strong></a> <em>Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames.</em>     </li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1DirectionCosineMatrixAccel/"><strong>DirectionCosineMatrixAccel</strong></a> <em>Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1DirectionCosineMatrixRate/"><strong>DirectionCosineMatrixRate</strong></a> <em>Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1DynamicAxis/"><strong>DynamicAxis</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1DynamicFrame/"><strong>DynamicFrame</strong></a> <em>Base class for all dynamic state/frames.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1DynamicOrigin/"><strong>DynamicOrigin</strong></a> </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1EquationsOfMotion/"><strong>EquationsOfMotion</strong></a> <em>Base class for equations of motion in astrodynamics.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Equinoctial/"><strong>Equinoctial</strong></a> <em>The</em> <a href="../classastrea_1_1astro_1_1Equinoctial/"><em><strong>Equinoctial</strong></em></a> <em>class represents the equinoctial orbital elements.</em>    </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1EquinoctialPartial/"><strong>EquinoctialPartial</strong></a> <em>Class representing a partial derivative of an</em> <a href="../classastrea_1_1astro_1_1Equinoctial/"><em><strong>Equinoctial</strong></em></a> <em>state vector.</em>    </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1EquinoctialVop/"><strong>EquinoctialVop</strong></a> <em>Class implementing the</em> <a href="../classastrea_1_1astro_1_1Equinoctial/"><em><strong>Equinoctial</strong></em></a> <em>VOP equations of motion.</em>    </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1EulerAngles/"><strong>EulerAngles</strong></a> <em>Class representing a sequence of angles (either Euler or Tait-Bryan) for attitude transformations between frames.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Event/"><strong>Event</strong></a> <em>A class representing a</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>in the astrea astro platform. This class serves as a base for user-defined Events and provides a common interface.</em>    </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1EventDetector/"><strong>EventDetector</strong></a> <em>A class for detecting events in the astrea astro platform.</em>     </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Force/"><strong>Force</strong></a> <em>Abstract base class for force models in astrodynamics.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1ExtraRegisteredFrames/"><strong>ExtraRegisteredFrames</strong></a> <em>Trait that users specialize to register additional</em> <a href="../classastrea_1_1astro_1_1Cartesian/"><em><strong>Cartesian</strong></em></a> <em>frames.</em>    </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1FixedOffsetAxis/"><strong>FixedOffsetAxis</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment/"><strong>Misalignment</strong></a>     </li>
+</ul>
+</li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1FixedOffsetFrame/"><strong>FixedOffsetFrame</strong></a> <em>Class representing a fixed offset frame, which is defined by a fixed spatial and/or angular offset from a parent frame.</em> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__phi___00_01__theta___00_01__psi_9e091a834f5483531831878cbc7beda5/"><strong>FixedOffsetFrame&lt; _parent_, _phi_, _theta_, _psi_, _sequence_, Args... &gt;</strong></a> <em>Specialization of</em> <a href="../structastrea_1_1astro_1_1FixedOffsetFrame/"><em><strong>FixedOffsetFrame</strong></em></a> <em>for a pure angular offset (no spatial offset).</em></li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__x___00_01__y___00_01__z___00_01Args_8_8_8_01_4/"><strong>FixedOffsetFrame&lt; _parent_, _x_, _y_, _z_, Args... &gt;</strong></a> <em>Specialization of</em> <a href="../structastrea_1_1astro_1_1FixedOffsetFrame/"><em><strong>FixedOffsetFrame</strong></em></a> <em>for a pure spatial offset (no angular misalignment).</em></li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1FixedOffsetFrame_3_01__parent___00_01__x___00_01__y___00_01__z___00_01_3721297a9a90e06cc0beab0e7a99da8d/"><strong>FixedOffsetFrame&lt; _parent_, _x_, _y_, _z_, _phi_, _theta_, _psi_, _sequence_, Args... &gt;</strong></a> <em>Specialization of</em> <a href="../structastrea_1_1astro_1_1FixedOffsetFrame/"><em><strong>FixedOffsetFrame</strong></em></a> <em>for a combined spatial and angular offset.</em></li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1FixedOffsetOrigin/"><strong>FixedOffsetOrigin</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1FixedOffsetOrigin_1_1Offset/"><strong>Offset</strong></a>     </li>
+</ul>
+</li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1ForceModel/"><strong>ForceModel</strong></a> <em>Class to manage multiple force models and compute the total force on a vehicle.</em>     </li>
-<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Frame/"><strong>Frame</strong></a> <em>Base class for all state/frames.</em>     </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1FrameReference/"><strong>FrameReference</strong></a> <em>Base class for all frame references.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Frame/"><strong>Frame</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___01_4/"><strong>Frame&lt; _name_, _origin_, _axis_ &gt;</strong></a> <a href="../structastrea_1_1astro_1_1Frame/"><em><strong>Frame</strong></em></a> <em>with name, origin, and axis (no parent).</em>    </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___00_01__parent___01_4/"><strong>Frame&lt; _name_, _origin_, _axis_, _parent_ &gt;</strong></a> <a href="../structastrea_1_1astro_1_1Frame/"><em><strong>Frame</strong></em></a> <em>with name, origin, axis, and parent.</em>    </li>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1GeneralPerturbations/"><strong>GeneralPerturbations</strong></a> <a href="../structastrea_1_1astro_1_1GeneralPerturbations/"><em><strong>GeneralPerturbations</strong></em></a> <em>structure representing a Ground Position (GP) object from SpaceTrack.</em>    </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Geocentric/"><strong>Geocentric</strong></a> <em>Class representing a</em> <a href="../classastrea_1_1astro_1_1Geocentric/"><em><strong>Geocentric</strong></em></a> <em>state vector in astrodynamics.</em>    </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1GeocentricAxes/"><strong>GeocentricAxes</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1GeocentricCoordinateTimeClock/"><strong>GeocentricCoordinateTimeClock</strong></a> <em>A clock implementation for</em> <a href="../classastrea_1_1astro_1_1Geocentric/"><em><strong>Geocentric</strong></em></a> <em>Coordinate Time (TCG).</em>    </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Geodetic/"><strong>Geodetic</strong></a> <em>Class representing a</em> <a href="../classastrea_1_1astro_1_1Geodetic/"><em><strong>Geodetic</strong></em></a> <em>state vector in astrodynamics.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1ImpulsiveBurn/"><strong>ImpulsiveBurn</strong></a> <em>A class representing an impulsive burn</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>. It triggers when the true anomaly wraps around (i.e. at perigee), and applies the total impulsive delta-v from all thrusters to the vehicle in the velocity direction. TODO: Generalize to a scheduler of some sort and other burn triggers. TODO: Generalize burn direction. TODO: Generalize which thrusters burn.</em>    </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1ImpulsiveBurn/"><strong>ImpulsiveBurn</strong></a> <em>A class representing an impulsive burn</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>. It triggers when the true anomaly wraps around (i.e. at perigee), and applies the total impulsive delta-v from all thrusters to the vehicle in the velocity direction.</em>    </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1InertiaTensor/"><strong>InertiaTensor</strong></a> <em>A class representing an inertia matrix in the astrea astro platform.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Integrator/"><strong>Integrator</strong></a> <a href="../classastrea_1_1astro_1_1Integrator/"><em><strong>Integrator</strong></em></a> <em>class for numerical propagation of orbital mechanics problems.</em>    </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1IntegratorSettings/"><strong>IntegratorSettings</strong></a>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Interval/"><strong>Interval</strong></a> <em>Represents a time interval with a start and end time.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1J2MeanVop/"><strong>J2MeanVop</strong></a> <em>Class implementing the J2 Mean VOP equations of motion.</em>     </li>
-<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1JplEphemerisTable/"><strong>JplEphemerisTable</strong></a> <em>Base class for any JPL</em> <a href="../classastrea_1_1astro_1_1CelestialBody/"><em><strong>CelestialBody</strong></em></a> <em>table.</em>    </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1JplEphemerisTable/"><strong>JplEphemerisTable</strong></a> <em>Base class for any JPL</em> <a href="../structastrea_1_1astro_1_1CelestialBody/"><em><strong>CelestialBody</strong></em></a> <em>table.</em>    </li>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1JulianDateClock/"><strong>JulianDateClock</strong></a> <em>A clock implementation for Julian Dates.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Keplerian/"><strong>Keplerian</strong></a> <em>The</em> <a href="../classastrea_1_1astro_1_1Keplerian/"><em><strong>Keplerian</strong></em></a> <em>class represents the</em><a href="../classastrea_1_1astro_1_1Keplerian/"><em><strong>Keplerian</strong></em></a> <em>orbital elements.</em>    </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1KeplerianPartial/"><strong>KeplerianPartial</strong></a> <em>Class representing a partial derivative of a</em> <a href="../classastrea_1_1astro_1_1Keplerian/"><em><strong>Keplerian</strong></em></a> <em>state vector.</em>    </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1KeplerianVop/"><strong>KeplerianVop</strong></a> <em>Class implementing the</em> <a href="../classastrea_1_1astro_1_1Keplerian/"><em><strong>Keplerian</strong></em></a> <em>VOP equations of motion.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1LambertSolver/"><strong>LambertSolver</strong></a> <em>Class for solving Lambert's problem.</em>     </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1LambertSolver/"><strong>LambertSolver</strong></a> <em>Class for solving Lambert's problem.</em>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1LambertSolver_1_1Solution/"><strong>Solution</strong></a> <em>Result structure for optimal Lambert solutions.</em>     </li>
+</ul>
+</li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1LegendreCache/"><strong>LegendreCache</strong></a>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1NBodyForce/"><strong>NBodyForce</strong></a> <em>Class to compute the gravitational force due to multiple celestial bodies.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1NullEvent/"><strong>NullEvent</strong></a> <em>A class representing a null</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass.</em>    </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1NullVehicle/"><strong>NullVehicle</strong></a> <em>A class representing a null vehicle in the astrea astro platform. This class is used as a placeholder for vehicles that do not have a defined state or mass.</em>     </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1OblatenessForce/"><strong>OblatenessForce</strong></a> <em>Class to compute the gravitational force due to the oblateness of a celestial body.</em>     </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1OblatenessForce/"><strong>OblatenessForce</strong></a> <em>Class to compute the gravitational force due to the oblateness of a celestial</em> <em>body</em> <em>.</em>    </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1OrbitalElementPartials/"><strong>OrbitalElementPartials</strong></a> <em>Class representing partial derivatives of orbital elements.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1OrbitalElements/"><strong>OrbitalElements</strong></a> <em>Class representing a set of orbital elements.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Origin/"><strong>Origin</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Origin_3_01__name___01_4/"><strong>Origin&lt; _name_ &gt;</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Origin_3_01__name___00_01__parent___01_4/"><strong>Origin&lt; _name_, _parent_ &gt;</strong></a>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Payload/"><strong>Payload</strong></a> <a href="../classastrea_1_1astro_1_1Payload/"><em><strong>Payload</strong></em></a> <em>class representing a payload on a platform.</em>    </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1PayloadParameters/"><strong>PayloadParameters</strong></a> <em>Class for storing and managing payload parameters.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><strong>PayloadPlatform</strong></a> <em>The</em> <a href="../classastrea_1_1astro_1_1PayloadPlatform/"><em><strong>PayloadPlatform</strong></em></a> <em>class represents a platform that can have payloads attached to it. It provides methods to attach payloads and retrieve the list of attached payloads.</em>    </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1Perturbation/"><strong>Perturbation</strong></a> <em>Struct to hold the results of a perturbation force computation, including both acceleration and torque.</em>     </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1PerturbingForce/"><strong>PerturbingForce</strong></a> <em>Abstract base class for force models in astrodynamics.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Plane/"><strong>Plane</strong></a> <em>A</em> <a href="../classastrea_1_1astro_1_1Plane/"><em><strong>Plane</strong></em></a> <em>is a collection of</em><a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>that share the same orbital elements.</em>    </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Quaternion/"><strong>Quaternion</strong></a> <em>Class representing a quaternion for attitude rotations between frames.</em>     </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1QuaternionPartial/"><strong>QuaternionPartial</strong></a> <em>Class representing the partial derivative of a quaternion with respect to time, used for integration.</em>     </li>
 <li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1RK45/"><strong>RK45</strong></a>     </li>
 <li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1RKF45/"><strong>RKF45</strong></a>     </li>
 <li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1RKF78/"><strong>RKF78</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1ReferenceAxes/"><strong>ReferenceAxes</strong></a> </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Schedule/"><strong>Schedule</strong></a> <em>A class representing a</em> <a href="../classastrea_1_1astro_1_1Schedule/"><em><strong>Schedule</strong></em></a> <em>in the astrea astro library. The</em><a href="../classastrea_1_1astro_1_1Schedule/"><em><strong>Schedule</strong></em></a> <em>is responsible for scheduling and managing Events that are set to trigger at specific Dates during propagation.</em>    </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Shell/"><strong>Shell</strong></a> <em>A</em> <a href="../classastrea_1_1astro_1_1Shell/"><em><strong>Shell</strong></em></a> <em>is a collection of planes, each containing a set of</em><a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>. It is used to represent sub-constellations of satellites in orbit.</em>    <ul>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Shell_1_1sat__iterator/"><strong>sat_iterator</strong></a> <em>Iterator for iterating over all</em> <a href="../classastrea_1_1astro_1_1Spacecraft/"><em><strong>Spacecraft</strong></em></a> <em>in the</em><a href="../classastrea_1_1astro_1_1Shell/"><em><strong>Shell</strong></em></a> <em>.</em>    </li>
 </ul>
@@ -6373,96 +6382,342 @@ You're not viewing the latest version.
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1SolarRadiationPressure/"><strong>SolarRadiationPressure</strong></a> <em>Class to compute the solar radiation pressure force on a spacecraft.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Spacecraft/"><strong>Spacecraft</strong></a> <em>A class representing a spacecraft in the astrea astro platform. This class encapsulates the properties of a spacecraft, including its mass, dynamic coefficients, and surface areas.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Spherical/"><strong>Spherical</strong></a> <em>Class representing a</em> <a href="../classastrea_1_1astro_1_1Spherical/"><em><strong>Spherical</strong></em></a> <em>state vector in astrodynamics.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> <em>Class representing the state of an astronomical object.</em>     </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1State/"><strong>State</strong></a> <em>Class representing the state of an astronomical object. This class encapsulates the orbital elements, epoch, and the astrodynamics system that the state belongs to. It also optionally includes the attitude of the object as a quaternion.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1StateHistory/"><strong>StateHistory</strong></a> <em>Class to manage the history of states for an object over date.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1StatePartial/"><strong>StatePartial</strong></a>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1StateTransitionMatrix/"><strong>StateTransitionMatrix</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1StepWatcher/"><strong>StepWatcher</strong></a> <em>Function wrapper class for watching the state of the integrator at each step. This can be used for plotting or logging the state during propagation.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1SynodicAxis/"><strong>SynodicAxis</strong></a> <a href="../structastrea_1_1astro_1_1Axis/"><em><strong>Axis</strong></em></a> <em>defined by the line connecting two celestial bodies and the plane of motion of the secondary around the primary.</em>    </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1SynodicFrame/"><strong>SynodicFrame</strong></a> <em>Synodic frame defined by the line connecting two celestial bodies and the plane of motion of the secondary around the primary.</em> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1TerrestrialTimeClock/"><strong>TerrestrialTimeClock</strong></a> <em>A clock implementation for Terrestrial Time (TT).</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Thruster/"><strong>Thruster</strong></a> <a href="../classastrea_1_1astro_1_1Thruster/"><em><strong>Thruster</strong></em></a> <em>class representing a thruster on a platform.</em>    </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1ThrusterParameters/"><strong>ThrusterParameters</strong></a> <em>Class for storing and managing thruster parameters.</em>     </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1TurnThrustersOff/"><strong>TurnThrustersOff</strong></a> <em>A class representing a</em> <a href="../classastrea_1_1astro_1_1TurnThrustersOff/"><em><strong>TurnThrustersOff</strong></em></a> __<a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass.</em>    </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1TurnThrustersOn/"><strong>TurnThrustersOn</strong></a> <em>A class representing a</em> <a href="../classastrea_1_1astro_1_1TurnThrustersOn/"><em><strong>TurnThrustersOn</strong></em></a> __<a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass.</em>    </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1TwoBody/"><strong>TwoBody</strong></a> <em>Class implementing the Two Body equations of motion.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1TwoLineElements/"><strong>TwoLineElements</strong></a> <em>Class representing the two-line element (TLE) format for orbital data.</em>     </li>
 <li><strong>class</strong> <a href="../classastrea_1_1astro_1_1Vehicle/"><strong>Vehicle</strong></a> <em>A class representing a vehicle in the astrea astro platform. This class serves as a base for user-defined vehicles and provides a common interface.</em>     </li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1axes/"><strong>axes</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1axes_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1axes_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1barycenters/"><strong>barycenters</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1barycenters_1_1EarthMoonBarycenter/"><strong>EarthMoonBarycenter</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1barycenters_1_1EarthSunBarycenter/"><strong>EarthSunBarycenter</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1barycenters_1_1JupiterSunBarycenter/"><strong>JupiterSunBarycenter</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1barycenters_1_1MarsSunBarycenter/"><strong>MarsSunBarycenter</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1barycenters_1_1MercurySunBarycenter/"><strong>MercurySunBarycenter</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1barycenters_1_1NeptuneSunBarycenter/"><strong>NeptuneSunBarycenter</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1barycenters_1_1SaturnSunBarycenter/"><strong>SaturnSunBarycenter</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1barycenters_1_1SolarSystemBarycenter/"><strong>SolarSystemBarycenter</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1barycenters_1_1UranusSunBarycenter/"><strong>UranusSunBarycenter</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1barycenters_1_1VenusSunBarycenter/"><strong>VenusSunBarycenter</strong></a> </li>
+</ul>
+</li>
 <li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1detail/"><strong>detail</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1AxisBase/"><strong>AxisBase</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1BarycenterBase/"><strong>BarycenterBase</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1BodyFixedFrameBase/"><strong>BodyFixedFrameBase</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1CelestialBodyBase/"><strong>CelestialBodyBase</strong></a> </li>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1EventInner/"><strong>EventInner</strong></a> <em>A template class for</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>inner implementations.</em>    </li>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1EventInnerBase/"><strong>EventInnerBase</strong></a> <em>Pure virtual base class for</em> <a href="../classastrea_1_1astro_1_1Event/"><em><strong>Event</strong></em></a> <em>inner implementations.</em>    </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1FrameBase/"><strong>FrameBase</strong></a> <em>Empty base class for all frames in astrea. This allows us to use std::derived_from to check if a type is a frame.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1OriginBase/"><strong>OriginBase</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1SynodicFrameBase/"><strong>SynodicFrameBase</strong></a> </li>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1VehicleInner/"><strong>VehicleInner</strong></a> <em>A template class for vehicle inner implementations.</em>     </li>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1VehicleInnerBase/"><strong>VehicleInnerBase</strong></a> <em>Pure virtual base class for vehicle inner implementations.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1apply__nttp__template/"><strong>apply_nttp_template</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1apply__nttp__template_3_01T_00_01std_1_1tuple_3_01Frames_8_8_8_01_4_01_4/"><strong>apply_nttp_template&lt; T, std::tuple&lt; Frames... &gt; &gt;</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1apply__template/"><strong>apply_template</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1apply__template_3_01T_00_01std_1_1tuple_3_01Frames_8_8_8_01_4_01_4/"><strong>apply_template&lt; T, std::tuple&lt; Frames... &gt; &gt;</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1multi__tuple__cat/"><strong>multi_tuple_cat</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01First_00_01Rest_8_8_8_01_4/"><strong>multi_tuple_cat&lt; First, Rest... &gt;</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01Only_01_4/"><strong>multi_tuple_cat&lt; Only &gt;</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_4/"><strong>multi_tuple_cat&lt;&gt;</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1tuple__cat__types/"><strong>tuple_cat_types</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1tuple__cat__types_3_01std_1_1tuple_3_01As_8_8_8_01_4_00_01std8cf8a2c8692dfec60c2615039d60391f/"><strong>tuple_cat_types&lt; std::tuple&lt; As... &gt;, std::tuple&lt; Bs... &gt; &gt;</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1tuple__to__variant/"><strong>tuple_to_variant</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1detail_1_1tuple__to__variant_3_01std_1_1tuple_3_01Ts_8_8_8_01_4_00_01Extra_8_8_8_01_4/"><strong>tuple_to_variant&lt; std::tuple&lt; Ts... &gt;, Extra... &gt;</strong></a>     </li>
 </ul>
 </li>
 <li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames/"><strong>frames</strong></a>     <ul>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1frames_1_1EastNorthUp/"><strong>EastNorthUp</strong></a> <em>Class representing the East, North, Up (ENU) frame.</em>     </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical/"><strong>LocalHorizontalLocalVertical</strong></a> <em>Class representing the Local Horizontal, Local Vertical (LVLH) frame.</em>     </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack/"><strong>RadialInTrackCrossTrack</strong></a> <em>Class representing the Radial, In-Track, Cross-Track (RIC) frame.</em>     </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal/"><strong>VelocityNormalBinormal</strong></a> <em>Class representing the Velocity, Normal, Binormal (VNB) frame.</em>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1callisto/"><strong>callisto</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1deimos/"><strong>deimos</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1dynamic/"><strong>dynamic</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1earth/"><strong>earth</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1earth__barycenter/"><strong>earth_barycenter</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1europa/"><strong>europa</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1ganymede/"><strong>ganymede</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1iapetus/"><strong>iapetus</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1io/"><strong>io</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1jupiter/"><strong>jupiter</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1jupiter__barycenter/"><strong>jupiter_barycenter</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1mars/"><strong>mars</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1mars__barycenter/"><strong>mars_barycenter</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1mercury/"><strong>mercury</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1mercury__barycenter/"><strong>mercury_barycenter</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1moon/"><strong>moon</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1neptune/"><strong>neptune</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1neptune__barycenter/"><strong>neptune_barycenter</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1oberon/"><strong>oberon</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1phobos/"><strong>phobos</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1rhea/"><strong>rhea</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1saturn/"><strong>saturn</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1saturn__barycenter/"><strong>saturn_barycenter</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1solar__system__barycenter/"><strong>solar_system_barycenter</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1sun/"><strong>sun</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1titan/"><strong>titan</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1titania/"><strong>titania</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1triton/"><strong>triton</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1uranus/"><strong>uranus</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1uranus__barycenter/"><strong>uranus_barycenter</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1venus/"><strong>venus</strong></a>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1venus__barycenter/"><strong>venus_barycenter</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1EastNorthUp/"><strong>EastNorthUp</strong></a> <em>Class representing the East, North, Up (ENU) frame.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1EastNorthUpTag/"><strong>EastNorthUpTag</strong></a> <a href="../structastrea_1_1astro_1_1Frame/"><em><strong>Frame</strong></em></a> <em>tag type for</em><a href="../structastrea_1_1astro_1_1frames_1_1EastNorthUp/"><em><strong>EastNorthUp</strong></em></a> <em>, defined outside the class to allow use as a</em><a href="../structastrea_1_1astro_1_1DynamicFrame/"><em><strong>DynamicFrame</strong></em></a> <em>NTTP.</em>    </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical/"><strong>LocalHorizontalLocalVertical</strong></a> <em>Class representing the Local Horizontal, Local Vertical (LVLH) frame.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1LvlhTag/"><strong>LvlhTag</strong></a> <a href="../structastrea_1_1astro_1_1Frame/"><em><strong>Frame</strong></em></a> <em>tag type for</em><a href="../structastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical/"><em><strong>LocalHorizontalLocalVertical</strong></em></a> <em>, defined outside the class to allow use as a</em><a href="../structastrea_1_1astro_1_1DynamicFrame/"><em><strong>DynamicFrame</strong></em></a> <em>NTTP.</em>    </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack/"><strong>RadialInTrackCrossTrack</strong></a> <em>Class representing the Radial, In-Track, Cross-Track (RIC) frame.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1RicTag/"><strong>RicTag</strong></a> <a href="../structastrea_1_1astro_1_1Frame/"><em><strong>Frame</strong></em></a> <em>tag type for</em><a href="../structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack/"><em><strong>RadialInTrackCrossTrack</strong></em></a> <em>, defined outside the class to allow use as a</em><a href="../structastrea_1_1astro_1_1DynamicFrame/"><em><strong>DynamicFrame</strong></em></a> <em>NTTP.</em>    </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal/"><strong>VelocityNormalBinormal</strong></a> <em>Class representing the Velocity, Normal, Binormal (VNB) frame.</em>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1VnbTag/"><strong>VnbTag</strong></a> <a href="../structastrea_1_1astro_1_1Frame/"><em><strong>Frame</strong></em></a> <em>tag type for</em><a href="../structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal/"><em><strong>VelocityNormalBinormal</strong></em></a> <em>, defined outside the class to allow use as a</em><a href="../structastrea_1_1astro_1_1DynamicFrame/"><em><strong>DynamicFrame</strong></em></a> <em>NTTP.</em>    </li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1callisto/"><strong>callisto</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1callisto_1_1callisto__fixed/"><strong>callisto_fixed</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1callisto_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1callisto_1_1j2000/"><strong>j2000</strong></a> </li>
 </ul>
 </li>
-<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1is__specialization/"><strong>is_specialization</strong></a> </li>
-<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1is__specialization_3_01Template_3_01Args_8_8_8_01_4_00_01Template_01_4/"><strong>is_specialization&lt; Template&lt; Args... &gt;, Template &gt;</strong></a> </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1planetary__bodies/"><strong>planetary_bodies</strong></a>     <ul>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Callisto/"><strong>Callisto</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Callisto/"><em><strong>Callisto</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Deimos/"><strong>Deimos</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Deimos/"><em><strong>Deimos</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Earth/"><strong>Earth</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Earth/"><em><strong>Earth</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Europa/"><strong>Europa</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Europa/"><em><strong>Europa</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Ganymede/"><strong>Ganymede</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Ganymede/"><em><strong>Ganymede</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Iapetus/"><strong>Iapetus</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Iapetus/"><em><strong>Iapetus</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Io/"><strong>Io</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Io/"><em><strong>Io</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Jupiter/"><strong>Jupiter</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Jupiter/"><em><strong>Jupiter</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Mars/"><strong>Mars</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Mars/"><em><strong>Mars</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Mercury/"><strong>Mercury</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Mercury/"><em><strong>Mercury</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Moon/"><strong>Moon</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Moon/"><em><strong>Moon</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Neptune/"><strong>Neptune</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Neptune/"><em><strong>Neptune</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Oberon/"><strong>Oberon</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Oberon/"><em><strong>Oberon</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Phobos/"><strong>Phobos</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Phobos/"><em><strong>Phobos</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Rhea/"><strong>Rhea</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Rhea/"><em><strong>Rhea</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Saturn/"><strong>Saturn</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Saturn/"><em><strong>Saturn</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Sun/"><strong>Sun</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Sun/"><em><strong>Sun</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Titan/"><strong>Titan</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Titan/"><em><strong>Titan</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Titania/"><strong>Titania</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Titania/"><em><strong>Titania</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Triton/"><strong>Triton</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Triton/"><em><strong>Triton</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Uranus/"><strong>Uranus</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Uranus/"><em><strong>Uranus</strong></em></a> <em>celestial body.</em>    </li>
-<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Venus/"><strong>Venus</strong></a> <em>Represents the</em> <a href="../classastrea_1_1astro_1_1planetary__bodies_1_1Venus/"><em><strong>Venus</strong></em></a> <em>celestial body.</em>    </li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1deimos/"><strong>deimos</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1deimos_1_1deimos__fixed/"><strong>deimos_fixed</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1deimos_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1deimos_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1dynamic/"><strong>dynamic</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1dynamic_1_1body/"><strong>body</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1earth/"><strong>earth</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed/"><strong>earth_fixed</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1earth_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1earth_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1earth__barycenter/"><strong>earth_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1earth__barycenter_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1earth__barycenter_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1earth__moon__barycenter/"><strong>earth_moon_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1earth__moon__barycenter_1_1ems/"><strong>ems</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1earth__sun__barycenter/"><strong>earth_sun_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1earth__sun__barycenter_1_1ess/"><strong>ess</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1europa/"><strong>europa</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1europa_1_1europa__fixed/"><strong>europa_fixed</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1europa_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1europa_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1ganymede/"><strong>ganymede</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1ganymede_1_1ganymede__fixed/"><strong>ganymede_fixed</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1ganymede_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1ganymede_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1iapetus/"><strong>iapetus</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1iapetus_1_1iapetus__fixed/"><strong>iapetus_fixed</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1iapetus_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1iapetus_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1io/"><strong>io</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1io_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1io_1_1io__fixed/"><strong>io_fixed</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1io_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1jupiter/"><strong>jupiter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1jupiter_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1jupiter_1_1j2000/"><strong>j2000</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1jupiter_1_1jupiter__fixed/"><strong>jupiter_fixed</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1jupiter__barycenter/"><strong>jupiter_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1jupiter__barycenter_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1jupiter__barycenter_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1jupiter__sun__barycenter/"><strong>jupiter_sun_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1jupiter__sun__barycenter_1_1jss/"><strong>jss</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1mars/"><strong>mars</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1mars_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1mars_1_1j2000/"><strong>j2000</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1mars_1_1mars__fixed/"><strong>mars_fixed</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1mars__barycenter/"><strong>mars_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1mars__barycenter_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1mars__barycenter_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1mars__sun__barycenter/"><strong>mars_sun_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1mars__sun__barycenter_1_1mss/"><strong>mss</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1mercury/"><strong>mercury</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1mercury_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1mercury_1_1j2000/"><strong>j2000</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1mercury_1_1mercury__fixed/"><strong>mercury_fixed</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1mercury__barycenter/"><strong>mercury_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1mercury__barycenter_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1mercury__barycenter_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1mercury__sun__barycenter/"><strong>mercury_sun_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1mercury__sun__barycenter_1_1mss/"><strong>mss</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1moon/"><strong>moon</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1moon_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1moon_1_1j2000/"><strong>j2000</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1moon_1_1moon__fixed/"><strong>moon_fixed</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1neptune/"><strong>neptune</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1neptune_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1neptune_1_1j2000/"><strong>j2000</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1neptune_1_1neptune__fixed/"><strong>neptune_fixed</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1neptune__barycenter/"><strong>neptune_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1neptune__barycenter_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1neptune__barycenter_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1neptune__sun__barycenter/"><strong>neptune_sun_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1neptune__sun__barycenter_1_1nss/"><strong>nss</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1oberon/"><strong>oberon</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1oberon_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1oberon_1_1j2000/"><strong>j2000</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1oberon_1_1oberon__fixed/"><strong>oberon_fixed</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1phobos/"><strong>phobos</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1phobos_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1phobos_1_1j2000/"><strong>j2000</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1phobos_1_1phobos__fixed/"><strong>phobos_fixed</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1rhea/"><strong>rhea</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1rhea_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1rhea_1_1j2000/"><strong>j2000</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1rhea_1_1rhea__fixed/"><strong>rhea_fixed</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1saturn/"><strong>saturn</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1saturn_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1saturn_1_1j2000/"><strong>j2000</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1saturn_1_1saturn__fixed/"><strong>saturn_fixed</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1saturn__barycenter/"><strong>saturn_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1saturn__barycenter_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1saturn__barycenter_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1saturn__sun__barycenter/"><strong>saturn_sun_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1saturn__sun__barycenter_1_1sss/"><strong>sss</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1solar__system__barycenter/"><strong>solar_system_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1solar__system__barycenter_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1solar__system__barycenter_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1sun/"><strong>sun</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1sun_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1sun_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1titan/"><strong>titan</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1titan_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1titan_1_1j2000/"><strong>j2000</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1titan_1_1titan__fixed/"><strong>titan_fixed</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1titania/"><strong>titania</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1titania_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1titania_1_1j2000/"><strong>j2000</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1titania_1_1titania__fixed/"><strong>titania_fixed</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1triton/"><strong>triton</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1triton_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1triton_1_1j2000/"><strong>j2000</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1triton_1_1triton__fixed/"><strong>triton_fixed</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1uranus/"><strong>uranus</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1uranus_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1uranus_1_1j2000/"><strong>j2000</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1uranus_1_1uranus__fixed/"><strong>uranus_fixed</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1uranus__barycenter/"><strong>uranus_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1uranus__barycenter_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1uranus__barycenter_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1uranus__sun__barycenter/"><strong>uranus_sun_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1uranus__sun__barycenter_1_1uss/"><strong>uss</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1venus/"><strong>venus</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1venus_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1venus_1_1j2000/"><strong>j2000</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1venus_1_1venus__fixed/"><strong>venus_fixed</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1venus__barycenter/"><strong>venus_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1venus__barycenter_1_1icrf/"><strong>icrf</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1venus__barycenter_1_1j2000/"><strong>j2000</strong></a> </li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1venus__sun__barycenter/"><strong>venus_sun_barycenter</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1frames_1_1venus__sun__barycenter_1_1vss/"><strong>vss</strong></a> </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1is__cartesian__vector/"><strong>is_cartesian_vector</strong></a> </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1is__cartesian__vector_3_01CartesianVector_3_01Value__T_00_01frame_01_4_01_4/"><strong>is_cartesian_vector&lt; CartesianVector&lt; Value_T, frame &gt; &gt;</strong></a> </li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1moons/"><strong>moons</strong></a>     <ul>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1moons_1_1Callisto/"><strong>Callisto</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1moons_1_1Callisto/"><em><strong>Callisto</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1moons_1_1Deimos/"><strong>Deimos</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1moons_1_1Deimos/"><em><strong>Deimos</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1moons_1_1Europa/"><strong>Europa</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1moons_1_1Europa/"><em><strong>Europa</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1moons_1_1Ganymede/"><strong>Ganymede</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1moons_1_1Ganymede/"><em><strong>Ganymede</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1moons_1_1Iapetus/"><strong>Iapetus</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1moons_1_1Iapetus/"><em><strong>Iapetus</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1moons_1_1Io/"><strong>Io</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1moons_1_1Io/"><em><strong>Io</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1moons_1_1Moon/"><strong>Moon</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1moons_1_1Moon/"><em><strong>Moon</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1moons_1_1Oberon/"><strong>Oberon</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1moons_1_1Oberon/"><em><strong>Oberon</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1moons_1_1Phobos/"><strong>Phobos</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1moons_1_1Phobos/"><em><strong>Phobos</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1moons_1_1Rhea/"><strong>Rhea</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1moons_1_1Rhea/"><em><strong>Rhea</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1moons_1_1Titan/"><strong>Titan</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1moons_1_1Titan/"><em><strong>Titan</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1moons_1_1Titania/"><strong>Titania</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1moons_1_1Titania/"><em><strong>Titania</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1moons_1_1Triton/"><strong>Triton</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1moons_1_1Triton/"><em><strong>Triton</strong></em></a> <em>celestial body.</em></li>
+</ul>
+</li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1planets/"><strong>planets</strong></a>     <ul>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1planets_1_1BatesProfileParams/"><strong>BatesProfileParams</strong></a>     </li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1planets_1_1Earth/"><strong>Earth</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1planets_1_1Earth/"><em><strong>Earth</strong></em></a> <em>celestial body.</em></li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1planets_1_1EarthParameters/"><strong>EarthParameters</strong></a>     </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere/"><strong>HarrisPriesterAtmosphere</strong></a> <em>The Harris-Priester atmospheric model for</em> <a href="../structastrea_1_1astro_1_1planets_1_1Earth/"><em><strong>Earth</strong></em></a> <em>.</em>    </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere/"><strong>JacciaRobertsAtmosphere</strong></a> <em>The Jaccia-Roberts atmospheric model for</em> <a href="../structastrea_1_1astro_1_1planets_1_1Earth/"><em><strong>Earth</strong></em></a> <em>.</em>    </li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1planets_1_1Jupiter/"><strong>Jupiter</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1planets_1_1Jupiter/"><em><strong>Jupiter</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1planets_1_1Mars/"><strong>Mars</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1planets_1_1Mars/"><em><strong>Mars</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1planets_1_1Mercury/"><strong>Mercury</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1planets_1_1Mercury/"><em><strong>Mercury</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00/"><strong>NRLMSISE00</strong></a>     </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere/"><strong>NRLMSISE00Atmosphere</strong></a> <em>The NRLMSISE-00 atmospheric model for</em> <a href="../structastrea_1_1astro_1_1planets_1_1Earth/"><em><strong>Earth</strong></em></a> <em>.</em>    </li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1planets_1_1Neptune/"><strong>Neptune</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1planets_1_1Neptune/"><em><strong>Neptune</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1planets_1_1Saturn/"><strong>Saturn</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1planets_1_1Saturn/"><em><strong>Saturn</strong></em></a> <em>celestial body.</em></li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1planets_1_1SpeciesModelParams/"><strong>SpeciesModelParams</strong></a> <em>Per-species empirical parameters for NRLMSISE-00 diffusive and mixed-region density calculations.</em>     </li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1planets_1_1Uranus/"><strong>Uranus</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1planets_1_1Uranus/"><em><strong>Uranus</strong></em></a> <em>celestial body.</em></li>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1planets_1_1Venus/"><strong>Venus</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1planets_1_1Venus/"><em><strong>Venus</strong></em></a> <em>celestial body.</em></li>
 </ul>
 </li>
 <li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1plotting/"><strong>plotting</strong></a>     </li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1star/"><strong>star</strong></a>     <ul>
+<li><strong>class</strong> <a href="../structastrea_1_1astro_1_1star_1_1Sun/"><strong>Sun</strong></a> <em>Represents the</em> <a href="../structastrea_1_1astro_1_1star_1_1Sun/"><em><strong>Sun</strong></em></a> <em>celestial body.</em></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1EventDetector_1_1EventTracker/"><strong>EventTracker</strong></a> <em>A struct for tracking events.</em>     </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1_0d17/"><strong>@17</strong></a> </li>
-<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1plotting_1_1_0d151/"><strong>@151</strong></a> </li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1frames_1_1_0d17/"><strong>frames</strong></a> </li>
+<li><strong>class</strong> <a href="../classastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Output/"><strong>Output</strong></a>     </li>
+<li><strong>struct</strong> <a href="../structastrea_1_1astro_1_1planets_1_1NRLMSISE00_1_1Switch/"><strong>Switch</strong></a>     </li>
+<li><strong>namespace</strong> <a href="../namespaceastrea_1_1astro_1_1plotting_1_1_0d196/"><strong>plotting</strong></a> </li>
 <li><strong>namespace</strong> <a href="../namespacematplot/"><strong>matplot</strong></a> </li>
 <li><strong>namespace</strong> <a href="../namespacemp__units/"><strong>mp_units</strong></a>     <ul>
 <li><strong>struct</strong> <a href="../structmp__units_1_1quantity__point__like__traits_3_01astrea_1_1astro_1_1Date_01_4/"><strong>quantity_point_like_traits&lt; astrea::astro::Date &gt;</strong></a> <em>Specialization of mp_units::quantity_point_like_traits for the Date class.</em>     </li>
@@ -6473,11 +6728,10 @@ You're not viewing the latest version.
 <li><strong>namespace</strong> <a href="../namespacemp__units_1_1si/"><strong>si</strong></a> </li>
 <li><strong>namespace</strong> <a href="../namespacemp__units_1_1si_1_1unit__symbols/"><strong>unit_symbols</strong></a> </li>
 <li><strong>namespace</strong> <a href="../namespacestd/"><strong>std</strong></a>     <ul>
-<li><strong>struct</strong> <a href="../structstd_1_1hash_3_01astrea_1_1astro_1_1CelestialBody_01_4/"><strong>hash&lt; astrea::astro::CelestialBody &gt;</strong></a> <em>Hash function for CelestialBody.</em>     </li>
 <li><strong>struct</strong> <a href="../structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4/"><strong>hash&lt; std::tuple&lt; TT... &gt; &gt;</strong></a>     </li>
 </ul>
 </li>
-<li><strong>namespace</strong> <a href="../namespacestd_1_1_0d145/"><strong>@145</strong></a> </li>
+<li><strong>namespace</strong> <a href="../namespacestd_1_1_0d190/"><strong>std</strong></a> </li>
 </ul>
 
 

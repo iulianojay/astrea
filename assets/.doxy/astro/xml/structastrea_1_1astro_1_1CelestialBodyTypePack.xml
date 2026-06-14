@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1CelestialBodyTypePack" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::CelestialBodyTypePack</compoundname>
+    <includes refid="Barycenter_8hpp" local="no">Barycenter.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename...</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+<para>Type-list used to attach member bodies to a <ref refid="structastrea_1_1astro_1_1Barycenter" kindref="compound">Barycenter</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Types in the list may be incomplete (forward-declared) at the point where the <ref refid="structastrea_1_1astro_1_1Barycenter" kindref="compound">Barycenter</ref> is instantiated, which avoids circular inclusion between <ref refid="Barycenter_8hpp" kindref="compound">Barycenter.hpp</ref> and the individual planet headers. Because CelestialBodyTypePack&lt;&gt; has no data members it is a structural type and can therefore be passed as a non-type template parameter. </para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/Barycenter.hpp" line="48" column="1" bodyfile="astrea/astro/astro/systems/Barycenter.hpp" bodystart="48" bodyend="48"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

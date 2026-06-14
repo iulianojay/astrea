@@ -1,51 +1,52 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1PayloadPlatform" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>astrea::astro::PayloadPlatform</compoundname>
-    <basecompoundref refid="classastrea_1_1astro_1_1FrameReference" prot="public" virt="virtual">astrea::astro::FrameReference</basecompoundref>
-    <derivedcompoundref refid="classastrea_1_1astro_1_1Spacecraft" prot="public" virt="non-virtual">astrea::astro::Spacecraft</derivedcompoundref>
     <includes refid="PayloadPlatform_8hpp" local="no">PayloadPlatform.hpp</includes>
     <templateparamlist>
       <param>
-        <type>class Payload_T</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Payload_T</ref></type>
       </param>
     </templateparamlist>
-      <sectiondef kind="private-type">
-      <memberdef kind="typedef" id="classastrea_1_1astro_1_1PayloadPlatform_1acd9923576554cd3e0b826eee48d84176" prot="private" static="no">
-        <type>decltype(std::declval&lt; Payload_T &gt;().get_parameters())</type>
-        <definition>using astrea::astro::PayloadPlatform&lt; Payload_T &gt;::PayloadParameters_T =  decltype(std::declval&lt;Payload_T&gt;().get_parameters())</definition>
+    <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classastrea_1_1astro_1_1PayloadPlatform_1ad1a50d2dcafb3935199afd2f641aa2ca" prot="private" static="no">
+        <type>remove_cv_ref&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(std::declval&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Payload_T</ref> &gt;().get_parameters())&gt;</type>
+        <definition>using astrea::astro::PayloadPlatform&lt; Payload_T &gt;::PayloadParameters_T =  remove_cv_ref&lt;decltype(std::declval&lt;Payload_T&gt;().get_parameters())&gt;</definition>
         <argsstring></argsstring>
         <name>PayloadParameters_T</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::PayloadParameters_T</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="37" column="5" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="37" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="39" column="5" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="39" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-attrib">
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1PayloadPlatform_1a5d24f40144d6bbee40f2a360da82162b" prot="protected" static="no" mutable="no">
-        <type>std::vector&lt; Payload_T &gt;</type>
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Payload_T</ref> &gt;</type>
         <definition>std::vector&lt;Payload_T&gt; astrea::astro::PayloadPlatform&lt; Payload_T &gt;::_payloads</definition>
         <argsstring></argsstring>
         <name>_payloads</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::_payloads</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="151" column="17" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="151" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="169" column="17" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="169" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-func">
+    </sectiondef>
+    <sectiondef kind="protected-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a2e49768644debc910afe81927cbd6ea7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::PayloadPlatform&lt; Payload_T &gt;::PayloadPlatform</definition>
         <argsstring>()=default</argsstring>
         <name>PayloadPlatform</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::PayloadPlatform</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>. </para>
         </briefdescription>
@@ -53,13 +54,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="43" column="5"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="45" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1ab65c6cfe2d13db85ba002c7098ea63d4" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type></type>
         <definition>virtual astrea::astro::PayloadPlatform&lt; Payload_T &gt;::~PayloadPlatform</definition>
         <argsstring>()=default</argsstring>
         <name>~PayloadPlatform</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::~PayloadPlatform</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref>. </para>
         </briefdescription>
@@ -67,15 +69,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="48" column="13"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="50" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a75b47d34dfa8b14241224689531711fc" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::PayloadPlatform&lt; Payload_T &gt;::PayloadPlatform</definition>
         <argsstring>(const PayloadPlatform &amp;other)</argsstring>
         <name>PayloadPlatform</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::PayloadPlatform</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -95,13 +98,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="55" column="5" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="55" bodyend="59"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="57" column="5" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="57" bodyend="61"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1ac605a5b5aa3d6076a938c7f12566bbfa" prot="protected" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::PayloadPlatform&lt; Payload_T &gt;::PayloadPlatform</definition>
         <argsstring>(PayloadPlatform &amp;&amp;other) noexcept</argsstring>
         <name>PayloadPlatform</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::PayloadPlatform</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref> &amp;&amp;</type>
           <declname>other</declname>
@@ -123,15 +127,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="66" column="5" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="66" bodyend="70"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="68" column="5" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="68" bodyend="72"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a7d2f05346ddca7ea800d50f65590429e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a5b86342be601a015b7350e019f751991" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref> &amp;</type>
-        <definition>PayloadPlatform&amp; astrea::astro::PayloadPlatform&lt; Payload_T &gt;::operator=</definition>
+        <definition>PayloadPlatform &amp; astrea::astro::PayloadPlatform&lt; Payload_T &gt;::operator=</definition>
         <argsstring>(const PayloadPlatform &amp;other)</argsstring>
         <name>operator=</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::operator=</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -153,13 +158,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="78" column="21" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="78" bodyend="85"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="80" column="21" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="80" bodyend="87"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a6563be9de229f07d640070bcf9b98253" prot="protected" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a9fd042c81cc39bab05b7168c6270c6c5" prot="protected" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref> &amp;</type>
-        <definition>PayloadPlatform&amp; astrea::astro::PayloadPlatform&lt; Payload_T &gt;::operator=</definition>
+        <definition>PayloadPlatform &amp; astrea::astro::PayloadPlatform&lt; Payload_T &gt;::operator=</definition>
         <argsstring>(PayloadPlatform &amp;&amp;other) noexcept</argsstring>
         <name>operator=</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::operator=</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref> &amp;&amp;</type>
           <declname>other</declname>
@@ -183,13 +189,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="93" column="21" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="93" bodyend="100"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="95" column="21" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="95" bodyend="102"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
         <definition>void astrea::astro::PayloadPlatform&lt; Payload_T &gt;::reset_payload_parentage</definition>
         <argsstring>()</argsstring>
         <name>reset_payload_parentage</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::reset_payload_parentage</qualifiedname>
         <briefdescription>
 <para>Resets the parentage of all payloads attached to the platform to this. </para>
         </briefdescription>
@@ -197,15 +204,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="156" column="10" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="156" bodyend="161"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="174" column="10" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="174" bodyend="179"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a9dbb3a6fcb1b3c5482728ca7cbb37627" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
         <type>std::size_t</type>
         <definition>virtual std::size_t astrea::astro::PayloadPlatform&lt; Payload_T &gt;::get_id</definition>
         <argsstring>() const =0</argsstring>
         <name>get_id</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::get_id</qualifiedname>
         <reimplementedby refid="classastrea_1_1astro_1_1Spacecraft_1ad5f2a44325e18c698cf25e33f71b2b3a">get_id</reimplementedby>
         <briefdescription>
 <para>Get the ID of the payload. </para>
@@ -217,13 +225,78 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="108" column="25"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="110" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a13ee5b1977ccfc3b56774bf3a3c2feda" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; frames::primary &gt;</type>
+        <definition>virtual RadiusVector&lt; frames::primary &gt; astrea::astro::PayloadPlatform&lt; Payload_T &gt;::get_position</definition>
+        <argsstring>(const Date &amp;date) const =0</argsstring>
+        <name>get_position</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::get_position</qualifiedname>
+        <reimplementedby refid="classastrea_1_1astro_1_1Spacecraft_1a984ff77af42d5cfa052244553c6dc86d">get_position</reimplementedby>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+<para>Get the position of the platform. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date for which to get the position. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector&lt;frames::primary&gt;</ref> Position of the platform. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="118" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a85e2df0e52efc544caef7856abc6bbcc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector</ref>&lt; frames::primary &gt;</type>
+        <definition>virtual VelocityVector&lt; frames::primary &gt; astrea::astro::PayloadPlatform&lt; Payload_T &gt;::get_velocity</definition>
+        <argsstring>(const Date &amp;date) const =0</argsstring>
+        <name>get_velocity</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::get_velocity</qualifiedname>
+        <reimplementedby refid="classastrea_1_1astro_1_1Spacecraft_1a90fe4b7fe6b8d0f1315a234d8eae0c57">get_velocity</reimplementedby>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+<para>Get the velocity of the platform. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date for which to get the velocity. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector&lt;frames::primary&gt;</ref> Velocity of the platform. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="126" column="28"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a1f39a69fc17a82b49a7aa6b15b61f65c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
-        <type>Mass</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Mass</ref></type>
         <definition>virtual Mass astrea::astro::PayloadPlatform&lt; Payload_T &gt;::get_mass</definition>
         <argsstring>() const</argsstring>
         <name>get_mass</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::get_mass</qualifiedname>
         <reimplementedby refid="classastrea_1_1astro_1_1Spacecraft_1a8006e003e3545dcd32cabc3789dc4a3e">get_mass</reimplementedby>
         <briefdescription>
 <para>Get the mass of the platform. </para>
@@ -235,15 +308,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="115" column="18" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="115" bodyend="115"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="133" column="18" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="133" bodyend="133"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a3fd1ddd8c83de855378361500772110d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
         <definition>void astrea::astro::PayloadPlatform&lt; Payload_T &gt;::attach_payload</definition>
         <argsstring>(const PayloadParameters_T &amp;parameters)</argsstring>
         <name>attach_payload</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::attach_payload</qualifiedname>
         <param>
-          <type>const PayloadParameters_T &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">PayloadParameters_T</ref> &amp;</type>
           <declname>parameters</declname>
         </param>
         <briefdescription>
@@ -263,15 +337,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="122" column="10" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="122" bodyend="122"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="140" column="10" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="140" bodyend="140"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a543013093f0f72b8d8992d49a1d5e666" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
         <definition>void astrea::astro::PayloadPlatform&lt; Payload_T &gt;::attach_payloads</definition>
         <argsstring>(const std::vector&lt; PayloadParameters_T &gt; &amp;parameterPack)</argsstring>
         <name>attach_payloads</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::attach_payloads</qualifiedname>
         <param>
-          <type>const std::vector&lt; PayloadParameters_T &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">PayloadParameters_T</ref> &gt; &amp;</type>
           <declname>parameterPack</declname>
         </param>
         <briefdescription>
@@ -291,13 +366,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="129" column="10" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="129" bodyend="134"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="147" column="10" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="147" bodyend="152"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a028e7c196fd2eeaca56adaf5a10063f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>std::vector&lt; Payload_T &gt; &amp;</type>
-        <definition>std::vector&lt;Payload_T&gt;&amp; astrea::astro::PayloadPlatform&lt; Payload_T &gt;::get_payloads</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a54d9bf8b1049816166b25c0d4e24d045" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Payload_T</ref> &gt; &amp;</type>
+        <definition>std::vector&lt; Payload_T &gt; &amp; astrea::astro::PayloadPlatform&lt; Payload_T &gt;::get_payloads</definition>
         <argsstring>()</argsstring>
         <name>get_payloads</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::get_payloads</qualifiedname>
         <briefdescription>
 <para>Retrieves the list of payloads attached to the platform. </para>
         </briefdescription>
@@ -308,13 +384,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="141" column="17" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="141" bodyend="141"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="159" column="17" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="159" bodyend="159"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a6e07d8807ec4163410938ff53a502d30" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>const std::vector&lt; Payload_T &gt; &amp;</type>
-        <definition>const std::vector&lt;Payload_T&gt;&amp; astrea::astro::PayloadPlatform&lt; Payload_T &gt;::get_payloads</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1PayloadPlatform_1a4f32c230e8835289ef1c9aaa129c8da1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Payload_T</ref> &gt; &amp;</type>
+        <definition>const std::vector&lt; Payload_T &gt; &amp; astrea::astro::PayloadPlatform&lt; Payload_T &gt;::get_payloads</definition>
         <argsstring>() const</argsstring>
         <name>get_payloads</name>
+        <qualifiedname>astrea::astro::PayloadPlatform::get_payloads</qualifiedname>
         <briefdescription>
 <para>Retrieves the list of payloads attached to the platform (const version). </para>
         </briefdescription>
@@ -325,66 +402,32 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="148" column="23" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="148" bodyend="148"/>
+        <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="166" column="23" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="166" bodyend="166"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>The <ref refid="classastrea_1_1astro_1_1PayloadPlatform" kindref="compound">PayloadPlatform</ref> class represents a platform that can have payloads attached to it. It provides methods to attach payloads and retrieve the list of attached payloads. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <inheritancegraph>
-      <node id="1">
-        <label>astrea::astro::PayloadPlatform&lt; Payload_T &gt;</label>
-        <link refid="classastrea_1_1astro_1_1PayloadPlatform"/>
-        <childnode refid="2" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>astrea::astro::FrameReference</label>
-        <link refid="classastrea_1_1astro_1_1FrameReference"/>
-      </node>
-      <node id="3">
-        <label>astrea::astro::Spacecraft&lt; Thruster &gt;</label>
-        <link refid="classastrea_1_1astro_1_1Spacecraft"/>
-        <childnode refid="1" relation="public-inheritance">
-        </childnode>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="1">
-        <label>astrea::astro::PayloadPlatform&lt; Payload_T &gt;</label>
-        <link refid="classastrea_1_1astro_1_1PayloadPlatform"/>
-        <childnode refid="2" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>astrea::astro::FrameReference</label>
-        <link refid="classastrea_1_1astro_1_1FrameReference"/>
-      </node>
-    </collaborationgraph>
-    <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="35" column="1" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="35" bodyend="162"/>
+    <location file="astrea/astro/astro/platforms/PayloadPlatform.hpp" line="36" column="1" bodyfile="astrea/astro/astro/platforms/PayloadPlatform.hpp" bodystart="36" bodyend="180"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a5d24f40144d6bbee40f2a360da82162b" prot="protected" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>_payloads</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a3fd1ddd8c83de855378361500772110d" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>attach_payload</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a543013093f0f72b8d8992d49a1d5e666" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>attach_payloads</name></member>
-      <member refid="classastrea_1_1astro_1_1FrameReference_1a6c17dafd74885f79b74a65526cabec87" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>FrameReference</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a9dbb3a6fcb1b3c5482728ca7cbb37627" prot="public" virt="pure-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_id</name></member>
-      <member refid="classastrea_1_1astro_1_1FrameReference_1a8560cf47e7341aecc6d86a892f50ec8d" prot="public" virt="virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_inertial_acceleration</name></member>
-      <member refid="classastrea_1_1astro_1_1FrameReference_1a6b9f096a7640d6e0ff5c7c4be9b415bf" prot="public" virt="pure-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_inertial_position</name></member>
-      <member refid="classastrea_1_1astro_1_1FrameReference_1a568e7b60eeef6ade08cb3a6ce0061e66" prot="public" virt="pure-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_inertial_velocity</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a1f39a69fc17a82b49a7aa6b15b61f65c" prot="public" virt="virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_mass</name></member>
-      <member refid="classastrea_1_1astro_1_1FrameReference_1aa182a016a8c50f478509353d386ee5bf" prot="public" virt="pure-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_name</name></member>
-      <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a028e7c196fd2eeaca56adaf5a10063f8" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_payloads</name></member>
-      <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a6e07d8807ec4163410938ff53a502d30" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_payloads</name></member>
-      <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a7d2f05346ddca7ea800d50f65590429e" prot="protected" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>operator=</name></member>
-      <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a6563be9de229f07d640070bcf9b98253" prot="protected" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>operator=</name></member>
-      <member refid="classastrea_1_1astro_1_1PayloadPlatform_1acd9923576554cd3e0b826eee48d84176" prot="private" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>PayloadParameters_T</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a54d9bf8b1049816166b25c0d4e24d045" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_payloads</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a4f32c230e8835289ef1c9aaa129c8da1" prot="public" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_payloads</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a13ee5b1977ccfc3b56774bf3a3c2feda" prot="public" virt="pure-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_position</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a85e2df0e52efc544caef7856abc6bbcc" prot="public" virt="pure-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>get_velocity</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a5b86342be601a015b7350e019f751991" prot="protected" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a9fd042c81cc39bab05b7168c6270c6c5" prot="protected" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1PayloadPlatform_1ad1a50d2dcafb3935199afd2f641aa2ca" prot="private" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>PayloadParameters_T</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a2e49768644debc910afe81927cbd6ea7" prot="protected" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>PayloadPlatform</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1a75b47d34dfa8b14241224689531711fc" prot="protected" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>PayloadPlatform</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1ac605a5b5aa3d6076a938c7f12566bbfa" prot="protected" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>PayloadPlatform</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1ad0189d4ba5ad26fc7c12ab9d590caa40" prot="protected" virt="non-virtual"><scope>astrea::astro::PayloadPlatform</scope><name>reset_payload_parentage</name></member>
-      <member refid="classastrea_1_1astro_1_1FrameReference_1a1aa91d3b8c441d1c972969b176c1cd34" prot="public" virt="virtual"><scope>astrea::astro::PayloadPlatform</scope><name>~FrameReference</name></member>
       <member refid="classastrea_1_1astro_1_1PayloadPlatform_1ab65c6cfe2d13db85ba002c7098ea63d4" prot="protected" virt="virtual"><scope>astrea::astro::PayloadPlatform</scope><name>~PayloadPlatform</name></member>
     </listofallmembers>
   </compounddef>

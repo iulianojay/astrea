@@ -12,10 +12,11 @@ _Header file for access analysis functions in the astrea access library._ [More.
 
 * `#include <memory>`
 * `#include <vector>`
-* `#include <gtl/btree.hpp>`
+* `#include <gtl/phmap.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/CartesianVector.hpp>`
-* `#include <astro/frames/frames.hpp>`
+* `#include <astro/frames/definitions.hpp>`
+* `#include <astro/frames/framework/CartesianVector.hpp>`
+* `#include <astro/systems/celestial_bodies/Earth/Earth.hpp>`
 * `#include <astro/time/Date.hpp>`
 * `#include <units/units.hpp>`
 * `#include <utilities/ProgressBar.hpp>`

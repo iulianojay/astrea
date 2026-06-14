@@ -1,39 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1deimos" kind="namespace" language="C++">
     <compoundname>astrea::astro::frames::deimos</compoundname>
-      <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a12c11c3fce5d0cac7b7c17c97471bc93" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::DEIMOS, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" kindref="member">FrameAxis::ICRF</ref> &gt;</type>
-        <definition>using astrea::astro::frames::deimos::icrf = typedef InertialFrame&lt;CelestialBodyId::DEIMOS, FrameAxis::ICRF&gt;</definition>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1deimos_1_1deimos__fixed" prot="public">astrea::astro::frames::deimos::deimos_fixed</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1deimos_1_1icrf" prot="public">astrea::astro::frames::deimos::icrf</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1deimos_1_1j2000" prot="public">astrea::astro::frames::deimos::j2000</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1ac7bfcae1accf12476744a15b32849664" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1deimos_1_1icrf" kindref="compound">astrea::astro::frames::deimos::icrf</ref></type>
+        <definition>astrea::astro::frames::deimos::icrf astrea::astro::frames::deimos::icrf</definition>
         <argsstring></argsstring>
         <name>icrf</name>
+        <qualifiedname>astrea::astro::frames::deimos::icrf</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="63" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="63" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="79" column="6"/>
       </memberdef>
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a461b32a8d7ae028a7ed45d709106fbb1" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::DEIMOS, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" kindref="member">FrameAxis::J2000</ref> &gt;</type>
-        <definition>using astrea::astro::frames::deimos::j2000 = typedef InertialFrame&lt;CelestialBodyId::DEIMOS, FrameAxis::J2000&gt;</definition>
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a1eea0db1bad8d0b9dfd1760be937d31d" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1deimos_1_1j2000" kindref="compound">astrea::astro::frames::deimos::j2000</ref></type>
+        <definition>astrea::astro::frames::deimos::j2000 astrea::astro::frames::deimos::j2000</definition>
         <argsstring></argsstring>
         <name>j2000</name>
+        <qualifiedname>astrea::astro::frames::deimos::j2000</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="64" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="64" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="81" column="7"/>
       </memberdef>
-      </sectiondef>
+      <memberdef kind="variable" id="body__fixed__frames_8hpp_1a3bd98739c4ee1622101342cade9d4bcd" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1deimos_1_1deimos__fixed" kindref="compound">astrea::astro::frames::deimos::deimos_fixed</ref></type>
+        <definition>astrea::astro::frames::deimos::deimos_fixed astrea::astro::frames::deimos::deimos_fixed</definition>
+        <argsstring></argsstring>
+        <name>deimos_fixed</name>
+        <qualifiedname>astrea::astro::frames::deimos::deimos_fixed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="60" column="14"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="62" column="1"/>
+    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="77" column="1"/>
   </compounddef>
 </doxygen>

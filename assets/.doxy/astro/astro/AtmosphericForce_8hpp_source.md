@@ -17,22 +17,19 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/propagation/force_models/Force.hpp>
+#include <astro/propagation/force_models/PerturbingForce.hpp>
 
 namespace astrea {
 namespace astro {
 
-class AtmosphericForce : public Force {
+class AtmosphericForce : public PerturbingForce {
 
   public:
     AtmosphericForce() = default;
 
     ~AtmosphericForce() = default;
 
-    CartesianVector<Acceleration, frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override;
-
-  private:
-    const Density find_atmospheric_density(const State& state, const std::unique_ptr<CelestialBody>& center) const;
+    Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override;
 };
 
 } // namespace astro

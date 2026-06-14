@@ -18,17 +18,23 @@
 namespace astrea {
 namespace astro {
 
-template <typename Frame_T>
-using RadiusVector = CartesianVector<Distance, Frame_T>;
+template <IsFrame auto frame>
+using RadiusVector = CartesianVector<Distance, frame>;
 
-template <typename Frame_T>
-using VelocityVector = CartesianVector<Velocity, Frame_T>;
+template <IsFrame auto frame>
+using VelocityVector = CartesianVector<Velocity, frame>;
 
-template <typename Frame_T>
-using AccelerationVector = CartesianVector<Acceleration, Frame_T>;
+template <IsFrame auto frame>
+using AccelerationVector = CartesianVector<Acceleration, frame>;
 
-template <typename Frame_T>
-using UnitVector = CartesianVector<Unitless, Frame_T>;
+template <IsFrame auto frame>
+using Direction = CartesianVector<Unitless, frame>;
+
+template <IsFrame auto frame>
+using ForceVector = CartesianVector<Force, frame>;
+
+template <IsFrame auto frame>
+using TorqueVector = CartesianVector<Moment, frame>;
 
 } // namespace astro
 } // namespace astrea

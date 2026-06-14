@@ -37,7 +37,6 @@
 ## m
 
 * **mass\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))
-* **minor\_distance\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))
 
 
 ## p
@@ -49,6 +48,7 @@
 
 ## s
 
+* **SolarFluxUnits** ([**astrea**](namespaceastrea.md))
 * **speed\_of\_light\_in\_vacuum** ([**astrea**](namespaceastrea.md))
 
 

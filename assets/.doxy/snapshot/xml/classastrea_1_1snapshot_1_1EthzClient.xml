@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="classastrea_1_1snapshot_1_1EthzClient" kind="class" language="C++" prot="public">
     <compoundname>astrea::snapshot::EthzClient</compoundname>
     <includes refid="EthzClient_8hpp" local="no">EthzClient.hpp</includes>
-      <sectiondef kind="private-attrib">
+    <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1snapshot_1_1EthzClient_1ad637299ae2d34f3f307089e8394606bd" prot="private" static="no" mutable="no">
         <type>const cpr::Url</type>
         <definition>const cpr::Url astrea::snapshot::EthzClient::_base</definition>
         <argsstring></argsstring>
         <name>_base</name>
+        <qualifiedname>astrea::snapshot::EthzClient::_base</qualifiedname>
         <initializer>= &quot;https://satdb.ethz.ch/api&quot;</initializer>
         <briefdescription>
 <para>Base URL for the ETHZ satellite database API. </para>
@@ -24,6 +25,7 @@
         <definition>const cpr::Url astrea::snapshot::EthzClient::_satDataUrl</definition>
         <argsstring></argsstring>
         <name>_satDataUrl</name>
+        <qualifiedname>astrea::snapshot::EthzClient::_satDataUrl</qualifiedname>
         <initializer>= _base + &quot;/satellitedata&quot;</initializer>
         <briefdescription>
 <para>URL for satellite data endpoint. </para>
@@ -39,6 +41,7 @@
         <definition>const cpr::Url astrea::snapshot::EthzClient::_satUrl</definition>
         <argsstring></argsstring>
         <name>_satUrl</name>
+        <qualifiedname>astrea::snapshot::EthzClient::_satUrl</qualifiedname>
         <initializer>= _base + &quot;/satellite&quot;</initializer>
         <briefdescription>
 <para>URL for satellite endpoint. </para>
@@ -54,6 +57,7 @@
         <definition>const cpr::Url astrea::snapshot::EthzClient::_frequencySourceUrl</definition>
         <argsstring></argsstring>
         <name>_frequencySourceUrl</name>
+        <qualifiedname>astrea::snapshot::EthzClient::_frequencySourceUrl</qualifiedname>
         <initializer>= _base + &quot;/frequencysource&quot;</initializer>
         <briefdescription>
 <para>URL for frequency source endpoint. </para>
@@ -69,6 +73,7 @@
         <definition>const cpr::Url astrea::snapshot::EthzClient::_frequencyUrl</definition>
         <argsstring></argsstring>
         <name>_frequencyUrl</name>
+        <qualifiedname>astrea::snapshot::EthzClient::_frequencyUrl</qualifiedname>
         <initializer>= _base + &quot;/frequency&quot;</initializer>
         <briefdescription>
 <para>URL for frequency endpoint. </para>
@@ -84,6 +89,7 @@
         <definition>const cpr::Authentication astrea::snapshot::EthzClient::_auth</definition>
         <argsstring></argsstring>
         <name>_auth</name>
+        <qualifiedname>astrea::snapshot::EthzClient::_auth</qualifiedname>
         <initializer>= { &quot;user&quot;, &quot;pass&quot;, cpr::AuthMode::BASIC }</initializer>
         <briefdescription>
 <para>Authentication for the ETHZ API. </para>
@@ -92,13 +98,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="87" column="31" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" bodystart="87" bodyend="-1"/>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="87" column="31" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" bodystart="87" bodyend="87"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1snapshot_1_1EthzClient_1aceb54b06f7176cb54f2604daa9edaa50" prot="private" static="no" mutable="no">
         <type>const astro::Date</type>
         <definition>const astro::Date astrea::snapshot::EthzClient::_minStartDate</definition>
         <argsstring></argsstring>
         <name>_minStartDate</name>
+        <qualifiedname>astrea::snapshot::EthzClient::_minStartDate</qualifiedname>
         <briefdescription>
 <para>Minimum start date for queries (2023-03-10 00:00:00.0) </para>
         </briefdescription>
@@ -108,13 +115,14 @@
         </inbodydescription>
         <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="89" column="23" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" bodystart="89" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1snapshot_1_1EthzClient_1ae9b039d7bb242b5f23b04999ec66c5fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::snapshot::EthzClient::EthzClient</definition>
         <argsstring>()</argsstring>
         <name>EthzClient</name>
+        <qualifiedname>astrea::snapshot::EthzClient::EthzClient</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="classastrea_1_1snapshot_1_1EthzClient" kindref="compound">EthzClient</ref>. </para>
         </briefdescription>
@@ -130,6 +138,7 @@
         <definition>astrea::snapshot::EthzClient::~EthzClient</definition>
         <argsstring>()=default</argsstring>
         <name>~EthzClient</name>
+        <qualifiedname>astrea::snapshot::EthzClient::~EthzClient</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1snapshot_1_1EthzClient" kindref="compound">EthzClient</ref>. </para>
         </briefdescription>
@@ -144,6 +153,7 @@
         <definition>nlohmann::json astrea::snapshot::EthzClient::query</definition>
         <argsstring>(const astro::Date &amp;startDate, const astro::Date &amp;endDate, const std::string &amp;name, const bool &amp;includeFrequencyData=false)</argsstring>
         <name>query</name>
+        <qualifiedname>astrea::snapshot::EthzClient::query</qualifiedname>
         <param>
           <type>const astro::Date &amp;</type>
           <declname>startDate</declname>
@@ -213,13 +223,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="65" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp" bodystart="24" bodyend="27"/>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="65" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp" bodystart="26" bodyend="29"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1snapshot_1_1EthzClient_1a46279f647a4c00db59e324fcd251207b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>nlohmann::json</type>
         <definition>nlohmann::json astrea::snapshot::EthzClient::query</definition>
         <argsstring>(const astro::Date &amp;startDate, const astro::Date &amp;endDate, const unsigned &amp;noradId, const bool &amp;includeFrequencyData=false)</argsstring>
         <name>query</name>
+        <qualifiedname>astrea::snapshot::EthzClient::query</qualifiedname>
         <param>
           <type>const astro::Date &amp;</type>
           <declname>startDate</declname>
@@ -281,15 +292,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="79" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp" bodystart="28" bodyend="31"/>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="79" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp" bodystart="30" bodyend="33"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
+    </sectiondef>
+    <sectiondef kind="private-func">
       <memberdef kind="function" id="classastrea_1_1snapshot_1_1EthzClient_1a35557cfb695fada514f803b632257285" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>nlohmann::json</type>
         <definition>nlohmann::json astrea::snapshot::EthzClient::query_impl</definition>
         <argsstring>(const astro::Date &amp;startDate, const astro::Date &amp;endDate, const std::string &amp;name=&quot;&quot;, const unsigned &amp;noradId=0, const bool &amp;includeFrequencyData=false)</argsstring>
         <name>query_impl</name>
+        <qualifiedname>astrea::snapshot::EthzClient::query_impl</qualifiedname>
         <param>
           <type>const astro::Date &amp;</type>
           <declname>startDate</declname>
@@ -365,13 +377,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="104" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp" bodystart="34" bodyend="107"/>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="104" column="20" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp" bodystart="36" bodyend="109"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1snapshot_1_1EthzClient_1a469fb733a1eef72b2cf205ea432fc52e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void astrea::snapshot::EthzClient::clean_result</definition>
         <argsstring>(nlohmann::json &amp;result)</argsstring>
         <name>clean_result</name>
+        <qualifiedname>astrea::snapshot::EthzClient::clean_result</qualifiedname>
         <param>
           <type>nlohmann::json &amp;</type>
           <declname>result</declname>
@@ -394,9 +407,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="119" column="10" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp" bodystart="110" bodyend="126"/>
+        <location file="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp" line="119" column="10" bodyfile="astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp" bodystart="112" bodyend="128"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para><ref refid="classastrea_1_1snapshot_1_1EthzClient" kindref="compound">EthzClient</ref> class for interacting with the ETHZ satellite database API. </para>
     </briefdescription>

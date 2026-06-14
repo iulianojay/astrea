@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="structastrea_1_1trace_1_1GeographicBin" kind="struct" language="C++" prot="public">
     <compoundname>astrea::trace::GeographicBin</compoundname>
     <includes refid="SpatialIndex_8hpp" local="no">SpatialIndex.hpp</includes>
-      <sectiondef kind="public-attrib">
+    <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structastrea_1_1trace_1_1GeographicBin_1a3295bcaac610e7573674831b20b803d0" prot="public" static="no" mutable="no">
         <type>Angle</type>
         <definition>Angle astrea::trace::GeographicBin::latMin</definition>
         <argsstring></argsstring>
         <name>latMin</name>
+        <qualifiedname>astrea::trace::GeographicBin::latMin</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,6 +23,7 @@
         <definition>Angle astrea::trace::GeographicBin::latMax</definition>
         <argsstring></argsstring>
         <name>latMax</name>
+        <qualifiedname>astrea::trace::GeographicBin::latMax</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -35,6 +37,7 @@
         <definition>Angle astrea::trace::GeographicBin::lonMin</definition>
         <argsstring></argsstring>
         <name>lonMin</name>
+        <qualifiedname>astrea::trace::GeographicBin::lonMin</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -48,6 +51,7 @@
         <definition>Angle astrea::trace::GeographicBin::lonMax</definition>
         <argsstring></argsstring>
         <name>lonMax</name>
+        <qualifiedname>astrea::trace::GeographicBin::lonMax</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -61,6 +65,7 @@
         <definition>std::vector&lt;std::size_t&gt; astrea::trace::GeographicBin::groundPointIndices</definition>
         <argsstring></argsstring>
         <name>groundPointIndices</name>
+        <qualifiedname>astrea::trace::GeographicBin::groundPointIndices</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -69,13 +74,14 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="35" column="17" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="35" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="structastrea_1_1trace_1_1GeographicBin_1af32075b648fc0d7955bdcd55e81bb8ef" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
         <definition>bool astrea::trace::GeographicBin::contains</definition>
         <argsstring>(const Angle &amp;lat, const Angle &amp;lon) const</argsstring>
         <name>contains</name>
+        <qualifiedname>astrea::trace::GeographicBin::contains</qualifiedname>
         <param>
           <type>const Angle &amp;</type>
           <declname>lat</declname>
@@ -92,7 +98,7 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/SpatialIndex.hpp" line="37" column="10" bodyfile="astrea/trace/trace/analysis/SpatialIndex.hpp" bodystart="37" bodyend="40"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>Geographic bin for spatial partitioning. </para>
     </briefdescription>

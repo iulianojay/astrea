@@ -8,14 +8,15 @@
 * **Acceleration** ([**astrea**](namespaceastrea.md))
 * **Altitude** ([**astrea**](namespaceastrea.md))
 * **Angle** ([**astrea**](namespaceastrea.md))
-* **AngularRate** ([**astrea**](namespaceastrea.md))
+* **AngularAcceleration** ([**astrea**](namespaceastrea.md))
+* **AngularVelocity** ([**astrea**](namespaceastrea.md))
 * **angle\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))
 
 
 ## b
 
 * **BallisticCoefficient** ([**astrea**](namespaceastrea.md))
-* **BodyAngularRate** ([**astrea**](namespaceastrea.md))
+* **BodyAngularVelocity** ([**astrea**](namespaceastrea.md))
 * **BodyUnitlessPerTime** ([**astrea**](namespaceastrea.md))
 * **boltzmann\_constant** ([**astrea**](namespaceastrea.md))
 
@@ -23,6 +24,7 @@
 ## c
 
 * **CNR** ([**astrea**](namespaceastrea.md))
+* **Chirp** ([**astrea**](namespaceastrea.md))
 
 
 ## d
@@ -40,6 +42,7 @@
 
 ## f
 
+* **Force** ([**astrea**](namespaceastrea.md))
 * **Frequency** ([**astrea**](namespaceastrea.md))
 * **force\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))
 * **frequency\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))
@@ -79,8 +82,8 @@
 * **MeanMotion1stDer** ([**astrea**](namespaceastrea.md))
 * **MeanMotion2ndDer** ([**astrea**](namespaceastrea.md))
 * **Moment** ([**astrea**](namespaceastrea.md))
+* **MomentOfInertia** ([**astrea**](namespaceastrea.md))
 * **mass\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))
-* **minor\_distance\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))
 * **microseconds** ([**astrea**](namespaceastrea.md))
 * **milliseconds** ([**astrea**](namespaceastrea.md))
 * **minutes** ([**astrea**](namespaceastrea.md))
@@ -107,6 +110,8 @@
 ## s
 
 * **SNR** ([**astrea**](namespaceastrea.md))
+* **SolarFlux** ([**astrea**](namespaceastrea.md))
+* **SolarFluxUnits** ([**astrea**](namespaceastrea.md))
 * **SpecificAngularMomentum** ([**astrea**](namespaceastrea.md))
 * **SurfaceArea** ([**astrea**](namespaceastrea.md))
 * **seconds** ([**astrea**](namespaceastrea.md))
@@ -117,7 +122,6 @@
 
 * **TWO\_PI** ([**astrea**](namespaceastrea.md))
 * **Temperature** ([**astrea**](namespaceastrea.md))
-* **Thrust** ([**astrea**](namespaceastrea.md))
 * **Time** ([**astrea**](namespaceastrea.md))
 * **temperature\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))
 * **time\_unit** ([**astrea::detail**](namespaceastrea_1_1detail.md))

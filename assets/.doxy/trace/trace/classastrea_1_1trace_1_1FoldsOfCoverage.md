@@ -32,8 +32,8 @@ _The_ [_**FoldsOfCoverage**_](classastrea_1_1trace_1_1FoldsOfCoverage.md) _class
 
 | Type | Name |
 | ---: | :--- |
-| typedef gtl::btree\_map&lt; std::size\_t, std::vector&lt; double &gt; &gt;::[**const\_iterator**](classastrea_1_1trace_1_1FoldsOfCoverage.md#typedef-const_iterator) | [**const\_iterator**](#typedef-const_iterator)  <br>_Constant iterator type for the_ [_**FoldsOfCoverage**_](classastrea_1_1trace_1_1FoldsOfCoverage.md) _._ |
-| typedef gtl::btree\_map&lt; std::size\_t, std::vector&lt; double &gt; &gt;::[**iterator**](classastrea_1_1trace_1_1FoldsOfCoverage.md#typedef-iterator) | [**iterator**](#typedef-iterator)  <br>_Iterator type for the_ [_**FoldsOfCoverage**_](classastrea_1_1trace_1_1FoldsOfCoverage.md) _._ |
+| typedef gtl::flat\_hash\_map&lt; std::size\_t, std::vector&lt; double &gt; &gt;::const\_iterator | [**const\_iterator**](#typedef-const_iterator)  <br>_Constant iterator type for the_ [_**FoldsOfCoverage**_](classastrea_1_1trace_1_1FoldsOfCoverage.md) _._ |
+| typedef gtl::flat\_hash\_map&lt; std::size\_t, std::vector&lt; double &gt; &gt;::iterator | [**iterator**](#typedef-iterator)  <br>_Iterator type for the_ [_**FoldsOfCoverage**_](classastrea_1_1trace_1_1FoldsOfCoverage.md) _._ |
 
 
 
@@ -111,7 +111,7 @@ It calculates the number of accesses (folds) for each receiver ID at each time p
 
 _Constant iterator type for the_ [_**FoldsOfCoverage**_](classastrea_1_1trace_1_1FoldsOfCoverage.md) _._
 ```C++
-using astrea::trace::FoldsOfCoverage::const_iterator =  gtl::btree_map<std::size_t, std::vector<double> >::const_iterator;
+using astrea::trace::FoldsOfCoverage::const_iterator =  gtl::flat_hash_map<std::size_t, std::vector<double> >::const_iterator;
 ```
 
 
@@ -125,7 +125,7 @@ using astrea::trace::FoldsOfCoverage::const_iterator =  gtl::btree_map<std::size
 
 _Iterator type for the_ [_**FoldsOfCoverage**_](classastrea_1_1trace_1_1FoldsOfCoverage.md) _._
 ```C++
-using astrea::trace::FoldsOfCoverage::iterator =  gtl::btree_map<std::size_t, std::vector<double> >::iterator;
+using astrea::trace::FoldsOfCoverage::iterator =  gtl::flat_hash_map<std::size_t, std::vector<double> >::iterator;
 ```
 
 

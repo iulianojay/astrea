@@ -10,10 +10,12 @@
 
 _This file defines the LambertSolver class, which provides methods for solving Lambert's problem._ [More...](#detailed-description)
 
+* `#include <math/operations.hpp>`
+* `#include <math/trig.hpp>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/CartesianVector.hpp>`
-* `#include <astro/frames/frames.hpp>`
+* `#include <astro/frames/definitions.hpp>`
+* `#include <astro/frames/framework/CartesianVector.hpp>`
 * `#include <astro/types/typedefs.hpp>`
 
 
@@ -41,6 +43,7 @@ _This file defines the LambertSolver class, which provides methods for solving L
 | Type | Name |
 | ---: | :--- |
 | class | [**LambertSolver**](classastrea_1_1astro_1_1LambertSolver.md) <br>_Class for solving Lambert's problem._  |
+| struct | [**Solution**](structastrea_1_1astro_1_1LambertSolver_1_1Solution.md) &lt;\_frame\_&gt;<br>_Result structure for optimal Lambert solutions._  |
 
 
 

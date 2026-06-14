@@ -12,7 +12,7 @@ _Contains enums definitions for the astrea access library._ [More...](#detailed-
 
 * `#include <array>`
 * `#include <string>`
-* `#include <gtl/btree.hpp>`
+* `#include <gtl/phmap.hpp>`
 * `#include <trace/types/typedefs.hpp>`
 
 

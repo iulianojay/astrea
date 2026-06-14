@@ -1,39 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1callisto" kind="namespace" language="C++">
     <compoundname>astrea::astro::frames::callisto</compoundname>
-      <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1ad17e2df3a0bef9e3ba83b0e63af779d9" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::CALLISTO, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" kindref="member">FrameAxis::ICRF</ref> &gt;</type>
-        <definition>using astrea::astro::frames::callisto::icrf = typedef InertialFrame&lt;CelestialBodyId::CALLISTO, FrameAxis::ICRF&gt;</definition>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1callisto_1_1callisto__fixed" prot="public">astrea::astro::frames::callisto::callisto_fixed</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1callisto_1_1icrf" prot="public">astrea::astro::frames::callisto::icrf</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1callisto_1_1j2000" prot="public">astrea::astro::frames::callisto::j2000</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1ad719494ac209afe82f6417ee5acf3e3b" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1callisto_1_1icrf" kindref="compound">astrea::astro::frames::callisto::icrf</ref></type>
+        <definition>astrea::astro::frames::callisto::icrf astrea::astro::frames::callisto::icrf</definition>
         <argsstring></argsstring>
         <name>icrf</name>
+        <qualifiedname>astrea::astro::frames::callisto::icrf</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="78" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="78" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="100" column="6"/>
       </memberdef>
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1acafc7fbe8166c7c4d661c0cdc5e4bb22" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::CALLISTO, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" kindref="member">FrameAxis::J2000</ref> &gt;</type>
-        <definition>using astrea::astro::frames::callisto::j2000 = typedef InertialFrame&lt;CelestialBodyId::CALLISTO, FrameAxis::J2000&gt;</definition>
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a13d5dc31fc462de97a09be4d55278841" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1callisto_1_1j2000" kindref="compound">astrea::astro::frames::callisto::j2000</ref></type>
+        <definition>astrea::astro::frames::callisto::j2000 astrea::astro::frames::callisto::j2000</definition>
         <argsstring></argsstring>
         <name>j2000</name>
+        <qualifiedname>astrea::astro::frames::callisto::j2000</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="79" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="79" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="102" column="7"/>
       </memberdef>
-      </sectiondef>
+      <memberdef kind="variable" id="body__fixed__frames_8hpp_1a1d9b657d70b7b6d3ea3f9b87417a581e" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1callisto_1_1callisto__fixed" kindref="compound">astrea::astro::frames::callisto::callisto_fixed</ref></type>
+        <definition>astrea::astro::frames::callisto::callisto_fixed astrea::astro::frames::callisto::callisto_fixed</definition>
+        <argsstring></argsstring>
+        <name>callisto_fixed</name>
+        <qualifiedname>astrea::astro::frames::callisto::callisto_fixed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="75" column="16"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="77" column="1"/>
+    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="98" column="1"/>
   </compounddef>
 </doxygen>

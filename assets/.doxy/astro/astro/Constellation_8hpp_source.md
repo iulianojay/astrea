@@ -15,6 +15,7 @@
 #include <vector>
 
 #include <units/units.hpp>
+#include <utilities/IdProvider.hpp>
 
 #include <astro/platforms/space/Shell.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
@@ -28,7 +29,7 @@ class Constellation {
     static_assert(std::is_base_of<Spacecraft, Spacecraft_T>::value, "Constellations must be built of Spacecraft or Derived classes.");
 
   public:
-    Constellation() { generate_id(); };
+    Constellation() { id = utilities::IdProvider::get_next_id<"Constellation">(); };
 
     Constellation(std::vector<Shell<Spacecraft_T>> shells);
 
@@ -36,10 +37,9 @@ class Constellation {
 
     Constellation(std::vector<Spacecraft_T> satellites);
 
-    Constellation(const std::vector<GeneralPerturbations>& gp, const AstrodynamicsSystem& system);
+    Constellation(const std::vector<GeneralPerturbations>& gp);
 
     Constellation(
-        const AstrodynamicsSystem& sys,
         const Date& epoch,
         const Distance& semimajor,
         const Angle& inclination,
@@ -84,9 +84,9 @@ class Constellation {
 
     const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
 
-    void propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Time& propTime, Integrator& integrator);
 
-    void propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Date& endEpoch, Integrator& integrator);
 
 
     // using iterator       = std::vector<Shell<Spacecraft_T>>::iterator;
@@ -209,8 +209,6 @@ class Constellation {
     std::size_t id;                          // Unique identifier for the Constellation
     std::string name;                        // Name of the Constellation
     std::vector<Shell<Spacecraft_T>> shells; // Vector of Shells in the Constellation
-
-    void generate_id();
 };
 
 } // namespace astro

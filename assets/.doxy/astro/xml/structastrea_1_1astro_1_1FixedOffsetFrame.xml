@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1FixedOffsetFrame" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::FixedOffsetFrame</compoundname>
+    <templateparamlist>
+      <param>
+        <type>auto...</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+<para>Class representing a fixed offset frame, which is defined by a fixed spatial and/or angular offset from a parent frame. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class allows for the definition of frames that are not aligned with their parent frame, such as a spacecraft body frame that is offset from an inertial frame.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_parent_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parent frame from which this frame is derived. Must satisfy the IsFrame concept. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A variadic list of template parameters that define the spatial and/or angular offsets. These can be distances for spatial offsets or angles for angular offsets, along with an optional rotation sequence for the angular offsets. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="222" column="1" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="222" bodyend="-1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

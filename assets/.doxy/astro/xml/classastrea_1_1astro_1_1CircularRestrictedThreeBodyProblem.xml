@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::CircularRestrictedThreeBodyProblem</compoundname>
+    <basecompoundref refid="classastrea_1_1astro_1_1EquationsOfMotion" prot="public" virt="non-virtual">astrea::astro::EquationsOfMotion</basecompoundref>
+    <includes refid="CircularRestrictedThreeBodyProblem_8hpp" local="no">CircularRestrictedThreeBodyProblem.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem_1ab3a43daf08e6f0807ef61f936b383390" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::CircularRestrictedThreeBodyProblem::CircularRestrictedThreeBodyProblem</definition>
+        <argsstring>(const ForceModel &amp;forces)</argsstring>
+        <name>CircularRestrictedThreeBodyProblem</name>
+        <qualifiedname>astrea::astro::CircularRestrictedThreeBodyProblem::CircularRestrictedThreeBodyProblem</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1ForceModel" kindref="compound">ForceModel</ref> &amp;</type>
+          <declname>forces</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for the Circular Restricted Three-Body Problem. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>forces</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The force model to be used in the equations of motion. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/CircularRestrictedThreeBodyProblem.hpp" line="42" column="5" bodyfile="astrea/astro/astro/propagation/equations_of_motion/CircularRestrictedThreeBodyProblem.cpp" bodystart="42" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem_1aab9ae4c35ddbb00ef9c9c01ef077903c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::CircularRestrictedThreeBodyProblem::~CircularRestrictedThreeBodyProblem</definition>
+        <argsstring>()=default</argsstring>
+        <name>~CircularRestrictedThreeBodyProblem</name>
+        <qualifiedname>astrea::astro::CircularRestrictedThreeBodyProblem::~CircularRestrictedThreeBodyProblem</qualifiedname>
+        <briefdescription>
+<para>Destructor for the Circular Restricted Three-Body Problem. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/CircularRestrictedThreeBodyProblem.hpp" line="47" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem_1a041ee1ac9f52822003ff5a8ba09a4403" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref></type>
+        <definition>OrbitalElementPartials astrea::astro::CircularRestrictedThreeBodyProblem::compute_dynamics</definition>
+        <argsstring>(const State &amp;state, const Vehicle &amp;vehicle, const ForceVector&lt; frames::primary &gt; &amp;perts, const ForceVector&lt; frames::primary &gt; &amp;control) const override</argsstring>
+        <name>compute_dynamics</name>
+        <qualifiedname>astrea::astro::CircularRestrictedThreeBodyProblem::compute_dynamics</qualifiedname>
+        <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1ab67532d179cbb6702762357fbfac1d2b">compute_dynamics</reimplements>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <declname>vehicle</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
+          <declname>perts</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a5aa05e5cfe7a19c3304a534401cf2fc1" kindref="member">ForceVector</ref>&lt; frames::primary &gt; &amp;</type>
+          <declname>control</declname>
+        </param>
+        <briefdescription>
+<para>Computes the partial derivatives of the orbital elements using the Circular Restricted Three-Body Problem. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vehicle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vehicle for which the equations of motion are being computed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1OrbitalElementPartials" kindref="compound">OrbitalElementPartials</ref> The computed partial derivatives of the orbital elements. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/CircularRestrictedThreeBodyProblem.hpp" line="56" column="28" bodyfile="astrea/astro/astro/propagation/equations_of_motion/CircularRestrictedThreeBodyProblem.cpp" bodystart="47" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem_1a84d2303e051a66570422c075f94bc1a1" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> std::size_t</type>
+        <definition>constexpr std::size_t astrea::astro::CircularRestrictedThreeBodyProblem::get_expected_set_id</definition>
+        <argsstring>() const override</argsstring>
+        <name>get_expected_set_id</name>
+        <qualifiedname>astrea::astro::CircularRestrictedThreeBodyProblem::get_expected_set_id</qualifiedname>
+        <reimplements refid="classastrea_1_1astro_1_1EquationsOfMotion_1a4ee1d978dd765bbc2cccbcc3e015a22f">get_expected_set_id</reimplements>
+        <briefdescription>
+<para>Returns the expected set of orbital elements for this method. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::size_t The expected set id of orbital elements. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/equations_of_motion/CircularRestrictedThreeBodyProblem.hpp" line="68" column="27" bodyfile="astrea/astro/astro/propagation/equations_of_motion/CircularRestrictedThreeBodyProblem.hpp" bodystart="68" bodyend="71"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class implementing the Circular Restricted Three-Body Problem equations of motion. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>astrea::astro::CircularRestrictedThreeBodyProblem</label>
+        <link refid="classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::EquationsOfMotion</label>
+        <link refid="classastrea_1_1astro_1_1EquationsOfMotion"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>astrea::astro::CircularRestrictedThreeBodyProblem</label>
+        <link refid="classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::EquationsOfMotion</label>
+        <link refid="classastrea_1_1astro_1_1EquationsOfMotion"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>forces</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea::astro::ForceModel</label>
+        <link refid="classastrea_1_1astro_1_1ForceModel"/>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/propagation/equations_of_motion/CircularRestrictedThreeBodyProblem.hpp" line="34" column="1" bodyfile="astrea/astro/astro/propagation/equations_of_motion/CircularRestrictedThreeBodyProblem.hpp" bodystart="34" bodyend="72"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem_1ab3a43daf08e6f0807ef61f936b383390" prot="public" virt="non-virtual"><scope>astrea::astro::CircularRestrictedThreeBodyProblem</scope><name>CircularRestrictedThreeBodyProblem</name></member>
+      <member refid="classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem_1a041ee1ac9f52822003ff5a8ba09a4403" prot="public" virt="virtual"><scope>astrea::astro::CircularRestrictedThreeBodyProblem</scope><name>compute_dynamics</name></member>
+      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1afe9c17968d211df71622538a6773198b" prot="public" virt="virtual"><scope>astrea::astro::CircularRestrictedThreeBodyProblem</scope><name>compute_kinematics</name></member>
+      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a6ce5bf0e6d75ba1061654281151ad604" prot="public" virt="virtual"><scope>astrea::astro::CircularRestrictedThreeBodyProblem</scope><name>compute_stm</name></member>
+      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a9314c62e49ba5c7e0cf8a632afca3fd4" prot="public" virt="non-virtual"><scope>astrea::astro::CircularRestrictedThreeBodyProblem</scope><name>EquationsOfMotion</name></member>
+      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1a4eec33fb06db4d14c79cdfb0926cf3f4" prot="public" virt="non-virtual"><scope>astrea::astro::CircularRestrictedThreeBodyProblem</scope><name>EquationsOfMotion</name></member>
+      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1accb3b6b22bed036ca28ae4b4f592028a" prot="protected" virt="non-virtual"><scope>astrea::astro::CircularRestrictedThreeBodyProblem</scope><name>forces</name></member>
+      <member refid="classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem_1a84d2303e051a66570422c075f94bc1a1" prot="public" virt="virtual"><scope>astrea::astro::CircularRestrictedThreeBodyProblem</scope><name>get_expected_set_id</name></member>
+      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1ac1569de5b87e21bb5812c3f28e695396" prot="public" virt="non-virtual"><scope>astrea::astro::CircularRestrictedThreeBodyProblem</scope><name>operator()</name></member>
+      <member refid="classastrea_1_1astro_1_1CircularRestrictedThreeBodyProblem_1aab9ae4c35ddbb00ef9c9c01ef077903c" prot="public" virt="non-virtual"><scope>astrea::astro::CircularRestrictedThreeBodyProblem</scope><name>~CircularRestrictedThreeBodyProblem</name></member>
+      <member refid="classastrea_1_1astro_1_1EquationsOfMotion_1ad66256a4c474903ebdb258eb9c2b94dc" prot="public" virt="virtual"><scope>astrea::astro::CircularRestrictedThreeBodyProblem</scope><name>~EquationsOfMotion</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -53,7 +53,6 @@ class Sensor : public AccessObject, public astro::Payload<Sensor, SensorParamete
 
   public:
     template <typename Parent_T>
-        requires(std::is_base_of_v<astro::FrameReference, Parent_T>)
     Sensor(const Parent_T& parent, const SensorParameters& parameters) :
         AccessObject(),
         Payload<Sensor, SensorParameters>(parent, parameters)
@@ -67,11 +66,6 @@ class Sensor : public AccessObject, public astro::Payload<Sensor, SensorParamete
     bool contains(const astro::RadiusVector<astro::frames::earth::icrf>& sensor2target, const astro::Date& date) const;
 
   private:
-    std::size_t generate_id() const
-    {
-        static std::size_t idCounter = 0;
-        return idCounter++;
-    }
 };
 
 using SensorPlatform = astro::PayloadPlatform<Sensor>;

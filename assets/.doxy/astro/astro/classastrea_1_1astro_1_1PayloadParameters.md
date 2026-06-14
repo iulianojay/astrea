@@ -53,10 +53,10 @@ Inherited by the following classes: [astrea::astro::ThrusterParameters](classast
 
 | Type | Name |
 | ---: | :--- |
-|  [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; | [**get\_attachment\_point**](#function-get_attachment_point) () const<br>_Get the attachment point of the payload._  |
-|  [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; | [**get\_boresight**](#function-get_boresight) () const<br>_Get the boresight direction of the payload._  |
-|  void | [**set\_attachment\_point**](#function-set_attachment_point) (const [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; & attachmentPoint) <br>_Set the attachment point of the payload._  |
-|  void | [**set\_boresight**](#function-set_boresight) (const [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; & boresight) <br>_Set the boresight direction of the payload._  |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; & | [**get\_attachment\_point**](#function-get_attachment_point) () const<br>_Get the attachment point of the payload._  |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; & | [**get\_boresight**](#function-get_boresight) () const<br>_Get the boresight direction of the payload._  |
+|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**set\_attachment\_point**](#function-set_attachment_point) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; & attachmentPoint) <br>_Set the attachment point of the payload._  |
+|  [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**set\_boresight**](#function-set_boresight) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; & boresight) <br>_Set the boresight direction of the payload._  |
 
 
 
@@ -69,8 +69,8 @@ Inherited by the following classes: [astrea::astro::ThrusterParameters](classast
 
 | Type | Name |
 | ---: | :--- |
-|  [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; | [**\_attachmentPoint**](#variable-_attachmentpoint)  <br>_Attachment point of the payload on the platform._  |
-|  [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; | [**\_boresight**](#variable-_boresight)  <br>_Boresight vector of the payload, indicating the direction it is pointing._  |
+|  [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; | [**\_attachmentPoint**](#variable-_attachmentpoint)  <br>_Attachment point of the payload on the platform._  |
+|  [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; | [**\_boresight**](#variable-_boresight)  <br>_Boresight vector of the payload, indicating the direction it is pointing._  |
 
 
 
@@ -91,7 +91,7 @@ Inherited by the following classes: [astrea::astro::ThrusterParameters](classast
 
 | Type | Name |
 | ---: | :--- |
-|   | [**PayloadParameters**](#function-payloadparameters) (const [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; & boresight=NADIR\_RIC, const [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**astro::frames::dynamic::ric**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &gt; & attachmentPoint=CENTER) <br>_Constructor for_ [_**PayloadParameters**_](classastrea_1_1astro_1_1PayloadParameters.md) _._ |
+|   | [**PayloadParameters**](#function-payloadparameters) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; & boresight=NADIR\_RIC, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**astro::RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; astro::frames::dynamic::ric &gt; & attachmentPoint=CENTER) <br>_Constructor for_ [_**PayloadParameters**_](classastrea_1_1astro_1_1PayloadParameters.md) _._ |
 | virtual  | [**~PayloadParameters**](#function-payloadparameters) () = default<br>_Default destructor for_ [_**PayloadParameters**_](classastrea_1_1astro_1_1PayloadParameters.md) _._ |
 
 
@@ -106,7 +106,7 @@ Inherited by the following classes: [astrea::astro::ThrusterParameters](classast
 
 _Get the attachment point of the payload._ 
 ```C++
-inline astro::RadiusVector < astro::frames::dynamic::ric > astrea::astro::PayloadParameters::get_attachment_point () const
+inline const  astro::RadiusVector < astro::frames::dynamic::ric > & astrea::astro::PayloadParameters::get_attachment_point () const
 ```
 
 
@@ -115,7 +115,7 @@ inline astro::RadiusVector < astro::frames::dynamic::ric > astrea::astro::Payloa
 
 **Returns:**
 
-astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;Attachment point of the payload. 
+[**astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;**](namespaceastrea_1_1astro.md#typedef-radiusvector)Attachment point of the payload. 
 
 
 
@@ -131,7 +131,7 @@ astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;Attachment point of the pa
 
 _Get the boresight direction of the payload._ 
 ```C++
-inline astro::RadiusVector < astro::frames::dynamic::ric > astrea::astro::PayloadParameters::get_boresight () const
+inline const  astro::RadiusVector < astro::frames::dynamic::ric > & astrea::astro::PayloadParameters::get_boresight () const
 ```
 
 
@@ -140,7 +140,7 @@ inline astro::RadiusVector < astro::frames::dynamic::ric > astrea::astro::Payloa
 
 **Returns:**
 
-astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;Boresight direction of the payload. 
+[**astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;**](namespaceastrea_1_1astro.md#typedef-radiusvector)Boresight direction of the payload. 
 
 
 
@@ -157,7 +157,7 @@ astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;Boresight direction of the
 _Set the attachment point of the payload._ 
 ```C++
 inline void astrea::astro::PayloadParameters::set_attachment_point (
-    const astro::RadiusVector < astro::frames::dynamic::ric > & attachmentPoint
+    const  astro::RadiusVector < astro::frames::dynamic::ric > & attachmentPoint
 ) 
 ```
 
@@ -168,7 +168,7 @@ inline void astrea::astro::PayloadParameters::set_attachment_point (
 **Parameters:**
 
 
-* `attachmentPoint` astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;Attachment point of the payload. 
+* `attachmentPoint` [**astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;**](namespaceastrea_1_1astro.md#typedef-radiusvector)Attachment point of the payload. 
 
 
 
@@ -184,7 +184,7 @@ inline void astrea::astro::PayloadParameters::set_attachment_point (
 _Set the boresight direction of the payload._ 
 ```C++
 inline void astrea::astro::PayloadParameters::set_boresight (
-    const astro::RadiusVector < astro::frames::dynamic::ric > & boresight
+    const  astro::RadiusVector < astro::frames::dynamic::ric > & boresight
 ) 
 ```
 
@@ -195,7 +195,7 @@ inline void astrea::astro::PayloadParameters::set_boresight (
 **Parameters:**
 
 
-* `boresight` astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;Boresight direction of the payload. 
+* `boresight` [**astro::RadiusVector&lt;astro::frames::dynamic::ric&gt;**](namespaceastrea_1_1astro.md#typedef-radiusvector)Boresight direction of the payload. 
 
 
 
@@ -243,8 +243,8 @@ astro::RadiusVector<astro::frames::dynamic::ric> astrea::astro::PayloadParameter
 _Constructor for_ [_**PayloadParameters**_](classastrea_1_1astro_1_1PayloadParameters.md) _._
 ```C++
 inline astrea::astro::PayloadParameters::PayloadParameters (
-    const astro::RadiusVector < astro::frames::dynamic::ric > & boresight=NADIR_RIC,
-    const astro::RadiusVector < astro::frames::dynamic::ric > & attachmentPoint=CENTER
+    const  astro::RadiusVector < astro::frames::dynamic::ric > & boresight=NADIR_RIC,
+    const  astro::RadiusVector < astro::frames::dynamic::ric > & attachmentPoint=CENTER
 ) 
 ```
 

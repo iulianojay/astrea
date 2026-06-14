@@ -1,10 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_0a1395a4617b025941a2198784f446c5" kind="dir">
     <compoundname>astrea/astro/astro/propagation/equations_of_motion</compoundname>
-    <innerdir refid="dir_7a22b679029b3e67ce8dbba97ffb681f">astrea/astro/astro/propagation/equations_of_motion/state_transition_matrix</innerdir>
+    <innerfile refid="CircularRestrictedThreeBodyProblem_8cpp">CircularRestrictedThreeBodyProblem.cpp</innerfile>
+    <innerfile refid="CircularRestrictedThreeBodyProblem_8hpp">CircularRestrictedThreeBodyProblem.hpp</innerfile>
     <innerfile refid="CowellsMethod_8cpp">CowellsMethod.cpp</innerfile>
     <innerfile refid="CowellsMethod_8hpp">CowellsMethod.hpp</innerfile>
+    <innerfile refid="EquationsOfMotion_8cpp">EquationsOfMotion.cpp</innerfile>
     <innerfile refid="EquationsOfMotion_8hpp">EquationsOfMotion.hpp</innerfile>
     <innerfile refid="EquinoctialVop_8cpp">EquinoctialVop.cpp</innerfile>
     <innerfile refid="EquinoctialVop_8hpp">EquinoctialVop.hpp</innerfile>
@@ -12,6 +14,8 @@
     <innerfile refid="J2MeanVop_8hpp">J2MeanVop.hpp</innerfile>
     <innerfile refid="KeplerianVop_8cpp">KeplerianVop.cpp</innerfile>
     <innerfile refid="KeplerianVop_8hpp">KeplerianVop.hpp</innerfile>
+    <innerfile refid="StateTransitionMatrix_8cpp">StateTransitionMatrix.cpp</innerfile>
+    <innerfile refid="StateTransitionMatrix_8hpp">StateTransitionMatrix.hpp</innerfile>
     <innerfile refid="TwoBody_8cpp">TwoBody.cpp</innerfile>
     <innerfile refid="TwoBody_8hpp">TwoBody.hpp</innerfile>
     <briefdescription>

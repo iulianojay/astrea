@@ -10,6 +10,8 @@
 
 _Forward declarations for the astro module._ [More...](#detailed-description)
 
+* `#include <concepts>`
+* `#include <astro/frames/framework/frame_concepts.hpp>`
 * `#include <astro/types/enums.hpp>`
 
 
@@ -30,6 +32,7 @@ _Forward declarations for the astro module._ [More...](#detailed-description)
 | ---: | :--- |
 | namespace | [**astrea**](namespaceastrea.md) <br> |
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
+| namespace | [**frames**](namespaceastrea_1_1astro_1_1frames.md) <br> |
 
 
 

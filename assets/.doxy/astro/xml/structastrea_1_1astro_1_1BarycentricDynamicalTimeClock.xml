@@ -1,0 +1,232 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::BarycentricDynamicalTimeClock</compoundname>
+    <includes refid="BarycentricDynamicalTimeClock_8hpp" local="no">BarycentricDynamicalTimeClock.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a45a66d234135228bc5adfb8bdc598284" prot="public" static="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
+        <definition>using astrea::astro::BarycentricDynamicalTimeClock::rep =  double</definition>
+        <argsstring></argsstring>
+        <name>rep</name>
+        <qualifiedname>astrea::astro::BarycentricDynamicalTimeClock::rep</qualifiedname>
+        <briefdescription>
+<para>The representation type, a double for sub-second precision. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" line="49" column="5" bodyfile="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1af3a09e203872d024396f719098a0f053" prot="public" static="no">
+        <type>std::ratio&lt; 1 &gt;</type>
+        <definition>using astrea::astro::BarycentricDynamicalTimeClock::period =  std::ratio&lt;1&gt;</definition>
+        <argsstring></argsstring>
+        <name>period</name>
+        <qualifiedname>astrea::astro::BarycentricDynamicalTimeClock::period</qualifiedname>
+        <briefdescription>
+<para>The period type, seconds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" line="50" column="5" bodyfile="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1af819706bae17ad2e84f94ed8e1b2a9f2" prot="public" static="no">
+        <type>std::chrono::duration&lt; <ref refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a45a66d234135228bc5adfb8bdc598284" kindref="member">rep</ref>, <ref refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1af3a09e203872d024396f719098a0f053" kindref="member">period</ref> &gt;</type>
+        <definition>using astrea::astro::BarycentricDynamicalTimeClock::duration =  std::chrono::duration&lt;rep, period&gt;</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <qualifiedname>astrea::astro::BarycentricDynamicalTimeClock::duration</qualifiedname>
+        <briefdescription>
+<para>The duration type, representing time in seconds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" line="51" column="5" bodyfile="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1aa2ba440368c7565f51b904c77d374306" prot="public" static="no">
+        <type>std::chrono::time_point&lt; <ref refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock" kindref="compound">BarycentricDynamicalTimeClock</ref> &gt;</type>
+        <definition>using astrea::astro::BarycentricDynamicalTimeClock::time_point =  std::chrono::time_point&lt;BarycentricDynamicalTimeClock&gt;</definition>
+        <argsstring></argsstring>
+        <name>time_point</name>
+        <qualifiedname>astrea::astro::BarycentricDynamicalTimeClock::time_point</qualifiedname>
+        <briefdescription>
+<para>The time point type for TDB, using <ref refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock" kindref="compound">BarycentricDynamicalTimeClock</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" line="52" column="5" bodyfile="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a91f3a313bba3fc362b245857aca397f0" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>constexpr bool astrea::astro::BarycentricDynamicalTimeClock::is_steady</definition>
+        <argsstring></argsstring>
+        <name>is_steady</name>
+        <qualifiedname>astrea::astro::BarycentricDynamicalTimeClock::is_steady</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">false</ref></initializer>
+        <briefdescription>
+<para>TDB is not a steady clock; it is anchored to TAI. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" line="54" column="27" bodyfile="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1aa2cebed4c0553f02cfb40c7825552736" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::BarycentricDynamicalTimeClock::jdRef</definition>
+        <argsstring></argsstring>
+        <name>jdRef</name>
+        <qualifiedname>astrea::astro::BarycentricDynamicalTimeClock::jdRef</qualifiedname>
+        <initializer>= <ref refid="structastrea_1_1astro_1_1JulianDateClock_1aa78273e9b2b9f756f34e6ebf46809877" kindref="member">JulianDateClock::duration</ref>{ 2451545.0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" line="55" column="27" bodyfile="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" bodystart="55" bodyend="55"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a53447b49118b2928ed81d95bd8733fca" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>static auto astrea::astro::BarycentricDynamicalTimeClock::from_sys</definition>
+        <argsstring>(std::chrono::sys_time&lt; Duration &gt; const &amp;timePoint) noexcept</argsstring>
+        <name>from_sys</name>
+        <qualifiedname>astrea::astro::BarycentricDynamicalTimeClock::from_sys</qualifiedname>
+        <param>
+          <type>std::chrono::sys_time&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
+          <declname>timePoint</declname>
+        </param>
+        <briefdescription>
+<para>Converts a system time point to a Barycentric Dynamical Time time point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The conversion route is: UTC → TT → TDB</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The duration type of the system time point. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timePoint</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The system time point to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>BarycentricDynamicalTimePoint The converted TDB time point.</para>
+</simplesect>
+<ulink url="https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA">https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA</ulink>%20TP%2020220014814%20final.pdf </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" line="69" column="17" bodyfile="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" bodystart="69" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a85cabd3909daf433bdb10ed60d8eb221" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>static auto astrea::astro::BarycentricDynamicalTimeClock::to_sys</definition>
+        <argsstring>(BarycentricDynamicalTimePoint&lt; Duration &gt; const &amp;timePoint) noexcept</argsstring>
+        <name>to_sys</name>
+        <qualifiedname>astrea::astro::BarycentricDynamicalTimeClock::to_sys</qualifiedname>
+        <param>
+          <type><ref refid="BarycentricDynamicalTimeClock_8hpp_1a22cdd8a19054041dc12e0770509db910" kindref="member">BarycentricDynamicalTimePoint</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Duration</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
+          <declname>timePoint</declname>
+        </param>
+        <briefdescription>
+<para>Converts a Barycentric Dynamical Time time point to a system time point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The conversion route is: TDB → TAI (- 32.184 s) → UTC (via clock_cast, handling leap seconds).</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The duration type of the TDB time point. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timePoint</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The TDB time point to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::chrono::sys_time&lt;std::chrono::tai_clock::duration&gt; The converted system time point.</para>
+</simplesect>
+<ulink url="https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA">https://ntrs.nasa.gov/api/citations/20220014814/downloads/NASA</ulink>%20TP%2020220014814%20final.pdf </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" line="91" column="17" bodyfile="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" bodystart="91" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a452bcbdb5400d51fd25ed198e54525a0" prot="public" static="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1aa2ba440368c7565f51b904c77d374306" kindref="member">time_point</ref></type>
+        <definition>static time_point astrea::astro::BarycentricDynamicalTimeClock::now</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>now</name>
+        <qualifiedname>astrea::astro::BarycentricDynamicalTimeClock::now</qualifiedname>
+        <briefdescription>
+<para>Gets the current time point in Barycentric Dynamical Time format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1aa2ba440368c7565f51b904c77d374306" kindref="member">BarycentricDynamicalTimeClock::time_point</ref> The current time point in TDB format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" line="106" column="23" bodyfile="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" bodystart="106" bodyend="110"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A clock implementation for Barycentric Dynamical Time (TDB). </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> Coordinate Time is a continuous time scale defined by the IAU. It is related to Terrestrial Time (TT) by a linear transformation that accounts for the relativistic effects of Earth&apos;s gravitational potential. TCG is commonly used in astrodynamics for high-precision timekeeping in the vicinity of Earth. </para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" line="48" column="1" bodyfile="astrea/astro/astro/time/clocks/BarycentricDynamicalTimeClock.hpp" bodystart="48" bodyend="111"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1af819706bae17ad2e84f94ed8e1b2a9f2" prot="public" virt="non-virtual"><scope>astrea::astro::BarycentricDynamicalTimeClock</scope><name>duration</name></member>
+      <member refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a53447b49118b2928ed81d95bd8733fca" prot="public" virt="non-virtual"><scope>astrea::astro::BarycentricDynamicalTimeClock</scope><name>from_sys</name></member>
+      <member refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a91f3a313bba3fc362b245857aca397f0" prot="public" virt="non-virtual"><scope>astrea::astro::BarycentricDynamicalTimeClock</scope><name>is_steady</name></member>
+      <member refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1aa2cebed4c0553f02cfb40c7825552736" prot="public" virt="non-virtual"><scope>astrea::astro::BarycentricDynamicalTimeClock</scope><name>jdRef</name></member>
+      <member refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a452bcbdb5400d51fd25ed198e54525a0" prot="public" virt="non-virtual"><scope>astrea::astro::BarycentricDynamicalTimeClock</scope><name>now</name></member>
+      <member refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1af3a09e203872d024396f719098a0f053" prot="public" virt="non-virtual"><scope>astrea::astro::BarycentricDynamicalTimeClock</scope><name>period</name></member>
+      <member refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a45a66d234135228bc5adfb8bdc598284" prot="public" virt="non-virtual"><scope>astrea::astro::BarycentricDynamicalTimeClock</scope><name>rep</name></member>
+      <member refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1aa2ba440368c7565f51b904c77d374306" prot="public" virt="non-virtual"><scope>astrea::astro::BarycentricDynamicalTimeClock</scope><name>time_point</name></member>
+      <member refid="structastrea_1_1astro_1_1BarycentricDynamicalTimeClock_1a85cabd3909daf433bdb10ed60d8eb221" prot="public" virt="non-virtual"><scope>astrea::astro::BarycentricDynamicalTimeClock</scope><name>to_sys</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

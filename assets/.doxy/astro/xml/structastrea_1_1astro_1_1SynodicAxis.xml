@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1SynodicAxis" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::SynodicAxis</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1Axis" prot="public" virt="non-virtual">astrea::astro::Axis&lt; _primary_.name+mp_units::symbol_text{ &quot;-&quot; }+_secondary_.name+mp_units::symbol_text{ &quot; synodic axis&quot; }&gt;</basecompoundref>
+    <includes refid="SynodicFrame_8hpp" local="no">SynodicFrame.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_primary_</declname>
+        <defname>_primary_</defname>
+      </param>
+      <param>
+        <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_secondary_</declname>
+        <defname>_secondary_</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SynodicAxis_1a0101d82022c8e4da62665142b8fa622c" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::SynodicAxis&lt; _primary_, _secondary_ &gt;::primary</definition>
+        <argsstring></argsstring>
+        <name>primary</name>
+        <qualifiedname>astrea::astro::SynodicAxis::primary</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_primary_</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/SynodicFrame.hpp" line="49" column="27" bodyfile="astrea/astro/astro/frames/framework/SynodicFrame.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1SynodicAxis_1ae0dff3361a458465bc41267d4071cce6" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::SynodicAxis&lt; _primary_, _secondary_ &gt;::secondary</definition>
+        <argsstring></argsstring>
+        <name>secondary</name>
+        <qualifiedname>astrea::astro::SynodicAxis::secondary</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_secondary_</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/SynodicFrame.hpp" line="50" column="27" bodyfile="astrea/astro/astro/frames/framework/SynodicFrame.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="structastrea_1_1astro_1_1Axis" kindref="compound">Axis</ref> defined by the line connecting two celestial bodies and the plane of motion of the secondary around the primary. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The x-axis points from the primary to the secondary, the z-axis is normal to the plane of motion of the secondary around the primary, and the y-axis is normal to both, pointing in the direction of motion of the secondary around the primary. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::Axis&lt; _primary_.name+mp_units::symbol_text{ &quot;-&quot; }+_secondary_.name+mp_units::symbol_text{ &quot; synodic axis&quot; }&gt;</label>
+        <link refid="structastrea_1_1astro_1_1Axis"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::SynodicAxis&lt; _primary_, _secondary_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1SynodicAxis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::Axis&lt; _primary_.name+mp_units::symbol_text{ &quot;-&quot; }+_secondary_.name+mp_units::symbol_text{ &quot; synodic axis&quot; }&gt;</label>
+        <link refid="structastrea_1_1astro_1_1Axis"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::SynodicAxis&lt; _primary_, _secondary_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1SynodicAxis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/frames/framework/SynodicFrame.hpp" line="47" column="1" bodyfile="astrea/astro/astro/frames/framework/SynodicFrame.hpp" bodystart="48" bodyend="51"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1SynodicAxis_1a0101d82022c8e4da62665142b8fa622c" prot="public" virt="non-virtual"><scope>astrea::astro::SynodicAxis</scope><name>primary</name></member>
+      <member refid="structastrea_1_1astro_1_1SynodicAxis_1ae0dff3361a458465bc41267d4071cce6" prot="public" virt="non-virtual"><scope>astrea::astro::SynodicAxis</scope><name>secondary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

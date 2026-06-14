@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1FixedOffsetAxis" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::FixedOffsetAxis</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1Axis" prot="public" virt="non-virtual">astrea::astro::Axis&lt;&quot;fixed offset&quot;, _parent_ &gt;</basecompoundref>
+    <innerclass refid="structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment" prot="public">astrea::astro::FixedOffsetAxis::Misalignment</innerclass>
+    <templateparamlist>
+      <param>
+        <type>IsAxis <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_parent_</declname>
+        <defname>_parent_</defname>
+      </param>
+      <param>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <declname>_phi_</declname>
+        <defname>_phi_</defname>
+      </param>
+      <param>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <declname>_theta_</declname>
+        <defname>_theta_</defname>
+      </param>
+      <param>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <declname>_psi_</declname>
+        <defname>_psi_</defname>
+      </param>
+      <param>
+        <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+        <declname>_sequence_</declname>
+        <defname>_sequence_</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1FixedOffsetAxis_1a855479a3d6275b49a72a553540b8b2d1" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::FixedOffsetAxis&lt; _parent_, _phi_, _theta_, _psi_, _sequence_ &gt;::sequence</definition>
+        <argsstring></argsstring>
+        <name>sequence</name>
+        <qualifiedname>astrea::astro::FixedOffsetAxis::sequence</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_sequence_</ref></initializer>
+        <briefdescription>
+<para>The rotation sequence for the angular offset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="154" column="27" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1FixedOffsetAxis_1a5b5a83fdb710356272f088effddeb2fc" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment" kindref="compound">Misalignment</ref></type>
+        <definition>constexpr Misalignment astrea::astro::FixedOffsetAxis&lt; _parent_, _phi_, _theta_, _psi_, _sequence_ &gt;::misalignment</definition>
+        <argsstring></argsstring>
+        <name>misalignment</name>
+        <qualifiedname>astrea::astro::FixedOffsetAxis::misalignment</qualifiedname>
+        <initializer>{ <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_phi_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_theta_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_psi_</ref> }</initializer>
+        <briefdescription>
+<para>The fixed angular offset from the parent frame to this frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="160" column="35" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="160" bodyend="160"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::Axis&lt;&quot;fixed offset&quot;, _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Axis"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::FixedOffsetAxis&lt; _parent_, _phi_, _theta_, _psi_, _sequence_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1FixedOffsetAxis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::Axis&lt;&quot;fixed offset&quot;, _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Axis"/>
+      </node>
+      <node id="3">
+        <label>astrea::astro::FixedOffsetAxis&lt; _parent_, _phi_, _theta_, _psi_, _sequence_ &gt;::Misalignment</label>
+        <link refid="structastrea_1_1astro_1_1FixedOffsetAxis_1_1Misalignment"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::FixedOffsetAxis&lt; _parent_, _phi_, _theta_, _psi_, _sequence_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1FixedOffsetAxis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>misalignment</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" line="153" column="1" bodyfile="astrea/astro/astro/frames/framework/FixedOffsetFrame.hpp" bodystart="153" bodyend="161"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1FixedOffsetAxis_1a5b5a83fdb710356272f088effddeb2fc" prot="public" virt="non-virtual"><scope>astrea::astro::FixedOffsetAxis</scope><name>misalignment</name></member>
+      <member refid="structastrea_1_1astro_1_1FixedOffsetAxis_1a855479a3d6275b49a72a553540b8b2d1" prot="public" virt="non-virtual"><scope>astrea::astro::FixedOffsetAxis</scope><name>sequence</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

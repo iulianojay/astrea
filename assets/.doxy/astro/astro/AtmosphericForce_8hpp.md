@@ -14,7 +14,7 @@ _Header file for the AtmosphericForce class, which computes the atmospheric forc
 * `#include <tuple>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/propagation/force_models/Force.hpp>`
+* `#include <astro/propagation/force_models/PerturbingForce.hpp>`
 
 
 

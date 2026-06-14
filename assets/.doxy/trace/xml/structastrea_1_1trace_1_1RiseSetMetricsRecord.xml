@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1trace_1_1RiseSetMetricsRecord" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::trace::RiseSetMetricsRecord</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1RiseSetMetricsRecord_1ae911cb531fce1343a3afc10ab3311573" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int astrea::trace::RiseSetMetricsRecord::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <qualifiedname>astrea::trace::RiseSetMetricsRecord::id</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="56" column="9" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1RiseSetMetricsRecord_1a6f96517bbfd999487b52180d81ae4032" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string astrea::trace::RiseSetMetricsRecord::sender</definition>
+        <argsstring></argsstring>
+        <name>sender</name>
+        <qualifiedname>astrea::trace::RiseSetMetricsRecord::sender</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="57" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1RiseSetMetricsRecord_1a99b360c4563791390e9f114f9c89c028" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string astrea::trace::RiseSetMetricsRecord::receiver</definition>
+        <argsstring></argsstring>
+        <name>receiver</name>
+        <qualifiedname>astrea::trace::RiseSetMetricsRecord::receiver</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="58" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1RiseSetMetricsRecord_1a3057cea13a74211bb2d9347d5137bd4c" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string astrea::trace::RiseSetMetricsRecord::metricType</definition>
+        <argsstring></argsstring>
+        <name>metricType</name>
+        <qualifiedname>astrea::trace::RiseSetMetricsRecord::metricType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="59" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1RiseSetMetricsRecord_1a8758e0a60a2e97152a9e2eae28fe63a6" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double astrea::trace::RiseSetMetricsRecord::minTime</definition>
+        <argsstring></argsstring>
+        <name>minTime</name>
+        <qualifiedname>astrea::trace::RiseSetMetricsRecord::minTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="60" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1RiseSetMetricsRecord_1a913add13dd99a5bbc3a81a96d2fdb822" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double astrea::trace::RiseSetMetricsRecord::avgTime</definition>
+        <argsstring></argsstring>
+        <name>avgTime</name>
+        <qualifiedname>astrea::trace::RiseSetMetricsRecord::avgTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="61" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1RiseSetMetricsRecord_1a2f7919a248049f1c94b188195ff24e43" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double astrea::trace::RiseSetMetricsRecord::maxTime</definition>
+        <argsstring></argsstring>
+        <name>maxTime</name>
+        <qualifiedname>astrea::trace::RiseSetMetricsRecord::maxTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="62" column="12" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1RiseSetMetricsRecord_1a1f9abdca851b864160fafe64703d4c86" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string astrea::trace::RiseSetMetricsRecord::percentiles</definition>
+        <argsstring></argsstring>
+        <name>percentiles</name>
+        <qualifiedname>astrea::trace::RiseSetMetricsRecord::percentiles</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="63" column="17" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/io/output.hpp" line="55" column="1" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="55" bodyend="64"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1trace_1_1RiseSetMetricsRecord_1a913add13dd99a5bbc3a81a96d2fdb822" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetMetricsRecord</scope><name>avgTime</name></member>
+      <member refid="structastrea_1_1trace_1_1RiseSetMetricsRecord_1ae911cb531fce1343a3afc10ab3311573" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetMetricsRecord</scope><name>id</name></member>
+      <member refid="structastrea_1_1trace_1_1RiseSetMetricsRecord_1a2f7919a248049f1c94b188195ff24e43" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetMetricsRecord</scope><name>maxTime</name></member>
+      <member refid="structastrea_1_1trace_1_1RiseSetMetricsRecord_1a3057cea13a74211bb2d9347d5137bd4c" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetMetricsRecord</scope><name>metricType</name></member>
+      <member refid="structastrea_1_1trace_1_1RiseSetMetricsRecord_1a8758e0a60a2e97152a9e2eae28fe63a6" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetMetricsRecord</scope><name>minTime</name></member>
+      <member refid="structastrea_1_1trace_1_1RiseSetMetricsRecord_1a1f9abdca851b864160fafe64703d4c86" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetMetricsRecord</scope><name>percentiles</name></member>
+      <member refid="structastrea_1_1trace_1_1RiseSetMetricsRecord_1a99b360c4563791390e9f114f9c89c028" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetMetricsRecord</scope><name>receiver</name></member>
+      <member refid="structastrea_1_1trace_1_1RiseSetMetricsRecord_1a6f96517bbfd999487b52180d81ae4032" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetMetricsRecord</scope><name>sender</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

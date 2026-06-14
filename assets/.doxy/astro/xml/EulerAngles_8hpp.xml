@@ -1,0 +1,814 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="EulerAngles_8hpp" kind="file" language="C++">
+    <compoundname>EulerAngles.hpp</compoundname>
+    <includes local="no">math/interpolation.hpp</includes>
+    <includes local="no">units/units.hpp</includes>
+    <includes refid="astro_8fwd_8hpp" local="no">astro/astro.fwd.hpp</includes>
+    <includes refid="CartesianVector_8hpp" local="no">astro/frames/framework/CartesianVector.hpp</includes>
+    <includes refid="DirectionCosineMatrix_8hpp" local="no">astro/frames/framework/DirectionCosineMatrix.hpp</includes>
+    <includes refid="frame__concepts_8hpp" local="no">astro/frames/framework/frame_concepts.hpp</includes>
+    <includes refid="enums_8hpp" local="no">astro/types/enums.hpp</includes>
+    <includes refid="conversions_8hpp" local="no">astro/utilities/conversions.hpp</includes>
+    <includedby refid="attitude_8hpp" local="no">astrea/astro/astro/state/attitude.hpp</includedby>
+    <includedby refid="AngularVelocities_8hpp" local="no">astrea/astro/astro/state/attitude/AngularVelocities.hpp</includedby>
+    <includedby refid="Attitude_8hpp" local="no">astrea/astro/astro/state/attitude/Attitude.hpp</includedby>
+    <includedby refid="Quaternion_8hpp" local="no">astrea/astro/astro/state/attitude/Quaternion.hpp</includedby>
+    <incdepgraph>
+      <node id="4">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>astro/frames/framework/Axis.hpp</label>
+        <link refid="Axis_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astro/frames/framework/CartesianVector.hpp</label>
+        <link refid="CartesianVector_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>astro/frames/framework/DcmInterface.hpp</label>
+        <link refid="DcmInterface_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astro/frames/framework/DirectionCosineMatrix.hpp</label>
+        <link refid="DirectionCosineMatrix_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astro/frames/framework/Frame.hpp</label>
+        <link refid="Frame_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astro/frames/framework/Origin.hpp</label>
+        <link refid="Origin_8hpp"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astro/frames/framework/frame_concepts.hpp</label>
+        <link refid="frame__concepts_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/state/attitude/EulerAngles.hpp</label>
+        <link refid="EulerAngles_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>astro/utilities/conversions.hpp</label>
+        <link refid="conversions_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>array</label>
+      </node>
+      <node id="20">
+        <label>cmath</label>
+      </node>
+      <node id="5">
+        <label>concepts</label>
+      </node>
+      <node id="21">
+        <label>iostream</label>
+      </node>
+      <node id="2">
+        <label>math/interpolation.hpp</label>
+      </node>
+      <node id="12">
+        <label>mp-units/framework.h</label>
+      </node>
+      <node id="16">
+        <label>mp-units/framework/symbol_text.h</label>
+      </node>
+      <node id="22">
+        <label>mp-units/math.h</label>
+      </node>
+      <node id="13">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="23">
+        <label>mp-units/systems/angular/math.h</label>
+      </node>
+      <node id="27">
+        <label>numbers</label>
+      </node>
+      <node id="8">
+        <label>stdint.h</label>
+      </node>
+      <node id="15">
+        <label>type_traits</label>
+      </node>
+      <node id="11">
+        <label>typeinfo</label>
+      </node>
+      <node id="3">
+        <label>units/units.hpp</label>
+      </node>
+      <node id="24">
+        <label>utilities/string_util.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
+      </node>
+      <node id="13">
+        <label>astrea/astro/astro/platforms.hpp</label>
+        <link refid="platforms_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
+        <link refid="Constellation_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
+        <link refid="Plane_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
+        <link refid="Shell_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>astrea/astro/astro/platforms/vehicles/Spacecraft.hpp</label>
+        <link refid="Spacecraft_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astrea/astro/astro/propagation.hpp</label>
+        <link refid="propagation_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea/astro/astro/propagation/event_detection/Event.hpp</label>
+        <link refid="Event_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea/astro/astro/propagation/event_detection/EventDetector.hpp</label>
+        <link refid="EventDetector_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>astrea/astro/astro/propagation/event_detection/Schedule.hpp</label>
+        <link refid="Schedule_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>astrea/astro/astro/propagation/force_models/NBodyForce.hpp</label>
+        <link refid="NBodyForce_8hpp_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astrea/astro/astro/propagation/force_models/OblatenessForce.hpp</label>
+        <link refid="OblatenessForce_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astrea/astro/astro/propagation/force_models/OblatenessForce.ipp</label>
+        <link refid="OblatenessForce_8ipp_source"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
+        <link refid="Integrator_8hpp"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/astro/astro/state.hpp</label>
+        <link refid="state_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea/astro/astro/state/State.hpp</label>
+        <link refid="State_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>astrea/astro/astro/state/StateHistory.hpp</label>
+        <link refid="StateHistory_8hpp"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/astro/astro/state/attitude.hpp</label>
+        <link refid="attitude_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea/astro/astro/state/attitude/AngularVelocities.hpp</label>
+        <link refid="AngularVelocities_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea/astro/astro/state/attitude/Attitude.hpp</label>
+        <link refid="Attitude_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/state/attitude/EulerAngles.hpp</label>
+        <link refid="EulerAngles_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>astrea/astro/astro/state/attitude/EulerAngles.ipp</label>
+        <link refid="EulerAngles_8ipp"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>astrea/astro/astro/state/attitude/Quaternion.hpp</label>
+        <link refid="Quaternion_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>astrea/astro/astro/systems.hpp</label>
+        <link refid="systems_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>astrea/astro/astro/systems/atmosphere.hpp</label>
+        <link refid="atmosphere_8hpp_source"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classastrea_1_1astro_1_1EulerAngles" prot="public">astrea::astro::EulerAngles</innerclass>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
+    <briefdescription>
+<para>Class representing a sequence of angles (either Euler or Tait-Bryan) for attitude transformations between state/frames. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2026-03-22</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2026 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math/interpolation.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;units/units.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="astro_8fwd_8hpp" kindref="compound">astro/astro.fwd.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="CartesianVector_8hpp" kindref="compound">astro/frames/framework/CartesianVector.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="DirectionCosineMatrix_8hpp" kindref="compound">astro/frames/framework/DirectionCosineMatrix.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="frame__concepts_8hpp" kindref="compound">astro/frames/framework/frame_concepts.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="enums_8hpp" kindref="compound">astro/types/enums.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="conversions_8hpp" kindref="compound">astro/utilities/conversions.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="EulerAngles_8hpp_1a621e09c6f4089da8b3686045e3cb7d3f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref><sp/><ref refid="EulerAngles_8hpp_1a621e09c6f4089da8b3686045e3cb7d3f" kindref="member">get_reverse_sequence</ref>(<ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref><sp/>sequence)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(sequence)<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::XYZ:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>RotationSequence::ZYX;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::YZX:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>RotationSequence::XZY;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::ZXY:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>RotationSequence::YXZ;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::XZY:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>RotationSequence::YZX;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::ZYX:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>RotationSequence::XYZ;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::YXZ:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>RotationSequence::ZXY;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>For<sp/>Euler<sp/>sequences,<sp/>the<sp/>reverse<sp/>is<sp/>the<sp/>same<sp/>sequence<sp/>with<sp/>reversed<sp/>angles,<sp/>so<sp/>we<sp/>can<sp/>just<sp/>return<sp/>the<sp/>same<sp/>sequence<sp/>type</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sequence;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>is_proper_euler_sequence(RotationSequence<sp/>sequence)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(sequence)<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::ZXZ:</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::XYX:</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::YZY:</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::ZYZ:</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::XZX:</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::YXY:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>std::array&lt;int,<sp/>3&gt;<sp/>get_sequence_numbers(RotationSequence<sp/>sequence)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(sequence)<sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::ZXZ:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::array{<sp/>3,<sp/>1,<sp/>3<sp/>};</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::XZX:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::array{<sp/>1,<sp/>3,<sp/>1<sp/>};</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::YXY:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::array{<sp/>2,<sp/>1,<sp/>2<sp/>};</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::XYX:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::array{<sp/>1,<sp/>2,<sp/>1<sp/>};</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::YZY:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::array{<sp/>2,<sp/>3,<sp/>2<sp/>};</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::ZYZ:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::array{<sp/>3,<sp/>2,<sp/>3<sp/>};</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::XYZ:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::array{<sp/>1,<sp/>2,<sp/>3<sp/>};</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::XZY:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::array{<sp/>1,<sp/>3,<sp/>2<sp/>};</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::YZX:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::array{<sp/>2,<sp/>3,<sp/>1<sp/>};</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::YXZ:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::array{<sp/>2,<sp/>1,<sp/>3<sp/>};</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::ZXY:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::array{<sp/>3,<sp/>1,<sp/>2<sp/>};</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>RotationSequence::ZYX:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::array{<sp/>3,<sp/>2,<sp/>1<sp/>};</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_t,<sp/>RotationType<sp/>rotation_t,<sp/>IsFrame<sp/>auto<sp/>_in_frame_,<sp/>IsFrame<sp/>auto<sp/>_out_frame_,<sp/>RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_u,<sp/>IsFrame<sp/>auto<sp/>_in_frame_u_,<sp/>IsFrame<sp/>auto<sp/>_out_frame_u_&gt;</highlight></codeline>
+<codeline lineno="87" refid="conceptastrea_1_1astro_1_1IsSameEulerAngles" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">concept<sp/></highlight><highlight class="normal"><ref refid="conceptastrea_1_1astro_1_1IsSameEulerAngles" kindref="compound">IsSameEulerAngles</ref><sp/>=</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>(sequence_t<sp/>==<sp/>sequence_u)<sp/>&amp;&amp;<sp/></highlight><highlight class="comment">//<sp/>Must<sp/>both<sp/>be<sp/>the<sp/>same<sp/>specific<sp/>sequence<sp/>(e.g.,<sp/>ZXZ)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>(rotation_t<sp/>==<sp/>rotation_u)<sp/>&amp;&amp;<sp/></highlight><highlight class="comment">//<sp/>Must<sp/>both<sp/>be<sp/>the<sp/>same<sp/>rotation<sp/>type<sp/>(intrinsic<sp/>or<sp/>extrinsic)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>std::is_same_v&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(_in_frame_),<sp/></highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(_in_frame_u_)&gt;<sp/>&amp;&amp;<sp/></highlight><highlight class="comment">//<sp/>Must<sp/>have<sp/>the<sp/>same<sp/>input<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>std::is_same_v&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(_out_frame_),<sp/></highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(_out_frame_u_)&gt;;<sp/></highlight><highlight class="comment">//<sp/>Must<sp/>have<sp/>the<sp/>same<sp/>output<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_t,<sp/>RotationType<sp/>rotation_t,<sp/>IsFrame<sp/>auto<sp/>_in_frame_,<sp/>IsFrame<sp/>auto<sp/>_out_frame_,<sp/>RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_u,<sp/>IsFrame<sp/>auto<sp/>_in_frame_u_,<sp/>IsFrame<sp/>auto<sp/>_out_frame_u_&gt;</highlight></codeline>
+<codeline lineno="97" refid="conceptastrea_1_1astro_1_1IsEquivalentEulerAngles" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">concept<sp/></highlight><highlight class="normal"><ref refid="conceptastrea_1_1astro_1_1IsEquivalentEulerAngles" kindref="compound">IsEquivalentEulerAngles</ref><sp/>=</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>(<ref refid="EulerAngles_8hpp_1a621e09c6f4089da8b3686045e3cb7d3f" kindref="member">get_reverse_sequence</ref>(sequence_t)<sp/>==<sp/>sequence_u)<sp/>&amp;&amp;<sp/></highlight><highlight class="comment">//<sp/>Must<sp/>be<sp/>the<sp/>reverse<sp/>sequence<sp/>(e.g.,<sp/>ZXZ<sp/>vs<sp/>ZXZ<sp/>with<sp/>reversed<sp/>angles)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>(rotation_t<sp/>!=<sp/>rotation_u)<sp/>&amp;&amp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Must<sp/>be<sp/>opposite<sp/>rotation<sp/>types<sp/>(intrinsic<sp/>vs<sp/>extrinsic)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>std::is_same_v&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(_in_frame_),<sp/></highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(_in_frame_u_)&gt;<sp/>&amp;&amp;<sp/></highlight><highlight class="comment">//<sp/>Must<sp/>have<sp/>the<sp/>same<sp/>input<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>std::is_same_v&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(_out_frame_),<sp/></highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(_out_frame_u_)&gt;;<sp/></highlight><highlight class="comment">//<sp/>Must<sp/>have<sp/>the<sp/>same<sp/>output<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_t,<sp/>RotationType<sp/>rotation_t,<sp/>IsFrame<sp/>auto<sp/>_in_frame_,<sp/>IsFrame<sp/>auto<sp/>_out_frame_,<sp/>RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_u,<sp/>IsFrame<sp/>auto<sp/>_in_frame_u_,<sp/>IsFrame<sp/>auto<sp/>_out_frame_u_&gt;</highlight></codeline>
+<codeline lineno="111" refid="conceptastrea_1_1astro_1_1IsCompatibleEulerAngles" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">concept<sp/></highlight><highlight class="normal"><ref refid="conceptastrea_1_1astro_1_1IsCompatibleEulerAngles" kindref="compound">IsCompatibleEulerAngles</ref><sp/>=</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="conceptastrea_1_1astro_1_1IsSameEulerAngles" kindref="compound">IsSameEulerAngles&lt;sequence_t, rotation_t, _in_frame_, _out_frame_, sequence_u, rotation_u, _in_frame_u_, _out_frame_u_&gt;</ref><sp/>||</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="conceptastrea_1_1astro_1_1IsEquivalentEulerAngles" kindref="compound">IsEquivalentEulerAngles&lt;sequence_t, rotation_t, _in_frame_, _out_frame_, sequence_u, rotation_u, _in_frame_u_, _out_frame_u_&gt;</ref>;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence,<sp/>RotationType<sp/>rotation_type,<sp/>IsFrame<sp/>auto<sp/>_in_frame_,<sp/>IsFrame<sp/>auto<sp/>_out_frame_&gt;</highlight></codeline>
+<codeline lineno="126" refid="classastrea_1_1astro_1_1EulerAngles" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref><sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref>;</highlight></codeline>
+<codeline lineno="129" refid="classastrea_1_1astro_1_1EulerAngles_1a0bd55b909a11e091303378038b1c6534" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a0bd55b909a11e091303378038b1c6534" kindref="member">operator&lt;&lt;</ref>(std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">euler</ref>)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref><sp/>&lt;&lt;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">euler</ref>._angles;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref>;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>in_frame<sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>out_frame<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref>;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="classastrea_1_1astro_1_1EulerAngles_1ab7a89a5968f90b81511b582bc798ae7a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ab7a89a5968f90b81511b582bc798ae7a" kindref="member">EulerAngles</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151" refid="classastrea_1_1astro_1_1EulerAngles_1aa64db038f397034c2ebb51e5865c8a26" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1aa64db038f397034c2ebb51e5865c8a26" kindref="member">EulerAngles</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angle1</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angle2</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angle3</ref>)<sp/>:</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_angles(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angle1</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angle2</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angle3</ref>)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wrap_angles();</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162" refid="classastrea_1_1astro_1_1EulerAngles_1a11bd98984dd8306ed31c30bb6497d51e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a11bd98984dd8306ed31c30bb6497d51e" kindref="member">EulerAngles</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Angle, _in_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angles</ref>)<sp/>:</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_angles(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angles</ref>)</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wrap_angles();</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171" refid="classastrea_1_1astro_1_1EulerAngles_1ac378d7de2b5c689bc36226535d7e0dac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ac378d7de2b5c689bc36226535d7e0dac" kindref="member">EulerAngles</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/><sp/><sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ab7a89a5968f90b81511b582bc798ae7a" kindref="member">EulerAngles</ref>(<ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&amp;&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&amp;<sp/>operator=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&amp;<sp/>operator=(<ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&amp;&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_type_u,<sp/>auto<sp/>_in_frame_u_,<sp/>auto<sp/>_out_frame_u_&gt;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(<ref refid="conceptastrea_1_1astro_1_1IsEquivalentEulerAngles" kindref="compound">IsEquivalentEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>)</highlight></codeline>
+<codeline lineno="183" refid="classastrea_1_1astro_1_1EulerAngles_1afa80863918b3a1925777e219918c2e70" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1afa80863918b3a1925777e219918c2e70" kindref="member">EulerAngles</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/>:</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_angles(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._angles.reverse())</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_type_u,<sp/>auto<sp/>_in_frame_u_,<sp/>auto<sp/>_out_frame_u_&gt;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(<ref refid="conceptastrea_1_1astro_1_1IsEquivalentEulerAngles" kindref="compound">IsEquivalentEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>)</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ab7a89a5968f90b81511b582bc798ae7a" kindref="member">EulerAngles</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>&amp;&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/>:</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_angles(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._angles.reverse())</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_type_u,<sp/>auto<sp/>_in_frame_u_,<sp/>auto<sp/>_out_frame_u_&gt;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(IsEquivalentEulerAngles&lt;sequence,<sp/>rotation_type,<sp/>_in_frame_,<sp/>_out_frame_,<sp/>sequence_u,<sp/>rotation_type_u,<sp/>_in_frame_u_,<sp/>_out_frame_u_&gt;)</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ab7a89a5968f90b81511b582bc798ae7a" kindref="member">EulerAngles</ref>&amp;<sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>EulerAngles&lt;sequence_u,<sp/>rotation_type_u,<sp/>_in_frame_u_,<sp/>_out_frame_u_&gt;&amp;<sp/>other)</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_angles<sp/>=<sp/>other._angles.<ref refid="structastrea_1_1astro_1_1CartesianVector_1ab09462517ca5486851bb100bd936c1da" kindref="member">reverse</ref>();</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_type_u,<sp/>auto<sp/>_in_frame_u_,<sp/>auto<sp/>_out_frame_u_&gt;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(IsEquivalentEulerAngles&lt;sequence,<sp/>rotation_type,<sp/>_in_frame_,<sp/>_out_frame_,<sp/>sequence_u,<sp/>rotation_type_u,<sp/>_in_frame_u_,<sp/>_out_frame_u_&gt;)</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ab7a89a5968f90b81511b582bc798ae7a" kindref="member">EulerAngles</ref>&amp;<sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">=(EulerAngles&lt;sequence_u,<sp/>rotation_type_u,<sp/>_in_frame_u_,<sp/>_out_frame_u_&gt;&amp;&amp;<sp/>other)</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_angles<sp/>=<sp/>other._angles.<ref refid="structastrea_1_1astro_1_1CartesianVector_1ab09462517ca5486851bb100bd936c1da" kindref="member">reverse</ref>();</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_type_u&gt;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(!IsCompatibleEulerAngles&lt;sequence,<sp/>rotation_type,<sp/>_in_frame_,<sp/>_out_frame_,<sp/>sequence_u,<sp/>rotation_type_u,<sp/>_in_frame_,<sp/>_out_frame_&gt;)</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ab7a89a5968f90b81511b582bc798ae7a" kindref="member">EulerAngles</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>EulerAngles&lt;sequence_u,<sp/>rotation_type_u,<sp/>_in_frame_,<sp/>_out_frame_&gt;&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229" refid="classastrea_1_1astro_1_1EulerAngles_1a3d7293bdef014427c3cfefed406616e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt;<ref refid="EulerAngles_8hpp_1a621e09c6f4089da8b3686045e3cb7d3f" kindref="member">get_reverse_sequence</ref>(sequence),<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>&gt;<sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a3d7293bdef014427c3cfefed406616e0" kindref="member">get_inverse_sequence</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="230"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>-_angles.<ref refid="structastrea_1_1astro_1_1CartesianVector_1ab09462517ca5486851bb100bd936c1da" kindref="member">reverse</ref>()<sp/>};</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241" refid="classastrea_1_1astro_1_1EulerAngles_1ad3d6c29685db35c93d76b56e94da6aa1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ad3d6c29685db35c93d76b56e94da6aa1" kindref="member">operator[]</ref>(std::size_t<sp/>index)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_angles[index];<sp/>}</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight></codeline>
+<codeline lineno="249" refid="classastrea_1_1astro_1_1EulerAngles_1a917f13002e05f336ebc3f01b0a0ea04a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a917f13002e05f336ebc3f01b0a0ea04a" kindref="member">operator[]</ref>(std::size_t<sp/>index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_angles[index];<sp/>}</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight></codeline>
+<codeline lineno="256" refid="classastrea_1_1astro_1_1EulerAngles_1a59d393b06670da1ad13f36ccd2184fa8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Angle, _in_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a59d393b06670da1ad13f36ccd2184fa8" kindref="member">get_angles</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_angles;<sp/>}</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="263" refid="classastrea_1_1astro_1_1EulerAngles_1ae18deefa261e26beaf7737c4236ab3a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Angle, _in_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ae18deefa261e26beaf7737c4236ab3a8" kindref="member">get_angles</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_angles;<sp/>}</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"></highlight></codeline>
+<codeline lineno="270" refid="classastrea_1_1astro_1_1EulerAngles_1a34cb90dd292d33f0e3b3ecbe59131024" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;_in_frame_, _out_frame_&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a34cb90dd292d33f0e3b3ecbe59131024" kindref="member">to_dcm</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="271"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Extrinsic<sp/>sequences<sp/>are<sp/>applied<sp/>in<sp/>the<sp/>order<sp/>they<sp/>are<sp/>specified,<sp/>while<sp/>intrinsic<sp/>sequences<sp/>are<sp/>applied<sp/>in<sp/>reverse<sp/>order</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">isIntrinsic</ref><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref><sp/>==<sp/>RotationType::INTRINSIC);</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref>&amp;<sp/>first<sp/><sp/>=<sp/>_angles[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">isIntrinsic</ref><sp/>?<sp/>2<sp/>:<sp/>0];</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">second</ref><sp/>=<sp/>_angles[1];</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">third</ref><sp/><sp/>=<sp/>_angles[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">isIntrinsic</ref><sp/>?<sp/>0<sp/>:<sp/>2];</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;_in_frame_, _out_frame_&gt;::template</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">from_euler_angles&lt;sequence&gt;</ref>(first,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">second</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">third</ref>);</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationType<sp/>rotation_u&gt;</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref><sp/>!=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_u</ref>)</highlight></codeline>
+<codeline lineno="287" refid="classastrea_1_1astro_1_1EulerAngles_1a5e8d1a8002d031f08dc32dbd4d7fd25b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt;<ref refid="EulerAngles_8hpp_1a621e09c6f4089da8b3686045e3cb7d3f" kindref="member">get_reverse_sequence</ref>(sequence),<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_u</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref>&gt;<sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a5e8d1a8002d031f08dc32dbd4d7fd25b" kindref="member">to_rotation_type</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="288"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_angles<sp/>};</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationType<sp/>rotation_u&gt;</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_type</ref><sp/>==<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotation_u</ref>)</highlight></codeline>
+<codeline lineno="298" refid="classastrea_1_1astro_1_1EulerAngles_1a57920c81982e2a400d36e185c73e019e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a57920c81982e2a400d36e185c73e019e" kindref="member">to_rotation_type</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_angles<sp/>};</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"></highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Explicitly<sp/>deleted<sp/>copy/move<sp/>assignment/constructor<sp/>to<sp/>prevent<sp/>implicit<sp/>frame<sp/>switches,<sp/>rotation<sp/>type<sp/>conversions,<sp/>and<sp/>sequence<sp/>conversions.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_type_u,<sp/>auto<sp/>_in_frame_u_,<sp/>auto<sp/>_out_frame_u_&gt;</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(!<ref refid="conceptastrea_1_1astro_1_1IsCompatibleEulerAngles" kindref="compound">IsCompatibleEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>)</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ab7a89a5968f90b81511b582bc798ae7a" kindref="member">EulerAngles</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_type_u,<sp/>auto<sp/>_in_frame_u_,<sp/>auto<sp/>_out_frame_u_&gt;</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(!<ref refid="conceptastrea_1_1astro_1_1IsCompatibleEulerAngles" kindref="compound">IsCompatibleEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>)</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ab7a89a5968f90b81511b582bc798ae7a" kindref="member">EulerAngles</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>&amp;&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_type_u,<sp/>auto<sp/>_in_frame_u_,<sp/>auto<sp/>_out_frame_u_&gt;</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(!<ref refid="conceptastrea_1_1astro_1_1IsCompatibleEulerAngles" kindref="compound">IsCompatibleEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>)</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">=(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_type_u,<sp/>auto<sp/>_in_frame_u_,<sp/>auto<sp/>_out_frame_u_&gt;</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(!<ref refid="conceptastrea_1_1astro_1_1IsCompatibleEulerAngles" kindref="compound">IsCompatibleEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>)</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">=(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>&amp;&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"></highlight></codeline>
+<codeline lineno="329" refid="classastrea_1_1astro_1_1EulerAngles_1ada08d2809ffec975c2c9501b08fbf519" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ada08d2809ffec975c2c9501b08fbf519" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="330"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_angles<sp/>==<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._angles;</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"></highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_type_u,<sp/>auto<sp/>_in_frame_u_,<sp/>auto<sp/>_out_frame_u_&gt;</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(<ref refid="conceptastrea_1_1astro_1_1IsEquivalentEulerAngles" kindref="compound">IsEquivalentEulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_, sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>)</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">==(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_angles<sp/>==<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.get_angles().reverse();</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"></highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence_u,<sp/>RotationType<sp/>rotation_type_u,<sp/>auto<sp/>_in_frame_u_,<sp/>auto<sp/>_out_frame_u_&gt;</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(!IsCompatibleEulerAngles&lt;sequence,<sp/>rotation_type,<sp/>_in_frame_,<sp/>_out_frame_,<sp/>sequence_u,<sp/>rotation_type_u,<sp/>_in_frame_u_,<sp/>_out_frame_u_&gt;)</highlight></codeline>
+<codeline lineno="350" refid="classastrea_1_1astro_1_1EulerAngles_1a919a09d9aa68df142f4e1e458702f18a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal">==(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence_u, rotation_type_u, _in_frame_u_, _out_frame_u_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"></highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref></highlight></codeline>
+<codeline lineno="362" refid="classastrea_1_1astro_1_1EulerAngles_1a4255f96fb613f8db13e5199c1c47a872" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a4255f96fb613f8db13e5199c1c47a872" kindref="member">operator+</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="363"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_angles<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._angles<sp/>};</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"></highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;</highlight></codeline>
+<codeline lineno="374" refid="classastrea_1_1astro_1_1EulerAngles_1a354b95a4ad13ff7c2ae9639d5cf44e90" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a354b95a4ad13ff7c2ae9639d5cf44e90" kindref="member">operator+=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_angles<sp/>+=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._angles;</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wrap_angles();</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"></highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref></highlight></codeline>
+<codeline lineno="389" refid="classastrea_1_1astro_1_1EulerAngles_1a4f48fae1bf4acf156f81844f97599012" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a4f48fae1bf4acf156f81844f97599012" kindref="member">operator-</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="390"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_angles<sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._angles<sp/>};</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"></highlight></codeline>
+<codeline lineno="399" refid="classastrea_1_1astro_1_1EulerAngles_1ad02360492ad499891540fcb197160af3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ad02360492ad499891540fcb197160af3" kindref="member">operator-</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>-_angles<sp/>};<sp/>}</highlight></codeline>
+<codeline lineno="400"><highlight class="normal"></highlight></codeline>
+<codeline lineno="407"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;</highlight></codeline>
+<codeline lineno="408" refid="classastrea_1_1astro_1_1EulerAngles_1abf8ff73f7b2ce86a3aa941240cb2ba9a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1abf8ff73f7b2ce86a3aa941240cb2ba9a" kindref="member">operator-=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight></codeline>
+<codeline lineno="409"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_angles<sp/>-=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._angles;</highlight></codeline>
+<codeline lineno="411"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wrap_angles();</highlight></codeline>
+<codeline lineno="412"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="414"><highlight class="normal"></highlight></codeline>
+<codeline lineno="421" refid="classastrea_1_1astro_1_1EulerAngles_1adb89a9f6a5c607069657bd0e63993d20" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1adb89a9f6a5c607069657bd0e63993d20" kindref="member">operator*</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="422"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_angles<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref><sp/>};</highlight></codeline>
+<codeline lineno="424"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="425"><highlight class="normal"></highlight></codeline>
+<codeline lineno="432" refid="classastrea_1_1astro_1_1EulerAngles_1aed85af953571dcc823be7b8d363c51ff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1aed85af953571dcc823be7b8d363c51ff" kindref="member">operator*=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>)</highlight></codeline>
+<codeline lineno="433"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="434"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_angles<sp/>*=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>;</highlight></codeline>
+<codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wrap_angles();</highlight></codeline>
+<codeline lineno="436"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="438"><highlight class="normal"></highlight></codeline>
+<codeline lineno="446" refid="classastrea_1_1astro_1_1EulerAngles_1a402f0cb2d165e76251da87ec9546ca5d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">AngularVelocities&lt;_in_frame_, _out_frame_&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a402f0cb2d165e76251da87ec9546ca5d" kindref="member">operator/</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_angles<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">time</ref><sp/>};<sp/>}</highlight></codeline>
+<codeline lineno="447"><highlight class="normal"></highlight></codeline>
+<codeline lineno="454" refid="classastrea_1_1astro_1_1EulerAngles_1a80220c862923ec1c4a5d248e9634ebb1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a80220c862923ec1c4a5d248e9634ebb1" kindref="member">operator/</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="455"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="456"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_angles<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref><sp/>};</highlight></codeline>
+<codeline lineno="457"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="458"><highlight class="normal"></highlight></codeline>
+<codeline lineno="465" refid="classastrea_1_1astro_1_1EulerAngles_1af83b47193bf01721980ecbd8ee3fd0a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1af83b47193bf01721980ecbd8ee3fd0a0" kindref="member">operator/=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>)</highlight></codeline>
+<codeline lineno="466"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="467"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_angles<sp/>/=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>;</highlight></codeline>
+<codeline lineno="468"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wrap_angles();</highlight></codeline>
+<codeline lineno="469"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="470"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="471"><highlight class="normal"></highlight></codeline>
+<codeline lineno="478" refid="classastrea_1_1astro_1_1EulerAngles_1af9b34079ff795ec582a916fe1a3bff91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1af9b34079ff795ec582a916fe1a3bff91" kindref="member">dot</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="479"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="480"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_angles.<ref refid="structastrea_1_1astro_1_1CartesianVector_1a8123262db04868e5ac160cd71de675b1" kindref="member">dot</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._angles);</highlight></codeline>
+<codeline lineno="481"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="482"><highlight class="normal"></highlight></codeline>
+<codeline lineno="490"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U&gt;</highlight></codeline>
+<codeline lineno="491" refid="classastrea_1_1astro_1_1EulerAngles_1ac0abccf3e85939d02a0af4c92d6a280a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ac0abccf3e85939d02a0af4c92d6a280a" kindref="member">dot</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Value_U, _in_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="492"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="493"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_angles.<ref refid="structastrea_1_1astro_1_1CartesianVector_1a8123262db04868e5ac160cd71de675b1" kindref="member">dot</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>);</highlight></codeline>
+<codeline lineno="494"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="495"><highlight class="normal"></highlight></codeline>
+<codeline lineno="502" refid="classastrea_1_1astro_1_1EulerAngles_1ab3d869c1722754e92c39ca0e6f012e56" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ab3d869c1722754e92c39ca0e6f012e56" kindref="member">cross</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="503"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="504"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_angles.<ref refid="structastrea_1_1astro_1_1CartesianVector_1a8f3c5e253983cf21ec1dc1727278c019" kindref="member">cross</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._angles);</highlight></codeline>
+<codeline lineno="505"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="506"><highlight class="normal"></highlight></codeline>
+<codeline lineno="514"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_U&gt;</highlight></codeline>
+<codeline lineno="515" refid="classastrea_1_1astro_1_1EulerAngles_1ad138043f4fb69d41852abc5aeffe2384" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1ad138043f4fb69d41852abc5aeffe2384" kindref="member">cross</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Value_U, _in_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="516"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="517"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_angles.<ref refid="structastrea_1_1astro_1_1CartesianVector_1a8f3c5e253983cf21ec1dc1727278c019" kindref="member">cross</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>);</highlight></codeline>
+<codeline lineno="518"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="519"><highlight class="normal"></highlight></codeline>
+<codeline lineno="525" refid="classastrea_1_1astro_1_1EulerAngles_1a148aa65d6f9b6ab797dc6b7aa62e88e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a148aa65d6f9b6ab797dc6b7aa62e88e5" kindref="member">norm</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_angles.<ref refid="structastrea_1_1astro_1_1CartesianVector_1a75269d776ccf393aa8dde178ccdcfee9" kindref="member">norm</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="526"><highlight class="normal"></highlight></codeline>
+<codeline lineno="532" refid="classastrea_1_1astro_1_1EulerAngles_1a2cb437adab22ef6c58345214a2d890c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Unitless&gt;<sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a2cb437adab22ef6c58345214a2d890c8" kindref="member">force_to_vector</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="533"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="534"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_angles[0]<sp/>/<sp/>_angles[0].unit,<sp/>_angles[1]<sp/>/<sp/>_angles[1].unit,<sp/>_angles[2]<sp/>/<sp/>_angles[2].unit<sp/>};</highlight></codeline>
+<codeline lineno="535"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="536"><highlight class="normal"></highlight></codeline>
+<codeline lineno="547" refid="classastrea_1_1astro_1_1EulerAngles_1a5a92a3399dd20fca8b867b40b13bbee6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1EulerAngles_1a5a92a3399dd20fca8b867b40b13bbee6" kindref="member">interpolate</ref>(</highlight></codeline>
+<codeline lineno="548"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">thisTime</ref>,</highlight></codeline>
+<codeline lineno="549"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">otherTime</ref>,</highlight></codeline>
+<codeline lineno="550"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>,</highlight></codeline>
+<codeline lineno="551"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">targetTime</ref></highlight></codeline>
+<codeline lineno="552"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="553"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="554"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(</highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Don&apos;t<sp/>do<sp/>this.<sp/>Just<sp/>use<sp/>the<sp/>Quaternion.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="555"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="556"><highlight class="normal"></highlight></codeline>
+<codeline lineno="557"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="558"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Angle, _in_frame_&gt;</ref><sp/>_angles;</highlight></codeline>
+<codeline lineno="559"><highlight class="normal"></highlight></codeline>
+<codeline lineno="569"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>wrap_angles()</highlight></codeline>
+<codeline lineno="570"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="571"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_angles[0]<sp/>=<sp/><ref refid="conversions_8hpp_1ab9696ddf19a3562e89343a88946075a1" kindref="member">wrap_angle</ref>(_angles[0]);<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>φ<sp/>-<sp/>[0,<sp/>2π)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="572"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_angles[1]<sp/>=<sp/><ref refid="conversions_8hpp_1ae614bf0e7bfd109229c120382ec7cd80" kindref="member">wrap_angle_to_pi</ref>(_angles[1]);<sp/></highlight><highlight class="comment">//<sp/>θ<sp/>-<sp/>[0,<sp/>π)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="573"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_angles[2]<sp/>=<sp/><ref refid="conversions_8hpp_1ab9696ddf19a3562e89343a88946075a1" kindref="member">wrap_angle</ref>(_angles[2]);<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ψ<sp/>-<sp/>[0,<sp/>2π)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="574"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="575"><highlight class="normal"></highlight></codeline>
+<codeline lineno="584"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>EulerAngles&lt;sequence,<sp/>rotation_type,<sp/>_in_frame_,<sp/>_out_frame_&gt;<sp/>from_vector(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Unitless&gt;&amp;<sp/>vec)</highlight></codeline>
+<codeline lineno="585"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="586"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::unit_symbols::rad;</highlight></codeline>
+<codeline lineno="587"><highlight class="normal"></highlight></codeline>
+<codeline lineno="588"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(vec.size()<sp/>!=<sp/>3)<sp/>{</highlight></codeline>
+<codeline lineno="589"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;Input<sp/>vector<sp/>must<sp/>have<sp/>exactly<sp/>3<sp/>components<sp/>to<sp/>convert<sp/>to<sp/>an<sp/>EulerAngles.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="590"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="591"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>vec[0]<sp/>*<sp/>rad,<sp/>vec[1]<sp/>*<sp/>rad,<sp/>vec[2]<sp/>*<sp/>rad<sp/>};</highlight></codeline>
+<codeline lineno="592"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="593"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="594"><highlight class="normal"></highlight></codeline>
+<codeline lineno="604"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence,<sp/>RotationType<sp/>rotation_type,<sp/>IsFrame<sp/>auto<sp/>_in_frame_,<sp/>IsFrame<sp/>auto<sp/>_out_frame_&gt;</highlight></codeline>
+<codeline lineno="605"><highlight class="normal">EulerAngles&lt;sequence,<sp/>rotation_type,<sp/>_in_frame_,<sp/>_out_frame_&gt;</highlight></codeline>
+<codeline lineno="606" refid="EulerAngles_8hpp_1a59f1baafcf15e7d1f0d44b531994d734" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="CartesianVector_8hpp_1a4a7b8e2d4ada1a115468da39bcb041e2" kindref="member">operator*</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref>)</highlight></codeline>
+<codeline lineno="607"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="608"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>;</highlight></codeline>
+<codeline lineno="609"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="610"><highlight class="normal"></highlight></codeline>
+<codeline lineno="620"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence,<sp/>RotationType<sp/>rotation_type,<sp/>IsFrame<sp/>auto<sp/>_in_frame_,<sp/>IsFrame<sp/>auto<sp/>_out_frame_&gt;</highlight></codeline>
+<codeline lineno="621"><highlight class="normal">EulerAngles&lt;sequence,<sp/>rotation_type,<sp/>_in_frame_,<sp/>_out_frame_&gt;</highlight></codeline>
+<codeline lineno="622" refid="EulerAngles_8hpp_1a30eb587cb7e8cdbe44d73e9ab5e723db" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="CartesianVector_8hpp_1a87dabd1f79a50c9f124e93c0362d2ccd" kindref="member">operator/</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref>)</highlight></codeline>
+<codeline lineno="623"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="624"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref><sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>;</highlight></codeline>
+<codeline lineno="625"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="626"><highlight class="normal"></highlight></codeline>
+<codeline lineno="638"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence,<sp/>RotationType<sp/>rotation_type,<sp/>IsFrame<sp/>auto<sp/>_in_frame_,<sp/>IsFrame<sp/>auto<sp/>_out_frame_&gt;</highlight></codeline>
+<codeline lineno="639" refid="EulerAngles_8hpp_1a57457efb890ae2c9be6ac4a46e7e60cc" refkind="member"><highlight class="normal">std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">operator&lt;&lt;</ref>(std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, _in_frame_, _out_frame_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angleSequence</ref>)</highlight></codeline>
+<codeline lineno="640"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="641"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angleSequence</ref>[0]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angleSequence</ref>[1]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angleSequence</ref>[2]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;]&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="642"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref>;</highlight></codeline>
+<codeline lineno="643"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="644"><highlight class="normal"></highlight></codeline>
+<codeline lineno="645"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="646"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+    </programlisting>
+    <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp"/>
+  </compounddef>
+</doxygen>

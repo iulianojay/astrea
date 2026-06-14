@@ -53,39 +53,39 @@ _Class representing the two-line element (TLE) format for orbital data._
 | Type | Name |
 | ---: | :--- |
 |   | [**TwoLineElements**](#function-twolineelements-15) () = default<br>_Default constructor._  |
-|   | [**TwoLineElements**](#function-twolineelements-25) (const std::array&lt; std::string, 3 &gt; rawTle, const [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & sys) <br>_Construct a new Two Line Elements object from modern TLEs._  |
-|   | [**TwoLineElements**](#function-twolineelements-35) (const std::array&lt; std::string, 2 &gt; rawTle, const [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & sys) <br>_Construct a new Two Line Elements object from classic TLEs._  |
-|   | [**TwoLineElements**](#function-twolineelements-45) (const [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) & other) <br>_Copy constructor._  |
+|   | [**TwoLineElements**](#function-twolineelements-25) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::array&lt; std::string, 3 &gt; rawTle) <br>_Construct a new Two Line Elements object from modern TLEs._  |
+|   | [**TwoLineElements**](#function-twolineelements-35) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::array&lt; std::string, 2 &gt; rawTle) <br>_Construct a new Two Line Elements object from classic TLEs._  |
+|   | [**TwoLineElements**](#function-twolineelements-45) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) & other) <br>_Copy constructor._  |
 |   | [**TwoLineElements**](#function-twolineelements-55) ([**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) && other) noexcept<br>_Move constructor._  |
 |  std::string | [**get\_1st\_line**](#function-get_1st_line) () const<br>_Get the 1st line of the TLE._  |
 |  std::string | [**get\_2nd\_line**](#function-get_2nd_line) () const<br>_Get the 2nd line of the TLE._  |
-|  Angle | [**get\_argument\_of\_perigee**](#function-get_argument_of_perigee) () const<br>_Get the argument of perigee of the satellite._  |
-|  BallisticCoefficient | [**get\_ballistic\_coefficient**](#function-get_ballistic_coefficient) () const<br>_Get the ballistic coefficient of the satellite._  |
-|  unsigned | [**get\_catalogue\_number**](#function-get_catalogue_number) () const<br>_Get the catalogue number of the satellite._  |
+|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_argument\_of\_perigee**](#function-get_argument_of_perigee) () const<br>_Get the argument of perigee of the satellite._  |
+|  [**BallisticCoefficient**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_ballistic\_coefficient**](#function-get_ballistic_coefficient) () const<br>_Get the ballistic coefficient of the satellite._  |
+|  [**unsigned**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_catalogue\_number**](#function-get_catalogue_number) () const<br>_Get the catalogue number of the satellite._  |
 |  std::size\_t | [**get\_check\_sum1**](#function-get_check_sum1) () const<br>_Get the 1st checksum of the satellite._  |
 |  std::size\_t | [**get\_check\_sum2**](#function-get_check_sum2) () const<br>_Get the 2nd checksum of the satellite._  |
 |  std::string | [**get\_classification**](#function-get_classification) () const<br>_Get the classification of the satellite._  |
-|  Unitless | [**get\_eccentricity**](#function-get_eccentricity) () const<br>_Get the eccentricity of the satellite._  |
+|  [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_eccentricity**](#function-get_eccentricity) () const<br>_Get the eccentricity of the satellite._  |
 |  std::size\_t | [**get\_element\_set\_number**](#function-get_element_set_number) () const<br>_Get the element set number of the satellite._  |
 |  std::size\_t | [**get\_ephemeris\_type**](#function-get_ephemeris_type) () const<br>_Get the ephemeris type of the satellite._  |
 |  [**Date**](classastrea_1_1astro_1_1Date.md) | [**get\_epoch**](#function-get_epoch) () const<br>_Get the epoch of the satellite._  |
-|  Angle | [**get\_inclination**](#function-get_inclination) () const<br>_Get the inclination of the satellite._  |
+|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_inclination**](#function-get_inclination) () const<br>_Get the inclination of the satellite._  |
 |  std::string | [**get\_launch\_number**](#function-get_launch_number) () const<br>_Get the launch number of the satellite._  |
 |  std::string | [**get\_launch\_piece**](#function-get_launch_piece) () const<br>_Get the launch piece of the satellite._  |
 |  std::string | [**get\_launch\_year**](#function-get_launch_year) () const<br>_Get the launch year of the satellite._  |
-|  MeanMotion | [**get\_mean\_motion**](#function-get_mean_motion) () const<br>_Get the mean motion of the satellite._  |
-|  MeanMotion1stDer | [**get\_mean\_motion\_1st\_derivative**](#function-get_mean_motion_1st_derivative) () const<br>_Get the 1st derivative of the mean motion._  |
-|  MeanMotion2ndDer | [**get\_mean\_motion\_2nd\_derivative**](#function-get_mean_motion_2nd_derivative) () const<br>_Get the 2nd derivative of the mean motion._  |
+|  [**MeanMotion**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_mean\_motion**](#function-get_mean_motion) () const<br>_Get the mean motion of the satellite._  |
+|  [**MeanMotion1stDer**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_mean\_motion\_1st\_derivative**](#function-get_mean_motion_1st_derivative) () const<br>_Get the 1st derivative of the mean motion._  |
+|  [**MeanMotion2ndDer**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_mean\_motion\_2nd\_derivative**](#function-get_mean_motion_2nd_derivative) () const<br>_Get the 2nd derivative of the mean motion._  |
 |  std::string | [**get\_name**](#function-get_name) () const<br>_Get the name of the satellite._  |
 |  std::array&lt; std::string, 2 &gt; | [**get\_raw\_tle**](#function-get_raw_tle) () const<br>_Get the raw TLE data._  |
-|  unsigned | [**get\_rev\_number**](#function-get_rev_number) () const<br>_Get the revolution number of the satellite._  |
-|  Angle | [**get\_right\_ascension**](#function-get_right_ascension) () const<br>_Get the right ascension of the satellite._  |
-|  Distance | [**get\_semimajor**](#function-get_semimajor) () const<br>_Get the semimajor axis of the satellite._  |
-|  Angle | [**get\_true\_anomaly**](#function-get_true_anomaly) () const<br>_Get the true anomaly of the satellite._  |
-|  bool | [**operator!=**](#function-operator) (const [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) & other) const<br>_Inequality operator._  |
+|  [**unsigned**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_rev\_number**](#function-get_rev_number) () const<br>_Get the revolution number of the satellite._  |
+|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_right\_ascension**](#function-get_right_ascension) () const<br>_Get the right ascension of the satellite._  |
+|  [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_semimajor**](#function-get_semimajor) () const<br>_Get the semimajor axis of the satellite._  |
+|  [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_true\_anomaly**](#function-get_true_anomaly) () const<br>_Get the true anomaly of the satellite._  |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator!=**](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) & other) const<br>_Inequality operator._  |
 |  [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) & | [**operator=**](#function-operator_1) ([**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) && other) noexcept<br>_Move assignment operator._  |
-|  [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) & | [**operator=**](#function-operator_2) (const [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) & other) <br>_Copy assignment operator._  |
-|  bool | [**operator==**](#function-operator_3) (const [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) & other) const<br>_Equality operator._  |
+|  [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) & | [**operator=**](#function-operator_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) & other) <br>_Copy assignment operator._  |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator==**](#function-operator_3) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**TwoLineElements**](classastrea_1_1astro_1_1TwoLineElements.md) & other) const<br>_Equality operator._  |
 |   | [**~TwoLineElements**](#function-twolineelements) () = default<br>_Default destructor._  |
 
 
@@ -139,8 +139,7 @@ astrea::astro::TwoLineElements::TwoLineElements () = default
 _Construct a new Two Line Elements object from modern TLEs._ 
 ```C++
 astrea::astro::TwoLineElements::TwoLineElements (
-    const std::array< std::string, 3 > rawTle,
-    const AstrodynamicsSystem & sys
+    const std::array< std::string, 3 > rawTle
 ) 
 ```
 
@@ -168,8 +167,7 @@ astrea::astro::TwoLineElements::TwoLineElements (
 _Construct a new Two Line Elements object from classic TLEs._ 
 ```C++
 astrea::astro::TwoLineElements::TwoLineElements (
-    const std::array< std::string, 2 > rawTle,
-    const AstrodynamicsSystem & sys
+    const std::array< std::string, 2 > rawTle
 ) 
 ```
 
@@ -197,7 +195,7 @@ astrea::astro::TwoLineElements::TwoLineElements (
 _Copy constructor._ 
 ```C++
 astrea::astro::TwoLineElements::TwoLineElements (
-    const TwoLineElements & other
+    const  TwoLineElements & other
 ) 
 ```
 
@@ -876,7 +874,7 @@ Angle The true anomaly of the satellite.
 _Inequality operator._ 
 ```C++
 bool astrea::astro::TwoLineElements::operator!= (
-    const TwoLineElements & other
+    const  TwoLineElements & other
 ) const
 ```
 
@@ -944,7 +942,7 @@ TwoLineElements & astrea::astro::TwoLineElements::operator= (
 _Copy assignment operator._ 
 ```C++
 TwoLineElements & astrea::astro::TwoLineElements::operator= (
-    const TwoLineElements & other
+    const  TwoLineElements & other
 ) 
 ```
 
@@ -978,7 +976,7 @@ TwoLineElements & astrea::astro::TwoLineElements::operator= (
 _Equality operator._ 
 ```C++
 bool astrea::astro::TwoLineElements::operator== (
-    const TwoLineElements & other
+    const  TwoLineElements & other
 ) const
 ```
 
@@ -1020,5 +1018,5 @@ astrea::astro::TwoLineElements::~TwoLineElements () = default
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/state/orbital_data_formats/instances/TwoLineElements.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/state/orbital_data_formats/TwoLineElements.hpp`
 

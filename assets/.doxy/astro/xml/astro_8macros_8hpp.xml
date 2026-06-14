@@ -1,9 +1,39 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="astro_8macros_8hpp" kind="file" language="C++">
     <compoundname>astro.macros.hpp</compoundname>
-    <includedby refid="OblatenessForce_8cpp" local="no">astrea/astro/astro/propagation/force_models/OblatenessForce.cpp</includedby>
-      <sectiondef kind="define">
+    <includedby refid="OblatenessForce_8ipp" local="no">astrea/astro/astro/propagation/force_models/OblatenessForce.ipp</includedby>
+    <invincdepgraph>
+      <node id="5">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/astro.macros.hpp</label>
+        <link refid="astro_8macros_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea/astro/astro/propagation.hpp</label>
+        <link refid="propagation_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/astro/astro/propagation/force_models/OblatenessForce.hpp</label>
+        <link refid="OblatenessForce_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/astro/astro/propagation/force_models/OblatenessForce.ipp</label>
+        <link refid="OblatenessForce_8ipp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
       <memberdef kind="define" id="astro_8macros_8hpp_1a1de3e267be10b0f3008129520861332c" prot="public" static="no">
         <name>_ASTRO_ROOT_</name>
         <briefdescription>
@@ -14,7 +44,7 @@
         </inbodydescription>
         <location file="astrea/astro/astro/astro.macros.hpp" line="23" column="9" bodyfile="astrea/astro/astro/astro.macros.hpp" bodystart="23" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>Macros for the astro module. </para>
     </briefdescription>
@@ -35,7 +65,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>_ASTRO_ROOT_</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_ASTRO_ROOT_</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal">static_assert(</highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;_ASTRO_ROOT_<sp/>environment<sp/>variable<sp/>not<sp/>set<sp/>or<sp/>passed<sp/>to<sp/>compiler.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">static_assert</highlight><highlight class="normal">(</highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;_ASTRO_ROOT_<sp/>environment<sp/>variable<sp/>not<sp/>set<sp/>or<sp/>passed<sp/>to<sp/>compiler.&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_ASTRO_ROOT_</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>

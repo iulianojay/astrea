@@ -28,15 +28,17 @@ class EquinoctialVop : public EquationsOfMotion {
 
     ~EquinoctialVop() = default;
 
-    OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials compute_dynamics(
+        const State& state,
+        const Vehicle& vehicle,
+        const ForceVector<frames::primary>& perts,
+        const ForceVector<frames::primary>& control
+    ) const override;
 
-    StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override;
-
-    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Equinoctial>(); };
+    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Equinoctial<frames::primary>>(); };
 
   private:
     const Unitless checkTol = 1e-10 * mp_units::one; 
-    const ForceModel* forces;                        
 };
 
 } // namespace astro

@@ -12,7 +12,13 @@
 
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/propagation/force_models/Force.hpp>`
+* `#include <astro/platforms/Vehicle.hpp>`
+* `#include <astro/propagation/force_models/PerturbingForce.hpp>`
+* `#include <astro/state/State.hpp>`
+* `#include <astro/state/orbital_elements/OrbitalElements.hpp>`
+* `#include <astro/systems/system_concepts.hpp>`
+* `#include <astro/systems/system_utilities.hpp>`
+* `#include <astro/types/enums.hpp>`
 
 
 
@@ -38,7 +44,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**NBodyForce**](classastrea_1_1astro_1_1NBodyForce.md) <br>_Class to compute the gravitational force due to multiple celestial bodies._  |
+| class | [**NBodyForce**](classastrea_1_1astro_1_1NBodyForce.md) &lt;bodies&gt;<br>_Class to compute the gravitational force due to multiple celestial bodies._  |
 
 
 

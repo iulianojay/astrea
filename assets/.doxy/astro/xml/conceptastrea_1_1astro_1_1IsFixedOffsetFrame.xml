@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1IsFixedOffsetFrame" kind="concept">
+    <compoundname>astrea::astro::IsFixedOffsetFrame</compoundname>
+    <includes refid="frame__concepts_8hpp" local="no">frame_concepts.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename T&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1IsFixedOffsetFrame" kindref="compound">astrea::astro::IsFixedOffsetFrame</ref> =  IsDerivedFrame&lt;T&gt; &amp;&amp; (HasSpatialOffset&lt;T&gt; || HasAngularOffset&lt;T&gt;)    </initializer>
+    <briefdescription>
+<para>Concept to determine if a frame is a FixedOffsetFrame, which is defined as a frame that is derived from another frame and has either a spatial offset, an angular offset, or both. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame type to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the frame is a FixedOffsetFrame, false otherwise. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/framework/frame_concepts.hpp" line="184" column="1"/>
+  </compounddef>
+</doxygen>

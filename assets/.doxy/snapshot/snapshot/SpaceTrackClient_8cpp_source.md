@@ -28,7 +28,6 @@
 #include <set>
 #include <stdexcept>
 
-#include <date/date.h> // NOTE: This is standard in std::chrono as of GNU 13.2
 #include <nlohmann/json.hpp>
 
 #include <utilities/string_util.hpp>
@@ -205,7 +204,7 @@ void SpaceTrackClient::check_query_history(const std::string& username) const
             // Stream date string into time point
             std::istringstream timestampStream{ timestamp.template get<std::string>() };
             Time queryTime;
-            timestampStream >> date::parse(TIMESTAMP_FORMAT, queryTime);
+            timestampStream >> std::chrono::parse(TIMESTAMP_FORMAT, queryTime);
 
             if (queryTime < oneHourAgo) { oldQueries.insert(idx); }
             else {
@@ -222,12 +221,16 @@ void SpaceTrackClient::check_query_history(const std::string& username) const
 
         // Throw
         if (nLastHour >= MAX_QUERIES_PER_HOUR) {
-            throw std::runtime_error("Error: Maximum number of hourly queries reached (300). Exiting so SpaceTrack "
-                                     "doesn't ban you.");
+            throw std::runtime_error(
+                "Error: Maximum number of hourly queries reached (300). Exiting so SpaceTrack "
+                "doesn't ban you."
+            );
         }
         if (nLastMinute >= MAX_QUERIES_PER_MINUTE) {
-            throw std::runtime_error("Error: Maximum number of queries per minute reached (30). Exiting so SpaceTrack "
-                                     "doesn't ban you.");
+            throw std::runtime_error(
+                "Error: Maximum number of queries per minute reached (30). Exiting so SpaceTrack "
+                "doesn't ban you."
+            );
         }
     }
 

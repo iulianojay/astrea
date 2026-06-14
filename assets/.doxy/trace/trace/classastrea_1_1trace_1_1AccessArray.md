@@ -32,8 +32,8 @@ _Represents a collection of access times indexed by sender and receiver IDs. Thi
 
 | Type | Name |
 | ---: | :--- |
-| typedef gtl::btree\_map&lt; [**IdPair**](structastrea_1_1trace_1_1IdPair.md), [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) &gt;::[**const\_iterator**](classastrea_1_1trace_1_1AccessArray.md#typedef-const_iterator) | [**const\_iterator**](#typedef-const_iterator)  <br>_Const iterator type for_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _._ |
-| typedef gtl::btree\_map&lt; [**IdPair**](structastrea_1_1trace_1_1IdPair.md), [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) &gt;::[**iterator**](classastrea_1_1trace_1_1AccessArray.md#typedef-iterator) | [**iterator**](#typedef-iterator)  <br>_Iterator type for_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _._ |
+| typedef gtl::flat\_hash\_map&lt; [**IdPair**](structastrea_1_1trace_1_1IdPair.md), [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) &gt;::const\_iterator | [**const\_iterator**](#typedef-const_iterator)  <br>_Const iterator type for_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _._ |
+| typedef gtl::flat\_hash\_map&lt; [**IdPair**](structastrea_1_1trace_1_1IdPair.md), [**RiseSetArray**](classastrea_1_1trace_1_1RiseSetArray.md) &gt;::iterator | [**iterator**](#typedef-iterator)  <br>_Iterator type for_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _._ |
 
 
 
@@ -115,7 +115,7 @@ _Represents a collection of access times indexed by sender and receiver IDs. Thi
 
 _Const iterator type for_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _._
 ```C++
-using astrea::trace::AccessArray::const_iterator =  gtl::btree_map<IdPair, RiseSetArray>::const_iterator;
+using astrea::trace::AccessArray::const_iterator =  gtl::flat_hash_map<IdPair, RiseSetArray>::const_iterator;
 ```
 
 
@@ -129,7 +129,7 @@ using astrea::trace::AccessArray::const_iterator =  gtl::btree_map<IdPair, RiseS
 
 _Iterator type for_ [_**AccessArray**_](classastrea_1_1trace_1_1AccessArray.md) _._
 ```C++
-using astrea::trace::AccessArray::iterator =  gtl::btree_map<IdPair, RiseSetArray>::iterator;
+using astrea::trace::AccessArray::iterator =  gtl::flat_hash_map<IdPair, RiseSetArray>::iterator;
 ```
 
 

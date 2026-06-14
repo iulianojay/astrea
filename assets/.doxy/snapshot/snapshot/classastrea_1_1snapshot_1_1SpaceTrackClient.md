@@ -63,7 +63,7 @@
 | ---: | :--- |
 |   | [**SpaceTrackClient**](#function-spacetrackclient) () = default<br>_Default constructor for_ [_**SpaceTrackClient**_](classastrea_1_1snapshot_1_1SpaceTrackClient.md) _._ |
 |  void | [**login**](#function-login) (const std::string & username, const std::string & password) <br>_Logs in to the SpaceTrack API._  |
-|  nlohmann::json | [**query**](#function-query) (const std::string & username, const std::string & password, const [**Controller**](classastrea_1_1snapshot_1_1SpaceTrackClient.md#enum-controller) & controller=Controller::BASIC\_SPACE\_DATA, const [**Action**](classastrea_1_1snapshot_1_1SpaceTrackClient.md#enum-action) & action=Action::QUERY, const [**RequestClass**](classastrea_1_1snapshot_1_1SpaceTrackClient.md#typedef-requestclass) & requestClass=SpaceDataClass::GP, const std::vector&lt; std::pair&lt; std::string, std::string &gt;&gt; predicates={}) <br>_Queries the SpaceTrack API for data._  |
+|  nlohmann::json | [**query**](#function-query) (const std::string & username, const std::string & password, const [**Controller**](classastrea_1_1snapshot_1_1SpaceTrackClient.md#enum-controller) & controller=Controller::BASIC\_SPACE\_DATA, const [**Action**](classastrea_1_1snapshot_1_1SpaceTrackClient.md#enum-action) & action=Action::QUERY, const [**RequestClass**](classastrea_1_1snapshot_1_1SpaceTrackClient.md#typedef-requestclass) & requestClass=SpaceDataClass::GP, const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; predicates={}) <br>_Queries the SpaceTrack API for data._  |
 |  nlohmann::json | [**retrieve\_all**](#function-retrieve_all) (const std::string & username, const std::string & password) <br>_Retrieves all data from the SpaceTrack API._  |
 |   | [**~SpaceTrackClient**](#function-spacetrackclient) () = default<br>_Default destructor for_ [_**SpaceTrackClient**_](classastrea_1_1snapshot_1_1SpaceTrackClient.md) _._ |
 
@@ -288,7 +288,7 @@ nlohmann::json astrea::snapshot::SpaceTrackClient::query (
     const Controller & controller=Controller::BASIC_SPACE_DATA,
     const Action & action=Action::QUERY,
     const RequestClass & requestClass=SpaceDataClass::GP,
-    const std::vector< std::pair< std::string, std::string >> predicates={}
+    const std::vector< std::pair< std::string, std::string > > predicates={}
 ) 
 ```
 

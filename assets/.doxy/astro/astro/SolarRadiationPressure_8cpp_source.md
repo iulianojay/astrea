@@ -29,9 +29,9 @@
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {
@@ -51,31 +51,23 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::N;
 using mp_units::si::unit_symbols::s;
 
-AccelerationVector<frames::earth::icrf> SolarRadiationPressure::compute_force(const State& state, const Vehicle& vehicle) const
+Perturbation SolarRadiationPressure::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
+    static constexpr auto center = frames::primary.origin;
+    static constexpr bool isSun  = (center == star::Sun);
+
     // Extract
-    const AstrodynamicsSystem& sys       = state.get_system();
-    const Date date                      = state.get_epoch();
-    const CelestialBodyUniquePtr& center = sys.get_central_body();
-    const CelestialBodyUniquePtr& sun    = sys.add_body(CelestialBodyId::SUN);
-
-    const RadiusVector<frames::earth::icrf> rCenterToVehicle = state.get_position();
-    const Distance rMagCenterToVehicle                       = rCenterToVehicle.norm();
-
-    // Central body properties
-    const bool isSun = (center->get_id() == CelestialBodyId::SUN);
-
-    // Find day nearest to current time
-    const RadiusVector<frames::solar_system_barycenter::icrf> rSsbToCenter = center->get_position_at(date);
-    const RadiusVector<frames::solar_system_barycenter::icrf> rSsbToSun    = sun->get_position_at(date);
+    const Date date                                      = state.get_epoch();
+    const RadiusVector<frames::primary> rCenterToVehicle = state.get_position();
+    const Distance rMagCenterToVehicle                   = rCenterToVehicle.norm();
 
     // Radius from central body to sun
-    const RadiusVector<frames::earth::icrf> rCenterToSun =
-        (rSsbToSun - rSsbToCenter).force_frame_conversion<frames::earth::icrf>(); // TODO: Should this use the translate function? I hate that function.
+    const RadiusVector<frames::primary> rCenterToSun =
+        get_relative_position<star::Sun, center>(date).force_frame_conversion<frames::primary>();
     const Distance rMagCenterToSun = rCenterToSun.norm();
 
-    const RadiusVector<frames::earth::icrf> rVehicleToSun = rCenterToSun - rCenterToVehicle;
-    const Distance rMagVehicleToSun                       = rVehicleToSun.norm();
+    const RadiusVector<frames::primary> rVehicleToSun = rCenterToSun - rCenterToVehicle;
+    const Distance rMagVehicleToSun                   = rVehicleToSun.norm();
 
     // Average solar radiation pressure at 1 AU scaled to average distance from Sun
     static const quantity<N / pow<2>(m)> srpAtOneAU = 4.556485540406757e-6 * N / pow<2>(m);
@@ -85,7 +77,7 @@ AccelerationVector<frames::earth::icrf> SolarRadiationPressure::compute_force(co
     // Scale by umbria/penumbra
     Unitless fractionOfRecievedSunlight = 1.0 * one;
     if (!isSun) {
-        static const Distance& equitorialR = center->get_equitorial_radius();
+        static constexpr Distance equitorialR = get_equitorial_radius<center>();
 
         //  This part calculates the angle between the occulating body and the Sun, the body and the satellite, and the Sun and the
         //  satellite. It then compares them to decide if the s/c is lit, in umbra, or in penumbra. See Vallado for details.
@@ -94,15 +86,15 @@ AccelerationVector<frames::earth::icrf> SolarRadiationPressure::compute_force(co
         const Angle refAngle2 = acos(equitorialR / rMagCenterToSun);
 
         if (refAngle1 + refAngle2 <= refAngle) { // In shadow
-            static const Distance diamSun = 696000.0 * km;
-            const Distance Xu             = equitorialR * rMagCenterToSun / (diamSun - equitorialR);
+            static constexpr Distance diamSun = get_equitorial_radius<star::Sun>() * 2;
+            const Distance Xu                 = equitorialR * rMagCenterToSun / (diamSun - equitorialR);
 
-            const RadiusVector<frames::earth::icrf> rP = -Xu * rCenterToSun / rMagCenterToSun;
-            const Distance normRP                      = rP.norm();
+            const RadiusVector<frames::primary> rP = -Xu * rCenterToSun / rMagCenterToSun;
+            const Distance normRP                  = rP.norm();
 
-            const RadiusVector<frames::earth::icrf> rPs = rCenterToVehicle - rP;
-            const Distance normRPs                      = rPs.norm();
-            const Angle alphaps                         = abs(asin(-rPs.dot(rP) / (normRP * normRPs)));
+            const RadiusVector<frames::primary> rPs = rCenterToVehicle - rP;
+            const Distance normRPs                  = rPs.norm();
+            const Angle alphaps                     = abs(asin(-rPs.dot(rP) / (normRP * normRPs)));
 
             if (alphaps < asin(equitorialR / Xu)) { // Umbra
                 fractionOfRecievedSunlight = 0.0 * one;
@@ -116,10 +108,9 @@ AccelerationVector<frames::earth::icrf> SolarRadiationPressure::compute_force(co
     // accel due to srp
     const Unitless coefficientOfReflectivity = vehicle.get_coefficient_of_reflectivity();
     const SurfaceArea areaSun                = vehicle.get_solar_area();
-    const Mass mass                          = vehicle.get_mass();
-    const Acceleration accelRelMag = -srp * fractionOfRecievedSunlight * coefficientOfReflectivity * areaSun / mass;
+    const Force forceRelMag                  = -srp * fractionOfRecievedSunlight * coefficientOfReflectivity * areaSun;
 
-    return accelRelMag * rVehicleToSun / rMagVehicleToSun;
+    return { .force = forceRelMag * rVehicleToSun / rMagVehicleToSun };
 }
 
 } // namespace astro

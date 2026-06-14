@@ -1,14 +1,72 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1Geocentric" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::Geocentric</compoundname>
     <includes refid="Geocentric_8hpp" local="no">Geocentric.hpp</includes>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1Geocentric_1a284d848c974f6df229ace3cfc156a246" prot="private" static="no" mutable="no">
-        <type>Angle</type>
-        <definition>Angle astrea::astro::Geocentric::_latitude</definition>
+    <templateparamlist>
+      <param>
+        <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_body_</declname>
+        <defname>_body_</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Geocentric_1a6fd661e52a90add194c4ef594bb36625" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::Geocentric&lt; _body_ &gt;::body</definition>
+        <argsstring></argsstring>
+        <name>body</name>
+        <qualifiedname>astrea::astro::Geocentric::body</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref></initializer>
+        <briefdescription>
+<para>The celestial body of this <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="53" column="27" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Geocentric_1ac7fb2e01e26bdf0742a2b870b91fe572" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::Geocentric&lt; _body_ &gt;::_icrf_frame_</definition>
+        <argsstring></argsstring>
+        <name>_icrf_frame_</name>
+        <qualifiedname>astrea::astro::Geocentric::_icrf_frame_</qualifiedname>
+        <initializer>= make_frame(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref>, <ref refid="structastrea_1_1astro_1_1axes_1_1icrf" kindref="compound">axes::icrf</ref>)</initializer>
+        <briefdescription>
+<para>Inertial frame for the body. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="54" column="27" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Geocentric_1a1cc65f272f96e872526d2473a93a2b30" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::Geocentric&lt; _body_ &gt;::_fixed_frame_</definition>
+        <argsstring></argsstring>
+        <name>_fixed_frame_</name>
+        <qualifiedname>astrea::astro::Geocentric::_fixed_frame_</qualifiedname>
+        <initializer>= get_body_fixed_frame&lt;<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref>&gt;()</initializer>
+        <briefdescription>
+<para>Body-fixed rotating frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="55" column="27" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Geocentric_1ac61dd81ead717ec69b31aff47b9c6a13" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <definition>Angle astrea::astro::Geocentric&lt; _body_ &gt;::_latitude</definition>
         <argsstring></argsstring>
         <name>_latitude</name>
+        <qualifiedname>astrea::astro::Geocentric::_latitude</qualifiedname>
         <briefdescription>
 <para><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> Latitude. </para>
         </briefdescription>
@@ -16,13 +74,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="275" column="11" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" bodystart="275" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="290" column="11" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.hpp" bodystart="290" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1Geocentric_1aacf989caaa9c2fb1861cee6c50af142d" prot="private" static="no" mutable="no">
-        <type>Angle</type>
-        <definition>Angle astrea::astro::Geocentric::_longitude</definition>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Geocentric_1a10057fd8788db3ab40cc0fde6b6ef5b0" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <definition>Angle astrea::astro::Geocentric&lt; _body_ &gt;::_longitude</definition>
         <argsstring></argsstring>
         <name>_longitude</name>
+        <qualifiedname>astrea::astro::Geocentric::_longitude</qualifiedname>
         <briefdescription>
 <para>Longitude. </para>
         </briefdescription>
@@ -30,13 +89,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="276" column="11" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" bodystart="276" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="291" column="11" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.hpp" bodystart="291" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1Geocentric_1a8f4086f49aef3b2dcdc08dca3ed07308" prot="private" static="no" mutable="no">
-        <type>Distance</type>
-        <definition>Distance astrea::astro::Geocentric::_altitude</definition>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Geocentric_1a248cd078938a1873c6ff9363084becdf" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <definition>Distance astrea::astro::Geocentric&lt; _body_ &gt;::_altitude</definition>
         <argsstring></argsstring>
         <name>_altitude</name>
+        <qualifiedname>astrea::astro::Geocentric::_altitude</qualifiedname>
         <briefdescription>
 <para>Altitude. </para>
         </briefdescription>
@@ -44,22 +104,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="277" column="14" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" bodystart="277" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="292" column="14" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.hpp" bodystart="292" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="friend">
-      <memberdef kind="friend" id="classastrea_1_1astro_1_1Geocentric_1a7cfc13d6272b55595fab290c35c6940f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1Geocentric_1ad77525b0dbd6c1594016e99fb273740d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>body</declname>
+            <defname>body</defname>
+          </param>
+        </templateparamlist>
         <type>std::ostream &amp;</type>
-        <definition>std::ostream&amp; operator&lt;&lt;</definition>
-        <argsstring>(std::ostream &amp;, Geocentric const &amp;)</argsstring>
+        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;, Geocentric&lt; body &gt; const &amp;)</argsstring>
         <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::Geocentric::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
-          <defname>os</defname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> const &amp;</type>
-          <defname>elements</defname>
+          <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1Geocentric_1a6fd661e52a90add194c4ef594bb36625" kindref="member">body</ref> &gt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> &amp;</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -67,17 +133,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="44" column="12" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="171" bodyend="179"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="50" column="12"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a25d89cd7953f568d4acfda714a0acc15" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a95f752c5f40f0ae9a0121ec842239ac5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>astrea::astro::Geocentric::Geocentric</definition>
+        <definition>astrea::astro::Geocentric&lt; _body_ &gt;::Geocentric</definition>
         <argsstring>(Unitless scale=0.0 *astrea::detail::unitless)</argsstring>
         <name>Geocentric</name>
+        <qualifiedname>astrea::astro::Geocentric::Geocentric</qualifiedname>
         <param>
-          <type>Unitless</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
           <declname>scale</declname>
           <defval>0.0 *astrea::detail::unitless</defval>
         </param>
@@ -89,23 +156,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="52" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" bodystart="52" bodyend="57"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="62" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.hpp" bodystart="62" bodyend="67"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a7bd0a8d729ee6df0f9aea107a680b74a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a4056dd1c9f4d06ec650dbff4c3b6dc2b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>astrea::astro::Geocentric::Geocentric</definition>
+        <definition>astrea::astro::Geocentric&lt; _body_ &gt;::Geocentric</definition>
         <argsstring>(const Angle &amp;latitude, const Angle &amp;longitude, const Distance &amp;altitude)</argsstring>
         <name>Geocentric</name>
+        <qualifiedname>astrea::astro::Geocentric::Geocentric</qualifiedname>
         <param>
-          <type>const Angle &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
           <declname>latitude</declname>
         </param>
         <param>
-          <type>const Angle &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
           <declname>longitude</declname>
         </param>
         <param>
-          <type>const Distance &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref> &amp;</type>
           <declname>altitude</declname>
         </param>
         <briefdescription>
@@ -141,35 +209,58 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="66" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" bodystart="66" bodyend="71"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="76" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.hpp" bodystart="76" bodyend="81"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a5e1a08a9fca6a3a8f68130b2151f2640" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a67da24a7b125e5902f955bae293c93dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_frame_</declname>
+            <defname>_frame_</defname>
+          </param>
+        </templateparamlist>
         <type></type>
-        <definition>astrea::astro::Geocentric::Geocentric</definition>
-        <argsstring>(const RadiusVector&lt; frames::earth::icrf &gt; &amp;r, const Date &amp;date, const CelestialBody *parent)</argsstring>
+        <definition>astrea::astro::Geocentric&lt; _body_ &gt;::Geocentric</definition>
+        <argsstring>(const RadiusVector&lt; _frame_ &gt; &amp;r, const Date &amp;date)</argsstring>
         <name>Geocentric</name>
+        <qualifiedname>astrea::astro::Geocentric::Geocentric</qualifiedname>
         <param>
-          <type>const <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt; &amp;</type>
           <declname>r</declname>
         </param>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
-          <declname>parent</declname>
-        </param>
+    <requiresclause>(equivalent(_frame_, make_frame(_body_, axes::icrf)))    </requiresclause>
         <briefdescription>
-<para>Constructor for <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> with position and velocity vectors. </para>
+<para>Constructor for <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> from any inertial radius vector centred on the same body. </para>
         </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
+<para>Accepts any frame whose origin matches <emphasis>body</emphasis> and whose axis is the ICRF axis.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_frame_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The inertial frame of the radius vector. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>r</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Radius vector in ECI (position) </para>
+<para>Radius vector in an ICRF-axis frame centred on the body. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> for the frame transformation. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -177,23 +268,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="78" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="46" bodyend="49"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="94" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="38" bodyend="41"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1af3ff97ab5d043d014a59d9a8c3dadd2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a187cd455ba6f05d804b9e0f2cde61436" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
-        <definition>astrea::astro::Geocentric::Geocentric</definition>
-        <argsstring>(const RadiusVector&lt; frames::earth::earth_fixed &gt; &amp;r, const CelestialBody *parent)</argsstring>
+        <definition>astrea::astro::Geocentric&lt; _body_ &gt;::Geocentric</definition>
+        <argsstring>(const RadiusVector&lt; _fixed_frame_ &gt; &amp;r)</argsstring>
         <name>Geocentric</name>
+        <qualifiedname>astrea::astro::Geocentric::Geocentric</qualifiedname>
         <param>
-          <type>const <ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::earth_fixed &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1Geocentric_1a1cc65f272f96e872526d2473a93a2b30" kindref="member">_fixed_frame_</ref> &gt; &amp;</type>
           <declname>r</declname>
         </param>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
-          <declname>parent</declname>
-        </param>
         <briefdescription>
-<para>Constructor for <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> with position and velocity vectors. </para>
+<para>Constructor for <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> from a body-fixed radius vector. </para>
         </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
@@ -201,7 +289,7 @@
 <parametername>r</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Radius vector in ECEF (position) </para>
+<para>Radius vector in the body-fixed frame (position) </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -209,9 +297,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="85" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="51" bodyend="55"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="101" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="44" bodyend="47"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1ab0f0b139fe68d3cdbf32cfb0df688f57" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a9f02d59df33d4a4ba873cad2bd88103d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>IsOrbitalElements</type>
@@ -220,19 +308,16 @@
           </param>
         </templateparamlist>
         <type></type>
-        <definition>astrea::astro::Geocentric::Geocentric</definition>
-        <argsstring>(const T &amp;elements, const AstrodynamicsSystem &amp;sys, const Date &amp;date)</argsstring>
+        <definition>astrea::astro::Geocentric&lt; _body_ &gt;::Geocentric</definition>
+        <argsstring>(const T &amp;elements, const Date &amp;date)</argsstring>
         <name>Geocentric</name>
+        <qualifiedname>astrea::astro::Geocentric::Geocentric</qualifiedname>
         <param>
-          <type>const T &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
-          <declname>sys</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
         <briefdescription>
@@ -249,10 +334,10 @@
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>sys</parametername>
+<parametername>date</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Astrodynamics system containing celestial body data </para>
+<para><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> for the frame transformation </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -260,15 +345,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="94" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" bodystart="94" bodyend="100"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="110" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.hpp" bodystart="110" bodyend="114"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1acc84dafa15e42c4120446b149c12889b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1af1aeae6475c2478c4295e2a9984d0c14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
-        <definition>astrea::astro::Geocentric::Geocentric</definition>
-        <argsstring>(const Geocentric &amp;)</argsstring>
+        <definition>astrea::astro::Geocentric&lt; _body_ &gt;::Geocentric</definition>
+        <argsstring>(const Geocentric&lt; _body_ &gt; &amp;)</argsstring>
         <name>Geocentric</name>
+        <qualifiedname>astrea::astro::Geocentric::Geocentric</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -288,15 +374,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="107" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="58" bodyend="63"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="121" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="51" bodyend="56"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1af5772629d41d23896758c872777de429" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1aaac7d7232b341bd2f9c8616b19ac7a67" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type></type>
-        <definition>astrea::astro::Geocentric::Geocentric</definition>
-        <argsstring>(Geocentric &amp;&amp;) noexcept</argsstring>
+        <definition>astrea::astro::Geocentric&lt; _body_ &gt;::Geocentric</definition>
+        <argsstring>(Geocentric&lt; _body_ &gt; &amp;&amp;) noexcept</argsstring>
         <name>Geocentric</name>
+        <qualifiedname>astrea::astro::Geocentric::Geocentric</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;&amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;&amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -316,15 +403,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="114" column="5" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="66" bodyend="71"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="128" column="5" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="60" bodyend="65"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a2c368eef475186386111172e42b9376a" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
-        <definition>Geocentric &amp; astrea::astro::Geocentric::operator=</definition>
-        <argsstring>(Geocentric &amp;&amp;) noexcept</argsstring>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a1db889dedda8ff6f6d2764e1f00ebce1" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+        <definition>Geocentric&lt; _body_ &gt; &amp; astrea::astro::Geocentric&lt; _body_ &gt;::operator=</definition>
+        <argsstring>(Geocentric&lt; _body_ &gt; &amp;&amp;) noexcept</argsstring>
         <name>operator=</name>
+        <qualifiedname>astrea::astro::Geocentric::operator=</qualifiedname>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;&amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;&amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -346,15 +434,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="122" column="16" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="74" bodyend="82"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="136" column="16" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="69" bodyend="77"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1ae2726de3d837e961597e141e1c66638f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
-        <definition>Geocentric &amp; astrea::astro::Geocentric::operator=</definition>
-        <argsstring>(const Geocentric &amp;)</argsstring>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a43e9885af792823c9ae03b56509b9e19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+        <definition>Geocentric&lt; _body_ &gt; &amp; astrea::astro::Geocentric&lt; _body_ &gt;::operator=</definition>
+        <argsstring>(const Geocentric&lt; _body_ &gt; &amp;)</argsstring>
         <name>operator=</name>
+        <qualifiedname>astrea::astro::Geocentric::operator=</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
           <defname>other</defname>
         </param>
         <briefdescription>
@@ -376,13 +465,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="130" column="16" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="85" bodyend="85"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="144" column="16" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="81" bodyend="84"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1ae1677dad0f23c60e596283f4f498b62d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a0c015e37ab40f8707e03a373aa3d67b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
-        <definition>astrea::astro::Geocentric::~Geocentric</definition>
+        <definition>astrea::astro::Geocentric&lt; _body_ &gt;::~Geocentric</definition>
         <argsstring>()=default</argsstring>
         <name>~Geocentric</name>
+        <qualifiedname>astrea::astro::Geocentric::~Geocentric</qualifiedname>
         <briefdescription>
 <para>Default destructor for <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>. </para>
         </briefdescription>
@@ -390,15 +480,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="135" column="5"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="149" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1ad0a40e8d39dae64fd0b1e6ecbebd13e3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool astrea::astro::Geocentric::operator==</definition>
-        <argsstring>(const Geocentric &amp;other) const</argsstring>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a4a87066b9b41878ed1ccd479db1a3cfb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>bool astrea::astro::Geocentric&lt; _body_ &gt;::operator==</definition>
+        <argsstring>(const Geocentric&lt; _body_ &gt; &amp;other) const</argsstring>
         <name>operator==</name>
+        <qualifiedname>astrea::astro::Geocentric::operator==</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -422,15 +513,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="144" column="10" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="88" bodyend="91"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="158" column="10" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="88" bodyend="91"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a57d237b1ffb779f7e47db3100ccd149b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool astrea::astro::Geocentric::operator!=</definition>
-        <argsstring>(const Geocentric &amp;other) const</argsstring>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1aae06a7040244066a0825bb807dfa5688" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>bool astrea::astro::Geocentric&lt; _body_ &gt;::operator!=</definition>
+        <argsstring>(const Geocentric&lt; _body_ &gt; &amp;other) const</argsstring>
         <name>operator!=</name>
+        <qualifiedname>astrea::astro::Geocentric::operator!=</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -454,15 +546,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="153" column="10" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="93" bodyend="93"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="167" column="10" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="94" bodyend="97"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1ab97bb1781e9693c7c7c498b2b4155560" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref></type>
-        <definition>Geocentric astrea::astro::Geocentric::operator+</definition>
-        <argsstring>(const Geocentric &amp;other) const</argsstring>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1ad351539122b1115a93e7c71608115173" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt;</type>
+        <definition>Geocentric&lt; _body_ &gt; astrea::astro::Geocentric&lt; _body_ &gt;::operator+</definition>
+        <argsstring>(const Geocentric&lt; _body_ &gt; &amp;other) const</argsstring>
         <name>operator+</name>
+        <qualifiedname>astrea::astro::Geocentric::operator+</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -484,15 +577,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="161" column="16" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="97" bodyend="100"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="175" column="16" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="101" bodyend="104"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a58409cc53fe8f95f2301bff1b452a666" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
-        <definition>Geocentric &amp; astrea::astro::Geocentric::operator+=</definition>
-        <argsstring>(const Geocentric &amp;other)</argsstring>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a297465f463628d7d8467b03a24c53451" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+        <definition>Geocentric&lt; _body_ &gt; &amp; astrea::astro::Geocentric&lt; _body_ &gt;::operator+=</definition>
+        <argsstring>(const Geocentric&lt; _body_ &gt; &amp;other)</argsstring>
         <name>operator+=</name>
+        <qualifiedname>astrea::astro::Geocentric::operator+=</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -514,15 +608,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="169" column="16" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="101" bodyend="107"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="183" column="16" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="107" bodyend="113"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a4fa4c5f8c3aea60771ff02159868a4a7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref></type>
-        <definition>Geocentric astrea::astro::Geocentric::operator-</definition>
-        <argsstring>(const Geocentric &amp;other) const</argsstring>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1ab4d9f8d249efc6b3ae673df41b5c7add" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt;</type>
+        <definition>Geocentric&lt; _body_ &gt; astrea::astro::Geocentric&lt; _body_ &gt;::operator-</definition>
+        <argsstring>(const Geocentric&lt; _body_ &gt; &amp;other) const</argsstring>
         <name>operator-</name>
+        <qualifiedname>astrea::astro::Geocentric::operator-</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -544,15 +639,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="177" column="16" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="109" bodyend="112"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="191" column="16" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="116" bodyend="119"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a04c64dc24a59251de3432b2667137c1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
-        <definition>Geocentric &amp; astrea::astro::Geocentric::operator-=</definition>
-        <argsstring>(const Geocentric &amp;other)</argsstring>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a38a129e3a2c3d679e29c505aee0b7bb2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+        <definition>Geocentric&lt; _body_ &gt; &amp; astrea::astro::Geocentric&lt; _body_ &gt;::operator-=</definition>
+        <argsstring>(const Geocentric&lt; _body_ &gt; &amp;other)</argsstring>
         <name>operator-=</name>
+        <qualifiedname>astrea::astro::Geocentric::operator-=</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -574,15 +670,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="185" column="16" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="113" bodyend="119"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="199" column="16" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="122" bodyend="128"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a8fa2833ff09eb19cb8ea66a81e3df28e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref></type>
-        <definition>Geocentric astrea::astro::Geocentric::operator*</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a0b7d64e3e5075dbc5d4fb6ad772ca2e1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt;</type>
+        <definition>Geocentric&lt; _body_ &gt; astrea::astro::Geocentric&lt; _body_ &gt;::operator*</definition>
         <argsstring>(const Unitless &amp;multiplier) const</argsstring>
         <name>operator*</name>
+        <qualifiedname>astrea::astro::Geocentric::operator*</qualifiedname>
         <param>
-          <type>const Unitless &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -604,15 +701,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="193" column="16" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="121" bodyend="124"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="207" column="16" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="131" bodyend="134"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a98dd7fe870bf7594caaba29e6109d7bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
-        <definition>Geocentric &amp; astrea::astro::Geocentric::operator*=</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1ad92a48c32fb9b25e1f40155f56e49739" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+        <definition>Geocentric&lt; _body_ &gt; &amp; astrea::astro::Geocentric&lt; _body_ &gt;::operator*=</definition>
         <argsstring>(const Unitless &amp;multiplier)</argsstring>
         <name>operator*=</name>
+        <qualifiedname>astrea::astro::Geocentric::operator*=</qualifiedname>
         <param>
-          <type>const Unitless &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
           <declname>multiplier</declname>
         </param>
         <briefdescription>
@@ -634,15 +732,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="201" column="16" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="125" bodyend="131"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="215" column="16" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="137" bodyend="143"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a79dfe802b8add5df8b6b0fe476dc2350" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; Unitless &gt;</type>
-        <definition>std::vector&lt; Unitless &gt; astrea::astro::Geocentric::operator/</definition>
-        <argsstring>(const Geocentric &amp;other) const</argsstring>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a9bd52525ed10ad7e088871ba28987781" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt;</type>
+        <definition>std::vector&lt; Unitless &gt; astrea::astro::Geocentric&lt; _body_ &gt;::operator/</definition>
+        <argsstring>(const Geocentric&lt; _body_ &gt; &amp;other) const</argsstring>
         <name>operator/</name>
+        <qualifiedname>astrea::astro::Geocentric::operator/</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -664,15 +763,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="209" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="133" bodyend="136"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="223" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="146" bodyend="149"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1ad5333cc3ba7c5da995618339ae72aa3c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref></type>
-        <definition>Geocentric astrea::astro::Geocentric::operator/</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a91c0c061d0cc0fd45d296c29ccb46b9d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt;</type>
+        <definition>Geocentric&lt; _body_ &gt; astrea::astro::Geocentric&lt; _body_ &gt;::operator/</definition>
         <argsstring>(const Unitless &amp;divisor) const</argsstring>
         <name>operator/</name>
+        <qualifiedname>astrea::astro::Geocentric::operator/</qualifiedname>
         <param>
-          <type>const Unitless &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -694,15 +794,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="217" column="16" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="138" bodyend="141"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="231" column="16" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="152" bodyend="155"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1aabaec784b53d76c899a0b6f24c27f072" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
-        <definition>Geocentric &amp; astrea::astro::Geocentric::operator/=</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a8f28a3edfe9939c9a7976d28b3abb544" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
+        <definition>Geocentric&lt; _body_ &gt; &amp; astrea::astro::Geocentric&lt; _body_ &gt;::operator/=</definition>
         <argsstring>(const Unitless &amp;divisor)</argsstring>
         <name>operator/=</name>
+        <qualifiedname>astrea::astro::Geocentric::operator/=</qualifiedname>
         <param>
-          <type>const Unitless &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -724,59 +825,63 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="225" column="16" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="142" bodyend="148"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="239" column="16" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="158" bodyend="164"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a06684134512ace1313362cd1b261d404" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::earth_fixed &gt;</type>
-        <definition>RadiusVector&lt; frames::earth::earth_fixed &gt; astrea::astro::Geocentric::get_position</definition>
-        <argsstring>(const CelestialBody *parent) const</argsstring>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1aea9a590c99e0be1eda9978b01779aee6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1Geocentric_1a1cc65f272f96e872526d2473a93a2b30" kindref="member">_fixed_frame_</ref> &gt;</type>
+        <definition>RadiusVector&lt; Geocentric&lt; _body_ &gt;::_fixed_frame_ &gt; astrea::astro::Geocentric&lt; _body_ &gt;::get_position</definition>
+        <argsstring>() const</argsstring>
         <name>get_position</name>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
-          <declname>parent</declname>
-        </param>
+        <qualifiedname>astrea::astro::Geocentric::get_position</qualifiedname>
         <briefdescription>
-<para>Converts the <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> state vector to a RadiusVector&lt;frames::earth::earth_fixed&gt;. </para>
+<para>Converts the <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> state vector to a body-fixed radius vector. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>RadiusVector&lt;frames::earth::earth_fixed&gt; The position vector in <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> coordinates. </para>
+<para><simplesect kind="return"><para>RadiusVector in the body-fixed frame. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="232" column="18" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="161" bodyend="164"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="246" column="18" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="180" bodyend="185"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1ac174281aab4d4bc42a7693047587631b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt;</type>
-        <definition>RadiusVector&lt; frames::earth::icrf &gt; astrea::astro::Geocentric::get_position</definition>
-        <argsstring>(const Date &amp;date, const CelestialBody *parent) const</argsstring>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a63e7c5ad69f4e99b02d6f72beededc05" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1Geocentric_1ac7fb2e01e26bdf0742a2b870b91fe572" kindref="member">_icrf_frame_</ref> &gt;</type>
+        <definition>RadiusVector&lt; Geocentric&lt; _body_ &gt;::_icrf_frame_ &gt; astrea::astro::Geocentric&lt; _body_ &gt;::get_position</definition>
+        <argsstring>(const Date &amp;date) const</argsstring>
         <name>get_position</name>
+        <qualifiedname>astrea::astro::Geocentric::get_position</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>date</declname>
         </param>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1CelestialBody" kindref="compound">CelestialBody</ref> *</type>
-          <declname>parent</declname>
-        </param>
         <briefdescription>
-<para>Converts the <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> state vector to a RadiusVector&lt;frames::earth::icrf&gt;. </para>
+<para>Converts the <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> state vector to an inertial radius vector. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>RadiusVector&lt;frames::earth::icrf&gt; The position vector in <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> coordinates. </para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> for the frame transformation </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>RadiusVector in the body&apos;s inertial frame. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="239" column="18" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="166" bodyend="169"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="254" column="18" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="188" bodyend="191"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a4000726a18b808faa318955b28083777" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>const Angle &amp;</type>
-        <definition>const Angle&amp; astrea::astro::Geocentric::get_latitude</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a8360b561cf64a9f01c0bca4c28f08692" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+        <definition>const Angle &amp; astrea::astro::Geocentric&lt; _body_ &gt;::get_latitude</definition>
         <argsstring>() const</argsstring>
         <name>get_latitude</name>
+        <qualifiedname>astrea::astro::Geocentric::get_latitude</qualifiedname>
         <briefdescription>
 <para>Get the latitude of the <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> state vector. </para>
         </briefdescription>
@@ -787,13 +892,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="246" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" bodystart="246" bodyend="246"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="261" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.hpp" bodystart="261" bodyend="261"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1aa7b99acbcec7527d9dba2dabbf10ec93" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>const Angle &amp;</type>
-        <definition>const Angle&amp; astrea::astro::Geocentric::get_longitude</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1a698586f527c838d495e9e21f20c2e443" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref> &amp;</type>
+        <definition>const Angle &amp; astrea::astro::Geocentric&lt; _body_ &gt;::get_longitude</definition>
         <argsstring>() const</argsstring>
         <name>get_longitude</name>
+        <qualifiedname>astrea::astro::Geocentric::get_longitude</qualifiedname>
         <briefdescription>
 <para>Get the longitude of the <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> state vector. </para>
         </briefdescription>
@@ -804,13 +910,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="253" column="17" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" bodystart="253" bodyend="253"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="268" column="17" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.hpp" bodystart="268" bodyend="268"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1ae2c81c3066c747938df1b9d3c92281f9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>const Distance &amp;</type>
-        <definition>const Distance&amp; astrea::astro::Geocentric::get_altitude</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1aa697cd6eaa9586dfdd6e5290aff9fd07" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref> &amp;</type>
+        <definition>const Distance &amp; astrea::astro::Geocentric&lt; _body_ &gt;::get_altitude</definition>
         <argsstring>() const</argsstring>
         <name>get_altitude</name>
+        <qualifiedname>astrea::astro::Geocentric::get_altitude</qualifiedname>
         <briefdescription>
 <para>Get the altitude of the <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> state vector. </para>
         </briefdescription>
@@ -821,27 +928,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="260" column="20" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" bodystart="260" bodyend="260"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="275" column="20" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.hpp" bodystart="275" bodyend="275"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1adf94ab8362c0d36d562ea23355c69776" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref></type>
-        <definition>Geocentric astrea::astro::Geocentric::interpolate</definition>
-        <argsstring>(const Time &amp;thisTime, const Time &amp;otherTime, const Geocentric &amp;other, const Time &amp;targetTime) const</argsstring>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Geocentric_1ab2bfdd68fcce01b6cc4ecd5828f60590" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt;</type>
+        <definition>Geocentric&lt; _body_ &gt; astrea::astro::Geocentric&lt; _body_ &gt;::interpolate</definition>
+        <argsstring>(const Time &amp;thisTime, const Time &amp;otherTime, const Geocentric&lt; _body_ &gt; &amp;other, const Time &amp;targetTime) const</argsstring>
         <name>interpolate</name>
+        <qualifiedname>astrea::astro::Geocentric::interpolate</qualifiedname>
         <param>
-          <type>const Time &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
           <declname>thisTime</declname>
         </param>
         <param>
-          <type>const Time &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
           <declname>otherTime</declname>
         </param>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_body_</ref> &gt; &amp;</type>
           <declname>other</declname>
         </param>
         <param>
-          <type>const Time &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
           <declname>targetTime</declname>
         </param>
         <briefdescription>
@@ -874,14 +982,6 @@
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>sys</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Astrodynamics system containing celestial body data </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
 <parametername>targetTime</parametername>
 </parameternamelist>
 <parameterdescription>
@@ -895,48 +995,61 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="272" column="16" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.cpp" bodystart="150" bodyend="159"/>
+        <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="287" column="9" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.ipp" bodystart="168" bodyend="177"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>Class representing a <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> state vector in astrodynamics. </para>
     </briefdescription>
     <detaileddescription>
-<para>This class encapsulates the position and velocity of a vehicle in <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> coordinates. </para>
+<para>This class encapsulates the position and velocity of a vehicle in <ref refid="classastrea_1_1astro_1_1Geocentric" kindref="compound">Geocentric</ref> coordinates.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_body_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The celestial body NTTP that defines the reference ellipsoid and frames. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
     </detaileddescription>
-    <location file="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" line="42" column="1" bodyfile="astrea/astro/astro/state/angular_elements/instances/Geocentric.hpp" bodystart="42" bodyend="278"/>
+    <location file="astrea/astro/astro/state/angular_elements/Geocentric.hpp" line="47" column="1" bodyfile="astrea/astro/astro/state/angular_elements/Geocentric.hpp" bodystart="47" bodyend="293"/>
     <listofallmembers>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a8f4086f49aef3b2dcdc08dca3ed07308" prot="private" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>_altitude</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a284d848c974f6df229ace3cfc156a246" prot="private" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>_latitude</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1aacf989caaa9c2fb1861cee6c50af142d" prot="private" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>_longitude</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a25d89cd7953f568d4acfda714a0acc15" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>Geocentric</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a7bd0a8d729ee6df0f9aea107a680b74a" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>Geocentric</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a5e1a08a9fca6a3a8f68130b2151f2640" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>Geocentric</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1af3ff97ab5d043d014a59d9a8c3dadd2c" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>Geocentric</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1ab0f0b139fe68d3cdbf32cfb0df688f57" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>Geocentric</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1acc84dafa15e42c4120446b149c12889b" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>Geocentric</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1af5772629d41d23896758c872777de429" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>Geocentric</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1ae2c81c3066c747938df1b9d3c92281f9" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>get_altitude</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a4000726a18b808faa318955b28083777" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>get_latitude</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1aa7b99acbcec7527d9dba2dabbf10ec93" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>get_longitude</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a06684134512ace1313362cd1b261d404" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>get_position</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1ac174281aab4d4bc42a7693047587631b" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>get_position</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1adf94ab8362c0d36d562ea23355c69776" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>interpolate</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a57d237b1ffb779f7e47db3100ccd149b" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator!=</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a8fa2833ff09eb19cb8ea66a81e3df28e" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator*</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a98dd7fe870bf7594caaba29e6109d7bb" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator*=</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1ab97bb1781e9693c7c7c498b2b4155560" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator+</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a58409cc53fe8f95f2301bff1b452a666" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator+=</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a4fa4c5f8c3aea60771ff02159868a4a7" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator-</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a04c64dc24a59251de3432b2667137c1a" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator-=</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a79dfe802b8add5df8b6b0fe476dc2350" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator/</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1ad5333cc3ba7c5da995618339ae72aa3c" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator/</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1aabaec784b53d76c899a0b6f24c27f072" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator/=</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a7cfc13d6272b55595fab290c35c6940f" prot="private" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator&lt;&lt;</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1a2c368eef475186386111172e42b9376a" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator=</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1ae2726de3d837e961597e141e1c66638f" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator=</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1ad0a40e8d39dae64fd0b1e6ecbebd13e3" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator==</name></member>
-      <member refid="classastrea_1_1astro_1_1Geocentric_1ae1677dad0f23c60e596283f4f498b62d" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>~Geocentric</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a248cd078938a1873c6ff9363084becdf" prot="private" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>_altitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a1cc65f272f96e872526d2473a93a2b30" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>_fixed_frame_</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1ac7fb2e01e26bdf0742a2b870b91fe572" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>_icrf_frame_</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1ac61dd81ead717ec69b31aff47b9c6a13" prot="private" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>_latitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a10057fd8788db3ab40cc0fde6b6ef5b0" prot="private" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>_longitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a6fd661e52a90add194c4ef594bb36625" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>body</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a95f752c5f40f0ae9a0121ec842239ac5" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>Geocentric</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a4056dd1c9f4d06ec650dbff4c3b6dc2b" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>Geocentric</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a67da24a7b125e5902f955bae293c93dd" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>Geocentric</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a187cd455ba6f05d804b9e0f2cde61436" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>Geocentric</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a9f02d59df33d4a4ba873cad2bd88103d" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>Geocentric</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1af1aeae6475c2478c4295e2a9984d0c14" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>Geocentric</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1aaac7d7232b341bd2f9c8616b19ac7a67" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>Geocentric</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1aa697cd6eaa9586dfdd6e5290aff9fd07" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>get_altitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a8360b561cf64a9f01c0bca4c28f08692" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>get_latitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a698586f527c838d495e9e21f20c2e443" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>get_longitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1aea9a590c99e0be1eda9978b01779aee6" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>get_position</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a63e7c5ad69f4e99b02d6f72beededc05" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>get_position</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1ab2bfdd68fcce01b6cc4ecd5828f60590" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>interpolate</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1aae06a7040244066a0825bb807dfa5688" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator!=</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a0b7d64e3e5075dbc5d4fb6ad772ca2e1" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator*</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1ad92a48c32fb9b25e1f40155f56e49739" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator*=</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1ad351539122b1115a93e7c71608115173" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator+</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a297465f463628d7d8467b03a24c53451" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator+=</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1ab4d9f8d249efc6b3ae673df41b5c7add" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator-</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a38a129e3a2c3d679e29c505aee0b7bb2" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator-=</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a9bd52525ed10ad7e088871ba28987781" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator/</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a91c0c061d0cc0fd45d296c29ccb46b9d" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator/</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a8f28a3edfe9939c9a7976d28b3abb544" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator/=</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1ad77525b0dbd6c1594016e99fb273740d" prot="private" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a1db889dedda8ff6f6d2764e1f00ebce1" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a43e9885af792823c9ae03b56509b9e19" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator=</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a4a87066b9b41878ed1ccd479db1a3cfb" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>operator==</name></member>
+      <member refid="classastrea_1_1astro_1_1Geocentric_1a0c015e37ab40f8707e03a373aa3d67b6" prot="public" virt="non-virtual"><scope>astrea::astro::Geocentric</scope><name>~Geocentric</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

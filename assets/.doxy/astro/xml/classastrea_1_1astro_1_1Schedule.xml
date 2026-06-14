@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1Schedule" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::Schedule</compoundname>
+    <includes refid="Schedule_8hpp" local="no">Schedule.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Schedule_1ac9e94f0d0ff772d942a4fe1e997a175d" prot="private" static="no" mutable="no">
+        <type>gtl::btree_map&lt; <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>, std::vector&lt; std::size_t &gt; &gt;</type>
+        <definition>gtl::btree_map&lt;Date, std::vector&lt;std::size_t&gt; &gt; astrea::astro::Schedule::_schedule</definition>
+        <argsstring></argsstring>
+        <name>_schedule</name>
+        <qualifiedname>astrea::astro::Schedule::_schedule</qualifiedname>
+        <briefdescription>
+<para>A schedule of events. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Schedule.hpp" line="105" column="20" bodyfile="astrea/astro/astro/propagation/event_detection/Schedule.hpp" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Schedule_1a51f58c180c48e4e747a4e9715f7908a6" prot="private" static="no" mutable="no">
+        <type>gtl::btree_map&lt; std::size_t, <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> &gt;</type>
+        <definition>gtl::btree_map&lt;std::size_t, Event&gt; astrea::astro::Schedule::_events</definition>
+        <argsstring></argsstring>
+        <name>_events</name>
+        <qualifiedname>astrea::astro::Schedule::_events</qualifiedname>
+        <briefdescription>
+<para>A map of event IDs to their corresponding Events. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Schedule.hpp" line="106" column="20" bodyfile="astrea/astro/astro/propagation/event_detection/Schedule.hpp" bodystart="106" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Schedule_1a2fc6c0199112c4faa14b462f2d631786" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Schedule::Schedule</definition>
+        <argsstring>()=default</argsstring>
+        <name>Schedule</name>
+        <qualifiedname>astrea::astro::Schedule::Schedule</qualifiedname>
+        <briefdescription>
+<para>Default constructor for the <ref refid="classastrea_1_1astro_1_1Schedule" kindref="compound">Schedule</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Schedule.hpp" line="41" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Schedule_1ac2a3a1a1babd94dba6bce377412e5895" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::Schedule::schedule_event</definition>
+        <argsstring>(const Date &amp;date, const Event &amp;event)</argsstring>
+        <name>schedule_event</name>
+        <qualifiedname>astrea::astro::Schedule::schedule_event</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+<para>Schedules an <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> to trigger at a specific <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> at which the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> should trigger. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>event</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> to be scheduled. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Schedule.hpp" line="49" column="10" bodyfile="astrea/astro/astro/propagation/event_detection/Schedule.cpp" bodystart="19" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Schedule_1a38bb07faae1b9a07979ab48ac268ec57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::Schedule::schedule_event</definition>
+        <argsstring>(const std::vector&lt; Date &gt; &amp;dates, const Event &amp;event)</argsstring>
+        <name>schedule_event</name>
+        <qualifiedname>astrea::astro::Schedule::schedule_event</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &gt; &amp;</type>
+          <declname>dates</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+<para>Schedules an <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> to trigger at multiple Dates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dates</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of Dates at which the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> should trigger. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>event</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> to be scheduled. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Schedule.hpp" line="57" column="10" bodyfile="astrea/astro/astro/propagation/event_detection/Schedule.cpp" bodystart="26" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Schedule_1a2eab872fe8f31a53ffc9f1b7d5637da9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> &gt;</type>
+        <definition>std::vector&lt; Event &gt; astrea::astro::Schedule::get_events_at</definition>
+        <argsstring>(const Date &amp;date) const</argsstring>
+        <name>get_events_at</name>
+        <qualifiedname>astrea::astro::Schedule::get_events_at</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the Events scheduled to trigger at a specific <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> for which to retrieve the scheduled Events. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::vector&lt;Event&gt; A vector of Events scheduled to trigger at the specified <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Schedule.hpp" line="65" column="17" bodyfile="astrea/astro/astro/propagation/event_detection/Schedule.cpp" bodystart="34" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Schedule_1a5bf4374f0c2e8e2ba7123d2c90011659" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &gt;</type>
+        <definition>std::vector&lt; Date &gt; astrea::astro::Schedule::get_scheduled_dates</definition>
+        <argsstring>() const</argsstring>
+        <name>get_scheduled_dates</name>
+        <qualifiedname>astrea::astro::Schedule::get_scheduled_dates</qualifiedname>
+        <briefdescription>
+<para>Retrieves all the Dates that have Events scheduled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::vector&lt;Date&gt; A vector of Dates that have Events scheduled. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Schedule.hpp" line="72" column="17" bodyfile="astrea/astro/astro/propagation/event_detection/Schedule.cpp" bodystart="46" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Schedule_1a614e633270e3fd3234a2df475e07c1d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::Schedule::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>astrea::astro::Schedule::clear</qualifiedname>
+        <briefdescription>
+<para>Clears all scheduled Events and their associated Dates from the <ref refid="classastrea_1_1astro_1_1Schedule" kindref="compound">Schedule</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Schedule.hpp" line="77" column="10" bodyfile="astrea/astro/astro/propagation/event_detection/Schedule.cpp" bodystart="55" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Schedule_1a68d2fd3f2a2ce4395589f71d945394a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::Schedule::remove_events_at</definition>
+        <argsstring>(const Date &amp;date)</argsstring>
+        <name>remove_events_at</name>
+        <qualifiedname>astrea::astro::Schedule::remove_events_at</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+<para>Removes all Events scheduled to trigger at a specific <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> for which to remove the scheduled Events. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Schedule.hpp" line="84" column="10" bodyfile="astrea/astro/astro/propagation/event_detection/Schedule.cpp" bodystart="61" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Schedule_1ab29fa8258c3f4f3b49230675b905f819" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::Schedule::remove_events_between</definition>
+        <argsstring>(const Date &amp;startDate, const Date &amp;endDate)</argsstring>
+        <name>remove_events_between</name>
+        <qualifiedname>astrea::astro::Schedule::remove_events_between</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>startDate</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>endDate</declname>
+        </param>
+        <briefdescription>
+<para>Removes all Events scheduled to trigger between two Dates (inclusive). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>startDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The start <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> of the range for which to remove the scheduled Events. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endDate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The end <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> of the range for which to remove the scheduled Events. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Schedule.hpp" line="92" column="10" bodyfile="astrea/astro/astro/propagation/event_detection/Schedule.cpp" bodystart="72" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Schedule_1a31c9f4d02d0ee1f72d1d014aa5cba652" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::Schedule::trigger_scheduled_events</definition>
+        <argsstring>(const Date &amp;date, const Time &amp;time, State &amp;state, Vehicle &amp;vehicle) const</argsstring>
+        <name>trigger_scheduled_events</name>
+        <qualifiedname>astrea::astro::Schedule::trigger_scheduled_events</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <declname>vehicle</declname>
+        </param>
+        <briefdescription>
+<para>Triggers all Events scheduled to trigger at a specific <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> at which to trigger the scheduled Events. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current time in the integration. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current state of the vehicle represented as orbital elements. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vehicle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> to trigger the Events on. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/Schedule.hpp" line="102" column="10" bodyfile="astrea/astro/astro/propagation/event_detection/Schedule.cpp" bodystart="83" bodyend="91"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A class representing a <ref refid="classastrea_1_1astro_1_1Schedule" kindref="compound">Schedule</ref> in the astrea astro library. The <ref refid="classastrea_1_1astro_1_1Schedule" kindref="compound">Schedule</ref> is responsible for scheduling and managing Events that are set to trigger at specific Dates during propagation. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/event_detection/Schedule.hpp" line="36" column="1" bodyfile="astrea/astro/astro/propagation/event_detection/Schedule.hpp" bodystart="36" bodyend="107"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1Schedule_1a51f58c180c48e4e747a4e9715f7908a6" prot="private" virt="non-virtual"><scope>astrea::astro::Schedule</scope><name>_events</name></member>
+      <member refid="classastrea_1_1astro_1_1Schedule_1ac9e94f0d0ff772d942a4fe1e997a175d" prot="private" virt="non-virtual"><scope>astrea::astro::Schedule</scope><name>_schedule</name></member>
+      <member refid="classastrea_1_1astro_1_1Schedule_1a614e633270e3fd3234a2df475e07c1d0" prot="public" virt="non-virtual"><scope>astrea::astro::Schedule</scope><name>clear</name></member>
+      <member refid="classastrea_1_1astro_1_1Schedule_1a2eab872fe8f31a53ffc9f1b7d5637da9" prot="public" virt="non-virtual"><scope>astrea::astro::Schedule</scope><name>get_events_at</name></member>
+      <member refid="classastrea_1_1astro_1_1Schedule_1a5bf4374f0c2e8e2ba7123d2c90011659" prot="public" virt="non-virtual"><scope>astrea::astro::Schedule</scope><name>get_scheduled_dates</name></member>
+      <member refid="classastrea_1_1astro_1_1Schedule_1a68d2fd3f2a2ce4395589f71d945394a1" prot="public" virt="non-virtual"><scope>astrea::astro::Schedule</scope><name>remove_events_at</name></member>
+      <member refid="classastrea_1_1astro_1_1Schedule_1ab29fa8258c3f4f3b49230675b905f819" prot="public" virt="non-virtual"><scope>astrea::astro::Schedule</scope><name>remove_events_between</name></member>
+      <member refid="classastrea_1_1astro_1_1Schedule_1a2fc6c0199112c4faa14b462f2d631786" prot="public" virt="non-virtual"><scope>astrea::astro::Schedule</scope><name>Schedule</name></member>
+      <member refid="classastrea_1_1astro_1_1Schedule_1ac2a3a1a1babd94dba6bce377412e5895" prot="public" virt="non-virtual"><scope>astrea::astro::Schedule</scope><name>schedule_event</name></member>
+      <member refid="classastrea_1_1astro_1_1Schedule_1a38bb07faae1b9a07979ab48ac268ec57" prot="public" virt="non-virtual"><scope>astrea::astro::Schedule</scope><name>schedule_event</name></member>
+      <member refid="classastrea_1_1astro_1_1Schedule_1a31c9f4d02d0ee1f72d1d014aa5cba652" prot="public" virt="non-virtual"><scope>astrea::astro::Schedule</scope><name>trigger_scheduled_events</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

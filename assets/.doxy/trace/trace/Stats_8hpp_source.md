@@ -15,7 +15,6 @@
 #include <string>
 #include <vector>
 
-#include <gtl/btree.hpp>
 #include <mp-units/concepts.h>
 #include <mp-units/systems/si.h>
 
@@ -42,7 +41,9 @@ struct Stats {
         using mp_units::one;
         using mp_units::si::unit_symbols::s;
 
-        if (values.size() == 0) { throw std::runtime_error("Cannot calculate statistics on an empty vector."); }
+        if (values.size() == 0) {
+            return;
+        } // throw std::runtime_error("Cannot calculate statistics on an empty vector."); }
 
         // Sort automatically gives min, max, and sets up for percentile calcs
         std::sort(values.begin(), values.end());

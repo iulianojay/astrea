@@ -13,6 +13,11 @@
 * **get\_object\_name\_from\_id** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 
 
+## m
+
+* **make\_database\_storage** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+
+
 ## o
 
 * **operator&lt;&lt;** ([**astrea::trace**](namespaceastrea_1_1trace.md))
@@ -28,15 +33,6 @@
 * **riseset\_difference** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 * **riseset\_intersection** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 * **riseset\_union** ([**astrea::trace**](namespaceastrea_1_1trace.md))
-
-
-## s
-
-* **save\_access\_metrics\_to\_file** ([**astrea::trace**](namespaceastrea_1_1trace.md))
-* **save\_number\_of\_folds\_to\_file** ([**astrea::trace**](namespaceastrea_1_1trace.md))
-* **save\_receiver\_riseset\_metrics\_to\_file** ([**astrea::trace**](namespaceastrea_1_1trace.md))
-* **save\_riseset\_metrics\_to\_file** ([**astrea::trace**](namespaceastrea_1_1trace.md))
-* **save\_risesets\_to\_file** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 
 
 ## t

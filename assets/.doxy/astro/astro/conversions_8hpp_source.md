@@ -11,6 +11,8 @@
 
 #pragma once
 
+#include <numbers>
+
 #include <mp-units/math.h>
 
 #include <units/units.hpp>
@@ -28,13 +30,28 @@ Angle convert_eccentric_anomaly_to_mean_anomaly(const Angle& ea, const Unitless 
 
 Angle convert_mean_anomaly_to_eccentric_anomaly(const Angle& ma, const Unitless ecc);
 
-constexpr Angle wrap_angle(const Angle& angle)
+inline constexpr Angle wrap_angle(const Angle& angle) noexcept
 {
+    using mp_units::angular::unit_symbols::rad;
+    static constexpr Angle twoPi = 2.0 * (std::numbers::pi * rad);
+
     Angle ang = angle;
-    while (ang < 0.0 * astrea::detail::angle_unit) {
-        ang += TWO_PI;
+    while (ang < 0.0 * rad) {
+        ang += twoPi;
     }
-    return mp_units::fmod(ang, TWO_PI);
+    return mp_units::fmod(ang, twoPi);
+}
+
+inline constexpr Angle wrap_angle_to_pi(const Angle& angle) noexcept
+{
+    using mp_units::angular::unit_symbols::rad;
+    static constexpr Angle onePi = std::numbers::pi * rad;
+
+    Angle ang = angle;
+    while (ang < 0.0 * rad) {
+        ang += onePi;
+    }
+    return mp_units::fmod(ang, onePi);
 }
 
 } // namespace astro

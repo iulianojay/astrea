@@ -10,10 +10,14 @@
 
 _Numerical integrator for orbital mechanics propagation._ [More...](#detailed-description)
 
+* `#include <optional>`
 * `#include <vector>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
+* `#include <astro/propagation/equations_of_motion/EquationsOfMotion.hpp>`
 * `#include <astro/propagation/event_detection/EventDetector.hpp>`
+* `#include <astro/propagation/event_detection/Schedule.hpp>`
+* `#include <astro/propagation/numerical/StepWatcher.hpp>`
 * `#include <astro/state/State.hpp>`
 * `#include <astro/time/Interval.hpp>`
 * `#include <astro/types/typedefs.hpp>`
@@ -43,6 +47,7 @@ _Numerical integrator for orbital mechanics propagation._ [More...](#detailed-de
 | Type | Name |
 | ---: | :--- |
 | class | [**Integrator**](classastrea_1_1astro_1_1Integrator.md) <br>[_**Integrator**_](classastrea_1_1astro_1_1Integrator.md) _class for numerical propagation of orbital mechanics problems._ |
+| struct | [**IntegratorSettings**](structastrea_1_1astro_1_1IntegratorSettings.md) <br> |
 
 
 

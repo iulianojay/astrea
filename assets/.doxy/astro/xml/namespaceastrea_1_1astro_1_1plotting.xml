@@ -1,19 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1plotting" kind="namespace" language="C++">
     <compoundname>astrea::astro::plotting</compoundname>
-      <sectiondef kind="func">
+    <sectiondef kind="func">
       <memberdef kind="function" id="plotting_8cpp_1ac196255a1eb290f378dc1221621efafe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
         <definition>void astrea::astro::plotting::plot_orbital_elements</definition>
         <argsstring>(const StateHistory &amp;trajectory, const std::filesystem::path &amp;outfile)</argsstring>
         <name>plot_orbital_elements</name>
+        <qualifiedname>astrea::astro::plotting::plot_orbital_elements</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &amp;</type>
           <declname>trajectory</declname>
         </param>
         <param>
-          <type>const std::filesystem::path &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::filesystem::path &amp;</type>
           <declname>outfile</declname>
         </param>
         <briefdescription>
@@ -41,19 +42,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/utilities/plotting.cpp" line="231" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="231" bodyend="285" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="39" declcolumn="6"/>
+        <location file="astrea/astro/astro/utilities/plotting.cpp" line="334" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="334" bodyend="388" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="39" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="plotting_8cpp_1a55627a17b3d0bba31570d06cc8ff2a07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
         <definition>void astrea::astro::plotting::plot_trajectory</definition>
         <argsstring>(const StateHistory &amp;trajectory, const std::filesystem::path &amp;outfile)</argsstring>
         <name>plot_trajectory</name>
+        <qualifiedname>astrea::astro::plotting::plot_trajectory</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &amp;</type>
           <declname>trajectory</declname>
         </param>
         <param>
-          <type>const std::filesystem::path &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::filesystem::path &amp;</type>
           <declname>outfile</declname>
         </param>
         <briefdescription>
@@ -81,23 +83,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/utilities/plotting.cpp" line="288" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="288" bodyend="370" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="47" declcolumn="6"/>
+        <location file="astrea/astro/astro/utilities/plotting.cpp" line="391" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="391" bodyend="473" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="47" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="plotting_8cpp_1a26c3e8b2860cb322b0c19a699eadf03a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
         <definition>void astrea::astro::plotting::compare_orbital_elements</definition>
         <argsstring>(const std::vector&lt; StateHistory &gt; &amp;trajectories, const std::vector&lt; std::string &gt; &amp;labels, const std::filesystem::path &amp;outfile)</argsstring>
         <name>compare_orbital_elements</name>
+        <qualifiedname>astrea::astro::plotting::compare_orbital_elements</qualifiedname>
         <param>
-          <type>const std::vector&lt; <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &gt; &amp;</type>
           <declname>trajectories</declname>
         </param>
         <param>
-          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; std::string &gt; &amp;</type>
           <declname>labels</declname>
         </param>
         <param>
-          <type>const std::filesystem::path &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::filesystem::path &amp;</type>
           <declname>outfile</declname>
         </param>
         <briefdescription>
@@ -133,23 +136,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/utilities/plotting.cpp" line="373" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="373" bodyend="434" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="56" declcolumn="6"/>
+        <location file="astrea/astro/astro/utilities/plotting.cpp" line="476" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="476" bodyend="537" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="56" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="plotting_8cpp_1a3efa936a26c81e468b919f2993b2f37a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
         <definition>void astrea::astro::plotting::compare_trajectories</definition>
         <argsstring>(const std::vector&lt; StateHistory &gt; &amp;trajectories, const std::vector&lt; std::string &gt; &amp;labels, const std::filesystem::path &amp;outfile)</argsstring>
         <name>compare_trajectories</name>
+        <qualifiedname>astrea::astro::plotting::compare_trajectories</qualifiedname>
         <param>
-          <type>const std::vector&lt; <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &gt; &amp;</type>
           <declname>trajectories</declname>
         </param>
         <param>
-          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; std::string &gt; &amp;</type>
           <declname>labels</declname>
         </param>
         <param>
-          <type>const std::filesystem::path &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::filesystem::path &amp;</type>
           <declname>outfile</declname>
         </param>
         <briefdescription>
@@ -185,27 +189,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/utilities/plotting.cpp" line="437" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="437" bodyend="531" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="64" declcolumn="6"/>
+        <location file="astrea/astro/astro/utilities/plotting.cpp" line="540" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="540" bodyend="634" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="64" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="plotting_8cpp_1a42b6894fd551459515ed2808fdd7dac3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
         <definition>void astrea::astro::plotting::plot_difference_orbital_elements</definition>
         <argsstring>(const StateHistory expected, const std::vector&lt; StateHistory &gt; &amp;trajectories, const std::vector&lt; std::string &gt; &amp;labels, const std::filesystem::path &amp;outfile)</argsstring>
         <name>plot_difference_orbital_elements</name>
+        <qualifiedname>astrea::astro::plotting::plot_difference_orbital_elements</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref></type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref></type>
           <declname>expected</declname>
         </param>
         <param>
-          <type>const std::vector&lt; <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &gt; &amp;</type>
           <declname>trajectories</declname>
         </param>
         <param>
-          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; std::string &gt; &amp;</type>
           <declname>labels</declname>
         </param>
         <param>
-          <type>const std::filesystem::path &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::filesystem::path &amp;</type>
           <declname>outfile</declname>
         </param>
         <briefdescription>
@@ -241,27 +246,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/utilities/plotting.cpp" line="533" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="533" bodyend="608" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="73" declcolumn="6"/>
+        <location file="astrea/astro/astro/utilities/plotting.cpp" line="636" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="636" bodyend="711" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="73" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="plotting_8cpp_1a85b01b82365a5c3a67597372a72bfe21" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
         <definition>void astrea::astro::plotting::plot_difference_trajectories</definition>
         <argsstring>(const StateHistory expected, const std::vector&lt; StateHistory &gt; &amp;trajectories, const std::vector&lt; std::string &gt; &amp;labels, const std::filesystem::path &amp;outfile)</argsstring>
         <name>plot_difference_trajectories</name>
+        <qualifiedname>astrea::astro::plotting::plot_difference_trajectories</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref></type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref></type>
           <declname>expected</declname>
         </param>
         <param>
-          <type>const std::vector&lt; <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &gt; &amp;</type>
           <declname>trajectories</declname>
         </param>
         <param>
-          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; std::string &gt; &amp;</type>
           <declname>labels</declname>
         </param>
         <param>
-          <type>const std::filesystem::path &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::filesystem::path &amp;</type>
           <declname>outfile</declname>
         </param>
         <briefdescription>
@@ -297,13 +303,173 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/utilities/plotting.cpp" line="610" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="610" bodyend="716" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="86" declcolumn="6"/>
+        <location file="astrea/astro/astro/utilities/plotting.cpp" line="713" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="713" bodyend="819" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="86" declcolumn="6"/>
       </memberdef>
-      </sectiondef>
+      <memberdef kind="function" id="plotting_8cpp_1a816171299f139ae0bea66548de23c13c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::plotting::plot_attitude</definition>
+        <argsstring>(const StateHistory &amp;trajectory, const std::filesystem::path &amp;outfile)</argsstring>
+        <name>plot_attitude</name>
+        <qualifiedname>astrea::astro::plotting::plot_attitude</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &amp;</type>
+          <declname>trajectory</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::filesystem::path &amp;</type>
+          <declname>outfile</declname>
+        </param>
+        <briefdescription>
+<para>Plots the attitude (XYZ intrinsic Euler angles and body angular rates) of a trajectory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>trajectory</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The state history representing the trajectory. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outfile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the file to save the plot. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/utilities/plotting.cpp" line="821" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="821" bodyend="868" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="99" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="plotting_8cpp_1a2781fb08d876f7fce70c8b2013db3d06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::plotting::compare_attitudes</definition>
+        <argsstring>(const std::vector&lt; StateHistory &gt; &amp;trajectories, const std::vector&lt; std::string &gt; &amp;labels, const std::filesystem::path &amp;outfile)</argsstring>
+        <name>compare_attitudes</name>
+        <qualifiedname>astrea::astro::plotting::compare_attitudes</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &gt; &amp;</type>
+          <declname>trajectories</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; std::string &gt; &amp;</type>
+          <declname>labels</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::filesystem::path &amp;</type>
+          <declname>outfile</declname>
+        </param>
+        <briefdescription>
+<para>Compares the attitudes of multiple trajectories by plotting their Euler angles and angular rates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>trajectories</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of state histories representing the trajectories. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>labels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of labels for each trajectory. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outfile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the file to save the comparison plot. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/utilities/plotting.cpp" line="871" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="871" bodyend="931" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="108" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="plotting_8cpp_1a070f15c4eb0c791a0dbb50f2168d315c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::plotting::plot_difference_attitude</definition>
+        <argsstring>(const StateHistory expected, const std::vector&lt; StateHistory &gt; &amp;trajectories, const std::vector&lt; std::string &gt; &amp;labels, const std::filesystem::path &amp;outfile)</argsstring>
+        <name>plot_difference_attitude</name>
+        <qualifiedname>astrea::astro::plotting::plot_difference_attitude</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref></type>
+          <declname>expected</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &gt; &amp;</type>
+          <declname>trajectories</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; std::string &gt; &amp;</type>
+          <declname>labels</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::filesystem::path &amp;</type>
+          <declname>outfile</declname>
+        </param>
+        <briefdescription>
+<para>Plots the attitude difference between an expected trajectory and a set of trajectories. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Differences are computed per Euler angle component (XYZ intrinsic) and per angular rate component.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>expected</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The expected state history used as the reference. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>trajectories</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of state histories representing the trajectories to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>labels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of labels for each trajectory. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outfile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the file to save the plot. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/utilities/plotting.cpp" line="934" column="6" bodyfile="astrea/astro/astro/utilities/plotting.cpp" bodystart="934" bodyend="1010" declfile="astrea/astro/astro/utilities/plotting.hpp" declline="120" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/utilities/plotting.cpp" line="38" column="1"/>
+    <location file="astrea/astro/astro/utilities/plotting.cpp" line="39" column="1"/>
   </compounddef>
 </doxygen>

@@ -18,8 +18,9 @@
 * `#include <string>`
 * `#include <nlohmann/json.hpp>`
 * `#include <sqlite_orm/sqlite_orm.h>`
-* `#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>`
+* `#include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>`
 * `#include <astro/time/Date.hpp>`
+* `#include <utilities/ProgressBar.hpp>`
 * `#include <snapshot/database/Database.hpp>`
 * `#include <snapshot/http-queries/spacetrack/SpaceTrackClient.hpp>`
 

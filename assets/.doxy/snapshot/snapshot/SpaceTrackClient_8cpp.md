@@ -15,7 +15,6 @@
 * `#include <iostream>`
 * `#include <set>`
 * `#include <stdexcept>`
-* `#include <date/date.h>`
 * `#include <nlohmann/json.hpp>`
 * `#include <utilities/string_util.hpp>`
 

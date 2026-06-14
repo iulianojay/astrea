@@ -14,30 +14,9 @@ _Pure virtual base class for vehicle inner implementations._
 
 
 
-Inherits the following classes: [astrea::astro::FrameReference](classastrea_1_1astro_1_1FrameReference.md)
 
 
 Inherited by the following classes: [astrea::astro::detail::VehicleInner](structastrea_1_1astro_1_1detail_1_1VehicleInner.md)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -75,56 +54,20 @@ Inherited by the following classes: [astrea::astro::detail::VehicleInner](struct
 | Type | Name |
 | ---: | :--- |
 | virtual std::unique\_ptr&lt; [**VehicleInnerBase**](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md) &gt; | [**clone**](#function-clone) () const = 0<br>_Clones the vehicle inner implementation._  |
-| virtual Unitless | [**get\_coefficient\_of\_drag**](#function-get_coefficient_of_drag) () const = 0<br>_Gets the coefficient of drag of the vehicle._  |
-| virtual Unitless | [**get\_coefficient\_of\_lift**](#function-get_coefficient_of_lift) () const = 0<br>_Gets the coefficient of lift of the vehicle._  |
-| virtual Unitless | [**get\_coefficient\_of\_reflectivity**](#function-get_coefficient_of_reflectivity) () const = 0<br>_Gets the coefficient of reflectivity of the vehicle._  |
-| virtual SurfaceArea | [**get\_lift\_area**](#function-get_lift_area) () const = 0<br>_Gets the lift area of the vehicle._  |
-| virtual Mass | [**get\_mass**](#function-get_mass) () const = 0<br>_Gets the mass of the vehicle._  |
-| virtual const void \* | [**get\_ptr**](#function-get_ptr-12) () const = 0<br>_Gets a pointer to the internal vehicle instance._  |
-| virtual void \* | [**get\_ptr**](#function-get_ptr-22) () = 0<br>_Gets a pointer to the internal vehicle instance._  |
-| virtual SurfaceArea | [**get\_ram\_area**](#function-get_ram_area) () const = 0<br>_Gets the ram area of the vehicle._  |
-| virtual SurfaceArea | [**get\_solar\_area**](#function-get_solar_area) () const = 0<br>_Gets the solar area of the vehicle._  |
+| virtual [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_coefficient\_of\_drag**](#function-get_coefficient_of_drag) () const = 0<br>_Gets the coefficient of drag of the vehicle._  |
+| virtual [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_coefficient\_of\_lift**](#function-get_coefficient_of_lift) () const = 0<br>_Gets the coefficient of lift of the vehicle._  |
+| virtual [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_coefficient\_of\_reflectivity**](#function-get_coefficient_of_reflectivity) () const = 0<br>_Gets the coefficient of reflectivity of the vehicle._  |
+| virtual [**Perturbation**](structastrea_1_1astro_1_1Perturbation.md) | [**get\_control\_authority**](#function-get_control_authority) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state) const = 0<br>_Gets the control authority of the vehicle._  |
+| virtual [**InertiaTensor**](classastrea_1_1astro_1_1InertiaTensor.md)&lt; [**frames::dynamic::body**](structastrea_1_1astro_1_1frames_1_1dynamic_1_1body.md) &gt; | [**get\_inertia\_tensor**](#function-get_inertia_tensor) () const<br>_Gets the inertia tensor of the vehicle._  |
+| virtual [**SurfaceArea**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_lift\_area**](#function-get_lift_area) () const = 0<br>_Gets the lift area of the vehicle._  |
+| virtual [**Mass**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_mass**](#function-get_mass) () const = 0<br>_Gets the mass of the vehicle._  |
+| virtual std::string | [**get\_name**](#function-get_name) () const = 0<br>_Gets the name of the vehicle._  |
+| virtual [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \* | [**get\_ptr**](#function-get_ptr-12) () const = 0<br>_Gets a pointer to the internal vehicle instance._  |
+| virtual [**void**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \* | [**get\_ptr**](#function-get_ptr-22) () = 0<br>_Gets a pointer to the internal vehicle instance._  |
+| virtual [**SurfaceArea**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_ram\_area**](#function-get_ram_area) () const = 0<br>_Gets the ram area of the vehicle._  |
+| virtual [**SurfaceArea**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_solar\_area**](#function-get_solar_area) () const = 0<br>_Gets the solar area of the vehicle._  |
+| virtual [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) std::type\_info & | [**type**](#function-type) () const = 0<br>_Gets the type information of the internal vehicle instance._  |
 | virtual  | [**~VehicleInnerBase**](#function-vehicleinnerbase) () <br>_Destructor for_ [_**VehicleInnerBase**_](structastrea_1_1astro_1_1detail_1_1VehicleInnerBase.md) _._ |
-
-
-## Public Functions inherited from astrea::astro::FrameReference
-
-See [astrea::astro::FrameReference](classastrea_1_1astro_1_1FrameReference.md)
-
-| Type | Name |
-| ---: | :--- |
-|   | [**FrameReference**](classastrea_1_1astro_1_1FrameReference.md#function-framereference) () = default<br>_Default constructor for_ [_**FrameReference**_](classastrea_1_1astro_1_1FrameReference.md) _._ |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frames::earth::icrf &gt; | [**get\_inertial\_acceleration**](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_acceleration) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the acceleration of the frame in Earth-Centered Inertial coordinates._  |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, frames::earth::icrf &gt; | [**get\_inertial\_position**](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_position) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the position of the frame in Earth-Centered Inertial coordinates._  |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, frames::earth::icrf &gt; | [**get\_inertial\_velocity**](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_velocity) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the velocity of the frame in Earth-Centered Inertial coordinates._  |
-| virtual std::string | [**get\_name**](classastrea_1_1astro_1_1FrameReference.md#function-get_name) () const = 0<br>_Get the name of the frame reference._  |
-| virtual  | [**~FrameReference**](classastrea_1_1astro_1_1FrameReference.md#function-framereference) () = default<br>_Default destructor for_ [_**FrameReference**_](classastrea_1_1astro_1_1FrameReference.md) _._ |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -258,6 +201,65 @@ Unitless The coefficient of reflectivity of the vehicle.
 
 
 
+### function get\_control\_authority 
+
+_Gets the control authority of the vehicle._ 
+```C++
+virtual Perturbation astrea::astro::detail::VehicleInnerBase::get_control_authority (
+    const  State & state
+) const = 0
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `state` The state of the vehicle for which to get the control authority. 
+
+
+
+**Returns:**
+
+[**Perturbation**](structastrea_1_1astro_1_1Perturbation.md) The control force and torque of the vehicle. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function get\_inertia\_tensor 
+
+_Gets the inertia tensor of the vehicle._ 
+```C++
+inline virtual InertiaTensor < frames::dynamic::body > astrea::astro::detail::VehicleInnerBase::get_inertia_tensor () const
+```
+
+
+
+
+
+**Returns:**
+
+InertiaTensor&lt;frames::dynamic::body&gt; The inertia tensor of the vehicle. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function get\_lift\_area 
 
 _Gets the lift area of the vehicle._ 
@@ -308,11 +310,36 @@ Mass The mass of the vehicle.
 
 
 
+### function get\_name 
+
+_Gets the name of the vehicle._ 
+```C++
+virtual std::string astrea::astro::detail::VehicleInnerBase::get_name () const = 0
+```
+
+
+
+
+
+**Returns:**
+
+std::string The name of the vehicle. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
 ### function get\_ptr [1/2]
 
 _Gets a pointer to the internal vehicle instance._ 
 ```C++
-virtual const void * astrea::astro::detail::VehicleInnerBase::get_ptr () const = 0
+virtual const  void * astrea::astro::detail::VehicleInnerBase::get_ptr () const = 0
 ```
 
 
@@ -397,6 +424,31 @@ virtual SurfaceArea astrea::astro::detail::VehicleInnerBase::get_solar_area () c
 **Returns:**
 
 SurfaceArea The solar area of the vehicle. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function type 
+
+_Gets the type information of the internal vehicle instance._ 
+```C++
+virtual const std::type_info & astrea::astro::detail::VehicleInnerBase::type () const = 0
+```
+
+
+
+
+
+**Returns:**
+
+const std::type\_info& The type information of the internal vehicle instance. 
 
 
 

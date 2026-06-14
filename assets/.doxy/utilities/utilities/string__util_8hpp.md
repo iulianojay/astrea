@@ -41,6 +41,12 @@ _String utility functions for the snapshot module._ [More...](#detailed-descript
 | namespace | [**utilities**](namespaceastrea_1_1utilities.md) <br> |
 
 
+## Classes
+
+| Type | Name |
+| ---: | :--- |
+| struct | [**double\_wrapper**](structastrea_1_1utilities_1_1double__wrapper.md) <br> |
+| struct | [**f\_to\_string\_t**](classastrea_1_1utilities_1_1f__to__string__t.md) &lt;N, typename char\_type&gt;<br>_Provides the ability to convert a floating-point number to a string at compile-time._  |
 
 
 

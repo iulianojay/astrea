@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01First_00_01Rest_8_8_8_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::detail::multi_tuple_cat&lt; First, Rest... &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">First</ref></type>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>Rest</declname>
+        <defname>Rest</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01First_00_01Rest_8_8_8_01_4_1a43195f32beef27439a20a8e92cf214fd" prot="public" static="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="structastrea_1_1astro_1_1detail_1_1tuple__cat__types" kindref="compound">tuple_cat_types</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">First</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="structastrea_1_1astro_1_1detail_1_1multi__tuple__cat" kindref="compound">multi_tuple_cat</ref>&lt; Rest... &gt;::type &gt;::type</type>
+        <definition>using astrea::astro::detail::multi_tuple_cat&lt; First, Rest... &gt;::type =  typename tuple_cat_types&lt;First, typename multi_tuple_cat&lt;Rest...&gt;::type&gt;::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <qualifiedname>astrea::astro::detail::multi_tuple_cat&lt; First, Rest... &gt;::type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="86" column="5" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="85" column="1" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="85" bodyend="87"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_01First_00_01Rest_8_8_8_01_4_1a43195f32beef27439a20a8e92cf214fd" prot="public" virt="non-virtual"><scope>astrea::astro::detail::multi_tuple_cat&lt; First, Rest... &gt;</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

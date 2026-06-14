@@ -63,7 +63,7 @@ _The_ [_**HyperStats**_](structastrea_1_1trace_1_1HyperStats.md) _struct represe
 | Type | Name |
 | ---: | :--- |
 |   | [**HyperStats**](#function-hyperstats-12) () = default<br>_Default constructor for_ [_**HyperStats**_](structastrea_1_1trace_1_1HyperStats.md) _._ |
-|   | [**HyperStats**](#function-hyperstats-22) (const std::vector&lt; [**Stats**](structastrea_1_1trace_1_1Stats.md)&lt; T &gt;&gt; & statsVec) <br>_Constructs a_ [_**HyperStats**_](structastrea_1_1trace_1_1HyperStats.md) _object from a vector of Stats&lt;T&gt;._ |
+|   | [**HyperStats**](#function-hyperstats-22) (const std::vector&lt; [**Stats**](structastrea_1_1trace_1_1Stats.md)&lt; T &gt; &gt; & statsVec) <br>_Constructs a_ [_**HyperStats**_](structastrea_1_1trace_1_1HyperStats.md) _object from a vector of Stats&lt;T&gt;._ |
 |  std::vector&lt; std::string &gt; | [**to\_string\_vector**](#function-to_string_vector) () const<br>_Converts the statistics of statistics to a vector of strings for output._  |
 
 
@@ -187,7 +187,7 @@ astrea::trace::HyperStats::HyperStats () = default
 _Constructs a_ [_**HyperStats**_](structastrea_1_1trace_1_1HyperStats.md) _object from a vector of Stats&lt;T&gt;._
 ```C++
 inline astrea::trace::HyperStats::HyperStats (
-    const std::vector< Stats < T >> & statsVec
+    const std::vector< Stats < T > > & statsVec
 ) 
 ```
 

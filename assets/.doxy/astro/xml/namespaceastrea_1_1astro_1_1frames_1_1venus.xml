@@ -1,39 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1venus" kind="namespace" language="C++">
     <compoundname>astrea::astro::frames::venus</compoundname>
-      <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1adeb2fc714d0f5387b5f00b19abd6741d" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::VENUS, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" kindref="member">FrameAxis::ICRF</ref> &gt;</type>
-        <definition>using astrea::astro::frames::venus::icrf = typedef InertialFrame&lt;CelestialBodyId::VENUS, FrameAxis::ICRF&gt;</definition>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1venus_1_1icrf" prot="public">astrea::astro::frames::venus::icrf</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1venus_1_1j2000" prot="public">astrea::astro::frames::venus::j2000</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1venus_1_1venus__fixed" prot="public">astrea::astro::frames::venus::venus_fixed</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a1c2870f050f332a09fdfea8ad86dc9b9" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1venus_1_1icrf" kindref="compound">astrea::astro::frames::venus::icrf</ref></type>
+        <definition>astrea::astro::frames::venus::icrf astrea::astro::frames::venus::icrf</definition>
         <argsstring></argsstring>
         <name>icrf</name>
+        <qualifiedname>astrea::astro::frames::venus::icrf</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="38" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="38" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="44" column="6"/>
       </memberdef>
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a25160f1621ea4cae5ff89522953e7a2d" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::VENUS, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" kindref="member">FrameAxis::J2000</ref> &gt;</type>
-        <definition>using astrea::astro::frames::venus::j2000 = typedef InertialFrame&lt;CelestialBodyId::VENUS, FrameAxis::J2000&gt;</definition>
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a99228f37682f56f19f10dd91d858c463" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1venus_1_1j2000" kindref="compound">astrea::astro::frames::venus::j2000</ref></type>
+        <definition>astrea::astro::frames::venus::j2000 astrea::astro::frames::venus::j2000</definition>
         <argsstring></argsstring>
         <name>j2000</name>
+        <qualifiedname>astrea::astro::frames::venus::j2000</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="39" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="39" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="46" column="7"/>
       </memberdef>
-      </sectiondef>
+      <memberdef kind="variable" id="body__fixed__frames_8hpp_1a10fa88fd013be53640959abbf693a8be" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1venus_1_1venus__fixed" kindref="compound">astrea::astro::frames::venus::venus_fixed</ref></type>
+        <definition>astrea::astro::frames::venus::venus_fixed astrea::astro::frames::venus::venus_fixed</definition>
+        <argsstring></argsstring>
+        <name>venus_fixed</name>
+        <qualifiedname>astrea::astro::frames::venus::venus_fixed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="35" column="13"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="37" column="1"/>
+    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="42" column="1"/>
   </compounddef>
 </doxygen>

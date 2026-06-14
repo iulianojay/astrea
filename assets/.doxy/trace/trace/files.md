@@ -33,12 +33,9 @@ Here is a list of all files with brief descriptions:
             * **dir** [**platforms**](dir_4dbda61db413396ce1d3b920f98dbf93.md)     
                 * **file** [**AccessObject.hpp**](AccessObject_8hpp.md) _AccessObject class for managing access rights._     
                 * **dir** [**ground**](dir_f1cb7431ef00eaab1d7c5caeb9788760.md)     
-                    * **file** [**Grid.cpp**](Grid_8cpp.md)     
                     * **file** [**Grid.hpp**](Grid_8hpp.md) _Grid class for managing a grid of ground points._     
                     * **file** [**GroundArchitecture.hpp**](GroundArchitecture_8hpp.md) _GroundArchitecture class definition._     
-                    * **file** [**GroundPoint.cpp**](GroundPoint_8cpp.md)     
                     * **file** [**GroundPoint.hpp**](GroundPoint_8hpp.md) _Header file for the GroundPoint class._     
-                    * **file** [**GroundStation.cpp**](GroundStation_8cpp.md)     
                     * **file** [**GroundStation.hpp**](GroundStation_8hpp.md) _Header file for the GroundStation class._     
                 * **dir** [**sensors**](dir_4c34a36d272c54a3547c6d2c18e9dea2.md)     
                     * **file** [**Antenna.cpp**](Antenna_8cpp.md)     
@@ -46,13 +43,12 @@ Here is a list of all files with brief descriptions:
                     * **file** [**Sensor.cpp**](Sensor_8cpp.md)     
                     * **file** [**Sensor.hpp**](Sensor_8hpp.md) _Sensor class definition for astrea access platform._     
                     * **dir** [**fov**](dir_303a66b90134ad3dff734d202c421315.md)     
+                        * **file** [**CircularFieldOfView.cpp**](CircularFieldOfView_8cpp.md)     
+                        * **file** [**CircularFieldOfView.hpp**](CircularFieldOfView_8hpp.md)     
                         * **file** [**FieldOfView.cpp**](FieldOfView_8cpp.md)     
                         * **file** [**FieldOfView.hpp**](FieldOfView_8hpp.md) _Field of View (FoV) classes for representing different types of sensor fields of view._     
-                        * **dir** [**instances**](dir_16a2422c641898ec244ea09da3a664c2.md)     
-                            * **file** [**CircularFieldOfView.cpp**](CircularFieldOfView_8cpp.md)     
-                            * **file** [**CircularFieldOfView.hpp**](CircularFieldOfView_8hpp.md)     
-                            * **file** [**PolygonalFieldOfView.cpp**](PolygonalFieldOfView_8cpp.md)     
-                            * **file** [**PolygonalFieldOfView.hpp**](PolygonalFieldOfView_8hpp.md)     
+                        * **file** [**PolygonalFieldOfView.cpp**](PolygonalFieldOfView_8cpp.md)     
+                        * **file** [**PolygonalFieldOfView.hpp**](PolygonalFieldOfView_8hpp.md)     
                 * **dir** [**vehicles**](dir_9708b761f2d3397b5afefec8b7ac12b4.md)     
                     * **file** [**Viewer.hpp**](Viewer_8hpp.md) _Viewer class for managing access and sensors on a spacecraft._     
             * **dir** [**risesets**](dir_3852194babc4edab798292ba09c53d6d.md)     

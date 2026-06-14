@@ -4,17 +4,17 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**instances**](dir_a85615e9ad779999123e94bfb15c8545.md) **>** [**RadialInTrackCrossTrack.hpp**](RadialInTrackCrossTrack_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**definitions**](dir_0fbce91be2e6463cb25c5b2d70c0c29c.md) **>** [**RadialInTrackCrossTrack.hpp**](RadialInTrackCrossTrack_8hpp.md)
 
 [Go to the source code of this file](RadialInTrackCrossTrack_8hpp_source.md)
 
 _Header file for the RadialInTrackCrossTrack class in the astro namespace._ [More...](#detailed-description)
 
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/CartesianVector.hpp>`
-* `#include <astro/frames/instances/body_centered_inertial_frames.hpp>`
-* `#include <astro/frames/types/DirectionCosineMatrix.hpp>`
-* `#include <astro/frames/types/DynamicFrame.hpp>`
+* `#include <astro/frames/definitions/body_centered_inertial_frames.hpp>`
+* `#include <astro/frames/framework/CartesianVector.hpp>`
+* `#include <astro/frames/framework/DirectionCosineMatrix.hpp>`
+* `#include <astro/frames/framework/DynamicFrame.hpp>`
 * `#include <astro/time/Date.hpp>`
 
 
@@ -36,14 +36,14 @@ _Header file for the RadialInTrackCrossTrack class in the astro namespace._ [Mor
 | namespace | [**astrea**](namespaceastrea.md) <br> |
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
 | namespace | [**frames**](namespaceastrea_1_1astro_1_1frames.md) <br> |
-| namespace | [**dynamic**](namespaceastrea_1_1astro_1_1frames_1_1dynamic.md) <br> |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| class | [**RadialInTrackCrossTrack**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) <br>_Class representing the Radial, In-Track, Cross-Track (RIC) frame._  |
+| struct | [**RadialInTrackCrossTrack**](structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) &lt;\_parent\_&gt;<br>_Class representing the Radial, In-Track, Cross-Track (RIC) frame._  |
+| struct | [**RicTag**](structastrea_1_1astro_1_1frames_1_1RicTag.md) &lt;\_parent\_&gt;<br>[_**Frame**_](structastrea_1_1astro_1_1Frame.md) _tag type for_[_**RadialInTrackCrossTrack**_](structastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) _, defined outside the class to allow use as a_[_**DynamicFrame**_](structastrea_1_1astro_1_1DynamicFrame.md) _NTTP._ |
 
 
 
@@ -127,5 +127,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/instances/RadialInTrackCrossTrack.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/RadialInTrackCrossTrack.hpp`
 

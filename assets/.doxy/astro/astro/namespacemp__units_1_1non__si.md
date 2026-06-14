@@ -77,5 +77,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/propagation/equations_of_motion/CowellsMethod.cpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/propagation/equations_of_motion/CircularRestrictedThreeBodyProblem.cpp`
 

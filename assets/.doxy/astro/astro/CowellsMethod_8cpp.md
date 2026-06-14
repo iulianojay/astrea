@@ -17,9 +17,10 @@
 * `#include <mp-units/systems/si/math.h>`
 * `#include <units/units.hpp>`
 * `#include <astro/platforms/Vehicle.hpp>`
+* `#include <astro/propagation/equations_of_motion/StateTransitionMatrix.hpp>`
 * `#include <astro/propagation/equations_of_motion/TwoBody.hpp>`
 * `#include <astro/state/State.hpp>`
-* `#include <astro/state/orbital_elements/instances/Cartesian.hpp>`
+* `#include <astro/state/orbital_elements/Cartesian.hpp>`
 
 
 
@@ -39,7 +40,6 @@
 | ---: | :--- |
 | namespace | [**astrea**](namespaceastrea.md) <br> |
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
-| namespace | [**non\_si**](namespacemp__units_1_1non__si.md) <br> |
 
 
 

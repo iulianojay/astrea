@@ -2,7 +2,7 @@
 
 # File TwoLineElements.cpp
 
-[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**state**](dir_cf1a4d8122645f8636e977da512a043c.md) **>** [**orbital\_data\_formats**](dir_dce17fbadb9e43f0864b0608daddb5e0.md) **>** [**instances**](dir_8b2b76eceb189c78e8c8535df8f613d6.md) **>** [**TwoLineElements.cpp**](TwoLineElements_8cpp.md)
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**state**](dir_cf1a4d8122645f8636e977da512a043c.md) **>** [**orbital\_data\_formats**](dir_dce17fbadb9e43f0864b0608daddb5e0.md) **>** [**TwoLineElements.cpp**](TwoLineElements_8cpp.md)
 
 [Go to the documentation of this file](TwoLineElements_8cpp.md)
 
@@ -21,7 +21,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <astro/state/orbital_data_formats/instances/TwoLineElements.hpp>
+#include <astro/state/orbital_data_formats/TwoLineElements.hpp>
 
 #include <cmath>
 #include <iomanip>
@@ -36,9 +36,8 @@
 #include <math/interpolation.hpp>
 #include <utilities/string_util.hpp>
 
-#include <astro/state/orbital_elements/instances/Equinoctial.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/state/orbital_elements/Keplerian.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/types/typedefs.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -54,21 +53,21 @@ using si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-TwoLineElements::TwoLineElements(const std::array<std::string, 3> rawTle, const AstrodynamicsSystem& sys) :
+TwoLineElements::TwoLineElements(const std::array<std::string, 3> rawTle) :
     _rawTLE({ rawTle[1], rawTle[2] })
 {
-    ctor_impl({ rawTle[1], rawTle[2] }, sys);
+    ctor_impl({ rawTle[1], rawTle[2] });
     _name = utilities::trim(rawTle[0]);
 }
 
-TwoLineElements::TwoLineElements(const std::array<std::string, 2> rawTle, const AstrodynamicsSystem& sys) :
+TwoLineElements::TwoLineElements(const std::array<std::string, 2> rawTle) :
     _rawTLE(rawTle)
 {
-    ctor_impl(rawTle, sys);
+    ctor_impl(rawTle);
     _name = "Unnamed";
 }
 
-void TwoLineElements::ctor_impl(const std::array<std::string, 2> rawTle, const AstrodynamicsSystem& sys)
+void TwoLineElements::ctor_impl(const std::array<std::string, 2> rawTle)
 {
     // Parse the TLE lines
     if (rawTle[0].size() != 69) {
@@ -120,7 +119,7 @@ void TwoLineElements::ctor_impl(const std::array<std::string, 2> rawTle, const A
     _revNumber  = std::stoi(rawTle[1].substr(63, 5));
     _checkSum2  = std::stoi(rawTle[1].substr(68, 1));
 
-    const Distance semimajor      = pow<1, 3>(sys.get_mu() / (_meanMotion.in(one / s) * _meanMotion.in(one / s)));
+    const Distance semimajor = pow<1, 3>(get_mu<planets::Earth>() / (_meanMotion.in(one / s) * _meanMotion.in(one / s)));
     const Angle inclination       = std::stod(rawTle[1].substr(8, 8)) * deg;
     const Angle rightAscension    = std::stod(rawTle[1].substr(17, 8)) * deg;
     const Unitless eccentricity   = std::stod("." + rawTle[1].substr(26, 7)) * one;
@@ -129,7 +128,7 @@ void TwoLineElements::ctor_impl(const std::array<std::string, 2> rawTle, const A
 
     const Angle trueAnomaly = convert_mean_anomaly_to_true_anomaly(meanAnomaly, eccentricity);
 
-    _elements = Keplerian(semimajor, eccentricity, inclination, rightAscension, argumentOfPerigee, trueAnomaly);
+    _elements = Keplerian<frames::earth::icrf>(semimajor, eccentricity, inclination, rightAscension, argumentOfPerigee, trueAnomaly);
 }
 
 // Copy constructor

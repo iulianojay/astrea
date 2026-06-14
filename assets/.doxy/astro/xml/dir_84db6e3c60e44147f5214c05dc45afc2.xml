@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_84db6e3c60e44147f5214c05dc45afc2" kind="dir">
     <compoundname>astrea/astro/astro</compoundname>
     <innerdir refid="dir_45ba6462728f0c3fdeb841915d341ea3">astrea/astro/astro/frames</innerdir>
@@ -13,6 +13,13 @@
     <innerfile refid="astro_8fwd_8hpp">astro.fwd.hpp</innerfile>
     <innerfile refid="astro_8hpp">astro.hpp</innerfile>
     <innerfile refid="astro_8macros_8hpp">astro.macros.hpp</innerfile>
+    <innerfile refid="frames_8hpp">frames.hpp</innerfile>
+    <innerfile refid="platforms_8hpp">platforms.hpp</innerfile>
+    <innerfile refid="propagation_8hpp">propagation.hpp</innerfile>
+    <innerfile refid="state_8hpp">state.hpp</innerfile>
+    <innerfile refid="systems_8hpp">systems.hpp</innerfile>
+    <innerfile refid="time_8hpp">time.hpp</innerfile>
+    <innerfile refid="types_8hpp">types.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

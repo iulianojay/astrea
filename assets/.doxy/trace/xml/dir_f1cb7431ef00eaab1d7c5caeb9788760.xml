@@ -1,13 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_f1cb7431ef00eaab1d7c5caeb9788760" kind="dir">
     <compoundname>astrea/trace/trace/platforms/ground</compoundname>
-    <innerfile refid="Grid_8cpp">Grid.cpp</innerfile>
     <innerfile refid="Grid_8hpp">Grid.hpp</innerfile>
     <innerfile refid="GroundArchitecture_8hpp">GroundArchitecture.hpp</innerfile>
-    <innerfile refid="GroundPoint_8cpp">GroundPoint.cpp</innerfile>
     <innerfile refid="GroundPoint_8hpp">GroundPoint.hpp</innerfile>
-    <innerfile refid="GroundStation_8cpp">GroundStation.cpp</innerfile>
     <innerfile refid="GroundStation_8hpp">GroundStation.hpp</innerfile>
     <briefdescription>
     </briefdescription>

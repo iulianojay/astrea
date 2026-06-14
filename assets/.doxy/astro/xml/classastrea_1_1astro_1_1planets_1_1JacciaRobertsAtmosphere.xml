@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::planets::JacciaRobertsAtmosphere</compoundname>
+    <includes refid="JacciaRoberts_8hpp" local="no">JacciaRoberts.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere_1a614911c2ec8e94ac0ce033bdbe4219ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::planets::JacciaRobertsAtmosphere::JacciaRobertsAtmosphere</definition>
+        <argsstring>()=delete</argsstring>
+        <name>JacciaRobertsAtmosphere</name>
+        <qualifiedname>astrea::astro::planets::JacciaRobertsAtmosphere::JacciaRobertsAtmosphere</qualifiedname>
+        <briefdescription>
+<para>Deleted constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp" line="37" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere_1a6107f30d31d56288e2753e999a03c35d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Density</ref></type>
+        <definition>Density astrea::astro::planets::JacciaRobertsAtmosphere::find_atmospheric_density</definition>
+        <argsstring>(const State &amp;state, const Distance equitorialRadius, const Distance polarRadius)</argsstring>
+        <name>find_atmospheric_density</name>
+        <qualifiedname>astrea::astro::planets::JacciaRobertsAtmosphere::find_atmospheric_density</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+          <declname>equitorialRadius</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+          <declname>polarRadius</declname>
+        </param>
+        <briefdescription>
+<para>Find the atmospheric density at a given state using the Jaccia-Roberts atmospheric model. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Density The atmospheric density at the given state. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp" line="43" column="20" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.cpp" bodystart="65" bodyend="88"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The Jaccia-Roberts atmospheric model for <ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">Earth</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp" line="32" column="1" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.hpp" bodystart="32" bodyend="44"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere_1a6107f30d31d56288e2753e999a03c35d" prot="public" virt="non-virtual"><scope>astrea::astro::planets::JacciaRobertsAtmosphere</scope><name>find_atmospheric_density</name></member>
+      <member refid="classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere_1a614911c2ec8e94ac0ce033bdbe4219ba" prot="public" virt="non-virtual"><scope>astrea::astro::planets::JacciaRobertsAtmosphere</scope><name>JacciaRobertsAtmosphere</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

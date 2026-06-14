@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1frames_1_1VnbTag" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::frames::VnbTag</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1Frame" prot="public" virt="non-virtual">astrea::astro::Frame&lt;&quot;Velocity-Normal-Binormal&quot;, DynamicOrigin{}, DynamicAxis{}, _parent_ &gt;</basecompoundref>
+    <includes refid="VelocityNormalBinormal_8hpp" local="no">VelocityNormalBinormal.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_parent_</declname>
+        <defname>_parent_</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1frames_1_1VnbTag_1a183fcbb9300178aaf8924f748b6d2a20" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal" kindref="compound">VelocityNormalBinormal</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref> &gt;</type>
+        <definition>VelocityNormalBinormal&lt; _parent_ &gt; astrea::astro::frames::VnbTag&lt; _parent_ &gt;::instantaneous</definition>
+        <argsstring>(const RadiusVector&lt; _parent_ &gt; &amp;r, const VelocityVector&lt; _parent_ &gt; &amp;v) const</argsstring>
+        <name>instantaneous</name>
+        <qualifiedname>astrea::astro::frames::VnbTag::instantaneous</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref> &gt; &amp;</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_parent_</ref> &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" line="37" column="28" bodyfile="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" bodystart="37" bodyend="40"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="structastrea_1_1astro_1_1Frame" kindref="compound">Frame</ref> tag type for <ref refid="structastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal" kindref="compound">VelocityNormalBinormal</ref>, defined outside the class to allow use as a <ref refid="structastrea_1_1astro_1_1DynamicFrame" kindref="compound">DynamicFrame</ref> NTTP. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::Frame&lt;&quot;Velocity-Normal-Binormal&quot;, DynamicOrigin{}, DynamicAxis{}, _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::frames::VnbTag&lt; _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1VnbTag"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::Frame&lt;&quot;Velocity-Normal-Binormal&quot;, DynamicOrigin{}, DynamicAxis{}, _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::frames::VnbTag&lt; _parent_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1VnbTag"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" line="36" column="1" bodyfile="astrea/astro/astro/frames/definitions/VelocityNormalBinormal.hpp" bodystart="36" bodyend="41"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1frames_1_1VnbTag_1a183fcbb9300178aaf8924f748b6d2a20" prot="public" virt="non-virtual"><scope>astrea::astro::frames::VnbTag</scope><name>instantaneous</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

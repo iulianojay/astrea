@@ -21,12 +21,9 @@
 
 | Type | Name |
 | ---: | :--- |
-| file | [**Grid.cpp**](Grid_8cpp.md) <br> |
 | file | [**Grid.hpp**](Grid_8hpp.md) <br>_Grid class for managing a grid of ground points._  |
 | file | [**GroundArchitecture.hpp**](GroundArchitecture_8hpp.md) <br>_GroundArchitecture class definition._  |
-| file | [**GroundPoint.cpp**](GroundPoint_8cpp.md) <br> |
 | file | [**GroundPoint.hpp**](GroundPoint_8hpp.md) <br>_Header file for the GroundPoint class._  |
-| file | [**GroundStation.cpp**](GroundStation_8cpp.md) <br> |
 | file | [**GroundStation.hpp**](GroundStation_8hpp.md) <br>_Header file for the GroundStation class._  |
 
 

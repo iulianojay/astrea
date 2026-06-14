@@ -11,8 +11,9 @@
 _Header file for the base class of equations of motion._ [More...](#detailed-description)
 
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>`
-* `#include <astro/systems/AstrodynamicsSystem.hpp>`
+* `#include <astro/frames/definitions.hpp>`
+* `#include <astro/frames/definitions/primary_frame.hpp>`
+* `#include <astro/types/typedefs.hpp>`
 
 
 

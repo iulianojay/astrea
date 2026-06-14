@@ -12,7 +12,7 @@ _Contains utilities for calculating riseset statistics._ [More...](#detailed-des
 
 * `#include <string>`
 * `#include <vector>`
-* `#include <gtl/btree.hpp>`
+* `#include <gtl/phmap.hpp>`
 * `#include <units/units.hpp>`
 * `#include <trace/analysis/stats/Stats.hpp>`
 * `#include <trace/trace.fwd.hpp>`

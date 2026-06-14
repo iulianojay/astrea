@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1BodyFixedFrame" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::BodyFixedFrame</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1Frame" prot="public" virt="non-virtual">astrea::astro::Frame&lt; _name_, _origin_, _origin_.reference_axes &gt;</basecompoundref>
+    <basecompoundref refid="structastrea_1_1astro_1_1detail_1_1BodyFixedFrameBase" prot="public" virt="non-virtual">astrea::astro::detail::BodyFixedFrameBase</basecompoundref>
+    <includes refid="BodyFixedFrame_8hpp" local="no">BodyFixedFrame.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>mp_units::symbol_text</type>
+        <declname>_name_</declname>
+        <defname>_name_</defname>
+      </param>
+      <param>
+        <type>IsCelestialBody <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_origin_</declname>
+        <defname>_origin_</defname>
+      </param>
+      <param>
+        <type>IsAxis <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_axis_</declname>
+        <defname>_axis_</defname>
+        <defval>_origin_.reference_axes</defval>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+<para>Body-fixed frame defined by a celestial body and its reference axes. The origin is at the center of mass of the body, and the axes are fixed to the body. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>astrea::astro::BodyFixedFrame&lt; _name_, _origin_, _axis_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::Frame&lt; symbol_text,... &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="3">
+        <label>astrea::astro::detail::BodyFixedFrameBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1BodyFixedFrameBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>astrea::astro::BodyFixedFrame&lt; _name_, _origin_, _axis_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea::astro::Frame&lt; symbol_text,... &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="3">
+        <label>astrea::astro::detail::BodyFixedFrameBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1BodyFixedFrameBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/frames/framework/BodyFixedFrame.hpp" line="44" column="1" bodyfile="astrea/astro/astro/frames/framework/BodyFixedFrame.hpp" bodystart="44" bodyend="44"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

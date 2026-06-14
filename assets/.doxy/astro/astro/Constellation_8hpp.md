@@ -13,6 +13,7 @@
 * `#include <string>`
 * `#include <vector>`
 * `#include <units/units.hpp>`
+* `#include <utilities/IdProvider.hpp>`
 * `#include <astro/platforms/space/Shell.hpp>`
 * `#include <astro/propagation/numerical/Integrator.hpp>`
 * `#include <astro/platforms/space/Constellation.ipp>`
@@ -41,7 +42,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Constellation**](classastrea_1_1astro_1_1Constellation.md) &lt;class Spacecraft\_T&gt;<br>_A_ [_**Constellation**_](classastrea_1_1astro_1_1Constellation.md) _is a collection of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _, organized into Shells and/or Planes._ |
+| class | [**Constellation**](classastrea_1_1astro_1_1Constellation.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br>_A_ [_**Constellation**_](classastrea_1_1astro_1_1Constellation.md) _is a collection of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _, organized into Shells and/or Planes._ |
 | class | [**sat\_iterator**](classastrea_1_1astro_1_1Constellation_1_1sat__iterator.md) <br>_Iterator class for iterating over all_ [_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _in the_[_**Constellation**_](classastrea_1_1astro_1_1Constellation.md) _._ |
 
 

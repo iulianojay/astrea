@@ -1,10 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_8f2f7499654791f4fc4240f01fb9baf6" kind="dir">
     <compoundname>astrea/astro/astro/state/angular_elements</compoundname>
-    <innerdir refid="dir_1a50007be9f0149ab221abcea88ff37f">astrea/astro/astro/state/angular_elements/instances</innerdir>
-    <innerfile refid="angular__elements_8hpp">angular_elements.hpp</innerfile>
-    <innerfile refid="AngularElements_8hpp">AngularElements.hpp</innerfile>
+    <innerfile refid="Cylindrical_8hpp">Cylindrical.hpp</innerfile>
+    <innerfile refid="Cylindrical_8ipp">Cylindrical.ipp</innerfile>
+    <innerfile refid="Geocentric_8hpp">Geocentric.hpp</innerfile>
+    <innerfile refid="Geocentric_8ipp">Geocentric.ipp</innerfile>
+    <innerfile refid="Geodetic_8hpp">Geodetic.hpp</innerfile>
+    <innerfile refid="Geodetic_8ipp">Geodetic.ipp</innerfile>
+    <innerfile refid="Spherical_8hpp">Spherical.hpp</innerfile>
+    <innerfile refid="Spherical_8ipp">Spherical.ipp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1astro_1_1barycenters" kind="namespace" language="C++">
+    <compoundname>astrea::astro::barycenters</compoundname>
+    <innerclass refid="structastrea_1_1astro_1_1barycenters_1_1EarthMoonBarycenter" prot="public">astrea::astro::barycenters::EarthMoonBarycenter</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1barycenters_1_1EarthSunBarycenter" prot="public">astrea::astro::barycenters::EarthSunBarycenter</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1barycenters_1_1JupiterSunBarycenter" prot="public">astrea::astro::barycenters::JupiterSunBarycenter</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1barycenters_1_1MarsSunBarycenter" prot="public">astrea::astro::barycenters::MarsSunBarycenter</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1barycenters_1_1MercurySunBarycenter" prot="public">astrea::astro::barycenters::MercurySunBarycenter</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1barycenters_1_1NeptuneSunBarycenter" prot="public">astrea::astro::barycenters::NeptuneSunBarycenter</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1barycenters_1_1SaturnSunBarycenter" prot="public">astrea::astro::barycenters::SaturnSunBarycenter</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1barycenters_1_1SolarSystemBarycenter" prot="public">astrea::astro::barycenters::SolarSystemBarycenter</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1barycenters_1_1UranusSunBarycenter" prot="public">astrea::astro::barycenters::UranusSunBarycenter</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1barycenters_1_1VenusSunBarycenter" prot="public">astrea::astro::barycenters::VenusSunBarycenter</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="barycenters_8hpp_1af10e8091c56464acc3653623963e314a" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1barycenters_1_1SolarSystemBarycenter" kindref="compound">astrea::astro::barycenters::SolarSystemBarycenter</ref></type>
+        <definition>astrea::astro::barycenters::SolarSystemBarycenter astrea::astro::barycenters::SolarSystemBarycenter</definition>
+        <argsstring></argsstring>
+        <name>SolarSystemBarycenter</name>
+        <qualifiedname>astrea::astro::barycenters::SolarSystemBarycenter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/barycenters.hpp" line="46" column="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="barycenters_8hpp_1ad05d70da973fa68bb0fd9da56a97df83" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1barycenters_1_1MercurySunBarycenter" kindref="compound">astrea::astro::barycenters::MercurySunBarycenter</ref></type>
+        <definition>astrea::astro::barycenters::MercurySunBarycenter astrea::astro::barycenters::MercurySunBarycenter</definition>
+        <argsstring></argsstring>
+        <name>MercurySunBarycenter</name>
+        <qualifiedname>astrea::astro::barycenters::MercurySunBarycenter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/barycenters.hpp" line="50" column="22"/>
+      </memberdef>
+      <memberdef kind="variable" id="barycenters_8hpp_1aca466b91771d7f7e398231309d8dddd0" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1barycenters_1_1VenusSunBarycenter" kindref="compound">astrea::astro::barycenters::VenusSunBarycenter</ref></type>
+        <definition>astrea::astro::barycenters::VenusSunBarycenter astrea::astro::barycenters::VenusSunBarycenter</definition>
+        <argsstring></argsstring>
+        <name>VenusSunBarycenter</name>
+        <qualifiedname>astrea::astro::barycenters::VenusSunBarycenter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/barycenters.hpp" line="54" column="20"/>
+      </memberdef>
+      <memberdef kind="variable" id="barycenters_8hpp_1aaed0a27a6f0a05098e10f89c5efb51c5" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1barycenters_1_1EarthSunBarycenter" kindref="compound">astrea::astro::barycenters::EarthSunBarycenter</ref></type>
+        <definition>astrea::astro::barycenters::EarthSunBarycenter astrea::astro::barycenters::EarthSunBarycenter</definition>
+        <argsstring></argsstring>
+        <name>EarthSunBarycenter</name>
+        <qualifiedname>astrea::astro::barycenters::EarthSunBarycenter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/barycenters.hpp" line="58" column="20"/>
+      </memberdef>
+      <memberdef kind="variable" id="barycenters_8hpp_1a8b80146d7b081b49ae2efdd5af4a2111" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1barycenters_1_1MarsSunBarycenter" kindref="compound">astrea::astro::barycenters::MarsSunBarycenter</ref></type>
+        <definition>astrea::astro::barycenters::MarsSunBarycenter astrea::astro::barycenters::MarsSunBarycenter</definition>
+        <argsstring></argsstring>
+        <name>MarsSunBarycenter</name>
+        <qualifiedname>astrea::astro::barycenters::MarsSunBarycenter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/barycenters.hpp" line="62" column="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="barycenters_8hpp_1a77c3ed731d4283ada9bf67d5824c2863" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1barycenters_1_1JupiterSunBarycenter" kindref="compound">astrea::astro::barycenters::JupiterSunBarycenter</ref></type>
+        <definition>astrea::astro::barycenters::JupiterSunBarycenter astrea::astro::barycenters::JupiterSunBarycenter</definition>
+        <argsstring></argsstring>
+        <name>JupiterSunBarycenter</name>
+        <qualifiedname>astrea::astro::barycenters::JupiterSunBarycenter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/barycenters.hpp" line="66" column="22"/>
+      </memberdef>
+      <memberdef kind="variable" id="barycenters_8hpp_1a50b6e25feb9eb38eb3e180b8dafdff10" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1barycenters_1_1SaturnSunBarycenter" kindref="compound">astrea::astro::barycenters::SaturnSunBarycenter</ref></type>
+        <definition>astrea::astro::barycenters::SaturnSunBarycenter astrea::astro::barycenters::SaturnSunBarycenter</definition>
+        <argsstring></argsstring>
+        <name>SaturnSunBarycenter</name>
+        <qualifiedname>astrea::astro::barycenters::SaturnSunBarycenter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/barycenters.hpp" line="70" column="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="barycenters_8hpp_1a044001c2c5852c7cc180fc17bdabc3b0" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1barycenters_1_1UranusSunBarycenter" kindref="compound">astrea::astro::barycenters::UranusSunBarycenter</ref></type>
+        <definition>astrea::astro::barycenters::UranusSunBarycenter astrea::astro::barycenters::UranusSunBarycenter</definition>
+        <argsstring></argsstring>
+        <name>UranusSunBarycenter</name>
+        <qualifiedname>astrea::astro::barycenters::UranusSunBarycenter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/barycenters.hpp" line="74" column="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="barycenters_8hpp_1a5d324f299d71e140ab3e2986ea01fe82" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1barycenters_1_1NeptuneSunBarycenter" kindref="compound">astrea::astro::barycenters::NeptuneSunBarycenter</ref></type>
+        <definition>astrea::astro::barycenters::NeptuneSunBarycenter astrea::astro::barycenters::NeptuneSunBarycenter</definition>
+        <argsstring></argsstring>
+        <name>NeptuneSunBarycenter</name>
+        <qualifiedname>astrea::astro::barycenters::NeptuneSunBarycenter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/barycenters.hpp" line="78" column="22"/>
+      </memberdef>
+      <memberdef kind="variable" id="barycenters_8hpp_1a481e6d3db58e1406ee9bd8f23785a0b2" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1barycenters_1_1EarthMoonBarycenter" kindref="compound">astrea::astro::barycenters::EarthMoonBarycenter</ref></type>
+        <definition>astrea::astro::barycenters::EarthMoonBarycenter astrea::astro::barycenters::EarthMoonBarycenter</definition>
+        <argsstring></argsstring>
+        <name>EarthMoonBarycenter</name>
+        <qualifiedname>astrea::astro::barycenters::EarthMoonBarycenter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/barycenters.hpp" line="82" column="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/barycenters.hpp" line="41" column="1"/>
+  </compounddef>
+</doxygen>

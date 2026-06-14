@@ -28,11 +28,19 @@ class TwoBody : public EquationsOfMotion {
 
     ~TwoBody() = default;
 
-    OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials compute_dynamics(
+        const State& state,
+        const Vehicle& vehicle,
+        const ForceVector<frames::primary>& perts,
+        const ForceVector<frames::primary>& control
+    ) const override;
 
     StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override;
 
-    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Cartesian>(); };
+    constexpr std::size_t get_expected_set_id() const override
+    {
+        return OrbitalElements::get_set_id<Cartesian<frames::primary>>();
+    };
 };
 
 } // namespace astro

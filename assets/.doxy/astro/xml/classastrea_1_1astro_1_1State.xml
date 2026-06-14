@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1State" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::State</compoundname>
     <includes refid="State_8hpp" local="no">State.hpp</includes>
-      <sectiondef kind="friend">
+    <sectiondef kind="friend">
       <memberdef kind="friend" id="classastrea_1_1astro_1_1State_1ace5bb0fe4232b9b0ced67ff743994e71" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>class</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref></type>
         <definition>friend class Integrator</definition>
         <argsstring></argsstring>
         <name>Integrator</name>
+        <qualifiedname>astrea::astro::State::Integrator</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1Integrator" kindref="compound">Integrator</ref></type>
         </param>
@@ -18,13 +19,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="39" column="5" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="39" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="43" column="18" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="friend" id="classastrea_1_1astro_1_1State_1acb390a49b18fb67071d138253f801962" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>class</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref></type>
         <definition>friend class StateTransitionMatrix</definition>
         <argsstring></argsstring>
         <name>StateTransitionMatrix</name>
+        <qualifiedname>astrea::astro::State::StateTransitionMatrix</qualifiedname>
         <param>
           <type><ref refid="classastrea_1_1astro_1_1StateTransitionMatrix" kindref="compound">StateTransitionMatrix</ref></type>
         </param>
@@ -34,19 +36,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="40" column="5" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="40" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="44" column="18" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="friend" id="classastrea_1_1astro_1_1State_1a54de8fb138c00ba980f5be1e83da6349" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1State_1a6c293f08ac54988431d4f11454aa7bbd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::ostream &amp;</type>
-        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <definition>std::ostream &amp; operator&lt;&lt;</definition>
         <argsstring>(std::ostream &amp;os, const State &amp;state)</argsstring>
         <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::State::operator&lt;&lt;</qualifiedname>
         <param>
           <type>std::ostream &amp;</type>
           <declname>os</declname>
         </param>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>state</declname>
         </param>
         <briefdescription>
@@ -55,29 +58,31 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="38" column="12" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="23" bodyend="27"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="42" column="12" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="23" bodyend="28"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-attrib">
+    </sectiondef>
+    <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classastrea_1_1astro_1_1State_1a6235376e0002ab35cd2804f405699d71" prot="private" static="no" mutable="no">
         <type><ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref></type>
         <definition>OrbitalElements astrea::astro::State::_elements</definition>
         <argsstring></argsstring>
         <name>_elements</name>
+        <qualifiedname>astrea::astro::State::_elements</qualifiedname>
         <briefdescription>
-<para>The orbital elements of the state, defining the shape and orientation of the orbit. </para>
+<para>The orbital elements of the state, defining the shape and attitude of the orbit. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="219" column="21" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="219" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="266" column="21" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="266" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1State_1a91e66b19923411d581487013dacb03e1" prot="private" static="no" mutable="no">
         <type><ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref></type>
         <definition>Date astrea::astro::State::_epoch</definition>
         <argsstring></argsstring>
         <name>_epoch</name>
+        <qualifiedname>astrea::astro::State::_epoch</qualifiedname>
         <briefdescription>
 <para>The epoch of the state, representing the time at which the orbital elements are defined. </para>
         </briefdescription>
@@ -85,29 +90,31 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="220" column="10" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="220" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="267" column="10" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="267" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1State_1a6344aa121b0219bafb68cf91d07d0764" prot="private" static="no" mutable="no">
-        <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> *</type>
-        <definition>const AstrodynamicsSystem* astrea::astro::State::_system</definition>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1State_1a0a8f23e29b06d31e46bb537160283218" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &gt;</type>
+        <definition>std::optional&lt;Attitude&gt; astrea::astro::State::_attitude</definition>
         <argsstring></argsstring>
-        <name>_system</name>
+        <name>_attitude</name>
+        <qualifiedname>astrea::astro::State::_attitude</qualifiedname>
         <briefdescription>
-<para>Pointer to the astrodynamics system associated with the state, providing context for the orbital elements. </para>
+<para>The attitude of the state, represented as a quaternion. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="221" column="31" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="221" bodyend="-1"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="268" column="19" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="268" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a0fe3c2662708c99727051bf63f622873" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::State::State</definition>
         <argsstring>()=default</argsstring>
         <name>State</name>
+        <qualifiedname>astrea::astro::State::State</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref>. </para>
         </briefdescription>
@@ -115,24 +122,26 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="46" column="5"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="50" column="5"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a9a5fff3d3f6623ae9c179e0ccc6b0a6e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a88e618236948a16c73dd0260f23dfef1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::State::State</definition>
-        <argsstring>(const OrbitalElements &amp;elements, const Date &amp;epoch, const AstrodynamicsSystem &amp;sys)</argsstring>
+        <argsstring>(const OrbitalElements &amp;elements, const Date &amp;epoch, const std::optional&lt; Attitude &gt; &amp;attitude=std::nullopt)</argsstring>
         <name>State</name>
+        <qualifiedname>astrea::astro::State::State</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>epoch</declname>
         </param>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
-          <declname>sys</declname>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::optional&lt; <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &gt; &amp;</type>
+          <declname>attitude</declname>
+          <defval>std::nullopt</defval>
         </param>
         <briefdescription>
 <para>Constructs a <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> with given orbital elements, epoch, and astrodynamics system. </para>
@@ -156,10 +165,10 @@
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>sys</parametername>
+<parametername>attitude</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The astrodynamics system associated with the state. </para>
+<para>The attitude of the state, represented as a quaternion. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -167,15 +176,77 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="55" column="5" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="55" bodyend="60"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="59" column="5" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="59" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a76eff8f1e7e2e4bacd15ca874f0d182f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>frame</declname>
+            <defname>frame</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>astrea::astro::State::State</definition>
+        <argsstring>(Cartesian&lt; frame &gt; elements, const Date &amp;epoch, const std::optional&lt; Attitude &gt; &amp;attitude=std::nullopt)</argsstring>
+        <name>State</name>
+        <qualifiedname>astrea::astro::State::State</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref>&lt; frame &gt;</type>
+          <declname>elements</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>epoch</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::optional&lt; <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &gt; &amp;</type>
+          <declname>attitude</declname>
+          <defval>std::nullopt</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> from a <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> in any frame, converting it to the primary frame. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>elements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> elements in an arbitrary inertial frame. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>epoch</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The epoch of the state. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>attitude</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The attitude of the state. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/State.hpp" line="74" column="5" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="74" bodyend="79"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a9ae8bc208ca84cc8edf69fe2f1c542ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::State::State</definition>
         <argsstring>(const StateHistory &amp;history)</argsstring>
         <name>State</name>
+        <qualifiedname>astrea::astro::State::State</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1StateHistory" kindref="compound">StateHistory</ref> &amp;</type>
           <declname>history</declname>
         </param>
         <briefdescription>
@@ -197,38 +268,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="69" column="5" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="29" bodyend="36"/>
-      </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a91fcd7ce0b9acf24ebafb45373d480f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type></type>
-        <definition>astrea::astro::State::State</definition>
-        <argsstring>(const OrbitalElements &amp;, const Date &amp;, AstrodynamicsSystem &amp;&amp;)=delete</argsstring>
-        <name>State</name>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
-        </param>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
-        </param>
-        <param>
-          <type><ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;&amp;</type>
-        </param>
-        <briefdescription>
-<para>Deleted constructor for <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> to prevent constructing a reference to an <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> rvalue. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="74" column="5"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="88" column="5" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="30" bodyend="37"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1affd704af3b1b24a108d6426614cfd360" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>bool</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
         <definition>bool astrea::astro::State::operator==</definition>
         <argsstring>(const State &amp;other) const</argsstring>
         <name>operator==</name>
+        <qualifiedname>astrea::astro::State::operator==</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -252,13 +301,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="83" column="10" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="44" bodyend="47"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="97" column="10" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="49" bodyend="53"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a11958162180a0170fcc61f3f51524aff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>const <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
-        <definition>const OrbitalElements&amp; astrea::astro::State::get_elements</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1ab7d75676227e17edcd23a3a2401f0a94" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1OrbitalElements" kindref="compound">OrbitalElements</ref> &amp;</type>
+        <definition>const OrbitalElements &amp; astrea::astro::State::get_elements</definition>
         <argsstring>() const</argsstring>
         <name>get_elements</name>
+        <qualifiedname>astrea::astro::State::get_elements</qualifiedname>
         <briefdescription>
 <para>Gets the orbital elements of the state. </para>
         </briefdescription>
@@ -269,13 +319,32 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="90" column="27" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="90" bodyend="90"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="104" column="27" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="104" bodyend="104"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a2653de61a38fac76e896b9402eb16ffd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
-        <definition>const Date&amp; astrea::astro::State::get_epoch</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1ac1bc9adaa9f25adcd3b098c5d043772e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::optional&lt; <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &gt; &amp;</type>
+        <definition>const std::optional&lt; Attitude &gt; &amp; astrea::astro::State::get_attitude</definition>
+        <argsstring>() const</argsstring>
+        <name>get_attitude</name>
+        <qualifiedname>astrea::astro::State::get_attitude</qualifiedname>
+        <briefdescription>
+<para>Get the attitude of the state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::optional&lt;Attitude&gt; The attitude of the state. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/State.hpp" line="111" column="25" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="111" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1aebad759932d9e8c0ff8281e28735364d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+        <definition>const Date &amp; astrea::astro::State::get_epoch</definition>
         <argsstring>() const</argsstring>
         <name>get_epoch</name>
+        <qualifiedname>astrea::astro::State::get_epoch</qualifiedname>
         <briefdescription>
 <para>Gets the epoch of the state. </para>
         </briefdescription>
@@ -286,24 +355,25 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="97" column="16" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="97" bodyend="97"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="118" column="16" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="118" bodyend="118"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a569984652f1f9a8f1ab37c8ec758ab3b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
-        <definition>const AstrodynamicsSystem&amp; astrea::astro::State::get_system</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a98da72612989b5de99d1d8c26545a6b8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">GravParam</ref></type>
+        <definition>GravParam astrea::astro::State::get_mu</definition>
         <argsstring>() const</argsstring>
-        <name>get_system</name>
+        <name>get_mu</name>
+        <qualifiedname>astrea::astro::State::get_mu</qualifiedname>
         <briefdescription>
-<para>Gets the astrodynamics system associated with the state. </para>
+<para>Gets the gravitational parameter (mu) derived from the origin of the current elements&apos; frame. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref>&amp; Reference to the astrodynamics system. </para>
+<para><simplesect kind="return"><para>GravParam The gravitational parameter of the central body. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="104" column="31" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="104" bodyend="104"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="125" column="15" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="125" bodyend="133"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a0389abaa78ad4f91df63486d4f910f15" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -313,10 +383,11 @@
             <defname>T</defname>
           </param>
         </templateparamlist>
-        <type>void</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
         <definition>void astrea::astro::State::convert_to_set</definition>
         <argsstring>()</argsstring>
         <name>convert_to_set</name>
+        <qualifiedname>astrea::astro::State::convert_to_set</qualifiedname>
         <briefdescription>
 <para>Converts the orbital elements to a different type. </para>
         </briefdescription>
@@ -334,15 +405,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="112" column="10" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="112" bodyend="115"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="141" column="10" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="141" bodyend="144"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a1448d3456e5bf632feb5d61507970e6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1aa59e5052442597334b2ce64f7c3215fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
-        <definition>State&amp; astrea::astro::State::convert_to_set</definition>
+        <definition>State &amp; astrea::astro::State::convert_to_set</definition>
         <argsstring>(const std::size_t idx)</argsstring>
         <name>convert_to_set</name>
+        <qualifiedname>astrea::astro::State::convert_to_set</qualifiedname>
         <param>
-          <type>const std::size_t</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t</type>
           <declname>idx</declname>
         </param>
         <briefdescription>
@@ -362,15 +434,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="122" column="11" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="122" bodyend="126"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="151" column="11" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="151" bodyend="155"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1ae0d2c1bb6a85230d2da170b4450155b4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref></type>
         <definition>State astrea::astro::State::convert_to_set</definition>
         <argsstring>(const std::size_t idx) const</argsstring>
         <name>convert_to_set</name>
+        <qualifiedname>astrea::astro::State::convert_to_set</qualifiedname>
         <param>
-          <type>const std::size_t</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t</type>
           <declname>idx</declname>
         </param>
         <briefdescription>
@@ -392,7 +465,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="134" column="11" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="134" bodyend="139"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="163" column="11" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="163" bodyend="168"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a9f0bb5b0bf79a09e39528ff6cf99d93a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -406,6 +479,7 @@
         <definition>State astrea::astro::State::convert_to_set</definition>
         <argsstring>() const</argsstring>
         <name>convert_to_set</name>
+        <qualifiedname>astrea::astro::State::convert_to_set</qualifiedname>
         <briefdescription>
 <para>Converts the state to a different type of orbital elements. </para>
         </briefdescription>
@@ -425,7 +499,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="148" column="11" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="148" bodyend="151"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="177" column="11" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="177" bodyend="180"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a1ece2e44cee20c4247d0b62cc5e810e7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -435,10 +509,11 @@
             <defname>T</defname>
           </param>
         </templateparamlist>
-        <type>T</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref></type>
         <definition>T astrea::astro::State::in_element_set</definition>
         <argsstring>() const</argsstring>
         <name>in_element_set</name>
+        <qualifiedname>astrea::astro::State::in_element_set</qualifiedname>
         <briefdescription>
 <para>Converts the current orbital elements to a specified type. </para>
         </briefdescription>
@@ -458,72 +533,115 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="160" column="7" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="160" bodyend="163"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="189" column="7" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="189" bodyend="192"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a601bd217f07a98056e49c50abf8d003d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; frames::earth::icrf &gt;</type>
-        <definition>RadiusVector&lt;frames::earth::icrf&gt; astrea::astro::State::get_position</definition>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a30d22c509e1a2c6609fa2fc34fcec591" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; frames::primary &gt;</type>
+        <definition>RadiusVector&lt; frames::primary &gt; astrea::astro::State::get_position</definition>
         <argsstring>() const</argsstring>
         <name>get_position</name>
+        <qualifiedname>astrea::astro::State::get_position</qualifiedname>
         <briefdescription>
 <para>Gets the position vector from the state. </para>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="return"><para>RadiusVector&lt;frames::earth::icrf&gt; The position vector of the state. </para>
+<para><simplesect kind="return"><para><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector&lt;frames::primary&gt;</ref> The position vector of the state. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="170" column="18" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="170" bodyend="170"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="199" column="18" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="199" bodyend="202"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a36f7d73ea098aa0202a046ff73055bd8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="typedefs_8hpp_1a049f800efa9c153e10c735ccd688cc75" kindref="member">VelocityVector</ref>&lt; frames::earth::icrf &gt;</type>
-        <definition>VelocityVector&lt;frames::earth::icrf&gt; astrea::astro::State::get_velocity</definition>
-        <argsstring>() const</argsstring>
-        <name>get_velocity</name>
-        <briefdescription>
-<para>Gets the velocity vector from the state. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>VelocityVector&lt;frames::earth::icrf&gt; The velocity vector of the state. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="177" column="20" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="177" bodyend="177"/>
-      </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a23d8b1c165ad4d0c258a7c30ac602067" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1ab21eafb8046f18a3c4ce7dc26a063360" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename Frame_T</type>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_frame_</declname>
+            <defname>_frame_</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="typedefs_8hpp_1a76420300a2b294561216b99695bb329d" kindref="member">RadiusVector</ref>&lt; Frame_T &gt;</type>
-        <definition>RadiusVector&lt;Frame_T&gt; astrea::astro::State::get_position_in_frame</definition>
+        <type><ref refid="typedefs_8hpp_1a7493d5fafd58941bc3440b866a25638d" kindref="member">RadiusVector</ref>&lt; _frame_ &gt;</type>
+        <definition>RadiusVector&lt; _frame_ &gt; astrea::astro::State::get_position_in_frame</definition>
         <argsstring>() const</argsstring>
         <name>get_position_in_frame</name>
+        <qualifiedname>astrea::astro::State::get_position_in_frame</qualifiedname>
         <briefdescription>
-<para>Gets the position vector in a specified frame. </para>
+<para>Gets the position vector in a specified frame from the state. </para>
         </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
-<parametername>Frame_T</parametername>
+<parametername>_frame_</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The frame type to get the position in. </para>
+<para>The frame to get the position vector in. </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>RadiusVector&lt;Frame_T&gt; The position vector in the specified frame. </para>
+<simplesect kind="return"><para>RadiusVector&lt;<emphasis>frame</emphasis>&gt; The position vector of the state in the specified frame. </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="186" column="18" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="186" bodyend="189"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="211" column="18" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="211" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a3df4858aee76ec4e4f69e4709b6e7b2c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector</ref>&lt; frames::primary &gt;</type>
+        <definition>VelocityVector&lt; frames::primary &gt; astrea::astro::State::get_velocity</definition>
+        <argsstring>() const</argsstring>
+        <name>get_velocity</name>
+        <qualifiedname>astrea::astro::State::get_velocity</qualifiedname>
+        <briefdescription>
+<para>Gets the velocity vector from the state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector&lt;frames::primary&gt;</ref> The velocity vector of the state. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/State.hpp" line="221" column="20" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="221" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a72dbff8878d3a98f412daf577a40e141" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>_frame_</declname>
+            <defname>_frame_</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="typedefs_8hpp_1a7d8b9c68f2d8d343d45e1bf14b6bfb18" kindref="member">VelocityVector</ref>&lt; _frame_ &gt;</type>
+        <definition>VelocityVector&lt; _frame_ &gt; astrea::astro::State::get_velocity_in_frame</definition>
+        <argsstring>(const Date &amp;date) const</argsstring>
+        <name>get_velocity_in_frame</name>
+        <qualifiedname>astrea::astro::State::get_velocity_in_frame</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+<para>Gets the velocity vector in a specified frame from the state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_frame_</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame to get the velocity vector in. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>VelocityVector&lt;<emphasis>frame</emphasis>&gt; The velocity vector of the state in the specified frame. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/State.hpp" line="233" column="20" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="233" bodyend="236"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1aa94a28a92be9a9caa78b0ca149186cda" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -533,18 +651,19 @@
             <defname>T</defname>
           </param>
         </templateparamlist>
-        <type>void</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
         <definition>void astrea::astro::State::set_elements</definition>
         <argsstring>(const T &amp;elements, const bool convertToOriginal=false)</argsstring>
         <name>set_elements</name>
+        <qualifiedname>astrea::astro::State::set_elements</qualifiedname>
         <param>
-          <type>const T &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">T</ref> &amp;</type>
           <declname>elements</declname>
         </param>
         <param>
-          <type>const bool</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
           <declname>convertToOriginal</declname>
-          <defval>false</defval>
+          <defval><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">false</ref></defval>
         </param>
         <briefdescription>
 <para>Sets the orbital elements of the state. </para>
@@ -563,15 +682,45 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="197" column="10" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="197" bodyend="202"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="244" column="10" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="244" bodyend="249"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a855a66eb4850525a911fb01a5545af99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>void astrea::astro::State::set_attitude</definition>
+        <argsstring>(const Attitude &amp;attitude)</argsstring>
+        <name>set_attitude</name>
+        <qualifiedname>astrea::astro::State::set_attitude</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &amp;</type>
+          <declname>attitude</declname>
+        </param>
+        <briefdescription>
+<para>Sets the attitude of the state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>attitude</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new attitude to set. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/State.hpp" line="256" column="10" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="256" bodyend="256"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a9075e3896b1ab8d3deb98b09aa4d3620" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
         <definition>void astrea::astro::State::set_epoch</definition>
         <argsstring>(const Date &amp;epoch)</argsstring>
         <name>set_epoch</name>
+        <qualifiedname>astrea::astro::State::set_epoch</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Date" kindref="compound">Date</ref> &amp;</type>
           <declname>epoch</declname>
         </param>
         <briefdescription>
@@ -591,60 +740,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="209" column="10" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="209" bodyend="209"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="263" column="10" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="263" bodyend="263"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1ab37c584cd657af9a8792076f1d2bc336" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>void</type>
-        <definition>void astrea::astro::State::set_system</definition>
-        <argsstring>(const AstrodynamicsSystem &amp;sys)</argsstring>
-        <name>set_system</name>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
-          <declname>sys</declname>
-        </param>
-        <briefdescription>
-<para>Sets the astrodynamics system associated with the state. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>sys</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The new astrodynamics system to set. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="216" column="10" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="216" bodyend="216"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a98da72612989b5de99d1d8c26545a6b8" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>GravParam</type>
-        <definition>GravParam astrea::astro::State::get_mu</definition>
-        <argsstring>() const</argsstring>
-        <name>get_mu</name>
-        <briefdescription>
-<para>Gets the gravitational parameter (mu) of the central body in the astrodynamics system. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>GravParam The gravitational parameter (mu) of the central body, or zero if no system is associated. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="228" column="15" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="228" bodyend="232"/>
-      </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a43a233d9a04bc065e7e835621442d6d1" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>std::vector&lt; Unitless &gt;</type>
-        <definition>std::vector&lt;Unitless&gt; astrea::astro::State::force_to_vector</definition>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a46acbdce1ea44538eec9ef4be4644442" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt;</type>
+        <definition>std::vector&lt; Unitless &gt; astrea::astro::State::force_to_vector</definition>
         <argsstring>() const</argsstring>
         <name>force_to_vector</name>
+        <qualifiedname>astrea::astro::State::force_to_vector</qualifiedname>
         <briefdescription>
 <para>Converts the <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> to a vector of Unitless values. </para>
         </briefdescription>
@@ -655,15 +760,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="239" column="17" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="239" bodyend="239"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="275" column="17" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="275" bodyend="283"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a85f701bdb420efbf7e26dba4d45c3c56" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref></type>
         <definition>State astrea::astro::State::operator+</definition>
         <argsstring>(const State &amp;other) const</argsstring>
         <name>operator+</name>
+        <qualifiedname>astrea::astro::State::operator+</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -685,15 +791,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="258" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="49" bodyend="53"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="300" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="55" bodyend="62"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a62bbb68c5c7ed5c761d803e8f2607d14" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
         <definition>State &amp; astrea::astro::State::operator+=</definition>
         <argsstring>(const State &amp;other)</argsstring>
         <name>operator+=</name>
+        <qualifiedname>astrea::astro::State::operator+=</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -715,15 +822,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="266" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="55" bodyend="60"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="308" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="64" bodyend="69"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a44d6121aa152b0d11e28e5a9b6cd5386" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref></type>
         <definition>State astrea::astro::State::operator-</definition>
         <argsstring>(const State &amp;other) const</argsstring>
         <name>operator-</name>
+        <qualifiedname>astrea::astro::State::operator-</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -745,15 +853,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="274" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="62" bodyend="66"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="316" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="71" bodyend="78"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a609497076eaf1340ed7b9226eeda8194" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
         <definition>State &amp; astrea::astro::State::operator-=</definition>
         <argsstring>(const State &amp;other)</argsstring>
         <name>operator-=</name>
+        <qualifiedname>astrea::astro::State::operator-=</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -775,15 +884,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="282" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="68" bodyend="73"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="324" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="80" bodyend="85"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a225017d4d5c646d5db0759d7f7affa60" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref></type>
         <definition>State astrea::astro::State::operator*</definition>
         <argsstring>(const Unitless &amp;scalar) const</argsstring>
         <name>operator*</name>
+        <qualifiedname>astrea::astro::State::operator*</qualifiedname>
         <param>
-          <type>const Unitless &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
           <declname>scalar</declname>
         </param>
         <briefdescription>
@@ -805,15 +915,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="290" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="75" bodyend="75"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="332" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="87" bodyend="90"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a55384ba687bcc262a4be4b33684b1d3c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
         <definition>State &amp; astrea::astro::State::operator*=</definition>
         <argsstring>(const Unitless &amp;scalar)</argsstring>
         <name>operator*=</name>
+        <qualifiedname>astrea::astro::State::operator*=</qualifiedname>
         <param>
-          <type>const Unitless &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
           <declname>scalar</declname>
         </param>
         <briefdescription>
@@ -835,15 +946,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="298" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="77" bodyend="81"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="340" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="92" bodyend="96"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a6612951d0d556c9af9962a753fb6b217" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref></type>
         <definition>State astrea::astro::State::operator/</definition>
         <argsstring>(const Unitless &amp;scalar) const</argsstring>
         <name>operator/</name>
+        <qualifiedname>astrea::astro::State::operator/</qualifiedname>
         <param>
-          <type>const Unitless &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
           <declname>scalar</declname>
         </param>
         <briefdescription>
@@ -865,15 +977,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="306" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="83" bodyend="83"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="348" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="98" bodyend="101"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a2824d49cae9710187460ff16357a58b0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
         <definition>State &amp; astrea::astro::State::operator/=</definition>
         <argsstring>(const Unitless &amp;scalar)</argsstring>
         <name>operator/=</name>
+        <qualifiedname>astrea::astro::State::operator/=</qualifiedname>
         <param>
-          <type>const Unitless &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
           <declname>scalar</declname>
         </param>
         <briefdescription>
@@ -895,15 +1008,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="314" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="85" bodyend="89"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="356" column="11" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="103" bodyend="107"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1ac3d8c5730f3705d9752db10397ab81b7" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1StatePartial" kindref="compound">StatePartial</ref></type>
         <definition>StatePartial astrea::astro::State::operator/</definition>
         <argsstring>(const Time &amp;divisor) const</argsstring>
         <name>operator/</name>
+        <qualifiedname>astrea::astro::State::operator/</qualifiedname>
         <param>
-          <type>const Time &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
           <declname>divisor</declname>
         </param>
         <briefdescription>
@@ -925,15 +1039,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="322" column="18" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="91" bodyend="91"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="364" column="18" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="109" bodyend="114"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a2f2fbcb51c80808acf7cbbea42e9461a" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
         <definition>void astrea::astro::State::validate_system</definition>
         <argsstring>(const State &amp;other) const</argsstring>
         <name>validate_system</name>
+        <qualifiedname>astrea::astro::State::validate_system</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -953,26 +1068,23 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="329" column="10" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="93" bodyend="98"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="371" column="10"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-static-func">
-      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1ad24c35e900c2a0dd9059e0f13a171908" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1State_1a50c451f0903de635cb8a5569a0d9acbc" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref></type>
         <definition>State astrea::astro::State::from_vector</definition>
-        <argsstring>(const std::vector&lt; Unitless &gt; &amp;vec, const std::size_t idx, const AstrodynamicsSystem &amp;sys)</argsstring>
+        <argsstring>(const std::vector&lt; Unitless &gt; &amp;vec, const std::size_t idx)</argsstring>
         <name>from_vector</name>
+        <qualifiedname>astrea::astro::State::from_vector</qualifiedname>
         <param>
-          <type>const std::vector&lt; Unitless &gt; &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt; &amp;</type>
           <declname>vec</declname>
         </param>
         <param>
-          <type>const std::size_t</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t</type>
           <declname>idx</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1AstrodynamicsSystem" kindref="compound">AstrodynamicsSystem</ref> &amp;</type>
-          <declname>sys</declname>
         </param>
         <briefdescription>
 <para>Creates an <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> object from a vector of Unitless values. </para>
@@ -994,14 +1106,6 @@
 <para>The index of the orbital element type to create. </para>
 </parameterdescription>
 </parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>sys</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The astrodynamics system associated with the state. </para>
-</parameterdescription>
-</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> The created <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> object. </para>
 </simplesect>
@@ -1009,37 +1113,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/state/State.hpp" line="250" column="18" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="39" bodyend="42"/>
+        <location file="astrea/astro/astro/state/State.hpp" line="292" column="18" bodyfile="astrea/astro/astro/state/State.cpp" bodystart="40" bodyend="47"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
-<para>Class representing the state of an astronomical object. </para>
+<para>Class representing the state of an astronomical object. This class encapsulates the orbital elements, epoch, and the astrodynamics system that the state belongs to. It also optionally includes the attitude of the object as a quaternion. </para>
     </briefdescription>
     <detaileddescription>
-<para><itemizedlist>
-<listitem><para>This class encapsulates the orbital elements, epoch, and the astrodynamics system</para>
-</listitem><listitem><para>that the state belongs to. </para>
-</listitem></itemizedlist>
-</para>
     </detaileddescription>
-    <location file="astrea/astro/astro/state/State.hpp" line="36" column="1" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="36" bodyend="330"/>
+    <location file="astrea/astro/astro/state/State.hpp" line="40" column="1" bodyfile="astrea/astro/astro/state/State.hpp" bodystart="40" bodyend="372"/>
     <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1State_1a0a8f23e29b06d31e46bb537160283218" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>_attitude</name></member>
       <member refid="classastrea_1_1astro_1_1State_1a6235376e0002ab35cd2804f405699d71" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>_elements</name></member>
       <member refid="classastrea_1_1astro_1_1State_1a91e66b19923411d581487013dacb03e1" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>_epoch</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1a6344aa121b0219bafb68cf91d07d0764" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>_system</name></member>
       <member refid="classastrea_1_1astro_1_1State_1a0389abaa78ad4f91df63486d4f910f15" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>convert_to_set</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1a1448d3456e5bf632feb5d61507970e6c" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>convert_to_set</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1aa59e5052442597334b2ce64f7c3215fc" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>convert_to_set</name></member>
       <member refid="classastrea_1_1astro_1_1State_1ae0d2c1bb6a85230d2da170b4450155b4" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>convert_to_set</name></member>
       <member refid="classastrea_1_1astro_1_1State_1a9f0bb5b0bf79a09e39528ff6cf99d93a" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>convert_to_set</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1a43a233d9a04bc065e7e835621442d6d1" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>force_to_vector</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1ad24c35e900c2a0dd9059e0f13a171908" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>from_vector</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1a11958162180a0170fcc61f3f51524aff" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_elements</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1a2653de61a38fac76e896b9402eb16ffd" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_epoch</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1a98da72612989b5de99d1d8c26545a6b8" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_mu</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1a601bd217f07a98056e49c50abf8d003d" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_position</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1a23d8b1c165ad4d0c258a7c30ac602067" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_position_in_frame</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1a569984652f1f9a8f1ab37c8ec758ab3b" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_system</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1a36f7d73ea098aa0202a046ff73055bd8" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_velocity</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1a46acbdce1ea44538eec9ef4be4644442" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>force_to_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1a50c451f0903de635cb8a5569a0d9acbc" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>from_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1ac1bc9adaa9f25adcd3b098c5d043772e" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_attitude</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1ab7d75676227e17edcd23a3a2401f0a94" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_elements</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1aebad759932d9e8c0ff8281e28735364d" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_epoch</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1a98da72612989b5de99d1d8c26545a6b8" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_mu</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1a30d22c509e1a2c6609fa2fc34fcec591" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_position</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1ab21eafb8046f18a3c4ce7dc26a063360" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_position_in_frame</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1a3df4858aee76ec4e4f69e4709b6e7b2c" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_velocity</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1a72dbff8878d3a98f412daf577a40e141" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>get_velocity_in_frame</name></member>
       <member refid="classastrea_1_1astro_1_1State_1a1ece2e44cee20c4247d0b62cc5e810e7" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>in_element_set</name></member>
       <member refid="classastrea_1_1astro_1_1State_1ace5bb0fe4232b9b0ced67ff743994e71" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>Integrator</name></member>
       <member refid="classastrea_1_1astro_1_1State_1a225017d4d5c646d5db0759d7f7affa60" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>operator*</name></member>
@@ -1051,15 +1151,15 @@
       <member refid="classastrea_1_1astro_1_1State_1a6612951d0d556c9af9962a753fb6b217" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>operator/</name></member>
       <member refid="classastrea_1_1astro_1_1State_1ac3d8c5730f3705d9752db10397ab81b7" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>operator/</name></member>
       <member refid="classastrea_1_1astro_1_1State_1a2824d49cae9710187460ff16357a58b0" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>operator/=</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1a54de8fb138c00ba980f5be1e83da6349" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1a6c293f08ac54988431d4f11454aa7bbd" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>operator&lt;&lt;</name></member>
       <member refid="classastrea_1_1astro_1_1State_1affd704af3b1b24a108d6426614cfd360" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>operator==</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1a855a66eb4850525a911fb01a5545af99" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>set_attitude</name></member>
       <member refid="classastrea_1_1astro_1_1State_1aa94a28a92be9a9caa78b0ca149186cda" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>set_elements</name></member>
       <member refid="classastrea_1_1astro_1_1State_1a9075e3896b1ab8d3deb98b09aa4d3620" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>set_epoch</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1ab37c584cd657af9a8792076f1d2bc336" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>set_system</name></member>
       <member refid="classastrea_1_1astro_1_1State_1a0fe3c2662708c99727051bf63f622873" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>State</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1a9a5fff3d3f6623ae9c179e0ccc6b0a6e" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>State</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1a88e618236948a16c73dd0260f23dfef1" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>State</name></member>
+      <member refid="classastrea_1_1astro_1_1State_1a76eff8f1e7e2e4bacd15ca874f0d182f" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>State</name></member>
       <member refid="classastrea_1_1astro_1_1State_1a9ae8bc208ca84cc8edf69fe2f1c542ad" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>State</name></member>
-      <member refid="classastrea_1_1astro_1_1State_1a91fcd7ce0b9acf24ebafb45373d480f3" prot="public" virt="non-virtual"><scope>astrea::astro::State</scope><name>State</name></member>
       <member refid="classastrea_1_1astro_1_1State_1acb390a49b18fb67071d138253f801962" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>StateTransitionMatrix</name></member>
       <member refid="classastrea_1_1astro_1_1State_1a2f2fbcb51c80808acf7cbbea42e9461a" prot="private" virt="non-virtual"><scope>astrea::astro::State</scope><name>validate_system</name></member>
     </listofallmembers>

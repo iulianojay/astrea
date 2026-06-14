@@ -13,29 +13,34 @@
 
 #include <vector>
 
+#include <astro/systems/system_concepts.hpp>
+
 #include <trace/platforms/ground/GroundStation.hpp>
 
 namespace astrea {
 namespace trace {
 
+template <astro::IsCelestialBody auto _body_>
 class GroundArchitecture {
+    using Station = GroundStation<_body_>;
+
   public:
-    GroundArchitecture(const std::vector<GroundStation>& groundStations) :
+    GroundArchitecture(const std::vector<Station>& groundStations) :
         _groundStations(groundStations)
     {
     }
 
     ~GroundArchitecture() = default;
 
-    GroundStation& operator[](const std::size_t& idx) { return _groundStations[idx]; }
+    Station& operator[](const std::size_t& idx) { return _groundStations[idx]; }
 
-    const GroundStation& operator[](const std::size_t& idx) const { return _groundStations[idx]; }
+    const Station& operator[](const std::size_t& idx) const { return _groundStations[idx]; }
 
     std::size_t size() const { return _groundStations.size(); }
 
-    using iterator = std::vector<GroundStation>::iterator;
+    using iterator = typename std::vector<Station>::iterator;
 
-    using const_iterator = std::vector<GroundStation>::const_iterator;
+    using const_iterator = typename std::vector<Station>::const_iterator;
 
     iterator begin() { return _groundStations.begin(); }
 
@@ -50,7 +55,7 @@ class GroundArchitecture {
     const_iterator cend() const { return _groundStations.end(); }
 
   private:
-    std::vector<GroundStation> _groundStations; 
+    std::vector<Station> _groundStations; 
 };
 
 } // namespace trace

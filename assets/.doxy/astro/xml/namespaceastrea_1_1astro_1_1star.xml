@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1astro_1_1star" kind="namespace" language="C++">
+    <compoundname>astrea::astro::star</compoundname>
+    <innerclass refid="structastrea_1_1astro_1_1star_1_1Sun" prot="public">astrea::astro::star::Sun</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="Sun_8hpp_1a99fe1115badeff9f6d5b1f902c3f56e7" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1star_1_1Sun" kindref="compound">astrea::astro::star::Sun</ref></type>
+        <definition>astrea::astro::star::Sun astrea::astro::star::Sun</definition>
+        <argsstring></argsstring>
+        <name>Sun</name>
+        <qualifiedname>astrea::astro::star::Sun</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Sun/Sun.hpp" line="43" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/barycenters.hpp" line="16" column="1"/>
+  </compounddef>
+</doxygen>

@@ -31,14 +31,14 @@
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/angular_elements/angular_elements.hpp>
+#include <astro/state/angular_elements.hpp>
+#include <astro/state/orbital_elements/Keplerian.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/utilities/conversions.hpp>
 
@@ -59,15 +59,14 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 
 
-AccelerationVector<frames::earth::icrf> AtmosphericForce::compute_force(const State& state, const Vehicle& vehicle) const
+Perturbation AtmosphericForce::compute_perturbation(const State& state, const Vehicle& vehicle) const
 {
     // Extract
-    const AstrodynamicsSystem& sys       = state.get_system();
-    const CelestialBodyUniquePtr& center = sys.get_central_body();
-    const AngularRate& bodyRotationRate  = center->get_rotation_rate();
+    static constexpr auto center            = frames::primary.origin;
+    const AngularVelocity& bodyRotationRate = get_rotation_rate<center>();
 
-    const RadiusVector<frames::earth::icrf>& r   = state.get_position();
-    const VelocityVector<frames::earth::icrf>& v = state.get_velocity();
+    const RadiusVector<frames::primary>& r   = state.get_position();
+    const VelocityVector<frames::primary>& v = state.get_velocity();
 
     const Distance& x = r.get_x();
     const Distance& y = r.get_y();
@@ -78,43 +77,30 @@ AccelerationVector<frames::earth::icrf> AtmosphericForce::compute_force(const St
     const Velocity& vz = v.get_z();
 
     // Find velocity relative to atmosphere
-    const VelocityVector<frames::earth::icrf> relVelocity = { vx + y * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
-                                                              vy - x * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
-                                                              vz };
+    const VelocityVector<frames::primary> relVelocity = { vx + y * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
+                                                          vy - x * bodyRotationRate.in(rad / s) / (isq_angle::cotes_angle),
+                                                          vz };
 
     // Exponential Drag Model
-    const Density atmosphericDensity = find_atmospheric_density(state, center);
+    const Density atmosphericDensity = find_atmospheric_density<center>(state);
 
     // Accel due to drag
     const Velocity relVelMag         = relVelocity.norm();
     const Unitless coefficientOfDrag = vehicle.get_coefficient_of_drag();
     const SurfaceArea areaRam        = vehicle.get_ram_area();
-    const Mass mass                  = vehicle.get_mass();
-    const Acceleration dragAccelMag = -0.5 * coefficientOfDrag * (areaRam) / mass * atmosphericDensity * pow<2>(relVelMag);
+    const Force dragForceMag         = -0.5 * coefficientOfDrag * areaRam * atmosphericDensity * pow<2>(relVelMag);
 
-    const AccelerationVector<frames::earth::icrf> accelDrag = dragAccelMag * (relVelocity / relVelMag);
+    const ForceVector<frames::primary> forceDrag = dragForceMag * (relVelocity / relVelMag);
 
     // accel due to lift
     const Angle angleOfAttack        = atan2(relVelocity.get_z(), relVelocity.get_x());
     const Unitless coefficientOfLift = vehicle.get_coefficient_of_lift();
     const SurfaceArea areaLift       = vehicle.get_lift_area();
-    const Acceleration liftAccelMag =
-        0.5 * coefficientOfLift * areaLift / mass * atmosphericDensity * pow<2>(relVelMag) * sin(angleOfAttack);
-    const AccelerationVector<frames::earth::icrf> accelLift = liftAccelMag * (r / R); // just assume radial lift for now
+    const Force liftForceMag = 0.5 * coefficientOfLift * areaLift * atmosphericDensity * pow<2>(relVelMag) * sin(angleOfAttack);
+    const ForceVector<frames::primary> forceLift = liftForceMag * (r / R); // just assume radial lift for now
 
-    return { accelDrag[0] + accelLift[0], accelDrag[1] + accelLift[1], accelDrag[2] + accelLift[2] };
-}
-
-
-const Density AtmosphericForce::find_atmospheric_density(const State& state, const CelestialBodyUniquePtr& center) const
-{
-    // Find altitude
-    const RadiusVector<frames::earth::earth_fixed> rEcef = state.get_position_in_frame<frames::earth::earth_fixed>();
-    const auto [latitude, longitude, altitude] =
-        convert_earth_fixed_to_geodetic(rEcef, center->get_equitorial_radius(), center->get_polar_radius());
-
-    return center->find_atmospheric_density(state.get_epoch(), altitude);
-}
+    return { .force = forceDrag + forceLift };
+};
 
 
 } // namespace astro

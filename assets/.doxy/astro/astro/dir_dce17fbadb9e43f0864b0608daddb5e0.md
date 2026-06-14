@@ -21,14 +21,12 @@
 
 | Type | Name |
 | ---: | :--- |
-| file | [**orbital\_data\_formats.hpp**](orbital__data__formats_8hpp.md) <br>_Utility header to include all orbital data format headers._  |
+| file | [**GeneralPerturbations.cpp**](GeneralPerturbations_8cpp.md) <br> |
+| file | [**GeneralPerturbations.hpp**](GeneralPerturbations_8hpp.md) <br>_GeneralPerturbations data structure for the astro module._  |
+| file | [**TwoLineElements.cpp**](TwoLineElements_8cpp.md) <br> |
+| file | [**TwoLineElements.hpp**](TwoLineElements_8hpp.md) <br>_Header file for the TwoLineElements class._  |
 
 
-## Directories
-
-| Type | Name |
-| ---: | :--- |
-| dir | [**instances**](dir_8b2b76eceb189c78e8c8535df8f613d6.md) <br> |
 
 
 

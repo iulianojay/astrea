@@ -1,0 +1,902 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="Quaternion_8hpp" kind="file" language="C++">
+    <compoundname>Quaternion.hpp</compoundname>
+    <includes local="no">stdexcept</includes>
+    <includes local="no">mp-units/core.h</includes>
+    <includes local="no">mp-units/math.h</includes>
+    <includes local="no">mp-units/systems/angular/math.h</includes>
+    <includes local="no">units/units.hpp</includes>
+    <includes refid="astro_8fwd_8hpp" local="no">astro/astro.fwd.hpp</includes>
+    <includes refid="CartesianVector_8hpp" local="no">astro/frames/framework/CartesianVector.hpp</includes>
+    <includes refid="DirectionCosineMatrix_8hpp" local="no">astro/frames/framework/DirectionCosineMatrix.hpp</includes>
+    <includes refid="frame__concepts_8hpp" local="no">astro/frames/framework/frame_concepts.hpp</includes>
+    <includes refid="EulerAngles_8hpp" local="no">astro/state/attitude/EulerAngles.hpp</includes>
+    <includes refid="enums_8hpp" local="no">astro/types/enums.hpp</includes>
+    <includes refid="EulerAngles_8ipp" local="no">astro/state/attitude/EulerAngles.ipp</includes>
+    <includedby refid="State_8hpp" local="no">astrea/astro/astro/state/State.hpp</includedby>
+    <includedby refid="attitude_8hpp" local="no">astrea/astro/astro/state/attitude.hpp</includedby>
+    <includedby refid="Attitude_8hpp" local="no">astrea/astro/astro/state/attitude/Attitude.hpp</includedby>
+    <includedby refid="EulerAngles_8ipp" local="no">astrea/astro/astro/state/attitude/EulerAngles.ipp</includedby>
+    <incdepgraph>
+      <node id="7">
+        <label>astro/astro.fwd.hpp</label>
+        <link refid="astro_8fwd_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>astro/frames/framework/Axis.hpp</label>
+        <link refid="Axis_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astro/frames/framework/CartesianVector.hpp</label>
+        <link refid="CartesianVector_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>astro/frames/framework/DcmInterface.hpp</label>
+        <link refid="DcmInterface_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>astro/frames/framework/DirectionCosineMatrix.hpp</label>
+        <link refid="DirectionCosineMatrix_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>astro/frames/framework/Frame.hpp</label>
+        <link refid="Frame_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>astro/frames/framework/Origin.hpp</label>
+        <link refid="Origin_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astro/frames/framework/frame_concepts.hpp</label>
+        <link refid="frame__concepts_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>astro/state/attitude/EulerAngles.hpp</label>
+        <link refid="EulerAngles_8hpp"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>astro/state/attitude/EulerAngles.ipp</label>
+        <link refid="EulerAngles_8ipp"/>
+        <childnode refid="1" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/state/attitude/Quaternion.hpp</label>
+        <link refid="Quaternion_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astro/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>astro/utilities/conversions.hpp</label>
+        <link refid="conversions_8hpp"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>array</label>
+      </node>
+      <node id="23">
+        <label>cmath</label>
+      </node>
+      <node id="8">
+        <label>concepts</label>
+      </node>
+      <node id="24">
+        <label>iostream</label>
+      </node>
+      <node id="28">
+        <label>math/interpolation.hpp</label>
+      </node>
+      <node id="3">
+        <label>mp-units/core.h</label>
+      </node>
+      <node id="15">
+        <label>mp-units/framework.h</label>
+      </node>
+      <node id="19">
+        <label>mp-units/framework/symbol_text.h</label>
+      </node>
+      <node id="4">
+        <label>mp-units/math.h</label>
+      </node>
+      <node id="16">
+        <label>mp-units/systems/angular.h</label>
+      </node>
+      <node id="5">
+        <label>mp-units/systems/angular/math.h</label>
+      </node>
+      <node id="30">
+        <label>numbers</label>
+      </node>
+      <node id="2">
+        <label>stdexcept</label>
+      </node>
+      <node id="11">
+        <label>stdint.h</label>
+      </node>
+      <node id="18">
+        <label>type_traits</label>
+      </node>
+      <node id="14">
+        <label>typeinfo</label>
+      </node>
+      <node id="6">
+        <label>units/units.hpp</label>
+      </node>
+      <node id="25">
+        <label>utilities/string_util.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="5">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
+      </node>
+      <node id="9">
+        <label>astrea/astro/astro/platforms.hpp</label>
+        <link refid="platforms_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea/astro/astro/platforms/space/Constellation.hpp</label>
+        <link refid="Constellation_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea/astro/astro/platforms/space/Plane.hpp</label>
+        <link refid="Plane_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea/astro/astro/platforms/space/Shell.hpp</label>
+        <link refid="Shell_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astrea/astro/astro/platforms/vehicles/Spacecraft.hpp</label>
+        <link refid="Spacecraft_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea/astro/astro/propagation.hpp</label>
+        <link refid="propagation_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>astrea/astro/astro/propagation/event_detection/Event.hpp</label>
+        <link refid="Event_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea/astro/astro/propagation/event_detection/EventDetector.hpp</label>
+        <link refid="EventDetector_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea/astro/astro/propagation/event_detection/Schedule.hpp</label>
+        <link refid="Schedule_8hpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>astrea/astro/astro/propagation/force_models/NBodyForce.hpp</label>
+        <link refid="NBodyForce_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astrea/astro/astro/propagation/force_models/OblatenessForce.hpp</label>
+        <link refid="OblatenessForce_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astrea/astro/astro/propagation/force_models/OblatenessForce.ipp</label>
+        <link refid="OblatenessForce_8ipp_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea/astro/astro/propagation/numerical/Integrator.hpp</label>
+        <link refid="Integrator_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>astrea/astro/astro/state.hpp</label>
+        <link refid="state_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/astro/astro/state/State.hpp</label>
+        <link refid="State_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>astrea/astro/astro/state/StateHistory.hpp</label>
+        <link refid="StateHistory_8hpp"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>astrea/astro/astro/state/attitude.hpp</label>
+        <link refid="attitude_8hpp"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>astrea/astro/astro/state/attitude/Attitude.hpp</label>
+        <link refid="Attitude_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>astrea/astro/astro/state/attitude/EulerAngles.ipp</label>
+        <link refid="EulerAngles_8ipp"/>
+        <childnode refid="1" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/astro/astro/state/attitude/Quaternion.hpp</label>
+        <link refid="Quaternion_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>astrea/astro/astro/systems.hpp</label>
+        <link refid="systems_8hpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astrea/astro/astro/systems/atmosphere.hpp</label>
+        <link refid="atmosphere_8hpp_source"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classastrea_1_1astro_1_1Quaternion" prot="public">astrea::astro::Quaternion</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1QuaternionPartial" prot="public">astrea::astro::QuaternionPartial</innerclass>
+    <innernamespace refid="namespaceastrea">astrea</innernamespace>
+    <innernamespace refid="namespaceastrea_1_1astro">astrea::astro</innernamespace>
+    <briefdescription>
+<para>Class representing a quaternion for attitude transformations between state/frames. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Jay Iuliano (<ulink url="mailto:iuliano.jay@gmail.com">iuliano.jay@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="date"><para>2026-03-22</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2026 Jay Iuliano</para>
+</simplesect>
+The GNU Lesser General Public License (LGPL)</para>
+<para>This file is part of Astrea. Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should have received a copy of the GNU General Public License along with Astrea. If not, see <ulink url="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</ulink>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/core.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/angular/math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;units/units.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="astro_8fwd_8hpp" kindref="compound">astro/astro.fwd.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="CartesianVector_8hpp" kindref="compound">astro/frames/framework/CartesianVector.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="DirectionCosineMatrix_8hpp" kindref="compound">astro/frames/framework/DirectionCosineMatrix.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="frame__concepts_8hpp" kindref="compound">astro/frames/framework/frame_concepts.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="EulerAngles_8hpp" kindref="compound">astro/state/attitude/EulerAngles.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="enums_8hpp" kindref="compound">astro/types/enums.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;IsFrame<sp/>auto<sp/>_in_frame_,<sp/>IsFrame<sp/>auto<sp/>_out_frame_&gt;</highlight></codeline>
+<codeline lineno="51" refid="classastrea_1_1astro_1_1Quaternion" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">operator&lt;&lt;</ref>(std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">quaternion</ref>)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[s:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">quaternion</ref>._s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>u:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">quaternion</ref>._u<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;]&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>in_frame<sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>out_frame<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="classastrea_1_1astro_1_1Quaternion_1a13947c895de64ec113a7412c7027e07d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a13947c895de64ec113a7412c7027e07d" kindref="member">Quaternion</ref>()<sp/>:</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_s(1.0<sp/>*<sp/>mp_units::one),</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u(<ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt;<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>,<sp/>in_frame&gt;())</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1af09126d7a0de535a104ff3bce56d5627" kindref="member">normalize</ref>();</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="classastrea_1_1astro_1_1Quaternion_1a9d95fdf6417f2e0a42336c9c0dd954e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a9d95fdf6417f2e0a42336c9c0dd954e3" kindref="member">Quaternion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Unitless, in_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref>)<sp/>:</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_s(0.0<sp/>*<sp/>mp_units::one),</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref>)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1af09126d7a0de535a104ff3bce56d5627" kindref="member">normalize</ref>();</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="classastrea_1_1astro_1_1Quaternion_1aa711736a5e02d51cc02b1d0a737f76a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1aa711736a5e02d51cc02b1d0a737f76a2" kindref="member">Quaternion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/>s,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Unitless, in_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref>)<sp/>:</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_s(s),</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref>)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1af09126d7a0de535a104ff3bce56d5627" kindref="member">normalize</ref>();</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="classastrea_1_1astro_1_1Quaternion_1aadc22acdfd9ad559dc36d49b9641c2bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1aadc22acdfd9ad559dc36d49b9641c2bc" kindref="member">Quaternion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/>s,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/>y,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/>z)<sp/>:</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_s(s),</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u(x,<sp/>y,<sp/>z)</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1af09126d7a0de535a104ff3bce56d5627" kindref="member">normalize</ref>();</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="classastrea_1_1astro_1_1Quaternion_1a6ea371eb80f46556b2db7d226a99754c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a6ea371eb80f46556b2db7d226a99754c" kindref="member">Quaternion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123" refid="classastrea_1_1astro_1_1Quaternion_1a38de82a1baf21a25fb39ec2558ca80cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a38de82a1baf21a25fb39ec2558ca80cc" kindref="member">Quaternion</ref>(<ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&amp;&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128" refid="classastrea_1_1astro_1_1Quaternion_1ad9c6bb5853e58b8086eff9fa6c10a9fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1ad9c6bb5853e58b8086eff9fa6c10a9fa" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133" refid="classastrea_1_1astro_1_1Quaternion_1a48e4afab0f97e59f0d41c0fd14135af7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a48e4afab0f97e59f0d41c0fd14135af7" kindref="member">operator=</ref>(<ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&amp;&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="classastrea_1_1astro_1_1Quaternion_1aa50bb80272b3c35cc8cef367a5d0a012" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1aa50bb80272b3c35cc8cef367a5d0a012" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_s<sp/>==<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._s<sp/>&amp;&amp;<sp/>_u<sp/>==<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._u;<sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157" refid="classastrea_1_1astro_1_1Quaternion_1afc7102a8c9d4843a4be3a82455959bf6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1afc7102a8c9d4843a4be3a82455959bf6" kindref="member">Quaternion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dcm</ref>)</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Convert<sp/>the<sp/>DCM<sp/>to<sp/>a<sp/>quaternion<sp/>using<sp/>Shepperd&apos;s<sp/>numerically<sp/>stable<sp/>algorithm</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>trace<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dcm</ref>.<ref refid="structastrea_1_1astro_1_1DcmInterface_1a67c8b821d1bb9ccbfc81961c5fb012da" kindref="member">trace</ref>();</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xx</ref><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dcm</ref>[0,<sp/>0];</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xy</ref><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dcm</ref>[0,<sp/>1];</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xz</ref><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dcm</ref>[0,<sp/>2];</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yy</ref><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dcm</ref>[1,<sp/>1];</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yx</ref><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dcm</ref>[1,<sp/>0];</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yz</ref><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dcm</ref>[1,<sp/>2];</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zx</ref><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dcm</ref>[2,<sp/>0];</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zy</ref><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dcm</ref>[2,<sp/>1];</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zz</ref><sp/><sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dcm</ref>[2,<sp/>2];</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Case<sp/>1:<sp/>Trace<sp/>&gt;<sp/>0<sp/>-<sp/>Most<sp/>numerically<sp/>stable<sp/>when<sp/>rotation<sp/>angle<sp/>&lt;<sp/>120°</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ref:<sp/>Shepperd<sp/>(1978),<sp/>Eq.<sp/>15</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(trace<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sqrt</ref>(trace<sp/>+<sp/>1.0)<sp/>*<sp/>2.0;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_s<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0.25<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[0]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zy</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yz</ref>)<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[1]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xz</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zx</ref>)<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[2]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yx</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xy</ref>)<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Case<sp/>2:<sp/>xx<sp/>is<sp/>the<sp/>largest<sp/>diagonal<sp/>element</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ref:<sp/>Shepperd<sp/>(1978),<sp/>Eq.<sp/>16<sp/>-<sp/>Stable<sp/>when<sp/>rotation<sp/>is<sp/>primarily<sp/>about<sp/>x-axis</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xx</ref><sp/>&gt;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yy</ref>)<sp/>&amp;&amp;<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xx</ref><sp/>&gt;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zz</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sqrt</ref>(1.0<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xx</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yy</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zz</ref>)<sp/>*<sp/>2.0;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_s<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zy</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yz</ref>)<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[0]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0.25<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[1]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yx</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xy</ref>)<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[2]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zx</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xz</ref>)<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Case<sp/>3:<sp/>yy<sp/>is<sp/>the<sp/>largest<sp/>diagonal<sp/>element</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ref:<sp/>Shepperd<sp/>(1978),<sp/>Eq.<sp/>17<sp/>-<sp/>Stable<sp/>when<sp/>rotation<sp/>is<sp/>primarily<sp/>about<sp/>y-axis</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yy</ref><sp/>&gt;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zz</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sqrt</ref>(1.0<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yy</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xx</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zz</ref>)<sp/>*<sp/>2.0;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_s<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xz</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zx</ref>)<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[0]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yx</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xy</ref>)<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[1]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0.25<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[2]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zy</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yz</ref>)<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Case<sp/>4:<sp/>zz<sp/>is<sp/>the<sp/>largest<sp/>diagonal<sp/>element</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ref:<sp/>Shepperd<sp/>(1978),<sp/>Eq.<sp/>18<sp/>-<sp/>Stable<sp/>when<sp/>rotation<sp/>is<sp/>primarily<sp/>about<sp/>z-axis</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sqrt</ref>(1.0<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zz</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xx</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yy</ref>)<sp/>*<sp/>2.0;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_s<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yx</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xy</ref>)<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[0]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zx</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">xz</ref>)<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[1]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">zy</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">yz</ref>)<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[2]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0.25<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">r</ref>;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1af09126d7a0de535a104ff3bce56d5627" kindref="member">normalize</ref>();</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence,<sp/>RotationType<sp/>rotation_type&gt;</highlight></codeline>
+<codeline lineno="220" refid="classastrea_1_1astro_1_1Quaternion_1ab5d7326a05d8f7eecb0489895951d069" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1ab5d7326a05d8f7eecb0489895951d069" kindref="member">Quaternion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angleSequence</ref>)<sp/>:</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angleSequence</ref>.<ref refid="classastrea_1_1astro_1_1Quaternion_1a83b7a65534096cc6e574f5dcf097449a" kindref="member">to_dcm</ref>())</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="234" refid="classastrea_1_1astro_1_1Quaternion_1a014495badd65d769d80f814b3c72fb47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a014495badd65d769d80f814b3c72fb47" kindref="member">Quaternion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angle</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Unitless, in_frame&gt;</ref>&amp;<sp/>axis)<sp/>:</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_s(mp_units::angular::<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">cos</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angle</ref><sp/>/<sp/>2.0)),</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u(axis<sp/>*<sp/>mp_units::angular::sin(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">angle</ref><sp/>/<sp/>2.0))</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="245" refid="classastrea_1_1astro_1_1Quaternion_1a83b7a65534096cc6e574f5dcf097449a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;in_frame, out_frame&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a83b7a65534096cc6e574f5dcf097449a" kindref="member">to_dcm</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="246"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>x<sp/>=<sp/>_u.<ref refid="structastrea_1_1astro_1_1CartesianVector_1a470b39df11ebf0f839566bd77d67f2ce" kindref="member">get_x</ref>();</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>y<sp/>=<sp/>_u.<ref refid="structastrea_1_1astro_1_1CartesianVector_1a783bff52824ebc838ad98d81e556bf39" kindref="member">get_y</ref>();</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>z<sp/>=<sp/>_u.<ref refid="structastrea_1_1astro_1_1CartesianVector_1ae8bb024080155eb1bc1037dc40b95b88" kindref="member">get_z</ref>();</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>s<sp/>=<sp/>_s;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">DirectionCosineMatrix&lt;in_frame, out_frame&gt;</ref>{</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>s<sp/>*<sp/>s<sp/>+<sp/>x<sp/>*<sp/>x<sp/>-<sp/>y<sp/>*<sp/>y<sp/>-<sp/>z<sp/>*<sp/>z,<sp/>2.0<sp/>*<sp/>(x<sp/>*<sp/>y<sp/>-<sp/>s<sp/>*<sp/>z),<sp/>2.0<sp/>*<sp/>(x<sp/>*<sp/>z<sp/>+<sp/>s<sp/>*<sp/>y)<sp/>},</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>2.0<sp/>*<sp/>(x<sp/>*<sp/>y<sp/>+<sp/>s<sp/>*<sp/>z),<sp/>s<sp/>*<sp/>s<sp/>-<sp/>x<sp/>*<sp/>x<sp/>+<sp/>y<sp/>*<sp/>y<sp/>-<sp/>z<sp/>*<sp/>z,<sp/>2.0<sp/>*<sp/>(y<sp/>*<sp/>z<sp/>-<sp/>s<sp/>*<sp/>x)<sp/>},</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;Unitless,<sp/>3&gt;{<sp/>2.0<sp/>*<sp/>(x<sp/>*<sp/>z<sp/>-<sp/>s<sp/>*<sp/>y),<sp/>2.0<sp/>*<sp/>(y<sp/>*<sp/>z<sp/>+<sp/>s<sp/>*<sp/>x),<sp/>s<sp/>*<sp/>s<sp/>-<sp/>x<sp/>*<sp/>x<sp/>-<sp/>y<sp/>*<sp/>y<sp/>+<sp/>z<sp/>*<sp/>z<sp/>}<sp/>}</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;RotationSequence<sp/>sequence,<sp/>RotationType<sp/>rotation_type&gt;</highlight></codeline>
+<codeline lineno="270" refid="classastrea_1_1astro_1_1Quaternion_1a1a4f5168bb6d55d6a282acdade05755c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">EulerAngles&lt;sequence, rotation_type, in_frame, out_frame&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a1a4f5168bb6d55d6a282acdade05755c" kindref="member">to_euler_angles</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="271"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units::angular;</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::unit_symbols::rad;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">isProper</ref><sp/>=<sp/>is_proper_euler_sequence(sequence);</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">i</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">j</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">k</ref>]<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>get_sequence_numbers(sequence);</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">isProper</ref>)<sp/>{<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">k</ref><sp/>=<sp/>6<sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">i</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">j</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">eps</ref><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">i</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">j</ref>)<sp/>*<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">j</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">k</ref>)<sp/>*<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">k</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">i</ref>)<sp/>/<sp/>2<sp/>*<sp/>one;</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/>a<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">isProper</ref><sp/>?<sp/>_s<sp/>:<sp/>_s<sp/>-<sp/>_u[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">j</ref><sp/>-<sp/>1];</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/>b<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">isProper</ref><sp/>?<sp/>_u[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">i</ref><sp/>-<sp/>1]<sp/>:<sp/>_u[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">i</ref><sp/>-<sp/>1]<sp/>+<sp/>_u[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">k</ref><sp/>-<sp/>1]<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">eps</ref>;</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/>c<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">isProper</ref><sp/>?<sp/>_u[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">j</ref><sp/>-<sp/>1]<sp/>:<sp/>_u[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">j</ref><sp/>-<sp/>1]<sp/>+<sp/>_s;</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/>d<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">isProper</ref><sp/>?<sp/>_u[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">k</ref><sp/>-<sp/>1]<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">eps</ref><sp/>:<sp/>_u[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">k</ref><sp/>-<sp/>1]<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">eps</ref><sp/>-<sp/>_u[<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">i</ref><sp/>-<sp/>1];</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">aPlusBSquared</ref><sp/>=<sp/>a<sp/>*<sp/>a<sp/>+<sp/>b<sp/>*<sp/>b;</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">cPlusDSquared</ref><sp/>=<sp/>c<sp/>*<sp/>c<sp/>+<sp/>d<sp/>*<sp/>d;</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta2</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>acos(2.0<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">aPlusBSquared</ref><sp/>/<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">aPlusBSquared</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">cPlusDSquared</ref>)<sp/>-<sp/>1.0<sp/>*<sp/>one);</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">thetaPlus</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>atan2(b,<sp/>a);</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">thetaMinus</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>atan2(d,<sp/>c);</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta1</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta3</ref>;</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">piOver2</ref><sp/>=<sp/>std::numbers::pi<sp/>/<sp/>2.0<sp/>*<sp/>rad;</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">is_eq_zero</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta2</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta1</ref><sp/>=<sp/>0.0<sp/>*<sp/>rad;</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta3</ref><sp/>=<sp/>2<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">thetaPlus</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta1</ref>;</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta2</ref><sp/>==<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">piOver2</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta1</ref><sp/>=<sp/>0.0<sp/>*<sp/>rad;</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta3</ref><sp/>=<sp/>2<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">thetaMinus</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta1</ref>;</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta1</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">thetaPlus</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">thetaMinus</ref>;</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta3</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">thetaPlus</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">thetaMinus</ref>;</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">isProper</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta3</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">eps</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta3</ref>;</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta2</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta2</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">piOver2</ref>;</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta1</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta2</ref>,<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">theta3</ref><sp/>};</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight></codeline>
+<codeline lineno="322" refid="classastrea_1_1astro_1_1Quaternion_1afa79454c96fc5dcc2b6bf54f9fff56b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1afa79454c96fc5dcc2b6bf54f9fff56b9" kindref="member">operator+</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="323"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_s<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._s,<sp/>_u<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._u<sp/>};</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"></highlight></codeline>
+<codeline lineno="333" refid="classastrea_1_1astro_1_1Quaternion_1a0d1c61248c05ae8fcb0d57e9970f850c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a0d1c61248c05ae8fcb0d57e9970f850c" kindref="member">operator+=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>=<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>;</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1af09126d7a0de535a104ff3bce56d5627" kindref="member">normalize</ref>();</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight></codeline>
+<codeline lineno="345" refid="classastrea_1_1astro_1_1Quaternion_1ae4b63818ffadb584163c55c83e70ac2e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1ae4b63818ffadb584163c55c83e70ac2e" kindref="member">operator-</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>-_s,<sp/>-_u<sp/>};<sp/>}</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"></highlight></codeline>
+<codeline lineno="353" refid="classastrea_1_1astro_1_1Quaternion_1a5992f1159d3d243dd7316c87393a38d1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a5992f1159d3d243dd7316c87393a38d1" kindref="member">operator-</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="354"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>+<sp/>(-<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>);</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"></highlight></codeline>
+<codeline lineno="364" refid="classastrea_1_1astro_1_1Quaternion_1a6994b568acc7be4b24d8aaa5a4efb306" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a6994b568acc7be4b24d8aaa5a4efb306" kindref="member">operator-=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>=<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>;</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1af09126d7a0de535a104ff3bce56d5627" kindref="member">normalize</ref>();</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"></highlight></codeline>
+<codeline lineno="377" refid="classastrea_1_1astro_1_1Quaternion_1ac62bdc49a99437a2219fe1d65803ee1b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1ac62bdc49a99437a2219fe1d65803ee1b" kindref="member">operator*</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"></highlight></codeline>
+<codeline lineno="385" refid="classastrea_1_1astro_1_1Quaternion_1a5f856fd58d8b451f7e7bd5f987b23cf2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a5f856fd58d8b451f7e7bd5f987b23cf2" kindref="member">operator*=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"></highlight></codeline>
+<codeline lineno="393" refid="classastrea_1_1astro_1_1Quaternion_1acb5ce0a579d6d41565cc8ffac0e48cc9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1acb5ce0a579d6d41565cc8ffac0e48cc9" kindref="member">operator/</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="394"><highlight class="normal"></highlight></codeline>
+<codeline lineno="401" refid="classastrea_1_1astro_1_1Quaternion_1a02431b57842be2acb7ec042d719de124" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a02431b57842be2acb7ec042d719de124" kindref="member">operator/=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scalar</ref>)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="402"><highlight class="normal"></highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;IsFrame<sp/>auto<sp/>out_frameu_&gt;</highlight></codeline>
+<codeline lineno="411" refid="classastrea_1_1astro_1_1Quaternion_1a14af6a03ba0276b2e033092e7005e33e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frameu_&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a14af6a03ba0276b2e033092e7005e33e" kindref="member">operator*</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;out_frame, out_frameu_&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="412"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">x1</ref><sp/>=<sp/>_u.<ref refid="structastrea_1_1astro_1_1CartesianVector_1a470b39df11ebf0f839566bd77d67f2ce" kindref="member">get_x</ref>();</highlight></codeline>
+<codeline lineno="414"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">y1</ref><sp/>=<sp/>_u.<ref refid="structastrea_1_1astro_1_1CartesianVector_1a783bff52824ebc838ad98d81e556bf39" kindref="member">get_y</ref>();</highlight></codeline>
+<codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">z1</ref><sp/>=<sp/>_u.<ref refid="structastrea_1_1astro_1_1CartesianVector_1ae8bb024080155eb1bc1037dc40b95b88" kindref="member">get_z</ref>();</highlight></codeline>
+<codeline lineno="416"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">x2</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.get_vector_part().get_x();</highlight></codeline>
+<codeline lineno="417"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">y2</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.get_vector_part().get_y();</highlight></codeline>
+<codeline lineno="418"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">z2</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.get_vector_part().get_z();</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">s1</ref><sp/>=<sp/>_s;</highlight></codeline>
+<codeline lineno="420"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">s2</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>.get_scalar_part();</highlight></codeline>
+<codeline lineno="421"><highlight class="normal"></highlight></codeline>
+<codeline lineno="422"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">s1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">s2</ref><sp/>-<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">x1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">x2</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">y1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">y2</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">z1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">z2</ref>),</highlight></codeline>
+<codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">s1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">x2</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">x1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">s2</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">y1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">z2</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">z1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">y2</ref>,</highlight></codeline>
+<codeline lineno="424"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">s1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">y2</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">x1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">z2</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">y1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">s2</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">z1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">x2</ref>,</highlight></codeline>
+<codeline lineno="425"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">s1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">z2</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">x1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">y2</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">y1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">x2</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">z1</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">s2</ref><sp/>};</highlight></codeline>
+<codeline lineno="426"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="427"><highlight class="normal"></highlight></codeline>
+<codeline lineno="434" refid="classastrea_1_1astro_1_1Quaternion_1af18996e3fede071a68ed4fd2d4b103de" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">QuaternionPartial&lt;in_frame, out_frame&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1af18996e3fede071a68ed4fd2d4b103de" kindref="member">operator/</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dt</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="435"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="436"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">QuaternionPartial&lt;in_frame, out_frame&gt;</ref>{<sp/>_s<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dt</ref>,<sp/>_u<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dt</ref><sp/>};</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="438"><highlight class="normal"></highlight></codeline>
+<codeline lineno="446"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Value_T&gt;</highlight></codeline>
+<codeline lineno="447" refid="classastrea_1_1astro_1_1Quaternion_1a20dd2cc38a4b293fb5df4625289fa85a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Value_T, out_frame&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a20dd2cc38a4b293fb5df4625289fa85a" kindref="member">rotate_vector</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Value_T, in_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="448"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="449"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Rotate<sp/>the<sp/>vector<sp/>using<sp/>the<sp/>quaternion:<sp/>v&apos;<sp/>=<sp/>q<sp/>*<sp/>v<sp/>*<sp/>q^-1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="450"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>results<sp/>in<sp/>a<sp/>quaternion<sp/>with<sp/>vector<sp/>part<sp/>2(u<sp/>⋅<sp/>v)u<sp/>+<sp/>(s2<sp/>-<sp/>u<sp/>⋅<sp/>u)v<sp/>+<sp/>2s(u<sp/>*<sp/>v)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="451"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>forces<sp/>a<sp/>frame<sp/>conversion<sp/>because<sp/>there<sp/>is<sp/>no<sp/>coherent<sp/>way<sp/>to<sp/>keep<sp/>the<sp/>strong<sp/>typing<sp/>through<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="452"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>intermediate<sp/>operations<sp/>and<sp/>still<sp/>result<sp/>in<sp/>a<sp/>meaningful<sp/>rotation.<sp/>This<sp/>means<sp/>we<sp/>can&apos;t<sp/>have<sp/>a<sp/>nice<sp/>interface</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="453"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>where<sp/>users<sp/>rotate<sp/>by<sp/>calling<sp/>q<sp/>*<sp/>v<sp/>*<sp/>q.conjugate()<sp/>but<sp/>it&apos;s<sp/>fine<sp/>for<sp/>now.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="454"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(2.0<sp/>*<sp/>_u.<ref refid="structastrea_1_1astro_1_1CartesianVector_1a8123262db04868e5ac160cd71de675b1" kindref="member">dot</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref>)<sp/>*<sp/>_u<sp/>+<sp/>(_s<sp/>*<sp/>_s<sp/>-<sp/>_u.<ref refid="structastrea_1_1astro_1_1CartesianVector_1a8123262db04868e5ac160cd71de675b1" kindref="member">dot</ref>(_u))<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref><sp/>+<sp/>2.0<sp/>*<sp/>_s<sp/>*<sp/>_u.<ref refid="structastrea_1_1astro_1_1CartesianVector_1a8f3c5e253983cf21ec1dc1727278c019" kindref="member">cross</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">vec</ref>)).template<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">force_frame_conversion&lt;out_frame&gt;</ref>();</highlight></codeline>
+<codeline lineno="455"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="456"><highlight class="normal"></highlight></codeline>
+<codeline lineno="461" refid="classastrea_1_1astro_1_1Quaternion_1a090cf0b582a4ae66350e183a315d3385" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;out_frame, in_frame&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a090cf0b582a4ae66350e183a315d3385" kindref="member">conjugate</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="462"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="463"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_s,<sp/>-_u.template<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">force_frame_conversion&lt;out_frame&gt;</ref>()<sp/>};</highlight></codeline>
+<codeline lineno="464"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="465"><highlight class="normal"></highlight></codeline>
+<codeline lineno="472" refid="classastrea_1_1astro_1_1Quaternion_1a6f50255b950e3d005e363a755c8f483b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;out_frame, in_frame&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a6f50255b950e3d005e363a755c8f483b" kindref="member">inverse</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="473"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="474"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scale</ref><sp/>=<sp/>1.0<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1ab1499ba76391fbe11172074957af4a36" kindref="member">norm_squared</ref>();</highlight></codeline>
+<codeline lineno="475"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_s<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scale</ref>,<sp/>-_u.template<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">force_frame_conversion&lt;out_frame&gt;</ref>()<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scale</ref><sp/>};</highlight></codeline>
+<codeline lineno="476"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="477"><highlight class="normal"></highlight></codeline>
+<codeline lineno="482" refid="classastrea_1_1astro_1_1Quaternion_1ab3feff1e9b39741873ea8cdbae15b0d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1ab3feff1e9b39741873ea8cdbae15b0d2" kindref="member">norm</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mp_units::sqrt(<ref refid="classastrea_1_1astro_1_1Quaternion_1ab1499ba76391fbe11172074957af4a36" kindref="member">norm_squared</ref>());<sp/>}</highlight></codeline>
+<codeline lineno="483"><highlight class="normal"></highlight></codeline>
+<codeline lineno="488" refid="classastrea_1_1astro_1_1Quaternion_1ab1499ba76391fbe11172074957af4a36" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1ab1499ba76391fbe11172074957af4a36" kindref="member">norm_squared</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_s<sp/>*<sp/>_s<sp/>+<sp/>_u.<ref refid="structastrea_1_1astro_1_1CartesianVector_1a8123262db04868e5ac160cd71de675b1" kindref="member">dot</ref>(_u);<sp/>}</highlight></codeline>
+<codeline lineno="489"><highlight class="normal"></highlight></codeline>
+<codeline lineno="493" refid="classastrea_1_1astro_1_1Quaternion_1af09126d7a0de535a104ff3bce56d5627" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1af09126d7a0de535a104ff3bce56d5627" kindref="member">normalize</ref>()</highlight></codeline>
+<codeline lineno="494"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="495"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
+<codeline lineno="496"><highlight class="normal"></highlight></codeline>
+<codeline lineno="497"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">nSq</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1ab1499ba76391fbe11172074957af4a36" kindref="member">norm_squared</ref>();</highlight></codeline>
+<codeline lineno="498"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">is_eq_zero</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">nSq</ref>))<sp/>{<sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Cannot<sp/>normalize<sp/>a<sp/>quaternion<sp/>with<sp/>zero<sp/>norm.&quot;</highlight><highlight class="normal">);<sp/>}</highlight></codeline>
+<codeline lineno="499"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">isnan</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">nSq</ref>)<sp/>||<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">isinf</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">nSq</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="500"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Cannot<sp/>normalize<sp/>a<sp/>quaternion<sp/>with<sp/>non-finite<sp/>norm.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="501"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="502"><highlight class="normal"></highlight></codeline>
+<codeline lineno="503"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>https://stackoverflow.com/questions/11667783/quaternion-and-normalization</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="504"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">abs</ref>(1.0<sp/>*<sp/>one<sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">nSq</ref>)<sp/>&lt;<sp/>2.107342e-08<sp/>*<sp/>one)<sp/>{<sp/>_normalize(2.0<sp/>*<sp/>one<sp/>/<sp/>(1.0<sp/>*<sp/>one<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">nSq</ref>));<sp/>}</highlight></codeline>
+<codeline lineno="505"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="506"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_normalize(1.0<sp/>*<sp/>one<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sqrt</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">nSq</ref>));</highlight></codeline>
+<codeline lineno="507"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="508"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="509"><highlight class="normal"></highlight></codeline>
+<codeline lineno="515" refid="classastrea_1_1astro_1_1Quaternion_1ac0b1b8cebcecf0faf095283ab7dc6671" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1ac0b1b8cebcecf0faf095283ab7dc6671" kindref="member">get_scalar_part</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_s;<sp/>}</highlight></codeline>
+<codeline lineno="516"><highlight class="normal"></highlight></codeline>
+<codeline lineno="522" refid="classastrea_1_1astro_1_1Quaternion_1af26b7517cb89ff9097d72dc1d96e380a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Unitless, in_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1af26b7517cb89ff9097d72dc1d96e380a" kindref="member">get_vector_part</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_u;<sp/>}</highlight></codeline>
+<codeline lineno="523"><highlight class="normal"></highlight></codeline>
+<codeline lineno="529" refid="classastrea_1_1astro_1_1Quaternion_1a68f3b4ddc94be41dda4b5bf2b2f18193" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Unitless&gt;<sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a68f3b4ddc94be41dda4b5bf2b2f18193" kindref="member">force_to_vector</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_s,<sp/>_u[0],<sp/>_u[1],<sp/>_u[2]<sp/>};<sp/>}</highlight></codeline>
+<codeline lineno="530"><highlight class="normal"></highlight></codeline>
+<codeline lineno="537" refid="classastrea_1_1astro_1_1Quaternion_1a67a15d6797edb24923002e2a6b762fc6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1a67a15d6797edb24923002e2a6b762fc6" kindref="member">dot</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_s<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._s<sp/>+<sp/>_u.<ref refid="structastrea_1_1astro_1_1CartesianVector_1a8123262db04868e5ac160cd71de675b1" kindref="member">dot</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>._u);<sp/>}</highlight></codeline>
+<codeline lineno="538"><highlight class="normal"></highlight></codeline>
+<codeline lineno="551"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref></highlight></codeline>
+<codeline lineno="552" refid="classastrea_1_1astro_1_1Quaternion_1ac5dd1b1634c35bc7ca43bea74f704e16" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1Quaternion_1ac5dd1b1634c35bc7ca43bea74f704e16" kindref="member">interpolate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">thisTime</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">otherTime</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">targetTime</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="553"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="554"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
+<codeline lineno="555"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units::angular;</highlight></codeline>
+<codeline lineno="556"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::angular::unit_symbols::rad;</highlight></codeline>
+<codeline lineno="557"><highlight class="normal"></highlight></codeline>
+<codeline lineno="558"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>angle<sp/>between<sp/>them.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="559"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">cosHalfTheta</ref><sp/>=<sp/>this-&gt;<ref refid="classastrea_1_1astro_1_1Quaternion_1a67a15d6797edb24923002e2a6b762fc6" kindref="member">dot</ref>(other);</highlight></codeline>
+<codeline lineno="560"><highlight class="normal"></highlight></codeline>
+<codeline lineno="561"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Return<sp/>one<sp/>if<sp/>quaternions<sp/>are<sp/>the<sp/>same</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="562"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">abs</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">cosHalfTheta</ref>)<sp/>&gt;=<sp/>1.0<sp/>*<sp/>one)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="563"><highlight class="normal"></highlight></codeline>
+<codeline lineno="564"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Catch<sp/>inversions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="565"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">qOther</ref><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">cosHalfTheta</ref><sp/>&lt;<sp/>0.0<sp/>*<sp/>one)<sp/>?<sp/>-<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref><sp/>:<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">other</ref>;</highlight></codeline>
+<codeline lineno="566"><highlight class="normal"></highlight></codeline>
+<codeline lineno="567"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>temporary<sp/>values.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="568"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">halfTheta</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>acos(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">cosHalfTheta</ref>);</highlight></codeline>
+<codeline lineno="569"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sinHalfTheta</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sqrt</ref>(1.0<sp/>*<sp/>one<sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">cosHalfTheta</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">cosHalfTheta</ref>);</highlight></codeline>
+<codeline lineno="570"><highlight class="normal"></highlight></codeline>
+<codeline lineno="571"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>theta<sp/>=<sp/>180<sp/>degrees<sp/>{<sp/>result<sp/>is<sp/>not<sp/>fully<sp/>defined</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="572"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>we<sp/>could<sp/>rotate<sp/>around<sp/>any<sp/>axis<sp/>normal<sp/>to<sp/>either</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="573"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">abs</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sinHalfTheta</ref>)<sp/>&lt;<sp/>1.0e-3<sp/>*<sp/>one)<sp/>{</highlight></codeline>
+<codeline lineno="574"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Do<sp/>the<sp/>math<sp/>manually<sp/>to<sp/>avoid<sp/>normalization<sp/>until<sp/>construction</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="575"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>0.5<sp/>*<sp/>(_s<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">qOther</ref>._s),</highlight></codeline>
+<codeline lineno="576"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.5<sp/>*<sp/>(_u[0]<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">qOther</ref>._u[0]),</highlight></codeline>
+<codeline lineno="577"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.5<sp/>*<sp/>(_u[1]<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">qOther</ref>._u[1]),</highlight></codeline>
+<codeline lineno="578"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.5<sp/>*<sp/>(_u[2]<sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">qOther</ref>._u[2])<sp/>};</highlight></codeline>
+<codeline lineno="579"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="580"><highlight class="normal"></highlight></codeline>
+<codeline lineno="581"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>calculate<sp/>quaternion</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="582"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">tRatio</ref><sp/>=<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">targetTime</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">thisTime</ref>)<sp/>/<sp/>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">otherTime</ref><sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">thisTime</ref>);</highlight></codeline>
+<codeline lineno="583"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">ratioA</ref><sp/>=<sp/>sin((1.0<sp/>*<sp/>one<sp/>-<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">tRatio</ref>)<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">halfTheta</ref>)<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sinHalfTheta</ref>;</highlight></codeline>
+<codeline lineno="584"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">ratioB</ref><sp/>=<sp/>sin(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">tRatio</ref><sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">halfTheta</ref>)<sp/>/<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sinHalfTheta</ref>;</highlight></codeline>
+<codeline lineno="585"><highlight class="normal"></highlight></codeline>
+<codeline lineno="586"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_s<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">ratioA</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">qOther</ref>._s<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">ratioB</ref>,</highlight></codeline>
+<codeline lineno="587"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[0]<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">ratioA</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">qOther</ref>._u[0]<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">ratioB</ref>,</highlight></codeline>
+<codeline lineno="588"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[1]<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">ratioA</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">qOther</ref>._u[1]<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">ratioB</ref>,</highlight></codeline>
+<codeline lineno="589"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[2]<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">ratioA</ref><sp/>+<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">qOther</ref>._u[2]<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">ratioB</ref><sp/>};</highlight></codeline>
+<codeline lineno="590"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="591"><highlight class="normal"></highlight></codeline>
+<codeline lineno="592"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="593"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref><sp/>_s;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="594"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;Unitless, in_frame&gt;</ref><sp/>_u;<sp/></highlight></codeline>
+<codeline lineno="595"><highlight class="normal"></highlight></codeline>
+<codeline lineno="601"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>_normalize(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scale</ref>)</highlight></codeline>
+<codeline lineno="602"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="603"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_s<sp/>*=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scale</ref>;</highlight></codeline>
+<codeline lineno="604"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[0]<sp/>*=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scale</ref>;</highlight></codeline>
+<codeline lineno="605"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[1]<sp/>*=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scale</ref>;</highlight></codeline>
+<codeline lineno="606"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_u[2]<sp/>*=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">scale</ref>;</highlight></codeline>
+<codeline lineno="607"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="608"><highlight class="normal"></highlight></codeline>
+<codeline lineno="617"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>Quaternion&lt;in_frame,<sp/>out_frame&gt;<sp/>from_vector(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Unitless&gt;&amp;<sp/>vec)</highlight></codeline>
+<codeline lineno="618"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="619"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(vec.size()<sp/>!=<sp/>4)<sp/>{</highlight></codeline>
+<codeline lineno="620"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::invalid_argument(</highlight><highlight class="stringliteral">&quot;Input<sp/>vector<sp/>must<sp/>have<sp/>exactly<sp/>4<sp/>components<sp/>to<sp/>convert<sp/>to<sp/>a<sp/>Quaternion.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="621"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="622"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>vec[0],<sp/>vec[1],<sp/>vec[2],<sp/>vec[3]<sp/>};</highlight></codeline>
+<codeline lineno="623"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="624"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="625"><highlight class="normal"></highlight></codeline>
+<codeline lineno="632"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;IsFrame<sp/>auto<sp/>_in_frame_,<sp/>IsFrame<sp/>auto<sp/>_out_frame_&gt;</highlight></codeline>
+<codeline lineno="633" refid="classastrea_1_1astro_1_1QuaternionPartial" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classastrea_1_1astro_1_1QuaternionPartial" kindref="compound">QuaternionPartial</ref><sp/>{</highlight></codeline>
+<codeline lineno="634"><highlight class="normal"></highlight></codeline>
+<codeline lineno="635"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">AttitudePartial;</highlight></codeline>
+<codeline lineno="636"><highlight class="normal"></highlight></codeline>
+<codeline lineno="637"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="638"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>in_frame<sp/><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref>;</highlight></codeline>
+<codeline lineno="639"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>out_frame<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref>;</highlight></codeline>
+<codeline lineno="640"><highlight class="normal"></highlight></codeline>
+<codeline lineno="644" refid="classastrea_1_1astro_1_1QuaternionPartial_1a4ff39780035c60731099b890348a7d17" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1QuaternionPartial_1a4ff39780035c60731099b890348a7d17" kindref="member">QuaternionPartial</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="645"><highlight class="normal"></highlight></codeline>
+<codeline lineno="652" refid="classastrea_1_1astro_1_1QuaternionPartial_1ab8779f0a986ef854d457f0530549578e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1QuaternionPartial_1ab8779f0a986ef854d457f0530549578e" kindref="member">QuaternionPartial</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sDot</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;UnitlessPerTime, in_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">uDot</ref>)<sp/>:</highlight></codeline>
+<codeline lineno="653"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_sDot(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sDot</ref>),</highlight></codeline>
+<codeline lineno="654"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_uDot(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">uDot</ref>)</highlight></codeline>
+<codeline lineno="655"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="656"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="657"><highlight class="normal"></highlight></codeline>
+<codeline lineno="663" refid="classastrea_1_1astro_1_1QuaternionPartial_1af5b03cb63cf427d9a6c5679a7b652aa0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1QuaternionPartial_1af5b03cb63cf427d9a6c5679a7b652aa0" kindref="member">get_scalar_part</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_sDot;<sp/>}</highlight></codeline>
+<codeline lineno="664"><highlight class="normal"></highlight></codeline>
+<codeline lineno="670" refid="classastrea_1_1astro_1_1QuaternionPartial_1a7869af7851bcf229c799e5955c9c18ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;UnitlessPerTime, in_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1QuaternionPartial_1a7869af7851bcf229c799e5955c9c18ce" kindref="member">get_vector_part</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_uDot;<sp/>}</highlight></codeline>
+<codeline lineno="671"><highlight class="normal"></highlight></codeline>
+<codeline lineno="678" refid="classastrea_1_1astro_1_1QuaternionPartial_1a2cb5f01db1dfb0cd1923560d2dc79ce9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref><sp/><ref refid="classastrea_1_1astro_1_1QuaternionPartial_1a2cb5f01db1dfb0cd1923560d2dc79ce9" kindref="member">operator*</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dt</ref>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="679"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="680"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref>{<sp/>_sDot<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dt</ref>,<sp/>_uDot<sp/>*<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">dt</ref><sp/>};</highlight></codeline>
+<codeline lineno="681"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="682"><highlight class="normal"></highlight></codeline>
+<codeline lineno="688" refid="classastrea_1_1astro_1_1QuaternionPartial_1a388ba28c76dede297834755e6d222ffe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Unitless&gt;<sp/><ref refid="classastrea_1_1astro_1_1QuaternionPartial_1a388ba28c76dede297834755e6d222ffe" kindref="member">force_to_vector</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="689"><highlight class="keyword"><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="690"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{<sp/>_sDot<sp/>/<sp/>_sDot.unit,<sp/>_uDot[0]<sp/>/<sp/>_uDot[0].unit,<sp/>_uDot[1]<sp/>/<sp/>_uDot[1].unit,<sp/>_uDot[2]<sp/>/<sp/>_uDot[2].unit<sp/>};</highlight></codeline>
+<codeline lineno="691"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="692"><highlight class="normal"></highlight></codeline>
+<codeline lineno="693"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="694"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">UnitlessPerTime</ref><sp/>_sDot;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="695"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">CartesianVector&lt;UnitlessPerTime, in_frame&gt;</ref><sp/>_uDot;<sp/></highlight></codeline>
+<codeline lineno="696"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="697"><highlight class="normal"></highlight></codeline>
+<codeline lineno="707"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;IsFrame<sp/>auto<sp/>in_frame,<sp/>IsFrame<sp/>auto<sp/>out_frame&gt;</highlight></codeline>
+<codeline lineno="708" refid="Quaternion_8hpp_1af308b042f7cd4fbba00657d4baf616ce" refkind="member"><highlight class="normal">std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">operator&lt;&lt;</ref>(std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Quaternion&lt;in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">quaternion</ref>)</highlight></codeline>
+<codeline lineno="709"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="710"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>s<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">quaternion</ref>.get_scalar_part();</highlight></codeline>
+<codeline lineno="711"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>u<sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">quaternion</ref>.get_vector_part();</highlight></codeline>
+<codeline lineno="712"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>|<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>u[0]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>u[1]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>u[2]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;]&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="713"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref>;</highlight></codeline>
+<codeline lineno="714"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="715"><highlight class="normal"></highlight></codeline>
+<codeline lineno="725"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;IsFrame<sp/>auto<sp/>in_frame,<sp/>IsFrame<sp/>auto<sp/>out_frame&gt;</highlight></codeline>
+<codeline lineno="726" refid="Quaternion_8hpp_1a7ae0f177ff91a933a1cd65f425c40450" refkind="member"><highlight class="normal">std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">operator&lt;&lt;</ref>(std::ostream&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">QuaternionPartial&lt;in_frame, out_frame&gt;</ref>&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">quaternion</ref>)</highlight></codeline>
+<codeline lineno="727"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="728"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sDot</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">quaternion</ref>.get_scalar_part();</highlight></codeline>
+<codeline lineno="729"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">uDot</ref><sp/>=<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">quaternion</ref>.get_vector_part();</highlight></codeline>
+<codeline lineno="730"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">sDot</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>|<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">uDot</ref>[0]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">uDot</ref>[1]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">uDot</ref>[2]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;]&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="731"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">os</ref>;</highlight></codeline>
+<codeline lineno="732"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="733"><highlight class="normal"></highlight></codeline>
+<codeline lineno="734"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="735"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="736"><highlight class="normal"></highlight></codeline>
+<codeline lineno="737"><highlight class="normal"></highlight><highlight class="comment">//<sp/>C++<sp/>circular-include<sp/>bullshit.<sp/>Can<sp/>we<sp/>please<sp/>just<sp/>use<sp/>modules?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="738"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="EulerAngles_8ipp" kindref="compound">astro/state/attitude/EulerAngles.ipp</ref>&gt;</highlight></codeline>
+    </programlisting>
+    <location file="astrea/astro/astro/state/attitude/Quaternion.hpp"/>
+  </compounddef>
+</doxygen>

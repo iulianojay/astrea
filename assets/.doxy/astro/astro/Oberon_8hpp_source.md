@@ -2,7 +2,7 @@
 
 # File Oberon.hpp
 
-[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**planetary\_bodies**](dir_18001f99c0231f827e3b1298618599da.md) **>** [**Uranus**](dir_7b592d311fa9a0d617c41c2d0e8e5c61.md) **>** [**Oberon.hpp**](Oberon_8hpp.md)
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**celestial\_bodies**](dir_b988f8927672605e377af1c3b431ef9b.md) **>** [**Uranus**](dir_8fcaafb82204ae43552237a688fd4e7d.md) **>** [**Oberon.hpp**](Oberon_8hpp.md)
 
 [Go to the documentation of this file](Oberon_8hpp.md)
 
@@ -11,64 +11,60 @@
 
 #pragma once
 
-#include <mp-units/systems/angular.h>
-#include <mp-units/systems/iau.h>
-#include <mp-units/systems/si.h>
-
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/systems/CelestialBody.hpp>
-#include <astro/types/typedefs.hpp>
+#include <astro/systems/celestial_bodies/Uranus/Uranus.hpp>
 
 namespace astrea {
 namespace astro {
-namespace planetary_bodies {
 
-static const CelestialBodyParameters DEFAULT_OBERON_PARAMS{
-    .name          = "Oberon",
-    .parent        = CelestialBodyId::URANUS,
-    .type          = CelestialBodyType::MOON,
-    .referenceDate = Date("1980-01-01 00:00:00"),
-    .mu = GravParam(192.4 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
-    .mass              = Mass(0.00288 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
-    .equitorialRadius  = Distance(761.4 * mp_units::si::unit_symbols::km),
-    .polarRadius       = Distance(761.4 * mp_units::si::unit_symbols::km),
-    .crashRadius       = Distance(761.4 * mp_units::si::unit_symbols::km),
-    .sphereOfInfluence = Distance(9.42735725907e-04 * mp_units::iau::unit_symbols::au),
-    .j2                = Unitless(0.0 * mp_units::one),
-    .j3                = Unitless(0.0 * mp_units::one),
-    .axialTilt         = Angle(0.0 * mp_units::angular::unit_symbols::deg),
-    .rotationRate      = AngularRate(26.739489189595904 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
-    .siderealPeriod    = Time(13.4632 * mp_units::non_si::day),
-    .semimajorAxis     = Distance(583.50e3 * mp_units::si::unit_symbols::km),
-    .eccentricity      = Unitless(0.0014 * mp_units::one),
-    .inclination       = Angle(0.07 * mp_units::angular::unit_symbols::deg),
-    .rightAscension    = Angle(279.771 * mp_units::angular::unit_symbols::deg),
-    .longitudeOfPerigee     = Angle(24.171 * mp_units::angular::unit_symbols::deg),
-    .meanLongitude          = Angle(307.259 * mp_units::angular::unit_symbols::deg),
-    .semimajorAxisRate      = InterplanetaryVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury),
-    .eccentricityRate       = BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),
-    .inclinationRate        = BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .rightAscensionRate     = BodyAngularRate(663356.7 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .longitudeOfPerigeeRate = BodyAngularRate(1465734.12 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .meanLongitudeRate      = BodyAngularRate(3517441116.43 * mp_units::angular::unit_symbols::deg / JulianCentury)
-};
+namespace moons {
 
-class Oberon : public CelestialBody {
+inline constexpr struct Oberon final : CelestialBody<"Oberon", planets::Uranus> {
+} Oberon;
 
-  public:
-    constexpr Oberon() :
-        CelestialBody(DEFAULT_OBERON_PARAMS)
-    {
-    }
+} // namespace moons
 
-    ~Oberon() = default;
+template <>
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Oberon>()
+{
+    using namespace mp_units;
+    using mp_units::angular::unit_symbols::deg;
+    using mp_units::iau::unit_symbols::au;
+    using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::kg;
+    using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::s;
 
-    static constexpr CelestialBodyId get_id() { return CelestialBodyId::OBERON; };
-};
+    return { .type                   = CelestialBodyType::MOON,
+             .referenceDate          = Date(JulianDate(JulianDateClock::duration{ 2444239.5 })),
+             .mu                     = GravParam(192.4 * pow<3>(km) / pow<2>(s)),
+             .mass                   = Mass(0.00288 * (mag_power<10, 24> * kg)),
+             .equitorialRadius       = Distance(761.4 * km),
+             .polarRadius            = Distance(761.4 * km),
+             .crashRadius            = Distance(761.4 * km),
+             .sphereOfInfluence      = Distance(9.42735725907e-04 * au),
+             .j2                     = Unitless(0.0 * one),
+             .j3                     = Unitless(0.0 * one),
+             .axialTilt              = Angle(0.0 * deg),
+             .rotationRate           = AngularVelocity(26.739489189595904 * deg / day),
+             .siderealPeriod         = Time(13.4632 * day),
+             .semimajorAxis          = Distance(583.50e3 * km),
+             .eccentricity           = Unitless(0.0014 * one),
+             .inclination            = Angle(0.07 * deg),
+             .rightAscension         = Angle(279.771 * deg),
+             .longitudeOfPerigee     = Angle(24.171 * deg),
+             .meanLongitude          = Angle(307.259 * deg),
+             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / JulianCentury),
+             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / JulianCentury),
+             .inclinationRate        = BodyAngularVelocity(0.0 * deg / JulianCentury),
+             .rightAscensionRate     = BodyAngularVelocity(663356.7 * deg / JulianCentury),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(1465734.12 * deg / JulianCentury),
+             .meanLongitudeRate      = BodyAngularVelocity(3517441116.43 * deg / JulianCentury) };
+}
 
-} // namespace planetary_bodies
 } // namespace astro
 } // namespace astrea
 ```

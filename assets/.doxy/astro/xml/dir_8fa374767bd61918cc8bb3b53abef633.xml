@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_8fa374767bd61918cc8bb3b53abef633" kind="dir">
+    <compoundname>astrea/astro/astro/systems/celestial_bodies/Venus</compoundname>
+    <innerfile refid="Venus_8hpp">Venus.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/celestial_bodies/Venus/"/>
+  </compounddef>
+</doxygen>

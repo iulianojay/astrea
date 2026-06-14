@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_b988f8927672605e377af1c3b431ef9b" kind="dir">
+    <compoundname>astrea/astro/astro/systems/celestial_bodies</compoundname>
+    <innerdir refid="dir_0d926747df7aa4605536658442a7f1d2">astrea/astro/astro/systems/celestial_bodies/Earth</innerdir>
+    <innerdir refid="dir_925acfda302d4aa496e86fec42e06785">astrea/astro/astro/systems/celestial_bodies/Jupiter</innerdir>
+    <innerdir refid="dir_03ada0e9bf55f03b35fb491b4c546571">astrea/astro/astro/systems/celestial_bodies/Mars</innerdir>
+    <innerdir refid="dir_3b6d9a919e6250ccdc1fa4c9fa0fff50">astrea/astro/astro/systems/celestial_bodies/Mercury</innerdir>
+    <innerdir refid="dir_ec69e1477d245828e261b3b2dcdeacfc">astrea/astro/astro/systems/celestial_bodies/Neptune</innerdir>
+    <innerdir refid="dir_7fd613539f7980532282f5cbc20c34d1">astrea/astro/astro/systems/celestial_bodies/Saturn</innerdir>
+    <innerdir refid="dir_15326b41008c26450ba4ed6847b82388">astrea/astro/astro/systems/celestial_bodies/Sun</innerdir>
+    <innerdir refid="dir_8fcaafb82204ae43552237a688fd4e7d">astrea/astro/astro/systems/celestial_bodies/Uranus</innerdir>
+    <innerdir refid="dir_8fa374767bd61918cc8bb3b53abef633">astrea/astro/astro/systems/celestial_bodies/Venus</innerdir>
+    <innerfile refid="JplEphemerisTable_8cpp">JplEphemerisTable.cpp</innerfile>
+    <innerfile refid="JplEphemerisTable_8hpp">JplEphemerisTable.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/celestial_bodies/"/>
+  </compounddef>
+</doxygen>

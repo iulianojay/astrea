@@ -1,13 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1RKF78" kind="namespace" language="C++">
     <compoundname>astrea::astro::RKF78</compoundname>
-      <sectiondef kind="var">
+    <sectiondef kind="var">
       <memberdef kind="variable" id="butcher__tableau_8hpp_1ac10d7d9997b0bd5ef6fa665d9dd6a171" prot="public" static="yes" mutable="no">
-        <type>const std::size_t</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t</type>
         <definition>const std::size_t astrea::astro::RKF78::nStages</definition>
         <argsstring></argsstring>
         <name>nStages</name>
+        <qualifiedname>astrea::astro::RKF78::nStages</qualifiedname>
         <initializer>= 13</initializer>
         <briefdescription>
         </briefdescription>
@@ -18,10 +19,11 @@
         <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="83" column="26" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="83" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="butcher__tableau_8hpp_1a40a4dd85d1ae5a750682bef76f9d2cc1" prot="public" static="yes" mutable="no">
-        <type>const double</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
         <definition>const double astrea::astro::RKF78::c[13]</definition>
         <argsstring>[13]</argsstring>
         <name>c</name>
+        <qualifiedname>astrea::astro::RKF78::c</qualifiedname>
         <initializer>= { 0.0,       2.0 / 27.0, 1.0 / 9.0, 1.0 / 6.0, 5.0 / 12.0, 0.5, 5.0 / 6.0,
                                   1.0 / 6.0, 2.0 / 3.0,  1.0 / 3.0, 1.0,       0.0,        1.0 }</initializer>
         <briefdescription>
@@ -30,13 +32,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="85" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="85" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="85" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="85" bodyend="86"/>
       </memberdef>
       <memberdef kind="variable" id="butcher__tableau_8hpp_1a9db07e71a7b07d0086727fbe4436692f" prot="public" static="yes" mutable="no">
-        <type>const double</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
         <definition>const double astrea::astro::RKF78::b[13]</definition>
         <argsstring>[13]</argsstring>
         <name>b</name>
+        <qualifiedname>astrea::astro::RKF78::b</qualifiedname>
         <initializer>= { 41.0 / 840.0, 0.0,         0.0,         0.0,          0.0, 34.0 / 105.0, 9.0 / 35.0,
                                   9.0 / 35.0,   9.0 / 280.0, 9.0 / 280.0, 41.0 / 840.0, 0.0, 0.0 }</initializer>
         <briefdescription>
@@ -45,13 +48,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="87" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="87" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="87" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="87" bodyend="88"/>
       </memberdef>
       <memberdef kind="variable" id="butcher__tableau_8hpp_1a067f882997ac91da0a33de44b56c2097" prot="public" static="yes" mutable="no">
-        <type>const double</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
         <definition>const double astrea::astro::RKF78::bhat[13]</definition>
         <argsstring>[13]</argsstring>
         <name>bhat</name>
+        <qualifiedname>astrea::astro::RKF78::bhat</qualifiedname>
         <initializer>= { 0.0,        0.0,         0.0,         0.0, 0.0,          34.0 / 105.0, 9.0 / 35.0,
                                   9.0 / 35.0, 9.0 / 280.0, 9.0 / 280.0, 0.0, 41.0 / 840.0, 41.0 / 840.0 }</initializer>
         <briefdescription>
@@ -60,13 +64,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="89" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="89" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="89" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="89" bodyend="90"/>
       </memberdef>
       <memberdef kind="variable" id="butcher__tableau_8hpp_1adceba9deeb9ed2feafcfb81e95f2f460" prot="public" static="yes" mutable="no">
-        <type>const double</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
         <definition>const double astrea::astro::RKF78::a[13][13]</definition>
         <argsstring>[13][13]</argsstring>
         <name>a</name>
+        <qualifiedname>astrea::astro::RKF78::a</qualifiedname>
         <initializer>= {
     { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
     { 2.0 / 27.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
@@ -88,9 +93,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="91" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="91" bodyend="-1"/>
+        <location file="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" line="91" column="21" bodyfile="astrea/astro/astro/propagation/numerical/butcher_tableau.hpp" bodystart="91" bodyend="105"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

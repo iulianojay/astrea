@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1IsEquivalentEulerAngles" kind="concept">
+    <compoundname>astrea::astro::IsEquivalentEulerAngles</compoundname>
+    <includes refid="EulerAngles_8hpp" local="no">EulerAngles.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>RotationSequence</type>
+        <declname>sequence_t</declname>
+        <defname>sequence_t</defname>
+      </param>
+      <param>
+        <type>RotationType</type>
+        <declname>rotation_t</declname>
+        <defname>rotation_t</defname>
+      </param>
+      <param>
+        <type>IsFrame auto</type>
+        <declname>_in_frame_</declname>
+        <defname>_in_frame_</defname>
+      </param>
+      <param>
+        <type>IsFrame auto</type>
+        <declname>_out_frame_</declname>
+        <defname>_out_frame_</defname>
+      </param>
+      <param>
+        <type>RotationSequence</type>
+        <declname>sequence_u</declname>
+        <defname>sequence_u</defname>
+      </param>
+      <param>
+        <type>RotationType</type>
+        <declname>rotation_u</declname>
+        <defname>rotation_u</defname>
+      </param>
+      <param>
+        <type>IsFrame auto</type>
+        <declname>_in_frame_u_</declname>
+        <defname>_in_frame_u_</defname>
+      </param>
+      <param>
+        <type>IsFrame auto</type>
+        <declname>_out_frame_u_</declname>
+        <defname>_out_frame_u_</defname>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;RotationSequence sequence_t, RotationType rotation_t, IsFrame auto _in_frame_, IsFrame auto _out_frame_, RotationSequence sequence_u, RotationType rotation_u, IsFrame auto _in_frame_u_, IsFrame auto _out_frame_u_&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1IsEquivalentEulerAngles" kindref="compound">astrea::astro::IsEquivalentEulerAngles</ref> = 
+    (get_reverse_sequence(sequence_t) == sequence_u) &amp;&amp; 
+    (rotation_t != rotation_u) &amp;&amp;                       
+    std::is_same_v&lt;decltype(_in_frame_), decltype(_in_frame_u_)&gt; &amp;&amp; 
+    std::is_same_v&lt;decltype(_out_frame_), decltype(_out_frame_u_)&gt;    </initializer>
+    <briefdescription>
+<para>Concept to check if two EulerAngless are equivalent (same sequence type, reverse specific sequence, opposite rotation type, and same frames). </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/attitude/EulerAngles.hpp" line="97" column="1"/>
+  </compounddef>
+</doxygen>

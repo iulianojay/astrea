@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="EthzClient_8hpp" kind="file" language="C++">
     <compoundname>EthzClient.hpp</compoundname>
     <includes local="no">string</includes>
@@ -9,12 +9,6 @@
     <includedby refid="EthzClient_8cpp" local="no">astrea/snapshot/snapshot/http-queries/ethz/EthzClient.cpp</includedby>
     <includedby refid="snapshot_8hpp" local="no">astrea/snapshot/snapshot/snapshot.hpp</includedby>
     <incdepgraph>
-      <node id="2">
-        <label>string</label>
-      </node>
-      <node id="3">
-        <label>cpr/cpr.h</label>
-      </node>
       <node id="1">
         <label>astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp</label>
         <link refid="EthzClient_8hpp"/>
@@ -27,23 +21,29 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>nlohmann/json.hpp</label>
-      </node>
       <node id="5">
         <label>astro/time/Date.hpp</label>
       </node>
+      <node id="3">
+        <label>cpr/cpr.h</label>
+      </node>
+      <node id="4">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="2">
-        <label>astrea/snapshot/snapshot/snapshot.hpp</label>
-        <link refid="snapshot_8hpp"/>
-      </node>
       <node id="1">
         <label>astrea/snapshot/snapshot/http-queries/ethz/EthzClient.hpp</label>
         <link refid="EthzClient_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/snapshot/snapshot/snapshot.hpp</label>
+        <link refid="snapshot_8hpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classastrea_1_1snapshot_1_1EthzClient" prot="public">astrea::snapshot::EthzClient</innerclass>

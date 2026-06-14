@@ -18,48 +18,62 @@
 
 #include <units/units.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/FrameReference.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/platforms/InertiaTensor.hpp>
+#include <astro/propagation/force_models/Perturbation.hpp>
 #include <astro/time/Date.hpp>
+#include <astro/types/concepts.hpp>
 #include <astro/types/type_traits.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
 
 template <typename T>
-concept HasGetMass = requires(T vehicle) {
+concept HasGetMass = requires(const T vehicle) {
     { vehicle.get_mass() } -> std::same_as<Mass>;
 };
 
 template <typename T>
-concept HasGetRamArea = requires(T vehicle) {
+concept HasGetInertiaTensor = requires(const T vehicle) {
+    { vehicle.get_inertia_tensor() } -> std::same_as<InertiaTensor<frames::dynamic::body>>;
+};
+
+template <typename T>
+concept HasGetRamArea = requires(const T vehicle) {
     { vehicle.get_ram_area() } -> std::same_as<SurfaceArea>;
 };
 
 template <typename T>
-concept HasGetCoefficientOfDrag = requires(T vehicle) {
+concept HasGetCoefficientOfDrag = requires(const T vehicle) {
     { vehicle.get_coefficient_of_drag() } -> std::same_as<Unitless>;
 };
 
 template <typename T>
-concept HasGetLiftArea = requires(T vehicle) {
+concept HasGetLiftArea = requires(const T vehicle) {
     { vehicle.get_lift_area() } -> std::same_as<SurfaceArea>;
 };
 
 template <typename T>
-concept HasGetCoefficientOfLift = requires(T vehicle) {
+concept HasGetCoefficientOfLift = requires(const T vehicle) {
     { vehicle.get_coefficient_of_lift() } -> std::same_as<Unitless>;
 };
 
 template <typename T>
-concept HasGetSolarArea = requires(T vehicle) {
+concept HasGetSolarArea = requires(const T vehicle) {
     { vehicle.get_solar_area() } -> std::same_as<SurfaceArea>;
 };
 
 template <typename T>
-concept HasGetCoefficientOfReflectivity = requires(T vehicle) {
+concept HasGetCoefficientOfReflectivity = requires(const T vehicle) {
     { vehicle.get_coefficient_of_reflectivity() } -> std::same_as<Unitless>;
+};
+
+template <typename T>
+concept HasGetControlAuthority = requires(const T& vehicle, const State& state) {
+    { vehicle.get_control_authority(state) } -> std::same_as<Perturbation>;
 };
 
 template <typename T>
@@ -74,11 +88,16 @@ concept IsUserDefinedVehicle = requires(T) {
 
 namespace detail {
 
-struct VehicleInnerBase : public virtual FrameReference {
+struct VehicleInnerBase {
 
     virtual ~VehicleInnerBase() {}
 
     virtual Mass get_mass() const = 0;
+
+    virtual InertiaTensor<frames::dynamic::body> get_inertia_tensor() const
+    {
+        return InertiaTensor<frames::dynamic::body>();
+    }
 
     virtual SurfaceArea get_ram_area() const = 0;
 
@@ -92,11 +111,17 @@ struct VehicleInnerBase : public virtual FrameReference {
 
     virtual Unitless get_coefficient_of_reflectivity() const = 0;
 
+    virtual Perturbation get_control_authority(const State& state) const = 0;
+
     virtual std::unique_ptr<VehicleInnerBase> clone() const = 0;
 
     virtual const void* get_ptr() const = 0;
 
     virtual void* get_ptr() = 0;
+
+    virtual const std::type_info& type() const = 0;
+
+    virtual std::string get_name() const = 0;
 };
 
 template <typename T>
@@ -124,40 +149,29 @@ struct VehicleInner final : public VehicleInnerBase {
 
     Mass get_mass() const final { return _value.get_mass(); }
 
+    InertiaTensor<frames::dynamic::body> get_inertia_tensor() const final { return get_inertia_tensor_impl(_value); }
+
+    template <typename U>
+        requires(!HasGetInertiaTensor<U>)
+    static InertiaTensor<frames::dynamic::body> get_inertia_tensor_impl(const U&)
+    {
+        return InertiaTensor<frames::dynamic::body>();
+    }
+
+    template <typename U>
+        requires(HasGetInertiaTensor<U>)
+    static InertiaTensor<frames::dynamic::body> get_inertia_tensor_impl(const U& value)
+    {
+        return value.get_inertia_tensor();
+    }
+
     SurfaceArea get_ram_area() const final { return get_ram_area_impl(_value); }
-
-    SurfaceArea get_lift_area() const final { return get_lift_area_impl(_value); }
-
-    SurfaceArea get_solar_area() const final { return get_solar_area_impl(_value); }
-
-    Unitless get_coefficient_of_drag() const final { return get_coefficient_of_drag_impl(_value); }
-
-    Unitless get_coefficient_of_lift() const final { return get_coefficient_of_lift_impl(_value); }
-
-    Unitless get_coefficient_of_reflectivity() const final { return get_coefficient_of_reflectivity_impl(_value); }
-
-    RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const override final
-    {
-        return _value.get_inertial_position(date);
-    }
-
-    VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const override final
-    {
-        return _value.get_inertial_velocity(date);
-    }
-
-    AccelerationVector<frames::earth::icrf> get_inertial_acceleration(const Date& date) const override final
-    {
-        return _value.get_inertial_acceleration(date);
-    }
-
-    std::string get_name() const override final { return _value.get_name(); }
 
     template <typename U>
         requires(!HasGetRamArea<U>)
     static SurfaceArea get_ram_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit);
+        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
     }
 
     template <typename U>
@@ -167,12 +181,13 @@ struct VehicleInner final : public VehicleInnerBase {
         return value.get_ram_area();
     }
 
+    SurfaceArea get_lift_area() const final { return get_lift_area_impl(_value); }
 
     template <typename U>
         requires(!HasGetLiftArea<U>)
     static SurfaceArea get_lift_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit);
+        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
     }
 
     template <typename U>
@@ -182,11 +197,13 @@ struct VehicleInner final : public VehicleInnerBase {
         return value.get_lift_area();
     }
 
+    SurfaceArea get_solar_area() const final { return get_solar_area_impl(_value); }
+
     template <typename U>
         requires(!HasGetSolarArea<U>)
     static SurfaceArea get_solar_area_impl(const U&)
     {
-        return 0.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit);
+        return 0.0 * mp_units::pow<2>(astrea::detail::distance_unit);
     }
 
     template <typename U>
@@ -195,6 +212,8 @@ struct VehicleInner final : public VehicleInnerBase {
     {
         return value.get_solar_area();
     }
+
+    Unitless get_coefficient_of_drag() const final { return get_coefficient_of_drag_impl(_value); }
 
     template <typename U>
         requires(!HasGetCoefficientOfDrag<U>)
@@ -210,6 +229,8 @@ struct VehicleInner final : public VehicleInnerBase {
         return value.get_coefficient_of_drag();
     }
 
+    Unitless get_coefficient_of_lift() const final { return get_coefficient_of_lift_impl(_value); }
+
     template <typename U>
         requires(!HasGetCoefficientOfLift<U>)
     static Unitless get_coefficient_of_lift_impl(const U&)
@@ -223,6 +244,8 @@ struct VehicleInner final : public VehicleInnerBase {
     {
         return value.get_coefficient_of_lift();
     }
+
+    Unitless get_coefficient_of_reflectivity() const final { return get_coefficient_of_reflectivity_impl(_value); }
 
     template <typename U>
         requires(!HasGetCoefficientOfReflectivity<U>)
@@ -238,11 +261,50 @@ struct VehicleInner final : public VehicleInnerBase {
         return value.get_coefficient_of_reflectivity();
     }
 
+    std::string get_name() const override final { return get_name_impl(_value); }
+
+    template <typename U>
+        requires(!HasGetName<U>)
+    std::string get_name_impl(const U&) const
+    {
+        return "Vehicle";
+    }
+
+    template <typename U>
+        requires(HasGetName<U>)
+    std::string get_name_impl(const U& value) const
+    {
+        return value.get_name();
+    }
+
+    Perturbation get_control_authority(const State& state) const final
+    {
+        return get_control_authority_impl(_value, state);
+    }
+
+    template <typename U>
+        requires(!HasGetControlAuthority<U>)
+    Perturbation get_control_authority_impl(const U&, const State&) const
+    {
+        using mp_units::si::unit_symbols::m;
+        using mp_units::si::unit_symbols::N;
+        return { .force = { 0.0 * N, 0.0 * N, 0.0 * N }, .torque = { 0.0 * N * m, 0.0 * N * m, 0.0 * N * m } };
+    }
+
+    template <typename U>
+        requires(HasGetControlAuthority<U>)
+    Perturbation get_control_authority_impl(const U& value, const State& state) const
+    {
+        return value.get_control_authority(state);
+    }
+
     std::unique_ptr<VehicleInnerBase> clone() const final { return std::make_unique<VehicleInner>(_value); }
 
     const void* get_ptr() const final { return &_value; }
 
     void* get_ptr() final { return &_value; }
+
+    const std::type_info& type() const final { return typeid(T); }
 
     T _value; 
 };
@@ -253,12 +315,12 @@ class Vehicle; // Forward declaration of the Vehicle class
 
 template <typename T>
 concept IsGenericallyConstructableVehicle = requires(T) {
+    requires !std::is_same<Vehicle, remove_cv_ref<T>>::value;
     requires IsUserDefinedVehicle<T>;
-    std::negation<std::is_same<Vehicle, remove_cv_ref<T>>>::value;
 };
 
 
-class Vehicle : public FrameReference {
+class Vehicle {
 
   public:
     Vehicle();
@@ -292,39 +354,36 @@ class Vehicle : public FrameReference {
     const T* extract() const noexcept
     {
         auto p = static_cast<const detail::VehicleInner<T>*>(ptr());
-        return p == nullptr ? nullptr : &(p->_value);
+        return ptr()->type() == typeid(T) ? &(p->_value) : nullptr;
     }
 
-    Mass get_mass() const { return _ptr->get_mass(); }
-
-    SurfaceArea get_ram_area() const { return _ptr->get_ram_area(); }
-
-    SurfaceArea get_lift_area() const { return _ptr->get_lift_area(); }
-
-    SurfaceArea get_solar_area() const { return _ptr->get_solar_area(); }
-
-    Unitless get_coefficient_of_drag() const { return _ptr->get_coefficient_of_drag(); }
-
-    Unitless get_coefficient_of_lift() const { return _ptr->get_coefficient_of_lift(); }
-
-    Unitless get_coefficient_of_reflectivity() const { return _ptr->get_coefficient_of_reflectivity(); }
-
-    RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const override
+    template <IsGenericallyConstructableVehicle T>
+    T* extract_mutable_reference() noexcept
     {
-        return ptr()->get_inertial_position(date);
+        auto p = static_cast<detail::VehicleInner<T>*>(ptr());
+        return ptr()->type() == typeid(T) ? &(p->_value) : nullptr;
     }
 
-    VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const override
-    {
-        return ptr()->get_inertial_velocity(date);
-    }
+    Mass get_mass() const { return ptr()->get_mass(); }
 
-    AccelerationVector<frames::earth::icrf> get_inertial_acceleration(const Date& date) const override
-    {
-        return ptr()->get_inertial_acceleration(date);
-    }
+    InertiaTensor<frames::dynamic::body> get_inertia_tensor() const { return ptr()->get_inertia_tensor(); }
 
-    std::string get_name() const override { return ptr()->get_name(); }
+    SurfaceArea get_ram_area() const { return ptr()->get_ram_area(); }
+
+    SurfaceArea get_lift_area() const { return ptr()->get_lift_area(); }
+
+    SurfaceArea get_solar_area() const { return ptr()->get_solar_area(); }
+
+    Unitless get_coefficient_of_drag() const { return ptr()->get_coefficient_of_drag(); }
+
+    Unitless get_coefficient_of_lift() const { return ptr()->get_coefficient_of_lift(); }
+
+    Unitless get_coefficient_of_reflectivity() const { return ptr()->get_coefficient_of_reflectivity(); }
+
+    Perturbation get_control_authority(const State& state) const { return ptr()->get_control_authority(state); }
+
+
+    std::string get_name() const { return ptr()->get_name(); }
 
     const void* get_ptr() const;
 
@@ -333,13 +392,14 @@ class Vehicle : public FrameReference {
   private:
     std::unique_ptr<detail::VehicleInnerBase> _ptr; 
 
-    Mass _mass;                          
-    SurfaceArea _ramArea;                
-    SurfaceArea _liftArea;               
-    SurfaceArea _solarArea;              
-    Unitless _coefficientOfDrag;         
-    Unitless _coefficientOfLift;         
-    Unitless _coefficientOfReflectivity; 
+    Mass _mass;                                          
+    InertiaTensor<frames::dynamic::body> _inertiaTensor; 
+    SurfaceArea _ramArea;                                
+    SurfaceArea _liftArea;                               
+    SurfaceArea _solarArea;                              
+    Unitless _coefficientOfDrag;                         
+    Unitless _coefficientOfLift;                         
+    Unitless _coefficientOfReflectivity;                 
 
     detail::VehicleInnerBase const* ptr() const
     {

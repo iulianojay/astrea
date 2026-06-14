@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1IsRegisteredFrame" kind="concept">
+    <compoundname>astrea::astro::IsRegisteredFrame</compoundname>
+    <templateparamlist>
+      <param>
+        <type>IsFrame auto</type>
+        <declname>frame</declname>
+        <defname>frame</defname>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;IsFrame auto frame&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1IsRegisteredFrame" kindref="compound">astrea::astro::IsRegisteredFrame</ref> =  []&lt;std::size_t... I&gt;(std::index_sequence&lt;I...&gt;) {
+    return (std::same_as&lt;decltype(frame), std::tuple_element_t&lt;I, detail::AllRegisteredFrames&gt;&gt; || ...);
+}(std::make_index_sequence&lt;std::tuple_size_v&lt;detail::AllRegisteredFrames&gt;&gt;{})    </initializer>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="108" column="1"/>
+  </compounddef>
+</doxygen>

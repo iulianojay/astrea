@@ -1,0 +1,906 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1DcmInterface" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::DcmInterface</compoundname>
+    <includes refid="DcmInterface_8hpp" local="no">DcmInterface.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref></type>
+      </param>
+      <param>
+        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_in_frame_</declname>
+        <defname>_in_frame_</defname>
+      </param>
+      <param>
+        <type>IsFrame <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <declname>_out_frame_</declname>
+        <defname>_out_frame_</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::in_frame</definition>
+        <argsstring></argsstring>
+        <name>in_frame</name>
+        <qualifiedname>astrea::astro::DcmInterface::in_frame</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref></initializer>
+        <briefdescription>
+<para>The input frame of the matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="48" column="27" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+        <definition>constexpr auto astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::out_frame</definition>
+        <argsstring></argsstring>
+        <name>out_frame</name>
+        <qualifiedname>astrea::astro::DcmInterface::out_frame</qualifiedname>
+        <initializer>= <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref></initializer>
+        <briefdescription>
+<para>The output frame of the matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="49" column="27" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" prot="protected" static="no" mutable="no">
+        <type>std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, 9 &gt;</type>
+        <definition>std::array&lt;Value_T, 9&gt; astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::_data</definition>
+        <argsstring></argsstring>
+        <name>_data</name>
+        <qualifiedname>astrea::astro::DcmInterface::_data</qualifiedname>
+        <briefdescription>
+<para>3x3 matrix to hold the direction cosines. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="299" column="16" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="299" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="structastrea_1_1astro_1_1DcmInterface_1aa16d82c4b66120e8b97b62b47978e977" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const DcmInterface &amp;matrix)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::DcmInterface::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref> &amp;</type>
+          <declname>matrix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="51" column="12" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="51" bodyend="61"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1a15a722c4753d19be8d1d0a185c382f49" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::DcmInterface</definition>
+        <argsstring>(const std::array&lt; Value_T, 9 &gt; &amp;matrix)</argsstring>
+        <name>DcmInterface</name>
+        <qualifiedname>astrea::astro::DcmInterface::DcmInterface</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, 9 &gt; &amp;</type>
+          <declname>matrix</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref> from an array of values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>matrix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array containing the nine elements of the matrix in row-major order. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="68" column="22" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="68" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1ab43cc271116cb7f145f353ffd60f0b41" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::DcmInterface</definition>
+        <argsstring>(const std::array&lt; Value_T, 3 &gt; &amp;row1, const std::array&lt; Value_T, 3 &gt; &amp;row2, const std::array&lt; Value_T, 3 &gt; &amp;row3)</argsstring>
+        <name>DcmInterface</name>
+        <qualifiedname>astrea::astro::DcmInterface::DcmInterface</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, 3 &gt; &amp;</type>
+          <declname>row1</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, 3 &gt; &amp;</type>
+          <declname>row2</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, 3 &gt; &amp;</type>
+          <declname>row3</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref> from three rows represented as arrays. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array containing the three elements of the first row of the matrix. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>row2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array containing the three elements of the second row of the matrix. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>row3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array containing the three elements of the third row of the matrix. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="80" column="22" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="80" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1afa1cd991010888d664ea0ad3bec75f5e" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>in_frame_u</declname>
+            <defname>in_frame_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>out_frame_u</declname>
+            <defname>out_frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::DcmInterface</definition>
+        <argsstring>(const DcmInterface&lt; Value_U, in_frame_u, out_frame_u &gt; &amp;matrix)</argsstring>
+        <name>DcmInterface</name>
+        <qualifiedname>astrea::astro::DcmInterface::DcmInterface</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">in_frame_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">out_frame_u</ref> &gt; &amp;</type>
+          <declname>matrix</declname>
+        </param>
+    <requiresclause>(requires { Value_T{ Value_U{} }; } &amp;&amp; equivalent(in_frame, in_frame_u) &amp;&amp; equivalent(out_frame, out_frame_u))    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="87" column="22" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="87" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1a7c414d903419899b7aae920c825c801d" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>in_frame_u</declname>
+            <defname>in_frame_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>out_frame_u</declname>
+            <defname>out_frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref></type>
+        <definition>constexpr astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::DcmInterface</definition>
+        <argsstring>(DcmInterface&lt; Value_U, in_frame_u, out_frame_u &gt; &amp;&amp;matrix)</argsstring>
+        <name>DcmInterface</name>
+        <qualifiedname>astrea::astro::DcmInterface::DcmInterface</qualifiedname>
+        <param>
+          <type><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">in_frame_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">out_frame_u</ref> &gt; &amp;&amp;</type>
+          <declname>matrix</declname>
+        </param>
+    <requiresclause>(requires { Value_T{ Value_U{} }; } &amp;&amp; equivalent(in_frame, in_frame_u) &amp;&amp; equivalent(out_frame, out_frame_u))    </requiresclause>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="94" column="22" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="94" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1a473de739a35c7b812f87f4ffcb420832" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref> &amp;</type>
+        <definition>constexpr Value_T &amp; astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::operator[]</definition>
+        <argsstring>(std::size_t row, std::size_t col)</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::astro::DcmInterface::operator[]</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>row</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>col</declname>
+        </param>
+        <briefdescription>
+<para>Access operator for the elements of the matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The row index (0, 1, or 2). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>col</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The column index (0, 1, or 2). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Value_T&amp; Reference to the element at the specified row and column. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="106" column="30" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="106" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1afa37976598d95d7eb9e579494b0b3e48" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref> &amp;</type>
+        <definition>constexpr const Value_T &amp; astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::operator[]</definition>
+        <argsstring>(std::size_t row, std::size_t col) const</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>astrea::astro::DcmInterface::operator[]</qualifiedname>
+        <param>
+          <type>std::size_t</type>
+          <declname>row</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>col</declname>
+        </param>
+        <briefdescription>
+<para>Const access operator for the elements of the matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>row</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The row index (0, 1, or 2). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>col</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The column index (0, 1, or 2). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const Value_T&amp; Reference to the element at the specified row and column. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="115" column="36" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="115" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1ae6d056075b72aabcbab32283ccf728bb" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>in_frame_u</declname>
+            <defname>in_frame_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>out_frame_u</declname>
+            <defname>out_frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref></type>
+        <definition>constexpr DcmInterface astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::operator+</definition>
+        <argsstring>(const DcmInterface&lt; Value_U, in_frame_u, out_frame_u &gt; &amp;other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>astrea::astro::DcmInterface::operator+</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">in_frame_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">out_frame_u</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(equivalent(in_frame, in_frame_u) &amp;&amp; equivalent(out_frame, out_frame_u))    </requiresclause>
+        <briefdescription>
+<para>Add two matrices together (element-wise addition). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The matrix to add to this one. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref> The resulting matrix from the addition. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="125" column="35" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="125" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1a30723a4c1e490bddf21357fb7899a6ed" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref></type>
+        <definition>constexpr DcmInterface astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::operator-</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>astrea::astro::DcmInterface::operator-</qualifiedname>
+        <briefdescription>
+<para>Negate the matrix (element-wise negation). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref> The resulting negated matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="143" column="35" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="143" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1afd71e9c382e0b5c4d68ec37a2f884f8d" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>in_frame_u</declname>
+            <defname>in_frame_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>out_frame_u</declname>
+            <defname>out_frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref></type>
+        <definition>constexpr DcmInterface astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::operator-</definition>
+        <argsstring>(const DcmInterface&lt; Value_U, in_frame_u, out_frame_u &gt; &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>astrea::astro::DcmInterface::operator-</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">in_frame_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">out_frame_u</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(equivalent(in_frame, in_frame_u) &amp;&amp; equivalent(out_frame, out_frame_u))    </requiresclause>
+        <briefdescription>
+<para>Subtract another matrix from this one (element-wise subtraction). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The matrix to subtract from this one. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref> The resulting matrix from the subtraction. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="156" column="35" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="156" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1ab2ce6540f87db2510d7d0120e4da93e7" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>in_frame_u</declname>
+            <defname>in_frame_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>out_frame_u</declname>
+            <defname>out_frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{} *<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}), <ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>, <ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref> &gt;</type>
+        <definition>constexpr DcmInterface&lt; decltype(Value_T{} *Value_U{}), in_frame, out_frame &gt; astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::operator*</definition>
+        <argsstring>(const DcmInterface&lt; Value_U, in_frame_u, out_frame_u &gt; &amp;other) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>astrea::astro::DcmInterface::operator*</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">in_frame_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">out_frame_u</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(equivalent(in_frame, in_frame_u) &amp;&amp; equivalent(out_frame, out_frame_u))    </requiresclause>
+        <briefdescription>
+<para>Compose two direction matrices (matrix multiplication). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note: This overload is identically-framed matrices so the output frame is the same as the input frame.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_newout_frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output frame of the right-hand-side matrix. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The right-hand-side matrix to compose with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref> The composed matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="173" column="9" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="173" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1a638b3f83502dd0690135fc50cacb2d31" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>in_frame_u</declname>
+            <defname>in_frame_u</defname>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>out_frame_u</declname>
+            <defname>out_frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{} *<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}), <ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">out_frame_u</ref> &gt;</type>
+        <definition>constexpr DcmInterface&lt; decltype(Value_T{} *Value_U{}), in_frame, out_frame_u &gt; astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::operator*</definition>
+        <argsstring>(const DcmInterface&lt; Value_U, in_frame_u, out_frame_u &gt; &amp;other) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>astrea::astro::DcmInterface::operator*</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">in_frame_u</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">out_frame_u</ref> &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+    <requiresclause>(!(equivalent(in_frame, in_frame_u) &amp;&amp; equivalent(out_frame, out_frame_u)) &amp;&amp; equivalent(out_frame, in_frame_u))    </requiresclause>
+        <briefdescription>
+<para>Compose two direction matrices (matrix multiplication). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Note: This overload is for stacked rotations where mat_1^2 * mat_2^3 -&gt; mat_1^3</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>_newout_frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output frame of the right-hand-side matrix. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The right-hand-side matrix to compose with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref> The composed matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="190" column="9" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="190" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1a7c7edfbb79b165dd0dc2327b0e0328ec" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">auto</ref></type>
+            <declname>in_frame_u</declname>
+            <defname>in_frame_u</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{} *<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}), <ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; decltype(Value_T{} *Value_U{}), out_frame &gt; astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::operator*</definition>
+        <argsstring>(const CartesianVector&lt; Value_U, in_frame_u &gt; &amp;vec) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>astrea::astro::DcmInterface::operator*</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">in_frame_u</ref> &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+    <requiresclause>(equivalent(in_frame, in_frame_u))    </requiresclause>
+        <briefdescription>
+<para>Multiply this matrix by a <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Value_U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the elements in the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in_frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input frame of the <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector to multiply the matrix by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref> The resulting vector from the multiplication. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="206" column="9" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="206" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1abc0bff04bbdc1abc84a46a794df38de4" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{} *<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}), <ref refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" kindref="member">in_frame</ref>, <ref refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" kindref="member">out_frame</ref> &gt;</type>
+        <definition>constexpr DcmInterface&lt; decltype(Value_T{} *Value_U{}), in_frame, out_frame &gt; astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::operator*</definition>
+        <argsstring>(const Value_U &amp;scalar) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>astrea::astro::DcmInterface::operator*</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref> &amp;</type>
+          <declname>scalar</declname>
+        </param>
+    <requiresclause>(std::is_arithmetic_v&lt;Value_U&gt; || mp_units::Quantity&lt;Value_U&gt;)    </requiresclause>
+        <briefdescription>
+<para>Multiply the matrix by a scalar value (element-wise multiplication). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to multiply the matrix by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref> The resulting matrix from the scalar multiplication. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="219" column="35" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="219" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref> &gt;</type>
+        <definition>constexpr CartesianVector&lt; Value_T, _in_frame_ &gt; astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::row</definition>
+        <argsstring>(const std::size_t &amp;idx) const</argsstring>
+        <name>row</name>
+        <qualifiedname>astrea::astro::DcmInterface::row</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::size_t &amp;</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Get a specific row of the matrix as a <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the row to retrieve (0, 1, or 2). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>const <ref refid="structastrea_1_1astro_1_1CartesianVector" kindref="compound">CartesianVector</ref>&lt;Value_T, <emphasis>in_frame</emphasis>&gt;&amp; The requested row as a <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="232" column="38" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="232" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1a125c845e66fc94b94ba7e552dca2ca4e" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_out_frame_</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">_in_frame_</ref> &gt;</type>
+        <definition>constexpr DcmInterface&lt; Value_T, _out_frame_, _in_frame_ &gt; astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::transpose</definition>
+        <argsstring>() const</argsstring>
+        <name>transpose</name>
+        <qualifiedname>astrea::astro::DcmInterface::transpose</qualifiedname>
+        <briefdescription>
+<para>Transposes the matrix, effectively inverting the transformation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref> The transposed matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="242" column="35" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="242" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1a67c8b821d1bb9ccbfc81961c5fb012da" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref></type>
+        <definition>constexpr Value_T astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::trace</definition>
+        <argsstring>() const</argsstring>
+        <name>trace</name>
+        <qualifiedname>astrea::astro::DcmInterface::trace</qualifiedname>
+        <briefdescription>
+<para>Get the trace of the matrix (the sum of the diagonal elements). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Value_T The trace of the matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="252" column="30" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="252" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1a2315bb7302b2c649f58b65947533cf02" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref></type>
+        <definition>constexpr Value_T astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::determinant</definition>
+        <argsstring>() const</argsstring>
+        <name>determinant</name>
+        <qualifiedname>astrea::astro::DcmInterface::determinant</qualifiedname>
+        <briefdescription>
+<para>Get the determinant of the matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Value_T The determinant of the matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="259" column="30" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="259" bodyend="263"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1afdefad21f497cf49cc1fd6818d03e5d9" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>constexpr void astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::normalize</definition>
+        <argsstring>()</argsstring>
+        <name>normalize</name>
+        <qualifiedname>astrea::astro::DcmInterface::normalize</qualifiedname>
+        <briefdescription>
+<para>Normalizes the matrix to ensure it represents a valid rotation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method scales the elements of the matrix so that the determinant is 1, which is a requirement for a valid rotation matrix. If the determinant is zero, an exception is thrown since the matrix cannot be normalized. Uses a linear approximation when the determinant is close to 1 for numerical efficiency. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="272" column="27" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="272" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1a62b273617fa7a7d343353b0ba2837fa1" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>, 9 &gt;</type>
+        <definition>constexpr std::array&lt; Value_T, 9 &gt; astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::data</definition>
+        <argsstring>() const</argsstring>
+        <name>data</name>
+        <qualifiedname>astrea::astro::DcmInterface::data</qualifiedname>
+        <briefdescription>
+<para>Get the underlying data of the matrix as an array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::array&lt;Value_T, 9&gt; The elements of the matrix in row-major order. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="296" column="33" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="296" bodyend="296"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1acfc3d24723f5a2201b53310700e070f0" prot="protected" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></type>
+        <definition>constexpr void astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::_normalize</definition>
+        <argsstring>(const Unitless &amp;scale)</argsstring>
+        <name>_normalize</name>
+        <qualifiedname>astrea::astro::DcmInterface::_normalize</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>scale</declname>
+        </param>
+        <briefdescription>
+<para>Normalizes the matrix by scaling all elements by the given factor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scale</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The factor to scale the matrix elements by to achieve normalization. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="306" column="27" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="306" bodyend="315"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1a3b6dcd1efe22c6ac8490f89201295878" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref></type>
+          </param>
+        </templateparamlist>
+        <type>std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">decltype</ref>(<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_T</ref>{} *<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>{}), 9 &gt;</type>
+        <definition>std::array&lt; decltype(Value_T{} *Value_U{}), 9 &gt; astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::_multiply</definition>
+        <argsstring>(const std::array&lt; Value_U, 9 &gt; &amp;other) const</argsstring>
+        <name>_multiply</name>
+        <qualifiedname>astrea::astro::DcmInterface::_multiply</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Value_U</ref>, 9 &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="319" column="16" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="319" bodyend="331"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1abffe5fcb4ea0cb166734e7ffc724681d" prot="protected" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref></type>
+        <definition>static constexpr DcmInterface astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::identity</definition>
+        <argsstring>()</argsstring>
+        <name>identity</name>
+        <qualifiedname>astrea::astro::DcmInterface::identity</qualifiedname>
+        <briefdescription>
+<para>Creates an identity matrix (no rotation). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref> The identity matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="338" column="42" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="338" bodyend="344"/>
+      </memberdef>
+      <memberdef kind="function" id="structastrea_1_1astro_1_1DcmInterface_1ad69e7a9e2b853b7dd6d9cedca3bba94d" prot="protected" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">constexpr</ref> <ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref></type>
+        <definition>static constexpr DcmInterface astrea::astro::DcmInterface&lt; Value_T, _in_frame_, _out_frame_ &gt;::zero</definition>
+        <argsstring>()</argsstring>
+        <name>zero</name>
+        <qualifiedname>astrea::astro::DcmInterface::zero</qualifiedname>
+        <briefdescription>
+<para>Creates a zero matrix (invalid rotation). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structastrea_1_1astro_1_1DcmInterface" kindref="compound">DcmInterface</ref> The zero matrix. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="351" column="42" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="351" bodyend="356"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class representing a 3x3 matrix, used for matrices and their rates/accelerations. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="note"><para>I didn&apos;t generalize this matrix definition and I&apos;m not going to </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/framework/DcmInterface.hpp" line="46" column="1" bodyfile="astrea/astro/astro/frames/framework/DcmInterface.hpp" bodystart="46" bodyend="357"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1a91c5ebcbc59bf652638b280e197cc9cd" prot="protected" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>_data</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1a3b6dcd1efe22c6ac8490f89201295878" prot="protected" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>_multiply</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1acfc3d24723f5a2201b53310700e070f0" prot="protected" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>_normalize</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1a62b273617fa7a7d343353b0ba2837fa1" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>data</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1a15a722c4753d19be8d1d0a185c382f49" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>DcmInterface</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1ab43cc271116cb7f145f353ffd60f0b41" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>DcmInterface</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1afa1cd991010888d664ea0ad3bec75f5e" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>DcmInterface</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1a7c414d903419899b7aae920c825c801d" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>DcmInterface</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1a2315bb7302b2c649f58b65947533cf02" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>determinant</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1abffe5fcb4ea0cb166734e7ffc724681d" prot="protected" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>identity</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1a97be6a75b21573986b830738c7bcd4a7" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>in_frame</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1afdefad21f497cf49cc1fd6818d03e5d9" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>normalize</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1ab2ce6540f87db2510d7d0120e4da93e7" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>operator*</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1a638b3f83502dd0690135fc50cacb2d31" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>operator*</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1a7c7edfbb79b165dd0dc2327b0e0328ec" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>operator*</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1abc0bff04bbdc1abc84a46a794df38de4" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>operator*</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1ae6d056075b72aabcbab32283ccf728bb" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>operator+</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1a30723a4c1e490bddf21357fb7899a6ed" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>operator-</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1afd71e9c382e0b5c4d68ec37a2f884f8d" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>operator-</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1aa16d82c4b66120e8b97b62b47978e977" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>operator&lt;&lt;</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1a473de739a35c7b812f87f4ffcb420832" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>operator[]</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1afa37976598d95d7eb9e579494b0b3e48" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>operator[]</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1ad1da3a11fbd2eaaf6ceb629c4679b5e0" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>out_frame</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1abc192d4a40875c4973570c42b97d3fc5" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>row</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1a67c8b821d1bb9ccbfc81961c5fb012da" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>trace</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1a125c845e66fc94b94ba7e552dca2ca4e" prot="public" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>transpose</name></member>
+      <member refid="structastrea_1_1astro_1_1DcmInterface_1ad69e7a9e2b853b7dd6d9cedca3bba94d" prot="protected" virt="non-virtual"><scope>astrea::astro::DcmInterface</scope><name>zero</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

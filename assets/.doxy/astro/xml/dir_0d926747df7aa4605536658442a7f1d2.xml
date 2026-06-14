@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_0d926747df7aa4605536658442a7f1d2" kind="dir">
+    <compoundname>astrea/astro/astro/systems/celestial_bodies/Earth</compoundname>
+    <innerdir refid="dir_52ad4357f9588f54fe1e3d5cf2b75c1b">astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere</innerdir>
+    <innerfile refid="Earth_8hpp">Earth.hpp</innerfile>
+    <innerfile refid="Moon_8hpp">Moon.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/celestial_bodies/Earth/"/>
+  </compounddef>
+</doxygen>

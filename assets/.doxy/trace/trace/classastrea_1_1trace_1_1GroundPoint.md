@@ -2,19 +2,21 @@
 
 # Class astrea::trace::GroundPoint
 
+**template &lt;astro::IsCelestialBody auto \_body\_&gt;**
+
 
 
 [**ClassList**](annotated.md) **>** [**astrea**](namespaceastrea.md) **>** [**trace**](namespaceastrea_1_1trace.md) **>** [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md)
 
 
 
-_Represents a point on the ground with latitude, longitude, and altitude._ [More...](#detailed-description)
+_Represents a point on the surface of a celestial body with latitude, longitude, and altitude._ [More...](#detailed-description)
 
 * `#include <GroundPoint.hpp>`
 
 
 
-Inherits the following classes: [astrea::trace::AccessObject](classastrea_1_1trace_1_1AccessObject.md),  astro::FrameReference
+Inherits the following classes: [astrea::trace::AccessObject](classastrea_1_1trace_1_1AccessObject.md)
 
 
 Inherited by the following classes: [astrea::trace::GroundStation](classastrea_1_1trace_1_1GroundStation.md)
@@ -42,6 +44,11 @@ Inherited by the following classes: [astrea::trace::GroundStation](classastrea_1
 
 
 
+## Public Static Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  constexpr auto | [**body**](#variable-body)   = `\_body\_`<br>_The celestial body this ground point resides on._  |
 
 
 
@@ -74,19 +81,18 @@ Inherited by the following classes: [astrea::trace::GroundStation](classastrea_1
 
 | Type | Name |
 | ---: | :--- |
-|   | [**GroundPoint**](#function-groundpoint) (const astro::CelestialBody \* parent=nullptr, const Angle & latitutde=0.0 \*mp\_units::angular::unit\_symbols::deg, const Angle & longitude=0.0 \*mp\_units::angular::unit\_symbols::deg, const Distance & altitude=0.0 \*mp\_units::si::unit\_symbols::km) <br>_Constructs a_ [_**GroundPoint**_](classastrea_1_1trace_1_1GroundPoint.md) _with specified latitude, longitude, and altitude._ |
-|  const Distance & | [**get\_altitude**](#function-get_altitude) () const<br>_Gets the altitude of the ground point above sea level._  |
-| virtual std::size\_t | [**get\_id**](#function-get_id) () const<br>_Get the unique identifier for the ground station._  |
-|  astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt; | [**get\_inertial\_position**](#function-get_inertial_position) (const astro::Date & date) const<br>_Get the position of the frame in Earth-Centered Inertial coordinates._  |
-|  astro::CartesianVector&lt; Velocity, astro::frames::earth::icrf &gt; | [**get\_inertial\_velocity**](#function-get_inertial_velocity) (const astro::Date & date) const<br>_Get the velocity of the frame in Earth-Centered Inertial coordinates._  |
-|  const Angle & | [**get\_latitude**](#function-get_latitude) () const<br>_Gets the latitude of the ground point._  |
-|  const astro::Geodetic & | [**get\_lla**](#function-get_lla) () const<br>_Gets the geodetic coordinates of the ground point._  |
-|  const Angle & | [**get\_longitude**](#function-get_longitude) () const<br>_Gets the longitude of the ground point._  |
-|  std::string | [**get\_name**](#function-get_name) () const<br> |
-|  const astro::CelestialBody \* | [**get\_parent**](#function-get_parent) () const<br>_Gets the parent celestial body of the ground point._  |
-|  astro::CartesianVector&lt; Distance, astro::frames::earth::earth\_fixed &gt; | [**get\_position**](#function-get_position) () const<br>_Get the position of the frame in Earth-Centered-Earth-Fixed (ECEF) coordinates._  |
-|  bool | [**operator==**](#function-operator) (const [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) & other) const<br>_Equality operator for comparing two_ [_**GroundPoint**_](classastrea_1_1trace_1_1GroundPoint.md) _objects._ |
-| virtual  | [**~GroundPoint**](#function-groundpoint) () = default<br>_Destructor for the_ [_**GroundPoint**_](classastrea_1_1trace_1_1GroundPoint.md) _class._ |
+|   | [**GroundPoint**](#function-groundpoint) (const Angle & latitude=0.0 \*mp\_units::angular::unit\_symbols::deg, const Angle & longitude=0.0 \*mp\_units::angular::unit\_symbols::deg, const Distance & altitude=0.0 \*mp\_units::si::unit\_symbols::km) <br>_Constructs a_ [_**GroundPoint**_](classastrea_1_1trace_1_1GroundPoint.md) _with specified latitude, longitude, and altitude._ |
+|  const Distance & | [**get\_altitude**](#function-get_altitude) () const<br>_Returns the altitude of the ground point above the surface._  |
+| virtual std::size\_t | [**get\_id**](#function-get_id) () override const<br>_Returns the unique identifier for this ground point._  |
+|  const Angle & | [**get\_latitude**](#function-get_latitude) () const<br>_Returns the latitude of the ground point._  |
+|  const astro::Geodetic&lt; \_body\_ &gt; & | [**get\_lla**](#function-get_lla) () const<br>_Returns the geodetic coordinates of the ground point._  |
+|  const Angle & | [**get\_longitude**](#function-get_longitude) () const<br>_Returns the longitude of the ground point._  |
+|  std::string | [**get\_name**](#function-get_name) () const<br>_Returns a human-readable name for the ground point._  |
+|  auto | [**get\_position**](#function-get_position-12) () const<br>_Returns the position in the body-fixed frame._  |
+|  auto | [**get\_position**](#function-get_position-22) (const astro::Date & date) const<br>_Returns the inertial position at the given date._  |
+|  auto | [**get\_velocity**](#function-get_velocity) (const astro::Date & date) const<br>_Returns the inertial velocity at the given date, computed from the body's rotation rate._  |
+|  bool | [**operator==**](#function-operator) (const [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) & other) const<br>_Equality operator — compares geodetic coordinates._  |
+| virtual  | [**~GroundPoint**](#function-groundpoint) () = default<br> |
 
 
 ## Public Functions inherited from astrea::trace::AccessObject
@@ -118,9 +124,8 @@ See [astrea::trace::AccessObject](classastrea_1_1trace_1_1AccessObject.md)
 
 | Type | Name |
 | ---: | :--- |
-|  std::size\_t | [**\_id**](#variable-_id)  <br>_Unique identifier for the ground station, generated from its properties._  |
-|  astro::Geodetic | [**\_lla**](#variable-_lla)  <br>_Geodetic coordinates of the ground point._  |
-|  const astro::CelestialBody \* | [**\_parent**](#variable-_parent)  <br>_Pointer to the parent celestial body._  |
+|  std::size\_t | [**\_id**](#variable-_id)  <br>_Unique identifier, generated at construction._  |
+|  astro::Geodetic&lt; \_body\_ &gt; | [**\_lla**](#variable-_lla)  <br>_Geodetic coordinates of the ground point._  |
 
 
 
@@ -153,11 +158,6 @@ See [astrea::trace::AccessObject](classastrea_1_1trace_1_1AccessObject.md)
 
 
 
-## Protected Functions
-
-| Type | Name |
-| ---: | :--- |
-|  std::size\_t | [**generate\_id**](#function-generate_id) () <br>_Generates a unique identifier for the ground station based on its properties. This method is called in the constructor to ensure that each ground station has a unique ID._  |
 
 
 ## Protected Functions inherited from astrea::trace::AccessObject
@@ -177,10 +177,33 @@ See [astrea::trace::AccessObject](classastrea_1_1trace_1_1AccessObject.md)
 ## Detailed Description
 
 
-This class is used to define a ground point in terms of its geographic coordinates and altitude above sea level. It can be extended to include additional properties or methods as needed for specific applications. 
+
+
+**Template parameters:**
+
+
+* `_body_` The celestial body NTTP this ground point resides on. 
+
+
 
 
     
+## Public Static Attributes Documentation
+
+
+
+
+### variable body 
+
+_The celestial body this ground point resides on._ 
+```C++
+constexpr auto astrea::trace::GroundPoint< _body_ >::body;
+```
+
+
+
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -190,9 +213,8 @@ This class is used to define a ground point in terms of its geographic coordinat
 
 _Constructs a_ [_**GroundPoint**_](classastrea_1_1trace_1_1GroundPoint.md) _with specified latitude, longitude, and altitude._
 ```C++
-astrea::trace::GroundPoint::GroundPoint (
-    const astro::CelestialBody * parent=nullptr,
-    const Angle & latitutde=0.0 *mp_units::angular::unit_symbols::deg,
+inline astrea::trace::GroundPoint::GroundPoint (
+    const Angle & latitude=0.0 *mp_units::angular::unit_symbols::deg,
     const Angle & longitude=0.0 *mp_units::angular::unit_symbols::deg,
     const Distance & altitude=0.0 *mp_units::si::unit_symbols::km
 ) 
@@ -205,9 +227,9 @@ astrea::trace::GroundPoint::GroundPoint (
 **Parameters:**
 
 
-* `latitutde` The latitude of the ground point (default is 0 degrees). 
+* `latitude` The latitude of the ground point (default is 0 degrees). 
 * `longitude` The longitude of the ground point (default is 0 degrees). 
-* `altitude` The altitude of the ground point above sea level (default is 0 kilometers). 
+* `altitude` The altitude of the ground point above the surface (default is 0 km). 
 
 
 
@@ -220,24 +242,13 @@ astrea::trace::GroundPoint::GroundPoint (
 
 ### function get\_altitude 
 
-_Gets the altitude of the ground point above sea level._ 
+_Returns the altitude of the ground point above the surface._ 
 ```C++
-const Distance & astrea::trace::GroundPoint::get_altitude () const
+inline const Distance & astrea::trace::GroundPoint::get_altitude () const
 ```
 
 
 
-
-
-**Returns:**
-
-Distance The altitude of the ground point. 
-
-
-
-
-
-        
 
 <hr>
 
@@ -245,24 +256,13 @@ Distance The altitude of the ground point.
 
 ### function get\_id 
 
-_Get the unique identifier for the ground station._ 
+_Returns the unique identifier for this ground point._ 
 ```C++
-virtual std::size_t astrea::trace::GroundPoint::get_id () const
+inline virtual std::size_t astrea::trace::GroundPoint::get_id () override const
 ```
 
 
 
-
-
-**Returns:**
-
-std::size\_t The unique identifier for the ground station. 
-
-
-
-
-
-        
 Implements [*astrea::trace::AccessObject::get\_id*](classastrea_1_1trace_1_1AccessObject.md#function-get_id)
 
 
@@ -270,94 +270,15 @@ Implements [*astrea::trace::AccessObject::get\_id*](classastrea_1_1trace_1_1Acce
 
 
 
-### function get\_inertial\_position 
-
-_Get the position of the frame in Earth-Centered Inertial coordinates._ 
-```C++
-astro::CartesianVector< Distance, astro::frames::earth::icrf > astrea::trace::GroundPoint::get_inertial_position (
-    const astro::Date & date
-) const
-```
-
-
-
-
-
-**Parameters:**
-
-
-* `date` The date for which to get the position. 
-
-
-
-**Returns:**
-
-CartesianVector&lt;Distance, frames::earth::icrf&gt; 
-
-
-
-
-
-        
-
-<hr>
-
-
-
-### function get\_inertial\_velocity 
-
-_Get the velocity of the frame in Earth-Centered Inertial coordinates._ 
-```C++
-astro::CartesianVector< Velocity, astro::frames::earth::icrf > astrea::trace::GroundPoint::get_inertial_velocity (
-    const astro::Date & date
-) const
-```
-
-
-
-
-
-**Parameters:**
-
-
-* `date` The date for which to get the velocity. 
-
-
-
-**Returns:**
-
-CartesianVector&lt;Velocity, frames::earth::icrf&gt; 
-
-
-
-
-
-        
-
-<hr>
-
-
-
 ### function get\_latitude 
 
-_Gets the latitude of the ground point._ 
+_Returns the latitude of the ground point._ 
 ```C++
-const Angle & astrea::trace::GroundPoint::get_latitude () const
+inline const Angle & astrea::trace::GroundPoint::get_latitude () const
 ```
 
 
 
-
-
-**Returns:**
-
-Angle The latitude of the ground point. 
-
-
-
-
-
-        
 
 <hr>
 
@@ -365,24 +286,13 @@ Angle The latitude of the ground point.
 
 ### function get\_lla 
 
-_Gets the geodetic coordinates of the ground point._ 
+_Returns the geodetic coordinates of the ground point._ 
 ```C++
-const astro::Geodetic & astrea::trace::GroundPoint::get_lla () const
+inline const astro::Geodetic< _body_ > & astrea::trace::GroundPoint::get_lla () const
 ```
 
 
 
-
-
-**Returns:**
-
-const Geodetic& The geodetic coordinates (latitude, longitude, altitude) of the ground point. 
-
-
-
-
-
-        
 
 <hr>
 
@@ -390,24 +300,13 @@ const Geodetic& The geodetic coordinates (latitude, longitude, altitude) of the 
 
 ### function get\_longitude 
 
-_Gets the longitude of the ground point._ 
+_Returns the longitude of the ground point._ 
 ```C++
-const Angle & astrea::trace::GroundPoint::get_longitude () const
+inline const Angle & astrea::trace::GroundPoint::get_longitude () const
 ```
 
 
 
-
-
-**Returns:**
-
-Angle The longitude of the ground point. 
-
-
-
-
-
-        
 
 <hr>
 
@@ -415,8 +314,9 @@ Angle The longitude of the ground point.
 
 ### function get\_name 
 
+_Returns a human-readable name for the ground point._ 
 ```C++
-std::string astrea::trace::GroundPoint::get_name () const
+inline std::string astrea::trace::GroundPoint::get_name () const
 ```
 
 
@@ -426,58 +326,47 @@ std::string astrea::trace::GroundPoint::get_name () const
 
 
 
-### function get\_parent 
+### function get\_position [1/2]
 
-_Gets the parent celestial body of the ground point._ 
+_Returns the position in the body-fixed frame._ 
 ```C++
-const astro::CelestialBody * astrea::trace::GroundPoint::get_parent () const
+inline auto astrea::trace::GroundPoint::get_position () const
 ```
 
 
 
-
-
-**Returns:**
-
-const CelestialBody\* Pointer to the parent celestial body. 
-
-
-
-
-
-        
 
 <hr>
 
 
 
-### function get\_position 
+### function get\_position [2/2]
 
-_Get the position of the frame in Earth-Centered-Earth-Fixed (ECEF) coordinates._ 
+_Returns the inertial position at the given date._ 
 ```C++
-astro::CartesianVector< Distance, astro::frames::earth::earth_fixed > astrea::trace::GroundPoint::get_position () const
+inline auto astrea::trace::GroundPoint::get_position (
+    const astro::Date & date
+) const
 ```
 
 
 
 
-
-**Parameters:**
-
-
-* `date` The date for which to get the position. 
+<hr>
 
 
 
-**Returns:**
+### function get\_velocity 
 
-CartesianVector&lt;Distance, frames::earth::earth\_fixed&gt; 
+_Returns the inertial velocity at the given date, computed from the body's rotation rate._ 
+```C++
+inline auto astrea::trace::GroundPoint::get_velocity (
+    const astro::Date & date
+) const
+```
 
 
 
-
-
-        
 
 <hr>
 
@@ -485,9 +374,9 @@ CartesianVector&lt;Distance, frames::earth::earth\_fixed&gt;
 
 ### function operator== 
 
-_Equality operator for comparing two_ [_**GroundPoint**_](classastrea_1_1trace_1_1GroundPoint.md) _objects._
+_Equality operator — compares geodetic coordinates._ 
 ```C++
-bool astrea::trace::GroundPoint::operator== (
+inline bool astrea::trace::GroundPoint::operator== (
     const GroundPoint & other
 ) const
 ```
@@ -495,31 +384,12 @@ bool astrea::trace::GroundPoint::operator== (
 
 
 
-
-**Parameters:**
-
-
-* `other` The other [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) to compare with. 
-
-
-
-**Returns:**
-
-true if the two [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) objects are equal, false otherwise. 
-
-
-
-
-
-        
-
 <hr>
 
 
 
 ### function ~GroundPoint 
 
-_Destructor for the_ [_**GroundPoint**_](classastrea_1_1trace_1_1GroundPoint.md) _class._
 ```C++
 virtual astrea::trace::GroundPoint::~GroundPoint () = default
 ```
@@ -535,9 +405,9 @@ virtual astrea::trace::GroundPoint::~GroundPoint () = default
 
 ### variable \_id 
 
-_Unique identifier for the ground station, generated from its properties._ 
+_Unique identifier, generated at construction._ 
 ```C++
-std::size_t astrea::trace::GroundPoint::_id;
+std::size_t astrea::trace::GroundPoint< _body_ >::_id;
 ```
 
 
@@ -551,37 +421,7 @@ std::size_t astrea::trace::GroundPoint::_id;
 
 _Geodetic coordinates of the ground point._ 
 ```C++
-astro::Geodetic astrea::trace::GroundPoint::_lla;
-```
-
-
-
-
-<hr>
-
-
-
-### variable \_parent 
-
-_Pointer to the parent celestial body._ 
-```C++
-const astro::CelestialBody* astrea::trace::GroundPoint::_parent;
-```
-
-
-
-
-<hr>
-## Protected Functions Documentation
-
-
-
-
-### function generate\_id 
-
-_Generates a unique identifier for the ground station based on its properties. This method is called in the constructor to ensure that each ground station has a unique ID._ 
-```C++
-std::size_t astrea::trace::GroundPoint::generate_id () 
+astro::Geodetic<_body_> astrea::trace::GroundPoint< _body_ >::_lla;
 ```
 
 

@@ -2,13 +2,15 @@
 
 # Class astrea::trace::Grid
 
+**template &lt;astro::IsCelestialBody auto \_body\_&gt;**
+
 
 
 [**ClassList**](annotated.md) **>** [**astrea**](namespaceastrea.md) **>** [**trace**](namespaceastrea_1_1trace.md) **>** [**Grid**](classastrea_1_1trace_1_1Grid.md)
 
 
 
-_Class representing a grid of ground points._ [More...](#detailed-description)
+_Class representing a grid of ground points on the surface of a celestial body._ [More...](#detailed-description)
 
 * `#include <Grid.hpp>`
 
@@ -32,8 +34,8 @@ _Class representing a grid of ground points._ [More...](#detailed-description)
 
 | Type | Name |
 | ---: | :--- |
-| typedef std::vector&lt; [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) &gt;::[**const\_iterator**](classastrea_1_1trace_1_1Grid.md#typedef-const_iterator) | [**const\_iterator**](#typedef-const_iterator)  <br>_Constant iterator types for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._ |
-| typedef std::vector&lt; [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) &gt;::[**iterator**](classastrea_1_1trace_1_1Grid.md#typedef-iterator) | [**iterator**](#typedef-iterator)  <br>_Iterator types for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._ |
+| typedef typename std::vector&lt; Point &gt;::const\_iterator | [**const\_iterator**](#typedef-const_iterator)  <br>_Constant iterator type for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._ |
+| typedef typename std::vector&lt; Point &gt;::iterator | [**iterator**](#typedef-iterator)  <br>_Iterator type for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._ |
 
 
 
@@ -59,8 +61,8 @@ _Class representing a grid of ground points._ [More...](#detailed-description)
 | Type | Name |
 | ---: | :--- |
 |   | [**Grid**](#function-grid-13) () = default<br>_Default constructor for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._ |
-|   | [**Grid**](#function-grid-23) (const std::vector&lt; [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) &gt; & groundPoints) <br>_Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _with a vector of ground stations._ |
-|   | [**Grid**](#function-grid-33) (const astro::CelestialBody \* parent, const [**LatLon**](namespaceastrea_1_1trace.md#typedef-latlon) & corner1, const [**LatLon**](namespaceastrea_1_1trace.md#typedef-latlon) & corner4, const [**GridType**](namespaceastrea_1_1trace.md#enum-gridtype) & gridType, const Angle & spacing=5.0 \*mp\_units::angular::unit\_symbols::deg, const Unitless & weight=0.0 \*mp\_units::one) <br>_Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _with specified corner points and grid type._ |
+|   | [**Grid**](#function-grid-23) (const std::vector&lt; Point &gt; & groundPoints) <br>_Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _from an explicit vector of ground points._ |
+|   | [**Grid**](#function-grid-33) (const [**LatLon**](namespaceastrea_1_1trace.md#typedef-latlon) & corner1, const [**LatLon**](namespaceastrea_1_1trace.md#typedef-latlon) & corner4, const [**GridType**](namespaceastrea_1_1trace.md#enum-gridtype) & gridType, const Angle & spacing=5.0 \*mp\_units::angular::unit\_symbols::deg, const Unitless & weight=0.0 \*mp\_units::one) <br>_Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _from corner points and a grid type._ |
 |  [**iterator**](classastrea_1_1trace_1_1Grid.md#typedef-iterator) | [**begin**](#function-begin-12) () <br>_Returns an iterator to the beginning of the ground points in the grid._  |
 |  [**const\_iterator**](classastrea_1_1trace_1_1Grid.md#typedef-const_iterator) | [**begin**](#function-begin-22) () const<br>_Returns a constant iterator to the beginning of the ground points in the grid._  |
 |  [**const\_iterator**](classastrea_1_1trace_1_1Grid.md#typedef-const_iterator) | [**cbegin**](#function-cbegin) () const<br>_Returns a constant iterator to the beginning of the ground points in the grid._  |
@@ -68,9 +70,8 @@ _Class representing a grid of ground points._ [More...](#detailed-description)
 |  [**iterator**](classastrea_1_1trace_1_1Grid.md#typedef-iterator) | [**end**](#function-end-12) () <br>_Returns an iterator to the end of the ground points in the grid._  |
 |  [**const\_iterator**](classastrea_1_1trace_1_1Grid.md#typedef-const_iterator) | [**end**](#function-end-22) () const<br>_Returns a constant iterator to the end of the ground points in the grid._  |
 |  [**GridType**](namespaceastrea_1_1trace.md#enum-gridtype) | [**get\_grid\_type**](#function-get_grid_type) () const<br>_Get the type of grid._  |
-|  const astro::CelestialBody \* | [**get\_parent**](#function-get_parent) () const<br>_Get the parent celestial body of the grid._  |
-|  [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) & | [**operator[]**](#function-operator) (const std::size\_t index) <br>_Access ground points in the grid by index._  |
-|  const [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) & | [**operator[]**](#function-operator_1) (const std::size\_t index) const<br>_Access ground points in the grid by index (constant version)._  |
+|  Point & | [**operator[]**](#function-operator) (std::size\_t index) <br>_Access a ground point in the grid by index._  |
+|  const Point & | [**operator[]**](#function-operator_1) (std::size\_t index) const<br>_Access a ground point in the grid by index (constant version)._  |
 |  std::size\_t | [**size**](#function-size) () const<br>_Get the number of ground points in the grid._  |
 | virtual  | [**~Grid**](#function-grid) () = default<br>_Default destructor for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._ |
 
@@ -104,7 +105,17 @@ _Class representing a grid of ground points._ [More...](#detailed-description)
 ## Detailed Description
 
 
-The [**Grid**](classastrea_1_1trace_1_1Grid.md) class manages a collection of ground points, allowing for various grid configurations such as uniform, equal area, and weighted grids. It provides methods to iterate over the ground stations and access their properties. 
+The [**Grid**](classastrea_1_1trace_1_1Grid.md) class manages a collection of ground points, allowing for various grid configurations such as uniform, equal area, and weighted grids. It provides methods to iterate over the ground stations and access their properties.
+
+
+
+
+**Template parameters:**
+
+
+* `_body_` The celestial body NTTP this grid resides on. 
+
+
 
 
     
@@ -115,9 +126,9 @@ The [**Grid**](classastrea_1_1trace_1_1Grid.md) class manages a collection of gr
 
 ### typedef const\_iterator 
 
-_Constant iterator types for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._
+_Constant iterator type for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._
 ```C++
-using astrea::trace::Grid::const_iterator =  std::vector<GroundPoint>::const_iterator;
+using astrea::trace::Grid< _body_ >::const_iterator =  typename std::vector<Point>::const_iterator;
 ```
 
 
@@ -129,9 +140,9 @@ using astrea::trace::Grid::const_iterator =  std::vector<GroundPoint>::const_ite
 
 ### typedef iterator 
 
-_Iterator types for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._
+_Iterator type for the_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _class._
 ```C++
-using astrea::trace::Grid::iterator =  std::vector<GroundPoint>::iterator;
+using astrea::trace::Grid< _body_ >::iterator =  typename std::vector<Point>::iterator;
 ```
 
 
@@ -163,10 +174,10 @@ Initializes an empty grid with no ground points.
 
 ### function Grid [2/3]
 
-_Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _with a vector of ground stations._
+_Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _from an explicit vector of ground points._
 ```C++
 inline astrea::trace::Grid::Grid (
-    const std::vector< GroundPoint > & groundPoints
+    const std::vector< Point > & groundPoints
 ) 
 ```
 
@@ -190,10 +201,9 @@ inline astrea::trace::Grid::Grid (
 
 ### function Grid [3/3]
 
-_Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _with specified corner points and grid type._
+_Construct a_ [_**Grid**_](classastrea_1_1trace_1_1Grid.md) _from corner points and a grid type._
 ```C++
 inline astrea::trace::Grid::Grid (
-    const astro::CelestialBody * parent,
     const LatLon & corner1,
     const LatLon & corner4,
     const GridType & gridType,
@@ -209,11 +219,11 @@ inline astrea::trace::Grid::Grid (
 **Parameters:**
 
 
-* `corner1` First corner point of the grid (latitude, longitude). 
-* `corner4` Fourth corner point of the grid (latitude, longitude). 
-* `gridType` Type of grid to create (uniform, equal area, etc.). 
-* `spacing` Spacing between points in the grid (default is 5 degrees). 
-* `weight` Weighting factor for the grid (default is 0). 
+* `corner1` First corner (latitude, longitude). 
+* `corner4` Fourth corner (latitude, longitude). 
+* `gridType` [**Grid**](classastrea_1_1trace_1_1Grid.md) generation algorithm. 
+* `spacing` Angular spacing between points (default 5 deg). 
+* `weight` Weighting factor (default 0). 
 
 
 
@@ -399,37 +409,12 @@ GridType The type of grid (uniform, equal area, etc.).
 
 
 
-### function get\_parent 
-
-_Get the parent celestial body of the grid._ 
-```C++
-inline const astro::CelestialBody * astrea::trace::Grid::get_parent () const
-```
-
-
-
-
-
-**Returns:**
-
-const CelestialBody\* Pointer to the parent celestial body. 
-
-
-
-
-
-        
-
-<hr>
-
-
-
 ### function operator[] 
 
-_Access ground points in the grid by index._ 
+_Access a ground point in the grid by index._ 
 ```C++
-inline GroundPoint & astrea::trace::Grid::operator[] (
-    const std::size_t index
+inline Point & astrea::trace::Grid::operator[] (
+    std::size_t index
 ) 
 ```
 
@@ -446,7 +431,7 @@ inline GroundPoint & astrea::trace::Grid::operator[] (
 
 **Returns:**
 
-Reference to the [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) at the specified index. 
+Reference to the Point at the specified index. 
 
 
 
@@ -460,10 +445,10 @@ Reference to the [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) at th
 
 ### function operator[] 
 
-_Access ground points in the grid by index (constant version)._ 
+_Access a ground point in the grid by index (constant version)._ 
 ```C++
-inline const GroundPoint & astrea::trace::Grid::operator[] (
-    const std::size_t index
+inline const Point & astrea::trace::Grid::operator[] (
+    std::size_t index
 ) const
 ```
 
@@ -480,7 +465,7 @@ inline const GroundPoint & astrea::trace::Grid::operator[] (
 
 **Returns:**
 
-Constant reference to the [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) at the specified index. 
+Constant reference to the Point at the specified index. 
 
 
 

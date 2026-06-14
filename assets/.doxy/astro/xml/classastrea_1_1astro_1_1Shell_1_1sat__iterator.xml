@@ -1,14 +1,57 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kind="class" language="C++" prot="public">
     <compoundname>astrea::astro::Shell::sat_iterator</compoundname>
     <includes refid="Shell_8hpp" local="no">Shell.hpp</includes>
-      <sectiondef kind="public-type">
+    <sectiondef kind="public-type">
       <memberdef kind="typedef" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a0e8e26c626f630197ad26f54be94c6eb" prot="public" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; Spacecraft_T &gt;::<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">iterator</ref></type>
+        <type><ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">::iterator</ref></type>
         <definition>using astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::difference_type =  Plane&lt;Spacecraft_T&gt;::iterator</definition>
         <argsstring></argsstring>
         <name>difference_type</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::difference_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="392" column="9" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="392" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a01ef3483c637aee30b9255461f59a95f" prot="public" static="no">
+        <type><ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">::iterator</ref></type>
+        <definition>using astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::value_type =  Plane&lt;Spacecraft_T&gt;::iterator</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::value_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="393" column="9" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="393" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aaf9c145ffea4d32f07c0eb853de13f98" prot="public" static="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">::iterator</ref> *</type>
+        <definition>using astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::pointer =  const Plane&lt;Spacecraft_T&gt;::iterator*</definition>
+        <argsstring></argsstring>
+        <name>pointer</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::pointer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="394" column="9" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="394" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a02a138eed38225d482cda4b4ea3954c1" prot="public" static="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">::iterator</ref> &amp;</type>
+        <definition>using astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::reference =  const Plane&lt;Spacecraft_T&gt;::iterator&amp;</definition>
+        <argsstring></argsstring>
+        <name>reference</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::reference</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -17,11 +60,12 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="395" column="9" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="395" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a01ef3483c637aee30b9255461f59a95f" prot="public" static="no">
-        <type><ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; Spacecraft_T &gt;::<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">iterator</ref></type>
-        <definition>using astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::value_type =  Plane&lt;Spacecraft_T&gt;::iterator</definition>
+      <memberdef kind="typedef" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aa4eab2ef6592289719c56467b31f0043" prot="public" static="no">
+        <type>std::forward_iterator_tag</type>
+        <definition>using astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::iterator_category =  std::forward_iterator_tag</definition>
         <argsstring></argsstring>
-        <name>value_type</name>
+        <name>iterator_category</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::iterator_category</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -30,86 +74,50 @@
         </inbodydescription>
         <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="396" column="9" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="396" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aaf9c145ffea4d32f07c0eb853de13f98" prot="public" static="no">
-        <type>const <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; Spacecraft_T &gt;::<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">iterator</ref> *</type>
-        <definition>using astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::pointer =  const Plane&lt;Spacecraft_T&gt;::iterator*</definition>
-        <argsstring></argsstring>
-        <name>pointer</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="397" column="9" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="397" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a02a138eed38225d482cda4b4ea3954c1" prot="public" static="no">
-        <type>const <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; Spacecraft_T &gt;::<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">iterator</ref> &amp;</type>
-        <definition>using astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::reference =  const Plane&lt;Spacecraft_T&gt;::iterator&amp;</definition>
-        <argsstring></argsstring>
-        <name>reference</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="398" column="9" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="398" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aa4eab2ef6592289719c56467b31f0043" prot="public" static="no">
-        <type>std::forward_iterator_tag</type>
-        <definition>using astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::iterator_category =  std::forward_iterator_tag</definition>
-        <argsstring></argsstring>
-        <name>iterator_category</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="399" column="9" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="399" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1ab68d3384db1783c2db3e2dadeb6e1907" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; Spacecraft_T &gt; &gt;::<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">iterator</ref></type>
-        <definition>std::vector&lt;Plane&lt;Spacecraft_T&gt; &gt;::iterator astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::iterPlane</definition>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a94c39c610797c6e9d3b640f6f600a79b" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt; &gt;<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">::iterator</ref></type>
+        <definition>std::vector&lt;Plane&lt;Spacecraft_T&gt;&gt;::iterator astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::iterPlane</definition>
         <argsstring></argsstring>
         <name>iterPlane</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::iterPlane</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="252" column="32" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="252" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="249" column="32" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="249" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1abd78d1db586e9d5af5d7f3e96a9d3b49" prot="private" static="no" mutable="no">
-        <type><ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; Spacecraft_T &gt;::<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">iterator</ref></type>
+        <type><ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">::iterator</ref></type>
         <definition>Plane&lt;Spacecraft_T&gt;::iterator astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::iterSat</definition>
         <argsstring></argsstring>
         <name>iterSat</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::iterSat</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="253" column="26" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="253" bodyend="-1"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="250" column="26" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="250" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aa6b5b5c95d3285639730a29026314ba7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a3553a9bed5e08e554dfba6c5a2805209" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::sat_iterator</definition>
-        <argsstring>(std::vector&lt; Plane&lt; Spacecraft_T &gt;&gt;::iterator _iterPlane, Plane&lt; Spacecraft_T &gt;::iterator _iterSat)</argsstring>
+        <argsstring>(std::vector&lt; Plane&lt; Spacecraft_T &gt; &gt;::iterator _iterPlane, Plane&lt; Spacecraft_T &gt;::iterator _iterSat)</argsstring>
         <name>sat_iterator</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::sat_iterator</qualifiedname>
         <param>
-          <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; Spacecraft_T &gt;&gt;::<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">iterator</ref></type>
+          <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt; &gt;<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">::iterator</ref></type>
           <declname>_iterPlane</declname>
         </param>
         <param>
-          <type><ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; Spacecraft_T &gt;::<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">iterator</ref></type>
+          <type><ref refid="classastrea_1_1astro_1_1Plane" kindref="compound">Plane</ref>&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref> &gt;<ref refid="classastrea_1_1astro_1_1Shell_1a38ebd03403226aba01836dd1200d5b23" kindref="member">::iterator</ref></type>
           <declname>_iterSat</declname>
         </param>
         <briefdescription>
@@ -119,13 +127,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="260" column="9" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="260" bodyend="264"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="257" column="9" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="257" bodyend="261"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1ab84a0f8a4851a5c37295721db6c37521" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a38fefe60538342caeb03430b07c43bea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
-        <definition>sat_iterator&amp; astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::operator++</definition>
+        <definition>sat_iterator &amp; astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::operator++</definition>
         <argsstring>()</argsstring>
         <name>operator++</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::operator++</qualifiedname>
         <briefdescription>
 <para>Increment operator for the <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref>. </para>
         </briefdescription>
@@ -136,15 +145,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="271" column="22" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="271" bodyend="279"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="268" column="22" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="268" bodyend="276"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aacb226ca65577335f31c6ce3185cc805" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref></type>
         <definition>sat_iterator astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::operator++</definition>
         <argsstring>(int)</argsstring>
         <name>operator++</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::operator++</qualifiedname>
         <param>
-          <type>int</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">int</ref></type>
         </param>
         <briefdescription>
 <para>Post-increment operator for the <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref>. </para>
@@ -156,13 +166,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="286" column="22" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="286" bodyend="291"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="283" column="22" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="283" bodyend="288"/>
       </memberdef>
-      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1ac8b065ff2b6a32606b6438efc8195e71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aed65e3ce377f33ed1a68fd17c9e78c44" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
-        <definition>sat_iterator&amp; astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::operator--</definition>
+        <definition>sat_iterator &amp; astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::operator--</definition>
         <argsstring>()</argsstring>
         <name>operator--</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::operator--</qualifiedname>
         <briefdescription>
 <para>Decrement operator for the <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref>. </para>
         </briefdescription>
@@ -173,15 +184,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="298" column="22" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="298" bodyend="306"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="295" column="22" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="295" bodyend="303"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a76c5653c55dcc85c78090391457eb282" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref></type>
         <definition>sat_iterator astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::operator--</definition>
         <argsstring>(int)</argsstring>
         <name>operator--</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::operator--</qualifiedname>
         <param>
-          <type>int</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">int</ref></type>
         </param>
         <briefdescription>
 <para>Post-decrement operator for the <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref>. </para>
@@ -193,15 +205,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="313" column="22" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="313" bodyend="318"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="310" column="22" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="310" bodyend="315"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aa554722a479dd6f1051b8ca5e5f07a75" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
         <definition>bool astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::operator==</definition>
         <argsstring>(const sat_iterator &amp;other) const</argsstring>
         <name>operator==</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::operator==</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -223,15 +236,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="326" column="14" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="326" bodyend="329"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="323" column="14" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="323" bodyend="326"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a714c6594690d48ff997479ed184f1f8e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
         <definition>bool astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::operator!=</definition>
         <argsstring>(const sat_iterator &amp;other) const</argsstring>
         <name>operator!=</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::operator!=</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -253,15 +267,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="337" column="14" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="337" bodyend="337"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="334" column="14" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="334" bodyend="334"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a7a7adb6f98bbae62a814a4a57d04ba85" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
         <definition>bool astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::operator&lt;</definition>
         <argsstring>(const sat_iterator &amp;other) const</argsstring>
         <name>operator&lt;</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::operator&lt;</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -285,15 +300,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="346" column="9" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="346" bodyend="349"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="343" column="9" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="343" bodyend="346"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1afe2f054c32b1764eee18eba818ff99e4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
         <definition>bool astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::operator&gt;</definition>
         <argsstring>(const sat_iterator &amp;other) const</argsstring>
         <name>operator&gt;</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::operator&gt;</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -317,15 +333,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="358" column="14" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="358" bodyend="361"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="355" column="14" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="355" bodyend="358"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a008d4530de0fc11fa3caea75e41cc42d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
         <definition>bool astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::operator&lt;=</definition>
         <argsstring>(const sat_iterator &amp;other) const</argsstring>
         <name>operator&lt;=</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::operator&lt;=</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -349,15 +366,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="370" column="9" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="370" bodyend="373"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="367" column="9" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="367" bodyend="370"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a9d48f85dfae9f20e929eebe2b54d910c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
         <definition>bool astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::operator&gt;=</definition>
         <argsstring>(const sat_iterator &amp;other) const</argsstring>
         <name>operator&gt;=</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::operator&gt;=</qualifiedname>
         <param>
-          <type>const <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref> &amp;</type>
           <declname>other</declname>
         </param>
         <briefdescription>
@@ -381,13 +399,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="382" column="14" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="382" bodyend="385"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="379" column="14" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="379" bodyend="382"/>
       </memberdef>
       <memberdef kind="function" id="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1ad2499a5952a6691dfdaa156e89c03bb4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>Spacecraft_T</type>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Spacecraft_T</ref></type>
         <definition>Spacecraft_T astrea::astro::Shell&lt; Spacecraft_T &gt;::sat_iterator::operator*</definition>
         <argsstring>()</argsstring>
         <name>operator*</name>
+        <qualifiedname>astrea::astro::Shell::sat_iterator::operator*</qualifiedname>
         <briefdescription>
 <para>Dereference operator for the <ref refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator" kindref="compound">sat_iterator</ref>. </para>
         </briefdescription>
@@ -398,25 +417,25 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="392" column="22" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="392" bodyend="392"/>
+        <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="389" column="22" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="389" bodyend="389"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>Iterator for iterating over all <ref refid="classastrea_1_1astro_1_1Spacecraft" kindref="compound">Spacecraft</ref> in the <ref refid="classastrea_1_1astro_1_1Shell" kindref="compound">Shell</ref>. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="250" column="5" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="250" bodyend="400"/>
+    <location file="astrea/astro/astro/platforms/space/Shell.hpp" line="247" column="5" bodyfile="astrea/astro/astro/platforms/space/Shell.hpp" bodystart="247" bodyend="397"/>
     <listofallmembers>
       <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a0e8e26c626f630197ad26f54be94c6eb" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>difference_type</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aa4eab2ef6592289719c56467b31f0043" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>iterator_category</name></member>
-      <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1ab68d3384db1783c2db3e2dadeb6e1907" prot="private" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>iterPlane</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a94c39c610797c6e9d3b640f6f600a79b" prot="private" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>iterPlane</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1abd78d1db586e9d5af5d7f3e96a9d3b49" prot="private" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>iterSat</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a714c6594690d48ff997479ed184f1f8e" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>operator!=</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1ad2499a5952a6691dfdaa156e89c03bb4" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>operator*</name></member>
-      <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1ab84a0f8a4851a5c37295721db6c37521" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>operator++</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a38fefe60538342caeb03430b07c43bea" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>operator++</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aacb226ca65577335f31c6ce3185cc805" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>operator++</name></member>
-      <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1ac8b065ff2b6a32606b6438efc8195e71" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>operator--</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aed65e3ce377f33ed1a68fd17c9e78c44" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>operator--</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a76c5653c55dcc85c78090391457eb282" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>operator--</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a7a7adb6f98bbae62a814a4a57d04ba85" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>operator&lt;</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a008d4530de0fc11fa3caea75e41cc42d" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>operator&lt;=</name></member>
@@ -425,7 +444,7 @@
       <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a9d48f85dfae9f20e929eebe2b54d910c" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>operator&gt;=</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aaf9c145ffea4d32f07c0eb853de13f98" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>pointer</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a02a138eed38225d482cda4b4ea3954c1" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>reference</name></member>
-      <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1aa6b5b5c95d3285639730a29026314ba7" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>sat_iterator</name></member>
+      <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a3553a9bed5e08e554dfba6c5a2805209" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>sat_iterator</name></member>
       <member refid="classastrea_1_1astro_1_1Shell_1_1sat__iterator_1a01ef3483c637aee30b9255461f59a95f" prot="public" virt="non-virtual"><scope>astrea::astro::Shell::sat_iterator</scope><name>value_type</name></member>
     </listofallmembers>
   </compounddef>

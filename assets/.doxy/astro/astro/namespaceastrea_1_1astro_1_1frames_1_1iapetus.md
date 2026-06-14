@@ -25,14 +25,26 @@
 
 
 
-
-
-## Public Types
+## Classes
 
 | Type | Name |
 | ---: | :--- |
-| typedef InertialFrame&lt; CelestialBodyId::IAPETUS, FrameAxis::ICRF &gt; | [**icrf**](#typedef-icrf)  <br> |
-| typedef InertialFrame&lt; CelestialBodyId::IAPETUS, FrameAxis::J2000 &gt; | [**j2000**](#typedef-j2000)  <br> |
+| struct | [**iapetus\_fixed**](structastrea_1_1astro_1_1frames_1_1iapetus_1_1iapetus__fixed.md) <br> |
+| struct | [**icrf**](structastrea_1_1astro_1_1frames_1_1iapetus_1_1icrf.md) <br> |
+| struct | [**j2000**](structastrea_1_1astro_1_1frames_1_1iapetus_1_1j2000.md) <br> |
+
+
+
+
+
+
+## Public Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  [**astrea::astro::frames::iapetus::iapetus\_fixed**](structastrea_1_1astro_1_1frames_1_1iapetus_1_1iapetus__fixed.md) | [**iapetus\_fixed**](#variable-iapetus_fixed)  <br> |
+|  [**astrea::astro::frames::iapetus::icrf**](structastrea_1_1astro_1_1frames_1_1iapetus_1_1icrf.md) | [**icrf**](#variable-icrf)  <br> |
+|  [**astrea::astro::frames::iapetus::j2000**](structastrea_1_1astro_1_1frames_1_1iapetus_1_1j2000.md) | [**j2000**](#variable-j2000)  <br> |
 
 
 
@@ -77,19 +89,15 @@
 
 
 
+## Public Attributes Documentation
 
 
 
 
-## Public Types Documentation
-
-
-
-
-### typedef icrf 
+### variable iapetus\_fixed 
 
 ```C++
-using astrea::astro::frames::iapetus::icrf = typedef InertialFrame<CelestialBodyId::IAPETUS, FrameAxis::ICRF>;
+astrea::astro::frames::iapetus::iapetus_fixed astrea::astro::frames::iapetus::iapetus_fixed;
 ```
 
 
@@ -99,10 +107,23 @@ using astrea::astro::frames::iapetus::icrf = typedef InertialFrame<CelestialBody
 
 
 
-### typedef j2000 
+### variable icrf 
 
 ```C++
-using astrea::astro::frames::iapetus::j2000 = typedef InertialFrame<CelestialBodyId::IAPETUS, FrameAxis::J2000>;
+astrea::astro::frames::iapetus::icrf astrea::astro::frames::iapetus::icrf;
+```
+
+
+
+
+<hr>
+
+
+
+### variable j2000 
+
+```C++
+astrea::astro::frames::iapetus::j2000 astrea::astro::frames::iapetus::j2000;
 ```
 
 
@@ -111,5 +132,5 @@ using astrea::astro::frames::iapetus::j2000 = typedef InertialFrame<CelestialBod
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp`
 

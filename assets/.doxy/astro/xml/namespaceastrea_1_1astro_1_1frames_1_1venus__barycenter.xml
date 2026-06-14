@@ -1,39 +1,43 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1venus__barycenter" kind="namespace" language="C++">
     <compoundname>astrea::astro::frames::venus_barycenter</compoundname>
-      <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a65ca75b2fba98e181afa6cc6db90bd75" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::VENUS_BARYCENTER, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" kindref="member">FrameAxis::ICRF</ref> &gt;</type>
-        <definition>using astrea::astro::frames::venus_barycenter::icrf = typedef InertialFrame&lt;CelestialBodyId::VENUS_BARYCENTER, FrameAxis::ICRF&gt;</definition>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1venus__barycenter_1_1icrf" prot="public">astrea::astro::frames::venus_barycenter::icrf</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1venus__barycenter_1_1j2000" prot="public">astrea::astro::frames::venus_barycenter::j2000</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a2a8364fa41e0dfbcd913b47535ffe422" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1venus__barycenter_1_1icrf" kindref="compound">astrea::astro::frames::venus_barycenter::icrf</ref></type>
+        <definition>astrea::astro::frames::venus_barycenter::icrf astrea::astro::frames::venus_barycenter::icrf</definition>
         <argsstring></argsstring>
         <name>icrf</name>
+        <qualifiedname>astrea::astro::frames::venus_barycenter::icrf</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="148" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="148" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="198" column="6"/>
       </memberdef>
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a3413b5d8a039c783d3cea4f376699b73" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::VENUS_BARYCENTER, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" kindref="member">FrameAxis::J2000</ref> &gt;</type>
-        <definition>using astrea::astro::frames::venus_barycenter::j2000 = typedef InertialFrame&lt;CelestialBodyId::VENUS_BARYCENTER, FrameAxis::J2000&gt;</definition>
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1adb01e75990ec25c831c8483cc6d3a86c" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1venus__barycenter_1_1j2000" kindref="compound">astrea::astro::frames::venus_barycenter::j2000</ref></type>
+        <definition>astrea::astro::frames::venus_barycenter::j2000 astrea::astro::frames::venus_barycenter::j2000</definition>
         <argsstring></argsstring>
         <name>j2000</name>
+        <qualifiedname>astrea::astro::frames::venus_barycenter::j2000</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="149" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="149" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="200" column="7"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="147" column="1"/>
+    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="196" column="1"/>
   </compounddef>
 </doxygen>

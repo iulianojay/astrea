@@ -14,27 +14,6 @@ _A class representing a null vehicle in the astrea astro platform. This class is
 
 
 
-Inherits the following classes: [astrea::astro::FrameReference](classastrea_1_1astro_1_1FrameReference.md)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -73,53 +52,10 @@ Inherits the following classes: [astrea::astro::FrameReference](classastrea_1_1a
 
 | Type | Name |
 | ---: | :--- |
-|   | [**NullVehicle**](#function-nullvehicle) (const Mass & mass=0.0 \*mp\_units::si::unit\_symbols::kg) <br>_Constructs a_ [_**NullVehicle**_](classastrea_1_1astro_1_1NullVehicle.md) _with an initial state and mass._ |
+|   | [**NullVehicle**](#function-nullvehicle) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Mass**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & mass=1.0 \*mp\_units::si::unit\_symbols::kg) <br>_Constructs a_ [_**NullVehicle**_](classastrea_1_1astro_1_1NullVehicle.md) _with an initial state and mass._ |
 |  [**NullVehicle**](classastrea_1_1astro_1_1NullVehicle.md) \* | [**clone**](#function-clone) () const<br>_Clone the_ [_**NullVehicle**_](classastrea_1_1astro_1_1NullVehicle.md) _object._ |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frames::earth::icrf &gt; | [**get\_inertial\_acceleration**](#function-get_inertial_acceleration) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the acceleration of the frame in Earth-Centered Inertial coordinates._  |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, frames::earth::icrf &gt; | [**get\_inertial\_position**](#function-get_inertial_position) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the position of the frame in Earth-Centered Inertial coordinates._  |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, frames::earth::icrf &gt; | [**get\_inertial\_velocity**](#function-get_inertial_velocity) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the velocity of the frame in Earth-Centered Inertial coordinates._  |
-|  Mass | [**get\_mass**](#function-get_mass) () const<br>_Gets the mass of the vehicle._  |
-| virtual std::string | [**get\_name**](#function-get_name) () const<br>_Gets the name of the vehicle._  |
-
-
-## Public Functions inherited from astrea::astro::FrameReference
-
-See [astrea::astro::FrameReference](classastrea_1_1astro_1_1FrameReference.md)
-
-| Type | Name |
-| ---: | :--- |
-|   | [**FrameReference**](classastrea_1_1astro_1_1FrameReference.md#function-framereference) () = default<br>_Default constructor for_ [_**FrameReference**_](classastrea_1_1astro_1_1FrameReference.md) _._ |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frames::earth::icrf &gt; | [**get\_inertial\_acceleration**](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_acceleration) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Get the acceleration of the frame in Earth-Centered Inertial coordinates._  |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Distance, frames::earth::icrf &gt; | [**get\_inertial\_position**](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_position) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the position of the frame in Earth-Centered Inertial coordinates._  |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Velocity, frames::earth::icrf &gt; | [**get\_inertial\_velocity**](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_velocity) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date) const = 0<br>_Get the velocity of the frame in Earth-Centered Inertial coordinates._  |
-| virtual std::string | [**get\_name**](classastrea_1_1astro_1_1FrameReference.md#function-get_name) () const = 0<br>_Get the name of the frame reference._  |
-| virtual  | [**~FrameReference**](classastrea_1_1astro_1_1FrameReference.md#function-framereference) () = default<br>_Default destructor for_ [_**FrameReference**_](classastrea_1_1astro_1_1FrameReference.md) _._ |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+|  [**Mass**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**get\_mass**](#function-get_mass) () const<br>_Gets the mass of the vehicle._  |
+|  std::string | [**get\_name**](#function-get_name) () const<br>_Gets the name of the vehicle._  |
 
 
 
@@ -158,7 +94,7 @@ See [astrea::astro::FrameReference](classastrea_1_1astro_1_1FrameReference.md)
 _Constructs a_ [_**NullVehicle**_](classastrea_1_1astro_1_1NullVehicle.md) _with an initial state and mass._
 ```C++
 astrea::astro::NullVehicle::NullVehicle (
-    const Mass & mass=0.0 *mp_units::si::unit_symbols::kg
+    const  Mass & mass=1.0 *mp_units::si::unit_symbols::kg
 ) 
 ```
 
@@ -169,7 +105,7 @@ astrea::astro::NullVehicle::NullVehicle (
 **Parameters:**
 
 
-* `mass` The mass of the vehicle, defaulting to zero kilograms. 
+* `mass` The mass of the vehicle, defaulting to one kilogram. 
 
 
 
@@ -205,114 +141,6 @@ NullVehicle\* A pointer to a new [**NullVehicle**](classastrea_1_1astro_1_1NullV
 
 
 
-### function get\_inertial\_acceleration 
-
-_Get the acceleration of the frame in Earth-Centered Inertial coordinates._ 
-```C++
-virtual CartesianVector < Acceleration, frames::earth::icrf > astrea::astro::NullVehicle::get_inertial_acceleration (
-    const Date & date
-) const
-```
-
-
-
-
-
-**Parameters:**
-
-
-* `date` The date for which to get the acceleration. 
-
-
-
-**Returns:**
-
-CartesianVector&lt;Acceleration, frames::earth::icrf&gt; 
-
-
-
-
-
-        
-Implements [*astrea::astro::FrameReference::get\_inertial\_acceleration*](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_acceleration)
-
-
-<hr>
-
-
-
-### function get\_inertial\_position 
-
-_Get the position of the frame in Earth-Centered Inertial coordinates._ 
-```C++
-virtual CartesianVector < Distance, frames::earth::icrf > astrea::astro::NullVehicle::get_inertial_position (
-    const Date & date
-) const
-```
-
-
-
-
-
-**Parameters:**
-
-
-* `date` The date for which to get the position. 
-
-
-
-**Returns:**
-
-CartesianVector&lt;Distance, frames::earth::icrf&gt; 
-
-
-
-
-
-        
-Implements [*astrea::astro::FrameReference::get\_inertial\_position*](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_position)
-
-
-<hr>
-
-
-
-### function get\_inertial\_velocity 
-
-_Get the velocity of the frame in Earth-Centered Inertial coordinates._ 
-```C++
-virtual CartesianVector < Velocity, frames::earth::icrf > astrea::astro::NullVehicle::get_inertial_velocity (
-    const Date & date
-) const
-```
-
-
-
-
-
-**Parameters:**
-
-
-* `date` The date for which to get the velocity. 
-
-
-
-**Returns:**
-
-CartesianVector&lt;Velocity, frames::earth::icrf&gt; 
-
-
-
-
-
-        
-Implements [*astrea::astro::FrameReference::get\_inertial\_velocity*](classastrea_1_1astro_1_1FrameReference.md#function-get_inertial_velocity)
-
-
-<hr>
-
-
-
 ### function get\_mass 
 
 _Gets the mass of the vehicle._ 
@@ -342,7 +170,7 @@ Mass The mass of the vehicle.
 
 _Gets the name of the vehicle._ 
 ```C++
-virtual std::string astrea::astro::NullVehicle::get_name () const
+std::string astrea::astro::NullVehicle::get_name () const
 ```
 
 
@@ -358,8 +186,6 @@ std::string The name of the vehicle.
 
 
         
-Implements [*astrea::astro::FrameReference::get\_name*](classastrea_1_1astro_1_1FrameReference.md#function-get_name)
-
 
 <hr>
 

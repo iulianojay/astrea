@@ -2,6 +2,8 @@
 
 # Class astrea::astro::Geodetic
 
+**template &lt;IsCelestialBody [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) \_body\_&gt;**
+
 
 
 [**ClassList**](annotated.md) **>** [**astrea**](namespaceastrea.md) **>** [**astro**](namespaceastrea_1_1astro.md) **>** [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)
@@ -34,6 +36,13 @@ _Class representing a_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _st
 
 
 
+## Public Static Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**\_fixed\_frame\_**](#variable-_fixed_frame_)   = `get\_body\_fixed\_frame&lt;[**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;()`<br>_Body-fixed rotating frame._  |
+|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**\_icrf\_frame\_**](#variable-_icrf_frame_)   = `make\_frame([**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md), [**axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md))`<br>_Inertial frame for the body._  |
+|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**auto**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**body**](#variable-body)   = `[**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)`<br>_The celestial body of this_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state._ |
 
 
 
@@ -52,32 +61,32 @@ _Class representing a_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _st
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Geodetic**](#function-geodetic-17) (Unitless scale=0.0 \*astrea::detail::unitless) <br>_Default constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._ |
-|   | [**Geodetic**](#function-geodetic-27) (const Angle & latitude, const Angle & longitude, const Distance & altitude) <br>_Constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _with latitude, longitude, and altitude._ |
-|   | [**Geodetic**](#function-geodetic-37) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::icrf &gt; & r, const [**Date**](classastrea_1_1astro_1_1Date.md) & date, const [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) \* parent) <br>_Constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _with position and velocity vectors._ |
-|   | [**Geodetic**](#function-geodetic-47) (const [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::earth\_fixed &gt; & r, const [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) \* parent) <br>_Constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _with position and velocity vectors._ |
-|   | [**Geodetic**](#function-geodetic-57) (const T & elements, const [**AstrodynamicsSystem**](classastrea_1_1astro_1_1AstrodynamicsSystem.md) & sys, const [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _from orbital elements._ |
-|   | [**Geodetic**](#function-geodetic-67) (const [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & other) <br>_Copy constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._ |
-|   | [**Geodetic**](#function-geodetic-77) ([**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) && other) noexcept<br>_Move constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._ |
-|  const Distance & | [**get\_altitude**](#function-get_altitude) () const<br>_Get the altitude of the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector._ |
-|  const Angle & | [**get\_latitude**](#function-get_latitude) () const<br>_Get the latitude of the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector._ |
-|  const Angle & | [**get\_longitude**](#function-get_longitude) () const<br>_Get the longitude of the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector._ |
-|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::earth\_fixed &gt; | [**get\_position**](#function-get_position-12) (const [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) \* parent) const<br>_Converts the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector to a RadiusVector&lt;frames::earth::earth\_fixed&gt;._ |
-|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; frames::earth::icrf &gt; | [**get\_position**](#function-get_position-22) (const [**Date**](classastrea_1_1astro_1_1Date.md) & date, const [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) \* parent) const<br>_Converts the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector to a RadiusVector&lt;frames::earth::icrf&gt;._ |
-|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) | [**interpolate**](#function-interpolate) (const Time & thisTime, const Time & otherTime, const [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & other, const Time & targetTime) const<br>_Interpolates between two_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _states at a given time._ |
-|  bool | [**operator!=**](#function-operator) (const [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & other) const<br>_Compares two_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _objects for inequality._ |
-|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) | [**operator\***](#function-operator_1) (const Unitless & multiplier) const<br>_Multiplies the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by a scalar._ |
-|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & | [**operator\*=**](#function-operator_2) (const Unitless & multiplier) <br>_Multiplies the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by a scalar._ |
-|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) | [**operator+**](#function-operator_3) (const [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & other) const<br>_Adds two_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _objects._ |
-|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & | [**operator+=**](#function-operator_4) (const [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & other) <br>_Adds another_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _object to the current one._ |
-|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) | [**operator-**](#function-operator-) (const [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & other) const<br>_Subtracts another_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _object from the current one._ |
-|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & | [**operator-=**](#function-operator-_1) (const [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & other) <br>_Subtracts another_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _object from the current one._ |
-|  std::vector&lt; Unitless &gt; | [**operator/**](#function-operator_5) (const [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & other) const<br>_Divides the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by another_[_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _object._ |
-|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) | [**operator/**](#function-operator_6) (const Unitless & divisor) const<br>_Divides the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by a scalar._ |
-|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & | [**operator/=**](#function-operator_7) (const Unitless & divisor) <br>_Divides the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by a scalar._ |
-|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & | [**operator=**](#function-operator_8) ([**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) && other) noexcept<br>_Move assignment operator for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._ |
-|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & | [**operator=**](#function-operator_9) (const [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & other) <br>_Copy assignment operator for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._ |
-|  bool | [**operator==**](#function-operator_10) (const [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & other) const<br>_Compares two_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _objects for equality._ |
+|   | [**Geodetic**](#function-geodetic-17) ([**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) scale=0.0 \*astrea::detail::unitless) <br>_Default constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._ |
+|   | [**Geodetic**](#function-geodetic-27) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & latitude, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & longitude, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & altitude) <br>_Constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _with latitude, longitude, and altitude._ |
+|   | [**Geodetic**](#function-geodetic-37) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; \_frame\_ &gt; & r, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _from a radius vector in any inertial frame centred on the same body._ |
+|   | [**Geodetic**](#function-geodetic-47) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**\_fixed\_frame\_**](classastrea_1_1astro_1_1Geodetic.md#variable-_fixed_frame_) &gt; & r) <br>_Constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _from a radius vector in the body-fixed frame._ |
+|   | [**Geodetic**](#function-geodetic-57) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & elements, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) <br>_Constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _from orbital elements._ |
+|   | [**Geodetic**](#function-geodetic-67) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) <br>_Copy constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._ |
+|   | [**Geodetic**](#function-geodetic-77) ([**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; && other) noexcept<br>_Move constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Distance**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_altitude**](#function-get_altitude) () const<br>_Get the altitude of the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_latitude**](#function-get_latitude) () const<br>_Get the latitude of the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector._ |
+|  [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Angle**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & | [**get\_longitude**](#function-get_longitude) () const<br>_Get the longitude of the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector._ |
+|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**\_fixed\_frame\_**](classastrea_1_1astro_1_1Geodetic.md#variable-_fixed_frame_) &gt; | [**get\_position**](#function-get_position-12) () const<br>_Converts the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector to a position in the body-fixed frame._ |
+|  [**RadiusVector**](namespaceastrea_1_1astro.md#typedef-radiusvector)&lt; [**\_icrf\_frame\_**](classastrea_1_1astro_1_1Geodetic.md#variable-_icrf_frame_) &gt; | [**get\_position**](#function-get_position-22) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Date**](classastrea_1_1astro_1_1Date.md) & date) const<br>_Converts the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector to a position in the body's inertial frame._ |
+|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) | [**interpolate**](#function-interpolate) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & thisTime, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & otherTime, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & targetTime) const<br>_Interpolates between two_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _states at a given time._ |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator!=**](#function-operator) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br>_Compares two_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _objects for inequality._ |
+|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) | [**operator\***](#function-operator_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & multiplier) const<br>_Multiplies the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by a scalar._ |
+|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & | [**operator\*=**](#function-operator_2) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & multiplier) <br>_Multiplies the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by a scalar._ |
+|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) | [**operator+**](#function-operator_3) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br>_Adds two_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _objects._ |
+|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & | [**operator+=**](#function-operator_4) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) <br>_Adds another_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _object to the current one._ |
+|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) | [**operator-**](#function-operator-) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br>_Subtracts another_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _object from the current one._ |
+|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & | [**operator-=**](#function-operator-_1) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) <br>_Subtracts another_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _object from the current one._ |
+|  std::vector&lt; [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; | [**operator/**](#function-operator_5) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br>_Divides the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by another_[_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _object._ |
+|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) | [**operator/**](#function-operator_6) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & divisor) const<br>_Divides the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by a scalar._ |
+|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & | [**operator/=**](#function-operator_7) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Unitless**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & divisor) <br>_Divides the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by a scalar._ |
+|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & | [**operator=**](#function-operator_8) ([**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; && other) noexcept<br>_Move assignment operator for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._ |
+|  [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) & | [**operator=**](#function-operator_9) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) <br>_Copy assignment operator for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._ |
+|  [**bool**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**operator==**](#function-operator_10) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md)&lt; [**\_body\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) &gt; & other) const<br>_Compares two_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _objects for equality._ |
 |   | [**~Geodetic**](#function-geodetic) () = default<br>_Default destructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._ |
 
 
@@ -110,10 +119,64 @@ _Class representing a_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _st
 ## Detailed Description
 
 
-This class encapsulates the position and velocity of a vehicle in [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) coordinates. 
+This class encapsulates the latitude, longitude, and altitude of a position in geodetic coordinates relative to the surface of a celestial body.
+
+
+
+
+**Template parameters:**
+
+
+* `_body_` The celestial body NTTP that defines the reference ellipsoid and frames. 
+
+
 
 
     
+## Public Static Attributes Documentation
+
+
+
+
+### variable \_fixed\_frame\_ 
+
+_Body-fixed rotating frame._ 
+```C++
+constexpr auto astrea::astro::Geodetic< _body_ >::_fixed_frame_;
+```
+
+
+
+
+<hr>
+
+
+
+### variable \_icrf\_frame\_ 
+
+_Inertial frame for the body._ 
+```C++
+constexpr auto astrea::astro::Geodetic< _body_ >::_icrf_frame_;
+```
+
+
+
+
+<hr>
+
+
+
+### variable body 
+
+_The celestial body of this_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state._
+```C++
+constexpr auto astrea::astro::Geodetic< _body_ >::body;
+```
+
+
+
+
+<hr>
 ## Public Functions Documentation
 
 
@@ -144,9 +207,9 @@ Initializes the [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) state vector
 _Constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _with latitude, longitude, and altitude._
 ```C++
 inline astrea::astro::Geodetic::Geodetic (
-    const Angle & latitude,
-    const Angle & longitude,
-    const Distance & altitude
+    const  Angle & latitude,
+    const  Angle & longitude,
+    const  Distance & altitude
 ) 
 ```
 
@@ -172,23 +235,34 @@ inline astrea::astro::Geodetic::Geodetic (
 
 ### function Geodetic [3/7]
 
-_Constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _with position and velocity vectors._
+_Constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _from a radius vector in any inertial frame centred on the same body._
 ```C++
+template<auto _frame_>
 astrea::astro::Geodetic::Geodetic (
-    const RadiusVector < frames::earth::icrf > & r,
-    const Date & date,
-    const CelestialBody * parent
+    const  RadiusVector < _frame_ > & r,
+    const  Date & date
 ) 
 ```
 
 
+
+Accepts any frame whose origin matches _body_ and whose axis is the ICRF axis, so that both the canonical named frame (e.g. [**frames::earth::icrf**](structastrea_1_1astro_1_1frames_1_1earth_1_1icrf.md)) and the synthetic frame produced by make\_frame(_body_, [**axes::icrf**](structastrea_1_1astro_1_1axes_1_1icrf.md)) are accepted.
+
+
+
+
+**Template parameters:**
+
+
+* `_frame_` The inertial frame of the radius vector. 
 
 
 
 **Parameters:**
 
 
-* `r` Radius vector in ECI (position) 
+* `r` Radius vector in an ICRF-axis frame centred on the body. 
+* `date` Epoch date used to convert inertial to body-fixed. 
 
 
 
@@ -201,11 +275,10 @@ astrea::astro::Geodetic::Geodetic (
 
 ### function Geodetic [4/7]
 
-_Constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _with position and velocity vectors._
+_Constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _from a radius vector in the body-fixed frame._
 ```C++
 astrea::astro::Geodetic::Geodetic (
-    const RadiusVector < frames::earth::earth_fixed > & r,
-    const CelestialBody * parent
+    const  RadiusVector < _fixed_frame_ > & r
 ) 
 ```
 
@@ -216,7 +289,7 @@ astrea::astro::Geodetic::Geodetic (
 **Parameters:**
 
 
-* `r` Radius vector in ECEF (position) 
+* `r` Radius vector in the body-fixed frame. 
 
 
 
@@ -233,9 +306,8 @@ _Constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _from or
 ```C++
 template<IsOrbitalElements T>
 inline astrea::astro::Geodetic::Geodetic (
-    const T & elements,
-    const AstrodynamicsSystem & sys,
-    const Date & date
+    const  T & elements,
+    const  Date & date
 ) 
 ```
 
@@ -247,7 +319,7 @@ inline astrea::astro::Geodetic::Geodetic (
 
 
 * `elements` Orbital elements 
-* `sys` Astrodynamics system containing celestial body data 
+* `date` Epoch date 
 
 
 
@@ -263,7 +335,7 @@ inline astrea::astro::Geodetic::Geodetic (
 _Copy constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._
 ```C++
 astrea::astro::Geodetic::Geodetic (
-    const Geodetic & other
+    const  Geodetic < _body_ > & other
 ) 
 ```
 
@@ -290,7 +362,7 @@ astrea::astro::Geodetic::Geodetic (
 _Move constructor for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._
 ```C++
 astrea::astro::Geodetic::Geodetic (
-    Geodetic && other
+    Geodetic < _body_ > && other
 ) noexcept
 ```
 
@@ -316,7 +388,7 @@ astrea::astro::Geodetic::Geodetic (
 
 _Get the altitude of the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector._
 ```C++
-inline const Distance & astrea::astro::Geodetic::get_altitude () const
+inline const  Distance & astrea::astro::Geodetic::get_altitude () const
 ```
 
 
@@ -341,7 +413,7 @@ const Distance& Reference to the altitude component of the [**Geodetic**](classa
 
 _Get the latitude of the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector._
 ```C++
-inline const Angle & astrea::astro::Geodetic::get_latitude () const
+inline const  Angle & astrea::astro::Geodetic::get_latitude () const
 ```
 
 
@@ -366,7 +438,7 @@ const Angle& Reference to the latitude component of the [**Geodetic**](classastr
 
 _Get the longitude of the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector._
 ```C++
-inline const Angle & astrea::astro::Geodetic::get_longitude () const
+inline const  Angle & astrea::astro::Geodetic::get_longitude () const
 ```
 
 
@@ -389,11 +461,9 @@ const Angle& Reference to the longitude component of the [**Geodetic**](classast
 
 ### function get\_position [1/2]
 
-_Converts the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector to a RadiusVector&lt;frames::earth::earth\_fixed&gt;._
+_Converts the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector to a position in the body-fixed frame._
 ```C++
-RadiusVector < frames::earth::earth_fixed > astrea::astro::Geodetic::get_position (
-    const CelestialBody * parent
-) const
+RadiusVector < _fixed_frame_ > astrea::astro::Geodetic::get_position () const
 ```
 
 
@@ -402,7 +472,7 @@ RadiusVector < frames::earth::earth_fixed > astrea::astro::Geodetic::get_positio
 
 **Returns:**
 
-RadiusVector&lt;frames::earth::earth\_fixed&gt; The position vector in [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) coordinates. 
+RadiusVector in the body-fixed frame. 
 
 
 
@@ -416,11 +486,10 @@ RadiusVector&lt;frames::earth::earth\_fixed&gt; The position vector in [**Geodet
 
 ### function get\_position [2/2]
 
-_Converts the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector to a RadiusVector&lt;frames::earth::icrf&gt;._
+_Converts the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector to a position in the body's inertial frame._
 ```C++
-RadiusVector < frames::earth::icrf > astrea::astro::Geodetic::get_position (
-    const Date & date,
-    const CelestialBody * parent
+RadiusVector < _icrf_frame_ > astrea::astro::Geodetic::get_position (
+    const  Date & date
 ) const
 ```
 
@@ -428,9 +497,16 @@ RadiusVector < frames::earth::icrf > astrea::astro::Geodetic::get_position (
 
 
 
+**Parameters:**
+
+
+* `date` Epoch date used to convert body-fixed to inertial. 
+
+
+
 **Returns:**
 
-RadiusVector&lt;frames::earth::icrf&gt; The position vector in [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) coordinates. 
+RadiusVector in the body's inertial frame. 
 
 
 
@@ -447,10 +523,10 @@ RadiusVector&lt;frames::earth::icrf&gt; The position vector in [**Geodetic**](cl
 _Interpolates between two_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _states at a given time._
 ```C++
 Geodetic astrea::astro::Geodetic::interpolate (
-    const Time & thisTime,
-    const Time & otherTime,
-    const Geodetic & other,
-    const Time & targetTime
+    const  Time & thisTime,
+    const  Time & otherTime,
+    const  Geodetic < _body_ > & other,
+    const  Time & targetTime
 ) const
 ```
 
@@ -464,7 +540,6 @@ Geodetic astrea::astro::Geodetic::interpolate (
 * `thisTime` Time of the current state 
 * `otherTime` Time of the other state 
 * `other` Other [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) state to interpolate with 
-* `sys` Astrodynamics system containing celestial body data 
 * `targetTime` Target time for interpolation 
 
 
@@ -488,7 +563,7 @@ Geodetic astrea::astro::Geodetic::interpolate (
 _Compares two_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _objects for inequality._
 ```C++
 bool astrea::astro::Geodetic::operator!= (
-    const Geodetic & other
+    const  Geodetic < _body_ > & other
 ) const
 ```
 
@@ -529,7 +604,7 @@ false if the two [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) objects are
 _Multiplies the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by a scalar._
 ```C++
 Geodetic astrea::astro::Geodetic::operator* (
-    const Unitless & multiplier
+    const  Unitless & multiplier
 ) const
 ```
 
@@ -563,7 +638,7 @@ Resultant [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) after multiplicati
 _Multiplies the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by a scalar._
 ```C++
 Geodetic & astrea::astro::Geodetic::operator*= (
-    const Unitless & multiplier
+    const  Unitless & multiplier
 ) 
 ```
 
@@ -597,7 +672,7 @@ Reference to the current [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) obj
 _Adds two_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _objects._
 ```C++
 Geodetic astrea::astro::Geodetic::operator+ (
-    const Geodetic & other
+    const  Geodetic < _body_ > & other
 ) const
 ```
 
@@ -631,7 +706,7 @@ Resultant [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) sum.
 _Adds another_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _object to the current one._
 ```C++
 Geodetic & astrea::astro::Geodetic::operator+= (
-    const Geodetic & other
+    const  Geodetic < _body_ > & other
 ) 
 ```
 
@@ -665,7 +740,7 @@ Reference to the current [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) obj
 _Subtracts another_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _object from the current one._
 ```C++
 Geodetic astrea::astro::Geodetic::operator- (
-    const Geodetic & other
+    const  Geodetic < _body_ > & other
 ) const
 ```
 
@@ -699,7 +774,7 @@ Resultant [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) difference.
 _Subtracts another_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _object from the current one._
 ```C++
 Geodetic & astrea::astro::Geodetic::operator-= (
-    const Geodetic & other
+    const  Geodetic < _body_ > & other
 ) 
 ```
 
@@ -733,7 +808,7 @@ Reference to the current [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) obj
 _Divides the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by another_[_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _object._
 ```C++
 std::vector< Unitless > astrea::astro::Geodetic::operator/ (
-    const Geodetic & other
+    const  Geodetic < _body_ > & other
 ) const
 ```
 
@@ -767,7 +842,7 @@ Resultant vector of unitless values after division.
 _Divides the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by a scalar._
 ```C++
 Geodetic astrea::astro::Geodetic::operator/ (
-    const Unitless & divisor
+    const  Unitless & divisor
 ) const
 ```
 
@@ -801,7 +876,7 @@ Resultant [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) after division.
 _Divides the_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _state vector by a scalar._
 ```C++
 Geodetic & astrea::astro::Geodetic::operator/= (
-    const Unitless & divisor
+    const  Unitless & divisor
 ) 
 ```
 
@@ -835,7 +910,7 @@ Reference to the current [**Geodetic**](classastrea_1_1astro_1_1Geodetic.md) obj
 _Move assignment operator for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._
 ```C++
 Geodetic & astrea::astro::Geodetic::operator= (
-    Geodetic && other
+    Geodetic < _body_ > && other
 ) noexcept
 ```
 
@@ -869,7 +944,7 @@ Geodetic & astrea::astro::Geodetic::operator= (
 _Copy assignment operator for_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _._
 ```C++
 Geodetic & astrea::astro::Geodetic::operator= (
-    const Geodetic & other
+    const  Geodetic < _body_ > & other
 ) 
 ```
 
@@ -903,7 +978,7 @@ Geodetic & astrea::astro::Geodetic::operator= (
 _Compares two_ [_**Geodetic**_](classastrea_1_1astro_1_1Geodetic.md) _objects for equality._
 ```C++
 bool astrea::astro::Geodetic::operator== (
-    const Geodetic & other
+    const  Geodetic < _body_ > & other
 ) const
 ```
 
@@ -952,5 +1027,5 @@ astrea::astro::Geodetic::~Geodetic () = default
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/state/angular_elements/instances/Geodetic.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/state/angular_elements/Geodetic.hpp`
 

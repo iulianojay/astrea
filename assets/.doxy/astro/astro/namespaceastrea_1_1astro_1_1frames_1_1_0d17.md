@@ -1,10 +1,10 @@
 
 
-# Namespace astrea::astro::frames::@17
+# Namespace astrea::astro::frames
 
 
 
-[**Namespace List**](namespaces.md) **>** [**@17**](namespaceastrea_1_1astro_1_1frames_1_1_0d17.md)
+[**Namespace List**](namespaces.md) **>** [**frames**](namespaceastrea_1_1astro_1_1frames_1_1_0d17.md)
 
 
 
@@ -77,5 +77,5 @@
 
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/transformations.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/transformations.hpp`
 

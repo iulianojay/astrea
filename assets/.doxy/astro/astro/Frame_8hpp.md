@@ -4,16 +4,18 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**Frame.hpp**](Frame_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**framework**](dir_aa3952657448f7008c08b8ed45c303ac.md) **>** [**Frame.hpp**](Frame_8hpp.md)
 
 [Go to the source code of this file](Frame_8hpp_source.md)
 
 _Definition for a Frame in astrea._ [More...](#detailed-description)
 
-* `#include <string>`
+* `#include <type_traits>`
+* `#include <mp-units/framework/symbol_text.h>`
 * `#include <units/units.hpp>`
-* `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/frame_concepts.hpp>`
+* `#include <astro/frames/framework/Axis.hpp>`
+* `#include <astro/frames/framework/Origin.hpp>`
+* `#include <astro/frames/framework/frame_concepts.hpp>`
 
 
 
@@ -33,13 +35,16 @@ _Definition for a Frame in astrea._ [More...](#detailed-description)
 | ---: | :--- |
 | namespace | [**astrea**](namespaceastrea.md) <br> |
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
+| namespace | [**detail**](namespaceastrea_1_1astro_1_1detail.md) <br> |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| struct | [**Frame**](structastrea_1_1astro_1_1Frame.md) &lt;origin, axis&gt;<br>_Base class for all state/frames._  |
+| struct | [**Frame&lt; \_name\_, \_origin\_, \_axis\_ &gt;**](structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___01_4.md) &lt;\_name\_, \_origin\_, \_axis\_&gt;<br>[_**Frame**_](structastrea_1_1astro_1_1Frame.md) _with name, origin, and axis (no parent)._ |
+| struct | [**Frame&lt; \_name\_, \_origin\_, \_axis\_, \_parent\_ &gt;**](structastrea_1_1astro_1_1Frame_3_01__name___00_01__origin___00_01__axis___00_01__parent___01_4.md) &lt;\_name\_, \_origin\_, \_axis\_, \_parent\_&gt;<br>[_**Frame**_](structastrea_1_1astro_1_1Frame.md) _with name, origin, axis, and parent._ |
+| struct | [**FrameBase**](structastrea_1_1astro_1_1detail_1_1FrameBase.md) <br>_Empty base class for all frames in astrea. This allows us to use std::derived\_from to check if a type is a frame._  |
 
 
 
@@ -123,5 +128,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/Frame.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/framework/Frame.hpp`
 

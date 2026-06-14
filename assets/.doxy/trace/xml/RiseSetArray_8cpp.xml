@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="RiseSetArray_8cpp" kind="file" language="C++">
     <compoundname>RiseSetArray.cpp</compoundname>
     <includes refid="RiseSetArray_8hpp" local="no">trace/risesets/RiseSetArray.hpp</includes>
@@ -9,42 +9,21 @@
     <includes local="no">mp-units/systems/iau.h</includes>
     <includes local="no">mp-units/systems/si.h</includes>
     <incdepgraph>
-      <node id="7">
-        <label>trace/trace.fwd.hpp</label>
-        <link refid="trace_8fwd_8hpp"/>
-      </node>
-      <node id="13">
-        <label>limits</label>
-      </node>
-      <node id="17">
-        <label>mp-units/systems/si.h</label>
-      </node>
-      <node id="12">
-        <label>cstdint</label>
-      </node>
-      <node id="15">
-        <label>mp-units/math.h</label>
-      </node>
-      <node id="16">
-        <label>mp-units/systems/iau.h</label>
-      </node>
-      <node id="14">
-        <label>stdexcept</label>
-      </node>
-      <node id="8">
-        <label>trace/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="9" relation="include">
+      <node id="1">
+        <label>astrea/trace/trace/risesets/RiseSetArray.cpp</label>
+        <link refid="RiseSetArray_8cpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="10" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
-      </node>
-      <node id="6">
-        <label>string</label>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>trace/risesets/RiseSetArray.hpp</label>
@@ -55,36 +34,8 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>vector</label>
-      </node>
-      <node id="1">
-        <label>astrea/trace/trace/risesets/RiseSetArray.cpp</label>
-        <link refid="RiseSetArray_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>array</label>
-      </node>
-      <node id="11">
-        <label>trace/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
         <childnode refid="12" relation="include">
         </childnode>
       </node>
@@ -98,11 +49,65 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
+      <node id="7">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
       <node id="10">
-        <label>gtl/btree.hpp</label>
+        <label>array</label>
+      </node>
+      <node id="8">
+        <label>astro/systems/system_concepts.hpp</label>
+      </node>
+      <node id="13">
+        <label>cstdint</label>
+      </node>
+      <node id="11">
+        <label>gtl/phmap.hpp</label>
+      </node>
+      <node id="14">
+        <label>limits</label>
+      </node>
+      <node id="16">
+        <label>mp-units/math.h</label>
+      </node>
+      <node id="17">
+        <label>mp-units/systems/iau.h</label>
+      </node>
+      <node id="18">
+        <label>mp-units/systems/si.h</label>
+      </node>
+      <node id="15">
+        <label>stdexcept</label>
+      </node>
+      <node id="6">
+        <label>string</label>
       </node>
       <node id="4">
         <label>units/units.hpp</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
@@ -135,20 +140,20 @@
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mp-units/systems/si.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">mp_units;</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::non_si::day;</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>mp_units::si::unit_symbols::s;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::non_si::day;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">mp_units::si::unit_symbols::s;</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal">RiseSetArray::RiseSetArray(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Time&gt;&amp;<sp/>risesets)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><ref refid="classastrea_1_1trace_1_1RiseSetArray_1ad4e1f0103c5c6b188eca310fca6b4b72" kindref="member">RiseSetArray::RiseSetArray</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Time&gt;&amp;<sp/>risesets)</highlight></codeline>
 <codeline lineno="31"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>validate_risesets(risesets);</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>_risesets<sp/>=<sp/>risesets;</highlight></codeline>
 <codeline lineno="34"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal">RiseSetArray::RiseSetArray(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RiseSetArray&amp;<sp/>other)<sp/>:</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><ref refid="classastrea_1_1trace_1_1RiseSetArray_1ad4e1f0103c5c6b188eca310fca6b4b72" kindref="member">RiseSetArray::RiseSetArray</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>RiseSetArray&amp;<sp/>other)<sp/>:</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>_risesets(other._risesets)</highlight></codeline>
 <codeline lineno="39"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="40"><highlight class="normal">}</highlight></codeline>
@@ -158,7 +163,7 @@
 <codeline lineno="44"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="45"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal">RiseSetArray&amp;<sp/>RiseSetArray::operator=(RiseSetArray&amp;&amp;<sp/>other)<sp/>noexcept</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">RiseSetArray&amp;<sp/>RiseSetArray::operator=(RiseSetArray&amp;&amp;<sp/>other)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;other)<sp/>{<sp/>_risesets<sp/>=<sp/>std::move(other._risesets);<sp/>}</highlight></codeline>
 <codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>

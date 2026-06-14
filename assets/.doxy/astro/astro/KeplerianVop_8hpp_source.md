@@ -28,18 +28,22 @@ class KeplerianVop : public EquationsOfMotion {
 
     ~KeplerianVop() = default;
 
-    OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override;
+    OrbitalElementPartials compute_dynamics(
+        const State& state,
+        const Vehicle& vehicle,
+        const ForceVector<frames::primary>& perts,
+        const ForceVector<frames::primary>& control
+    ) const override;
 
-    StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override;
-
-    constexpr std::size_t get_expected_set_id() const override { return OrbitalElements::get_set_id<Keplerian>(); };
+    constexpr std::size_t get_expected_set_id() const override
+    {
+        return OrbitalElements::get_set_id<Keplerian<frames::primary>>();
+    };
 
   private:
-    Unitless checkTol = 1e-10 * mp_units::one; 
-
-    const ForceModel* forces; 
-    GravParam mu;             
-    bool doWarn;              
+    const Unitless checkTol = 1e-10 * mp_units::one; 
+    GravParam mu;                                    
+    bool doWarn;                                     
 
     void check_degenerate(const Unitless& ecc, const Angle& inc) const;
 };

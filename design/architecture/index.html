@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -178,6 +178,53 @@ You're not viewing the latest version.
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
     
     
       <div class="md-header__source">
@@ -436,8 +483,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
     
     
     
@@ -488,34 +533,6 @@ You're not viewing the latest version.
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting_started/about/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    About Astrea
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -697,10 +714,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
-        
-      
     
     
     
@@ -779,34 +792,6 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/strongly_typed_frames/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Strongly Typed Frames
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../examples/fundamentals/time_systems/" class="md-nav__link">
         
   
@@ -862,34 +847,6 @@ You're not viewing the latest version.
   
   
   
-    <li class="md-nav__item">
-      <a href="../../examples/fundamentals/astrodynamic_systems/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Astrodynamic Systems
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -916,10 +873,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
             
   
   
@@ -937,8 +894,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1095,7 +1052,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/vehicles.md" class="md-nav__link">
+      <a href="../../examples/fundamentals/propagation/vehicles/" class="md-nav__link">
         
   
   
@@ -1150,10 +1107,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
             
   
   
@@ -1171,8 +1128,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_7">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1189,14 +1146,14 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/frames/strongly_typed_frames/" class="md-nav__link">
+      <a href="../../examples/fundamentals/frames/introduction/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Strongly Typed Frames
+    Introduction to Strongly Typed Frames
   
 
     
@@ -1578,17 +1535,6 @@ You're not viewing the latest version.
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#design-constraints" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Design Constraints
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1607,22 +1553,22 @@ You're not viewing the latest version.
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#layer-2-astrodynamics-core-astro" class="md-nav__link">
+  <a href="#layer-1-foundation-libraries" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Layer 2: Astrodynamics Core (astro/)
+        Layer 1: Foundation Libraries
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Layer 2: Astrodynamics Core (astro/)">
+    <nav class="md-nav" aria-label="Layer 1: Foundation Libraries">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#key-abstractions" class="md-nav__link">
+  <a href="#mathematics-math" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Key Abstractions
+        Mathematics (math/)
       
     </span>
   </a>
@@ -1630,10 +1576,10 @@ You're not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#data-flow-pattern" class="md-nav__link">
+  <a href="#unit-system-units" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Data Flow Pattern
+        Unit System (units/)
       
     </span>
   </a>
@@ -1642,6 +1588,17 @@ You're not viewing the latest version.
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layer-2-astrodynamics-core-astro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 2: Astrodynamics Core (astro/)
+      
+    </span>
+  </a>
   
 </li>
         
@@ -1673,45 +1630,6 @@ You're not viewing the latest version.
     <span class="md-ellipsis">
       
         Data Management (snapshot/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#layer-1-foundation-libraries" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Layer 1: Foundation Libraries
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Layer 1: Foundation Libraries">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mathematics-math" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mathematics (math/)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#unit-system-units" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Unit System (units/)
       
     </span>
   </a>
@@ -1763,58 +1681,8 @@ You're not viewing the latest version.
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#database-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Database Integration
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#error-handling-strategy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Error Handling Strategy
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Error Handling Strategy">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#compile-time-error-prevention" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Compile-time Error Prevention
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#runtime-error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Runtime Error Handling
-      
-    </span>
-  </a>
   
 </li>
         
@@ -1840,56 +1708,6 @@ You're not viewing the latest version.
     <span class="md-ellipsis">
       
         Compile-time Optimization
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#memory-layout-optimization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Memory Layout Optimization
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#extensibility-architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Extensibility Architecture
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Extensibility Architecture">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#plugin-interface-pattern" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Plugin Interface Pattern
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#type-erasure-for-runtime-flexibility" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Type Erasure for Runtime Flexibility
       
     </span>
   </a>
@@ -6726,8 +6544,9 @@ You're not viewing the latest version.
 <h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
 <p>This document provides a detailed view of Astrea's software architecture, component interactions, and design rationale. The architecture reflects the dual goals of safety and performance in aerospace engineering applications.</p>
 <h2 id="high-level-architecture">High-Level Architecture<a class="headerlink" href="#high-level-architecture" title="Permanent link">&para;</a></h2>
+<p>Astrea is currently organized as a monolith, with the intention of breaking it out into separate libraries if the scope of any of the individual subprojects grows too large. The core astrodynamics library, <code>astro</code> is the bulk of astrea, with <code>math</code>, <code>units</code>, and <code>utilities</code> providing a few simple foundational features. Astrea also has a couple simple tools, <code>snapshot</code> for yanking in SpaceTrack data, and <code>trace</code>, a simple revisit analysis tool. The latter are meant as examples of building out more complex tooling, they are not meant as production-ready analysis tools. Trace also has developed some nice functionality for ground stations that may be ripped into <code>astro</code> in the future.</p>
 <h3 id="layered-design">Layered Design<a class="headerlink" href="#layered-design" title="Permanent link">&para;</a></h3>
-<p>Astrea follows a strict layered architecture where dependencies flow downward and each layer provides a specific level of abstraction:</p>
+<p>Astrea follows a layered architecture where dependencies flow downward and each layer provides a specific level of abstraction:</p>
 <pre class="mermaid"><code>flowchart TB
     subgraph "Layer 4: Applications"
         mission["Mission Planning"]
@@ -6770,15 +6589,18 @@ You're not viewing the latest version.
     units --&gt; mpunits
     utils --&gt; std
     snapshot --&gt; external</code></pre>
-<h3 id="design-constraints">Design Constraints<a class="headerlink" href="#design-constraints" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>No Circular Dependencies</strong>: Components may only depend on lower layers</li>
-<li><strong>Minimal External Dependencies</strong>: Each dependency must provide clear, substantial value</li>
-<li><strong>Header-Only Design</strong>: All core functionality available without separate linking</li>
-<li><strong>Platform Independence</strong>: No platform-specific code in core libraries</li>
-<li><strong>Exception Safety</strong>: All operations provide strong exception safety guarantees</li>
-</ol>
 <h2 id="component-architecture">Component Architecture<a class="headerlink" href="#component-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="layer-1-foundation-libraries">Layer 1: Foundation Libraries<a class="headerlink" href="#layer-1-foundation-libraries" title="Permanent link">&para;</a></h3>
+<h4 id="mathematics-math">Mathematics (<code>math/</code>)<a class="headerlink" href="#mathematics-math" title="Permanent link">&para;</a></h4>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>
+</span></code></pre></div>
+<p><strong>Design Principles</strong>:
+- All mathematical operations preserve unit information
+- Template-based for compile-time optimization
+- Immutable value semantics for safety</p>
+<h4 id="unit-system-units">Unit System (<code>units/</code>)<a class="headerlink" href="#unit-system-units" title="Permanent link">&para;</a></h4>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>
+</span></code></pre></div>
 <h3 id="layer-2-astrodynamics-core-astro">Layer 2: Astrodynamics Core (<code>astro/</code>)<a class="headerlink" href="#layer-2-astrodynamics-core-astro" title="Permanent link">&para;</a></h3>
 <p>The heart of Astrea, providing fundamental astrodynamics functionality:</p>
 <pre class="mermaid"><code>flowchart TB
@@ -6804,51 +6626,6 @@ You're not viewing the latest version.
     platforms --&gt; frames
     utilities --&gt; state
     utilities --&gt; frames</code></pre>
-<h4 id="key-abstractions">Key Abstractions<a class="headerlink" href="#key-abstractions" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Abstraction</th>
-<th>Purpose</th>
-<th>Implementation Strategy</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>State</code></td>
-<td>Represents spacecraft position/velocity</td>
-<td>Template-based for different coordinate systems</td>
-</tr>
-<tr>
-<td><code>Frame</code></td>
-<td>Coordinate reference frames</td>
-<td>Type-safe compile-time frame checking</td>
-</tr>
-<tr>
-<td><code>Epoch</code></td>
-<td>Points in time with time scale info</td>
-<td>Immutable value types with automatic conversions</td>
-</tr>
-<tr>
-<td><code>Body</code></td>
-<td>Celestial bodies with physical properties</td>
-<td>Compile-time constants where possible</td>
-</tr>
-<tr>
-<td><code>Propagator</code></td>
-<td>Advances orbital states through time</td>
-<td>Strategy pattern with customizable force models</td>
-</tr>
-</tbody>
-</table>
-<h4 id="data-flow-pattern">Data Flow Pattern<a class="headerlink" href="#data-flow-pattern" title="Permanent link">&para;</a></h4>
-<ol>
-<li><strong>Input Validation</strong>: All inputs validated at API boundaries</li>
-<li><strong>Unit Conversion</strong>: Automatic unit conversions using mp-units</li>
-<li><strong>Frame Transformation</strong>: Explicit coordinate frame handling</li>
-<li><strong>Computation</strong>: Core algorithms with error checking</li>
-<li><strong>Output Construction</strong>: Results in requested units/frames</li>
-</ol>
 <h3 id="layer-3-domain-libraries">Layer 3: Domain Libraries<a class="headerlink" href="#layer-3-domain-libraries" title="Permanent link">&para;</a></h3>
 <h4 id="access-analysis-trace">Access Analysis (<code>trace/</code>)<a class="headerlink" href="#access-analysis-trace" title="Permanent link">&para;</a></h4>
 <pre class="mermaid"><code>flowchart LR
@@ -6862,227 +6639,60 @@ You're not viewing the latest version.
         coverage["Coverage Calculation"]
         link_budget["Link Budget Analysis"]
     end</code></pre>
-<p><strong>Key Components</strong>:
-- <code>Platform</code>: Represents spacecraft, ground stations, or targets
-- <code>Link</code>: Models communication or observation paths between platforms
-- <code>AccessWindow</code>: Time intervals when platforms can communicate
-- <code>Interference</code>: Modeling of signal interference between multiple platforms</p>
 <h4 id="data-management-snapshot">Data Management (<code>snapshot/</code>)<a class="headerlink" href="#data-management-snapshot" title="Permanent link">&para;</a></h4>
 <pre class="mermaid"><code>flowchart TB
     subgraph "Data Sources"
         spacetrack["Spacetrack.org"]
         files["Local Files"]
-        spice_kernels["SPICE Kernels"]
         user_data["User Input"]
     end
 
     subgraph "Storage Layer"
         database["SQLite Database"]
         cache["Memory Cache"]
-        ephemeris["Ephemeris Store"]
     end
 
     subgraph "Access Layer"
         catalog["Object Catalog"]
-        query["Query Interface"]
         sync["Data Synchronization"]
     end
 
     spacetrack --&gt; database
     files --&gt; database
-    spice_kernels --&gt; ephemeris
     user_data --&gt; cache
 
     database --&gt; catalog
     cache --&gt; catalog
-    ephemeris --&gt; query
     catalog --&gt; sync</code></pre>
 <p><strong>Key Features</strong>:
 - Automatic TLE downloads and updates from Spacetrack.org
-- Efficient storage and retrieval of large orbital datasets
-- SPICE kernel management and ephemeris caching
-- Version control and data provenance tracking</p>
-<h3 id="layer-1-foundation-libraries">Layer 1: Foundation Libraries<a class="headerlink" href="#layer-1-foundation-libraries" title="Permanent link">&para;</a></h3>
-<h4 id="mathematics-math">Mathematics (<code>math/</code>)<a class="headerlink" href="#mathematics-math" title="Permanent link">&para;</a></h4>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Unit-aware vector operations</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Unit</span><span class="o">&gt;</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">Vector3</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">Unit</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x_</span><span class="p">,</span><span class="w"> </span><span class="n">y_</span><span class="p">,</span><span class="w"> </span><span class="n">z_</span><span class="p">;</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">magnitude</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">Unit</span><span class="o">&gt;</span><span class="p">;</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">normalized</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Vector3</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">one</span><span class="o">&gt;</span><span class="p">;</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">cross</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector3</span><span class="o">&lt;</span><span class="n">Unit</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Vector3</span><span class="o">&lt;</span><span class="n">Unit</span><span class="o">&gt;</span><span class="p">;</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">dot</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vector3</span><span class="o">&lt;</span><span class="n">Unit</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">Unit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Unit</span><span class="o">&gt;</span><span class="p">;</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">};</span>
-</span></code></pre></div>
-<p><strong>Design Principles</strong>:
-- All mathematical operations preserve unit information
-- Template-based for compile-time optimization
-- SIMD-friendly memory layout where possible
-- Immutable value semantics for safety</p>
-<h4 id="unit-system-units">Unit System (<code>units/</code>)<a class="headerlink" href="#unit-system-units" title="Permanent link">&para;</a></h4>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Aerospace-specific unit extensions</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astrea</span><span class="o">::</span><span class="nn">units</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="c1">// Distance units</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">earth_radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6378.137</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">si</span><span class="o">::</span><span class="n">kilometre</span><span class="p">;</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astronomical_unit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">149597870.7</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">si</span><span class="o">::</span><span class="n">kilometre</span><span class="p">;</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="c1">// Time units</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">julian_day</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">86400.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">si</span><span class="o">::</span><span class="n">second</span><span class="p">;</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">julian_year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">365.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">julian_day</span><span class="p">;</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="c1">// Gravitational parameters</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">earth_mu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">398600.4418</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">si</span><span class="o">::</span><span class="n">kilo</span><span class="o">&lt;</span><span class="n">si</span><span class="o">::</span><span class="n">metre</span><span class="o">&gt;</span><span class="p">.</span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">si</span><span class="o">::</span><span class="n">second</span><span class="p">.</span><span class="n">pow</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">();</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">}</span>
-</span></code></pre></div>
+- Efficient storage and retrieval of large orbital datasets</p>
 <h2 id="system-boundaries-and-interfaces">System Boundaries and Interfaces<a class="headerlink" href="#system-boundaries-and-interfaces" title="Permanent link">&para;</a></h2>
 <h3 id="external-integration-points">External Integration Points<a class="headerlink" href="#external-integration-points" title="Permanent link">&para;</a></h3>
 <h4 id="spice-integration">SPICE Integration<a class="headerlink" href="#spice-integration" title="Permanent link">&para;</a></h4>
-<pre class="mermaid"><code>sequenceDiagram
-    participant App as Application
-    participant Astrea as Astrea Core
-    participant SPICE as SPICE Toolkit
-    participant Kernel as Kernel Files
-
-    App-&gt;&gt;Astrea: Request planetary ephemeris
-    Astrea-&gt;&gt;SPICE: Load required kernels
-    SPICE-&gt;&gt;Kernel: Read ephemeris data
-    Kernel--&gt;&gt;SPICE: Chebyshev coefficients
-    SPICE--&gt;&gt;Astrea: Position/velocity vectors
-    Astrea-&gt;&gt;Astrea: Convert to Astrea types
-    Astrea--&gt;&gt;App: Unit-aware State object</code></pre>
-<h4 id="database-integration">Database Integration<a class="headerlink" href="#database-integration" title="Permanent link">&para;</a></h4>
-<pre class="mermaid"><code>erDiagram
-    CATALOG {
-        string norad_id PK
-        string name
-        datetime epoch
-        string classification
-    }
-
-    TLE_DATA {
-        string norad_id FK
-        datetime epoch
-        string line1
-        string line2
-        datetime created
-    }
-
-    EPHEMERIS {
-        string object_id FK
-        datetime start_time
-        datetime end_time
-        blob state_data
-        string algorithm
-    }
-
-    CATALOG ||--o{ TLE_DATA : contains
-    CATALOG ||--o{ EPHEMERIS : generates</code></pre>
-<h2 id="error-handling-strategy">Error Handling Strategy<a class="headerlink" href="#error-handling-strategy" title="Permanent link">&para;</a></h2>
-<h3 id="compile-time-error-prevention">Compile-time Error Prevention<a class="headerlink" href="#compile-time-error-prevention" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// This will not compile - unit mismatch detected at compile-time</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">invalid_calculation</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1000.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">units</span><span class="o">::</span><span class="n">metre</span><span class="p">;</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">60.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">units</span><span class="o">::</span><span class="n">second</span><span class="p">;</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">acceleration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">time</span><span class="p">;</span><span class="w">  </span><span class="c1">// ERROR: Cannot add length and time</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">acceleration</span><span class="p">;</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">}</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1">// This will not compile - frame mismatch detected</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">auto</span><span class="w"> </span><span class="n">invalid_transformation</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">state_eci</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="o">::</span><span class="n">cartesian</span><span class="p">{</span><span class="cm">/* ... */</span><span class="p">};</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">position_ecef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state_eci</span><span class="p">.</span><span class="n">position</span><span class="p">();</span><span class="w">  </span><span class="c1">// ERROR: Must explicitly convert frames</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">position_ecef</span><span class="p">;</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">}</span>
-</span></code></pre></div>
-<h3 id="runtime-error-handling">Runtime Error Handling<a class="headerlink" href="#runtime-error-handling" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Exception hierarchy for runtime errors</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astrea</span><span class="o">::</span><span class="nn">exceptions</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">AstreaException</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="c1">// Base class for all Astrea exceptions</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="p">};</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">NumericalException</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">AstreaException</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">        </span><span class="c1">// Numerical integration failures, convergence issues</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="p">};</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">DataException</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">AstreaException</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="c1">// Missing data, corrupted files, network failures</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="p">};</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">ConfigurationException</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">AstreaException</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">        </span><span class="c1">// Invalid configurations, missing dependencies</span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="p">};</span>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="p">}</span>
-</span></code></pre></div>
+<p>SPICE is actually not truly integrated into Astrea. Currently, SPICE Chebyshev polynomials for celestial bodies are stored locally. At compile time, a Python script automatically generates the source files that statically declares those polynomial coefficients. While this can increase the memory required by the tool, it's considerably faster that calling SPICE directly, and it's just as accurate.</p>
+<p>There is currently no plan for direct SPICE integration in Astrea.</p>
 <h2 id="performance-architecture">Performance Architecture<a class="headerlink" href="#performance-architecture" title="Permanent link">&para;</a></h2>
 <h3 id="compile-time-optimization">Compile-time Optimization<a class="headerlink" href="#compile-time-optimization" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// Example: Coordinate transformation matrices computed at compile-time</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">FromFrame</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">ToFrame</span><span class="o">&gt;</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">transformation_matrix</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_same_v</span><span class="o">&lt;</span><span class="n">FromFrame</span><span class="p">,</span><span class="w"> </span><span class="n">ToFrame</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">math</span><span class="o">::</span><span class="n">Matrix3</span><span class="o">::</span><span class="n">identity</span><span class="p">();</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="p">(</span><span class="n">is_simple_rotation_v</span><span class="o">&lt;</span><span class="n">FromFrame</span><span class="p">,</span><span class="w"> </span><span class="n">ToFrame</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">compute_rotation_matrix</span><span class="o">&lt;</span><span class="n">FromFrame</span><span class="p">,</span><span class="w"> </span><span class="n">ToFrame</span><span class="o">&gt;</span><span class="p">();</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">compute_full_transformation</span><span class="o">&lt;</span><span class="n">FromFrame</span><span class="p">,</span><span class="w"> </span><span class="n">ToFrame</span><span class="o">&gt;</span><span class="p">();</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="p">}</span>
-</span></code></pre></div>
-<h3 id="memory-layout-optimization">Memory Layout Optimization<a class="headerlink" href="#memory-layout-optimization" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Structure of Array (SoA) pattern for bulk operations</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">StateArray</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">units</span><span class="o">::</span><span class="n">metre</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x_</span><span class="p">,</span><span class="w"> </span><span class="n">y_</span><span class="p">,</span><span class="w"> </span><span class="n">z_</span><span class="p">;</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">units</span><span class="o">::</span><span class="n">metre_per_second</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">vx_</span><span class="p">,</span><span class="w"> </span><span class="n">vy_</span><span class="p">,</span><span class="w"> </span><span class="n">vz_</span><span class="p">;</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="c1">// SIMD-friendly bulk operations</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">propagate_all</span><span class="p">(</span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">units</span><span class="o">::</span><span class="n">second</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dt</span><span class="p">);</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">transform_all_to_frame</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">target_frame</span><span class="p">);</span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">};</span>
-</span></code></pre></div>
-<h2 id="extensibility-architecture">Extensibility Architecture<a class="headerlink" href="#extensibility-architecture" title="Permanent link">&para;</a></h2>
-<h3 id="plugin-interface-pattern">Plugin Interface Pattern<a class="headerlink" href="#plugin-interface-pattern" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// Abstract interface for custom force models</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">ForceModel</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">ForceModel</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">acceleration</span><span class="p">(</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">state</span><span class="o">::</span><span class="n">cartesian</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">time</span><span class="o">::</span><span class="n">epoch</span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">math</span><span class="o">::</span><span class="n">Vector3</span><span class="o">&lt;</span><span class="n">units</span><span class="o">::</span><span class="n">acceleration</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">name</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="p">};</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="c1">// Registration system for custom components</span>
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="kt">void</span><span class="w"> </span><span class="n">register_force_model</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">    </span><span class="n">ForceModelRegistry</span><span class="o">::</span><span class="n">instance</span><span class="p">().</span><span class="n">register_model</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="p">}</span>
-</span></code></pre></div>
-<h3 id="type-erasure-for-runtime-flexibility">Type Erasure for Runtime Flexibility<a class="headerlink" href="#type-erasure-for-runtime-flexibility" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// Type-erased wrapper for different propagator types</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">Propagator</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">PropagatorImpl</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">PropagatorImpl</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">propagate</span><span class="p">(</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">state</span><span class="o">::</span><span class="n">cartesian</span><span class="o">&amp;</span><span class="w"> </span><span class="n">initial_state</span><span class="p">,</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">            </span><span class="n">mp_units</span><span class="o">::</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">units</span><span class="o">::</span><span class="n">second</span><span class="o">&gt;</span><span class="w"> </span><span class="n">duration</span>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">state</span><span class="o">::</span><span class="n">cartesian</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="p">};</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">ConcretePropagator</span><span class="o">&gt;</span>
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">PropagatorWrapper</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">PropagatorImpl</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">        </span><span class="n">ConcretePropagator</span><span class="w"> </span><span class="n">impl_</span><span class="p">;</span>
-</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">        </span><span class="c1">// Implementation details...</span>
-</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">    </span><span class="p">};</span>
-</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>
-</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">PropagatorImpl</span><span class="o">&gt;</span><span class="w"> </span><span class="n">impl_</span><span class="p">;</span>
-</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="p">};</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// Example: Coordinate transformation matrices computed at compile-time</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">FromFrame</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">ToFrame</span><span class="o">&gt;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">DCM</span><span class="o">&lt;</span><span class="n">FromFrame</span><span class="p">,</span><span class="w"> </span><span class="n">ToFrame</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_dcm_impl</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span><span class="p">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">{</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">static_assert</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">HasDcm</span><span class="o">&lt;</span><span class="n">FromFrame</span><span class="p">,</span><span class="w"> </span><span class="n">ToFrame</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">HasDcm</span><span class="o">&lt;</span><span class="n">ToFrame</span><span class="p">,</span><span class="w"> </span><span class="n">FromFrame</span><span class="o">&gt;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;DCM defined in both directions, please define only one to avoid symmetry issues.&quot;</span><span class="p">);</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">static_assert</span><span class="p">(</span><span class="n">IsStaticFrame</span><span class="o">&lt;</span><span class="n">FromFrame</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">IsStaticFrame</span><span class="o">&lt;</span><span class="n">ToFrame</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Dynamic frame conversions cannot be called statically. Dynamic frames must be created at runtime with a platform to reference.&quot;</span><span class="p">);</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="k">static_assert</span><span class="p">(</span><span class="n">HasDcm</span><span class="o">&lt;</span><span class="n">FromFrame</span><span class="p">,</span><span class="w"> </span><span class="n">ToFrame</span><span class="o">&gt;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">HasDcm</span><span class="o">&lt;</span><span class="n">ToFrame</span><span class="p">,</span><span class="w"> </span><span class="n">FromFrame</span><span class="o">&gt;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">is_same_frame</span><span class="p">(</span><span class="n">FromFrame</span><span class="p">,</span><span class="w"> </span><span class="n">ToFrame</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;No DCM defined between these two frames.&quot;</span><span class="p">);</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="p">(</span><span class="n">is_same_frame</span><span class="p">(</span><span class="n">FromFrame</span><span class="p">,</span><span class="w"> </span><span class="n">ToFrame</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">DCM</span><span class="o">&lt;</span><span class="n">FromFrame</span><span class="p">,</span><span class="w"> </span><span class="n">ToFrame</span><span class="o">&gt;::</span><span class="n">identity</span><span class="p">();</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="p">(</span><span class="n">HasDcm</span><span class="o">&lt;</span><span class="n">FromFrame</span><span class="p">,</span><span class="w"> </span><span class="n">ToFrame</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">get_dcm</span><span class="o">&lt;</span><span class="n">FromFrame</span><span class="p">,</span><span class="w"> </span><span class="n">ToFrame</span><span class="o">&gt;</span><span class="p">(</span><span class="n">date</span><span class="p">);</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="p">(</span><span class="n">HasDcm</span><span class="o">&lt;</span><span class="n">ToFrame</span><span class="p">,</span><span class="w"> </span><span class="n">FromFrame</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">get_dcm</span><span class="o">&lt;</span><span class="n">ToFrame</span><span class="p">,</span><span class="w"> </span><span class="n">FromFrame</span><span class="o">&gt;</span><span class="p">(</span><span class="n">date</span><span class="p">).</span><span class="n">transpose</span><span class="p">();</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="s">&quot;How did you get here?&quot;</span><span class="p">);</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="p">}</span>
 </span></code></pre></div>
 <h2 id="quality-assurance-architecture">Quality Assurance Architecture<a class="headerlink" href="#quality-assurance-architecture" title="Permanent link">&para;</a></h2>
 <h3 id="validation-framework">Validation Framework<a class="headerlink" href="#validation-framework" title="Permanent link">&para;</a></h3>
@@ -7111,8 +6721,11 @@ You're not viewing the latest version.
 <li><strong>Static Analysis</strong>: Code quality, security, and style checks</li>
 <li><strong>Unit Testing</strong>: Individual component validation</li>
 <li><strong>Integration Testing</strong>: Cross-component interaction testing</li>
-<li><strong>Performance Testing</strong>: Benchmark comparison and regression detection</li>
 <li><strong>Documentation Testing</strong>: Example code compilation and execution</li>
+</ol>
+<p>Coming soon:</p>
+<ol>
+<li><strong>Performance Testing</strong>: Benchmark comparison and regression detection</li>
 <li><strong>Platform Testing</strong>: Multi-platform compatibility verification</li>
 </ol>
 <hr />

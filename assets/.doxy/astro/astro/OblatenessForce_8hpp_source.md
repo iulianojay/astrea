@@ -18,18 +18,17 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/propagation/force_models/Force.hpp>
+#include <astro/propagation/force_models/PerturbingForce.hpp>
 
 namespace astrea {
 namespace astro {
 
+template <IsCelestialBody auto _body_, std::size_t _degree_ = 2, std::size_t _order_ = 0>
 class LegendreCache {
   public:
-    LegendreCache() = default;
+    LegendreCache();
 
     ~LegendreCache() = default;
-
-    LegendreCache(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order);
 
     Unitless get_cosine_coefficient(const std::size_t& n, const std::size_t& m) const;
 
@@ -45,35 +44,28 @@ class LegendreCache {
     // std::vector<std::vector<Unitless>>
     //     get_legendre_coefficients(const std::size_t& degree, const std::size_t& order, const Unitless& x) const;
 
-    Unitless get_normalizing_coefficient(const std::size_t& n, const std::size_t& m) const;
-
   private:
-    std::vector<std::vector<Unitless>> _normalizingCoefficients{}; 
-    std::vector<std::vector<Unitless>> _C{};                       
-    std::vector<std::vector<Unitless>> _S{};                       
-
-    void size_vectors(const std::size_t& degree, const std::size_t& order);
-
-    void ingest_legendre_coefficient_file(const AstrodynamicsSystem& sys, const std::size_t& degree, const std::size_t& order);
+    std::array<std::array<Unitless, _order_ + 1>, _degree_ + 1> _C{}; 
+    std::array<std::array<Unitless, _order_ + 1>, _degree_ + 1> _S{}; 
 };
 
-class OblatenessForce : public Force {
+template <IsCelestialBody auto _body_, std::size_t _degree_ = 2, std::size_t _order_ = 0>
+class OblatenessForce : public PerturbingForce {
   public:
+    OblatenessForce() = default;
+
     ~OblatenessForce() = default;
 
-    OblatenessForce(const AstrodynamicsSystem& sys, const std::size_t& N = 2, const std::size_t& M = 0);
-
-    CartesianVector<Acceleration, frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const;
+    Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const;
 
   private:
-    const std::size_t _degree;          
-    const std::size_t _order;           
-    const AstrodynamicsSystem* _sys;    
-    const LegendreCache _legendreCache; 
+    const LegendreCache<_body_, _degree_, _order_> _legendreCache; 
 };
 
 } // namespace astro
 } // namespace astrea
+
+#include <astro/propagation/force_models/OblatenessForce.ipp>
 ```
 
 

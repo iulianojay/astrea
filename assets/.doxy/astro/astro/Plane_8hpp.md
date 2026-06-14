@@ -11,6 +11,7 @@
 [More...](#detailed-description)
 
 * `#include <vector>`
+* `#include <utilities/IdProvider.hpp>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/platforms/vehicles/Spacecraft.hpp>`
 * `#include <astro/propagation/numerical/Integrator.hpp>`
@@ -40,7 +41,7 @@
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Plane**](classastrea_1_1astro_1_1Plane.md) &lt;class Spacecraft\_T&gt;<br>_A_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _is a collection of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _that share the same orbital elements._ |
+| class | [**Plane**](classastrea_1_1astro_1_1Plane.md) &lt;[**class**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Spacecraft\_T**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)&gt;<br>_A_ [_**Plane**_](classastrea_1_1astro_1_1Plane.md) _is a collection of_[_**Spacecraft**_](classastrea_1_1astro_1_1Spacecraft.md) _that share the same orbital elements._ |
 
 
 

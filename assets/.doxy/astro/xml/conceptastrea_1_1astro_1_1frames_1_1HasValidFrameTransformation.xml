@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1frames_1_1HasValidFrameTransformation" kind="concept">
+    <compoundname>astrea::astro::frames::HasValidFrameTransformation</compoundname>
+    <includes refid="transformations_8hpp" local="no">transformations.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>IsFrame auto</type>
+        <declname>frame</declname>
+        <defname>frame</defname>
+      </param>
+      <param>
+        <type>IsFrame auto</type>
+        <declname>frame_u</declname>
+        <defname>frame_u</defname>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;IsFrame auto frame, IsFrame auto frame_u&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1frames_1_1HasValidFrameTransformation" kindref="compound">astrea::astro::frames::HasValidFrameTransformation</ref> =  requires(Date date) {
+    { get_dcm_impl&lt;frame, frame_u&gt;(date) } -&gt; std::same_as&lt;DCM&lt;frame, frame_u&gt;&gt;;
+} || requires(Date date) {
+    { get_dcm_impl&lt;frame_u, frame&gt;(date) } -&gt; std::same_as&lt;DCM&lt;frame_u, frame&gt;&gt;;
+}    </initializer>
+    <briefdescription>
+<para>Concept to determine if a valid frame transformation (DCM) can be obtained between two frames at a given date, either through a direct DCM or an inverse DCM. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first frame type to check. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frame_u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second frame type to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The date at which to obtain the DCM. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if a valid DCM can be obtained between the two frames, false otherwise. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/definitions/transformations.hpp" line="465" column="1"/>
+  </compounddef>
+</doxygen>

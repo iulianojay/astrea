@@ -21,6 +21,7 @@
  * have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
  */
 
+
 #include <astro/utilities/plotting.hpp>
 
 #include <array>
@@ -61,13 +62,19 @@ std::array<std::vector<double>, 6> extract_raw_cartesian_elements(const StateHis
 std::array<std::vector<double>, 6>
     extract_raw_cartesian_elements_at_times(const std::vector<double>& times, const StateHistory& trajectory);
 
+std::vector<double> extract_raw_attitude_time_data(const StateHistory& trajectory);
+
+std::array<std::vector<double>, 6> extract_raw_attitude_data(const StateHistory& trajectory);
+
+std::array<std::vector<double>, 6> extract_raw_attitude_data_at_times(const std::vector<double>& times, const StateHistory& trajectory);
+
 
 std::vector<double> extract_raw_time_data(const StateHistory& trajectory)
 {
     std::vector<double> time;
     const Date epoch = trajectory.epoch();
-    for (const auto& [date, state] : trajectory) {
-        const Time t = date - epoch;
+    for (const auto& state : trajectory) {
+        const Time t = state.get_epoch() - epoch;
         time.push_back(t.numerical_value_in(day));
     }
     return time;
@@ -77,8 +84,8 @@ std::vector<double> extract_raw_time_data(const StateHistory& trajectory)
 std::array<std::vector<double>, 6> extract_raw_orbital_elements(const StateHistory& trajectory)
 {
     std::array<std::vector<double>, 6> data;
-    for (const auto& [date, state] : trajectory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
+    for (const auto& state : trajectory) {
+        const Keplerian<frames::primary> kep = state.in_element_set<Keplerian<frames::primary>>();
 
         const auto a  = kep.get_semimajor();
         const auto e  = kep.get_eccentricity();
@@ -103,13 +110,14 @@ std::array<std::vector<double>, 6> extract_raw_orbital_elements_at_times(const s
     std::array<std::vector<double>, 6> data;
     const Date epoch = trajectory.epoch();
     for (const auto& time : times) {
-        const Keplerian kep = trajectory.get_state_at(epoch + time * day).in_element_set<Keplerian>();
-        const auto a        = kep.get_semimajor();
-        const auto e        = kep.get_eccentricity();
-        const auto i        = wrap_angle(kep.get_inclination());
-        const auto r        = wrap_angle(kep.get_right_ascension());
-        const auto w        = wrap_angle(kep.get_argument_of_perigee());
-        const auto th       = wrap_angle(kep.get_true_anomaly());
+        const Keplerian<frames::primary> kep =
+            trajectory.get_state_at(epoch + time * day).in_element_set<Keplerian<frames::primary>>();
+        const auto a  = kep.get_semimajor();
+        const auto e  = kep.get_eccentricity();
+        const auto i  = wrap_angle(kep.get_inclination());
+        const auto r  = wrap_angle(kep.get_right_ascension());
+        const auto w  = wrap_angle(kep.get_argument_of_perigee());
+        const auto th = wrap_angle(kep.get_true_anomaly());
 
         data[0].push_back(a.numerical_value_in(km));
         data[1].push_back(e.numerical_value_in(one));
@@ -125,8 +133,8 @@ std::array<std::vector<double>, 6> extract_raw_orbital_elements_at_times(const s
 std::array<std::vector<double>, 6> extract_raw_cartesian_elements(const StateHistory& trajectory)
 {
     std::array<std::vector<double>, 6> data;
-    for (const auto& [date, state] : trajectory) {
-        const Cartesian cart = state.in_element_set<Cartesian>();
+    for (const auto& state : trajectory) {
+        const Cartesian<frames::earth::icrf> cart = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
         const auto x  = cart.get_x();
         const auto y  = cart.get_y();
@@ -151,7 +159,8 @@ std::array<std::vector<double>, 6> extract_raw_cartesian_elements_at_times(const
     std::array<std::vector<double>, 6> data;
     const Date epoch = trajectory.epoch();
     for (const auto& time : times) {
-        const Cartesian cart = trajectory.get_state_at(epoch + time * day).in_element_set<Cartesian>();
+        const Cartesian<frames::earth::icrf> cart =
+            trajectory.get_state_at(epoch + time * day).in_element_set<Cartesian<frames::earth::icrf>>();
 
         const auto x  = cart.get_x();
         const auto y  = cart.get_y();
@@ -166,6 +175,67 @@ std::array<std::vector<double>, 6> extract_raw_cartesian_elements_at_times(const
         data[3].push_back(vx.numerical_value_in(km / s));
         data[4].push_back(vy.numerical_value_in(km / s));
         data[5].push_back(vz.numerical_value_in(km / s));
+    }
+    return data;
+}
+
+std::vector<double> extract_raw_attitude_time_data(const StateHistory& trajectory)
+{
+    std::vector<double> time;
+    const Date epoch = trajectory.epoch();
+    for (const auto& state : trajectory) {
+        if (!state.get_attitude().has_value()) { continue; }
+        const Time t = state.get_epoch() - epoch;
+        time.push_back(t.numerical_value_in(day));
+    }
+    return time;
+}
+
+
+std::array<std::vector<double>, 6> extract_raw_attitude_data(const StateHistory& trajectory)
+{
+    std::array<std::vector<double>, 6> data;
+    for (const auto& state : trajectory) {
+        const auto& att = state.get_attitude();
+        if (!att.has_value()) { continue; }
+
+        const auto angles = att->get_orientation().to_euler_angles<RotationSequence::XYZ, RotationType::INTRINSIC>();
+        const auto& omega = att->get_angular_velocity().get_angular_velocities();
+
+        data[0].push_back(angles[0].numerical_value_in(deg));
+        data[1].push_back(angles[1].numerical_value_in(deg));
+        data[2].push_back(angles[2].numerical_value_in(deg));
+        data[3].push_back(omega.get_x().numerical_value_in(deg / s));
+        data[4].push_back(omega.get_y().numerical_value_in(deg / s));
+        data[5].push_back(omega.get_z().numerical_value_in(deg / s));
+    }
+    return data;
+}
+
+
+std::array<std::vector<double>, 6> extract_raw_attitude_data_at_times(const std::vector<double>& times, const StateHistory& trajectory)
+{
+    std::array<std::vector<double>, 6> data;
+    const Date epoch = trajectory.epoch();
+    for (const auto& time : times) {
+        const State state = trajectory.get_state_at(epoch + time * day);
+        const auto& att   = state.get_attitude();
+        if (!att.has_value()) {
+            for (auto& d : data) {
+                d.push_back(std::numeric_limits<double>::quiet_NaN());
+            }
+            continue;
+        }
+
+        const auto angles = att->get_orientation().to_euler_angles<RotationSequence::XYZ, RotationType::INTRINSIC>();
+        const auto& omega = att->get_angular_velocity().get_angular_velocities();
+
+        data[0].push_back(angles[0].numerical_value_in(deg));
+        data[1].push_back(angles[1].numerical_value_in(deg));
+        data[2].push_back(angles[2].numerical_value_in(deg));
+        data[3].push_back(omega.get_x().numerical_value_in(deg / s));
+        data[4].push_back(omega.get_y().numerical_value_in(deg / s));
+        data[5].push_back(omega.get_z().numerical_value_in(deg / s));
     }
     return data;
 }
@@ -225,7 +295,7 @@ void plot_orbital_elements(const StateHistory& trajectory, const std::filesystem
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
 }
 
 
@@ -310,7 +380,7 @@ void plot_trajectory(const StateHistory& trajectory, const std::filesystem::path
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
 }
 
 
@@ -374,7 +444,7 @@ void compare_orbital_elements(const std::vector<StateHistory>& trajectories, con
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
 }
 
 
@@ -471,7 +541,7 @@ void compare_trajectories(const std::vector<StateHistory>& trajectories, const s
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
 }
 
 void plot_difference_orbital_elements(
@@ -548,7 +618,7 @@ void plot_difference_orbital_elements(
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
 }
 
 void plot_difference_trajectories(
@@ -656,7 +726,198 @@ void plot_difference_trajectories(
         ax->y_axis().label_weight("bold");
     }
     std::filesystem::create_directories(outfile.parent_path());
-    save(outfile);
+    save(outfile.string());
+}
+
+void plot_attitude(const StateHistory& trajectory, const std::filesystem::path& outfile)
+{
+    std::vector<double> time                = extract_raw_attitude_time_data(trajectory);
+    std::array<std::vector<double>, 6> data = extract_raw_attitude_data(trajectory);
+
+    if (time.empty()) { return; }
+
+    const auto font  = "Arial";
+    const float size = 20.0;
+
+    auto h = figure(true);
+    h->title("Attitude History");
+    h->number_title(false);
+    h->size(2000, 1800);
+    h->font(font);
+    h->font_size(size + 5.0);
+
+    const std::array<std::string, 6> labels      = { "Roll", "Pitch", "Yaw", "\u03c9x", "\u03c9y", "\u03c9z" };
+    const std::array<std::string, 6> units       = { "deg", "deg", "deg", "deg/s", "deg/s", "deg/s" };
+    const std::array<std::string, 6> tickformats = { "%0.3f", "%0.3f", "%0.3f", "%0.4f", "%0.4f", "%0.4f" };
+
+    tiledlayout(6, 1);
+    for (std::size_t iPlot = 0; iPlot < 6; ++iPlot) {
+        nexttile();
+        auto ax = gca();
+
+        auto p = plot(ax, time, data[iPlot]);
+        p->line_width(4);
+
+        grid(ax, on);
+        xlim(ax, { time.front(), time.back() });
+
+        ylabel(ax, labels[iPlot] + " \\n(" + units[iPlot] + ")");
+        ytickformat(ax, tickformats[iPlot]);
+        if (iPlot == 5) {
+            xlabel(ax, "Time");
+            xtickformat(ax, "%g days");
+            ax->x_axis().label_font_size(size);
+            ax->x_axis().label_weight("bold");
+        }
+
+        ax->font_size(size);
+        ax->y_axis().label_font_size(size);
+        ax->y_axis().label_weight("bold");
+    }
+    std::filesystem::create_directories(outfile.parent_path());
+    save(outfile.string());
+}
+
+
+void compare_attitudes(const std::vector<StateHistory>& trajectories, const std::vector<std::string>& trajLabels, const std::filesystem::path& outfile)
+{
+    const auto font  = "Arial";
+    const float size = 20.0;
+
+    auto h = figure(true);
+    h->title("Attitude History");
+    h->number_title(false);
+    h->size(4000, 3600);
+    h->font(font);
+    h->font_size(size + 5.0);
+
+    if (trajectories.empty() || !trajectories[0].first().get_attitude().has_value()) { return; }
+
+    const std::array<std::string, 6> labels      = { "Roll", "Pitch", "Yaw", "\u03c9x", "\u03c9y", "\u03c9z" };
+    const std::array<std::string, 6> units       = { "deg", "deg", "deg", "deg/s", "deg/s", "deg/s" };
+    const std::array<std::string, 6> tickformats = { "%0.6f", "%0.6f", "%0.6f", "%0.6f", "%0.6f", "%0.6f" };
+
+    tiledlayout(6, 1);
+    for (std::size_t iPlot = 0; iPlot < 6; ++iPlot) {
+        nexttile();
+        auto ax = gca();
+
+        double minTime     = std::numeric_limits<double>::max();
+        double maxTime     = std::numeric_limits<double>::lowest();
+        unsigned int iTraj = 0;
+        for (const auto& trajectory : trajectories) {
+            std::vector<double> time                = extract_raw_attitude_time_data(trajectory);
+            std::array<std::vector<double>, 6> data = extract_raw_attitude_data(trajectory);
+            if (time.empty()) { continue; }
+
+            if (time.front() < minTime) { minTime = time.front(); }
+            if (time.back() > maxTime) { maxTime = time.back(); }
+
+            auto p = plot(ax, time, data[iPlot]);
+            p->line_width(10.0 - iTraj);
+            hold(on);
+            ++iTraj;
+        }
+
+        legend(ax, trajLabels);
+        grid(ax, on);
+
+        if (minTime <= maxTime) { xlim(ax, { minTime, maxTime }); }
+
+        ylabel(ax, labels[iPlot] + " \\n(" + units[iPlot] + ")");
+        ytickformat(ax, tickformats[iPlot]);
+        if (iPlot == 5) {
+            xlabel(ax, "Time");
+            xtickformat(ax, "%g days");
+            ax->x_axis().label_font_size(size);
+            ax->x_axis().label_weight("bold");
+        }
+
+        ax->font_size(size);
+        ax->y_axis().label_font_size(size);
+        ax->y_axis().label_weight("bold");
+    }
+    std::filesystem::create_directories(outfile.parent_path());
+    save(outfile.string());
+}
+
+
+void plot_difference_attitude(
+    const StateHistory expected,
+    const std::vector<StateHistory>& trajectories,
+    const std::vector<std::string>& trajLabels,
+    const std::filesystem::path& outfile
+)
+{
+    if (trajectories.empty() || !trajectories[0].first().get_attitude().has_value()) { return; }
+
+    const auto font  = "Arial";
+    const float size = 20.0;
+
+    auto h = figure(true);
+    h->title("Attitude History");
+    h->number_title(false);
+    h->size(4000, 3600);
+    h->font(font);
+    h->font_size(size + 5.0);
+
+    const std::array<std::string, 6> labels      = { "\u0394 Roll",   "\u0394 Pitch",  "\u0394 Yaw",
+                                                     "\u0394\u03c9x", "\u0394\u03c9y", "\u0394\u03c9z" };
+    const std::array<std::string, 6> units       = { "deg", "deg", "deg", "deg/s", "deg/s", "deg/s" };
+    const std::array<std::string, 6> tickformats = { "%0.2e", "%0.2e", "%0.2e", "%0.2e", "%0.2e", "%0.2e" };
+
+    const std::vector<double> time                        = extract_raw_attitude_time_data(expected);
+    const std::array<std::vector<double>, 6> expectedData = extract_raw_attitude_data(expected);
+
+    if (time.empty()) { return; }
+
+    tiledlayout(6, 1);
+    for (std::size_t iPlot = 0; iPlot < 6; ++iPlot) {
+        nexttile();
+        auto ax = gca();
+
+        double minTime     = std::numeric_limits<double>::max();
+        double maxTime     = std::numeric_limits<double>::lowest();
+        unsigned int iTraj = 0;
+        for (const auto& trajectory : trajectories) {
+            const std::array<std::vector<double>, 6> data = extract_raw_attitude_data_at_times(time, trajectory);
+
+            std::array<std::vector<double>, 6> diff;
+            for (std::size_t ii = 0; ii < 6; ++ii) {
+                for (std::size_t jj = 0; jj < data[ii].size(); ++jj) {
+                    diff[ii].push_back(data[ii][jj] - expectedData[ii][jj]);
+                }
+            }
+
+            if (time.front() < minTime) { minTime = time.front(); }
+            if (time.back() > maxTime) { maxTime = time.back(); }
+
+            auto p = plot(ax, time, diff[iPlot]);
+            p->line_width(10.0 - iTraj);
+            hold(on);
+            ++iTraj;
+        }
+
+        legend(ax, trajLabels);
+        grid(ax, on);
+
+        xlim(ax, { minTime, maxTime });
+
+        ylabel(ax, labels[iPlot] + " \\n(" + units[iPlot] + ")");
+        ytickformat(ax, tickformats[iPlot]);
+        if (iPlot == 5) {
+            xlabel(ax, "Time");
+            xtickformat(ax, "%g days");
+            ax->x_axis().label_font_size(size);
+            ax->x_axis().label_weight("bold");
+        }
+
+        ax->font_size(size);
+        ax->y_axis().label_font_size(size);
+        ax->y_axis().label_weight("bold");
+    }
+    std::filesystem::create_directories(outfile.parent_path());
+    save(outfile.string());
 }
 
 } // namespace plotting

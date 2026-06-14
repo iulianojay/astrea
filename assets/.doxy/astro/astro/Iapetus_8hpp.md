@@ -4,19 +4,16 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**planetary\_bodies**](dir_18001f99c0231f827e3b1298618599da.md) **>** [**Saturn**](dir_a10a33e87be611798e598d7dfa84b38d.md) **>** [**Iapetus.hpp**](Iapetus_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**celestial\_bodies**](dir_b988f8927672605e377af1c3b431ef9b.md) **>** [**Saturn**](dir_7fd613539f7980532282f5cbc20c34d1.md) **>** [**Iapetus.hpp**](Iapetus_8hpp.md)
 
 [Go to the source code of this file](Iapetus_8hpp_source.md)
 
 _Header file for the Iapetus class._ [More...](#detailed-description)
 
-* `#include <mp-units/systems/angular.h>`
-* `#include <mp-units/systems/iau.h>`
-* `#include <mp-units/systems/si.h>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/systems/CelestialBody.hpp>`
-* `#include <astro/types/typedefs.hpp>`
+* `#include <astro/systems/celestial_bodies/Saturn/Saturn.hpp>`
 
 
 
@@ -36,14 +33,14 @@ _Header file for the Iapetus class._ [More...](#detailed-description)
 | ---: | :--- |
 | namespace | [**astrea**](namespaceastrea.md) <br> |
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
-| namespace | [**planetary\_bodies**](namespaceastrea_1_1astro_1_1planetary__bodies.md) <br> |
+| namespace | [**moons**](namespaceastrea_1_1astro_1_1moons.md) <br> |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Iapetus**](classastrea_1_1astro_1_1planetary__bodies_1_1Iapetus.md) <br>_Represents the_ [_**Iapetus**_](classastrea_1_1astro_1_1planetary__bodies_1_1Iapetus.md) _celestial body._ |
+| class | [**Iapetus**](structastrea_1_1astro_1_1moons_1_1Iapetus.md) <br>_Represents the_ [_**Iapetus**_](structastrea_1_1astro_1_1moons_1_1Iapetus.md) _celestial body._ |
 
 
 
@@ -127,5 +124,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/systems/planetary_bodies/Saturn/Iapetus.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/systems/celestial_bodies/Saturn/Iapetus.hpp`
 

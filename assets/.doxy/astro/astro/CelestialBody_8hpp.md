@@ -10,15 +10,20 @@
 
 _Header file for the CelestialBody class, which represents a celestial body in an astrodynamics system._ [More...](#detailed-description)
 
-* `#include <string>`
-* `#include <math/chebyshev_util.hpp>`
+* `#include <mp-units/framework/symbol_text.h>`
+* `#include <mp-units/systems/angular.h>`
+* `#include <mp-units/systems/si.h>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/frames.hpp>`
+* `#include <astro/frames/framework/Axis.hpp>`
+* `#include <astro/frames/framework/BodyFixedFrame.hpp>`
+* `#include <astro/frames/framework/CartesianVector.hpp>`
+* `#include <astro/frames/framework/Frame.hpp>`
+* `#include <astro/frames/framework/Origin.hpp>`
 * `#include <astro/systems/CelestialBodyParameters.hpp>`
+* `#include <astro/systems/system_concepts.hpp>`
 * `#include <astro/time/Date.hpp>`
-* `#include <astro/types/enums.hpp>`
-* `#include <astro/utilities/conversions.hpp>`
+* `#include <astro/systems/property_getters.hpp>`
 
 
 
@@ -38,14 +43,17 @@ _Header file for the CelestialBody class, which represents a celestial body in a
 | ---: | :--- |
 | namespace | [**astrea**](namespaceastrea.md) <br> |
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
+| namespace | [**detail**](namespaceastrea_1_1astro_1_1detail.md) <br> |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| class | [**CelestialBody**](classastrea_1_1astro_1_1CelestialBody.md) <br>[_**CelestialBody**_](classastrea_1_1astro_1_1CelestialBody.md) _class represents a celestial body in an astrodynamics system._ |
-| struct | [**hash&lt; astrea::astro::CelestialBody &gt;**](structstd_1_1hash_3_01astrea_1_1astro_1_1CelestialBody_01_4.md) &lt;&gt;<br>_Hash function for CelestialBody._  |
+| struct | [**CelestialBody**](structastrea_1_1astro_1_1CelestialBody.md) &lt;\_name\_, \_parent\_&gt;<br>[_**CelestialBody**_](structastrea_1_1astro_1_1CelestialBody.md) _class represents a celestial body in an astrodynamics system._ |
+| struct | [**GeocentricAxes**](structastrea_1_1astro_1_1GeocentricAxes.md) &lt;\_name\_&gt;<br> |
+| struct | [**ReferenceAxes**](structastrea_1_1astro_1_1ReferenceAxes.md) &lt;\_name\_&gt;<br> |
+| struct | [**CelestialBodyBase**](structastrea_1_1astro_1_1detail_1_1CelestialBodyBase.md) <br> |
 
 
 

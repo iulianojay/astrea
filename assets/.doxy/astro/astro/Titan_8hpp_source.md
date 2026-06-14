@@ -2,7 +2,7 @@
 
 # File Titan.hpp
 
-[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**planetary\_bodies**](dir_18001f99c0231f827e3b1298618599da.md) **>** [**Saturn**](dir_a10a33e87be611798e598d7dfa84b38d.md) **>** [**Titan.hpp**](Titan_8hpp.md)
+[**File List**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**celestial\_bodies**](dir_b988f8927672605e377af1c3b431ef9b.md) **>** [**Saturn**](dir_7fd613539f7980532282f5cbc20c34d1.md) **>** [**Titan.hpp**](Titan_8hpp.md)
 
 [Go to the documentation of this file](Titan_8hpp.md)
 
@@ -11,66 +11,62 @@
 
 #pragma once
 
-#include <mp-units/systems/angular.h>
-#include <mp-units/systems/iau.h>
-#include <mp-units/systems/si.h>
-
 #include <units/units.hpp>
+
+#include <map>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/systems/CelestialBody.hpp>
-#include <astro/types/typedefs.hpp>
+#include <astro/systems/celestial_bodies/Saturn/Saturn.hpp>
 
 namespace astrea {
 namespace astro {
-namespace planetary_bodies {
 
-static const CelestialBodyParameters DEFAULT_TITAN_PARAMS{
-    .name          = "Titan",
-    .parent        = CelestialBodyId::SATURN,
-    .type          = CelestialBodyType::MOON,
-    .referenceDate = Date("2000-01-01 12:00:00"),
-    .mu = GravParam(8978.1 * mp_units::pow<3>(mp_units::si::unit_symbols::km) / mp_units::pow<2>(mp_units::si::unit_symbols::s)),
-    .mass              = Mass(0.13455 * (mp_units::mag_power<10, 24> * mp_units::si::unit_symbols::kg)),
-    .equitorialRadius  = Distance(2575.0 * mp_units::si::unit_symbols::km),
-    .polarRadius       = Distance(2575.0 * mp_units::si::unit_symbols::km),
-    .crashRadius       = Distance(2575.0 * mp_units::si::unit_symbols::km),
-    .sphereOfInfluence = Distance(0.004333361603448 * mp_units::iau::unit_symbols::au),
-    .j2                = Unitless(0.0 * mp_units::one),
-    .j3                = Unitless(0.0 * mp_units::one),
-    .axialTilt         = Angle(27.359 * mp_units::angular::unit_symbols::deg),
-    .rotationRate      = AngularRate(22.577014429408919 * mp_units::angular::unit_symbols::deg / mp_units::non_si::day),
-    .siderealPeriod    = Time(15.94542 * mp_units::non_si::day),
-    .semimajorAxis     = Distance(1221.83e3 * mp_units::si::unit_symbols::km),
-    .eccentricity      = Unitless(0.0292 * mp_units::one),
-    .inclination       = Angle(0.33 * mp_units::angular::unit_symbols::deg),
-    .rightAscension    = Angle(28.060 * mp_units::angular::unit_symbols::deg),
-    .longitudeOfPerigee     = Angle(208.592 * mp_units::angular::unit_symbols::deg),
-    .meanLongitude          = Angle(371.902 * mp_units::angular::unit_symbols::deg),
-    .semimajorAxisRate      = InterplanetaryVelocity(0.0 * mp_units::si::unit_symbols::km / JulianCentury),
-    .eccentricityRate       = BodyUnitlessPerTime(0.0 * mp_units::one / JulianCentury),
-    .inclinationRate        = BodyAngularRate(0.0 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .rightAscensionRate     = BodyAngularRate(183934.15 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .longitudeOfPerigeeRate = BodyAngularRate(551990.5 * mp_units::angular::unit_symbols::deg / JulianCentury),
-    .meanLongitudeRate      = BodyAngularRate(2969198512.13 * mp_units::angular::unit_symbols::deg / JulianCentury)
-};
+namespace moons {
 
-class Titan : public CelestialBody {
+inline constexpr struct Titan final : CelestialBody<"Titan", planets::Saturn> {
+} Titan;
 
-  public:
-    constexpr Titan() :
-        CelestialBody(DEFAULT_TITAN_PARAMS)
-    {
-    }
+} // namespace moons
 
-    ~Titan() = default;
+template <>
+inline consteval CelestialBodyParameters get_celestial_body_parameters<moons::Titan>()
+{
+    using namespace mp_units;
+    using mp_units::angular::unit_symbols::deg;
+    using mp_units::iau::unit_symbols::au;
+    using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::kg;
+    using mp_units::si::unit_symbols::km;
+    using mp_units::si::unit_symbols::s;
 
-    Density find_atmospheric_density(const Date& date, const Distance& altitude) const override;
+    return { .type                   = CelestialBodyType::MOON,
+             .referenceDate          = Date(J2000),
+             .mu                     = GravParam(8978.1 * pow<3>(km) / pow<2>(s)),
+             .mass                   = Mass(0.13455 * (mag_power<10, 24> * kg)),
+             .equitorialRadius       = Distance(2575.0 * km),
+             .polarRadius            = Distance(2575.0 * km),
+             .crashRadius            = Distance(2575.0 * km),
+             .sphereOfInfluence      = Distance(0.004333361603448 * au),
+             .j2                     = Unitless(0.0 * one),
+             .j3                     = Unitless(0.0 * one),
+             .axialTilt              = Angle(27.359 * deg),
+             .rotationRate           = AngularVelocity(22.577014429408919 * deg / day),
+             .siderealPeriod         = Time(15.94542 * day),
+             .semimajorAxis          = Distance(1221.83e3 * km),
+             .eccentricity           = Unitless(0.0292 * one),
+             .inclination            = Angle(0.33 * deg),
+             .rightAscension         = Angle(28.060 * deg),
+             .longitudeOfPerigee     = Angle(208.592 * deg),
+             .meanLongitude          = Angle(371.902 * deg),
+             .semimajorAxisRate      = InterplanetaryVelocity(0.0 * km / JulianCentury),
+             .eccentricityRate       = BodyUnitlessPerTime(0.0 * one / JulianCentury),
+             .inclinationRate        = BodyAngularVelocity(0.0 * deg / JulianCentury),
+             .rightAscensionRate     = BodyAngularVelocity(183934.15 * deg / JulianCentury),
+             .longitudeOfPerigeeRate = BodyAngularVelocity(551990.5 * deg / JulianCentury),
+             .meanLongitudeRate      = BodyAngularVelocity(2969198512.13 * deg / JulianCentury) };
+}
 
-    static constexpr CelestialBodyId get_id() { return CelestialBodyId::TITAN; };
-};
-
-} // namespace planetary_bodies
 } // namespace astro
 } // namespace astrea
 ```

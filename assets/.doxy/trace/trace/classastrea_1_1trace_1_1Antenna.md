@@ -43,13 +43,6 @@ Inherits the following classes: [astrea::trace::Sensor](classastrea_1_1trace_1_1
 
 
 
-## Public Attributes inherited from astrea::trace::Sensor
-
-See [astrea::trace::Sensor](classastrea_1_1trace_1_1Sensor.md)
-
-| Type | Name |
-| ---: | :--- |
-|  const [**SensorParameters**](classastrea_1_1trace_1_1SensorParameters.md) & | [**parameters**](classastrea_1_1trace_1_1Sensor.md#variable-parameters)  <br> |
 
 
 
@@ -122,10 +115,9 @@ See [astrea::trace::Sensor](classastrea_1_1trace_1_1Sensor.md)
 
 | Type | Name |
 | ---: | :--- |
-|  const [**SensorParameters**](classastrea_1_1trace_1_1SensorParameters.md) | [**Payload**](classastrea_1_1trace_1_1Sensor.md#function-payload) (parent, parameters) <br> |
+|   | [**Sensor**](classastrea_1_1trace_1_1Sensor.md#function-sensor) (const Parent\_T & parent, const [**SensorParameters**](classastrea_1_1trace_1_1SensorParameters.md) & parameters) <br>_Constructs a_ [_**Sensor**_](classastrea_1_1trace_1_1Sensor.md) _from a_[_**FieldOfView**_](classastrea_1_1trace_1_1FieldOfView.md) _object._ |
 |  bool | [**contains**](classastrea_1_1trace_1_1Sensor.md#function-contains) (const astro::RadiusVector&lt; astro::frames::earth::icrf &gt; & sensor2target, const astro::Date & date) const<br>_Check if the sensor can see a target given the boresight vector._  |
 | virtual std::size\_t | [**get\_id**](classastrea_1_1trace_1_1Sensor.md#function-get_id) () const<br>_Get the ID of the sensor._  |
-|   | [**requires**](classastrea_1_1trace_1_1Sensor.md#function-requires) (std::is\_base\_of\_v&lt; astro::FrameReference, Parent\_T &gt;) const<br>_Constructs a_ [_**Sensor**_](classastrea_1_1trace_1_1Sensor.md) _from a_[_**FieldOfView**_](classastrea_1_1trace_1_1FieldOfView.md) _object._ |
 | virtual  | [**~Sensor**](classastrea_1_1trace_1_1Sensor.md#function-sensor) () = default<br>_Default destructor for_ [_**Sensor**_](classastrea_1_1trace_1_1Sensor.md) _._ |
 
 

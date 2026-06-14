@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="structastrea_1_1trace_1_1RiseSetStats" kind="struct" language="C++" prot="public">
     <compoundname>astrea::trace::RiseSetStats</compoundname>
     <includes refid="RiseSetStats_8hpp" local="no">RiseSetStats.hpp</includes>
-      <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="structastrea_1_1trace_1_1RiseSetStats_1aef77100b48ec2b1717c85ba1b9b9e908" prot="private" static="no" mutable="no">
-        <type>gtl::btree_map&lt; <ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" kindref="member">RiseSetMetric</ref>, <ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats</ref>&lt; Time &gt; &gt;</type>
-        <definition>gtl::btree_map&lt;RiseSetMetric, Stats&lt;Time&gt; &gt; astrea::trace::RiseSetStats::_stats</definition>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structastrea_1_1trace_1_1RiseSetStats_1a95da8fc19b0ba0fd76bfbd0a80a7735e" prot="private" static="no" mutable="no">
+        <type>gtl::flat_hash_map&lt; <ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" kindref="member">RiseSetMetric</ref>, <ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats</ref>&lt; Time &gt; &gt;</type>
+        <definition>gtl::flat_hash_map&lt;RiseSetMetric, Stats&lt;Time&gt; &gt; astrea::trace::RiseSetStats::_stats</definition>
         <argsstring></argsstring>
         <name>_stats</name>
+        <qualifiedname>astrea::trace::RiseSetStats::_stats</qualifiedname>
         <briefdescription>
 <para>Map of RiseSetMetric to <ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats&lt;Time&gt;</ref> containing the calculated statistics for each metric. </para>
         </briefdescription>
@@ -16,15 +17,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/RiseSetStats.hpp" line="79" column="20" bodyfile="astrea/trace/trace/analysis/stats/RiseSetStats.hpp" bodystart="79" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/stats/RiseSetStats.hpp" line="79" column="24" bodyfile="astrea/trace/trace/analysis/stats/RiseSetStats.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="structastrea_1_1trace_1_1RiseSetStats_1ac8de29325379190c1f4bc729aee41f60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::RiseSetStats::RiseSetStats</definition>
         <argsstring>()=default</argsstring>
         <name>RiseSetStats</name>
+        <qualifiedname>astrea::trace::RiseSetStats::RiseSetStats</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="structastrea_1_1trace_1_1RiseSetStats" kindref="compound">RiseSetStats</ref>. </para>
         </briefdescription>
@@ -39,6 +41,7 @@
         <definition>astrea::trace::RiseSetStats::RiseSetStats</definition>
         <argsstring>(const RiseSetArray &amp;risesets)</argsstring>
         <name>RiseSetStats</name>
+        <qualifiedname>astrea::trace::RiseSetStats::RiseSetStats</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>risesets</declname>
@@ -76,6 +79,7 @@
         <definition>std::vector&lt; std::string &gt; astrea::trace::RiseSetStats::to_string_vector</definition>
         <argsstring>() const</argsstring>
         <name>to_string_vector</name>
+        <qualifiedname>astrea::trace::RiseSetStats::to_string_vector</qualifiedname>
         <briefdescription>
 <para>Converts the statistics to a vector of strings for output. </para>
         </briefdescription>
@@ -88,11 +92,12 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/RiseSetStats.hpp" line="60" column="17" bodyfile="astrea/trace/trace/analysis/stats/RiseSetStats.cpp" bodystart="34" bodyend="45"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1trace_1_1RiseSetStats_1accdcd198ed7547e18e95b75c4a30d0ab" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1RiseSetStats_1a04f64a3e79b0245295d5268915ddfdae" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const auto &amp;</type>
-        <definition>const auto&amp; astrea::trace::RiseSetStats::at</definition>
+        <definition>const auto &amp; astrea::trace::RiseSetStats::at</definition>
         <argsstring>(const RiseSetMetric &amp;metric) const</argsstring>
         <name>at</name>
+        <qualifiedname>astrea::trace::RiseSetStats::at</qualifiedname>
         <param>
           <type>const <ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" kindref="member">RiseSetMetric</ref> &amp;</type>
           <declname>metric</declname>
@@ -118,11 +123,12 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/RiseSetStats.hpp" line="68" column="16" bodyfile="astrea/trace/trace/analysis/stats/RiseSetStats.hpp" bodystart="68" bodyend="68"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1trace_1_1RiseSetStats_1a89d26d42527a63b881460b35f203f082" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1RiseSetStats_1a6356f882db2fb3eefc256b9c64141572" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>auto &amp;</type>
-        <definition>auto&amp; astrea::trace::RiseSetStats::operator[]</definition>
+        <definition>auto &amp; astrea::trace::RiseSetStats::operator[]</definition>
         <argsstring>(const RiseSetMetric &amp;metric)</argsstring>
         <name>operator[]</name>
+        <qualifiedname>astrea::trace::RiseSetStats::operator[]</qualifiedname>
         <param>
           <type>const <ref refid="enums_8hpp_1a98bbd296fd60144bd48c33814924bcef" kindref="member">RiseSetMetric</ref> &amp;</type>
           <declname>metric</declname>
@@ -148,7 +154,7 @@
         </inbodydescription>
         <location file="astrea/trace/trace/analysis/stats/RiseSetStats.hpp" line="76" column="10" bodyfile="astrea/trace/trace/analysis/stats/RiseSetStats.hpp" bodystart="76" bodyend="76"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>The <ref refid="structastrea_1_1trace_1_1RiseSetStats" kindref="compound">RiseSetStats</ref> struct represents statistics for rise and set times based on a <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> and a RiseSetMetric. </para>
     </briefdescription>
@@ -157,9 +163,9 @@
     </detaileddescription>
     <location file="astrea/trace/trace/analysis/stats/RiseSetStats.hpp" line="40" column="1" bodyfile="astrea/trace/trace/analysis/stats/RiseSetStats.hpp" bodystart="40" bodyend="80"/>
     <listofallmembers>
-      <member refid="structastrea_1_1trace_1_1RiseSetStats_1aef77100b48ec2b1717c85ba1b9b9e908" prot="private" virt="non-virtual"><scope>astrea::trace::RiseSetStats</scope><name>_stats</name></member>
-      <member refid="structastrea_1_1trace_1_1RiseSetStats_1accdcd198ed7547e18e95b75c4a30d0ab" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetStats</scope><name>at</name></member>
-      <member refid="structastrea_1_1trace_1_1RiseSetStats_1a89d26d42527a63b881460b35f203f082" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetStats</scope><name>operator[]</name></member>
+      <member refid="structastrea_1_1trace_1_1RiseSetStats_1a95da8fc19b0ba0fd76bfbd0a80a7735e" prot="private" virt="non-virtual"><scope>astrea::trace::RiseSetStats</scope><name>_stats</name></member>
+      <member refid="structastrea_1_1trace_1_1RiseSetStats_1a04f64a3e79b0245295d5268915ddfdae" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetStats</scope><name>at</name></member>
+      <member refid="structastrea_1_1trace_1_1RiseSetStats_1a6356f882db2fb3eefc256b9c64141572" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetStats</scope><name>operator[]</name></member>
       <member refid="structastrea_1_1trace_1_1RiseSetStats_1ac8de29325379190c1f4bc729aee41f60" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetStats</scope><name>RiseSetStats</name></member>
       <member refid="structastrea_1_1trace_1_1RiseSetStats_1a43edbefa71467c5ea14fddb4a7f2a53e" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetStats</scope><name>RiseSetStats</name></member>
       <member refid="structastrea_1_1trace_1_1RiseSetStats_1ad2fe0fa95fb0f84caca8cc9e223cdfac" prot="public" virt="non-virtual"><scope>astrea::trace::RiseSetStats</scope><name>to_string_vector</name></member>

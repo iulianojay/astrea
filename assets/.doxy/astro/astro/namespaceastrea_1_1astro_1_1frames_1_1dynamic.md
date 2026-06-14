@@ -25,16 +25,26 @@
 
 
 
-
-
-## Public Types
+## Classes
 
 | Type | Name |
 | ---: | :--- |
-| typedef [**EastNorthUp**](classastrea_1_1astro_1_1frames_1_1EastNorthUp.md) | [**enu**](#typedef-enu)  <br> |
-| typedef [**LocalHorizontalLocalVertical**](classastrea_1_1astro_1_1frames_1_1LocalHorizontalLocalVertical.md) | [**lvlh**](#typedef-lvlh)  <br> |
-| typedef [**RadialInTrackCrossTrack**](classastrea_1_1astro_1_1frames_1_1RadialInTrackCrossTrack.md) | [**ric**](#typedef-ric)  <br> |
-| typedef [**VelocityNormalBinormal**](classastrea_1_1astro_1_1frames_1_1VelocityNormalBinormal.md) | [**vnb**](#typedef-vnb)  <br> |
+| struct | [**body**](structastrea_1_1astro_1_1frames_1_1dynamic_1_1body.md) <br> |
+
+
+
+
+
+
+## Public Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  [**astrea::astro::frames::dynamic::body**](structastrea_1_1astro_1_1frames_1_1dynamic_1_1body.md) | [**body**](#variable-body)  <br> |
+|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**EastNorthUpTag**](structastrea_1_1astro_1_1frames_1_1EastNorthUpTag.md)&lt; frames::primary &gt; | [**enu**](#variable-enu)   = `{}`<br> |
+|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**LvlhTag**](structastrea_1_1astro_1_1frames_1_1LvlhTag.md)&lt; frames::primary &gt; | [**lvlh**](#variable-lvlh)   = `{}`<br> |
+|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**RicTag**](structastrea_1_1astro_1_1frames_1_1RicTag.md)&lt; frames::primary &gt; | [**ric**](#variable-ric)   = `{}`<br> |
+|  [**constexpr**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**VnbTag**](structastrea_1_1astro_1_1frames_1_1VnbTag.md)&lt; frames::primary &gt; | [**vnb**](#variable-vnb)   = `{}`<br> |
 
 
 
@@ -79,19 +89,15 @@
 
 
 
+## Public Attributes Documentation
 
 
 
 
-## Public Types Documentation
-
-
-
-
-### typedef enu 
+### variable body 
 
 ```C++
-using astrea::astro::frames::dynamic::enu = typedef EastNorthUp;
+astrea::astro::frames::dynamic::body astrea::astro::frames::dynamic::body;
 ```
 
 
@@ -101,10 +107,10 @@ using astrea::astro::frames::dynamic::enu = typedef EastNorthUp;
 
 
 
-### typedef lvlh 
+### variable enu 
 
 ```C++
-using astrea::astro::frames::dynamic::lvlh = typedef LocalHorizontalLocalVertical;
+constexpr EastNorthUpTag<frames::primary> astrea::astro::frames::dynamic::enu;
 ```
 
 
@@ -114,10 +120,10 @@ using astrea::astro::frames::dynamic::lvlh = typedef LocalHorizontalLocalVertica
 
 
 
-### typedef ric 
+### variable lvlh 
 
 ```C++
-using astrea::astro::frames::dynamic::ric = typedef RadialInTrackCrossTrack;
+constexpr LvlhTag<frames::primary> astrea::astro::frames::dynamic::lvlh;
 ```
 
 
@@ -127,10 +133,23 @@ using astrea::astro::frames::dynamic::ric = typedef RadialInTrackCrossTrack;
 
 
 
-### typedef vnb 
+### variable ric 
 
 ```C++
-using astrea::astro::frames::dynamic::vnb = typedef VelocityNormalBinormal;
+constexpr RicTag<frames::primary> astrea::astro::frames::dynamic::ric;
+```
+
+
+
+
+<hr>
+
+
+
+### variable vnb 
+
+```C++
+constexpr VnbTag<frames::primary> astrea::astro::frames::dynamic::vnb;
 ```
 
 
@@ -139,5 +158,5 @@ using astrea::astro::frames::dynamic::vnb = typedef VelocityNormalBinormal;
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/instances/EastNorthUp.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/dynamic_frames.hpp`
 

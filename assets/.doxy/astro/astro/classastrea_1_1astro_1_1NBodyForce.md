@@ -2,6 +2,8 @@
 
 # Class astrea::astro::NBodyForce
 
+**template &lt;IsCelestialBody auto... bodies&gt;**
+
 
 
 [**ClassList**](annotated.md) **>** [**astrea**](namespaceastrea.md) **>** [**astro**](namespaceastrea_1_1astro.md) **>** [**NBodyForce**](classastrea_1_1astro_1_1NBodyForce.md)
@@ -14,7 +16,7 @@ _Class to compute the gravitational force due to multiple celestial bodies._
 
 
 
-Inherits the following classes: [astrea::astro::Force](classastrea_1_1astro_1_1Force.md)
+Inherits the following classes: [astrea::astro::PerturbingForce](classastrea_1_1astro_1_1PerturbingForce.md)
 
 
 
@@ -74,19 +76,19 @@ Inherits the following classes: [astrea::astro::Force](classastrea_1_1astro_1_1F
 | Type | Name |
 | ---: | :--- |
 |   | [**NBodyForce**](#function-nbodyforce) () = default<br>_Default constructor for_ [_**NBodyForce**_](classastrea_1_1astro_1_1NBodyForce.md) _._ |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frames::earth::icrf &gt; | [**compute\_force**](#function-compute_force) (const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) override const<br>_Computes the gravitational force due to multiple celestial bodies._  |
+| virtual [**Perturbation**](structastrea_1_1astro_1_1Perturbation.md) | [**compute\_perturbation**](#function-compute_perturbation) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) override const<br>_Computes the gravitational force due to multiple celestial bodies._  |
 |   | [**~NBodyForce**](#function-nbodyforce) () = default<br>_Default destructor for_ [_**NBodyForce**_](classastrea_1_1astro_1_1NBodyForce.md) _._ |
 
 
-## Public Functions inherited from astrea::astro::Force
+## Public Functions inherited from astrea::astro::PerturbingForce
 
-See [astrea::astro::Force](classastrea_1_1astro_1_1Force.md)
+See [astrea::astro::PerturbingForce](classastrea_1_1astro_1_1PerturbingForce.md)
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Force**](classastrea_1_1astro_1_1Force.md#function-force) () = default<br>_Default constructor for_ [_**Force**_](classastrea_1_1astro_1_1Force.md) _._ |
-| virtual [**CartesianVector**](classastrea_1_1astro_1_1CartesianVector.md)&lt; Acceleration, frames::earth::icrf &gt; | [**compute\_force**](classastrea_1_1astro_1_1Force.md#function-compute_force) (const [**State**](classastrea_1_1astro_1_1State.md) & state, const [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Computes the force acting on a vehicle at a given date and state._  |
-| virtual  | [**~Force**](classastrea_1_1astro_1_1Force.md#function-force) () = default<br>_Default destructor for_ [_**Force**_](classastrea_1_1astro_1_1Force.md) _._ |
+|   | [**PerturbingForce**](classastrea_1_1astro_1_1PerturbingForce.md#function-perturbingforce) () = default<br>_Default constructor for_ [_**PerturbingForce**_](classastrea_1_1astro_1_1PerturbingForce.md) _._ |
+| virtual [**Perturbation**](structastrea_1_1astro_1_1Perturbation.md) | [**compute\_perturbation**](classastrea_1_1astro_1_1PerturbingForce.md#function-compute_perturbation) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**State**](classastrea_1_1astro_1_1State.md) & state, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) & vehicle) const = 0<br>_Computes the force acting on a vehicle at a given date and state._  |
+| virtual  | [**~PerturbingForce**](classastrea_1_1astro_1_1PerturbingForce.md#function-perturbingforce) () = default<br>_Default destructor for_ [_**PerturbingForce**_](classastrea_1_1astro_1_1PerturbingForce.md) _._ |
 
 
 
@@ -160,13 +162,13 @@ astrea::astro::NBodyForce::NBodyForce () = default
 
 
 
-### function compute\_force 
+### function compute\_perturbation 
 
 _Computes the gravitational force due to multiple celestial bodies._ 
 ```C++
-virtual CartesianVector < Acceleration, frames::earth::icrf > astrea::astro::NBodyForce::compute_force (
-    const State & state,
-    const Vehicle & vehicle
+inline virtual Perturbation astrea::astro::NBodyForce::compute_perturbation (
+    const  State & state,
+    const  Vehicle & vehicle
 ) override const
 ```
 
@@ -177,21 +179,21 @@ virtual CartesianVector < Acceleration, frames::earth::icrf > astrea::astro::NBo
 **Parameters:**
 
 
-* `state` [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) state vector of the vehicle 
+* `state` Cartesian&lt;frames::primary&gt; state vector of the vehicle 
 * `vehicle` [**Vehicle**](classastrea_1_1astro_1_1Vehicle.md) object representing the spacecraft 
 
 
 
 **Returns:**
 
-AccelerationVector&lt;frames::earth::icrf&gt; The computed acceleration vector due to multiple bodies. 
+[**Perturbation**](structastrea_1_1astro_1_1Perturbation.md) The computed force and torque due to multiple bodies. 
 
 
 
 
 
         
-Implements [*astrea::astro::Force::compute\_force*](classastrea_1_1astro_1_1Force.md#function-compute_force)
+Implements [*astrea::astro::PerturbingForce::compute\_perturbation*](classastrea_1_1astro_1_1PerturbingForce.md#function-compute_perturbation)
 
 
 <hr>

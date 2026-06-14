@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1barycenters_1_1SolarSystemBarycenter" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>astrea::astro::barycenters::SolarSystemBarycenter</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1Barycenter" prot="public" virt="non-virtual">astrea::astro::Barycenter&lt;&quot;Solar System Barycenter&quot;&gt;</basecompoundref>
+    <basecompoundref refid="structastrea_1_1astro_1_1CelestialBodyTypePack" prot="public" virt="non-virtual">astrea::astro::CelestialBodyTypePack&lt; star::Sun, planets::Mercury, planets::Venus, planets::Earth, planets::Mars, planets::Jupiter, planets::Saturn, planets::Uranus, planets::Neptune &gt;</basecompoundref>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::Barycenter&lt;&quot;Solar System Barycenter&quot;&gt;</label>
+        <link refid="structastrea_1_1astro_1_1Barycenter"/>
+      </node>
+      <node id="3">
+        <label>astrea::astro::CelestialBodyTypePack&lt; star::Sun, planets::Mercury, planets::Venus, planets::Earth, planets::Mars, planets::Jupiter, planets::Saturn, planets::Uranus, planets::Neptune &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBodyTypePack"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::barycenters::SolarSystemBarycenter</label>
+        <link refid="structastrea_1_1astro_1_1barycenters_1_1SolarSystemBarycenter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::Barycenter&lt;&quot;Solar System Barycenter&quot;&gt;</label>
+        <link refid="structastrea_1_1astro_1_1Barycenter"/>
+      </node>
+      <node id="3">
+        <label>astrea::astro::CelestialBodyTypePack&lt; star::Sun, planets::Mercury, planets::Venus, planets::Earth, planets::Mars, planets::Jupiter, planets::Saturn, planets::Uranus, planets::Neptune &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBodyTypePack"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::barycenters::SolarSystemBarycenter</label>
+        <link refid="structastrea_1_1astro_1_1barycenters_1_1SolarSystemBarycenter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/systems/barycenters.hpp" line="43" column="17" bodyfile="astrea/astro/astro/systems/barycenters.hpp" bodystart="45" bodyend="46"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

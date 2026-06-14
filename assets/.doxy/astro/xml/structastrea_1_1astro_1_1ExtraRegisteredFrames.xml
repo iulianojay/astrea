@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1ExtraRegisteredFrames" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::ExtraRegisteredFrames</compoundname>
+    <includes refid="frame__registry_8fwd_8hpp" local="no">frame_registry.fwd.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">typename</ref></type>
+        <defval><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">void</ref></defval>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structastrea_1_1astro_1_1ExtraRegisteredFrames_1a64d1ad089b2dd3fe39f8c8eca7628749" prot="public" static="no">
+        <type>std::tuple&lt;&gt;</type>
+        <definition>using astrea::astro::ExtraRegisteredFrames&lt; typename &gt;::type =  std::tuple&lt;&gt;</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <qualifiedname>astrea::astro::ExtraRegisteredFrames::type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/frame_registry.fwd.hpp" line="52" column="5" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.fwd.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Trait that users specialize to register additional <ref refid="classastrea_1_1astro_1_1Cartesian" kindref="compound">Cartesian</ref> frames. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Include this header, provide a specialization, then include <ref refid="frame__registry_8hpp" kindref="compound">frame_registry.hpp</ref>. The frame types used in the specialization must already be declared before this point.</para>
+<para><programlisting><codeline><highlight class="preprocessor">#include<sp/>&lt;<ref refid="body__centered__inertial__frames_8hpp" kindref="compound">astro/frames/definitions/body_centered_inertial_frames.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/definitions/frame_registry.fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea::astro<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">ExtraRegisteredFrames&lt;&gt;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">type<sp/>=<sp/>std::tuple&lt;std::decay_t&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(frames::moon::icrf)&gt;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::decay_t&lt;</highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(frames::mars::icrf)&gt;&gt;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="frame__registry_8hpp" kindref="compound">astro/frames/definitions/frame_registry.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>...<sp/>all<sp/>other<sp/>astrea<sp/>headers</highlight></codeline>
+</programlisting></para>
+<para>The primary template (empty list) is the default — do not modify it. </para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/definitions/frame_registry.fwd.hpp" line="51" column="1" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.fwd.hpp" bodystart="51" bodyend="53"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1ExtraRegisteredFrames_1a64d1ad089b2dd3fe39f8c8eca7628749" prot="public" virt="non-virtual"><scope>astrea::astro::ExtraRegisteredFrames</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

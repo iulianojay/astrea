@@ -21,11 +21,11 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Class astrea::astro::DirectionCosineMatrix - ASTREA</title>
+        <title>Struct astrea::astro::DirectionCosineMatrix - ASTREA</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#class-astreaastrodirectioncosinematrix" class="md-skip">
+        <a href="#struct-astreaastrodirectioncosinematrix" class="md-skip">
           Skip to content
         </a>
       
@@ -127,7 +127,7 @@ You're not viewing the latest version.
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Class astrea::astro::DirectionCosineMatrix
+              Struct astrea::astro::DirectionCosineMatrix
             
           </span>
         </div>
@@ -174,6 +174,53 @@ You're not viewing the latest version.
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
     
     
       <div class="md-header__source">
@@ -430,8 +477,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
     
     
     
@@ -482,34 +527,6 @@ You're not viewing the latest version.
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting_started/about/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    About Astrea
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -691,10 +708,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
-        
-      
     
     
     
@@ -773,34 +786,6 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/strongly_typed_frames/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Strongly Typed Frames
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../examples/fundamentals/time_systems/" class="md-nav__link">
         
   
@@ -856,34 +841,6 @@ You're not viewing the latest version.
   
   
   
-    <li class="md-nav__item">
-      <a href="../../examples/fundamentals/astrodynamic_systems/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Astrodynamic Systems
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -910,10 +867,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
             
   
   
@@ -931,8 +888,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1089,7 +1046,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/vehicles.md" class="md-nav__link">
+      <a href="../../examples/fundamentals/propagation/vehicles/" class="md-nav__link">
         
   
   
@@ -1144,10 +1101,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
             
   
   
@@ -1165,8 +1122,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_7">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1183,14 +1140,14 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/frames/strongly_typed_frames/" class="md-nav__link">
+      <a href="../../examples/fundamentals/frames/introduction/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Strongly Typed Frames
+    Introduction to Strongly Typed Frames
   
 
     
@@ -6280,13 +6237,34 @@ You're not viewing the latest version.
   
 
 
-<h1 id="class-astreaastrodirectioncosinematrix">Class astrea::astro::DirectionCosineMatrix<a class="headerlink" href="#class-astreaastrodirectioncosinematrix" title="Permanent link">&para;</a></h1>
-<p><strong>template &lt;typename In_Frame_T, typename Out_Frame_T&gt;</strong></p>
+<h1 id="struct-astreaastrodirectioncosinematrix">Struct astrea::astro::DirectionCosineMatrix<a class="headerlink" href="#struct-astreaastrodirectioncosinematrix" title="Permanent link">&para;</a></h1>
+<p><strong>template &lt;IsFrame <a href="./"><strong>auto</strong></a> _in_frame_, IsFrame <a href="./"><strong>auto</strong></a> _out_frame_&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1astro/"><strong>astro</strong></a> <strong>&gt;</strong> <a href="./"><strong>DirectionCosineMatrix</strong></a></p>
 <p><em>Class representing a direction cosine matrix (DCM) for transforming vectors between state/frames.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;DirectionCosineMatrix.hpp&gt;</code></li>
 </ul>
+<p>Inherits the following classes: <a href="../structastrea_1_1astro_1_1DcmInterface/">astrea::astro::DcmInterface</a></p>
+<h2 id="public-static-attributes-inherited-from-astreaastrodcminterface">Public Static Attributes inherited from astrea::astro::DcmInterface<a class="headerlink" href="#public-static-attributes-inherited-from-astreaastrodcminterface" title="Permanent link">&para;</a></h2>
+<p>See <a href="../structastrea_1_1astro_1_1DcmInterface/">astrea::astro::DcmInterface</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>auto</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#variable-in_frame"><strong>in_frame</strong></a>   = <code>[**\_in\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)</code><br><em>The input frame of the matrix.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>auto</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#variable-out_frame"><strong>out_frame</strong></a>   = <code>[**\_out\_frame\_**](classastrea_1_1astro_1_1DirectionCosineMatrix.md)</code><br><em>The output frame of the matrix.</em></td>
+</tr>
+</tbody>
+</table>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -6297,20 +6275,108 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-directioncosinematrix"><strong>DirectionCosineMatrix</strong></a> (const std::array&lt; std::array&lt; Unitless, 3 &gt;, 3 &gt; &amp; matrix) <br><em>Constructor for</em> <a href="./"><em><strong>DirectionCosineMatrix</strong></em></a> <em>from an array of CartesianVectors.</em></td>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a></td>
+<td style="text-align: left;"><a href="#function-directioncosinematrix-13"><strong>DirectionCosineMatrix</strong></a> (<a href="./"><strong>const</strong></a> std::array&lt; <a href="./"><strong>Unitless</strong></a>, 9 &gt; &amp; matrix) <br><em>Constructor for</em> <a href="./"><em><strong>DirectionCosineMatrix</strong></em></a> <em>from an array of CartesianVectors.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; Value_T, Out_Frame_T &gt;</td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator*</strong></a> (const <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; Value_T, In_Frame_T &gt; &amp; vec) const<br><em>Apply the direction cosine matrix to a</em> <a href="../classastrea_1_1astro_1_1CartesianVector/"><em><strong>CartesianVector</strong></em></a> <em>.</em></td>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a></td>
+<td style="text-align: left;"><a href="#function-directioncosinematrix-23"><strong>DirectionCosineMatrix</strong></a> (<a href="./"><strong>const</strong></a> std::array&lt; <a href="./"><strong>Unitless</strong></a>, 3 &gt; &amp; row1, <a href="./"><strong>const</strong></a> std::array&lt; <a href="./"><strong>Unitless</strong></a>, 3 &gt; &amp; row2, <a href="./"><strong>const</strong></a> std::array&lt; <a href="./"><strong>Unitless</strong></a>, 3 &gt; &amp; row3) <br><em>Constructor for</em> <a href="./"><em><strong>DirectionCosineMatrix</strong></em></a> <em>from an array of CartesianVectors.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; Unitless, In_Frame_T &gt;</td>
-<td style="text-align: left;"><a href="#function-row"><strong>row</strong></a> (const std::size_t &amp; idx) const<br><em>Get a specific row of the direction cosine matrix.</em></td>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a></td>
+<td style="text-align: left;"><a href="#function-directioncosinematrix-33"><strong>DirectionCosineMatrix</strong></a> (<a href="./"><strong>const</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a>&lt; <a href="./"><strong>Unitless</strong></a>, <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt; &amp; matrix) <br></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; Out_Frame_T, In_Frame_T &gt;</td>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_out_frame_</strong></a>, <a href="./"><strong>_in_frame_</strong></a> &gt;</td>
 <td style="text-align: left;"><a href="#function-transpose"><strong>transpose</strong></a> () const<br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-functions-inherited-from-astreaastrodcminterface">Public Functions inherited from astrea::astro::DcmInterface<a class="headerlink" href="#public-functions-inherited-from-astreaastrodcminterface" title="Permanent link">&para;</a></h2>
+<p>See <a href="../structastrea_1_1astro_1_1DcmInterface/">astrea::astro::DcmInterface</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-dcminterface-14"><strong>DcmInterface</strong></a> (<a href="./"><strong>const</strong></a> std::array&lt; <a href="./"><strong>Value_T</strong></a>, 9 &gt; &amp; matrix) <br><em>Constructor for</em> <a href="../structastrea_1_1astro_1_1DcmInterface/"><em><strong>DcmInterface</strong></em></a> <em>from an array of values.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-dcminterface-24"><strong>DcmInterface</strong></a> (<a href="./"><strong>const</strong></a> std::array&lt; <a href="./"><strong>Value_T</strong></a>, 3 &gt; &amp; row1, <a href="./"><strong>const</strong></a> std::array&lt; <a href="./"><strong>Value_T</strong></a>, 3 &gt; &amp; row2, <a href="./"><strong>const</strong></a> std::array&lt; <a href="./"><strong>Value_T</strong></a>, 3 &gt; &amp; row3) <br><em>Constructor for</em> <a href="../structastrea_1_1astro_1_1DcmInterface/"><em><strong>DcmInterface</strong></em></a> <em>from three rows represented as arrays.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-dcminterface-34"><strong>DcmInterface</strong></a> (<a href="./"><strong>const</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a>&lt; <a href="./"><strong>Value_U</strong></a>, <a href="./"><strong>in_frame_u</strong></a>, <a href="./"><strong>out_frame_u</strong></a> &gt; &amp; matrix) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-dcminterface-44"><strong>DcmInterface</strong></a> (<a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a>&lt; <a href="./"><strong>Value_U</strong></a>, <a href="./"><strong>in_frame_u</strong></a>, <a href="./"><strong>out_frame_u</strong></a> &gt; &amp;&amp; matrix) <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> std::array&lt; <a href="./"><strong>Value_T</strong></a>, 9 &gt;</td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-data"><strong>data</strong></a> () const<br><em>Get the underlying data of the matrix as an array.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>Value_T</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-determinant"><strong>determinant</strong></a> () const<br><em>Get the determinant of the matrix.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-normalize"><strong>normalize</strong></a> () <br><em>Normalizes the matrix to ensure it represents a valid rotation.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a>&lt; <a href="./"><strong>decltype</strong></a>(<a href="./"><strong>Value_T</strong></a>{} *<a href="./"><strong>Value_U</strong></a>{}), <a href="../structastrea_1_1astro_1_1DcmInterface/#variable-in_frame"><strong>in_frame</strong></a>, <a href="../structastrea_1_1astro_1_1DcmInterface/#variable-out_frame"><strong>out_frame</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-operator"><strong>operator*</strong></a> (<a href="./"><strong>const</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a>&lt; <a href="./"><strong>Value_U</strong></a>, <a href="./"><strong>in_frame_u</strong></a>, <a href="./"><strong>out_frame_u</strong></a> &gt; &amp; other) const<br><em>Compose two direction matrices (matrix multiplication).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a>&lt; <a href="./"><strong>decltype</strong></a>(<a href="./"><strong>Value_T</strong></a>{} *<a href="./"><strong>Value_U</strong></a>{}), <a href="../structastrea_1_1astro_1_1DcmInterface/#variable-in_frame"><strong>in_frame</strong></a>, <a href="./"><strong>out_frame_u</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-operator_1"><strong>operator*</strong></a> (<a href="./"><strong>const</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a>&lt; <a href="./"><strong>Value_U</strong></a>, <a href="./"><strong>in_frame_u</strong></a>, <a href="./"><strong>out_frame_u</strong></a> &gt; &amp; other) const<br><em>Compose two direction matrices (matrix multiplication).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="./"><strong>decltype</strong></a>(<a href="./"><strong>Value_T</strong></a>{} *<a href="./"><strong>Value_U</strong></a>{}), <a href="../structastrea_1_1astro_1_1DcmInterface/#variable-out_frame"><strong>out_frame</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-operator_2"><strong>operator*</strong></a> (<a href="./"><strong>const</strong></a> <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="./"><strong>Value_U</strong></a>, <a href="./"><strong>in_frame_u</strong></a> &gt; &amp; vec) const<br><em>Multiply this matrix by a</em> <a href="../classastrea_1_1astro_1_1Cartesian/"><em><strong>Cartesian</strong></em></a> <em>vector.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a>&lt; <a href="./"><strong>decltype</strong></a>(<a href="./"><strong>Value_T</strong></a>{} *<a href="./"><strong>Value_U</strong></a>{}), <a href="../structastrea_1_1astro_1_1DcmInterface/#variable-in_frame"><strong>in_frame</strong></a>, <a href="../structastrea_1_1astro_1_1DcmInterface/#variable-out_frame"><strong>out_frame</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-operator_3"><strong>operator*</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Value_U</strong></a> &amp; scalar) const<br><em>Multiply the matrix by a scalar value (element-wise multiplication).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-operator_4"><strong>operator+</strong></a> (<a href="./"><strong>const</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a>&lt; <a href="./"><strong>Value_U</strong></a>, <a href="./"><strong>in_frame_u</strong></a>, <a href="./"><strong>out_frame_u</strong></a> &gt; &amp; other) const<br><em>Add two matrices together (element-wise addition).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-operator-"><strong>operator-</strong></a> () const<br><em>Negate the matrix (element-wise negation).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-operator-_1"><strong>operator-</strong></a> (<a href="./"><strong>const</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a>&lt; <a href="./"><strong>Value_U</strong></a>, <a href="./"><strong>in_frame_u</strong></a>, <a href="./"><strong>out_frame_u</strong></a> &gt; &amp; other) const<br><em>Subtract another matrix from this one (element-wise subtraction).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>Value_T</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-operator_5"><strong>operator[]</strong></a> (std::size_t row, std::size_t col) <br><em>Access operator for the elements of the matrix.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>const</strong></a> <a href="./"><strong>Value_T</strong></a> &amp;</td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-operator_6"><strong>operator[]</strong></a> (std::size_t row, std::size_t col) const<br><em>Const access operator for the elements of the matrix.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="./"><strong>Value_T</strong></a>, <a href="./"><strong>_in_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-row"><strong>row</strong></a> (<a href="./"><strong>const</strong></a> std::size_t &amp; idx) const<br><em>Get a specific row of the matrix as a</em> <a href="../classastrea_1_1astro_1_1Cartesian/"><em><strong>Cartesian</strong></em></a> <em>vector.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>Value_T</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-trace"><strong>trace</strong></a> () const<br><em>Get the trace of the matrix (the sum of the diagonal elements).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a>&lt; <a href="./"><strong>Value_T</strong></a>, <a href="./"><strong>_out_frame_</strong></a>, <a href="./"><strong>_in_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-transpose"><strong>transpose</strong></a> () const<br><em>Transposes the matrix, effectively inverting the transformation.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6324,28 +6390,136 @@ You're not viewing the latest version.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; In_Frame_T, Out_Frame_T &gt;</td>
-<td style="text-align: left;"><a href="#function-x"><strong>X</strong></a> (const Angle &amp; theta) <br><em>Creates a direction cosine matrix for a rotation around the X-axis.</em></td>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-x"><strong>X</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; theta) <br><em>Creates a direction cosine matrix for a rotation around the X-axis.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; In_Frame_T, Out_Frame_T &gt;</td>
-<td style="text-align: left;"><a href="#function-xzx"><strong>XZX</strong></a> (const Angle &amp; alpha, const Angle &amp; beta, const Angle &amp; gamma) <br><em>Creates a direction cosine matrix for a rotation around the X-axis followed by a rotation around the Z-axis.</em></td>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-xyx"><strong>XYX</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; alpha, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; beta, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; gamma) <br><em>Creates a direction cosine matrix for a rotation around the X-axis, the Y-axis, and the X-axis again.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; In_Frame_T, Out_Frame_T &gt;</td>
-<td style="text-align: left;"><a href="#function-y"><strong>Y</strong></a> (const Angle &amp; theta) <br><em>Creates a direction cosine matrix for a rotation around the Y-axis.</em></td>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-xyz"><strong>XYZ</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; alpha, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; beta, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; gamma) <br><em>Creates a direction cosine matrix for a rotation around the X-axis, then Y-axis, then Z-axis.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; In_Frame_T, Out_Frame_T &gt;</td>
-<td style="text-align: left;"><a href="#function-z"><strong>Z</strong></a> (const Angle &amp; theta) <br><em>Creates a direction cosine matrix for a rotation around the Z-axis.</em></td>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-xzx"><strong>XZX</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; alpha, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; beta, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; gamma) <br><em>Creates a direction cosine matrix for a rotation around the X-axis, the Z-axis, and the X-axis again.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; In_Frame_T, Out_Frame_T &gt;</td>
-<td style="text-align: left;"><a href="#function-from_vectors"><strong>from_vectors</strong></a> (const <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; Unitless, In_Frame_T &gt; &amp; x, const <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; Unitless, In_Frame_T &gt; &amp; y, const <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; Unitless, In_Frame_T &gt; &amp; z) <br><em>Creates a direction cosine matrix from three orthonormal vectors.</em></td>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-xzy"><strong>XZY</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; alpha, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; beta, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; gamma) <br><em>Creates a direction cosine matrix for a rotation around the X-axis, then Z-axis, then Y-axis.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;"><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; In_Frame_T, Out_Frame_T &gt;</td>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-y"><strong>Y</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; theta) <br><em>Creates a direction cosine matrix for a rotation around the Y-axis.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-yxy"><strong>YXY</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; alpha, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; beta, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; gamma) <br><em>Creates a direction cosine matrix for a rotation around the Y-axis, the X-axis, and the Y-axis again.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-yxz"><strong>YXZ</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; alpha, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; beta, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; gamma) <br><em>Creates a direction cosine matrix for a rotation around the Y-axis, then X-axis, then Z-axis.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-yzx"><strong>YZX</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; alpha, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; beta, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; gamma) <br><em>Creates a direction cosine matrix for a rotation around the Y-axis, then Z-axis, then X-axis.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-yzy"><strong>YZY</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; alpha, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; beta, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; gamma) <br><em>Creates a direction cosine matrix for a rotation around the Y-axis, the Z-axis, and the Y-axis again.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-z"><strong>Z</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; theta) <br><em>Creates a direction cosine matrix for a rotation around the Z-axis.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-zxy"><strong>ZXY</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; alpha, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; beta, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; gamma) <br><em>Creates a direction cosine matrix for a rotation around the Z-axis, then X-axis, then Y-axis.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-zxz"><strong>ZXZ</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; alpha, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; beta, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; gamma) <br><em>Creates a direction cosine matrix for a rotation around the Z-axis, the X-axis, and the Z-axis again.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-zyx"><strong>ZYX</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; alpha, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; beta, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; gamma) <br><em>Creates a direction cosine matrix for a rotation around the Z-axis, then Y-axis, then X-axis.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-zyz"><strong>ZYZ</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; alpha, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; beta, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; gamma) <br><em>Creates a direction cosine matrix for a rotation around the Z-axis, the Y-axis, and the Z-axis again.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-from_euler_angles"><strong>from_euler_angles</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; alpha, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; beta, <a href="./"><strong>const</strong></a> <a href="./"><strong>Angle</strong></a> &amp; gamma) <br><em>Creates a direction cosine matrix from Euler angles based on a specified rotation sequence.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a>&lt; <a href="./"><strong>_in_frame_</strong></a>, <a href="./"><strong>_out_frame_</strong></a> &gt;</td>
+<td style="text-align: left;"><a href="#function-from_vectors"><strong>from_vectors</strong></a> (<a href="./"><strong>const</strong></a> <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="./"><strong>Unitless</strong></a>, <a href="./"><strong>_in_frame_</strong></a> &gt; &amp; x, <a href="./"><strong>const</strong></a> <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="./"><strong>Unitless</strong></a>, <a href="./"><strong>_in_frame_</strong></a> &gt; &amp; y, <a href="./"><strong>const</strong></a> <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>&lt; <a href="./"><strong>Unitless</strong></a>, <a href="./"><strong>_in_frame_</strong></a> &gt; &amp; z) <br><em>Creates a direction cosine matrix from three orthonormal vectors.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a></td>
 <td style="text-align: left;"><a href="#function-identity"><strong>identity</strong></a> () <br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>DirectionCosineMatrix</strong></a></td>
+<td style="text-align: left;"><a href="#function-zero"><strong>zero</strong></a> () <br></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-attributes-inherited-from-astreaastrodcminterface">Protected Attributes inherited from astrea::astro::DcmInterface<a class="headerlink" href="#protected-attributes-inherited-from-astreaastrodcminterface" title="Permanent link">&para;</a></h2>
+<p>See <a href="../structastrea_1_1astro_1_1DcmInterface/">astrea::astro::DcmInterface</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">std::array&lt; <a href="./"><strong>Value_T</strong></a>, 9 &gt;</td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#variable-_data"><strong>_data</strong></a>  <br><em>3x3 matrix to hold the direction cosines.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-functions-inherited-from-astreaastrodcminterface">Protected Functions inherited from astrea::astro::DcmInterface<a class="headerlink" href="#protected-functions-inherited-from-astreaastrodcminterface" title="Permanent link">&para;</a></h2>
+<p>See <a href="../structastrea_1_1astro_1_1DcmInterface/">astrea::astro::DcmInterface</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">std::array&lt; <a href="./"><strong>decltype</strong></a>(<a href="./"><strong>Value_T</strong></a>{} *<a href="./"><strong>Value_U</strong></a>{}), 9 &gt;</td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-_multiply"><strong>_multiply</strong></a> (<a href="./"><strong>const</strong></a> std::array&lt; <a href="./"><strong>Value_U</strong></a>, 9 &gt; &amp; other) const<br></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="./"><strong>void</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-_normalize"><strong>_normalize</strong></a> (<a href="./"><strong>const</strong></a> <a href="./"><strong>Unitless</strong></a> &amp; scale) <br><em>Normalizes the matrix by scaling all elements by the given factor.</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="protected-static-functions-inherited-from-astreaastrodcminterface">Protected Static Functions inherited from astrea::astro::DcmInterface<a class="headerlink" href="#protected-static-functions-inherited-from-astreaastrodcminterface" title="Permanent link">&para;</a></h2>
+<p>See <a href="../structastrea_1_1astro_1_1DcmInterface/">astrea::astro::DcmInterface</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-identity"><strong>identity</strong></a> () <br><em>Creates an identity matrix (no rotation).</em></td>
+</tr>
+<tr>
+<td style="text-align: right;"><a href="./"><strong>constexpr</strong></a> <a href="../structastrea_1_1astro_1_1DcmInterface/"><strong>DcmInterface</strong></a></td>
+<td style="text-align: left;"><a href="../structastrea_1_1astro_1_1DcmInterface/#function-zero"><strong>zero</strong></a> () <br><em>Creates a zero matrix (invalid rotation).</em></td>
 </tr>
 </tbody>
 </table>
@@ -6353,64 +6527,53 @@ You're not viewing the latest version.
 <p>This class provides methods to create DCMs for various rotations and to apply them to vectors.</p>
 <p><strong>Template parameters:</strong></p>
 <ul>
-<li><code>Out_Frame_T</code> The frame type to which the DCM applies. </li>
+<li><code>_out_frame_</code> The frame type to which the DCM applies. </li>
 </ul>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-directioncosinematrix">function DirectionCosineMatrix<a class="headerlink" href="#function-directioncosinematrix" title="Permanent link">&para;</a></h3>
+<h3 id="function-directioncosinematrix-13">function DirectionCosineMatrix [1/3]<a class="headerlink" href="#function-directioncosinematrix-13" title="Permanent link">&para;</a></h3>
 <p><em>Constructor for</em> <a href="./"><em><strong>DirectionCosineMatrix</strong></em></a> <em>from an array of CartesianVectors.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">matrix</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">matrix</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>matrix</code> An array containing the three rows of the DCM, each represented as a <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>. </li>
+<li><code>matrix</code> An array containing the three rows of the DCM, each represented as a <a href="../structastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>. </li>
 </ul>
 <hr>
 
-<h3 id="function-operator">function operator*<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
-<p><em>Apply the direction cosine matrix to a</em> <a href="../classastrea_1_1astro_1_1CartesianVector/"><em><strong>CartesianVector</strong></em></a> <em>.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Value_T</span><span class="o">&gt;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kr">inline</span><span class="w"> </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Value_T</span><span class="p">,</span><span class="w"> </span><span class="n">Out_Frame_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="k">operator</span><span class="o">*</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Value_T</span><span class="p">,</span><span class="w"> </span><span class="n">In_Frame_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">vec</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+<h3 id="function-directioncosinematrix-23">function DirectionCosineMatrix [2/3]<a class="headerlink" href="#function-directioncosinematrix-23" title="Permanent link">&para;</a></h3>
+<p><em>Constructor for</em> <a href="./"><em><strong>DirectionCosineMatrix</strong></em></a> <em>from an array of CartesianVectors.</em>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">row1</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">row2</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">row3</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
-<p><strong>Template parameters:</strong></p>
-<ul>
-<li><code>Value_T</code> The type of the vector components. </li>
-<li><code>Frame_T</code> The frame of the <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>. </li>
-</ul>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>vec</code> The <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a> to which the DCM will be applied. </li>
+<li><code>row1</code> An array containing the three elements of the first row of the DCM. </li>
+<li><code>row2</code> An array containing the three elements of the second row of the DCM. </li>
+<li><code>row3</code> An array containing the three elements of the third row of the DCM. </li>
 </ul>
-<p><strong>Returns:</strong></p>
-<p>CartesianVector&lt;Value_T, Out_Frame_T&gt; The transformed <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a> in the output frame. </p>
 <hr>
 
-<h3 id="function-row">function row<a class="headerlink" href="#function-row" title="Permanent link">&para;</a></h3>
-<p><em>Get a specific row of the direction cosine matrix.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="p">,</span><span class="w"> </span><span class="n">In_Frame_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">row</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">idx</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div></p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>idx</code> The index of the row to retrieve (0, 1, or 2). </li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p>const CartesianVector&lt;Value_T, In_Frame_T&gt;&amp; The requested row as a <a href="../classastrea_1_1astro_1_1CartesianVector/"><strong>CartesianVector</strong></a>. </p>
+<h3 id="function-directioncosinematrix-33">function DirectionCosineMatrix [3/3]<a class="headerlink" href="#function-directioncosinematrix-33" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">DcmInterface</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">matrix</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div>
 <hr>
 
 <h3 id="function-transpose">function transpose<a class="headerlink" href="#function-transpose" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Out_Frame_T</span><span class="p">,</span><span class="w"> </span><span class="n">In_Frame_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">transpose</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">transpose</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div>
 <hr>
 <h2 id="public-static-functions-documentation">Public Static Functions Documentation<a class="headerlink" href="#public-static-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-x">function X<a class="headerlink" href="#function-x" title="Permanent link">&para;</a></h3>
 <p><em>Creates a direction cosine matrix for a rotation around the X-axis.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">In_Frame_T</span><span class="p">,</span><span class="w"> </span><span class="n">Out_Frame_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">X</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">theta</span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">X</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">theta</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
@@ -6418,16 +6581,34 @@ You're not viewing the latest version.
 <li><code>theta</code> The angle of rotation around the X-axis. </li>
 </ul>
 <p><strong>Returns:</strong></p>
-<p>DirectionCosineMatrix&lt;Out_Frame_T&gt; The resulting direction cosine matrix. </p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
 <hr>
 
-<h3 id="function-xzx">function XZX<a class="headerlink" href="#function-xzx" title="Permanent link">&para;</a></h3>
-<p><em>Creates a direction cosine matrix for a rotation around the X-axis followed by a rotation around the Z-axis.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">In_Frame_T</span><span class="p">,</span><span class="w"> </span><span class="n">Out_Frame_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">XZX</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gamma</span>
+<h3 id="function-xyx">function XYX<a class="headerlink" href="#function-xyx" title="Permanent link">&para;</a></h3>
+<p><em>Creates a direction cosine matrix for a rotation around the X-axis, the Y-axis, and the X-axis again.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">XYX</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gamma</span>
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>alpha</code> The angle of rotation around the X-axis. </li>
+<li><code>beta</code> The angle of rotation around the Y-axis. </li>
+<li><code>gamma</code> The angle of rotation around the X-axis. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
+<hr>
+
+<h3 id="function-xyz">function XYZ<a class="headerlink" href="#function-xyz" title="Permanent link">&para;</a></h3>
+<p><em>Creates a direction cosine matrix for a rotation around the X-axis, then Y-axis, then Z-axis.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">XYZ</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gamma</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6436,44 +6617,247 @@ You're not viewing the latest version.
 <li><code>gamma</code> The angle of rotation around the Z-axis. </li>
 </ul>
 <p><strong>Returns:</strong></p>
-<p>DirectionCosineMatrix&lt;Out_Frame_T&gt; The resulting direction cosine matrix. </p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
+<hr>
+
+<h3 id="function-xzx">function XZX<a class="headerlink" href="#function-xzx" title="Permanent link">&para;</a></h3>
+<p><em>Creates a direction cosine matrix for a rotation around the X-axis, the Z-axis, and the X-axis again.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">XZX</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gamma</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>alpha</code> The angle of rotation around the X-axis. </li>
+<li><code>beta</code> The angle of rotation around the Z-axis. </li>
+<li><code>gamma</code> The angle of rotation around the X-axis. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
+<hr>
+
+<h3 id="function-xzy">function XZY<a class="headerlink" href="#function-xzy" title="Permanent link">&para;</a></h3>
+<p><em>Creates a direction cosine matrix for a rotation around the X-axis, then Z-axis, then Y-axis.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">XZY</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gamma</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>alpha</code> The angle of rotation around the X-axis. </li>
+<li><code>beta</code> The angle of rotation around the Z-axis. </li>
+<li><code>gamma</code> The angle of rotation around the Y-axis. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
 <hr>
 
 <h3 id="function-y">function Y<a class="headerlink" href="#function-y" title="Permanent link">&para;</a></h3>
 <p><em>Creates a direction cosine matrix for a rotation around the Y-axis.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">In_Frame_T</span><span class="p">,</span><span class="w"> </span><span class="n">Out_Frame_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">Y</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">theta</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">Y</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">theta</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>theta</code> The angle of rotation around the Y-axis. </li>
 </ul>
 <p><strong>Returns:</strong></p>
-<p>DirectionCosineMatrix&lt;Out_Frame_T&gt; The resulting direction cosine matrix. </p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
+<hr>
+
+<h3 id="function-yxy">function YXY<a class="headerlink" href="#function-yxy" title="Permanent link">&para;</a></h3>
+<p><em>Creates a direction cosine matrix for a rotation around the Y-axis, the X-axis, and the Y-axis again.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">YXY</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gamma</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>alpha</code> The angle of rotation around the Y-axis. </li>
+<li><code>beta</code> The angle of rotation around the X-axis. </li>
+<li><code>gamma</code> The angle of rotation around the Y-axis. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
+<hr>
+
+<h3 id="function-yxz">function YXZ<a class="headerlink" href="#function-yxz" title="Permanent link">&para;</a></h3>
+<p><em>Creates a direction cosine matrix for a rotation around the Y-axis, then X-axis, then Z-axis.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">YXZ</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gamma</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>alpha</code> The angle of rotation around the Y-axis. </li>
+<li><code>beta</code> The angle of rotation around the X-axis. </li>
+<li><code>gamma</code> The angle of rotation around the Z-axis. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
+<hr>
+
+<h3 id="function-yzx">function YZX<a class="headerlink" href="#function-yzx" title="Permanent link">&para;</a></h3>
+<p><em>Creates a direction cosine matrix for a rotation around the Y-axis, then Z-axis, then X-axis.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">YZX</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gamma</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>alpha</code> The angle of rotation around the Y-axis. </li>
+<li><code>beta</code> The angle of rotation around the Z-axis. </li>
+<li><code>gamma</code> The angle of rotation around the X-axis. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
+<hr>
+
+<h3 id="function-yzy">function YZY<a class="headerlink" href="#function-yzy" title="Permanent link">&para;</a></h3>
+<p><em>Creates a direction cosine matrix for a rotation around the Y-axis, the Z-axis, and the Y-axis again.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">YZY</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gamma</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>alpha</code> The angle of rotation around the Y-axis. </li>
+<li><code>beta</code> The angle of rotation around the Z-axis. </li>
+<li><code>gamma</code> The angle of rotation around the Y-axis. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
 <hr>
 
 <h3 id="function-z">function Z<a class="headerlink" href="#function-z" title="Permanent link">&para;</a></h3>
 <p><em>Creates a direction cosine matrix for a rotation around the Z-axis.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">In_Frame_T</span><span class="p">,</span><span class="w"> </span><span class="n">Out_Frame_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">Z</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">theta</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">Z</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">theta</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><code>theta</code> The angle of rotation around the Z-axis. </li>
 </ul>
 <p><strong>Returns:</strong></p>
-<p>DirectionCosineMatrix&lt;Out_Frame_T&gt; The resulting direction cosine matrix. </p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
+<hr>
+
+<h3 id="function-zxy">function ZXY<a class="headerlink" href="#function-zxy" title="Permanent link">&para;</a></h3>
+<p><em>Creates a direction cosine matrix for a rotation around the Z-axis, then X-axis, then Y-axis.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">ZXY</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gamma</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>alpha</code> The angle of rotation around the Z-axis. </li>
+<li><code>beta</code> The angle of rotation around the X-axis. </li>
+<li><code>gamma</code> The angle of rotation around the Y-axis. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
+<hr>
+
+<h3 id="function-zxz">function ZXZ<a class="headerlink" href="#function-zxz" title="Permanent link">&para;</a></h3>
+<p><em>Creates a direction cosine matrix for a rotation around the Z-axis, the X-axis, and the Z-axis again.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">ZXZ</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gamma</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>alpha</code> The angle of rotation around the Z-axis. </li>
+<li><code>beta</code> The angle of rotation around the X-axis. </li>
+<li><code>gamma</code> The angle of rotation around the Z-axis. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
+<hr>
+
+<h3 id="function-zyx">function ZYX<a class="headerlink" href="#function-zyx" title="Permanent link">&para;</a></h3>
+<p><em>Creates a direction cosine matrix for a rotation around the Z-axis, then Y-axis, then X-axis.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">ZYX</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gamma</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>alpha</code> The angle of rotation around the Z-axis. </li>
+<li><code>beta</code> The angle of rotation around the Y-axis. </li>
+<li><code>gamma</code> The angle of rotation around the X-axis. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
+<hr>
+
+<h3 id="function-zyz">function ZYZ<a class="headerlink" href="#function-zyz" title="Permanent link">&para;</a></h3>
+<p><em>Creates a direction cosine matrix for a rotation around the Z-axis, the Y-axis, and the Z-axis again.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">ZYZ</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gamma</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>alpha</code> The angle of rotation around the Z-axis. </li>
+<li><code>beta</code> The angle of rotation around the Y-axis. </li>
+<li><code>gamma</code> The angle of rotation around the Z-axis. </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
+<hr>
+
+<h3 id="function-from_euler_angles">function from_euler_angles<a class="headerlink" href="#function-from_euler_angles" title="Permanent link">&para;</a></h3>
+<p><em>Creates a direction cosine matrix from Euler angles based on a specified rotation sequence.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">template</span><span class="o">&lt;</span><span class="n">RotationSequence</span><span class="w"> </span><span class="n">sequence</span><span class="o">&gt;</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">from_euler_angles</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">alpha</span><span class="p">,</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">gamma</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div></p>
+<p><strong>Template parameters:</strong></p>
+<ul>
+<li><code>sequence</code> The rotation sequence to use for the Euler angles (e.g., XYZ, ZYX, etc.). </li>
+</ul>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>alpha</code> The first Euler angle (rotation around the first axis in the sequence). </li>
+<li><code>beta</code> The second Euler angle (rotation around the second axis in the sequence). </li>
+<li><code>gamma</code> The third Euler angle (rotation around the third axis in the sequence). </li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
 <hr>
 
 <h3 id="function-from_vectors">function from_vectors<a class="headerlink" href="#function-from_vectors" title="Permanent link">&para;</a></h3>
 <p><em>Creates a direction cosine matrix from three orthonormal vectors.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">In_Frame_T</span><span class="p">,</span><span class="w"> </span><span class="n">Out_Frame_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">from_vectors</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="p">,</span><span class="w"> </span><span class="n">In_Frame_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="p">,</span><span class="w"> </span><span class="n">In_Frame_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="p">,</span><span class="w"> </span><span class="n">In_Frame_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">z</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_out_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">from_vectors</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">,</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span><span class="k">const</span><span class="w">  </span><span class="n">CartesianVector</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Unitless</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">_in_frame_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">z</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
@@ -6482,16 +6866,21 @@ You're not viewing the latest version.
 <li><code>z</code> The unit vector in the Z direction. </li>
 </ul>
 <p><strong>Returns:</strong></p>
-<p>DirectionCosineMatrix&lt;Out_Frame_T&gt; The resulting direction cosine matrix. </p>
+<p><a href="./"><strong>DirectionCosineMatrix</strong></a>&lt;<em>out_frame</em>&gt; The resulting direction cosine matrix. </p>
 <hr>
 
 <h3 id="function-identity">function identity<a class="headerlink" href="#function-identity" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">In_Frame_T</span><span class="p">,</span><span class="w"> </span><span class="n">Out_Frame_T</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">identity</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">identity</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+</span></code></pre></div>
+<hr>
+
+<h3 id="function-zero">function zero<a class="headerlink" href="#function-zero" title="Permanent link">&para;</a></h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w">  </span><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">astro</span><span class="o">::</span><span class="n">DirectionCosineMatrix</span><span class="o">::</span><span class="n">zero</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
 </span></code></pre></div>
 <hr>
 
 <hr />
-<p>The documentation for this class was generated from the following file <code>astrea/astro/astro/frames/types/DirectionCosineMatrix.hpp</code></p>
+<p>The documentation for this class was generated from the following file <code>astrea/astro/astro/frames/framework/DirectionCosineMatrix.hpp</code></p>
 
 
 

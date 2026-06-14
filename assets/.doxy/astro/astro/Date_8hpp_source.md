@@ -11,6 +11,7 @@
 
 #pragma once
 
+#include <chrono>
 #include <iosfwd>
 #include <string>
 
@@ -18,7 +19,8 @@
 
 #include <units/units.hpp>
 
-#include <astro/time/JulianDateClock.hpp>
+#include <astro/systems/system_concepts.hpp>
+#include <astro/time/clocks.hpp>
 
 namespace astrea {
 namespace astro {
@@ -33,7 +35,7 @@ class Date {
     friend std::ostream& operator<<(std::ostream& os, const Date& obj);
 
   public:
-    Date(const JulianDate& jdate = J2000) :
+    constexpr Date(const JulianDate& jdate = J2000) :
         _julianDate(jdate)
     {
     }
@@ -57,25 +59,30 @@ class Date {
 
     Time operator-(const Date& other) const;
 
-    auto operator<=>(const Date& other) const
-    {
-        using std::chrono::floor;
-        using std::chrono::milliseconds;
-        return floor<milliseconds>(_julianDate) <=> floor<milliseconds>(other._julianDate);
-    }
+    auto operator<=>(const Date& other) const { return _julianDate <=> other._julianDate; }
 
-    bool operator==(const Date& other) const
-    {
-        using std::chrono::floor;
-        using std::chrono::milliseconds;
-        return floor<milliseconds>(_julianDate) == floor<milliseconds>(other._julianDate);
-    }
+    bool operator==(const Date& other) const { return _julianDate == other._julianDate; }
 
     JulianDate jd() const { return _julianDate; }
 
     double jdn() const { return std::chrono::floor<std::chrono::days>(_julianDate).time_since_epoch().count(); }
 
-    std::chrono::duration<double, std::ratio<86400>> mjd() const { return _julianDate - MJD0; }
+    Time seconds_in_local_day() const { return { _julianDate - std::chrono::floor<std::chrono::days>(_julianDate) }; }
+
+    std::chrono::year_month_day year_month_day() const
+    {
+        return std::chrono::year_month_day(std::chrono::sys_days(std::chrono::floor<std::chrono::days>(sys())));
+    }
+
+    int day_of_year() const
+    {
+        using namespace std::chrono;
+        const duration<int, days::period> doy =
+            duration_cast<duration<int, days::period>>(floor<days>(sys()) - sys_days{ year_month_day().year() / 1 / 1 });
+        return doy.count() + 1; // +1 because day of year starts at 1
+    };
+
+    std::chrono::duration<double, std::chrono::days::period> mjd() const { return _julianDate - MJD0; }
 
     std::chrono::time_point<std::chrono::utc_clock> utc() const { return in_clock<std::chrono::utc_clock>(); }
 
@@ -83,12 +90,13 @@ class Date {
 
     std::chrono::time_point<std::chrono::tai_clock> tai() const { return in_clock<std::chrono::tai_clock>(); }
 
-    // std::chrono::time_point<std::chrono::tai_clock> tt() const
-    // {
-    //     // TODO: Make tt clock. Find better conversion numbers
-    //     using namespace std::chrono;
-    //     return in_clock<tai_clock>().time_since_epoch() + std::chrono::milliseconds{ 32184.0 };
-    // }
+    TerrestrialTime tt() const { return in_clock<TerrestrialTimeClock>(); }
+
+    GeocentricCoordinateTime tcg() const { return in_clock<GeocentricCoordinateTimeClock>(); }
+
+    BarycentricDynamicalTime tdb() const { return in_clock<BarycentricDynamicalTimeClock>(); }
+
+    BarycentricCoordinateTime tcb() const { return in_clock<BarycentricCoordinateTimeClock>(); }
 
     std::chrono::time_point<std::chrono::system_clock> sys() const { return in_clock<std::chrono::system_clock>(); }
 
@@ -102,6 +110,12 @@ class Date {
     }
 
     Angle gmst() const;
+
+    template <IsCelestialBody auto _body_>
+    Angle body_sidereal_time() const
+    {
+        return julian_date_to_body_sidereal_time<_body_>(_julianDate);
+    }
 
   private:
     JulianDate _julianDate; 

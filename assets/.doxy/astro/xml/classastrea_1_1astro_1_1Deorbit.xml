@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1Deorbit" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::Deorbit</compoundname>
+    <includes refid="Deorbit_8hpp" local="no">Deorbit.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Deorbit_1a93af24976d2bc1c8b91c408d86461d63" prot="private" static="no" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref></type>
+        <definition>const Distance astrea::astro::Deorbit::_triggerAltitude</definition>
+        <argsstring></argsstring>
+        <name>_triggerAltitude</name>
+        <qualifiedname>astrea::astro::Deorbit::_triggerAltitude</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/events/Deorbit.hpp" line="69" column="20" bodyfile="astrea/astro/astro/propagation/event_detection/events/Deorbit.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Deorbit_1a04d886b93971b44174dd9f02affec175" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Deorbit::Deorbit</definition>
+        <argsstring>(const Distance &amp;triggerAltitude=0.0 *mp_units::si::unit_symbols::km)</argsstring>
+        <name>Deorbit</name>
+        <qualifiedname>astrea::astro::Deorbit::Deorbit</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Distance</ref> &amp;</type>
+          <declname>triggerAltitude</declname>
+          <defval>0.0 *mp_units::si::unit_symbols::km</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classastrea_1_1astro_1_1Deorbit" kindref="compound">Deorbit</ref> <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> that triggers at a specific altitude. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>triggerAltitude</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The altitude at which the deorbit should trigger. Default is 0 km, which means it will trigger when the vehicle reaches the default crash radius of the central body. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1Deorbit" kindref="compound">Deorbit</ref> A <ref refid="classastrea_1_1astro_1_1Deorbit" kindref="compound">Deorbit</ref> <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> that triggers at the specified altitude. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/events/Deorbit.hpp" line="42" column="5" bodyfile="astrea/astro/astro/propagation/event_detection/events/Deorbit.cpp" bodystart="25" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Deorbit_1adefc84c693bdcb1779a0c36078643a6d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string astrea::astro::Deorbit::get_name</definition>
+        <argsstring>() const</argsstring>
+        <name>get_name</name>
+        <qualifiedname>astrea::astro::Deorbit::get_name</qualifiedname>
+        <briefdescription>
+<para>Gets the name of the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string The name of the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/events/Deorbit.hpp" line="49" column="17" bodyfile="astrea/astro/astro/propagation/event_detection/events/Deorbit.cpp" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Deorbit_1a4ca7b68161c7f1887aba216c3b1b74f2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref></type>
+        <definition>Unitless astrea::astro::Deorbit::measure_event</definition>
+        <argsstring>(const Time &amp;time, const State &amp;state, const Vehicle &amp;vehicle) const</argsstring>
+        <name>measure_event</name>
+        <qualifiedname>astrea::astro::Deorbit::measure_event</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> &amp;</type>
+          <declname>vehicle</declname>
+        </param>
+        <briefdescription>
+<para>Detects if the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is triggered by a <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vehicle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref> to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true If the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is triggered by the <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is not triggered by the <ref refid="classastrea_1_1astro_1_1Vehicle" kindref="compound">Vehicle</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/events/Deorbit.hpp" line="58" column="14" bodyfile="astrea/astro/astro/propagation/event_detection/events/Deorbit.cpp" bodystart="32" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Deorbit_1a4c60608c7f9e786724ff00fbbc7c6405" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>bool astrea::astro::Deorbit::is_terminal</definition>
+        <argsstring>() const</argsstring>
+        <name>is_terminal</name>
+        <qualifiedname>astrea::astro::Deorbit::is_terminal</qualifiedname>
+        <briefdescription>
+<para>Checks if the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is a terminal <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true If the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is a terminal <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+</simplesect>
+<simplesect kind="return"><para>false If the <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> is not a terminal <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/propagation/event_detection/events/Deorbit.hpp" line="66" column="10" bodyfile="astrea/astro/astro/propagation/event_detection/events/Deorbit.cpp" bodystart="42" bodyend="42"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A class representing a deorbit <ref refid="classastrea_1_1astro_1_1Event" kindref="compound">Event</ref> in the astrea astro platform. This class is used as a placeholder for Events that do not have a defined state or mass. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/event_detection/events/Deorbit.hpp" line="32" column="1" bodyfile="astrea/astro/astro/propagation/event_detection/events/Deorbit.hpp" bodystart="32" bodyend="70"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1Deorbit_1a93af24976d2bc1c8b91c408d86461d63" prot="private" virt="non-virtual"><scope>astrea::astro::Deorbit</scope><name>_triggerAltitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Deorbit_1a04d886b93971b44174dd9f02affec175" prot="public" virt="non-virtual"><scope>astrea::astro::Deorbit</scope><name>Deorbit</name></member>
+      <member refid="classastrea_1_1astro_1_1Deorbit_1adefc84c693bdcb1779a0c36078643a6d" prot="public" virt="non-virtual"><scope>astrea::astro::Deorbit</scope><name>get_name</name></member>
+      <member refid="classastrea_1_1astro_1_1Deorbit_1a4c60608c7f9e786724ff00fbbc7c6405" prot="public" virt="non-virtual"><scope>astrea::astro::Deorbit</scope><name>is_terminal</name></member>
+      <member refid="classastrea_1_1astro_1_1Deorbit_1a4ca7b68161c7f1887aba216c3b1b74f2" prot="public" virt="non-virtual"><scope>astrea::astro::Deorbit</scope><name>measure_event</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

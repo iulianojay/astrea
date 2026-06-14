@@ -29,10 +29,9 @@
 #include <iostream>
 #include <sstream>
 
-#include <date/date.h> // NOTE: This is standard in std::chrono as of GNU 13.2
 #include <mp-units/math.h>
 
-#include <astro/systems/planetary_bodies/Earth/Earth.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <astro/utilities/conversions.hpp>
 
 using namespace mp_units;
@@ -94,7 +93,7 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
     // Stream date string into time point
     std::istringstream epochStream{ epoch };
     sys_time<std::chrono::milliseconds> systemTime;
-    epochStream >> date::parse(format, systemTime);
+    epochStream >> std::chrono::parse(format, systemTime);
 
     // Convert with clock cast
     return round<std::chrono::milliseconds>(clock_cast<JulianDateClock>(systemTime));
@@ -104,12 +103,12 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
 const Date Date::now() noexcept { return JulianDateClock::now(); }
 
 
-Angle julian_date_to_sidereal_time(const JulianDate& _julianDate)
+Angle julian_date_to_sidereal_time(const JulianDate& julianDate)
 {
     using mp_units::angular::unit_symbols::deg;
     using mp_units::non_si::day;
 
-    const Time julianDay = _julianDate.time_since_epoch().count() * day;
+    const Time julianDay = julianDate.time_since_epoch().count() * day;
 
     // UT = (fraction of current Julian Day since 00:00:00 in days) / (body rotation rate in deg/day ratioed to Earth's)
     static const Time halfDay = 0.5 * day;
@@ -126,8 +125,8 @@ Angle julian_date_to_sidereal_time(const JulianDate& _julianDate)
         (100.4606184 * one + 36000.77005361 * T0 + 0.00038793 * T0 * T0 - 2.583e-8 * T0 * T0 * T0) * deg;
 
     // GST
-    static const AngularRate earthRotRate = planetary_bodies::Earth().get_rotation_rate(); // in rad/s
-    const Angle greenwichSiderealTime     = wrap_angle(greenwichUniversalTime + earthRotRate * universalTime);
+    static const AngularVelocity earthRotRate = get_rotation_rate<planets::Earth>();
+    const Angle greenwichSiderealTime         = wrap_angle(greenwichUniversalTime + earthRotRate * universalTime);
 
     return greenwichSiderealTime;
 }

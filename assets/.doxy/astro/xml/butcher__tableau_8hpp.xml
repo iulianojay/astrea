@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="butcher__tableau_8hpp" kind="file" language="C++">
     <compoundname>butcher_tableau.hpp</compoundname>
     <includes local="no">cstddef</includes>
-    <includedby refid="astro_8hpp" local="no">astrea/astro/astro/astro.hpp</includedby>
+    <includedby refid="propagation_8hpp" local="no">astrea/astro/astro/propagation.hpp</includedby>
     <includedby refid="Integrator_8cpp" local="no">astrea/astro/astro/propagation/numerical/Integrator.cpp</includedby>
     <incdepgraph>
       <node id="1">
@@ -17,15 +17,21 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="3">
+        <label>astrea/astro/astro/astro.hpp</label>
+        <link refid="astro_8hpp"/>
+      </node>
+      <node id="2">
+        <label>astrea/astro/astro/propagation.hpp</label>
+        <link refid="propagation_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
       <node id="1">
         <label>astrea/astro/astro/propagation/numerical/butcher_tableau.hpp</label>
         <link refid="butcher__tableau_8hpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-      </node>
-      <node id="2">
-        <label>astrea/astro/astro/astro.hpp</label>
-        <link refid="astro_8hpp"/>
       </node>
     </invincdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
@@ -60,7 +66,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">RK45<sp/>{<sp/></highlight><highlight class="comment">//<sp/>Traditional<sp/>Runge-Kutta<sp/>5(4)<sp/>6<sp/>stage<sp/>method</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="Integrator_8hpp_1a8230ed42481c868b37ce7009af0322a8a0e973aab8dc2d2139fcbf6544574bac8" kindref="member">RK45</ref><sp/>{<sp/></highlight><highlight class="comment">//<sp/>Traditional<sp/>Runge-Kutta<sp/>5(4)<sp/>6<sp/>stage<sp/>method</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nStages<sp/>=<sp/>6;</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
@@ -77,7 +83,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="42"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RK45</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">RKF45<sp/>{<sp/></highlight><highlight class="comment">//<sp/>Runge-Kutta-Fehlberg<sp/>5(4)<sp/>6<sp/>stage<sp/>method</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="Integrator_8hpp_1a8230ed42481c868b37ce7009af0322a8a651742901a96ccc36ad193073cb71b4a" kindref="member">RKF45</ref><sp/>{<sp/></highlight><highlight class="comment">//<sp/>Runge-Kutta-Fehlberg<sp/>5(4)<sp/>6<sp/>stage<sp/>method</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nStages<sp/>=<sp/>6;</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
@@ -94,7 +100,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="59"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RKF45</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>
 <codeline lineno="61"><highlight class="normal"></highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">DOP45<sp/>{<sp/></highlight><highlight class="comment">//<sp/>Dormand-Prince<sp/>5(4)<sp/>7<sp/>stage<sp/>method</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="Integrator_8hpp_1a8230ed42481c868b37ce7009af0322a8a474c223bc78ad6557e236acf931e9072" kindref="member">DOP45</ref><sp/>{<sp/></highlight><highlight class="comment">//<sp/>Dormand-Prince<sp/>5(4)<sp/>7<sp/>stage<sp/>method</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nStages<sp/>=<sp/>7;</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
@@ -113,7 +119,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="78"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>DOP45</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="79"><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">RKF78<sp/>{<sp/></highlight><highlight class="comment">//<sp/>Runge-Kutta-Fehlberg<sp/>7(8)<sp/>13<sp/>stage<sp/>method<sp/>(this<sp/>one<sp/>is<sp/>so<sp/>fucking<sp/>fast)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="Integrator_8hpp_1a8230ed42481c868b37ce7009af0322a8a7c0af314c670b147d2883e31aae0a8e3" kindref="member">RKF78</ref><sp/>{<sp/></highlight><highlight class="comment">//<sp/>Runge-Kutta-Fehlberg<sp/>7(8)<sp/>13<sp/>stage<sp/>method<sp/>(this<sp/>one<sp/>is<sp/>so<sp/>fucking<sp/>fast)</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="82"><highlight class="normal"></highlight></codeline>
 <codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nStages<sp/>=<sp/>13;</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"></highlight></codeline>
@@ -142,7 +148,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="107"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>RKF78</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="108"><highlight class="normal"></highlight></codeline>
 <codeline lineno="109"><highlight class="normal"></highlight></codeline>
-<codeline lineno="110"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">DOP78<sp/>{<sp/></highlight><highlight class="comment">//<sp/>Dormand-Prince<sp/>7(8)<sp/>13<sp/>stage<sp/>method</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="Integrator_8hpp_1a8230ed42481c868b37ce7009af0322a8a1da1e5698782ef4965d280fa2291a73e" kindref="member">DOP78</ref><sp/>{<sp/></highlight><highlight class="comment">//<sp/>Dormand-Prince<sp/>7(8)<sp/>13<sp/>stage<sp/>method</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t<sp/>nStages<sp/>=<sp/>13;</highlight></codeline>
 <codeline lineno="113"><highlight class="normal"></highlight></codeline>

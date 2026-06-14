@@ -16,9 +16,8 @@
 * `#include <iostream>`
 * `#include <ranges>`
 * `#include <set>`
-* `#include <stdio.h>`
 * `#include <sqlite3.h>`
-* `#include <csv.hpp>`
+* `#include <stdio.h>`
 * `#include <nlohmann/json.hpp>`
 * `#include <sqlite_orm/sqlite_orm.h>`
 * `#include <mp-units/systems/angular.h>`
@@ -59,14 +58,6 @@
 
 
 
-## Public Static Attributes
-
-| Type | Name |
-| ---: | :--- |
-|  const Time | [**ACCESS\_RESOLUTION**](#variable-access_resolution)   = `minutes(5.0)`<br> |
-|  const Angle | [**GRID\_SPACING**](#variable-grid_spacing)   = `5.0 \* deg`<br> |
-|  const bool | [**PRINT\_PROGRESS**](#variable-print_progress)   = `true`<br> |
-|  const Time | [**PROP\_TIME**](#variable-prop_time)   = `months(1.0)`<br> |
 
 
 
@@ -85,10 +76,9 @@
 
 | Type | Name |
 | ---: | :--- |
-|  int | [**arcturus\_starlink\_interference\_test**](#function-arcturus_starlink_interference_test) () <br> |
-|  int | [**iceye\_test**](#function-iceye_test) () <br> |
 |  int | [**main**](#function-main) () <br> |
-|  [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) | [**propagate\_and\_run\_access\_analysis**](#function-propagate_and_run_access_analysis) (astro::Constellation&lt; T &gt; & constellation, U & grounds, const Date & startDate, const AstrodynamicsSystem & sys, const Time propTime, const Time accessResolution) <br> |
+|  [**AccessArray**](classastrea_1_1trace_1_1AccessArray.md) | [**propagate\_and\_run\_access\_analysis**](#function-propagate_and_run_access_analysis) (astro::Constellation&lt; T &gt; & constellation, U & grounds, const Date & startDate, const Time propTime, const Time accessResolution, const bool printProgress) <br> |
+|  int | [**trace\_analysis**](#function-trace_analysis) (const Time propTime, const Time accessResolution, const bool printProgress, const Angle gridSpacing) <br> |
 
 
 
@@ -117,88 +107,8 @@
 
 
 
-## Public Static Attributes Documentation
-
-
-
-
-### variable ACCESS\_RESOLUTION 
-
-```C++
-const Time ACCESS_RESOLUTION;
-```
-
-
-
-
-<hr>
-
-
-
-### variable GRID\_SPACING 
-
-```C++
-const Angle GRID_SPACING;
-```
-
-
-
-
-<hr>
-
-
-
-### variable PRINT\_PROGRESS 
-
-```C++
-const bool PRINT_PROGRESS;
-```
-
-
-
-
-<hr>
-
-
-
-### variable PROP\_TIME 
-
-```C++
-const Time PROP_TIME;
-```
-
-
-
-
-<hr>
 ## Public Functions Documentation
 
-
-
-
-### function arcturus\_starlink\_interference\_test 
-
-```C++
-int arcturus_starlink_interference_test () 
-```
-
-
-
-
-<hr>
-
-
-
-### function iceye\_test 
-
-```C++
-int iceye_test () 
-```
-
-
-
-
-<hr>
 
 
 
@@ -223,9 +133,27 @@ AccessArray propagate_and_run_access_analysis (
     astro::Constellation< T > & constellation,
     U & grounds,
     const Date & startDate,
-    const AstrodynamicsSystem & sys,
     const Time propTime,
-    const Time accessResolution
+    const Time accessResolution,
+    const bool printProgress
+) 
+```
+
+
+
+
+<hr>
+
+
+
+### function trace\_analysis 
+
+```C++
+int trace_analysis (
+    const Time propTime,
+    const Time accessResolution,
+    const bool printProgress,
+    const Angle gridSpacing
 ) 
 ```
 

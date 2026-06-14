@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1frames_1_1uranus__barycenter_1_1icrf" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>astrea::astro::frames::uranus_barycenter::icrf</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1Frame" prot="public" virt="non-virtual">astrea::astro::Frame&lt;&quot;Uranus-Sun Barycenter ICRF&quot;, barycenters::UranusSunBarycenter, axes::icrf &gt;</basecompoundref>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::Frame&lt;&quot;Uranus-Sun Barycenter ICRF&quot;, barycenters::UranusSunBarycenter, axes::icrf &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::frames::uranus_barycenter::icrf</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1uranus__barycenter_1_1icrf"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::Frame&lt;&quot;Uranus-Sun Barycenter ICRF&quot;, barycenters::UranusSunBarycenter, axes::icrf &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::frames::uranus_barycenter::icrf</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1uranus__barycenter_1_1icrf"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="232" column="17" bodyfile="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" bodystart="232" bodyend="233"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

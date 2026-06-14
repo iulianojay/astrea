@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="structastrea_1_1trace_1_1Stats" kind="struct" language="C++" prot="public">
     <compoundname>astrea::trace::Stats</compoundname>
     <includes refid="Stats_8hpp" local="no">Stats.hpp</includes>
@@ -9,12 +9,13 @@
         <defval>Time</defval>
       </param>
     </templateparamlist>
-      <sectiondef kind="public-attrib">
+    <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structastrea_1_1trace_1_1Stats_1a68e0e90d994719f65e2f6be812d997ab" prot="public" static="no" mutable="no">
         <type>T</type>
         <definition>T astrea::trace::Stats&lt; T &gt;::min</definition>
         <argsstring></argsstring>
         <name>min</name>
+        <qualifiedname>astrea::trace::Stats::min</qualifiedname>
         <briefdescription>
 <para>The minimum value in the vector. </para>
         </briefdescription>
@@ -22,13 +23,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="113" column="7" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="113" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="114" column="7" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="114" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1Stats_1aed0afb8a9b721a68cfa963a455cb7810" prot="public" static="no" mutable="no">
         <type>T</type>
         <definition>T astrea::trace::Stats&lt; T &gt;::max</definition>
         <argsstring></argsstring>
         <name>max</name>
+        <qualifiedname>astrea::trace::Stats::max</qualifiedname>
         <briefdescription>
 <para>The maximum value in the vector. </para>
         </briefdescription>
@@ -36,13 +38,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="114" column="7" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="114" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="115" column="7" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="115" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1Stats_1a4ebc8a5f3926e97b2d2b7154e3cc9e81" prot="public" static="no" mutable="no">
         <type>T</type>
         <definition>T astrea::trace::Stats&lt; T &gt;::avg</definition>
         <argsstring></argsstring>
         <name>avg</name>
+        <qualifiedname>astrea::trace::Stats::avg</qualifiedname>
         <briefdescription>
 <para>The average value in the vector. </para>
         </briefdescription>
@@ -50,13 +53,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="115" column="7" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="115" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="116" column="7" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="116" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structastrea_1_1trace_1_1Stats_1aced6411794e5119879cd30438a2990bd" prot="public" static="no" mutable="no">
         <type>std::vector&lt; T &gt;</type>
         <definition>std::vector&lt;T&gt; astrea::trace::Stats&lt; T &gt;::percentiles</definition>
         <argsstring></argsstring>
         <name>percentiles</name>
+        <qualifiedname>astrea::trace::Stats::percentiles</qualifiedname>
         <briefdescription>
 <para>A vector of percentiles corresponding to the DEFAULT_PERCENTILES. </para>
         </briefdescription>
@@ -64,15 +68,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="116" column="17" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="116" bodyend="-1"/>
+        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="117" column="17" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="117" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="structastrea_1_1trace_1_1Stats_1adb482c10bd09c231a623b3be71d6d20c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::Stats&lt; T &gt;::Stats</definition>
         <argsstring>()=default</argsstring>
         <name>Stats</name>
+        <qualifiedname>astrea::trace::Stats::Stats</qualifiedname>
         <briefdescription>
 <para>Default constructor for <ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats</ref>. </para>
         </briefdescription>
@@ -80,13 +85,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="49" column="5"/>
+        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="48" column="5"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1trace_1_1Stats_1ac7e0a8e2f2b5fbeb6ce6c70aaa67578e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::Stats&lt; T &gt;::Stats</definition>
         <argsstring>(const RiseSetArray &amp;risesets, const RiseSetMetric &amp;metric)=delete</argsstring>
         <name>Stats</name>
+        <qualifiedname>astrea::trace::Stats::Stats</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>risesets</declname>
@@ -121,13 +127,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="57" column="5"/>
+        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="56" column="5"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1trace_1_1Stats_1a1b108c7fe12455095ac08ff6d1dc7616" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::Stats&lt; T &gt;::Stats</definition>
         <argsstring>(std::vector&lt; T &gt; values)</argsstring>
         <name>Stats</name>
+        <qualifiedname>astrea::trace::Stats::Stats</qualifiedname>
         <param>
           <type>std::vector&lt; T &gt;</type>
           <declname>values</declname>
@@ -158,13 +165,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="65" column="5" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="65" bodyend="88"/>
+        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="64" column="5" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="64" bodyend="89"/>
       </memberdef>
-      <memberdef kind="function" id="structastrea_1_1trace_1_1Stats_1a1fe59a3c2242cae4aa87511a9653cbee" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structastrea_1_1trace_1_1Stats_1af8428cd430f592acfa1aa65b6262b92e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; std::string &gt;</type>
-        <definition>std::vector&lt;std::string&gt; astrea::trace::Stats&lt; T &gt;::to_string_vector</definition>
+        <definition>std::vector&lt; std::string &gt; astrea::trace::Stats&lt; T &gt;::to_string_vector</definition>
         <argsstring>() const</argsstring>
         <name>to_string_vector</name>
+        <qualifiedname>astrea::trace::Stats::to_string_vector</qualifiedname>
         <briefdescription>
 <para>Converts the statistics to a vector of strings for output. </para>
         </briefdescription>
@@ -175,13 +183,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="95" column="17" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="95" bodyend="109"/>
+        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="96" column="17" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="96" bodyend="110"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1trace_1_1Stats_1aaa8a7573c96844e92c56d406cd0c1f45" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>astrea::trace::Stats&lt; Time &gt;::Stats</definition>
         <argsstring>(const RiseSetArray &amp;risesets, const RiseSetMetric &amp;metric)</argsstring>
         <name>Stats</name>
+        <qualifiedname>astrea::trace::Stats::Stats</qualifiedname>
         <param>
           <type>const <ref refid="classastrea_1_1trace_1_1RiseSetArray" kindref="compound">RiseSetArray</ref> &amp;</type>
           <declname>risesets</declname>
@@ -233,13 +242,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="128" column="14" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="128" bodyend="142"/>
+        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="129" column="14" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="129" bodyend="143"/>
       </memberdef>
       <memberdef kind="function" id="structastrea_1_1trace_1_1Stats_1a4642d8f303b592714a60fd787d14f428" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; std::string &gt;</type>
         <definition>std::vector&lt; std::string &gt; astrea::trace::Stats&lt; Time &gt;::to_string_vector</definition>
         <argsstring>() const</argsstring>
         <name>to_string_vector</name>
+        <qualifiedname>astrea::trace::Stats::to_string_vector</qualifiedname>
         <briefdescription>
 <para>Specialization of the to_string_vector method for Time type, which formats the Time values as strings. </para>
         </briefdescription>
@@ -250,30 +260,31 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="150" column="26" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="150" bodyend="163"/>
+        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="151" column="26" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="151" bodyend="164"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-func">
+    </sectiondef>
+    <sectiondef kind="public-static-func">
       <memberdef kind="function" id="structastrea_1_1trace_1_1Stats_1ab29cd3fb1920d42f43d94a0b8e91d367" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>constexpr std::size_t</type>
         <definition>static constexpr std::size_t astrea::trace::Stats&lt; T &gt;::size</definition>
         <argsstring>()</argsstring>
         <name>size</name>
+        <qualifiedname>astrea::trace::Stats::size</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="111" column="34" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="111" bodyend="111"/>
+        <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="112" column="34" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="112" bodyend="112"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>The <ref refid="structastrea_1_1trace_1_1Stats" kindref="compound">Stats</ref> struct represents basic statistics (min, max, average, and percentiles) for a vector of values of type T. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="44" column="1" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="44" bodyend="117"/>
+    <location file="astrea/trace/trace/analysis/stats/Stats.hpp" line="43" column="1" bodyfile="astrea/trace/trace/analysis/stats/Stats.hpp" bodystart="43" bodyend="118"/>
     <listofallmembers>
       <member refid="structastrea_1_1trace_1_1Stats_1a4ebc8a5f3926e97b2d2b7154e3cc9e81" prot="public" virt="non-virtual"><scope>astrea::trace::Stats</scope><name>avg</name></member>
       <member refid="structastrea_1_1trace_1_1Stats_1aed0afb8a9b721a68cfa963a455cb7810" prot="public" virt="non-virtual"><scope>astrea::trace::Stats</scope><name>max</name></member>
@@ -284,7 +295,7 @@
       <member refid="structastrea_1_1trace_1_1Stats_1ac7e0a8e2f2b5fbeb6ce6c70aaa67578e" prot="public" virt="non-virtual"><scope>astrea::trace::Stats</scope><name>Stats</name></member>
       <member refid="structastrea_1_1trace_1_1Stats_1a1b108c7fe12455095ac08ff6d1dc7616" prot="public" virt="non-virtual"><scope>astrea::trace::Stats</scope><name>Stats</name></member>
       <member refid="structastrea_1_1trace_1_1Stats_1aaa8a7573c96844e92c56d406cd0c1f45" prot="public" virt="non-virtual"><scope>astrea::trace::Stats</scope><name>Stats</name></member>
-      <member refid="structastrea_1_1trace_1_1Stats_1a1fe59a3c2242cae4aa87511a9653cbee" prot="public" virt="non-virtual"><scope>astrea::trace::Stats</scope><name>to_string_vector</name></member>
+      <member refid="structastrea_1_1trace_1_1Stats_1af8428cd430f592acfa1aa65b6262b92e" prot="public" virt="non-virtual"><scope>astrea::trace::Stats</scope><name>to_string_vector</name></member>
       <member refid="structastrea_1_1trace_1_1Stats_1a4642d8f303b592714a60fd787d14f428" prot="public" virt="non-virtual"><scope>astrea::trace::Stats</scope><name>to_string_vector</name></member>
     </listofallmembers>
   </compounddef>

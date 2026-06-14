@@ -1,27 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="FieldOfView_8hpp" kind="file" language="C++">
     <compoundname>FieldOfView.hpp</compoundname>
     <includes local="no">numbers</includes>
     <includes local="no">unordered_map</includes>
     <includes local="no">units/units.hpp</includes>
     <includes local="no">astro/astro.fwd.hpp</includes>
-    <includes local="no">astro/frames/dynamic_frames.hpp</includes>
-    <includedby refid="FieldOfView_8cpp" local="no">astrea/trace/trace/platforms/sensors/fov/FieldOfView.cpp</includedby>
-    <includedby refid="CircularFieldOfView_8hpp" local="no">astrea/trace/trace/platforms/sensors/fov/instances/CircularFieldOfView.hpp</includedby>
-    <includedby refid="PolygonalFieldOfView_8hpp" local="no">astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp</includedby>
+    <includes local="no">astro/frames/definitions/dynamic_frames.hpp</includes>
     <includedby refid="Sensor_8hpp" local="no">astrea/trace/trace/platforms/sensors/Sensor.hpp</includedby>
+    <includedby refid="CircularFieldOfView_8hpp" local="no">astrea/trace/trace/platforms/sensors/fov/CircularFieldOfView.hpp</includedby>
+    <includedby refid="FieldOfView_8cpp" local="no">astrea/trace/trace/platforms/sensors/fov/FieldOfView.cpp</includedby>
+    <includedby refid="PolygonalFieldOfView_8hpp" local="no">astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp</includedby>
     <includedby refid="trace_8hpp" local="no">astrea/trace/trace/trace.hpp</includedby>
     <incdepgraph>
-      <node id="5">
-        <label>astro/astro.fwd.hpp</label>
-      </node>
-      <node id="2">
-        <label>numbers</label>
-      </node>
-      <node id="6">
-        <label>astro/frames/dynamic_frames.hpp</label>
-      </node>
       <node id="1">
         <label>astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp</label>
         <link refid="FieldOfView_8hpp"/>
@@ -36,95 +27,104 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="3">
-        <label>unordered_map</label>
+      <node id="5">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="6">
+        <label>astro/frames/definitions/dynamic_frames.hpp</label>
+      </node>
+      <node id="2">
+        <label>numbers</label>
       </node>
       <node id="4">
         <label>units/units.hpp</label>
       </node>
+      <node id="3">
+        <label>unordered_map</label>
+      </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="4">
-        <label>astrea/trace/trace/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp</label>
-        <link refid="PolygonalFieldOfView_8hpp_source"/>
-        <childnode refid="3" relation="include">
+      <node id="3">
+        <label>astrea/trace/trace/analysis/AccessAnalyzer.hpp</label>
+        <link refid="AccessAnalyzer_8hpp"/>
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="8">
+      <node id="7">
+        <label>astrea/trace/trace/io/output.hpp</label>
+        <link refid="output_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
         <label>astrea/trace/trace/platforms/ground/GroundArchitecture.hpp</label>
         <link refid="GroundArchitecture_8hpp"/>
-        <childnode refid="9" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="5">
-        <label>astrea/trace/trace/platforms/sensors/Sensor.hpp</label>
-        <link refid="Sensor_8hpp"/>
+        <label>astrea/trace/trace/platforms/ground/GroundStation.hpp</label>
+        <link refid="GroundStation_8hpp"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="7" relation="include">
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea/trace/trace/platforms/sensors/Antenna.hpp</label>
+        <link refid="Antenna_8hpp"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>astrea/trace/trace/platforms/sensors/Sensor.hpp</label>
+        <link refid="Sensor_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea/trace/trace/platforms/sensors/fov/CircularFieldOfView.hpp</label>
+        <link refid="CircularFieldOfView_8hpp_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp</label>
+        <link refid="FieldOfView_8hpp"/>
+        <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="11">
-        <label>astrea/trace/trace/platforms/vehicles/Viewer.hpp</label>
-        <link refid="Viewer_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>astrea/trace/trace/trace.hpp</label>
-        <link refid="trace_8hpp"/>
-      </node>
-      <node id="2">
-        <label>astrea/trace/trace/platforms/sensors/fov/instances/CircularFieldOfView.hpp</label>
-        <link refid="CircularFieldOfView_8hpp_source"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="1">
-        <label>astrea/trace/trace/platforms/sensors/fov/FieldOfView.hpp</label>
-        <link refid="FieldOfView_8hpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
+        <label>astrea/trace/trace/platforms/sensors/fov/PolygonalFieldOfView.hpp</label>
+        <link refid="PolygonalFieldOfView_8hpp_source"/>
         <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>astrea/trace/trace/platforms/ground/GroundStation.hpp</label>
-        <link refid="GroundStation_8hpp"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
         </childnode>
       </node>
       <node id="9">
-        <label>astrea/trace/trace/io/output.hpp</label>
-        <link refid="output_8hpp"/>
-        <childnode refid="3" relation="include">
+        <label>astrea/trace/trace/platforms/vehicles/Viewer.hpp</label>
+        <link refid="Viewer_8hpp"/>
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="6">
-        <label>astrea/trace/trace/analysis/AccessAnalyzer.hpp</label>
-        <link refid="AccessAnalyzer_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>astrea/trace/trace/platforms/sensors/Antenna.hpp</label>
-        <link refid="Antenna_8hpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
+      <node id="4">
+        <label>astrea/trace/trace/trace.hpp</label>
+        <link refid="trace_8hpp"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classastrea_1_1trace_1_1FieldOfView" prot="public">astrea::trace::FieldOfView</innerclass>
@@ -153,7 +153,7 @@ The GNU Lesser General Public License (LGPL)</para>
 <codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;units/units.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/astro.fwd.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/dynamic_frames.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/definitions/dynamic_frames.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>

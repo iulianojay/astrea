@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1HasDirectEquinoctialConversion" kind="concept">
+    <compoundname>astrea::astro::HasDirectEquinoctialConversion</compoundname>
+    <includes refid="concepts_8hpp" local="no">concepts.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>IsFrame auto</type>
+        <declname>frame</declname>
+        <defname>frame</defname>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename T, IsFrame auto frame&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1HasDirectEquinoctialConversion" kindref="compound">astrea::astro::HasDirectEquinoctialConversion</ref> =  requires(const T elements, const GravParam&amp; mu) {
+    { elements.to_equinoctial(mu) } -&gt; std::same_as&lt;Equinoctial&lt;frame&gt;&gt;;
+}    </initializer>
+    <briefdescription>
+<para>Concept to check if a type can be converted to Equinoctial elements. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type to check. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame type to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/types/concepts.hpp" line="71" column="1"/>
+  </compounddef>
+</doxygen>

@@ -4,19 +4,16 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**planetary\_bodies**](dir_18001f99c0231f827e3b1298618599da.md) **>** [**Sun**](dir_2bae9223f0a869dce705c7092e11bc6c.md) **>** [**Sun.hpp**](Sun_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**celestial\_bodies**](dir_b988f8927672605e377af1c3b431ef9b.md) **>** [**Sun**](dir_15326b41008c26450ba4ed6847b82388.md) **>** [**Sun.hpp**](Sun_8hpp.md)
 
 [Go to the source code of this file](Sun_8hpp_source.md)
 
 _Header file for the Sun class._ [More...](#detailed-description)
 
-* `#include <mp-units/systems/angular.h>`
-* `#include <mp-units/systems/iau.h>`
-* `#include <mp-units/systems/si.h>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/systems/CelestialBody.hpp>`
-* `#include <astro/types/typedefs.hpp>`
+* `#include <astro/systems/barycenters.hpp>`
 
 
 
@@ -36,14 +33,14 @@ _Header file for the Sun class._ [More...](#detailed-description)
 | ---: | :--- |
 | namespace | [**astrea**](namespaceastrea.md) <br> |
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
-| namespace | [**planetary\_bodies**](namespaceastrea_1_1astro_1_1planetary__bodies.md) <br> |
+| namespace | [**star**](namespaceastrea_1_1astro_1_1star.md) <br> |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Sun**](classastrea_1_1astro_1_1planetary__bodies_1_1Sun.md) <br>_Represents the_ [_**Sun**_](classastrea_1_1astro_1_1planetary__bodies_1_1Sun.md) _celestial body._ |
+| class | [**Sun**](structastrea_1_1astro_1_1star_1_1Sun.md) <br>_Represents the_ [_**Sun**_](structastrea_1_1astro_1_1star_1_1Sun.md) _celestial body._ |
 
 
 
@@ -127,5 +124,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/systems/planetary_bodies/Sun/Sun.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/systems/celestial_bodies/Sun/Sun.hpp`
 

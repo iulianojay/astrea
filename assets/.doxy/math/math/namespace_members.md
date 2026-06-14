@@ -11,6 +11,7 @@
 
 ## c
 
+* **clamp** ([**astrea::math**](namespaceastrea_1_1math.md))
 * **cosh** ([**astrea::math**](namespaceastrea_1_1math.md))
 * **cyl\_bessel\_j** ([**astrea::math**](namespaceastrea_1_1math.md))
 
@@ -45,11 +46,6 @@
 ## p
 
 * **pow** ([**astrea::math**](namespaceastrea_1_1math.md))
-
-
-## r
-
-* **requires** ([**astrea::math**](namespaceastrea_1_1math.md))
 
 
 ## s

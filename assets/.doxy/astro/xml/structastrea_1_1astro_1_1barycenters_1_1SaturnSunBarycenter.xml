@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1barycenters_1_1SaturnSunBarycenter" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>astrea::astro::barycenters::SaturnSunBarycenter</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1Barycenter" prot="public" virt="non-virtual">astrea::astro::Barycenter&lt;&quot;Saturn Barycenter&quot;, SolarSystemBarycenter &gt;</basecompoundref>
+    <basecompoundref refid="structastrea_1_1astro_1_1CelestialBodyTypePack" prot="public" virt="non-virtual">astrea::astro::CelestialBodyTypePack&lt; star::Sun, planets::Saturn &gt;</basecompoundref>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::Barycenter&lt;&quot;Saturn Barycenter&quot;, SolarSystemBarycenter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Barycenter"/>
+      </node>
+      <node id="3">
+        <label>astrea::astro::CelestialBodyTypePack&lt; star::Sun, planets::Saturn &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBodyTypePack"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::barycenters::SaturnSunBarycenter</label>
+        <link refid="structastrea_1_1astro_1_1barycenters_1_1SaturnSunBarycenter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>astrea::astro::Barycenter&lt;&quot;Saturn Barycenter&quot;, SolarSystemBarycenter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Barycenter"/>
+      </node>
+      <node id="3">
+        <label>astrea::astro::CelestialBodyTypePack&lt; star::Sun, planets::Saturn &gt;</label>
+        <link refid="structastrea_1_1astro_1_1CelestialBodyTypePack"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::barycenters::SaturnSunBarycenter</label>
+        <link refid="structastrea_1_1astro_1_1barycenters_1_1SaturnSunBarycenter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/systems/barycenters.hpp" line="68" column="17" bodyfile="astrea/astro/astro/systems/barycenters.hpp" bodystart="69" bodyend="70"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

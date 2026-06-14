@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -178,6 +178,53 @@ You're not viewing the latest version.
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
     
     
       <div class="md-header__source">
@@ -436,8 +483,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
     
     
     
@@ -488,34 +533,6 @@ You're not viewing the latest version.
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../getting_started/about/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    About Astrea
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -704,10 +721,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
-        
-      
     
     
     
@@ -786,34 +799,6 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../strongly_typed_frames/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Strongly Typed Frames
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../time_systems/" class="md-nav__link">
         
   
@@ -867,34 +852,6 @@ You're not viewing the latest version.
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../astrodynamic_systems/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Astrodynamic Systems
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -925,10 +882,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
             
   
   
@@ -946,8 +903,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_2_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1029,24 +986,6 @@ You're not viewing the latest version.
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Equations of Motion
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1063,197 +1002,6 @@ You're not viewing the latest version.
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#base-interface" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Base Interface
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#available-formulations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Available Formulations
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Available Formulations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cowells-method-cartesian" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cowell's Method (Cartesian)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#keplerian-variation-of-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Keplerian Variation of Parameters
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#equinoctial-variation-of-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Equinoctial Variation of Parameters
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#specialized-formulations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Specialized Formulations
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Specialized Formulations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#j2-mean-elements" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        J2 Mean Elements
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#two-body-problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Two-Body Problem
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#force-model-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Force Model Integration
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#state-transition-matrix" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        State Transition Matrix
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#numerical-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Numerical Integration
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#choosing-the-right-formulation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Choosing the Right Formulation
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Choosing the Right Formulation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#orbit-type-considerations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Orbit Type Considerations
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#application-specific-recommendations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Application-Specific Recommendations
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1323,7 +1071,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../vehicles.md" class="md-nav__link">
+      <a href="../vehicles/" class="md-nav__link">
         
   
   
@@ -1378,10 +1126,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
             
   
   
@@ -1399,8 +1147,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_7">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1417,14 +1165,14 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../frames/strongly_typed_frames/" class="md-nav__link">
+      <a href="../../frames/introduction/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Strongly Typed Frames
+    Introduction to Strongly Typed Frames
   
 
     
@@ -6515,210 +6263,67 @@ You're not viewing the latest version.
 
 
 <h1 id="equations-of-motion">Equations of Motion<a class="headerlink" href="#equations-of-motion" title="Permanent link">&para;</a></h1>
-<p>Astrea provides a flexible framework for implementing equations of motion in various orbital element representations. The system supports both Cartesian and classical orbital element formulations, enabling users to choose the most appropriate representation for their specific applications.</p>
-<h2 id="base-interface">Base Interface<a class="headerlink" href="#base-interface" title="Permanent link">&para;</a></h2>
-<p>All equations of motion inherit from the <code>EquationsOfMotion</code> base class:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;astro/propagation/equations_of_motion/EquationsOfMotion.hpp&gt;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">EquationsOfMotion</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">OrbitalElementPartials</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vehicle</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">StateTransitionMatrix</span><span class="w"> </span><span class="nf">compute_stm</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vehicle</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="nf">get_expected_set_id</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">};</span>
+<p>Astrea hosts it's own Integrator. While many numerical integrators exist with far more robust implementations, Astrea's integrator is designed specifically for directly integrating the strongly typed element sets that Astrea uses. This decision was made to avoid hidden numerical errors, rounding issues, or possible implicit unit conversions. As such, the integration process is less complete, and more difficult to develop, but also more transparent, and more extensible. For most users, integration will be no more difficult than that when using a more sophisticated integration library.</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Setup initial state</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">AstrodynamicsSystem</span><span class="w"> </span><span class="n">sys</span><span class="p">;</span><span class="w"> </span><span class="c1">// Defaults to Earth-Moon</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">epoch</span><span class="p">;</span><span class="w">        </span><span class="c1">// Defaults to J2000</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">const</span><span class="w"> </span><span class="n">Keplerian</span><span class="w"> </span><span class="nf">elements</span><span class="p">(</span><span class="mf">10000.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">one</span><span class="p">,</span><span class="w"> </span><span class="mf">45.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="w"> </span><span class="nf">state0</span><span class="p">(</span><span class="n">elements</span><span class="p">,</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span><span class="w"> </span><span class="n">sys</span><span class="p">);</span>
 </span></code></pre></div>
-<h2 id="available-formulations">Available Formulations<a class="headerlink" href="#available-formulations" title="Permanent link">&para;</a></h2>
-<h3 id="cowells-method-cartesian">Cowell's Method (Cartesian)<a class="headerlink" href="#cowells-method-cartesian" title="Permanent link">&para;</a></h3>
-<p>Direct integration of Cartesian position and velocity:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;astro/propagation/equations_of_motion/CowellsMethod.hpp&gt;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1">// Cartesian equations of motion</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">CowellsMethod</span><span class="w"> </span><span class="n">cartesianEOM</span><span class="p">;</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1">// Initial Cartesian state</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">Cartesian</span><span class="w"> </span><span class="nf">cartesianElements</span><span class="p">(</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="mf">7000.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w">     </span><span class="c1">// Position</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="o">/</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mf">7.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="o">/</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="o">/</span><span class="n">s</span><span class="w">   </span><span class="c1">// Velocity</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">);</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">State</span><span class="w"> </span><span class="nf">state</span><span class="p">(</span><span class="n">cartesianElements</span><span class="p">,</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span><span class="w"> </span><span class="n">system</span><span class="p">);</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">Vehicle</span><span class="w"> </span><span class="nf">spacecraft</span><span class="p">(</span><span class="n">satelliteParams</span><span class="p">);</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1">// Compute state derivatives</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">CartesianPartials</span><span class="w"> </span><span class="n">derivatives</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cartesianEOM</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">spacecraft</span><span class="p">);</span>
+<p>Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing for more flexibility and extensibility for users.</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Spacecraft</span><span class="w"> </span><span class="n">sat</span><span class="p">;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">Vehicle</span><span class="w"> </span><span class="nf">vehicle</span><span class="p">(</span><span class="n">sat</span><span class="p">);</span>
 </span></code></pre></div>
-<p><strong>Advantages:</strong>
-- Direct physical interpretation
-- No singularities for any orbit type
-- Simple force model application</p>
-<p><strong>Disadvantages:</strong>
-- Accumulates numerical errors for long-term integration
-- Less efficient for nearly circular orbits</p>
-<h3 id="keplerian-variation-of-parameters">Keplerian Variation of Parameters<a class="headerlink" href="#keplerian-variation-of-parameters" title="Permanent link">&para;</a></h3>
-<p>Integration using classical orbital elements:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;astro/propagation/equations_of_motion/KeplerianVop.hpp&gt;</span>
+<p>Equations of motion are the basis for dynamic progagation. This class is meant to provide a partial derivative for some given state and vehicle. Astrea provides several common EoMs, but users can create their own by inheriting from the EquationsOfMotion base class.</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">MyEquationsOfMotion</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">EquationsOfMotion</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1">// Keplerian variation of parameters</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">KeplerianVop</span><span class="w"> </span><span class="n">keplerianEOM</span><span class="p">;</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">// Initial Keplerian state</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">Keplerian</span><span class="w"> </span><span class="nf">keplerianElements</span><span class="p">(</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="mf">7000.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w">    </span><span class="c1">// Semi-major axis</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="mf">0.1</span><span class="p">,</span><span class="w">            </span><span class="c1">// Eccentricity  </span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="mf">45.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="p">,</span><span class="w">     </span><span class="c1">// Inclination</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="p">,</span><span class="w">      </span><span class="c1">// RAAN</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="p">,</span><span class="w">      </span><span class="c1">// Argument of perigee</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="w">       </span><span class="c1">// True anomaly</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">);</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">State</span><span class="w"> </span><span class="nf">state</span><span class="p">(</span><span class="n">keplerianElements</span><span class="p">,</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span><span class="w"> </span><span class="n">system</span><span class="p">);</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="c1">// Compute element rate derivatives</span>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="n">KeplerianPartials</span><span class="w"> </span><span class="n">derivatives</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keplerianEOM</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">spacecraft</span><span class="p">);</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="c1">// The expected set id is used to tell the integrator what type of elements to propagate</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="nf">get_expected_set_id</span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="c1">// The orbital element class provides a static helper to get the set id for a given element type</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">OrbitalElements</span><span class="o">::</span><span class="n">get_set_id</span><span class="o">&lt;</span><span class="n">Cartesian</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="p">};</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="n">OrbitalElementPartials</span><span class="w"> </span><span class="nf">compute_dynamics</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vehicle</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ForceVector</span><span class="o">&lt;</span><span class="n">frames</span><span class="o">::</span><span class="n">earth</span><span class="o">::</span><span class="n">icrf</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">perts</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ForceVector</span><span class="o">&lt;</span><span class="n">frames</span><span class="o">::</span><span class="n">earth</span><span class="o">::</span><span class="n">icrf</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">control</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="c1">// Extracting into the desired set can be convenient</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">AstrodynamicsSystem</span><span class="o">&amp;</span><span class="w"> </span><span class="n">system</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">get_system</span><span class="p">();</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">mu</span><span class="w">                     </span><span class="o">=</span><span class="w"> </span><span class="n">system</span><span class="p">.</span><span class="n">get_mu</span><span class="p">();</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Cartesian</span><span class="w"> </span><span class="n">cartesian</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">in_element_set</span><span class="o">&lt;</span><span class="n">Cartesian</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">        </span><span class="c1">// Pull out the pieces for simple two-body gravity</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cartesian</span><span class="p">.</span><span class="n">get_position</span><span class="p">();</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">norm</span><span class="p">();</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cartesian</span><span class="p">.</span><span class="n">get_velocity</span><span class="p">();</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">        </span><span class="c1">// Compute the partials</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">        </span><span class="n">CartesianPartial</span><span class="w"> </span><span class="n">partials</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">mu</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">partials</span><span class="p">;</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">    </span><span class="n">StateTransitionMatrix</span><span class="w"> </span><span class="nf">compute_stm</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">State</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vehicle</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vehicle</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">        </span><span class="c1">// For simple EoMs, the STM can be computed using the StateTransitionMatrix class</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">StateTransitionMatrix</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">vehicle</span><span class="p">);</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="p">};</span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="n">MyEquationsOfMotion</span><span class="w"> </span><span class="n">myEoms</span><span class="p">;</span>
 </span></code></pre></div>
-<p><strong>Advantages:</strong>
-- Excellent for nearly circular orbits
-- Physical meaningful parameters
-- Reduced numerical error growth</p>
-<p><strong>Disadvantages:</strong>
-- Singularities at zero eccentricity and inclination
-- Complex force transformation required</p>
-<h3 id="equinoctial-variation-of-parameters">Equinoctial Variation of Parameters<a class="headerlink" href="#equinoctial-variation-of-parameters" title="Permanent link">&para;</a></h3>
-<p>Singularity-free orbital element representation:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;astro/propagation/equations_of_motion/EquinoctialVop.hpp&gt;</span>
+<p>Propagation is done using a RKF78 method with a variable step size by default. This can be changed using the integrator setters. Propagation is done with the element representation that the equations of motion expect. This is to avoid unnecessary conversions during the integration process.</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Integrator</span><span class="w"> </span><span class="n">integrator</span><span class="p">;</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">// Modified Equinoctial elements (singularity-free)</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">EquinoctialVop</span><span class="w"> </span><span class="n">equinoctialEOM</span><span class="p">;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kt">bool</span><span class="w"> </span><span class="n">store</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">       </span><span class="c1">// Users can choose to store the state history during propagation, or not</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">Time</span><span class="w"> </span><span class="n">propTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">minutes</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// Propagation time can also be negative for backwards propagation.</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1">// Equinoctial elements automatically avoid singularities</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">Equinoctial</span><span class="w"> </span><span class="n">equinoctialElements</span><span class="p">(</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="mf">7000.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w">    </span><span class="c1">// Semi-parameter</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="mf">0.05</span><span class="p">,</span><span class="w">           </span><span class="c1">// f component (e*cos(w))</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="mf">0.05</span><span class="p">,</span><span class="w">           </span><span class="c1">// g component (e*sin(w))  </span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="mf">0.1</span><span class="p">,</span><span class="w">            </span><span class="c1">// h component (tan(i/2)*cos(Ω))</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="mf">0.1</span><span class="p">,</span><span class="w">            </span><span class="c1">// k component (tan(i/2)*sin(Ω))</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="w">       </span><span class="c1">// True longitude</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="p">);</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="n">State</span><span class="w"> </span><span class="nf">state</span><span class="p">(</span><span class="n">equinoctialElements</span><span class="p">,</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span><span class="w"> </span><span class="n">system</span><span class="p">);</span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="n">EquinoctialPartials</span><span class="w"> </span><span class="n">derivatives</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">equinoctialEOM</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">spacecraft</span><span class="p">);</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Propagating My Equations of Motion...&quot;</span><span class="p">;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">const</span><span class="w"> </span><span class="n">StateHistory</span><span class="w"> </span><span class="n">history</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">integrator</span><span class="p">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">state0</span><span class="p">,</span><span class="w"> </span><span class="n">propTime</span><span class="p">,</span><span class="w"> </span><span class="n">myEoms</span><span class="p">,</span><span class="w"> </span><span class="n">vehicle</span><span class="p">,</span><span class="w"> </span><span class="n">store</span><span class="p">);</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; Propagation Complete.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Func Evals: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">integrator</span><span class="p">.</span><span class="n">n_func_evals</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Final State: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">history</span><span class="p">.</span><span class="n">last</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </span></code></pre></div>
-<p><strong>Advantages:</strong>
-- No singularities for any orbit type
-- Efficient for all eccentricities and inclinations
-- Reduced numerical errors compared to Cartesian</p>
-<p><strong>Disadvantages:</strong>
-- Less intuitive physical interpretation
-- Complex element-to-Cartesian conversions</p>
-<h3 id="specialized-formulations">Specialized Formulations<a class="headerlink" href="#specialized-formulations" title="Permanent link">&para;</a></h3>
-<h4 id="j2-mean-elements">J2 Mean Elements<a class="headerlink" href="#j2-mean-elements" title="Permanent link">&para;</a></h4>
-<p>Analytical solution for J2 perturbations:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;astro/propagation/equations_of_motion/J2MeanVop.hpp&gt;</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">// J2-averaged equations of motion</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">J2MeanVop</span><span class="w"> </span><span class="n">j2meanEOM</span><span class="p">;</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">// Suitable for mean element propagation with J2 effects</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">Keplerian</span><span class="w"> </span><span class="n">meanElements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* initial elements */</span><span class="p">;</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">State</span><span class="w"> </span><span class="nf">meanState</span><span class="p">(</span><span class="n">meanElements</span><span class="p">,</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span><span class="w"> </span><span class="n">system</span><span class="p">);</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1">// Propagates mean elements with J2 secular effects</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">KeplerianPartials</span><span class="w"> </span><span class="n">meanDerivatives</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j2meanEOM</span><span class="p">(</span><span class="n">meanState</span><span class="p">,</span><span class="w"> </span><span class="n">spacecraft</span><span class="p">);</span>
-</span></code></pre></div>
-<h4 id="two-body-problem">Two-Body Problem<a class="headerlink" href="#two-body-problem" title="Permanent link">&para;</a></h4>
-<p>Pure Keplerian motion (no perturbations):</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;astro/propagation/equations_of_motion/TwoBody.hpp&gt;</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">// Unperturbed two-body motion</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">TwoBody</span><span class="w"> </span><span class="n">twoBodyEOM</span><span class="p">;</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1">// For baseline comparison or initial orbit design</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">CartesianPartials</span><span class="w"> </span><span class="n">keplerianDerivatives</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">twoBodyEOM</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">spacecraft</span><span class="p">);</span>
-</span></code></pre></div>
-<h2 id="force-model-integration">Force Model Integration<a class="headerlink" href="#force-model-integration" title="Permanent link">&para;</a></h2>
-<p>Equations of motion work seamlessly with force models:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// Create comprehensive force model</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">ForceModel</span><span class="w"> </span><span class="n">forces</span><span class="p">;</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">forces</span><span class="p">.</span><span class="n">add</span><span class="o">&lt;</span><span class="n">AtmosphericForce</span><span class="o">&gt;</span><span class="p">(</span><span class="n">densityModel</span><span class="p">);</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">forces</span><span class="p">.</span><span class="n">add</span><span class="o">&lt;</span><span class="n">OblatenessForce</span><span class="o">&gt;</span><span class="p">(</span><span class="n">system</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w">  </span><span class="c1">// J2 through J10</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">forces</span><span class="p">.</span><span class="n">add</span><span class="o">&lt;</span><span class="n">SolarRadiationPressure</span><span class="o">&gt;</span><span class="p">(</span><span class="n">spacecraft</span><span class="p">.</span><span class="n">get_ram_area</span><span class="p">());</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">forces</span><span class="p">.</span><span class="n">add</span><span class="o">&lt;</span><span class="n">NBodyForce</span><span class="o">&gt;</span><span class="p">(</span><span class="n">system</span><span class="p">.</span><span class="n">get_secondary_bodies</span><span class="p">());</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1">// Force model automatically integrates with any EOM formulation</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">CowellsMethod</span><span class="w"> </span><span class="nf">eom</span><span class="p">(</span><span class="n">forces</span><span class="p">);</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">CartesianPartials</span><span class="w"> </span><span class="n">derivatives</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eom</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">spacecraft</span><span class="p">);</span>
-</span></code></pre></div>
-<h2 id="state-transition-matrix">State Transition Matrix<a class="headerlink" href="#state-transition-matrix" title="Permanent link">&para;</a></h2>
-<p>All formulations support state transition matrix computation:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// Compute state transition matrix for uncertainty propagation</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">StateTransitionMatrix</span><span class="w"> </span><span class="n">stm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eom</span><span class="p">.</span><span class="n">compute_stm</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">spacecraft</span><span class="p">);</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1">// Use for covariance propagation</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">CovarianceMatrix</span><span class="w"> </span><span class="n">propagatedCovariance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stm</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">initialCovariance</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">stm</span><span class="p">.</span><span class="n">transpose</span><span class="p">();</span>
-</span></code></pre></div>
-<h2 id="numerical-integration">Numerical Integration<a class="headerlink" href="#numerical-integration" title="Permanent link">&para;</a></h2>
-<p>Equations of motion interface with numerical integrators:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;astro/propagation/numerical/RungeKutta.hpp&gt;</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1">// Set up integration</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">RungeKutta4</span><span class="w"> </span><span class="n">integrator</span><span class="p">;</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">TimeSpan</span><span class="w"> </span><span class="n">propagationTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">24.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">hour</span><span class="p">;</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1">// Propagate using chosen equations of motion</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">State</span><span class="w"> </span><span class="n">finalState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">integrator</span><span class="p">.</span><span class="n">propagate</span><span class="p">(</span><span class="n">initialState</span><span class="p">,</span><span class="w"> </span><span class="n">spacecraft</span><span class="p">,</span><span class="w"> </span><span class="n">eom</span><span class="p">,</span><span class="w"> </span><span class="n">propagationTime</span><span class="p">);</span>
-</span></code></pre></div>
-<h2 id="choosing-the-right-formulation">Choosing the Right Formulation<a class="headerlink" href="#choosing-the-right-formulation" title="Permanent link">&para;</a></h2>
-<h3 id="orbit-type-considerations">Orbit Type Considerations<a class="headerlink" href="#orbit-type-considerations" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Orbit Type</th>
-<th>Recommended EOM</th>
-<th>Reason</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Circular</td>
-<td>Equinoctial VOP</td>
-<td>No eccentricity singularities</td>
-</tr>
-<tr>
-<td>Elliptical</td>
-<td>Keplerian VOP</td>
-<td>Physical element interpretation</td>
-</tr>
-<tr>
-<td>Highly Eccentric</td>
-<td>Cartesian</td>
-<td>Avoids VOP numerical issues</td>
-</tr>
-<tr>
-<td>Inclined</td>
-<td>Equinoctial VOP</td>
-<td>No inclination singularities</td>
-</tr>
-<tr>
-<td>Equatorial</td>
-<td>Equinoctial VOP</td>
-<td>No RAAN singularities</td>
-</tr>
-<tr>
-<td>Transfer Orbits</td>
-<td>Cartesian</td>
-<td>Handles large eccentricity changes</td>
-</tr>
-</tbody>
-</table>
-<h3 id="application-specific-recommendations">Application-Specific Recommendations<a class="headerlink" href="#application-specific-recommendations" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Mission Design</strong>: Keplerian VOP for intuitive element changes</li>
-<li><strong>Precise Propagation</strong>: Cartesian for highest accuracy</li>
-<li><strong>Long-Term Analysis</strong>: Equinoctial VOP for numerical stability</li>
-<li><strong>Mean Element Propagation</strong>: J2 Mean VOP for averaged motion</li>
-<li><strong>Orbit Determination</strong>: Cartesian for observation modeling</li>
-</ul>
-<p>This flexible equations of motion framework enables users to select the most appropriate formulation for their specific astrodynamics applications while maintaining consistent interfaces and type safety throughout the system.</p>
 
 
 

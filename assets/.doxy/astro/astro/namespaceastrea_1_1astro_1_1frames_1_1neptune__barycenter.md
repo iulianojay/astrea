@@ -25,14 +25,24 @@
 
 
 
-
-
-## Public Types
+## Classes
 
 | Type | Name |
 | ---: | :--- |
-| typedef InertialFrame&lt; CelestialBodyId::NEPTUNE\_BARYCENTER, FrameAxis::ICRF &gt; | [**icrf**](#typedef-icrf)  <br> |
-| typedef InertialFrame&lt; CelestialBodyId::NEPTUNE\_BARYCENTER, FrameAxis::J2000 &gt; | [**j2000**](#typedef-j2000)  <br> |
+| struct | [**icrf**](structastrea_1_1astro_1_1frames_1_1neptune__barycenter_1_1icrf.md) <br> |
+| struct | [**j2000**](structastrea_1_1astro_1_1frames_1_1neptune__barycenter_1_1j2000.md) <br> |
+
+
+
+
+
+
+## Public Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  [**astrea::astro::frames::neptune\_barycenter::icrf**](structastrea_1_1astro_1_1frames_1_1neptune__barycenter_1_1icrf.md) | [**icrf**](#variable-icrf)  <br> |
+|  [**astrea::astro::frames::neptune\_barycenter::j2000**](structastrea_1_1astro_1_1frames_1_1neptune__barycenter_1_1j2000.md) | [**j2000**](#variable-j2000)  <br> |
 
 
 
@@ -77,19 +87,15 @@
 
 
 
+## Public Attributes Documentation
 
 
 
 
-## Public Types Documentation
-
-
-
-
-### typedef icrf 
+### variable icrf 
 
 ```C++
-using astrea::astro::frames::neptune_barycenter::icrf = typedef InertialFrame<CelestialBodyId::NEPTUNE_BARYCENTER, FrameAxis::ICRF>;
+astrea::astro::frames::neptune_barycenter::icrf astrea::astro::frames::neptune_barycenter::icrf;
 ```
 
 
@@ -99,10 +105,10 @@ using astrea::astro::frames::neptune_barycenter::icrf = typedef InertialFrame<Ce
 
 
 
-### typedef j2000 
+### variable j2000 
 
 ```C++
-using astrea::astro::frames::neptune_barycenter::j2000 = typedef InertialFrame<CelestialBodyId::NEPTUNE_BARYCENTER, FrameAxis::J2000>;
+astrea::astro::frames::neptune_barycenter::j2000 astrea::astro::frames::neptune_barycenter::j2000;
 ```
 
 
@@ -111,5 +117,5 @@ using astrea::astro::frames::neptune_barycenter::j2000 = typedef InertialFrame<C
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp`
 

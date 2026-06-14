@@ -13,9 +13,6 @@
 * `#include <astro/platforms/vehicles/NullVehicle.hpp>`
 * `#include <mp-units/systems/si.h>`
 * `#include <units/units.hpp>`
-* `#include <astro/frames/CartesianVector.hpp>`
-* `#include <astro/frames/FrameReference.hpp>`
-* `#include <astro/time/Date.hpp>`
 
 
 

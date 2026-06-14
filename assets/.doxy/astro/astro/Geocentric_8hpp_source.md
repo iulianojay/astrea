@@ -2,7 +2,7 @@
 
 # File Geocentric.hpp
 
-[**File List**](files.md) **>** [**angular\_elements**](dir_8f2f7499654791f4fc4240f01fb9baf6.md) **>** [**instances**](dir_1a50007be9f0149ab221abcea88ff37f.md) **>** [**Geocentric.hpp**](Geocentric_8hpp.md)
+[**File List**](files.md) **>** [**angular\_elements**](dir_8f2f7499654791f4fc4240f01fb9baf6.md) **>** [**Geocentric.hpp**](Geocentric_8hpp.md)
 
 [Go to the documentation of this file](Geocentric_8hpp.md)
 
@@ -18,20 +18,28 @@
 
 // astro
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_concepts.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
 
+template <IsCelestialBody auto _body_>
 class Geocentric {
 
-    friend std::ostream& operator<<(std::ostream&, Geocentric const&);
+    template <IsCelestialBody auto body>
+    friend std::ostream& operator<<(std::ostream&, Geocentric<body> const&);
 
   public:
+    static constexpr auto body          = _body_; 
+    static constexpr auto _icrf_frame_  = make_frame(_body_, axes::icrf); 
+    static constexpr auto _fixed_frame_ = get_body_fixed_frame<_body_>(); 
+
     Geocentric(Unitless scale = 0.0 * astrea::detail::unitless) :
         _latitude(scale * astrea::detail::angle_unit),
         _longitude(scale * astrea::detail::angle_unit),
@@ -46,54 +54,54 @@ class Geocentric {
     {
     }
 
-    Geocentric(const RadiusVector<frames::earth::icrf>& r, const Date& date, const CelestialBody* parent);
+    template <auto _frame_>
+        requires(equivalent(_frame_, make_frame(_body_, axes::icrf)))
+    Geocentric(const RadiusVector<_frame_>& r, const Date& date);
 
-    Geocentric(const RadiusVector<frames::earth::earth_fixed>& r, const CelestialBody* parent);
+    Geocentric(const RadiusVector<_fixed_frame_>& r);
 
     template <IsOrbitalElements T>
-    Geocentric(const T& elements, const AstrodynamicsSystem& sys, const Date& date)
+    Geocentric(const T& elements, const Date& date)
     {
-        *this = Geocentric(
-            Cartesian(elements, sys.get_mu()).get_position().template in_frame<frames::earth::earth_fixed>(date),
-            sys.get_central_body().get()
-        );
+        static const GravParam mu = get_mu<_body_>();
+        *this = Geocentric<_body_>(Cartesian<T::frame>(elements, mu).get_position().template in_frame<_fixed_frame_>(date));
     }
 
-    Geocentric(const Geocentric&);
+    Geocentric(const Geocentric<_body_>&);
 
-    Geocentric(Geocentric&&) noexcept;
+    Geocentric(Geocentric<_body_>&&) noexcept;
 
-    Geocentric& operator=(Geocentric&&) noexcept;
+    Geocentric<_body_>& operator=(Geocentric<_body_>&&) noexcept;
 
-    Geocentric& operator=(const Geocentric&);
+    Geocentric<_body_>& operator=(const Geocentric<_body_>&);
 
     ~Geocentric() = default;
 
-    bool operator==(const Geocentric& other) const;
+    bool operator==(const Geocentric<_body_>& other) const;
 
-    bool operator!=(const Geocentric& other) const;
+    bool operator!=(const Geocentric<_body_>& other) const;
 
-    Geocentric operator+(const Geocentric& other) const;
+    Geocentric<_body_> operator+(const Geocentric<_body_>& other) const;
 
-    Geocentric& operator+=(const Geocentric& other);
+    Geocentric<_body_>& operator+=(const Geocentric<_body_>& other);
 
-    Geocentric operator-(const Geocentric& other) const;
+    Geocentric<_body_> operator-(const Geocentric<_body_>& other) const;
 
-    Geocentric& operator-=(const Geocentric& other);
+    Geocentric<_body_>& operator-=(const Geocentric<_body_>& other);
 
-    Geocentric operator*(const Unitless& multiplier) const;
+    Geocentric<_body_> operator*(const Unitless& multiplier) const;
 
-    Geocentric& operator*=(const Unitless& multiplier);
+    Geocentric<_body_>& operator*=(const Unitless& multiplier);
 
-    std::vector<Unitless> operator/(const Geocentric& other) const;
+    std::vector<Unitless> operator/(const Geocentric<_body_>& other) const;
 
-    Geocentric operator/(const Unitless& divisor) const;
+    Geocentric<_body_> operator/(const Unitless& divisor) const;
 
-    Geocentric& operator/=(const Unitless& divisor);
+    Geocentric<_body_>& operator/=(const Unitless& divisor);
 
-    RadiusVector<frames::earth::earth_fixed> get_position(const CelestialBody* parent) const;
+    RadiusVector<_fixed_frame_> get_position() const;
 
-    RadiusVector<frames::earth::icrf> get_position(const Date& date, const CelestialBody* parent) const;
+    RadiusVector<_icrf_frame_> get_position(const Date& date) const;
 
     const Angle& get_latitude() const { return _latitude; }
 
@@ -101,7 +109,8 @@ class Geocentric {
 
     const Distance& get_altitude() const { return _altitude; }
 
-    Geocentric interpolate(const Time& thisTime, const Time& otherTime, const Geocentric& other, const Time& targetTime) const;
+    Geocentric<_body_>
+        interpolate(const Time& thisTime, const Time& otherTime, const Geocentric<_body_>& other, const Time& targetTime) const;
 
   private:
     Angle _latitude;    
@@ -109,17 +118,52 @@ class Geocentric {
     Distance _altitude; 
 };
 
-Distance calculate_geocentric_radius(const Angle& lat, const Distance& rEquitorial, const Distance& rPolar);
+template <IsCelestialBody auto body>
+Distance calculate_geocentric_radius(const Angle& lat)
+{
+    const Distance& a       = get_equitorial_radius<body>();
+    const Distance& b       = get_polar_radius<body>();
+    const Unitless cosLatSq = pow<2>(cos(lat));
+    const Unitless sinLatSq = pow<2>(sin(lat));
+    return sqrt((pow<4>(a) * cosLatSq + pow<4>(b) * sinLatSq) / (pow<2>(a) * cosLatSq + pow<2>(b) * sinLatSq));
+}
 
-std::tuple<Angle, Angle, Distance>
-    convert_earth_fixed_to_geocentric(const RadiusVector<frames::earth::earth_fixed>& rEcef, const Distance& rEquitorial, const Distance& rPolar);
+template <IsFrame auto frame>
+    requires(IsBodyFixedFrame<decltype(frame)>)
+std::tuple<Angle, Angle, Distance> convert_body_fixed_to_geocentric(const RadiusVector<frame>& rEcef)
+{
+    const Distance& x = rEcef[0];
+    const Distance& y = rEcef[1];
+    const Distance& z = rEcef[2];
+    const Distance R  = rEcef.norm();
+
+    const Distance rho = sqrt(x * x + y * y);
+
+    const Angle longitude = atan2(y, x);
+    const Angle latitude  = atan2(z, rho);
+
+    const Distance rGeocentric = calculate_geocentric_radius<decltype(frame)::origin>(latitude);
+    const Distance altitude    = R - rGeocentric;
+
+    return { latitude, longitude, altitude };
+}
 
 
-RadiusVector<frames::earth::earth_fixed>
-    convert_geocentric_to_earth_fixed(const Angle& lat, const Angle& lon, const Distance& alt, const Distance& rEquitorial, const Distance& rPolar);
+template <IsFrame auto _frame_>
+    requires(IsBodyFixedFrame<decltype(_frame_)>)
+RadiusVector<_frame_> convert_geocentric_to_body_fixed(const Angle& lat, const Angle& lon, const Distance& alt)
+{
+    const Distance rGeocentric = calculate_geocentric_radius<decltype(_frame_)::origin>(lat);
+    const Distance R           = rGeocentric + alt;
+
+    // Ecef coordinates
+    return { R * cos(lat) * cos(lon), R * cos(lat) * sin(lon), R * sin(lat) };
+}
 
 } // namespace astro
 } // namespace astrea
+
+#include <astro/state/angular_elements/Geocentric.ipp>
 ```
 
 

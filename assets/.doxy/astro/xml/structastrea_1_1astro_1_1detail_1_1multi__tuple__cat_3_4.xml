@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_4" kind="struct" language="C++" prot="public">
+    <compoundname>astrea::astro::detail::multi_tuple_cat&lt;&gt;</compoundname>
+    <templateparamlist>
+    </templateparamlist>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_4_1acc18fedbfb69515bcf594469e0f65434" prot="public" static="no">
+        <type>std::tuple&lt;&gt;</type>
+        <definition>using astrea::astro::detail::multi_tuple_cat&lt;&gt;::type =  std::tuple&lt;&gt;</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <qualifiedname>astrea::astro::detail::multi_tuple_cat&lt;&gt;::type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="76" column="5" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/frames/definitions/frame_registry.hpp" line="75" column="1" bodyfile="astrea/astro/astro/frames/definitions/frame_registry.hpp" bodystart="75" bodyend="77"/>
+    <listofallmembers>
+      <member refid="structastrea_1_1astro_1_1detail_1_1multi__tuple__cat_3_4_1acc18fedbfb69515bcf594469e0f65434" prot="public" virt="non-virtual"><scope>astrea::astro::detail::multi_tuple_cat&lt;&gt;</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

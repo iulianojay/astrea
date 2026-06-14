@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structastrea_1_1astro_1_1frames_1_1neptune__sun__barycenter_1_1nss" kind="struct" language="C++" prot="public" final="yes">
+    <compoundname>astrea::astro::frames::neptune_sun_barycenter::nss</compoundname>
+    <basecompoundref refid="structastrea_1_1astro_1_1SynodicFrame" prot="public" virt="non-virtual">astrea::astro::SynodicFrame&lt;&quot;Neptune-Sun Synodic Frame&quot;, barycenters::NeptuneSunBarycenter, planets::Neptune, star::Sun &gt;</basecompoundref>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>astrea::astro::Frame&lt; _name_, _origin_, SynodicAxis&lt; _primary_, _secondary_ &gt;{}&gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="2">
+        <label>astrea::astro::SynodicFrame&lt;&quot;Neptune-Sun Synodic Frame&quot;, barycenters::NeptuneSunBarycenter, planets::Neptune, star::Sun &gt;</label>
+        <link refid="structastrea_1_1astro_1_1SynodicFrame"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea::astro::detail::SynodicFrameBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1SynodicFrameBase"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::frames::neptune_sun_barycenter::nss</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1neptune__sun__barycenter_1_1nss"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>astrea::astro::Frame&lt; _name_, _origin_, SynodicAxis&lt; _primary_, _secondary_ &gt;{}&gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="2">
+        <label>astrea::astro::SynodicFrame&lt;&quot;Neptune-Sun Synodic Frame&quot;, barycenters::NeptuneSunBarycenter, planets::Neptune, star::Sun &gt;</label>
+        <link refid="structastrea_1_1astro_1_1SynodicFrame"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea::astro::detail::SynodicFrameBase</label>
+        <link refid="structastrea_1_1astro_1_1detail_1_1SynodicFrameBase"/>
+      </node>
+      <node id="1">
+        <label>astrea::astro::frames::neptune_sun_barycenter::nss</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1neptune__sun__barycenter_1_1nss"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="astrea/astro/astro/frames/definitions/synodic_frames.hpp" line="77" column="17" bodyfile="astrea/astro/astro/frames/definitions/synodic_frames.hpp" bodystart="78" bodyend="79"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

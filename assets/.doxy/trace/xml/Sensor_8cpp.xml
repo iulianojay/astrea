@@ -1,60 +1,33 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="Sensor_8cpp" kind="file" language="C++">
     <compoundname>Sensor.cpp</compoundname>
     <includes refid="Sensor_8hpp" local="no">trace/platforms/sensors/Sensor.hpp</includes>
-    <includes local="no">astro/frames/CartesianVector.hpp</includes>
-    <includes local="no">astro/frames/FrameReference.hpp</includes>
-    <includes local="no">astro/frames/dynamic_frames.hpp</includes>
-    <includes local="no">astro/frames/frames.hpp</includes>
+    <includes local="no">astro/frames/definitions.hpp</includes>
+    <includes local="no">astro/frames/definitions/dynamic_frames.hpp</includes>
+    <includes local="no">astro/frames/framework/CartesianVector.hpp</includes>
     <incdepgraph>
-      <node id="15">
-        <label>trace/trace.fwd.hpp</label>
-        <link refid="trace_8fwd_8hpp"/>
-      </node>
-      <node id="21">
-        <label>functional</label>
+      <node id="7">
+        <label>trace/platforms/AccessObject.hpp</label>
+        <link refid="AccessObject_8hpp"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>astrea/trace/trace/platforms/sensors/Sensor.cpp</label>
         <link refid="Sensor_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
         <childnode refid="27" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
         <childnode refid="28" relation="include">
         </childnode>
-      </node>
-      <node id="4">
-        <label>astro/astro.fwd.hpp</label>
-      </node>
-      <node id="23">
-        <label>numbers</label>
-      </node>
-      <node id="19">
-        <label>cstdint</label>
-      </node>
-      <node id="6">
-        <label>astro/types/typedefs.hpp</label>
-      </node>
-      <node id="16">
-        <label>trace/types/enums.hpp</label>
-        <link refid="enums_8hpp"/>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>string</label>
       </node>
       <node id="2">
         <label>trace/platforms/sensors/Sensor.hpp</label>
@@ -69,11 +42,35 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
+        <link refid="FieldOfView_8hpp"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>trace/risesets/AccessArray.hpp</label>
+        <link refid="AccessArray_8hpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
         </childnode>
       </node>
       <node id="10">
@@ -85,66 +82,10 @@
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="25">
-        <label>astro/frames/dynamic_frames.hpp</label>
-      </node>
-      <node id="20">
-        <label>trace/types/IdPair.hpp</label>
-        <link refid="IdPair_8hpp_source"/>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="22">
-        <label>trace/platforms/sensors/fov/FieldOfView.hpp</label>
-        <link refid="FieldOfView_8hpp"/>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>vector</label>
-      </node>
-      <node id="8">
-        <label>trace/risesets/AccessArray.hpp</label>
-        <link refid="AccessArray_8hpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>array</label>
-      </node>
-      <node id="18">
-        <label>trace/types/typedefs.hpp</label>
-        <link refid="typedefs_8hpp"/>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="27">
-        <label>astro/frames/FrameReference.hpp</label>
-      </node>
-      <node id="24">
-        <label>unordered_map</label>
-      </node>
-      <node id="5">
-        <label>astro/platforms/Payload.hpp</label>
       </node>
       <node id="13">
         <label>trace/risesets/riseset_utils.hpp</label>
@@ -156,30 +97,88 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="28">
-        <label>astro/frames/frames.hpp</label>
-      </node>
-      <node id="9">
-        <label>gtl/btree.hpp</label>
-      </node>
-      <node id="26">
-        <label>astro/frames/CartesianVector.hpp</label>
-      </node>
-      <node id="7">
-        <label>trace/platforms/AccessObject.hpp</label>
-        <link refid="AccessObject_8hpp"/>
-        <childnode refid="3" relation="include">
+      <node id="15">
+        <label>trace/trace.fwd.hpp</label>
+        <link refid="trace_8fwd_8hpp"/>
+        <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+      </node>
+      <node id="21">
+        <label>trace/types/IdPair.hpp</label>
+        <link refid="IdPair_8hpp_source"/>
+        <childnode refid="20" relation="include">
         </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>trace/types/enums.hpp</label>
+        <link refid="enums_8hpp"/>
         <childnode refid="18" relation="include">
         </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>trace/types/typedefs.hpp</label>
+        <link refid="typedefs_8hpp"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>array</label>
+      </node>
+      <node id="4">
+        <label>astro/astro.fwd.hpp</label>
+      </node>
+      <node id="27">
+        <label>astro/frames/definitions.hpp</label>
+      </node>
+      <node id="26">
+        <label>astro/frames/definitions/dynamic_frames.hpp</label>
+      </node>
+      <node id="28">
+        <label>astro/frames/framework/CartesianVector.hpp</label>
+      </node>
+      <node id="5">
+        <label>astro/platforms/Payload.hpp</label>
+      </node>
+      <node id="16">
+        <label>astro/systems/system_concepts.hpp</label>
+      </node>
+      <node id="6">
+        <label>astro/types/typedefs.hpp</label>
+      </node>
+      <node id="20">
+        <label>cstdint</label>
+      </node>
+      <node id="22">
+        <label>functional</label>
+      </node>
+      <node id="9">
+        <label>gtl/phmap.hpp</label>
+      </node>
+      <node id="3">
+        <label>memory</label>
+      </node>
+      <node id="24">
+        <label>numbers</label>
+      </node>
+      <node id="14">
+        <label>string</label>
       </node>
       <node id="12">
         <label>units/units.hpp</label>
       </node>
-      <node id="3">
-        <label>memory</label>
+      <node id="25">
+        <label>unordered_map</label>
+      </node>
+      <node id="11">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
@@ -204,25 +203,26 @@
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="Sensor_8hpp" kindref="compound">trace/platforms/sensors/Sensor.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/CartesianVector.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/FrameReference.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/dynamic_frames.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/frames.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Sensor_1a9b2673a05cb5a4e753401d393c0787ef" kindref="member">Sensor::contains</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::RadiusVector&lt;astro::frames::earth::icrf&gt;&amp;<sp/>sensor2target,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::Date&amp;<sp/>date)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
-<codeline lineno="25"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!_parameters.get_fov())<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>No<sp/>FOV<sp/>means<sp/>no<sp/>access</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::frames::dynamic::ric<sp/>frame(_parent);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Convert<sp/>to<sp/>RIC<sp/>frame<sp/>of<sp/>parent<sp/>object</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::RadiusVector&lt;astro::frames::earth::icrf&gt;<sp/>boresightEci<sp/>=<sp/></highlight><highlight class="comment">//<sp/>Rotate<sp/>boresight<sp/>from<sp/>RIC<sp/>to<sp/>ECI<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frame.rotate_out_of_this_frame(_parameters.get_boresight(),<sp/>date);<sp/></highlight><highlight class="comment">//<sp/>Don&apos;t<sp/>convert<sp/>to<sp/>avoid<sp/>re-centering<sp/>of<sp/>boresight</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parameters.get_fov()-&gt;contains(boresightEci,<sp/>sensor2target);<sp/></highlight><highlight class="comment">//<sp/>Check<sp/>if<sp/>the<sp/>target<sp/>is<sp/>within<sp/>the<sp/>FOV</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/definitions.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/definitions/dynamic_frames.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;astro/frames/framework/CartesianVector.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">trace<sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classastrea_1_1trace_1_1Sensor_1a9b2673a05cb5a4e753401d393c0787ef" kindref="member">Sensor::contains</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::RadiusVector&lt;astro::frames::earth::icrf&gt;&amp;<sp/>sensor2target,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::Date&amp;<sp/>date)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="24"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!_parameters.get_fov())<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}<sp/></highlight><highlight class="comment">//<sp/>No<sp/>FOV<sp/>means<sp/>no<sp/>access</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::RadiusVector&lt;astro::frames::earth::icrf&gt;<sp/>parentPosition<sp/><sp/><sp/>=<sp/>get_parent()-&gt;get_position(date);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::VelocityVector&lt;astro::frames::earth::icrf&gt;<sp/>parentVelocity<sp/>=<sp/>get_parent()-&gt;get_velocity(date);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>frame<sp/>=<sp/>astro::frames::dynamic::ric.instantaneous(parentPosition,<sp/>parentVelocity);<sp/></highlight><highlight class="comment">//<sp/>RIC<sp/>frame<sp/>of<sp/>parent</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>astro::RadiusVector&lt;astro::frames::earth::icrf&gt;<sp/>boresightEci<sp/>=<sp/></highlight><highlight class="comment">//<sp/>Rotate<sp/>boresight<sp/>from<sp/>RIC<sp/>to<sp/>ECI<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frame.rotate_out_of_this_frame(_parameters.get_boresight(),<sp/>date);<sp/></highlight><highlight class="comment">//<sp/>Don&apos;t<sp/>convert<sp/>to<sp/>avoid<sp/>re-centering<sp/>of<sp/>boresight</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_parameters.get_fov()-&gt;contains(boresightEci,<sp/>sensor2target);<sp/></highlight><highlight class="comment">//<sp/>Check<sp/>if<sp/>the<sp/>target<sp/>is<sp/>within<sp/>the<sp/>FOV</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>trace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
     </programlisting>
     <location file="astrea/trace/trace/platforms/sensors/Sensor.cpp"/>
   </compounddef>

@@ -1,10 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_2552b27872b33d254ad75ac21654b66a" kind="dir">
     <compoundname>astrea/astro/astro/platforms</compoundname>
     <innerdir refid="dir_4e8e97ad8c5ab106f4208fffe0057899">astrea/astro/astro/platforms/space</innerdir>
     <innerdir refid="dir_c4651317ac77989e0950f932d02daf86">astrea/astro/astro/platforms/thrusters</innerdir>
     <innerdir refid="dir_6209fec1d31cfd277683fcd634983a45">astrea/astro/astro/platforms/vehicles</innerdir>
+    <innerfile refid="InertiaTensor_8hpp">InertiaTensor.hpp</innerfile>
     <innerfile refid="Payload_8hpp">Payload.hpp</innerfile>
     <innerfile refid="PayloadPlatform_8hpp">PayloadPlatform.hpp</innerfile>
     <innerfile refid="Vehicle_8cpp">Vehicle.cpp</innerfile>

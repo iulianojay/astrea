@@ -14,7 +14,7 @@ _Viewer class for managing access and sensors on a spacecraft._ [More...](#detai
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/platforms/vehicles/Spacecraft.hpp>`
 * `#include <astro/state/State.hpp>`
-* `#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>`
+* `#include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>`
 * `#include <astro/time/Date.hpp>`
 * `#include <astro/types/typedefs.hpp>`
 * `#include <trace/platforms/AccessObject.hpp>`

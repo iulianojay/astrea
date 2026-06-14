@@ -12,8 +12,8 @@ _Thruster class definition for astrea access platform._ [More...](#detailed-desc
 
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/dynamic_frames.hpp>`
-* `#include <astro/frames/frames.hpp>`
+* `#include <astro/frames/definitions.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames.hpp>`
 * `#include <astro/platforms/Payload.hpp>`
 * `#include <astro/types/typedefs.hpp>`
 

@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -174,6 +174,53 @@ You're not viewing the latest version.
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
     
     
       <div class="md-header__source">
@@ -430,8 +477,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
     
     
     
@@ -482,34 +527,6 @@ You're not viewing the latest version.
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting_started/about/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    About Astrea
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -691,10 +708,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
-        
-      
     
     
     
@@ -773,34 +786,6 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/strongly_typed_frames/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Strongly Typed Frames
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../examples/fundamentals/time_systems/" class="md-nav__link">
         
   
@@ -856,34 +841,6 @@ You're not viewing the latest version.
   
   
   
-    <li class="md-nav__item">
-      <a href="../../examples/fundamentals/astrodynamic_systems/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Astrodynamic Systems
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -910,10 +867,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
             
   
   
@@ -931,8 +888,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1089,7 +1046,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/vehicles.md" class="md-nav__link">
+      <a href="../../examples/fundamentals/propagation/vehicles/" class="md-nav__link">
         
   
   
@@ -1144,10 +1101,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
             
   
   
@@ -1165,8 +1122,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_7">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1183,14 +1140,14 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../examples/fundamentals/frames/strongly_typed_frames/" class="md-nav__link">
+      <a href="../../examples/fundamentals/frames/introduction/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Strongly Typed Frames
+    Introduction to Strongly Typed Frames
   
 
     
@@ -6281,13 +6238,29 @@ You're not viewing the latest version.
 
 
 <h1 id="class-astreatracegroundpoint">Class astrea::trace::GroundPoint<a class="headerlink" href="#class-astreatracegroundpoint" title="Permanent link">&para;</a></h1>
+<p><strong>template &lt;astro::IsCelestialBody auto _body_&gt;</strong></p>
 <p><a href="../annotated/"><strong>ClassList</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea/"><strong>astrea</strong></a> <strong>&gt;</strong> <a href="../namespaceastrea_1_1trace/"><strong>trace</strong></a> <strong>&gt;</strong> <a href="./"><strong>GroundPoint</strong></a></p>
-<p><em>Represents a point on the ground with latitude, longitude, and altitude.</em> <a href="#detailed-description">More...</a></p>
+<p><em>Represents a point on the surface of a celestial body with latitude, longitude, and altitude.</em> <a href="#detailed-description">More...</a></p>
 <ul>
 <li><code>#include &lt;GroundPoint.hpp&gt;</code></li>
 </ul>
-<p>Inherits the following classes: <a href="../classastrea_1_1trace_1_1AccessObject/">astrea::trace::AccessObject</a>,  astro::FrameReference</p>
+<p>Inherits the following classes: <a href="../classastrea_1_1trace_1_1AccessObject/">astrea::trace::AccessObject</a></p>
 <p>Inherited by the following classes: <a href="../classastrea_1_1trace_1_1GroundStation/">astrea::trace::GroundStation</a></p>
+<h2 id="public-static-attributes">Public Static Attributes<a class="headerlink" href="#public-static-attributes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Type</th>
+<th style="text-align: left;">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">constexpr auto</td>
+<td style="text-align: left;"><a href="#variable-body"><strong>body</strong></a>   = <code>\_body\_</code><br><em>The celestial body this ground point resides on.</em></td>
+</tr>
+</tbody>
+</table>
 <h2 id="public-functions">Public Functions<a class="headerlink" href="#public-functions" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -6299,55 +6272,51 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;"></td>
-<td style="text-align: left;"><a href="#function-groundpoint"><strong>GroundPoint</strong></a> (const astro::CelestialBody * parent=nullptr, const Angle &amp; latitutde=0.0 *mp_units::angular::unit_symbols::deg, const Angle &amp; longitude=0.0 *mp_units::angular::unit_symbols::deg, const Distance &amp; altitude=0.0 *mp_units:<img alt="🇸🇮" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f8-1f1ee.svg" title=":si:" />:unit_symbols::km) <br><em>Constructs a</em> <a href="./"><em><strong>GroundPoint</strong></em></a> <em>with specified latitude, longitude, and altitude.</em></td>
+<td style="text-align: left;"><a href="#function-groundpoint"><strong>GroundPoint</strong></a> (const Angle &amp; latitude=0.0 *mp_units::angular::unit_symbols::deg, const Angle &amp; longitude=0.0 *mp_units::angular::unit_symbols::deg, const Distance &amp; altitude=0.0 *mp_units:<img alt="🇸🇮" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f8-1f1ee.svg" title=":si:" />:unit_symbols::km) <br><em>Constructs a</em> <a href="./"><em><strong>GroundPoint</strong></em></a> <em>with specified latitude, longitude, and altitude.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">const Distance &amp;</td>
-<td style="text-align: left;"><a href="#function-get_altitude"><strong>get_altitude</strong></a> () const<br><em>Gets the altitude of the ground point above sea level.</em></td>
+<td style="text-align: left;"><a href="#function-get_altitude"><strong>get_altitude</strong></a> () const<br><em>Returns the altitude of the ground point above the surface.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual std::size_t</td>
-<td style="text-align: left;"><a href="#function-get_id"><strong>get_id</strong></a> () const<br><em>Get the unique identifier for the ground station.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">astro::CartesianVector&lt; Distance, astro::frames::earth::icrf &gt;</td>
-<td style="text-align: left;"><a href="#function-get_inertial_position"><strong>get_inertial_position</strong></a> (const astro::Date &amp; date) const<br><em>Get the position of the frame in Earth-Centered Inertial coordinates.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">astro::CartesianVector&lt; Velocity, astro::frames::earth::icrf &gt;</td>
-<td style="text-align: left;"><a href="#function-get_inertial_velocity"><strong>get_inertial_velocity</strong></a> (const astro::Date &amp; date) const<br><em>Get the velocity of the frame in Earth-Centered Inertial coordinates.</em></td>
+<td style="text-align: left;"><a href="#function-get_id"><strong>get_id</strong></a> () override const<br><em>Returns the unique identifier for this ground point.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">const Angle &amp;</td>
-<td style="text-align: left;"><a href="#function-get_latitude"><strong>get_latitude</strong></a> () const<br><em>Gets the latitude of the ground point.</em></td>
+<td style="text-align: left;"><a href="#function-get_latitude"><strong>get_latitude</strong></a> () const<br><em>Returns the latitude of the ground point.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">const astro::Geodetic &amp;</td>
-<td style="text-align: left;"><a href="#function-get_lla"><strong>get_lla</strong></a> () const<br><em>Gets the geodetic coordinates of the ground point.</em></td>
+<td style="text-align: right;">const astro::Geodetic&lt; _body_ &gt; &amp;</td>
+<td style="text-align: left;"><a href="#function-get_lla"><strong>get_lla</strong></a> () const<br><em>Returns the geodetic coordinates of the ground point.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">const Angle &amp;</td>
-<td style="text-align: left;"><a href="#function-get_longitude"><strong>get_longitude</strong></a> () const<br><em>Gets the longitude of the ground point.</em></td>
+<td style="text-align: left;"><a href="#function-get_longitude"><strong>get_longitude</strong></a> () const<br><em>Returns the longitude of the ground point.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">std::string</td>
-<td style="text-align: left;"><a href="#function-get_name"><strong>get_name</strong></a> () const<br></td>
+<td style="text-align: left;"><a href="#function-get_name"><strong>get_name</strong></a> () const<br><em>Returns a human-readable name for the ground point.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">const astro::CelestialBody *</td>
-<td style="text-align: left;"><a href="#function-get_parent"><strong>get_parent</strong></a> () const<br><em>Gets the parent celestial body of the ground point.</em></td>
+<td style="text-align: right;">auto</td>
+<td style="text-align: left;"><a href="#function-get_position-12"><strong>get_position</strong></a> () const<br><em>Returns the position in the body-fixed frame.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">astro::CartesianVector&lt; Distance, astro::frames::earth::earth_fixed &gt;</td>
-<td style="text-align: left;"><a href="#function-get_position"><strong>get_position</strong></a> () const<br><em>Get the position of the frame in Earth-Centered-Earth-Fixed (ECEF) coordinates.</em></td>
+<td style="text-align: right;">auto</td>
+<td style="text-align: left;"><a href="#function-get_position-22"><strong>get_position</strong></a> (const astro::Date &amp; date) const<br><em>Returns the inertial position at the given date.</em></td>
+</tr>
+<tr>
+<td style="text-align: right;">auto</td>
+<td style="text-align: left;"><a href="#function-get_velocity"><strong>get_velocity</strong></a> (const astro::Date &amp; date) const<br><em>Returns the inertial velocity at the given date, computed from the body's rotation rate.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">bool</td>
-<td style="text-align: left;"><a href="#function-operator"><strong>operator==</strong></a> (const <a href="./"><strong>GroundPoint</strong></a> &amp; other) const<br><em>Equality operator for comparing two</em> <a href="./"><em><strong>GroundPoint</strong></em></a> <em>objects.</em></td>
+<td style="text-align: left;"><a href="#function-operator"><strong>operator==</strong></a> (const <a href="./"><strong>GroundPoint</strong></a> &amp; other) const<br><em>Equality operator — compares geodetic coordinates.</em></td>
 </tr>
 <tr>
 <td style="text-align: right;">virtual</td>
-<td style="text-align: left;"><a href="#function-groundpoint"><strong>~GroundPoint</strong></a> () = default<br><em>Destructor for the</em> <a href="./"><em><strong>GroundPoint</strong></em></a> <em>class.</em></td>
+<td style="text-align: left;"><a href="#function-groundpoint"><strong>~GroundPoint</strong></a> () = default<br></td>
 </tr>
 </tbody>
 </table>
@@ -6394,30 +6363,11 @@ You're not viewing the latest version.
 <tbody>
 <tr>
 <td style="text-align: right;">std::size_t</td>
-<td style="text-align: left;"><a href="#variable-_id"><strong>_id</strong></a>  <br><em>Unique identifier for the ground station, generated from its properties.</em></td>
+<td style="text-align: left;"><a href="#variable-_id"><strong>_id</strong></a>  <br><em>Unique identifier, generated at construction.</em></td>
 </tr>
 <tr>
-<td style="text-align: right;">astro::Geodetic</td>
+<td style="text-align: right;">astro::Geodetic&lt; _body_ &gt;</td>
 <td style="text-align: left;"><a href="#variable-_lla"><strong>_lla</strong></a>  <br><em>Geodetic coordinates of the ground point.</em></td>
-</tr>
-<tr>
-<td style="text-align: right;">const astro::CelestialBody *</td>
-<td style="text-align: left;"><a href="#variable-_parent"><strong>_parent</strong></a>  <br><em>Pointer to the parent celestial body.</em></td>
-</tr>
-</tbody>
-</table>
-<h2 id="protected-functions">Protected Functions<a class="headerlink" href="#protected-functions" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: right;">Type</th>
-<th style="text-align: left;">Name</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right;">std::size_t</td>
-<td style="text-align: left;"><a href="#function-generate_id"><strong>generate_id</strong></a> () <br><em>Generates a unique identifier for the ground station based on its properties. This method is called in the constructor to ensure that each ground station has a unique ID.</em></td>
 </tr>
 </tbody>
 </table>
@@ -6442,160 +6392,114 @@ You're not viewing the latest version.
 </tbody>
 </table>
 <h2 id="detailed-description">Detailed Description<a class="headerlink" href="#detailed-description" title="Permanent link">&para;</a></h2>
-<p>This class is used to define a ground point in terms of its geographic coordinates and altitude above sea level. It can be extended to include additional properties or methods as needed for specific applications. </p>
+<p><strong>Template parameters:</strong></p>
+<ul>
+<li><code>_body_</code> The celestial body NTTP this ground point resides on. </li>
+</ul>
+<h2 id="public-static-attributes-documentation">Public Static Attributes Documentation<a class="headerlink" href="#public-static-attributes-documentation" title="Permanent link">&para;</a></h2>
+<h3 id="variable-body">variable body<a class="headerlink" href="#variable-body" title="Permanent link">&para;</a></h3>
+<p><em>The celestial body this ground point resides on.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">body</span><span class="p">;</span>
+</span></code></pre></div></p>
+<hr>
 <h2 id="public-functions-documentation">Public Functions Documentation<a class="headerlink" href="#public-functions-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="function-groundpoint">function GroundPoint<a class="headerlink" href="#function-groundpoint" title="Permanent link">&para;</a></h3>
 <p><em>Constructs a</em> <a href="./"><em><strong>GroundPoint</strong></em></a> <em>with specified latitude, longitude, and altitude.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">GroundPoint</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBody</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="k">nullptr</span><span class="p">,</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">latitutde</span><span class="o">=</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="n">mp_units</span><span class="o">::</span><span class="n">angular</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">deg</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">longitude</span><span class="o">=</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="n">mp_units</span><span class="o">::</span><span class="n">angular</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">deg</span><span class="p">,</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">altitude</span><span class="o">=</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="n">mp_units</span><span class="o">::</span><span class="n">si</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">km</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">GroundPoint</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">latitude</span><span class="o">=</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="n">mp_units</span><span class="o">::</span><span class="n">angular</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">deg</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">longitude</span><span class="o">=</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="n">mp_units</span><span class="o">::</span><span class="n">angular</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">deg</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">altitude</span><span class="o">=</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="n">mp_units</span><span class="o">::</span><span class="n">si</span><span class="o">::</span><span class="n">unit_symbols</span><span class="o">::</span><span class="n">km</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">)</span><span class="w"> </span>
 </span></code></pre></div></p>
 <p><strong>Parameters:</strong></p>
 <ul>
-<li><code>latitutde</code> The latitude of the ground point (default is 0 degrees). </li>
+<li><code>latitude</code> The latitude of the ground point (default is 0 degrees). </li>
 <li><code>longitude</code> The longitude of the ground point (default is 0 degrees). </li>
-<li><code>altitude</code> The altitude of the ground point above sea level (default is 0 kilometers). </li>
+<li><code>altitude</code> The altitude of the ground point above the surface (default is 0 km). </li>
 </ul>
 <hr>
 
 <h3 id="function-get_altitude">function get_altitude<a class="headerlink" href="#function-get_altitude" title="Permanent link">&para;</a></h3>
-<p><em>Gets the altitude of the ground point above sea level.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_altitude</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns the altitude of the ground point above the surface.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_altitude</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
-<p><strong>Returns:</strong></p>
-<p>Distance The altitude of the ground point. </p>
 <hr>
 
 <h3 id="function-get_id">function get_id<a class="headerlink" href="#function-get_id" title="Permanent link">&para;</a></h3>
-<p><em>Get the unique identifier for the ground station.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_id</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns the unique identifier for this ground point.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_id</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
-<p><strong>Returns:</strong></p>
-<p>std::size_t The unique identifier for the ground station. </p>
 <p>Implements <a href="../classastrea_1_1trace_1_1AccessObject/#function-get_id"><em>astrea::trace::AccessObject::get_id</em></a></p>
 <hr>
 
-<h3 id="function-get_inertial_position">function get_inertial_position<a class="headerlink" href="#function-get_inertial_position" title="Permanent link">&para;</a></h3>
-<p><em>Get the position of the frame in Earth-Centered Inertial coordinates.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">astro</span><span class="o">::</span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">frames</span><span class="o">::</span><span class="n">earth</span><span class="o">::</span><span class="n">icrf</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_inertial_position</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div></p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>date</code> The date for which to get the position. </li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p>CartesianVector&lt;Distance, frames::earth::icrf&gt; </p>
-<hr>
-
-<h3 id="function-get_inertial_velocity">function get_inertial_velocity<a class="headerlink" href="#function-get_inertial_velocity" title="Permanent link">&para;</a></h3>
-<p><em>Get the velocity of the frame in Earth-Centered Inertial coordinates.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">astro</span><span class="o">::</span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">frames</span><span class="o">::</span><span class="n">earth</span><span class="o">::</span><span class="n">icrf</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_inertial_velocity</span><span class="w"> </span><span class="p">(</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div></p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>date</code> The date for which to get the velocity. </li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p>CartesianVector&lt;Velocity, frames::earth::icrf&gt; </p>
-<hr>
-
 <h3 id="function-get_latitude">function get_latitude<a class="headerlink" href="#function-get_latitude" title="Permanent link">&para;</a></h3>
-<p><em>Gets the latitude of the ground point.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_latitude</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns the latitude of the ground point.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_latitude</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
-<p><strong>Returns:</strong></p>
-<p>Angle The latitude of the ground point. </p>
 <hr>
 
 <h3 id="function-get_lla">function get_lla<a class="headerlink" href="#function-get_lla" title="Permanent link">&para;</a></h3>
-<p><em>Gets the geodetic coordinates of the ground point.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">const</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">Geodetic</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_lla</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns the geodetic coordinates of the ground point.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">Geodetic</span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_lla</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
-<p><strong>Returns:</strong></p>
-<p>const Geodetic&amp; The geodetic coordinates (latitude, longitude, altitude) of the ground point. </p>
 <hr>
 
 <h3 id="function-get_longitude">function get_longitude<a class="headerlink" href="#function-get_longitude" title="Permanent link">&para;</a></h3>
-<p><em>Gets the longitude of the ground point.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_longitude</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<p><em>Returns the longitude of the ground point.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Angle</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_longitude</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
-<p><strong>Returns:</strong></p>
-<p>Angle The longitude of the ground point. </p>
 <hr>
 
 <h3 id="function-get_name">function get_name<a class="headerlink" href="#function-get_name" title="Permanent link">&para;</a></h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_name</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
-</span></code></pre></div>
+<p><em>Returns a human-readable name for the ground point.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_name</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
 <hr>
 
-<h3 id="function-get_parent">function get_parent<a class="headerlink" href="#function-get_parent" title="Permanent link">&para;</a></h3>
-<p><em>Gets the parent celestial body of the ground point.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">const</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBody</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_parent</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<h3 id="function-get_position-12">function get_position [1/2]<a class="headerlink" href="#function-get_position-12" title="Permanent link">&para;</a></h3>
+<p><em>Returns the position in the body-fixed frame.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_position</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
-<p><strong>Returns:</strong></p>
-<p>const CelestialBody* Pointer to the parent celestial body. </p>
 <hr>
 
-<h3 id="function-get_position">function get_position<a class="headerlink" href="#function-get_position" title="Permanent link">&para;</a></h3>
-<p><em>Get the position of the frame in Earth-Centered-Earth-Fixed (ECEF) coordinates.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">astro</span><span class="o">::</span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">frames</span><span class="o">::</span><span class="n">earth</span><span class="o">::</span><span class="n">earth_fixed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_position</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+<h3 id="function-get_position-22">function get_position [2/2]<a class="headerlink" href="#function-get_position-22" title="Permanent link">&para;</a></h3>
+<p><em>Returns the inertial position at the given date.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_position</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>date</code> The date for which to get the position. </li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p>CartesianVector&lt;Distance, frames::earth::earth_fixed&gt; </p>
+<hr>
+
+<h3 id="function-get_velocity">function get_velocity<a class="headerlink" href="#function-get_velocity" title="Permanent link">&para;</a></h3>
+<p><em>Returns the inertial velocity at the given date, computed from the body's rotation rate.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">get_velocity</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">Date</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
+</span></code></pre></div></p>
 <hr>
 
 <h3 id="function-operator">function operator==<a class="headerlink" href="#function-operator" title="Permanent link">&para;</a></h3>
-<p><em>Equality operator for comparing two</em> <a href="./"><em><strong>GroundPoint</strong></em></a> <em>objects.</em>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span>
+<p><em>Equality operator — compares geodetic coordinates.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">GroundPoint</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span>
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">)</span><span class="w"> </span><span class="k">const</span>
 </span></code></pre></div></p>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><code>other</code> The other <a href="./"><strong>GroundPoint</strong></a> to compare with. </li>
-</ul>
-<p><strong>Returns:</strong></p>
-<p>true if the two <a href="./"><strong>GroundPoint</strong></a> objects are equal, false otherwise. </p>
 <hr>
 
 <h3 id="function-groundpoint_1">function ~GroundPoint<a class="headerlink" href="#function-groundpoint_1" title="Permanent link">&para;</a></h3>
-<p><em>Destructor for the</em> <a href="./"><em><strong>GroundPoint</strong></em></a> <em>class.</em>
 <div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">virtual</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::~</span><span class="n">GroundPoint</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <hr>
 <h2 id="protected-attributes-documentation">Protected Attributes Documentation<a class="headerlink" href="#protected-attributes-documentation" title="Permanent link">&para;</a></h2>
 <h3 id="variable-_id">variable _id<a class="headerlink" href="#variable-_id" title="Permanent link">&para;</a></h3>
-<p><em>Unique identifier for the ground station, generated from its properties.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">_id</span><span class="p">;</span>
+<p><em>Unique identifier, generated at construction.</em> 
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">_id</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 
 <h3 id="variable-_lla">variable _lla<a class="headerlink" href="#variable-_lla" title="Permanent link">&para;</a></h3>
 <p><em>Geodetic coordinates of the ground point.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">astro</span><span class="o">::</span><span class="n">Geodetic</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">_lla</span><span class="p">;</span>
-</span></code></pre></div></p>
-<hr>
-
-<h3 id="variable-_parent">variable _parent<a class="headerlink" href="#variable-_parent" title="Permanent link">&para;</a></h3>
-<p><em>Pointer to the parent celestial body.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">const</span><span class="w"> </span><span class="n">astro</span><span class="o">::</span><span class="n">CelestialBody</span><span class="o">*</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">_parent</span><span class="p">;</span>
-</span></code></pre></div></p>
-<hr>
-<h2 id="protected-functions-documentation">Protected Functions Documentation<a class="headerlink" href="#protected-functions-documentation" title="Permanent link">&para;</a></h2>
-<h3 id="function-generate_id">function generate_id<a class="headerlink" href="#function-generate_id" title="Permanent link">&para;</a></h3>
-<p><em>Generates a unique identifier for the ground station based on its properties. This method is called in the constructor to ensure that each ground station has a unique ID.</em> 
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">::</span><span class="n">generate_id</span><span class="w"> </span><span class="p">()</span><span class="w"> </span>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">astro</span><span class="o">::</span><span class="n">Geodetic</span><span class="o">&lt;</span><span class="n">_body_</span><span class="o">&gt;</span><span class="w"> </span><span class="n">astrea</span><span class="o">::</span><span class="n">trace</span><span class="o">::</span><span class="n">GroundPoint</span><span class="o">&lt;</span><span class="w"> </span><span class="n">_body_</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">_lla</span><span class="p">;</span>
 </span></code></pre></div></p>
 <hr>
 

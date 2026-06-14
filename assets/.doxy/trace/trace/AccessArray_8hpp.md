@@ -10,7 +10,7 @@
 
 _Contains the AccessArray class, which is a collection of RiseSetArrays indexed by sender and receiver IDs, and provides methods for manipulating and querying access times._ [More...](#detailed-description)
 
-* `#include <gtl/btree.hpp>`
+* `#include <gtl/phmap.hpp>`
 * `#include <trace/risesets/RiseSetArray.hpp>`
 * `#include <trace/types/IdPair.hpp>`
 

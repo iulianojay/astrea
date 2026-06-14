@@ -37,12 +37,11 @@
 | ---: | :--- |
 |  constexpr auto | [**angle\_unit**](#variable-angle_unit)   = `mp\_units::angular::unit\_symbols::rad`<br> |
 |  constexpr auto | [**distance\_unit**](#variable-distance_unit)   = `mp\_units::si::unit\_symbols::km`<br> |
-|  constexpr auto | [**force\_unit**](#variable-force_unit)   = `mp\_units::si::unit\_symbols::N`<br> |
+|  constexpr auto | [**force\_unit**](#variable-force_unit)   = `(mass\_unit \* distance\_unit) / (time\_unit \* time\_unit)`<br> |
 |  constexpr auto | [**frequency\_unit**](#variable-frequency_unit)   = `mp\_units::si::unit\_symbols::Hz`<br> |
 |  constexpr auto | [**mass\_unit**](#variable-mass_unit)   = `mp\_units::si::unit\_symbols::kg`<br> |
-|  constexpr auto | [**minor\_distance\_unit**](#variable-minor_distance_unit)   = `mp\_units::si::unit\_symbols::m`<br> |
 |  constexpr auto | [**power\_unit**](#variable-power_unit)   = `mp\_units::si::unit\_symbols::W`<br> |
-|  constexpr auto | [**pressure\_unit**](#variable-pressure_unit)   = `mp\_units::si::unit\_symbols::Pa`<br> |
+|  constexpr auto | [**pressure\_unit**](#variable-pressure_unit)   = `force\_unit / (distance\_unit \* distance\_unit)`<br> |
 |  constexpr auto | [**temperature\_unit**](#variable-temperature_unit)   = `mp\_units::si::unit\_symbols::K`<br> |
 |  constexpr auto | [**time\_unit**](#variable-time_unit)   = `mp\_units::si::unit\_symbols::s`<br> |
 |  constexpr auto | [**unitless**](#variable-unitless)   = `mp\_units::one`<br> |
@@ -151,19 +150,6 @@ constexpr auto astrea::detail::frequency_unit;
 
 ```C++
 constexpr auto astrea::detail::mass_unit;
-```
-
-
-
-
-<hr>
-
-
-
-### variable minor\_distance\_unit 
-
-```C++
-constexpr auto astrea::detail::minor_distance_unit;
 ```
 
 

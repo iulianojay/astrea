@@ -1,39 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1uranus" kind="namespace" language="C++">
     <compoundname>astrea::astro::frames::uranus</compoundname>
-      <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1aea838a0819c0438b16ce694d2ec91233" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::URANUS, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" kindref="member">FrameAxis::ICRF</ref> &gt;</type>
-        <definition>using astrea::astro::frames::uranus::icrf = typedef InertialFrame&lt;CelestialBodyId::URANUS, FrameAxis::ICRF&gt;</definition>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1uranus_1_1icrf" prot="public">astrea::astro::frames::uranus::icrf</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1uranus_1_1j2000" prot="public">astrea::astro::frames::uranus::j2000</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1uranus_1_1uranus__fixed" prot="public">astrea::astro::frames::uranus::uranus_fixed</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1acc9d7656bc13e3e2b2b7a4b24ff9b3ab" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1uranus_1_1icrf" kindref="compound">astrea::astro::frames::uranus::icrf</ref></type>
+        <definition>astrea::astro::frames::uranus::icrf astrea::astro::frames::uranus::icrf</definition>
         <argsstring></argsstring>
         <name>icrf</name>
+        <qualifiedname>astrea::astro::frames::uranus::icrf</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="113" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="113" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="149" column="6"/>
       </memberdef>
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a68fd9071985e6f48df02b5cdb63ff18c" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::URANUS, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" kindref="member">FrameAxis::J2000</ref> &gt;</type>
-        <definition>using astrea::astro::frames::uranus::j2000 = typedef InertialFrame&lt;CelestialBodyId::URANUS, FrameAxis::J2000&gt;</definition>
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a313cbcb9ca8eb82fce5252c2aea7e264" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1uranus_1_1j2000" kindref="compound">astrea::astro::frames::uranus::j2000</ref></type>
+        <definition>astrea::astro::frames::uranus::j2000 astrea::astro::frames::uranus::j2000</definition>
         <argsstring></argsstring>
         <name>j2000</name>
+        <qualifiedname>astrea::astro::frames::uranus::j2000</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="114" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="114" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="151" column="7"/>
       </memberdef>
-      </sectiondef>
+      <memberdef kind="variable" id="body__fixed__frames_8hpp_1ad23bae20ac19990004bb55066c12dd25" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1uranus_1_1uranus__fixed" kindref="compound">astrea::astro::frames::uranus::uranus_fixed</ref></type>
+        <definition>astrea::astro::frames::uranus::uranus_fixed astrea::astro::frames::uranus::uranus_fixed</definition>
+        <argsstring></argsstring>
+        <name>uranus_fixed</name>
+        <qualifiedname>astrea::astro::frames::uranus::uranus_fixed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="110" column="14"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="112" column="1"/>
+    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="147" column="1"/>
   </compounddef>
 </doxygen>

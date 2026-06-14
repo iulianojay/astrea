@@ -12,9 +12,13 @@
 #pragma once
 
 #include <iosfwd>
+#include <optional>
 
+#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/state/attitude/Attitude.hpp>
+#include <astro/state/attitude/Quaternion.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -30,24 +34,40 @@ class State {
   public:
     State() = default;
 
-    State(const OrbitalElements& elements, const Date& epoch, const AstrodynamicsSystem& sys) :
+    State(const OrbitalElements& elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
         _elements(elements),
         _epoch(epoch),
-        _system(&sys)
+        _attitude(attitude)
+    {
+    }
+
+    template <IsFrame auto frame>
+    State(Cartesian<frame> elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
+        _elements(elements.template in_frame<frames::primary>(epoch)),
+        _epoch(epoch),
+        _attitude(attitude)
     {
     }
 
     State(const StateHistory& history);
 
-    State(const OrbitalElements&, const Date&, AstrodynamicsSystem&&) = delete;
-
     bool operator==(const State& other) const;
 
     const OrbitalElements& get_elements() const { return _elements; }
 
+    const std::optional<Attitude>& get_attitude() const { return _attitude; }
+
     const Date& get_epoch() const { return _epoch; }
 
-    const AstrodynamicsSystem& get_system() const { return *_system; }
+    GravParam get_mu() const
+    {
+        return std::visit(
+            []<typename ElemT>(const ElemT&) -> GravParam {
+                return astrea::astro::get_mu<decltype(ElemT::frame)::origin>();
+            },
+            _elements.extract()
+        );
+    }
 
     template <IsOrbitalElements T>
     void convert_to_set()
@@ -71,7 +91,7 @@ class State {
     template <IsOrbitalElements T>
     State convert_to_set() const
     {
-        return { in_element_set<T>(), _epoch, get_system() };
+        return { in_element_set<T>(), _epoch };
     }
 
     template <IsOrbitalElements T>
@@ -80,14 +100,26 @@ class State {
         return _elements.in_element_set<T>(get_mu());
     }
 
-    RadiusVector<frames::earth::icrf> get_position() const { return in_element_set<Cartesian>().get_position(); }
-
-    VelocityVector<frames::earth::icrf> get_velocity() const { return in_element_set<Cartesian>().get_velocity(); }
-
-    template <typename Frame_T>
-    RadiusVector<Frame_T> get_position_in_frame() const
+    RadiusVector<frames::primary> get_position() const
     {
-        return get_position().template in_frame<Frame_T>(_epoch);
+        return in_element_set<Cartesian<frames::primary>>().get_position();
+    }
+
+    template <IsFrame auto _frame_>
+    RadiusVector<_frame_> get_position_in_frame() const
+    {
+        return get_position().template in_frame<_frame_>(get_epoch());
+    }
+
+    VelocityVector<frames::primary> get_velocity() const
+    {
+        return in_element_set<Cartesian<frames::primary>>().get_velocity();
+    }
+
+    template <IsFrame auto _frame_>
+    VelocityVector<_frame_> get_velocity_in_frame(const Date& date) const
+    {
+        return get_velocity().template in_frame<_frame_>(date);
     }
 
     template <IsOrbitalElements T>
@@ -98,25 +130,26 @@ class State {
         if (convertToOriginal) { _elements.convert_to_set(originalIndex, get_mu()); }
     }
 
-    void set_epoch(const Date& epoch) { _epoch = epoch; }
+    void set_attitude(const Attitude& attitude) { _attitude = attitude; }
 
-    void set_system(const AstrodynamicsSystem& sys) { _system = &sys; }
+    void set_epoch(const Date& epoch) { _epoch = epoch; }
 
   private:
     OrbitalElements _elements; 
     Date _epoch; 
-    const AstrodynamicsSystem* _system; 
+    std::optional<Attitude> _attitude; 
 
-    GravParam get_mu() const
+    std::vector<Unitless> force_to_vector() const
     {
-        using namespace mp_units;
-        return _system ? _system->get_mu() : 0.0 * pow<3>(astrea::detail::distance_unit) / pow<2>(astrea::detail::time_unit);
+        auto retval = _elements.force_to_vector();
+        if (_attitude.has_value()) {
+            const auto& attitudeVector = _attitude->force_to_vector();
+            retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
+        }
+        return retval;
     }
 
-    std::vector<Unitless> force_to_vector() const { return _elements.force_to_vector(); }
-
-
-    static State from_vector(const std::vector<Unitless>& vec, const std::size_t idx, const AstrodynamicsSystem& sys);
+    static State from_vector(const std::vector<Unitless>& vec, const std::size_t idx);
 
     State operator+(const State& other) const;
 
@@ -140,26 +173,35 @@ class State {
 };
 
 class StatePartial {
+
   public:
     StatePartial() = default;
 
-    StatePartial(const OrbitalElementPartials& elementPartials, const Date& epoch, const AstrodynamicsSystem& sys) :
-        _elementPartials(elementPartials),
+    StatePartial(const Date& epoch, const OrbitalElementPartials& elementPartials, const std::optional<AttitudePartials>& attitudePartial = std::nullopt) :
         _epoch(epoch),
-        _system(&sys)
+        _elementPartials(elementPartials),
+        _attitudePartial(attitudePartial)
     {
     }
 
     State operator*(const Time& time) const;
 
-    const AstrodynamicsSystem& get_system() const;
-
     const Date& get_epoch() const;
 
+    std::vector<Unitless> force_to_vector() const
+    {
+        auto retval = _elementPartials.force_to_vector();
+        if (_attitudePartial.has_value()) {
+            const auto& attitudeVector = _attitudePartial->force_to_vector();
+            retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
+        }
+        return retval;
+    }
+
   private:
-    OrbitalElementPartials _elementPartials; 
     Date _epoch; 
-    const AstrodynamicsSystem* _system; 
+    OrbitalElementPartials _elementPartials; 
+    std::optional<AttitudePartials> _attitudePartial; 
 };
 
 } // namespace astro

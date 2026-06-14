@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1trace_1_1HasSubscriptOperator" kind="concept">
+    <compoundname>astrea::trace::HasSubscriptOperator</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename T&gt;
+concept <ref refid="conceptastrea_1_1trace_1_1HasSubscriptOperator" kindref="compound">astrea::trace::HasSubscriptOperator</ref> =  requires(T t) {
+    { &amp;t[0] } -&gt; std::convertible_to&lt;std::shared_ptr&lt;astro::PayloadPlatform&lt;Sensor&gt;&gt;&gt;;
+}    </initializer>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/trace/trace/analysis/AccessAnalyzer.hpp" line="52" column="1"/>
+  </compounddef>
+</doxygen>

@@ -11,7 +11,7 @@
 _Contains the FoldsOfCoverage class._ [More...](#detailed-description)
 
 * `#include <vector>`
-* `#include <gtl/btree.hpp>`
+* `#include <gtl/phmap.hpp>`
 * `#include <units/units.hpp>`
 * `#include <trace/analysis/stats/Stats.hpp>`
 * `#include <trace/trace.fwd.hpp>`

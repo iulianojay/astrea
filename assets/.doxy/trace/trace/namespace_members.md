@@ -40,20 +40,14 @@
 * **get\_object\_name\_from\_id** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 
 
-## h
-
-* **HasSize** ([**astrea::trace**](namespaceastrea_1_1trace.md))
-* **HasSubscriptOperator** ([**astrea::trace**](namespaceastrea_1_1trace.md))
-
-
-## i
-
-* **IsPlatformContainer** ([**astrea::trace**](namespaceastrea_1_1trace.md))
-
-
 ## l
 
 * **LatLon** ([**astrea::trace**](namespaceastrea_1_1trace.md))
+
+
+## m
+
+* **make\_database\_storage** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 
 
 ## o
@@ -82,11 +76,6 @@
 * **STAT\_TYPE\_STRINGS** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 * **SensorPlatform** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 * **StatType** ([**astrea::trace**](namespaceastrea_1_1trace.md))
-* **save\_access\_metrics\_to\_file** ([**astrea::trace**](namespaceastrea_1_1trace.md))
-* **save\_number\_of\_folds\_to\_file** ([**astrea::trace**](namespaceastrea_1_1trace.md))
-* **save\_receiver\_riseset\_metrics\_to\_file** ([**astrea::trace**](namespaceastrea_1_1trace.md))
-* **save\_riseset\_metrics\_to\_file** ([**astrea::trace**](namespaceastrea_1_1trace.md))
-* **save\_risesets\_to\_file** ([**astrea::trace**](namespaceastrea_1_1trace.md))
 
 
 ## t

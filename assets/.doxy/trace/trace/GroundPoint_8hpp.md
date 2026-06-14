@@ -10,11 +10,19 @@
 
 _Header file for the GroundPoint class._ [More...](#detailed-description)
 
+* `#include <sstream>`
 * `#include <string>`
+* `#include <mp-units/systems/angular.h>`
+* `#include <mp-units/systems/isq_angle.h>`
+* `#include <mp-units/systems/si.h>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/FrameReference.hpp>`
-* `#include <astro/state/angular_elements/angular_elements.hpp>`
+* `#include <astro/frames/framework/CartesianVector.hpp>`
+* `#include <astro/state/angular_elements.hpp>`
+* `#include <astro/systems/property_getters.hpp>`
+* `#include <astro/systems/system_concepts.hpp>`
+* `#include <astro/time/Date.hpp>`
 * `#include <units/units.hpp>`
+* `#include <utilities/IdProvider.hpp>`
 * `#include <trace/platforms/AccessObject.hpp>`
 * `#include <trace/types/typedefs.hpp>`
 
@@ -42,7 +50,7 @@ _Header file for the GroundPoint class._ [More...](#detailed-description)
 
 | Type | Name |
 | ---: | :--- |
-| class | [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) <br>_Represents a point on the ground with latitude, longitude, and altitude._  |
+| class | [**GroundPoint**](classastrea_1_1trace_1_1GroundPoint.md) &lt;\_body\_&gt;<br>_Represents a point on the surface of a celestial body with latitude, longitude, and altitude._  |
 
 
 

@@ -14,8 +14,7 @@
 #include <string>
 #include <vector>
 
-#include <astro/astro.fwd.hpp>
-#include <astro/systems/CelestialBody.hpp>
+#include <astro/systems/system_concepts.hpp>
 #include <astro/time/Date.hpp>
 #include <units/units.hpp>
 
@@ -25,26 +24,44 @@
 namespace astrea {
 namespace trace {
 
-class GroundStation : public GroundPoint, public SensorPlatform {
+template <astro::IsCelestialBody auto _body_>
+class GroundStation : public GroundPoint<_body_>, public SensorPlatform {
+    using Base = GroundPoint<_body_>;
+
   public:
     GroundStation(
-        const astro::CelestialBody* parent,
         const Angle& latitude,
         const Angle& longitude,
         const Distance& altitude                     = 0.0 * mp_units::si::unit_symbols::km,
-        const std::string name                       = "Unnammed",
+        const std::string name                       = "Unnamed",
         const std::vector<SensorParameters>& sensors = {}
-    );
+    ) :
+        Base(latitude, longitude, altitude),
+        SensorPlatform(),
+        _name(name)
+    {
+        for (const auto& sp : sensors) {
+            attach_payload(sp);
+        }
+    }
 
     ~GroundStation() = default;
 
-    std::size_t get_id() const;
+    std::size_t get_id() const override { return Base::_id; }
 
-    std::string get_name() const;
+    std::string get_name() const { return _name; }
 
-    astro::CartesianVector<Distance, astro::frames::earth::icrf> get_inertial_position(const astro::Date& date) const;
+    auto get_position() const { return Base::get_position(); }
 
-    astro::CartesianVector<Velocity, astro::frames::earth::icrf> get_inertial_velocity(const astro::Date& date) const;
+    astro::RadiusVector<astro::frames::primary> get_position(const astro::Date& date) const
+    {
+        return Base::get_position(date);
+    }
+
+    astro::VelocityVector<astro::frames::primary> get_velocity(const astro::Date& date) const
+    {
+        return Base::get_velocity(date);
+    }
 
   private:
     std::string _name; 

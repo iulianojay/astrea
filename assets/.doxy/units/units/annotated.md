@@ -7,6 +7,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:
 * **namespace** [**astrea**](namespaceastrea.md)     
     * **struct** [**EarthRadii**](structastrea_1_1EarthRadii.md) _Definition for Earth Radii as 6378 km._ 
     * **struct** [**JulianCentury**](structastrea_1_1JulianCentury.md) _Definition for a Julian Century as 36525 days._ 
+    * **struct** [**SolarFluxUnits**](structastrea_1_1SolarFluxUnits.md) _Definition for Solar Flux Units as 1e-22 W / (m^2 \* Hz)._ 
     * **namespace** [**detail**](namespaceastrea_1_1detail.md)     
 * **namespace** [**mp\_units**](namespacemp__units.md) 
 * **namespace** [**std**](namespacestd.md)     

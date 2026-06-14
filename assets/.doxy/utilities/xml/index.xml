@@ -1,5 +1,33 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.1" xml:lang="en-US">
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+  <compound refid="structastrea_1_1utilities_1_1double__wrapper" kind="struct"><name>astrea::utilities::double_wrapper</name>
+    <member refid="structastrea_1_1utilities_1_1double__wrapper_1a592239ec36b3463342ad8326d303c523" kind="variable"><name>whole</name></member>
+    <member refid="structastrea_1_1utilities_1_1double__wrapper_1ab2e081ac87ed9a8e27c38865879eb371" kind="variable"><name>frac</name></member>
+    <member refid="structastrea_1_1utilities_1_1double__wrapper_1ac65a308f054f98879951c50d41f016d4" kind="function"><name>double_wrapper</name></member>
+  </compound>
+  <compound refid="classastrea_1_1utilities_1_1f__to__string__t" kind="struct"><name>astrea::utilities::f_to_string_t</name>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a45e8436289b2ca5e32f66802c08bf7e0" kind="variable"><name>buf</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a85a9a482760cd11e00c2f59c759a738e" kind="function"><name>f_to_string_t</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a6b1767c2b9f90b546add00b8608355ca" kind="function"><name>operator char_type *</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a45964efa8aeda37b6ba5e2e7c767fee5" kind="function"><name>operator const char_type *</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a6a63906af8b0338766c16535f6b42f91" kind="function"><name>size</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a960631638e7e86ee2b9317cf170ec4c0" kind="function"><name>data</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a1297bd9ed6befa5722dc47ef5adc5c21" kind="function"><name>data</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1ab7eed521a13d93ac96029f10e46436c3" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1ae55e9b67a0d3fd2fccebea120183e927" kind="function"><name>operator[]</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a1da7f91db09a80b81ac3b119e7271d93" kind="function"><name>front</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1af83a5aff4ce70a91a6393e2504ac91b1" kind="function"><name>front</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a548a676df70ede5539f834e6c303b7bc" kind="function"><name>back</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a8622a141ab9f2f3837ca89806115674a" kind="function"><name>back</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1aa5e235d2a2cdd893e858924d1003a79f" kind="function"><name>begin</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1a5bd789cb9fd2b7e35fe6d3d18790c8c5" kind="function"><name>begin</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1ae0930491d3017ebebfc07f14d804372a" kind="function"><name>end</name></member>
+    <member refid="classastrea_1_1utilities_1_1f__to__string__t_1afc8dcd4311402f4fbf454e1274da5d40" kind="function"><name>end</name></member>
+  </compound>
+  <compound refid="classastrea_1_1utilities_1_1IdProvider" kind="class"><name>astrea::utilities::IdProvider</name>
+    <member refid="classastrea_1_1utilities_1_1IdProvider_1ac4be8b80155f5339ee7794a14f3acf51" kind="function"><name>IdProvider</name></member>
+    <member refid="classastrea_1_1utilities_1_1IdProvider_1adcc8a736dc15eb472d3554a36bf096d7" kind="function"><name>get_next_id</name></member>
+  </compound>
   <compound refid="classastrea_1_1utilities_1_1ProgressBar" kind="class"><name>astrea::utilities::ProgressBar</name>
     <member refid="classastrea_1_1utilities_1_1ProgressBar_1a950532f4cec2f62308940828451b481f" kind="variable"><name>_iRecord</name></member>
     <member refid="classastrea_1_1utilities_1_1ProgressBar_1a556bdc84970272ca4ef9a2d8e4a6a8a7" kind="variable"><name>_maxRecords</name></member>
@@ -15,15 +43,18 @@
   <compound refid="namespaceastrea" kind="namespace"><name>astrea</name>
   </compound>
   <compound refid="namespaceastrea_1_1utilities" kind="namespace"><name>astrea::utilities</name>
+    <member refid="string__util_8hpp_1ab0fcf94ac3be9a2e1abf8b1accbd956a" kind="variable"><name>f_to_string</name></member>
     <member refid="json__util_8cpp_1a06454dd252d0f1c19b78af3a093339e1" kind="function"><name>clean_entry</name></member>
     <member refid="json__util_8cpp_1a47b5ce4b93047917ed631bdb8fdc0d58" kind="function"><name>extract_string_from_json</name></member>
     <member refid="json__util_8cpp_1a6fcb83cb6fecbeddaeb69ac43a4cd844" kind="function"><name>extract_optional_string_from_json</name></member>
     <member refid="json__util_8hpp_1a4f73a8c26db65fa6db072a0d31d17006" kind="function"><name>extract_from_json</name></member>
-    <member refid="json__util_8hpp_1ac16644501553c40a942cf6898d521c49" kind="function"><name>extract_optional_from_json</name></member>
+    <member refid="json__util_8hpp_1a82d9f58dce61694efbdeedaec890eddf" kind="function"><name>extract_optional_from_json</name></member>
     <member refid="string__util_8cpp_1a455229793d7b30219c70666cdb047d1d" kind="function"><name>trim</name></member>
     <member refid="string__util_8cpp_1af336411da30b885e2d9c0bb75e020108" kind="function"><name>replace_all</name></member>
     <member refid="string__util_8cpp_1a3011ed6748a7ac802536103c65071708" kind="function"><name>split</name></member>
-    <member refid="string__util_8hpp_1a6c60e71575b555b414c005ce01ad7e85" kind="function"><name>get_type_name</name></member>
+    <member refid="string__util_8hpp_1a87fa822b60e3ee4c47fc285238224f6e" kind="function"><name>get_body_type_name</name></member>
+  </compound>
+  <compound refid="IdProvider_8hpp" kind="file"><name>IdProvider.hpp</name>
   </compound>
   <compound refid="json__util_8cpp" kind="file"><name>json_util.cpp</name>
   </compound>

@@ -1,0 +1,690 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1astro_1_1Attitude" kind="class" language="C++" prot="public">
+    <compoundname>astrea::astro::Attitude</compoundname>
+    <includes refid="Attitude_8hpp" local="no">Attitude.hpp</includes>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1Attitude_1acb390a49b18fb67071d138253f801962" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref></type>
+        <definition>friend class StateTransitionMatrix</definition>
+        <argsstring></argsstring>
+        <name>StateTransitionMatrix</name>
+        <qualifiedname>astrea::astro::Attitude::StateTransitionMatrix</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1StateTransitionMatrix" kindref="compound">StateTransitionMatrix</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="95" column="18" bodyfile="astrea/astro/astro/state/attitude/Attitude.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1Attitude_1a7edbf9e31116a21e4e18cd2dd004ae63" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">class</ref></type>
+        <definition>friend class State</definition>
+        <argsstring></argsstring>
+        <name>State</name>
+        <qualifiedname>astrea::astro::Attitude::State</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1State" kindref="compound">State</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="96" column="18" bodyfile="astrea/astro/astro/state/attitude/Attitude.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classastrea_1_1astro_1_1Attitude_1aa73417708de1ca0eb5d4be126cdbef0f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream &amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;os, const Attitude &amp;state)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <qualifiedname>astrea::astro::Attitude::operator&lt;&lt;</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="94" column="12" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="24" bodyend="28"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Attitude_1ab5733d37060b8745f9c50878012dfba1" prot="private" static="no" mutable="no">
+        <type><ref refid="Attitude_8hpp_1a7262c7974da67dae14d714862459c6f0" kindref="member">BodyQuaternion</ref></type>
+        <definition>BodyQuaternion astrea::astro::Attitude::_orientation</definition>
+        <argsstring></argsstring>
+        <name>_orientation</name>
+        <qualifiedname>astrea::astro::Attitude::_orientation</qualifiedname>
+        <briefdescription>
+<para>Variant holding the orientation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="237" column="20" bodyfile="astrea/astro/astro/state/attitude/Attitude.hpp" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classastrea_1_1astro_1_1Attitude_1a2039e4e96e1ba8ed9c5a90717d942990" prot="private" static="no" mutable="no">
+        <type><ref refid="Attitude_8hpp_1af46914700f56927c59acc91783824047" kindref="member">BodyAngleVelocities</ref></type>
+        <definition>BodyAngleVelocities astrea::astro::Attitude::_angularVelocity</definition>
+        <argsstring></argsstring>
+        <name>_angularVelocity</name>
+        <qualifiedname>astrea::astro::Attitude::_angularVelocity</qualifiedname>
+        <briefdescription>
+<para>Variant holding the orientation partials. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="238" column="25" bodyfile="astrea/astro/astro/state/attitude/Attitude.hpp" bodystart="238" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1a635d38fe977977cbeeb183650dd7c2a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Attitude::Attitude</definition>
+        <argsstring>()=default</argsstring>
+        <name>Attitude</name>
+        <qualifiedname>astrea::astro::Attitude::Attitude</qualifiedname>
+        <briefdescription>
+<para>Default constructor initializing to Cartesian&lt;frames::earth::icrf&gt; orientation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="102" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1afd4354d1cda6091dd0b9bb3059f0da09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>astrea::astro::Attitude::Attitude</definition>
+        <argsstring>(const BodyQuaternion &amp;orientation, const BodyAngleVelocities &amp;angularVelocity)</argsstring>
+        <name>Attitude</name>
+        <qualifiedname>astrea::astro::Attitude::Attitude</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="Attitude_8hpp_1a7262c7974da67dae14d714862459c6f0" kindref="member">BodyQuaternion</ref> &amp;</type>
+          <declname>orientation</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="Attitude_8hpp_1af46914700f56927c59acc91783824047" kindref="member">BodyAngleVelocities</ref> &amp;</type>
+          <declname>angularVelocity</declname>
+        </param>
+        <briefdescription>
+<para>Constructor initializing with <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref> orientation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>orientation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The orientation to initialize with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="109" column="5" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="36" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1a621bdad2419b916c47c570e43954a584" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="enums_8hpp_1a96509098528d6e06b10894d5421b6862" kindref="member">RotationSequence</ref></type>
+            <declname>sequence</declname>
+            <defname>sequence</defname>
+          </param>
+          <param>
+            <type><ref refid="enums_8hpp_1a026a3011d5e81d6dac8a7a254e3d8847" kindref="member">RotationType</ref></type>
+            <declname>rotationType</declname>
+            <defname>rotationType</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>astrea::astro::Attitude::Attitude</definition>
+        <argsstring>(const EulerAngles&lt; sequence, rotationType, frames::dynamic::body, frames::earth::icrf &gt; &amp;angleSequence, const BodyAngleVelocities &amp;angleSequenceVelocity)</argsstring>
+        <name>Attitude</name>
+        <qualifiedname>astrea::astro::Attitude::Attitude</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>&lt; sequence, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">rotationType</ref>, <ref refid="structastrea_1_1astro_1_1frames_1_1dynamic_1_1body" kindref="compound">frames::dynamic::body</ref>, <ref refid="structastrea_1_1astro_1_1frames_1_1earth_1_1icrf" kindref="compound">frames::earth::icrf</ref> &gt; &amp;</type>
+          <declname>angleSequence</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="Attitude_8hpp_1af46914700f56927c59acc91783824047" kindref="member">BodyAngleVelocities</ref> &amp;</type>
+          <declname>angleSequenceVelocity</declname>
+        </param>
+        <briefdescription>
+<para>Constructor initializing with <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref> orientation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>orientation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The orientation to initialize with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="117" column="5" bodyfile="astrea/astro/astro/state/attitude/Attitude.hpp" bodystart="117" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1ad6d83e5972fcddbfbbe20cd61fa50598" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="Attitude_8hpp_1a7262c7974da67dae14d714862459c6f0" kindref="member">BodyQuaternion</ref> &amp;</type>
+        <definition>const BodyQuaternion &amp; astrea::astro::Attitude::get_orientation</definition>
+        <argsstring>() const</argsstring>
+        <name>get_orientation</name>
+        <qualifiedname>astrea::astro::Attitude::get_orientation</qualifiedname>
+        <briefdescription>
+<para>Gets the orientation as a BodyQuaternion. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const BodyQuaternion&amp; The orientation as a BodyQuaternion. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="128" column="26" bodyfile="astrea/astro/astro/state/attitude/Attitude.hpp" bodystart="128" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1a0e66282ce78c6348e4b65490bb16bfce" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="Attitude_8hpp_1af46914700f56927c59acc91783824047" kindref="member">BodyAngleVelocities</ref> &amp;</type>
+        <definition>const BodyAngleVelocities &amp; astrea::astro::Attitude::get_angular_velocity</definition>
+        <argsstring>() const</argsstring>
+        <name>get_angular_velocity</name>
+        <qualifiedname>astrea::astro::Attitude::get_angular_velocity</qualifiedname>
+        <briefdescription>
+<para>Gets the angular velocity as a BodyAngleVelocities. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const BodyAngleVelocities&amp; The angular velocity as a BodyAngleVelocities. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="135" column="31" bodyfile="astrea/astro/astro/state/attitude/Attitude.hpp" bodystart="135" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1ae37942ea0e7e9ce78e817777ba05606e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">bool</ref></type>
+        <definition>bool astrea::astro::Attitude::operator==</definition>
+        <argsstring>(const Attitude &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>astrea::astro::Attitude::operator==</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Compares two <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> objects for equality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object to compare with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the two <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> objects are equal </para>
+</simplesect>
+<simplesect kind="return"><para>false if the two <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> objects are not equal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="144" column="10" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="42" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1ae9f79326e41df285cf37d696787b92d3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref></type>
+        <definition>Attitude astrea::astro::Attitude::operator+</definition>
+        <argsstring>(const Attitude &amp;other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>astrea::astro::Attitude::operator+</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Adds two <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Resultant <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> sum. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="152" column="14" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="47" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1ac253dbd4730860ebc380ad2fe5190765" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &amp;</type>
+        <definition>Attitude &amp; astrea::astro::Attitude::operator+=</definition>
+        <argsstring>(const Attitude &amp;other)</argsstring>
+        <name>operator+=</name>
+        <qualifiedname>astrea::astro::Attitude::operator+=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Adds another <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object to the current one. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reference to the current <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object after addition. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="160" column="14" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="52" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1afc104baa7a52b1324b6c38129214238e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref></type>
+        <definition>Attitude astrea::astro::Attitude::operator-</definition>
+        <argsstring>(const Attitude &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>astrea::astro::Attitude::operator-</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Subtracts another <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object from the current one. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Resultant <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> difference. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="168" column="14" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="59" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1aae6b43adf81e78ea72ebe68904b90a64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &amp;</type>
+        <definition>Attitude &amp; astrea::astro::Attitude::operator-=</definition>
+        <argsstring>(const Attitude &amp;other)</argsstring>
+        <name>operator-=</name>
+        <qualifiedname>astrea::astro::Attitude::operator-=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Subtracts another <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object from the current one. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reference to the current <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object after subtraction. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="176" column="14" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="64" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1a200220546c05c8d0c63e8ec9aee10946" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref></type>
+        <definition>Attitude astrea::astro::Attitude::operator*</definition>
+        <argsstring>(const Unitless &amp;multiplier) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>astrea::astro::Attitude::operator*</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>multiplier</declname>
+        </param>
+        <briefdescription>
+<para>Multiplies the <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> by a scalar. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>multiplier</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Scalar value to multiply with </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Resultant <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> after multiplication. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="184" column="14" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="71" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1a84ae3aa64e9fdc00f8f0d88fabd171f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &amp;</type>
+        <definition>Attitude &amp; astrea::astro::Attitude::operator*=</definition>
+        <argsstring>(const Unitless &amp;multiplier)</argsstring>
+        <name>operator*=</name>
+        <qualifiedname>astrea::astro::Attitude::operator*=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>multiplier</declname>
+        </param>
+        <briefdescription>
+<para>Multiplies the <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> by a scalar. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>multiplier</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Scalar value to multiply with </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reference to the current <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object after multiplication. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="192" column="14" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="76" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1a4d0d05744baad46726d362fe13ffd6b4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1AttitudePartials" kindref="compound">AttitudePartials</ref></type>
+        <definition>AttitudePartials astrea::astro::Attitude::operator/</definition>
+        <argsstring>(const Time &amp;divisor) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>astrea::astro::Attitude::operator/</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <declname>divisor</declname>
+        </param>
+        <briefdescription>
+<para>Divides the <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> by a time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>divisor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time value to divide by </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Resultant <ref refid="classastrea_1_1astro_1_1AttitudePartials" kindref="compound">AttitudePartials</ref> after division. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="200" column="22" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="83" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1a8bbeb0ba947ae8ab5eff48a8a0378e1f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt;</type>
+        <definition>std::vector&lt; Unitless &gt; astrea::astro::Attitude::force_to_vector</definition>
+        <argsstring>() const</argsstring>
+        <name>force_to_vector</name>
+        <qualifiedname>astrea::astro::Attitude::force_to_vector</qualifiedname>
+        <briefdescription>
+<para>Converts the <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> to a vector of Unitless values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::vector&lt;Unitless&gt; Vector containing the orientation as unitless values. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="207" column="17" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="88" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1ace1b7617488cf35353a13042669bbe93" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref></type>
+        <definition>Attitude astrea::astro::Attitude::operator/</definition>
+        <argsstring>(const Unitless &amp;divisor) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>astrea::astro::Attitude::operator/</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>divisor</declname>
+        </param>
+        <briefdescription>
+<para>Divides the <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> by a scalar. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>divisor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Scalar value to divide with </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Resultant <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> after division. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="215" column="14" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="96" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1ab75616f761b61125378900b99a20db9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &amp;</type>
+        <definition>Attitude &amp; astrea::astro::Attitude::operator/=</definition>
+        <argsstring>(const Unitless &amp;divisor)</argsstring>
+        <name>operator/=</name>
+        <qualifiedname>astrea::astro::Attitude::operator/=</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &amp;</type>
+          <declname>divisor</declname>
+        </param>
+        <briefdescription>
+<para>Divides the <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> by a scalar. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>divisor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Scalar value to divide with </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reference to the current <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object after division. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="223" column="14" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="101" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1ab0bc82f2ba849be72653ad7af9691036" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref></type>
+        <definition>Attitude astrea::astro::Attitude::interpolate</definition>
+        <argsstring>(const Time &amp;thisTime, const Time &amp;otherTime, const Attitude &amp;other, const Time &amp;targetTime) const</argsstring>
+        <name>interpolate</name>
+        <qualifiedname>astrea::astro::Attitude::interpolate</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <declname>thisTime</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <declname>otherTime</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Time</ref> &amp;</type>
+          <declname>targetTime</declname>
+        </param>
+        <briefdescription>
+<para>Interpolates between two <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> at a given time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>thisTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time of the current state </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>otherTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time of the other state </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Another <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object to interpolate with </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>targetTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target time for interpolation </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Interpolated <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> at the target time. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="234" column="14" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="108" bodyend="119"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classastrea_1_1astro_1_1Attitude_1a9d2afa753f47b164a5d8c34d205918e4" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref></type>
+        <definition>Attitude astrea::astro::Attitude::from_vector</definition>
+        <argsstring>(const std::vector&lt; Unitless &gt; &amp;vec)</argsstring>
+        <name>from_vector</name>
+        <qualifiedname>astrea::astro::Attitude::from_vector</qualifiedname>
+        <param>
+          <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::vector&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Unitless</ref> &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+<para>Creates an <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object from a vector of Unitless values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector of Unitless values. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> The created <ref refid="classastrea_1_1astro_1_1Attitude" kindref="compound">Attitude</ref> object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="246" column="21" bodyfile="astrea/astro/astro/state/attitude/Attitude.cpp" bodystart="121" bodyend="129"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class representing a set of orientation. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class encapsulates different types of orientation (<ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>, <ref refid="classastrea_1_1astro_1_1EulerAngles" kindref="compound">EulerAngles</ref>, <ref refid="classastrea_1_1astro_1_1Quaternion" kindref="compound">Quaternion</ref>) and provides methods for conversion, interpolation, and mathematical operations. </para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/state/attitude/Attitude.hpp" line="92" column="1" bodyfile="astrea/astro/astro/state/attitude/Attitude.hpp" bodystart="92" bodyend="247"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1astro_1_1Attitude_1a2039e4e96e1ba8ed9c5a90717d942990" prot="private" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>_angularVelocity</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1ab5733d37060b8745f9c50878012dfba1" prot="private" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>_orientation</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1a635d38fe977977cbeeb183650dd7c2a9" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>Attitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1afd4354d1cda6091dd0b9bb3059f0da09" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>Attitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1a621bdad2419b916c47c570e43954a584" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>Attitude</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1a8bbeb0ba947ae8ab5eff48a8a0378e1f" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>force_to_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1a9d2afa753f47b164a5d8c34d205918e4" prot="private" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>from_vector</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1a0e66282ce78c6348e4b65490bb16bfce" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>get_angular_velocity</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1ad6d83e5972fcddbfbbe20cd61fa50598" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>get_orientation</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1ab0bc82f2ba849be72653ad7af9691036" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>interpolate</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1a200220546c05c8d0c63e8ec9aee10946" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>operator*</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1a84ae3aa64e9fdc00f8f0d88fabd171f8" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>operator*=</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1ae9f79326e41df285cf37d696787b92d3" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>operator+</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1ac253dbd4730860ebc380ad2fe5190765" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>operator+=</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1afc104baa7a52b1324b6c38129214238e" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>operator-</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1aae6b43adf81e78ea72ebe68904b90a64" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>operator-=</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1a4d0d05744baad46726d362fe13ffd6b4" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>operator/</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1ace1b7617488cf35353a13042669bbe93" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>operator/</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1ab75616f761b61125378900b99a20db9f" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>operator/=</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1aa73417708de1ca0eb5d4be126cdbef0f" prot="private" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1ae37942ea0e7e9ce78e817777ba05606e" prot="public" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>operator==</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1a7edbf9e31116a21e4e18cd2dd004ae63" prot="private" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>State</name></member>
+      <member refid="classastrea_1_1astro_1_1Attitude_1acb390a49b18fb67071d138253f801962" prot="private" virt="non-virtual"><scope>astrea::astro::Attitude</scope><name>StateTransitionMatrix</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

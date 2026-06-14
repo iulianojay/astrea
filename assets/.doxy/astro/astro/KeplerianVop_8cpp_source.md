@@ -30,12 +30,12 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/frames/dynamic_frames.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
+#include <astro/state/orbital_elements/Keplerian.hpp>
 
 namespace astrea {
 namespace astro {
@@ -48,19 +48,24 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
 KeplerianVop::KeplerianVop(const ForceModel& forces, const bool doWarn) :
-    forces(&forces),
+    EquationsOfMotion(forces),
     doWarn(doWarn)
 {
 }
 
-OrbitalElementPartials KeplerianVop::operator()(const State& state, const Vehicle& vehicle) const
+OrbitalElementPartials KeplerianVop::compute_dynamics(
+    const State& state,
+    const Vehicle& vehicle,
+    const ForceVector<frames::primary>& perts,
+    const ForceVector<frames::primary>& control
+) const
 {
     // Extract
-    const auto mu    = state.get_system().get_mu();
-    const Date& date = state.get_epoch();
+    const GravParam mu = get_mu<frames::primary.origin>();
+    const Date& date   = state.get_epoch();
 
-    const Keplerian elements = state.in_element_set<Keplerian>();
-    const Distance& a        = elements.get_semimajor();
+    const Keplerian<frames::primary> elements = state.in_element_set<Keplerian<frames::primary>>();
+    const Distance& a                         = elements.get_semimajor();
     // const Angle& raan = elements.get_right_ascension();
     const Angle& w     = elements.get_argument_of_perigee();
     const Angle& theta = elements.get_true_anomaly();
@@ -73,15 +78,13 @@ OrbitalElementPartials KeplerianVop::operator()(const State& state, const Vehicl
     if (doWarn) { check_degenerate(ecc, inc); }
 
     // conversions KEPLERIANs to r and v
-    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
-    const RadiusVector<frames::earth::icrf> r   = state.get_position();
-
-    // Function for finding accel caused by perturbations
-    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(state, vehicle);
+    const VelocityVector<frames::primary> v = state.get_velocity();
+    const RadiusVector<frames::primary> r   = state.get_position();
 
     // Calculate R, N, and T
-    const frames::dynamic::ric ricFrame                     = frames::dynamic::ric::instantaneous(r, v);
-    const AccelerationVector<frames::dynamic::ric> accelRic = ricFrame.rotate_into_this_frame(accelPerts, date);
+    const auto ricFrame = frames::dynamic::ric.instantaneous(r, v);
+    const AccelerationVector<frames::dynamic::ric> accelRic =
+        ricFrame.rotate_into_this_frame((perts + control) / vehicle.get_mass(), date);
 
     const Acceleration& radialPert     = accelRic.get_x();
     const Acceleration& tangentialPert = accelRic.get_y();
@@ -106,20 +109,14 @@ OrbitalElementPartials KeplerianVop::operator()(const State& state, const Vehicl
     const UnitlessPerTime deccdt =
         h / mu * sinTA * radialPert + 1.0 / (mu * h) * ((hSquared + mu * R) * cosTA + mu * ecc * R) * tangentialPert;
     const Velocity dadt = 2.0 * a * (1.0 / h * dhdt + ecc / (1 - ecc * ecc) * deccdt); // TODO: Someone check this. It's my derivation from h = sqrt(mu*a(1-ecc^2))
-    const AngularRate dincdt = R / h * cosU * normalPert * (isq_angle::cotes_angle);
-    const AngularRate dthetadt =
+    const AngularVelocity dincdt = R / h * cosU * normalPert * (isq_angle::cotes_angle);
+    const AngularVelocity dthetadt =
         (hOverRSquared + (1 / (ecc * h)) * ((hSquared / mu) * cosTA * radialPert - (hSquared / mu + R) * sinTA * tangentialPert)) *
         (isq_angle::cotes_angle);
-    const AngularRate draandt = R * sinU / (h * sin(inc)) * normalPert * (isq_angle::cotes_angle);
-    const AngularRate dwdt    = (-dthetadt + (hOverRSquared * isq_angle::cotes_angle - draandt * cos(inc)));
+    const AngularVelocity draandt = R * sinU / (h * sin(inc)) * normalPert * (isq_angle::cotes_angle);
+    const AngularVelocity dwdt    = (-dthetadt + (hOverRSquared * isq_angle::cotes_angle - draandt * cos(inc)));
 
-    return KeplerianPartial(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
-}
-
-
-StateTransitionMatrix KeplerianVop::compute_stm(const State& state, const Vehicle& vehicle) const
-{
-    return StateTransitionMatrix(*this, state, vehicle);
+    return KeplerianPartial<frames::primary>(dadt, deccdt, dincdt, draandt, dwdt, dthetadt);
 }
 
 void KeplerianVop::check_degenerate(const Unitless& ecc, const Angle& inc) const

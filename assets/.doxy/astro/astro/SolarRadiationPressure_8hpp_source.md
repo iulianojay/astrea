@@ -14,18 +14,18 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/propagation/force_models/Force.hpp>
+#include <astro/propagation/force_models/PerturbingForce.hpp>
 
 namespace astrea {
 namespace astro {
 
-class SolarRadiationPressure : public Force {
+class SolarRadiationPressure : public PerturbingForce {
   public:
     SolarRadiationPressure() = default;
 
     ~SolarRadiationPressure() = default;
 
-    CartesianVector<Acceleration, frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override;
+    Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override;
 
   private:
 };

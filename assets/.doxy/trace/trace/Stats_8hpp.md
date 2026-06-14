@@ -13,7 +13,6 @@ _Contains utilities for calculating statistics._ [More...](#detailed-description
 * `#include <concepts>`
 * `#include <string>`
 * `#include <vector>`
-* `#include <gtl/btree.hpp>`
 * `#include <mp-units/concepts.h>`
 * `#include <mp-units/systems/si.h>`
 * `#include <units/units.hpp>`

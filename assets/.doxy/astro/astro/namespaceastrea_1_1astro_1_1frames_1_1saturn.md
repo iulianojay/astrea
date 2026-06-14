@@ -25,14 +25,26 @@
 
 
 
-
-
-## Public Types
+## Classes
 
 | Type | Name |
 | ---: | :--- |
-| typedef InertialFrame&lt; CelestialBodyId::SATURN, FrameAxis::ICRF &gt; | [**icrf**](#typedef-icrf)  <br> |
-| typedef InertialFrame&lt; CelestialBodyId::SATURN, FrameAxis::J2000 &gt; | [**j2000**](#typedef-j2000)  <br> |
+| struct | [**icrf**](structastrea_1_1astro_1_1frames_1_1saturn_1_1icrf.md) <br> |
+| struct | [**j2000**](structastrea_1_1astro_1_1frames_1_1saturn_1_1j2000.md) <br> |
+| struct | [**saturn\_fixed**](structastrea_1_1astro_1_1frames_1_1saturn_1_1saturn__fixed.md) <br> |
+
+
+
+
+
+
+## Public Attributes
+
+| Type | Name |
+| ---: | :--- |
+|  [**astrea::astro::frames::saturn::icrf**](structastrea_1_1astro_1_1frames_1_1saturn_1_1icrf.md) | [**icrf**](#variable-icrf)  <br> |
+|  [**astrea::astro::frames::saturn::j2000**](structastrea_1_1astro_1_1frames_1_1saturn_1_1j2000.md) | [**j2000**](#variable-j2000)  <br> |
+|  [**astrea::astro::frames::saturn::saturn\_fixed**](structastrea_1_1astro_1_1frames_1_1saturn_1_1saturn__fixed.md) | [**saturn\_fixed**](#variable-saturn_fixed)  <br> |
 
 
 
@@ -77,19 +89,15 @@
 
 
 
+## Public Attributes Documentation
 
 
 
 
-## Public Types Documentation
-
-
-
-
-### typedef icrf 
+### variable icrf 
 
 ```C++
-using astrea::astro::frames::saturn::icrf = typedef InertialFrame<CelestialBodyId::SATURN, FrameAxis::ICRF>;
+astrea::astro::frames::saturn::icrf astrea::astro::frames::saturn::icrf;
 ```
 
 
@@ -99,10 +107,23 @@ using astrea::astro::frames::saturn::icrf = typedef InertialFrame<CelestialBodyI
 
 
 
-### typedef j2000 
+### variable j2000 
 
 ```C++
-using astrea::astro::frames::saturn::j2000 = typedef InertialFrame<CelestialBodyId::SATURN, FrameAxis::J2000>;
+astrea::astro::frames::saturn::j2000 astrea::astro::frames::saturn::j2000;
+```
+
+
+
+
+<hr>
+
+
+
+### variable saturn\_fixed 
+
+```C++
+astrea::astro::frames::saturn::saturn_fixed astrea::astro::frames::saturn::saturn_fixed;
 ```
 
 
@@ -111,5 +132,5 @@ using astrea::astro::frames::saturn::j2000 = typedef InertialFrame<CelestialBody
 <hr>
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp`
 

@@ -1,39 +1,43 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1mars__barycenter" kind="namespace" language="C++">
     <compoundname>astrea::astro::frames::mars_barycenter</compoundname>
-      <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1ae6057b062ca529043e4f584bf12c1fba" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::MARS_BARYCENTER, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" kindref="member">FrameAxis::ICRF</ref> &gt;</type>
-        <definition>using astrea::astro::frames::mars_barycenter::icrf = typedef InertialFrame&lt;CelestialBodyId::MARS_BARYCENTER, FrameAxis::ICRF&gt;</definition>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1mars__barycenter_1_1icrf" prot="public">astrea::astro::frames::mars_barycenter::icrf</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1mars__barycenter_1_1j2000" prot="public">astrea::astro::frames::mars_barycenter::j2000</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a6c8ef72da68f56ccbca373a429520db1" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1mars__barycenter_1_1icrf" kindref="compound">astrea::astro::frames::mars_barycenter::icrf</ref></type>
+        <definition>astrea::astro::frames::mars_barycenter::icrf astrea::astro::frames::mars_barycenter::icrf</definition>
         <argsstring></argsstring>
         <name>icrf</name>
+        <qualifiedname>astrea::astro::frames::mars_barycenter::icrf</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="158" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="158" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="212" column="6"/>
       </memberdef>
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a1030b425515e4cf5d4324573b44c93a3" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::MARS_BARYCENTER, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" kindref="member">FrameAxis::J2000</ref> &gt;</type>
-        <definition>using astrea::astro::frames::mars_barycenter::j2000 = typedef InertialFrame&lt;CelestialBodyId::MARS_BARYCENTER, FrameAxis::J2000&gt;</definition>
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a44a03846d25468caac331d49f7f86879" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1mars__barycenter_1_1j2000" kindref="compound">astrea::astro::frames::mars_barycenter::j2000</ref></type>
+        <definition>astrea::astro::frames::mars_barycenter::j2000 astrea::astro::frames::mars_barycenter::j2000</definition>
         <argsstring></argsstring>
         <name>j2000</name>
+        <qualifiedname>astrea::astro::frames::mars_barycenter::j2000</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="159" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="159" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="214" column="7"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="157" column="1"/>
+    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="210" column="1"/>
   </compounddef>
 </doxygen>

@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1astro_1_1moons" kind="namespace" language="C++">
+    <compoundname>astrea::astro::moons</compoundname>
+    <innerclass refid="structastrea_1_1astro_1_1moons_1_1Callisto" prot="public">astrea::astro::moons::Callisto</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1moons_1_1Deimos" prot="public">astrea::astro::moons::Deimos</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1moons_1_1Europa" prot="public">astrea::astro::moons::Europa</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1moons_1_1Ganymede" prot="public">astrea::astro::moons::Ganymede</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1moons_1_1Iapetus" prot="public">astrea::astro::moons::Iapetus</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1moons_1_1Io" prot="public">astrea::astro::moons::Io</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1moons_1_1Moon" prot="public">astrea::astro::moons::Moon</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1moons_1_1Oberon" prot="public">astrea::astro::moons::Oberon</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1moons_1_1Phobos" prot="public">astrea::astro::moons::Phobos</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1moons_1_1Rhea" prot="public">astrea::astro::moons::Rhea</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1moons_1_1Titan" prot="public">astrea::astro::moons::Titan</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1moons_1_1Titania" prot="public">astrea::astro::moons::Titania</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1moons_1_1Triton" prot="public">astrea::astro::moons::Triton</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="Moon_8hpp_1aa1fe88cc53eca960ed7c6527f2ac90d6" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1moons_1_1Moon" kindref="compound">astrea::astro::moons::Moon</ref></type>
+        <definition>astrea::astro::moons::Moon astrea::astro::moons::Moon</definition>
+        <argsstring></argsstring>
+        <name>Moon</name>
+        <qualifiedname>astrea::astro::moons::Moon</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Moon.hpp" line="43" column="6"/>
+      </memberdef>
+      <memberdef kind="variable" id="Callisto_8hpp_1ae7df1679fdea85a6b8b094c66467ca5a" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1moons_1_1Callisto" kindref="compound">astrea::astro::moons::Callisto</ref></type>
+        <definition>astrea::astro::moons::Callisto astrea::astro::moons::Callisto</definition>
+        <argsstring></argsstring>
+        <name>Callisto</name>
+        <qualifiedname>astrea::astro::moons::Callisto</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Jupiter/Callisto.hpp" line="39" column="10"/>
+      </memberdef>
+      <memberdef kind="variable" id="Europa_8hpp_1ab9c07c4c659bd7bf483dd4668d97642d" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1moons_1_1Europa" kindref="compound">astrea::astro::moons::Europa</ref></type>
+        <definition>astrea::astro::moons::Europa astrea::astro::moons::Europa</definition>
+        <argsstring></argsstring>
+        <name>Europa</name>
+        <qualifiedname>astrea::astro::moons::Europa</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Jupiter/Europa.hpp" line="39" column="8"/>
+      </memberdef>
+      <memberdef kind="variable" id="Ganymede_8hpp_1abe96f31618a83cbe43be507ca2ca568f" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1moons_1_1Ganymede" kindref="compound">astrea::astro::moons::Ganymede</ref></type>
+        <definition>astrea::astro::moons::Ganymede astrea::astro::moons::Ganymede</definition>
+        <argsstring></argsstring>
+        <name>Ganymede</name>
+        <qualifiedname>astrea::astro::moons::Ganymede</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Jupiter/Ganymede.hpp" line="39" column="10"/>
+      </memberdef>
+      <memberdef kind="variable" id="Io_8hpp_1a2c743f601d384ac2cfcdca039c3f9373" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1moons_1_1Io" kindref="compound">astrea::astro::moons::Io</ref></type>
+        <definition>astrea::astro::moons::Io astrea::astro::moons::Io</definition>
+        <argsstring></argsstring>
+        <name>Io</name>
+        <qualifiedname>astrea::astro::moons::Io</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Jupiter/Io.hpp" line="39" column="4"/>
+      </memberdef>
+      <memberdef kind="variable" id="Deimos_8hpp_1ac2e85f6a13504019c6b9c7a932e8c45e" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1moons_1_1Deimos" kindref="compound">astrea::astro::moons::Deimos</ref></type>
+        <definition>astrea::astro::moons::Deimos astrea::astro::moons::Deimos</definition>
+        <argsstring></argsstring>
+        <name>Deimos</name>
+        <qualifiedname>astrea::astro::moons::Deimos</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Mars/Deimos.hpp" line="39" column="8"/>
+      </memberdef>
+      <memberdef kind="variable" id="Phobos_8hpp_1a17a9a765a89155478b9a06ce7a141f17" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1moons_1_1Phobos" kindref="compound">astrea::astro::moons::Phobos</ref></type>
+        <definition>astrea::astro::moons::Phobos astrea::astro::moons::Phobos</definition>
+        <argsstring></argsstring>
+        <name>Phobos</name>
+        <qualifiedname>astrea::astro::moons::Phobos</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Mars/Phobos.hpp" line="39" column="8"/>
+      </memberdef>
+      <memberdef kind="variable" id="Triton_8hpp_1a7e2cccba736cecd8d1a1f5f407710d91" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1moons_1_1Triton" kindref="compound">astrea::astro::moons::Triton</ref></type>
+        <definition>astrea::astro::moons::Triton astrea::astro::moons::Triton</definition>
+        <argsstring></argsstring>
+        <name>Triton</name>
+        <qualifiedname>astrea::astro::moons::Triton</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Neptune/Triton.hpp" line="43" column="8"/>
+      </memberdef>
+      <memberdef kind="variable" id="Iapetus_8hpp_1ae1f8023a68b32b3c3cd3e8e00c7a09be" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1moons_1_1Iapetus" kindref="compound">astrea::astro::moons::Iapetus</ref></type>
+        <definition>astrea::astro::moons::Iapetus astrea::astro::moons::Iapetus</definition>
+        <argsstring></argsstring>
+        <name>Iapetus</name>
+        <qualifiedname>astrea::astro::moons::Iapetus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Saturn/Iapetus.hpp" line="39" column="9"/>
+      </memberdef>
+      <memberdef kind="variable" id="Rhea_8hpp_1ad31fd94c0f7faf6479a888dfd339dc3a" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1moons_1_1Rhea" kindref="compound">astrea::astro::moons::Rhea</ref></type>
+        <definition>astrea::astro::moons::Rhea astrea::astro::moons::Rhea</definition>
+        <argsstring></argsstring>
+        <name>Rhea</name>
+        <qualifiedname>astrea::astro::moons::Rhea</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Saturn/Rhea.hpp" line="39" column="6"/>
+      </memberdef>
+      <memberdef kind="variable" id="Titan_8hpp_1a32477867ee8d6c9d117a5c6283f2e4f1" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1moons_1_1Titan" kindref="compound">astrea::astro::moons::Titan</ref></type>
+        <definition>astrea::astro::moons::Titan astrea::astro::moons::Titan</definition>
+        <argsstring></argsstring>
+        <name>Titan</name>
+        <qualifiedname>astrea::astro::moons::Titan</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Saturn/Titan.hpp" line="41" column="7"/>
+      </memberdef>
+      <memberdef kind="variable" id="Oberon_8hpp_1afb073c4df8421d886bd8fc3aea6c10a3" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1moons_1_1Oberon" kindref="compound">astrea::astro::moons::Oberon</ref></type>
+        <definition>astrea::astro::moons::Oberon astrea::astro::moons::Oberon</definition>
+        <argsstring></argsstring>
+        <name>Oberon</name>
+        <qualifiedname>astrea::astro::moons::Oberon</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Uranus/Oberon.hpp" line="30" column="8"/>
+      </memberdef>
+      <memberdef kind="variable" id="Titania_8hpp_1a2a7831211eb60af53360213b7c21deb6" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1moons_1_1Titania" kindref="compound">astrea::astro::moons::Titania</ref></type>
+        <definition>astrea::astro::moons::Titania astrea::astro::moons::Titania</definition>
+        <argsstring></argsstring>
+        <name>Titania</name>
+        <qualifiedname>astrea::astro::moons::Titania</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Uranus/Titania.hpp" line="39" column="9"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/barycenters.hpp" line="35" column="1"/>
+  </compounddef>
+</doxygen>

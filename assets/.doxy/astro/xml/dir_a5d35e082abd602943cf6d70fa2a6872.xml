@@ -1,13 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_a5d35e082abd602943cf6d70fa2a6872" kind="dir">
     <compoundname>astrea/astro/astro/systems</compoundname>
-    <innerdir refid="dir_18001f99c0231f827e3b1298618599da">astrea/astro/astro/systems/planetary_bodies</innerdir>
-    <innerfile refid="AstrodynamicsSystem_8cpp">AstrodynamicsSystem.cpp</innerfile>
-    <innerfile refid="AstrodynamicsSystem_8hpp">AstrodynamicsSystem.hpp</innerfile>
-    <innerfile refid="CelestialBody_8cpp">CelestialBody.cpp</innerfile>
+    <innerdir refid="dir_b988f8927672605e377af1c3b431ef9b">astrea/astro/astro/systems/celestial_bodies</innerdir>
+    <innerfile refid="atmosphere_8hpp">atmosphere.hpp</innerfile>
+    <innerfile refid="Barycenter_8hpp">Barycenter.hpp</innerfile>
+    <innerfile refid="barycenters_8hpp">barycenters.hpp</innerfile>
+    <innerfile refid="celestial__bodies_8hpp">celestial_bodies.hpp</innerfile>
     <innerfile refid="CelestialBody_8hpp">CelestialBody.hpp</innerfile>
     <innerfile refid="CelestialBodyParameters_8hpp">CelestialBodyParameters.hpp</innerfile>
+    <innerfile refid="default__property__getters_8hpp">default_property_getters.hpp</innerfile>
+    <innerfile refid="property__getters_8hpp">property_getters.hpp</innerfile>
+    <innerfile refid="system__concepts_8hpp">system_concepts.hpp</innerfile>
+    <innerfile refid="system__utilities_8hpp">system_utilities.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

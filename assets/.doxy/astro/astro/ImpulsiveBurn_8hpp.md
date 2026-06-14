@@ -13,6 +13,9 @@ _A class representing a null Event in the astrea astro platform._ [More...](#det
 * `#include <string>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
+* `#include <astro/frames/definitions.hpp>`
+* `#include <astro/frames/definitions/dynamic_frames.hpp>`
+* `#include <astro/utilities/conversions.hpp>`
 
 
 
@@ -38,7 +41,7 @@ _A class representing a null Event in the astrea astro platform._ [More...](#det
 
 | Type | Name |
 | ---: | :--- |
-| class | [**ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md) <br>_A class representing an impulsive burn_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _. It triggers when the true anomaly wraps around (i.e. at perigee), and applies the total impulsive delta-v from all thrusters to the vehicle in the velocity direction. TODO: Generalize to a scheduler of some sort and other burn triggers. TODO: Generalize burn direction. TODO: Generalize which thrusters burn._ |
+| class | [**ImpulsiveBurn**](classastrea_1_1astro_1_1ImpulsiveBurn.md) <br>_A class representing an impulsive burn_ [_**Event**_](classastrea_1_1astro_1_1Event.md) _. It triggers when the true anomaly wraps around (i.e. at perigee), and applies the total impulsive delta-v from all thrusters to the vehicle in the velocity direction._ |
 
 
 

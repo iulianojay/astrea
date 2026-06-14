@@ -1,39 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1jupiter" kind="namespace" language="C++">
     <compoundname>astrea::astro::frames::jupiter</compoundname>
-      <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a00c23ad31cc05771b7fa007ad4bc9c69" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::JUPITER, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" kindref="member">FrameAxis::ICRF</ref> &gt;</type>
-        <definition>using astrea::astro::frames::jupiter::icrf = typedef InertialFrame&lt;CelestialBodyId::JUPITER, FrameAxis::ICRF&gt;</definition>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1jupiter_1_1icrf" prot="public">astrea::astro::frames::jupiter::icrf</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1jupiter_1_1j2000" prot="public">astrea::astro::frames::jupiter::j2000</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1jupiter_1_1jupiter__fixed" prot="public">astrea::astro::frames::jupiter::jupiter_fixed</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a4a22dda0cd82f6fc5aa13bdb929c4b09" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1jupiter_1_1icrf" kindref="compound">astrea::astro::frames::jupiter::icrf</ref></type>
+        <definition>astrea::astro::frames::jupiter::icrf astrea::astro::frames::jupiter::icrf</definition>
         <argsstring></argsstring>
         <name>icrf</name>
+        <qualifiedname>astrea::astro::frames::jupiter::icrf</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="68" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="68" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="86" column="6"/>
       </memberdef>
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1ab60aa79920564add727c67159aaaf60f" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::JUPITER, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" kindref="member">FrameAxis::J2000</ref> &gt;</type>
-        <definition>using astrea::astro::frames::jupiter::j2000 = typedef InertialFrame&lt;CelestialBodyId::JUPITER, FrameAxis::J2000&gt;</definition>
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a37af70ad2104e68f8934a7298347aa4a" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1jupiter_1_1j2000" kindref="compound">astrea::astro::frames::jupiter::j2000</ref></type>
+        <definition>astrea::astro::frames::jupiter::j2000 astrea::astro::frames::jupiter::j2000</definition>
         <argsstring></argsstring>
         <name>j2000</name>
+        <qualifiedname>astrea::astro::frames::jupiter::j2000</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="69" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="69" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="88" column="7"/>
       </memberdef>
-      </sectiondef>
+      <memberdef kind="variable" id="body__fixed__frames_8hpp_1a0dfb6193d57006df780f5de9de9770c5" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1jupiter_1_1jupiter__fixed" kindref="compound">astrea::astro::frames::jupiter::jupiter_fixed</ref></type>
+        <definition>astrea::astro::frames::jupiter::jupiter_fixed astrea::astro::frames::jupiter::jupiter_fixed</definition>
+        <argsstring></argsstring>
+        <name>jupiter_fixed</name>
+        <qualifiedname>astrea::astro::frames::jupiter::jupiter_fixed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="65" column="15"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="67" column="1"/>
+    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="84" column="1"/>
   </compounddef>
 </doxygen>

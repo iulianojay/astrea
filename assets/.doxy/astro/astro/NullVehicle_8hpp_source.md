@@ -14,27 +14,20 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/FrameReference.hpp>
 
 namespace astrea {
 namespace astro {
 
-class NullVehicle : public FrameReference {
+class NullVehicle {
 
   public:
-    NullVehicle(const Mass& mass = 0.0 * mp_units::si::unit_symbols::kg);
+    NullVehicle(const Mass& mass = 1.0 * mp_units::si::unit_symbols::kg);
 
     NullVehicle* clone() const;
 
     Mass get_mass() const;
 
     std::string get_name() const;
-
-    CartesianVector<Distance, frames::earth::icrf> get_inertial_position(const Date& date) const final;
-
-    CartesianVector<Velocity, frames::earth::icrf> get_inertial_velocity(const Date& date) const final;
-
-    CartesianVector<Acceleration, frames::earth::icrf> get_inertial_acceleration(const Date& date) const final;
 
   private:
     Mass _mass; // Mass of the vehicle

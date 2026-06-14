@@ -4,15 +4,19 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**instances**](dir_a85615e9ad779999123e94bfb15c8545.md) **>** [**defined\_rotations.hpp**](defined__rotations_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**frames**](dir_45ba6462728f0c3fdeb841915d341ea3.md) **>** [**definitions**](dir_0fbce91be2e6463cb25c5b2d70c0c29c.md) **>** [**defined\_rotations.hpp**](defined__rotations_8hpp.md)
 
 [Go to the source code of this file](defined__rotations_8hpp_source.md)
 
 _Header file for defined rotations between common frames._ [More...](#detailed-description)
 
 * `#include <units/units.hpp>`
-* `#include <astro/frames/frames.hpp>`
-* `#include <astro/frames/types/DirectionCosineMatrix.hpp>`
+* `#include <astro/frames/framework/DirectionCosineMatrix.hpp>`
+* `#include <astro/frames/framework/DirectionCosineMatrixAccel.hpp>`
+* `#include <astro/frames/framework/DirectionCosineMatrixRate.hpp>`
+* `#include <astro/frames/framework/Frame.hpp>`
+* `#include <astro/frames/framework/frame_concepts.hpp>`
+* `#include <astro/systems/celestial_bodies.hpp>`
 * `#include <astro/time/Date.hpp>`
 
 
@@ -118,5 +122,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/frames/instances/defined_rotations.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/frames/definitions/defined_rotations.hpp`
 

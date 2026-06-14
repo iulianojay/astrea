@@ -14,8 +14,9 @@ _Contains utilities for outputting access analysis info._ [More...](#detailed-de
 * `#include <fstream>`
 * `#include <iostream>`
 * `#include <optional>`
-* `#include <csv.hpp>`
+* `#include <sstream>`
 * `#include <mp-units/systems/si/units.h>`
+* `#include <sqlite_orm/sqlite_orm.h>`
 * `#include <astro/platforms/space/Constellation.hpp>`
 * `#include <trace/analysis/stats/AccessStats.hpp>`
 * `#include <trace/analysis/stats/FoldsOfCoverage.hpp>`
@@ -45,6 +46,17 @@ _Contains utilities for outputting access analysis info._ [More...](#detailed-de
 | namespace | [**trace**](namespaceastrea_1_1trace.md) <br> |
 
 
+## Classes
+
+| Type | Name |
+| ---: | :--- |
+| struct | [**AccessMetricsRecord**](structastrea_1_1trace_1_1AccessMetricsRecord.md) <br> |
+| class | [**DatabaseOutputManager**](classastrea_1_1trace_1_1DatabaseOutputManager.md) <br>_A class for managing database output operations with a single database instance._  |
+| struct | [**FoldsRecord**](structastrea_1_1trace_1_1FoldsRecord.md) <br> |
+| struct | [**GroundLocationRecord**](structastrea_1_1trace_1_1GroundLocationRecord.md) <br> |
+| struct | [**ReceiverRiseSetMetricsRecord**](structastrea_1_1trace_1_1ReceiverRiseSetMetricsRecord.md) <br> |
+| struct | [**RiseSetMetricsRecord**](structastrea_1_1trace_1_1RiseSetMetricsRecord.md) <br> |
+| struct | [**RiseSetRecord**](structastrea_1_1trace_1_1RiseSetRecord.md) <br> |
 
 
 

@@ -1,10 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_ffe0d0558a41319d577ebe8d35f3c9da" kind="dir">
     <compoundname>astrea/astro/astro/propagation/event_detection/events</compoundname>
+    <innerfile refid="Deorbit_8cpp">Deorbit.cpp</innerfile>
+    <innerfile refid="Deorbit_8hpp">Deorbit.hpp</innerfile>
     <innerfile refid="ImpulsiveBurn_8cpp">ImpulsiveBurn.cpp</innerfile>
     <innerfile refid="ImpulsiveBurn_8hpp">ImpulsiveBurn.hpp</innerfile>
     <innerfile refid="NullEvent_8hpp">NullEvent.hpp</innerfile>
+    <innerfile refid="TurnThrustersOff_8cpp">TurnThrustersOff.cpp</innerfile>
+    <innerfile refid="TurnThrustersOff_8hpp">TurnThrustersOff.hpp</innerfile>
+    <innerfile refid="TurnThrustersOn_8cpp">TurnThrustersOn.cpp</innerfile>
+    <innerfile refid="TurnThrustersOn_8hpp">TurnThrustersOn.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

@@ -13,6 +13,8 @@
 
 #include <vector>
 
+#include <utilities/IdProvider.hpp>
+
 #include <astro/astro.fwd.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
@@ -29,11 +31,11 @@ class Plane {
     friend class Constellation<Spacecraft_T>;
 
   public:
-    Plane() = default;
+    Plane() { id = utilities::IdProvider::get_next_id<"Plane">(); };
 
     Plane(std::vector<Spacecraft_T> satellites);
 
-    ~Plane() { generate_id(); };
+    ~Plane() = default;
 
     void add_spacecraft(const Spacecraft_T& spacecraft);
 
@@ -43,11 +45,13 @@ class Plane {
 
     const Spacecraft_T& get_spacecraft(const std::size_t& spacecraftId) const;
 
+    const OrbitalElements& get_elements() const { return elements; }
+
     const std::size_t size() const;
 
-    void propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Time& propTime, Integrator& integrator);
 
-    void propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Date& endEpoch, Integrator& integrator);
 
     using iterator = std::vector<Spacecraft_T>::iterator;
 
@@ -73,8 +77,6 @@ class Plane {
     std::vector<Spacecraft_T> satellites; // Vector of Spacecraft in the Plane
 
     bool strict; // Flag to indicate if the Plane is strict (all Spacecraft must have the same orbital elements)
-
-    void generate_id();
 };
 
 } // namespace astro

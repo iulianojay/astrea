@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.1" xml:lang="en-US">
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
   <compound refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper" kind="class"><name>astrea::snapshot::DatabaseUtilityWrapper</name>
     <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ac0986f667088af6520c69455c6065a40" kind="variable"><name>_database</name></member>
     <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ace420c8f9c4ca101cfd6f121025d08cb" kind="function"><name>DatabaseUtilityWrapper</name></member>
     <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a14ee0ab279a6aff86c23d620d70ddc3d" kind="function"><name>~DatabaseUtilityWrapper</name></member>
-    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a08228f8dcbb2a540cafbb26822ff512c" kind="function"><name>get_database</name></member>
-    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a6494442e0eecbe54775957e5e0bb7482" kind="function"><name>get_all</name></member>
-    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a8651a3c52201406b31f636b6f8939bdc" kind="function"><name>get_sat_from_norad_id</name></member>
-    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a557b53a02c08308eeb34cd09b524ec4a" kind="function"><name>get_sats_by_name</name></member>
-    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a792fc6936eaf84f86ac63d5773f5bf27" kind="function"><name>get_sats_in_range</name></member>
+    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a95a63422f211ef38a14970a315c68294" kind="function"><name>get_database</name></member>
+    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aa34d2fffb5fc8e1720d40807ac67acfa" kind="function"><name>get_all</name></member>
+    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a447f7a5f151ae1741efeadc6ff7afe46" kind="function"><name>get_sat_from_norad_id</name></member>
+    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1a8cf6a9e403c22a8dfa21c1f80f8c93a3" kind="function"><name>get_sats_by_name</name></member>
+    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1ac8159129dac87f845b6618cbb9ea1025" kind="function"><name>get_sats_in_range</name></member>
+    <member refid="classastrea_1_1snapshot_1_1DatabaseUtilityWrapper_1aeb7f5c67ac41654da2808f870b3d7a93" kind="function"><name>get_all</name></member>
   </compound>
   <compound refid="classastrea_1_1snapshot_1_1EthzClient" kind="class"><name>astrea::snapshot::EthzClient</name>
     <member refid="classastrea_1_1snapshot_1_1EthzClient_1ad637299ae2d34f3f307089e8394606bd" kind="variable"><name>_base</name></member>
@@ -56,7 +57,7 @@
     <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a49060dd14402d68be074635606deed1c" kind="function"><name>SpaceTrackClient</name></member>
     <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a5044f75fd8838bd9300b7101c77b2206" kind="function"><name>~SpaceTrackClient</name></member>
     <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a66e3df68cf1c0773d0202c0050e6d164" kind="function"><name>login</name></member>
-    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a90417c8c40b42e49231958fb541e42d5" kind="function"><name>query</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a4dd0362ef613fe20d9ac03586a758144" kind="function"><name>query</name></member>
     <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1ae7240b3d6cfa298cd6b41e7f5beb89cb" kind="function"><name>retrieve_all</name></member>
     <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a3e004173a63396fe72c764a424a0d433" kind="function"><name>valid_cookies</name></member>
     <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a49538eefc08c7684a3eda73d0fdc4d12" kind="function"><name>check_query_history</name></member>
@@ -65,18 +66,20 @@
     <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1aa9e61a657442ae8487e6a810e233d93d" kind="function"><name>class_to_string</name></member>
     <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a7981302116881d06e2e90fd3a6bdcc1d" kind="function"><name>class_to_string</name></member>
     <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a4356f5a3090bb09d1169b66f8289c739" kind="function"><name>class_to_string</name></member>
-    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1a6ded53050b48406fdc8ac5ebd27ea9d5" kind="function"><name>build_query_url</name></member>
+    <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1afe12672f9ca02fe35a9831287cb73930" kind="function"><name>build_query_url</name></member>
     <member refid="classastrea_1_1snapshot_1_1SpaceTrackClient_1ad142e497ae6a64de8db61608d946286c" kind="function"><name>query_impl</name></member>
   </compound>
   <compound refid="namespaceastrea" kind="namespace"><name>astrea</name>
   </compound>
   <compound refid="namespaceastrea_1_1snapshot" kind="namespace"><name>astrea::snapshot</name>
     <member refid="typedefs_8hpp_1a78a40d0322d13b61bee19f4029e1501b" kind="typedef"><name>EnumType</name></member>
-    <member refid="Database_8hpp_1ad6fcc711f7478741794cbb1534921002" kind="function"><name>make_database</name></member>
+    <member refid="Database_8hpp_1ab92cb51524a78de36681420facc2e14a" kind="function"><name>make_database</name></member>
     <member refid="Database_8hpp_1a4b3edf3a977a3468929b6eabf3802ba5" kind="function"><name>get_snapshot</name></member>
     <member refid="Database_8hpp_1a34837a44992cb6cc96879ae9beb9691c" kind="function"><name>make_snapshot_wrapper</name></member>
   </compound>
   <compound refid="Database_8hpp" kind="file"><name>Database.hpp</name>
+  </compound>
+  <compound refid="Database_8ipp" kind="file"><name>Database.ipp</name>
   </compound>
   <compound refid="main_8cpp" kind="file"><name>main.cpp</name>
     <member refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>

@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_51ef3faf157d043087a4594bebbd2397" kind="dir">
     <compoundname>astrea/snapshot/snapshot/database</compoundname>
     <innerfile refid="Database_8hpp">Database.hpp</innerfile>
+    <innerfile refid="Database_8ipp">Database.ipp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

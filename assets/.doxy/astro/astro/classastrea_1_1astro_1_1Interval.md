@@ -36,8 +36,8 @@ _Represents a time interval with a start and end time._ [More...](#detailed-desc
 
 | Type | Name |
 | ---: | :--- |
-|  Time | [**propTime**](#variable-proptime)  <br>_The end time of the interval._  |
-|  Time | [**start**](#variable-start)  <br>_The start time of the interval._  |
+|  [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**propTime**](#variable-proptime)  <br>_The end time of the interval._  |
+|  [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) | [**start**](#variable-start)  <br>_The start time of the interval._  |
 
 
 
@@ -58,7 +58,7 @@ _Represents a time interval with a start and end time._ [More...](#detailed-desc
 
 | Type | Name |
 | ---: | :--- |
-|   | [**Interval**](#function-interval) (const Time & start, const Time & end) <br>_Constructs an_ [_**Interval**_](classastrea_1_1astro_1_1Interval.md) _object with the specified start and end times._ |
+|   | [**Interval**](#function-interval) ([**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & start, [**const**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) [**Time**](classastrea_1_1astro_1_1DirectionCosineMatrix.md) & end) <br>_Constructs an_ [_**Interval**_](classastrea_1_1astro_1_1Interval.md) _object with the specified start and end times._ |
 |   | [**~Interval**](#function-interval) () = default<br>_Default destructor for_ [_**Interval**_](classastrea_1_1astro_1_1Interval.md) _._ |
 
 
@@ -135,8 +135,8 @@ Time astrea::astro::Interval::start;
 _Constructs an_ [_**Interval**_](classastrea_1_1astro_1_1Interval.md) _object with the specified start and end times._
 ```C++
 inline astrea::astro::Interval::Interval (
-    const Time & start,
-    const Time & end
+    const  Time & start,
+    const  Time & end
 ) 
 ```
 

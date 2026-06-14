@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="conceptastrea_1_1astro_1_1IsUserDefinedEvent" kind="concept">
+    <compoundname>astrea::astro::IsUserDefinedEvent</compoundname>
+    <includes refid="Event_8hpp" local="no">Event.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename T&gt;
+concept <ref refid="conceptastrea_1_1astro_1_1IsUserDefinedEvent" kindref="compound">astrea::astro::IsUserDefinedEvent</ref> =  requires(T) {
+    std::is_same&lt;T, remove_cv_ref&lt;T&gt;&gt;::value;
+    std::is_default_constructible&lt;T&gt;::value;
+    std::is_copy_constructible&lt;T&gt;::value;
+    std::is_move_constructible&lt;T&gt;::value;
+    std::is_destructible&lt;T&gt;::value;
+    requires HasGetName&lt;T&gt;;
+    requires HasMeasureEvent&lt;T&gt;;
+    requires HasIsTerminal&lt;T&gt;;
+}    </initializer>
+    <briefdescription>
+<para>Concept to check if a type is a user-defined Event. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="astrea/astro/astro/propagation/event_detection/Event.hpp" line="67" column="1"/>
+  </compounddef>
+</doxygen>

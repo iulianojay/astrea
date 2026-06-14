@@ -4,19 +4,16 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**planetary\_bodies**](dir_18001f99c0231f827e3b1298618599da.md) **>** [**Earth**](dir_75c6709890bdaeca67b81158f928802c.md) **>** [**Moon.hpp**](Moon_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**systems**](dir_a5d35e082abd602943cf6d70fa2a6872.md) **>** [**celestial\_bodies**](dir_b988f8927672605e377af1c3b431ef9b.md) **>** [**Earth**](dir_0d926747df7aa4605536658442a7f1d2.md) **>** [**Moon.hpp**](Moon_8hpp.md)
 
 [Go to the source code of this file](Moon_8hpp_source.md)
 
 _Header file for the Moon class._ [More...](#detailed-description)
 
-* `#include <mp-units/systems/angular.h>`
-* `#include <mp-units/systems/iau.h>`
-* `#include <mp-units/systems/si.h>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/systems/CelestialBody.hpp>`
-* `#include <astro/types/typedefs.hpp>`
+* `#include <astro/systems/celestial_bodies/Earth/Earth.hpp>`
 
 
 
@@ -36,14 +33,14 @@ _Header file for the Moon class._ [More...](#detailed-description)
 | ---: | :--- |
 | namespace | [**astrea**](namespaceastrea.md) <br> |
 | namespace | [**astro**](namespaceastrea_1_1astro.md) <br> |
-| namespace | [**planetary\_bodies**](namespaceastrea_1_1astro_1_1planetary__bodies.md) <br> |
+| namespace | [**moons**](namespaceastrea_1_1astro_1_1moons.md) <br> |
 
 
 ## Classes
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Moon**](classastrea_1_1astro_1_1planetary__bodies_1_1Moon.md) <br>_Represents the_ [_**Moon**_](classastrea_1_1astro_1_1planetary__bodies_1_1Moon.md) _celestial body._ |
+| class | [**Moon**](structastrea_1_1astro_1_1moons_1_1Moon.md) <br>_Represents the_ [_**Moon**_](structastrea_1_1astro_1_1moons_1_1Moon.md) _celestial body._ |
 
 
 
@@ -127,5 +124,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/systems/planetary_bodies/Earth/Moon.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/systems/celestial_bodies/Earth/Moon.hpp`
 

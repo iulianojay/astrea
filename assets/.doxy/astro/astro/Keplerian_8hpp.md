@@ -4,16 +4,20 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**state**](dir_cf1a4d8122645f8636e977da512a043c.md) **>** [**orbital\_elements**](dir_6eb62f1e639545772a8b9a71f7b1d0b7.md) **>** [**instances**](dir_2296e922a578ce2ef4a64c83384e553c.md) **>** [**Keplerian.hpp**](Keplerian_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**state**](dir_cf1a4d8122645f8636e977da512a043c.md) **>** [**orbital\_elements**](dir_6eb62f1e639545772a8b9a71f7b1d0b7.md) **>** [**Keplerian.hpp**](Keplerian_8hpp.md)
 
 [Go to the source code of this file](Keplerian_8hpp_source.md)
 
 _This file defines the Keplerian class and its associated methods._ [More...](#detailed-description)
 
 * `#include <iosfwd>`
+* `#include <mp-units/math.h>`
+* `#include <mp-units/systems/angular.h>`
+* `#include <mp-units/systems/si.h>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
 * `#include <astro/types/typedefs.hpp>`
+* `#include <astro/state/orbital_elements/Keplerian.ipp>`
 
 
 
@@ -39,8 +43,8 @@ _This file defines the Keplerian class and its associated methods._ [More...](#d
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) <br>_The_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _class represents the_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _orbital elements._ |
-| class | [**KeplerianPartial**](classastrea_1_1astro_1_1KeplerianPartial.md) <br>_Class representing a partial derivative of a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
+| class | [**Keplerian**](classastrea_1_1astro_1_1Keplerian.md) &lt;\_frame\_&gt;<br>_The_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _class represents the_[_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _orbital elements._ |
+| class | [**KeplerianPartial**](classastrea_1_1astro_1_1KeplerianPartial.md) &lt;\_frame\_&gt;<br>_Class representing a partial derivative of a_ [_**Keplerian**_](classastrea_1_1astro_1_1Keplerian.md) _state vector._ |
 
 
 
@@ -124,5 +128,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/state/orbital_elements/instances/Keplerian.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/state/orbital_elements/Keplerian.hpp`
 

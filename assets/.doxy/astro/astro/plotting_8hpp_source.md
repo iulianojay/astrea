@@ -41,6 +41,17 @@ void plot_difference_trajectories(
     const std::filesystem::path& outfile
 );
 
+void plot_attitude(const StateHistory& trajectory, const std::filesystem::path& outfile);
+
+void compare_attitudes(const std::vector<StateHistory>& trajectories, const std::vector<std::string>& labels, const std::filesystem::path& outfile);
+
+void plot_difference_attitude(
+    const StateHistory expected,
+    const std::vector<StateHistory>& trajectories,
+    const std::vector<std::string>& labels,
+    const std::filesystem::path& outfile
+);
+
 } // namespace plotting
 } // namespace astro
 } // namespace astrea

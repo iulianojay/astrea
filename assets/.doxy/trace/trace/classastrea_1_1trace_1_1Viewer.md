@@ -74,12 +74,12 @@ Inherits the following classes: astro::Spacecraft,  [astrea::trace::AccessObject
 | Type | Name |
 | ---: | :--- |
 |   | [**Viewer**](#function-viewer-12) () = default<br>_Default constructor for_ [_**Viewer**_](classastrea_1_1trace_1_1Viewer.md) _._ |
-|   | [**Viewer**](#function-viewer-22) (const astro::GeneralPerturbations & gp, const astro::AstrodynamicsSystem & system) <br>_Constructor for_ [_**Viewer**_](classastrea_1_1trace_1_1Viewer.md) _with GeneralPerturbations and AstrodynamicsSystem._ |
+|   | [**Viewer**](#function-viewer-22) (const astro::GeneralPerturbations & gp) <br>_Constructor for_ [_**Viewer**_](classastrea_1_1trace_1_1Viewer.md) _with GeneralPerturbations._ |
 | virtual std::size\_t | [**get\_id**](#function-get_id) () const<br>_Get the viewer ID._  |
-|  astro::RadiusVector&lt; astro::frames::earth::icrf &gt; | [**get\_inertial\_position**](#function-get_inertial_position) (const astro::Date & date) const<br>_Get the inertial position of the viewer._  |
-|  astro::VelocityVector&lt; astro::frames::earth::icrf &gt; | [**get\_inertial\_velocity**](#function-get_inertial_velocity) (const astro::Date & date) const<br>_Get the inertial velocity of the viewer._  |
 |  Mass | [**get\_mass**](#function-get_mass) () override const<br>_Get the mass of the viewer._  |
 |  std::string | [**get\_name**](#function-get_name) () const<br>_Get the name of the viewer._  |
+|  astro::RadiusVector&lt; astro::frames::earth::icrf &gt; | [**get\_position**](#function-get_position) (const astro::Date & date) const<br>_Get the inertial position of the viewer._  |
+|  astro::VelocityVector&lt; astro::frames::earth::icrf &gt; | [**get\_velocity**](#function-get_velocity) (const astro::Date & date) const<br>_Get the inertial velocity of the viewer._  |
 |   | [**~Viewer**](#function-viewer) () = default<br>_Default destructor for_ [_**Viewer**_](classastrea_1_1trace_1_1Viewer.md) _._ |
 
 
@@ -177,11 +177,10 @@ astrea::trace::Viewer::Viewer () = default
 
 ### function Viewer [2/2]
 
-_Constructor for_ [_**Viewer**_](classastrea_1_1trace_1_1Viewer.md) _with GeneralPerturbations and AstrodynamicsSystem._
+_Constructor for_ [_**Viewer**_](classastrea_1_1trace_1_1Viewer.md) _with GeneralPerturbations._
 ```C++
 inline astrea::trace::Viewer::Viewer (
-    const astro::GeneralPerturbations & gp,
-    const astro::AstrodynamicsSystem & system
+    const astro::GeneralPerturbations & gp
 ) 
 ```
 
@@ -193,7 +192,6 @@ inline astrea::trace::Viewer::Viewer (
 
 
 * `gp` The GeneralPerturbations object containing spacecraft data. 
-* `system` The AstrodynamicsSystem object for astrodynamics calculations. 
 
 
 
@@ -226,74 +224,6 @@ std::size\_t The ID of the viewer.
         
 Implements [*astrea::trace::AccessObject::get\_id*](classastrea_1_1trace_1_1AccessObject.md#function-get_id)
 
-
-<hr>
-
-
-
-### function get\_inertial\_position 
-
-_Get the inertial position of the viewer._ 
-```C++
-inline astro::RadiusVector< astro::frames::earth::icrf > astrea::trace::Viewer::get_inertial_position (
-    const astro::Date & date
-) const
-```
-
-
-
-
-
-**Parameters:**
-
-
-* `date` The date for which to get the position. 
-
-
-
-**Returns:**
-
-astro::RadiusVector&lt;astro::frames::earth::icrf&gt; The inertial position of the viewer. 
-
-
-
-
-
-        
-
-<hr>
-
-
-
-### function get\_inertial\_velocity 
-
-_Get the inertial velocity of the viewer._ 
-```C++
-inline astro::VelocityVector< astro::frames::earth::icrf > astrea::trace::Viewer::get_inertial_velocity (
-    const astro::Date & date
-) const
-```
-
-
-
-
-
-**Parameters:**
-
-
-* `date` The date for which to get the velocity. 
-
-
-
-**Returns:**
-
-astro::RadiusVector&lt;astro::frames::earth::icrf&gt; The inertial velocity of the viewer. 
-
-
-
-
-
-        
 
 <hr>
 
@@ -338,6 +268,74 @@ inline std::string astrea::trace::Viewer::get_name () const
 **Returns:**
 
 std::string The name of the viewer. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function get\_position 
+
+_Get the inertial position of the viewer._ 
+```C++
+inline astro::RadiusVector< astro::frames::earth::icrf > astrea::trace::Viewer::get_position (
+    const astro::Date & date
+) const
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `date` The date for which to get the position. 
+
+
+
+**Returns:**
+
+astro::RadiusVector&lt;astro::frames::earth::icrf&gt; The inertial position of the viewer. 
+
+
+
+
+
+        
+
+<hr>
+
+
+
+### function get\_velocity 
+
+_Get the inertial velocity of the viewer._ 
+```C++
+inline astro::VelocityVector< astro::frames::earth::icrf > astrea::trace::Viewer::get_velocity (
+    const astro::Date & date
+) const
+```
+
+
+
+
+
+**Parameters:**
+
+
+* `date` The date for which to get the velocity. 
+
+
+
+**Returns:**
+
+astro::RadiusVector&lt;astro::frames::earth::icrf&gt; The inertial velocity of the viewer. 
 
 
 

@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="GeneralPerturbations_8cpp" kind="file" language="C++">
     <compoundname>GeneralPerturbations.cpp</compoundname>
-    <includes refid="GeneralPerturbations_8hpp" local="no">astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</includes>
+    <includes refid="GeneralPerturbations_8hpp" local="no">astro/state/orbital_data_formats/GeneralPerturbations.hpp</includes>
     <includes local="no">iostream</includes>
     <includes local="no">utilities/json_util.hpp</includes>
     <includes local="no">utilities/string_util.hpp</includes>
     <incdepgraph>
       <node id="1">
-        <label>astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.cpp</label>
+        <label>astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.cpp</label>
         <link refid="GeneralPerturbations_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -19,23 +19,8 @@
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>utilities/json_util.hpp</label>
-      </node>
-      <node id="9">
-        <label>utilities/string_util.hpp</label>
-      </node>
-      <node id="5">
-        <label>string</label>
-      </node>
-      <node id="4">
-        <label>optional</label>
-      </node>
-      <node id="3">
-        <label>iosfwd</label>
-      </node>
       <node id="2">
-        <label>astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</label>
+        <label>astro/state/orbital_data_formats/GeneralPerturbations.hpp</label>
         <link refid="GeneralPerturbations_8hpp"/>
         <childnode refid="3" relation="include">
         </childnode>
@@ -46,11 +31,26 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
+      <node id="3">
+        <label>iosfwd</label>
+      </node>
       <node id="7">
         <label>iostream</label>
       </node>
       <node id="6">
         <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="4">
+        <label>optional</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="8">
+        <label>utilities/json_util.hpp</label>
+      </node>
+      <node id="9">
+        <label>utilities/string_util.hpp</label>
       </node>
     </incdepgraph>
     <innernamespace refid="namespaceastrea">astrea</innernamespace>
@@ -73,7 +73,7 @@
 <codeline lineno="11"><highlight class="comment"><sp/>*<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>along<sp/>with<sp/>Astrea.<sp/>If<sp/>not,<sp/>see<sp/>&lt;https://www.gnu.org/licenses/&gt;.</highlight></codeline>
 <codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="GeneralPerturbations_8hpp" kindref="compound">astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="GeneralPerturbations_8hpp" kindref="compound">astro/state/orbital_data_formats/GeneralPerturbations.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
@@ -83,13 +83,13 @@
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astrea<sp/>{</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">astro<sp/>{</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>utilities::extract_from_json;</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>utilities::extract_optional_from_json;</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>utilities::extract_optional_string_from_json;</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>utilities::extract_string_from_json;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">utilities::extract_from_json;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">utilities::extract_optional_from_json;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">utilities::extract_optional_string_from_json;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">utilities::extract_string_from_json;</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="39"><highlight class="normal">std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::optional&lt;T&gt;&amp;<sp/>opt)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">std::ostream&amp;<sp/><ref refid="CartesianVector_8hpp_1a0ed83a1f9e7ad3004c31b4dd1035d189" kindref="member">operator&lt;&lt;</ref>(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::optional&lt;T&gt;&amp;<sp/>opt)</highlight></codeline>
 <codeline lineno="40"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>opt<sp/>?<sp/>os<sp/>&lt;&lt;<sp/>opt.value()<sp/>:<sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Unassigned&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="42"><highlight class="normal">}</highlight></codeline>
@@ -139,7 +139,7 @@
 <codeline lineno="86"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="87"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal">std::ostream&amp;<sp/>operator&lt;&lt;(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GeneralPerturbations&amp;<sp/>gp)</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">std::ostream&amp;<sp/><ref refid="CartesianVector_8hpp_1a0ed83a1f9e7ad3004c31b4dd1035d189" kindref="member">operator&lt;&lt;</ref>(std::ostream&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GeneralPerturbations&amp;<sp/>gp)</highlight></codeline>
 <codeline lineno="90"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;DB_ID:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.DB_ID<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
 <codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>os<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;APOAPSIS:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gp.APOAPSIS<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
@@ -190,6 +190,6 @@
 <codeline lineno="137"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astro</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="138"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>astrea</highlight></codeline>
     </programlisting>
-    <location file="astrea/astro/astro/state/orbital_data_formats/instances/GeneralPerturbations.cpp"/>
+    <location file="astrea/astro/astro/state/orbital_data_formats/GeneralPerturbations.cpp"/>
   </compounddef>
 </doxygen>

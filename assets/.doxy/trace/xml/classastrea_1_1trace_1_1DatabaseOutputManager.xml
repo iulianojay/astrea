@@ -1,0 +1,715 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classastrea_1_1trace_1_1DatabaseOutputManager" kind="class" language="C++" prot="public">
+    <compoundname>astrea::trace::DatabaseOutputManager</compoundname>
+    <includes refid="output_8hpp" local="no">output.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classastrea_1_1trace_1_1DatabaseOutputManager_1a671eff6532fe81d7f4147c3be482121f" prot="public" static="no">
+        <type>decltype(make_database_storage(std::filesystem::path{}))</type>
+        <definition>using astrea::trace::DatabaseOutputManager::DatabaseStorage =  decltype(make_database_storage(std::filesystem::path{}))</definition>
+        <argsstring></argsstring>
+        <name>DatabaseStorage</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::DatabaseStorage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="196" column="5" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="196" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classastrea_1_1trace_1_1DatabaseOutputManager_1adf01be5b735a1140ac54000a960a1f2e" prot="private" static="no" mutable="no">
+        <type>DatabaseStorage</type>
+        <definition>DatabaseStorage astrea::trace::DatabaseOutputManager::_storage</definition>
+        <argsstring></argsstring>
+        <name>_storage</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::_storage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="199" column="21" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="199" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1a986c3b1806a73c88d1b68a19bdbbd1d7" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>astrea::trace::DatabaseOutputManager::DatabaseOutputManager</definition>
+        <argsstring>(const std::filesystem::path &amp;dbPath, const bool overwrite=false)</argsstring>
+        <name>DatabaseOutputManager</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::DatabaseOutputManager</qualifiedname>
+        <param>
+          <type>const std::filesystem::path &amp;</type>
+          <declname>dbPath</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>overwrite</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="classastrea_1_1trace_1_1DatabaseOutputManager" kindref="compound">DatabaseOutputManager</ref> with the specified database path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dbPath</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the database file. Will be created if it doesn&apos;t exist. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>overwrite</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, the existing database will be overwritten. Default is false. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="208" column="14" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="208" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1a465fba42855e0fdd0ec1e2b69ddd3882" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void astrea::trace::DatabaseOutputManager::save_results</definition>
+        <argsstring>(const FoldsOfCoverage &amp;folds, const AccessStats &amp;stats, const AccessArray &amp;accesses, const astro::Constellation&lt; T &gt; &amp;satellites, const U &amp;grounds=U())</argsstring>
+        <name>save_results</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::save_results</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref> &amp;</type>
+          <declname>folds</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structastrea_1_1trace_1_1AccessStats" kindref="compound">AccessStats</ref> &amp;</type>
+          <declname>stats</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
+          <declname>accesses</declname>
+        </param>
+        <param>
+          <type>const astro::Constellation&lt; T &gt; &amp;</type>
+          <declname>satellites</declname>
+        </param>
+        <param>
+          <type>const U &amp;</type>
+          <declname>grounds</declname>
+          <defval>U()</defval>
+        </param>
+        <briefdescription>
+<para>Saves all results to the database in a structured format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of Spacecraft used in the Constellation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the ground container. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>folds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref> containing the fold statistics to be saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stats</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="structastrea_1_1trace_1_1AccessStats" kindref="compound">AccessStats</ref> containing the access statistics to be saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>accesses</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> containing the access times to be saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>satellites</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Constellation containing the Spacecraft for which access times are being saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>grounds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1GroundArchitecture" kindref="compound">GroundArchitecture</ref> containing the ground stations for which access times are being saved </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="246" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="246" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1adce9a06eabe6d2919320b8cb27dea389" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void astrea::trace::DatabaseOutputManager::save_risesets</definition>
+        <argsstring>(const AccessArray &amp;accesses, const astro::Constellation&lt; T &gt; &amp;satellites, const U &amp;grounds=U())</argsstring>
+        <name>save_risesets</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::save_risesets</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
+          <declname>accesses</declname>
+        </param>
+        <param>
+          <type>const astro::Constellation&lt; T &gt; &amp;</type>
+          <declname>satellites</declname>
+        </param>
+        <param>
+          <type>const U &amp;</type>
+          <declname>grounds</declname>
+          <defval>U()</defval>
+        </param>
+        <briefdescription>
+<para>Saves the <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> to the database in a structured format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of Spacecraft used in the Constellation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the ground container. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>accesses</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> containing the access times to be saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>satellites</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Constellation containing the Spacecraft for which access times are being saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>grounds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1GroundArchitecture" kindref="compound">GroundArchitecture</ref> containing the ground stations for which access times are being saved </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="272" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="272" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1a5e3f7bc363092986a7600d6ec55ac5e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void astrea::trace::DatabaseOutputManager::save_riseset_metrics</definition>
+        <argsstring>(const AccessArray &amp;accesses, const astro::Constellation&lt; T &gt; &amp;satellites, const U &amp;grounds=U())</argsstring>
+        <name>save_riseset_metrics</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::save_riseset_metrics</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> &amp;</type>
+          <declname>accesses</declname>
+        </param>
+        <param>
+          <type>const astro::Constellation&lt; T &gt; &amp;</type>
+          <declname>satellites</declname>
+        </param>
+        <param>
+          <type>const U &amp;</type>
+          <declname>grounds</declname>
+          <defval>U()</defval>
+        </param>
+        <briefdescription>
+<para>Saves the RiseSet metrics to the database in a structured format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of Spacecraft used in the Constellation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the ground container. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>accesses</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1AccessArray" kindref="compound">AccessArray</ref> containing the access times to be saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>satellites</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Constellation containing the Spacecraft for which access times are being saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>grounds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1GroundArchitecture" kindref="compound">GroundArchitecture</ref> containing the ground stations for which access times are being saved </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="310" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="310" bodyend="352"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1a3790f104d20d5e7679b26c042107cecb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void astrea::trace::DatabaseOutputManager::save_receiver_riseset_metrics</definition>
+        <argsstring>(const AccessStats &amp;stats, const astro::Constellation&lt; T &gt; &amp;satellites, const U &amp;grounds=U())</argsstring>
+        <name>save_receiver_riseset_metrics</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::save_receiver_riseset_metrics</qualifiedname>
+        <param>
+          <type>const <ref refid="structastrea_1_1trace_1_1AccessStats" kindref="compound">AccessStats</ref> &amp;</type>
+          <declname>stats</declname>
+        </param>
+        <param>
+          <type>const astro::Constellation&lt; T &gt; &amp;</type>
+          <declname>satellites</declname>
+        </param>
+        <param>
+          <type>const U &amp;</type>
+          <declname>grounds</declname>
+          <defval>U()</defval>
+        </param>
+        <briefdescription>
+<para>Saves the receiver RiseSet metrics to the database in a structured format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of Spacecraft used in the Constellation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the ground container. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stats</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="structastrea_1_1trace_1_1AccessStats" kindref="compound">AccessStats</ref> containing the statistics to be saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>satellites</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Constellation containing the Spacecraft for which access times are being saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>grounds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1GroundArchitecture" kindref="compound">GroundArchitecture</ref> containing the ground stations for which access times are being saved </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="364" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="364" bodyend="429"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1a34a05a10accaefe024b7d62d9f5bfe9c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void astrea::trace::DatabaseOutputManager::save_access_metrics</definition>
+        <argsstring>(const AccessStats &amp;stats, const astro::Constellation&lt; T &gt; &amp;satellites, const U &amp;grounds=U())</argsstring>
+        <name>save_access_metrics</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::save_access_metrics</qualifiedname>
+        <param>
+          <type>const <ref refid="structastrea_1_1trace_1_1AccessStats" kindref="compound">AccessStats</ref> &amp;</type>
+          <declname>stats</declname>
+        </param>
+        <param>
+          <type>const astro::Constellation&lt; T &gt; &amp;</type>
+          <declname>satellites</declname>
+        </param>
+        <param>
+          <type>const U &amp;</type>
+          <declname>grounds</declname>
+          <defval>U()</defval>
+        </param>
+        <briefdescription>
+<para>Saves the access metrics to the database in a structured format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of Spacecraft used in the Constellation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the ground container. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>stats</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="structastrea_1_1trace_1_1AccessStats" kindref="compound">AccessStats</ref> containing the metrics to be saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>satellites</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Constellation containing the Spacecraft for which access times are being saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>grounds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1GroundArchitecture" kindref="compound">GroundArchitecture</ref> containing the ground stations for which access times are being saved </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="442" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="442" bodyend="462"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1ae53d25e7b49df57672590fe734c99341" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void astrea::trace::DatabaseOutputManager::save_number_of_folds</definition>
+        <argsstring>(const FoldsOfCoverage &amp;folds, const astro::Constellation&lt; T &gt; &amp;satellites, const U &amp;grounds)</argsstring>
+        <name>save_number_of_folds</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::save_number_of_folds</qualifiedname>
+        <param>
+          <type>const <ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref> &amp;</type>
+          <declname>folds</declname>
+        </param>
+        <param>
+          <type>const astro::Constellation&lt; T &gt; &amp;</type>
+          <declname>satellites</declname>
+        </param>
+        <param>
+          <type>const U &amp;</type>
+          <declname>grounds</declname>
+        </param>
+        <briefdescription>
+<para>Saves the number of folds coverage data to the database in a structured format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of Spacecraft used in the Constellation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the ground container. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>folds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1FoldsOfCoverage" kindref="compound">FoldsOfCoverage</ref> containing the folds data to be saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>satellites</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Constellation containing the Spacecraft for which access times are being saved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>grounds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classastrea_1_1trace_1_1GroundArchitecture" kindref="compound">GroundArchitecture</ref> containing the ground stations for which access times are being saved </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="474" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="474" bodyend="504"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1aea71b7108a610fa95118b05689708197" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void astrea::trace::DatabaseOutputManager::save_ground_locations</definition>
+        <argsstring>(const U &amp;grounds)</argsstring>
+        <name>save_ground_locations</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::save_ground_locations</qualifiedname>
+        <param>
+          <type>const U &amp;</type>
+          <declname>grounds</declname>
+        </param>
+        <briefdescription>
+<para>Saves ground location coordinates to the database. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the ground container (e.g., <ref refid="classastrea_1_1trace_1_1Grid" kindref="compound">Grid</ref>, <ref refid="classastrea_1_1trace_1_1GroundArchitecture" kindref="compound">GroundArchitecture</ref>). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>grounds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The container of ground objects to save. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="513" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="513" bodyend="536"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1af53f6128a50cadfbff7a146addfa9ea6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::DatabaseOutputManager::clear_all_tables</definition>
+        <argsstring>()</argsstring>
+        <name>clear_all_tables</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::clear_all_tables</qualifiedname>
+        <briefdescription>
+<para>Clears all data from all tables in the database. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is useful when you want to completely reset the database before saving new analysis results. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="544" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="544" bodyend="552"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1a50fdf626954fc935336362a0995c93da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>DatabaseStorage &amp;</type>
+        <definition>DatabaseStorage &amp; astrea::trace::DatabaseOutputManager::get_storage</definition>
+        <argsstring>()</argsstring>
+        <name>get_storage</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::get_storage</qualifiedname>
+        <briefdescription>
+<para>Gets a reference to the underlying database storage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>DatabaseStorage&amp; Reference to the database storage instance. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="559" column="21" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="559" bodyend="559"/>
+      </memberdef>
+      <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1ae1aefd018b65271bd988703f059068b3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const DatabaseStorage &amp;</type>
+        <definition>const DatabaseStorage &amp; astrea::trace::DatabaseOutputManager::get_storage</definition>
+        <argsstring>() const</argsstring>
+        <name>get_storage</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::get_storage</qualifiedname>
+        <briefdescription>
+<para>Gets a const reference to the underlying database storage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>const DatabaseStorage&amp; Const reference to the database storage instance. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="566" column="27" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="566" bodyend="566"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classastrea_1_1trace_1_1DatabaseOutputManager_1a84dec4f1f005f64eb5a1d34dbf32fd29" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void astrea::trace::DatabaseOutputManager::optimize_database_performance</definition>
+        <argsstring>()</argsstring>
+        <name>optimize_database_performance</name>
+        <qualifiedname>astrea::trace::DatabaseOutputManager::optimize_database_performance</qualifiedname>
+        <briefdescription>
+<para>Optimizes SQLite database performance for bulk operations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/trace/trace/io/output.hpp" line="222" column="10" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="222" bodyend="231"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A class for managing database output operations with a single database instance. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class creates or loads a database on construction and provides methods to save various types of analysis data using the same database connection. </para>
+    </detaileddescription>
+    <location file="astrea/trace/trace/io/output.hpp" line="194" column="1" bodyfile="astrea/trace/trace/io/output.hpp" bodystart="194" bodyend="567"/>
+    <listofallmembers>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1adf01be5b735a1140ac54000a960a1f2e" prot="private" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>_storage</name></member>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1af53f6128a50cadfbff7a146addfa9ea6" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>clear_all_tables</name></member>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a986c3b1806a73c88d1b68a19bdbbd1d7" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>DatabaseOutputManager</name></member>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a671eff6532fe81d7f4147c3be482121f" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>DatabaseStorage</name></member>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a50fdf626954fc935336362a0995c93da" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>get_storage</name></member>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1ae1aefd018b65271bd988703f059068b3" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>get_storage</name></member>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a84dec4f1f005f64eb5a1d34dbf32fd29" prot="private" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>optimize_database_performance</name></member>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a34a05a10accaefe024b7d62d9f5bfe9c" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>save_access_metrics</name></member>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1aea71b7108a610fa95118b05689708197" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>save_ground_locations</name></member>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1ae53d25e7b49df57672590fe734c99341" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>save_number_of_folds</name></member>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a3790f104d20d5e7679b26c042107cecb" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>save_receiver_riseset_metrics</name></member>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a465fba42855e0fdd0ec1e2b69ddd3882" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>save_results</name></member>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1a5e3f7bc363092986a7600d6ec55ac5e9" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>save_riseset_metrics</name></member>
+      <member refid="classastrea_1_1trace_1_1DatabaseOutputManager_1adce9a06eabe6d2919320b8cb27dea389" prot="public" virt="non-virtual"><scope>astrea::trace::DatabaseOutputManager</scope><name>save_risesets</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

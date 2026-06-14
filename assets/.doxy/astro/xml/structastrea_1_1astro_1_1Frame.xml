@@ -1,116 +1,307 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="structastrea_1_1astro_1_1Frame" kind="struct" language="C++" prot="public">
     <compoundname>astrea::astro::Frame</compoundname>
-    <includes refid="Frame_8hpp" local="no">Frame.hpp</includes>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Callisto Fixed Frame&quot;, moons::Callisto &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Deimos Fixed Frame&quot;, moons::Deimos &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Earth Fixed Frame&quot;, planets::Earth &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Europa Fixed Frame&quot;, moons::Europa &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Ganymede Fixed Frame&quot;, moons::Ganymede &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Iapetus Fixed Frame&quot;, moons::Iapetus &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Io Fixed Frame&quot;, moons::Io &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Jupiter Fixed Frame&quot;, planets::Jupiter &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Mars Fixed Frame&quot;, planets::Mars &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Mercury Fixed Frame&quot;, planets::Mercury &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Moon Fixed Frame&quot;, moons::Moon &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Neptune Fixed Frame&quot;, planets::Neptune &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Oberon Fixed Frame&quot;, moons::Oberon &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Phobos Fixed Frame&quot;, moons::Phobos &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Rhea Fixed Frame&quot;, moons::Rhea &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Saturn Fixed Frame&quot;, planets::Saturn &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Titan Fixed Frame&quot;, moons::Titan &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Titania Fixed Frame&quot;, moons::Titania &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Triton Fixed Frame&quot;, moons::Triton &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Uranus Fixed Frame&quot;, planets::Uranus &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt;&quot;Venus Fixed Frame&quot;, planets::Venus &gt;</derivedcompoundref>
+    <derivedcompoundref refid="structastrea_1_1astro_1_1BodyFixedFrame" prot="public" virt="non-virtual">astrea::astro::BodyFixedFrame&lt; _name_, _origin_, _axis_ &gt;</derivedcompoundref>
     <templateparamlist>
       <param>
-        <type><ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
-        <declname>origin</declname>
-        <defname>origin</defname>
+        <type>mp_units::symbol_text</type>
       </param>
       <param>
-        <type><ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732ac" kindref="member">FrameAxis</ref></type>
-        <declname>axis</declname>
-        <defname>axis</defname>
+        <type>auto...</type>
       </param>
     </templateparamlist>
-      <sectiondef kind="protected-static-attrib">
-      <memberdef kind="variable" id="structastrea_1_1astro_1_1Frame_1a3d2312fa3ad178d9418fb59dd1887841" prot="protected" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
-        <definition>constexpr CelestialBodyId astrea::astro::Frame&lt; origin, axis &gt;::_origin</definition>
-        <argsstring></argsstring>
-        <name>_origin</name>
-        <initializer>= origin</initializer>
-        <briefdescription>
-<para>The central body associated with the inertial frame. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/frames/Frame.hpp" line="59" column="38" bodyfile="astrea/astro/astro/frames/Frame.hpp" bodystart="59" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structastrea_1_1astro_1_1Frame_1a99916d51814b90a76673f02412c5ddc0" prot="protected" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732ac" kindref="member">FrameAxis</ref></type>
-        <definition>constexpr FrameAxis astrea::astro::Frame&lt; origin, axis &gt;::_axis</definition>
-        <argsstring></argsstring>
-        <name>_axis</name>
-        <initializer>= axis</initializer>
-        <briefdescription>
-<para>The axis type of the inertial frame. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/frames/Frame.hpp" line="60" column="32" bodyfile="astrea/astro/astro/frames/Frame.hpp" bodystart="60" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="protected-func">
-      <memberdef kind="function" id="structastrea_1_1astro_1_1Frame_1a848c466e1381fee54639d5ef1cd2a11b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
-        <type></type>
-        <definition>virtual astrea::astro::Frame&lt; origin, axis &gt;::~Frame</definition>
-        <argsstring>()=default</argsstring>
-        <name>~Frame</name>
-        <briefdescription>
-<para>Default destructor for <ref refid="structastrea_1_1astro_1_1Frame" kindref="compound">Frame</ref>. </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/frames/Frame.hpp" line="41" column="13"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="structastrea_1_1astro_1_1Frame_1a89faa9d701c644c12e31dccfc503095a" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>constexpr <ref refid="enums_8hpp_1a02b1cc514e8933794539416f426a4bbf" kindref="member">CelestialBodyId</ref></type>
-        <definition>static constexpr CelestialBodyId astrea::astro::Frame&lt; origin, axis &gt;::get_origin</definition>
-        <argsstring>()</argsstring>
-        <name>get_origin</name>
-        <briefdescription>
-<para>Get the origin of the frame. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>The origin of the frame. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/frames/Frame.hpp" line="49" column="38" bodyfile="astrea/astro/astro/frames/Frame.hpp" bodystart="49" bodyend="49"/>
-      </memberdef>
-      <memberdef kind="function" id="structastrea_1_1astro_1_1Frame_1a9e9ab81b9fa1e4fe19ac379c4475b27b" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>constexpr <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732ac" kindref="member">FrameAxis</ref></type>
-        <definition>static constexpr FrameAxis astrea::astro::Frame&lt; origin, axis &gt;::get_axis</definition>
-        <argsstring>()</argsstring>
-        <name>get_axis</name>
-        <briefdescription>
-<para>Get the origin of the frame. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>The origin of the frame. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="astrea/astro/astro/frames/Frame.hpp" line="56" column="32" bodyfile="astrea/astro/astro/frames/Frame.hpp" bodystart="56" bodyend="56"/>
-      </memberdef>
-      </sectiondef>
     <briefdescription>
-<para>Base class for all state/frames. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/Frame.hpp" line="35" column="1" bodyfile="astrea/astro/astro/frames/Frame.hpp" bodystart="35" bodyend="61"/>
+    <inheritancegraph>
+      <node id="2">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Callisto Fixed Frame&quot;, moons::Callisto &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Deimos Fixed Frame&quot;, moons::Deimos &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Earth Fixed Frame&quot;, planets::Earth &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Europa Fixed Frame&quot;, moons::Europa &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Ganymede Fixed Frame&quot;, moons::Ganymede &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Iapetus Fixed Frame&quot;, moons::Iapetus &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Io Fixed Frame&quot;, moons::Io &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Jupiter Fixed Frame&quot;, planets::Jupiter &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Mars Fixed Frame&quot;, planets::Mars &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Mercury Fixed Frame&quot;, planets::Mercury &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Moon Fixed Frame&quot;, moons::Moon &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Neptune Fixed Frame&quot;, planets::Neptune &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Oberon Fixed Frame&quot;, moons::Oberon &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Phobos Fixed Frame&quot;, moons::Phobos &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Rhea Fixed Frame&quot;, moons::Rhea &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Saturn Fixed Frame&quot;, planets::Saturn &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Titan Fixed Frame&quot;, moons::Titan &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Titania Fixed Frame&quot;, moons::Titania &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Triton Fixed Frame&quot;, moons::Triton &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Uranus Fixed Frame&quot;, planets::Uranus &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>astrea::astro::BodyFixedFrame&lt;&quot;Venus Fixed Frame&quot;, planets::Venus &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>astrea::astro::BodyFixedFrame&lt; _name_, _origin_, _axis_ &gt;</label>
+        <link refid="structastrea_1_1astro_1_1BodyFixedFrame"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>astrea::astro::Frame&lt; symbol_text,... &gt;</label>
+        <link refid="structastrea_1_1astro_1_1Frame"/>
+      </node>
+      <node id="3">
+        <label>astrea::astro::frames::callisto::callisto_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1callisto_1_1callisto__fixed"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>astrea::astro::frames::deimos::deimos_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1deimos_1_1deimos__fixed"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>astrea::astro::frames::earth::earth_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1earth_1_1earth__fixed"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>astrea::astro::frames::europa::europa_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1europa_1_1europa__fixed"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>astrea::astro::frames::ganymede::ganymede_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1ganymede_1_1ganymede__fixed"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>astrea::astro::frames::iapetus::iapetus_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1iapetus_1_1iapetus__fixed"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>astrea::astro::frames::io::io_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1io_1_1io__fixed"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>astrea::astro::frames::jupiter::jupiter_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1jupiter_1_1jupiter__fixed"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>astrea::astro::frames::mars::mars_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1mars_1_1mars__fixed"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>astrea::astro::frames::mercury::mercury_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1mercury_1_1mercury__fixed"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>astrea::astro::frames::moon::moon_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1moon_1_1moon__fixed"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>astrea::astro::frames::neptune::neptune_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1neptune_1_1neptune__fixed"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>astrea::astro::frames::oberon::oberon_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1oberon_1_1oberon__fixed"/>
+        <childnode refid="26" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>astrea::astro::frames::phobos::phobos_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1phobos_1_1phobos__fixed"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>astrea::astro::frames::rhea::rhea_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1rhea_1_1rhea__fixed"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>astrea::astro::frames::saturn::saturn_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1saturn_1_1saturn__fixed"/>
+        <childnode refid="32" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>astrea::astro::frames::titan::titan_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1titan_1_1titan__fixed"/>
+        <childnode refid="34" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>astrea::astro::frames::titania::titania_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1titania_1_1titania__fixed"/>
+        <childnode refid="36" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>astrea::astro::frames::triton::triton_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1triton_1_1triton__fixed"/>
+        <childnode refid="38" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>astrea::astro::frames::uranus::uranus_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1uranus_1_1uranus__fixed"/>
+        <childnode refid="40" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>astrea::astro::frames::venus::venus_fixed</label>
+        <link refid="structastrea_1_1astro_1_1frames_1_1venus_1_1venus__fixed"/>
+        <childnode refid="42" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="astrea/astro/astro/frames/framework/Frame.hpp" line="50" column="1" bodyfile="astrea/astro/astro/frames/framework/Frame.hpp" bodystart="50" bodyend="-1"/>
     <listofallmembers>
-      <member refid="structastrea_1_1astro_1_1Frame_1a99916d51814b90a76673f02412c5ddc0" prot="protected" virt="non-virtual"><scope>astrea::astro::Frame</scope><name>_axis</name></member>
-      <member refid="structastrea_1_1astro_1_1Frame_1a3d2312fa3ad178d9418fb59dd1887841" prot="protected" virt="non-virtual"><scope>astrea::astro::Frame</scope><name>_origin</name></member>
-      <member refid="structastrea_1_1astro_1_1Frame_1a9e9ab81b9fa1e4fe19ac379c4475b27b" prot="public" virt="non-virtual"><scope>astrea::astro::Frame</scope><name>get_axis</name></member>
-      <member refid="structastrea_1_1astro_1_1Frame_1a89faa9d701c644c12e31dccfc503095a" prot="public" virt="non-virtual"><scope>astrea::astro::Frame</scope><name>get_origin</name></member>
-      <member refid="structastrea_1_1astro_1_1Frame_1a848c466e1381fee54639d5ef1cd2a11b" prot="protected" virt="virtual"><scope>astrea::astro::Frame</scope><name>~Frame</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

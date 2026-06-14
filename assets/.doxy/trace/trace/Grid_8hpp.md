@@ -10,9 +10,14 @@
 
 _Grid class for managing a grid of ground points._ [More...](#detailed-description)
 
+* `#include <algorithm>`
+* `#include <cmath>`
+* `#include <ranges>`
+* `#include <stdexcept>`
 * `#include <vector>`
+* `#include <mp-units/math.h>`
 * `#include <units/units.hpp>`
-* `#include <astro/systems/CelestialBody.hpp>`
+* `#include <astro/systems/system_concepts.hpp>`
 * `#include <trace/platforms/ground/GroundPoint.hpp>`
 * `#include <trace/types/enums.hpp>`
 * `#include <trace/types/typedefs.hpp>`
@@ -41,7 +46,7 @@ _Grid class for managing a grid of ground points._ [More...](#detailed-descripti
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Grid**](classastrea_1_1trace_1_1Grid.md) <br>_Class representing a grid of ground points._  |
+| class | [**Grid**](classastrea_1_1trace_1_1Grid.md) &lt;\_body\_&gt;<br>_Class representing a grid of ground points on the surface of a celestial body._  |
 
 
 

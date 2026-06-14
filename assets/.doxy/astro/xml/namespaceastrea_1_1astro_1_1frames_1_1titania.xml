@@ -1,39 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="namespaceastrea_1_1astro_1_1frames_1_1titania" kind="namespace" language="C++">
     <compoundname>astrea::astro::frames::titania</compoundname>
-      <sectiondef kind="typedef">
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a66d04104bba5671e9190ed9bb6abac15" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::TITANIA, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732aca55a71d1c3e9f7149f90f55cf2793e7d4" kindref="member">FrameAxis::ICRF</ref> &gt;</type>
-        <definition>using astrea::astro::frames::titania::icrf = typedef InertialFrame&lt;CelestialBodyId::TITANIA, FrameAxis::ICRF&gt;</definition>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1titania_1_1icrf" prot="public">astrea::astro::frames::titania::icrf</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1titania_1_1j2000" prot="public">astrea::astro::frames::titania::j2000</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1frames_1_1titania_1_1titania__fixed" prot="public">astrea::astro::frames::titania::titania_fixed</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a7c8c543925c1176b7d54b5162cd169d3" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1titania_1_1icrf" kindref="compound">astrea::astro::frames::titania::icrf</ref></type>
+        <definition>astrea::astro::frames::titania::icrf astrea::astro::frames::titania::icrf</definition>
         <argsstring></argsstring>
         <name>icrf</name>
+        <qualifiedname>astrea::astro::frames::titania::icrf</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="118" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="118" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="156" column="6"/>
       </memberdef>
-      <memberdef kind="typedef" id="body__centered__inertial__frames_8hpp_1a75b474fd7791e97395df3e575f2ed71e" prot="public" static="no">
-        <type>InertialFrame&lt; CelestialBodyId::TITANIA, <ref refid="enums_8hpp_1a25307e069d9511f92f571e379d0732acaee7e5bbb9a1c55107143f4efdd743be7" kindref="member">FrameAxis::J2000</ref> &gt;</type>
-        <definition>using astrea::astro::frames::titania::j2000 = typedef InertialFrame&lt;CelestialBodyId::TITANIA, FrameAxis::J2000&gt;</definition>
+      <memberdef kind="variable" id="body__centered__inertial__frames_8hpp_1a05fce5806658f1a5c867390df3877687" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1titania_1_1j2000" kindref="compound">astrea::astro::frames::titania::j2000</ref></type>
+        <definition>astrea::astro::frames::titania::j2000 astrea::astro::frames::titania::j2000</definition>
         <argsstring></argsstring>
         <name>j2000</name>
+        <qualifiedname>astrea::astro::frames::titania::j2000</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="119" column="1" bodyfile="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" bodystart="119" bodyend="-1"/>
+        <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="158" column="7"/>
       </memberdef>
-      </sectiondef>
+      <memberdef kind="variable" id="body__fixed__frames_8hpp_1adfaad1ae174026d8c67f8ca3fdbd1647" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1frames_1_1titania_1_1titania__fixed" kindref="compound">astrea::astro::frames::titania::titania_fixed</ref></type>
+        <definition>astrea::astro::frames::titania::titania_fixed astrea::astro::frames::titania::titania_fixed</definition>
+        <argsstring></argsstring>
+        <name>titania_fixed</name>
+        <qualifiedname>astrea::astro::frames::titania::titania_fixed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/frames/definitions/body_fixed_frames.hpp" line="115" column="15"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="astrea/astro/astro/frames/instances/body_centered_inertial_frames.hpp" line="117" column="1"/>
+    <location file="astrea/astro/astro/frames/definitions/body_centered_inertial_frames.hpp" line="154" column="1"/>
   </compounddef>
 </doxygen>

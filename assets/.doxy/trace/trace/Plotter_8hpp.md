@@ -15,6 +15,7 @@ _Header file for plotting utilities in the trace module._ [More...](#detailed-de
 * `#include <vector>`
 * `#include <matplot/matplot.h>`
 * `#include <astro/astro.fwd.hpp>`
+* `#include <astro/systems/celestial_bodies/Earth/Earth.hpp>`
 * `#include <units/units.hpp>`
 * `#include <trace/trace.fwd.hpp>`
 

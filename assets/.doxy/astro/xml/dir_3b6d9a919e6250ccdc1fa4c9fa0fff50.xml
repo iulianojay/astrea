@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_3b6d9a919e6250ccdc1fa4c9fa0fff50" kind="dir">
+    <compoundname>astrea/astro/astro/systems/celestial_bodies/Mercury</compoundname>
+    <innerfile refid="Mercury_8hpp">Mercury.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/celestial_bodies/Mercury/"/>
+  </compounddef>
+</doxygen>

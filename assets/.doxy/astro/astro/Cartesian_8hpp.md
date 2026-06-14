@@ -4,7 +4,7 @@
 
 
 
-[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**state**](dir_cf1a4d8122645f8636e977da512a043c.md) **>** [**orbital\_elements**](dir_6eb62f1e639545772a8b9a71f7b1d0b7.md) **>** [**instances**](dir_2296e922a578ce2ef4a64c83384e553c.md) **>** [**Cartesian.hpp**](Cartesian_8hpp.md)
+[**FileList**](files.md) **>** [**astrea**](dir_b5324400686b7cece921533bb760c87a.md) **>** [**astro**](dir_1d4dcf10fc541574a93624f5c09a3d6f.md) **>** [**astro**](dir_84db6e3c60e44147f5214c05dc45afc2.md) **>** [**state**](dir_cf1a4d8122645f8636e977da512a043c.md) **>** [**orbital\_elements**](dir_6eb62f1e639545772a8b9a71f7b1d0b7.md) **>** [**Cartesian.hpp**](Cartesian_8hpp.md)
 
 [Go to the source code of this file](Cartesian_8hpp_source.md)
 
@@ -13,9 +13,9 @@ _This file defines the Cartesian class and its associated methods._ [More...](#d
 * `#include <iosfwd>`
 * `#include <units/units.hpp>`
 * `#include <astro/astro.fwd.hpp>`
-* `#include <astro/frames/CartesianVector.hpp>`
-* `#include <astro/frames/frames.hpp>`
+* `#include <astro/frames/framework/CartesianVector.hpp>`
 * `#include <astro/types/typedefs.hpp>`
+* `#include <astro/state/orbital_elements/Cartesian.ipp>`
 
 
 
@@ -41,8 +41,8 @@ _This file defines the Cartesian class and its associated methods._ [More...](#d
 
 | Type | Name |
 | ---: | :--- |
-| class | [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) <br>_Class representing a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector in astrodynamics._ |
-| class | [**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md) <br>_Class representing a partial derivative of a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
+| class | [**Cartesian**](classastrea_1_1astro_1_1Cartesian.md) &lt;\_frame\_&gt;<br>_Class representing a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector in astrodynamics._ |
+| class | [**CartesianPartial**](classastrea_1_1astro_1_1CartesianPartial.md) &lt;\_frame\_&gt;<br>_Class representing a partial derivative of a_ [_**Cartesian**_](classastrea_1_1astro_1_1Cartesian.md) _state vector._ |
 
 
 
@@ -126,5 +126,5 @@ This file is part of Astrea. Astrea is free software: you can redistribute it an
     
 
 ------------------------------
-The documentation for this class was generated from the following file `astrea/astro/astro/state/orbital_elements/instances/Cartesian.hpp`
+The documentation for this class was generated from the following file `astrea/astro/astro/state/orbital_elements/Cartesian.hpp`
 

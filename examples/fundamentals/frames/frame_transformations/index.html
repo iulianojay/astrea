@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://iulianojay.github.io/astrea/examples/fundamentals/frames/frame_transformations/">
       
       
-        <link rel="prev" href="../strongly_typed_frames/">
+        <link rel="prev" href="../introduction/">
       
       
         <link rel="next" href="../cartesian_vectors/">
@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/astrea-transparent-crop.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -178,6 +178,53 @@ You're not viewing the latest version.
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
     
     
       <div class="md-header__source">
@@ -436,8 +483,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
     
     
     
@@ -488,34 +533,6 @@ You're not viewing the latest version.
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../getting_started/about/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    About Astrea
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -704,10 +721,6 @@ You're not viewing the latest version.
       
         
       
-        
-      
-        
-      
     
     
     
@@ -786,34 +799,6 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../strongly_typed_frames/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Strongly Typed Frames
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../time_systems/" class="md-nav__link">
         
   
@@ -869,34 +854,6 @@ You're not viewing the latest version.
   
   
   
-    <li class="md-nav__item">
-      <a href="../../astrodynamic_systems/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Astrodynamic Systems
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -923,10 +880,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
             
   
   
@@ -944,8 +901,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_6">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1102,7 +1059,7 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../../vehicles.md" class="md-nav__link">
+      <a href="../../propagation/vehicles/" class="md-nav__link">
         
   
   
@@ -1159,10 +1116,10 @@ You're not viewing the latest version.
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_3_2_7" id="__nav_3_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
             
   
   
@@ -1180,8 +1137,8 @@ You're not viewing the latest version.
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_7_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_2_7">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1198,14 +1155,14 @@ You're not viewing the latest version.
   
   
     <li class="md-nav__item">
-      <a href="../strongly_typed_frames/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Strongly Typed Frames
+    Introduction to Strongly Typed Frames
   
 
     
@@ -1286,10 +1243,10 @@ You're not viewing the latest version.
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#transformation-framework" class="md-nav__link">
+  <a href="#hierarchy-of-frames" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Transformation Framework
+        Hierarchy of Frames
       
     </span>
   </a>
@@ -1297,199 +1254,10 @@ You're not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-transformation-functions" class="md-nav__link">
+  <a href="#custom-frames" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Transformation Functions
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Core Transformation Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#center-offset-calculations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Center Offset Calculations
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#frame-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Frame Concepts
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#transformation-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Transformation Types
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Transformation Types">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#same-origin-different-axes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Same Origin, Different Axes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#different-origin-same-axes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Different Origin, Same Axes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#different-origin-and-axes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Different Origin and Axes
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#direction-cosine-matrices" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Direction Cosine Matrices
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#transformation-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Transformation Examples
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Transformation Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#earth-centered-transformations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Earth-Centered Transformations
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#relative-motion-frames" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Relative Motion Frames
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#multi-body-transformations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Multi-Body Transformations
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance-considerations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance Considerations
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Performance Considerations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#compile-time-optimization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Compile-Time Optimization
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#runtime-efficiency" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Runtime Efficiency
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Error Handling
+        Custom Frames
       
     </span>
   </a>
@@ -6554,141 +6322,231 @@ You're not viewing the latest version.
 
 
 <h1 id="frame-transformations">Frame Transformations<a class="headerlink" href="#frame-transformations" title="Permanent link">&para;</a></h1>
-<p>Astrea provides a comprehensive coordinate frame transformation system that enables safe and efficient conversion between different reference frames. The transformation system is built on compile-time type safety and supports both static and dynamic frame conversions.</p>
-<h2 id="transformation-framework">Transformation Framework<a class="headerlink" href="#transformation-framework" title="Permanent link">&para;</a></h2>
-<p>The frame transformation system is built around several key concepts:</p>
-<ul>
-<li><strong>Compile-time frame safety</strong> through template metaprogramming</li>
-<li><strong>Automatic transformation detection</strong> based on frame relationships</li>
-<li><strong>Center offset calculations</strong> for frames with different origins</li>
-<li><strong>Axis rotation matrices</strong> for frames with different orientations</li>
-</ul>
-<h2 id="core-transformation-functions">Core Transformation Functions<a class="headerlink" href="#core-transformation-functions" title="Permanent link">&para;</a></h2>
-<h3 id="center-offset-calculations">Center Offset Calculations<a class="headerlink" href="#center-offset-calculations" title="Permanent link">&para;</a></h3>
-<p>For frames with different origins, the system automatically calculates position offsets:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;astro/frames/transformations.hpp&gt;</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// Get offset between Earth and Moon centers</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">get_center_offset</span><span class="o">&lt;</span><span class="n">earth</span><span class="o">::</span><span class="n">eci</span><span class="p">,</span><span class="w"> </span><span class="n">moon</span><span class="o">::</span><span class="n">eci</span><span class="o">&gt;</span><span class="p">(</span><span class="n">epoch</span><span class="p">);</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">// Frames with same origin have zero offset</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">zeroOffset</span><span class="w"> </span><span class="o">=</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="n">get_center_offset</span><span class="o">&lt;</span><span class="n">earth</span><span class="o">::</span><span class="n">eci</span><span class="p">,</span><span class="w"> </span><span class="n">earth</span><span class="o">::</span><span class="n">ecef</span><span class="o">&gt;</span><span class="p">(</span><span class="n">epoch</span><span class="p">);</span><span class="w"> </span><span class="c1">// Returns zero</span>
+<p>Astrea provides a powerful system for defining and working with coordinate frames. The system is designed to either directly support every frame within the Internation Celestial Reference System (ICRS) or to allow users to easily define their own frames and transformations between them. To facilitate this, frames are composed fundamentally of an <code>Axis</code> and an <code>Origin</code>. An axis in Astrea is an abstract set of coordinate lines that is not necessarily associated with any particular point in space. In practice, an axis is almost necessarily tied to a specific point, but this higher level of abstraction is useful for generalizing frame transformations. An origin in Astrea represents the physical location that a frame's axes are centered on. Many origins are abstract in nature, representing either the outcome of some set of physical measurements or calculations, but not tied to any concrete physical thing or location. Some are explicitly tied to a physical object but require complex numerical calculations to reference. This frame system captures all these cases and more.</p>
+<p>The ICRS is largely focused on the frames associated with astronomy and aerospace applications so many of the associated frames are centered on celestial bodies with well known relational equations for their position and velocity. Since these are well understood, in theory, the only thing required to establish a complete system of frames for all objects in the solar system is a date. Astrea has built out this system in practice. By leveraging SPICE polynomials and output, physical object properties, and a complex type system, Astrea realizes the set of celestial bodies as the defining set of <code>Origin</code> objects for frame transformations. By combining these with common definitions for axes, i.e. <code>icrf</code> and <code>j2000</code>, a wide set of available frames is immediately available. </p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">icrf</span><span class="w"> </span><span class="k">final</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Frame</span><span class="o">&lt;</span><span class="s">&quot;gcrf&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">planets</span><span class="o">::</span><span class="n">Earth</span><span class="p">,</span><span class="w"> </span><span class="n">axes</span><span class="o">::</span><span class="n">icrf</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">}</span><span class="w"> </span><span class="n">icrf</span><span class="p">;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">j2000</span><span class="w"> </span><span class="k">final</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Frame</span><span class="o">&lt;</span><span class="s">&quot;eme2000&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">planets</span><span class="o">::</span><span class="n">Earth</span><span class="p">,</span><span class="w"> </span><span class="n">axes</span><span class="o">::</span><span class="n">j2000</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span><span class="w"> </span><span class="n">j2000</span><span class="p">;</span>
 </span></code></pre></div>
-<h3 id="frame-concepts">Frame Concepts<a class="headerlink" href="#frame-concepts" title="Permanent link">&para;</a></h3>
-<p>The system uses C++20 concepts to enforce transformation rules:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Frames with same origin</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Frame_T</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Frame_U</span><span class="o">&gt;</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">concept</span><span class="w"> </span><span class="nc">HasSameOrigin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* implementation */</span><span class="p">;</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1">// Frames with same axis orientation</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Frame_T</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Frame_U</span><span class="o">&gt;</span><span class="w"> </span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">concept</span><span class="w"> </span><span class="nc">HasSameAxis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* implementation */</span><span class="p">;</span>
+<p>All that's required to rotate between these frames is a date. </p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">template</span><span class="o">&lt;&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kr">inline</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">get_dcm</span><span class="o">&lt;</span><span class="n">icrf</span><span class="p">,</span><span class="w"> </span><span class="n">j2000</span><span class="o">&gt;</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">DCM</span><span class="o">&lt;</span><span class="n">icrf</span><span class="p">,</span><span class="w"> </span><span class="n">j2000</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="c1">// math for to build this rotation // </span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">dcm</span><span class="p">;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
 </span></code></pre></div>
-<h2 id="transformation-types">Transformation Types<a class="headerlink" href="#transformation-types" title="Permanent link">&para;</a></h2>
-<h3 id="same-origin-different-axes">Same Origin, Different Axes<a class="headerlink" href="#same-origin-different-axes" title="Permanent link">&para;</a></h3>
-<p>Frames centered at the same body but with different orientations:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// Earth-centered frames with different axes</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECEF</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ecefPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">transform</span><span class="o">&lt;</span><span class="n">ECEF</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="p">(</span><span class="n">eciPosition</span><span class="p">,</span><span class="w"> </span><span class="n">epoch</span><span class="p">);</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1">// Requires rotation matrix calculation</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">// Accounts for Earth&#39;s rotation at the given epoch</span>
+<p>which results in a simple interface for users to get the transformation between these frames at any given date.</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Date</span><span class="w"> </span><span class="n">date</span><span class="p">(</span><span class="s">&quot;2024-01-01T00:00:00Z&quot;</span><span class="p">);</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">DCM</span><span class="o">&lt;</span><span class="n">icrf</span><span class="p">,</span><span class="w"> </span><span class="n">j2000</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dcmIcrfToJ2000</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_dcm</span><span class="o">&lt;</span><span class="n">icrf</span><span class="p">,</span><span class="w"> </span><span class="n">j2000</span><span class="o">&gt;</span><span class="p">(</span><span class="n">date</span><span class="p">);</span>
 </span></code></pre></div>
-<h3 id="different-origin-same-axes">Different Origin, Same Axes<a class="headerlink" href="#different-origin-same-axes" title="Permanent link">&para;</a></h3>
-<p>Frames with the same orientation but different centers:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Moon-centered inertial vs Earth-centered inertial</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">moon</span><span class="o">::</span><span class="n">eci</span><span class="o">&gt;</span><span class="w"> </span><span class="n">moonPos</span><span class="w"> </span><span class="o">=</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">transform</span><span class="o">&lt;</span><span class="n">moon</span><span class="o">::</span><span class="n">eci</span><span class="p">,</span><span class="w"> </span><span class="n">earth</span><span class="o">::</span><span class="n">eci</span><span class="o">&gt;</span><span class="p">(</span><span class="n">earthPos</span><span class="p">,</span><span class="w"> </span><span class="n">epoch</span><span class="p">);</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1">// Requires center offset calculation</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1">// Uses ephemeris data for relative body positions</span>
+<p>Astrea takes this further by strapping the frame system to its state vector and kinematics systems. This allows users to easily transform between frames without needing to worry about the underlying details of how the transformations are defined. For example, if a user has a state vector defined in the <code>icrf</code> frame and wants to transform it to the <code>j2000</code> frame, they can simply do:</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">CartessianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">icrf</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rIcrf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{...};</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1">// Manually rotating the vector using the DCM</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">CartessianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">j2000</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rJ2000</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dcmIcrfToJ2000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">rIcrf</span><span class="p">;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">// Using the frame transformation system to automatically rotate the vector</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">auto</span><span class="w"> </span><span class="n">rJ2000</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rIcrf</span><span class="p">.</span><span class="n">in_frame</span><span class="o">&lt;</span><span class="n">j2000</span><span class="o">&gt;</span><span class="p">(</span><span class="n">date</span><span class="p">);</span>
 </span></code></pre></div>
-<h3 id="different-origin-and-axes">Different Origin and Axes<a class="headerlink" href="#different-origin-and-axes" title="Permanent link">&para;</a></h3>
-<p>General transformation between arbitrary frames:</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// Complex transformation: ECI to Moon body-fixed</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">moon</span><span class="o">::</span><span class="n">body_fixed</span><span class="o">&gt;</span><span class="w"> </span><span class="n">moonBodyPos</span><span class="w"> </span><span class="o">=</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">transform</span><span class="o">&lt;</span><span class="n">moon</span><span class="o">::</span><span class="n">body_fixed</span><span class="p">,</span><span class="w"> </span><span class="n">earth</span><span class="o">::</span><span class="n">eci</span><span class="o">&gt;</span><span class="p">(</span><span class="n">eciPos</span><span class="p">,</span><span class="w"> </span><span class="n">epoch</span><span class="p">);</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1">// Combines center offset + rotation transformation</span>
+<p>The transformation capability also automatically translates between frames with different origins. For example, if a user has a state vector defined around the Earth and wants to transform it to a frame centered on the Sun, they utilize the same syntax as before:</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">CartessianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">frames</span><span class="o">::</span><span class="n">earth</span><span class="o">::</span><span class="n">icrf</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rEarth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{...};</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">rSun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rEarth</span><span class="p">.</span><span class="n">in_frame</span><span class="o">&lt;</span><span class="n">frames</span><span class="o">::</span><span class="n">sun</span><span class="o">::</span><span class="n">icrf</span><span class="o">&gt;</span><span class="p">(</span><span class="n">date</span><span class="p">);</span>
 </span></code></pre></div>
-<h2 id="direction-cosine-matrices">Direction Cosine Matrices<a class="headerlink" href="#direction-cosine-matrices" title="Permanent link">&para;</a></h2>
-<p>Rotation transformations use direction cosine matrices (DCM):</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;astro/frames/types/DirectionCosineMatrix.hpp&gt;</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">// Create rotation matrix</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="n">dcm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compute_rotation_matrix</span><span class="o">&lt;</span><span class="n">ECEF</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="p">(</span><span class="n">epoch</span><span class="p">);</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1">// Apply rotation to vector</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECEF</span><span class="o">&gt;</span><span class="w"> </span><span class="n">rotatedPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dcm</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">eciPosition</span><span class="p">;</span>
+<p><em>Note: The <code>Date</code> object is compile-time constructable via Julian dates. If a user invokes the transformations using these compile-time Dates, the entire frame transformation system will operate at compile time as well.</em></p>
+<h2 id="hierarchy-of-frames">Hierarchy of Frames<a class="headerlink" href="#hierarchy-of-frames" title="Permanent link">&para;</a></h2>
+<p>Astrea's frame system is hierarchical in nature. By defining origin's and axes with parentage, an implicit type-tree can be used to chain any number of frames together arbitrarily. Astrea's <code>Origin</code> and <code>Axis</code> each have an optional "parent" declaration. This parent is used to signify which transformations are already defined by the system and allow the machinery to recusrively dig for the necessary path to get from one frame to another. For example, the <code>j2000</code> frame is defined as a child of the <code>icrf</code> frame. Though this is meaningless physically, it allows the frame system to know that any frame with the <code>j2000</code> axis can be transformed to any frame with the <code>icrf</code> axis, and vice versa, without needing to define a direct transformation between them. This allows for a much more flexible and extensible system of frames, as users can define their own frames and transformations without needing to worry about how they fit into the overall system. </p>
+<p>The axes have a releatively simple construction, with the <code>icrf</code> being the "default" frame of the entire transformation system. All axes are currently defined as children of the <code>icrf</code> axis. 
+<pre class="mermaid"><code>flowchart TB
+
+    subgraph "Axes"
+        icrf["icrf"]
+        j2000["j2000"]
+        geocentric["geocentric"]
+        planet-fixed["planet-fixed"]
+    end
+
+    icrf --&gt; j2000
+    icrf --&gt; geocentric
+    icrf --&gt; planet-fixed</code></pre></p>
+<p>What this means in practice is not that any particular frame is necessarily defined as a derivative of the <code>icrf</code>, but that any axes transformation must first go through the <code>icrf</code> as a common ancestor. For example, going from <code>ecef</code> to <code>j2000</code> would first go from <code>ecef</code> to <code>icrf</code>, then from <code>icrf</code> to <code>j2000</code> unless an explicit direct transformation is defined between <code>ecef</code> and <code>j2000</code>.</p>
+<p>The origins work in a similar way, but the system is more complex. In general, Astrea tries to follow SPICE conventions for parentage of celestial bodies. This means that the Earth is a child of the Earth-Moon barycenter, and the Moon is a child of the Earth, but no other planet is defined in such a way. Automatic origin translation requires physical location data and it is much easier to lean into the outputs of SPICE than trying to dictate a hierarchy that conflicts with it. The consequence is that translating from Earth to Sun positions, for example, requires two translations instead of one, but generally this isn't much of an issue. </p>
+<pre class="mermaid"><code>flowchart TB
+
+    subgraph "Origins"
+        SolarSystemBarycenter["SolarSystemBarycenter"]
+
+        Sun["Sun"]
+
+        Mercury["Mercury"]
+
+        Venus["Venus"]
+
+        EarthMoonBarycenter["EarthMoonBarycenter"]
+        Earth["Earth"]
+        Moon["Moon"]
+
+        Mars["Mars"]
+        Phobos["Phobos"]
+        Deimos["Deimos"]
+
+        Jupiter["Jupiter"]
+        Ganymede["Ganymede"]
+        Callisto["Callisto"]
+        Europa["Europa"]
+        Io["Io"]
+
+        Saturn["Saturn"]
+        Titan["Titan"]
+        Rhea["Rhea"]
+        Iapetus["Iapetus"]
+
+        Uranus["Uranus"]
+        Titania["Titania"]
+        Oberon["Oberon"]
+
+        Neptune["Neptune"]
+        Triton["Triton"]
+    end
+
+    SolarSystemBarycenter --&gt; Sun
+
+    SolarSystemBarycenter --&gt; Mercury
+
+    SolarSystemBarycenter --&gt; Venus
+
+    SolarSystemBarycenter --&gt; EarthMoonBarycenter
+    EarthMoonBarycenter --&gt; Earth
+    Earth --&gt; Moon
+
+    SolarSystemBarycenter --&gt; Mars
+    Mars --&gt; Phobos
+    Mars --&gt; Deimos
+
+    SolarSystemBarycenter --&gt; Jupiter
+    Jupiter --&gt; Ganymede
+    Jupiter --&gt; Callisto
+    Jupiter --&gt; Europa
+    Jupiter --&gt; Io
+
+    SolarSystemBarycenter --&gt; Saturn
+    Saturn --&gt; Titan
+    Saturn --&gt; Rhea
+    Saturn --&gt; Iapetus
+
+    SolarSystemBarycenter --&gt; Uranus
+    Uranus --&gt; Titania
+    Uranus --&gt; Oberon
+
+    SolarSystemBarycenter --&gt; Neptune
+    Neptune --&gt; Triton</code></pre>
+<p>All frame transformations in Astrea will implicitly follow this tree, chaining translations and rotations to work from one axis/origin pair to another, completing the frame transformation system.</p>
+<h2 id="custom-frames">Custom Frames<a class="headerlink" href="#custom-frames" title="Permanent link">&para;</a></h2>
+<p>Custom frames can be defined by simply defining new frame types, and then defining a DCM to other established frames. A single DCM should be sufficient to connect a new frame to the entire network of Astrea frames.</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">my_axes</span><span class="w"> </span><span class="k">final</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Axis</span><span class="o">&lt;</span><span class="s">&quot;MyAxis&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">axes</span><span class="o">::</span><span class="n">icrf</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">}</span><span class="w"> </span><span class="n">my_axes</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">my_earth_frame</span><span class="w"> </span><span class="k">final</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Frame</span><span class="o">&lt;</span><span class="s">&quot;my_earth_frame&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">planets</span><span class="o">::</span><span class="n">Earth</span><span class="p">,</span><span class="w"> </span><span class="n">my_axes</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span><span class="w"> </span><span class="n">my_earth_frame</span><span class="p">;</span>
 </span></code></pre></div>
-<h2 id="transformation-examples">Transformation Examples<a class="headerlink" href="#transformation-examples" title="Permanent link">&para;</a></h2>
-<h3 id="earth-centered-transformations">Earth-Centered Transformations<a class="headerlink" href="#earth-centered-transformations" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// ECI to ECEF (accounts for Earth rotation)</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">Time</span><span class="w"> </span><span class="n">epoch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">epoch_to_julian_date</span><span class="p">(</span><span class="s">&quot;2024-01-01 12:00:00&quot;</span><span class="p">);</span>
+<p>And then the DCM specialization to connect it to the rest of the system:
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astrea</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astro</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">eciPos</span><span class="p">(</span><span class="mf">7000.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">);</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">ECEF</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ecefPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="n">transform</span><span class="o">&lt;</span><span class="n">ECEF</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="p">(</span><span class="n">eciPos</span><span class="p">,</span><span class="w"> </span><span class="n">epoch</span><span class="p">);</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1">// Velocity transformation includes Coriolis effects</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="w"> </span><span class="n">eciVel</span><span class="p">(</span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="o">/</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mf">7.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="o">/</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="o">/</span><span class="n">s</span><span class="p">);</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">ECEF</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ecefVel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="n">transform</span><span class="o">&lt;</span><span class="n">ECEF</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="p">(</span><span class="n">eciVel</span><span class="p">,</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span><span class="w"> </span><span class="n">eciPos</span><span class="p">);</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;&gt;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">DCM</span><span class="o">&lt;</span><span class="n">my_earth_frame</span><span class="p">,</span><span class="w"> </span><span class="n">gcrf</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_dcm</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span><span class="p">)</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">{</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">DCM</span><span class="o">&lt;</span><span class="n">my_earth_frame</span><span class="p">,</span><span class="w"> </span><span class="n">gcrf</span><span class="o">&gt;::</span><span class="n">identity</span><span class="p">();</span><span class="w"> </span><span class="c1">// Or whatever the DCM would be</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="p">}</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">}</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">astro</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="p">}</span><span class="w"> </span><span class="nn">namespace</span><span class="w"> </span><span class="nn">astrea</span>
+</span></code></pre></div></p>
+<p>Custom origins can be defined similarly, but have more restrictions to work properly.
+A simple frame with nothing but a name is considered a complete definition, but it won't be able to connect to any of the other defined frames unless it defines a parent origin within the current system of origins.</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">my_origin</span><span class="w"> </span><span class="k">final</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Origin</span><span class="o">&lt;</span><span class="s">&quot;MyOrigin&quot;</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">}</span><span class="w"> </span><span class="n">my_origin</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">my_frame</span><span class="w"> </span><span class="k">final</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Frame</span><span class="o">&lt;</span><span class="s">&quot;my_frame&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">my_origin</span><span class="p">,</span><span class="w"> </span><span class="n">my_axes</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">}</span><span class="w"> </span><span class="n">my_frame</span><span class="p">;</span>
 </span></code></pre></div>
-<h3 id="relative-motion-frames">Relative Motion Frames<a class="headerlink" href="#relative-motion-frames" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// Transform to Radial-Intrack-Crosstrack (RIC) frame</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">Keplerian</span><span class="w"> </span><span class="nf">referenceOrbit</span><span class="p">(</span><span class="mf">7000.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">45.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">deg</span><span class="p">);</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">RIC</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ricPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="n">transform</span><span class="o">&lt;</span><span class="n">RIC</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="p">(</span><span class="n">eciPosition</span><span class="p">,</span><span class="w"> </span><span class="n">epoch</span><span class="p">,</span><span class="w"> </span><span class="n">referenceOrbit</span><span class="p">);</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1">// RIC frame is centered on reference orbit</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1">// Radial: towards/away from Earth center</span>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1">// Intrack: along orbit velocity direction  </span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="c1">// Crosstrack: perpendicular to orbital plane</span>
-</span></code></pre></div>
-<h3 id="multi-body-transformations">Multi-Body Transformations<a class="headerlink" href="#multi-body-transformations" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// Earth to Moon center transformation</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">AstrodynamicsSystem</span><span class="w"> </span><span class="nf">system</span><span class="p">(</span><span class="n">CelestialBodyId</span><span class="o">::</span><span class="n">EARTH</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">CelestialBodyId</span><span class="o">::</span><span class="n">MOON</span><span class="p">});</span>
+<p>If we want this frame to use the same rotation as the previous one, we can just add some requires clauses to the DCM definition to allow it to be used if the frames share the same axis.
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astrea</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astro</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1">// Get Moon position relative to Earth</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">earth</span><span class="o">::</span><span class="n">eci</span><span class="o">&gt;</span><span class="w"> </span><span class="n">moonPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="n">system</span><span class="p">.</span><span class="n">get_relative_position</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span><span class="w"> </span><span class="n">CelestialBodyId</span><span class="o">::</span><span class="n">EARTH</span><span class="p">,</span><span class="w"> </span><span class="n">CelestialBodyId</span><span class="o">::</span><span class="n">MOON</span><span class="p">);</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1">// Transform spacecraft position to Moon-centered frame</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">moon</span><span class="o">::</span><span class="n">eci</span><span class="o">&gt;</span><span class="w"> </span><span class="n">moonRelativePos</span><span class="w"> </span><span class="o">=</span>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">    </span><span class="n">transform</span><span class="o">&lt;</span><span class="n">moon</span><span class="o">::</span><span class="n">eci</span><span class="p">,</span><span class="w"> </span><span class="n">earth</span><span class="o">::</span><span class="n">eci</span><span class="o">&gt;</span><span class="p">(</span><span class="n">spacecraftPos</span><span class="p">,</span><span class="w"> </span><span class="n">epoch</span><span class="p">);</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">IsFrame</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">in_frame</span><span class="p">,</span><span class="w"> </span><span class="n">IsFrame</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">out_frame</span><span class="o">&gt;</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="k">requires</span><span class="p">(</span><span class="n">equivalent</span><span class="p">(</span><span class="n">in_frame</span><span class="p">.</span><span class="n">axis</span><span class="p">,</span><span class="w"> </span><span class="n">my_axes</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">equivalent</span><span class="p">(</span><span class="n">out_frame</span><span class="p">.</span><span class="n">axis</span><span class="p">,</span><span class="w"> </span><span class="n">axes</span><span class="o">::</span><span class="n">icrf</span><span class="p">))</span><span class="w"> </span><span class="n">equivalence</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">recommended</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">direct</span><span class="w"> </span><span class="n">equality</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">DCM</span><span class="o">&lt;</span><span class="n">in_frame</span><span class="p">,</span><span class="w"> </span><span class="n">out_frame</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_dcm</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span><span class="p">)</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">{</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">DCM</span><span class="o">&lt;</span><span class="n">in_frame</span><span class="p">,</span><span class="w"> </span><span class="n">out_frame</span><span class="o">&gt;::</span><span class="n">identity</span><span class="p">();</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="p">}</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="p">}</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">astro</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="p">}</span><span class="w"> </span><span class="nn">namespace</span><span class="w"> </span><span class="nn">astrea</span>
+</span></code></pre></div></p>
+<p>If we want the origin to hook into the system of origins, we need to define a parent origin that is already in the system. This will allow us to compute the position and velocity of the origin automatically, which is necessary for frame transformations.</p>
+<p><em>Note: It is required to use a CelestialBody or a Barycenter as the origin base type to properly hook into the system. This may be changed in future releases to be more flexible.</em></p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">my_origin_with_parent</span><span class="w"> </span><span class="k">final</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">CelestialBody</span><span class="o">&lt;</span><span class="s">&quot;MyOriginWithParent&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">planets</span><span class="o">::</span><span class="n">Earth</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="p">}</span><span class="w"> </span><span class="n">my_origin_with_parent</span><span class="p">;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">my_complete_frame</span><span class="w"> </span><span class="k">final</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Frame</span><span class="o">&lt;</span><span class="s">&quot;my_complete_frame&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">my_origin_with_parent</span><span class="p">,</span><span class="w"> </span><span class="n">my_axes</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">}</span><span class="w"> </span><span class="n">my_complete_frame</span><span class="p">;</span>
 </span></code></pre></div>
-<h2 id="performance-considerations">Performance Considerations<a class="headerlink" href="#performance-considerations" title="Permanent link">&para;</a></h2>
-<h3 id="compile-time-optimization">Compile-Time Optimization<a class="headerlink" href="#compile-time-optimization" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Frame compatibility checked at compile time</li>
-<li>Unnecessary transformations eliminated by compiler</li>
-<li>Template specialization for common transformation pairs</li>
-</ul>
-<h3 id="runtime-efficiency">Runtime Efficiency<a class="headerlink" href="#runtime-efficiency" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Cached rotation matrices for repeated transformations</li>
-<li>Optimized ephemeris computations using Chebyshev polynomials</li>
-<li>Minimal temporary object creation</li>
-</ul>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// Efficient repeated transformations</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">DirectionCosineMatrix</span><span class="w"> </span><span class="n">cachedDCM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compute_rotation_matrix</span><span class="o">&lt;</span><span class="n">ECEF</span><span class="p">,</span><span class="w"> </span><span class="n">ECI</span><span class="o">&gt;</span><span class="p">(</span><span class="n">epoch</span><span class="p">);</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">positions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ecefPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cachedDCM</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">position</span><span class="p">;</span><span class="w"> </span><span class="c1">// Reuse cached matrix</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">}</span>
-</span></code></pre></div>
-<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
-<p>The transformation system provides robust error handling:</p>
-<ul>
-<li><strong>Compile-time errors</strong> for incompatible frame types</li>
-<li><strong>Runtime validation</strong> of transformation parameters</li>
-<li><strong>Graceful degradation</strong> for missing ephemeris data</li>
-<li><strong>Numerical stability</strong> checks for extreme cases</li>
-</ul>
-<p>This comprehensive transformation framework ensures that coordinate frame conversions are both mathematically correct and computationally efficient, providing the foundation for reliable astrodynamics calculations across diverse reference frames.</p>
+<p>The frame system still needs a way to locate your origin in space so if you want add a dynamically translating origin, you can either make your origin a celestial reference object (a planet, asteroid, barycenter, etc.) or you have to use a DynamicFrame, which must be evaluated at runtime and cannot be used in compile-time contexts.</p>
+<p>Adding your origin to the origin system requires that you define a single function specialization that returns
+all the celestial body parameters or specializing the get position/velocity functions for your origin.</p>
+<p><em>Option 1</em>: This will use orbital elements to determine the origin's position and velocity.
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astrea</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astro</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;&gt;</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">CelestialBodyParameters</span><span class="w"> </span><span class="n">get_celestial_body_parameters</span><span class="o">&lt;</span><span class="n">my_origin_with_parent</span><span class="o">&gt;</span><span class="p">()</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">{</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="c1">// Return the celestial body parameters for my_origin_with_parent.</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">CelestialBodyParameters</span><span class="p">{</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">        </span><span class="p">...</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">    </span><span class="p">};</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="p">}</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace astro</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace astrea</span>
+</span></code></pre></div></p>
+<p><em>Option 2</em>: This gives you more control over the position and velocity, but requires more complexity.
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astrea</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">astro</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;&gt;</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">get_parent_frame</span><span class="p">(</span><span class="n">my_origin_with_parent</span><span class="p">,</span><span class="w"> </span><span class="n">axes</span><span class="o">::</span><span class="n">icrf</span><span class="p">)</span><span class="o">&gt;</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="n">get_position_at</span><span class="o">&lt;</span><span class="n">my_origin_with_parent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span><span class="p">)</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">{</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">    </span><span class="c1">// Return the position of my_origin_with_parent with respect to the origin&#39;s parent at the given date.</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span><span class="c1">// Note that the position must be returned in the frame defined by the origin&#39;s parent but the axes are</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span><span class="c1">// arbitrary. To avoid unnecessary rotations, it&#39;s required to return the position w.r.t. the icrf axes.</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">    </span><span class="c1">// You can use the helper function to define the expected frame generically</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">parent_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_parent_frame</span><span class="p">(</span><span class="n">my_origin_with_parent</span><span class="p">,</span><span class="w"> </span><span class="n">axes</span><span class="o">::</span><span class="n">icrf</span><span class="p">);</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">    </span><span class="c1">// This is just an example, so we&#39;ll return a static dummy position.</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Distance</span><span class="p">,</span><span class="w"> </span><span class="n">parent_frame</span><span class="o">&gt;</span><span class="p">{</span><span class="w"> </span><span class="mf">149597870.7</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="p">}</span>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;&gt;</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">get_parent_frame</span><span class="p">(</span><span class="n">my_origin_with_parent</span><span class="p">,</span><span class="w"> </span><span class="n">axes</span><span class="o">::</span><span class="n">icrf</span><span class="p">)</span><span class="o">&gt;</span>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">    </span><span class="n">get_velocity_at</span><span class="o">&lt;</span><span class="n">my_origin_with_parent</span><span class="o">&gt;</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Date</span><span class="o">&amp;</span><span class="w"> </span><span class="n">date</span><span class="p">)</span>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="p">{</span>
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">parent_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_parent_frame</span><span class="p">(</span><span class="n">my_origin_with_parent</span><span class="p">,</span><span class="w"> </span><span class="n">axes</span><span class="o">::</span><span class="n">icrf</span><span class="p">);</span>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Velocity</span><span class="p">,</span><span class="w"> </span><span class="n">parent_frame</span><span class="o">&gt;</span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mf">29.78</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="p">}</span>
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace astro</span>
+</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="p">}</span><span class="w"> </span><span class="c1">// namespace astrea</span>
+</span></code></pre></div></p>
+<p><em>Note: You can defined both of these functions if you want to use your origin as a celestial body anywhere in the code. The explicit get_position_at and get_velocity_at specializations will take priority when computing the position and velocity but the first option is required to to, for example, use your origin for n-body calculations.</em></p>
+<p>Now with everything defined, your frame is fully connected to the system of frames and you can use it in any
+frame transformation or vector operation that you'd like!
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">rMyFrame</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">CartesianVector</span><span class="o">&lt;</span><span class="n">Length</span><span class="p">,</span><span class="w"> </span><span class="n">my_complete_frame</span><span class="o">&gt;</span><span class="p">{</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">km</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">rGCRF</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">rMyFrame</span><span class="p">.</span><span class="n">in_frame</span><span class="o">&lt;</span><span class="n">gcrf</span><span class="o">&gt;</span><span class="p">(</span><span class="n">J2000</span><span class="p">);</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">rEME2000</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">rMyFrame</span><span class="p">.</span><span class="n">in_frame</span><span class="o">&lt;</span><span class="n">eme2000</span><span class="o">&gt;</span><span class="p">(</span><span class="n">J2000</span><span class="p">);</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">rMarsFixed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rMyFrame</span><span class="p">.</span><span class="n">in_frame</span><span class="o">&lt;</span><span class="n">frames</span><span class="o">::</span><span class="n">mars</span><span class="o">::</span><span class="n">mars_fixed</span><span class="o">&gt;</span><span class="p">(</span><span class="n">J2000</span><span class="p">);</span>
+</span></code></pre></div></p>
 
 
 
@@ -6724,7 +6582,7 @@ You're not viewing the latest version.
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../strongly_typed_frames/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Strongly Typed Frames">
+          <a href="../introduction/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction to Strongly Typed Frames">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -6734,7 +6592,7 @@ You're not viewing the latest version.
                 Previous
               </span>
               <div class="md-ellipsis">
-                Strongly Typed Frames
+                Introduction to Strongly Typed Frames
               </div>
             </div>
           </a>

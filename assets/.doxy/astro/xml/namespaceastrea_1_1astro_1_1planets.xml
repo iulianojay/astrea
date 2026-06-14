@@ -1,0 +1,471 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespaceastrea_1_1astro_1_1planets" kind="namespace" language="C++">
+    <compoundname>astrea::astro::planets</compoundname>
+    <innerclass refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams" prot="public">astrea::astro::planets::BatesProfileParams</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1planets_1_1Earth" prot="public">astrea::astro::planets::Earth</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1planets_1_1EarthParameters" prot="public">astrea::astro::planets::EarthParameters</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1planets_1_1HarrisPriesterAtmosphere" prot="public">astrea::astro::planets::HarrisPriesterAtmosphere</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1planets_1_1JacciaRobertsAtmosphere" prot="public">astrea::astro::planets::JacciaRobertsAtmosphere</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1planets_1_1Jupiter" prot="public">astrea::astro::planets::Jupiter</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1planets_1_1Mars" prot="public">astrea::astro::planets::Mars</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1planets_1_1Mercury" prot="public">astrea::astro::planets::Mercury</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1planets_1_1Neptune" prot="public">astrea::astro::planets::Neptune</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00" prot="public">astrea::astro::planets::NRLMSISE00</innerclass>
+    <innerclass refid="classastrea_1_1astro_1_1planets_1_1NRLMSISE00Atmosphere" prot="public">astrea::astro::planets::NRLMSISE00Atmosphere</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1planets_1_1Saturn" prot="public">astrea::astro::planets::Saturn</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams" prot="public">astrea::astro::planets::SpeciesModelParams</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1planets_1_1Uranus" prot="public">astrea::astro::planets::Uranus</innerclass>
+    <innerclass refid="structastrea_1_1astro_1_1planets_1_1Venus" prot="public">astrea::astro::planets::Venus</innerclass>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="Earth_8hpp_1aae935f833e6422fee9615937d8161b1f" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>EarthAtmosphereModel</name>
+        <qualifiedname>astrea::astro::planets::EarthAtmosphereModel</qualifiedname>
+        <enumvalue id="Earth_8hpp_1aae935f833e6422fee9615937d8161b1fa468a4df9b74e4876379573f50136e735" prot="public">
+          <name>JACHIA_ROBERTS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Earth_8hpp_1aae935f833e6422fee9615937d8161b1faa69b0ac8ebd3625dbc1cc489e7e11ecc" prot="public">
+          <name>NRLMSISE00</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Earth_8hpp_1aae935f833e6422fee9615937d8161b1fa7ff3376359a918856aea7ed4f3532256" prot="public">
+          <name>DTM2000</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Earth_8hpp_1aae935f833e6422fee9615937d8161b1fa17f976d245f4144401399b9cd5094b72" prot="public">
+          <name>HARRIS_PRIESTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" line="37" column="1" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" bodystart="37" bodyend="37"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="HarrisPriester_8cpp_1a6a169fdfcca6e934800dfdf090af58a1" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">int</ref></type>
+        <definition>const int astrea::astro::planets::cosineExponent</definition>
+        <argsstring></argsstring>
+        <name>cosineExponent</name>
+        <qualifiedname>astrea::astro::planets::cosineExponent</qualifiedname>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Default cosine exponent value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp" line="39" column="18" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="HarrisPriester_8cpp_1a7310052b45ca15e903be85940b0f3b24" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Angle</ref></type>
+        <definition>const Angle astrea::astro::planets::LAG</definition>
+        <argsstring></argsstring>
+        <name>LAG</name>
+        <qualifiedname>astrea::astro::planets::LAG</qualifiedname>
+        <initializer>= 30.0 * deg</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Lag angle for diurnal bulge. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp" line="42" column="20" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="HarrisPriester_8cpp_1a3f578a2967fddcd727cac1b543c28b75" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::map&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Altitude</ref>, std::tuple&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Density</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Density</ref> &gt; &gt;</type>
+        <definition>const std::map&lt;Altitude, std::tuple&lt;Density, Density&gt; &gt; astrea::astro::planets::HARRIS_PRIESTER_ATMOSPHERE</definition>
+        <argsstring></argsstring>
+        <name>HARRIS_PRIESTER_ATMOSPHERE</name>
+        <qualifiedname>astrea::astro::planets::HARRIS_PRIESTER_ATMOSPHERE</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Harris-Priester min-max density (kg/m3) vs. altitude (km) table. These data are valid for a mean solar activity. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp" line="46" column="23" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/HarrisPriester.cpp" bodystart="46" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="variable" id="JacciaRoberts_8cpp_1adac9414234ac12f1fab3a8de305b3e13" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::map&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Altitude</ref>, std::tuple&lt; <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Altitude</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Density</ref>, <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">Altitude</ref> &gt; &gt;</type>
+        <definition>const std::map&lt;Altitude, std::tuple&lt;Altitude, Density, Altitude&gt; &gt; astrea::astro::planets::JACHIA_ROBERTS_ATMOSPHERE</definition>
+        <argsstring></argsstring>
+        <name>JACHIA_ROBERTS_ATMOSPHERE</name>
+        <qualifiedname>astrea::astro::planets::JACHIA_ROBERTS_ATMOSPHERE</qualifiedname>
+        <initializer>= {
+    { 25.0 * km, { 0.0 * km, 1.225 * kg / (pow&lt;3&gt;(m)), 7.249 * km } },
+    { 30.0 * km, { 25.0 * km, 3.899<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2 * kg / (pow&lt;3&gt;(m)), 6.349 * km } },
+    { 40.0 * km, { 30.0 * km, 1.774<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2 * kg / (pow&lt;3&gt;(m)), 6.682 * km } },
+    { 50.0 * km, { 40.0 * km, 3.972<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3 * kg / (pow&lt;3&gt;(m)), 7.554 * km } },
+    { 60.0 * km, { 50.0 * km, 1.057<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3 * kg / (pow&lt;3&gt;(m)), 8.382 * km } },
+    { 70.0 * km, { 60.0 * km, 3.206<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4 * kg / (pow&lt;3&gt;(m)), 7.714 * km } },
+    { 80.0 * km, { 70.0 * km, 8.770e-5 * kg / (pow&lt;3&gt;(m)), 6.549 * km } },
+    { 90.0 * km, { 80.0 * km, 1.905<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-5 * kg / (pow&lt;3&gt;(m)), 5.799 * km } },
+    { 100.0 * km, { 90.0 * km, 3.396<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-6 * kg / (pow&lt;3&gt;(m)), 5.382 * km } },
+    { 110.0 * km, { 100.0 * km, 5.297<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-7 * kg / (pow&lt;3&gt;(m)), 5.877 * km } },
+    { 120.0 * km, { 110.0 * km, 9.661<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-8 * kg / (pow&lt;3&gt;(m)), 7.263 * km } },
+    { 130.0 * km, { 120.0 * km, 2.438<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-8 * kg / (pow&lt;3&gt;(m)), 9.473 * km } },
+    { 140.0 * km, { 130.0 * km, 8.484<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-9 * kg / (pow&lt;3&gt;(m)), 12.636 * km } },
+    { 150.0 * km, { 140.0 * km, 3.845<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-9 * kg / (pow&lt;3&gt;(m)), 16.149 * km } },
+    { 180.0 * km, { 150.0 * km, 2.070e-9 * kg / (pow&lt;3&gt;(m)), 22.523 * km } },
+    { 200.0 * km, { 180.0 * km, 5.464<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-10 * kg / (pow&lt;3&gt;(m)), 29.740 * km } },
+    { 250.0 * km, { 200.0 * km, 2.789<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-10 * kg / (pow&lt;3&gt;(m)), 37.105 * km } },
+    { 300.0 * km, { 250.0 * km, 7.248<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-11 * kg / (pow&lt;3&gt;(m)), 45.546 * km } },
+    { 350.0 * km, { 300.0 * km, 2.418<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-11 * kg / (pow&lt;3&gt;(m)), 53.628 * km } },
+    { 400.0 * km, { 350.0 * km, 9.158<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-12 * kg / (pow&lt;3&gt;(m)), 53.298 * km } },
+    { 450.0 * km, { 400.0 * km, 3.725<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-12 * kg / (pow&lt;3&gt;(m)), 58.515 * km } },
+    { 500.0 * km, { 450.0 * km, 1.585<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-12 * kg / (pow&lt;3&gt;(m)), 60.828 * km } },
+    { 600.0 * km, { 500.0 * km, 6.967<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-13 * kg / (pow&lt;3&gt;(m)), 63.822 * km } },
+    { 700.0 * km, { 600.0 * km, 1.454<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-13 * kg / (pow&lt;3&gt;(m)), 71.835 * km } },
+    { 800.0 * km, { 700.0 * km, 3.614<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-14 * kg / (pow&lt;3&gt;(m)), 88.667 * km } },
+    { 900.0 * km, { 800.0 * km, 1.170e-14 * kg / (pow&lt;3&gt;(m)), 124.64 * km } },
+    { 1000.0 * km, { 900.0 * km, 5.245<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-15 * kg / (pow&lt;3&gt;(m)), 181.05 * km } },
+    { 1100.0 * km, { 1000.0 * km, 2.019<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-15 * kg / (pow&lt;3&gt;(m)), 268.00 * km } }
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.cpp" line="34" column="23" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/JacciaRoberts.cpp" bodystart="34" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a7180e2cf0953791414363fc594000010" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref></type>
+        <definition>const double astrea::astro::planets::PT[]</definition>
+        <argsstring>[]</argsstring>
+        <name>PT</name>
+        <qualifiedname>astrea::astro::planets::PT</qualifiedname>
+        <initializer>= {
+    9.86573<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1,  1.62228<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2,  1.55270e-2,  -1.04323<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1, -3.75801<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3, -1.18538<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3, -1.24043<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1, 4.56820e-3,  8.76018<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,
+    -1.36235<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1, -3.52427<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2, 8.84181<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  -5.92127<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3, -8.61650,    0.0,         1.28492<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2,  0.0,         1.30096<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>,
+    1.04567<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2,  1.65686<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  -5.53887<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-6, 2.97810e-3,  0.0,         5.13122<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  8.66784<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2,  1.58727<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1,  0.0,
+    0.0,         0.0,         -7.27026<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-6, 0.0,         6.74494,     4.93933<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  2.21656<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  2.50802<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  0.0,
+    0.0,         -2.08841<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2, -1.79873,    1.45103<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  2.81769<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,  -1.44703<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3, -5.16394<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-5, 8.47001<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2,  1.70147<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1,
+    5.72562<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  5.07493<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-5,  4.36148<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  1.17863<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,  4.74364<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  6.61278<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  4.34292<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-5,  1.44373<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  2.41470e-5,
+    2.84426<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  8.56560e-4,  2.04028<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  0.0,         -3.15994<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e3</ref>,  -2.46423<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3, 1.13843<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  4.20512<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,  0.0,
+    -9.77214<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e1</ref>,  6.77794<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  5.27499<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  1.14936<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  0.0,         -6.61311<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3, -1.84255<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2, -1.96259<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2, 2.98618<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e4</ref>,
+    0.0,         0.0,         0.0,         6.44574<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>,   8.84668<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,  5.05066<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,  0.0,         4.02881<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e3</ref>,   -1.89503<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,
+    0.0,         0.0,         8.21407<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,  2.06780e-3,  0.0,         0.0,         0.0,         0.0,         0.0,
+    -1.20410e-2, -3.63963<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3, 9.92070e-5,  -1.15284<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4, -6.33059<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-5, -6.05545<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1, 8.34218<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  -9.13036<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e1</ref>,  3.71042<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,
+    0.0,         4.19000e-4,  2.70928<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  3.31507<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  -4.44508<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3, -4.96334<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3, -1.60449<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3, 3.95119<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  2.48924<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,
+    5.09815<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,  4.05302<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  2.24076<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  0.0,         6.84256<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  4.66354<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,  0.0,         -3.68328<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4, 0.0,
+    0.0,         -1.4687<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>,   0.0,         0.0,         1.09501<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  4.65156<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,  5.62583<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,  3.21596,     6.43168<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,
+    3.14860e-3,  3.40738<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  1.78481<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,  9.62532<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,  5.58171<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,  3.43731,     -2.33195<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1, 5.10289<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4,  0.0,
+    0.0,         -9.25347<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e4</ref>,  0.0,         -1.99639<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3, 0.0,         0.0,         0.0,         0.0,         0.0,
+    0.0,         0.0,         0.0,         0.0,         0.0,         0.0
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NRLMSISE-00 data: temperature pt[150]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="51" column="21" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="51" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1ae516ca08dcacaf01a39cd8f149d2272d" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; std::array&lt; NumberDensity, 150 &gt;, 9 &gt;</type>
+        <definition>const std::array&lt;std::array&lt;NumberDensity, 150&gt;, 9&gt; astrea::astro::planets::PD</definition>
+        <argsstring></argsstring>
+        <name>PD</name>
+        <qualifiedname>astrea::astro::planets::PD</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NRLMSISE-00 data: density pd[9][150]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="72" column="25" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="72" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a29da290284114d6ea6a57ff7400cc55c" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref>[]</type>
+        <definition>const double [] astrea::astro::planets::PS</definition>
+        <argsstring></argsstring>
+        <name>PS</name>
+        <qualifiedname>astrea::astro::planets::PS</qualifiedname>
+        <initializer>= {
+    9.56827<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1, 6.20637<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2, 3.18433<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2,  0.0,         0.0,        3.94900e-2, 0.0, 0.0, -9.24882<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3, -7.94023<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3,
+    0.0,        0.0,        0.0,         1.74712<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>,   0.0,        0.0,        0.0, 0.0, 0.0,         0.0,
+    0.0,        2.74677<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3, 0.0,         1.54951<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2,  8.66784<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2, 1.58727<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1, 0.0, 0.0, 0.0,         0.0,
+    0.0,        0.0,        0.0,         -6.99007<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-4, 0.0,        0.0,        0.0, 0.0, 0.0,         0.0,
+    0.0,        1.24362<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2, -5.28756<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-3, 8.47001<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2,  1.70147<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1, 0.0,        0.0, 0.0, 0.0,         0.0,
+    0.0,        2.47425<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-5, 0.0,         0.0,         0.0,        0.0,        0.0, 0.0, 0.0,         0.0,
+    0.0,        0.0,        0.0,         0.0,         0.0,        0.0,        0.0, 0.0, 0.0,         0.0,
+    0.0,        0.0,        0.0,         0.0,         0.0,        0.0,        0.0, 0.0, 0.0,         0.0,
+    0.0,        0.0,        0.0,         0.0,         0.0,        0.0,        0.0, 0.0, 0.0,         0.0,
+    0.0,        0.0,        0.0,         0.0,         0.0,        0.0,        0.0, 0.0, 0.0,         0.0,
+    0.0,        0.0,        0.0,         0.0,         0.0,        0.0,        0.0, 0.0, 0.0,         0.0,
+    0.0,        0.0,        0.0,         0.0,         0.0,        0.0,        0.0, 0.0, 0.0,         0.0,
+    0.0,        0.0,        0.0,         0.0,         0.0,        0.0,        0.0, 0.0, 0.0,         0.0,
+    0.0,        0.0,        0.0,         0.0,         0.0,        0.0,        0.0, 0.0, 0.0,         0.0,
+    0.0,        0.0,        0.0,         0.0,         0.0,        0.0,        0.0, 0.0, 0.0,         0.0
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NRLMSISE-00 data: ps[150]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="244" column="21" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="244" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1aa3d7a492aa24356f700e700a4fc9f0db" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref>[][]</type>
+        <definition>const double [][] astrea::astro::planets::PDL</definition>
+        <argsstring></argsstring>
+        <name>PDL</name>
+        <qualifiedname>astrea::astro::planets::PDL</qualifiedname>
+        <initializer>= {
+    { 1.09930, 3.90631, 3.07165, 9.86161<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1, 1.63536<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e1</ref>, 4.63830, 1.0, 0.0, 0.0, 0.0,     0.0,        0.0,       0.0,
+      0.0,     0.0,     0.0,     0.0,        0.0,       0.0,     0.0, 0.0, 0.0, 1.28840, 3.10302<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2, 1.18339<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1 },
+    { 1.0,        7.00000e-1, 1.15020,   3.44689,    1.28840, 1.0,         1.08738,   1.22947,     1.10016,
+      7.34129<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1, 1.15241,    2.22784,   7.95046<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1, 4.01612, 4.47749,     1.23435<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>, -7.60535<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2, 1.68986<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-6,
+      7.44294<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1, 1.03604,    1.72783<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref>, 1.15020,    3.44689, -7.46230e-1, 9.49154<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-1 }
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NRLMSISE-00 data: TURBO pdl[2][25]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="263" column="21" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="263" bodyend="269"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1aaa9a2ebab8c6ee78815f817f23204756" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="structastrea_1_1astro_1_1planets_1_1BatesProfileParams" kindref="compound">BatesProfileParams</ref></type>
+        <definition>const BatesProfileParams astrea::astro::planets::PTM</definition>
+        <argsstring></argsstring>
+        <name>PTM</name>
+        <qualifiedname>astrea::astro::planets::PTM</qualifiedname>
+        <initializer>= { 1.0413<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e3</ref> * K, 3.86<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * K, 1.95<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * K, 1.66728<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e1</ref> * K / km, 2.13<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * K,
+                                        1.2<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km,   2.4<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * K,  1.87<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * K, -2.0 * K / km }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="283" column="33" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="283" bodyend="284"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1afafa85273eb41d5d930a62e6adcf1f67" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> AtomicMass</type>
+        <definition>const AtomicMass astrea::astro::planets::XMM</definition>
+        <argsstring></argsstring>
+        <name>XMM</name>
+        <qualifiedname>astrea::astro::planets::XMM</qualifiedname>
+        <initializer>= 28.9500 * u</initializer>
+        <briefdescription>
+<para>Mean molecular mass of the well-mixed lower atmosphere (amu), corresponding to PDM[N2][4] in the Fortran source. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="287" column="25" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="287" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1a6deba3a819a5c88a69778c330488c760" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> std::array&lt; <ref refid="structastrea_1_1astro_1_1planets_1_1SpeciesModelParams" kindref="compound">SpeciesModelParams</ref>, 8 &gt;</type>
+        <definition>const std::array&lt;SpeciesModelParams, 8&gt; astrea::astro::planets::PDM</definition>
+        <argsstring></argsstring>
+        <name>PDM</name>
+        <qualifiedname>astrea::astro::planets::PDM</qualifiedname>
+        <initializer>= { {
+    
+    { 2.456<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e7</ref> * pow&lt;-3&gt;(cm), 6.71072<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-6 * one, 1.0e2 * km, 0.0 * one, 1.1<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km, 1.0e1 * km, 0.0 * km, 0.0 * km, 0.0 * one },
+    
+    { 8.594<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>+10 * pow&lt;-3&gt;(cm), 1.0 * one, 1.05<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km, -8.0 * one, 1.1<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one },
+    
+    { 2.81<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>+11 * pow&lt;-3&gt;(cm), 0.0 * one, 1.05<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km, 2.8<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e1</ref> * one, 0.0 * km, 0.0 * km, 0.0 * km, 0.0 * km, 0.0 * one },
+    
+    { 3.3<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>+10 * pow&lt;-3&gt;(cm), 2.68270e-1 * one, 1.05<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km, 1.0 * one, 1.1<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km, 1.0e1 * km, 1.1<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km, -1.0e1 * km, 0.0 * one },
+    
+    { 1.33<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e9</ref> * pow&lt;-3&gt;(cm), 1.19615<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e</ref>-2 * one, 1.05<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km, 0.0 * one, 1.1<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km, 1.0e1 * km, 0.0 * km, 0.0 * km, 0.0 * one },
+    
+    { 1.761<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e5</ref> * pow&lt;-3&gt;(cm), 1.0 * one, 9.5<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e1</ref> * km, -8.0 * one, 1.1<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one },
+    
+    { 1.0e7 * pow&lt;-3&gt;(cm), 1.0 * one, 1.05<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km, -8.0 * one, 1.1<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km, 1.0e1 * km, 9.0e1 * km, 2.0 * km, 0.0 * one },
+    
+    { 1.0e6 * pow&lt;-3&gt;(cm), 1.0 * one, 1.05<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km, -8.0 * one, 5.5<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e2</ref> * km, 7.6<ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">e1</ref> * km, 9.0e1 * km, 2.0 * km, 4.0e3 * one },
+} }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NRLMSISE-00 data: pdm[8][10]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="303" column="25" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="303" bodyend="320"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1af6d1bd3db9d8636ea6f08350eaac403f" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref>[][]</type>
+        <definition>const double [][] astrea::astro::planets::PTL</definition>
+        <argsstring></argsstring>
+        <name>PTL</name>
+        <qualifiedname>astrea::astro::planets::PTL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NRLMSISE-00 data: ptl[4][100]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="323" column="21" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="323" bodyend="379"/>
+      </memberdef>
+      <memberdef kind="variable" id="NRLMSISE00_8cpp_1ab1958526e9e40cb74436ec3f4040dda4" prot="public" static="yes" mutable="no">
+        <type><ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">const</ref> <ref refid="classastrea_1_1astro_1_1DirectionCosineMatrix" kindref="compound">double</ref>[][]</type>
+        <definition>const double [][] astrea::astro::planets::PMA</definition>
+        <argsstring></argsstring>
+        <name>PMA</name>
+        <qualifiedname>astrea::astro::planets::PMA</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NRLMSISE-00 data: pma[10][100]. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" line="382" column="21" bodyfile="astrea/astro/astro/systems/celestial_bodies/Earth/atmosphere/NRLMSISE00.cpp" bodystart="382" bodyend="510"/>
+      </memberdef>
+      <memberdef kind="variable" id="Earth_8hpp_1a030527f7c06527a0b003359fa1a3b5fd" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1planets_1_1Earth" kindref="compound">astrea::astro::planets::Earth</ref></type>
+        <definition>astrea::astro::planets::Earth astrea::astro::planets::Earth</definition>
+        <argsstring></argsstring>
+        <name>Earth</name>
+        <qualifiedname>astrea::astro::planets::Earth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Earth/Earth.hpp" line="55" column="7"/>
+      </memberdef>
+      <memberdef kind="variable" id="Jupiter_8hpp_1a72bd1bb284c5290fcfbceae8b17c7b40" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1planets_1_1Jupiter" kindref="compound">astrea::astro::planets::Jupiter</ref></type>
+        <definition>astrea::astro::planets::Jupiter astrea::astro::planets::Jupiter</definition>
+        <argsstring></argsstring>
+        <name>Jupiter</name>
+        <qualifiedname>astrea::astro::planets::Jupiter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Jupiter/Jupiter.hpp" line="44" column="9"/>
+      </memberdef>
+      <memberdef kind="variable" id="Mars_8hpp_1a2f14352cfddb70a5dc2e2da62b1a681d" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1planets_1_1Mars" kindref="compound">astrea::astro::planets::Mars</ref></type>
+        <definition>astrea::astro::planets::Mars astrea::astro::planets::Mars</definition>
+        <argsstring></argsstring>
+        <name>Mars</name>
+        <qualifiedname>astrea::astro::planets::Mars</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Mars/Mars.hpp" line="45" column="6"/>
+      </memberdef>
+      <memberdef kind="variable" id="Mercury_8hpp_1aa6c1e91461b034c3d9daa35a72aee150" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1planets_1_1Mercury" kindref="compound">astrea::astro::planets::Mercury</ref></type>
+        <definition>astrea::astro::planets::Mercury astrea::astro::planets::Mercury</definition>
+        <argsstring></argsstring>
+        <name>Mercury</name>
+        <qualifiedname>astrea::astro::planets::Mercury</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Mercury/Mercury.hpp" line="43" column="9"/>
+      </memberdef>
+      <memberdef kind="variable" id="Neptune_8hpp_1a15a26e65fe0c62dc3bf97ff05717a777" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1planets_1_1Neptune" kindref="compound">astrea::astro::planets::Neptune</ref></type>
+        <definition>astrea::astro::planets::Neptune astrea::astro::planets::Neptune</definition>
+        <argsstring></argsstring>
+        <name>Neptune</name>
+        <qualifiedname>astrea::astro::planets::Neptune</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Neptune/Neptune.hpp" line="43" column="9"/>
+      </memberdef>
+      <memberdef kind="variable" id="Saturn_8hpp_1a369855f0ba00f548643894f197ba0c05" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1planets_1_1Saturn" kindref="compound">astrea::astro::planets::Saturn</ref></type>
+        <definition>astrea::astro::planets::Saturn astrea::astro::planets::Saturn</definition>
+        <argsstring></argsstring>
+        <name>Saturn</name>
+        <qualifiedname>astrea::astro::planets::Saturn</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Saturn/Saturn.hpp" line="43" column="8"/>
+      </memberdef>
+      <memberdef kind="variable" id="Uranus_8hpp_1aa4b3bdf50cd767a6b2387cd5e93daf03" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1planets_1_1Uranus" kindref="compound">astrea::astro::planets::Uranus</ref></type>
+        <definition>astrea::astro::planets::Uranus astrea::astro::planets::Uranus</definition>
+        <argsstring></argsstring>
+        <name>Uranus</name>
+        <qualifiedname>astrea::astro::planets::Uranus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Uranus/Uranus.hpp" line="43" column="8"/>
+      </memberdef>
+      <memberdef kind="variable" id="Venus_8hpp_1a79411097e98838bb158f8e3b82c97a6a" prot="public" static="no" mutable="no">
+        <type><ref refid="structastrea_1_1astro_1_1planets_1_1Venus" kindref="compound">astrea::astro::planets::Venus</ref></type>
+        <definition>astrea::astro::planets::Venus astrea::astro::planets::Venus</definition>
+        <argsstring></argsstring>
+        <name>Venus</name>
+        <qualifiedname>astrea::astro::planets::Venus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="astrea/astro/astro/systems/celestial_bodies/Venus/Venus.hpp" line="45" column="7"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="astrea/astro/astro/systems/barycenters.hpp" line="22" column="1"/>
+  </compounddef>
+</doxygen>
