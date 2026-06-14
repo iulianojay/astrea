@@ -38,3 +38,9 @@ dev = []
 
 [cartopy.uv]
 include-package-data=false
+
+[cartopy.tests.uv]
+include-package-data=false
+
+[cartopy.tests.io.uv]
+include-package-data=false
