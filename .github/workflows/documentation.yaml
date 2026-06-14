@@ -51,10 +51,12 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
-      - name: Install Doxygen
+      - name: Install Doxygen and UV
         run: |
           sudo apt update
           sudo apt install -y doxygen gnuplot
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          export PATH="$USER_HOME/.local/bin:$PATH"
 
       - name: Mark repository as safe
         run: git config --global --add safe.directory $GITHUB_WORKSPACE
