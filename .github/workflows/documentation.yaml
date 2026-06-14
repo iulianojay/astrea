@@ -82,4 +82,4 @@ jobs:
       #     . .venv/bin/activate && ./scripts/run_benchmarks.sh
 
       - name: Make and deploy docs
-        run: mkdocs gh-deploy --force
+        run: uv run mkdocs gh-deploy --force
