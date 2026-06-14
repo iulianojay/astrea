@@ -68,11 +68,11 @@ jobs:
         run: |
           make python_env
 
-      - name: Build and install checkcases
-        run: |
-          . .venv/bin/activate && make all install
-
       # These just take too long right now. TODO: Figure out how to do this.
+      # - name: Build and install checkcases
+      #   run: |
+      #     . .venv/bin/activate && make all install
+
       # - name: Run checkcases and build report
       #   run: |
       #     . .venv/bin/activate && make build_report 
