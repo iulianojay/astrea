@@ -19,9 +19,9 @@
 #include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/state/angular_elements/instances/Geodetic.hpp>
+#include <astro/state/angular_elements/Geodetic.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/utilities/conversions.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -41,7 +41,6 @@ class ConversionTest : public testing::Test {
     const Unitless REL_TOL = 1e-4 * one;
 
     ConversionTest() :
-        mu(sys.get_mu()),
         rng(rd()),
         semimajorDist(6380.0 * km, 40000.0 * km),
         eccDist(0.0 * one, 0.99 * one),
@@ -55,21 +54,19 @@ class ConversionTest : public testing::Test {
     void SetUp() override
     {
         const Distance R   = 10000.0 * km;
-        const GravParam mu = sys.get_mu();
+        const GravParam mu = get_mu<frames::primary.origin>();
         const Velocity V   = sqrt(mu / R);
 
-        _keplExp = Keplerian(R, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
-        _cartExp = Cartesian(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
-        _equiExp = Equinoctial(R, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad);
+        _keplExp = Keplerian<frames::primary>(R, 0.0 * one, 0.0 * rad, 0.0 * rad, 0.0 * rad, 0.0 * rad);
+        _cartExp = Cartesian<frames::primary>(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
+        _equiExp = Equinoctial<frames::primary>(R, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * one, 0.0 * rad);
 
-        _eciExp  = Cartesian(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
-        _ecefExp = Cartesian(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
+        _eciExp  = Cartesian<frames::primary>(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
+        _ecefExp = Cartesian<frames::primary>(R, 0.0 * km, 0.0 * km, 0.0 * km / s, V, 0.0 * km / s);
 
         // Hard code vallado values to ensure tests pass
         rEquitorial = 6378.1363 * km;
         rPolar      = 6356.751 * km;
-        // rEquitorial = sys.get_central_body()->get_equitorial_radius();
-        // rPolar      = sys.get_central_body()->get_polar_radius();
     }
 
     // Expected values
@@ -81,8 +78,7 @@ class ConversionTest : public testing::Test {
     OrbitalElements _ecefExp;
 
     // Setup
-    AstrodynamicsSystem sys;
-    GravParam mu;
+    GravParam mu = get_mu<frames::primary.origin>();
     Distance rEquitorial;
     Distance rPolar;
 
@@ -98,8 +94,8 @@ class ConversionTest : public testing::Test {
     template <typename T>
     OrbitalElements random_elements()
     {
-        Keplerian elements(semimajorDist(rng), eccDist(rng), incDist(rng), raanDist(rng), wDist(rng), thetaDist(rng));
-        return OrbitalElements(T(elements, sys.get_mu()));
+        Keplerian<T::frame> elements(semimajorDist(rng), eccDist(rng), incDist(rng), raanDist(rng), wDist(rng), thetaDist(rng));
+        return OrbitalElements(T(elements, mu));
     }
 };
 
@@ -120,20 +116,20 @@ TEST_F(ConversionTest, KeplerianToCartesian)
 TEST_F(ConversionTest, CartesianToKeplerian)
 {
     OrbitalElements elements = _cartExp;
-    elements.convert_to_set<Keplerian>(mu);
+    elements.convert_to_set<Keplerian<frames::earth::icrf>>(mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _keplExp, false, REL_TOL)));
 }
 TEST_F(ConversionTest, CartesianKeplerianCycle)
 {
     for (int ii = 0; ii < nElements; ii++) {
-        const auto originalElements = random_elements<Keplerian>();
+        const auto originalElements = random_elements<Keplerian<frames::earth::icrf>>();
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
             elements.convert_to_set<Cartesian<frames::earth::icrf>>(mu);
 
             // Convert back
-            elements.convert_to_set<Keplerian>(mu);
+            elements.convert_to_set<Keplerian<frames::earth::icrf>>(mu);
 
             // Compare
             ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, originalElements, false, REL_TOL)));
@@ -151,20 +147,20 @@ TEST_F(ConversionTest, EquinoctialToCartesian)
 TEST_F(ConversionTest, CartesianToEquinoctial)
 {
     OrbitalElements elements = _cartExp;
-    elements.convert_to_set<Equinoctial>(mu);
+    elements.convert_to_set<Equinoctial<frames::earth::icrf>>(mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _equiExp, false, REL_TOL)));
 }
 TEST_F(ConversionTest, CartesianEquinoctialCycle)
 {
     for (int ii = 0; ii < nElements; ii++) {
-        const auto originalElements = random_elements<Equinoctial>();
+        const auto originalElements = random_elements<Equinoctial<frames::earth::icrf>>();
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Cartesian
             elements.convert_to_set<Cartesian<frames::earth::icrf>>(mu);
 
             // Convert back
-            elements.convert_to_set<Equinoctial>(mu);
+            elements.convert_to_set<Equinoctial<frames::earth::icrf>>(mu);
 
             // Compare
             ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, originalElements, false, REL_TOL)));
@@ -176,26 +172,26 @@ TEST_F(ConversionTest, CartesianEquinoctialCycle)
 TEST_F(ConversionTest, KeplerianToEquinoctial)
 {
     OrbitalElements elements = _keplExp;
-    elements.convert_to_set<Equinoctial>(mu);
+    elements.convert_to_set<Equinoctial<frames::earth::icrf>>(mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _equiExp, false, REL_TOL)));
 }
 TEST_F(ConversionTest, EquinoctialToKeplerian)
 {
     OrbitalElements elements = _equiExp;
-    elements.convert_to_set<Keplerian>(mu);
+    elements.convert_to_set<Keplerian<frames::earth::icrf>>(mu);
     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _keplExp, false, REL_TOL)));
 }
 TEST_F(ConversionTest, EquinoctialKeplerianCycle)
 {
     for (int ii = 0; ii < nElements; ii++) {
-        const auto originalElements = random_elements<Keplerian>();
+        const auto originalElements = random_elements<Keplerian<frames::earth::icrf>>();
         auto elements               = originalElements;
         for (int jj = 0; jj < nConversion; jj++) {
             // Convert to Equinoctial
-            elements.convert_to_set<Equinoctial>(mu);
+            elements.convert_to_set<Equinoctial<frames::earth::icrf>>(mu);
 
             // Convert back
-            elements.convert_to_set<Keplerian>(mu);
+            elements.convert_to_set<Keplerian<frames::earth::icrf>>(mu);
 
             // Compare
             ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, originalElements, false, REL_TOL)));
@@ -209,7 +205,7 @@ TEST_F(ConversionTest, EcefToLla)
     // Vallado ex. 3-3
     const RadiusVector<frames::earth::earth_fixed> rEcef = { 6524.834 * km, 6862.875 * km, 6448.296 * km };
 
-    const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef, rEquitorial, rPolar);
+    const auto [lat, lon, alt] = convert_body_fixed_to_geodetic(rEcef);
 
     ASSERT_TRUE(math::nearly_equal(lat, Angle(34.3529 * deg), REL_TOL));
     ASSERT_TRUE(math::nearly_equal(lon, Angle(46.4464 * deg), REL_TOL));
@@ -222,7 +218,7 @@ TEST_F(ConversionTest, LlaToEcef)
     const Angle lon    = 46.4464 * deg;
     const Distance alt = 5085.22 * km;
 
-    const RadiusVector<frames::earth::earth_fixed> rEcef = convert_geodetic_to_earth_fixed(lat, lon, alt, rEquitorial, rPolar);
+    const auto rEcef = convert_geodetic_to_body_fixed<frames::earth::earth_fixed>(lat, lon, alt);
 
     // I have no idea why these are not the same
     ASSERT_TRUE(math::nearly_equal(rEcef[0], Distance(6524.834 * km), REL_TOL));
@@ -232,14 +228,14 @@ TEST_F(ConversionTest, LlaToEcef)
 // TEST_F(ConversionTest, EcefLlaCycle)
 // {
 //     for (int ii = 0; ii < nElements; ii++) {
-//         const auto originalElements = random_elements<Keplerian>();
+//         const auto originalElements = random_elements<Keplerian<frames::earth::icrf>> ();
 //         auto elements               = originalElements;
 //         for (int jj = 0; jj < nConversion; jj++) {
 //             // Convert to Equinoctial
-//             elements.convert_to_set<Equinoctial>(mu);
+//             elements.convert_to_set<Equinoctial<frames::earth::icrf>> (mu);
 
 //             // Convert back
-//             elements.convert_to_set<Keplerian>(mu);
+//             elements.convert_to_set<Keplerian<frames::earth::icrf>> (mu);
 
 //             // Compare
 //             ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, originalElements, false, REL_TOL));
@@ -251,26 +247,26 @@ TEST_F(ConversionTest, LlaToEcef)
 // TEST_F(ConversionTest, EciToEcef)
 // {
 //     OrbitalElements elements = _eciExp;
-//     elements.convert_to_set<Equinoctial>(mu);
+//     elements.convert_to_set<Equinoctial<frames::earth::icrf>> (mu);
 //     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _ecefExp, false, REL_TOL));
 // }
 // TEST_F(ConversionTest, EcefToEci)
 // {
 //     OrbitalElements elements = _ecefExp;
-//     elements.convert_to_set<Keplerian>(mu);
+//     elements.convert_to_set<Keplerian<frames::earth::icrf>> (mu);
 //     ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, _eciExp, false, REL_TOL));
 // }
 // TEST_F(ConversionTest, EciEcefCycle)
 // {
 //     for (int ii = 0; ii < nElements; ii++) {
-//         const auto originalElements = random_elements<Keplerian>();
+//         const auto originalElements = random_elements<Keplerian<frames::earth::icrf>> ();
 //         auto elements               = originalElements;
 //         for (int jj = 0; jj < nConversion; jj++) {
 //             // Convert to Equinoctial
-//             elements.convert_to_set<Equinoctial>(mu);
+//             elements.convert_to_set<Equinoctial<frames::earth::icrf>> (mu);
 
 //             // Convert back
-//             elements.convert_to_set<Keplerian>(mu);
+//             elements.convert_to_set<Keplerian<frames::earth::icrf>> (mu);
 
 //             // Compare
 //             ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(elements, originalElements, false, REL_TOL));

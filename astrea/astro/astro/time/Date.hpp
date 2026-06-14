@@ -20,6 +20,7 @@
  */
 #pragma once
 
+#include <chrono>
 #include <iosfwd>
 #include <string>
 
@@ -27,8 +28,8 @@
 
 #include <units/units.hpp>
 
-#include <astro/time/JulianDateClock.hpp>
-#include <astro/time/TerrestrialTimeClock.hpp>
+#include <astro/systems/system_concepts.hpp>
+#include <astro/time/clocks.hpp>
 
 namespace astrea {
 namespace astro {
@@ -70,7 +71,7 @@ class Date {
      *
      * @param jdate The JulianDate to initialize the Date object.
      */
-    Date(const JulianDate& jdate = J2000) :
+    constexpr Date(const JulianDate& jdate = J2000) :
         _julianDate(jdate)
     {
     }
@@ -168,12 +169,27 @@ class Date {
      */
     double jdn() const { return std::chrono::floor<std::chrono::days>(_julianDate).time_since_epoch().count(); }
 
+    Time seconds_in_local_day() const { return { _julianDate - std::chrono::floor<std::chrono::days>(_julianDate) }; }
+
+    std::chrono::year_month_day year_month_day() const
+    {
+        return std::chrono::year_month_day(std::chrono::sys_days(std::chrono::floor<std::chrono::days>(sys())));
+    }
+
+    int day_of_year() const
+    {
+        using namespace std::chrono;
+        const duration<int, days::period> doy =
+            duration_cast<duration<int, days::period>>(floor<days>(sys()) - sys_days{ year_month_day().year() / 1 / 1 });
+        return doy.count() + 1; // +1 because day of year starts at 1
+    };
+
     /**
      * @brief Get the Modified Julian Date (MJD) representation of this Date object.
      *
-     * @return std::chrono::duration<double, std::ratio<86400>> The Modified Julian Date representation of this Date object.
+     * @return std::chrono::duration<double, std::chrono::days::period> The Modified Julian Date representation of this Date object.
      */
-    std::chrono::duration<double, std::ratio<86400>> mjd() const { return _julianDate - MJD0; }
+    std::chrono::duration<double, std::chrono::days::period> mjd() const { return _julianDate - MJD0; }
 
     /**
      * @brief Get the Date in UTC clock format.
@@ -204,6 +220,27 @@ class Date {
     TerrestrialTime tt() const { return in_clock<TerrestrialTimeClock>(); }
 
     /**
+     * @brief Get the Date in Geocentric Coordinate Time (TCG) clock format.
+     *
+     * @return GeocentricCoordinateTime The Date in TCG clock format.
+     */
+    GeocentricCoordinateTime tcg() const { return in_clock<GeocentricCoordinateTimeClock>(); }
+
+    /**
+     * @brief Get the Date in Barycentric Dynamical Time (TDB) clock format.
+     *
+     * @return BarycentricDynamicalTime The Date in TDB clock format.
+     */
+    BarycentricDynamicalTime tdb() const { return in_clock<BarycentricDynamicalTimeClock>(); }
+
+    /**
+     * @brief Get the Date in Barycentric Coordinate Time (TCB) clock format.
+     *
+     * @return BarycentricCoordinateTime The Date in TCB clock format.
+     */
+    BarycentricCoordinateTime tcb() const { return in_clock<BarycentricCoordinateTimeClock>(); }
+
+    /**
      * @brief Get the Date in sys clock format.
      *
      * @return std::chrono::time_point<std::chrono::system_clock>
@@ -231,11 +268,26 @@ class Date {
     }
 
     /**
-     * @brief Get the Greenwich Mean Sidereal Time (GMST) for this Date object.
+     * @brief Get the Greenwich Mean Sidereal Time (GMST) for this Date around Earth.
      *
-     * @return Angle The Greenwich Mean Sidereal Time for this Date object.
+     * @return Angle The Greenwich Mean Sidereal Time for this Date around Earth.
      */
     Angle gmst() const;
+
+    /**
+     * @brief Get the equivalent of GMST for an arbitrary celestial body.
+     *
+     * Computes the accumulated rotation angle of the body's prime meridian relative to its
+     * inertial reference direction since J2000, using the body's rotation rate.
+     *
+     * @param body The celestial body whose prime meridian angle is desired.
+     * @return Angle The body's prime meridian rotation angle, wrapped to [0, 2π).
+     */
+    template <IsCelestialBody auto _body_>
+    Angle body_sidereal_time() const
+    {
+        return julian_date_to_body_sidereal_time<_body_>(_julianDate);
+    }
 
   private:
     JulianDate _julianDate; //!< Julian date representation of the Date object

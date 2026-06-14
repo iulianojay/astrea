@@ -40,6 +40,7 @@ build_type_lower := $(shell echo $(build_type) | tr A-Z a-z)
 build_path := $(abspath ./build/$(compiler)/$(comp)/$(build_type))
 install_path := $(abspath ./install/$(compiler)/$(comp)/$(build_type))
 build_tests := OFF
+build_benchmarks := OFF
 build_examples := OFF
 build_profilers := OFF
 build_checkcase_db := OFF
@@ -73,6 +74,7 @@ build:
 	-DCMAKE_INSTALL_PREFIX:PATH=$(install_path) \
 	-DCPM_SOURCE_CACHE=$(config_path)/.cpm-cache \
 	-DBUILD_TESTS=$(build_tests) \
+	-DBUILD_BENCHMARKS=$(build_benchmarks) \
 	-DBUILD_EXAMPLES=$(build_examples) \
 	-DBUILD_STATIC=$(build_static) \
 	-DBUILD_PROFILERS=$(build_profilers) \
@@ -140,6 +142,10 @@ tests:
 examples:
 	$(eval build_examples = ON)
 
+.PHONY: benchmarks
+benchmarks:
+	$(eval build_benchmarks = ON)
+
 .PHONY: profiling
 profiling:
 	$(eval build_profilers = ON)
@@ -173,6 +179,10 @@ rerun_tests:
 	cd $(build_path)/astrea/utilities/tests && ctest --rerun-failed --output-on-failure
 	cd $(build_path)/astrea/astro/tests && ctest --rerun-failed --output-on-failure
 	cd $(build_path)/astrea/trace/tests && ctest --rerun-failed --output-on-failure
+
+.PHONY: run_benchmarks
+run_benchmarks:
+	sh ./scripts/run_benchmarks.sh
 
 .PHONY: run_examples
 run_examples:
@@ -215,7 +225,7 @@ check: build
 	find $(examples_path) -regex '.*\.\(cpp\|hpp\|c\|h\)' | xargs $(CLANG_TIDY_CMD)
 
 .PHONY: coverage-html
-coverage-html: #debug run_tests run_examples
+coverage-html: debug run_tests run_examples
 	cd build && \
 	gcovr -r .. --html-nested \
 	-o ../.gcovr/coverage.html \

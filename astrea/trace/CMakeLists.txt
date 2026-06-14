@@ -34,13 +34,9 @@ set(TRACE_SOURCES
     ${TRACE_BASE}/platforms/sensors/Antenna.cpp
     ${TRACE_BASE}/platforms/sensors/Sensor.cpp
 
-    ${TRACE_BASE}/platforms/ground/Grid.cpp
-    ${TRACE_BASE}/platforms/ground/GroundStation.cpp
-    ${TRACE_BASE}/platforms/ground/GroundPoint.cpp
-
     ${TRACE_BASE}/platforms/sensors/fov/FieldOfView.cpp
-    ${TRACE_BASE}/platforms/sensors/fov/instances/CircularFieldOfView.cpp
-    ${TRACE_BASE}/platforms/sensors/fov/instances/PolygonalFieldOfView.cpp
+    ${TRACE_BASE}/platforms/sensors/fov/CircularFieldOfView.cpp
+    ${TRACE_BASE}/platforms/sensors/fov/PolygonalFieldOfView.cpp
 
     ${TRACE_BASE}/risesets/AccessArray.cpp
     ${TRACE_BASE}/risesets/RiseSetArray.cpp
@@ -68,8 +64,8 @@ set(TRACE_HEADERS
     ${TRACE_BASE}/platforms/sensors/Antenna.hpp
     ${TRACE_BASE}/platforms/sensors/Sensor.hpp
     ${TRACE_BASE}/platforms/sensors/fov/FieldOfView.hpp
-    ${TRACE_BASE}/platforms/sensors/fov/instances/CircularFieldOfView.hpp
-    ${TRACE_BASE}/platforms/sensors/fov/instances/PolygonalFieldOfView.hpp
+    ${TRACE_BASE}/platforms/sensors/fov/CircularFieldOfView.hpp
+    ${TRACE_BASE}/platforms/sensors/fov/PolygonalFieldOfView.hpp
 
     ${TRACE_BASE}/platforms/ground/Grid.hpp
     ${TRACE_BASE}/platforms/ground/GroundArchitecture.hpp

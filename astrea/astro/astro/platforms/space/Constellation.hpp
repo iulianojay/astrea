@@ -72,14 +72,12 @@ class Constellation {
      * @brief Construct a Constellation from a vector of GeneralPerturbations objects.
      *
      * @param gp A vector of GeneralPerturbations objects to initialize the Constellation.
-     * @param system The AstrodynamicsSystem to use for the Constellation.
      */
-    Constellation(const std::vector<GeneralPerturbations>& gp, const AstrodynamicsSystem& system);
+    Constellation(const std::vector<GeneralPerturbations>& gp);
 
     /**
      * @brief Construct a Constellation with a specific configuration.
      *
-     * @param sys The AstrodynamicsSystem to use for the Constellation.
      * @param epoch The epoch of the Constellation.
      * @param semimajor The semimajor axis of the orbit.
      * @param inclination The inclination of the orbit.
@@ -90,7 +88,6 @@ class Constellation {
      * @param anchorAnomaly The argument of perigee for the first shell.
      */
     Constellation(
-        const AstrodynamicsSystem& sys,
         const Date& epoch,
         const Distance& semimajor,
         const Angle& inclination,

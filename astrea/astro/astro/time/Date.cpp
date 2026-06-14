@@ -21,7 +21,7 @@
 
 #include <mp-units/math.h>
 
-#include <astro/systems/planetary_bodies/Earth/Earth.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
 #include <astro/utilities/conversions.hpp>
 
 using namespace mp_units;
@@ -93,12 +93,12 @@ JulianDate epoch_to_julian_date(const std::string& epoch, const std::string form
 const Date Date::now() noexcept { return JulianDateClock::now(); }
 
 
-Angle julian_date_to_sidereal_time(const JulianDate& _julianDate)
+Angle julian_date_to_sidereal_time(const JulianDate& julianDate)
 {
     using mp_units::angular::unit_symbols::deg;
     using mp_units::non_si::day;
 
-    const Time julianDay = _julianDate.time_since_epoch().count() * day;
+    const Time julianDay = julianDate.time_since_epoch().count() * day;
 
     // UT = (fraction of current Julian Day since 00:00:00 in days) / (body rotation rate in deg/day ratioed to Earth's)
     static const Time halfDay = 0.5 * day;
@@ -115,7 +115,7 @@ Angle julian_date_to_sidereal_time(const JulianDate& _julianDate)
         (100.4606184 * one + 36000.77005361 * T0 + 0.00038793 * T0 * T0 - 2.583e-8 * T0 * T0 * T0) * deg;
 
     // GST
-    static const AngularVelocity earthRotRate = planetary_bodies::Earth().get_rotation_rate(); // in rad/s
+    static const AngularVelocity earthRotRate = get_rotation_rate<planets::Earth>();
     const Angle greenwichSiderealTime         = wrap_angle(greenwichUniversalTime + earthRotRate * universalTime);
 
     return greenwichSiderealTime;

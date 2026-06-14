@@ -148,13 +148,12 @@ People often mean different things when they use the term and the context shifts
 
 ### State Management
 
-The `State` class is meant to be a total physical representation of an orbital simulation for a single dynamic object. It includes the orbital elements, the epoch, a reference to the system those are defined in, and an optional attitude. This gives the full required 14 states values needed to anchor a dynamic object in space (3 for position, 3 for velocity, 3 for orientation, 3 for angular rate, 1 for time, and 1 for the celestial reference).
+The `State` class is meant to be a total physical representation of an orbital simulation for a single dynamic object. It includes the orbital elements, the epoch, and an optional attitude. This gives the full required 14 states values needed to anchor a dynamic object in space (3 for position, 3 for velocity, 3 for orientation, 3 for angular rate, 1 for time, and 1 for the celestial reference).
 
 ```cpp
 class State {
     OrbitalElements _elements;
     Date _epoch;
-    const AstrodynamicsSystem* _system;
     std::optional<Attitude> _attitude;
     //...//
 };

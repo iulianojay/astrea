@@ -104,6 +104,7 @@ CPMFindPackage(
     GITHUB_REPOSITORY fnc12/sqlite_orm
     GIT_TAG v1.9.1
     GIT_SHALLOW TRUE
+    SYSTEM YES
 )
 
 # Matplot++ for plotting
@@ -146,14 +147,27 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(csv)
 
 # Google test cause I Love massive endless macro heavy tools
-CPMFindPackage(
-    NAME googletest
-    GITHUB_REPOSITORY google/googletest
-    GIT_SHALLOW TRUE
-    VERSION 1.17.0
-    OPTIONS
-    "INSTALL_GTEST OFF"
-)
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-include(GoogleTest)
-enable_testing()
+if (${BUILD_TESTS})
+    CPMFindPackage(
+        NAME googletest
+        GITHUB_REPOSITORY google/googletest
+        GIT_SHALLOW TRUE
+        VERSION 1.17.0
+        OPTIONS
+        "INSTALL_GTEST OFF"
+    )
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    include(GoogleTest)
+    enable_testing()
+endif()
+
+if (${BUILD_BENCHMARKS})
+    CPMFindPackage(
+        NAME googlebenchmark
+        GITHUB_REPOSITORY google/benchmark
+        GIT_SHALLOW TRUE
+        VERSION 1.9.5
+        OPTIONS
+        "BENCHMARK_DOWNLOAD_DEPENDENCIES ON"
+    )
+endif()

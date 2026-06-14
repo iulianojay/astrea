@@ -21,8 +21,8 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/dynamic_frames.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
 #include <astro/platforms/Payload.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -102,7 +102,6 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
      * @param parameters Thruster parameters.
      */
     template <typename Parent_T>
-        requires(std::is_base_of_v<FrameReference, Parent_T>)
     Thruster(const Parent_T& parent, const ThrusterParameters& parameters) :
         Payload<Thruster, ThrusterParameters>(parent, parameters)
     {

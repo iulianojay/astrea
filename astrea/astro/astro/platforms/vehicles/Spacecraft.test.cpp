@@ -18,8 +18,8 @@
 
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>
+#include <astro/systems/system_utilities.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -43,7 +43,6 @@ class SpacecraftTest : public testing::Test {
         spacecraftWithHistory.set_state_history(history);
     }
 
-    AstrodynamicsSystem sys;
     Spacecraft spacecraft;
     Spacecraft spacecraftWithHistory;
 };
@@ -61,7 +60,7 @@ TEST_F(SpacecraftTest, CopyConstructor) { ASSERT_NO_THROW(Spacecraft s(spacecraf
 TEST_F(SpacecraftTest, GpConstructor)
 {
     GeneralPerturbations gp;
-    ASSERT_ANY_THROW(Spacecraft s(gp, sys));
+    ASSERT_ANY_THROW(Spacecraft s(gp));
 
     gp.NORAD_CAT_ID   = 25544;
     gp.OBJECT_NAME    = "ISS";
@@ -69,11 +68,11 @@ TEST_F(SpacecraftTest, GpConstructor)
     gp.ECCENTRICITY   = 0.001;
     gp.INCLINATION    = 51.6;
     gp.RA_OF_ASC_NODE = 0.0;
-    ASSERT_ANY_THROW(Spacecraft s(gp, sys));
+    ASSERT_ANY_THROW(Spacecraft s(gp));
 
     gp.ARG_OF_PERICENTER = 0.0;
     gp.MEAN_ANOMALY      = 0.0;
-    ASSERT_NO_THROW(Spacecraft s(gp, sys));
+    ASSERT_NO_THROW(Spacecraft s(gp));
 }
 
 TEST_F(SpacecraftTest, AssignmentOperator)
@@ -181,14 +180,14 @@ TEST_F(SpacecraftTest, GetStateHistory)
 
 TEST_F(SpacecraftTest, GetInertialPosition)
 {
-    ASSERT_ANY_THROW(spacecraft.get_inertial_position(Date()));
-    ASSERT_NO_THROW(spacecraftWithHistory.get_inertial_position(Date()));
+    ASSERT_ANY_THROW(spacecraft.get_position(Date()));
+    ASSERT_NO_THROW(spacecraftWithHistory.get_position(Date()));
 }
 
 TEST_F(SpacecraftTest, GetInertialVelocity)
 {
-    ASSERT_ANY_THROW(spacecraft.get_inertial_velocity(Date()));
-    ASSERT_NO_THROW(spacecraftWithHistory.get_inertial_velocity(Date()));
+    ASSERT_ANY_THROW(spacecraft.get_velocity(Date()));
+    ASSERT_NO_THROW(spacecraftWithHistory.get_velocity(Date()));
 }
 
 TEST_F(SpacecraftTest, AddPayload)

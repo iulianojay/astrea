@@ -48,7 +48,7 @@ using mp_units::si::unit_symbols::W;
 class LeoToGroundAccessTest : public testing::Test {
   public:
     LeoToGroundAccessTest() :
-        mu(sys.get_mu()),
+        mu(get_mu<frames::primary.origin>()),
         semimajorLeo(6778.0 * km),
         propTime(hours(2.0)),
         resolution(seconds(5.0))
@@ -58,12 +58,11 @@ class LeoToGroundAccessTest : public testing::Test {
         integrator.set_rel_tol(1.0e-10);
 
         // Build Force Model
-        forces.add<OblatenessForce>(sys, 2, 0);
+        forces.add<OblatenessForce, planets::Earth, 2, 0>();
     }
 
     void SetUp() override {}
 
-    AstrodynamicsSystem sys;
     GravParam mu;
     const Distance semimajorLeo;
     ForceModel forces;
@@ -84,10 +83,10 @@ int main(int argc, char** argv)
 TEST_F(LeoToGroundAccessTest, LeoThinCone)
 {
     // Build constellation
-    const Cartesian<frames::earth::icrf> elem0(Keplerian(semimajorLeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu);
-    const State state0(elem0, epoch, sys);
-
-    const auto& centralBody = sys.get_central_body();
+    const Cartesian<frames::earth::icrf> elem0(
+        Keplerian<frames::earth::icrf>(semimajorLeo, 0.0 * one, 0.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg), mu
+    );
+    const State state0(elem0, epoch);
 
     Viewer leo;
     leo.store_state(state0);
@@ -115,23 +114,23 @@ TEST_F(LeoToGroundAccessTest, LeoThinCone)
     SensorParameters groundCone(&groundFov, astro::RADIAL_RIC);
 
     const auto stateHistory = constel.get_spacecraft(leo.get_id()).get_state_history();
-    std::vector<GroundStation> groundsVec;
+    std::vector<GroundStation<astro::planets::Earth>> groundsVec;
 
     // use a coarser resolution for the ground points so the analysis doesn't skip over them
     for (Date date = epoch; date <= epoch + propTime; date += minutes(1.0)) {
         const auto state = stateHistory.get_state_at(date);
         const auto rEcef = state.get_position().in_frame<frames::earth::earth_fixed>(date);
-        const auto lla   = astro::Geodetic(rEcef, centralBody.get());
+        const auto lla   = astro::Geodetic<astro::planets::Earth>(rEcef);
         const auto lat   = lla.get_latitude();
         const auto lon   = lla.get_longitude();
 
-        GroundStation ground(centralBody.get(), lat, lon, 0.0 * km, "Test site", { groundCone });
+        GroundStation<astro::planets::Earth> ground(lat, lon, 0.0 * km, "Test site", { groundCone });
         groundsVec.push_back(ground);
     }
-    GroundArchitecture grounds(groundsVec);
+    GroundArchitecture<astro::planets::Earth> grounds(groundsVec);
 
     // Find access
-    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime, sys);
+    AccessAnalyzer analyzer(resolution, epoch, epoch + propTime);
     const auto accesses = analyzer.find_accesses(constel, grounds);
 
     // Should access every ground at least once

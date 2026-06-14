@@ -29,75 +29,6 @@ namespace astrea {
 namespace astro {
 
 /**
- * @brief Concept to determine if a frame is inertial.
- *
- * @tparam Frame_T The frame type to check.
- * @return true if the frame is inertial (ICRF or J2000), false otherwise.
- */
-template <typename Frame_T>
-concept IsInertialFrame = (Frame_T::axis == FrameAxis::ICRF || Frame_T::axis == FrameAxis::J2000);
-
-/**
- * @brief Concept to determine if a frame is body-fixed.
- *
- * @tparam Frame_T The frame type to check.
- * @return true if the frame is body-fixed, false otherwise.
- */
-template <typename Frame_T>
-concept IsBodyFixedFrame = (Frame_T::axis == FrameAxis::BODY_FIXED);
-
-/**
- * @brief Concept to determine if a frame is static (inertial or body-fixed).
- *
- * @tparam Frame_T The frame type to check.
- * @return true if the frame is static, false otherwise.
- */
-template <typename Frame_T>
-concept IsStaticFrame =
-    (Frame_T::axis == FrameAxis::ICRF || Frame_T::axis == FrameAxis::J2000 || Frame_T::axis == FrameAxis::BODY_FIXED);
-
-/**
- * @brief Concept to determine if a frame is dynamic (LVLH, RIC, VNB).
- *
- * @tparam Frame_T The frame type to check.
- * @return true if the frame is dynamic, false otherwise.
- */
-template <typename Frame_T>
-concept IsDynamicFrame =
-    (Frame_T::axis == FrameAxis::LVLH || Frame_T::axis == FrameAxis::RIC || Frame_T::axis == FrameAxis::VNB);
-
-/**
- * @brief Concept to determine if two frames share the same origin.
- *
- * @tparam Frame_T The first frame type to check.
- * @tparam Frame_U The second frame type to check.
- * @return true if both frames share the same origin, false otherwise.
- */
-template <typename Frame_T, typename Frame_U>
-concept HasSameOrigin = (Frame_T::origin == Frame_U::origin);
-
-/**
- * @brief Concept to determine if two frames share the same axis.
- *
- * @tparam Frame_T The first frame type to check.
- * @tparam Frame_U The second frame type to check.
- * @return true if both frames share the same axis, false otherwise.
- */
-template <typename Frame_T, typename Frame_U>
-concept HasSameAxis = (Frame_T::axis == Frame_U::axis);
-
-/**
- * @brief Concept to determine if two frames are the same (same origin and same axis).
- *
- * @tparam Frame_T The first frame type to check.
- * @tparam Frame_U The second frame type to check.
- * @return true if both frames are the same, false otherwise.
- */
-template <typename Frame_T, typename Frame_U>
-concept IsSameFrame = HasSameOrigin<Frame_T, Frame_U> && HasSameAxis<Frame_T, Frame_U>;
-
-
-/**
  * @brief Concept to check if a type can be constructed from a set of orbital elements.
  *
  * @tparam T The type to check.
@@ -112,31 +43,33 @@ concept IsConstructableTo = requires(T elements, const GravParam& mu) {
  * @brief Concept to check if a type can be converted to Cartesian elements.
  *
  * @tparam T The type to check.
- * @tparam Frame_T The frame type to check.
+ * @tparam frame The frame type to check.
  */
-template <typename T, typename Frame_T>
+template <typename T, IsFrame auto frame>
 concept HasDirectCartesianConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_cartesian(mu) } -> std::same_as<Cartesian<Frame_T>>;
+    { elements.to_cartesian(mu) } -> std::same_as<Cartesian<frame>>;
 };
 
 /**
  * @brief Concept to check if a type can be converted to Keplerian elements.
  *
  * @tparam T The type to check.
+ * @tparam frame The frame type to check.
  */
-template <typename T>
+template <typename T, IsFrame auto frame>
 concept HasDirectKeplerianConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_keplerian(mu) } -> std::same_as<Keplerian>;
+    { elements.to_keplerian(mu) } -> std::same_as<Keplerian<frame>>;
 };
 
 /**
  * @brief Concept to check if a type can be converted to Equinoctial elements.
  *
  * @tparam T The type to check.
+ * @tparam frame The frame type to check.
  */
-template <typename T>
+template <typename T, IsFrame auto frame>
 concept HasDirectEquinoctialConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_equinoctial(mu) } -> std::same_as<Equinoctial>;
+    { elements.to_equinoctial(mu) } -> std::same_as<Equinoctial<frame>>;
 };
 
 /**
@@ -169,7 +102,7 @@ template <typename T>
 concept HasMathOperators = requires(const T elements, const T other, const Unitless scalar) {
     { elements + other } -> std::same_as<T>;
     { elements - other } -> std::same_as<T>;
-    { elements* scalar } -> std::same_as<T>;
+    { elements * scalar } -> std::same_as<T>;
     { elements / scalar } -> std::same_as<T>;
 };
 

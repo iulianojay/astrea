@@ -21,7 +21,7 @@
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/event_detection/events/TurnThrustersOff.hpp>
 #include <astro/state/State.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities.hpp>
 
 using namespace astrea;
 using namespace astro;

@@ -23,7 +23,7 @@ namespace trace {
 FoldsOfCoverage::FoldsOfCoverage(const AccessArray& access, const Time& resolution, const Time& end)
 {
     // get all receiver ids
-    gtl::btree_set<std::size_t> ids;
+    gtl::flat_hash_set<std::size_t> ids;
     for (const auto& [idPair, risesets] : access) {
         if (risesets.size() == 0) { continue; }
         ids.insert(idPair.receiver);
