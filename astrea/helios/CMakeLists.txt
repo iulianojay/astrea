@@ -1,4 +1,4 @@
-# Copyright (c) 2025 Jay Iuliano
+# Copyright (c) 2026 Jay Iuliano
 #
 # This file is part of Astrea.
 # Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
@@ -7,12 +7,27 @@
 # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
 # have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
 
-add_subdirectory(trace)
-add_subdirectory(astro)
-add_subdirectory(math)
-add_subdirectory(helios)
-# add_subdirectory(pathfinder)
-add_subdirectory(snapshot)
-add_subdirectory(utilities)
+CPMAddPackage(
+    NAME webui
+    GITHUB_REPOSITORY webui-dev/webui
+    GIT_TAG nightly
+    GIT_SHALLOW TRUE
+    OPTIONS
+        "WEBUI_BUILD_EXAMPLES OFF"
+)
 
-# add_subdirectory(units) // ignore until it has compiled files in it
+find_package(OpenMP REQUIRED)
+
+add_executable(helios_app main.cpp)
+
+target_link_libraries(helios_app PRIVATE astro_shared webui OpenMP::OpenMP_CXX)
+
+if(UNIX AND NOT APPLE)
+    target_link_libraries(helios_app PRIVATE pthread m dl)
+endif()
+
+set_target_properties(helios_app PROPERTIES
+    OUTPUT_NAME helios
+    CLEAN_DIRECT_OUTPUT 1
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/helios
+)
