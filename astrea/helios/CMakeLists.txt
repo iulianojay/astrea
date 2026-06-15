@@ -18,9 +18,9 @@ CPMAddPackage(
 
 find_package(OpenMP REQUIRED)
 
-add_executable(helios_app main.cpp)
+add_executable(helios_app helios/drivers/main.cpp)
 
-target_link_libraries(helios_app PRIVATE astro_shared webui OpenMP::OpenMP_CXX)
+target_link_libraries(helios_app PRIVATE astro_shared snapshot_shared webui OpenMP::OpenMP_CXX)
 
 if(UNIX AND NOT APPLE)
     target_link_libraries(helios_app PRIVATE pthread m dl)
@@ -30,4 +30,9 @@ set_target_properties(helios_app PROPERTIES
     OUTPUT_NAME helios
     CLEAN_DIRECT_OUTPUT 1
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/helios
+)
+
+install(
+    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/templates/
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/bin/helios/templates
 )
