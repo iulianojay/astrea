@@ -1,339 +1,267 @@
+<!-- markdownlint-disable MD041 -->
+<!-- markdownlint-disable-next-line MD033 -->
+<img align="right" height=135px src="docs/assets/images/astrea-transparent.png" alt="logo">
 
 [![GitHub license](https://img.shields.io/github/license/iulianojay/astrea?cacheSeconds=3600&color=informational&label=License)](./LICENSE.LESSER)
-[![GitHub license](https://img.shields.io/badge/C%2B%2B-23-blue)](https://en.cppreference.com/w/cpp/compiler_support#cpp23)
+[![C++ Standard](https://img.shields.io/badge/C%2B%2B-23-blue)](https://en.cppreference.com/w/cpp/compiler_support#cpp23)
+
 [![Astrea CI](https://img.shields.io/github/actions/workflow/status/iulianojay/astrea/build-and-test.yml?branch=master&label=Astrea%20CI)](https://github.com/iulianojay/astrea/actions/workflows/build-and-test.yml)
 ![Code Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/iulianojay/238a4a61ca19471caa1e39376158d625/raw/coverage.json)
 
+
 # Astrea
+ 
+**A Modern C++ Astrodynamics Library**
 
-Astrea is an open-source C++ library for astrodynamics modeling and simulation, and aerospace engineering analysis. It is meant to provide the fundamental tools for most common aerospace analysis applications, while also serving as a fast, extensible framework for more complex aerospace projects.
+Astrea is a high-performance, type-safe astrodynamics library designed for mission design, analysis, and aerospace applications. Built with modern C++23 features, Astrea provides a strongly-typed foundation with compile-time unit checking and coordinate frame safety, enabling developers to build robust and efficient astrodynamics software.
 
-This is a passion project that has largely been developed largely by a single developer. Not all of it is consistently designed, some of the features are incomplete, and tests do not yet cover ever feature, but we're on our way!
+## Overview
 
-## What can it do
+This library features a comprehensive type system that prevents common errors in astrodynamics calculations through compile-time checks - namely a strongly typed units system developed on top of mp-units, strongly typed orbital elements with in-place conversions and type-erased containers, and a system of strongly-typed framed. All of these features offer a high level of performance and safety, while also providing a flexible and extensible architecture for custom applications.
 
-- Strongly typed units using mp-units
-    - Allows for custom units, unit extensions, and compile-time unit conversions
-- Strongly typed frames and coordinate transformations
-    - Numerous utilities for automatic frame transformations
-    - Extensible framework for user-defined frames
-    - Dynamic frame support
-- Strongly typed orbital element sets, and orbital data formats
-    - Simple transformations between each
-- Utility classes for automatic conversions to and from Julian Date, UTC, TT, and other common time systems.
-- Clients for pulling Spacetrack data
-- Access analysis (revisit) including link budget, and basic interference calculations
-- Extensible definitions for:
-    - Vehicles, spacecraft, and payloads
-    - Frames, orbital elements, and orbital data formats
-    - Celestial bodies, and system definitions
-    - Custom force models, integrators, equations of motion, event detection, and analytic solvers
-- Custom mathamatics routines that work with mp-units types
-- In house propagation with user-defined event detection
-    - Numerical and analytic propagation methods supported
-    - Framework for user-defined forces, and equations of motion
-- Impulsive and continuous thrust support
-- Partial SPICE integration
-    - Chebyshev polynomials compiled directly for planets and the Moon
-    - Fast ephemris access with SPICE accuracy
-- High-fidelity comparisons using NASA's published 6DoF test data
+## Key Features
 
-And it's still growing!
+Many of the core features of Astrea were built based on experience in the aerospace industry, and many of the major pitfalls that astrodynamics libraries have historically had. The largest and perhaps most important is the issues of unit safety. Hidden unit conversions, implicit transitions between coordinate frames, and the general complexity of astrodynamics calculations can lead to small errors that have catastrophic consequences. By forcing developers to explicitly handle units and frames, Astrea eliminates a large class of these errors and provides a much safer development experience.
 
-## Examples
-Astrea relies on the mp-units library to handle units. This allows for strong typing of physical quantities, and compile-time unit checking, while also forcing developers to be explicit about units. This process helps avoid hard-to-see coversion issues, implicit units declarations, and inconsistencies in rounding and precision.
+Beyond the core principles of safety, performance was a necessary benchmark for Astrea. Optimization is common in most of aerospace and as such, every second can be important. Custom integration, compiled ephemeris files, and fully constexpr system representations are just some of the ways that this library has been optimized for performance. In future releases, Astrea will be built with a set of benchmarks to allow users to test and profile the code on their own systems.
 
+### Type Safety & Units
+
+- **Strongly-typed units** using mp-units with compile-time dimensional analysis
 ```cpp
-// In general, the mp-units library is highly generalized for any united quantity, but Astrea uses simple type wrappers for consistency and convenience.
-quantity<s> t = 1.0 * s; // mp-units explicit style
-Time time     = 1.0 * s; // Astrea implicit style
-
-std::cout << "Quantity Time: " << t << std::endl;
-std::cout << "Astrea Time: " << time << std::endl;
-
-// Outputs:
-// Quantity Time: 1 s
-// Astrea Time: 1 s
+  const double timeSeconds = 3600.0;   // unsafe, implicit units, and error-prone
+  const quantity<s> time = 3600.0 * s; // safe, explicit, and checked at compile-time
 ```
-
-Astrea uses strongly typed element sets to allow an easier user interface
-for conversions, and common operators. Currently, there are 3 supported orbital element sets:
-- Classical Orbital Elements (Keplerian)
-- Modified Equinoctial Elements (Equinoctial)
-- State Vectors (Cartesian)
-
-but the framework is extensible for user-defined sets as well.
-
+- **Custom unit support** with seamless unit conversions and extensions
 ```cpp
-// Build out a Cartesian element set using strongly typed, united quantities
-Cartesian cartesian{
-    7000.0 * km, 0.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s,
-};
-std::cout << "Cartesian: " << cartesian << std::endl;
-
-// Conversions are done through the constructors for each element set type
-GravParam mu = 398600.44189 * pow<3>(km) / pow<2>(s); // Earth
-Keplerian keplerian{ cartesian, mu };
-Equinoctial equinoctial{ keplerian, mu };
-
-std::cout << "Converted to Keplerian: " << keplerian << std::endl;
-std::cout << "Converted to Equinoctial: " << equinoctial << std::endl;
-std::cout << "Converted back to Cartesian: " << Cartesian(equinoctial, mu) << std::endl << std::endl;
-
-// Outputs:
-// Cartesian: [7000 km, 0 km, 0 km, 0 km/s, 7.5 km/s, 1 km/s] (Cartesian)
-// Converted to Keplerian: [7037.95 km, 0.00539276, 0.132552 rad, 0 rad, 0 rad, 0 rad] (Keplerian)
-// Converted to Equinoctial: [7037.75 km, 0.00539276, 0, 0.066373, 0, 0 rad] (Equinoctial)
-// Converted back to Cartesian: [7000 km, 0 km, 0 km, -0 km/s, 7.5 km/s, 1 km/s] (Cartesian)
+  Date now = Date::now();                         // Custom Julian Date clocks from std::chrono
+  Date oneHourAgo = date - std::chrono::hours(1); // Implicit conversion from std::chrono to mp-units time
+  Time oneHour = now - oneHourAgo;                // Dates, times, and chrono durations all interoperate 
+  std::cout << oneHour.in(s);                     // "3600 s"
 ```
-
-Astrea supports a system of strongly typed frames which allows for compile-time checking of frame
-transformations, while also being reasonably simple to extend.
-
-The `Frame` class is a compile-time interface that allows rules to be imposed on frame-supporting types,
-and frame transformations. A frame in Astrea is defined by an origin (typically a celestial body), and an
-axis. Currently, Astrea only supports pre-defined origins for static frames (that is, the center is inertially
-fixed), and a series of pre-defined axes. Future releases may allow for completely customized origins and axes.
-
+- **Strongly-typed frames** preventing common transformation errors
 ```cpp
-// Astrea provides definitions for many commonly used frames
-using ECI  = frames::earth::icrf;        // static
-using ECEF = frames::earth::earth_fixed; // static (in code, not in time)
-using RIC  = frames::dynamic::ric;       // dynamic
+  std::array<double> positionEci;                          // implicit units, and implicit frame
+  CartesianVector<Distance, frames::earth::icrf> position; // explicit, and safe
 ```
 
-The CartesianVector class is a simple wrapper around a 3D vector, templated by the united-type and the frame the vector is defined in (or with respect to, depending). It also hosts several common vector operations, such as dot and cross products.
+### Astrodynamics Core
+- **Multiple orbital element sets**: Cartesian, Keplerian, and Modified Equinoctial
 ```cpp
-// Some length vector in ECI frame
-CartesianVector<Length, ECI> rEci{ 1.0 * m, 2.0 * m, 3.0 * m };
-
-auto rEciMag   = rEci.norm();
-auto rEciUnit  = rEci.unit();
-auto rEciDot   = rEci.dot(rEci);
-auto rEciCross = rEci.cross(rEci);
-
-std::cout << "rEci: " << rEci << std::endl;
-std::cout << "rEciMag: " << rEciMag << std::endl;
-std::cout << "rEciUnit: " << rEciUnit << std::endl;
-std::cout << "rEciDot: " << rEciDot << std::endl;
-std::cout << "rEciCross: " << rEciCross << std::endl;
-
-// Outputs:
-// rEci: [1 m, 2 m, 3 m]
-// rEciMag: 3.74166 m
-// rEciUnit: [0.267261, 0.534522, 0.801784]
-// rEciDot: 14 m²
-// rEciCross: [0 m², 0 m², 0 m²]
+  // Cartesian elements
+  Cartesian<frames::earth::icrf> cartesian{
+    {7000.0 * km, 0.0 * km, 0.0 * km},            // position
+    {0.0 * (km/s), 7.546 * (km/s), 0.0 * (km/s)}  // velocity
+  };
+  // Keplerian elements  
+  Keplerian<frames::earth::icrf> kepler{
+    7000.0 * km,  // semimajoraxis
+    0.01,         // eccentricity
+    98.0 * deg,   // inclination
+    0.0 * deg,    // raan
+    0.0 * deg,    // arg of perigee
+    0.0 * deg     // true anomaly
+  };
 ```
-
-Conversions to/from a static (compile-time) frame, are handled by the `in_frame` method, templated to the frame we'd like to convert to. This frame looks for an acceptable specialization of the `get_dcm` method and uses the output direction cosine matrix to perform the vector transformation in either direction.
+- **Automatic element set conversions** with strongly-typed interfaces
 ```cpp
-// Astrea provides many static frame conversions
-CartesianVector<Length, ECEF> rEcefJ2000 = rEci.in_frame<ECEF>(J2000);
-CartesianVector<Length, ECEF> rEcef = rEci.in_frame<ECEF>(J2000 + hours(12));
+  AstrodynamicsSystem sys;
 
-std::cout << std::endl << "Position in ECI: " << rEci << std::endl;
-std::cout << "Position in ECEF @ J2000: " << rEcefJ2000 << std::endl;
-std::cout << "Position in ECEF @ J2000 + 12 hours: " << rEcef << std::endl;
+  // Either directly through constructors
+  Keplerian kepler{/* ... */};
+  Cartesian cartesian(kepler, sys.get_mu());
+  Equinoctial equinoctial(cartesian, sys.get_mu());
 
-// Outputs:
-// Position in ECI: [1 m, 2 m, 3 m]
-// Position in ECEF @ J2000: [2.14832 m, -0.620261 m, 3 m]
-// Position in ECEF @ J2000 + 12 hours: [-2.15358 m, 0.601759 m, 3 m]
+  // Through a generic container for any element set
+  OrbitalElements elements(kepler);
+  Cartesian cartesian2 = elements.in_element_set<Cartesian>(sys);
+  Equinoctial equinoctial2 = elements.in_element_set<Equinoctial>(sys);
+
+  // Or using the more powerful State container
+  State state(Date::now(), elements, sys);
+  Cartesian cartesian3 = state.in_element_set<Cartesian>(); // explicit extraction
+  Equinoctial equinoctial3 = state.in_element_set<Equinoctial>();
+
+  state.convert_to_set<Cartesian>(); // in-place conversion of state elements
+  state.convert_to_set<Equinoctial>(); 
 ```
-Implicit frame switches are not allowed, but can be forced in special circumstances
+- **Advanced propagation algorithms** supporting numerical and analytical methods
 ```cpp
-// CartesianVector<Length, ECEF> rEcefImplicit = rEci; // Compiler will fail!
-CartesianVector<Length, ECEF> rEcefForced = rEci.force_frame_conversion<ECEF>();
+  ForceModel forces;
+  forces.add<AtmosphericForce>();
+  forces.add<OblatenessForce>(sys, 100, 100);
+
+  TwoBody twoBodyEom;                          // No forces
+  J2MeanVop j2MeanEom;                         // Forces assumed
+  CowellsMethod cowellsEom(forces);            // Regular force model
+  KeplerianVop keplerianEom(forces, false);    // Input options for rounding errors
+  EquinoctialVop equinoctialEom(forces, true); // Input options for singularities
 ```
-Users are also able to define their own frames and associated transformations.
+- **Custom force models** with extensible equations of motion framework
 ```cpp
-// Frames do not necessarily need to be fully defined to be used
-class MyFrame;
-CartesianVector<Length, MyFrame> rCustom{ 1.0 * m, 2.0 * m, 3.0 * m };
-
-// But the definition needs to be complete to use frame transformations
-// CartesianVector<Length, ECI> rEcef = rCustom.in_frame<ECI>(J2000); // Compiler will fail!
+  ForceModel forces;
+  forces.add<AtmosphericForce>();       // Add pre-defined forces
+  forces.add<SolarRadiationPressure>();
+  forces.add<MyCustomForce>(...);       // Or build a custom force model
 ```
-
-For complex, time-dependent frames, such as those attached to a payload, or vehicle, the frames must be explicitly instantiated to call any vector transformations. They are not required to declare the vector type, however, transformation to/from dynamic frames are not allowed without an instance of the dynamic frame.
-Dynamic frames can either be attached to a FrameReference object (such as a spacecraft), or defined instantaneously at a specific state.
-
+- **Event detection** for user-defined conditions during propagation
 ```cpp
-// RadiusVector<Frame_T> = CartesianVector<Distance, Frame_T>
-RadiusVector<RIC> rRic = { 1.0 * km, 2.0 * km, 3.0 * km };
-
-Spacecraft frameParent;
-RIC dynamicRicFrame(&frameParent);                              // RIC frame attached to a spacecraft
-RIC instantaneousRicFrame = RIC::instantaneous(posVec, velVec); // RIC frame defined at a specific time
-
-// RadiusVector<ECI> rEciFromRic = rRic.in_frame<ECI>(J2000); // No RIC frame instance at compile time: compiler will fail!
-RadiusVector<ECI> rotatedrRic   = instRicFrame.rotate_out_of_this_frame(rRic, date);       // DCM * r
-RadiusVector<ECI> convertedrRic = instRicFrame.convert_from_this_frame(rRic, date);        // DCM * r + framePos
-RadiusVector<RIC> rRic2         = instRicFrame.rotate_into_this_frame(rotatedrRic, date);  // DCM^T * r
-RadiusVector<RIC> rRic3         = instRicFrame.convert_to_this_frame(convertedrRic, date); // DCM_T * (r - framePos)
-
-std::cout << "RIC frame parent position: " << posECI << std::endl;
-std::cout << "RIC frame parent velocity: " << velEci << std::endl;
-std::cout << "Position in RIC: " << rRic << std::endl;
-std::cout << "Position rotated into ECI: " << rotatedrRic << std::endl;
-std::cout << "Position w.r.t ECI: " << convertedrRic << std::endl;
-std::cout << "Rotated back into RIC: " << rRic2 << std::endl;
-std::cout << "Transformed back w.r.t RIC: " << rRic3 << std::endl << std::endl;
-
-// Outputs:
-// RIC frame parent position:   [1 km, 0 km, 0 km]
-// RIC frame parent velocity:   [0 km/s, 1 km/s, 0 km/s]
-// Position in RIC:             [1 km, 2 km, 3 km]
-// Position rotated into ECI:   [1 km, 2 km, 3 km]
-// Position w.r.t ECI:          [2 km, 2 km, 3 km]
-// Rotated back into RIC:       [1 km, 2 km, 3 km]
-// Transformed back w.r.t RIC:  [1 km, 2 km, 3 km]
+  Event burnEvent(ImpulsiveBurnAtPerigee()); 
+  Event crossingEvent(CrashAtMinAltitude()); 
+  // ... //
+  integrator.propagate(state0, propTime, eoms, vehicle, store, { 
+    burnEvent, 
+    crossingEvent, 
+    // ... //
+  });
 ```
 
-Astrea hosts it's own Integrator. While many numerical integrators exist, with far more robust implementations, Astrea's integrator is designed specifically for integrating the strongly typed element sets that Astrea uses without potentially dangerous unit-unsafe operations. This also helps to avoid hidden numerical errors, rounding issues, or possible implicit unit conversions. As such, the integration process is less complete, and more difficult to work with than some libraries, but also more transparent, and more extensible. For most users, integration will be no more difficult than that when using a more sophisticated integration library.
-
+### Coordinate Systems & Time
+- **Common frame transformations** with automatic coordinate conversions
 ```cpp
-// Setup initial state
-AstrodynamicsSystem sys; // Defaults to Earth-Moon
-const Date epoch;        // Defaults to J2000
-const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
-const State state0(elements, epoch, sys);
+  // Position in ICRF frame
+  RadiusVector<frames::earth::icrf> posIcrf{7000.0 * km, 0.0 * km, 0.0 * km};
+  
+  // Automatic transformation to J2000
+  RadiusVector<frames::earth::j2000> posJ2000 = posIcrf.in_frame<frames::earth::j2000>(epoch);
+  
+  // Chain transformations under the hood
+  RadiusVector<frames::mars::icrf> posMarsIcrf = posIcrf.in_frame<frames::mars::icrf>(epoch);
 
-// Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing for more flexibility and extensibility for users.
-Spacecraft sat; // This can be replaced with a user's custom type
-Vehicle vehicle(sat);
+  // Even automatically transformation velocity and acceleration vectors while handling abberations
+  AcceleartionVector<frames::earth::icrf> accIcrf{0.0 * (km/s/s), -0.001 * (km/s/s), 0.0 * (km/s/s)};
+  auto accJ2000 = accIcrf.in_frame<frames::earth::j2000>(epoch, r1, v1); // Handles velocity abberations for non-inertial frames
+```
+- **Dynamic frame support** for time-varying coordinate systems
+```cpp
+  CartesianVector<Distance, frames::dynamic::ric> pos{7000.0 * km, 0.0 * km, 0.0 * km};
+  frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous{state}; // RIC frame defined by current state
+  CartesianVector<Distance, frames::earth::icrf> posIcrf = ricFrame.rotate_out_of_this_frame<frames::earth::icrf>(pos, epoch);
+```
+- **Extensible frame definitions** supporting user-defined coordinate systems
+```cpp
+  namespace custom_frames {
+    // Define spacecraft body frame
+    constexpr inline struct SpacecraftBody : public Frame<"MySpacecraftFrame", SpacecraftOrigin, DynamicAxis> {
+    } SpacecraftBody;
+  }
+  
+  CartesianVector<Thrust, custom_frames::SpacecraftBody> thrust_vector{1.0 * N, 0.0 * N, 0.0 * N};
+```
+And more!
 
-// Build a force model
-ForceModel forces;
-forces.add<AtmosphericForce>();
-forces.add<OblatenessForce>(sys, 10, 10);
-// forces.add<UserDefinedForce>(...); // Users can add their own perturbations to the propagation
-
-// Build EoMs - these can be selected from pre-built options, or users can create their own by inheriting from the base EquationsOfMotion class. Note that a force or perturbation model is not required.
-TwoBody twoBodyEom;                       // No forces
-J2MeanVop j2MeanEom;                      // Forces assumed
-CowellsMethod cowellsEom(forces);         // Regular force model
-KeplerianVop keplerianEom(forces, false); // Input options for rounding errors
-
-// Propagation is done using a RKF78 method with a variable step size by default. This can be changed using the integrator setters.
-Integrator integrator;
-integrator.set_abs_tol(1.0e-10);
-integrator.set_rel_tol(1.0e-10);
-
-bool store = true; // Users can choose to store the state history during propagation, or not
-
-// Propagation is done with the element representation that the equations of motion expect. This is to avoid unnecessary conversions during the integration process.
-std::cout << "Propagating...";
-const StateHistory twoBodyHistory = integrator.propagate(state0, minutes(1), twoBodyEom, vehicle, store);
-std::cout << " Two Body Propagation Complete." << std::endl;
-vehicle = Vehicle(sat); // reset the vehicle
-
-std::cout << "Propagating...";
-const StateHistory j2MeanHistory = integrator.propagate(state0, minutes(1), j2MeanEom, vehicle, store);
-std::cout << " J2 Mean Propagation Complete." << std::endl;
-vehicle = Vehicle(sat);
-
-std::cout << "Propagating...";
-const StateHistory cowellsHistory = integrator.propagate(state0, minutes(1), cowellsEom, vehicle, store);
-std::cout << " Cowell's Method Propagation Complete." << std::endl;
-vehicle = Vehicle(sat);
-
-std::cout << "Propagating...";
-const StateHistory keplerianHistory = integrator.propagate(state0, minutes(1), keplerianEom, vehicle, store);
-std::cout << " Keplerian VoP Propagation Complete." << std::endl << std::endl;
-
-std::cout << "Func Evals: " << integrator.n_func_evals() << std::endl;
-std::cout << "Two-Body Final State: " << twoBodyHistory.last() << std::endl;
-std::cout << "J2-Mean Final State: " << j2MeanHistory.last() << std::endl;
-std::cout << "Cowell's Method Final State: " << cowellsHistory.last() << std::endl;
-std::cout << "Keplerian VOP Final State: " << keplerianHistory.last() << std::endl;
-
-// Outputs
-// Propagating... Two Body Propagation Complete.
-// Propagating... J2 Mean Propagation Complete.
-// Propagating... Cowell's Method Propagation Complete.
-// Propagating... Keplerian VoP Propagation Complete.
-
-// Func Evals: 7
-// Two-Body Final State: 2000-01-01 12:01:00.000, [9992.83 km, 267.794 km, 267.794 km, -0.239103 km/s, 4.4611 km/s, 4.4611 km/s] (Cartesian)
-// J2-Mean Final State: 2000-01-01 12:01:00.000, [10000 km, 0, 0.785398 rad, -7.27284e-12 rad, 5.14268e-12 rad, 0.0378809 rad] (Keplerian)
-// Cowell's Method Final State: 2000-01-01 12:01:00.000, [9992.83 km, 267.794 km, 267.794 km, -0.239103 km/s, 4.4611 km/s, 4.4611 km/s] (Cartesian)
-// Keplerian VOP Final State: 2000-01-01 12:01:00.000, [10000 km, 0, 0.785398 rad, 0 rad, 0 rad, 0.0378809 rad] (Keplerian)
+- **Advanced time systems** including Julian Date, UTC, TAI, and other common time standards
+```cpp
+  Date now = Date::now();   // Current time in Julian Date
+  Date utc = now.utc();     // Convert to UTC
+  Date tai = now.tai();     // Convert to International Atomic Time
+  JulianDate jd = now.jd(); // Get Julian Date
 ```
 
-Examples have been built out more completely for the astro tool in Astrea (astrea/astro/examples).
+### Mission Analysis
+- **Access analysis** with revisit calculations and link budget modeling
+```cpp
+  // Setup
+  const Time accessResolution = minutes(5.0);
+  const Date startDate = Date::now();
+  const Date endDate = startDate + months(3.0);
+  AstrodynamicsSystem sys;
 
-## What's coming?
+  // Build a walker ball
+  const Distance semimajor = 7000.0 * km;
+  const Angle inclination = 98.0 * deg;
+  const std::size_t T = 30;
+  const std::size_t P = 6;
+  const double F = 1.0;
+  Constellation<Viewer> constelaltion(sys, startDate, semimajor, inclination, T, P F);
 
-- User-friendly installation
-    - cmake packaging
-    - compiled deployments
-    - support for different environments and operating systems
-- Real world comparisons using GPS data
-- Speed guarantees using Google Benchmark
-- More complete element set definitions and faster transformations
-- Maneuvers, and full 6-DoF simulation
-    - Strongly typed attitude representations
-    - Control mechanisms such as reaction wheels
-- Cislunar equations of motion, including CR3BP and BC4BM
-- SPG4 and SPG8 propagators
-- Schedulers
-- High fidelity atmospheric models
-- Transfer optimization utilities
-- A Qt GUI for basic analysis and visualization
-
-## Build and install
-
-Astrea uses a small Python script to build out some files. In order to run this, first install the Astrea's python environment with
-```bash
-make python_env
+  // Ground station definition
+  GroundStation station{"Denver", 39.7392 * deg, -104.9903 * deg, 1655.0 * m};
+  
+  // Access analysis
+  AccessAnalyzer analyzer(accessResolution, startDate, endDate, sys, true);
+  auto accesses = analyzer.find_accesses(constellation, { station }, true);
+  
+  // Revisit statistics
+  const AccessStats stats(accesses); 
+```
+- **Spacecraft modeling** with vehicles, platforms, and payload definitions
+```cpp
+  class MySpacecraft : public Vehicle {
+    // Custom spacecraft definition with mass properties, geometry, and subsystems
+  };
+  integrator.propagate(state0, propTime, { MySpacecraft() });
+```
+- **Celestial body definitions** with customizable parameters
+```cpp
+  // Predefined celestial bodies
+  auto earth = Earth();
+  auto moon = Moon();
+  auto mars = Mars();
+  
+  // Custom body definition
+  CelestialBody asteroid{
+    .name = "Bennu",
+    .gravitational_parameter = 5.2 * (m*m*m / (s*s)),
+    .radius = 245.0 * m,
+    .rotation_period = 4.297 * h
+  };
 ```
 
-Once this is built, activate the environment with
-```bash
-source ./.venv/bin/activate
-```
+### External Integration
+- **SPICE(ish) integration** with fast ephemeris access using compiled Chebyshev polynomials
+- **Space-Track data clients** for automated orbital data retrieval
+- **NASA validation** using published 6DoF test datasets
+- **Mathematical utilities** optimized for dimensional analysis
 
-Once the python is activated, build and install with
-```bash
-make install
-```
+### Recent Additions
+- **Event Detection and Scheduling**: User-defined events during propagation with callback support
+- **Automatic Frame Translations**: Time-varying coordinate systems with automatic transformations
+- **Custom Step Watchers**: User-defined callbacks for monitoring and modifying propagation steps
+- **Improved Installation**: CMake packaging and cross-platform deployment
+- **6-DoF Simulation**: Complete attitude dynamics with control system modeling
+- **Performance Benchmarks**: Google Benchmark integration with speed guarantees
+- **Comprehensive Frame Transformations**: Support for a wide range of celestial bodies and dynamic frames
+- **Cislunar Dynamics**: CR3BP propagator and synodic frame support
 
-Options can be added at either step to update the configuration accordingly.
-```bash
-make debug install
-```
-```bash
-make relwithdebinfo tests examples build
-make relwithdebinfo all install
-```
-where `all` can replace `tests examples`.
+## Installation
 
-The build step only needs to be done once per independent bulid configuration.
+Astrea requires C++23 and uses CMake for building. Detailed installation instructions are available in our [Getting Started Guide](https://iulianojay.github.io/astrea/getting_started/installation_and_usage/).
 
-There are also some simple commands to run all the tests and examples.
-```bash
-make run_tests
-make run_examples
-```
+## Documentation
 
-On build, files should be installed locally in the `install` folder. This process is fully customizable with standard cmake commands if you want a different build process, install location, etc. See the recipes in the Makefile for more details.
+Documentation is available online at <https://iulianojay.github.io/astrea/>, but is still a work in progress. Please be patient as we continue to expand and improve the documentation, and feel free to contribute improvements or ask questions in the GitHub repository.
+
+- **[Getting Started](https://iulianojay.github.io/astrea/getting_started/)** - Installation and basic usage
+- **[Examples](https://iulianojay.github.io/astrea/examples/)** - Code examples
+- **[API Reference](https://iulianojay.github.io/astrea/astro/links/)** - Detailed API documentation
+- **[Design Documentation](https://iulianojay.github.io/astrea/design/)** - Architecture and design principles
+
+## Roadmap
+
+- **Environmental Models**: High-fidelity atmospheric and solar models
+- **Advanced Propagators**: SGP4/SGP8 and specialized cislunar dynamics (CR3BP, BC4BP)
+- **Mission Planning**: Trajectory optimization and automated scheduling tools
+- **Extended Element Sets**: Additional orbital representations and optimized transformations
+- **Validation**: Real-world comparisons using GPS and tracking data
+- **Visualization**: GUI interface for analysis and mission visualization
 
 ## Contributing
 
-- We welcome contributions to whatever interests you. If you think we're missing something that isn't there, feel free to make a ticket and start working.
-- Please read CONTRIBUTING.md and follow the code of conduct.
+Astrea is currently developed and maintained largely by a single developer, so help is welcomed. Please see the [contributing guidelines](getting_started/contributing.md) for information on how to get involved.
 
-## License and acknowledgments
+## License
 
-- License: Astrea is licensed under the GNU Lesser General Public License (LGPL). See LICENSE and LICENSE.LESSER for details.
-- Built using the follwing open-source libraries and tools:
-    * [mp-units](https://github.com/mpusz/mp-units)
-    * [googletest](https://github.com/google/googletest)
-    * [sqlite-orm](https://github.com/fnc12/sqlite_orm.git)
-    * [libcpr](https://github.com/libcpr/cpr.git)
-    * [csv-parser](https://github.com/vincentlaucsb/csv-parserhowar) (header only)
-    * [date](https://github.com/HowardHinnant/date) (header only)
-    * [nlohmann-json](https://github.com/nlohmann/json) (header only)
-    * [parallel_hashmap](https://github.com/greg7mdp/parallel-hashmap) (header only)
+Astrea is licensed under the [GNU Lesser General Public License v3.0](LICENSE.LESSER), enabling both open-source and commercial use. It is safe for use in proprietary software and projects in general.
+Direct modifications, derivatives, forks, or extensions of the library must be released under the same license, but applications that link against Astrea can be licensed independently.
+
+## Example Outputs Built with Astrea
+In order to demonstrate and expand the core libraries in Astrea, a simple revisit analysis tool was added to the code. This tool, Trace, uses the foundational Astrea libraries, builds on-top of them, and provides a good set of examples on how one might safely expand and make use of the library in larger projects. Some of the features will be ingested into the core astrodynamics sub-library, but for now, their separation is used as both a practical testing ground and a demonstration of real-world practical applications.
+
+<center>
+  <img src="docs/assets/images/avg-daily-visibility.png" alt="Average Daily Visibility" width="45%"/>
+  <img src="docs/assets/images/mean-time-to-access.png" alt="Mean Time to Access" width="45%"/>
+  <img src="docs/assets/images/avg-folds-of-coverage.png" alt="Average Folds of Coverage" width="45%"/>
+</center>
+
+These images are some of the outputs from a simple example run of Trace. Further capabilities, expanded examples, and more detailed documentation on how to use Trace will be added in the future. 

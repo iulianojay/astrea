@@ -28,28 +28,44 @@ namespace astro {
 /**
  * @brief Type alias for a vector representing a radius in 3D space.
  */
-template <typename Frame_T>
-using RadiusVector = CartesianVector<Distance, Frame_T>;
+template <IsFrame auto frame>
+using RadiusVector = CartesianVector<Distance, frame>;
 
 /**
  * @brief Type alias for a vector representing velocity in 3D space.
  */
-template <typename Frame_T>
-using VelocityVector = CartesianVector<Velocity, Frame_T>;
+template <IsFrame auto frame>
+using VelocityVector = CartesianVector<Velocity, frame>;
 
 /**
  * @brief Type alias for a vector representing acceleration in 3D space.
  */
-template <typename Frame_T>
-using AccelerationVector = CartesianVector<Acceleration, Frame_T>;
+template <IsFrame auto frame>
+using AccelerationVector = CartesianVector<Acceleration, frame>;
 
 /**
  * @brief Type alias for a vector representing unit vectors in 3D space.
  *
  * This is used for direction vectors that do not have units of distance, velocity, or acceleration.
  */
-template <typename Frame_T>
-using UnitVector = CartesianVector<Unitless, Frame_T>;
+template <IsFrame auto frame>
+using Direction = CartesianVector<Unitless, frame>;
+
+/**
+ * @brief Type alias for a vector representing force vectors in 3D space.
+ *
+ * This is used for vectors that represent forces acting on a vehicle.
+ */
+template <IsFrame auto frame>
+using ForceVector = CartesianVector<Force, frame>;
+
+/**
+ * @brief Type alias for a vector representing moment vectors in 3D space.
+ *
+ * This is used for vectors that represent moments (torques) acting on a vehicle.
+ */
+template <IsFrame auto frame>
+using TorqueVector = CartesianVector<Moment, frame>;
 
 } // namespace astro
 } // namespace astrea

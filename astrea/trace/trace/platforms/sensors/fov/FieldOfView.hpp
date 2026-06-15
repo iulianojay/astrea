@@ -24,7 +24,7 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/dynamic_frames.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
 
 namespace astrea {
 namespace trace {
@@ -72,104 +72,6 @@ class FieldOfView {
         const astro::CartesianVector<Distance, astro::frames::earth::icrf>& boresight,
         const astro::CartesianVector<Distance, astro::frames::earth::icrf>& target
     ) const = 0;
-};
-
-/**
- * @brief Circular field of view implementation.
- *
- * This class represents a circular field of view defined by a half-cone angle.
- */
-class CircularFieldOfView : public FieldOfView {
-  public:
-    /**
-     * @brief Constructor for CircularFieldOfView.
-     *
-     * @param halfConeAngle The half-cone angle defining the field of view.
-     */
-    CircularFieldOfView(const Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad) :
-        _halfConeAngle(halfConeAngle)
-    {
-    }
-
-    /**
-     * @brief Default destructor for CircularFieldOfView.
-     */
-    ~CircularFieldOfView() = default;
-
-    /**
-     * @brief Checks if a target is within the circular field of view.
-     *
-     * @param boresight The boresight vector of the sensor.
-     * @param target The target vector to check.
-     * @return true If the target is within the circular field of view.
-     * @return false If the target is outside the circular field of view.
-     */
-    bool contains(
-        const astro::CartesianVector<Distance, astro::frames::earth::icrf>& boresight,
-        const astro::CartesianVector<Distance, astro::frames::earth::icrf>& target
-    ) const;
-
-  private:
-    Angle _halfConeAngle; // Half-cone angle defining the circular field of view
-};
-
-/**
- * @brief Polygonal field of view implementation.
- *
- * This class represents a polygonal field of view defined by a set of points.
- */
-class PolygonalFieldOfView : public FieldOfView {
-  public:
-    /**
-     * @brief Constructor for PolygonalFieldOfView.
-     *
-     * @param halfConeAngle The half-cone angle defining the field of view.
-     * @param nPoints The number of points defining the polygon.
-     */
-    PolygonalFieldOfView(const Angle& halfConeAngle = std::numbers::pi / 4.0 * mp_units::angular::unit_symbols::rad, const int& nPoints = 72);
-
-    /**
-     * @brief Constructor for PolygonalFieldOfView with specified half-cone width and height.
-     *
-     * @param halfConeWidth The half-cone width angle.
-     * @param halfConeHeight The half-cone height angle.
-     * @param nPoints The number of points defining the polygon.
-     */
-    PolygonalFieldOfView(const Angle& halfConeWidth, const Angle& halfConeHeight, const int& nPoints = 72);
-
-    /**
-     * @brief Constructor for PolygonalFieldOfView with a set of points.
-     *
-     * @param points A map of angles defining the polygonal field of view.
-     */
-    PolygonalFieldOfView(const std::unordered_map<Angle, Angle>& points) :
-        _points(points)
-    {
-    }
-
-    /**
-     * @brief Default destructor for PolygonalFieldOfView.
-     */
-    ~PolygonalFieldOfView() = default;
-
-    /**
-     * @brief Checks if a target is within the polygonal field of view.
-     *
-     * @param boresight The boresight vector of the sensor.
-     * @param target The target vector to check.
-     * @return true If the target is within the polygonal field of view.
-     * @return false If the target is outside the polygonal field of view.
-     */
-    bool contains(
-        const astro::CartesianVector<Distance, astro::frames::earth::icrf>& boresight,
-        const astro::CartesianVector<Distance, astro::frames::earth::icrf>& target
-    ) const
-    {
-        return false;
-    };
-
-  private:
-    std::unordered_map<Angle, Angle> _points; // Map of angles defining the polygonal field of view
 };
 
 } // namespace trace

@@ -1,4 +1,17 @@
-name: Docker
+#
+# The GNU Lesser General Public License (LGPL)
+#
+# Copyright (c) 2025 Jay Iuliano
+#
+# This file is part of Astrea.
+# Astrea is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License
+# as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+# Astrea is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
+# have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
+#
+
+name: Publish Devcontainer
 
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
@@ -6,10 +19,16 @@ name: Docker
 # documentation.
 
 on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ "dev" ]
+    paths:
+      - 'docker/Dockerfile.dev'
+      - '.github/workflows/docker-publish-devcontainer.yml'
   push:
     branches: [ "dev" ]
     paths:
-      - 'docker/devcontainer/Dockerfile'
+      - 'docker/Dockerfile.dev'
       - '.github/workflows/docker-publish-devcontainer.yml'
 
 env:
@@ -20,7 +39,7 @@ env:
 
 
 jobs:
-  build:
+  build-and-publish:
 
     runs-on: ubuntu-latest
     permissions:
@@ -73,7 +92,7 @@ jobs:
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
           context: .
-          file: ./docker/devcontainer/Dockerfile
+          file: ./docker/Dockerfile.dev
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -94,3 +113,4 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+        

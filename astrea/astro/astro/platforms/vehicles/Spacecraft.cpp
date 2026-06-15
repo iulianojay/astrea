@@ -22,12 +22,11 @@
 #include <math/interpolation.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/FrameReference.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/state/StateHistory.hpp>
-#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
+#include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
@@ -43,7 +42,7 @@ using mp_units::si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-Spacecraft::Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem& sys)
+Spacecraft::Spacecraft(const GeneralPerturbations& gp)
 {
     // TODO: Add catch/warning for missing values
     _id   = gp.NORAD_CAT_ID;
@@ -52,7 +51,7 @@ Spacecraft::Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem
         !gp.RA_OF_ASC_NODE.has_value() || !gp.ARG_OF_PERICENTER.has_value() || !gp.MEAN_ANOMALY.has_value()) {
         std::cerr << "Missing GP info. Sad." << std::endl;
     }
-    Keplerian coes(
+    Keplerian<frames::primary> coes(
         gp.SEMIMAJOR_AXIS.value() * km,
         gp.ECCENTRICITY.value() * one,
         gp.INCLINATION.value() * deg,
@@ -62,9 +61,9 @@ Spacecraft::Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem
     );
     Date epoch = gp.EPOCH.has_value() ? Date(gp.EPOCH.value(), "%Y-%m-%dT%H:%M:%S") : J2000;
 
-    store_state(State(coes, epoch, sys));
+    store_state(State(coes, epoch));
 
-    generate_id();
+    _id = utilities::IdProvider::get_next_id<"Platform">();
 
     // All of these are just default values - TODO: Look into different or better values for approximating these
     // effects, or find how to approximate these
@@ -86,10 +85,11 @@ bool Spacecraft::operator==(const Spacecraft& other) const
 void Spacecraft::set_state_history(const StateHistory& history) { _stateHistory = history; }
 StateHistory& Spacecraft::get_state_history() { return _stateHistory; }
 const StateHistory& Spacecraft::get_state_history() const { return _stateHistory; }
-void Spacecraft::store_state(const State& state) { _stateHistory[state.get_epoch()] = state; }
+void Spacecraft::store_state(const State& state) { _stateHistory.insert(state); }
 
 // Spacecraft Property Getters
 Mass Spacecraft::get_mass() const { return _mass; }
+InertiaTensor<frames::dynamic::body> Spacecraft::get_inertia_tensor() const { return _inertiaTensor; }
 Unitless Spacecraft::get_coefficient_of_drag() const { return _coefficientOfDrag; }
 Unitless Spacecraft::get_coefficient_of_lift() const { return _coefficientOfLift; }
 Unitless Spacecraft::get_coefficient_of_reflectivity() const { return _coefficientOfReflectivity; }
@@ -97,8 +97,29 @@ SurfaceArea Spacecraft::get_ram_area() const { return _ramArea; }
 SurfaceArea Spacecraft::get_solar_area() const { return _sunArea; }
 SurfaceArea Spacecraft::get_lift_area() const { return _liftArea; }
 
+// Thrust
+Perturbation Spacecraft::get_control_authority(const State& state) const
+{
+    // As a first cut, just burn in v direction
+    ForceVector<frames::dynamic::ric> totalThrust;
+    for (const auto& thruster : get_payloads()) {
+        if (!thruster.is_on()) { continue; }
+        totalThrust[1] += thruster.get_thrust();
+    }
+
+    const Cartesian<frames::primary> elements = state.in_element_set<Cartesian<frames::primary>>();
+    const auto ricFrame = frames::dynamic::ric.instantaneous(elements.get_position(), elements.get_velocity());
+    return {
+        .force = ricFrame.rotate_out_of_this_frame(totalThrust, state.get_epoch()), .torque = {} // first cut
+    };
+}
+
 // Setters
 void Spacecraft::set_mass(const Mass& mass) { _mass = mass; }
+void Spacecraft::set_inertia_tensor(const InertiaTensor<frames::dynamic::body>& inertiaTensor)
+{
+    _inertiaTensor = inertiaTensor;
+}
 
 void Spacecraft::set_coefficient_of_drag(const Unitless& cd) { _coefficientOfDrag = cd; }
 void Spacecraft::set_coefficient_of_lift(const Unitless& cl) { _coefficientOfLift = cl; }
@@ -110,22 +131,16 @@ void Spacecraft::set_lift_area(const SurfaceArea& liftArea) { _liftArea = liftAr
 
 void Spacecraft::set_name(const std::string& name) { _name = name; }
 
-RadiusVector<frames::earth::icrf> Spacecraft::get_inertial_position(const Date& date) const
+RadiusVector<frames::primary> Spacecraft::get_position(const Date& date) const
 {
-    const Cartesian elements = _stateHistory.get_state_at(date).in_element_set<Cartesian>();
+    const Cartesian<frames::primary> elements = _stateHistory.get_state_at(date).in_element_set<Cartesian<frames::primary>>();
     return elements.get_position();
 }
 
-VelocityVector<frames::earth::icrf> Spacecraft::get_inertial_velocity(const Date& date) const
+VelocityVector<frames::primary> Spacecraft::get_velocity(const Date& date) const
 {
-    const Cartesian elements = _stateHistory.get_state_at(date).in_element_set<Cartesian>();
+    const Cartesian<frames::primary> elements = _stateHistory.get_state_at(date).in_element_set<Cartesian<frames::primary>>();
     return elements.get_velocity();
-}
-
-void Spacecraft::generate_id()
-{
-    static std::size_t idCounter = 0;
-    _id                          = idCounter++;
 }
 
 } // namespace astro

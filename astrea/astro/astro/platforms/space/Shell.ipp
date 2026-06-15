@@ -7,7 +7,7 @@ template <class Spacecraft_T>
 Shell<Spacecraft_T>::Shell(std::vector<Plane<Spacecraft_T>> _planes) :
     planes(_planes)
 {
-    generate_id();
+    id = utilities::IdProvider::get_next_id<"Shell">();
 }
 
 
@@ -18,12 +18,11 @@ Shell<Spacecraft_T>::Shell(std::vector<Spacecraft_T> satellites)
 
     planes.push_back(noPlane);
 
-    generate_id();
+    id = utilities::IdProvider::get_next_id<"Shell">();
 }
 
 template <class Spacecraft_T>
 Shell<Spacecraft_T>::Shell(
-    const AstrodynamicsSystem& sys,
     const Date& epoch,
     const Distance& semimajor,
     const Angle& inclination,
@@ -34,35 +33,39 @@ Shell<Spacecraft_T>::Shell(
     const Angle& anchorAnomaly
 )
 {
-
     if (T % P) {
-        throw std::runtime_error("The Walker constructor requires the total number planes is a multiple of the total "
-                                 "number of of satellites.");
+        throw std::runtime_error(
+            "The Walker constructor requires the total number planes is a multiple of the total "
+            "number of of satellites."
+        );
     }
 
     const size_t satsPerPlane = T / P;
-    const Angle deltaRAAN     = 360.0 / (static_cast<double>(P)) * mp_units::angular::unit_symbols::deg;
-    const Angle deltaAnomaly  = F * 360.0 / (static_cast<double>(T)) * mp_units::angular::unit_symbols::deg;
+    const Angle deltaRAAN     = 360.0 / (static_cast<double>(P)) * deg;
+    const Angle deltaAnomaly  = F * 360.0 / (static_cast<double>(T)) * deg;
 
     planes.resize(P);
     Unitless iAnom  = 0;
     Unitless iPlane = 0;
     for (auto& plane : planes) {
         plane.satellites.resize(satsPerPlane);
+
+        const Keplerian<frames::primary> planeElements{ semimajor,     Unitless::zero(),
+                                                        inclination,   (anchorRAAN + deltaRAAN * iPlane),
+                                                        Angle::zero(), Angle::zero() };
+        plane.elements = OrbitalElements(planeElements);
+
         for (auto& sat : plane.satellites) {
-            sat = Spacecraft_T({ OrbitalElements(Keplerian{ semimajor,
-                                                            0.0 * mp_units::one,
-                                                            inclination,
-                                                            (anchorRAAN + deltaRAAN * iPlane),
-                                                            0.0 * mp_units::angular::unit_symbols::rad,
-                                                            (anchorAnomaly + deltaAnomaly * iAnom) }),
-                                 epoch,
-                                 sys });
+            auto satElements = planeElements;
+            satElements.set_true_anomaly(anchorAnomaly + deltaAnomaly * iAnom);
+
+            const State state(OrbitalElements(satElements), epoch);
+            sat.store_state(state);
             ++iAnom;
         }
-        plane.generate_id();
+        ++iPlane;
     }
-    generate_id();
+    id = utilities::IdProvider::get_next_id<"Shell">();
 }
 
 
@@ -95,7 +98,10 @@ template <class Spacecraft_T>
 void Shell<Spacecraft_T>::add_spacecraft(const Spacecraft_T& spacecraft, const size_t& planeId)
 {
     for (auto& plane : planes) {
-        if (plane.id == planeId) { plane.add_spacecraft(spacecraft); }
+        if (plane.id == planeId) {
+            plane.add_spacecraft(spacecraft);
+            return;
+        }
     }
     throw std::runtime_error("No plane found with matching id: " + std::to_string(planeId) + "\n");
 }
@@ -155,27 +161,19 @@ const Spacecraft_T& Shell<Spacecraft_T>::get_spacecraft(const size_t& spacecraft
 
 
 template <class Spacecraft_T>
-void Shell<Spacecraft_T>::generate_id()
-{
-    static std::size_t idCounter = 0;
-    id                           = idCounter++;
-}
-
-
-template <class Spacecraft_T>
-void Shell<Spacecraft_T>::propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator)
+void Shell<Spacecraft_T>::propagate(const Time& propTime, Integrator& integrator)
 {
     for (auto& plane : planes) {
-        plane.propagate(propTime, eom, integrator);
+        plane.propagate(propTime, integrator);
     }
 }
 
 
 template <class Spacecraft_T>
-void Shell<Spacecraft_T>::propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator)
+void Shell<Spacecraft_T>::propagate(const Date& endEpoch, Integrator& integrator)
 {
     for (auto& plane : planes) {
-        plane.propagate(endEpoch, eom, integrator);
+        plane.propagate(endEpoch, integrator);
     }
 }
 

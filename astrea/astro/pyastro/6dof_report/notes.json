@@ -1,0 +1,14 @@
+{
+    "Orbit_02": "This test validates the basic orbital propagation with no perturbations.",
+    "Orbit_03A": "This test validates 4x4 oblateness models in propagation.",
+    "Orbit_03B": "This test validates 8x8 oblateness models in propagation.",
+    "Orbit_04": "This test validates n-body perturbations from the Sun.",
+    "Orbit_05A": "This test validates srp perturbations at solar min.",
+    "Orbit_05B": "This test validates srp perturbations at solar mean.",
+    "Orbit_06A": "This test validates atmospheric perturbations with a fixed sphere.",
+    "Orbit_06B": "This test validates atmospheric perturbations with a dynamic sphere.",
+    "Orbit_07A": "This test validates 4x4 oblateness and n-body effects simultaneously.",
+    "Orbit_07B": "This test validates 8x8 oblateness and n-body effects simultaneously.",
+    "Orbit_07C": "This test validates 4x4 oblateness, n-body effects, and drag simultaneously.",
+    "Orbit_07D": "This test validates 8x8 oblateness, n-body effects, and drag simultaneously."
+}

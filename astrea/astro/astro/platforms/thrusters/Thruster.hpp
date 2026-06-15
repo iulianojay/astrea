@@ -21,8 +21,8 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/dynamic_frames.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
 #include <astro/platforms/Payload.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -41,7 +41,7 @@ class ThrusterParameters : public PayloadParameters {
      * @param attachmentPoint Attachment point in RIC coordinates (default is Center).
      */
     ThrusterParameters(
-        const Thrust& thrust,
+        const Force& thrust,
         const CartesianVector<Distance, frames::dynamic::ric>& boresight       = NADIR_RIC,
         const CartesianVector<Distance, frames::dynamic::ric>& attachmentPoint = CENTER
     ) :
@@ -58,12 +58,30 @@ class ThrusterParameters : public PayloadParameters {
     /**
      * @brief Get the thrust magnitude.
      *
-     * @return Thrust magnitude.
+     * @return Force magnitude.
      */
-    Thrust get_thrust() const { return _thrust; }
+    Force get_thrust() const { return _thrust; }
+
+    /**
+     * @brief Set the thrust magnitude.
+     *
+     * @param thrust Force magnitude to set.
+     */
+    bool is_on() const { return _isOn; }
+
+    /**
+     * @brief Switch the thruster on.
+     */
+    void switch_on() { _isOn = true; }
+
+    /**
+     * @brief Switch the thruster off.
+     */
+    void switch_off() { _isOn = false; }
 
   protected:
-    Thrust _thrust; //!< Thrust magnitude
+    Force _thrust;      //!< Force magnitude
+    bool _isOn = false; //!< Thruster state (on/off)
 };
 
 /**
@@ -84,7 +102,6 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
      * @param parameters Thruster parameters.
      */
     template <typename Parent_T>
-        requires(std::is_base_of_v<FrameReference, Parent_T>)
     Thruster(const Parent_T& parent, const ThrusterParameters& parameters) :
         Payload<Thruster, ThrusterParameters>(parent, parameters)
     {
@@ -109,11 +126,30 @@ class Thruster : public Payload<Thruster, ThrusterParameters> {
      */
     Velocity get_impulsive_delta_v() const;
 
-  private:
     /**
-     * @brief Generate a hash for the thruster ID.
+     * @brief Get the thrust of the thruster for a given state.
+     *
+     * @param state The state of the vehicle for which to get the thrust.
+     * @return Force The thrust of the thruster.
      */
-    std::size_t generate_id() const;
+    Force get_thrust() const;
+
+    /**
+     * @brief Switch the thruster on.
+     */
+    void switch_on();
+
+    /**
+     * @brief Switch the thruster off.
+     */
+    void switch_off();
+
+    /**
+     * @brief Check if the thruster is on.
+     *
+     * @return true if the thruster is on, false otherwise.
+     */
+    bool is_on() const;
 };
 
 /**

@@ -21,8 +21,12 @@
 #include <string>
 
 #include <units/units.hpp>
+#include <utilities/IdProvider.hpp>
 
 #include <astro/astro.fwd.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
+#include <astro/platforms/InertiaTensor.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/state/StateHistory.hpp>
@@ -41,15 +45,14 @@ class Spacecraft : public ThrusterPlatform {
     /**
      * @brief Default constructor for Spacecraft.
      */
-    Spacecraft() { generate_id(); };
+    Spacecraft() { _id = utilities::IdProvider::get_next_id<"Platform">(); };
 
     /**
-     * @brief Constructs a Spacecraft with a GeneralPerturbations object and an AstrodynamicsSystem.
+     * @brief Constructs a Spacecraft with a GeneralPerturbations object.
      *
      * @param gp The GeneralPerturbations object containing initial parameters.
-     * @param sys The AstrodynamicsSystem to which this spacecraft belongs.
      */
-    Spacecraft(const GeneralPerturbations& gp, const AstrodynamicsSystem& sys);
+    Spacecraft(const GeneralPerturbations& gp);
 
     /**
      * @brief Virtual destructor for Spacecraft.
@@ -68,17 +71,17 @@ class Spacecraft : public ThrusterPlatform {
      * @brief Gets the inertial position of the spacecraft at a specific date.
      *
      * @param date The date at which to retrieve the position.
-     * @return RadiusVector<frames::earth::icrf> The inertial position of the spacecraft.
+     * @return RadiusVector<frames::primary> The inertial position of the spacecraft.
      */
-    RadiusVector<frames::earth::icrf> get_inertial_position(const Date& date) const override;
+    RadiusVector<frames::primary> get_position(const Date& date) const;
 
     /**
      * @brief Gets the inertial velocity of the spacecraft at a specific date.
      *
      * @param date The date at which to retrieve the velocity.
-     * @return VelocityVector<frames::earth::icrf> The inertial velocity of the spacecraft.
+     * @return VelocityVector<frames::primary> The inertial velocity of the spacecraft.
      */
-    VelocityVector<frames::earth::icrf> get_inertial_velocity(const Date& date) const override;
+    VelocityVector<frames::primary> get_velocity(const Date& date) const;
 
     /**
      * @brief Stores the state history of the spacecraft.
@@ -99,14 +102,14 @@ class Spacecraft : public ThrusterPlatform {
      *
      * @return State& A reference to the initial state of the spacecraft.
      */
-    State& get_initial_state() { return _stateHistory.begin()->second; }
+    State& get_initial_state() { return _stateHistory.first(); }
 
     /**
      * @brief Gets the initial state of the spacecraft.
      *
      * @return const State& A reference to the initial state of the spacecraft.
      */
-    const State& get_initial_state() const { return _stateHistory.begin()->second; }
+    const State& get_initial_state() const { return _stateHistory.first(); }
 
     /**
      * @brief Gets the state history of the spacecraft.
@@ -128,6 +131,13 @@ class Spacecraft : public ThrusterPlatform {
      * @return Mass The mass of the spacecraft.
      */
     Mass get_mass() const;
+
+    /**
+     * @brief Gets the inertia tensor of the spacecraft.
+     *
+     * @return InertiaTensor<frames::dynamic::body> The inertia tensor of the spacecraft.
+     */
+    InertiaTensor<frames::dynamic::body> get_inertia_tensor() const;
 
     /**
      * @brief Gets the coefficients of drag, lift, and reflectivity.
@@ -172,6 +182,14 @@ class Spacecraft : public ThrusterPlatform {
     SurfaceArea get_lift_area() const;
 
     /**
+     * @brief Gets the thrust of the spacecraft.
+     *
+     * @param state The state of the spacecraft for which to get the thrust.
+     * @return ForceVector<frames::primary> The thrust of the spacecraft.
+     */
+    Perturbation get_control_authority(const State& state) const;
+
+    /**
      * @brief Gets the unique identifier of the spacecraft.
      *
      * @return std::size_t The unique identifier of the spacecraft.
@@ -191,6 +209,13 @@ class Spacecraft : public ThrusterPlatform {
      * @param mass The new mass to set for the spacecraft.
      */
     void set_mass(const Mass& mass);
+
+    /**
+     * @brief Sets the inertia tensor of the spacecraft.
+     *
+     * @param inertiaTensor The new inertia tensor to set for the spacecraft.
+     */
+    void set_inertia_tensor(const InertiaTensor<frames::dynamic::body>& inertiaTensor);
 
     /**
      * @brief Sets the coefficients of drag.
@@ -246,35 +271,32 @@ class Spacecraft : public ThrusterPlatform {
     using PayloadPlatform<Thruster>::get_payloads;
 
     static constexpr Mass DEFAULT_MASS = 1000.0 * astrea::detail::mass_unit; // Default mass of the spacecraft
+    static constexpr InertiaTensor<frames::dynamic::body> DEFAULT_INERTIA_TENSOR =
+        InertiaTensor<frames::dynamic::body>{}; // Default inertia tensor of the spacecraft
     static constexpr Unitless DEFAULT_COEFFICIENT_OF_DRAG = 2.2 * astrea::detail::unitless; // Default coefficient of drag
     static constexpr Unitless DEFAULT_COEFFICIENT_OF_LIFT = 0.9 * astrea::detail::unitless; // Default coefficient of lift
     static constexpr Unitless DEFAULT_COEFFICIENT_OF_REFLECTIVITY =
         1.1 * astrea::detail::unitless; // Default coefficient of reflectivity
-    static constexpr SurfaceArea DEFAULT_RAM_AREA = 1.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit); // Default ram area
-    static constexpr SurfaceArea DEFAULT_SOLAR_AREA = 1.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit); // Default solar area
-    static constexpr SurfaceArea DEFAULT_LIFT_AREA = 1.0 * mp_units::pow<2>(astrea::detail::minor_distance_unit); // Default lift area
+    static constexpr SurfaceArea DEFAULT_RAM_AREA = 1.0 * mp_units::pow<2>(astrea::detail::distance_unit); // Default ram area
+    static constexpr SurfaceArea DEFAULT_SOLAR_AREA = 1.0 * mp_units::pow<2>(astrea::detail::distance_unit); // Default solar area
+    static constexpr SurfaceArea DEFAULT_LIFT_AREA = 1.0 * mp_units::pow<2>(astrea::detail::distance_unit); // Default lift area
 
   protected:
     std::size_t _id;   // Unique identifier for the spacecraft, generated from its properties
     std::string _name; // Name of the spacecraft, can be set by the user
 
     // Spacecraft properties
-    Mass _mass                          = DEFAULT_MASS;                        //!< Mass of the spacecraft
-    Unitless _coefficientOfDrag         = DEFAULT_COEFFICIENT_OF_DRAG;         //!< Coefficient of drag
-    Unitless _coefficientOfLift         = DEFAULT_COEFFICIENT_OF_LIFT;         //!< Coefficient of lift
-    Unitless _coefficientOfReflectivity = DEFAULT_COEFFICIENT_OF_REFLECTIVITY; //!< Coefficient of reflectivity
-    SurfaceArea _ramArea                = DEFAULT_RAM_AREA;                    //!< Ram area of the spacecraft
-    SurfaceArea _sunArea                = DEFAULT_SOLAR_AREA;                  //!< Solar area of the spacecraft
-    SurfaceArea _liftArea               = DEFAULT_LIFT_AREA;                   //!< Lift area of the spacecraft
+    Mass _mass                                          = DEFAULT_MASS;           //!< Mass of the spacecraft
+    InertiaTensor<frames::dynamic::body> _inertiaTensor = DEFAULT_INERTIA_TENSOR; //!< Inertia tensor of the spacecraft
+    Unitless _coefficientOfDrag                         = DEFAULT_COEFFICIENT_OF_DRAG; //!< Coefficient of drag
+    Unitless _coefficientOfLift                         = DEFAULT_COEFFICIENT_OF_LIFT; //!< Coefficient of lift
+    Unitless _coefficientOfReflectivity = DEFAULT_COEFFICIENT_OF_REFLECTIVITY;         //!< Coefficient of reflectivity
+    SurfaceArea _ramArea                = DEFAULT_RAM_AREA;                            //!< Ram area of the spacecraft
+    SurfaceArea _sunArea                = DEFAULT_SOLAR_AREA;                          //!< Solar area of the spacecraft
+    SurfaceArea _liftArea               = DEFAULT_LIFT_AREA;                           //!< Lift area of the spacecraft
 
     // State history
     StateHistory _stateHistory; // History of states for the spacecraft
-
-    /**
-     * @brief Generates a unique identifier for the spacecraft based on its properties.
-     * This method is called in the constructor to ensure that each spacecraft has a unique ID.
-     */
-    void generate_id();
 };
 
 static_assert(IsUserDefinedVehicle<Spacecraft>, "Spacecraft must satisfy the IsVehicle concept");

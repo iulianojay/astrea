@@ -22,11 +22,11 @@
 #include <mp-units/systems/international.h>
 
 #include <math/operations.hpp>
-#include <math/test_util.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
+#include <astro/platforms/InertiaTensor.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 
 #include <astro/propagation/equations_of_motion/CowellsMethod.hpp>
@@ -44,7 +44,9 @@
 
 #include <astro/astro.macros.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
+#include <astro/systems/property_getters.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/utilities/plotting.hpp>
@@ -59,7 +61,9 @@ using namespace matplot;
 using namespace mp_units;
 
 using mp_units::angular::unit_symbols::deg;
+using mp_units::angular::unit_symbols::rad;
 using mp_units::international::unit_symbols::ft;
+using mp_units::international::unit_symbols::lbf;
 using mp_units::si::unit_symbols::cm;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
@@ -67,27 +71,41 @@ using mp_units::si::unit_symbols::m;
 using mp_units::si::unit_symbols::s;
 using mp_units::si::unit_symbols::µm;
 
+inline constexpr auto slug = lbf * pow<2>(s) / ft;
+
 namespace astrea {
 namespace astro {
+
+using namespace planets;
+
 namespace tests {
 
 enum EomType { TWO_BODY = 0, COWELLS_METHOD = 1, KEPLERIAN_VOP = 2, EQUINOCTIAL_VOP = 3 };
 enum InitialOrbitType { CIRCULAR = 0, ELLIPTIC = 1 };
 enum VehicleType { ISS = 0, SPHERE = 1, BRICK = 2, CYLINDER = 3 };
 
+namespace astrea::astro {
+template <>
+inline constexpr GravParam get_mu<planets::Earth>()
+{
+    return 398600.436 * pow<3>(km) / pow<2>(s); // different mu value
+}
+} // namespace astrea::astro
+
+
 class Orbital6DofTest : public testing::Test {
 
-    // TODO: Make NASA 6DoF Tests generate a report file. Add this output to CI.
     // TODO: Finish implementing all force models in the tests. This includes more atmosphere models, and different
     //       SRP models. It may also include closing down any errors further.
 
-    using RStats = Stats<m, double>;
-    using VStats = Stats<(cm / s), double>;
+    using RStats     = Stats<m, double>;
+    using VStats     = Stats<(cm / s), double>;
+    using AStats     = Stats<rad, double>;
+    using OmegaStats = Stats<(rad / s), double>;
 
   public:
     Orbital6DofTest() :
-        sys(CelestialBodyId::EARTH, { CelestialBodyId::SUN }),
-        mu(sys.get_mu()),
+        mu(get_mu<frames::primary.origin>()),
         epoch("2007/324:00:00:00", "%Y/%j:%H:%M:%S"),
         circular(
             RadiusVector<frames::earth::icrf>(-4292.65341 * km, 955.16847 * km, 5139.35657 * km),
@@ -135,7 +153,20 @@ class Orbital6DofTest : public testing::Test {
         Spacecraft sat;
         switch (vehicleType) {
             case ISS: {
-                sat.set_mass(4.5e5 * kg);
+                sat.set_mass(400'000.0 * kg);
+                sat.set_inertia_tensor(
+                    InertiaTensor<frames::dynamic::body>(
+                        1.02e8 * kg * pow<2>(m),  // xx
+                        6.96e6 * kg * pow<2>(m),  // xy
+                        5.48e6 * kg * pow<2>(m),  // xz
+                        6.96e6 * kg * pow<2>(m),  // yx
+                        0.91e8 * kg * pow<2>(m),  // yy
+                        -5.90e5 * kg * pow<2>(m), // yz
+                        5.48e6 * kg * pow<2>(m),  // zx
+                        -5.90e5 * kg * pow<2>(m), // zy
+                        5.48e6 * kg * pow<2>(m)   // zz
+                    )
+                );
                 sat.set_ram_area(2.5e3 * m * m);
                 sat.set_lift_area(2.5e3 * m * m);
                 sat.set_solar_area(2.5e3 * m * m);
@@ -147,6 +178,7 @@ class Orbital6DofTest : public testing::Test {
 
             case SPHERE: {
                 sat.set_mass(1.0 * kg);
+                sat.set_inertia_tensor(InertiaTensor<frames::dynamic::body>(2.0 / (5.0 * std::numbers::pi) * kg * pow<2>(m)));
                 sat.set_ram_area(1.0 * m * m);
                 sat.set_lift_area(0.0 * m * m);
                 sat.set_solar_area(1.0 * m * m);
@@ -158,6 +190,12 @@ class Orbital6DofTest : public testing::Test {
 
             case BRICK: {
                 sat.set_mass(1.0 * kg);
+                sat.set_inertia_tensor(
+
+                    InertiaTensor<frames::dynamic::body>(
+                        0.001894220 * slug * pow<2>(ft), 0.006211019 * slug * pow<2>(ft), 0.00719466 * slug * pow<2>(ft)
+                    )
+                );
                 sat.set_ram_area(206.451 * cm * cm);
                 sat.set_lift_area(206.451 * cm * cm);
                 sat.set_solar_area(206.451 * cm * cm);
@@ -169,6 +207,9 @@ class Orbital6DofTest : public testing::Test {
 
             case CYLINDER: {
                 sat.set_mass(1000.0 * kg);
+                sat.set_inertia_tensor(
+                    InertiaTensor<frames::dynamic::body>(500.0 * kg * pow<2>(m), 12250.0 * kg * pow<2>(m), 12250.0 * kg * pow<2>(m))
+                );
                 sat.set_ram_area(12.0 * m * m);
                 sat.set_lift_area(12.0 * m * m);
                 sat.set_solar_area(12.0 * m * m);
@@ -186,8 +227,9 @@ class Orbital6DofTest : public testing::Test {
 
     StateHistory run_propagation(const EomType eomId, const ForceModel& forces, const InitialOrbitType& orbitType, const VehicleType vehicleType)
     {
-        OrbitalElements initialElements = (orbitType == CIRCULAR) ? Keplerian(circular, mu) : Keplerian(elliptic, mu);
-        State state0(initialElements, epoch, sys);
+        OrbitalElements initialElements = (orbitType == CIRCULAR) ? Keplerian<frames::earth::icrf>(circular, mu) :
+                                                                    Keplerian<frames::earth::icrf>(elliptic, mu);
+        State state0(initialElements, epoch);
 
         Spacecraft sat = build_spacecraft(orbitType, vehicleType);
         Vehicle vehicle{ sat };
@@ -195,22 +237,26 @@ class Orbital6DofTest : public testing::Test {
         switch (eomId) {
             case TWO_BODY: {
                 TwoBody twoBody;
-                return integrator.propagate(state0, propTime, twoBody, vehicle, true);
+                integrator.set_equations_of_motion(twoBody);
+                return integrator.propagate(state0, propTime, vehicle);
             }
 
             case COWELLS_METHOD: {
                 CowellsMethod cowells(forces);
-                return integrator.propagate(state0, propTime, cowells, vehicle, true);
+                integrator.set_equations_of_motion(cowells);
+                return integrator.propagate(state0, propTime, vehicle);
             }
 
             case KEPLERIAN_VOP: {
                 KeplerianVop keplerianVop(forces, false);
-                return integrator.propagate(state0, propTime, keplerianVop, vehicle, true);
+                integrator.set_equations_of_motion(keplerianVop);
+                return integrator.propagate(state0, propTime, vehicle);
             }
 
             case EQUINOCTIAL_VOP: {
                 EquinoctialVop equinoctialVop(forces);
-                return integrator.propagate(state0, propTime, equinoctialVop, vehicle, true);
+                integrator.set_equations_of_motion(equinoctialVop);
+                return integrator.propagate(state0, propTime, vehicle);
             }
 
             default: throw std::runtime_error("Invalid EOM ID");
@@ -239,12 +285,38 @@ class Orbital6DofTest : public testing::Test {
         const Time time = std::round(row.time) * s;
         const RadiusVector<frames::earth::icrf> position(row.eiPosition_m_X * m, row.eiPosition_m_Y * m, row.eiPosition_m_Z * m);
         const VelocityVector<frames::earth::icrf> velocity(row.eiVelocity_m_s_X * m / s, row.eiVelocity_m_s_Y * m / s, row.eiVelocity_m_s_Z * m / s);
-        return State({ Cartesian(position, velocity) }, epoch + time, sys);
+
+        EulerAngles<RotationSequence::XYZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf> attitudeAngles;
+        if (row.eulerAngleWrtEi_rad_Roll.has_value()) {
+            attitudeAngles =
+                EulerAngles<RotationSequence::XYZ, RotationType::INTRINSIC, frames::dynamic::body, frames::earth::icrf>(
+                    row.eulerAngleWrtEi_rad_Roll.value() * rad,
+                    row.eulerAngleWrtEi_rad_Pitch.value() * rad,
+                    row.eulerAngleWrtEi_rad_Yaw.value() * rad
+                );
+        }
+        else {
+            return State({ Cartesian<frames::earth::icrf>(position, velocity) }, epoch + time);
+        }
+
+        AngularVelocities<frames::dynamic::body, frames::earth::icrf> angularVelocity(0.0 * rad / s, 0.0 * rad / s, 0.0 * rad / s);
+        if (row.bodyAngularVelocityWrtEi_rad_s_Roll.has_value()) {
+            angularVelocity = AngularVelocities<frames::dynamic::body, frames::earth::icrf>(
+                row.bodyAngularVelocityWrtEi_rad_s_Roll.value() * rad / s,
+                row.bodyAngularVelocityWrtEi_rad_s_Pitch.value() * rad / s,
+                row.bodyAngularVelocityWrtEi_rad_s_Yaw.value() * rad / s
+            );
+        }
+        return State({ Cartesian<frames::earth::icrf>(position, velocity) }, epoch + time, Attitude(attitudeAngles, angularVelocity));
     }
 
     std::vector<std::pair<StateHistory, std::string>> get_checkcase_histories(const std::string& pattern) const
     {
-        const auto checkcases = get_checkcases(pattern);
+        auto checkcases = get_checkcases(pattern);
+        std::sort(checkcases.begin(), checkcases.end(), [](const auto& a, const auto& b) {
+            if (a.checkcase_num != b.checkcase_num) { return a.checkcase_num < b.checkcase_num; }
+            return a.sim_num < b.sim_num;
+        });
 
         std::vector<std::pair<StateHistory, std::string>> results;
         for (const auto& checkcase : checkcases) {
@@ -268,29 +340,37 @@ class Orbital6DofTest : public testing::Test {
 
         std::vector<std::vector<RStats>> allRStats;
         std::vector<std::vector<VStats>> allVStats;
+        std::vector<std::vector<std::optional<AStats>>> allAStats;
+        std::vector<std::vector<std::optional<OmegaStats>>> allOmegaStats;
 
         std::vector<StateHistory> checkcaseHistories;
         std::vector<std::string> checkcaseLabels;
         for (const auto& [checkcaseHistory, checkcaseLabel] : checkcases) {
             std::vector<RStats> rStatsList;
             std::vector<VStats> vStatsList;
+            std::vector<std::optional<AStats>> aStatsList;
+            std::vector<std::optional<OmegaStats>> omegaStatsList;
             for (const auto& [propHistory, propLabel] : propagations) {
-                const auto [rStats, vStats] =
+                const auto [rStats, vStats, aStats, omegaStats] =
                     validate_propagation_vs_checkcase(propHistory, propLabel, checkcaseHistory, checkcaseLabel, checkcaseName);
                 rStatsList.push_back(rStats);
                 vStatsList.push_back(vStats);
+                aStatsList.push_back(aStats);
+                omegaStatsList.push_back(omegaStats);
             }
 
             std::filesystem::path base = outputDir / checkcaseName / checkcaseLabel;
-            make_summary_for_all_propagations(rStatsList, vStatsList, propagations, checkcaseLabel, base);
+            make_summary_for_all_propagations(rStatsList, vStatsList, aStatsList, omegaStatsList, propagations, checkcaseLabel, base);
 
             allRStats.push_back(rStatsList);
             allVStats.push_back(vStatsList);
+            allAStats.push_back(aStatsList);
+            allOmegaStats.push_back(omegaStatsList);
 
             checkcaseHistories.push_back(checkcaseHistory);
             checkcaseLabels.push_back(checkcaseLabel);
         }
-        make_summary_for_all_checkcases(propagations, checkcases, checkcaseName, allRStats, allVStats);
+        make_summary_for_all_checkcases(propagations, checkcases, checkcaseName, allRStats, allVStats, allAStats, allOmegaStats);
 
         std::vector<StateHistory> propHistories;
         std::vector<std::string> propLabels;
@@ -307,7 +387,7 @@ class Orbital6DofTest : public testing::Test {
         make_comparison_plots(propHistories, propLabels, checkcaseHistories, checkcaseLabels, outputDir / checkcaseName);
     }
 
-    std::pair<RStats, VStats> validate_propagation_vs_checkcase(
+    std::tuple<RStats, VStats, std::optional<AStats>, std::optional<OmegaStats>> validate_propagation_vs_checkcase(
         const StateHistory& propHistory,
         const std::string& propLabel,
         const StateHistory& checkcaseHistory,
@@ -320,15 +400,18 @@ class Orbital6DofTest : public testing::Test {
 
         RStats rStats;
         VStats vStats;
-        for (const auto& [date, checkcaseState] : checkcaseHistory) {
-            const State propState    = propHistory.get_state_at(date);
-            const Cartesian propCart = propState.in_element_set<Cartesian>();
-            const auto propPos       = propCart.get_position();
-            const auto propVel       = propCart.get_velocity();
+        std::optional<AStats> aStats;
+        std::optional<OmegaStats> omegaStats;
+        for (const auto& checkcaseState : checkcaseHistory) {
+            const Date date                               = checkcaseState.get_epoch();
+            const State propState                         = propHistory.get_state_at(date);
+            const Cartesian<frames::earth::icrf> propCart = propState.in_element_set<Cartesian<frames::earth::icrf>>();
+            const auto propPos                            = propCart.get_position();
+            const auto propVel                            = propCart.get_velocity();
 
-            const Cartesian cart = checkcaseState.in_element_set<Cartesian>();
-            const auto pos       = cart.get_position();
-            const auto vel       = cart.get_velocity();
+            const Cartesian<frames::earth::icrf> cart = checkcaseState.in_element_set<Cartesian<frames::earth::icrf>>();
+            const auto pos                            = cart.get_position();
+            const auto vel                            = cart.get_velocity();
 
             // Compare
             const auto positionError    = propPos - pos;
@@ -345,14 +428,48 @@ class Orbital6DofTest : public testing::Test {
 
             rStats.add_value(positionErrorMag);
             vStats.add_value(velocityErrorMag);
+
+            // Compare orientation and angular rates when both states carry attitude data
+            const auto& propAtt = propState.get_attitude();
+            const auto& ccAtt   = checkcaseState.get_attitude();
+            if (propAtt.has_value() && ccAtt.has_value()) {
+                if (!aStats.has_value()) {
+                    aStats     = AStats{};
+                    omegaStats = OmegaStats{};
+                }
+
+                const auto& propQ            = propAtt->get_orientation();
+                const auto& ccQ              = ccAtt->get_orientation();
+                const double dotVal          = propQ.dot(ccQ).numerical_value_in(mp_units::one);
+                const double absDotClamped   = std::min(1.0, std::abs(dotVal));
+                const Angle orientationError = 2.0 * std::acos(absDotClamped) * rad;
+                aStats->add_value(orientationError);
+
+                const auto& propOmegaVec         = propAtt->get_angular_velocity().get_angular_velocities();
+                const auto& ccOmegaVec           = ccAtt->get_angular_velocity().get_angular_velocities();
+                const AngularVelocity omegaError = (propOmegaVec - ccOmegaVec).norm();
+                omegaStats->add_value(omegaError);
+            }
         }
 
         EXPECT_TRUE(rStats.max() <= _MAX_R_ERROR)
-            << "Max allowed position error (" << _MAX_R_ERROR.in(m) << ") violated comparing " << propLabel << " to "
-            << checkcaseLabel << "[" << rStats.mean() << " ± " << rStats.stddev() << ", " << rStats.max() << "]" << std::endl;
+            << std::setprecision(6) << "Max allowed position error (" << _MAX_R_ERROR.in(m) << ") violated comparing "
+            << propLabel << " to " << checkcaseLabel << "[" << rStats.mean() << " ± " << rStats.stddev() << ", "
+            << rStats.max() << "]" << std::endl;
         EXPECT_TRUE(vStats.max() <= _MAX_V_ERROR)
-            << "Max allowed velocity error (" << _MAX_V_ERROR.in(cm / s) << ") violated comparing " << propLabel << " to "
-            << checkcaseLabel << "[" << vStats.mean() << " ± " << vStats.stddev() << ", " << vStats.max() << "]" << std::endl;
+            << std::setprecision(6) << "Max allowed velocity error (" << _MAX_V_ERROR.in(cm / s)
+            << ") violated comparing " << propLabel << " to " << checkcaseLabel << "[" << vStats.mean() << " ± "
+            << vStats.stddev() << ", " << vStats.max() << "]" << std::endl;
+        if (aStats.has_value()) {
+            EXPECT_TRUE(aStats->max() <= _MAX_A_ERROR)
+                << std::setprecision(6) << "Max allowed orientation error (" << _MAX_A_ERROR.in(rad)
+                << " rad) violated comparing " << propLabel << " to " << checkcaseLabel << "[" << aStats->mean()
+                << " ± " << aStats->stddev() << ", " << aStats->max() << "]" << std::endl;
+            EXPECT_TRUE(omegaStats->max() <= _MAX_OMEGA_ERROR)
+                << std::setprecision(6) << "Max allowed angular rate error (" << _MAX_OMEGA_ERROR.in(rad / s)
+                << " rad/s) violated comparing " << propLabel << " to " << checkcaseLabel << "[" << omegaStats->mean()
+                << " ± " << omegaStats->stddev() << ", " << omegaStats->max() << "]" << std::endl;
+        }
 
         // Delete any existing plots from previous runs
         std::filesystem::path base = outputDir / checkcaseName / checkcaseLabel / propLabel;
@@ -361,7 +478,7 @@ class Orbital6DofTest : public testing::Test {
         // Plot
         make_comparison_plots(propHistory, propLabel, checkcaseHistory, checkcaseLabel, base);
 
-        return { rStats, vStats };
+        return { rStats, vStats, aStats, omegaStats };
     }
 
     void make_summary_for_all_checkcases(
@@ -369,23 +486,37 @@ class Orbital6DofTest : public testing::Test {
         const std::vector<std::pair<StateHistory, std::string>>& checkcaseHistories,
         const std::string& checkcaseName,
         const std::vector<std::vector<RStats>>& allRStats,
-        const std::vector<std::vector<VStats>>& allVStats
+        const std::vector<std::vector<VStats>>& allVStats,
+        const std::vector<std::vector<std::optional<AStats>>>& allAStats,
+        const std::vector<std::vector<std::optional<OmegaStats>>>& allOmegaStats
     ) const
     {
         std::filesystem::path base = outputDir / checkcaseName;
         std::filesystem::create_directories(base);
 
+        const bool hasAttitude =
+            !allAStats.empty() &&
+            std::any_of(allAStats.front().begin(), allAStats.front().end(), [](const auto& a) { return a.has_value(); });
+
         std::ofstream summaryFile;
         summaryFile.open(base / "summary.csv");
-        summaryFile << "Checkcase, Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min "
-                       "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min "
-                       "Velocity Error"
-                    << std::endl;
+        summaryFile
+            << "Checkcase, Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min "
+               "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min Velocity Error";
+        if (hasAttitude) {
+            summaryFile << ", Mean Orientation Error (rad), Std Dev Orientation Error (rad), Max Orientation Error "
+                           "(rad), Min Orientation Error (rad)"
+                           ", Mean Angular Rate Error (rad/s), Std Dev Angular Rate Error (rad/s), Max Angular Rate "
+                           "Error (rad/s), Min Angular Rate Error (rad/s)";
+        }
+        summaryFile << std::endl;
         for (std::size_t i = 0; i < checkcaseHistories.size(); ++i) {
             const auto& checkcaseLabel = checkcaseHistories[i].second;
             for (std::size_t j = 0; j < propHistories.size(); ++j) {
-                summaryFile << checkcaseLabel << ", "
-                            << make_row_string(propHistories[j].second, allRStats[i][j], allVStats[i][j]) << std::endl;
+                summaryFile
+                    << checkcaseLabel << ", "
+                    << make_row_string(propHistories[j].second, allRStats[i][j], allVStats[i][j], allAStats[i][j], allOmegaStats[i][j])
+                    << std::endl;
             }
         }
         summaryFile.close();
@@ -394,6 +525,8 @@ class Orbital6DofTest : public testing::Test {
     void make_summary_for_all_propagations(
         const std::vector<RStats>& rStatsList,
         const std::vector<VStats>& vStatsList,
+        const std::vector<std::optional<AStats>>& aStatsList,
+        const std::vector<std::optional<OmegaStats>>& omegaStatsList,
         const std::vector<std::pair<StateHistory, std::string>>& propHistories,
         const std::string& checkcaseLabel,
         const std::filesystem::path& base
@@ -401,21 +534,38 @@ class Orbital6DofTest : public testing::Test {
     {
         std::filesystem::create_directories(base);
 
+        const bool hasAttitude =
+            std::any_of(aStatsList.begin(), aStatsList.end(), [](const auto& a) { return a.has_value(); });
+
         std::ofstream summaryFile;
         summaryFile.open(base / "summary.csv");
 
-        summaryFile << "Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min "
-                       "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min "
-                       "Velocity Error"
-                    << std::endl;
+        summaryFile
+            << "Propagation, Mean Position Error, Std Dev Position Error, Max Position Error, Min "
+               "Position Error, Mean Velocity Error, Std Dev Velocity Error, Max Velocity Error, Min Velocity Error";
+        if (hasAttitude) {
+            summaryFile << ", Mean Orientation Error (rad), Std Dev Orientation Error (rad), Max Orientation Error "
+                           "(rad), Min Orientation Error (rad)"
+                           ", Mean Angular Rate Error (rad/s), Std Dev Angular Rate Error (rad/s), Max Angular Rate "
+                           "Error (rad/s), Min Angular Rate Error (rad/s)";
+        }
+        summaryFile << std::endl;
         for (std::size_t ii = 0; ii < propHistories.size(); ++ii) {
-            summaryFile << make_row_string(propHistories[ii].second, rStatsList[ii], vStatsList[ii]) << std::endl;
+            summaryFile
+                << make_row_string(propHistories[ii].second, rStatsList[ii], vStatsList[ii], aStatsList[ii], omegaStatsList[ii])
+                << std::endl;
         }
 
         summaryFile.close();
     }
 
-    std::string make_row_string(const std::string& propLabel, const RStats& rStats, const VStats& vStats) const
+    std::string make_row_string(
+        const std::string& propLabel,
+        const RStats& rStats,
+        const VStats& vStats,
+        const std::optional<AStats>& aStats         = std::nullopt,
+        const std::optional<OmegaStats>& omegaStats = std::nullopt
+    ) const
     {
         std::ostringstream oss;
         oss << propLabel << ", ";
@@ -423,6 +573,12 @@ class Orbital6DofTest : public testing::Test {
             << rStats.min().in(m) << ", ";
         oss << vStats.mean().in(cm / s) << ", " << vStats.stddev().in(cm / s) << ", " << vStats.max().in(cm / s) << ", "
             << vStats.min().in(cm / s);
+        if (aStats.has_value()) {
+            oss << ", " << aStats->mean().in(rad) << ", " << aStats->stddev().in(rad) << ", " << aStats->max().in(rad)
+                << ", " << aStats->min().in(rad);
+            oss << ", " << omegaStats->mean().in(rad / s) << ", " << omegaStats->stddev().in(rad / s) << ", "
+                << omegaStats->max().in(rad / s) << ", " << omegaStats->min().in(rad / s);
+        }
         return oss.str();
     }
 
@@ -439,11 +595,13 @@ class Orbital6DofTest : public testing::Test {
 
         plotting::plot_difference_orbital_elements(checkcaseHistory, { propHistory }, { propLabel }, base / "orbital_elements_difference.png");
         plotting::plot_difference_trajectories(checkcaseHistory, { propHistory }, { propLabel }, base / "trajectory_difference.png");
+        plotting::plot_difference_attitude(checkcaseHistory, { propHistory }, { propLabel }, base / "attitude_difference.png");
 
         std::vector<StateHistory> histories = { checkcaseHistory, propHistory };
         std::vector<std::string> labels     = { checkcaseLabel, propLabel };
         plotting::compare_orbital_elements(histories, labels, base / "orbital_elements_comparison.png");
         plotting::compare_trajectories(histories, labels, base / "trajectory_comparison.png");
+        plotting::compare_attitudes(histories, labels, base / "attitude_comparison.png");
 
         std::cout.clear();
         std::cerr.clear();
@@ -492,21 +650,23 @@ class Orbital6DofTest : public testing::Test {
 
         plotting::compare_orbital_elements(histories, labels, base / "orbital_elements_comparison.png");
         plotting::compare_trajectories(histories, labels, base / "trajectory_comparison.png");
+        plotting::compare_attitudes(histories, labels, base / "attitude_comparison.png");
 
         std::cout.clear();
         std::cerr.clear();
     }
 
-    const Distance _MAX_R_ERROR = 10.0 * m;
-    const Velocity _MAX_V_ERROR = 1.0 * cm / s;
+    const Distance _MAX_R_ERROR            = 10.0 * m;
+    const Velocity _MAX_V_ERROR            = 1.0 * cm / s;
+    const Angle _MAX_A_ERROR               = 1.0e-3 * rad;
+    const AngularVelocity _MAX_OMEGA_ERROR = 1.0e-4 * (rad / s);
 
     std::filesystem::path outputDir;
 
-    AstrodynamicsSystem sys;
     GravParam mu;
     Date epoch;
-    Cartesian circular;
-    Cartesian elliptic;
+    Cartesian<frames::earth::icrf> circular;
+    Cartesian<frames::earth::icrf> elliptic;
     Time propTime;
     Integrator integrator;
 };
@@ -521,12 +681,6 @@ int main(int argc, char** argv)
 
 TEST_F(Orbital6DofTest, Checkcase2_Propagation)
 {
-
-    /*
-    A mu value of 398600.436 reduces the error of this comparison to mm level. This suggests that the published value
-    used by the checkcases is wrong or imprecise.
-    */
-
     ForceModel forces;
 
     const auto propagations = run_all_propagations(forces, CIRCULAR, ISS, false);
@@ -538,7 +692,7 @@ TEST_F(Orbital6DofTest, Checkcase2_Propagation)
 TEST_F(Orbital6DofTest, Checkcase3A_4x4Oblateness)
 {
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 4, 4);
+    forces.add<OblatenessForce, planets::Earth, 4, 4>();
 
     const auto propagations = run_all_propagations(forces, CIRCULAR, ISS);
 
@@ -549,7 +703,7 @@ TEST_F(Orbital6DofTest, Checkcase3A_4x4Oblateness)
 TEST_F(Orbital6DofTest, Checkcase3B_8x8Oblateness)
 {
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 8, 8);
+    forces.add<OblatenessForce, planets::Earth, 8, 8>();
 
     const auto propagations = run_all_propagations(forces, CIRCULAR, ISS);
 
@@ -559,10 +713,8 @@ TEST_F(Orbital6DofTest, Checkcase3B_8x8Oblateness)
 
 TEST_F(Orbital6DofTest, Checkcase4_NBody)
 {
-    sys.add_body(CelestialBodyId::MOON);
-
     ForceModel forces;
-    forces.add<NBodyForce>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
 
     const auto propagations = run_all_propagations(forces, CIRCULAR, ISS);
 
@@ -573,7 +725,7 @@ TEST_F(Orbital6DofTest, Checkcase4_NBody)
 TEST_F(Orbital6DofTest, Checkcase5A_SrpSolarMin)
 {
     ForceModel forces;
-    forces.add<NBodyForce>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
     forces.add<SolarRadiationPressure>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, ISS);
@@ -585,7 +737,7 @@ TEST_F(Orbital6DofTest, Checkcase5A_SrpSolarMin)
 TEST_F(Orbital6DofTest, Checkcase5B_SrpSolarMean)
 {
     ForceModel forces;
-    forces.add<NBodyForce>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
     forces.add<SolarRadiationPressure>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, ISS);
@@ -597,7 +749,7 @@ TEST_F(Orbital6DofTest, Checkcase5B_SrpSolarMean)
 TEST_F(Orbital6DofTest, Checkcase5C_SrpSolarMax)
 {
     ForceModel forces;
-    forces.add<NBodyForce>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
     forces.add<SolarRadiationPressure>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, ISS);
@@ -650,11 +802,9 @@ TEST_F(Orbital6DofTest, Checkcase6B_AtmosDynamicSphere)
 
 TEST_F(Orbital6DofTest, Checkcase7A_4x4Oblateness_NBody)
 {
-    sys.add_body(CelestialBodyId::MOON);
-
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 4, 4);
-    forces.add<NBodyForce>();
+    forces.add<OblatenessForce, planets::Earth, 4, 4>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 
@@ -664,11 +814,9 @@ TEST_F(Orbital6DofTest, Checkcase7A_4x4Oblateness_NBody)
 
 TEST_F(Orbital6DofTest, Checkcase7B_8x8Oblateness_NBody)
 {
-    sys.add_body(CelestialBodyId::MOON);
-
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 8, 8);
-    forces.add<NBodyForce>();
+    forces.add<OblatenessForce, planets::Earth, 8, 8>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
 
@@ -678,11 +826,9 @@ TEST_F(Orbital6DofTest, Checkcase7B_8x8Oblateness_NBody)
 
 TEST_F(Orbital6DofTest, Checkcase7C_4x4Oblateness_NBody_Drag)
 {
-    sys.add_body(CelestialBodyId::MOON);
-
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 4, 4);
-    forces.add<NBodyForce>();
+    forces.add<OblatenessForce, planets::Earth, 4, 4>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
     forces.add<AtmosphericForce>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);
@@ -693,11 +839,9 @@ TEST_F(Orbital6DofTest, Checkcase7C_4x4Oblateness_NBody_Drag)
 
 TEST_F(Orbital6DofTest, Checkcase7D_8x8Oblateness_NBody_Drag)
 {
-    sys.add_body(CelestialBodyId::MOON);
-
     ForceModel forces;
-    forces.add<OblatenessForce>(sys, 8, 8);
-    forces.add<NBodyForce>();
+    forces.add<OblatenessForce, planets::Earth, 8, 8>();
+    forces.add<NBodyForce, planets::Earth, star::Sun, moons::Moon>();
     forces.add<AtmosphericForce>();
 
     const auto propagations = run_all_propagations(forces, ELLIPTIC, SPHERE);

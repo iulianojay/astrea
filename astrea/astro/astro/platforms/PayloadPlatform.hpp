@@ -20,7 +20,8 @@
 
 #include <vector>
 
-#include <astro/frames/FrameReference.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
+#include <astro/types/type_traits.hpp>
 #include <astro/types/typedefs.hpp>
 
 
@@ -32,9 +33,10 @@ namespace astro {
  * It provides methods to attach payloads and retrieve the list of attached payloads.
  */
 template <class Payload_T>
-class PayloadPlatform : virtual public FrameReference {
+class PayloadPlatform {
 
-    using PayloadParameters_T = decltype(std::declval<Payload_T>().get_parameters());
+    // This is cursed
+    using PayloadParameters_T = remove_cv_ref<decltype(std::declval<Payload_T>().get_parameters())>;
 
   protected:
     /**
@@ -106,6 +108,22 @@ class PayloadPlatform : virtual public FrameReference {
      * @return std::size_t ID of the payload.
      */
     virtual std::size_t get_id() const = 0;
+
+    /**
+     * @brief Get the position of the platform.
+     *
+     * @param date The date for which to get the position.
+     * @return RadiusVector<frames::primary> Position of the platform.
+     */
+    virtual RadiusVector<frames::primary> get_position(const Date& date) const = 0;
+
+    /**
+     * @brief Get the velocity of the platform.
+     *
+     * @param date The date for which to get the velocity.
+     * @return VelocityVector<frames::primary> Velocity of the platform.
+     */
+    virtual VelocityVector<frames::primary> get_velocity(const Date& date) const = 0;
 
     /**
      * @brief Get the mass of the platform.

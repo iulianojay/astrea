@@ -21,8 +21,8 @@
 #include <mp-units/systems/isq_angle.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 
 namespace astrea {
 namespace trace {
@@ -41,34 +41,6 @@ Angle calculate_angle_between_vectors(const EciRadiusVec& vector1, const EciRadi
         return 0.0 * astrea::detail::angle_unit;
     } // catch rounding errors - TODO: Make this more intelligent
     return acos(ratio);
-}
-
-bool CircularFieldOfView::contains(const EciRadiusVec& boresight, const EciRadiusVec& target) const
-{
-    return (calculate_angle_between_vectors(boresight, target) <= _halfConeAngle);
-}
-
-
-PolygonalFieldOfView::PolygonalFieldOfView(const Angle& halfConeAngle, const int& nPoints)
-{
-    for (Angle theta = 0.0 * astrea::detail::angle_unit; theta < TWO_PI; theta += (TWO_PI / nPoints)) {
-        _points[theta] = halfConeAngle;
-    }
-}
-
-PolygonalFieldOfView::PolygonalFieldOfView(const Angle& halfConeWidth, const Angle& halfConeHeight, const int& nPoints)
-{
-
-    throw std::logic_error("This function has not been properly updated and is not currently functional.");
-
-    /*
-    const Angle sinw = sin(halfConeWidth);
-    const Angle sinh = sin(halfConeHeight);
-
-    for (Angle theta = 0.0; theta < TWO_PI; theta += (TWO_PI/nPoints)) {
-        points[theta] = 0.0;
-    }
-    */
 }
 
 } // namespace trace

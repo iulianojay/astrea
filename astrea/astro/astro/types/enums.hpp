@@ -30,51 +30,6 @@ namespace astro {
 using EnumType = uint32_t;
 
 /**
- * @brief Celestial body identifiers.
- */
-enum class CelestialBodyId : EnumType {
-    UNSET,
-
-    // Solar System Bodies
-    SUN,
-    MERCURY,
-    VENUS,
-    EARTH,
-    MOON,
-    MARS,
-    PHOBOS,
-    DEIMOS,
-    JUPITER,
-    GANYMEDE,
-    CALLISTO,
-    IO,
-    EUROPA,
-    SATURN,
-    TITAN,
-    RHEA,
-    IAPETUS,
-    URANUS,
-    TITANIA,
-    OBERON,
-    NEPTUNE,
-    TRITON,
-
-    // Barycenters
-    SOLAR_SYSTEM_BARYCENTER,
-    MERCURY_BARYCENTER,
-    VENUS_BARYCENTER,
-    EARTH_BARYCENTER,
-    MARS_BARYCENTER,
-    JUPITER_BARYCENTER,
-    SATURN_BARYCENTER,
-    URANUS_BARYCENTER,
-    NEPTUNE_BARYCENTER,
-
-    // Other
-    CUSTOM
-};
-
-/**
  * @brief Celestial body types.
  */
 enum class CelestialBodyType : EnumType { UNSET, STAR, PLANET, MOON };
@@ -88,19 +43,47 @@ enum class SystemCenter : EnumType { CENTRAL_BODY, BARYCENTER };
  * @brief Reference frames axes.
  */
 enum class FrameAxis : EnumType {
+    UNSET,
     /** International Celestial Reference Frame */
     ICRF,
     /** Mean equinox of standard epoch J2000 */
     J2000,
     /** Body-fixed frame */
-    BODY_FIXED,
+    FIXED_ROTATING,
     /** Local vertical/local horizontal frame */
     LVLH,
     /** Radial/Along-track/Cross-track frame */
     RIC,
     /** Velocity/Normal/Body frame */
-    VNB
+    VNB,
+    /** Earth-North-Up frame */
+    ENU
 };
+
+/**
+ * @brief Enum representing possible Euler angle sequences.
+ */
+enum class RotationSequence {
+    // Traditional Euler Sequences
+    ZXZ,
+    XYX,
+    YZY,
+    ZYZ,
+    XZX,
+    YXY,
+    // Tait-Bryan Sequences
+    XYZ,
+    YZX,
+    ZXY,
+    XZY,
+    ZYX,
+    YXZ
+};
+
+/**
+ * @brief Enum representing whether the rotation sequence is intrinsic or extrinsic.
+ */
+enum class RotationType { EXTRINSIC, INTRINSIC };
 
 } // namespace astro
 } // namespace astrea

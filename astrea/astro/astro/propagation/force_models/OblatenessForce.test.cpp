@@ -13,14 +13,14 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/force_models/OblatenessForce.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -35,9 +35,7 @@ using mp_units::si::unit_symbols::s;
 class OblatenessForceTest : public testing::Test {
   public:
     OblatenessForceTest() :
-        epoch("2020-02-18 15:08:47.23847"),
-        sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN }),
-        force(sys, 2, 2)
+        epoch("2020-02-18 15:08:47.23847")
     {
     }
 
@@ -57,8 +55,6 @@ class OblatenessForceTest : public testing::Test {
 
     Spacecraft sat;
     Date epoch;
-    AstrodynamicsSystem sys;
-    OblatenessForce force;
 };
 
 
@@ -69,21 +65,23 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(OblatenessForceTest, DefaultConstructor) { ASSERT_NO_THROW(OblatenessForce(sys, 2, 0)); }
+TEST_F(OblatenessForceTest, DefaultConstructor) { ASSERT_NO_THROW(OblatenessForce<planets::Earth>()); }
 
 // Vallado, Ex. 8.5
 TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
 {
-    Cartesian cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
-                    -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
-    State state(cart, epoch, sys);
-    const AccelerationVector<frames::earth::icrf> accel = force.compute_force(state, Vehicle(sat));
+    Cartesian<frames::earth::icrf> cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                                         -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    State state(cart, epoch);
+    const auto [force, torque] = OblatenessForce<planets::Earth, 2, 2>().compute_perturbation(state, Vehicle(sat));
+    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
 
     // Vallado Ex. 8.5 expected results
     const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ -1.151903e-6 * km / (s * s),
                                                                        -2.938330e-6 * km / (s * s),
                                                                        -1.023539e-5 * km / (s * s) };
-    const AccelerationVector<frames::earth::icrf> expected = expectedEcef.in_frame<frames::earth::icrf>(epoch);
+    const AccelerationVector<frames::earth::icrf> expected =
+        frames::rotate_vector_into_frame<frames::earth::icrf>(expectedEcef, epoch);
 
     // My results - TODO: Figure this out
     // const AccelerationVector<frames::earth::icrf> expected{ -4.33495448e-08 * km / (s * s),
@@ -95,6 +93,6 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
 
     // These are much much closer than before, to be expected. They show abou the same size error as when comparing
     // to the NASA 6DoF checkcases so it's possible that there remains a small calculation error somewhere.
-    ASSERT_EQ_QUANTITY(accelNorm, expectedNorm, REL_TOL);
-    ASSERT_EQ_CART_VEC(accel, expected, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL));
+    ASSERT_TRUE(nearly_equal(accel, expected, REL_TOL));
 }

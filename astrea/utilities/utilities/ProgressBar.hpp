@@ -58,6 +58,11 @@ class ProgressBar {
     inline void reset() { _iRecord = 0; }
 
     /**
+     * @brief Increments the progress by one record.
+     */
+    inline std::size_t get_progress() const { return _iRecord; }
+
+    /**
      * @brief Updates the progress bar and prints it to the console.
      *
      * This method should be called periodically to update the progress bar.

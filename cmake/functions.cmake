@@ -36,16 +36,16 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES USE_HELPER_HDRS HELPER
         target_sources(${TEST_EXE} PRIVATE ${HELPER_HDRS} ${HELPER_SRCS})
 
         # Includes
-        target_include_directories(${TEST_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include ${CMAKE_INSTALL_PREFIX}/lib)
+        target_include_directories(${TEST_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include ${CMAKE_INSTALL_PREFIX}/lib ${CMAKE_INSTALL_PREFIX}/bin)
 
         # Dependencies
         target_link_libraries(${TEST_EXE} PRIVATE ${CURRENT_PROJECT}_shared GTest::gtest_main)
 
         # Install
         if (${TEST_TYPE} STREQUAL "UNIT")
-            set_target_properties(${TEST_EXE} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/unit)
+            install(TARGETS ${TEST_EXE} RUNTIME DESTINATION bin/unit)
         else()
-            set_target_properties(${TEST_EXE} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/regression)
+            install(TARGETS ${TEST_EXE} RUNTIME DESTINATION bin/regression)
         endif()
 
         # Send to gtest
@@ -54,6 +54,42 @@ function(build_tests CURRENT_PROJECT TEST_TYPE TEST_FILES USE_HELPER_HDRS HELPER
         add_dependencies(${CURRENT_PROJECT}_tests ${TEST_EXE})
 
     endforeach(TEST_FILE ${TEST_FILES})
+
+endfunction()
+
+# Benchmark build function
+function(build_benchmarks CURRENT_PROJECT BENCHMARK_FILES HELPER_HDRS HELPER_SRCS)
+
+    foreach(BENCHMARK_FILE ${BENCHMARK_FILES})
+
+        message(" -- Building Benchmark: ${BENCHMARK_FILE}")
+
+        # Get executable name and build target
+        cmake_path(GET BENCHMARK_FILE PARENT_PATH full_parent_path)
+        get_filename_component(BENCHMARK_EXE ${full_parent_path} NAME)
+        set(BENCHMARK_EXE ${BENCHMARK_EXE}.benchmark)
+        add_executable(${BENCHMARK_EXE} ${BENCHMARK_FILE})
+
+        # Set properties
+        target_compile_options(${BENCHMARK_EXE} PUBLIC -Wno-parentheses -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-local-typedefs)
+        set_target_properties(${BENCHMARK_EXE} PROPERTIES OUTPUT_NAME ${BENCHMARK_EXE})
+
+        # Helper files
+        target_sources(${BENCHMARK_EXE} PRIVATE ${HELPER_HDRS} ${HELPER_SRCS})
+
+        # Includes
+        target_include_directories(${BENCHMARK_EXE} PRIVATE ${CMAKE_INSTALL_PREFIX}/include ${CMAKE_INSTALL_PREFIX}/lib ${CMAKE_INSTALL_PREFIX}/bin)
+
+        # Dependencies
+        target_link_libraries(${BENCHMARK_EXE} PRIVATE ${CURRENT_PROJECT}_shared benchmark::benchmark)
+
+        # Install
+        install(TARGETS ${BENCHMARK_EXE} RUNTIME DESTINATION bin/benchmarks)
+
+        # Send to gtest
+        add_dependencies(${CURRENT_PROJECT}_benchmarks ${BENCHMARK_EXE})
+
+    endforeach(BENCHMARK_FILE ${BENCHMARK_FILES})
 
 endfunction()
 
@@ -162,11 +198,16 @@ function(generate_ephemeris_files PROJECT_SOURCE_DIRECTORY)
     message(" -- Compiled Ephemeride SOURCES: \n\t" ${PRINTABLE_SOURCES})
 
     string(REPLACE ";"  " " PYTHONIC_BODIES "${ALL_BODIES}")
+    find_package(Python3 COMPONENTS Interpreter)
+    if(NOT Python3_FOUND)
+        message(FATAL_ERROR "Python 3 is required for ephemeris generation but was not found")
+    endif()
+
     add_custom_command(
         OUTPUT
             ${BODY_EPHEMERIS_HEADERS}
             ${BODY_EPHEMERIS_SOURCES}
-        COMMAND ${PROJECT_SOURCE_DIRECTORY}/../../.venv/bin/python ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides --bodies ${PYTHONIC_BODIES}
+        COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py -o ${CMAKE_CURRENT_BINARY_DIR}/include/ephemerides --bodies ${PYTHONIC_BODIES}
         DEPENDS
             ${PROJECT_SOURCE_DIRECTORY}/pyastro/jpl_ephemeris_parser.py
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIRECTORY}
@@ -211,6 +252,14 @@ function(get_version_from_git)
     find_package(Git QUIET)
     if(NOT Git_FOUND)
         message(WARNING "Git not found")
+        # Try to use environment variable as fallback
+        if(DEFINED ENV{ASTREA_VERSION})
+            message(STATUS "Using fallback version from environment: $ENV{ASTREA_VERSION}")
+            set(ASTREA_VERSION $ENV{ASTREA_VERSION} PARENT_SCOPE)
+            return()
+        endif()
+        message(WARNING "No version information available")
+        set(ASTREA_VERSION "0.0.0" PARENT_SCOPE)
         return()
     endif()
 
@@ -224,6 +273,14 @@ function(get_version_from_git)
 
     if(NOT GIT_RESULT EQUAL 0)
         message(WARNING "Failed to get git tag")
+        # Try to use environment variable as fallback
+        if(DEFINED ENV{ASTREA_VERSION})
+            message(STATUS "Using fallback version from environment: $ENV{ASTREA_VERSION}")
+            set(ASTREA_VERSION $ENV{ASTREA_VERSION} PARENT_SCOPE)
+            return()
+        endif()
+        message(WARNING "No version information available")
+        set(ASTREA_VERSION "0.0.0" PARENT_SCOPE)
         return()
     endif()
 

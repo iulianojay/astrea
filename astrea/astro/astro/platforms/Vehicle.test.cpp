@@ -29,7 +29,7 @@ class VehicleTest : public testing::Test {
     void SetUp() override
     {
         StateHistory history;
-        history[Date()] = State();
+        history.insert(State());
         satWithHistory.set_state_history(history);
 
         vehicle            = Vehicle(sat);
@@ -115,24 +115,6 @@ TEST_F(VehicleTest, GetCoefficientOfReflectivity)
     ASSERT_EQ(vehicleReflectivityCoefficient, satReflectivityCoefficient);
 }
 
-TEST_F(VehicleTest, GetInertialPosition)
-{
-    ASSERT_ANY_THROW({ auto v = vehicle.get_inertial_position(Date()); });
-    ASSERT_NO_THROW({ auto v = vehicleWithHistory.get_inertial_position(Date()); });
-}
-
-TEST_F(VehicleTest, GetInertialVelocity)
-{
-    ASSERT_ANY_THROW({ auto v = vehicle.get_inertial_velocity(Date()); });
-    ASSERT_NO_THROW({ auto v = vehicleWithHistory.get_inertial_velocity(Date()); });
-}
-
-TEST_F(VehicleTest, GetInertialAcceleration)
-{
-    ASSERT_NO_THROW({ auto v = vehicle.get_inertial_acceleration(Date()); }); // This function is defaulted so it shouldn't error
-    ASSERT_NO_THROW({ auto v = vehicleWithHistory.get_inertial_acceleration(Date()); });
-}
-
 TEST_F(VehicleTest, GetName)
 {
     std::string vehicleName = vehicle.get_name();
@@ -144,4 +126,22 @@ TEST_F(VehicleTest, GetPtr)
 {
     ASSERT_NO_THROW({ const void* p = static_cast<const Vehicle&>(vehicle).get_ptr(); });
     ASSERT_NO_THROW({ void* p = vehicle.get_ptr(); });
+}
+
+TEST_F(VehicleTest, ExtractMutableReference)
+{
+    // Test extracting the correct type (Spacecraft)
+    auto* spacecraftPtr = vehicle.extract_mutable_reference<Spacecraft>();
+    ASSERT_NE(spacecraftPtr, nullptr);
+    ASSERT_EQ(spacecraftPtr->get_mass(), sat.get_mass());
+
+    // Test with vehicle that has history
+    auto* spacecraftWithHistoryPtr = vehicleWithHistory.extract_mutable_reference<Spacecraft>();
+    ASSERT_NE(spacecraftWithHistoryPtr, nullptr);
+    ASSERT_EQ(spacecraftWithHistoryPtr->get_mass(), satWithHistory.get_mass());
+
+    // Test extracting wrong type - should return nullptr
+    // Note: This would need a different vehicle type to test properly,
+    // but for now we test that the method doesn't crash
+    ASSERT_NO_THROW({ auto ptr = vehicle.extract_mutable_reference<Spacecraft>(); });
 }

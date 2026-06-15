@@ -1,0 +1,327 @@
+# Project information
+site_name: "ASTREA"
+site_description: "An extensible astrodynamics library for C++"
+site_url: https://iulianojay.github.io/astrea
+site_author: "Jay Iuliano"
+
+# Repository
+repo_name: iulianojay/astrea
+repo_url: https://github.com/iulianojay/astrea
+
+# Copyright
+copyright: Copyright &copy; 2025-2026 Jay Iuliano
+
+# Configuration
+theme:
+  name: material
+  logo: assets/images/astrea-transparent-crop.png
+  favicon: assets/images/astrea-transparent-crop.png
+  custom_dir: docs/.overrides
+  features:
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    # - navigation.expand
+    - navigation.indexes
+    # - navigation.sections
+    - navigation.tabs
+    - navigation.footer
+    - navigation.top
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    - toc.integrate
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to system preference
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+# Customization
+extra:
+  version:
+    provider: mike
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/ce_embed.js
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      permalink: true
+
+# Plugins
+plugins:
+  - search:
+      lang: en
+  - mkdoxy:
+      projects:
+        astro:
+          src-dirs: astrea/astro/astro
+          full-doc: True
+          doxy-cfg:
+            FILE_PATTERNS: "*.cpp *.h *.hpp *.ipp"
+            EXCLUDE_PATTERNS: "*test*.*"
+            RECURSIVE: True
+        math:
+          src-dirs: astrea/math/math
+          full-doc: True
+          doxy-cfg:
+            FILE_PATTERNS: "*.cpp *.h *.hpp *.ipp"
+            EXCLUDE_PATTERNS: "*test*.*"
+            RECURSIVE: True
+        snapshot:
+          src-dirs: astrea/snapshot/snapshot
+          full-doc: True
+          doxy-cfg:
+            FILE_PATTERNS: "*.cpp *.h *.hpp *.ipp"
+            EXCLUDE_PATTERNS: "*test*.*"
+            RECURSIVE: True
+        trace:
+          src-dirs: astrea/trace/trace
+          full-doc: True
+          doxy-cfg:
+            FILE_PATTERNS: "*.cpp *.h *.hpp *.ipp"
+            EXCLUDE_PATTERNS: "*test*.*"
+            RECURSIVE: True
+        units:
+          src-dirs: astrea/units/units
+          full-doc: True
+          doxy-cfg:
+            FILE_PATTERNS: "*.cpp *.h *.hpp *.ipp"
+            EXCLUDE_PATTERNS: "*test*.*"
+            RECURSIVE: True
+        utilities:
+          src-dirs: astrea/utilities/utilities
+          full-doc: True
+          doxy-cfg:
+            FILE_PATTERNS: "*.cpp *.h *.hpp *.ipp"
+            EXCLUDE_PATTERNS: "*test*.*"
+            RECURSIVE: True
+
+# Page tree
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Introduction: getting_started/index.md
+      - Project Structure: getting_started/project_structure.md
+      - Installation and Usage: getting_started/installation_and_usage.md
+      - Contributing: getting_started/contributing.md
+  - Examples:
+      - Examples: examples/index.md
+      - Fundamentals:
+          - Strongly Typed Units: examples/fundamentals/strongly_typed_units.md
+          - Time Systems: examples/fundamentals/time_systems.md
+          - State Representations: examples/fundamentals/state_representations.md
+          - Propagation:
+            - Numerical Integration: examples/fundamentals/propagation/numerical_integration.md
+            - Lambert Solutions: examples/fundamentals/propagation/lambert_solutions.md
+            - Equations of Motion: examples/fundamentals/propagation/equations_of_motion.md
+            - Force Models: examples/fundamentals/propagation/force_models.md
+            - Events: examples/fundamentals/propagation/events.md
+            - Vehicles: examples/fundamentals/propagation/vehicles.md
+          - Frames:
+            - Introduction to Strongly Typed Frames: examples/fundamentals/frames/introduction.md
+            - Frame Transformations: examples/fundamentals/frames/frame_transformations.md
+            - Cartesian Vectors: examples/fundamentals/frames/cartesian_vectors.md
+      - Advanced:
+          - Platforms and Payloads: examples/advanced/platforms_and_payloads.md
+  - Design:
+      - Design: design/index.md
+      - Type System: design/type_system.md
+      - Architecture: design/architecture.md
+      - Performance: design/performance.md
+      - Extensibility: design/extensibility.md
+      - Testing and Validation: design/testing.md
+      - Comparison to NASA 6DoF Checkcases: design/nasa_6dof_report/nasa_6dof_report.md
+  - API:
+      - Astro:
+          - 'Links': 'astro/links.md'
+          - 'Classes':
+              - 'Class List': 'astro/annotated.md'
+              - 'Class Index': 'astro/classes.md'
+              - 'Class Hierarchy': 'astro/hierarchy.md'
+              - 'Class Members': 'astro/class_members.md'
+              - 'Class Member Functions': 'astro/class_member_functions.md'
+              - 'Class Member Variables': 'astro/class_member_variables.md'
+              - 'Class Member Typedefs': 'astro/class_member_typedefs.md'
+              - 'Class Member Enumerations': 'astro/class_member_enums.md'
+          - 'Namespaces':
+              - 'Namespace List': 'astro/namespaces.md'
+              - 'Namespace Members': 'astro/namespace_members.md'
+              - 'Namespace Member Functions': 'astro/namespace_member_functions.md'
+              - 'Namespace Member Variables': 'astro/namespace_member_variables.md'
+              - 'Namespace Member Typedefs': 'astro/namespace_member_typedefs.md'
+              - 'Namespace Member Enumerations': 'astro/namespace_member_enums.md'
+          - 'Functions': 'astro/functions.md'
+          - 'Variables': 'astro/variables.md'
+          - 'Macros': 'astro/macros.md'
+          - 'Files': 'astro/files.md'
+      - Math:
+          - 'Links': 'math/links.md'
+          - 'Classes':
+              - 'Class List': 'math/annotated.md'
+              - 'Class Index': 'math/classes.md'
+              - 'Class Hierarchy': 'math/hierarchy.md'
+              - 'Class Members': 'math/class_members.md'
+              - 'Class Member Functions': 'math/class_member_functions.md'
+              - 'Class Member Variables': 'math/class_member_variables.md'
+              - 'Class Member Typedefs': 'math/class_member_typedefs.md'
+              - 'Class Member Enumerations': 'math/class_member_enums.md'
+          - 'Namespaces':
+              - 'Namespace List': 'math/namespaces.md'
+              - 'Namespace Members': 'math/namespace_members.md'
+              - 'Namespace Member Functions': 'math/namespace_member_functions.md'
+              - 'Namespace Member Variables': 'math/namespace_member_variables.md'
+              - 'Namespace Member Typedefs': 'math/namespace_member_typedefs.md'
+              - 'Namespace Member Enumerations': 'math/namespace_member_enums.md'
+          - 'Functions': 'math/functions.md'
+          - 'Variables': 'math/variables.md'
+          - 'Macros': 'math/macros.md'
+          - 'Files': 'math/files.md'
+      - Snapshot:
+          - 'Links': 'snapshot/links.md'
+          - 'Classes':
+              - 'Class List': 'snapshot/annotated.md'
+              - 'Class Index': 'snapshot/classes.md'
+              - 'Class Hierarchy': 'snapshot/hierarchy.md'
+              - 'Class Members': 'snapshot/class_members.md'
+              - 'Class Member Functions': 'snapshot/class_member_functions.md'
+              - 'Class Member Variables': 'snapshot/class_member_variables.md'
+              - 'Class Member Typedefs': 'snapshot/class_member_typedefs.md'
+              - 'Class Member Enumerations': 'snapshot/class_member_enums.md'
+          - 'Namespaces':
+              - 'Namespace List': 'snapshot/namespaces.md'
+              - 'Namespace Members': 'snapshot/namespace_members.md'
+              - 'Namespace Member Functions': 'snapshot/namespace_member_functions.md'
+              - 'Namespace Member Variables': 'snapshot/namespace_member_variables.md'
+              - 'Namespace Member Typedefs': 'snapshot/namespace_member_typedefs.md'
+              - 'Namespace Member Enumerations': 'snapshot/namespace_member_enums.md'
+          - 'Functions': 'snapshot/functions.md'
+          - 'Variables': 'snapshot/variables.md'
+          - 'Macros': 'snapshot/macros.md'
+          - 'Files': 'snapshot/files.md'
+      - Trace:
+          - 'Links': 'trace/links.md'
+          - 'Classes':
+              - 'Class List': 'trace/annotated.md'
+              - 'Class Index': 'trace/classes.md'
+              - 'Class Hierarchy': 'trace/hierarchy.md'
+              - 'Class Members': 'trace/class_members.md'
+              - 'Class Member Functions': 'trace/class_member_functions.md'
+              - 'Class Member Variables': 'trace/class_member_variables.md'
+              - 'Class Member Typedefs': 'trace/class_member_typedefs.md'
+              - 'Class Member Enumerations': 'trace/class_member_enums.md'
+          - 'Namespaces':
+              - 'Namespace List': 'trace/namespaces.md'
+              - 'Namespace Members': 'trace/namespace_members.md'
+              - 'Namespace Member Functions': 'trace/namespace_member_functions.md'
+              - 'Namespace Member Variables': 'trace/namespace_member_variables.md'
+              - 'Namespace Member Typedefs': 'trace/namespace_member_typedefs.md'
+              - 'Namespace Member Enumerations': 'trace/namespace_member_enums.md'
+          - 'Functions': 'trace/functions.md'
+          - 'Variables': 'trace/variables.md'
+          - 'Macros': 'trace/macros.md'
+          - 'Files': 'trace/files.md'
+      - Units:
+          - 'Links': 'trace/links.md'
+          - 'Classes':
+              - 'Class List': 'trace/annotated.md'
+              - 'Class Index': 'trace/classes.md'
+              - 'Class Hierarchy': 'trace/hierarchy.md'
+              - 'Class Members': 'trace/class_members.md'
+              - 'Class Member Functions': 'trace/class_member_functions.md'
+              - 'Class Member Variables': 'trace/class_member_variables.md'
+              - 'Class Member Typedefs': 'trace/class_member_typedefs.md'
+              - 'Class Member Enumerations': 'trace/class_member_enums.md'
+          - 'Namespaces':
+              - 'Namespace List': 'trace/namespaces.md'
+              - 'Namespace Members': 'trace/namespace_members.md'
+              - 'Namespace Member Functions': 'trace/namespace_member_functions.md'
+              - 'Namespace Member Variables': 'trace/namespace_member_variables.md'
+              - 'Namespace Member Typedefs': 'trace/namespace_member_typedefs.md'
+              - 'Namespace Member Enumerations': 'trace/namespace_member_enums.md'
+          - 'Functions': 'trace/functions.md'
+          - 'Variables': 'trace/variables.md'
+          - 'Macros': 'trace/macros.md'
+          - 'Files': 'trace/files.md'
+      - Utilities:
+          - 'Links': 'utilities/links.md'
+          - 'Classes':
+              - 'Class List': 'utilities/annotated.md'
+              - 'Class Index': 'utilities/classes.md'
+              - 'Class Hierarchy': 'utilities/hierarchy.md'
+              - 'Class Members': 'utilities/class_members.md'
+              - 'Class Member Functions': 'utilities/class_member_functions.md'
+              - 'Class Member Variables': 'utilities/class_member_variables.md'
+              - 'Class Member Typedefs': 'utilities/class_member_typedefs.md'
+              - 'Class Member Enumerations': 'utilities/class_member_enums.md'
+          - 'Namespaces':
+              - 'Namespace List': 'utilities/namespaces.md'
+              - 'Namespace Members': 'utilities/namespace_members.md'
+              - 'Namespace Member Functions': 'utilities/namespace_member_functions.md'
+              - 'Namespace Member Variables': 'utilities/namespace_member_variables.md'
+              - 'Namespace Member Typedefs': 'utilities/namespace_member_typedefs.md'
+              - 'Namespace Member Enumerations': 'utilities/namespace_member_enums.md'
+          - 'Functions': 'utilities/functions.md'
+          - 'Variables': 'utilities/variables.md'
+          - 'Macros': 'utilities/macros.md'
+          - 'Files': 'utilities/files.md'
+  - Release Notes: release_notes.md

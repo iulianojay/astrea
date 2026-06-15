@@ -18,10 +18,22 @@
  */
 #pragma once
 
+#include <string>
+
+#include <units/units.hpp>
+
 #include <trace/trace.fwd.hpp>
 
 namespace astrea {
 namespace trace {
+
+/**
+ * @brief Converts a Time object to a formatted string.
+ *
+ * @param t The Time object to convert.
+ * @return std::string A formatted string representation of the Time object.
+ */
+std::string to_formatted_string(Time t);
 
 /**
  * @brief Union of two RiseSetArray objects.

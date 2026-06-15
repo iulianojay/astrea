@@ -20,24 +20,32 @@
 
 #include <vector>
 
+#include <astro/systems/system_concepts.hpp>
+
 #include <trace/platforms/ground/GroundStation.hpp>
 
 namespace astrea {
 namespace trace {
 
 /**
- * @brief GroundArchitecture class represents a collection of ground stations.
+ * @brief A collection of ground stations on the surface of a celestial body.
  *
- * This class is used to manage and access a set of ground stations, which can be used for various purposes such as communication, observation, or data collection.
+ * This class manages and provides access to a set of ground stations, which can
+ * be used for communication, observation, or data collection.
+ *
+ * @tparam _body_ The celestial body NTTP that all stations in this architecture reside on.
  */
+template <astro::IsCelestialBody auto _body_>
 class GroundArchitecture {
+    using Station = GroundStation<_body_>;
+
   public:
     /**
      * @brief Constructs a GroundArchitecture with a list of ground stations.
      *
      * @param groundStations A vector of GroundStation objects representing the ground stations.
      */
-    GroundArchitecture(const std::vector<GroundStation>& groundStations) :
+    GroundArchitecture(const std::vector<Station>& groundStations) :
         _groundStations(groundStations)
     {
     }
@@ -48,20 +56,20 @@ class GroundArchitecture {
     ~GroundArchitecture() = default;
 
     /**
-     * @brief Access operator for GroundStation.
+     * @brief Access a ground station by index.
      *
      * @param idx The index of the ground station to access.
-     * @return GroundStation& Ground station at the specified index.
+     * @return Station& Ground station at the specified index.
      */
-    GroundStation& operator[](const std::size_t& idx) { return _groundStations[idx]; }
+    Station& operator[](const std::size_t& idx) { return _groundStations[idx]; }
 
     /**
-     * @brief Access operator for GroundStation (const).
+     * @brief Access a ground station by index (const).
      *
      * @param idx The index of the ground station to access.
-     * @return const GroundStation& Ground station at the specified index.
+     * @return const Station& Ground station at the specified index.
      */
-    const GroundStation& operator[](const std::size_t& idx) const { return _groundStations[idx]; }
+    const Station& operator[](const std::size_t& idx) const { return _groundStations[idx]; }
 
     /**
      * @brief Returns the number of ground stations in the architecture.
@@ -73,12 +81,12 @@ class GroundArchitecture {
     /**
      * @brief Iterator type for the GroundArchitecture class.
      */
-    using iterator = std::vector<GroundStation>::iterator;
+    using iterator = typename std::vector<Station>::iterator;
 
     /**
      * @brief Constant iterator type for the GroundArchitecture class.
      */
-    using const_iterator = std::vector<GroundStation>::const_iterator;
+    using const_iterator = typename std::vector<Station>::const_iterator;
 
     /**
      * @brief Returns an iterator to the beginning of the ground stations.
@@ -123,7 +131,7 @@ class GroundArchitecture {
     const_iterator cend() const { return _groundStations.end(); }
 
   private:
-    std::vector<GroundStation> _groundStations; ///< A vector containing the ground stations in this architecture.
+    std::vector<Station> _groundStations; ///< A vector containing the ground stations in this architecture.
 };
 
 } // namespace trace

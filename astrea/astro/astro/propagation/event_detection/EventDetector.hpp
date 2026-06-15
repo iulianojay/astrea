@@ -65,11 +65,23 @@ class EventDetector {
     ~EventDetector() = default;
 
     /**
+     * @brief Adds an Event to the list of Events to track.
+     *
+     * @param event The Event to add.
+     */
+    void add_event(const Event& event);
+
+    /**
      * @brief Sets the list of Events to track.
      *
      * @param events The list of Events to track.
      */
-    void set_events(const std::vector<Event>& events);
+    void add_events(const std::vector<Event>& events);
+
+    /**
+     * @brief Clears all Events from the list of Events to track.
+     */
+    void clear_events();
 
     /**
      * @brief Get events being tracked.

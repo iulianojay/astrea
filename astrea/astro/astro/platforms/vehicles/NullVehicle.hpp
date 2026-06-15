@@ -21,7 +21,6 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/frames/FrameReference.hpp>
 
 namespace astrea {
 namespace astro {
@@ -30,15 +29,15 @@ namespace astro {
  * @brief A class representing a null vehicle in the astrea astro platform.
  * This class is used as a placeholder for vehicles that do not have a defined state or mass.
  */
-class NullVehicle : public FrameReference {
+class NullVehicle {
 
   public:
     /**
      * @brief Constructs a NullVehicle with an initial state and mass.
      *
-     * @param mass The mass of the vehicle, defaulting to zero kilograms.
+     * @param mass The mass of the vehicle, defaulting to one kilogram.
      */
-    NullVehicle(const Mass& mass = 0.0 * mp_units::si::unit_symbols::kg);
+    NullVehicle(const Mass& mass = 1.0 * mp_units::si::unit_symbols::kg);
 
     /**
      * @brief Clone the NullVehicle object.
@@ -60,30 +59,6 @@ class NullVehicle : public FrameReference {
      * @return std::string The name of the vehicle.
      */
     std::string get_name() const;
-
-    /**
-     * @brief Get the position of the frame in Earth-Centered Inertial coordinates.
-     *
-     * @param date The date for which to get the position.
-     * @return CartesianVector<Distance, frames::earth::icrf>
-     */
-    CartesianVector<Distance, frames::earth::icrf> get_inertial_position(const Date& date) const final;
-
-    /**
-     * @brief Get the velocity of the frame in Earth-Centered Inertial coordinates.
-     *
-     * @param date The date for which to get the velocity.
-     * @return CartesianVector<Velocity, frames::earth::icrf>
-     */
-    CartesianVector<Velocity, frames::earth::icrf> get_inertial_velocity(const Date& date) const final;
-
-    /**
-     * @brief Get the acceleration of the frame in Earth-Centered Inertial coordinates.
-     *
-     * @param date The date for which to get the acceleration.
-     * @return CartesianVector<Acceleration, frames::earth::icrf>
-     */
-    CartesianVector<Acceleration, frames::earth::icrf> get_inertial_acceleration(const Date& date) const final;
 
   private:
     Mass _mass; // Mass of the vehicle

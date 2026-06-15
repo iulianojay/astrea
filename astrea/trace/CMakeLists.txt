@@ -21,15 +21,22 @@ set(CMAKE_CXX_STANDARD 23)
 # Objects
 set(TRACE_BASE ${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME})
 set(TRACE_SOURCES
-    ${TRACE_BASE}/analysis/access_analysis.cpp
+    ${TRACE_BASE}/analysis/AccessAnalyzer.cpp
+    ${TRACE_BASE}/analysis/PositionCache.cpp
+    ${TRACE_BASE}/analysis/SpatialIndex.cpp
+
+    ${TRACE_BASE}/analysis/plots/Plotter.cpp
+
+    ${TRACE_BASE}/analysis/stats/RiseSetStats.cpp
+    ${TRACE_BASE}/analysis/stats/AccessStats.cpp
+    ${TRACE_BASE}/analysis/stats/FoldsOfCoverage.cpp
 
     ${TRACE_BASE}/platforms/sensors/Antenna.cpp
     ${TRACE_BASE}/platforms/sensors/Sensor.cpp
 
-    ${TRACE_BASE}/platforms/ground/Grid.cpp
-    ${TRACE_BASE}/platforms/ground/GroundStation.cpp
-
     ${TRACE_BASE}/platforms/sensors/fov/FieldOfView.cpp
+    ${TRACE_BASE}/platforms/sensors/fov/CircularFieldOfView.cpp
+    ${TRACE_BASE}/platforms/sensors/fov/PolygonalFieldOfView.cpp
 
     ${TRACE_BASE}/risesets/AccessArray.cpp
     ${TRACE_BASE}/risesets/RiseSetArray.cpp
@@ -39,12 +46,26 @@ set(TRACE_SOURCES
 # Headers
 set(TRACE_HEADERS
     ${TRACE_BASE}/trace.hpp
+    ${TRACE_BASE}/trace.fwd.hpp
+    ${TRACE_BASE}/trace.macros.hpp
 
-    ${TRACE_BASE}/analysis/access_analysis.hpp
+    ${TRACE_BASE}/analysis/AccessAnalyzer.hpp
+    ${TRACE_BASE}/analysis/PositionCache.hpp
+    ${TRACE_BASE}/analysis/SpatialIndex.hpp
+
+    ${TRACE_BASE}/analysis/plots/Plotter.hpp
+
+    ${TRACE_BASE}/analysis/stats/RiseSetStats.hpp
+    ${TRACE_BASE}/analysis/stats/AccessStats.hpp
+    ${TRACE_BASE}/analysis/stats/FoldsOfCoverage.hpp
+    ${TRACE_BASE}/analysis/stats/Stats.hpp
+    ${TRACE_BASE}/analysis/stats/HyperStats.hpp
 
     ${TRACE_BASE}/platforms/sensors/Antenna.hpp
     ${TRACE_BASE}/platforms/sensors/Sensor.hpp
     ${TRACE_BASE}/platforms/sensors/fov/FieldOfView.hpp
+    ${TRACE_BASE}/platforms/sensors/fov/CircularFieldOfView.hpp
+    ${TRACE_BASE}/platforms/sensors/fov/PolygonalFieldOfView.hpp
 
     ${TRACE_BASE}/platforms/ground/Grid.hpp
     ${TRACE_BASE}/platforms/ground/GroundArchitecture.hpp
@@ -57,6 +78,8 @@ set(TRACE_HEADERS
     ${TRACE_BASE}/risesets/RiseSetArray.hpp
     ${TRACE_BASE}/risesets/riseset_utils.hpp
 
+    ${TRACE_BASE}/types/enums.hpp
+    ${TRACE_BASE}/types/IdPair.hpp
     ${TRACE_BASE}/types/typedefs.hpp
 )
 
@@ -75,41 +98,62 @@ set(TRACE_LIBS
     mp-units::mp-units
     matplot
     nlohmann_json::nlohmann_json
-    csv
     sqlite_orm::sqlite_orm
-    date::date
 )
 
 # Shared library
-add_library                (${PROJECT_NAME}_shared SHARED ${TRACE_SOURCES} ${TRACE_HEADERS})
-set_target_properties      (${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries      (${PROJECT_NAME}_shared PUBLIC math_shared astro_shared ${TRACE_LIBS})
-target_include_directories (${PROJECT_NAME}_shared PUBLIC ${TRACE_DIRS})
-target_compile_definitions (${PROJECT_NAME}_shared PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+add_library(${PROJECT_NAME}_shared SHARED ${TRACE_SOURCES} ${TRACE_HEADERS})
+set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1)
+target_link_libraries(${PROJECT_NAME}_shared PUBLIC math_shared astro_shared ${TRACE_LIBS})
+target_include_directories(${PROJECT_NAME}_shared PUBLIC ${TRACE_DIRS})
+
+if(WIN32)
+    target_compile_definitions(${PROJECT_NAME}_shared PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"" WIN32_LEAN_AND_MEAN NOMINMAX)
+else()
+    target_compile_definitions(${PROJECT_NAME}_shared PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+endif()
+
+# Install shared library (DLL)
+install(TARGETS ${PROJECT_NAME}_shared
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
 
 # Static library
 if(${BUILD_STATIC})
-    add_library                (${PROJECT_NAME}_static STATIC ${TRACE_SOURCES} ${TRACE_HEADERS})
-    set_target_properties      (${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
-    target_link_libraries      (${PROJECT_NAME}_static PUBLIC math_static astro_static ${TRACE_LIBS})
-    target_include_directories (${PROJECT_NAME}_static PUBLIC ${TRACE_DIRS})
-    target_compile_definitions (${PROJECT_NAME}_static PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+    add_library(${PROJECT_NAME}_static STATIC ${TRACE_SOURCES} ${TRACE_HEADERS})
+    set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 SUFFIX .a.${PROJECT_VERSION})
+    target_link_libraries(${PROJECT_NAME}_static PUBLIC math_static astro_static ${TRACE_LIBS})
+    target_include_directories(${PROJECT_NAME}_static PUBLIC ${TRACE_DIRS})
+    target_compile_definitions(${PROJECT_NAME}_static PUBLIC "_TRACE_ROOT_=\"${CMAKE_CURRENT_LIST_DIR}\"")
+
+    # Install static library (A)
+    install(TARGETS ${PROJECT_NAME}_static
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+    )
 endif()
 
 # Executable
-add_executable             (${PROJECT_NAME}_exe ${TRACE_BASE}/drivers/main.cpp)
-set_target_properties      (${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/trace)
-target_include_directories (${PROJECT_NAME}_exe PUBLIC ${TRACE_DIRS})
-target_link_libraries      (${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared snapshot_shared)
-target_compile_options     (${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs -Wno-uninitialized -Wno-maybe-uninitialized)
-add_custom_target          (${PROJECT_NAME}_exe_symlink ALL COMMAND ${CMAKE_COMMAND} -E create_symlink ${PROJECT_NAME}_exe ${PROJECT_NAME})
+add_executable(${PROJECT_NAME}_exe ${TRACE_BASE}/drivers/main.cpp)
+set_target_properties(${PROJECT_NAME}_exe PROPERTIES VERSION ${PROJECT_VERSION} OUTPUT_NAME ${PROJECT_NAME} CLEAN_DIRECT_OUTPUT 1 RUNTIME_OUTPUT_DIRECTORY ${CMAKE_INSTALL_PREFIX}/bin/trace)
+target_include_directories(${PROJECT_NAME}_exe PUBLIC ${TRACE_DIRS})
+target_link_libraries(${PROJECT_NAME}_exe PUBLIC ${PROJECT_NAME}_shared snapshot_shared)
+target_compile_options(${PROJECT_NAME}_exe PUBLIC -Wno-unused-local-typedefs -Wno-uninitialized -Wno-maybe-uninitialized)
+
+# add_custom_target          (${PROJECT_NAME}_exe_symlink ALL COMMAND ${CMAKE_COMMAND} -E create_symlink ${PROJECT_NAME}_exe ${PROJECT_NAME})
+
+file(MAKE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/include)
 
 # Install headers
-file(COPY
+install(
     DIRECTORY ${TRACE_BASE}
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/include
+    DESTINATION include
     FILES_MATCHING
     PATTERN *.hpp
+    PATTERN *.ipp
     PATTERN *.h
 )
 

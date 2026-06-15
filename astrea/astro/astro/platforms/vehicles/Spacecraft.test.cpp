@@ -13,12 +13,13 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
+#include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
-#include <astro/state/orbital_data_formats/instances/GeneralPerturbations.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/state/orbital_data_formats/GeneralPerturbations.hpp>
+#include <astro/systems/system_utilities.hpp>
 
 using namespace astrea;
 using namespace astro;
@@ -29,6 +30,7 @@ using mp_units::angular::unit_symbols::rad;
 using mp_units::si::unit_symbols::kg;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::N;
 using mp_units::si::unit_symbols::s;
 
 class SpacecraftTest : public testing::Test {
@@ -37,11 +39,10 @@ class SpacecraftTest : public testing::Test {
     void SetUp() override
     {
         StateHistory history;
-        history[Date()] = State();
+        history.insert(State());
         spacecraftWithHistory.set_state_history(history);
     }
 
-    AstrodynamicsSystem sys;
     Spacecraft spacecraft;
     Spacecraft spacecraftWithHistory;
 };
@@ -59,7 +60,7 @@ TEST_F(SpacecraftTest, CopyConstructor) { ASSERT_NO_THROW(Spacecraft s(spacecraf
 TEST_F(SpacecraftTest, GpConstructor)
 {
     GeneralPerturbations gp;
-    ASSERT_ANY_THROW(Spacecraft s(gp, sys));
+    ASSERT_ANY_THROW(Spacecraft s(gp));
 
     gp.NORAD_CAT_ID   = 25544;
     gp.OBJECT_NAME    = "ISS";
@@ -67,11 +68,11 @@ TEST_F(SpacecraftTest, GpConstructor)
     gp.ECCENTRICITY   = 0.001;
     gp.INCLINATION    = 51.6;
     gp.RA_OF_ASC_NODE = 0.0;
-    ASSERT_ANY_THROW(Spacecraft s(gp, sys));
+    ASSERT_ANY_THROW(Spacecraft s(gp));
 
     gp.ARG_OF_PERICENTER = 0.0;
     gp.MEAN_ANOMALY      = 0.0;
-    ASSERT_NO_THROW(Spacecraft s(gp, sys));
+    ASSERT_NO_THROW(Spacecraft s(gp));
 }
 
 TEST_F(SpacecraftTest, AssignmentOperator)
@@ -173,18 +174,83 @@ TEST_F(SpacecraftTest, SetName)
 
 TEST_F(SpacecraftTest, GetStateHistory)
 {
-    ASSERT_EQ(spacecraftWithHistory.get_state_history()[Date()], State());
-    ASSERT_EQ(static_cast<const Spacecraft&>(spacecraftWithHistory).get_state_history().at(Date()), State());
+    ASSERT_EQ(spacecraftWithHistory.get_state_history().get_state_at(Date(), true), State());
+    ASSERT_EQ(static_cast<const Spacecraft&>(spacecraftWithHistory).get_state_history().get_state_at(Date(), true), State());
 }
 
 TEST_F(SpacecraftTest, GetInertialPosition)
 {
-    ASSERT_ANY_THROW(spacecraft.get_inertial_position(Date()));
-    ASSERT_NO_THROW(spacecraftWithHistory.get_inertial_position(Date()));
+    ASSERT_ANY_THROW(spacecraft.get_position(Date()));
+    ASSERT_NO_THROW(spacecraftWithHistory.get_position(Date()));
 }
 
 TEST_F(SpacecraftTest, GetInertialVelocity)
 {
-    ASSERT_ANY_THROW(spacecraft.get_inertial_velocity(Date()));
-    ASSERT_NO_THROW(spacecraftWithHistory.get_inertial_velocity(Date()));
+    ASSERT_ANY_THROW(spacecraft.get_velocity(Date()));
+    ASSERT_NO_THROW(spacecraftWithHistory.get_velocity(Date()));
+}
+
+TEST_F(SpacecraftTest, AddPayload)
+{
+    ThrusterParameters thrusterParams(100.0 * N);
+
+    // Test adding a payload
+    ASSERT_NO_THROW(spacecraft.attach_payload(thrusterParams));
+
+    // Verify the payload was added
+    auto payloads = spacecraft.get_payloads();
+    ASSERT_EQ(payloads.size(), 1);
+}
+
+TEST_F(SpacecraftTest, GetPayloads)
+{
+    // Initially should have no payloads
+    auto payloads = spacecraft.get_payloads();
+    ASSERT_EQ(payloads.size(), 0);
+
+    // Add multiple thrusters
+    ThrusterParameters thrusterParams1(100.0 * N);
+    ThrusterParameters thrusterParams2(200.0 * N);
+
+    spacecraft.attach_payload(thrusterParams1);
+    spacecraft.attach_payload(thrusterParams2);
+
+    // Verify we have 2 payloads
+    payloads = spacecraft.get_payloads();
+    ASSERT_EQ(payloads.size(), 2);
+
+    // Test const version
+    const Spacecraft& constSpacecraft = spacecraft;
+    auto constPayloads                = constSpacecraft.get_payloads();
+    ASSERT_EQ(constPayloads.size(), 2);
+}
+
+TEST_F(SpacecraftTest, ThrusterManagement)
+{
+    // Add thrusters to spacecraft
+    ThrusterParameters thrusterParams1(100.0 * N);
+    ThrusterParameters thrusterParams2(200.0 * N);
+
+    spacecraft.attach_payload(thrusterParams1);
+    spacecraft.attach_payload(thrusterParams2);
+
+    auto payloads = spacecraft.get_payloads();
+    ASSERT_EQ(payloads.size(), 2);
+
+    // Test initial state (should be off)
+    for (const auto& thruster : payloads) {
+        ASSERT_FALSE(thruster.is_on());
+    }
+
+    // Turn all thrusters on
+    for (auto& thruster : payloads) {
+        thruster.switch_on();
+        ASSERT_TRUE(thruster.is_on());
+    }
+
+    // Turn all thrusters off
+    for (auto& thruster : payloads) {
+        thruster.switch_off();
+        ASSERT_FALSE(thruster.is_on());
+    }
 }

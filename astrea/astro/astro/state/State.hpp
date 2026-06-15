@@ -19,9 +19,13 @@
 #pragma once
 
 #include <iosfwd>
+#include <optional>
 
+#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/state/attitude/Attitude.hpp>
+#include <astro/state/attitude/Quaternion.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -30,8 +34,8 @@ namespace astro {
 
 /**
  * @brief Class representing the state of an astronomical object.
- * * This class encapsulates the orbital elements, epoch, and the astrodynamics system
- * * that the state belongs to.
+ * This class encapsulates the orbital elements, epoch, and the astrodynamics system
+ * that the state belongs to. It also optionally includes the attitude of the object as a quaternion.
  */
 class State {
 
@@ -50,12 +54,27 @@ class State {
      *
      * @param elements The orbital elements of the state.
      * @param epoch The epoch of the state.
-     * @param sys The astrodynamics system associated with the state.
+     * @param attitude The attitude of the state, represented as a quaternion.
      */
-    State(const OrbitalElements& elements, const Date& epoch, const AstrodynamicsSystem& sys) :
+    State(const OrbitalElements& elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
         _elements(elements),
         _epoch(epoch),
-        _system(&sys)
+        _attitude(attitude)
+    {
+    }
+
+    /**
+     * @brief Constructs a State from a Cartesian in any frame, converting it to the primary frame.
+     *
+     * @param elements Cartesian elements in an arbitrary inertial frame.
+     * @param epoch The epoch of the state.
+     * @param attitude The attitude of the state.
+     */
+    template <IsFrame auto frame>
+    State(Cartesian<frame> elements, const Date& epoch, const std::optional<Attitude>& attitude = std::nullopt) :
+        _elements(elements.template in_frame<frames::primary>(epoch)),
+        _epoch(epoch),
+        _attitude(attitude)
     {
     }
 
@@ -67,11 +86,6 @@ class State {
      * @note This only works if the StateHistory contains exactly one state.
      */
     State(const StateHistory& history);
-
-    /**
-     * @brief Deleted constructor for State to prevent constructing a reference to an AstrodynamicsSystem rvalue
-     */
-    State(const OrbitalElements&, const Date&, AstrodynamicsSystem&&) = delete;
 
     /**
      * @brief Checks if two State objects are equal.
@@ -90,6 +104,13 @@ class State {
     const OrbitalElements& get_elements() const { return _elements; }
 
     /**
+     * @brief Get the attitude of the state.
+     *
+     * @return std::optional<Attitude> The attitude of the state.
+     */
+    const std::optional<Attitude>& get_attitude() const { return _attitude; }
+
+    /**
      * @brief Gets the epoch of the state.
      *
      * @return const Date& Reference to the epoch of the state.
@@ -97,11 +118,19 @@ class State {
     const Date& get_epoch() const { return _epoch; }
 
     /**
-     * @brief Gets the astrodynamics system associated with the state.
+     * @brief Gets the gravitational parameter (mu) derived from the origin of the current elements' frame.
      *
-     * @return const AstrodynamicsSystem& Reference to the astrodynamics system.
+     * @return GravParam The gravitational parameter of the central body.
      */
-    const AstrodynamicsSystem& get_system() const { return *_system; }
+    GravParam get_mu() const
+    {
+        return std::visit(
+            []<typename ElemT>(const ElemT&) -> GravParam {
+                return astrea::astro::get_mu<decltype(ElemT::frame)::origin>();
+            },
+            _elements.extract()
+        );
+    }
 
     /**
      * @brief Converts the orbital elements to a different type.
@@ -147,7 +176,7 @@ class State {
     template <IsOrbitalElements T>
     State convert_to_set() const
     {
-        return { in_element_set<T>(), _epoch, get_system() };
+        return { in_element_set<T>(), _epoch };
     }
 
     /**
@@ -165,27 +194,45 @@ class State {
     /**
      * @brief Gets the position vector from the state.
      *
-     * @return RadiusVector<frames::earth::icrf> The position vector of the state.
+     * @return RadiusVector<frames::primary> The position vector of the state.
      */
-    RadiusVector<frames::earth::icrf> get_position() const { return in_element_set<Cartesian>().get_position(); }
+    RadiusVector<frames::primary> get_position() const
+    {
+        return in_element_set<Cartesian<frames::primary>>().get_position();
+    }
+
+    /**
+     * @brief Gets the position vector in a specified frame from the state.
+     *
+     * @tparam _frame_ The frame to get the position vector in.
+     * @return RadiusVector<_frame_> The position vector of the state in the specified frame.
+     */
+    template <IsFrame auto _frame_>
+    RadiusVector<_frame_> get_position_in_frame() const
+    {
+        return get_position().template in_frame<_frame_>(get_epoch());
+    }
 
     /**
      * @brief Gets the velocity vector from the state.
      *
-     * @return VelocityVector<frames::earth::icrf> The velocity vector of the state.
+     * @return VelocityVector<frames::primary> The velocity vector of the state.
      */
-    VelocityVector<frames::earth::icrf> get_velocity() const { return in_element_set<Cartesian>().get_velocity(); }
+    VelocityVector<frames::primary> get_velocity() const
+    {
+        return in_element_set<Cartesian<frames::primary>>().get_velocity();
+    }
 
     /**
-     * @brief Gets the position vector in a specified frame.
+     * @brief Gets the velocity vector in a specified frame from the state.
      *
-     * @tparam Frame_T The frame type to get the position in.
-     * @return RadiusVector<Frame_T> The position vector in the specified frame.
+     * @tparam _frame_ The frame to get the velocity vector in.
+     * @return VelocityVector<_frame_> The velocity vector of the state in the specified frame.
      */
-    template <typename Frame_T>
-    RadiusVector<Frame_T> get_position_in_frame() const
+    template <IsFrame auto _frame_>
+    VelocityVector<_frame_> get_velocity_in_frame(const Date& date) const
     {
-        return get_position().template in_frame<Frame_T>(_epoch);
+        return get_velocity().template in_frame<_frame_>(date);
     }
 
     /**
@@ -202,52 +249,47 @@ class State {
     }
 
     /**
+     * @brief Sets the attitude of the state.
+     *
+     * @param attitude The new attitude to set.
+     */
+    void set_attitude(const Attitude& attitude) { _attitude = attitude; }
+
+    /**
      * @brief Sets the epoch of the state.
      *
      * @param epoch The new epoch to set.
      */
     void set_epoch(const Date& epoch) { _epoch = epoch; }
 
-    /**
-     * @brief Sets the astrodynamics system associated with the state.
-     *
-     * @param sys The new astrodynamics system to set.
-     */
-    void set_system(const AstrodynamicsSystem& sys) { _system = &sys; }
-
   private:
-    OrbitalElements _elements; //!< The orbital elements of the state, defining the shape and orientation of the orbit.
+    OrbitalElements _elements; //!< The orbital elements of the state, defining the shape and attitude of the orbit.
     Date _epoch; //!< The epoch of the state, representing the time at which the orbital elements are defined.
-    const AstrodynamicsSystem* _system; //!< Pointer to the astrodynamics system associated with the state, providing context for the orbital elements.
-
-    /**
-     * @brief Gets the gravitational parameter (mu) of the central body in the astrodynamics system.
-     *
-     * @return GravParam The gravitational parameter (mu) of the central body, or zero if no system is associated.
-     */
-    GravParam get_mu() const
-    {
-        using namespace mp_units;
-        return _system ? _system->get_mu() : 0.0 * pow<3>(astrea::detail::distance_unit) / pow<2>(astrea::detail::time_unit);
-    }
+    std::optional<Attitude> _attitude; //!< The attitude of the state, represented as a quaternion.
 
     /**
      * @brief Converts the State to a vector of Unitless values.
      *
      * @return std::vector<Unitless> Vector containing the orbital elements as unitless values.
      */
-    std::vector<Unitless> force_to_vector() const { return _elements.force_to_vector(); }
-
+    std::vector<Unitless> force_to_vector() const
+    {
+        auto retval = _elements.force_to_vector();
+        if (_attitude.has_value()) {
+            const auto& attitudeVector = _attitude->force_to_vector();
+            retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
+        }
+        return retval;
+    }
 
     /**
      * @brief Creates an State object from a vector of Unitless values.
      *
      * @param vec The vector of Unitless values.
      * @param idx The index of the orbital element type to create.
-     * @param sys The astrodynamics system associated with the state.
      * @return State The created State object.
      */
-    static State from_vector(const std::vector<Unitless>& vec, const std::size_t idx, const AstrodynamicsSystem& sys);
+    static State from_vector(const std::vector<Unitless>& vec, const std::size_t idx);
 
     /**
      * @brief Adds two State objects together.
@@ -330,6 +372,7 @@ class State {
 };
 
 class StatePartial {
+
   public:
     /**
      * @brief Default constructor for StatePartial.
@@ -339,14 +382,15 @@ class StatePartial {
     /**
      * @brief Constructs a StatePartial with given orbital element partials and astrodynamics system.
      *
-     * @param elementPartials The orbital element partials of the state.
      * @param epoch The epoch of the state.
      * @param sys The astrodynamics system associated with the state.
+     * @param elementPartials The orbital element partials of the state.
+     * @param attitudePartial The attitude partial of the state, represented as a quaternion derivative.
      */
-    StatePartial(const OrbitalElementPartials& elementPartials, const Date& epoch, const AstrodynamicsSystem& sys) :
-        _elementPartials(elementPartials),
+    StatePartial(const Date& epoch, const OrbitalElementPartials& elementPartials, const std::optional<AttitudePartials>& attitudePartial = std::nullopt) :
         _epoch(epoch),
-        _system(&sys)
+        _elementPartials(elementPartials),
+        _attitudePartial(attitudePartial)
     {
     }
 
@@ -359,23 +403,31 @@ class StatePartial {
     State operator*(const Time& time) const;
 
     /**
-     * @brief Gets the astrodynamics system associated with the state.
-     *
-     * @return const AstrodynamicsSystem& Reference to the astrodynamics system.
-     */
-    const AstrodynamicsSystem& get_system() const;
-
-    /**
      * @brief Gets the epoch of the state partial.
      *
      * @return const Date& Reference to the epoch of the state partial.
      */
     const Date& get_epoch() const;
 
+    /**
+     * @brief Converts the State to a vector of Unitless values.
+     *
+     * @return std::vector<Unitless> Vector containing the orbital element partials and attitude partials as unitless values.
+     */
+    std::vector<Unitless> force_to_vector() const
+    {
+        auto retval = _elementPartials.force_to_vector();
+        if (_attitudePartial.has_value()) {
+            const auto& attitudeVector = _attitudePartial->force_to_vector();
+            retval.insert(retval.end(), attitudeVector.begin(), attitudeVector.end());
+        }
+        return retval;
+    }
+
   private:
-    OrbitalElementPartials _elementPartials; //!< The orbital element partials of the state, defining the shape and orientation of the orbit.
     Date _epoch; //!< The epoch of the state partial, representing the time at which the orbital elements are defined.
-    const AstrodynamicsSystem* _system; //!< Pointer to the astrodynamics system associated with the state, providing context for the orbital elements.
+    OrbitalElementPartials _elementPartials; //!< The orbital element partials of the state, defining the shape and attitude of the orbit.
+    std::optional<AttitudePartials> _attitudePartial; //!< The attitude partial of the state, represented as a quaternion derivative.
 };
 
 } // namespace astro

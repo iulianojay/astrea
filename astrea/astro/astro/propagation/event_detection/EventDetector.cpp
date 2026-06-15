@@ -18,17 +18,23 @@
 namespace astrea {
 namespace astro {
 
-EventDetector::EventDetector(const std::vector<Event>& events) { set_events(events); }
+EventDetector::EventDetector(const std::vector<Event>& events) { add_events(events); }
 
-void EventDetector::set_events(const std::vector<Event>& events)
+void EventDetector::add_event(const Event& event)
 {
-    _eventTrackers.clear();
+    _eventTrackers.push_back({ .event = event, .firstMeasurement = true });
+}
+
+void EventDetector::add_events(const std::vector<Event>& events)
+{
     _eventTrackers.resize(events.size());
     for (std::size_t ii = 0; ii < events.size(); ++ii) {
         _eventTrackers[ii].event            = events[ii];
         _eventTrackers[ii].firstMeasurement = true;
     }
 }
+
+void EventDetector::clear_events() { _eventTrackers.clear(); }
 
 std::vector<Event> EventDetector::get_events() const
 {

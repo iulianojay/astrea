@@ -37,6 +37,7 @@ Vehicle::Vehicle() :
 Vehicle::Vehicle(const Vehicle& other) :
     _ptr(other._ptr->clone()),
     _mass(other._mass),
+    _inertiaTensor(other._inertiaTensor),
     _ramArea(other._ramArea),
     _liftArea(other._liftArea),
     _solarArea(other._solarArea),
@@ -50,6 +51,7 @@ Vehicle::Vehicle(const Vehicle& other) :
 Vehicle::Vehicle(Vehicle&& other) noexcept :
     _ptr(std::move(other._ptr)),
     _mass(std::move(other._mass)),
+    _inertiaTensor(std::move(other._inertiaTensor)),
     _ramArea(std::move(other._ramArea)),
     _liftArea(std::move(other._liftArea)),
     _solarArea(std::move(other._solarArea)),
@@ -62,6 +64,7 @@ Vehicle::Vehicle(Vehicle&& other) noexcept :
 void Vehicle::generic_ctor_impl()
 {
     _mass                      = ptr()->get_mass();
+    _inertiaTensor             = ptr()->get_inertia_tensor();
     _ramArea                   = ptr()->get_ram_area();
     _liftArea                  = ptr()->get_lift_area();
     _solarArea                 = ptr()->get_solar_area();
@@ -76,6 +79,7 @@ Vehicle& Vehicle::operator=(Vehicle&& other) noexcept
     if (this != &other) {
         _ptr                       = std::move(other._ptr);
         _mass                      = std::move(other._mass);
+        _inertiaTensor             = std::move(other._inertiaTensor);
         _ramArea                   = std::move(other._ramArea);
         _liftArea                  = std::move(other._liftArea);
         _solarArea                 = std::move(other._solarArea);

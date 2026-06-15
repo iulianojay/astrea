@@ -20,22 +20,27 @@
 
 #include <memory>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/FrameReference.hpp>
-#include <astro/frames/dynamic_frames.hpp>
-#include <astro/frames/frames.hpp>
+#include <utilities/IdProvider.hpp>
+
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/PayloadPlatform.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
 
-static const astro::RadiusVector<astro::frames::dynamic::ric> NADIR_RIC = { -1.0 * astrea::detail::distance_unit,
-                                                                            0.0 * astrea::detail::distance_unit,
-                                                                            0.0 * astrea::detail::distance_unit };
-static const astro::RadiusVector<astro::frames::dynamic::ric> CENTER    = { 0.0 * astrea::detail::distance_unit,
-                                                                            0.0 * astrea::detail::distance_unit,
-                                                                            0.0 * astrea::detail::distance_unit };
+static const astro::RadiusVector<astro::frames::dynamic::ric> NADIR_RIC  = { -1.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit };
+static const astro::RadiusVector<astro::frames::dynamic::ric> RADIAL_RIC = { 1.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit };
+static const astro::RadiusVector<astro::frames::dynamic::ric> CENTER     = { 0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit,
+                                                                             0.0 * astrea::detail::distance_unit };
 
 /**
  * @brief Class for storing and managing payload parameters.
@@ -68,14 +73,14 @@ class PayloadParameters {
      *
      * @return astro::RadiusVector<astro::frames::dynamic::ric>Boresight direction of the payload.
      */
-    astro::RadiusVector<astro::frames::dynamic::ric> get_boresight() const { return _boresight; }
+    const astro::RadiusVector<astro::frames::dynamic::ric>& get_boresight() const { return _boresight; }
 
     /**
      * @brief Get the attachment point of the payload.
      *
      * @return astro::RadiusVector<astro::frames::dynamic::ric>Attachment point of the payload.
      */
-    astro::RadiusVector<astro::frames::dynamic::ric> get_attachment_point() const { return _attachmentPoint; }
+    const astro::RadiusVector<astro::frames::dynamic::ric>& get_attachment_point() const { return _attachmentPoint; }
 
     /**
      * @brief Set the boresight direction of the payload.
@@ -108,7 +113,7 @@ class PayloadParameters {
  * including field of view and access management.
  */
 template <class Payload_T, class PayloadParameters_T>
-class Payload { // TODO: add -> : public FrameReference
+class Payload {
 
     friend PayloadPlatform<Payload_T>;
 
@@ -124,7 +129,7 @@ class Payload { // TODO: add -> : public FrameReference
     Payload(const Parent_T& parent, const PayloadParameters_T& parameters) :
         _parent(&parent),
         _parameters(parameters),
-        _id(generate_id())
+        _id(utilities::IdProvider::get_next_id<"Payload">())
     {
     }
 
@@ -142,11 +147,6 @@ class Payload { // TODO: add -> : public FrameReference
     virtual std::size_t get_id() const = 0;
 
     /**
-     * @brief Generate a hash for the payload ID.
-     */
-    std::size_t generate_id() const { return static_cast<const Payload_T*>(this)->generate_id(); }
-
-    /**
      * @brief Get the parent platform of the payload.
      *
      * @return const PayloadPlatform<Payload_T, PayloadParameters_T>* Pointer to the parent platform.
@@ -158,7 +158,55 @@ class Payload { // TODO: add -> : public FrameReference
      *
      * @return PayloadParameters_T Payload parameters of the payload.
      */
-    PayloadParameters_T get_parameters() const { return _parameters; }
+    const PayloadParameters_T& get_parameters() const { return _parameters; }
+
+    /**
+     * @brief Get the payload parameters of the payload.
+     *
+     * @return PayloadParameters_T Payload parameters of the payload.
+     */
+    PayloadParameters_T& get_parameters() { return _parameters; }
+
+    /**
+     * @brief Get the name of the payload.
+     *
+     * @return std::string Name of the payload.
+     */
+    std::string get_name() const { return "Payload"; }
+
+    /**
+     * @brief Get the position of the payload in the primary frame.
+     *
+     * @param date The date for which to get the position.
+     * @return CartesianVector<Distance, frames::primary> Position of the payload in the primary frame.
+     */
+    CartesianVector<Distance, frames::primary> get_position(const Date& date) const
+    {
+        // Assumes the payload is fixed
+        static const auto parentToPayload = get_parameters().get_attachment_point();
+
+        // Get current RIC
+        const auto parentPosition = get_parent()->get_position(date);
+        const auto parentVelocity = get_parent()->get_velocity(date);
+        const auto ricFrame       = frames::dynamic::ric.instantaneous(parentPosition, parentVelocity);
+
+        // Rotate to inertial
+        const auto parentToPayloadInInertial = ricFrame.rotate_out_of_this_frame(parentToPayload, date);
+
+        return parentPosition + parentToPayloadInInertial;
+    }
+
+    /**
+     * @brief Get the velocity of the payload in the primary frame. Assumes all payloads are fixed to their platform.
+     *
+     * @param date The date for which to get the velocity.
+     * @return CartesianVector<Velocity, frames::primary> Velocity of the payload in the primary frame.
+     */
+    CartesianVector<Velocity, frames::primary> get_velocity(const Date& date) const
+    {
+        // Assumes the payload is fixed
+        return get_parent()->get_velocity(date);
+    }
 
   protected:
     const PayloadPlatform<Payload_T>* _parent; //!< Parent platform

@@ -13,15 +13,15 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/EquinoctialVop.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/orbital_elements/instances/Equinoctial.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/state/orbital_elements/Equinoctial.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using mp_units::angular::unit_symbols::rad;
@@ -42,8 +42,9 @@ class EquinoctialTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
+    const GravParam mu = get_mu<frames::primary.origin>();
+    ForceVector<frames::earth::icrf> noForce;
     Vehicle sat;
-    AstrodynamicsSystem sys;
     Date epoch;
     ForceModel forces;
     EquinoctialVop eom;
@@ -59,16 +60,16 @@ int main(int argc, char** argv)
 
 TEST_F(EquinoctialTest, GetExpectedSet)
 {
-    ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Equinoctial>());
+    ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Equinoctial<frames::earth::icrf>>());
 }
 
 TEST_F(EquinoctialTest, Derivative)
 {
-    Equinoctial equi0 = Equinoctial::LEO(sys.get_mu());
-    EquinoctialPartial expected =
-        EquinoctialPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0010780076129942077 * rad / s);
-    State state(equi0, epoch, sys);
+    Equinoctial<frames::earth::icrf> equi0 = Equinoctial<frames::earth::icrf>::LEO(mu);
+    EquinoctialPartial<frames::earth::icrf> expected =
+        EquinoctialPartial<frames::earth::icrf>(0.0 * km / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0 * 1 / s, 0.0010780076129942077 * rad / s);
+    State state(equi0, epoch);
 
-    OrbitalElementPartials dstate = eom(state, sat);
-    ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
+    OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
+    ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
 }

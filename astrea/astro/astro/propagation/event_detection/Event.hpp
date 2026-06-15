@@ -22,19 +22,10 @@
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/state/State.hpp>
+#include <astro/types/concepts.hpp>
 
 namespace astrea {
 namespace astro {
-
-/**
- * @brief Concept to check if a type has a method to get the event name.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasGetName = requires(const T event) {
-    { event.get_name() } -> std::same_as<std::string>;
-};
 
 /**
  * @brief Concept to check if a type has a method to detect an event.
@@ -152,6 +143,13 @@ struct EventInnerBase {
      * @return void* A pointer to the internal Event instance.
      */
     virtual void* get_ptr() = 0;
+
+    /**
+     * @brief Gets the type information of the internal vehicle instance.
+     *
+     * @return const std::type_info& The type information of the internal vehicle instance.
+     */
+    virtual const std::type_info& type() const = 0;
 };
 
 /**
@@ -303,6 +301,13 @@ struct EventInner final : public EventInnerBase {
      */
     void* get_ptr() final { return &_value; }
 
+    /**
+     * @brief Gets the type information of the internal vehicle instance.
+     *
+     * @return const std::type_info& The type information of the internal vehicle instance.
+     */
+    const std::type_info& type() const final { return typeid(T); }
+
     T _value; //!< The value of the Event inner implementation, which is the user-defined Event type.
 };
 
@@ -317,8 +322,8 @@ class Event; // Forward declaration of the Event class
  */
 template <typename T>
 concept IsGenericallyConstructableEvent = requires(T) {
+    requires !std::is_same<Event, remove_cv_ref<T>>::value;
     requires IsUserDefinedEvent<T>;
-    std::negation<std::is_same<Event, remove_cv_ref<T>>>::value;
 };
 
 
@@ -409,7 +414,20 @@ class Event {
     const T* extract() const noexcept
     {
         auto p = static_cast<const detail::EventInner<T>*>(ptr());
-        return p == nullptr ? nullptr : &(p->_value);
+        return ptr()->type() == typeid(T) ? &(p->_value) : nullptr;
+    }
+
+    /**
+     * @brief Extracts the user-defined Event from the Event instance.
+     *
+     * @tparam T The type of the user-defined Event to extract.
+     * @return T* A pointer to the user-defined Event if it matches the type, otherwise nullptr.
+     */
+    template <IsGenericallyConstructableEvent T>
+    T* extract_mutable_reference() noexcept
+    {
+        auto p = static_cast<detail::EventInner<T>*>(ptr());
+        return ptr()->type() == typeid(T) ? &(p->_value) : nullptr;
     }
 
     /**

@@ -19,97 +19,10 @@
  */
 #pragma once
 
-#include <gtl/btree.hpp>
+#include <gtl/phmap.hpp>
 
 #include <trace/risesets/RiseSetArray.hpp>
-
-namespace astrea {
-namespace trace {
-
-/**
- * @brief Represents a pair of IDs for sender and receiver.
- */
-struct IdPair {
-    std::size_t sender;   //!<< The ID of the sender.
-    std::size_t receiver; //!< The ID of the receiver.
-
-    /**
-     * @brief Default constructor for IdPair.
-     */
-    IdPair() = default;
-
-    /**
-     * @brief Constructs an IdPair with specified sender and receiver IDs.
-     * @param sender The ID of the sender.
-     * @param receiver The ID of the receiver.
-     */
-    IdPair(std::size_t sender, std::size_t receiver) :
-        sender(sender),
-        receiver(receiver)
-    {
-    }
-
-    /**
-     * @brief Copy constructor for IdPair.
-     * @param other The IdPair to copy from.
-     */
-    IdPair(const IdPair& other) :
-        sender(other.sender),
-        receiver(other.receiver)
-    {
-    }
-
-    /**
-     * @brief Default destructor for IdPair.
-     */
-    ~IdPair() = default;
-
-    /**
-     * @brief Equality operator for IdPair.
-     * @param other The IdPair to compare with.
-     * @return True if both sender and receiver IDs are equal, false otherwise.
-     */
-    bool operator==(const IdPair& other) const { return (sender == other.sender && receiver == other.receiver); }
-};
-
-} // namespace trace
-} // namespace astrea
-
-/**
- * @brief Specialization of std::hash for IdPair to allow it to be used as a key in hash-based containers.
- */
-template <>
-struct std::hash<astrea::trace::IdPair> {
-    /**
-     * @brief Computes a hash value for an IdPair.
-     * @param k The IdPair to hash.
-     * @return A hash value for the IdPair.
-     */
-    std::size_t operator()(const astrea::trace::IdPair& k) const
-    {
-        return (std::hash<std::size_t>()(k.sender)) ^ (std::hash<std::size_t>()(k.receiver));
-    }
-};
-
-/**
- * @brief Specialization of std::less for IdPair to allow it to be used in ordered containers.
- */
-template <>
-struct std::less<astrea::trace::IdPair> {
-    /**
-     * @brief Compares two IdPairs for ordering.
-     * @param lhs The first IdPair to compare.
-     * @param rhs The second IdPair to compare.
-     * @return True if lhs is less than rhs, false otherwise.
-     */
-    bool operator()(const astrea::trace::IdPair& lhs, const astrea::trace::IdPair& rhs) const
-    {
-        if (lhs.sender == rhs.sender) { return lhs.receiver < rhs.receiver; }
-        else {
-            return lhs.sender < rhs.sender;
-        }
-    };
-};
+#include <trace/types/IdPair.hpp>
 
 namespace astrea {
 namespace trace {
@@ -176,11 +89,35 @@ class AccessArray {
     std::size_t size() const;
 
     /**
+     * @brief Retrieves the RiseSetArray for all accesses to a specific receiver.
+     *
+     * @param receiverId The ID of the receiver.
+     * @return RiseSetArray The RiseSetArray containing all accesses to the specified receiver.
+     */
+    RiseSetArray get_all_accesses_to_receiver(const std::size_t& receiverId) const;
+
+    /**
+     * @brief Retrieves the RiseSetArray for all accesses from a specific sender.
+     *
+     * @param senderId The ID of the sender.
+     * @return RiseSetArray The RiseSetArray containing all accesses from the specified sender.
+     */
+    RiseSetArray get_all_accesses_from_sender(const std::size_t& senderId) const;
+
+    /**
+     * @brief Equality operator for AccessArray.
+     *
+     * @param other The AccessArray to compare with.
+     * @return true if the AccessArrays are equal, false otherwise.
+     */
+    bool operator==(const AccessArray& other) const;
+
+    /**
      * @brief Union operator for AccessArray.
      *
      * @param other The AccessArray to union with.
      */
-    AccessArray& operator|(const AccessArray& other);
+    AccessArray& operator|=(const AccessArray& other);
 
     /**
      * @brief Const union operator for AccessArray.
@@ -195,7 +132,7 @@ class AccessArray {
      *
      * @param other The AccessArray to intersect with.
      */
-    AccessArray& operator&(const AccessArray& other);
+    AccessArray& operator&=(const AccessArray& other);
 
     /**
      * @brief Const intersection operator for AccessArray.
@@ -208,12 +145,12 @@ class AccessArray {
     /**
      * @brief Iterator type for AccessArray.
      */
-    using iterator = gtl::btree_map<IdPair, RiseSetArray>::iterator;
+    using iterator = gtl::flat_hash_map<IdPair, RiseSetArray>::iterator;
 
     /**
      * @brief Const iterator type for AccessArray.
      */
-    using const_iterator = gtl::btree_map<IdPair, RiseSetArray>::const_iterator;
+    using const_iterator = gtl::flat_hash_map<IdPair, RiseSetArray>::const_iterator;
 
     /**
      * @brief Returns an iterator to the beginning of the AccessArray.
@@ -258,7 +195,7 @@ class AccessArray {
     const_iterator cend() const { return _accesses.cend(); }
 
   private:
-    gtl::btree_map<IdPair, RiseSetArray> _accesses; //!< A map that associates IdPairs with their corresponding RiseSetArrays.
+    gtl::flat_hash_map<IdPair, RiseSetArray> _accesses; //!< A map that associates IdPairs with their corresponding RiseSetArrays.
 };
 
 } // namespace trace

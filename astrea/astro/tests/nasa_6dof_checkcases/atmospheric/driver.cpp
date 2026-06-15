@@ -13,7 +13,7 @@
 
 // #include <gtest/gtest.h>
 
-// #include <math/test_util.hpp>
+// #include <math/operations.hpp>
 // #include <units/units.hpp>
 
 // #include <astro/platforms/vehicles/Spacecraft.hpp>
@@ -21,7 +21,7 @@
 // #include <astro/propagation/force_models/ForceModel.hpp>
 // #include <astro/propagation/numerical/Integrator.hpp>
 // #include <astro/state/orbital_elements/OrbitalElements.hpp>
-// #include <astro/systems/AstrodynamicsSystem.hpp>
+// #include <astro/systems/system_utilities.hpp>
 // #include <astro/time/Date.hpp>
 // #include <astro/time/Interval.hpp>
 // #include <tests/utilities/comparisons.hpp>
@@ -41,7 +41,7 @@
 // class Atmospheric6DofTest : public testing::Test {
 //   public:
 //     Atmospheric6DofTest() :
-//         mu(sys.get_mu()),
+//         mu(get_mu<frames::primary.origin>()),
 //         propTime(weeks(1)),
 //         propInterval({ start, end }),
 //         epoch(J2000)
@@ -53,7 +53,6 @@
 //     const Unitless REL_TOL = 1.0e-6;
 //     const Unitless ABS_TOL = 1.0e-2;
 
-//     AstrodynamicsSystem sys;
 //     GravParam mu;
 //     TwoBody eom;
 //     ForceModel forces;
@@ -73,17 +72,17 @@
 // TEST_F(Atmospheric6DofTest, GEO)
 // {
 //     // Build constellation
-//     Keplerian state0 = Keplerian::GEO();
-//     Spacecraft geo({ Cartesian(state0, mu), epoch, sys });
+//     Keplerian state0 = Keplerian<frames::earth::icrf>::GEO();
+//     Spacecraft geo({ Cartesian(state0, mu), epoch });
 //     Vehicle vehicle{ geo };
 
 //     // Propagate
 //     const auto stateHistory = integrator.propagate(state0, propTime, eom, vehicle, true);
 
 //     // Validate
-//     for (const auto& [time, state] : stateHistory) {
-//         const Keplerian kep = state.in_element_set<Keplerian>();
-//         ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
+//     for (const auto& state : stateHistory) {
+//         const Keplerian kep = state.in_element_set<Keplerian<frames::earth::icrf>> ();
+//         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, state0, true, REL_TOL));
 //     }
 // }
 
@@ -91,34 +90,34 @@
 // TEST_F(Atmospheric6DofTest, GPS)
 // {
 //     // Build constellation
-//     Keplerian state0 = Keplerian::GPS();
-//     Spacecraft meo({ Cartesian(state0, mu), epoch, sys });
+//     Keplerian state0 = Keplerian<frames::earth::icrf>::GPS();
+//     Spacecraft meo({ Cartesian(state0, mu), epoch });
 //     Vehicle vehicle{ meo };
 
 //     // Propagate
 //     const auto stateHistory = integrator.propagate(state0, propTime, eom, vehicle, true);
 
 //     // Validate
-//     for (const auto& [time, state] : stateHistory) {
-//         const Keplerian kep = state.in_element_set<Keplerian>();
-//         ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
+//     for (const auto& state : stateHistory) {
+//         const Keplerian kep = state.in_element_set<Keplerian<frames::earth::icrf>> ();
+//         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, state0, true, REL_TOL));
 //     }
 // }
 
 
-// TEST_F(Atmospheric6DofTest, LEO)
+// TEST_F(Atmospheric6DofTest, GEO)
 // {
 //     // Build constellation
-//     Keplerian state0 = Keplerian::LEO();
-//     Spacecraft leo({ Cartesian(state0, mu), epoch, sys });
+//     Keplerian state0 = Keplerian<frames::earth::icrf>::GEO();
+//     Spacecraft leo({ Cartesian(state0, mu), epoch });
 //     Vehicle vehicle{ leo };
 
 //     // Propagate
 //     const auto stateHistory = integrator.propagate(state0, propTime, eom, vehicle, true);
 
 //     // Validate
-//     for (const auto& [time, state] : stateHistory) {
-//         const Keplerian kep = state.in_element_set<Keplerian>();
-//         ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, state0, true, REL_TOL));
+//     for (const auto& state : stateHistory) {
+//         const Keplerian kep = state.in_element_set<Keplerian<frames::earth::icrf>> ();
+//         ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, state0, true, REL_TOL));
 //     }
 // }

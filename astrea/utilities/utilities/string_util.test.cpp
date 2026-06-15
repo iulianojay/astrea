@@ -30,6 +30,10 @@ TEST(StringUtilities, Trim)
     ASSERT_EQ(trim("   Hello, World!"), "Hello, World!");
     ASSERT_EQ(trim("Hello, World!   "), "Hello, World!");
     ASSERT_EQ(trim("Hello, World!"), "Hello, World!");
+    ASSERT_EQ(trim("     "), "");
+    ASSERT_EQ(trim("     OnlyLeadingWhiteSpace"), "OnlyLeadingWhiteSpace");
+    ASSERT_EQ(trim("OnlyTrailingWhiteSpace     "), "OnlyTrailingWhiteSpace");
+    ASSERT_EQ(trim("     BothLeadingAndTrailingWhiteSpace     "), "BothLeadingAndTrailingWhiteSpace");
 }
 
 TEST(StringUtilities, ReplaceAll)
@@ -39,6 +43,17 @@ TEST(StringUtilities, ReplaceAll)
     ASSERT_EQ(replace_all("Hello, World!", "7", "?"), "Hello, World!");
     ASSERT_EQ(replace_all("Hello, World!", "w", "W"), "Hello, World!");
     ASSERT_EQ(replace_all("Hello, World!", "W", "w"), "Hello, world!");
+}
+
+TEST(StringUtilities, Split)
+{
+    std::vector<std::string> expected = { "Hello", "World", "Testers" };
+    ASSERT_EQ(split("Hello,World,Testers", ","), expected);
+    ASSERT_EQ(split("Hello, World, Testers", ", "), expected);
+    ASSERT_EQ(split("Hello-World-Testers", "-"), expected);
+    ASSERT_EQ(split("Hello World Testers", " "), expected);
+    ASSERT_EQ(split("HelloWorldTesters", ","), std::vector<std::string>{ "HelloWorldTesters" });
+    ASSERT_EQ(split("", ","), std::vector<std::string>{ "" });
 }
 
 namespace test {
@@ -54,9 +69,9 @@ class NestedClass {};
 
 TEST(StringUtilities, GetTypeName)
 {
-    ASSERT_EQ(get_type_name<int>(), "int");
-    ASSERT_EQ(get_type_name<double>(), "double");
-    // ASSERT_EQ(get_type_name<std::string>(), "string");
-    ASSERT_EQ(get_type_name<test::TestClass>(), "TestClass");
-    ASSERT_EQ(get_type_name<test::nested::NestedClass>(), "NestedClass");
+    ASSERT_EQ(get_body_type_name<int>(), "int");
+    ASSERT_EQ(get_body_type_name<double>(), "double");
+    // ASSERT_EQ(get_body_type_name<std::string>(), "string");
+    ASSERT_EQ(get_body_type_name<test::TestClass>(), "TestClass");
+    ASSERT_EQ(get_body_type_name<test::nested::NestedClass>(), "NestedClass");
 }
