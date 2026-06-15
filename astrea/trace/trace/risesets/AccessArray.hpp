@@ -19,7 +19,7 @@
  */
 #pragma once
 
-#include <gtl/btree.hpp>
+#include <gtl/phmap.hpp>
 
 #include <trace/risesets/RiseSetArray.hpp>
 #include <trace/types/IdPair.hpp>
@@ -145,12 +145,12 @@ class AccessArray {
     /**
      * @brief Iterator type for AccessArray.
      */
-    using iterator = gtl::btree_map<IdPair, RiseSetArray>::iterator;
+    using iterator = gtl::flat_hash_map<IdPair, RiseSetArray>::iterator;
 
     /**
      * @brief Const iterator type for AccessArray.
      */
-    using const_iterator = gtl::btree_map<IdPair, RiseSetArray>::const_iterator;
+    using const_iterator = gtl::flat_hash_map<IdPair, RiseSetArray>::const_iterator;
 
     /**
      * @brief Returns an iterator to the beginning of the AccessArray.
@@ -195,7 +195,7 @@ class AccessArray {
     const_iterator cend() const { return _accesses.cend(); }
 
   private:
-    gtl::btree_map<IdPair, RiseSetArray> _accesses; //!< A map that associates IdPairs with their corresponding RiseSetArrays.
+    gtl::flat_hash_map<IdPair, RiseSetArray> _accesses; //!< A map that associates IdPairs with their corresponding RiseSetArrays.
 };
 
 } // namespace trace

@@ -20,7 +20,7 @@
 
 #include <vector>
 
-#include <gtl/btree.hpp>
+#include <gtl/phmap.hpp>
 
 #include <units/units.hpp>
 
@@ -55,12 +55,12 @@ class FoldsOfCoverage {
     /**
      * @brief Iterator type for the FoldsOfCoverage.
      */
-    using iterator = gtl::btree_map<std::size_t, std::vector<double>>::iterator;
+    using iterator = gtl::flat_hash_map<std::size_t, std::vector<double>>::iterator;
 
     /**
      * @brief Constant iterator type for the FoldsOfCoverage.
      */
-    using const_iterator = gtl::btree_map<std::size_t, std::vector<double>>::const_iterator;
+    using const_iterator = gtl::flat_hash_map<std::size_t, std::vector<double>>::const_iterator;
 
     /**
      * @brief Returns an iterator to the beginning of the FoldsOfCoverage.
@@ -113,8 +113,8 @@ class FoldsOfCoverage {
     const Stats<double>& get_stats(const std::size_t& id) const { return _stats.at(id); }
 
   private:
-    gtl::btree_map<std::size_t, std::vector<double>> _folds; //!< Map of receiver ID to vector of folds of coverage over time.
-    gtl::btree_map<std::size_t, Stats<double>> _stats; //!< Map of receiver ID to statistics for the folds of coverage.
+    gtl::flat_hash_map<std::size_t, std::vector<double>> _folds; //!< Map of receiver ID to vector of folds of coverage over time.
+    gtl::flat_hash_map<std::size_t, Stats<double>> _stats; //!< Map of receiver ID to statistics for the folds of coverage.
 };
 
 } // namespace trace

@@ -13,12 +13,13 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Payload.hpp>
 #include <astro/platforms/thrusters/Thruster.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
+#include <astro/state/StateHistory.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using namespace astrea;
@@ -43,15 +44,22 @@ class PayloadTest : public testing::Test {
   public:
     PayloadTest() {}
 
-    void SetUp() override {}
+    void SetUp() override
+    {
+        StateHistory history;
+        history.insert(State(Keplerian<astro::frames::earth::icrf>::LEO(), J2000));
+        satWithHistory.set_state_history(history);
+    }
 
     const Unitless REL_TOL = 1.0e-6;
 
-    Thrust thrust{ 1.0 * N };
+    Force thrust{ 1.0 * N };
     astro::RadiusVector<astro::frames::dynamic::ric> boresight{ -1.0 * km, 0.0 * km, 0.0 * km };
     astro::RadiusVector<astro::frames::dynamic::ric> attachmentPoint{ 0.5 * km, 0.2 * km, 0.1 * km };
     ThrusterParameters params{ thrust, boresight, attachmentPoint };
+    ThrusterParameters paramsCenter{ thrust, boresight, CENTER };
     Spacecraft sat;
+    Spacecraft satWithHistory;
 };
 
 int main(int argc, char** argv)
@@ -66,18 +74,18 @@ TEST_F(PayloadParametersTest, DefaultBoresight)
 {
     ThrusterParameters params{ 1.0 * N };
     auto boresightVec = params.get_boresight();
-    ASSERT_EQ_QUANTITY(boresightVec.get_x(), Distance(-1.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(boresightVec.get_y(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(boresightVec.get_z(), Distance(0.0 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(boresightVec.get_x(), Distance(-1.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(boresightVec.get_y(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(boresightVec.get_z(), Distance(0.0 * km), REL_TOL));
 }
 
 TEST_F(PayloadParametersTest, DefaultAttachmentPoint)
 {
     ThrusterParameters params{ 1.0 * N };
     auto attachPt = params.get_attachment_point();
-    ASSERT_EQ_QUANTITY(attachPt.get_x(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(attachPt.get_y(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(attachPt.get_z(), Distance(0.0 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(attachPt.get_x(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(attachPt.get_y(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(attachPt.get_z(), Distance(0.0 * km), REL_TOL));
 }
 
 TEST_F(PayloadParametersTest, CustomBoresight)
@@ -85,9 +93,9 @@ TEST_F(PayloadParametersTest, CustomBoresight)
     astro::RadiusVector<astro::frames::dynamic::ric> customBoresight{ 1.0 * km, 2.0 * km, 3.0 * km };
     ThrusterParameters params{ 1.0 * N, customBoresight };
     auto boresightVec = params.get_boresight();
-    ASSERT_EQ_QUANTITY(boresightVec.get_x(), Distance(1.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(boresightVec.get_y(), Distance(2.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(boresightVec.get_z(), Distance(3.0 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(boresightVec.get_x(), Distance(1.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(boresightVec.get_y(), Distance(2.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(boresightVec.get_z(), Distance(3.0 * km), REL_TOL));
 }
 
 TEST_F(PayloadParametersTest, CustomAttachmentPoint)
@@ -95,27 +103,27 @@ TEST_F(PayloadParametersTest, CustomAttachmentPoint)
     astro::RadiusVector<astro::frames::dynamic::ric> customAttach{ 0.5 * km, 0.6 * km, 0.7 * km };
     ThrusterParameters params{ 1.0 * N, NADIR_RIC, customAttach };
     auto attachPt = params.get_attachment_point();
-    ASSERT_EQ_QUANTITY(attachPt.get_x(), Distance(0.5 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(attachPt.get_y(), Distance(0.6 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(attachPt.get_z(), Distance(0.7 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(attachPt.get_x(), Distance(0.5 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(attachPt.get_y(), Distance(0.6 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(attachPt.get_z(), Distance(0.7 * km), REL_TOL));
 }
 
 TEST_F(PayloadParametersTest, GetBoresight)
 {
     ThrusterParameters params{ 1.0 * N, boresight, attachmentPoint };
     auto retrievedBoresight = params.get_boresight();
-    ASSERT_EQ_QUANTITY(retrievedBoresight.get_x(), boresight.get_x(), REL_TOL);
-    ASSERT_EQ_QUANTITY(retrievedBoresight.get_y(), boresight.get_y(), REL_TOL);
-    ASSERT_EQ_QUANTITY(retrievedBoresight.get_z(), boresight.get_z(), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(retrievedBoresight.get_x(), boresight.get_x(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(retrievedBoresight.get_y(), boresight.get_y(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(retrievedBoresight.get_z(), boresight.get_z(), REL_TOL));
 }
 
 TEST_F(PayloadParametersTest, GetAttachmentPoint)
 {
     ThrusterParameters params{ 1.0 * N, boresight, attachmentPoint };
     auto retrievedAttachment = params.get_attachment_point();
-    ASSERT_EQ_QUANTITY(retrievedAttachment.get_x(), attachmentPoint.get_x(), REL_TOL);
-    ASSERT_EQ_QUANTITY(retrievedAttachment.get_y(), attachmentPoint.get_y(), REL_TOL);
-    ASSERT_EQ_QUANTITY(retrievedAttachment.get_z(), attachmentPoint.get_z(), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(retrievedAttachment.get_x(), attachmentPoint.get_x(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(retrievedAttachment.get_y(), attachmentPoint.get_y(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(retrievedAttachment.get_z(), attachmentPoint.get_z(), REL_TOL));
 }
 
 TEST_F(PayloadParametersTest, SetBoresight)
@@ -124,9 +132,9 @@ TEST_F(PayloadParametersTest, SetBoresight)
     astro::RadiusVector<astro::frames::dynamic::ric> newBoresight{ 2.0 * km, 3.0 * km, 4.0 * km };
     params.set_boresight(newBoresight);
     auto retrievedBoresight = params.get_boresight();
-    ASSERT_EQ_QUANTITY(retrievedBoresight.get_x(), Distance(2.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(retrievedBoresight.get_y(), Distance(3.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(retrievedBoresight.get_z(), Distance(4.0 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(retrievedBoresight.get_x(), Distance(2.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(retrievedBoresight.get_y(), Distance(3.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(retrievedBoresight.get_z(), Distance(4.0 * km), REL_TOL));
 }
 
 TEST_F(PayloadParametersTest, SetAttachmentPoint)
@@ -135,23 +143,23 @@ TEST_F(PayloadParametersTest, SetAttachmentPoint)
     astro::RadiusVector<astro::frames::dynamic::ric> newAttachment{ 1.5 * km, 2.5 * km, 3.5 * km };
     params.set_attachment_point(newAttachment);
     auto retrievedAttachment = params.get_attachment_point();
-    ASSERT_EQ_QUANTITY(retrievedAttachment.get_x(), Distance(1.5 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(retrievedAttachment.get_y(), Distance(2.5 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(retrievedAttachment.get_z(), Distance(3.5 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(retrievedAttachment.get_x(), Distance(1.5 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(retrievedAttachment.get_y(), Distance(2.5 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(retrievedAttachment.get_z(), Distance(3.5 * km), REL_TOL));
 }
 
 TEST_F(PayloadParametersTest, NADIRRICConstant)
 {
-    ASSERT_EQ_QUANTITY(NADIR_RIC.get_x(), Distance(-1.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(NADIR_RIC.get_y(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(NADIR_RIC.get_z(), Distance(0.0 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(NADIR_RIC.get_x(), Distance(-1.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(NADIR_RIC.get_y(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(NADIR_RIC.get_z(), Distance(0.0 * km), REL_TOL));
 }
 
 TEST_F(PayloadParametersTest, CENTERConstant)
 {
-    ASSERT_EQ_QUANTITY(CENTER.get_x(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(CENTER.get_y(), Distance(0.0 * km), REL_TOL);
-    ASSERT_EQ_QUANTITY(CENTER.get_z(), Distance(0.0 * km), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(CENTER.get_x(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(CENTER.get_y(), Distance(0.0 * km), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(CENTER.get_z(), Distance(0.0 * km), REL_TOL));
 }
 
 // Payload Tests (using Thruster as concrete implementation)
@@ -173,13 +181,13 @@ TEST_F(PayloadTest, GetParameters)
     auto retrievedBoresight  = retrievedParams.get_boresight();
     auto retrievedAttachment = retrievedParams.get_attachment_point();
 
-    ASSERT_EQ_QUANTITY(retrievedBoresight.get_x(), boresight.get_x(), REL_TOL);
-    ASSERT_EQ_QUANTITY(retrievedBoresight.get_y(), boresight.get_y(), REL_TOL);
-    ASSERT_EQ_QUANTITY(retrievedBoresight.get_z(), boresight.get_z(), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(retrievedBoresight.get_x(), boresight.get_x(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(retrievedBoresight.get_y(), boresight.get_y(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(retrievedBoresight.get_z(), boresight.get_z(), REL_TOL));
 
-    ASSERT_EQ_QUANTITY(retrievedAttachment.get_x(), attachmentPoint.get_x(), REL_TOL);
-    ASSERT_EQ_QUANTITY(retrievedAttachment.get_y(), attachmentPoint.get_y(), REL_TOL);
-    ASSERT_EQ_QUANTITY(retrievedAttachment.get_z(), attachmentPoint.get_z(), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(retrievedAttachment.get_x(), attachmentPoint.get_x(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(retrievedAttachment.get_y(), attachmentPoint.get_y(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(retrievedAttachment.get_z(), attachmentPoint.get_z(), REL_TOL));
 }
 
 TEST_F(PayloadTest, GetId)
@@ -214,7 +222,7 @@ TEST_F(PayloadTest, PayloadWithDifferentParent)
 TEST_F(PayloadTest, ThrusterParametersGetThrust)
 {
     ThrusterParameters thrusterParams{ thrust, boresight, attachmentPoint };
-    ASSERT_EQ_QUANTITY(thrusterParams.get_thrust(), thrust, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(thrusterParams.get_thrust(), thrust, REL_TOL));
 }
 
 TEST_F(PayloadTest, MultiplePayloadsWithSameParameters)
@@ -227,4 +235,54 @@ TEST_F(PayloadTest, MultiplePayloadsWithSameParameters)
 
     // But they should be different objects
     ASSERT_NE(&thruster1, &thruster2);
+}
+
+TEST_F(PayloadTest, GetName)
+{
+    Thruster thruster(sat, params);
+    ASSERT_EQ(thruster.get_name(), "Payload");
+}
+
+TEST_F(PayloadTest, GetInertialPositionThrowsWithoutHistory)
+{
+    Thruster thruster(sat, paramsCenter);
+    ASSERT_ANY_THROW({ auto pos = thruster.get_position(Date()); });
+}
+
+TEST_F(PayloadTest, GetInertialPositionNoThrowWithHistory)
+{
+    Thruster thruster(satWithHistory, paramsCenter);
+    ASSERT_NO_THROW({ auto pos = thruster.get_position(Date()); });
+}
+
+TEST_F(PayloadTest, GetInertialPositionMatchesParentWithCenterAttachment)
+{
+    Thruster thruster(satWithHistory, paramsCenter);
+    const auto payloadPos = thruster.get_position(Date());
+    const auto parentPos  = satWithHistory.get_position(Date());
+    ASSERT_TRUE(math::nearly_equal(payloadPos.get_x(), parentPos.get_x(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(payloadPos.get_y(), parentPos.get_y(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(payloadPos.get_z(), parentPos.get_z(), REL_TOL));
+}
+
+TEST_F(PayloadTest, GetInertialVelocityThrowsWithoutHistory)
+{
+    Thruster thruster(sat, params);
+    ASSERT_ANY_THROW({ auto vel = thruster.get_velocity(Date()); });
+}
+
+TEST_F(PayloadTest, GetInertialVelocityNoThrowWithHistory)
+{
+    Thruster thruster(satWithHistory, params);
+    ASSERT_NO_THROW({ auto vel = thruster.get_velocity(Date()); });
+}
+
+TEST_F(PayloadTest, GetInertialVelocityMatchesParent)
+{
+    Thruster thruster(satWithHistory, params);
+    const auto payloadVel = thruster.get_velocity(Date());
+    const auto parentVel  = satWithHistory.get_velocity(Date());
+    ASSERT_TRUE(math::nearly_equal(payloadVel.get_x(), parentVel.get_x(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(payloadVel.get_y(), parentVel.get_y(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(payloadVel.get_z(), parentVel.get_z(), REL_TOL));
 }

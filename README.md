@@ -54,7 +54,7 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
     {0.0 * (km/s), 7.546 * (km/s), 0.0 * (km/s)}  // velocity
   };
   // Keplerian elements  
-  Keplerian kepler{
+  Keplerian<frames::earth::icrf> kepler{
     7000.0 * km,  // semimajoraxis
     0.01,         // eccentricity
     98.0 * deg,   // inclination
@@ -125,8 +125,12 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
   // Automatic transformation to J2000
   RadiusVector<frames::earth::j2000> posJ2000 = posIcrf.in_frame<frames::earth::j2000>(epoch);
   
-  // Chain transformations coming soon!
-  // auto posMarsIcrf = transform_to<frames::mars::icrf>(posIcrf, epoch);
+  // Chain transformations under the hood
+  RadiusVector<frames::mars::icrf> posMarsIcrf = posIcrf.in_frame<frames::mars::icrf>(epoch);
+
+  // Even automatically transformation velocity and acceleration vectors while handling abberations
+  AcceleartionVector<frames::earth::icrf> accIcrf{0.0 * (km/s/s), -0.001 * (km/s/s), 0.0 * (km/s/s)};
+  auto accJ2000 = accIcrf.in_frame<frames::earth::j2000>(epoch, r1, v1); // Handles velocity abberations for non-inertial frames
 ```
 - **Dynamic frame support** for time-varying coordinate systems
 ```cpp
@@ -138,15 +142,14 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
 ```cpp
   namespace custom_frames {
     // Define spacecraft body frame
-    struct SpacecraftBody : public Frame<SpacecraftBody> {
-      // ...
-      // ooh boy this is sure something right now but you can do it
-      // ...
-    };
+    constexpr inline struct SpacecraftBody : public Frame<"MySpacecraftFrame", SpacecraftOrigin, DynamicAxis> {
+    } SpacecraftBody;
   }
   
   CartesianVector<Thrust, custom_frames::SpacecraftBody> thrust_vector{1.0 * N, 0.0 * N, 0.0 * N};
 ```
+And more!
+
 - **Advanced time systems** including Julian Date, UTC, TAI, and other common time standards
 ```cpp
   Date now = Date::now();   // Current time in Julian Date
@@ -187,7 +190,7 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
   class MySpacecraft : public Vehicle {
     // Custom spacecraft definition with mass properties, geometry, and subsystems
   };
-  integrator.propagate(state0, propTime, eoms, { MySpacecraft() }, store);
+  integrator.propagate(state0, propTime, { MySpacecraft() });
 ```
 - **Celestial body definitions** with customizable parameters
 ```cpp
@@ -211,6 +214,16 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
 - **NASA validation** using published 6DoF test datasets
 - **Mathematical utilities** optimized for dimensional analysis
 
+### Recent Additions
+- **Event Detection and Scheduling**: User-defined events during propagation with callback support
+- **Automatic Frame Translations**: Time-varying coordinate systems with automatic transformations
+- **Custom Step Watchers**: User-defined callbacks for monitoring and modifying propagation steps
+- **Improved Installation**: CMake packaging and cross-platform deployment
+- **6-DoF Simulation**: Complete attitude dynamics with control system modeling
+- **Performance Benchmarks**: Google Benchmark integration with speed guarantees
+- **Comprehensive Frame Transformations**: Support for a wide range of celestial bodies and dynamic frames
+- **Cislunar Dynamics**: CR3BP propagator and synodic frame support
+
 ## Installation
 
 Astrea requires C++23 and uses CMake for building. Detailed installation instructions are available in our [Getting Started Guide](https://iulianojay.github.io/astrea/getting_started/installation_and_usage/).
@@ -226,15 +239,12 @@ Documentation is available online at <https://iulianojay.github.io/astrea/>, but
 
 ## Roadmap
 
-- **Improved Installation**: CMake packaging and cross-platform deployment
-- **6-DoF Simulation**: Complete attitude dynamics with control system modeling
 - **Environmental Models**: High-fidelity atmospheric and solar models
 - **Advanced Propagators**: SGP4/SGP8 and specialized cislunar dynamics (CR3BP, BC4BP)
 - **Mission Planning**: Trajectory optimization and automated scheduling tools
 - **Extended Element Sets**: Additional orbital representations and optimized transformations
 - **Validation**: Real-world comparisons using GPS and tracking data
 - **Visualization**: GUI interface for analysis and mission visualization
-- **Performance Benchmarks**: Google Benchmark integration with speed guarantees
 
 ## Contributing
 
@@ -249,9 +259,9 @@ Direct modifications, derivatives, forks, or extensions of the library must be r
 In order to demonstrate and expand the core libraries in Astrea, a simple revisit analysis tool was added to the code. This tool, Trace, uses the foundational Astrea libraries, builds on-top of them, and provides a good set of examples on how one might safely expand and make use of the library in larger projects. Some of the features will be ingested into the core astrodynamics sub-library, but for now, their separation is used as both a practical testing ground and a demonstration of real-world practical applications.
 
 <center>
-  <img src="docs/assets/images/avg-daily-visibility.png" alt="Average Daily Visibility" width="350"/>
-  <img src="docs/assets/images/mean-time-to-access.png" alt="Mean Time to Access" width="350"/>
-  <img src="docs/assets/images/avg-folds-of-coverage.png" alt="Average Folds of Coverage" width="350"/>
+  <img src="docs/assets/images/avg-daily-visibility.png" alt="Average Daily Visibility" width="45%"/>
+  <img src="docs/assets/images/mean-time-to-access.png" alt="Mean Time to Access" width="45%"/>
+  <img src="docs/assets/images/avg-folds-of-coverage.png" alt="Average Folds of Coverage" width="45%"/>
 </center>
 
 These images are some of the outputs from a simple example run of Trace. Further capabilities, expanded examples, and more detailed documentation on how to use Trace will be added in the future. 

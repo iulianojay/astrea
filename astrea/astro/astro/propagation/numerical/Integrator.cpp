@@ -26,12 +26,13 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
+#include <astro/propagation/equations_of_motion/TwoBody.hpp>
 #include <astro/propagation/event_detection/Event.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>
 #include <astro/propagation/numerical/butcher_tableau.hpp>
 #include <astro/state/StateHistory.hpp>
+#include <astro/state/orbital_elements.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/state/orbital_elements/orbital_elements.hpp>
 #include <astro/time/Interval.hpp>
 #include <astro/types/typedefs.hpp>
 
@@ -42,37 +43,21 @@ using mp_units::si::unit_symbols::s;
 namespace astrea {
 namespace astro {
 
-StateHistory Integrator::propagate(
-    const State& state0,
-    const Date& endEpoch,
-    const EquationsOfMotion& eom,
-    Vehicle vehicle,
-    bool store,
-    const std::vector<Event>& events,
-    const Schedule& schedule
-)
+StateHistory Integrator::propagate(const State& state0, const Date& endEpoch, Vehicle vehicle)
 {
     const Time propTime = endEpoch - state0.get_epoch();
-    return propagate(state0, propTime, eom, vehicle, store, events, schedule);
+    return propagate(state0, propTime, vehicle);
 }
 
-StateHistory Integrator::propagate(
-    const State& state0,
-    const Time& propTime,
-    const EquationsOfMotion& eom,
-    Vehicle vehicle,
-    bool store,
-    const std::vector<Event>& events,
-    const Schedule& schedule
-)
+StateHistory Integrator::propagate(const State& state0, const Time& propTime, Vehicle vehicle)
 {
-    setup(store, eom, events);
+    setup();
 
-    if (schedule.get_scheduled_dates().empty()) { return propagate_impl(state0, propTime, vehicle); }
+    if (_schedule.get_scheduled_dates().empty()) { return propagate_impl(state0, propTime, vehicle); }
 
     // Erase anything in the schedule that is outside the propagation interval
     const Date finalEpoch            = state0.get_epoch() + propTime;
-    std::vector<Date> scheduledDates = schedule.get_scheduled_dates();
+    std::vector<Date> scheduledDates = _schedule.get_scheduled_dates();
     for (auto it = scheduledDates.rbegin(); it != scheduledDates.rend();) {
         if (*it < state0.get_epoch() || *it > finalEpoch) {
             it = decltype(it)(scheduledDates.erase(std::next(it).base()));
@@ -95,13 +80,39 @@ StateHistory Integrator::propagate(
 
         // Trigger events at the scheduled date
         State stateAtEvent = stateHistory.get_state_at(nextEpoch);
-        schedule.trigger_scheduled_events(nextEpoch, timeToNextEpoch, stateAtEvent, vehicle);
+        _schedule.trigger_scheduled_events(nextEpoch, timeToNextEpoch, stateAtEvent, vehicle);
 
         // Update initial state for next propagation segment
         state = stateAtEvent;
     }
     return fullStateHistory;
 }
+
+State Integrator::propagate_no_storage(const State& state0, const Time& propTime, Vehicle vehicle)
+{
+    _store = false;
+    return propagate(state0, propTime, vehicle).last();
+}
+
+State Integrator::propagate_no_storage(const State& state0, const Date& endEpoch, Vehicle vehicle)
+{
+    return propagate_no_storage(state0, endEpoch - state0.get_epoch(), vehicle);
+}
+
+void Integrator::set_schedule(const Schedule& schedule) { _schedule = schedule; }
+
+void Integrator::clear() { _schedule.clear(); }
+
+void Integrator::add_event(const Event& event) { _eventDetector.add_event(event); }
+
+void Integrator::add_events(const std::vector<Event>& events)
+{
+    for (const auto& event : events) {
+        add_event(event);
+    }
+}
+
+void Integrator::clear_events() { _eventDetector.clear_events(); }
 
 StateHistory Integrator::propagate_impl(const State& state0, const Time& propTime, Vehicle vehicle)
 {
@@ -123,19 +134,19 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
     while (_iteration < _MAX_ITER) {
 
         // Check for event
-        const bool terminalEvent = check_event(time, state, vehicle);
-        if (terminalEvent) {
+        if (check_event(time, state, vehicle)) {
             std::cout << "Warning: Terminal conditions detected.";
-            return stateHistory;
+            break;
         }
 
         // Make sure state and time are valid
         if (!validate_state_and_time(time, state)) {
             std::cout << "Integration Error: Invalid state or time (NaN or Inf). \n\n";
-            return stateHistory;
+            break;
         }
 
         // Step
+        bool interiorStepFailure = false;
         if (_useFixedStep) {
             // Step without error correction
             // I think an interesting choice would allow the user to use the fixed timestep but the
@@ -153,7 +164,8 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
                 // Catch underflow
                 if (time + timeStep == time) {
                     std::cout << "Integration Error: Stepsize underflow. \n\n";
-                    return stateHistory;
+                    interiorStepFailure = true;
+                    break;
                 }
 
                 // Break if step succeeded
@@ -167,11 +179,14 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
             if (_variableStepIteration >= _MAX_VAR_STEP_ITER) {
                 std::cout
                     << "Integration Error: Max iterations exceeded. Unable to find stepsize within tolerance. \n\n";
-                return stateHistory;
+                interiorStepFailure = true;
+                break;
             }
         }
+        if (interiorStepFailure) { break; }
 
         // Successful event
+        watch_step(time, state, vehicle);
         if (_store) { stateHistory.insert(state); }
 
         // Ensure last step goes to exact final time
@@ -188,8 +203,8 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
         ++_iteration;
     }
 
-    // Store last state if not already stored
-    if (!_store) { stateHistory.insert(state); }
+    // Always store last state, even on failure to get last valid state
+    stateHistory.insert(state);
 
     // Store event times
     if (!_eventDetector.get_events().empty()) { stateHistory.set_event_times(_eventDetector.get_event_times(_epoch0)); }
@@ -197,11 +212,9 @@ StateHistory Integrator::propagate_impl(const State& state0, const Time& propTim
     return stateHistory;
 }
 
-void Integrator::setup(const bool store, const EquationsOfMotion& eom, const std::vector<Event>& events)
+void Integrator::setup()
 {
-    _store = store;
-    _eom   = &eom;
-    _eventDetector.set_events(events);
+    if (!_eom) { _eom = std::make_unique<TwoBody>(); };
 
     // Ensure counts restart
     _functionEvaluations = 0;
@@ -301,12 +314,11 @@ StatePartial Integrator::find_state_derivative(const Time& time, const State& st
     ++_functionEvaluations;
 
     // Ask eom object to evaluate
+    // TODO: Figure out how to get rid of this copy
     State stateTemp = state;
     stateTemp.set_epoch(_epoch0 + time);
 
-    const OrbitalElementPartials orbitalElementPartials = _eom->operator()(stateTemp, vehicle);
-
-    return { orbitalElementPartials, stateTemp.get_epoch(), state.get_system() };
+    return _eom->operator()(stateTemp, vehicle);
 }
 
 // This is a generic form of an rk step method. Works for any rk, rkf, or dop method.
@@ -315,10 +327,10 @@ std::pair<State, State> Integrator::take_step(const Time& time, const Time& time
     // Find k values: ki = timeStep*find_state_derivative(time + c[i]*stepSize, state + sum_(j=0)^(i-1) k_j a[i][j])
     for (std::size_t iStage = 0; iStage < _nStages; ++iStage) {
         // Calculate intermediate state for current stage (except stage 0)
-        _statePlusKi = state;
+        State statePlusKi = state;
         if (iStage > 0) {
             for (std::size_t jStage = 0; jStage < iStage; ++jStage) {
-                _statePlusKi += _kMatrix[jStage] * _a[iStage][jStage];
+                statePlusKi += _kMatrix[jStage] * _a[iStage][jStage];
             }
         }
 
@@ -326,17 +338,17 @@ std::pair<State, State> Integrator::take_step(const Time& time, const Time& time
         StatePartial partial;
         if (iStage == 0) {
             if (_stepMethod == StepMethod::RK45 || _stepMethod == StepMethod::RKF45 || _stepMethod == StepMethod::RKF78) {
-                partial = find_state_derivative(time, _statePlusKi, vehicle);
+                partial = find_state_derivative(time, statePlusKi, vehicle);
             }
             else if (_stepMethod == StepMethod::DOP45 || _stepMethod == StepMethod::DOP78) {
-                if (_iteration == 0) { partial = find_state_derivative(time, _statePlusKi, vehicle); }
+                if (_iteration == 0) { partial = find_state_derivative(time, statePlusKi, vehicle); }
                 else {
                     partial = _YFinalPrevious;
                 }
             }
         }
         else {
-            partial = find_state_derivative(time + _c[iStage] * timeStep, _statePlusKi, vehicle);
+            partial = find_state_derivative(time + _c[iStage] * timeStep, statePlusKi, vehicle);
         }
 
         // Store k value
@@ -493,19 +505,55 @@ bool Integrator::validate_state_and_time(const Time& time, const State& state) c
     return true;
 }
 
+void Integrator::watch_step(const Time& time, const State& state, const Vehicle& vehicle) const
+{
+    for (const auto& watcher : _stepWatchers) {
+        watcher(time, state, vehicle);
+    }
+}
+
 
 // Integrator Properties
-void Integrator::set_abs_tol(const Unitless& absTol) { _ABS_TOL = absTol; }
-void Integrator::set_rel_tol(const Unitless& relTol) { _REL_TOL = relTol; }
-void Integrator::set_max_iter(const int& itMax) { _MAX_ITER = itMax; }
+void Integrator::add_step_watcher(const StepWatcher& watcher) { _stepWatchers.push_back(watcher); }
+
+void Integrator::clear_watchers() { _stepWatchers.clear(); }
+
+void Integrator::set_abs_tol(const Unitless& absTol)
+{
+    if (is_lteq_zero(absTol)) {
+        throw std::invalid_argument("Integration Error: Absolute tolerance must be positive and non-zero.");
+    }
+    _ABS_TOL = absTol;
+}
+
+void Integrator::set_rel_tol(const Unitless& relTol)
+{
+    if (is_lteq_zero(relTol)) {
+        throw std::invalid_argument("Integration Error: Relative tolerance must be positive and non-zero.");
+    }
+    _REL_TOL = relTol;
+}
+
+void Integrator::set_max_iter(const int& itMax)
+{
+    if (itMax <= 0) {
+        throw std::invalid_argument("Integration Error: Maximum iterations must be positive and non-zero.");
+    }
+    _MAX_ITER = itMax;
+}
+
 void Integrator::set_initial_timestep(const Time& dt0) { _timeStepInitial = dt0; }
+
 void Integrator::switch_fixed_timestep(const bool& onOff) { _useFixedStep = onOff; }
+
 void Integrator::switch_fixed_timestep(const bool& onOff, const Time& fixedTimeStep)
 {
     _useFixedStep  = onOff;
     _fixedTimeStep = fixedTimeStep;
 }
+
 void Integrator::set_timestep(const Time& fixedTimeStep) { _fixedTimeStep = fixedTimeStep; }
+
 void Integrator::set_step_method(const StepMethod& stepMethod) { _stepMethod = stepMethod; }
 
 } // namespace astro

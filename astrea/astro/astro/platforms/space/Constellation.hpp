@@ -22,6 +22,7 @@
 #include <vector>
 
 #include <units/units.hpp>
+#include <utilities/IdProvider.hpp>
 
 #include <astro/platforms/space/Shell.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
@@ -44,7 +45,7 @@ class Constellation {
     /**
      * @brief Default constructor for Constellation.
      */
-    Constellation() { generate_id(); };
+    Constellation() { id = utilities::IdProvider::get_next_id<"Constellation">(); };
 
     /**
      * @brief Construct a Constellation from a vector of Shells.
@@ -71,14 +72,12 @@ class Constellation {
      * @brief Construct a Constellation from a vector of GeneralPerturbations objects.
      *
      * @param gp A vector of GeneralPerturbations objects to initialize the Constellation.
-     * @param system The AstrodynamicsSystem to use for the Constellation.
      */
-    Constellation(const std::vector<GeneralPerturbations>& gp, const AstrodynamicsSystem& system);
+    Constellation(const std::vector<GeneralPerturbations>& gp);
 
     /**
      * @brief Construct a Constellation with a specific configuration.
      *
-     * @param sys The AstrodynamicsSystem to use for the Constellation.
      * @param epoch The epoch of the Constellation.
      * @param semimajor The semimajor axis of the orbit.
      * @param inclination The inclination of the orbit.
@@ -89,7 +88,6 @@ class Constellation {
      * @param anchorAnomaly The argument of perigee for the first shell.
      */
     Constellation(
-        const AstrodynamicsSystem& sys,
         const Date& epoch,
         const Distance& semimajor,
         const Angle& inclination,
@@ -221,19 +219,17 @@ class Constellation {
      * @brief Propagate the Constellation using the provided epoch, Equations of Motion, and Integrator.
      *
      * @param propTime The total propagation time after the initial state epoch.
-     * @param eom The Equations of Motion to use for propagation.
      * @param integrator The Integrator to use for propagation.
      */
-    void propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Time& propTime, Integrator& integrator);
 
     /**
      * @brief Propagate the Constellation using the provided epoch, Equations of Motion, and Integrator.
      *
      * @param endEpoch The total propagation time after the initial state epoch.
-     * @param eom The Equations of Motion to use for propagation.
      * @param integrator The Integrator to use for propagation.
      */
-    void propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Date& endEpoch, Integrator& integrator);
 
 
     // using iterator       = std::vector<Shell<Spacecraft_T>>::iterator;
@@ -482,11 +478,6 @@ class Constellation {
     std::size_t id;                          // Unique identifier for the Constellation
     std::string name;                        // Name of the Constellation
     std::vector<Shell<Spacecraft_T>> shells; // Vector of Shells in the Constellation
-
-    /**
-     * @brief Generate a unique ID hash for the Constellation.
-     */
-    void generate_id();
 };
 
 } // namespace astro

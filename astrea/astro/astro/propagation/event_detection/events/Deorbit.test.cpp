@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
@@ -22,11 +22,11 @@
 #include <astro/propagation/event_detection/EventDetector.hpp>
 #include <astro/propagation/event_detection/events/Deorbit.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/angular_elements/instances/Geodetic.hpp>
+#include <astro/state/angular_elements/Geodetic.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/systems/planetary_bodies/Earth/Earth.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
+#include <astro/systems/system_utilities.hpp>
 
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
@@ -50,14 +50,13 @@ class DeorbitTest : public testing::Test {
         const RadiusVector<frames::earth::icrf> position{ 6400.0 * km, 0.0 * km, 0.0 * km };
         const VelocityVector<frames::earth::icrf> velocity{ 0.0 * km / s, 7.8 * km / s, 0.0 * km / s };
 
-        cartesian = Cartesian(position, velocity);
-        state     = State(cartesian, epoch, sys);
+        cartesian = Cartesian<frames::earth::icrf>(position, velocity);
+        state     = State(cartesian, epoch);
     }
 
-    AstrodynamicsSystem sys;
     Time time;
     Date epoch;
-    Cartesian cartesian;
+    Cartesian<frames::earth::icrf> cartesian;
     State state;
     Spacecraft spacecraft;
     Vehicle vehicle;
@@ -99,11 +98,11 @@ TEST_F(DeorbitTest, MeasureEventDefaultAltitude)
     Deorbit event; // Default altitude of 0 km
     Unitless result = event.measure_event(time, state, vehicle);
 
-    const Distance altitude    = Geodetic(cartesian.get_position(), epoch, sys.get_central_body().get()).get_altitude();
-    const Distance crashRadius = sys.get_central_body()->get_crash_radius();
+    const Distance altitude    = Geodetic<planets::Earth>(cartesian.get_position(), epoch).get_altitude();
+    const Distance crashRadius = get_crash_radius<planets::Earth>();
     Unitless expected          = (altitude - crashRadius) / (1.0 * km);
 
-    ASSERT_EQ_QUANTITY(result, expected, 1.0e-6 * one);
+    ASSERT_TRUE(math::nearly_equal(result, expected, 1.0e-6 * one));
 }
 
 TEST_F(DeorbitTest, MeasureEventWithCustomAltitude)
@@ -112,8 +111,8 @@ TEST_F(DeorbitTest, MeasureEventWithCustomAltitude)
     Deorbit event(triggerAltitude);
     Unitless result = event.measure_event(time, state, vehicle);
 
-    const Distance altitude = Geodetic(cartesian.get_position(), epoch, sys.get_central_body().get()).get_altitude();
+    const Distance altitude = Geodetic<planets::Earth>(cartesian.get_position(), epoch).get_altitude();
     Unitless expected       = (altitude - triggerAltitude) / (1.0 * km);
 
-    ASSERT_EQ_QUANTITY(result, expected, 1.0e-6 * one);
+    ASSERT_TRUE(math::nearly_equal(result, expected, 1.0e-6 * one));
 }

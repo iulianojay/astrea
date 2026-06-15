@@ -18,6 +18,9 @@
  */
 #pragma once
 
+#include <concepts>
+
+#include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/types/enums.hpp>
 
 namespace astrea {
@@ -28,13 +31,20 @@ class StatePartial;
 class StateHistory;
 
 // ELement sets
+template <IsFrame auto _frame_>
 class Cartesian;
+template <IsFrame auto _frame_>
 class Keplerian;
+template <IsFrame auto _frame_>
 class Equinoctial;
-class TwoLineElements;
+template <IsFrame auto _frame_>
 class CartesianPartial;
+template <IsFrame auto _frame_>
 class KeplerianPartial;
+template <IsFrame auto _frame_>
 class EquinoctialPartial;
+
+class TwoLineElements;
 class TwoLineElementsPartial;
 class GeneralPerturbations;
 class OrbitalElements;
@@ -45,30 +55,45 @@ class KeplerianStm;
 class EquinoctialStm;
 class StateTransitionMatrix;
 
-template <class Value_T, class Frame_T>
-class CartesianVector;
+// Quaternions
+template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
+class Quaternion;
 
-template <CelestialBodyId origin, FrameAxis axis>
-struct Frame;
+template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
+class QuaternionPartial;
 
-template <CelestialBodyId origin, FrameAxis axis>
-    requires(origin != CelestialBodyId::UNSET && origin != CelestialBodyId::CUSTOM)
-struct InertialFrame;
+template <RotationSequence sequence, RotationType rotationType, IsFrame auto _in_frame_, IsFrame auto _out_frame_>
+class EulerAngles;
 
-template <CelestialBodyId origin>
-    requires(origin != CelestialBodyId::UNSET)
-struct BodyFixedFrame;
+template <IsFrame auto _in_frame_, IsFrame auto _ref_frame_>
+class AngularVelocities;
 
-template <class Frame_T, FrameAxis axis>
-    requires(axis != FrameAxis::ICRF && axis != FrameAxis::J2000 && axis != FrameAxis::BODY_FIXED)
-class DynamicFrame;
+template <IsFrame auto _in_frame_, IsFrame auto _ref_frame_>
+class AngularAccelerations;
 
+class Attitude;
+class AttitudePartials;
+
+// Frames
+template <typename Value_T, IsFrame auto _frame_>
+struct CartesianVector;
+
+namespace frames {
+
+template <IsFrame auto _parent_>
+struct EastNorthUp;
+template <IsFrame auto _parent_>
 struct LocalHorizontalLocalVertical;
+template <IsFrame auto _parent_>
 struct RadialInTrackCrossTrack;
+template <IsFrame auto _parent_>
 struct VelocityNormalBinormal;
+
+} // namespace frames
+
 struct Perifocal;
 
-template <typename In_Frame_T, typename Out_Frame_T>
+template <IsFrame auto _in_frame_, IsFrame auto _out_frame_>
 class DirectionCosineMatrix;
 
 // Platforms
@@ -86,6 +111,9 @@ template <class Payload_T>
 class PayloadPlatform;
 class Vehicle;
 
+template <IsFrame auto _frame_>
+class InertiaTensor;
+
 // Propagation
 class EquationsOfMotion;
 class Integrator;
@@ -94,10 +122,9 @@ class Event;
 class EventDetector;
 class Schedule;
 
-// Systems
-class AstrodynamicsSystem;
-class CelestialBody;
-struct CelestialBodyParameters;
+class Perturbation;
+class ForceModel;
+class PerturbingForce;
 
 // Time
 class Date;

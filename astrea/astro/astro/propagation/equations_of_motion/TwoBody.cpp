@@ -17,11 +17,11 @@
 #include <mp-units/systems/angular/math.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/frames/CartesianVector.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/platforms/Vehicle.hpp>
-#include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>
+#include <astro/propagation/equations_of_motion/StateTransitionMatrix.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
 
 namespace astrea {
 namespace astro {
@@ -33,23 +33,25 @@ using mp_units::pow;
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
-OrbitalElementPartials TwoBody::operator()(const State& state, const Vehicle& vehicle) const
+OrbitalElementPartials TwoBody::compute_dynamics(
+    const State& state,
+    const Vehicle& vehicle,
+    const ForceVector<frames::primary>& perts,
+    const ForceVector<frames::primary>& control
+) const
 {
     // Extract
-    const auto mu = state.get_system().get_mu();
+    const GravParam mu = get_mu<frames::primary.origin>();
 
-    const RadiusVector<frames::earth::icrf> r   = state.get_position();
-    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
+    const RadiusVector<frames::primary> r   = state.get_position();
+    const VelocityVector<frames::primary> v = state.get_velocity();
 
     // mu/R^3
-    const Distance R        = r.norm();
-    const quantity muOverR3 = mu / pow<3>(R);
+    const Distance R    = r.norm();
+    const auto muOverR3 = mu / pow<3>(R);
 
-    // Get vehicle-produced accels
-    const AccelerationVector<frames::earth::icrf> accelVehicle = vehicle.get_command_acceleration(state);
-
-    // Derivative
-    return CartesianPartial(v, -muOverR3 * r + accelVehicle);
+    // Dynamics
+    return CartesianPartial<frames::primary>(v, -muOverR3 * r + control / vehicle.get_mass());
 }
 
 
@@ -73,7 +75,7 @@ StateTransitionMatrix TwoBody::compute_stm(const State& state, const Vehicle& ve
         dax/dy = 3*mu*x*y/r^5
         dax/dz = 3*mu*x*z/r^5
     */
-    const auto mu = state.get_system().get_mu();
+    const GravParam mu = get_mu<frames::primary.origin>();
 
     const auto r  = state.get_position();
     const auto& x = r[0];
@@ -81,8 +83,8 @@ StateTransitionMatrix TwoBody::compute_stm(const State& state, const Vehicle& ve
     const auto& z = r[2];
     const auto R  = r.norm();
 
-    quantity muOverR3      = mu / pow<3>(R);
-    quantity threeMuOverR5 = 3 * mu / pow<5>(R);
+    const auto muOverR3      = mu / pow<3>(R);
+    const auto threeMuOverR5 = 3 * mu / pow<5>(R);
 
     StateTransitionMatrix stm;
 

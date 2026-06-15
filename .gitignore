@@ -1,9 +1,11 @@
 # Folders
 .devcontainer
 .coverage
+.cpm-cache
 .gcovr
 .venv
 .vscode
+.cpm-cache
 CMake*
 bin
 build

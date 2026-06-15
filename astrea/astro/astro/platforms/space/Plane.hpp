@@ -20,6 +20,8 @@
 
 #include <vector>
 
+#include <utilities/IdProvider.hpp>
+
 #include <astro/astro.fwd.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
@@ -45,7 +47,7 @@ class Plane {
     /**
      * @brief Default constructor for Plane.
      */
-    Plane() = default;
+    Plane() { id = utilities::IdProvider::get_next_id<"Plane">(); };
 
     /**
      * @brief Construct a Plane from a vector of Spacecraft.
@@ -57,7 +59,7 @@ class Plane {
     /**
      * @brief Destructor for Plane.
      */
-    ~Plane() { generate_id(); };
+    ~Plane() = default;
 
     /**
      * @brief Add a Spacecraft to the Plane.
@@ -106,19 +108,17 @@ class Plane {
      * @brief Propagate the Plane using the provided epoch and Equations of Motion.
      *
      * @param propTime The total propagation time after the initial state epoch.
-     * @param eom The Equations of Motion to use for propagation.
      * @param integrator The Integrator to use for propagation.
      */
-    void propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Time& propTime, Integrator& integrator);
 
     /**
      * @brief Propagate the Plane using the provided epoch and Equations of Motion.
      *
      * @param endEpoch The end epoch for propagation.
-     * @param eom The Equations of Motion to use for propagation.
      * @param integrator The Integrator to use for propagation.
      */
-    void propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Date& endEpoch, Integrator& integrator);
 
     /**
      * @brief Iterator for iterating over all Spacecraft in the Plane.
@@ -185,13 +185,6 @@ class Plane {
     std::vector<Spacecraft_T> satellites; // Vector of Spacecraft in the Plane
 
     bool strict; // Flag to indicate if the Plane is strict (all Spacecraft must have the same orbital elements)
-
-    /**
-     * @brief Generate a unique ID hash for the Plane.
-     *
-     * This function generates a unique ID hash for the Plane based on its contents.
-     */
-    void generate_id();
 };
 
 } // namespace astro

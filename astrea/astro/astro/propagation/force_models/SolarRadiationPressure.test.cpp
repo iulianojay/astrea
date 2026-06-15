@@ -13,14 +13,14 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/force_models/SolarRadiationPressure.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -35,8 +35,7 @@ using mp_units::si::unit_symbols::s;
 class SolarRadiationPressureTest : public testing::Test {
   public:
     SolarRadiationPressureTest() :
-        epoch("2020-02-18 15:08:47.23847"),
-        sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN })
+        epoch("2020-02-18 15:08:47.23847")
     {
     }
 
@@ -56,8 +55,7 @@ class SolarRadiationPressureTest : public testing::Test {
 
     Spacecraft sat;
     Date epoch;
-    AstrodynamicsSystem sys;
-    SolarRadiationPressure force;
+    SolarRadiationPressure srpForce;
 };
 
 
@@ -79,10 +77,11 @@ TEST_F(SolarRadiationPressureTest, ComputeForceValladoEx85)
     // other numerical differences between this code and Vallado's, this is close enough.
     // Since matching them exactly is impractical, the expected values are taken from a run of this code, not Vallado's.
 
-    Cartesian cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
-                    -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
-    State state(cart, epoch, sys);
-    const AccelerationVector<frames::earth::icrf> accel = force.compute_force(state, Vehicle(sat));
+    Cartesian<frames::earth::icrf> cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                                         -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    State state(cart, epoch);
+    const auto [force, torque]                          = srpForce.compute_perturbation(state, Vehicle(sat));
+    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
 
     // // Vallado's expected results
     // const AccelerationVector<frames::earth::icrf> expected{ -1.8791e-10 * km / (s * s),
@@ -107,6 +106,6 @@ TEST_F(SolarRadiationPressureTest, ComputeForceValladoEx85)
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();
 
-    ASSERT_EQ_QUANTITY(accelNorm, expectedNorm, REL_TOL * 1e1);
-    ASSERT_EQ_CART_VEC(accel, expected, REL_TOL);
+    ASSERT_TRUE(nearly_equal(accel, expected, REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL * 1e1));
 }

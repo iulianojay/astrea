@@ -69,9 +69,9 @@ AtmosphericCheckcaseRow::AtmosphericCheckcaseRow(const unsigned& checkcase_num, 
     eulerAngle_deg_Yaw(extract_optional_from_json<double>(data, "eulerAngle_deg_Yaw")),
     eulerAngle_deg_Pitch(extract_optional_from_json<double>(data, "eulerAngle_deg_Pitch")),
     eulerAngle_deg_Roll(extract_optional_from_json<double>(data, "eulerAngle_deg_Roll")),
-    bodyAngularRateWrtEi_deg_s_Roll(extract_optional_from_json<double>(data, "bodyAngularRateWrtEi_deg_s_Roll")),
-    bodyAngularRateWrtEi_deg_s_Pitch(extract_optional_from_json<double>(data, "bodyAngularRateWrtEi_deg_s_Pitch")),
-    bodyAngularRateWrtEi_deg_s_Yaw(extract_optional_from_json<double>(data, "bodyAngularRateWrtEi_deg_s_Yaw")),
+    bodyAngularVelocityWrtEi_deg_s_Roll(extract_optional_from_json<double>(data, "bodyAngularVelocityWrtEi_deg_s_Roll")),
+    bodyAngularVelocityWrtEi_deg_s_Pitch(extract_optional_from_json<double>(data, "bodyAngularVelocityWrtEi_deg_s_Pitch")),
+    bodyAngularVelocityWrtEi_deg_s_Yaw(extract_optional_from_json<double>(data, "bodyAngularVelocityWrtEi_deg_s_Yaw")),
     altitudeRateWrtMsl_ft_min(extract_optional_from_json<double>(data, "altitudeRateWrtMsl_ft_min")),
     speedOfSound_ft_s(extract_from_json<double>(data, "speedOfSound_ft_s")),
     airDensity_slug_ft3(extract_from_json<double>(data, "airDensity_slug_ft3")),
@@ -113,9 +113,9 @@ std::ostream& operator<<(std::ostream& os, const AtmosphericCheckcaseRow& atmosp
     os << "eulerAngle_deg_Yaw: " << atmosphericRow.eulerAngle_deg_Yaw << std::endl;
     os << "eulerAngle_deg_Pitch: " << atmosphericRow.eulerAngle_deg_Pitch << std::endl;
     os << "eulerAngle_deg_Roll: " << atmosphericRow.eulerAngle_deg_Roll << std::endl;
-    os << "bodyAngularRateWrtEi_deg_s_Roll: " << atmosphericRow.bodyAngularRateWrtEi_deg_s_Roll << std::endl;
-    os << "bodyAngularRateWrtEi_deg_s_Pitch: " << atmosphericRow.bodyAngularRateWrtEi_deg_s_Pitch << std::endl;
-    os << "bodyAngularRateWrtEi_deg_s_Yaw: " << atmosphericRow.bodyAngularRateWrtEi_deg_s_Yaw << std::endl;
+    os << "bodyAngularVelocityWrtEi_deg_s_Roll: " << atmosphericRow.bodyAngularVelocityWrtEi_deg_s_Roll << std::endl;
+    os << "bodyAngularVelocityWrtEi_deg_s_Pitch: " << atmosphericRow.bodyAngularVelocityWrtEi_deg_s_Pitch << std::endl;
+    os << "bodyAngularVelocityWrtEi_deg_s_Yaw: " << atmosphericRow.bodyAngularVelocityWrtEi_deg_s_Yaw << std::endl;
     os << "altitudeRateWrtMsl_ft_min: " << atmosphericRow.altitudeRateWrtMsl_ft_min << std::endl;
     os << "speedOfSound_ft_s: " << atmosphericRow.speedOfSound_ft_s << std::endl;
     os << "airDensity_slug_ft3: " << atmosphericRow.airDensity_slug_ft3 << std::endl;

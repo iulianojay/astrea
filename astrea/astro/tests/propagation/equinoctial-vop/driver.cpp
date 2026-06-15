@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/vehicles/Spacecraft.hpp>
@@ -21,7 +21,7 @@
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <astro/time/Interval.hpp>
 #include <tests/utilities/comparisons.hpp>
@@ -41,11 +41,12 @@ using mp_units::si::unit_symbols::W;
 class EquinoctialVopPropagationTest : public testing::Test {
   public:
     EquinoctialVopPropagationTest() :
-        mu(sys.get_mu()),
+        mu(get_mu<frames::primary.origin>()),
         eom(forces),
         propTime(weeks(1)),
         epoch(J2000)
     {
+        integrator.set_equations_of_motion(eom);
     }
 
     void SetUp() override {}
@@ -53,7 +54,6 @@ class EquinoctialVopPropagationTest : public testing::Test {
     const Unitless REL_TOL = 1.0e-6;
     const Unitless ABS_TOL = 1.0e-2;
 
-    AstrodynamicsSystem sys;
     GravParam mu;
     EquinoctialVop eom;
     ForceModel forces;
@@ -73,18 +73,18 @@ int main(int argc, char** argv)
 TEST_F(EquinoctialVopPropagationTest, GEONoForces)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::GEO();
-    State state{ Equinoctial(kep0, mu), epoch, sys };
+    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::GEO();
+    State state{ Equinoctial<frames::earth::icrf>(kep0, mu), epoch };
     Spacecraft geo;
     Vehicle vehicle{ geo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
+        const Keplerian<frames::earth::icrf> kep = state.in_element_set<Keplerian<frames::earth::icrf>>();
+        ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }
 
@@ -92,18 +92,18 @@ TEST_F(EquinoctialVopPropagationTest, GEONoForces)
 TEST_F(EquinoctialVopPropagationTest, GPSNoForces)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::GPS();
-    State state{ Equinoctial(kep0, mu), epoch, sys };
+    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::GPS();
+    State state{ Equinoctial<frames::earth::icrf>(kep0, mu), epoch };
     Spacecraft meo;
     Vehicle vehicle{ meo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
+        const Keplerian<frames::earth::icrf> kep = state.in_element_set<Keplerian<frames::earth::icrf>>();
+        ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }
 
@@ -111,17 +111,17 @@ TEST_F(EquinoctialVopPropagationTest, GPSNoForces)
 TEST_F(EquinoctialVopPropagationTest, LEONoForces)
 {
     // Build constellation
-    Keplerian kep0 = Keplerian::LEO();
-    State state{ Equinoctial(kep0, mu), epoch, sys };
+    Keplerian<frames::earth::icrf> kep0 = Keplerian<frames::earth::icrf>::LEO();
+    State state{ Equinoctial<frames::earth::icrf>(kep0, mu), epoch };
     Spacecraft leo;
     Vehicle vehicle{ leo };
 
     // Propagate
-    const auto stateHistory = integrator.propagate(state, propTime, eom, vehicle, true);
+    const auto stateHistory = integrator.propagate(state, propTime, vehicle);
 
     // Validate
     for (const auto& state : stateHistory) {
-        const Keplerian kep = state.in_element_set<Keplerian>();
-        ASSERT_NO_FATAL_FAILURE(ASSERT_EQ_ORB_ELEM(kep, kep0, true, REL_TOL));
+        const Keplerian<frames::earth::icrf> kep = state.in_element_set<Keplerian<frames::earth::icrf>>();
+        ASSERT_NO_FATAL_FAILURE(ASSERT_TRUE(nearly_equal(kep, kep0, true, REL_TOL)));
     }
 }

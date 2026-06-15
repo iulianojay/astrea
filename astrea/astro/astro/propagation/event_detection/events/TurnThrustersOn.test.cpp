@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
@@ -21,7 +21,7 @@
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/event_detection/events/TurnThrustersOn.hpp>
 #include <astro/state/State.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/systems/system_utilities.hpp>
 
 using namespace astrea;
 using namespace astro;

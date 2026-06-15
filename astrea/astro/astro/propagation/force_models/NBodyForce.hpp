@@ -21,7 +21,13 @@
 #include <units/units.hpp>
 
 #include <astro/astro.fwd.hpp>
-#include <astro/propagation/force_models/Force.hpp>
+#include <astro/platforms/Vehicle.hpp>
+#include <astro/propagation/force_models/PerturbingForce.hpp>
+#include <astro/state/State.hpp>
+#include <astro/state/orbital_elements/OrbitalElements.hpp>
+#include <astro/systems/system_concepts.hpp>
+#include <astro/systems/system_utilities.hpp>
+#include <astro/types/enums.hpp>
 
 namespace astrea {
 namespace astro {
@@ -30,7 +36,8 @@ namespace astro {
  * @brief Class to compute the gravitational force due to multiple celestial bodies.
  *
  */
-class NBodyForce : public Force {
+template <IsCelestialBody auto... bodies>
+class NBodyForce : public PerturbingForce {
   public:
     /**
      * @brief Default constructor for NBodyForce.
@@ -45,11 +52,49 @@ class NBodyForce : public Force {
     /**
      * @brief Computes the gravitational force due to multiple celestial bodies.
      *
-     * @param state Cartesian state vector of the vehicle
+     * @param state Cartesian<frames::primary> state vector of the vehicle
      * @param vehicle Vehicle object representing the spacecraft
-     * @return AccelerationVector<frames::earth::icrf> The computed acceleration vector due to multiple bodies.
+     * @return Perturbation The computed force and torque due to multiple bodies.
      */
-    CartesianVector<Acceleration, frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override;
+    Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override
+    {
+        // Extract
+        const Date date                                       = state.get_epoch();
+        const RadiusVector<frames::primary>& rCenterToVehicle = state.get_position();
+
+        // Center body properties
+        constexpr static auto center = frames::primary.origin;
+
+        // Reset perturbation
+        AccelerationVector<frames::primary> accelNBody{ Acceleration::zero() };
+        (
+            [&]<auto body>() {
+                if constexpr (body == center) {
+                    return; // Skip central body
+                }
+
+                // Find center to nth body and spacecraft to nth body
+                // NOTE: The forced frame conversion here is fine since it's just a relative translation, no rotation or velocity
+                const RadiusVector<frames::primary> rCenterToNbody =
+                    get_relative_position<body, center>(date).template force_frame_conversion<frames::primary>();
+                const RadiusVector<frames::primary> rVehicleToNbody = rCenterToNbody - rCenterToVehicle;
+
+                // Normalize
+                const Distance rMagVehicleToNbody = rVehicleToNbody.norm();
+                const Distance rMagCenterToNbody  = rCenterToNbody.norm();
+
+                // Perturbational force from nth body
+                const GravParam mu          = get_mu<body>();
+                const quantity directTerm   = mu / pow<3>(rMagVehicleToNbody);
+                const quantity indirectTerm = mu / pow<3>(rMagCenterToNbody);
+
+                accelNBody += directTerm * rVehicleToNbody - indirectTerm * rCenterToNbody;
+            }.template operator()<bodies>(),
+            ...
+        );
+
+        return { .force = accelNBody * vehicle.get_mass() };
+    }
 };
 
 } // namespace astro

@@ -7,7 +7,7 @@ template <class Spacecraft_T>
 Constellation<Spacecraft_T>::Constellation(std::vector<Shell<Spacecraft_T>> _shells)
 {
     shells = _shells;
-    generate_id();
+    id     = utilities::IdProvider::get_next_id<"Constellation">();
 }
 
 
@@ -20,7 +20,7 @@ Constellation<Spacecraft_T>::Constellation(std::vector<Plane<Spacecraft_T>> plan
 
     shells.push_back(noShell);
 
-    generate_id();
+    id = utilities::IdProvider::get_next_id<"Constellation">();
 }
 
 
@@ -33,15 +33,15 @@ Constellation<Spacecraft_T>::Constellation(std::vector<Spacecraft_T> satellites)
 
     shells.push_back(noShell);
 
-    generate_id();
+    id = utilities::IdProvider::get_next_id<"Constellation">();
 }
 
 template <class Spacecraft_T>
-Constellation<Spacecraft_T>::Constellation(const std::vector<GeneralPerturbations>& gps, const AstrodynamicsSystem& system)
+Constellation<Spacecraft_T>::Constellation(const std::vector<GeneralPerturbations>& gps)
 {
     std::vector<Spacecraft_T> satellites;
     for (const auto& gp : gps) {
-        satellites.push_back(Spacecraft_T(gp, system));
+        satellites.push_back(Spacecraft_T(gp));
     }
     *this = Constellation(satellites);
 }
@@ -49,7 +49,6 @@ Constellation<Spacecraft_T>::Constellation(const std::vector<GeneralPerturbation
 
 template <class Spacecraft_T>
 Constellation<Spacecraft_T>::Constellation(
-    const AstrodynamicsSystem& sys,
     const Date& epoch,
     const Distance& semimajor,
     const Angle& inclination,
@@ -61,9 +60,9 @@ Constellation<Spacecraft_T>::Constellation(
 )
 {
 
-    shells.emplace_back(Shell<Spacecraft_T>(sys, epoch, semimajor, inclination, T, P, F, anchorRAAN, anchorAnomaly));
+    shells.emplace_back(Shell<Spacecraft_T>(epoch, semimajor, inclination, T, P, F, anchorRAAN, anchorAnomaly));
 
-    generate_id();
+    id = utilities::IdProvider::get_next_id<"Constellation">();
 }
 
 template <class Spacecraft_T>
@@ -264,27 +263,19 @@ const Spacecraft_T& Constellation<Spacecraft_T>::get_spacecraft(const size_t& sp
 
 
 template <class Spacecraft_T>
-void Constellation<Spacecraft_T>::generate_id()
-{
-    static std::size_t idCounter = 0;
-    id                           = idCounter++;
-}
-
-
-template <class Spacecraft_T>
-void Constellation<Spacecraft_T>::propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator)
+void Constellation<Spacecraft_T>::propagate(const Time& propTime, Integrator& integrator)
 {
     for (auto& shell : shells) {
-        shell.propagate(propTime, eom, integrator);
+        shell.propagate(propTime, integrator);
     }
 }
 
 
 template <class Spacecraft_T>
-void Constellation<Spacecraft_T>::propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator)
+void Constellation<Spacecraft_T>::propagate(const Date& endEpoch, Integrator& integrator)
 {
     for (auto& shell : shells) {
-        shell.propagate(endEpoch, eom, integrator);
+        shell.propagate(endEpoch, integrator);
     }
 }
 

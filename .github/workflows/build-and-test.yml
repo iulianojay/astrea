@@ -48,7 +48,7 @@ jobs:
       id: wait-for-docker
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        checkName: build
+        checkName: build-and-publish
         ref: ${{ github.event.pull_request.head.sha || github.sha }}
         intervalSeconds: 30
         timeoutSeconds: 1800
@@ -90,11 +90,11 @@ jobs:
 
     - name: Run Tests
       run: |
-        make run_tests
+        . .venv/bin/activate && make run_tests
 
     - name: Run Examples
       run: |
-        make run_examples
+        . .venv/bin/activate && make run_examples
 
   coverage:
     runs-on: ubuntu-latest
@@ -144,7 +144,7 @@ jobs:
         echo "COVERAGE_PCT=$(cat coverage.txt)" >> "$GITHUB_ENV"
 
     - name: Create Coverage Badge
-      uses: schneegans/dynamic-badges-action@v1.7.0
+      uses: schneegans/dynamic-badges-action@v1.8.0
       with:
         auth: ${{ secrets.GIST_SECRET }}
         gistID: 238a4a61ca19471caa1e39376158d625

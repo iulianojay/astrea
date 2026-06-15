@@ -13,15 +13,15 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/equations_of_motion/J2MeanVop.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/state/orbital_elements/Keplerian.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <tests/utilities/comparisons.hpp>
 
 using mp_units::angular::unit_symbols::rad;
@@ -39,8 +39,8 @@ class J2MeanTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
+    ForceVector<frames::earth::icrf> noForce;
     Vehicle sat;
-    AstrodynamicsSystem sys;
     Date epoch;
     J2MeanVop eom;
 };
@@ -53,16 +53,20 @@ int main(int argc, char** argv)
 }
 
 
-TEST_F(J2MeanTest, GetExpectedSet) { ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Keplerian>()); }
+TEST_F(J2MeanTest, GetExpectedSet)
+{
+    ASSERT_EQ(eom.get_expected_set_id(), OrbitalElements::get_set_id<Keplerian<frames::earth::icrf>>());
+}
 
 TEST_F(J2MeanTest, Derivative)
 {
-    Keplerian kep0 = Keplerian::LEO();
-    KeplerianPartial expected =
-        KeplerianPartial(0.0 * km / s, 0.0 * 1 / s, 0.0 * rad / s, 0.0 * rad / s, 0.0 * rad / s, 0.0010780076129942077 * rad / s);
+    Keplerian<frames::earth::icrf> kep0            = Keplerian<frames::earth::icrf>::LEO();
+    KeplerianPartial<frames::earth::icrf> expected = KeplerianPartial<frames::earth::icrf>(
+        0.0 * km / s, 0.0 * 1 / s, 0.0 * rad / s, 0.0 * rad / s, 0.0 * rad / s, 0.0010780076129942077 * rad / s
+    );
 
-    State state(kep0, epoch, sys);
+    State state(kep0, epoch);
 
-    OrbitalElementPartials dstate = eom(state, sat);
-    ASSERT_EQ_ORB_PART(expected, dstate, REL_TOL);
+    OrbitalElementPartials dstate = eom.compute_dynamics(state, sat, noForce, noForce);
+    ASSERT_TRUE(nearly_equal(expected, dstate, REL_TOL));
 }

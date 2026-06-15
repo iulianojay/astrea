@@ -90,6 +90,40 @@ void plot_difference_trajectories(
     const std::filesystem::path& outfile
 );
 
+/**
+ * @brief Plots the attitude (XYZ intrinsic Euler angles and body angular rates) of a trajectory.
+ *
+ * @param trajectory The state history representing the trajectory.
+ * @param outfile The path to the file to save the plot.
+ */
+void plot_attitude(const StateHistory& trajectory, const std::filesystem::path& outfile);
+
+/**
+ * @brief Compares the attitudes of multiple trajectories by plotting their Euler angles and angular rates.
+ *
+ * @param trajectories A vector of state histories representing the trajectories.
+ * @param labels A vector of labels for each trajectory.
+ * @param outfile The path to the file to save the comparison plot.
+ */
+void compare_attitudes(const std::vector<StateHistory>& trajectories, const std::vector<std::string>& labels, const std::filesystem::path& outfile);
+
+/**
+ * @brief Plots the attitude difference between an expected trajectory and a set of trajectories.
+ *
+ * Differences are computed per Euler angle component (XYZ intrinsic) and per angular rate component.
+ *
+ * @param expected The expected state history used as the reference.
+ * @param trajectories A vector of state histories representing the trajectories to compare.
+ * @param labels A vector of labels for each trajectory.
+ * @param outfile The path to the file to save the plot.
+ */
+void plot_difference_attitude(
+    const StateHistory expected,
+    const std::vector<StateHistory>& trajectories,
+    const std::vector<std::string>& labels,
+    const std::filesystem::path& outfile
+);
+
 } // namespace plotting
 } // namespace astro
 } // namespace astrea

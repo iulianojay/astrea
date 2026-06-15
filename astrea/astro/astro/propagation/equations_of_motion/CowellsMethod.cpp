@@ -21,9 +21,10 @@
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
+#include <astro/propagation/equations_of_motion/StateTransitionMatrix.hpp>
 #include <astro/propagation/equations_of_motion/TwoBody.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
 
 
 using namespace mp_units;
@@ -35,30 +36,29 @@ namespace astrea {
 namespace astro {
 
 CowellsMethod::CowellsMethod(const ForceModel& forces) :
-    forces(&forces)
+    EquationsOfMotion(forces)
 {
 }
 
-OrbitalElementPartials CowellsMethod::operator()(const State& state, const Vehicle& vehicle) const
+OrbitalElementPartials CowellsMethod::compute_dynamics(
+    const State& state,
+    const Vehicle& vehicle,
+    const ForceVector<frames::primary>& perts,
+    const ForceVector<frames::primary>& control
+) const
 {
     // Extract
-    const auto mu = state.get_system().get_mu();
+    const GravParam mu = get_mu<frames::primary.origin>();
 
-    const RadiusVector<frames::earth::icrf> r   = state.get_position();
-    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
+    const RadiusVector<frames::primary> r   = state.get_position();
+    const VelocityVector<frames::primary> v = state.get_velocity();
 
     // mu/R^3
     const Distance R             = r.norm();
     const auto muOverRadiusCubed = mu / (R * R * R);
 
-    // Run find functions for force model
-    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(state, vehicle);
-
-    // Get vehicle-produced accels
-    const AccelerationVector<frames::earth::icrf> accelVehicle = vehicle.get_command_acceleration(state);
-
     // Derivative
-    return CartesianPartial(v, -muOverRadiusCubed * r + accelPerts + accelVehicle);
+    return CartesianPartial<frames::primary>(v, -muOverRadiusCubed * r + (perts + control) / vehicle.get_mass());
 }
 
 

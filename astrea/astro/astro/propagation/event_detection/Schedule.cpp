@@ -52,7 +52,7 @@ std::vector<Date> Schedule::get_scheduled_dates() const
     return dates;
 }
 
-void Schedule::clear_schedule()
+void Schedule::clear()
 {
     _schedule.clear();
     _events.clear();

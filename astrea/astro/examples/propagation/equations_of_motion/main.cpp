@@ -34,10 +34,9 @@ int main()
     // extensible. For most users, integration will be no more difficult than that when using a more sophisticated integration library.
 
     // Setup initial state
-    AstrodynamicsSystem sys; // Defaults to Earth-Moon
-    const Date epoch;        // Defaults to J2000
-    const Keplerian elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
-    const State state0(elements, epoch, sys);
+    const Date epoch; // Defaults to J2000
+    const Keplerian<frames::earth::icrf> elements(10000.0 * km, 0.0 * one, 45.0 * deg, 0.0 * deg, 0.0 * deg, 0.0 * deg);
+    const State state0(elements, epoch);
 
     // Astrea uses a type-erased Vehicle class to propagate states. This keeps the interface more static while allowing
     // for more flexibility and extensibility for users.
@@ -53,15 +52,22 @@ int main()
         constexpr std::size_t get_expected_set_id() const
         {
             // The orbital element class provides a static helper to get the set id for a given element type
-            return OrbitalElements::get_set_id<Cartesian>();
+            return OrbitalElements::get_set_id<Cartesian<frames::earth::icrf>>();
         };
 
-        OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const override
+        // Dynamics are computed from the current state. The eom model is also passed the current vehicle, in case
+        // checking it's state is required, as well as perturbing and control forces. Perturbing forces are computed
+        // from the current force model, and control forces are returned from the vehicle. Both are customizable.
+        OrbitalElementPartials compute_dynamics(
+            const State& state,
+            const Vehicle& vehicle,
+            const ForceVector<frames::earth::icrf>& perts,
+            const ForceVector<frames::earth::icrf>& control
+        ) const override
         {
             // Extracting into the desired set can be convenient
-            const AstrodynamicsSystem& system = state.get_system();
-            const auto mu                     = system.get_mu();
-            const Cartesian cartesian         = state.in_element_set<Cartesian>();
+            const GravParam mu                             = get_mu<planets::Earth>();
+            const Cartesian<frames::earth::icrf> cartesian = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
             // Pull out the pieces for simple two-body gravity
             const auto r = cartesian.get_position();
@@ -69,15 +75,9 @@ int main()
             const auto v = cartesian.get_velocity();
 
             // Compute the partials
-            CartesianPartial partials(v, -mu / (R * R * R) * r);
+            CartesianPartial<frames::earth::icrf> partials(v, -mu / (R * R * R) * r + control / vehicle.get_mass());
 
             return partials;
-        }
-
-        StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const override
-        {
-            // For simple EoMs, the STM can be computed using the StateTransitionMatrix class
-            return StateTransitionMatrix(*this, state, vehicle);
         }
     };
     MyEquationsOfMotion myEoms;
@@ -85,6 +85,7 @@ int main()
     // Propagation is done using a RKF78 method with a variable step size by default. This can be changed using
     // the integrator setters.
     Integrator integrator;
+    integrator.set_equations_of_motion(myEoms);
 
     bool store    = true;       // Users can choose to store the state history during propagation, or not
     Time propTime = minutes(1); // Propagation time can also be negative for backwards propagation.
@@ -92,7 +93,7 @@ int main()
     // Propagation is done with the element representation that the equations of motion expect. This is to avoid
     // unnecessary conversions during the integration process.
     std::cout << "Propagating My Equations of Motion...";
-    const StateHistory history = integrator.propagate(state0, propTime, myEoms, vehicle, store);
+    const StateHistory history = integrator.propagate(state0, propTime, vehicle);
 
     std::cout << " Propagation Complete." << std::endl;
 

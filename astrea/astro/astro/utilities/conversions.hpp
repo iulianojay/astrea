@@ -71,7 +71,7 @@ Angle convert_mean_anomaly_to_eccentric_anomaly(const Angle& ma, const Unitless 
  * @param ang The angle to sanitize.
  * @return The sanitized angle.
  */
-constexpr Angle wrap_angle(const Angle& angle)
+inline constexpr Angle wrap_angle(const Angle& angle) noexcept
 {
     using mp_units::angular::unit_symbols::rad;
     static constexpr Angle twoPi = 2.0 * (std::numbers::pi * rad);
@@ -84,22 +84,21 @@ constexpr Angle wrap_angle(const Angle& angle)
 }
 
 /**
- * @brief Sanitize an angle to ensure it is within the range [-π, π).
+ * @brief Sanitize an angle to ensure it is within the range [0, π).
  *
  * @param ang The angle to sanitize.
  * @return The sanitized angle.
  */
-constexpr Angle wrap_angle_to_pi(const Angle& angle)
+inline constexpr Angle wrap_angle_to_pi(const Angle& angle) noexcept
 {
     using mp_units::angular::unit_symbols::rad;
     static constexpr Angle onePi = std::numbers::pi * rad;
-    static constexpr Angle twoPi = 2.0 * onePi;
 
     Angle ang = angle;
-    while (ang < -onePi) {
-        ang += twoPi;
+    while (ang < 0.0 * rad) {
+        ang += onePi;
     }
-    return mp_units::fmod(ang + onePi, twoPi) - onePi;
+    return mp_units::fmod(ang, onePi);
 }
 
 } // namespace astro
