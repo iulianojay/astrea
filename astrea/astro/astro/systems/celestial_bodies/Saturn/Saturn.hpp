@@ -112,6 +112,20 @@ inline constexpr CartesianVector<Velocity, get_parent_frame(planets::Saturn, axe
     return get_velocity_at_impl<ephemerides::SaturnEphemerisTable, frame>(date);
 }
 
+/**
+ * @brief Get the acceleration of the Saturn at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+ *
+ * @param date The date for which to find the acceleration of the Saturn.
+ * @return AccelerationVector<frames::solar_system_barycenter::icrf> The acceleration of the Saturn at the given date.
+ */
+template <>
+inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Saturn, axes::icrf)>
+    get_acceleration_at<planets::Saturn>(const Date& date)
+{
+    constexpr auto frame = get_parent_frame(planets::Saturn, axes::icrf);
+    return get_acceleration_at_impl<ephemerides::SaturnEphemerisTable, frame>(date);
+}
+
 #endif // ASTREA_BUILD_SATURN_EPHEMERIS
 
 /**

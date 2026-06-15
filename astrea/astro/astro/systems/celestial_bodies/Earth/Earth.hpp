@@ -135,6 +135,20 @@ inline constexpr CartesianVector<Velocity, get_parent_frame(planets::Earth, axes
     return get_velocity_at_impl<ephemerides::EarthFromEmbEphemerisTable, frame>(date);
 }
 
+/**
+ * @brief Get the acceleration of the Earth at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+ *
+ * @param date The date for which to find the acceleration of the Earth.
+ * @return AccelerationVector<frames::earth_barycenter::icrf> The acceleration of the Earth at the given date.
+ */
+template <>
+inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Earth, axes::icrf)>
+    get_acceleration_at<planets::Earth>(const Date& date)
+{
+    constexpr auto frame = get_parent_frame(planets::Earth, axes::icrf);
+    return get_acceleration_at_impl<ephemerides::EarthFromEmbEphemerisTable, frame>(date);
+}
+
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 } // namespace astro

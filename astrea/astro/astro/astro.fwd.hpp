@@ -69,7 +69,7 @@ template <IsFrame auto _in_frame_, IsFrame auto _ref_frame_>
 class AngularVelocities;
 
 template <IsFrame auto _in_frame_, IsFrame auto _ref_frame_>
-class AngularAccels;
+class AngularAccelerations;
 
 class Attitude;
 class AttitudePartials;

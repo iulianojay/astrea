@@ -110,6 +110,20 @@ inline constexpr CartesianVector<Velocity, get_parent_frame(moons::Moon, axes::i
     return get_velocity_at_impl<ephemerides::MoonEphemerisTable, frame>(date);
 }
 
+/**
+ * @brief Get the acceleration of the Moon at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+ *
+ * @param date The date for which to find the acceleration of the Moon.
+ * @return AccelerationVector<frames::earth::icrf> The acceleration of the Moon at the given date.
+ */
+template <>
+inline constexpr CartesianVector<Acceleration, get_parent_frame(moons::Moon, axes::icrf)>
+    get_acceleration_at<moons::Moon>(const Date& date)
+{
+    constexpr auto frame = get_parent_frame(moons::Moon, axes::icrf);
+    return get_acceleration_at_impl<ephemerides::MoonEphemerisTable, frame>(date);
+}
+
 #endif // ASTREA_BUILD_EARTH_EPHEMERIS
 
 } // namespace astro

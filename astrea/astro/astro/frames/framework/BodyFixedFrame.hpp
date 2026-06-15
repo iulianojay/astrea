@@ -38,17 +38,10 @@ struct BodyFixedFrameBase {};
 } // namespace detail
 
 /**
- * @brief Fixed rotating frame .
+ * @brief Body-fixed frame defined by a celestial body and its reference axes. The origin is at the center of mass of the body, and the axes are fixed to the body.
  */
 template <mp_units::symbol_text _name_, IsCelestialBody auto _origin_, IsAxis auto _axis_ = _origin_.reference_axes>
 struct BodyFixedFrame : Frame<_name_, _origin_, _axis_>, detail::BodyFixedFrameBase {};
-
-template <IsCelestialBody auto _body1_, IsCelestialBody auto _body2_>
-struct SynodicAxis
-    : Axis<_body1_.name + mp_units::symbol_text{ "-" } + _body2_.name + mp_units::symbol_text{ " synodic axis" }> {};
-
-template <mp_units::symbol_text _name_, IsBarycenter auto _origin_, IsCelestialBody auto _body1_, IsCelestialBody auto _body2_>
-struct SynodicFrame : Frame<_name_, _origin_, SynodicAxis<_body1_, _body2_>{}> {};
 
 } // namespace astro
 } // namespace astrea

@@ -436,6 +436,49 @@ inline constexpr CartesianVector<Velocity, frame> get_velocity_at_impl(Date date
     return CartesianVector<Velocity, frame>(vx, vy, vz);
 }
 
+template <typename Table_T, IsFrame auto frame>
+inline constexpr CartesianVector<Acceleration, frame> get_acceleration_at_impl(Date date)
+{
+    using mp_units::non_si::day;
+    using mp_units::si::unit_symbols::km;
+
+    //! Number of days covered by each set of polynomial coefficients
+    static constexpr Time timePerCoefficient = Table_T::TIME_PER_COEFFICIENT;
+    static const double _COEFF_ZERO_FACTOR   = 1.0;
+
+    // Evaluate Chebyshev polynomials
+    const auto [xInterp, yInterp, zInterp] = get_chebyshev_table_coefficients<Table_T>(date);
+
+    const Date date1  = date - timePerCoefficient;
+    const Date date2  = date + timePerCoefficient;
+    const double mjd1 = (date1.mjd() - Date(J2000).mjd()).count();
+    const double mjd  = (date.mjd() - Date(J2000).mjd()).count();
+    const double mjd2 = (date2.mjd() - Date(J2000).mjd()).count();
+
+    // TODO: Just linearize around the velocity until I can figure out the 2nd chebyshev derivative properly.
+    const Velocity vx1 = math::evaluate_chebyshev_derivative(mjd1, xInterp, _COEFF_ZERO_FACTOR) * km / day;
+    const Velocity vy1 = math::evaluate_chebyshev_derivative(mjd1, yInterp, _COEFF_ZERO_FACTOR) * km / day;
+    const Velocity vz1 = math::evaluate_chebyshev_derivative(mjd1, zInterp, _COEFF_ZERO_FACTOR) * km / day;
+
+    const Velocity vx = math::evaluate_chebyshev_derivative(mjd, xInterp, _COEFF_ZERO_FACTOR) * km / day;
+    const Velocity vy = math::evaluate_chebyshev_derivative(mjd, yInterp, _COEFF_ZERO_FACTOR) * km / day;
+    const Velocity vz = math::evaluate_chebyshev_derivative(mjd, zInterp, _COEFF_ZERO_FACTOR) * km / day;
+
+    const Velocity vx2 = math::evaluate_chebyshev_derivative(mjd2, xInterp, _COEFF_ZERO_FACTOR) * km / day;
+    const Velocity vy2 = math::evaluate_chebyshev_derivative(mjd2, yInterp, _COEFF_ZERO_FACTOR) * km / day;
+    const Velocity vz2 = math::evaluate_chebyshev_derivative(mjd2, zInterp, _COEFF_ZERO_FACTOR) * km / day;
+
+    // 2nd order central difference: f''(x) ≈ (f(x+h) - 2f(x) + f(x-h)) / h^2
+    // Time unit correction to account for h^2 in denominator
+    static constexpr Time stepSquaredFactor =
+        (timePerCoefficient * timePerCoefficient.numerical_value_in(timePerCoefficient.unit));
+    const Acceleration ax = (vx1 - 2.0 * vx + vx2) / stepSquaredFactor;
+    const Acceleration ay = (vy1 - 2.0 * vy + vy2) / stepSquaredFactor;
+    const Acceleration az = (vz1 - 2.0 * vz + vz2) / stepSquaredFactor;
+
+    return CartesianVector<Acceleration, frame>(ax, ay, az);
+}
+
 /**
  * @brief Get the Chebyshev polynomial coefficients for the celestial body at a specific date.
  *

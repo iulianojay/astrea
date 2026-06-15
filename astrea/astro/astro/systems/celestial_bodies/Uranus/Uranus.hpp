@@ -112,6 +112,20 @@ inline constexpr CartesianVector<Velocity, get_parent_frame(planets::Uranus, axe
     return get_velocity_at_impl<ephemerides::UranusEphemerisTable, frame>(date);
 }
 
+/**
+ * @brief Get the acceleration of the Uranus at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+ *
+ * @param date The date for which to find the acceleration of the Uranus.
+ * @return AccelerationVector<frames::solar_system_barycenter::icrf> The acceleration of the Uranus at the given date.
+ */
+template <>
+inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Uranus, axes::icrf)>
+    get_acceleration_at<planets::Uranus>(const Date& date)
+{
+    constexpr auto frame = get_parent_frame(planets::Uranus, axes::icrf);
+    return get_acceleration_at_impl<ephemerides::UranusEphemerisTable, frame>(date);
+}
+
 #endif // ASTREA_BUILD_URANUS_EPHEMERIS
 
 /**

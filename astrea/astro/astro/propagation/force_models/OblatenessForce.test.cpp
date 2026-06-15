@@ -80,7 +80,8 @@ TEST_F(OblatenessForceTest, ComputeForceValladoEx85)
     const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ -1.151903e-6 * km / (s * s),
                                                                        -2.938330e-6 * km / (s * s),
                                                                        -1.023539e-5 * km / (s * s) };
-    const AccelerationVector<frames::earth::icrf> expected = expectedEcef.in_frame<frames::earth::icrf>(epoch);
+    const AccelerationVector<frames::earth::icrf> expected =
+        frames::rotate_vector_into_frame<frames::earth::icrf>(expectedEcef, epoch);
 
     // My results - TODO: Figure this out
     // const AccelerationVector<frames::earth::icrf> expected{ -4.33495448e-08 * km / (s * s),

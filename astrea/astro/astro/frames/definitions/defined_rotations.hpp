@@ -22,6 +22,8 @@
 #include <units/units.hpp>
 
 #include <astro/frames/framework/DirectionCosineMatrix.hpp>
+#include <astro/frames/framework/DirectionCosineMatrixAccel.hpp>
+#include <astro/frames/framework/DirectionCosineMatrixRate.hpp>
 #include <astro/frames/framework/Frame.hpp>
 #include <astro/frames/framework/frame_concepts.hpp>
 #include <astro/systems/celestial_bodies.hpp>
@@ -61,8 +63,42 @@ template <IsFrame auto in_frame, IsFrame auto out_frame>
     requires(IsBodyFixedFrame<decltype(out_frame)> && equivalent(in_frame.axis, axes::icrf) && in_frame.origin != planets::Earth)
 inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
 {
-    const Angle gst = date.body_sidereal_time<decltype(out_frame)::origin>();
+    const Angle gst = date.body_sidereal_time<out_frame.origin>();
     return DirectionCosineMatrix<in_frame, out_frame>::Z(-gst);
+}
+
+template <IsFrame auto in_frame, IsFrame auto out_frame>
+    requires(IsBodyFixedFrame<decltype(out_frame)> && equivalent(in_frame.axis, axes::icrf) && in_frame.origin != planets::Earth)
+inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm_rate(const Date& date)
+{
+    const Angle gst                    = date.body_sidereal_time<out_frame.origin>();
+    const AngularVelocity rotationRate = get_rotation_rate<out_frame.origin>();
+    return DirectionCosineMatrixRate<in_frame, out_frame>::Z(-gst, rotationRate);
+}
+
+
+/**
+ * @brief Get the Direction Cosine Matrix (DCM) for a synodic frame at a given date.
+ *
+ * @tparam in_frame The input frame type, must be ICRF and share the same origin as out_frame.
+ * @tparam out_frame The output frame type, must be SYNODIC and share the same origin as in_frame.
+ * @param date The date for which to get the DCM.
+ * @return DirectionCosineMatrix<in_frame, out_frame> The DCM from in_frame to out_frame.
+ */
+template <IsFrame auto in_frame, IsFrame auto out_frame>
+    requires(IsSynodicFrame<decltype(out_frame)> && equivalent(in_frame.axis, axes::icrf))
+inline constexpr DirectionCosineMatrix<in_frame, out_frame> get_dcm(const Date& date)
+{
+    static constexpr auto primary   = out_frame.axis.primary;
+    static constexpr auto secondary = out_frame.axis.secondary;
+
+    const auto r = get_relative_position<secondary, primary>(date).direction(); // x-axis
+    const auto v = get_relative_velocity<secondary, primary>(date).direction(); // nearly the y-axis but not quite
+    const auto h = r.cross(v); // z-axis, normal to the plane of motion of the secondary around the primary
+    const auto y = h.cross(r); // y-axis, normal to the plane of motion and the line connecting the primary and
+                               // secondary, pointing in the direction of motion of the secondary around the primary
+
+    return DirectionCosineMatrix<in_frame, out_frame>::from_vectors(r, y, h);
 }
 
 /**
