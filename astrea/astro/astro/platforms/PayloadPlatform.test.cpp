@@ -13,7 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/PayloadPlatform.hpp>
@@ -37,15 +37,15 @@ class MinimalTestPlatform : public PayloadPlatform<Thruster> {
     }
 
     // Required pure virtual function from PayloadPlatform
-    std::size_t get_id() const override { return _id; }
+    std::size_t get_id() const { return _id; }
 
-    // Required pure virtual function from FrameReference
-    std::string get_name() const override { return "MinimalTestPlatform"; }
-    CartesianVector<Distance, frames::earth::icrf> get_inertial_position(const Date& date) const override
+    // Required pure virtual function from
+    std::string get_name() const { return "MinimalTestPlatform"; }
+    CartesianVector<Distance, frames::earth::icrf> get_position(const Date& date) const
     {
         return { 0.0 * km, 0.0 * km, 0.0 * km };
     }
-    CartesianVector<Velocity, frames::earth::icrf> get_inertial_velocity(const Date& date) const override
+    CartesianVector<Velocity, frames::earth::icrf> get_velocity(const Date& date) const
     {
         return { 0.0 * (km / s), 0.0 * (km / s), 0.0 * (km / s) };
     }
@@ -66,9 +66,9 @@ class PayloadPlatformTest : public testing::Test {
 
     const Unitless REL_TOL = 1.0e-6;
 
-    Thrust thrust1{ 1.0 * N };
-    Thrust thrust2{ 2.0 * N };
-    Thrust thrust3{ 3.0 * N };
+    Force thrust1{ 1.0 * N };
+    Force thrust2{ 2.0 * N };
+    Force thrust3{ 3.0 * N };
     astro::RadiusVector<astro::frames::dynamic::ric> boresight1{ -1.0 * km, 0.0 * km, 0.0 * km };
     astro::RadiusVector<astro::frames::dynamic::ric> boresight2{ 0.0 * km, -1.0 * km, 0.0 * km };
     ThrusterParameters params1{ thrust1, boresight1 };
@@ -199,12 +199,12 @@ TEST_F(PayloadPlatformTest, PayloadParametersPreserved)
     ASSERT_EQ(payloads.size(), 1u);
 
     auto retrievedParams = payloads[0].get_parameters();
-    ASSERT_EQ_QUANTITY(retrievedParams.get_thrust(), thrust1, REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(retrievedParams.get_thrust(), thrust1, REL_TOL));
 
     auto boresight = retrievedParams.get_boresight();
-    ASSERT_EQ_QUANTITY(boresight.get_x(), boresight1.get_x(), REL_TOL);
-    ASSERT_EQ_QUANTITY(boresight.get_y(), boresight1.get_y(), REL_TOL);
-    ASSERT_EQ_QUANTITY(boresight.get_z(), boresight1.get_z(), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(boresight.get_x(), boresight1.get_x(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(boresight.get_y(), boresight1.get_y(), REL_TOL));
+    ASSERT_TRUE(math::nearly_equal(boresight.get_z(), boresight1.get_z(), REL_TOL));
 }
 
 TEST_F(PayloadPlatformTest, CopyConstructor)

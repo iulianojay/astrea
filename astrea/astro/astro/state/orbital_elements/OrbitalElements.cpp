@@ -162,23 +162,25 @@ OrbitalElements OrbitalElements::convert_to_set(const std::size_t idx, const Gra
 
 OrbitalElements OrbitalElements::convert_to_set_impl(const std::size_t idx, const GravParam& mu) const
 {
-    // TODO: Surely, there's a better way to do this
-    switch (idx) { // ooh boy we're fragile
-        case (OrbitalElements::get_set_id<Cartesian>()): return in_element_set<Cartesian>(mu);
-        case (OrbitalElements::get_set_id<Keplerian>()): return in_element_set<Keplerian>(mu);
-        case (OrbitalElements::get_set_id<Equinoctial>()): return in_element_set<Equinoctial>(mu);
-        default: throw std::runtime_error("Unrecognized element set requested.");
-    }
+    return [&]<std::size_t... Is>(std::index_sequence<Is...>) -> OrbitalElements {
+        OrbitalElements result;
+        bool found =
+            ((Is == idx ? (result = in_element_set<std::variant_alternative_t<Is, ElementVariant>>(mu), true) : false) || ...);
+        if (!found) throw std::runtime_error("Unrecognized element set requested.");
+        return result;
+    }(std::make_index_sequence<std::variant_size_v<ElementVariant>>{});
 }
 
 OrbitalElements OrbitalElements::from_vector(const std::vector<Unitless>& vec, const std::size_t idx)
 {
-    switch (idx) {
-        case OrbitalElements::get_set_id<Cartesian>(): return OrbitalElements(Cartesian::from_vector(vec));
-        case OrbitalElements::get_set_id<Keplerian>(): return OrbitalElements(Keplerian::from_vector(vec));
-        case OrbitalElements::get_set_id<Equinoctial>(): return OrbitalElements(Equinoctial::from_vector(vec));
-        default: throw std::runtime_error("Invalid orbital element set index for from_vector.");
-    }
+    return [&]<std::size_t... Is>(std::index_sequence<Is...>) -> OrbitalElements {
+        OrbitalElements result;
+        bool found =
+            ((Is == idx ? (result = OrbitalElements(std::variant_alternative_t<Is, ElementVariant>::from_vector(vec)), true) : false) ||
+             ...);
+        if (!found) throw std::runtime_error("Invalid orbital element set index for from_vector.");
+        return result;
+    }(std::make_index_sequence<std::variant_size_v<ElementVariant>>{});
 }
 
 
@@ -204,35 +206,10 @@ std::vector<Unitless> OrbitalElementPartials::force_to_vector() const
 
 void throw_mismatched_types()
 {
-    throw std::runtime_error("Cannot perform operations on orbital elements from different "
-                             "element sets.");
-}
-
-
-bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, bool ignoreFastVariable, Unitless relTol)
-{
-    if (first.index() != second.index()) { throw_mismatched_types(); }
-
-    const std::vector<Unitless> firstScaled  = first.force_to_vector();
-    const std::vector<Unitless> secondScaled = second.force_to_vector();
-    for (int ii = 0; ii < 6; ii++) {
-        if (!math::nearly_equal(firstScaled[ii], secondScaled[ii], relTol)) { return false; }
-    }
-    return true;
-}
-
-bool nearly_equal(const OrbitalElementPartials& first, const OrbitalElementPartials& second, bool ignoreFastVariable, Unitless relTol)
-{
-    if (first.index() != second.index()) { throw_mismatched_types(); }
-
-    // arbitrary normalization. shouldn't affect relative size
-    const Time scale                         = 1.0 * mp_units::si::unit_symbols::s;
-    const std::vector<Unitless> firstScaled  = (first * scale).force_to_vector();
-    const std::vector<Unitless> secondScaled = (second * scale).force_to_vector();
-    for (int ii = 0; ii < 6; ii++) {
-        if (!math::nearly_equal(firstScaled[ii], secondScaled[ii], relTol)) { return false; }
-    }
-    return true;
+    throw std::runtime_error(
+        "Cannot perform operations on orbital elements from different "
+        "element sets."
+    );
 }
 
 } // namespace astro

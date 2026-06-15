@@ -19,13 +19,13 @@
 #include <mp-units/systems/si.h>
 #include <mp-units/systems/si/math.h>
 
-#include <astro/frames/dynamic_frames.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/definitions/dynamic_frames.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/propagation/force_models/ForceModel.hpp>
 #include <astro/state/State.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/state/orbital_elements/instances/Equinoctial.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
+#include <astro/state/orbital_elements/Equinoctial.hpp>
 
 namespace astrea {
 namespace astro {
@@ -38,16 +38,21 @@ using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::s;
 
 EquinoctialVop::EquinoctialVop(const ForceModel& forces) :
-    forces(&forces)
+    EquationsOfMotion(forces)
 {
 }
 
-OrbitalElementPartials EquinoctialVop::operator()(const State& state, const Vehicle& vehicle) const
+OrbitalElementPartials EquinoctialVop::compute_dynamics(
+    const State& state,
+    const Vehicle& vehicle,
+    const ForceVector<frames::primary>& perts,
+    const ForceVector<frames::primary>& control
+) const
 {
     // Get need representations
-    const auto mu                 = state.get_system().get_mu();
-    const Date& date              = state.get_epoch();
-    const Equinoctial equinoctial = state.in_element_set<Equinoctial>();
+    const GravParam mu                             = get_mu<frames::primary.origin>();
+    const Date& date                               = state.get_epoch();
+    const Equinoctial<frames::primary> equinoctial = state.in_element_set<Equinoctial<frames::primary>>();
 
     // Extract
     const Distance& p = equinoctial.get_semilatus();
@@ -58,18 +63,13 @@ OrbitalElementPartials EquinoctialVop::operator()(const State& state, const Vehi
     const Angle& L    = equinoctial.get_true_longitude();
 
     // R and V
-    const RadiusVector<frames::earth::icrf> r   = state.get_position();
-    const VelocityVector<frames::earth::icrf> v = state.get_velocity();
-
-    // Function for finding accel caused by perturbations
-    const AccelerationVector<frames::earth::icrf> accelPerts = forces->compute_forces(state, vehicle);
-
-    // Get vehicle-produced accels
-    const AccelerationVector<frames::earth::icrf> accelVehicle = vehicle.get_command_acceleration(state);
+    const RadiusVector<frames::primary> r   = state.get_position();
+    const VelocityVector<frames::primary> v = state.get_velocity();
 
     // Calculate R, N, and T
-    const frames::dynamic::ric ricFrame = frames::dynamic::ric::instantaneous(r, v);
-    const AccelerationVector<frames::dynamic::ric> accelRic = ricFrame.rotate_into_this_frame(accelPerts + accelVehicle, date);
+    const auto ricFrame = frames::dynamic::ric.instantaneous(r, v);
+    const AccelerationVector<frames::dynamic::ric> accelRic =
+        ricFrame.rotate_into_this_frame((perts + control) / vehicle.get_mass(), date);
 
     const Acceleration& radialPert     = accelRic.get_x();
     const Acceleration& tangentialPert = accelRic.get_y();
@@ -93,16 +93,11 @@ OrbitalElementPartials EquinoctialVop::operator()(const State& state, const Vehi
     const UnitlessPerTime dgdt = sqPOverMu * (-radialPert * cosL + ((w + 1) * sinL + g) / w * tangentialPert + g * termA); // TODO: My notes say: 'f * termA'. Find a second source
     const UnitlessPerTime dhdt = termB * cosL * normalPert;
     const UnitlessPerTime dkdt = termB * sinL * normalPert;
-    const AngularRate dLdt     = (sqrt(mu * p) * w * w / (p * p) + sqPOverMu * termA) * (isq_angle::cotes_angle);
+    const AngularVelocity dLdt = (sqrt(mu * p) * w * w / (p * p) + sqPOverMu * termA) * (isq_angle::cotes_angle);
 
-    return EquinoctialPartial(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
+    return EquinoctialPartial<frames::primary>(dpdt, dfdt, dgdt, dhdt, dkdt, dLdt);
 }
 
-
-StateTransitionMatrix EquinoctialVop::compute_stm(const State& state, const Vehicle& vehicle) const
-{
-    return StateTransitionMatrix(*this, state, vehicle);
-}
 
 } // namespace astro
 } // namespace astrea

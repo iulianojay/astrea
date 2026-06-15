@@ -11,10 +11,13 @@ Before installing Astrea, ensure your development environment meets the followin
 ### System Requirements
 
 - **C++ Compiler**: C++23 compatible compiler
-    - GCC 13.0 or later
+    - GCC 14 or later
 - **CMake**: Version 3.20 or later
-- **Python**: Version 3.8 or later (for build scripts and code generation)
+- **Python**: Version 3.12 or later (for build scripts and code generation)
 - **Git**: For dependency management and version control
+
+NOTE: It's possible to downgrade to at least GCC 13 but some functionality needs to be replaced or supplanted around the
+inclusion of Howard Hinnat's date library into the official C++ standard chrono library. It's also possible to use earlier versions of Python but a more updated one is used for security.
 
 ### Platform Support
 
@@ -56,7 +59,7 @@ On Windows (PowerShell):
 #### 3. Build and Install
 
 ```bash
-make install
+make
 ```
 
 This builds Astrea in Release configuration and installs it to the `install/` directory.
@@ -158,7 +161,7 @@ cd <path_to_example> && . ./bin/example_name
 Create a simple test program to verify integration:
 
 ```cpp
-#include <astrea/astro/astro.hpp>
+#include <astro/astro.hpp>
 #include <iostream>
 
 using namespace astrea::astro;
@@ -236,7 +239,9 @@ target_link_libraries(my_app PRIVATE
 make python_env
 ```
 
-**Missing Dependencies**: Astrea automatically downloads dependencies via CMake's FetchContent. Ensure you have internet access during the first build.
+**Missing Dependencies**: Astrea automatically downloads dependencies via CMake's FetchContent (via CPM). Dependencies
+cached locally in the `.cpm-cache`folder and should only be downloaded once. Ensure you have internet access during the
+first build.
 
 **Build Failures**: For detailed build output:
 ```bash
@@ -256,7 +261,7 @@ make debug install
 After successful installation:
 
 1. Explore the [Examples](../examples/index.md) to understand common usage patterns
-2. Review the [API Documentation](../api_reference/index.md) for detailed interface descriptions
+2. Review the [API Documentation](../api/index.md) for detailed interface descriptions
 3. Join the community discussions on [GitHub](https://github.com/iulianojay/astrea)
 
 ## Shrinking the size of Astrea

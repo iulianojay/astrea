@@ -28,8 +28,8 @@
 
 #include <units/typedefs.hpp>
 
-#include <astro/frames/CartesianVector.hpp>
-#include <astro/frames/frames.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/framework/CartesianVector.hpp>
 #include <astro/types/typedefs.hpp>
 
 namespace astrea {
@@ -116,9 +116,9 @@ struct AtmosphericCheckcaseRow {
     std::optional<double> eulerAngle_deg_Yaw;   //!< Yaw angle in degrees
     std::optional<double> eulerAngle_deg_Pitch; //!< Pitch angle in degrees
     std::optional<double> eulerAngle_deg_Roll;  //!< Roll angle in degrees
-    std::optional<double> bodyAngularRateWrtEi_deg_s_Roll; //!< Body angular rate with respect to Earth-inertial frame (Roll) in degrees/second
-    std::optional<double> bodyAngularRateWrtEi_deg_s_Pitch; //!< Body angular rate with respect to Earth-inertial frame (Pitch) in degrees/second
-    std::optional<double> bodyAngularRateWrtEi_deg_s_Yaw; //!< Body angular rate with respect to Earth-inertial frame (Yaw) in degrees/second
+    std::optional<double> bodyAngularVelocityWrtEi_deg_s_Roll; //!< Body angular rate with respect to Earth-inertial frame (Roll) in degrees/second
+    std::optional<double> bodyAngularVelocityWrtEi_deg_s_Pitch; //!< Body angular rate with respect to Earth-inertial frame (Pitch) in degrees/second
+    std::optional<double> bodyAngularVelocityWrtEi_deg_s_Yaw; //!< Body angular rate with respect to Earth-inertial frame (Yaw) in degrees/second
     std::optional<double> altitudeRateWrtMsl_ft_min; //!< Altitude rate with respect to mean sea level in feet/minute
     double speedOfSound_ft_s;                        //!< Speed of sound in feet/second
     double airDensity_slug_ft3;                      //!< Air density in slugs/ft^3

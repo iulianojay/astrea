@@ -27,19 +27,16 @@ class GroundPointTest : public testing::Test {
 
     void SetUp() override
     {
-        parent    = sys.get_body(CelestialBodyId::EARTH).get();
         latitude  = 0.5 * mp_units::angular::unit_symbols::rad;
         longitude = 1.0 * mp_units::angular::unit_symbols::rad;
         altitude  = 0.1 * mp_units::si::unit_symbols::km;
-        point     = GroundPoint(parent, latitude, longitude, altitude);
+        point     = GroundPoint<astro::planets::Earth>(latitude, longitude, altitude);
     }
 
-    AstrodynamicsSystem sys;
-    const CelestialBody* parent;
     Angle latitude;
     Angle longitude;
     Distance altitude;
-    GroundPoint point;
+    GroundPoint<astro::planets::Earth> point;
 };
 
 int main(int argc, char** argv)
@@ -48,11 +45,11 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST_F(GroundPointTest, DefaultConstructor) { ASSERT_NO_THROW(GroundPoint()); }
+TEST_F(GroundPointTest, DefaultConstructor) { ASSERT_NO_THROW(GroundPoint<astro::planets::Earth>()); }
 
 TEST_F(GroundPointTest, Constructor)
 {
-    ASSERT_NO_THROW(GroundPoint(sys.get_body(CelestialBodyId::EARTH).get(), latitude, longitude, altitude));
+    ASSERT_NO_THROW(GroundPoint<astro::planets::Earth>(latitude, longitude, altitude));
 }
 
 TEST_F(GroundPointTest, GetLatitude) { ASSERT_EQ(point.get_latitude(), latitude); }
@@ -61,9 +58,11 @@ TEST_F(GroundPointTest, GetLongitude) { ASSERT_EQ(point.get_longitude(), longitu
 
 TEST_F(GroundPointTest, GetAltitude) { ASSERT_EQ(point.get_altitude(), altitude); }
 
-TEST_F(GroundPointTest, GetParent) { ASSERT_EQ(point.get_parent(), sys.get_body(CelestialBodyId::EARTH).get()); }
+TEST_F(GroundPointTest, GetParent) { ASSERT_TRUE(GroundPoint<astro::planets::Earth>::body == astro::planets::Earth); }
 
 TEST_F(GroundPointTest, GetId)
 {
-    ASSERT_EQ(point.get_id() - 1, GroundPoint(sys.get_body(CelestialBodyId::EARTH).get(), latitude, longitude, altitude).get_id());
+    const auto ground1 = GroundPoint<astro::planets::Earth>(latitude, longitude, altitude);
+    const auto ground2 = GroundPoint<astro::planets::Earth>(latitude, longitude, altitude);
+    ASSERT_EQ(ground1.get_id() + 1, ground2.get_id());
 }

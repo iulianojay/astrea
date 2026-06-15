@@ -23,37 +23,44 @@ using namespace mp_units;
 
 using mp_units::si::unit_symbols::km;
 using mp_units::si::unit_symbols::m;
+using mp_units::si::unit_symbols::N;
 using mp_units::si::unit_symbols::s;
 
 int main()
 {
-    // A ForceModel is a factory for arbitrary Force objects. These forces are called during propagation
-    // to compute accelerations on the spacecraft. Several forces are provided with Astrea, and users can add
-    // more by inheriting from the Force class.
-    struct ContinuousThrust : public Force {
+    // A ForceModel is a factory for arbitrary PerturbingForce objects. These forces are called during propagation
+    // to compute accelerations and torques on the spacecraft. Several forces are provided with Astrea, and users can
+    // add more by inheriting from the PerturbingForce class.
+    struct ContinuousThrust : public PerturbingForce {
         ContinuousThrust(const std::string& name = "Continuous Thrust Force") :
             _name(name)
         {
         }
 
-        // Currently, forces are expected to return acceleration in the Earth-centered ICRF frame. Future releases will
-        // allow forces to specify the output frame.
-        AccelerationVector<frames::earth::icrf> compute_force(const State& state, const Vehicle& vehicle) const override
+        // Currently, forces and torques are expected to return acceleration in the Earth-centered ICRF frame. Future
+        // releases will allow perturbating forces to specify the output frame.
+        Perturbation compute_perturbation(const State& state, const Vehicle& vehicle) const override
         {
             // Grab the cartesian elements and date
-            const Date date           = state.get_epoch();
-            const Cartesian cartesian = state.in_element_set<Cartesian>();
+            const Date date                                = state.get_epoch();
+            const Cartesian<frames::earth::icrf> cartesian = state.in_element_set<Cartesian<frames::earth::icrf>>();
 
             // Build out a burn in the RIC frame, pointing in the nadir direction
-            using RIC       = astro::frames::dynamic::ric;
-            const RIC frame = frames::dynamic::ric::instantaneous(cartesian.get_position(), cartesian.get_velocity());
-            const AccelerationVector<RIC> nadirAccel{ -1.0 * m / (s * s), 0.0 * m / (s * s), 0.0 * m / (s * s) };
+            const auto frame = frames::dynamic::ric.instantaneous(cartesian.get_position(), cartesian.get_velocity());
+            const ForceVector<astro::frames::dynamic::ric> nadirThrust{ -1.0 * N, 0.0 * N, 0.0 * N };
 
             std::cout << "Applying continuous thrust force: " << _name << " at time " << date << std::endl;
-            std::cout << nadirAccel << std::endl;
+            std::cout << nadirThrust << std::endl;
 
-            // Rotate the acceleration back to the inertial frame for output
-            return frame.rotate_out_of_this_frame(nadirAccel, date);
+            // Rotate the acceleration back to the inertial frame for output. Include a torque, if you want to model
+            // attitude effects as well.
+            const auto thrustForce = frame.rotate_out_of_this_frame(nadirThrust, date);
+            std::cout << "Thrust force in inertial frame: " << thrustForce << std::endl;
+
+            const CartesianVector<Length, astro::frames::dynamic::ric> thrusterOffset{ 0.0 * m, 1.0 * m, 0.0 * m };
+            const auto thrustTorque = frame.rotate_out_of_this_frame(nadirThrust.cross(thrusterOffset), date);
+
+            return { .force = thrustForce, .torque = thrustTorque };
         }
 
       private:
@@ -61,15 +68,15 @@ int main()
     };
 
     // Input arguments are forwarded to the constructor of the Force subclass
-    AstrodynamicsSystem sys;
     ForceModel forceModel;
     forceModel.add<ContinuousThrust>("My Continuous Thrust");
 
     // During propagation, the force model is queried for the total acceleration
-    Cartesian cart{ 7000.0 * km, 7000.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s };
-    State state(cart, Date(), sys);
-    const auto totalAcceleration = forceModel.compute_forces(state, Vehicle());
+    Cartesian<frames::earth::icrf> cart{ 7000.0 * km, 7000.0 * km, 0.0 * km, 0.0 * km / s, 7.5 * km / s, 1.0 * km / s };
+    State state(cart, Date());
+    const auto [totalAcceleration, totalTorque] = forceModel.compute_perturbations(state, Vehicle());
     std::cout << "Total Acceleration: " << totalAcceleration << std::endl;
+    std::cout << "Total Torque: " << totalTorque << std::endl;
 
     return 0;
 }

@@ -13,21 +13,21 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
-#include <astro/frames/instances/RadialInTrackCrossTrack.hpp>
+#include <astro/frames/definitions/RadialInTrackCrossTrack.hpp>
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/event_detection/Event.hpp>
 #include <astro/propagation/event_detection/EventDetector.hpp>
 #include <astro/propagation/event_detection/events/ImpulsiveBurn.hpp>
 #include <astro/state/State.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
+#include <astro/state/orbital_elements/Keplerian.hpp>
 #include <astro/state/orbital_elements/OrbitalElements.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
-#include <astro/systems/planetary_bodies/Earth/Earth.hpp>
+#include <astro/systems/celestial_bodies/Earth/Earth.hpp>
+#include <astro/systems/system_utilities.hpp>
 
 using namespace mp_units;
 using mp_units::angular::unit_symbols::deg;
@@ -54,22 +54,21 @@ class ImpulsiveBurnTest : public testing::Test {
         const Angle argPe            = 0.0 * rad;
         const Angle trueAnomaly      = 0.0 * rad;
 
-        Keplerian keplerian(semiMajorAxis, eccentricity, inclination, raan, argPe, trueAnomaly);
-        state   = State(keplerian, Date(), sys);
+        Keplerian<frames::earth::icrf> keplerian(semiMajorAxis, eccentricity, inclination, raan, argPe, trueAnomaly);
+        state   = State(keplerian, Date());
         vehicle = Vehicle(spacecraft);
 
         // Set up a standard burn direction (radial)
-        burnDirection = UnitVector<frames::dynamic::ric>(1.0, 0.0, 0.0);
+        burnDirection = Direction<frames::dynamic::ric>(1.0, 0.0, 0.0);
     }
 
     const Unitless REL_TOL = 1.0e-6 * one;
 
-    AstrodynamicsSystem sys;
     Time time;
     State state;
     Vehicle vehicle;
     Spacecraft spacecraft;
-    UnitVector<frames::dynamic::ric> burnDirection;
+    Direction<frames::dynamic::ric> burnDirection;
 };
 
 int main(int argc, char** argv)
@@ -122,7 +121,7 @@ TEST_F(ImpulsiveBurnTest, MeasureEventTrueAnomaly)
     // Our test state is already at 0 degrees true anomaly
     Unitless result = burn.measure_event(time, state, vehicle);
 
-    ASSERT_EQ_QUANTITY(result, Unitless(0.0 * one), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result, Unitless(0.0 * one), REL_TOL));
 }
 
 TEST_F(ImpulsiveBurnTest, MeasureEventAltitude)
@@ -146,5 +145,5 @@ TEST_F(ImpulsiveBurnTest, MeasureEventEpoch)
     Unitless result = burn.measure_event(time, state, vehicle);
 
     // At the trigger epoch, the result should be 0 or very small
-    ASSERT_EQ_QUANTITY(result, Unitless(0.0 * one), REL_TOL);
+    ASSERT_TRUE(math::nearly_equal(result, Unitless(0.0 * one), REL_TOL));
 }

@@ -22,11 +22,12 @@
 #include <vector>
 
 #include <units/units.hpp>
+#include <utilities/IdProvider.hpp>
 
 #include <astro/astro.fwd.hpp>
 #include <astro/platforms/space/Plane.hpp>
 #include <astro/propagation/numerical/Integrator.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
+#include <astro/state/orbital_elements/Keplerian.hpp>
 
 namespace astrea {
 namespace astro {
@@ -66,7 +67,6 @@ class Shell {
 
     /**
      * @brief Constructor for Shell with a Walker parameters.
-     * @param sys The astrodynamics system to which the shell belongs.
      * @param epoch The epoch date for the shell's orbit.
      * @param semimajor The semimajor axis of the shell's orbit.
      * @param inclination The inclination of the shell's orbit.
@@ -77,7 +77,6 @@ class Shell {
      * @param anchorAnomaly The argument of perigee for the shell's orbit (default is 0).
      */
     Shell(
-        const AstrodynamicsSystem& sys,
         const Date& epoch,
         const Distance& semimajor,
         const Angle& inclination,
@@ -92,7 +91,7 @@ class Shell {
      * @brief Destructor for Shell.
      * Cleans up the shell and its planes.
      */
-    ~Shell() { generate_id(); };
+    ~Shell() { id = utilities::IdProvider::get_next_id<"Shell">(); };
 
     /**
      * @brief Returns the size of the shell, which is the number of spacecraft it contains.
@@ -171,19 +170,17 @@ class Shell {
      * @brief Propagates the shell's spacecraft using the provided equations of motion and integrator.
      *
      * @param propTime The total propagation time after the initial state epoch.
-     * @param eom The equations of motion to be used for propagation.
      * @param integrator The integrator to be used for numerical integration.
      */
-    void propagate(const Time& propTime, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Time& propTime, Integrator& integrator);
 
     /**
      * @brief Propagates the shell's spacecraft using the provided equations of motion and integrator.
      *
      * @param endEpoch The end epoch for propagation.
-     * @param eom The equations of motion to be used for propagation.
      * @param integrator The integrator to be used for numerical integration.
      */
-    void propagate(const Date& endEpoch, const EquationsOfMotion& eom, Integrator& integrator);
+    void propagate(const Date& endEpoch, Integrator& integrator);
 
 
     // using iterator       = std::vector<Plane<Spacecraft_T>>::iterator;
@@ -405,8 +402,6 @@ class Shell {
     std::size_t id;
     std::string name;
     std::vector<Plane<Spacecraft_T>> planes;
-
-    void generate_id();
 };
 
 } // namespace astro

@@ -41,7 +41,5 @@ int main()
     // different Astrea toolsets (which avoids a lot of implicit conversions), but it is largely for convenience.
     static_assert(std::is_same_v<decltype(t), decltype(time)>);
 
-    // Currently, Astrea does use the complete isq definitions provided by mp-units, but this will change in future releases.
-
     return 0;
 }

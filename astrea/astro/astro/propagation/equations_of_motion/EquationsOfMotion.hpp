@@ -19,8 +19,9 @@
 #pragma once
 
 #include <astro/astro.fwd.hpp>
-#include <astro/propagation/equations_of_motion/state_transition_matrix/StateTransitionMatrix.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/frames/definitions.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
+#include <astro/types/typedefs.hpp>
 
 namespace astrea {
 namespace astro {
@@ -36,9 +37,25 @@ class EquationsOfMotion {
     EquationsOfMotion() = default;
 
     /**
+     * @brief Constructor for the Equations of Motion class that takes a ForceModel.
+     *
+     * @param forces The force model to be used in the equations of motion.
+     */
+    EquationsOfMotion(const ForceModel& forces);
+
+    /**
      * @brief Destructor for the Equations of Motion class.
      */
     virtual ~EquationsOfMotion() = default;
+
+    /**
+     * @brief Computes the partial derivatives of the state.
+     *
+     * @param state The current state of the vehicle.
+     * @param vehicle The vehicle for which the equations of motion are being computed.
+     * @return StatePartial The computed partial derivatives of the state.
+     */
+    StatePartial operator()(const State& state, const Vehicle& vehicle) const;
 
     /**
      * @brief Computes the partial derivatives of the orbital elements.
@@ -46,9 +63,32 @@ class EquationsOfMotion {
      * @param date The current date for which the equations of motion are being computed.
      * @param state The current state of the vehicle.
      * @param vehicle The vehicle for which the equations of motion are being computed.
-     * @return OrbitalElementPartials The computed partial derivatives of the orbital elements.
+     * @param perts The perturbations acting on the vehicle.
+     * @param control The control forces produced by the vehicle.
+     * @return StatePartial The computed partial derivatives of the orbital elements.
      */
-    virtual OrbitalElementPartials operator()(const State& state, const Vehicle& vehicle) const = 0;
+    virtual OrbitalElementPartials compute_dynamics(
+        const State& state,
+        const Vehicle& vehicle,
+        const ForceVector<frames::primary>& perts,
+        const ForceVector<frames::primary>& control
+    ) const = 0;
+
+    /**
+     * @brief Computes the kinematic partial derivatives of the attitude.
+     *
+     * @param state The current state of the vehicle.
+     * @param vehicle The vehicle for which the kinematic partials are being computed.
+     * @param perts The perturbations acting on the vehicle.
+     * @param control The control torques produced by the vehicle.
+     * @return AttitudePartials The computed kinematic partial derivatives of the attitude.
+     */
+    virtual AttitudePartials compute_kinematics(
+        const State& state,
+        const Vehicle& vehicle,
+        const TorqueVector<frames::primary>& perts,
+        const TorqueVector<frames::primary>& control
+    ) const;
 
     /**
      * @brief Computes the state transition matrix (STM).
@@ -58,7 +98,7 @@ class EquationsOfMotion {
      * @param vehicle The vehicle for which the STM is being computed.
      * @return StateTransitionMatrix The computed state transition matrix.
      */
-    virtual StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const = 0;
+    virtual StateTransitionMatrix compute_stm(const State& state, const Vehicle& vehicle) const;
 
     /**
      * @brief Computes the state transition matrix (STM).
@@ -75,6 +115,9 @@ class EquationsOfMotion {
      * @return std::size_t The expected set id of orbital elements.
      */
     virtual constexpr std::size_t get_expected_set_id() const = 0;
+
+  protected:
+    const ForceModel* forces = nullptr; //!< The force model used in the equations of motion.
 };
 
 } // namespace astro

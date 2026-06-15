@@ -25,110 +25,45 @@
 
 // Astro
 #include <astro/astro.fwd.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/state/orbital_elements/instances/Equinoctial.hpp>
-#include <astro/state/orbital_elements/instances/Keplerian.hpp>
-#include <astro/types/type_traits.hpp>
-#include <astro/types/typedefs.hpp>
+#include <astro/frames/definitions/frame_registry.hpp>
+#include <astro/frames/definitions/primary_frame.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
+#include <astro/state/orbital_elements/Equinoctial.hpp>
+#include <astro/state/orbital_elements/Keplerian.hpp>
+#include <astro/types/concepts.hpp>
 #include <astro/types/variant_util.hpp>
 
 namespace astrea {
 namespace astro {
-
 /**
- * @brief Concept to check if a type can be constructed from a set of orbital elements.
+ * @brief Variant of all frame-indexed element types expanded over every registered frame.
  *
- * @tparam T The type to check.
- * @tparam U The type to construct from.
+ * The first element type (Cartesian) is always included. Any additional
+ * frame-indexed templates passed as FrameIndexedTypes are also expanded over
+ * all registered frames. Typically used as:
+ *
+ * @code
+ *   using ElementVariant = OrbitalElementVariant<Keplerian, Equinoctial>;
+ * @endcode
+ *
+ * Adding a frame to ExtraRegisteredFrames automatically adds a new
+ * instantiation of every listed template to this variant.
+ *
+ * To register frames from user code, see ExtraRegisteredFrames in
+ * astro/frames/definitions/frame_registry.hpp.
  */
-template <typename T, typename U>
-concept IsConstructableTo = requires(T elements, const GravParam& mu) {
-    { U(elements, mu) };
-};
+template <template <auto> class... FrameIndexedTypes>
+using OrbitalElementVariant = typename detail::tuple_to_variant<typename detail::multi_tuple_cat<
+    typename detail::apply_nttp_template<Cartesian, detail::AllRegisteredFrames>::type,
+    typename detail::apply_nttp_template<FrameIndexedTypes, detail::AllRegisteredFrames>::type...>::type>::type;
 
-/**
- * @brief Concept to check if a type can be converted to Cartesian elements.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasDirectCartesianConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_cartesian(mu) } -> std::same_as<Cartesian>;
-};
-
-/**
- * @brief Concept to check if a type can be converted to Keplerian elements.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasDirectKeplerianConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_keplerian(mu) } -> std::same_as<Keplerian>;
-};
-
-/**
- * @brief Concept to check if a type can be converted to Equinoctial elements.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasDirectEquinoctialConversion = requires(const T elements, const GravParam& mu) {
-    { elements.to_equinoctial(mu) } -> std::same_as<Equinoctial>;
-};
-
-/**
- * @brief Concept to check if a type can be converted to Cartesian elements.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasIterpolate =
-    requires(const T elements, const Time& thisTime, const Time& otherTime, const T& other, const GravParam& mu, const Time& targetTime) {
-        { elements.interpolate(thisTime, otherTime, other, mu, targetTime) } -> std::same_as<T>;
-    };
-
-/**
- * @brief Concept to check if a type can be converted to a vector of Unitless.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasToVector = requires(const T elements) {
-    { elements.force_to_vector() } -> std::same_as<std::vector<Unitless>>;
-};
-
-/**
- * @brief Concept to check if a type has mathematical operators defined.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasMathOperators = requires(const T elements, const T other, const Unitless scalar) {
-    { elements + other } -> std::same_as<T>;
-    { elements - other } -> std::same_as<T>;
-    { elements* scalar } -> std::same_as<T>;
-    { elements / scalar } -> std::same_as<T>;
-};
-
-/**
- * @brief Concept to check if a type has in-place mathematical operators defined.
- *
- * @tparam T The type to check.
- */
-template <typename T>
-concept HasInPlaceMathOperators = requires(T elements, const T other, const Unitless scalar) {
-    { elements += other };
-    { elements -= other };
-    { elements *= scalar };
-    { elements /= scalar };
-};
 
 /**
  * @brief Concept to check if a type is an orbital elements type.
  *
  * This concept checks if a type is a valid orbital elements type, ensuring it meets
  * the requirements for being default constructible, copyable, movable, destructible,
- * and convertible to Cartesian elements.
+ * and convertible to Cartesian<frames::primary> elements.
  *
  * @tparam T The type to check.
  */
@@ -140,7 +75,8 @@ concept IsOrbitalElements = requires(T) {
     std::is_move_constructible<T>::value;
     std::is_destructible<T>::value;
     requires !std::is_same<T, OrbitalElements>::value;
-    requires std::is_same<T, Cartesian>::value || IsConstructableTo<T, Cartesian> || HasDirectCartesianConversion<T>;
+    requires std::is_same<T, Cartesian<frames::primary>>::value || IsConstructableTo<T, Cartesian<frames::primary>> ||
+                 HasDirectCartesianConversion<T, frames::primary>;
     requires HasToVector<T>;
     requires HasMathOperators<T>;
     requires HasInPlaceMathOperators<T>;
@@ -158,8 +94,11 @@ class OrbitalElements {
 
     /**
      * @brief Variant type to hold different orbital element types.
+     *
+     * Extended at compile time via ExtraRegisteredFrames<> specialization.
+     * See cartesianframeregistry.hpp for details.
      */
-    using ElementVariant = std::variant<Cartesian, Keplerian, Equinoctial>;
+    using ElementVariant = OrbitalElementVariant<Keplerian, Equinoctial>;
 
     friend std::ostream& operator<<(std::ostream& os, const OrbitalElements& state);
     friend class StateTransitionMatrix;
@@ -167,39 +106,45 @@ class OrbitalElements {
 
   public:
     /**
-     * @brief Default constructor initializing to Cartesian elements.
+     * @brief Default constructor initializing to Cartesian<frames::primary> elements.
      */
     OrbitalElements() :
-        _elements(Cartesian())
+        _elements(Cartesian<frames::primary>())
     {
     }
 
     /**
-     * @brief Constructor initializing with Cartesian elements.
+     * @brief Constructor initializing with Cartesian<frame> elements.
      *
      * @param elements The orbital elements to initialize with.
      */
-    OrbitalElements(Cartesian elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElements(Cartesian<frame> elements) :
         _elements(elements)
     {
     }
 
     /**
-     * @brief Constructor initializing with Keplerian elements.
+     * @brief Constructor initializing with Keplerian<frame> elements.
      *
      * @param elements The orbital elements to initialize with.
      */
-    OrbitalElements(Keplerian elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElements(Keplerian<frame> elements) :
         _elements(elements)
     {
     }
 
     /**
-     * @brief Constructor initializing with Equinoctial elements.
+     * @brief Constructor initializing with Equinoctial<frame> elements.
      *
      * @param elements The orbital elements to initialize with.
      */
-    OrbitalElements(Equinoctial elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElements(Equinoctial<frame> elements) :
         _elements(elements)
     {
     }
@@ -395,6 +340,28 @@ class OrbitalElements {
         return get_variant_index<ElementVariant, T, 0>();
     }
 
+    /**
+     * @brief Converts all held orbital elements to the specified frame.
+     *
+     * Visits the current element type and calls its in_frame<target_frame>(epoch, mu),
+     * returning a new OrbitalElements holding the converted elements.
+     *
+     * @tparam target_frame The frame to convert into.
+     * @param epoch The epoch at which to evaluate the frame transformation.
+     * @param mu The gravitational parameter of the central body.
+     * @return OrbitalElements Orbital elements expressed in target_frame.
+     */
+    template <IsFrame auto target_frame>
+    OrbitalElements in_frame(const Date& epoch, const GravParam& mu) const
+    {
+        return std::visit(
+            [&](const auto& x) -> OrbitalElements {
+                return OrbitalElements(x.template in_frame<target_frame>(epoch, mu));
+            },
+            _elements
+        );
+    }
+
   private:
     ElementVariant _elements; //!< Variant holding the orbital elements (Cartesian, Keplerian, Equinoctial)
 
@@ -417,18 +384,24 @@ class OrbitalElements {
     static OrbitalElements from_vector(const std::vector<Unitless>& vec, const std::size_t idx);
 };
 
+template <template <auto> class... FrameIndexedTypes>
+using OrbitalElementPartialVariant = typename detail::tuple_to_variant<typename detail::multi_tuple_cat<
+    typename detail::apply_nttp_template<CartesianPartial, detail::AllRegisteredFrames>::type,
+    typename detail::apply_nttp_template<FrameIndexedTypes, detail::AllRegisteredFrames>::type...>::type>::type;
+
+
 /**
  * @brief Class representing partial derivatives of orbital elements.
  *
  * This class encapsulates the partial derivatives of orbital elements, allowing for
- * operations such as multiplication by time to obtain Cartesian state vectors.
+ * operations such as multiplication by time to obtain Cartesian<frames::primary> state vectors.
  */
 class OrbitalElementPartials {
 
     /**
      * @brief Variant type to hold different partial element types.
      */
-    using PartialVariant = std::variant<CartesianPartial, KeplerianPartial, EquinoctialPartial>;
+    using PartialVariant = OrbitalElementPartialVariant<KeplerianPartial, EquinoctialPartial>;
 
     friend std::ostream& operator<<(std::ostream& os, const OrbitalElementPartials& state);
 
@@ -437,7 +410,7 @@ class OrbitalElementPartials {
      * @brief Default constructor initializing to CartesianPartial elements.
      */
     OrbitalElementPartials() :
-        _elements(CartesianPartial())
+        _elements(CartesianPartial<frames::primary>())
     {
     }
 
@@ -446,7 +419,9 @@ class OrbitalElementPartials {
      *
      * @param elements The orbital element partials to initialize with.
      */
-    OrbitalElementPartials(CartesianPartial elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElementPartials(CartesianPartial<frame> elements) :
         _elements(elements)
     {
     }
@@ -456,7 +431,9 @@ class OrbitalElementPartials {
      *
      * @param elements The orbital element partials to initialize with.
      */
-    OrbitalElementPartials(KeplerianPartial elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElementPartials(KeplerianPartial<frame> elements) :
         _elements(elements)
     {
     }
@@ -466,7 +443,9 @@ class OrbitalElementPartials {
      *
      * @param elements The orbital element partials to initialize with.
      */
-    OrbitalElementPartials(EquinoctialPartial elements) :
+    template <IsFrame auto frame>
+        requires(IsRegisteredFrame<frame>)
+    OrbitalElementPartials(EquinoctialPartial<frame> elements) :
         _elements(elements)
     {
     }
@@ -527,39 +506,6 @@ class OrbitalElementPartials {
  * @throws std::runtime_error with a message indicating the mismatch.
  */
 void throw_mismatched_types();
-
-/**
- * @brief Checks if two OrbitalElements objects are nearly equal.
- *
- * This function compares two OrbitalElements objects for equality within a specified tolerance.
- *
- * @param first The first OrbitalElements object to compare.
- * @param second The second OrbitalElements object to compare.
- * @param ignoreFastVariable If true, ignores fast-changing variables in the comparison.
- * @param relTol Relative tolerance for the comparison.
- * @return true if the two OrbitalElements objects are nearly equal
- * @return false if the two OrbitalElements objects are not nearly equal
- */
-bool nearly_equal(const OrbitalElements& first, const OrbitalElements& second, bool ignoreFastVariable = false, Unitless relTol = 1.0e-5 * astrea::detail::unitless);
-
-/**
- * @brief Checks if two OrbitalElementPartials objects are nearly equal.
- *
- * This function compares two OrbitalElementPartials objects for equality within a specified tolerance.
- *
- * @param first The first OrbitalElementPartials object to compare.
- * @param second The second OrbitalElementPartials object to compare.
- * @param ignoreFastVariable If true, ignores fast-changing variables in the comparison.
- * @param relTol Relative tolerance for the comparison.
- * @return true if the two OrbitalElementPartials objects are nearly equal
- * @return false if the two OrbitalElementPartials objects are not nearly equal
- */
-bool nearly_equal(
-    const OrbitalElementPartials& first,
-    const OrbitalElementPartials& second,
-    bool ignoreFastVariable = false,
-    Unitless relTol         = 1.0e-5 * astrea::detail::unitless
-);
 
 } // namespace astro
 } // namespace astrea

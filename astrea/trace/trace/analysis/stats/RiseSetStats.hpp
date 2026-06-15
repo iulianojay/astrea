@@ -21,7 +21,7 @@
 #include <string>
 #include <vector>
 
-#include <gtl/btree.hpp>
+#include <gtl/phmap.hpp>
 
 #include <units/units.hpp>
 
@@ -76,7 +76,7 @@ struct RiseSetStats {
     auto& operator[](const RiseSetMetric& metric) { return _stats[metric]; }
 
   private:
-    gtl::btree_map<RiseSetMetric, Stats<Time>> _stats; //!< Map of RiseSetMetric to Stats<Time> containing the calculated statistics for each metric.
+    gtl::flat_hash_map<RiseSetMetric, Stats<Time>> _stats; //!< Map of RiseSetMetric to Stats<Time> containing the calculated statistics for each metric.
 };
 
 } // namespace trace

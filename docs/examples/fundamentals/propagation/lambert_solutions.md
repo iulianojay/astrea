@@ -1,3 +1,5 @@
+[[PLACEHOLDER]]
+
 # Lambert Solutions
 
 Astrea provides a robust implementation of Lambert's problem solver for determining orbital trajectories between two position vectors in a specified time of flight. This capability is essential for trajectory design, rendezvous planning, and interplanetary transfer analysis.

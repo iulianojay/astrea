@@ -1,3 +1,5 @@
+[[PLACEHOLDER]]
+
 # Cartesian Vectors
 
 The `CartesianVector` class is the fundamental vector type in Astrea, providing strongly-typed 3D vectors with compile-time unit and frame safety. This class prevents common errors in astrodynamics calculations by enforcing unit consistency and coordinate frame awareness.
@@ -7,12 +9,12 @@ The `CartesianVector` class is the fundamental vector type in Astrea, providing 
 Cartesian vectors are templated on both value type and frame:
 
 ```cpp
-template <class Value_T, class Frame_T>
+template <class Value_T, IsFrame auto _frame_>
 class CartesianVector;
 ```
 
 - **Value_T**: The physical quantity type (e.g., `Distance`, `Velocity`, `Acceleration`)
-- **Frame_T**: The coordinate frame (e.g., `ECI`, `ECEF`, `RIC`)
+- **_frame_**: The coordinate frame (e.g., `ECI`, `ECEF`, `RIC`)
 
 ## Basic Usage
 

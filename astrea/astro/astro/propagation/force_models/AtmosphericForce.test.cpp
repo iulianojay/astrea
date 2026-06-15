@@ -13,14 +13,14 @@
 
 #include <gtest/gtest.h>
 
-#include <math/test_util.hpp>
+#include <math/operations.hpp>
 #include <units/units.hpp>
 
 #include <astro/platforms/Vehicle.hpp>
 #include <astro/platforms/vehicles/Spacecraft.hpp>
 #include <astro/propagation/force_models/AtmosphericForce.hpp>
-#include <astro/state/orbital_elements/instances/Cartesian.hpp>
-#include <astro/systems/AstrodynamicsSystem.hpp>
+#include <astro/state/orbital_elements/Cartesian.hpp>
+#include <astro/systems/system_utilities.hpp>
 #include <astro/time/Date.hpp>
 #include <tests/utilities/comparisons.hpp>
 
@@ -36,8 +36,7 @@ class AtmosphericForceTest : public testing::Test {
   public:
     AtmosphericForceTest() :
         epoch("2020-02-18 15:08:47.23847"),
-        sys(CelestialBodyId::EARTH, { CelestialBodyId::MOON, CelestialBodyId::SUN }),
-        force()
+        atmoForce()
     {
     }
 
@@ -57,8 +56,7 @@ class AtmosphericForceTest : public testing::Test {
 
     Spacecraft sat;
     Date epoch;
-    AstrodynamicsSystem sys;
-    AtmosphericForce force;
+    AtmosphericForce atmoForce;
 };
 
 
@@ -74,43 +72,42 @@ TEST_F(AtmosphericForceTest, DefaultConstructor) { ASSERT_NO_THROW(AtmosphericFo
 // Vallado, Ex. 8.5
 TEST_F(AtmosphericForceTest, ComputeForceValladoEx85)
 {
-    const Cartesian cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
-                          -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
-    const State state(cart, epoch, sys);
-    const AccelerationVector<frames::earth::icrf> accel = force.compute_force(state, Vehicle(sat));
+    const Cartesian<frames::earth::icrf> cart{ -605.790796 * km,   -5870.230422 * km,  3493.051916 * km,
+                                               -1.568251 * km / s, -3.702348 * km / s, -6.479485 * km / s };
+    const State state(cart, epoch);
+    const auto [force, torque]                          = atmoForce.compute_perturbation(state, Vehicle(sat));
+    const AccelerationVector<frames::earth::icrf> accel = force / sat.get_mass();
 
     const AccelerationVector<frames::earth::earth_fixed> expectedEcef{ 1.4553e-9 * km / (s * s),
                                                                        1.5354e-9 * km / (s * s),
                                                                        3.2957e-9 * km / (s * s) };
-    const AccelerationVector<frames::earth::icrf> expected = expectedEcef.in_frame<frames::earth::icrf>(epoch);
+    const AccelerationVector<frames::earth::icrf> expected =
+        frames::rotate_vector_into_frame<frames::earth::icrf>(expectedEcef, epoch);
 
     const Acceleration expectedNorm = expected.norm();
     const Acceleration accelNorm    = accel.norm();
 
-    // ASSERT_EQ_QUANTITY(accelNorm, expectedNorm, REL_TOL);
-    // ASSERT_EQ_CART_VEC(accel, expected, REL_TOL);
+    // ASSERT_TRUE(math::nearly_equal(accelNorm, expectedNorm, REL_TOL));
+    // ASSERT_TRUE(nearly_equal(accel, expected, REL_TOL));
 }
 
 TEST_F(AtmosphericForceTest, MartianAtmosphere)
 {
-    AstrodynamicsSystem martianSys(CelestialBodyId::MARS, { CelestialBodyId::PHOBOS, CelestialBodyId::DEIMOS, CelestialBodyId::SUN });
     AtmosphericForce martianAtmosphere;
-    State state(Cartesian::LEO(martianSys.get_mu()), epoch, martianSys);
-    ASSERT_NO_THROW(martianAtmosphere.compute_force(state, Vehicle(sat)));
+    State state(Cartesian<frames::mars::icrf>::LEO(get_mu<planets::Mars>()), epoch);
+    ASSERT_NO_THROW(martianAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }
 
 TEST_F(AtmosphericForceTest, VenutianAtmosphere)
 {
-    AstrodynamicsSystem venutianSys(CelestialBodyId::VENUS, { CelestialBodyId::SUN });
     AtmosphericForce venutianAtmosphere;
-    State state(Cartesian::LEO(venutianSys.get_mu()), epoch, venutianSys);
-    ASSERT_NO_THROW(venutianAtmosphere.compute_force(state, Vehicle(sat)));
+    State state(Cartesian<frames::venus::icrf>::LEO(get_mu<planets::Venus>()), epoch);
+    ASSERT_NO_THROW(venutianAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }
 
 TEST_F(AtmosphericForceTest, TitanAtmosphere)
 {
-    AstrodynamicsSystem titanSys(CelestialBodyId::TITAN, { CelestialBodyId::TITAN, CelestialBodyId::SATURN });
     AtmosphericForce titanAtmosphere;
-    State state(Cartesian::LEO(titanSys.get_mu()), epoch, titanSys);
-    ASSERT_NO_THROW(titanAtmosphere.compute_force(state, Vehicle(sat)));
+    State state(Cartesian<frames::titan::icrf>::LEO(get_mu<moons::Titan>()), epoch);
+    ASSERT_NO_THROW(titanAtmosphere.compute_perturbation(state, Vehicle(sat)));
 }

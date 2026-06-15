@@ -13,7 +13,8 @@
 
 name: Bump Version
 
-permissions: write-all
+permissions:
+  contents: write
 
 on:
   push:

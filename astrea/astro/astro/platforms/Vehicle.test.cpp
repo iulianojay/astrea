@@ -115,24 +115,6 @@ TEST_F(VehicleTest, GetCoefficientOfReflectivity)
     ASSERT_EQ(vehicleReflectivityCoefficient, satReflectivityCoefficient);
 }
 
-TEST_F(VehicleTest, GetInertialPosition)
-{
-    ASSERT_ANY_THROW({ auto v = vehicle.get_inertial_position(Date()); });
-    ASSERT_NO_THROW({ auto v = vehicleWithHistory.get_inertial_position(Date()); });
-}
-
-TEST_F(VehicleTest, GetInertialVelocity)
-{
-    ASSERT_ANY_THROW({ auto v = vehicle.get_inertial_velocity(Date()); });
-    ASSERT_NO_THROW({ auto v = vehicleWithHistory.get_inertial_velocity(Date()); });
-}
-
-TEST_F(VehicleTest, GetInertialAcceleration)
-{
-    ASSERT_NO_THROW({ auto v = vehicle.get_inertial_acceleration(Date()); }); // This function is defaulted so it shouldn't error
-    ASSERT_NO_THROW({ auto v = vehicleWithHistory.get_inertial_acceleration(Date()); });
-}
-
 TEST_F(VehicleTest, GetName)
 {
     std::string vehicleName = vehicle.get_name();

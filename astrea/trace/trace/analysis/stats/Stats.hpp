@@ -22,7 +22,6 @@
 #include <string>
 #include <vector>
 
-#include <gtl/btree.hpp>
 #include <mp-units/concepts.h>
 #include <mp-units/systems/si.h>
 

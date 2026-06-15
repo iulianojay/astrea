@@ -1,3 +1,5 @@
+[[PLACEHOLDER]]
+
 # Testing
 
 Astrea's testing strategy ensures reliability, accuracy, and performance through comprehensive validation against established benchmarks, real-world data, and theoretical expectations. This document outlines the testing philosophy, methodologies, and infrastructure.
@@ -71,11 +73,11 @@ protected:
 };
 ```
 
-### Benchmark Validation Tests
 
-None yet.
+### NASA 6DOF Checkcases
 
+An automatically generated report can be found [here](nasa_6dof_report/nasa_6dof_report.md)
 
-## NASA 6DOF Checkcases
+### Benchmakrs
 
-An automatically generate report can be found [here](nasa_6dof_report/nasa_6dof_report.md)
+An automatically generated report can be found [here](benchmarks/propagation.md)

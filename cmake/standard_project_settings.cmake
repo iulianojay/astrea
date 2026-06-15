@@ -7,25 +7,51 @@
 # of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details. You should
 # have received a copy of the GNU General Public License along with Astrea. If not, see <https://www.gnu.org/licenses/>.
 
-# Compiler flags
-set(COMMON_FLAGS "-DWL=64 -m64 -fPIC -mfpmath=387 -DLINUX")
-set(DEBUG_FLAGS "${COMMON_FLAGS} -g -fno-inline -fno-inline-small-functions -fno-default-inline --coverage")
-set(RELEASE_FLAGS "${COMMON_FLAGS} -O3 -ffast-math")
-set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
+# Compiler flags - Platform specific
+if(MSVC)
+    # MSVC (Visual Studio) flags
+    set(COMMON_FLAGS "/DWL=64 /bigobj /Zc:preprocessor /Zc:lambda")
+    set(DEBUG_FLAGS "${COMMON_FLAGS} /Od /Zi")
+    set(RELEASE_FLAGS "${COMMON_FLAGS} /O2 /fp:fast")
+    set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} /Zi")
 
-if (UNIX AND NOT APPLE)
-    set(C_FLAGS "${C_FLAGS} -Wall")
-    set(CXX_FLAGS "${CXX_FLAGS} -Wall -fpermissive")
+    set(C_FLAGS "/W3")
+    set(CXX_FLAGS "/W3 /EHsc /std:c++latest /permissive- /Zc:__cplusplus")
+
+    # Disable specific MSVC warnings if needed
+    # add_compile_options(/wd4996) # Disable deprecation warnings
+elseif(MINGW)
+    # MinGW (Windows GCC) flags
+    set(COMMON_FLAGS "-DWL=64 -m64 -fPIC")
+    set(DEBUG_FLAGS "${COMMON_FLAGS} -g -fno-inline -fno-inline-small-functions -fno-default-inline -O0")
+    set(RELEASE_FLAGS "${COMMON_FLAGS} -O3 -ffinite-loops")
+    set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
+
+    set(C_FLAGS "-Wall -Wl,--kill-at")
+    set(CXX_FLAGS "-Wall -Wl,--kill-at -fpermissive")
+elseif(UNIX AND NOT APPLE)
+    # Linux GCC flags
+    set(COMMON_FLAGS "-DWL=64 -m64 -fPIC -mfpmath=387 -DLINUX -Wno-interference-size") # -freport-bug
+    set(DEBUG_FLAGS "${COMMON_FLAGS} -g -fno-inline -fno-inline-small-functions -fno-default-inline --coverage -O0")
+    set(RELEASE_FLAGS "${COMMON_FLAGS} -O3 -ffinite-loops")
+    set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
+
+    set(C_FLAGS "-Wall")
+    set(CXX_FLAGS "-Wall -fpermissive")
 else()
-    set(C_FLAGS "${C_FLAGS} -Wl,--kill-at")
-    set(CXX_FLAGS "${CXX_FLAGS} -Wl,--kill-at -fpermissive")
+    # Other platforms (macOS, etc.)
+    set(COMMON_FLAGS "-DWL=64 -m64 -fPIC")
+    set(DEBUG_FLAGS "${COMMON_FLAGS} -g -O0")
+    set(RELEASE_FLAGS "${COMMON_FLAGS} -O3")
+    set(RELWITHHDEBINFO_FLAGS "${RELEASE_FLAGS} -g")
+
+    set(C_FLAGS "-Wall")
+    set(CXX_FLAGS "-Wall")
 endif()
 
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${DEBUG_FLAGS} ${C_FLAGS}")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ${DEBUG_FLAGS} ${CXX_FLAGS}")
-
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} ${RELEASE_FLAGS} ${C_FLAGS}")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${RELEASE_FLAGS} ${CXX_FLAGS}")
-
-set(CMAKE_C_FLAGS_RELWITHHDEBINFO "${CMAKE_C_FLAGS_RELWITHHDEBINFO} ${RELWITHHDEBINFO_FLAGS} ${C_FLAGS}")
-set(CMAKE_CXX_FLAGS_RELWITHHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHHDEBINFO} ${RELWITHHDEBINFO_FLAGS} ${CXX_FLAGS}")
+set(CMAKE_C_FLAGS_DEBUG            "${C_FLAGS} ${DEBUG_FLAGS}")
+set(CMAKE_C_FLAGS_RELEASE          "${C_FLAGS} ${RELEASE_FLAGS}")
+set(CMAKE_C_FLAGS_RELWITHDEBINFO   "${C_FLAGS} ${RELWITHHDEBINFO_FLAGS}")
+set(CMAKE_CXX_FLAGS_DEBUG          "${CXX_FLAGS} ${DEBUG_FLAGS}")
+set(CMAKE_CXX_FLAGS_RELEASE        "${CXX_FLAGS} ${RELEASE_FLAGS}")
+set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CXX_FLAGS} ${RELWITHHDEBINFO_FLAGS}")

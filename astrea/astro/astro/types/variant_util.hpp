@@ -38,6 +38,21 @@ constexpr std::size_t get_variant_index()
     }
 }
 
+/**
+ * @brief Checks whether type T is one of the alternatives in VariantType.
+ */
+template <typename VariantType, typename T, std::size_t index = 0>
+constexpr bool variant_contains()
+{
+    if constexpr (index == std::variant_size_v<VariantType>) { return false; }
+    else if constexpr (std::is_same_v<std::variant_alternative_t<index, VariantType>, T>) {
+        return true;
+    }
+    else {
+        return variant_contains<VariantType, T, index + 1>();
+    }
+}
+
 
 } // namespace astro
 } // namespace astrea

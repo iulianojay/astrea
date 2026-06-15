@@ -74,7 +74,7 @@ class Schedule {
     /**
      * @brief Clears all scheduled Events and their associated Dates from the Schedule.
      */
-    void clear_schedule();
+    void clear();
 
     /**
      * @brief Removes all Events scheduled to trigger at a specific Date.
