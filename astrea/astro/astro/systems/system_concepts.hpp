@@ -25,17 +25,27 @@ namespace astro {
 
 namespace detail {
 
+// Forward declarations of base types
 struct CelestialBodyBase;
 struct BarycenterBase;
 
 } // namespace detail
 
+/**
+ * @brief Concept to determine if a type is a celestial body.
+ */
 template <typename T>
 concept IsCelestialBody = std::derived_from<T, detail::CelestialBodyBase> && !std::derived_from<T, detail::BarycenterBase>;
 
+/**
+ * @brief Concept to determine if a type is a barycenter.
+ */
 template <typename T>
 concept IsBarycenter = std::derived_from<T, detail::BarycenterBase> && !std::derived_from<T, detail::CelestialBodyBase>;
 
+/**
+ * @brief Concept to determine if a type is a celestial reference, which can be either a celestial body or a barycenter.
+ */
 template <typename T>
 concept IsCelestialReference = IsCelestialBody<T> || IsBarycenter<T>;
 

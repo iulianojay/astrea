@@ -1,8 +1,8 @@
 /**
- * @file time.hpp
+ * @file clocks.hpp
  * @author Jay Iuliano (iuliano.jay@gmail.com)
- * @brief Header file for the time module
- * @date 2026-06-01
+ * @brief A collection of clock implementations for various time scales.
+ * @date 2026-06-02
  *
  * @copyright Copyright (c) 2026 Jay Iuliano
  *
@@ -18,6 +18,8 @@
  */
 #pragma once
 
-#include <astro/time/Date.hpp>
-#include <astro/time/Interval.hpp>
-#include <astro/time/clocks.hpp>
+#include <astro/time/clocks/BarycentricCoordinateTimeClock.hpp>
+#include <astro/time/clocks/BarycentricDynamicalTimeClock.hpp>
+#include <astro/time/clocks/GeocentricCoordinateTimeClock.hpp>
+#include <astro/time/clocks/JulianDateClock.hpp>
+#include <astro/time/clocks/TerrestrialTimeClock.hpp>

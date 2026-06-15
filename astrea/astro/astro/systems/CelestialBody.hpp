@@ -90,6 +90,9 @@ inline constexpr CartesianVector<Distance, get_parent_frame(_body_, axes::icrf)>
 template <auto _body_>
 inline constexpr CartesianVector<Velocity, get_parent_frame(_body_, axes::icrf)> get_velocity_at(const Date& date);
 
+template <auto _body_>
+inline constexpr CartesianVector<Acceleration, get_parent_frame(_body_, axes::icrf)> get_acceleration_at(const Date& date);
+
 } // namespace astro
 } // namespace astrea
 

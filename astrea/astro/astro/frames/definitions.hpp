@@ -26,4 +26,5 @@
 #include <astro/frames/definitions/defined_rotations.hpp>
 #include <astro/frames/definitions/defined_rotations_earth.hpp>
 #include <astro/frames/definitions/dynamic_frames.hpp>
+#include <astro/frames/definitions/synodic_frames.hpp>
 #include <astro/frames/definitions/transformations.hpp>

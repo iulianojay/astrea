@@ -45,7 +45,7 @@ TEST(RotateVectorIntoFrame, SameFrameReturnsIdenticalVector)
 {
     constexpr auto F = frames::earth::icrf;
     const CartesianVector<Unitless, F> vec{ 1.0 * one, 2.0 * one, 3.0 * one };
-    const auto result = frames::rotate_vector_into_frame<Unitless, F, F>(vec, J2000);
+    const auto result = frames::rotate_vector_into_frame<F>(vec, J2000);
     EXPECT_TRUE(nearly_equal(result, vec, REL_TOL, ABS_TOL));
 }
 
@@ -53,14 +53,14 @@ TEST(RotateVectorIntoFrame, SameFrameZeroVectorRemainsZero)
 {
     constexpr auto F = frames::earth::icrf;
     const CartesianVector<Unitless, F> zero{};
-    const auto result = frames::rotate_vector_into_frame<Unitless, F, F>(zero, J2000);
+    const auto result = frames::rotate_vector_into_frame<F>(zero, J2000);
     EXPECT_TRUE(nearly_equal(result, zero, REL_TOL, ABS_TOL));
 }
 
 TEST(RotateVectorIntoFrame, EarthIcrfToJ2000IsNearlyIdentityAtJ2000)
 {
     const CartesianVector<Unitless, frames::earth::icrf> vec{ 1.0 * one, 0.0 * one, 0.0 * one };
-    const auto result = frames::rotate_vector_into_frame<Unitless, frames::earth::icrf, frames::earth::j2000>(vec, J2000);
+    const auto result = frames::rotate_vector_into_frame<frames::earth::j2000>(vec, J2000);
     EXPECT_TRUE(
         nearly_equal(result, CartesianVector<Unitless, frames::earth::j2000>{ 1.0 * one, 7.0783e-08 * one, 8.0561e-08 * one }, REL_TOL, ABS_TOL)
     );
@@ -69,7 +69,7 @@ TEST(RotateVectorIntoFrame, EarthIcrfToJ2000IsNearlyIdentityAtJ2000)
 TEST(RotateVectorIntoFrame, EarthJ2000ToIcrfIsNearlyIdentityAtJ2000)
 {
     const CartesianVector<Unitless, frames::earth::j2000> vec{ 0.0 * one, 1.0 * one, 0.0 * one };
-    const auto result = frames::rotate_vector_into_frame<Unitless, frames::earth::j2000, frames::earth::icrf>(vec, J2000);
+    const auto result = frames::rotate_vector_into_frame<frames::earth::icrf>(vec, J2000);
     EXPECT_TRUE(
         nearly_equal(result, CartesianVector<Unitless, frames::earth::icrf>{ 7.0783e-08 * one, 1.0 * one, -3.306e-08 * one }, REL_TOL, ABS_TOL)
     );
@@ -80,9 +80,8 @@ TEST(RotateVectorIntoFrame, IcrfToEcefToIcrfRoundTripRecoverOriginal)
     // Rotate into ECEF then back; regardless of the GST angle, the round-trip
     // should recover the original vector within floating-point tolerance.
     const CartesianVector<Unitless, frames::earth::icrf> original{ 1.0 * one, 2.0 * one, 3.0 * one };
-    const auto ecef = frames::rotate_vector_into_frame<Unitless, frames::earth::icrf, frames::earth::earth_fixed>(original, J2000);
-    const auto roundtrip =
-        frames::rotate_vector_into_frame<Unitless, frames::earth::earth_fixed, frames::earth::icrf>(ecef, J2000);
+    const auto ecef      = frames::rotate_vector_into_frame<frames::earth::earth_fixed>(original, J2000);
+    const auto roundtrip = frames::rotate_vector_into_frame<frames::earth::icrf>(ecef, J2000);
     EXPECT_TRUE(nearly_equal(roundtrip, original, REL_TOL, ABS_TOL));
 }
 
@@ -92,7 +91,7 @@ TEST(RotateVectorIntoFrame, IcrfToEcefPreservesVectorMagnitude)
     constexpr auto OutFrame = frames::earth::earth_fixed;
 
     const CartesianVector<Unitless, InFrame> original{ 3.0 * one, 4.0 * one, 0.0 * one };
-    const auto ecef = frames::rotate_vector_into_frame<Unitless, InFrame, OutFrame>(original, J2000);
+    const auto ecef = frames::rotate_vector_into_frame<OutFrame>(original, J2000);
 
     const auto mag_in  = original.norm();
     const auto mag_out = ecef.norm();
@@ -103,7 +102,7 @@ TEST(RotateVectorIntoFrame, IcrfToEcefZAxisIsInvariant)
 {
     // The z-axis is the rotation axis for ECEF, so z_hat should be unchanged.
     const CartesianVector<Unitless, frames::earth::icrf> z_hat{ 0.0 * one, 0.0 * one, 1.0 * one };
-    const auto ecef = frames::rotate_vector_into_frame<Unitless, frames::earth::icrf, frames::earth::earth_fixed>(z_hat, J2000);
+    const auto ecef = frames::rotate_vector_into_frame<frames::earth::earth_fixed>(z_hat, J2000);
     EXPECT_NEAR(ecef.get_x().numerical_value_in(one), 0.0, 1e-10);
     EXPECT_NEAR(ecef.get_y().numerical_value_in(one), 0.0, 1e-10);
     EXPECT_NEAR(ecef.get_z().numerical_value_in(one), 1.0, 1e-10);
@@ -136,10 +135,8 @@ TEST(CartesianVectorInFrame, IcrfToEcefProducesCorrectFrameType)
 TEST(TransformVectorIntoFrame, SameOriginDelegatesToRotate)
 {
     const CartesianVector<Unitless, frames::earth::icrf> vec{ 1.0 * one, 0.0 * one, 0.0 * one };
-    const auto via_transform =
-        frames::transform_vector_into_frame<Unitless, frames::earth::icrf, frames::earth::earth_fixed>(vec, J2000);
-    const auto via_rotate =
-        frames::rotate_vector_into_frame<Unitless, frames::earth::icrf, frames::earth::earth_fixed>(vec, J2000);
+    const auto via_transform = frames::transform_vector_into_frame<frames::earth::earth_fixed>(vec, J2000);
+    const auto via_rotate    = frames::rotate_vector_into_frame<frames::earth::earth_fixed>(vec, J2000);
     EXPECT_TRUE(nearly_equal(via_transform, via_rotate, REL_TOL, ABS_TOL));
 }
 

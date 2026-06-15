@@ -112,6 +112,20 @@ inline constexpr CartesianVector<Velocity, get_parent_frame(planets::Mercury, ax
     return get_velocity_at_impl<ephemerides::MercuryEphemerisTable, frame>(date);
 }
 
+/**
+ * @brief Get the acceleration of the Mercury at a specific date in the ICRF frame using JPL DE430 ephemeris data.
+ *
+ * @param date The date for which to find the acceleration of the Mercury.
+ * @return AccelerationVector<frames::solar_system_barycenter::icrf> The acceleration of the Mercury at the given date.
+ */
+template <>
+inline constexpr CartesianVector<Acceleration, get_parent_frame(planets::Mercury, axes::icrf)>
+    get_acceleration_at<planets::Mercury>(const Date& date)
+{
+    constexpr auto frame = get_parent_frame(planets::Mercury, axes::icrf);
+    return get_acceleration_at_impl<ephemerides::MercuryEphemerisTable, frame>(date);
+}
+
 #endif // ASTREA_BUILD_MERCURY_EPHEMERIS
 
 } // namespace astro

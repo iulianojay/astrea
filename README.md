@@ -54,7 +54,7 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
     {0.0 * (km/s), 7.546 * (km/s), 0.0 * (km/s)}  // velocity
   };
   // Keplerian elements  
-  Keplerian kepler{
+  Keplerian<frames::earth::icrf> kepler{
     7000.0 * km,  // semimajoraxis
     0.01,         // eccentricity
     98.0 * deg,   // inclination
@@ -125,8 +125,12 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
   // Automatic transformation to J2000
   RadiusVector<frames::earth::j2000> posJ2000 = posIcrf.in_frame<frames::earth::j2000>(epoch);
   
-  // Chain transformations coming soon!
-  // auto posMarsIcrf = transform_to<frames::mars::icrf>(posIcrf, epoch);
+  // Chain transformations under the hood
+  RadiusVector<frames::mars::icrf> posMarsIcrf = posIcrf.in_frame<frames::mars::icrf>(epoch);
+
+  // Even automatically transformation velocity and acceleration vectors while handling abberations
+  AcceleartionVector<frames::earth::icrf> accIcrf{0.0 * (km/s/s), -0.001 * (km/s/s), 0.0 * (km/s/s)};
+  auto accJ2000 = accIcrf.in_frame<frames::earth::j2000>(epoch, r1, v1); // Handles velocity abberations for non-inertial frames
 ```
 - **Dynamic frame support** for time-varying coordinate systems
 ```cpp
@@ -138,15 +142,14 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
 ```cpp
   namespace custom_frames {
     // Define spacecraft body frame
-    struct SpacecraftBody : public Frame<SpacecraftBody> {
-      // ...
-      // ooh boy this is sure something right now but you can do it
-      // ...
-    };
+    constexpr inline struct SpacecraftBody : public Frame<"MySpacecraftFrame", SpacecraftOrigin, DynamicAxis> {
+    } SpacecraftBody;
   }
   
   CartesianVector<Thrust, custom_frames::SpacecraftBody> thrust_vector{1.0 * N, 0.0 * N, 0.0 * N};
 ```
+And more!
+
 - **Advanced time systems** including Julian Date, UTC, TAI, and other common time standards
 ```cpp
   Date now = Date::now();   // Current time in Julian Date
@@ -218,6 +221,8 @@ Beyond the core principles of safety, performance was a necessary benchmark for 
 - **Improved Installation**: CMake packaging and cross-platform deployment
 - **6-DoF Simulation**: Complete attitude dynamics with control system modeling
 - **Performance Benchmarks**: Google Benchmark integration with speed guarantees
+- **Comprehensive Frame Transformations**: Support for a wide range of celestial bodies and dynamic frames
+- **Cislunar Dynamics**: CR3BP propagator and synodic frame support
 
 ## Installation
 
